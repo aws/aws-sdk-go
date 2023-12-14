@@ -61,31 +61,35 @@ type OutputService1ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService1ProtocolTest client from just a session.
-//     svc := outputservice1protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService1ProtocolTest client with additional configuration
-//     svc := outputservice1protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService1ProtocolTest client from just a session.
+//	svc := outputservice1protocoltest.New(mySession)
+//
+//	// Create a OutputService1ProtocolTest client with additional configuration
+//	svc := outputservice1protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService1ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService1ProtocolTest {
 	c := p.ClientConfig("outputservice1protocoltest", cfgs...)
-	return newOutputService1ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService1ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService1ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService1ProtocolTest {
+func newOutputService1ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService1ProtocolTest {
 	svc := &OutputService1ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService1ProtocolTest",
-				ServiceID:     "OutputService1ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService1ProtocolTest",
+				ServiceID:      "OutputService1ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -125,14 +129,13 @@ const opOutputService1TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService1TestCaseOperation1Request method.
+//	req, resp := client.OutputService1TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService1TestCaseOperation1Request method.
-//    req, resp := client.OutputService1TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *request.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService1TestCaseOperation1,
@@ -272,31 +275,35 @@ type OutputService2ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService2ProtocolTest client from just a session.
-//     svc := outputservice2protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService2ProtocolTest client with additional configuration
-//     svc := outputservice2protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService2ProtocolTest client from just a session.
+//	svc := outputservice2protocoltest.New(mySession)
+//
+//	// Create a OutputService2ProtocolTest client with additional configuration
+//	svc := outputservice2protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService2ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService2ProtocolTest {
 	c := p.ClientConfig("outputservice2protocoltest", cfgs...)
-	return newOutputService2ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService2ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService2ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService2ProtocolTest {
+func newOutputService2ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService2ProtocolTest {
 	svc := &OutputService2ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService2ProtocolTest",
-				ServiceID:     "OutputService2ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService2ProtocolTest",
+				ServiceID:      "OutputService2ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -336,14 +343,13 @@ const opOutputService2TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService2TestCaseOperation1Request method.
+//	req, resp := client.OutputService2TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService2TestCaseOperation1Request method.
-//    req, resp := client.OutputService2TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(input *OutputService2TestShapeOutputService2TestCaseOperation1Input) (req *request.Request, output *OutputService2TestShapeOutputService2TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService2TestCaseOperation1,
@@ -427,31 +433,35 @@ type OutputService3ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService3ProtocolTest client from just a session.
-//     svc := outputservice3protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService3ProtocolTest client with additional configuration
-//     svc := outputservice3protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService3ProtocolTest client from just a session.
+//	svc := outputservice3protocoltest.New(mySession)
+//
+//	// Create a OutputService3ProtocolTest client with additional configuration
+//	svc := outputservice3protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService3ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService3ProtocolTest {
 	c := p.ClientConfig("outputservice3protocoltest", cfgs...)
-	return newOutputService3ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService3ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService3ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService3ProtocolTest {
+func newOutputService3ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService3ProtocolTest {
 	svc := &OutputService3ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService3ProtocolTest",
-				ServiceID:     "OutputService3ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService3ProtocolTest",
+				ServiceID:      "OutputService3ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -491,14 +501,13 @@ const opOutputService3TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService3TestCaseOperation1Request method.
+//	req, resp := client.OutputService3TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService3TestCaseOperation1Request method.
-//    req, resp := client.OutputService3TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (req *request.Request, output *OutputService3TestShapeOutputService3TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService3TestCaseOperation1,
@@ -575,31 +584,35 @@ type OutputService4ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService4ProtocolTest client from just a session.
-//     svc := outputservice4protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService4ProtocolTest client with additional configuration
-//     svc := outputservice4protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService4ProtocolTest client from just a session.
+//	svc := outputservice4protocoltest.New(mySession)
+//
+//	// Create a OutputService4ProtocolTest client with additional configuration
+//	svc := outputservice4protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService4ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService4ProtocolTest {
 	c := p.ClientConfig("outputservice4protocoltest", cfgs...)
-	return newOutputService4ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService4ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService4ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService4ProtocolTest {
+func newOutputService4ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService4ProtocolTest {
 	svc := &OutputService4ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService4ProtocolTest",
-				ServiceID:     "OutputService4ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService4ProtocolTest",
+				ServiceID:      "OutputService4ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -639,14 +652,13 @@ const opOutputService4TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService4TestCaseOperation1Request method.
+//	req, resp := client.OutputService4TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService4TestCaseOperation1Request method.
-//    req, resp := client.OutputService4TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (req *request.Request, output *OutputService4TestShapeOutputService4TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService4TestCaseOperation1,
@@ -722,31 +734,35 @@ type OutputService5ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService5ProtocolTest client from just a session.
-//     svc := outputservice5protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService5ProtocolTest client with additional configuration
-//     svc := outputservice5protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService5ProtocolTest client from just a session.
+//	svc := outputservice5protocoltest.New(mySession)
+//
+//	// Create a OutputService5ProtocolTest client with additional configuration
+//	svc := outputservice5protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService5ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService5ProtocolTest {
 	c := p.ClientConfig("outputservice5protocoltest", cfgs...)
-	return newOutputService5ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService5ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService5ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService5ProtocolTest {
+func newOutputService5ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService5ProtocolTest {
 	svc := &OutputService5ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService5ProtocolTest",
-				ServiceID:     "OutputService5ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService5ProtocolTest",
+				ServiceID:      "OutputService5ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -786,14 +802,13 @@ const opOutputService5TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService5TestCaseOperation1Request method.
+//	req, resp := client.OutputService5TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService5TestCaseOperation1Request method.
-//    req, resp := client.OutputService5TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1Request(input *OutputService5TestShapeOutputService5TestCaseOperation1Input) (req *request.Request, output *OutputService5TestShapeOutputService5TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService5TestCaseOperation1,
@@ -869,31 +884,35 @@ type OutputService6ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService6ProtocolTest client from just a session.
-//     svc := outputservice6protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService6ProtocolTest client with additional configuration
-//     svc := outputservice6protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService6ProtocolTest client from just a session.
+//	svc := outputservice6protocoltest.New(mySession)
+//
+//	// Create a OutputService6ProtocolTest client with additional configuration
+//	svc := outputservice6protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService6ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService6ProtocolTest {
 	c := p.ClientConfig("outputservice6protocoltest", cfgs...)
-	return newOutputService6ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService6ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService6ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService6ProtocolTest {
+func newOutputService6ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService6ProtocolTest {
 	svc := &OutputService6ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService6ProtocolTest",
-				ServiceID:     "OutputService6ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService6ProtocolTest",
+				ServiceID:      "OutputService6ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -933,14 +952,13 @@ const opOutputService6TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService6TestCaseOperation1Request method.
+//	req, resp := client.OutputService6TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService6TestCaseOperation1Request method.
-//    req, resp := client.OutputService6TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1Request(input *OutputService6TestShapeOutputService6TestCaseOperation1Input) (req *request.Request, output *OutputService6TestShapeOutputService6TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService6TestCaseOperation1,
@@ -1016,31 +1034,35 @@ type OutputService7ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService7ProtocolTest client from just a session.
-//     svc := outputservice7protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService7ProtocolTest client with additional configuration
-//     svc := outputservice7protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService7ProtocolTest client from just a session.
+//	svc := outputservice7protocoltest.New(mySession)
+//
+//	// Create a OutputService7ProtocolTest client with additional configuration
+//	svc := outputservice7protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService7ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService7ProtocolTest {
 	c := p.ClientConfig("outputservice7protocoltest", cfgs...)
-	return newOutputService7ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService7ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService7ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService7ProtocolTest {
+func newOutputService7ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService7ProtocolTest {
 	svc := &OutputService7ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService7ProtocolTest",
-				ServiceID:     "OutputService7ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService7ProtocolTest",
+				ServiceID:      "OutputService7ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -1080,14 +1102,13 @@ const opOutputService7TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService7TestCaseOperation1Request method.
+//	req, resp := client.OutputService7TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService7TestCaseOperation1Request method.
-//    req, resp := client.OutputService7TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1Request(input *OutputService7TestShapeOutputService7TestCaseOperation1Input) (req *request.Request, output *OutputService7TestShapeOutputService7TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService7TestCaseOperation1,
@@ -1163,31 +1184,35 @@ type OutputService8ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService8ProtocolTest client from just a session.
-//     svc := outputservice8protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService8ProtocolTest client with additional configuration
-//     svc := outputservice8protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService8ProtocolTest client from just a session.
+//	svc := outputservice8protocoltest.New(mySession)
+//
+//	// Create a OutputService8ProtocolTest client with additional configuration
+//	svc := outputservice8protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService8ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService8ProtocolTest {
 	c := p.ClientConfig("outputservice8protocoltest", cfgs...)
-	return newOutputService8ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService8ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService8ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService8ProtocolTest {
+func newOutputService8ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService8ProtocolTest {
 	svc := &OutputService8ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService8ProtocolTest",
-				ServiceID:     "OutputService8ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService8ProtocolTest",
+				ServiceID:      "OutputService8ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -1227,14 +1252,13 @@ const opOutputService8TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService8TestCaseOperation1Request method.
+//	req, resp := client.OutputService8TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService8TestCaseOperation1Request method.
-//    req, resp := client.OutputService8TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1Request(input *OutputService8TestShapeOutputService8TestCaseOperation1Input) (req *request.Request, output *OutputService8TestShapeOutputService8TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService8TestCaseOperation1,
@@ -1338,31 +1362,35 @@ type OutputService9ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService9ProtocolTest client from just a session.
-//     svc := outputservice9protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService9ProtocolTest client with additional configuration
-//     svc := outputservice9protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService9ProtocolTest client from just a session.
+//	svc := outputservice9protocoltest.New(mySession)
+//
+//	// Create a OutputService9ProtocolTest client with additional configuration
+//	svc := outputservice9protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService9ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService9ProtocolTest {
 	c := p.ClientConfig("outputservice9protocoltest", cfgs...)
-	return newOutputService9ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService9ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService9ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService9ProtocolTest {
+func newOutputService9ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService9ProtocolTest {
 	svc := &OutputService9ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService9ProtocolTest",
-				ServiceID:     "OutputService9ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService9ProtocolTest",
+				ServiceID:      "OutputService9ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -1402,14 +1430,13 @@ const opOutputService9TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService9TestCaseOperation1Request method.
+//	req, resp := client.OutputService9TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService9TestCaseOperation1Request method.
-//    req, resp := client.OutputService9TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1Request(input *OutputService9TestShapeOutputService9TestCaseOperation1Input) (req *request.Request, output *OutputService9TestShapeOutputService9TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService9TestCaseOperation1,
@@ -1513,31 +1540,35 @@ type OutputService10ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService10ProtocolTest client from just a session.
-//     svc := outputservice10protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService10ProtocolTest client with additional configuration
-//     svc := outputservice10protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService10ProtocolTest client from just a session.
+//	svc := outputservice10protocoltest.New(mySession)
+//
+//	// Create a OutputService10ProtocolTest client with additional configuration
+//	svc := outputservice10protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService10ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService10ProtocolTest {
 	c := p.ClientConfig("outputservice10protocoltest", cfgs...)
-	return newOutputService10ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService10ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService10ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService10ProtocolTest {
+func newOutputService10ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService10ProtocolTest {
 	svc := &OutputService10ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService10ProtocolTest",
-				ServiceID:     "OutputService10ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService10ProtocolTest",
+				ServiceID:      "OutputService10ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -1577,14 +1608,13 @@ const opOutputService10TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService10TestCaseOperation1Request method.
+//	req, resp := client.OutputService10TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService10TestCaseOperation1Request method.
-//    req, resp := client.OutputService10TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1Request(input *OutputService10TestShapeOutputService10TestCaseOperation1Input) (req *request.Request, output *OutputService10TestShapeOutputService10TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService10TestCaseOperation1,
@@ -1660,31 +1690,35 @@ type OutputService11ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService11ProtocolTest client from just a session.
-//     svc := outputservice11protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService11ProtocolTest client with additional configuration
-//     svc := outputservice11protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService11ProtocolTest client from just a session.
+//	svc := outputservice11protocoltest.New(mySession)
+//
+//	// Create a OutputService11ProtocolTest client with additional configuration
+//	svc := outputservice11protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService11ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService11ProtocolTest {
 	c := p.ClientConfig("outputservice11protocoltest", cfgs...)
-	return newOutputService11ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService11ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService11ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService11ProtocolTest {
+func newOutputService11ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService11ProtocolTest {
 	svc := &OutputService11ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService11ProtocolTest",
-				ServiceID:     "OutputService11ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService11ProtocolTest",
+				ServiceID:      "OutputService11ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -1724,14 +1758,13 @@ const opOutputService11TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService11TestCaseOperation1Request method.
+//	req, resp := client.OutputService11TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService11TestCaseOperation1Request method.
-//    req, resp := client.OutputService11TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (req *request.Request, output *OutputService11TestShapeOutputService11TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService11TestCaseOperation1,
@@ -1819,31 +1852,35 @@ type OutputService12ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService12ProtocolTest client from just a session.
-//     svc := outputservice12protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService12ProtocolTest client with additional configuration
-//     svc := outputservice12protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService12ProtocolTest client from just a session.
+//	svc := outputservice12protocoltest.New(mySession)
+//
+//	// Create a OutputService12ProtocolTest client with additional configuration
+//	svc := outputservice12protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService12ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService12ProtocolTest {
 	c := p.ClientConfig("outputservice12protocoltest", cfgs...)
-	return newOutputService12ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService12ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService12ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService12ProtocolTest {
+func newOutputService12ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService12ProtocolTest {
 	svc := &OutputService12ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService12ProtocolTest",
-				ServiceID:     "OutputService12ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService12ProtocolTest",
+				ServiceID:      "OutputService12ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -1883,14 +1920,13 @@ const opOutputService12TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService12TestCaseOperation1Request method.
+//	req, resp := client.OutputService12TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService12TestCaseOperation1Request method.
-//    req, resp := client.OutputService12TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *request.Request, output *OutputService12TestShapeOutputService12TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService12TestCaseOperation1,
@@ -1966,31 +2002,35 @@ type OutputService13ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService13ProtocolTest client from just a session.
-//     svc := outputservice13protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService13ProtocolTest client with additional configuration
-//     svc := outputservice13protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService13ProtocolTest client from just a session.
+//	svc := outputservice13protocoltest.New(mySession)
+//
+//	// Create a OutputService13ProtocolTest client with additional configuration
+//	svc := outputservice13protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService13ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService13ProtocolTest {
 	c := p.ClientConfig("outputservice13protocoltest", cfgs...)
-	return newOutputService13ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService13ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService13ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService13ProtocolTest {
+func newOutputService13ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService13ProtocolTest {
 	svc := &OutputService13ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService13ProtocolTest",
-				ServiceID:     "OutputService13ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService13ProtocolTest",
+				ServiceID:      "OutputService13ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -2030,14 +2070,13 @@ const opOutputService13TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService13TestCaseOperation1Request method.
+//	req, resp := client.OutputService13TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService13TestCaseOperation1Request method.
-//    req, resp := client.OutputService13TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1Request(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (req *request.Request, output *OutputService13TestShapeOutputService13TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService13TestCaseOperation1,
@@ -2113,31 +2152,35 @@ type OutputService14ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService14ProtocolTest client from just a session.
-//     svc := outputservice14protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService14ProtocolTest client with additional configuration
-//     svc := outputservice14protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService14ProtocolTest client from just a session.
+//	svc := outputservice14protocoltest.New(mySession)
+//
+//	// Create a OutputService14ProtocolTest client with additional configuration
+//	svc := outputservice14protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService14ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService14ProtocolTest {
 	c := p.ClientConfig("outputservice14protocoltest", cfgs...)
-	return newOutputService14ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService14ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService14ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService14ProtocolTest {
+func newOutputService14ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService14ProtocolTest {
 	svc := &OutputService14ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService14ProtocolTest",
-				ServiceID:     "OutputService14ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService14ProtocolTest",
+				ServiceID:      "OutputService14ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -2177,14 +2220,13 @@ const opOutputService14TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService14TestCaseOperation1Request method.
+//	req, resp := client.OutputService14TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService14TestCaseOperation1Request method.
-//    req, resp := client.OutputService14TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService14ProtocolTest) OutputService14TestCaseOperation1Request(input *OutputService14TestShapeOutputService14TestCaseOperation1Input) (req *request.Request, output *OutputService14TestShapeOutputService14TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService14TestCaseOperation1,
@@ -2260,31 +2302,35 @@ type OutputService15ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService15ProtocolTest client from just a session.
-//     svc := outputservice15protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService15ProtocolTest client with additional configuration
-//     svc := outputservice15protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService15ProtocolTest client from just a session.
+//	svc := outputservice15protocoltest.New(mySession)
+//
+//	// Create a OutputService15ProtocolTest client with additional configuration
+//	svc := outputservice15protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService15ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService15ProtocolTest {
 	c := p.ClientConfig("outputservice15protocoltest", cfgs...)
-	return newOutputService15ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService15ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService15ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService15ProtocolTest {
+func newOutputService15ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService15ProtocolTest {
 	svc := &OutputService15ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService15ProtocolTest",
-				ServiceID:     "OutputService15ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService15ProtocolTest",
+				ServiceID:      "OutputService15ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -2324,14 +2370,13 @@ const opOutputService15TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService15TestCaseOperation1Request method.
+//	req, resp := client.OutputService15TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService15TestCaseOperation1Request method.
-//    req, resp := client.OutputService15TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService15ProtocolTest) OutputService15TestCaseOperation1Request(input *OutputService15TestShapeOutputService15TestCaseOperation1Input) (req *request.Request, output *OutputService15TestShapeOutputService15TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService15TestCaseOperation1,
@@ -2407,31 +2452,35 @@ type OutputService16ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService16ProtocolTest client from just a session.
-//     svc := outputservice16protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService16ProtocolTest client with additional configuration
-//     svc := outputservice16protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService16ProtocolTest client from just a session.
+//	svc := outputservice16protocoltest.New(mySession)
+//
+//	// Create a OutputService16ProtocolTest client with additional configuration
+//	svc := outputservice16protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService16ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService16ProtocolTest {
 	c := p.ClientConfig("outputservice16protocoltest", cfgs...)
-	return newOutputService16ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService16ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService16ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService16ProtocolTest {
+func newOutputService16ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService16ProtocolTest {
 	svc := &OutputService16ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService16ProtocolTest",
-				ServiceID:     "OutputService16ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService16ProtocolTest",
+				ServiceID:      "OutputService16ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -2471,14 +2520,13 @@ const opOutputService16TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService16TestCaseOperation1Request method.
+//	req, resp := client.OutputService16TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService16TestCaseOperation1Request method.
-//    req, resp := client.OutputService16TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService16ProtocolTest) OutputService16TestCaseOperation1Request(input *OutputService16TestShapeOutputService16TestCaseOperation1Input) (req *request.Request, output *OutputService16TestShapeOutputService16TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService16TestCaseOperation1,
@@ -2598,31 +2646,35 @@ type OutputService17ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService17ProtocolTest client from just a session.
-//     svc := outputservice17protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a OutputService17ProtocolTest client with additional configuration
-//     svc := outputservice17protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a OutputService17ProtocolTest client from just a session.
+//	svc := outputservice17protocoltest.New(mySession)
+//
+//	// Create a OutputService17ProtocolTest client with additional configuration
+//	svc := outputservice17protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService17ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService17ProtocolTest {
 	c := p.ClientConfig("outputservice17protocoltest", cfgs...)
-	return newOutputService17ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newOutputService17ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService17ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService17ProtocolTest {
+func newOutputService17ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *OutputService17ProtocolTest {
 	svc := &OutputService17ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "OutputService17ProtocolTest",
-				ServiceID:     "OutputService17ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
+				ServiceName:    "OutputService17ProtocolTest",
+				ServiceID:      "OutputService17ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -2662,14 +2714,13 @@ const opOutputService17TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OutputService17TestCaseOperation1Request method.
+//	req, resp := client.OutputService17TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the OutputService17TestCaseOperation1Request method.
-//    req, resp := client.OutputService17TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *OutputService17ProtocolTest) OutputService17TestCaseOperation1Request(input *OutputService17TestShapeOutputService17TestCaseOperation1Input) (req *request.Request, output *OutputService17TestShapeOutputService17TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService17TestCaseOperation1,
@@ -2723,7 +2774,7 @@ type OutputService17TestShapeOutputService17TestCaseOperation1Output struct {
 
 	FooEnum *string `type:"string" enum:"OutputService17TestShapeEC2EnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"OutputService17TestShapeEC2EnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.

@@ -127,7 +127,8 @@
         {"shape":"InvalidArgumentException"},
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyTagsException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "CreateApplicationPresignedUrl":{
@@ -257,7 +258,8 @@
         {"shape":"InvalidArgumentException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteApplicationVpcConfiguration":{
@@ -331,7 +333,8 @@
         {"shape":"UnableToDetectSchemaException"},
         {"shape":"ResourceProvisionedThroughputExceededException"},
         {"shape":"ServiceUnavailableException"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "ListApplicationSnapshots":{
@@ -820,8 +823,8 @@
         "UPDATING",
         "AUTOSCALING",
         "FORCE_STOPPING",
-        "MAINTENANCE",
         "ROLLING_BACK",
+        "MAINTENANCE",
         "ROLLED_BACK"
       ]
     },
@@ -1304,7 +1307,6 @@
     },
     "DeployAsApplicationConfigurationUpdate":{
       "type":"structure",
-      "required":["S3ContentLocationUpdate"],
       "members":{
         "S3ContentLocationUpdate":{"shape":"S3ContentBaseLocationUpdate"}
       }
@@ -1459,6 +1461,7 @@
     },
     "GlueDataCatalogConfigurationUpdate":{
       "type":"structure",
+      "required":["DatabaseARNUpdate"],
       "members":{
         "DatabaseARNUpdate":{"shape":"DatabaseARN"}
       }
@@ -2284,8 +2287,12 @@
         "SQL-1_0",
         "FLINK-1_6",
         "FLINK-1_8",
+        "ZEPPELIN-FLINK-1_0",
         "FLINK-1_11",
-        "ZEPPELIN-FLINK-1_0"
+        "FLINK-1_13",
+        "ZEPPELIN-FLINK-2_0",
+        "FLINK-1_15",
+        "ZEPPELIN-FLINK-3_0"
       ]
     },
     "S3ApplicationCodeLocationDescription":{
@@ -2329,7 +2336,6 @@
     },
     "S3ContentBaseLocationUpdate":{
       "type":"structure",
-      "required":["BucketARNUpdate"],
       "members":{
         "BucketARNUpdate":{"shape":"BucketARN"},
         "BasePathUpdate":{"shape":"BasePath"}

@@ -40,33 +40,39 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a DataPipeline client from just a session.
-//     svc := datapipeline.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a DataPipeline client with additional configuration
-//     svc := datapipeline.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a DataPipeline client from just a session.
+//	svc := datapipeline.New(mySession)
+//
+//	// Create a DataPipeline client with additional configuration
+//	svc := datapipeline.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *DataPipeline {
 	c := p.ClientConfig(EndpointsID, cfgs...)
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+		c.SigningName = EndpointsID
+		// No Fallback
+	}
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *DataPipeline {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *DataPipeline {
 	svc := &DataPipeline{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2012-10-29",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "DataPipeline",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2012-10-29",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "DataPipeline",
 			},
 			handlers,
 		),

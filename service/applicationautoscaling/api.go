@@ -29,14 +29,13 @@ const opDeleteScalingPolicy = "DeleteScalingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteScalingPolicyRequest method.
+//	req, resp := client.DeleteScalingPolicyRequest(params)
 //
-//    // Example sending a request using the DeleteScalingPolicyRequest method.
-//    req, resp := client.DeleteScalingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeleteScalingPolicy
 func (c *ApplicationAutoScaling) DeleteScalingPolicyRequest(input *DeleteScalingPolicyInput) (req *request.Request, output *DeleteScalingPolicyOutput) {
@@ -65,8 +64,8 @@ func (c *ApplicationAutoScaling) DeleteScalingPolicyRequest(input *DeleteScaling
 // not delete the CloudWatch alarm associated with the scaling policy, even
 // if it no longer has an associated action.
 //
-// For more information, see Delete a step scaling policy (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html#delete-step-scaling-policy)
-// and Delete a target tracking scaling policy (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html#delete-target-tracking-policy)
+// For more information, see Delete a step scaling policy (https://docs.aws.amazon.com/autoscaling/application/userguide/create-step-scaling-policy-cli.html#delete-step-scaling-policy)
+// and Delete a target tracking scaling policy (https://docs.aws.amazon.com/autoscaling/application/userguide/create-target-tracking-policy-cli.html#delete-target-tracking-policy)
 // in the Application Auto Scaling User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -77,23 +76,24 @@ func (c *ApplicationAutoScaling) DeleteScalingPolicyRequest(input *DeleteScaling
 // API operation DeleteScalingPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * ObjectNotFoundException
-//   The specified object could not be found. For any operation that depends on
-//   the existence of a scalable target, this exception is thrown if the scalable
-//   target with the specified service namespace, resource ID, and scalable dimension
-//   does not exist. For any operation that deletes or deregisters a resource,
-//   this exception is thrown if the resource cannot be found.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - ObjectNotFoundException
+//     The specified object could not be found. For any operation that depends on
+//     the existence of a scalable target, this exception is thrown if the scalable
+//     target with the specified service namespace, resource ID, and scalable dimension
+//     does not exist. For any operation that deletes or deregisters a resource,
+//     this exception is thrown if the resource cannot be found.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeleteScalingPolicy
 func (c *ApplicationAutoScaling) DeleteScalingPolicy(input *DeleteScalingPolicyInput) (*DeleteScalingPolicyOutput, error) {
@@ -133,14 +133,13 @@ const opDeleteScheduledAction = "DeleteScheduledAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteScheduledActionRequest method.
+//	req, resp := client.DeleteScheduledActionRequest(params)
 //
-//    // Example sending a request using the DeleteScheduledActionRequest method.
-//    req, resp := client.DeleteScheduledActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeleteScheduledAction
 func (c *ApplicationAutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionInput) (req *request.Request, output *DeleteScheduledActionOutput) {
@@ -176,23 +175,24 @@ func (c *ApplicationAutoScaling) DeleteScheduledActionRequest(input *DeleteSched
 // API operation DeleteScheduledAction for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * ObjectNotFoundException
-//   The specified object could not be found. For any operation that depends on
-//   the existence of a scalable target, this exception is thrown if the scalable
-//   target with the specified service namespace, resource ID, and scalable dimension
-//   does not exist. For any operation that deletes or deregisters a resource,
-//   this exception is thrown if the resource cannot be found.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - ObjectNotFoundException
+//     The specified object could not be found. For any operation that depends on
+//     the existence of a scalable target, this exception is thrown if the scalable
+//     target with the specified service namespace, resource ID, and scalable dimension
+//     does not exist. For any operation that deletes or deregisters a resource,
+//     this exception is thrown if the resource cannot be found.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeleteScheduledAction
 func (c *ApplicationAutoScaling) DeleteScheduledAction(input *DeleteScheduledActionInput) (*DeleteScheduledActionOutput, error) {
@@ -232,14 +232,13 @@ const opDeregisterScalableTarget = "DeregisterScalableTarget"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeregisterScalableTargetRequest method.
+//	req, resp := client.DeregisterScalableTargetRequest(params)
 //
-//    // Example sending a request using the DeregisterScalableTargetRequest method.
-//    req, resp := client.DeregisterScalableTargetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeregisterScalableTarget
 func (c *ApplicationAutoScaling) DeregisterScalableTargetRequest(input *DeregisterScalableTargetInput) (req *request.Request, output *DeregisterScalableTargetOutput) {
@@ -276,23 +275,24 @@ func (c *ApplicationAutoScaling) DeregisterScalableTargetRequest(input *Deregist
 // API operation DeregisterScalableTarget for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * ObjectNotFoundException
-//   The specified object could not be found. For any operation that depends on
-//   the existence of a scalable target, this exception is thrown if the scalable
-//   target with the specified service namespace, resource ID, and scalable dimension
-//   does not exist. For any operation that deletes or deregisters a resource,
-//   this exception is thrown if the resource cannot be found.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - ObjectNotFoundException
+//     The specified object could not be found. For any operation that depends on
+//     the existence of a scalable target, this exception is thrown if the scalable
+//     target with the specified service namespace, resource ID, and scalable dimension
+//     does not exist. For any operation that deletes or deregisters a resource,
+//     this exception is thrown if the resource cannot be found.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeregisterScalableTarget
 func (c *ApplicationAutoScaling) DeregisterScalableTarget(input *DeregisterScalableTargetInput) (*DeregisterScalableTargetOutput, error) {
@@ -332,14 +332,13 @@ const opDescribeScalableTargets = "DescribeScalableTargets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeScalableTargetsRequest method.
+//	req, resp := client.DescribeScalableTargetsRequest(params)
 //
-//    // Example sending a request using the DescribeScalableTargetsRequest method.
-//    req, resp := client.DescribeScalableTargetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalableTargets
 func (c *ApplicationAutoScaling) DescribeScalableTargetsRequest(input *DescribeScalableTargetsInput) (req *request.Request, output *DescribeScalableTargetsOutput) {
@@ -378,19 +377,20 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsRequest(input *DescribeS
 // API operation DescribeScalableTargets for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * InvalidNextTokenException
-//   The next token supplied was invalid.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - InvalidNextTokenException
+//     The next token supplied was invalid.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalableTargets
 func (c *ApplicationAutoScaling) DescribeScalableTargets(input *DescribeScalableTargetsInput) (*DescribeScalableTargetsOutput, error) {
@@ -422,15 +422,14 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsWithContext(ctx aws.Cont
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeScalableTargets operation.
-//    pageNum := 0
-//    err := client.DescribeScalableTargetsPages(params,
-//        func(page *applicationautoscaling.DescribeScalableTargetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeScalableTargets operation.
+//	pageNum := 0
+//	err := client.DescribeScalableTargetsPages(params,
+//	    func(page *applicationautoscaling.DescribeScalableTargetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationAutoScaling) DescribeScalableTargetsPages(input *DescribeScalableTargetsInput, fn func(*DescribeScalableTargetsOutput, bool) bool) error {
 	return c.DescribeScalableTargetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -482,14 +481,13 @@ const opDescribeScalingActivities = "DescribeScalingActivities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeScalingActivitiesRequest method.
+//	req, resp := client.DescribeScalingActivitiesRequest(params)
 //
-//    // Example sending a request using the DescribeScalingActivitiesRequest method.
-//    req, resp := client.DescribeScalingActivitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalingActivities
 func (c *ApplicationAutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *request.Request, output *DescribeScalingActivitiesOutput) {
@@ -521,6 +519,9 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesRequest(input *Describ
 //
 // You can filter the results using ResourceId and ScalableDimension.
 //
+// For information about viewing scaling activities using the Amazon Web Services
+// CLI, see Scaling activities for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scaling-activities.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -529,19 +530,20 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesRequest(input *Describ
 // API operation DescribeScalingActivities for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * InvalidNextTokenException
-//   The next token supplied was invalid.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - InvalidNextTokenException
+//     The next token supplied was invalid.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalingActivities
 func (c *ApplicationAutoScaling) DescribeScalingActivities(input *DescribeScalingActivitiesInput) (*DescribeScalingActivitiesOutput, error) {
@@ -573,15 +575,14 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesWithContext(ctx aws.Co
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeScalingActivities operation.
-//    pageNum := 0
-//    err := client.DescribeScalingActivitiesPages(params,
-//        func(page *applicationautoscaling.DescribeScalingActivitiesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeScalingActivities operation.
+//	pageNum := 0
+//	err := client.DescribeScalingActivitiesPages(params,
+//	    func(page *applicationautoscaling.DescribeScalingActivitiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationAutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(*DescribeScalingActivitiesOutput, bool) bool) error {
 	return c.DescribeScalingActivitiesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -633,14 +634,13 @@ const opDescribeScalingPolicies = "DescribeScalingPolicies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeScalingPoliciesRequest method.
+//	req, resp := client.DescribeScalingPoliciesRequest(params)
 //
-//    // Example sending a request using the DescribeScalingPoliciesRequest method.
-//    req, resp := client.DescribeScalingPoliciesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalingPolicies
 func (c *ApplicationAutoScaling) DescribeScalingPoliciesRequest(input *DescribeScalingPoliciesInput) (req *request.Request, output *DescribeScalingPoliciesOutput) {
@@ -684,27 +684,28 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesRequest(input *DescribeS
 // API operation DescribeScalingPolicies for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * FailedResourceAccessException
-//   Failed access to resources caused an exception. This exception is thrown
-//   when Application Auto Scaling is unable to retrieve the alarms associated
-//   with a scaling policy due to a client error, for example, if the role ARN
-//   specified for a scalable target does not have permission to call the CloudWatch
-//   DescribeAlarms (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html)
-//   on your behalf.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * InvalidNextTokenException
-//   The next token supplied was invalid.
+//   - FailedResourceAccessException
+//     Failed access to resources caused an exception. This exception is thrown
+//     when Application Auto Scaling is unable to retrieve the alarms associated
+//     with a scaling policy due to a client error, for example, if the role ARN
+//     specified for a scalable target does not have permission to call the CloudWatch
+//     DescribeAlarms (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html)
+//     on your behalf.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - InvalidNextTokenException
+//     The next token supplied was invalid.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalingPolicies
 func (c *ApplicationAutoScaling) DescribeScalingPolicies(input *DescribeScalingPoliciesInput) (*DescribeScalingPoliciesOutput, error) {
@@ -736,15 +737,14 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesWithContext(ctx aws.Cont
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeScalingPolicies operation.
-//    pageNum := 0
-//    err := client.DescribeScalingPoliciesPages(params,
-//        func(page *applicationautoscaling.DescribeScalingPoliciesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeScalingPolicies operation.
+//	pageNum := 0
+//	err := client.DescribeScalingPoliciesPages(params,
+//	    func(page *applicationautoscaling.DescribeScalingPoliciesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationAutoScaling) DescribeScalingPoliciesPages(input *DescribeScalingPoliciesInput, fn func(*DescribeScalingPoliciesOutput, bool) bool) error {
 	return c.DescribeScalingPoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -796,14 +796,13 @@ const opDescribeScheduledActions = "DescribeScheduledActions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeScheduledActionsRequest method.
+//	req, resp := client.DescribeScheduledActionsRequest(params)
 //
-//    // Example sending a request using the DescribeScheduledActionsRequest method.
-//    req, resp := client.DescribeScheduledActionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScheduledActions
 func (c *ApplicationAutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *request.Request, output *DescribeScheduledActionsOutput) {
@@ -848,19 +847,20 @@ func (c *ApplicationAutoScaling) DescribeScheduledActionsRequest(input *Describe
 // API operation DescribeScheduledActions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * InvalidNextTokenException
-//   The next token supplied was invalid.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - InvalidNextTokenException
+//     The next token supplied was invalid.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScheduledActions
 func (c *ApplicationAutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsInput) (*DescribeScheduledActionsOutput, error) {
@@ -892,15 +892,14 @@ func (c *ApplicationAutoScaling) DescribeScheduledActionsWithContext(ctx aws.Con
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeScheduledActions operation.
-//    pageNum := 0
-//    err := client.DescribeScheduledActionsPages(params,
-//        func(page *applicationautoscaling.DescribeScheduledActionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeScheduledActions operation.
+//	pageNum := 0
+//	err := client.DescribeScheduledActionsPages(params,
+//	    func(page *applicationautoscaling.DescribeScheduledActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationAutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActionsInput, fn func(*DescribeScheduledActionsOutput, bool) bool) error {
 	return c.DescribeScheduledActionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -936,6 +935,88 @@ func (c *ApplicationAutoScaling) DescribeScheduledActionsPagesWithContext(ctx aw
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/ListTagsForResource
+func (c *ApplicationAutoScaling) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Application Auto Scaling.
+//
+// Returns all the tags on the specified Application Auto Scaling scalable target.
+//
+// For general information about tags, including the format and syntax, see
+// Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/ListTagsForResource
+func (c *ApplicationAutoScaling) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutScalingPolicy = "PutScalingPolicy"
 
 // PutScalingPolicyRequest generates a "aws/request.Request" representing the
@@ -952,14 +1033,13 @@ const opPutScalingPolicy = "PutScalingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutScalingPolicyRequest method.
+//	req, resp := client.PutScalingPolicyRequest(params)
 //
-//    // Example sending a request using the PutScalingPolicyRequest method.
-//    req, resp := client.PutScalingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/PutScalingPolicy
 func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *request.Request, output *PutScalingPolicyOutput) {
@@ -1012,8 +1092,8 @@ func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicy
 // in the Application Auto Scaling User Guide.
 //
 // If a scalable target is deregistered, the scalable target is no longer available
-// to execute scaling policies. Any scaling policies that were specified for
-// the scalable target are deleted.
+// to use scaling policies. Any scaling policies that were specified for the
+// scalable target are deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1023,35 +1103,36 @@ func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicy
 // API operation PutScalingPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * LimitExceededException
-//   A per-account resource limit is exceeded. For more information, see Application
-//   Auto Scaling service quotas (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-limits.html).
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * ObjectNotFoundException
-//   The specified object could not be found. For any operation that depends on
-//   the existence of a scalable target, this exception is thrown if the scalable
-//   target with the specified service namespace, resource ID, and scalable dimension
-//   does not exist. For any operation that deletes or deregisters a resource,
-//   this exception is thrown if the resource cannot be found.
+//   - LimitExceededException
+//     A per-account resource limit is exceeded. For more information, see Application
+//     Auto Scaling service quotas (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-limits.html).
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - ObjectNotFoundException
+//     The specified object could not be found. For any operation that depends on
+//     the existence of a scalable target, this exception is thrown if the scalable
+//     target with the specified service namespace, resource ID, and scalable dimension
+//     does not exist. For any operation that deletes or deregisters a resource,
+//     this exception is thrown if the resource cannot be found.
 //
-//   * FailedResourceAccessException
-//   Failed access to resources caused an exception. This exception is thrown
-//   when Application Auto Scaling is unable to retrieve the alarms associated
-//   with a scaling policy due to a client error, for example, if the role ARN
-//   specified for a scalable target does not have permission to call the CloudWatch
-//   DescribeAlarms (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html)
-//   on your behalf.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - FailedResourceAccessException
+//     Failed access to resources caused an exception. This exception is thrown
+//     when Application Auto Scaling is unable to retrieve the alarms associated
+//     with a scaling policy due to a client error, for example, if the role ARN
+//     specified for a scalable target does not have permission to call the CloudWatch
+//     DescribeAlarms (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html)
+//     on your behalf.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/PutScalingPolicy
 func (c *ApplicationAutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalingPolicyOutput, error) {
@@ -1091,14 +1172,13 @@ const opPutScheduledAction = "PutScheduledAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutScheduledActionRequest method.
+//	req, resp := client.PutScheduledActionRequest(params)
 //
-//    // Example sending a request using the PutScheduledActionRequest method.
-//    req, resp := client.PutScheduledActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/PutScheduledAction
 func (c *ApplicationAutoScaling) PutScheduledActionRequest(input *PutScheduledActionInput) (req *request.Request, output *PutScheduledActionOutput) {
@@ -1128,9 +1208,9 @@ func (c *ApplicationAutoScaling) PutScheduledActionRequest(input *PutScheduledAc
 // by those three attributes. You cannot create a scheduled action until you
 // have registered the resource as a scalable target.
 //
-// When start and end times are specified with a recurring schedule using a
-// cron expression or rates, they form the boundaries for when the recurring
-// action starts and stops.
+// When you specify start and end times with a recurring schedule using a cron
+// expression or rates, they form the boundaries for when the recurring action
+// starts and stops.
 //
 // To update a scheduled action, specify the parameters that you want to change.
 // If you don't specify start and end times, the old values are deleted.
@@ -1150,27 +1230,28 @@ func (c *ApplicationAutoScaling) PutScheduledActionRequest(input *PutScheduledAc
 // API operation PutScheduledAction for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * LimitExceededException
-//   A per-account resource limit is exceeded. For more information, see Application
-//   Auto Scaling service quotas (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-limits.html).
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * ObjectNotFoundException
-//   The specified object could not be found. For any operation that depends on
-//   the existence of a scalable target, this exception is thrown if the scalable
-//   target with the specified service namespace, resource ID, and scalable dimension
-//   does not exist. For any operation that deletes or deregisters a resource,
-//   this exception is thrown if the resource cannot be found.
+//   - LimitExceededException
+//     A per-account resource limit is exceeded. For more information, see Application
+//     Auto Scaling service quotas (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-limits.html).
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - ObjectNotFoundException
+//     The specified object could not be found. For any operation that depends on
+//     the existence of a scalable target, this exception is thrown if the scalable
+//     target with the specified service namespace, resource ID, and scalable dimension
+//     does not exist. For any operation that deletes or deregisters a resource,
+//     this exception is thrown if the resource cannot be found.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/PutScheduledAction
 func (c *ApplicationAutoScaling) PutScheduledAction(input *PutScheduledActionInput) (*PutScheduledActionOutput, error) {
@@ -1210,14 +1291,13 @@ const opRegisterScalableTarget = "RegisterScalableTarget"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RegisterScalableTargetRequest method.
+//	req, resp := client.RegisterScalableTargetRequest(params)
 //
-//    // Example sending a request using the RegisterScalableTargetRequest method.
-//    req, resp := client.RegisterScalableTargetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/RegisterScalableTarget
 func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterScalableTargetInput) (req *request.Request, output *RegisterScalableTargetOutput) {
@@ -1233,22 +1313,28 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 
 	output = &RegisterScalableTargetOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // RegisterScalableTarget API operation for Application Auto Scaling.
 //
-// Registers or updates a scalable target.
+// Registers or updates a scalable target, which is the resource that you want
+// to scale.
 //
-// A scalable target is a resource that Application Auto Scaling can scale out
-// and scale in. Scalable targets are uniquely identified by the combination
-// of resource ID, scalable dimension, and namespace.
+// Scalable targets are uniquely identified by the combination of resource ID,
+// scalable dimension, and namespace, which represents some capacity dimension
+// of the underlying service.
 //
-// When you register a new scalable target, you must specify values for minimum
-// and maximum capacity. Current capacity will be adjusted within the specified
+// When you register a new scalable target, you must specify values for the
+// minimum and maximum capacity. If the specified resource is not active in
+// the target service, this operation does not change the resource's current
+// capacity. Otherwise, it changes the resource's current capacity to a value
+// that is inside of this range.
+//
+// If you add a scaling policy, current capacity is adjustable within the specified
 // range when scaling starts. Application Auto Scaling scaling policies will
-// not scale capacity to values that are outside of this range.
+// not scale capacity to values that are outside of the minimum and maximum
+// range.
 //
 // After you register a scalable target, you do not need to register it again
 // to use other Application Auto Scaling operations. To see which resources
@@ -1263,6 +1349,20 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 // dimension, and namespace. Any parameters that you don't specify are not changed
 // by this update request.
 //
+// If you call the RegisterScalableTarget API operation to create a scalable
+// target, there might be a brief delay until the operation achieves eventual
+// consistency (https://en.wikipedia.org/wiki/Eventual_consistency). You might
+// become aware of this brief delay if you get unexpected errors when performing
+// sequential operations. The typical strategy is to retry the request, and
+// some Amazon Web Services SDKs include automatic backoff and retry logic.
+//
+// If you call the RegisterScalableTarget API operation to update an existing
+// scalable target, Application Auto Scaling retrieves the current capacity
+// of the resource. If it's below the minimum capacity or above the maximum
+// capacity, Application Auto Scaling adjusts the capacity of the scalable target
+// to place it within these bounds, even if you don't include the MinCapacity
+// or MaxCapacity request parameters.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1271,20 +1371,21 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 // API operation RegisterScalableTarget for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the available parameters
-//   for the API request.
 //
-//   * LimitExceededException
-//   A per-account resource limit is exceeded. For more information, see Application
-//   Auto Scaling service quotas (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-limits.html).
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to an Application Auto Scaling resource that already has a pending update.
+//   - LimitExceededException
+//     A per-account resource limit is exceeded. For more information, see Application
+//     Auto Scaling service quotas (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-limits.html).
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to an Application Auto Scaling resource that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/RegisterScalableTarget
 func (c *ApplicationAutoScaling) RegisterScalableTarget(input *RegisterScalableTargetInput) (*RegisterScalableTargetOutput, error) {
@@ -1308,6 +1409,196 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/TagResource
+func (c *ApplicationAutoScaling) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Application Auto Scaling.
+//
+// Adds or edits tags on an Application Auto Scaling scalable target.
+//
+// Each tag consists of a tag key and a tag value, which are both case-sensitive
+// strings. To add a tag, specify a new tag key and a tag value. To edit a tag,
+// specify an existing tag key and a new tag value.
+//
+// You can use this operation to tag an Application Auto Scaling scalable target,
+// but you cannot tag a scaling policy or scheduled action.
+//
+// You can also add tags to an Application Auto Scaling scalable target while
+// creating it (RegisterScalableTarget).
+//
+// For general information about tags, including the format and syntax, see
+// Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference.
+//
+// Use tags to control access to a scalable target. For more information, see
+// Tagging support for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/resource-tagging-support.html)
+// in the Application Auto Scaling User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - TooManyTagsException
+//     The request contains too many tags. Try the request again with fewer tags.
+//
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/TagResource
+func (c *ApplicationAutoScaling) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/UntagResource
+func (c *ApplicationAutoScaling) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Application Auto Scaling.
+//
+// Deletes tags from an Application Auto Scaling scalable target. To delete
+// a tag, specify the tag key and the Application Auto Scaling scalable target.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/UntagResource
+func (c *ApplicationAutoScaling) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Represents a CloudWatch alarm associated with a scaling policy.
 type Alarm struct {
 	_ struct{} `type:"structure"`
@@ -1323,12 +1614,20 @@ type Alarm struct {
 	AlarmName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Alarm) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Alarm) GoString() string {
 	return s.String()
 }
@@ -1354,12 +1653,20 @@ type ConcurrentUpdateException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentUpdateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentUpdateException) GoString() string {
 	return s.String()
 }
@@ -1405,24 +1712,26 @@ func (s *ConcurrentUpdateException) RequestID() string {
 // Represents a CloudWatch metric of your choosing for a target tracking scaling
 // policy to use with Application Auto Scaling.
 //
-// For information about the available metrics for a service, see AWS Services
-// That Publish CloudWatch Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
+// For information about the available metrics for a service, see Amazon Web
+// Services services that publish CloudWatch metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
 // in the Amazon CloudWatch User Guide.
 //
 // To create your customized metric specification:
 //
-//    * Add values for each required parameter from CloudWatch. You can use
-//    an existing metric, or a new metric that you create. To use your own metric,
-//    you must first publish the metric to CloudWatch. For more information,
-//    see Publish Custom Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
-//    in the Amazon CloudWatch User Guide.
+//   - Add values for each required parameter from CloudWatch. You can use
+//     an existing metric, or a new metric that you create. To use your own metric,
+//     you must first publish the metric to CloudWatch. For more information,
+//     see Publish custom metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
+//     in the Amazon CloudWatch User Guide.
 //
-//    * Choose a metric that changes proportionally with capacity. The value
-//    of the metric should increase or decrease in inverse proportion to the
-//    number of capacity units. That is, the value of the metric should decrease
-//    when capacity increases, and increase when capacity decreases.
+//   - Choose a metric that changes proportionally with capacity. The value
+//     of the metric should increase or decrease in inverse proportion to the
+//     number of capacity units. That is, the value of the metric should decrease
+//     when capacity increases, and increase when capacity decreases.
 //
-// For more information about CloudWatch, see Amazon CloudWatch Concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html).
+// For more information about the CloudWatch terminology below, see Amazon CloudWatch
+// concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
+// in the Amazon CloudWatch User Guide.
 type CustomizedMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -1432,31 +1741,41 @@ type CustomizedMetricSpecification struct {
 	// the same dimensions in your scaling policy.
 	Dimensions []*MetricDimension `type:"list"`
 
-	// The name of the metric.
-	//
-	// MetricName is a required field
-	MetricName *string `type:"string" required:"true"`
+	// The name of the metric. To get the exact metric name, namespace, and dimensions,
+	// inspect the Metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html)
+	// object that's returned by a call to ListMetrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html).
+	MetricName *string `type:"string"`
+
+	// The metrics to include in the target tracking scaling policy, as a metric
+	// data query. This can include both raw metric and metric math expressions.
+	Metrics []*TargetTrackingMetricDataQuery `type:"list"`
 
 	// The namespace of the metric.
-	//
-	// Namespace is a required field
-	Namespace *string `type:"string" required:"true"`
+	Namespace *string `type:"string"`
 
 	// The statistic of the metric.
-	//
-	// Statistic is a required field
-	Statistic *string `type:"string" required:"true" enum:"MetricStatistic"`
+	Statistic *string `type:"string" enum:"MetricStatistic"`
 
-	// The unit of the metric.
+	// The unit of the metric. For a complete list of the units that CloudWatch
+	// supports, see the MetricDatum (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+	// data type in the Amazon CloudWatch API Reference.
 	Unit *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomizedMetricSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomizedMetricSpecification) GoString() string {
 	return s.String()
 }
@@ -1464,15 +1783,6 @@ func (s CustomizedMetricSpecification) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CustomizedMetricSpecification) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CustomizedMetricSpecification"}
-	if s.MetricName == nil {
-		invalidParams.Add(request.NewErrParamRequired("MetricName"))
-	}
-	if s.Namespace == nil {
-		invalidParams.Add(request.NewErrParamRequired("Namespace"))
-	}
-	if s.Statistic == nil {
-		invalidParams.Add(request.NewErrParamRequired("Statistic"))
-	}
 	if s.Dimensions != nil {
 		for i, v := range s.Dimensions {
 			if v == nil {
@@ -1480,6 +1790,16 @@ func (s *CustomizedMetricSpecification) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dimensions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Metrics != nil {
+		for i, v := range s.Metrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metrics", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -1499,6 +1819,12 @@ func (s *CustomizedMetricSpecification) SetDimensions(v []*MetricDimension) *Cus
 // SetMetricName sets the MetricName field's value.
 func (s *CustomizedMetricSpecification) SetMetricName(v string) *CustomizedMetricSpecification {
 	s.MetricName = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *CustomizedMetricSpecification) SetMetrics(v []*TargetTrackingMetricDataQuery) *CustomizedMetricSpecification {
+	s.Metrics = v
 	return s
 }
 
@@ -1534,8 +1860,8 @@ type DeleteScalingPolicyInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -1552,8 +1878,8 @@ type DeleteScalingPolicyInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -1577,6 +1903,18 @@ type DeleteScalingPolicyInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1585,11 +1923,11 @@ type DeleteScalingPolicyInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -1611,7 +1949,7 @@ type DeleteScalingPolicyInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -1635,22 +1973,46 @@ type DeleteScalingPolicyInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScalingPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScalingPolicyInput) GoString() string {
 	return s.String()
 }
@@ -1711,12 +2073,20 @@ type DeleteScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScalingPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScalingPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -1730,8 +2100,8 @@ type DeleteScheduledActionInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -1748,8 +2118,8 @@ type DeleteScheduledActionInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -1773,6 +2143,18 @@ type DeleteScheduledActionInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1781,11 +2163,11 @@ type DeleteScheduledActionInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -1807,7 +2189,7 @@ type DeleteScheduledActionInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -1831,6 +2213,21 @@ type DeleteScheduledActionInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
@@ -1839,19 +2236,28 @@ type DeleteScheduledActionInput struct {
 	// ScheduledActionName is a required field
 	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScheduledActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScheduledActionInput) GoString() string {
 	return s.String()
 }
@@ -1912,12 +2318,20 @@ type DeleteScheduledActionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScheduledActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScheduledActionOutput) GoString() string {
 	return s.String()
 }
@@ -1931,8 +2345,8 @@ type DeregisterScalableTargetInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -1949,8 +2363,8 @@ type DeregisterScalableTargetInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -1974,6 +2388,18 @@ type DeregisterScalableTargetInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1982,11 +2408,11 @@ type DeregisterScalableTargetInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2008,7 +2434,7 @@ type DeregisterScalableTargetInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2032,22 +2458,46 @@ type DeregisterScalableTargetInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterScalableTargetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterScalableTargetInput) GoString() string {
 	return s.String()
 }
@@ -2096,12 +2546,20 @@ type DeregisterScalableTargetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterScalableTargetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterScalableTargetOutput) GoString() string {
 	return s.String()
 }
@@ -2127,8 +2585,8 @@ type DescribeScalableTargetsInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -2145,8 +2603,8 @@ type DescribeScalableTargetsInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -2169,6 +2627,18 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
+	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	ResourceIds []*string `type:"list"`
 
 	// The scalable dimension associated with the scalable target. This string consists
@@ -2177,11 +2647,11 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2203,7 +2673,7 @@ type DescribeScalableTargetsInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2226,21 +2696,45 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalableTargetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalableTargetsInput) GoString() string {
 	return s.String()
 }
@@ -2299,12 +2793,20 @@ type DescribeScalableTargetsOutput struct {
 	ScalableTargets []*ScalableTarget `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalableTargetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalableTargetsOutput) GoString() string {
 	return s.String()
 }
@@ -2324,6 +2826,13 @@ func (s *DescribeScalableTargetsOutput) SetScalableTargets(v []*ScalableTarget) 
 type DescribeScalingActivitiesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether to include activities that aren't scaled (not scaled activities)
+	// in the response. Not scaled activities are activities that aren't completed
+	// or started for various reasons, such as preventing infinite scaling loops.
+	// For help interpreting the not scaled reason details in the response, see
+	// Scaling activities for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scaling-activities.html).
+	IncludeNotScaledActivities *bool `type:"boolean"`
+
 	// The maximum number of scalable targets. This value can be between 1 and 50.
 	// The default value is 50.
 	//
@@ -2342,8 +2851,8 @@ type DescribeScalingActivitiesInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -2360,8 +2869,8 @@ type DescribeScalingActivitiesInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -2384,6 +2893,18 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
+	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2392,11 +2913,11 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2418,7 +2939,7 @@ type DescribeScalingActivitiesInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2441,21 +2962,45 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingActivitiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingActivitiesInput) GoString() string {
 	return s.String()
 }
@@ -2474,6 +3019,12 @@ func (s *DescribeScalingActivitiesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIncludeNotScaledActivities sets the IncludeNotScaledActivities field's value.
+func (s *DescribeScalingActivitiesInput) SetIncludeNotScaledActivities(v bool) *DescribeScalingActivitiesInput {
+	s.IncludeNotScaledActivities = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -2517,12 +3068,20 @@ type DescribeScalingActivitiesOutput struct {
 	ScalingActivities []*ScalingActivity `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingActivitiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingActivitiesOutput) GoString() string {
 	return s.String()
 }
@@ -2542,13 +3101,13 @@ func (s *DescribeScalingActivitiesOutput) SetScalingActivities(v []*ScalingActiv
 type DescribeScalingPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of scalable targets. This value can be between 1 and 50.
-	// The default value is 50.
+	// The maximum number of scalable targets. This value can be between 1 and 10.
+	// The default value is 10.
 	//
 	// If this parameter is used, the operation returns up to MaxResults results
 	// at a time, along with a NextToken value. To get the next set of results,
 	// include the NextToken value in a subsequent call. If this parameter is not
-	// used, the operation returns up to 50 results and a NextToken value, if applicable.
+	// used, the operation returns up to 10 results and a NextToken value, if applicable.
 	MaxResults *int64 `type:"integer"`
 
 	// The token for the next set of results.
@@ -2563,8 +3122,8 @@ type DescribeScalingPoliciesInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -2581,8 +3140,8 @@ type DescribeScalingPoliciesInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -2605,6 +3164,18 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
+	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2613,11 +3184,11 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2639,7 +3210,7 @@ type DescribeScalingPoliciesInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2662,21 +3233,45 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPoliciesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPoliciesInput) GoString() string {
 	return s.String()
 }
@@ -2744,12 +3339,20 @@ type DescribeScalingPoliciesOutput struct {
 	ScalingPolicies []*ScalingPolicy `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPoliciesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPoliciesOutput) GoString() string {
 	return s.String()
 }
@@ -2787,8 +3390,8 @@ type DescribeScheduledActionsInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -2805,8 +3408,8 @@ type DescribeScheduledActionsInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -2829,6 +3432,18 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
+	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2837,11 +3452,11 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2863,7 +3478,7 @@ type DescribeScheduledActionsInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2886,24 +3501,48 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The names of the scheduled actions to describe.
 	ScheduledActionNames []*string `type:"list"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScheduledActionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScheduledActionsInput) GoString() string {
 	return s.String()
 }
@@ -2971,12 +3610,20 @@ type DescribeScheduledActionsOutput struct {
 	ScheduledActions []*ScheduledAction `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScheduledActionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScheduledActionsOutput) GoString() string {
 	return s.String()
 }
@@ -3006,12 +3653,20 @@ type FailedResourceAccessException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedResourceAccessException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedResourceAccessException) GoString() string {
 	return s.String()
 }
@@ -3062,12 +3717,20 @@ type InternalServiceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) GoString() string {
 	return s.String()
 }
@@ -3118,12 +3781,20 @@ type InvalidNextTokenException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) GoString() string {
 	return s.String()
 }
@@ -3175,12 +3846,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -3223,6 +3902,90 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the ARN of the scalable target.
+	//
+	// For example: arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123
+	//
+	// To get the ARN for a scalable target, use DescribeScalableTargets.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags. Each tag consists of a tag key and a tag value.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // Describes the dimension names and values associated with a metric.
 type MetricDimension struct {
 	_ struct{} `type:"structure"`
@@ -3238,12 +4001,20 @@ type MetricDimension struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricDimension) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricDimension) GoString() string {
 	return s.String()
 }
@@ -3276,6 +4047,81 @@ func (s *MetricDimension) SetValue(v string) *MetricDimension {
 	return s
 }
 
+// Describes the reason for an activity that isn't scaled (not scaled activity),
+// in machine-readable format. For help interpreting the not scaled reason details,
+// see Scaling activities for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scaling-activities.html).
+type NotScaledReason struct {
+	_ struct{} `type:"structure"`
+
+	// A code that represents the reason for not scaling.
+	//
+	// Valid values:
+	//
+	//    * AutoScalingAnticipatedFlapping
+	//
+	//    * TargetServicePutResourceAsUnscalable
+	//
+	//    * AlreadyAtMaxCapacity
+	//
+	//    * AlreadyAtMinCapacity
+	//
+	//    * AlreadyAtDesiredCapacity
+	//
+	// Code is a required field
+	Code *string `type:"string" required:"true"`
+
+	// The current capacity.
+	CurrentCapacity *int64 `type:"integer"`
+
+	// The maximum capacity.
+	MaxCapacity *int64 `type:"integer"`
+
+	// The minimum capacity.
+	MinCapacity *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotScaledReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotScaledReason) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *NotScaledReason) SetCode(v string) *NotScaledReason {
+	s.Code = &v
+	return s
+}
+
+// SetCurrentCapacity sets the CurrentCapacity field's value.
+func (s *NotScaledReason) SetCurrentCapacity(v int64) *NotScaledReason {
+	s.CurrentCapacity = &v
+	return s
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *NotScaledReason) SetMaxCapacity(v int64) *NotScaledReason {
+	s.MaxCapacity = &v
+	return s
+}
+
+// SetMinCapacity sets the MinCapacity field's value.
+func (s *NotScaledReason) SetMinCapacity(v int64) *NotScaledReason {
+	s.MinCapacity = &v
+	return s
+}
+
 // The specified object could not be found. For any operation that depends on
 // the existence of a scalable target, this exception is thrown if the scalable
 // target with the specified service namespace, resource ID, and scalable dimension
@@ -3288,12 +4134,20 @@ type ObjectNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectNotFoundException) GoString() string {
 	return s.String()
 }
@@ -3339,36 +4193,38 @@ func (s *ObjectNotFoundException) RequestID() string {
 // Represents a predefined metric for a target tracking scaling policy to use
 // with Application Auto Scaling.
 //
-// Only the AWS services that you're using send metrics to Amazon CloudWatch.
+// Only the Amazon Web Services that you're using send metrics to Amazon CloudWatch.
 // To determine whether a desired metric already exists by looking up its namespace
 // and dimension using the CloudWatch metrics dashboard in the console, follow
-// the procedure in Building dashboards with CloudWatch (https://docs.aws.amazon.com/autoscaling/application/userguide/monitoring-cloudwatch.html)
+// the procedure in Monitor your resources using CloudWatch (https://docs.aws.amazon.com/autoscaling/application/userguide/monitoring-cloudwatch.html)
 // in the Application Auto Scaling User Guide.
 type PredefinedMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The metric type. The ALBRequestCountPerTarget metric type applies only to
-	// Spot Fleet requests and ECS services.
+	// Spot Fleets and ECS services.
 	//
 	// PredefinedMetricType is a required field
 	PredefinedMetricType *string `type:"string" required:"true" enum:"MetricType"`
 
 	// Identifies the resource associated with the metric type. You can't specify
 	// a resource label unless the metric type is ALBRequestCountPerTarget and there
-	// is a target group attached to the Spot Fleet request or ECS service.
+	// is a target group attached to the Spot Fleet or ECS service.
 	//
 	// You create the resource label by appending the final portion of the load
 	// balancer ARN and the final portion of the target group ARN into a single
-	// value, separated by a forward slash (/). The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
-	// where:
+	// value, separated by a forward slash (/). The format of the resource label
+	// is:
+	//
+	// app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff.
+	//
+	// Where:
 	//
 	//    * app/<load-balancer-name>/<load-balancer-id> is the final portion of
 	//    the load balancer ARN
 	//
 	//    * targetgroup/<target-group-name>/<target-group-id> is the final portion
 	//    of the target group ARN.
-	//
-	// This is an example: app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
 	//
 	// To find the ARN for an Application Load Balancer, use the DescribeLoadBalancers
 	// (https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html)
@@ -3378,12 +4234,20 @@ type PredefinedMetricSpecification struct {
 	ResourceLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PredefinedMetricSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PredefinedMetricSpecification) GoString() string {
 	return s.String()
 }
@@ -3421,18 +4285,22 @@ type PutScalingPolicyInput struct {
 
 	// The name of the scaling policy.
 	//
+	// You cannot change the name of a scaling policy, but you can delete the original
+	// scaling policy and create a new scaling policy with the same settings and
+	// a different name.
+	//
 	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	// The policy type. This parameter is required if you are creating a scaling
-	// policy.
+	// The scaling policy type. This parameter is required if you are creating a
+	// scaling policy.
 	//
 	// The following policy types are supported:
 	//
-	// TargetTrackingScaling—Not supported for Amazon EMR
+	// TargetTrackingScaling—Not supported for Amazon EMR.
 	//
 	// StepScaling—Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon
-	// Keyspaces (for Apache Cassandra), or Amazon MSK.
+	// Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune.
 	//
 	// For more information, see Target tracking scaling policies (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html)
 	// and Step scaling policies (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html)
@@ -3445,8 +4313,8 @@ type PutScalingPolicyInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -3463,8 +4331,8 @@ type PutScalingPolicyInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -3488,6 +4356,18 @@ type PutScalingPolicyInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -3496,11 +4376,11 @@ type PutScalingPolicyInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -3522,7 +4402,7 @@ type PutScalingPolicyInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -3546,11 +4426,27 @@ type PutScalingPolicyInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -3569,12 +4465,20 @@ type PutScalingPolicyInput struct {
 	TargetTrackingScalingPolicyConfiguration *TargetTrackingScalingPolicyConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutScalingPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutScalingPolicyInput) GoString() string {
 	return s.String()
 }
@@ -3671,12 +4575,20 @@ type PutScalingPolicyOutput struct {
 	PolicyARN *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutScalingPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutScalingPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -3705,8 +4617,8 @@ type PutScheduledActionInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -3723,8 +4635,8 @@ type PutScheduledActionInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -3748,6 +4660,18 @@ type PutScheduledActionInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -3756,11 +4680,11 @@ type PutScheduledActionInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -3782,7 +4706,7 @@ type PutScheduledActionInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -3805,6 +4729,21 @@ type PutScheduledActionInput struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -3848,8 +4787,9 @@ type PutScheduledActionInput struct {
 	// ScheduledActionName is a required field
 	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -3866,12 +4806,20 @@ type PutScheduledActionInput struct {
 	Timezone *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutScheduledActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutScheduledActionInput) GoString() string {
 	return s.String()
 }
@@ -3968,12 +4916,20 @@ type PutScheduledActionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutScheduledActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutScheduledActionOutput) GoString() string {
 	return s.String()
 }
@@ -3987,11 +4943,11 @@ type RegisterScalableTargetInput struct {
 	// when registering a new scalable target.
 	//
 	// Although you can specify a large maximum capacity, note that service quotas
-	// may impose lower limits. Each service has its own default quotas for the
+	// might impose lower limits. Each service has its own default quotas for the
 	// maximum capacity of the resource. If you want to specify a higher limit,
 	// you can request an increase. For more information, consult the documentation
 	// for that service. For information about the default quotas for each service,
-	// see Service Endpoints and Quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
+	// see Service endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
 	// in the Amazon Web Services General Reference.
 	MaxCapacity *int64 `type:"integer"`
 
@@ -4000,10 +4956,34 @@ type RegisterScalableTargetInput struct {
 	// the minimum capacity limit in response to changing demand. This property
 	// is required when registering a new scalable target.
 	//
-	// For certain resources, the minimum value allowed is 0. This includes Lambda
-	// provisioned concurrency, Spot Fleet, ECS services, Aurora DB clusters, EMR
-	// clusters, and custom resources. For all other resources, the minimum value
-	// allowed is 1.
+	// For the following resources, the minimum value allowed is 0.
+	//
+	//    * AppStream 2.0 fleets
+	//
+	//    * Aurora DB clusters
+	//
+	//    * ECS services
+	//
+	//    * EMR clusters
+	//
+	//    * Lambda provisioned concurrency
+	//
+	//    * SageMaker endpoint variants
+	//
+	//    * SageMaker Serverless endpoint provisioned concurrency
+	//
+	//    * Spot Fleets
+	//
+	//    * custom resources
+	//
+	// It's strongly recommended that you specify a value greater than 0. A value
+	// greater than 0 means that data points are continuously reported to CloudWatch
+	// that scaling policies can use to scale on a metric like average CPU utilization.
+	//
+	// For all other resources, the minimum allowed value depends on the type of
+	// resource that you are using. If you provide a value that is lower than what
+	// a resource can accept, an error occurs. In which case, the error message
+	// will provide the minimum value that the resource can accept.
 	MinCapacity *int64 `type:"integer"`
 
 	// The identifier of the resource that is associated with the scalable target.
@@ -4012,8 +4992,8 @@ type RegisterScalableTargetInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -4030,8 +5010,8 @@ type RegisterScalableTargetInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -4055,6 +5035,18 @@ type RegisterScalableTargetInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4072,11 +5064,11 @@ type RegisterScalableTargetInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4098,7 +5090,7 @@ type RegisterScalableTargetInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4122,11 +5114,27 @@ type RegisterScalableTargetInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -4150,14 +5158,35 @@ type RegisterScalableTargetInput struct {
 	// For more information, see Suspending and resuming scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-suspend-resume-scaling.html)
 	// in the Application Auto Scaling User Guide.
 	SuspendedState *SuspendedState `type:"structure"`
+
+	// Assigns one or more tags to the scalable target. Use this parameter to tag
+	// the scalable target when it is created. To tag an existing scalable target,
+	// use the TagResource operation.
+	//
+	// Each tag consists of a tag key and a tag value. Both the tag key and the
+	// tag value are required. You cannot have more than one tag on a scalable target
+	// with the same tag key.
+	//
+	// Use tags to control access to a scalable target. For more information, see
+	// Tagging support for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/resource-tagging-support.html)
+	// in the Application Auto Scaling User Guide.
+	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterScalableTargetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterScalableTargetInput) GoString() string {
 	return s.String()
 }
@@ -4229,18 +5258,109 @@ func (s *RegisterScalableTargetInput) SetSuspendedState(v *SuspendedState) *Regi
 	return s
 }
 
-type RegisterScalableTargetOutput struct {
-	_ struct{} `type:"structure"`
+// SetTags sets the Tags field's value.
+func (s *RegisterScalableTargetInput) SetTags(v map[string]*string) *RegisterScalableTargetInput {
+	s.Tags = v
+	return s
 }
 
-// String returns the string representation
+type RegisterScalableTargetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the scalable target.
+	ScalableTargetARN *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterScalableTargetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterScalableTargetOutput) GoString() string {
 	return s.String()
+}
+
+// SetScalableTargetARN sets the ScalableTargetARN field's value.
+func (s *RegisterScalableTargetOutput) SetScalableTargetARN(v string) *RegisterScalableTargetOutput {
+	s.ScalableTargetARN = &v
+	return s
+}
+
+// The specified resource doesn't exist.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The name of the Application Auto Scaling resource. This value is an Amazon
+	// Resource Name (ARN).
+	ResourceName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Represents a scalable target.
@@ -4268,8 +5388,8 @@ type ScalableTarget struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -4286,8 +5406,8 @@ type ScalableTarget struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -4311,6 +5431,18 @@ type ScalableTarget struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4325,11 +5457,11 @@ type ScalableTarget struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4351,7 +5483,7 @@ type ScalableTarget struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4375,10 +5507,29 @@ type ScalableTarget struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource, or a custom-resource.
+	// The ARN of the scalable target.
+	ScalableTargetARN *string `type:"string"`
+
+	// The namespace of the Amazon Web Services service that provides the resource,
+	// or a custom-resource.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -4388,12 +5539,20 @@ type ScalableTarget struct {
 	SuspendedState *SuspendedState `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalableTarget) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalableTarget) GoString() string {
 	return s.String()
 }
@@ -4434,6 +5593,12 @@ func (s *ScalableTarget) SetScalableDimension(v string) *ScalableTarget {
 	return s
 }
 
+// SetScalableTargetARN sets the ScalableTargetARN field's value.
+func (s *ScalableTarget) SetScalableTargetARN(v string) *ScalableTarget {
+	s.ScalableTargetARN = &v
+	return s
+}
+
 // SetServiceNamespace sets the ServiceNamespace field's value.
 func (s *ScalableTarget) SetServiceNamespace(v string) *ScalableTarget {
 	s.ServiceNamespace = &v
@@ -4457,25 +5622,32 @@ type ScalableTargetAction struct {
 	// maximum capacity of the resource. If you want to specify a higher limit,
 	// you can request an increase. For more information, consult the documentation
 	// for that service. For information about the default quotas for each service,
-	// see Service Endpoints and Quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
+	// see Service endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
 	// in the Amazon Web Services General Reference.
 	MaxCapacity *int64 `type:"integer"`
 
 	// The minimum capacity.
 	//
-	// For certain resources, the minimum value allowed is 0. This includes Lambda
-	// provisioned concurrency, Spot Fleet, ECS services, Aurora DB clusters, EMR
-	// clusters, and custom resources. For all other resources, the minimum value
-	// allowed is 1.
+	// When the scheduled action runs, the resource will have at least this much
+	// capacity, but it might have more depending on other settings, such as the
+	// target utilization level of a target tracking scaling policy.
 	MinCapacity *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalableTargetAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalableTargetAction) GoString() string {
 	return s.String()
 }
@@ -4517,14 +5689,19 @@ type ScalingActivity struct {
 	// The Unix timestamp for when the scaling activity ended.
 	EndTime *time.Time `type:"timestamp"`
 
+	// Machine-readable data that describes the reason for a not scaled activity.
+	// Only available when DescribeScalingActivities (https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DescribeScalingActivities.html)
+	// includes not scaled activities.
+	NotScaledReasons []*NotScaledReason `type:"list"`
+
 	// The identifier of the resource associated with the scaling activity. This
 	// string consists of the resource type and unique identifier.
 	//
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -4541,8 +5718,8 @@ type ScalingActivity struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -4566,6 +5743,18 @@ type ScalingActivity struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4574,11 +5763,11 @@ type ScalingActivity struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4600,7 +5789,7 @@ type ScalingActivity struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4624,10 +5813,26 @@ type ScalingActivity struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource, or a custom-resource.
+	// The namespace of the Amazon Web Services service that provides the resource,
+	// or a custom-resource.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -4646,12 +5851,20 @@ type ScalingActivity struct {
 	StatusMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingActivity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingActivity) GoString() string {
 	return s.String()
 }
@@ -4683,6 +5896,12 @@ func (s *ScalingActivity) SetDetails(v string) *ScalingActivity {
 // SetEndTime sets the EndTime field's value.
 func (s *ScalingActivity) SetEndTime(v time.Time) *ScalingActivity {
 	s.EndTime = &v
+	return s
+}
+
+// SetNotScaledReasons sets the NotScaledReasons field's value.
+func (s *ScalingActivity) SetNotScaledReasons(v []*NotScaledReason) *ScalingActivity {
+	s.NotScaledReasons = v
 	return s
 }
 
@@ -4725,7 +5944,8 @@ func (s *ScalingActivity) SetStatusMessage(v string) *ScalingActivity {
 // Represents a scaling policy to use with Application Auto Scaling.
 //
 // For more information about configuring scaling policies for a specific service,
-// see Getting started with Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/getting-started.html)
+// see Amazon Web Services services that you can use with Application Auto Scaling
+// (https://docs.aws.amazon.com/autoscaling/application/userguide/integrated-services-list.html)
 // in the Application Auto Scaling User Guide.
 type ScalingPolicy struct {
 	_ struct{} `type:"structure"`
@@ -4750,6 +5970,13 @@ type ScalingPolicy struct {
 
 	// The scaling policy type.
 	//
+	// The following policy types are supported:
+	//
+	// TargetTrackingScaling—Not supported for Amazon EMR
+	//
+	// StepScaling—Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon
+	// Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune.
+	//
 	// PolicyType is a required field
 	PolicyType *string `type:"string" required:"true" enum:"PolicyType"`
 
@@ -4759,8 +5986,8 @@ type ScalingPolicy struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -4777,8 +6004,8 @@ type ScalingPolicy struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -4802,6 +6029,18 @@ type ScalingPolicy struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4810,11 +6049,11 @@ type ScalingPolicy struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4836,7 +6075,7 @@ type ScalingPolicy struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4860,10 +6099,26 @@ type ScalingPolicy struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource, or a custom-resource.
+	// The namespace of the Amazon Web Services service that provides the resource,
+	// or a custom-resource.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -4875,12 +6130,20 @@ type ScalingPolicy struct {
 	TargetTrackingScalingPolicyConfiguration *TargetTrackingScalingPolicyConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingPolicy) GoString() string {
 	return s.String()
 }
@@ -4963,8 +6226,8 @@ type ScheduledAction struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -4981,8 +6244,8 @@ type ScheduledAction struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -5006,6 +6269,18 @@ type ScheduledAction struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
+	//    * SageMaker Serverless endpoint - The resource type is variant and the
+	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5014,11 +6289,11 @@ type ScheduledAction struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -5040,7 +6315,7 @@ type ScheduledAction struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -5063,6 +6338,21 @@ type ScheduledAction struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
+	//
+	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
+	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The new minimum and maximum capacity. You can set both values or just one.
@@ -5110,7 +6400,8 @@ type ScheduledAction struct {
 	// ScheduledActionName is a required field
 	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
-	// The namespace of the AWS service that provides the resource, or a custom-resource.
+	// The namespace of the Amazon Web Services service that provides the resource,
+	// or a custom-resource.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -5123,12 +6414,20 @@ type ScheduledAction struct {
 	Timezone *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduledAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduledAction) GoString() string {
 	return s.String()
 }
@@ -5207,61 +6506,68 @@ func (s *ScheduledAction) SetTimezone(v string) *ScheduledAction {
 // For the following examples, suppose that you have an alarm with a breach
 // threshold of 50:
 //
-//    * To trigger the adjustment when the metric is greater than or equal to
-//    50 and less than 60, specify a lower bound of 0 and an upper bound of
-//    10.
+//   - To initiate the adjustment when the metric is greater than or equal
+//     to 50 and less than 60, specify a lower bound of 0 and an upper bound
+//     of 10.
 //
-//    * To trigger the adjustment when the metric is greater than 40 and less
-//    than or equal to 50, specify a lower bound of -10 and an upper bound of
-//    0.
+//   - To initiate the adjustment when the metric is greater than 40 and less
+//     than or equal to 50, specify a lower bound of -10 and an upper bound of
+//     0.
 //
 // There are a few rules for the step adjustments for your step policy:
 //
-//    * The ranges of your step adjustments can't overlap or have a gap.
+//   - The ranges of your step adjustments can't overlap or have a gap.
 //
-//    * At most one step adjustment can have a null lower bound. If one step
-//    adjustment has a negative lower bound, then there must be a step adjustment
-//    with a null lower bound.
+//   - At most one step adjustment can have a null lower bound. If one step
+//     adjustment has a negative lower bound, then there must be a step adjustment
+//     with a null lower bound.
 //
-//    * At most one step adjustment can have a null upper bound. If one step
-//    adjustment has a positive upper bound, then there must be a step adjustment
-//    with a null upper bound.
+//   - At most one step adjustment can have a null upper bound. If one step
+//     adjustment has a positive upper bound, then there must be a step adjustment
+//     with a null upper bound.
 //
-//    * The upper and lower bound can't be null in the same step adjustment.
+//   - The upper and lower bound can't be null in the same step adjustment.
 type StepAdjustment struct {
 	_ struct{} `type:"structure"`
 
 	// The lower bound for the difference between the alarm threshold and the CloudWatch
 	// metric. If the metric value is above the breach threshold, the lower bound
 	// is inclusive (the metric must be greater than or equal to the threshold plus
-	// the lower bound). Otherwise, it is exclusive (the metric must be greater
-	// than the threshold plus the lower bound). A null value indicates negative
-	// infinity.
+	// the lower bound). Otherwise, it's exclusive (the metric must be greater than
+	// the threshold plus the lower bound). A null value indicates negative infinity.
 	MetricIntervalLowerBound *float64 `type:"double"`
 
 	// The upper bound for the difference between the alarm threshold and the CloudWatch
 	// metric. If the metric value is above the breach threshold, the upper bound
 	// is exclusive (the metric must be less than the threshold plus the upper bound).
-	// Otherwise, it is inclusive (the metric must be less than or equal to the
-	// threshold plus the upper bound). A null value indicates positive infinity.
+	// Otherwise, it's inclusive (the metric must be less than or equal to the threshold
+	// plus the upper bound). A null value indicates positive infinity.
 	//
 	// The upper bound must be greater than the lower bound.
 	MetricIntervalUpperBound *float64 `type:"double"`
 
 	// The amount by which to scale, based on the specified adjustment type. A positive
 	// value adds to the current capacity while a negative number removes from the
-	// current capacity. For exact capacity, you must specify a positive value.
+	// current capacity. For exact capacity, you must specify a non-negative value.
 	//
 	// ScalingAdjustment is a required field
 	ScalingAdjustment *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepAdjustment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepAdjustment) GoString() string {
 	return s.String()
 }
@@ -5299,6 +6605,9 @@ func (s *StepAdjustment) SetScalingAdjustment(v int64) *StepAdjustment {
 
 // Represents a step scaling policy configuration to use with Application Auto
 // Scaling.
+//
+// For more information, see Step scaling policies (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html)
+// in the Application Auto Scaling User Guide.
 type StepScalingPolicyConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -5310,58 +6619,9 @@ type StepScalingPolicyConfiguration struct {
 	AdjustmentType *string `type:"string" enum:"AdjustmentType"`
 
 	// The amount of time, in seconds, to wait for a previous scaling activity to
-	// take effect.
-	//
-	// With scale-out policies, the intention is to continuously (but not excessively)
-	// scale out. After Application Auto Scaling successfully scales out using a
-	// step scaling policy, it starts to calculate the cooldown time. The scaling
-	// policy won't increase the desired capacity again unless either a larger scale
-	// out is triggered or the cooldown period ends. While the cooldown period is
-	// in effect, capacity added by the initiating scale-out activity is calculated
-	// as part of the desired capacity for the next scale-out activity. For example,
-	// when an alarm triggers a step scaling policy to increase the capacity by
-	// 2, the scaling activity completes successfully, and a cooldown period starts.
-	// If the alarm triggers again during the cooldown period but at a more aggressive
-	// step adjustment of 3, the previous increase of 2 is considered part of the
-	// current capacity. Therefore, only 1 is added to the capacity.
-	//
-	// With scale-in policies, the intention is to scale in conservatively to protect
-	// your application’s availability, so scale-in activities are blocked until
-	// the cooldown period has expired. However, if another alarm triggers a scale-out
-	// activity during the cooldown period after a scale-in activity, Application
-	// Auto Scaling scales out the target immediately. In this case, the cooldown
-	// period for the scale-in activity stops and doesn't complete.
-	//
-	// Application Auto Scaling provides a default value of 300 for the following
-	// scalable targets:
-	//
-	//    * ECS services
-	//
-	//    * Spot Fleet requests
-	//
-	//    * EMR clusters
-	//
-	//    * AppStream 2.0 fleets
-	//
-	//    * Aurora DB clusters
-	//
-	//    * Amazon SageMaker endpoint variants
-	//
-	//    * Custom resources
-	//
-	// For all other scalable targets, the default value is 0:
-	//
-	//    * DynamoDB tables
-	//
-	//    * DynamoDB global secondary indexes
-	//
-	//    * Amazon Comprehend document classification and entity recognizer endpoints
-	//
-	//    * Lambda provisioned concurrency
-	//
-	//    * Amazon Keyspaces tables
-	//
-	//    * Amazon MSK broker storage
+	// take effect. If not specified, the default value is 300. For more information,
+	// see Cooldown period (https://docs.aws.amazon.com/autoscaling/application/userguide/step-scaling-policy-overview.html#step-scaling-cooldown)
+	// in the Application Auto Scaling User Guide.
 	Cooldown *int64 `type:"integer"`
 
 	// The aggregation type for the CloudWatch metrics. Valid values are Minimum,
@@ -5385,12 +6645,20 @@ type StepScalingPolicyConfiguration struct {
 	StepAdjustments []*StepAdjustment `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepScalingPolicyConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepScalingPolicyConfiguration) GoString() string {
 	return s.String()
 }
@@ -5466,12 +6734,20 @@ type SuspendedState struct {
 	ScheduledScalingSuspended *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuspendedState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuspendedState) GoString() string {
 	return s.String()
 }
@@ -5494,8 +6770,482 @@ func (s *SuspendedState) SetScheduledScalingSuspended(v bool) *SuspendedState {
 	return s
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the Application Auto Scaling scalable target that you want to
+	// apply tags to.
+	//
+	// For example: arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123
+	//
+	// To get the ARN for a scalable target, use DescribeScalableTargets.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// The tags assigned to the resource. A tag is a label that you assign to an
+	// Amazon Web Services resource.
+	//
+	// Each tag consists of a tag key and a tag value.
+	//
+	// You cannot have more than one tag on an Application Auto Scaling scalable
+	// target with the same tag key. If you specify an existing tag key with a different
+	// tag value, Application Auto Scaling replaces the current tag value with the
+	// specified one.
+	//
+	// For information about the rules that apply to tag keys and tag values, see
+	// User-defined tag restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html)
+	// in the Amazon Web Services Billing and Cost Management User Guide.
+	//
+	// Tags is a required field
+	Tags map[string]*string `type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
+// Represents a specific metric.
+//
+// Metric is a property of the TargetTrackingMetricStat object.
+type TargetTrackingMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The dimensions for the metric. For the list of available dimensions, see
+	// the Amazon Web Services documentation available from the table in Amazon
+	// Web Services services that publish CloudWatch metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
+	// in the Amazon CloudWatch User Guide.
+	//
+	// Conditional: If you published your metric with dimensions, you must specify
+	// the same dimensions in your scaling policy.
+	Dimensions []*TargetTrackingMetricDimension `type:"list"`
+
+	// The name of the metric.
+	MetricName *string `min:"1" type:"string"`
+
+	// The namespace of the metric. For more information, see the table in Amazon
+	// Web Services services that publish CloudWatch metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
+	// in the Amazon CloudWatch User Guide.
+	Namespace *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetric) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetTrackingMetric) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetTrackingMetric"}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Dimensions != nil {
+		for i, v := range s.Dimensions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dimensions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *TargetTrackingMetric) SetDimensions(v []*TargetTrackingMetricDimension) *TargetTrackingMetric {
+	s.Dimensions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *TargetTrackingMetric) SetMetricName(v string) *TargetTrackingMetric {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *TargetTrackingMetric) SetNamespace(v string) *TargetTrackingMetric {
+	s.Namespace = &v
+	return s
+}
+
+// The metric data to return. Also defines whether this call is returning data
+// for one metric only, or whether it is performing a math expression on the
+// values of returned metric statistics to create a new time series. A time
+// series is a series of data points, each of which is associated with a timestamp.
+//
+// For more information and examples, see Create a target tracking scaling policy
+// for Application Auto Scaling using metric math (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking-metric-math.html)
+// in the Application Auto Scaling User Guide.
+type TargetTrackingMetricDataQuery struct {
+	_ struct{} `type:"structure"`
+
+	// The math expression to perform on the returned data, if this object is performing
+	// a math expression. This expression can use the Id of the other metrics to
+	// refer to those metrics, and can also use the Id of other expressions to use
+	// the result of those expressions.
+	//
+	// Conditional: Within each TargetTrackingMetricDataQuery object, you must specify
+	// either Expression or MetricStat, but not both.
+	Expression *string `min:"1" type:"string"`
+
+	// A short name that identifies the object's results in the response. This name
+	// must be unique among all MetricDataQuery objects specified for a single scaling
+	// policy. If you are performing math expressions on this set of data, this
+	// name represents that data and can serve as a variable in the mathematical
+	// expression. The valid characters are letters, numbers, and underscores. The
+	// first character must be a lowercase letter.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// A human-readable label for this metric or expression. This is especially
+	// useful if this is a math expression, so that you know what the value represents.
+	Label *string `type:"string"`
+
+	// Information about the metric data to return.
+	//
+	// Conditional: Within each MetricDataQuery object, you must specify either
+	// Expression or MetricStat, but not both.
+	MetricStat *TargetTrackingMetricStat `type:"structure"`
+
+	// Indicates whether to return the timestamps and raw data values of this metric.
+	//
+	// If you use any math expressions, specify true for this value for only the
+	// final math expression that the metric specification is based on. You must
+	// specify false for ReturnData for all the other metrics and expressions used
+	// in the metric specification.
+	//
+	// If you are only retrieving metrics and not performing any math expressions,
+	// do not specify anything for ReturnData. This sets it to its default (true).
+	ReturnData *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricDataQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricDataQuery) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetTrackingMetricDataQuery) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetTrackingMetricDataQuery"}
+	if s.Expression != nil && len(*s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.MetricStat != nil {
+		if err := s.MetricStat.Validate(); err != nil {
+			invalidParams.AddNested("MetricStat", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *TargetTrackingMetricDataQuery) SetExpression(v string) *TargetTrackingMetricDataQuery {
+	s.Expression = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TargetTrackingMetricDataQuery) SetId(v string) *TargetTrackingMetricDataQuery {
+	s.Id = &v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *TargetTrackingMetricDataQuery) SetLabel(v string) *TargetTrackingMetricDataQuery {
+	s.Label = &v
+	return s
+}
+
+// SetMetricStat sets the MetricStat field's value.
+func (s *TargetTrackingMetricDataQuery) SetMetricStat(v *TargetTrackingMetricStat) *TargetTrackingMetricDataQuery {
+	s.MetricStat = v
+	return s
+}
+
+// SetReturnData sets the ReturnData field's value.
+func (s *TargetTrackingMetricDataQuery) SetReturnData(v bool) *TargetTrackingMetricDataQuery {
+	s.ReturnData = &v
+	return s
+}
+
+// Describes the dimension of a metric.
+type TargetTrackingMetricDimension struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dimension.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value of the dimension.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricDimension) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricDimension) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetTrackingMetricDimension) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetTrackingMetricDimension"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *TargetTrackingMetricDimension) SetName(v string) *TargetTrackingMetricDimension {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TargetTrackingMetricDimension) SetValue(v string) *TargetTrackingMetricDimension {
+	s.Value = &v
+	return s
+}
+
+// This structure defines the CloudWatch metric to return, along with the statistic,
+// period, and unit.
+//
+// For more information about the CloudWatch terminology below, see Amazon CloudWatch
+// concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
+// in the Amazon CloudWatch User Guide.
+type TargetTrackingMetricStat struct {
+	_ struct{} `type:"structure"`
+
+	// The CloudWatch metric to return, including the metric name, namespace, and
+	// dimensions. To get the exact metric name, namespace, and dimensions, inspect
+	// the Metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html)
+	// object that is returned by a call to ListMetrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html).
+	//
+	// Metric is a required field
+	Metric *TargetTrackingMetric `type:"structure" required:"true"`
+
+	// The statistic to return. It can include any CloudWatch statistic or extended
+	// statistic. For a list of valid values, see the table in Statistics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic)
+	// in the Amazon CloudWatch User Guide.
+	//
+	// The most commonly used metric for scaling is Average.
+	//
+	// Stat is a required field
+	Stat *string `type:"string" required:"true"`
+
+	// The unit to use for the returned data points. For a complete list of the
+	// units that CloudWatch supports, see the MetricDatum (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+	// data type in the Amazon CloudWatch API Reference.
+	Unit *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricStat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricStat) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetTrackingMetricStat) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetTrackingMetricStat"}
+	if s.Metric == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metric"))
+	}
+	if s.Stat == nil {
+		invalidParams.Add(request.NewErrParamRequired("Stat"))
+	}
+	if s.Unit != nil && len(*s.Unit) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Unit", 1))
+	}
+	if s.Metric != nil {
+		if err := s.Metric.Validate(); err != nil {
+			invalidParams.AddNested("Metric", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetric sets the Metric field's value.
+func (s *TargetTrackingMetricStat) SetMetric(v *TargetTrackingMetric) *TargetTrackingMetricStat {
+	s.Metric = v
+	return s
+}
+
+// SetStat sets the Stat field's value.
+func (s *TargetTrackingMetricStat) SetStat(v string) *TargetTrackingMetricStat {
+	s.Stat = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *TargetTrackingMetricStat) SetUnit(v string) *TargetTrackingMetricStat {
+	s.Unit = &v
+	return s
+}
+
 // Represents a target tracking scaling policy configuration to use with Application
 // Auto Scaling.
+//
+// For more information, see Target tracking scaling policies (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html)
+// in the Application Auto Scaling User Guide.
 type TargetTrackingScalingPolicyConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -5515,89 +7265,15 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	PredefinedMetricSpecification *PredefinedMetricSpecification `type:"structure"`
 
 	// The amount of time, in seconds, after a scale-in activity completes before
-	// another scale-in activity can start.
-	//
-	// With the scale-in cooldown period, the intention is to scale in conservatively
-	// to protect your application’s availability, so scale-in activities are
-	// blocked until the cooldown period has expired. However, if another alarm
-	// triggers a scale-out activity during the scale-in cooldown period, Application
-	// Auto Scaling scales out the target immediately. In this case, the scale-in
-	// cooldown period stops and doesn't complete.
-	//
-	// Application Auto Scaling provides a default value of 300 for the following
-	// scalable targets:
-	//
-	//    * ECS services
-	//
-	//    * Spot Fleet requests
-	//
-	//    * EMR clusters
-	//
-	//    * AppStream 2.0 fleets
-	//
-	//    * Aurora DB clusters
-	//
-	//    * Amazon SageMaker endpoint variants
-	//
-	//    * Custom resources
-	//
-	// For all other scalable targets, the default value is 0:
-	//
-	//    * DynamoDB tables
-	//
-	//    * DynamoDB global secondary indexes
-	//
-	//    * Amazon Comprehend document classification and entity recognizer endpoints
-	//
-	//    * Lambda provisioned concurrency
-	//
-	//    * Amazon Keyspaces tables
-	//
-	//    * Amazon MSK broker storage
+	// another scale-in activity can start. For more information and for default
+	// values, see Define cooldown periods (https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html#target-tracking-cooldown)
+	// in the Application Auto Scaling User Guide.
 	ScaleInCooldown *int64 `type:"integer"`
 
 	// The amount of time, in seconds, to wait for a previous scale-out activity
-	// to take effect.
-	//
-	// With the scale-out cooldown period, the intention is to continuously (but
-	// not excessively) scale out. After Application Auto Scaling successfully scales
-	// out using a target tracking scaling policy, it starts to calculate the cooldown
-	// time. The scaling policy won't increase the desired capacity again unless
-	// either a larger scale out is triggered or the cooldown period ends. While
-	// the cooldown period is in effect, the capacity added by the initiating scale-out
-	// activity is calculated as part of the desired capacity for the next scale-out
-	// activity.
-	//
-	// Application Auto Scaling provides a default value of 300 for the following
-	// scalable targets:
-	//
-	//    * ECS services
-	//
-	//    * Spot Fleet requests
-	//
-	//    * EMR clusters
-	//
-	//    * AppStream 2.0 fleets
-	//
-	//    * Aurora DB clusters
-	//
-	//    * Amazon SageMaker endpoint variants
-	//
-	//    * Custom resources
-	//
-	// For all other scalable targets, the default value is 0:
-	//
-	//    * DynamoDB tables
-	//
-	//    * DynamoDB global secondary indexes
-	//
-	//    * Amazon Comprehend document classification and entity recognizer endpoints
-	//
-	//    * Lambda provisioned concurrency
-	//
-	//    * Amazon Keyspaces tables
-	//
-	//    * Amazon MSK broker storage
+	// to take effect. For more information and for default values, see Define cooldown
+	// periods (https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html#target-tracking-cooldown)
+	// in the Application Auto Scaling User Guide.
 	ScaleOutCooldown *int64 `type:"integer"`
 
 	// The target value for the metric. Although this property accepts numbers of
@@ -5607,16 +7283,28 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	// then the target value is a percent value that represents how much of the
 	// CPU can be used before scaling out.
 	//
+	// If the scaling policy specifies the ALBRequestCountPerTarget predefined metric,
+	// specify the target utilization as the optimal average request count per target
+	// during any one-minute interval.
+	//
 	// TargetValue is a required field
 	TargetValue *float64 `type:"double" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetTrackingScalingPolicyConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetTrackingScalingPolicyConfiguration) GoString() string {
 	return s.String()
 }
@@ -5680,6 +7368,164 @@ func (s *TargetTrackingScalingPolicyConfiguration) SetTargetValue(v float64) *Ta
 	return s
 }
 
+// The request contains too many tags. Try the request again with fewer tags.
+type TooManyTagsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The name of the Application Auto Scaling resource. This value is an Amazon
+	// Resource Name (ARN).
+	ResourceName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
+	return &TooManyTagsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagsException) Code() string {
+	return "TooManyTagsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the Application Auto Scaling scalable target from which to remove
+	// tags.
+	//
+	// For example: arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123
+	//
+	// To get the ARN for a scalable target, use DescribeScalableTargets.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// One or more tag keys. Specify only the tag keys, not the tag values.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // An exception was thrown for a validation issue. Review the available parameters
 // for the API request.
 type ValidationException struct {
@@ -5689,12 +7535,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -5856,6 +7710,27 @@ const (
 
 	// MetricTypeKafkaBrokerStorageUtilization is a MetricType enum value
 	MetricTypeKafkaBrokerStorageUtilization = "KafkaBrokerStorageUtilization"
+
+	// MetricTypeElastiCachePrimaryEngineCpuutilization is a MetricType enum value
+	MetricTypeElastiCachePrimaryEngineCpuutilization = "ElastiCachePrimaryEngineCPUUtilization"
+
+	// MetricTypeElastiCacheReplicaEngineCpuutilization is a MetricType enum value
+	MetricTypeElastiCacheReplicaEngineCpuutilization = "ElastiCacheReplicaEngineCPUUtilization"
+
+	// MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage is a MetricType enum value
+	MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage = "ElastiCacheDatabaseMemoryUsageCountedForEvictPercentage"
+
+	// MetricTypeNeptuneReaderAverageCpuutilization is a MetricType enum value
+	MetricTypeNeptuneReaderAverageCpuutilization = "NeptuneReaderAverageCPUUtilization"
+
+	// MetricTypeSageMakerVariantProvisionedConcurrencyUtilization is a MetricType enum value
+	MetricTypeSageMakerVariantProvisionedConcurrencyUtilization = "SageMakerVariantProvisionedConcurrencyUtilization"
+
+	// MetricTypeElastiCacheDatabaseCapacityUsageCountedForEvictPercentage is a MetricType enum value
+	MetricTypeElastiCacheDatabaseCapacityUsageCountedForEvictPercentage = "ElastiCacheDatabaseCapacityUsageCountedForEvictPercentage"
+
+	// MetricTypeSageMakerInferenceComponentInvocationsPerCopy is a MetricType enum value
+	MetricTypeSageMakerInferenceComponentInvocationsPerCopy = "SageMakerInferenceComponentInvocationsPerCopy"
 )
 
 // MetricType_Values returns all elements of the MetricType enum
@@ -5878,6 +7753,13 @@ func MetricType_Values() []string {
 		MetricTypeCassandraReadCapacityUtilization,
 		MetricTypeCassandraWriteCapacityUtilization,
 		MetricTypeKafkaBrokerStorageUtilization,
+		MetricTypeElastiCachePrimaryEngineCpuutilization,
+		MetricTypeElastiCacheReplicaEngineCpuutilization,
+		MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage,
+		MetricTypeNeptuneReaderAverageCpuutilization,
+		MetricTypeSageMakerVariantProvisionedConcurrencyUtilization,
+		MetricTypeElastiCacheDatabaseCapacityUsageCountedForEvictPercentage,
+		MetricTypeSageMakerInferenceComponentInvocationsPerCopy,
 	}
 }
 
@@ -5948,6 +7830,21 @@ const (
 
 	// ScalableDimensionKafkaBrokerStorageVolumeSize is a ScalableDimension enum value
 	ScalableDimensionKafkaBrokerStorageVolumeSize = "kafka:broker-storage:VolumeSize"
+
+	// ScalableDimensionElasticacheReplicationGroupNodeGroups is a ScalableDimension enum value
+	ScalableDimensionElasticacheReplicationGroupNodeGroups = "elasticache:replication-group:NodeGroups"
+
+	// ScalableDimensionElasticacheReplicationGroupReplicas is a ScalableDimension enum value
+	ScalableDimensionElasticacheReplicationGroupReplicas = "elasticache:replication-group:Replicas"
+
+	// ScalableDimensionNeptuneClusterReadReplicaCount is a ScalableDimension enum value
+	ScalableDimensionNeptuneClusterReadReplicaCount = "neptune:cluster:ReadReplicaCount"
+
+	// ScalableDimensionSagemakerVariantDesiredProvisionedConcurrency is a ScalableDimension enum value
+	ScalableDimensionSagemakerVariantDesiredProvisionedConcurrency = "sagemaker:variant:DesiredProvisionedConcurrency"
+
+	// ScalableDimensionSagemakerInferenceComponentDesiredCopyCount is a ScalableDimension enum value
+	ScalableDimensionSagemakerInferenceComponentDesiredCopyCount = "sagemaker:inference-component:DesiredCopyCount"
 )
 
 // ScalableDimension_Values returns all elements of the ScalableDimension enum
@@ -5970,6 +7867,11 @@ func ScalableDimension_Values() []string {
 		ScalableDimensionCassandraTableReadCapacityUnits,
 		ScalableDimensionCassandraTableWriteCapacityUnits,
 		ScalableDimensionKafkaBrokerStorageVolumeSize,
+		ScalableDimensionElasticacheReplicationGroupNodeGroups,
+		ScalableDimensionElasticacheReplicationGroupReplicas,
+		ScalableDimensionNeptuneClusterReadReplicaCount,
+		ScalableDimensionSagemakerVariantDesiredProvisionedConcurrency,
+		ScalableDimensionSagemakerInferenceComponentDesiredCopyCount,
 	}
 }
 
@@ -6041,6 +7943,12 @@ const (
 
 	// ServiceNamespaceKafka is a ServiceNamespace enum value
 	ServiceNamespaceKafka = "kafka"
+
+	// ServiceNamespaceElasticache is a ServiceNamespace enum value
+	ServiceNamespaceElasticache = "elasticache"
+
+	// ServiceNamespaceNeptune is a ServiceNamespace enum value
+	ServiceNamespaceNeptune = "neptune"
 )
 
 // ServiceNamespace_Values returns all elements of the ServiceNamespace enum
@@ -6058,5 +7966,7 @@ func ServiceNamespace_Values() []string {
 		ServiceNamespaceLambda,
 		ServiceNamespaceCassandra,
 		ServiceNamespaceKafka,
+		ServiceNamespaceElasticache,
+		ServiceNamespaceNeptune,
 	}
 }

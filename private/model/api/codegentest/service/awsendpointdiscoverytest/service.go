@@ -41,36 +41,38 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a AwsEndpointDiscoveryTest client from just a session.
-//     svc := awsendpointdiscoverytest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a AwsEndpointDiscoveryTest client with additional configuration
-//     svc := awsendpointdiscoverytest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a AwsEndpointDiscoveryTest client from just a session.
+//	svc := awsendpointdiscoverytest.New(mySession)
+//
+//	// Create a AwsEndpointDiscoveryTest client with additional configuration
+//	svc := awsendpointdiscoverytest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *AwsEndpointDiscoveryTest {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "awsendpointdiscoverytestservice"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *AwsEndpointDiscoveryTest {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *AwsEndpointDiscoveryTest {
 	svc := &AwsEndpointDiscoveryTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2018-08-31",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "AwsEndpointDiscoveryTestService",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2018-08-31",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "AwsEndpointDiscoveryTestService",
 			},
 			handlers,
 		),

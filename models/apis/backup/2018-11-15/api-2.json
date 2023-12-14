@@ -11,6 +11,24 @@
     "uid":"backup-2018-11-15"
   },
   "operations":{
+    "CancelLegalHold":{
+      "name":"CancelLegalHold",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/legal-holds/{legalHoldId}",
+        "responseCode":201
+      },
+      "input":{"shape":"CancelLegalHoldInput"},
+      "output":{"shape":"CancelLegalHoldOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidResourceStateException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "CreateBackupPlan":{
       "name":"CreateBackupPlan",
       "http":{
@@ -59,6 +77,112 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"LimitExceededException"},
         {"shape":"AlreadyExistsException"}
+      ],
+      "idempotent":true
+    },
+    "CreateFramework":{
+      "name":"CreateFramework",
+      "http":{
+        "method":"POST",
+        "requestUri":"/audit/frameworks"
+      },
+      "input":{"shape":"CreateFrameworkInput"},
+      "output":{"shape":"CreateFrameworkOutput"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
+    "CreateLegalHold":{
+      "name":"CreateLegalHold",
+      "http":{
+        "method":"POST",
+        "requestUri":"/legal-holds/"
+      },
+      "input":{"shape":"CreateLegalHoldInput"},
+      "output":{"shape":"CreateLegalHoldOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"LimitExceededException"}
+      ],
+      "idempotent":true
+    },
+    "CreateLogicallyAirGappedBackupVault":{
+      "name":"CreateLogicallyAirGappedBackupVault",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/logically-air-gapped-backup-vaults/{backupVaultName}"
+      },
+      "input":{"shape":"CreateLogicallyAirGappedBackupVaultInput"},
+      "output":{"shape":"CreateLogicallyAirGappedBackupVaultOutput"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"}
+      ],
+      "idempotent":true
+    },
+    "CreateReportPlan":{
+      "name":"CreateReportPlan",
+      "http":{
+        "method":"POST",
+        "requestUri":"/audit/report-plans"
+      },
+      "input":{"shape":"CreateReportPlanInput"},
+      "output":{"shape":"CreateReportPlanOutput"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"MissingParameterValueException"}
+      ],
+      "idempotent":true
+    },
+    "CreateRestoreTestingPlan":{
+      "name":"CreateRestoreTestingPlan",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/restore-testing/plans",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateRestoreTestingPlanInput"},
+      "output":{"shape":"CreateRestoreTestingPlanOutput"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"ConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
+    "CreateRestoreTestingSelection":{
+      "name":"CreateRestoreTestingSelection",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/restore-testing/plans/{RestoreTestingPlanName}/selections",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateRestoreTestingSelectionInput"},
+      "output":{"shape":"CreateRestoreTestingSelectionOutput"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
       ],
       "idempotent":true
     },
@@ -122,6 +246,22 @@
       ],
       "idempotent":true
     },
+    "DeleteBackupVaultLockConfiguration":{
+      "name":"DeleteBackupVaultLockConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/backup-vaults/{backupVaultName}/vault-lock"
+      },
+      "input":{"shape":"DeleteBackupVaultLockConfigurationInput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
     "DeleteBackupVaultNotifications":{
       "name":"DeleteBackupVaultNotifications",
       "http":{
@@ -137,6 +277,21 @@
       ],
       "idempotent":true
     },
+    "DeleteFramework":{
+      "name":"DeleteFramework",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/audit/frameworks/{frameworkName}"
+      },
+      "input":{"shape":"DeleteFrameworkInput"},
+      "errors":[
+        {"shape":"MissingParameterValueException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DeleteRecoveryPoint":{
       "name":"DeleteRecoveryPoint",
       "http":{
@@ -151,6 +306,50 @@
         {"shape":"InvalidResourceStateException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidRequestException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteReportPlan":{
+      "name":"DeleteReportPlan",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/audit/report-plans/{reportPlanName}"
+      },
+      "input":{"shape":"DeleteReportPlanInput"},
+      "errors":[
+        {"shape":"MissingParameterValueException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteRestoreTestingPlan":{
+      "name":"DeleteRestoreTestingPlan",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/restore-testing/plans/{RestoreTestingPlanName}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteRestoreTestingPlanInput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteRestoreTestingSelection":{
+      "name":"DeleteRestoreTestingSelection",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteRestoreTestingSelectionInput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
       ],
       "idempotent":true
     },
@@ -202,6 +401,21 @@
         {"shape":"ServiceUnavailableException"}
       ],
       "idempotent":true
+    },
+    "DescribeFramework":{
+      "name":"DescribeFramework",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/frameworks/{frameworkName}"
+      },
+      "input":{"shape":"DescribeFrameworkInput"},
+      "output":{"shape":"DescribeFrameworkOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
     },
     "DescribeGlobalSettings":{
       "name":"DescribeGlobalSettings",
@@ -260,6 +474,35 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "DescribeReportJob":{
+      "name":"DescribeReportJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/report-jobs/{reportJobId}"
+      },
+      "input":{"shape":"DescribeReportJobInput"},
+      "output":{"shape":"DescribeReportJobOutput"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeReportPlan":{
+      "name":"DescribeReportPlan",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/report-plans/{reportPlanName}"
+      },
+      "input":{"shape":"DescribeReportPlanInput"},
+      "output":{"shape":"DescribeReportPlanOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "DescribeRestoreJob":{
       "name":"DescribeRestoreJob",
       "http":{
@@ -289,6 +532,22 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"MissingParameterValueException"},
         {"shape":"InvalidResourceStateException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
+    "DisassociateRecoveryPointFromParent":{
+      "name":"DisassociateRecoveryPointFromParent",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/backup-vaults/{backupVaultName}/recovery-points/{recoveryPointArn}/parentAssociation",
+        "responseCode":204
+      },
+      "input":{"shape":"DisassociateRecoveryPointFromParentInput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidRequestException"}
       ]
@@ -403,6 +662,22 @@
       ],
       "idempotent":true
     },
+    "GetLegalHold":{
+      "name":"GetLegalHold",
+      "http":{
+        "method":"GET",
+        "requestUri":"/legal-holds/{legalHoldId}/"
+      },
+      "input":{"shape":"GetLegalHoldInput"},
+      "output":{"shape":"GetLegalHoldOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "GetRecoveryPointRestoreMetadata":{
       "name":"GetRecoveryPointRestoreMetadata",
       "http":{
@@ -419,6 +694,65 @@
       ],
       "idempotent":true
     },
+    "GetRestoreJobMetadata":{
+      "name":"GetRestoreJobMetadata",
+      "http":{
+        "method":"GET",
+        "requestUri":"/restore-jobs/{restoreJobId}/metadata"
+      },
+      "input":{"shape":"GetRestoreJobMetadataInput"},
+      "output":{"shape":"GetRestoreJobMetadataOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "GetRestoreTestingInferredMetadata":{
+      "name":"GetRestoreTestingInferredMetadata",
+      "http":{
+        "method":"GET",
+        "requestUri":"/restore-testing/inferred-metadata",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRestoreTestingInferredMetadataInput"},
+      "output":{"shape":"GetRestoreTestingInferredMetadataOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "GetRestoreTestingPlan":{
+      "name":"GetRestoreTestingPlan",
+      "http":{
+        "method":"GET",
+        "requestUri":"/restore-testing/plans/{RestoreTestingPlanName}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRestoreTestingPlanInput"},
+      "output":{"shape":"GetRestoreTestingPlanOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "GetRestoreTestingSelection":{
+      "name":"GetRestoreTestingSelection",
+      "http":{
+        "method":"GET",
+        "requestUri":"/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRestoreTestingSelectionInput"},
+      "output":{"shape":"GetRestoreTestingSelectionOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "GetSupportedResourceTypes":{
       "name":"GetSupportedResourceTypes",
       "http":{
@@ -427,6 +761,19 @@
       },
       "output":{"shape":"GetSupportedResourceTypesOutput"},
       "errors":[
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListBackupJobSummaries":{
+      "name":"ListBackupJobSummaries",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/backup-job-summaries"
+      },
+      "input":{"shape":"ListBackupJobSummariesInput"},
+      "output":{"shape":"ListBackupJobSummariesOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
         {"shape":"ServiceUnavailableException"}
       ]
     },
@@ -523,6 +870,19 @@
       ],
       "idempotent":true
     },
+    "ListCopyJobSummaries":{
+      "name":"ListCopyJobSummaries",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/copy-job-summaries"
+      },
+      "input":{"shape":"ListCopyJobSummariesInput"},
+      "output":{"shape":"ListCopyJobSummariesOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "ListCopyJobs":{
       "name":"ListCopyJobs",
       "http":{
@@ -535,6 +895,33 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ServiceUnavailableException"}
       ]
+    },
+    "ListFrameworks":{
+      "name":"ListFrameworks",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/frameworks"
+      },
+      "input":{"shape":"ListFrameworksInput"},
+      "output":{"shape":"ListFrameworksOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListLegalHolds":{
+      "name":"ListLegalHolds",
+      "http":{
+        "method":"GET",
+        "requestUri":"/legal-holds/"
+      },
+      "input":{"shape":"ListLegalHoldsInput"},
+      "output":{"shape":"ListLegalHoldsOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
     },
     "ListProtectedResources":{
       "name":"ListProtectedResources",
@@ -550,6 +937,20 @@
       ],
       "idempotent":true
     },
+    "ListProtectedResourcesByBackupVault":{
+      "name":"ListProtectedResourcesByBackupVault",
+      "http":{
+        "method":"GET",
+        "requestUri":"/backup-vaults/{backupVaultName}/resources/"
+      },
+      "input":{"shape":"ListProtectedResourcesByBackupVaultInput"},
+      "output":{"shape":"ListProtectedResourcesByBackupVaultOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "ListRecoveryPointsByBackupVault":{
       "name":"ListRecoveryPointsByBackupVault",
       "http":{
@@ -560,6 +961,21 @@
       "output":{"shape":"ListRecoveryPointsByBackupVaultOutput"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
+    "ListRecoveryPointsByLegalHold":{
+      "name":"ListRecoveryPointsByLegalHold",
+      "http":{
+        "method":"GET",
+        "requestUri":"/legal-holds/{legalHoldId}/recovery-points"
+      },
+      "input":{"shape":"ListRecoveryPointsByLegalHoldInput"},
+      "output":{"shape":"ListRecoveryPointsByLegalHoldOutput"},
+      "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"MissingParameterValueException"},
         {"shape":"ServiceUnavailableException"}
@@ -582,6 +998,46 @@
       ],
       "idempotent":true
     },
+    "ListReportJobs":{
+      "name":"ListReportJobs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/report-jobs"
+      },
+      "input":{"shape":"ListReportJobsInput"},
+      "output":{"shape":"ListReportJobsOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListReportPlans":{
+      "name":"ListReportPlans",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/report-plans"
+      },
+      "input":{"shape":"ListReportPlansInput"},
+      "output":{"shape":"ListReportPlansOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListRestoreJobSummaries":{
+      "name":"ListRestoreJobSummaries",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/restore-job-summaries"
+      },
+      "input":{"shape":"ListRestoreJobSummariesInput"},
+      "output":{"shape":"ListRestoreJobSummariesOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "ListRestoreJobs":{
       "name":"ListRestoreJobs",
       "http":{
@@ -597,6 +1053,50 @@
         {"shape":"ServiceUnavailableException"}
       ],
       "idempotent":true
+    },
+    "ListRestoreJobsByProtectedResource":{
+      "name":"ListRestoreJobsByProtectedResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/resources/{resourceArn}/restore-jobs/"
+      },
+      "input":{"shape":"ListRestoreJobsByProtectedResourceInput"},
+      "output":{"shape":"ListRestoreJobsByProtectedResourceOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListRestoreTestingPlans":{
+      "name":"ListRestoreTestingPlans",
+      "http":{
+        "method":"GET",
+        "requestUri":"/restore-testing/plans",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRestoreTestingPlansInput"},
+      "output":{"shape":"ListRestoreTestingPlansOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListRestoreTestingSelections":{
+      "name":"ListRestoreTestingSelections",
+      "http":{
+        "method":"GET",
+        "requestUri":"/restore-testing/plans/{RestoreTestingPlanName}/selections",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRestoreTestingSelectionsInput"},
+      "output":{"shape":"ListRestoreTestingSelectionsOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
     },
     "ListTags":{
       "name":"ListTags",
@@ -629,6 +1129,22 @@
       ],
       "idempotent":true
     },
+    "PutBackupVaultLockConfiguration":{
+      "name":"PutBackupVaultLockConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/backup-vaults/{backupVaultName}/vault-lock"
+      },
+      "input":{"shape":"PutBackupVaultLockConfigurationInput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
     "PutBackupVaultNotifications":{
       "name":"PutBackupVaultNotifications",
       "http":{
@@ -640,6 +1156,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
+    "PutRestoreValidationResult":{
+      "name":"PutRestoreValidationResult",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/restore-jobs/{restoreJobId}/validations",
+        "responseCode":204
+      },
+      "input":{"shape":"PutRestoreValidationResultInput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"}
       ],
       "idempotent":true
@@ -680,6 +1213,22 @@
       ],
       "idempotent":true
     },
+    "StartReportJob":{
+      "name":"StartReportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/audit/report-jobs/{reportPlanName}"
+      },
+      "input":{"shape":"StartReportJobInput"},
+      "output":{"shape":"StartReportJobOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "StartRestoreJob":{
       "name":"StartRestoreJob",
       "http":{
@@ -692,7 +1241,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"MissingParameterValueException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"}
       ],
       "idempotent":true
     },
@@ -758,6 +1308,25 @@
       ],
       "idempotent":true
     },
+    "UpdateFramework":{
+      "name":"UpdateFramework",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/audit/frameworks/{frameworkName}"
+      },
+      "input":{"shape":"UpdateFrameworkInput"},
+      "output":{"shape":"UpdateFrameworkOutput"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
     "UpdateGlobalSettings":{
       "name":"UpdateGlobalSettings",
       "http":{
@@ -783,6 +1352,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"MissingParameterValueException"},
         {"shape":"ServiceUnavailableException"}
       ],
@@ -800,6 +1370,59 @@
         {"shape":"MissingParameterValueException"},
         {"shape":"InvalidParameterValueException"}
       ]
+    },
+    "UpdateReportPlan":{
+      "name":"UpdateReportPlan",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/audit/report-plans/{reportPlanName}"
+      },
+      "input":{"shape":"UpdateReportPlanInput"},
+      "output":{"shape":"UpdateReportPlanOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateRestoreTestingPlan":{
+      "name":"UpdateRestoreTestingPlan",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/restore-testing/plans/{RestoreTestingPlanName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateRestoreTestingPlanInput"},
+      "output":{"shape":"UpdateRestoreTestingPlanOutput"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateRestoreTestingSelection":{
+      "name":"UpdateRestoreTestingSelection",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateRestoreTestingSelectionInput"},
+      "output":{"shape":"UpdateRestoreTestingSelectionOutput"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
@@ -818,6 +1441,14 @@
     "AdvancedBackupSettings":{
       "type":"list",
       "member":{"shape":"AdvancedBackupSetting"}
+    },
+    "AggregationPeriod":{
+      "type":"string",
+      "enum":[
+        "ONE_DAY",
+        "SEVEN_DAYS",
+        "FOURTEEN_DAYS"
+      ]
     },
     "AlreadyExistsException":{
       "type":"structure",
@@ -853,8 +1484,18 @@
         "ResourceType":{"shape":"ResourceType"},
         "BytesTransferred":{"shape":"Long"},
         "BackupOptions":{"shape":"BackupOptions"},
-        "BackupType":{"shape":"string"}
+        "BackupType":{"shape":"string"},
+        "ParentJobId":{"shape":"string"},
+        "IsParent":{"shape":"boolean"},
+        "ResourceName":{"shape":"string"},
+        "InitiationDate":{"shape":"timestamp"},
+        "MessageCategory":{"shape":"string"}
       }
+    },
+    "BackupJobChildJobsInState":{
+      "type":"map",
+      "key":{"shape":"BackupJobState"},
+      "value":{"shape":"Long"}
     },
     "BackupJobState":{
       "type":"string",
@@ -866,8 +1507,42 @@
         "ABORTED",
         "COMPLETED",
         "FAILED",
-        "EXPIRED"
+        "EXPIRED",
+        "PARTIAL"
       ]
+    },
+    "BackupJobStatus":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "PENDING",
+        "RUNNING",
+        "ABORTING",
+        "ABORTED",
+        "COMPLETED",
+        "FAILED",
+        "EXPIRED",
+        "PARTIAL",
+        "AGGREGATE_ALL",
+        "ANY"
+      ]
+    },
+    "BackupJobSummary":{
+      "type":"structure",
+      "members":{
+        "Region":{"shape":"Region"},
+        "AccountId":{"shape":"AccountId"},
+        "State":{"shape":"BackupJobStatus"},
+        "ResourceType":{"shape":"ResourceType"},
+        "MessageCategory":{"shape":"MessageCategory"},
+        "Count":{"shape":"integer"},
+        "StartTime":{"shape":"timestamp"},
+        "EndTime":{"shape":"timestamp"}
+      }
+    },
+    "BackupJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"BackupJobSummary"}
     },
     "BackupJobsList":{
       "type":"list",
@@ -960,7 +1635,8 @@
         "RecoveryPointTags":{"shape":"Tags"},
         "RuleId":{"shape":"string"},
         "CopyActions":{"shape":"CopyActions"},
-        "EnableContinuousBackup":{"shape":"Boolean"}
+        "EnableContinuousBackup":{"shape":"Boolean"},
+        "ScheduleExpressionTimezone":{"shape":"Timezone"}
       }
     },
     "BackupRuleInput":{
@@ -978,7 +1654,8 @@
         "Lifecycle":{"shape":"Lifecycle"},
         "RecoveryPointTags":{"shape":"Tags"},
         "CopyActions":{"shape":"CopyActions"},
-        "EnableContinuousBackup":{"shape":"Boolean"}
+        "EnableContinuousBackup":{"shape":"Boolean"},
+        "ScheduleExpressionTimezone":{"shape":"Timezone"}
       }
     },
     "BackupRuleName":{
@@ -1003,7 +1680,9 @@
         "SelectionName":{"shape":"BackupSelectionName"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "Resources":{"shape":"ResourceArns"},
-        "ListOfTags":{"shape":"ListOfTags"}
+        "ListOfTags":{"shape":"ListOfTags"},
+        "NotResources":{"shape":"ResourceArns"},
+        "Conditions":{"shape":"Conditions"}
       }
     },
     "BackupSelectionName":{
@@ -1042,7 +1721,9 @@
         "COPY_JOB_FAILED",
         "RECOVERY_POINT_MODIFIED",
         "BACKUP_PLAN_CREATED",
-        "BACKUP_PLAN_MODIFIED"
+        "BACKUP_PLAN_MODIFIED",
+        "S3_BACKUP_OBJECT_FAILED",
+        "S3_RESTORE_OBJECT_FAILED"
       ]
     },
     "BackupVaultEvents":{
@@ -1061,7 +1742,11 @@
         "CreationDate":{"shape":"timestamp"},
         "EncryptionKeyArn":{"shape":"ARN"},
         "CreatorRequestId":{"shape":"string"},
-        "NumberOfRecoveryPoints":{"shape":"long"}
+        "NumberOfRecoveryPoints":{"shape":"long"},
+        "Locked":{"shape":"Boolean"},
+        "MinRetentionDays":{"shape":"Long"},
+        "MaxRetentionDays":{"shape":"Long"},
+        "LockDate":{"shape":"timestamp"}
       }
     },
     "BackupVaultName":{
@@ -1075,6 +1760,41 @@
         "MoveToColdStorageAt":{"shape":"timestamp"},
         "DeleteAt":{"shape":"timestamp"}
       }
+    },
+    "CancelLegalHoldInput":{
+      "type":"structure",
+      "required":[
+        "LegalHoldId",
+        "CancelDescription"
+      ],
+      "members":{
+        "LegalHoldId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"legalHoldId"
+        },
+        "CancelDescription":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"cancelDescription"
+        },
+        "RetainRecordInDays":{
+          "shape":"Long",
+          "location":"querystring",
+          "locationName":"retainRecordInDays"
+        }
+      }
+    },
+    "CancelLegalHoldOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ComplianceResourceIdList":{
+      "type":"list",
+      "member":{"shape":"string"},
+      "max":100,
+      "min":1
     },
     "Condition":{
       "type":"structure",
@@ -1090,11 +1810,61 @@
       }
     },
     "ConditionKey":{"type":"string"},
+    "ConditionParameter":{
+      "type":"structure",
+      "members":{
+        "ConditionKey":{"shape":"ConditionKey"},
+        "ConditionValue":{"shape":"ConditionValue"}
+      }
+    },
+    "ConditionParameters":{
+      "type":"list",
+      "member":{"shape":"ConditionParameter"}
+    },
     "ConditionType":{
       "type":"string",
       "enum":["STRINGEQUALS"]
     },
     "ConditionValue":{"type":"string"},
+    "Conditions":{
+      "type":"structure",
+      "members":{
+        "StringEquals":{"shape":"ConditionParameters"},
+        "StringNotEquals":{"shape":"ConditionParameters"},
+        "StringLike":{"shape":"ConditionParameters"},
+        "StringNotLike":{"shape":"ConditionParameters"}
+      }
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"string"},
+        "Message":{"shape":"string"},
+        "Type":{"shape":"string"},
+        "Context":{"shape":"string"}
+      },
+      "exception":true
+    },
+    "ControlInputParameter":{
+      "type":"structure",
+      "members":{
+        "ParameterName":{"shape":"ParameterName"},
+        "ParameterValue":{"shape":"ParameterValue"}
+      }
+    },
+    "ControlInputParameters":{
+      "type":"list",
+      "member":{"shape":"ControlInputParameter"}
+    },
+    "ControlName":{"type":"string"},
+    "ControlScope":{
+      "type":"structure",
+      "members":{
+        "ComplianceResourceIds":{"shape":"ComplianceResourceIdList"},
+        "ComplianceResourceTypes":{"shape":"ResourceTypeList"},
+        "Tags":{"shape":"stringMap"}
+      }
+    },
     "CopyAction":{
       "type":"structure",
       "required":["DestinationBackupVaultArn"],
@@ -1124,8 +1894,20 @@
         "BackupSizeInBytes":{"shape":"Long"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "CreatedBy":{"shape":"RecoveryPointCreator"},
-        "ResourceType":{"shape":"ResourceType"}
+        "ResourceType":{"shape":"ResourceType"},
+        "ParentJobId":{"shape":"string"},
+        "IsParent":{"shape":"boolean"},
+        "CompositeMemberIdentifier":{"shape":"string"},
+        "NumberOfChildJobs":{"shape":"Long"},
+        "ChildJobsInState":{"shape":"CopyJobChildJobsInState"},
+        "ResourceName":{"shape":"string"},
+        "MessageCategory":{"shape":"string"}
       }
+    },
+    "CopyJobChildJobsInState":{
+      "type":"map",
+      "key":{"shape":"CopyJobState"},
+      "value":{"shape":"Long"}
     },
     "CopyJobState":{
       "type":"string",
@@ -1133,8 +1915,42 @@
         "CREATED",
         "RUNNING",
         "COMPLETED",
-        "FAILED"
+        "FAILED",
+        "PARTIAL"
       ]
+    },
+    "CopyJobStatus":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "RUNNING",
+        "ABORTING",
+        "ABORTED",
+        "COMPLETING",
+        "COMPLETED",
+        "FAILING",
+        "FAILED",
+        "PARTIAL",
+        "AGGREGATE_ALL",
+        "ANY"
+      ]
+    },
+    "CopyJobSummary":{
+      "type":"structure",
+      "members":{
+        "Region":{"shape":"Region"},
+        "AccountId":{"shape":"AccountId"},
+        "State":{"shape":"CopyJobStatus"},
+        "ResourceType":{"shape":"ResourceType"},
+        "MessageCategory":{"shape":"MessageCategory"},
+        "Count":{"shape":"integer"},
+        "StartTime":{"shape":"timestamp"},
+        "EndTime":{"shape":"timestamp"}
+      }
+    },
+    "CopyJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"CopyJobSummary"}
     },
     "CopyJobsList":{
       "type":"list",
@@ -1205,7 +2021,176 @@
         "CreationDate":{"shape":"timestamp"}
       }
     },
+    "CreateFrameworkInput":{
+      "type":"structure",
+      "required":[
+        "FrameworkName",
+        "FrameworkControls"
+      ],
+      "members":{
+        "FrameworkName":{"shape":"FrameworkName"},
+        "FrameworkDescription":{"shape":"FrameworkDescription"},
+        "FrameworkControls":{"shape":"FrameworkControls"},
+        "IdempotencyToken":{
+          "shape":"string",
+          "idempotencyToken":true
+        },
+        "FrameworkTags":{"shape":"stringMap"}
+      }
+    },
+    "CreateFrameworkOutput":{
+      "type":"structure",
+      "members":{
+        "FrameworkName":{"shape":"FrameworkName"},
+        "FrameworkArn":{"shape":"ARN"}
+      }
+    },
+    "CreateLegalHoldInput":{
+      "type":"structure",
+      "required":[
+        "Title",
+        "Description"
+      ],
+      "members":{
+        "Title":{"shape":"string"},
+        "Description":{"shape":"string"},
+        "IdempotencyToken":{"shape":"string"},
+        "RecoveryPointSelection":{"shape":"RecoveryPointSelection"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateLegalHoldOutput":{
+      "type":"structure",
+      "members":{
+        "Title":{"shape":"string"},
+        "Status":{"shape":"LegalHoldStatus"},
+        "Description":{"shape":"string"},
+        "LegalHoldId":{"shape":"string"},
+        "LegalHoldArn":{"shape":"ARN"},
+        "CreationDate":{"shape":"timestamp"},
+        "RecoveryPointSelection":{"shape":"RecoveryPointSelection"}
+      }
+    },
+    "CreateLogicallyAirGappedBackupVaultInput":{
+      "type":"structure",
+      "required":[
+        "BackupVaultName",
+        "MinRetentionDays",
+        "MaxRetentionDays"
+      ],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        },
+        "BackupVaultTags":{"shape":"Tags"},
+        "CreatorRequestId":{"shape":"string"},
+        "MinRetentionDays":{"shape":"Long"},
+        "MaxRetentionDays":{"shape":"Long"}
+      }
+    },
+    "CreateLogicallyAirGappedBackupVaultOutput":{
+      "type":"structure",
+      "members":{
+        "BackupVaultName":{"shape":"BackupVaultName"},
+        "BackupVaultArn":{"shape":"ARN"},
+        "CreationDate":{"shape":"timestamp"},
+        "VaultState":{"shape":"VaultState"}
+      }
+    },
+    "CreateReportPlanInput":{
+      "type":"structure",
+      "required":[
+        "ReportPlanName",
+        "ReportDeliveryChannel",
+        "ReportSetting"
+      ],
+      "members":{
+        "ReportPlanName":{"shape":"ReportPlanName"},
+        "ReportPlanDescription":{"shape":"ReportPlanDescription"},
+        "ReportDeliveryChannel":{"shape":"ReportDeliveryChannel"},
+        "ReportSetting":{"shape":"ReportSetting"},
+        "ReportPlanTags":{"shape":"stringMap"},
+        "IdempotencyToken":{
+          "shape":"string",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateReportPlanOutput":{
+      "type":"structure",
+      "members":{
+        "ReportPlanName":{"shape":"ReportPlanName"},
+        "ReportPlanArn":{"shape":"ARN"},
+        "CreationTime":{"shape":"timestamp"}
+      }
+    },
+    "CreateRestoreTestingPlanInput":{
+      "type":"structure",
+      "required":["RestoreTestingPlan"],
+      "members":{
+        "CreatorRequestId":{"shape":"String"},
+        "RestoreTestingPlan":{"shape":"RestoreTestingPlanForCreate"},
+        "Tags":{"shape":"SensitiveStringMap"}
+      }
+    },
+    "CreateRestoreTestingPlanOutput":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "RestoreTestingPlanArn",
+        "RestoreTestingPlanName"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "RestoreTestingPlanArn":{"shape":"String"},
+        "RestoreTestingPlanName":{"shape":"String"}
+      }
+    },
+    "CreateRestoreTestingSelectionInput":{
+      "type":"structure",
+      "required":[
+        "RestoreTestingPlanName",
+        "RestoreTestingSelection"
+      ],
+      "members":{
+        "CreatorRequestId":{"shape":"String"},
+        "RestoreTestingPlanName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingPlanName"
+        },
+        "RestoreTestingSelection":{"shape":"RestoreTestingSelectionForCreate"}
+      }
+    },
+    "CreateRestoreTestingSelectionOutput":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "RestoreTestingPlanArn",
+        "RestoreTestingPlanName",
+        "RestoreTestingSelectionName"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "RestoreTestingPlanArn":{"shape":"String"},
+        "RestoreTestingPlanName":{"shape":"String"},
+        "RestoreTestingSelectionName":{"shape":"String"}
+      }
+    },
     "CronExpression":{"type":"string"},
+    "DateRange":{
+      "type":"structure",
+      "required":[
+        "FromDate",
+        "ToDate"
+      ],
+      "members":{
+        "FromDate":{"shape":"timestamp"},
+        "ToDate":{"shape":"timestamp"}
+      }
+    },
     "DeleteBackupPlanInput":{
       "type":"structure",
       "required":["BackupPlanId"],
@@ -1267,6 +2252,17 @@
         }
       }
     },
+    "DeleteBackupVaultLockConfigurationInput":{
+      "type":"structure",
+      "required":["BackupVaultName"],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        }
+      }
+    },
     "DeleteBackupVaultNotificationsInput":{
       "type":"structure",
       "required":["BackupVaultName"],
@@ -1275,6 +2271,17 @@
           "shape":"BackupVaultName",
           "location":"uri",
           "locationName":"backupVaultName"
+        }
+      }
+    },
+    "DeleteFrameworkInput":{
+      "type":"structure",
+      "required":["FrameworkName"],
+      "members":{
+        "FrameworkName":{
+          "shape":"FrameworkName",
+          "location":"uri",
+          "locationName":"frameworkName"
         }
       }
     },
@@ -1294,6 +2301,47 @@
           "shape":"ARN",
           "location":"uri",
           "locationName":"recoveryPointArn"
+        }
+      }
+    },
+    "DeleteReportPlanInput":{
+      "type":"structure",
+      "required":["ReportPlanName"],
+      "members":{
+        "ReportPlanName":{
+          "shape":"ReportPlanName",
+          "location":"uri",
+          "locationName":"reportPlanName"
+        }
+      }
+    },
+    "DeleteRestoreTestingPlanInput":{
+      "type":"structure",
+      "required":["RestoreTestingPlanName"],
+      "members":{
+        "RestoreTestingPlanName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingPlanName"
+        }
+      }
+    },
+    "DeleteRestoreTestingSelectionInput":{
+      "type":"structure",
+      "required":[
+        "RestoreTestingPlanName",
+        "RestoreTestingSelectionName"
+      ],
+      "members":{
+        "RestoreTestingPlanName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingPlanName"
+        },
+        "RestoreTestingSelectionName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingSelectionName"
         }
       }
     },
@@ -1341,7 +2389,14 @@
         "ExpectedCompletionDate":{"shape":"timestamp"},
         "StartBy":{"shape":"timestamp"},
         "BackupOptions":{"shape":"BackupOptions"},
-        "BackupType":{"shape":"string"}
+        "BackupType":{"shape":"string"},
+        "ParentJobId":{"shape":"string"},
+        "IsParent":{"shape":"boolean"},
+        "NumberOfChildJobs":{"shape":"Long"},
+        "ChildJobsInState":{"shape":"BackupJobChildJobsInState"},
+        "ResourceName":{"shape":"string"},
+        "InitiationDate":{"shape":"timestamp"},
+        "MessageCategory":{"shape":"string"}
       }
     },
     "DescribeBackupVaultInput":{
@@ -1352,6 +2407,11 @@
           "shape":"string",
           "location":"uri",
           "locationName":"backupVaultName"
+        },
+        "BackupVaultAccountId":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
         }
       }
     },
@@ -1360,10 +2420,15 @@
       "members":{
         "BackupVaultName":{"shape":"string"},
         "BackupVaultArn":{"shape":"ARN"},
+        "VaultType":{"shape":"VaultType"},
         "EncryptionKeyArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
         "CreatorRequestId":{"shape":"string"},
-        "NumberOfRecoveryPoints":{"shape":"long"}
+        "NumberOfRecoveryPoints":{"shape":"long"},
+        "Locked":{"shape":"Boolean"},
+        "MinRetentionDays":{"shape":"Long"},
+        "MaxRetentionDays":{"shape":"Long"},
+        "LockDate":{"shape":"timestamp"}
       }
     },
     "DescribeCopyJobInput":{
@@ -1381,6 +2446,30 @@
       "type":"structure",
       "members":{
         "CopyJob":{"shape":"CopyJob"}
+      }
+    },
+    "DescribeFrameworkInput":{
+      "type":"structure",
+      "required":["FrameworkName"],
+      "members":{
+        "FrameworkName":{
+          "shape":"FrameworkName",
+          "location":"uri",
+          "locationName":"frameworkName"
+        }
+      }
+    },
+    "DescribeFrameworkOutput":{
+      "type":"structure",
+      "members":{
+        "FrameworkName":{"shape":"FrameworkName"},
+        "FrameworkArn":{"shape":"ARN"},
+        "FrameworkDescription":{"shape":"FrameworkDescription"},
+        "FrameworkControls":{"shape":"FrameworkControls"},
+        "CreationTime":{"shape":"timestamp"},
+        "DeploymentStatus":{"shape":"string"},
+        "FrameworkStatus":{"shape":"string"},
+        "IdempotencyToken":{"shape":"string"}
       }
     },
     "DescribeGlobalSettingsInput":{
@@ -1411,7 +2500,13 @@
       "members":{
         "ResourceArn":{"shape":"ARN"},
         "ResourceType":{"shape":"ResourceType"},
-        "LastBackupTime":{"shape":"timestamp"}
+        "LastBackupTime":{"shape":"timestamp"},
+        "ResourceName":{"shape":"string"},
+        "LastBackupVaultArn":{"shape":"ARN"},
+        "LastRecoveryPointArn":{"shape":"ARN"},
+        "LatestRestoreExecutionTimeMinutes":{"shape":"Long"},
+        "LatestRestoreJobCreationDate":{"shape":"timestamp"},
+        "LatestRestoreRecoveryPointCreationDate":{"shape":"timestamp"}
       }
     },
     "DescribeRecoveryPointInput":{
@@ -1430,6 +2525,11 @@
           "shape":"ARN",
           "location":"uri",
           "locationName":"recoveryPointArn"
+        },
+        "BackupVaultAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
         }
       }
     },
@@ -1445,6 +2545,7 @@
         "CreatedBy":{"shape":"RecoveryPointCreator"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "Status":{"shape":"RecoveryPointStatus"},
+        "StatusMessage":{"shape":"string"},
         "CreationDate":{"shape":"timestamp"},
         "CompletionDate":{"shape":"timestamp"},
         "BackupSizeInBytes":{"shape":"Long"},
@@ -1453,7 +2554,12 @@
         "EncryptionKeyArn":{"shape":"ARN"},
         "IsEncrypted":{"shape":"boolean"},
         "StorageClass":{"shape":"StorageClass"},
-        "LastRestoreTime":{"shape":"timestamp"}
+        "LastRestoreTime":{"shape":"timestamp"},
+        "ParentRecoveryPointArn":{"shape":"ARN"},
+        "CompositeMemberIdentifier":{"shape":"string"},
+        "IsParent":{"shape":"boolean"},
+        "ResourceName":{"shape":"string"},
+        "VaultType":{"shape":"VaultType"}
       }
     },
     "DescribeRegionSettingsInput":{
@@ -1464,7 +2570,42 @@
     "DescribeRegionSettingsOutput":{
       "type":"structure",
       "members":{
-        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"}
+        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"},
+        "ResourceTypeManagementPreference":{"shape":"ResourceTypeManagementPreference"}
+      }
+    },
+    "DescribeReportJobInput":{
+      "type":"structure",
+      "required":["ReportJobId"],
+      "members":{
+        "ReportJobId":{
+          "shape":"ReportJobId",
+          "location":"uri",
+          "locationName":"reportJobId"
+        }
+      }
+    },
+    "DescribeReportJobOutput":{
+      "type":"structure",
+      "members":{
+        "ReportJob":{"shape":"ReportJob"}
+      }
+    },
+    "DescribeReportPlanInput":{
+      "type":"structure",
+      "required":["ReportPlanName"],
+      "members":{
+        "ReportPlanName":{
+          "shape":"ReportPlanName",
+          "location":"uri",
+          "locationName":"reportPlanName"
+        }
+      }
+    },
+    "DescribeReportPlanOutput":{
+      "type":"structure",
+      "members":{
+        "ReportPlan":{"shape":"ReportPlan"}
       }
     },
     "DescribeRestoreJobInput":{
@@ -1493,7 +2634,32 @@
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "ExpectedCompletionTimeMinutes":{"shape":"Long"},
         "CreatedResourceArn":{"shape":"ARN"},
-        "ResourceType":{"shape":"ResourceType"}
+        "ResourceType":{"shape":"ResourceType"},
+        "RecoveryPointCreationDate":{"shape":"timestamp"},
+        "CreatedBy":{"shape":"RestoreJobCreator"},
+        "ValidationStatus":{"shape":"RestoreValidationStatus"},
+        "ValidationStatusMessage":{"shape":"string"},
+        "DeletionStatus":{"shape":"RestoreDeletionStatus"},
+        "DeletionStatusMessage":{"shape":"string"}
+      }
+    },
+    "DisassociateRecoveryPointFromParentInput":{
+      "type":"structure",
+      "required":[
+        "BackupVaultName",
+        "RecoveryPointArn"
+      ],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        },
+        "RecoveryPointArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"recoveryPointArn"
+        }
       }
     },
     "DisassociateRecoveryPointInput":{
@@ -1531,6 +2697,50 @@
       "members":{
         "BackupPlanTemplateJson":{"shape":"string"}
       }
+    },
+    "FormatList":{
+      "type":"list",
+      "member":{"shape":"string"}
+    },
+    "Framework":{
+      "type":"structure",
+      "members":{
+        "FrameworkName":{"shape":"FrameworkName"},
+        "FrameworkArn":{"shape":"ARN"},
+        "FrameworkDescription":{"shape":"FrameworkDescription"},
+        "NumberOfControls":{"shape":"integer"},
+        "CreationTime":{"shape":"timestamp"},
+        "DeploymentStatus":{"shape":"string"}
+      }
+    },
+    "FrameworkControl":{
+      "type":"structure",
+      "required":["ControlName"],
+      "members":{
+        "ControlName":{"shape":"ControlName"},
+        "ControlInputParameters":{"shape":"ControlInputParameters"},
+        "ControlScope":{"shape":"ControlScope"}
+      }
+    },
+    "FrameworkControls":{
+      "type":"list",
+      "member":{"shape":"FrameworkControl"}
+    },
+    "FrameworkDescription":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*\\S.*"
+    },
+    "FrameworkList":{
+      "type":"list",
+      "member":{"shape":"Framework"}
+    },
+    "FrameworkName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z][_a-zA-Z0-9]*"
     },
     "GetBackupPlanFromJSONInput":{
       "type":"structure",
@@ -1660,6 +2870,32 @@
         "BackupVaultEvents":{"shape":"BackupVaultEvents"}
       }
     },
+    "GetLegalHoldInput":{
+      "type":"structure",
+      "required":["LegalHoldId"],
+      "members":{
+        "LegalHoldId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"legalHoldId"
+        }
+      }
+    },
+    "GetLegalHoldOutput":{
+      "type":"structure",
+      "members":{
+        "Title":{"shape":"string"},
+        "Status":{"shape":"LegalHoldStatus"},
+        "Description":{"shape":"string"},
+        "CancelDescription":{"shape":"string"},
+        "LegalHoldId":{"shape":"string"},
+        "LegalHoldArn":{"shape":"ARN"},
+        "CreationDate":{"shape":"timestamp"},
+        "CancellationDate":{"shape":"timestamp"},
+        "RetainRecordUntil":{"shape":"timestamp"},
+        "RecoveryPointSelection":{"shape":"RecoveryPointSelection"}
+      }
+    },
     "GetRecoveryPointRestoreMetadataInput":{
       "type":"structure",
       "required":[
@@ -1676,6 +2912,11 @@
           "shape":"ARN",
           "location":"uri",
           "locationName":"recoveryPointArn"
+        },
+        "BackupVaultAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
         }
       }
     },
@@ -1684,7 +2925,101 @@
       "members":{
         "BackupVaultArn":{"shape":"ARN"},
         "RecoveryPointArn":{"shape":"ARN"},
-        "RestoreMetadata":{"shape":"Metadata"}
+        "RestoreMetadata":{"shape":"Metadata"},
+        "ResourceType":{"shape":"ResourceType"}
+      }
+    },
+    "GetRestoreJobMetadataInput":{
+      "type":"structure",
+      "required":["RestoreJobId"],
+      "members":{
+        "RestoreJobId":{
+          "shape":"RestoreJobId",
+          "location":"uri",
+          "locationName":"restoreJobId"
+        }
+      }
+    },
+    "GetRestoreJobMetadataOutput":{
+      "type":"structure",
+      "members":{
+        "RestoreJobId":{"shape":"RestoreJobId"},
+        "Metadata":{"shape":"Metadata"}
+      }
+    },
+    "GetRestoreTestingInferredMetadataInput":{
+      "type":"structure",
+      "required":[
+        "BackupVaultName",
+        "RecoveryPointArn"
+      ],
+      "members":{
+        "BackupVaultAccountId":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"BackupVaultAccountId"
+        },
+        "BackupVaultName":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"BackupVaultName"
+        },
+        "RecoveryPointArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"RecoveryPointArn"
+        }
+      }
+    },
+    "GetRestoreTestingInferredMetadataOutput":{
+      "type":"structure",
+      "required":["InferredMetadata"],
+      "members":{
+        "InferredMetadata":{"shape":"stringMap"}
+      }
+    },
+    "GetRestoreTestingPlanInput":{
+      "type":"structure",
+      "required":["RestoreTestingPlanName"],
+      "members":{
+        "RestoreTestingPlanName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingPlanName"
+        }
+      }
+    },
+    "GetRestoreTestingPlanOutput":{
+      "type":"structure",
+      "required":["RestoreTestingPlan"],
+      "members":{
+        "RestoreTestingPlan":{"shape":"RestoreTestingPlanForGet"}
+      }
+    },
+    "GetRestoreTestingSelectionInput":{
+      "type":"structure",
+      "required":[
+        "RestoreTestingPlanName",
+        "RestoreTestingSelectionName"
+      ],
+      "members":{
+        "RestoreTestingPlanName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingPlanName"
+        },
+        "RestoreTestingSelectionName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingSelectionName"
+        }
+      }
+    },
+    "GetRestoreTestingSelectionOutput":{
+      "type":"structure",
+      "required":["RestoreTestingSelection"],
+      "members":{
+        "RestoreTestingSelection":{"shape":"RestoreTestingSelectionForGet"}
       }
     },
     "GetSupportedResourceTypesOutput":{
@@ -1733,11 +3068,52 @@
       "exception":true
     },
     "IsEnabled":{"type":"boolean"},
+    "KeyValue":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "KeyValueList":{
+      "type":"list",
+      "member":{"shape":"KeyValue"}
+    },
+    "LegalHold":{
+      "type":"structure",
+      "members":{
+        "Title":{"shape":"string"},
+        "Status":{"shape":"LegalHoldStatus"},
+        "Description":{"shape":"string"},
+        "LegalHoldId":{"shape":"string"},
+        "LegalHoldArn":{"shape":"ARN"},
+        "CreationDate":{"shape":"timestamp"},
+        "CancellationDate":{"shape":"timestamp"}
+      }
+    },
+    "LegalHoldStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "CANCELING",
+        "CANCELED"
+      ]
+    },
+    "LegalHoldsList":{
+      "type":"list",
+      "member":{"shape":"LegalHold"}
+    },
     "Lifecycle":{
       "type":"structure",
       "members":{
         "MoveToColdStorageAfterDays":{"shape":"Long"},
-        "DeleteAfterDays":{"shape":"Long"}
+        "DeleteAfterDays":{"shape":"Long"},
+        "OptInToArchiveForSupportedResources":{"shape":"Boolean"}
       }
     },
     "LimitExceededException":{
@@ -1749,6 +3125,54 @@
         "Context":{"shape":"string"}
       },
       "exception":true
+    },
+    "ListBackupJobSummariesInput":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"AccountId"
+        },
+        "State":{
+          "shape":"BackupJobStatus",
+          "location":"querystring",
+          "locationName":"State"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"ResourceType"
+        },
+        "MessageCategory":{
+          "shape":"MessageCategory",
+          "location":"querystring",
+          "locationName":"MessageCategory"
+        },
+        "AggregationPeriod":{
+          "shape":"AggregationPeriod",
+          "location":"querystring",
+          "locationName":"AggregationPeriod"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListBackupJobSummariesOutput":{
+      "type":"structure",
+      "members":{
+        "BackupJobSummaries":{"shape":"BackupJobSummaryList"},
+        "AggregationPeriod":{"shape":"string"},
+        "NextToken":{"shape":"string"}
+      }
     },
     "ListBackupJobsInput":{
       "type":"structure",
@@ -1797,6 +3221,26 @@
           "shape":"AccountId",
           "location":"querystring",
           "locationName":"accountId"
+        },
+        "ByCompleteAfter":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeAfter"
+        },
+        "ByCompleteBefore":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeBefore"
+        },
+        "ByParentJobId":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"parentJobId"
+        },
+        "ByMessageCategory":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"messageCategory"
         }
       }
     },
@@ -1915,6 +3359,16 @@
     "ListBackupVaultsInput":{
       "type":"structure",
       "members":{
+        "ByVaultType":{
+          "shape":"VaultType",
+          "location":"querystring",
+          "locationName":"vaultType"
+        },
+        "ByShared":{
+          "shape":"boolean",
+          "location":"querystring",
+          "locationName":"shared"
+        },
         "NextToken":{
           "shape":"string",
           "location":"querystring",
@@ -1931,6 +3385,54 @@
       "type":"structure",
       "members":{
         "BackupVaultList":{"shape":"BackupVaultList"},
+        "NextToken":{"shape":"string"}
+      }
+    },
+    "ListCopyJobSummariesInput":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"AccountId"
+        },
+        "State":{
+          "shape":"CopyJobStatus",
+          "location":"querystring",
+          "locationName":"State"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"ResourceType"
+        },
+        "MessageCategory":{
+          "shape":"MessageCategory",
+          "location":"querystring",
+          "locationName":"MessageCategory"
+        },
+        "AggregationPeriod":{
+          "shape":"AggregationPeriod",
+          "location":"querystring",
+          "locationName":"AggregationPeriod"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListCopyJobSummariesOutput":{
+      "type":"structure",
+      "members":{
+        "CopyJobSummaries":{"shape":"CopyJobSummaryList"},
+        "AggregationPeriod":{"shape":"string"},
         "NextToken":{"shape":"string"}
       }
     },
@@ -1981,6 +3483,26 @@
           "shape":"AccountId",
           "location":"querystring",
           "locationName":"accountId"
+        },
+        "ByCompleteBefore":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeBefore"
+        },
+        "ByCompleteAfter":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeAfter"
+        },
+        "ByParentJobId":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"parentJobId"
+        },
+        "ByMessageCategory":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"messageCategory"
         }
       }
     },
@@ -1991,9 +3513,86 @@
         "NextToken":{"shape":"string"}
       }
     },
+    "ListFrameworksInput":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxFrameworkInputs",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListFrameworksOutput":{
+      "type":"structure",
+      "members":{
+        "Frameworks":{"shape":"FrameworkList"},
+        "NextToken":{"shape":"string"}
+      }
+    },
+    "ListLegalHoldsInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListLegalHoldsOutput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"string"},
+        "LegalHolds":{"shape":"LegalHoldsList"}
+      }
+    },
     "ListOfTags":{
       "type":"list",
       "member":{"shape":"Condition"}
+    },
+    "ListProtectedResourcesByBackupVaultInput":{
+      "type":"structure",
+      "required":["BackupVaultName"],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        },
+        "BackupVaultAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListProtectedResourcesByBackupVaultOutput":{
+      "type":"structure",
+      "members":{
+        "Results":{"shape":"ProtectedResourcesList"},
+        "NextToken":{"shape":"string"}
+      }
     },
     "ListProtectedResourcesInput":{
       "type":"structure",
@@ -2025,6 +3624,11 @@
           "shape":"BackupVaultName",
           "location":"uri",
           "locationName":"backupVaultName"
+        },
+        "BackupVaultAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"backupVaultAccountId"
         },
         "NextToken":{
           "shape":"string",
@@ -2060,6 +3664,11 @@
           "shape":"timestamp",
           "location":"querystring",
           "locationName":"createdAfter"
+        },
+        "ByParentRecoveryPointArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"parentRecoveryPointArn"
         }
       }
     },
@@ -2068,6 +3677,34 @@
       "members":{
         "NextToken":{"shape":"string"},
         "RecoveryPoints":{"shape":"RecoveryPointByBackupVaultList"}
+      }
+    },
+    "ListRecoveryPointsByLegalHoldInput":{
+      "type":"structure",
+      "required":["LegalHoldId"],
+      "members":{
+        "LegalHoldId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"legalHoldId"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListRecoveryPointsByLegalHoldOutput":{
+      "type":"structure",
+      "members":{
+        "RecoveryPoints":{"shape":"RecoveryPointsList"},
+        "NextToken":{"shape":"string"}
       }
     },
     "ListRecoveryPointsByResourceInput":{
@@ -2098,6 +3735,156 @@
         "RecoveryPoints":{"shape":"RecoveryPointByResourceList"}
       }
     },
+    "ListReportJobsInput":{
+      "type":"structure",
+      "members":{
+        "ByReportPlanName":{
+          "shape":"ReportPlanName",
+          "location":"querystring",
+          "locationName":"ReportPlanName"
+        },
+        "ByCreationBefore":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"CreationBefore"
+        },
+        "ByCreationAfter":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"CreationAfter"
+        },
+        "ByStatus":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Status"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListReportJobsOutput":{
+      "type":"structure",
+      "members":{
+        "ReportJobs":{"shape":"ReportJobList"},
+        "NextToken":{"shape":"string"}
+      }
+    },
+    "ListReportPlansInput":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListReportPlansOutput":{
+      "type":"structure",
+      "members":{
+        "ReportPlans":{"shape":"ReportPlanList"},
+        "NextToken":{"shape":"string"}
+      }
+    },
+    "ListRestoreJobSummariesInput":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"AccountId"
+        },
+        "State":{
+          "shape":"RestoreJobState",
+          "location":"querystring",
+          "locationName":"State"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"ResourceType"
+        },
+        "AggregationPeriod":{
+          "shape":"AggregationPeriod",
+          "location":"querystring",
+          "locationName":"AggregationPeriod"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListRestoreJobSummariesOutput":{
+      "type":"structure",
+      "members":{
+        "RestoreJobSummaries":{"shape":"RestoreJobSummaryList"},
+        "AggregationPeriod":{"shape":"string"},
+        "NextToken":{"shape":"string"}
+      }
+    },
+    "ListRestoreJobsByProtectedResourceInput":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "ByStatus":{
+          "shape":"RestoreJobStatus",
+          "location":"querystring",
+          "locationName":"status"
+        },
+        "ByRecoveryPointCreationDateAfter":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"recoveryPointCreationDateAfter"
+        },
+        "ByRecoveryPointCreationDateBefore":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"recoveryPointCreationDateBefore"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListRestoreJobsByProtectedResourceOutput":{
+      "type":"structure",
+      "members":{
+        "RestoreJobs":{"shape":"RestoreJobsList"},
+        "NextToken":{"shape":"string"}
+      }
+    },
     "ListRestoreJobsInput":{
       "type":"structure",
       "members":{
@@ -2116,6 +3903,11 @@
           "location":"querystring",
           "locationName":"accountId"
         },
+        "ByResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
         "ByCreatedBefore":{
           "shape":"timestamp",
           "location":"querystring",
@@ -2130,6 +3922,21 @@
           "shape":"RestoreJobStatus",
           "location":"querystring",
           "locationName":"status"
+        },
+        "ByCompleteBefore":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeBefore"
+        },
+        "ByCompleteAfter":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeAfter"
+        },
+        "ByRestoreTestingPlanArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"restoreTestingPlanArn"
         }
       }
     },
@@ -2138,6 +3945,70 @@
       "members":{
         "RestoreJobs":{"shape":"RestoreJobsList"},
         "NextToken":{"shape":"string"}
+      }
+    },
+    "ListRestoreTestingPlansInput":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"ListRestoreTestingPlansInputMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListRestoreTestingPlansInputMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
+      "min":1
+    },
+    "ListRestoreTestingPlansOutput":{
+      "type":"structure",
+      "required":["RestoreTestingPlans"],
+      "members":{
+        "NextToken":{"shape":"String"},
+        "RestoreTestingPlans":{"shape":"RestoreTestingPlans"}
+      }
+    },
+    "ListRestoreTestingSelectionsInput":{
+      "type":"structure",
+      "required":["RestoreTestingPlanName"],
+      "members":{
+        "MaxResults":{
+          "shape":"ListRestoreTestingSelectionsInputMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "RestoreTestingPlanName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingPlanName"
+        }
+      }
+    },
+    "ListRestoreTestingSelectionsInputMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
+      "min":1
+    },
+    "ListRestoreTestingSelectionsOutput":{
+      "type":"structure",
+      "required":["RestoreTestingSelections"],
+      "members":{
+        "NextToken":{"shape":"String"},
+        "RestoreTestingSelections":{"shape":"RestoreTestingSelections"}
       }
     },
     "ListTagsInput":{
@@ -2169,11 +4040,17 @@
       }
     },
     "Long":{"type":"long"},
+    "MaxFrameworkInputs":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
     "MaxResults":{
       "type":"integer",
       "max":1000,
       "min":1
     },
+    "MessageCategory":{"type":"string"},
     "Metadata":{
       "type":"map",
       "key":{"shape":"MetadataKey"},
@@ -2192,12 +4069,24 @@
       },
       "exception":true
     },
+    "ParameterName":{"type":"string"},
+    "ParameterValue":{"type":"string"},
     "ProtectedResource":{
       "type":"structure",
       "members":{
         "ResourceArn":{"shape":"ARN"},
         "ResourceType":{"shape":"ResourceType"},
-        "LastBackupTime":{"shape":"timestamp"}
+        "LastBackupTime":{"shape":"timestamp"},
+        "ResourceName":{"shape":"string"},
+        "LastBackupVaultArn":{"shape":"ARN"},
+        "LastRecoveryPointArn":{"shape":"ARN"}
+      }
+    },
+    "ProtectedResourceConditions":{
+      "type":"structure",
+      "members":{
+        "StringEquals":{"shape":"KeyValueList"},
+        "StringNotEquals":{"shape":"KeyValueList"}
       }
     },
     "ProtectedResourcesList":{
@@ -2214,6 +4103,20 @@
           "locationName":"backupVaultName"
         },
         "Policy":{"shape":"IAMPolicy"}
+      }
+    },
+    "PutBackupVaultLockConfigurationInput":{
+      "type":"structure",
+      "required":["BackupVaultName"],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        },
+        "MinRetentionDays":{"shape":"Long"},
+        "MaxRetentionDays":{"shape":"Long"},
+        "ChangeableForDays":{"shape":"Long"}
       }
     },
     "PutBackupVaultNotificationsInput":{
@@ -2233,6 +4136,22 @@
         "BackupVaultEvents":{"shape":"BackupVaultEvents"}
       }
     },
+    "PutRestoreValidationResultInput":{
+      "type":"structure",
+      "required":[
+        "RestoreJobId",
+        "ValidationStatus"
+      ],
+      "members":{
+        "RestoreJobId":{
+          "shape":"RestoreJobId",
+          "location":"uri",
+          "locationName":"restoreJobId"
+        },
+        "ValidationStatus":{"shape":"RestoreValidationStatus"},
+        "ValidationStatusMessage":{"shape":"string"}
+      }
+    },
     "RecoveryPointByBackupVault":{
       "type":"structure",
       "members":{
@@ -2245,6 +4164,7 @@
         "CreatedBy":{"shape":"RecoveryPointCreator"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "Status":{"shape":"RecoveryPointStatus"},
+        "StatusMessage":{"shape":"string"},
         "CreationDate":{"shape":"timestamp"},
         "CompletionDate":{"shape":"timestamp"},
         "BackupSizeInBytes":{"shape":"Long"},
@@ -2252,7 +4172,12 @@
         "Lifecycle":{"shape":"Lifecycle"},
         "EncryptionKeyArn":{"shape":"ARN"},
         "IsEncrypted":{"shape":"boolean"},
-        "LastRestoreTime":{"shape":"timestamp"}
+        "LastRestoreTime":{"shape":"timestamp"},
+        "ParentRecoveryPointArn":{"shape":"ARN"},
+        "CompositeMemberIdentifier":{"shape":"string"},
+        "IsParent":{"shape":"boolean"},
+        "ResourceName":{"shape":"string"},
+        "VaultType":{"shape":"VaultType"}
       }
     },
     "RecoveryPointByBackupVaultList":{
@@ -2265,9 +4190,13 @@
         "RecoveryPointArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
         "Status":{"shape":"RecoveryPointStatus"},
+        "StatusMessage":{"shape":"string"},
         "EncryptionKeyArn":{"shape":"ARN"},
         "BackupSizeBytes":{"shape":"Long"},
-        "BackupVaultName":{"shape":"BackupVaultName"}
+        "BackupVaultName":{"shape":"BackupVaultName"},
+        "IsParent":{"shape":"boolean"},
+        "ParentRecoveryPointArn":{"shape":"ARN"},
+        "ResourceName":{"shape":"string"}
       }
     },
     "RecoveryPointByResourceList":{
@@ -2283,6 +4212,23 @@
         "BackupRuleId":{"shape":"string"}
       }
     },
+    "RecoveryPointMember":{
+      "type":"structure",
+      "members":{
+        "RecoveryPointArn":{"shape":"ARN"},
+        "ResourceArn":{"shape":"ARN"},
+        "ResourceType":{"shape":"ResourceType"},
+        "BackupVaultName":{"shape":"BackupVaultName"}
+      }
+    },
+    "RecoveryPointSelection":{
+      "type":"structure",
+      "members":{
+        "VaultNames":{"shape":"VaultNames"},
+        "ResourceIdentifiers":{"shape":"ResourceIdentifiers"},
+        "DateRange":{"shape":"DateRange"}
+      }
+    },
     "RecoveryPointStatus":{
       "type":"string",
       "enum":[
@@ -2292,9 +4238,94 @@
         "EXPIRED"
       ]
     },
+    "RecoveryPointsList":{
+      "type":"list",
+      "member":{"shape":"RecoveryPointMember"}
+    },
+    "Region":{"type":"string"},
+    "ReportDeliveryChannel":{
+      "type":"structure",
+      "required":["S3BucketName"],
+      "members":{
+        "S3BucketName":{"shape":"string"},
+        "S3KeyPrefix":{"shape":"string"},
+        "Formats":{"shape":"FormatList"}
+      }
+    },
+    "ReportDestination":{
+      "type":"structure",
+      "members":{
+        "S3BucketName":{"shape":"string"},
+        "S3Keys":{"shape":"stringList"}
+      }
+    },
+    "ReportJob":{
+      "type":"structure",
+      "members":{
+        "ReportJobId":{"shape":"ReportJobId"},
+        "ReportPlanArn":{"shape":"ARN"},
+        "ReportTemplate":{"shape":"string"},
+        "CreationTime":{"shape":"timestamp"},
+        "CompletionTime":{"shape":"timestamp"},
+        "Status":{"shape":"string"},
+        "StatusMessage":{"shape":"string"},
+        "ReportDestination":{"shape":"ReportDestination"}
+      }
+    },
+    "ReportJobId":{"type":"string"},
+    "ReportJobList":{
+      "type":"list",
+      "member":{"shape":"ReportJob"}
+    },
+    "ReportPlan":{
+      "type":"structure",
+      "members":{
+        "ReportPlanArn":{"shape":"ARN"},
+        "ReportPlanName":{"shape":"ReportPlanName"},
+        "ReportPlanDescription":{"shape":"ReportPlanDescription"},
+        "ReportSetting":{"shape":"ReportSetting"},
+        "ReportDeliveryChannel":{"shape":"ReportDeliveryChannel"},
+        "DeploymentStatus":{"shape":"string"},
+        "CreationTime":{"shape":"timestamp"},
+        "LastAttemptedExecutionTime":{"shape":"timestamp"},
+        "LastSuccessfulExecutionTime":{"shape":"timestamp"}
+      }
+    },
+    "ReportPlanDescription":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*\\S.*"
+    },
+    "ReportPlanList":{
+      "type":"list",
+      "member":{"shape":"ReportPlan"}
+    },
+    "ReportPlanName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z][_a-zA-Z0-9]*"
+    },
+    "ReportSetting":{
+      "type":"structure",
+      "required":["ReportTemplate"],
+      "members":{
+        "ReportTemplate":{"shape":"string"},
+        "FrameworkArns":{"shape":"stringList"},
+        "NumberOfFrameworks":{"shape":"integer"},
+        "Accounts":{"shape":"stringList"},
+        "OrganizationUnits":{"shape":"stringList"},
+        "Regions":{"shape":"stringList"}
+      }
+    },
     "ResourceArns":{
       "type":"list",
       "member":{"shape":"ARN"}
+    },
+    "ResourceIdentifiers":{
+      "type":"list",
+      "member":{"shape":"string"}
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -2310,6 +4341,15 @@
       "type":"string",
       "pattern":"^[a-zA-Z0-9\\-\\_\\.]{1,50}$"
     },
+    "ResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"ARN"}
+    },
+    "ResourceTypeManagementPreference":{
+      "type":"map",
+      "key":{"shape":"ResourceType"},
+      "value":{"shape":"IsEnabled"}
+    },
     "ResourceTypeOptInPreference":{
       "type":"map",
       "key":{"shape":"ResourceType"},
@@ -2319,7 +4359,34 @@
       "type":"list",
       "member":{"shape":"ResourceType"}
     },
+    "RestoreDeletionStatus":{
+      "type":"string",
+      "enum":[
+        "DELETING",
+        "FAILED",
+        "SUCCESSFUL"
+      ]
+    },
+    "RestoreJobCreator":{
+      "type":"structure",
+      "members":{
+        "RestoreTestingPlanArn":{"shape":"ARN"}
+      }
+    },
     "RestoreJobId":{"type":"string"},
+    "RestoreJobState":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "PENDING",
+        "RUNNING",
+        "ABORTED",
+        "COMPLETED",
+        "FAILED",
+        "AGGREGATE_ALL",
+        "ANY"
+      ]
+    },
     "RestoreJobStatus":{
       "type":"string",
       "enum":[
@@ -2329,6 +4396,22 @@
         "ABORTED",
         "FAILED"
       ]
+    },
+    "RestoreJobSummary":{
+      "type":"structure",
+      "members":{
+        "Region":{"shape":"Region"},
+        "AccountId":{"shape":"AccountId"},
+        "State":{"shape":"RestoreJobState"},
+        "ResourceType":{"shape":"ResourceType"},
+        "Count":{"shape":"integer"},
+        "StartTime":{"shape":"timestamp"},
+        "EndTime":{"shape":"timestamp"}
+      }
+    },
+    "RestoreJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"RestoreJobSummary"}
     },
     "RestoreJobsList":{
       "type":"list",
@@ -2349,8 +4432,197 @@
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "ExpectedCompletionTimeMinutes":{"shape":"Long"},
         "CreatedResourceArn":{"shape":"ARN"},
-        "ResourceType":{"shape":"ResourceType"}
+        "ResourceType":{"shape":"ResourceType"},
+        "RecoveryPointCreationDate":{"shape":"timestamp"},
+        "CreatedBy":{"shape":"RestoreJobCreator"},
+        "ValidationStatus":{"shape":"RestoreValidationStatus"},
+        "ValidationStatusMessage":{"shape":"string"},
+        "DeletionStatus":{"shape":"RestoreDeletionStatus"},
+        "DeletionStatusMessage":{"shape":"string"}
       }
+    },
+    "RestoreTestingPlanForCreate":{
+      "type":"structure",
+      "required":[
+        "RecoveryPointSelection",
+        "RestoreTestingPlanName",
+        "ScheduleExpression"
+      ],
+      "members":{
+        "RecoveryPointSelection":{"shape":"RestoreTestingRecoveryPointSelection"},
+        "RestoreTestingPlanName":{"shape":"String"},
+        "ScheduleExpression":{"shape":"String"},
+        "ScheduleExpressionTimezone":{"shape":"String"},
+        "StartWindowHours":{"shape":"integer"}
+      }
+    },
+    "RestoreTestingPlanForGet":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "RecoveryPointSelection",
+        "RestoreTestingPlanArn",
+        "RestoreTestingPlanName",
+        "ScheduleExpression"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "CreatorRequestId":{"shape":"String"},
+        "LastExecutionTime":{"shape":"Timestamp"},
+        "LastUpdateTime":{"shape":"Timestamp"},
+        "RecoveryPointSelection":{"shape":"RestoreTestingRecoveryPointSelection"},
+        "RestoreTestingPlanArn":{"shape":"String"},
+        "RestoreTestingPlanName":{"shape":"String"},
+        "ScheduleExpression":{"shape":"String"},
+        "ScheduleExpressionTimezone":{"shape":"String"},
+        "StartWindowHours":{"shape":"integer"}
+      }
+    },
+    "RestoreTestingPlanForList":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "RestoreTestingPlanArn",
+        "RestoreTestingPlanName",
+        "ScheduleExpression"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "LastExecutionTime":{"shape":"Timestamp"},
+        "LastUpdateTime":{"shape":"Timestamp"},
+        "RestoreTestingPlanArn":{"shape":"String"},
+        "RestoreTestingPlanName":{"shape":"String"},
+        "ScheduleExpression":{"shape":"String"},
+        "ScheduleExpressionTimezone":{"shape":"String"},
+        "StartWindowHours":{"shape":"integer"}
+      }
+    },
+    "RestoreTestingPlanForUpdate":{
+      "type":"structure",
+      "members":{
+        "RecoveryPointSelection":{"shape":"RestoreTestingRecoveryPointSelection"},
+        "ScheduleExpression":{"shape":"String"},
+        "ScheduleExpressionTimezone":{"shape":"String"},
+        "StartWindowHours":{"shape":"integer"}
+      }
+    },
+    "RestoreTestingPlans":{
+      "type":"list",
+      "member":{"shape":"RestoreTestingPlanForList"}
+    },
+    "RestoreTestingRecoveryPointSelection":{
+      "type":"structure",
+      "members":{
+        "Algorithm":{"shape":"RestoreTestingRecoveryPointSelectionAlgorithm"},
+        "ExcludeVaults":{"shape":"stringList"},
+        "IncludeVaults":{"shape":"stringList"},
+        "RecoveryPointTypes":{"shape":"RestoreTestingRecoveryPointTypeList"},
+        "SelectionWindowDays":{"shape":"integer"}
+      }
+    },
+    "RestoreTestingRecoveryPointSelectionAlgorithm":{
+      "type":"string",
+      "enum":[
+        "LATEST_WITHIN_WINDOW",
+        "RANDOM_WITHIN_WINDOW"
+      ]
+    },
+    "RestoreTestingRecoveryPointType":{
+      "type":"string",
+      "enum":[
+        "CONTINUOUS",
+        "SNAPSHOT"
+      ]
+    },
+    "RestoreTestingRecoveryPointTypeList":{
+      "type":"list",
+      "member":{"shape":"RestoreTestingRecoveryPointType"}
+    },
+    "RestoreTestingSelectionForCreate":{
+      "type":"structure",
+      "required":[
+        "IamRoleArn",
+        "ProtectedResourceType",
+        "RestoreTestingSelectionName"
+      ],
+      "members":{
+        "IamRoleArn":{"shape":"String"},
+        "ProtectedResourceArns":{"shape":"stringList"},
+        "ProtectedResourceConditions":{"shape":"ProtectedResourceConditions"},
+        "ProtectedResourceType":{"shape":"String"},
+        "RestoreMetadataOverrides":{"shape":"SensitiveStringMap"},
+        "RestoreTestingSelectionName":{"shape":"String"},
+        "ValidationWindowHours":{"shape":"integer"}
+      }
+    },
+    "RestoreTestingSelectionForGet":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "IamRoleArn",
+        "ProtectedResourceType",
+        "RestoreTestingPlanName",
+        "RestoreTestingSelectionName"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "CreatorRequestId":{"shape":"String"},
+        "IamRoleArn":{"shape":"String"},
+        "ProtectedResourceArns":{"shape":"stringList"},
+        "ProtectedResourceConditions":{"shape":"ProtectedResourceConditions"},
+        "ProtectedResourceType":{"shape":"String"},
+        "RestoreMetadataOverrides":{"shape":"SensitiveStringMap"},
+        "RestoreTestingPlanName":{"shape":"String"},
+        "RestoreTestingSelectionName":{"shape":"String"},
+        "ValidationWindowHours":{"shape":"integer"}
+      }
+    },
+    "RestoreTestingSelectionForList":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "IamRoleArn",
+        "ProtectedResourceType",
+        "RestoreTestingPlanName",
+        "RestoreTestingSelectionName"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "IamRoleArn":{"shape":"String"},
+        "ProtectedResourceType":{"shape":"String"},
+        "RestoreTestingPlanName":{"shape":"String"},
+        "RestoreTestingSelectionName":{"shape":"String"},
+        "ValidationWindowHours":{"shape":"integer"}
+      }
+    },
+    "RestoreTestingSelectionForUpdate":{
+      "type":"structure",
+      "members":{
+        "IamRoleArn":{"shape":"String"},
+        "ProtectedResourceArns":{"shape":"stringList"},
+        "ProtectedResourceConditions":{"shape":"ProtectedResourceConditions"},
+        "RestoreMetadataOverrides":{"shape":"SensitiveStringMap"},
+        "ValidationWindowHours":{"shape":"integer"}
+      }
+    },
+    "RestoreTestingSelections":{
+      "type":"list",
+      "member":{"shape":"RestoreTestingSelectionForList"}
+    },
+    "RestoreValidationStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "SUCCESSFUL",
+        "TIMED_OUT",
+        "VALIDATING"
+      ]
+    },
+    "SensitiveStringMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"},
+      "sensitive":true
     },
     "ServiceUnavailableException":{
       "type":"structure",
@@ -2387,7 +4659,8 @@
       "members":{
         "BackupJobId":{"shape":"string"},
         "RecoveryPointArn":{"shape":"ARN"},
-        "CreationDate":{"shape":"timestamp"}
+        "CreationDate":{"shape":"timestamp"},
+        "IsParent":{"shape":"boolean"}
       }
     },
     "StartCopyJobInput":{
@@ -2411,22 +4684,44 @@
       "type":"structure",
       "members":{
         "CopyJobId":{"shape":"string"},
-        "CreationDate":{"shape":"timestamp"}
+        "CreationDate":{"shape":"timestamp"},
+        "IsParent":{"shape":"boolean"}
+      }
+    },
+    "StartReportJobInput":{
+      "type":"structure",
+      "required":["ReportPlanName"],
+      "members":{
+        "ReportPlanName":{
+          "shape":"ReportPlanName",
+          "location":"uri",
+          "locationName":"reportPlanName"
+        },
+        "IdempotencyToken":{
+          "shape":"string",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartReportJobOutput":{
+      "type":"structure",
+      "members":{
+        "ReportJobId":{"shape":"ReportJobId"}
       }
     },
     "StartRestoreJobInput":{
       "type":"structure",
       "required":[
         "RecoveryPointArn",
-        "Metadata",
-        "IamRoleArn"
+        "Metadata"
       ],
       "members":{
         "RecoveryPointArn":{"shape":"ARN"},
         "Metadata":{"shape":"Metadata"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "IdempotencyToken":{"shape":"string"},
-        "ResourceType":{"shape":"ResourceType"}
+        "ResourceType":{"shape":"ResourceType"},
+        "CopySourceTagsToRestoredResource":{"shape":"boolean"}
       }
     },
     "StartRestoreJobOutput":{
@@ -2454,6 +4749,7 @@
         "DELETED"
       ]
     },
+    "String":{"type":"string"},
     "TagKey":{"type":"string"},
     "TagKeyList":{
       "type":"list",
@@ -2482,6 +4778,8 @@
       "value":{"shape":"TagValue"},
       "sensitive":true
     },
+    "Timestamp":{"type":"timestamp"},
+    "Timezone":{"type":"string"},
     "UntagResourceInput":{
       "type":"structure",
       "required":[
@@ -2522,6 +4820,31 @@
         "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"}
       }
     },
+    "UpdateFrameworkInput":{
+      "type":"structure",
+      "required":["FrameworkName"],
+      "members":{
+        "FrameworkName":{
+          "shape":"FrameworkName",
+          "location":"uri",
+          "locationName":"frameworkName"
+        },
+        "FrameworkDescription":{"shape":"FrameworkDescription"},
+        "FrameworkControls":{"shape":"FrameworkControls"},
+        "IdempotencyToken":{
+          "shape":"string",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateFrameworkOutput":{
+      "type":"structure",
+      "members":{
+        "FrameworkName":{"shape":"FrameworkName"},
+        "FrameworkArn":{"shape":"ARN"},
+        "CreationTime":{"shape":"timestamp"}
+      }
+    },
     "UpdateGlobalSettingsInput":{
       "type":"structure",
       "members":{
@@ -2560,13 +4883,137 @@
     "UpdateRegionSettingsInput":{
       "type":"structure",
       "members":{
-        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"}
+        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"},
+        "ResourceTypeManagementPreference":{"shape":"ResourceTypeManagementPreference"}
       }
+    },
+    "UpdateReportPlanInput":{
+      "type":"structure",
+      "required":["ReportPlanName"],
+      "members":{
+        "ReportPlanName":{
+          "shape":"ReportPlanName",
+          "location":"uri",
+          "locationName":"reportPlanName"
+        },
+        "ReportPlanDescription":{"shape":"ReportPlanDescription"},
+        "ReportDeliveryChannel":{"shape":"ReportDeliveryChannel"},
+        "ReportSetting":{"shape":"ReportSetting"},
+        "IdempotencyToken":{
+          "shape":"string",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateReportPlanOutput":{
+      "type":"structure",
+      "members":{
+        "ReportPlanName":{"shape":"ReportPlanName"},
+        "ReportPlanArn":{"shape":"ARN"},
+        "CreationTime":{"shape":"timestamp"}
+      }
+    },
+    "UpdateRestoreTestingPlanInput":{
+      "type":"structure",
+      "required":[
+        "RestoreTestingPlan",
+        "RestoreTestingPlanName"
+      ],
+      "members":{
+        "RestoreTestingPlan":{"shape":"RestoreTestingPlanForUpdate"},
+        "RestoreTestingPlanName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingPlanName"
+        }
+      }
+    },
+    "UpdateRestoreTestingPlanOutput":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "RestoreTestingPlanArn",
+        "RestoreTestingPlanName",
+        "UpdateTime"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "RestoreTestingPlanArn":{"shape":"String"},
+        "RestoreTestingPlanName":{"shape":"String"},
+        "UpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateRestoreTestingSelectionInput":{
+      "type":"structure",
+      "required":[
+        "RestoreTestingPlanName",
+        "RestoreTestingSelection",
+        "RestoreTestingSelectionName"
+      ],
+      "members":{
+        "RestoreTestingPlanName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingPlanName"
+        },
+        "RestoreTestingSelection":{"shape":"RestoreTestingSelectionForUpdate"},
+        "RestoreTestingSelectionName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"RestoreTestingSelectionName"
+        }
+      }
+    },
+    "UpdateRestoreTestingSelectionOutput":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "RestoreTestingPlanArn",
+        "RestoreTestingPlanName",
+        "RestoreTestingSelectionName",
+        "UpdateTime"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "RestoreTestingPlanArn":{"shape":"String"},
+        "RestoreTestingPlanName":{"shape":"String"},
+        "RestoreTestingSelectionName":{"shape":"String"},
+        "UpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "VaultNames":{
+      "type":"list",
+      "member":{"shape":"string"}
+    },
+    "VaultState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "AVAILABLE",
+        "FAILED"
+      ]
+    },
+    "VaultType":{
+      "type":"string",
+      "enum":[
+        "BACKUP_VAULT",
+        "LOGICALLY_AIR_GAPPED_BACKUP_VAULT"
+      ]
     },
     "WindowMinutes":{"type":"long"},
     "boolean":{"type":"boolean"},
+    "integer":{"type":"integer"},
     "long":{"type":"long"},
     "string":{"type":"string"},
+    "stringList":{
+      "type":"list",
+      "member":{"shape":"string"}
+    },
+    "stringMap":{
+      "type":"map",
+      "key":{"shape":"string"},
+      "value":{"shape":"string"}
+    },
     "timestamp":{"type":"timestamp"}
   }
 }

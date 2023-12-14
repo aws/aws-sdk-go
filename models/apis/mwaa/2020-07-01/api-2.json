@@ -137,6 +137,8 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is for internal use and not meant for public use, and is no longer available.",
       "endpoint":{"hostPrefix":"ops."}
     },
     "TagResource":{
@@ -204,13 +206,20 @@
     "AirflowConfigurationOptions":{
       "type":"map",
       "key":{"shape":"ConfigKey"},
-      "value":{"shape":"ConfigValue"}
+      "value":{"shape":"ConfigValue"},
+      "sensitive":true
     },
     "AirflowVersion":{
       "type":"string",
       "max":32,
       "min":1,
       "pattern":"^[0-9a-z.]+$"
+    },
+    "CeleryExecutorQueue":{
+      "type":"string",
+      "max":1224,
+      "min":1,
+      "pattern":"^arn:aws(-[a-z]+)?:sqs:[a-z0-9\\-]+:\\d{12}:[a-zA-Z_0-9+=,.@\\-_/]+$"
     },
     "CloudWatchLogGroupArn":{
       "type":"string",
@@ -222,13 +231,14 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^[a-z]+([a-z._]*[a-z]+)?$"
+      "pattern":"^[a-z]+([a-z0-9._]*[a-z0-9_]+)?$"
     },
     "ConfigValue":{
       "type":"string",
-      "max":256,
+      "max":65536,
       "min":1,
-      "pattern":".*"
+      "pattern":"^[ -~]+$",
+      "sensitive":true
     },
     "CreateCliTokenRequest":{
       "type":"structure",
@@ -244,7 +254,7 @@
     "CreateCliTokenResponse":{
       "type":"structure",
       "members":{
-        "CliToken":{"shape":"SyntheticCreateCliTokenResponseToken"},
+        "CliToken":{"shape":"Token"},
         "WebServerHostname":{"shape":"Hostname"}
       }
     },
@@ -258,9 +268,10 @@
         "SourceBucketArn"
       ],
       "members":{
-        "AirflowConfigurationOptions":{"shape":"SyntheticCreateEnvironmentInputAirflowConfigurationOptions"},
+        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
         "AirflowVersion":{"shape":"AirflowVersion"},
         "DagS3Path":{"shape":"RelativePath"},
+        "EndpointManagement":{"shape":"EndpointManagement"},
         "EnvironmentClass":{"shape":"EnvironmentClass"},
         "ExecutionRoleArn":{"shape":"IamRoleArn"},
         "KmsKey":{"shape":"KmsKey"},
@@ -279,6 +290,8 @@
         "RequirementsS3Path":{"shape":"RelativePath"},
         "Schedulers":{"shape":"Schedulers"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
+        "StartupScriptS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "StartupScriptS3Path":{"shape":"RelativePath"},
         "Tags":{"shape":"TagMap"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
         "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}
@@ -305,7 +318,7 @@
       "type":"structure",
       "members":{
         "WebServerHostname":{"shape":"Hostname"},
-        "WebToken":{"shape":"SyntheticCreateWebLoginTokenResponseToken"}
+        "WebToken":{"shape":"Token"}
       }
     },
     "CreatedAt":{"type":"timestamp"},
@@ -334,15 +347,26 @@
       "members":{
         "Name":{"shape":"String"},
         "Value":{"shape":"String"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "Dimensions":{
       "type":"list",
-      "member":{"shape":"Dimension"}
+      "member":{"shape":"Dimension"},
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "Double":{
       "type":"double",
       "box":true
+    },
+    "EndpointManagement":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER",
+        "SERVICE"
+      ]
     },
     "Environment":{
       "type":"structure",
@@ -350,8 +374,11 @@
         "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
         "AirflowVersion":{"shape":"AirflowVersion"},
         "Arn":{"shape":"EnvironmentArn"},
+        "CeleryExecutorQueue":{"shape":"CeleryExecutorQueue"},
         "CreatedAt":{"shape":"CreatedAt"},
         "DagS3Path":{"shape":"RelativePath"},
+        "DatabaseVpcEndpointService":{"shape":"VpcEndpointServiceName"},
+        "EndpointManagement":{"shape":"EndpointManagement"},
         "EnvironmentClass":{"shape":"EnvironmentClass"},
         "ExecutionRoleArn":{"shape":"IamRoleArn"},
         "KmsKey":{"shape":"KmsKey"},
@@ -368,10 +395,13 @@
         "Schedulers":{"shape":"Schedulers"},
         "ServiceRoleArn":{"shape":"IamRoleArn"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
+        "StartupScriptS3ObjectVersion":{"shape":"String"},
+        "StartupScriptS3Path":{"shape":"String"},
         "Status":{"shape":"EnvironmentStatus"},
         "Tags":{"shape":"TagMap"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
         "WebserverUrl":{"shape":"WebserverUrl"},
+        "WebserverVpcEndpointService":{"shape":"VpcEndpointServiceName"},
         "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}
       }
     },
@@ -406,7 +436,10 @@
         "DELETING",
         "DELETED",
         "UNAVAILABLE",
-        "UPDATE_FAILED"
+        "UPDATE_FAILED",
+        "ROLLING_BACK",
+        "CREATING_SNAPSHOT",
+        "PENDING"
       ]
     },
     "ErrorCode":{"type":"string"},
@@ -469,6 +502,7 @@
       "members":{
         "CreatedAt":{"shape":"UpdateCreatedAt"},
         "Error":{"shape":"UpdateError"},
+        "Source":{"shape":"UpdateSource"},
         "Status":{"shape":"UpdateStatus"}
       }
     },
@@ -559,7 +593,9 @@
     },
     "MetricData":{
       "type":"list",
-      "member":{"shape":"MetricDatum"}
+      "member":{"shape":"MetricDatum"},
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "MetricDatum":{
       "type":"structure",
@@ -574,7 +610,9 @@
         "Timestamp":{"shape":"Timestamp"},
         "Unit":{"shape":"Unit"},
         "Value":{"shape":"Double"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "MinWorkers":{
       "type":"integer",
@@ -625,12 +663,16 @@
           "locationName":"EnvironmentName"
         },
         "MetricData":{"shape":"MetricData"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "PublishMetricsOutput":{
       "type":"structure",
       "members":{
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "RelativePath":{
       "type":"string",
@@ -684,7 +726,9 @@
         "Minimum":{"shape":"Double"},
         "SampleCount":{"shape":"Integer"},
         "Sum":{"shape":"Double"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "String":{"type":"string"},
     "SubnetId":{
@@ -698,26 +742,6 @@
       "member":{"shape":"SubnetId"},
       "max":2,
       "min":2
-    },
-    "SyntheticCreateCliTokenResponseToken":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticCreateEnvironmentInputAirflowConfigurationOptions":{
-      "type":"map",
-      "key":{"shape":"ConfigKey"},
-      "value":{"shape":"ConfigValue"},
-      "sensitive":true
-    },
-    "SyntheticCreateWebLoginTokenResponseToken":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticUpdateEnvironmentInputAirflowConfigurationOptions":{
-      "type":"map",
-      "key":{"shape":"ConfigKey"},
-      "value":{"shape":"ConfigValue"},
-      "sensitive":true
     },
     "TagKey":{
       "type":"string",
@@ -765,6 +789,10 @@
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "Timestamp":{"type":"timestamp"},
+    "Token":{
+      "type":"string",
+      "sensitive":true
+    },
     "Unit":{
       "type":"string",
       "enum":[
@@ -826,7 +854,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "AirflowConfigurationOptions":{"shape":"SyntheticUpdateEnvironmentInputAirflowConfigurationOptions"},
+        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
         "AirflowVersion":{"shape":"AirflowVersion"},
         "DagS3Path":{"shape":"RelativePath"},
         "EnvironmentClass":{"shape":"EnvironmentClass"},
@@ -846,6 +874,8 @@
         "RequirementsS3Path":{"shape":"RelativePath"},
         "Schedulers":{"shape":"Schedulers"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
+        "StartupScriptS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "StartupScriptS3Path":{"shape":"RelativePath"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
         "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}
       }
@@ -870,6 +900,12 @@
         "SecurityGroupIds":{"shape":"SecurityGroupList"}
       }
     },
+    "UpdateSource":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^.+$"
+    },
     "UpdateStatus":{
       "type":"string",
       "enum":[
@@ -888,6 +924,12 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "VpcEndpointServiceName":{
+      "type":"string",
+      "max":1224,
+      "min":1,
+      "pattern":"^([a-z.-]+)?com\\.amazonaws\\.vpce\\.[a-z0-9\\-]+\\.[a-zA-Z_0-9+=,.@\\-_/]+$"
     },
     "WebserverAccessMode":{
       "type":"string",

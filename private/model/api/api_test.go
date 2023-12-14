@@ -1,8 +1,10 @@
+//go:build go1.8 && codegen
 // +build go1.8,codegen
 
 package api
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -69,5 +71,25 @@ func TestAPI_StructName(t *testing.T) {
 				t.Errorf("expect %v structName, got %v", e, o)
 			}
 		})
+	}
+}
+
+func TestAPI_Setup_documentShapes(t *testing.T) {
+	api := API{
+		Shapes: map[string]*Shape{
+			"Document": {
+				Type:     "structure",
+				Document: true,
+			},
+		},
+	}
+
+	err := api.Setup()
+	if err == nil {
+		t.Fatalf("expect error, but got nil")
+	}
+	expect := "model contains document shapes"
+	if !strings.Contains(err.Error(), expect) {
+		t.Errorf("expect %s, got %v", expect, err)
 	}
 }

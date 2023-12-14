@@ -45,6 +45,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeView":{
+      "name":"DescribeView",
+      "http":{
+        "method":"GET",
+        "requestUri":"/participant/views/{ViewToken}"
+      },
+      "input":{"shape":"DescribeViewRequest"},
+      "output":{"shape":"DescribeViewResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DisconnectParticipant":{
       "name":"DisconnectParticipant",
       "http":{
@@ -138,6 +154,7 @@
     }
   },
   "shapes":{
+    "ARN":{"type":"string"},
     "AccessDeniedException":{
       "type":"structure",
       "required":["Message"],
@@ -188,9 +205,10 @@
       "type":"list",
       "member":{"shape":"AttachmentItem"}
     },
+    "Bool":{"type":"boolean"},
     "ChatContent":{
       "type":"string",
-      "max":1024,
+      "max":16384,
       "min":1
     },
     "ChatContentType":{
@@ -215,7 +233,9 @@
         "MESSAGE",
         "EVENT",
         "ATTACHMENT",
-        "CONNECTION_ACK"
+        "CONNECTION_ACK",
+        "MESSAGE_DELIVERED",
+        "MESSAGE_READ"
       ]
     },
     "ClientToken":{
@@ -287,17 +307,15 @@
     },
     "CreateParticipantConnectionRequest":{
       "type":"structure",
-      "required":[
-        "Type",
-        "ParticipantToken"
-      ],
+      "required":["ParticipantToken"],
       "members":{
         "Type":{"shape":"ConnectionTypeList"},
         "ParticipantToken":{
           "shape":"ParticipantToken",
           "location":"header",
           "locationName":"X-Amz-Bearer"
-        }
+        },
+        "ConnectParticipant":{"shape":"Bool"}
       }
     },
     "CreateParticipantConnectionResponse":{
@@ -305,6 +323,31 @@
       "members":{
         "Websocket":{"shape":"Websocket"},
         "ConnectionCredentials":{"shape":"ConnectionCredentials"}
+      }
+    },
+    "DescribeViewRequest":{
+      "type":"structure",
+      "required":[
+        "ViewToken",
+        "ConnectionToken"
+      ],
+      "members":{
+        "ViewToken":{
+          "shape":"ViewToken",
+          "location":"uri",
+          "locationName":"ViewToken"
+        },
+        "ConnectionToken":{
+          "shape":"ParticipantToken",
+          "location":"header",
+          "locationName":"X-Amz-Bearer"
+        }
+      }
+    },
+    "DescribeViewResponse":{
+      "type":"structure",
+      "members":{
+        "View":{"shape":"View"}
       }
     },
     "DisconnectParticipantRequest":{
@@ -409,7 +452,10 @@
         "ParticipantId":{"shape":"ParticipantId"},
         "DisplayName":{"shape":"DisplayName"},
         "ParticipantRole":{"shape":"ParticipantRole"},
-        "Attachments":{"shape":"Attachments"}
+        "Attachments":{"shape":"Attachments"},
+        "MessageMetadata":{"shape":"MessageMetadata"},
+        "RelatedContactId":{"shape":"ContactId"},
+        "ContactId":{"shape":"ContactId"}
       }
     },
     "MaxResults":{
@@ -418,6 +464,13 @@
       "min":0
     },
     "Message":{"type":"string"},
+    "MessageMetadata":{
+      "type":"structure",
+      "members":{
+        "MessageId":{"shape":"ChatItemId"},
+        "Receipts":{"shape":"Receipts"}
+      }
+    },
     "MostRecent":{
       "type":"integer",
       "max":100,
@@ -443,7 +496,8 @@
       "enum":[
         "AGENT",
         "CUSTOMER",
-        "SYSTEM"
+        "SYSTEM",
+        "CUSTOM_BOT"
       ]
     },
     "ParticipantToken":{
@@ -465,6 +519,41 @@
       "type":"string",
       "max":2000,
       "min":1
+    },
+    "Receipt":{
+      "type":"structure",
+      "members":{
+        "DeliveredTimestamp":{"shape":"Instant"},
+        "ReadTimestamp":{"shape":"Instant"},
+        "RecipientParticipantId":{"shape":"ParticipantId"}
+      }
+    },
+    "Receipts":{
+      "type":"list",
+      "member":{"shape":"Receipt"}
+    },
+    "ResourceId":{"type":"string"},
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"},
+        "ResourceId":{"shape":"ResourceId"},
+        "ResourceType":{"shape":"ResourceType"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":[
+        "CONTACT",
+        "CONTACT_FLOW",
+        "INSTANCE",
+        "PARTICIPANT",
+        "HIERARCHY_LEVEL",
+        "HIERARCHY_GROUP",
+        "USER"
+      ]
     },
     "ScanDirection":{
       "type":"string",
@@ -633,6 +722,62 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "View":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ViewId"},
+        "Arn":{"shape":"ARN"},
+        "Name":{"shape":"ViewName"},
+        "Version":{"shape":"ViewVersion"},
+        "Content":{"shape":"ViewContent"}
+      }
+    },
+    "ViewAction":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{N}_.:\\/=+\\-@()']+[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@()']*)$",
+      "sensitive":true
+    },
+    "ViewActions":{
+      "type":"list",
+      "member":{"shape":"ViewAction"}
+    },
+    "ViewContent":{
+      "type":"structure",
+      "members":{
+        "InputSchema":{"shape":"ViewInputSchema"},
+        "Template":{"shape":"ViewTemplate"},
+        "Actions":{"shape":"ViewActions"}
+      }
+    },
+    "ViewId":{
+      "type":"string",
+      "max":500,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\_\\-:\\/$]+$"
+    },
+    "ViewInputSchema":{
+      "type":"string",
+      "sensitive":true
+    },
+    "ViewName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{N}_.:\\/=+\\-@()']+[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@()']*)$",
+      "sensitive":true
+    },
+    "ViewTemplate":{
+      "type":"string",
+      "sensitive":true
+    },
+    "ViewToken":{
+      "type":"string",
+      "max":1000,
+      "min":1
+    },
+    "ViewVersion":{"type":"integer"},
     "Websocket":{
       "type":"structure",
       "members":{

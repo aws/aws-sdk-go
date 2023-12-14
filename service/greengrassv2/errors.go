@@ -24,8 +24,16 @@ const (
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// AWS IoT Greengrass can't process your request right now. Try again later.
+	// IoT Greengrass can't process your request right now. Try again later.
 	ErrCodeInternalServerException = "InternalServerException"
+
+	// ErrCodeRequestAlreadyInProgressException for service response error code
+	// "RequestAlreadyInProgressException".
+	//
+	// The request is already in progress. This exception occurs when you use a
+	// client token for multiple requests while IoT Greengrass is still processing
+	// an earlier request that uses the same client token.
+	ErrCodeRequestAlreadyInProgressException = "RequestAlreadyInProgressException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
@@ -57,11 +65,12 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":         newErrorAccessDeniedException,
-	"ConflictException":             newErrorConflictException,
-	"InternalServerException":       newErrorInternalServerException,
-	"ResourceNotFoundException":     newErrorResourceNotFoundException,
-	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
-	"ThrottlingException":           newErrorThrottlingException,
-	"ValidationException":           newErrorValidationException,
+	"AccessDeniedException":             newErrorAccessDeniedException,
+	"ConflictException":                 newErrorConflictException,
+	"InternalServerException":           newErrorInternalServerException,
+	"RequestAlreadyInProgressException": newErrorRequestAlreadyInProgressException,
+	"ResourceNotFoundException":         newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException":     newErrorServiceQuotaExceededException,
+	"ThrottlingException":               newErrorThrottlingException,
+	"ValidationException":               newErrorValidationException,
 }

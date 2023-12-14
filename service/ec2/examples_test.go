@@ -25,37 +25,9 @@ func parseTime(layout, value string) *time.Time {
 	return &t
 }
 
-// To allocate an Elastic IP address for EC2-VPC
-//
-// This example allocates an Elastic IP address to use with an instance in a VPC.
+// To allocate an Elastic IP address
+// This example allocates an Elastic IP address.
 func ExampleEC2_AllocateAddress_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.AllocateAddressInput{
-		Domain: aws.String("vpc"),
-	}
-
-	result, err := svc.AllocateAddress(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To allocate an Elastic IP address for EC2-Classic
-//
-// This example allocates an Elastic IP address to use with an instance in EC2-Classic.
-func ExampleEC2_AllocateAddress_shared01() {
 	svc := ec2.New(session.New())
 	input := &ec2.AllocateAddressInput{}
 
@@ -78,7 +50,6 @@ func ExampleEC2_AllocateAddress_shared01() {
 }
 
 // To assign a specific secondary private IP address to an interface
-//
 // This example assigns the specified secondary private IP address to the specified
 // network interface.
 func ExampleEC2_AssignPrivateIpAddresses_shared00() {
@@ -109,7 +80,6 @@ func ExampleEC2_AssignPrivateIpAddresses_shared00() {
 }
 
 // To assign secondary private IP addresses that Amazon EC2 selects to an interface
-//
 // This example assigns two secondary private IP addresses to the specified network
 // interface. Amazon EC2 automatically assigns these IP addresses from the available
 // IP addresses in the CIDR block range of the subnet the network interface is associated
@@ -139,10 +109,8 @@ func ExampleEC2_AssignPrivateIpAddresses_shared01() {
 	fmt.Println(result)
 }
 
-// To associate an Elastic IP address in EC2-VPC
-//
-// This example associates the specified Elastic IP address with the specified instance
-// in a VPC.
+// To associate an Elastic IP address
+// This example associates the specified Elastic IP address with the specified instance.
 func ExampleEC2_AssociateAddress_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.AssociateAddressInput{
@@ -169,7 +137,6 @@ func ExampleEC2_AssociateAddress_shared00() {
 }
 
 // To associate an Elastic IP address with a network interface
-//
 // This example associates the specified Elastic IP address with the specified network
 // interface.
 func ExampleEC2_AssociateAddress_shared01() {
@@ -197,36 +164,7 @@ func ExampleEC2_AssociateAddress_shared01() {
 	fmt.Println(result)
 }
 
-// To associate an Elastic IP address in EC2-Classic
-//
-// This example associates an Elastic IP address with an instance in EC2-Classic.
-func ExampleEC2_AssociateAddress_shared02() {
-	svc := ec2.New(session.New())
-	input := &ec2.AssociateAddressInput{
-		InstanceId: aws.String("i-07ffe74c7330ebf53"),
-		PublicIp:   aws.String("198.51.100.0"),
-	}
-
-	result, err := svc.AssociateAddress(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To associate a DHCP options set with a VPC
-//
 // This example associates the specified DHCP options set with the specified VPC.
 func ExampleEC2_AssociateDhcpOptions_shared00() {
 	svc := ec2.New(session.New())
@@ -254,7 +192,6 @@ func ExampleEC2_AssociateDhcpOptions_shared00() {
 }
 
 // To associate the default DHCP options set with a VPC
-//
 // This example associates the default DHCP options set with the specified VPC.
 func ExampleEC2_AssociateDhcpOptions_shared01() {
 	svc := ec2.New(session.New())
@@ -282,7 +219,6 @@ func ExampleEC2_AssociateDhcpOptions_shared01() {
 }
 
 // To associate an IAM instance profile with an instance
-//
 // This example associates an IAM instance profile named admin-role with the specified
 // instance.
 func ExampleEC2_AssociateIamInstanceProfile_shared00() {
@@ -313,7 +249,6 @@ func ExampleEC2_AssociateIamInstanceProfile_shared00() {
 }
 
 // To associate a route table with a subnet
-//
 // This example associates the specified route table with the specified subnet.
 func ExampleEC2_AssociateRouteTable_shared00() {
 	svc := ec2.New(session.New())
@@ -341,7 +276,6 @@ func ExampleEC2_AssociateRouteTable_shared00() {
 }
 
 // To attach an Internet gateway to a VPC
-//
 // This example attaches the specified Internet gateway to the specified VPC.
 func ExampleEC2_AttachInternetGateway_shared00() {
 	svc := ec2.New(session.New())
@@ -369,7 +303,6 @@ func ExampleEC2_AttachInternetGateway_shared00() {
 }
 
 // To attach a network interface to an instance
-//
 // This example attaches the specified network interface to the specified instance.
 func ExampleEC2_AttachNetworkInterface_shared00() {
 	svc := ec2.New(session.New())
@@ -398,9 +331,8 @@ func ExampleEC2_AttachNetworkInterface_shared00() {
 }
 
 // To attach a volume to an instance
-//
-// This example attaches a volume (``vol-1234567890abcdef0``) to an instance (``i-01474ef662b89480``)
-// as ``/dev/sdf``.
+// This example attaches a volume (“vol-1234567890abcdef0“) to an instance (“i-01474ef662b89480“)
+// as “/dev/sdf“.
 func ExampleEC2_AttachVolume_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.AttachVolumeInput{
@@ -428,7 +360,6 @@ func ExampleEC2_AttachVolume_shared00() {
 }
 
 // To add a rule that allows outbound traffic to a specific address range
-//
 // This example adds a rule that grants access to the specified address ranges on TCP
 // port 80.
 func ExampleEC2_AuthorizeSecurityGroupEgress_shared00() {
@@ -468,7 +399,6 @@ func ExampleEC2_AuthorizeSecurityGroupEgress_shared00() {
 }
 
 // To add a rule that allows outbound traffic to a specific security group
-//
 // This example adds a rule that grants access to the specified security group on TCP
 // port 80.
 func ExampleEC2_AuthorizeSecurityGroupEgress_shared01() {
@@ -508,7 +438,6 @@ func ExampleEC2_AuthorizeSecurityGroupEgress_shared01() {
 }
 
 // To add a rule that allows inbound SSH traffic from an IPv4 address range
-//
 // This example enables inbound traffic on TCP port 22 (SSH). The rule includes a description
 // to help you identify it later.
 func ExampleEC2_AuthorizeSecurityGroupIngress_shared00() {
@@ -549,7 +478,6 @@ func ExampleEC2_AuthorizeSecurityGroupIngress_shared00() {
 }
 
 // To add a rule that allows inbound HTTP traffic from another security group
-//
 // This example enables inbound traffic on TCP port 80 from the specified security group.
 // The group must be in the same VPC or a peer VPC. Incoming traffic is allowed based
 // on the private IP addresses of instances that are associated with the specified security
@@ -592,7 +520,6 @@ func ExampleEC2_AuthorizeSecurityGroupIngress_shared01() {
 }
 
 // To add a rule that allows inbound RDP traffic from an IPv6 address range
-//
 // This example adds an inbound rule that allows RDP traffic from the specified IPv6
 // address range. The rule includes a description to help you identify it later.
 func ExampleEC2_AuthorizeSecurityGroupIngress_shared02() {
@@ -633,7 +560,6 @@ func ExampleEC2_AuthorizeSecurityGroupIngress_shared02() {
 }
 
 // To cancel a Spot fleet request
-//
 // This example cancels the specified Spot fleet request and terminates its associated
 // Spot Instances.
 func ExampleEC2_CancelSpotFleetRequests_shared00() {
@@ -664,7 +590,6 @@ func ExampleEC2_CancelSpotFleetRequests_shared00() {
 }
 
 // To cancel a Spot fleet request without terminating its Spot Instances
-//
 // This example cancels the specified Spot fleet request without terminating its associated
 // Spot Instances.
 func ExampleEC2_CancelSpotFleetRequests_shared01() {
@@ -695,7 +620,6 @@ func ExampleEC2_CancelSpotFleetRequests_shared01() {
 }
 
 // To cancel Spot Instance requests
-//
 // This example cancels a Spot Instance request.
 func ExampleEC2_CancelSpotInstanceRequests_shared00() {
 	svc := ec2.New(session.New())
@@ -724,7 +648,6 @@ func ExampleEC2_CancelSpotInstanceRequests_shared00() {
 }
 
 // To confirm the product instance
-//
 // This example determines whether the specified product code is associated with the
 // specified instance.
 func ExampleEC2_ConfirmProductInstance_shared00() {
@@ -753,7 +676,6 @@ func ExampleEC2_ConfirmProductInstance_shared00() {
 }
 
 // To copy an AMI to another region
-//
 // This example copies the specified AMI from the us-east-1 region to the current region.
 func ExampleEC2_CopyImage_shared00() {
 	svc := ec2.New(session.New())
@@ -783,9 +705,8 @@ func ExampleEC2_CopyImage_shared00() {
 }
 
 // To copy a snapshot
-//
-// This example copies a snapshot with the snapshot ID of ``snap-066877671789bd71b``
-// from the ``us-west-2`` region to the ``us-east-1`` region and adds a short description
+// This example copies a snapshot with the snapshot ID of “snap-066877671789bd71b“
+// from the “us-west-2“ region to the “us-east-1“ region and adds a short description
 // to identify the snapshot.
 func ExampleEC2_CopySnapshot_shared00() {
 	svc := ec2.New(session.New())
@@ -815,7 +736,6 @@ func ExampleEC2_CopySnapshot_shared00() {
 }
 
 // To create a customer gateway
-//
 // This example creates a customer gateway with the specified IP address for its outside
 // interface.
 func ExampleEC2_CreateCustomerGateway_shared00() {
@@ -845,7 +765,6 @@ func ExampleEC2_CreateCustomerGateway_shared00() {
 }
 
 // To create a DHCP options set
-//
 // This example creates a DHCP options set.
 func ExampleEC2_CreateDhcpOptions_shared00() {
 	svc := ec2.New(session.New())
@@ -880,7 +799,6 @@ func ExampleEC2_CreateDhcpOptions_shared00() {
 }
 
 // To create an AMI from an Amazon EBS-backed instance
-//
 // This example creates an AMI from the specified instance and adds an EBS volume with
 // the device name /dev/sdh and an instance store volume with the device name /dev/sdc.
 func ExampleEC2_CreateImage_shared00() {
@@ -923,7 +841,6 @@ func ExampleEC2_CreateImage_shared00() {
 }
 
 // To create an Internet gateway
-//
 // This example creates an Internet gateway.
 func ExampleEC2_CreateInternetGateway_shared00() {
 	svc := ec2.New(session.New())
@@ -948,7 +865,6 @@ func ExampleEC2_CreateInternetGateway_shared00() {
 }
 
 // To create a key pair
-//
 // This example creates a key pair named my-key-pair.
 func ExampleEC2_CreateKeyPair_shared00() {
 	svc := ec2.New(session.New())
@@ -975,7 +891,6 @@ func ExampleEC2_CreateKeyPair_shared00() {
 }
 
 // To create a launch template
-//
 // This example creates a launch template that specifies the subnet in which to launch
 // the instance, assigns a public IP address and an IPv6 address to the instance, and
 // creates a tag for the instance.
@@ -1028,7 +943,6 @@ func ExampleEC2_CreateLaunchTemplate_shared00() {
 }
 
 // To create a launch template version
-//
 // This example creates a new launch template version based on version 1 of the specified
 // launch template and specifies a different AMI ID.
 func ExampleEC2_CreateLaunchTemplateVersion_shared00() {
@@ -1061,7 +975,6 @@ func ExampleEC2_CreateLaunchTemplateVersion_shared00() {
 }
 
 // To create a NAT gateway
-//
 // This example creates a NAT gateway in subnet subnet-1a2b3c4d and associates an Elastic
 // IP address with the allocation ID eipalloc-37fc1a52 with the NAT gateway.
 func ExampleEC2_CreateNatGateway_shared00() {
@@ -1090,7 +1003,6 @@ func ExampleEC2_CreateNatGateway_shared00() {
 }
 
 // To create a network ACL
-//
 // This example creates a network ACL for the specified VPC.
 func ExampleEC2_CreateNetworkAcl_shared00() {
 	svc := ec2.New(session.New())
@@ -1117,7 +1029,6 @@ func ExampleEC2_CreateNetworkAcl_shared00() {
 }
 
 // To create a network ACL entry
-//
 // This example creates an entry for the specified network ACL. The rule allows ingress
 // traffic from anywhere (0.0.0.0/0) on UDP port 53 (DNS) into any associated subnet.
 func ExampleEC2_CreateNetworkAclEntry_shared00() {
@@ -1154,7 +1065,6 @@ func ExampleEC2_CreateNetworkAclEntry_shared00() {
 }
 
 // To create a network interface
-//
 // This example creates a network interface for the specified subnet.
 func ExampleEC2_CreateNetworkInterface_shared00() {
 	svc := ec2.New(session.New())
@@ -1186,7 +1096,6 @@ func ExampleEC2_CreateNetworkInterface_shared00() {
 }
 
 // To create a placement group
-//
 // This example creates a placement group with the specified name.
 func ExampleEC2_CreatePlacementGroup_shared00() {
 	svc := ec2.New(session.New())
@@ -1214,7 +1123,6 @@ func ExampleEC2_CreatePlacementGroup_shared00() {
 }
 
 // To create a route
-//
 // This example creates a route for the specified route table. The route matches all
 // traffic (0.0.0.0/0) and routes it to the specified Internet gateway.
 func ExampleEC2_CreateRoute_shared00() {
@@ -1244,7 +1152,6 @@ func ExampleEC2_CreateRoute_shared00() {
 }
 
 // To create a route table
-//
 // This example creates a route table for the specified VPC.
 func ExampleEC2_CreateRouteTable_shared00() {
 	svc := ec2.New(session.New())
@@ -1271,7 +1178,6 @@ func ExampleEC2_CreateRouteTable_shared00() {
 }
 
 // To create a security group for a VPC
-//
 // This example creates a security group for the specified VPC.
 func ExampleEC2_CreateSecurityGroup_shared00() {
 	svc := ec2.New(session.New())
@@ -1300,8 +1206,7 @@ func ExampleEC2_CreateSecurityGroup_shared00() {
 }
 
 // To create a snapshot
-//
-// This example creates a snapshot of the volume with a volume ID of ``vol-1234567890abcdef0``
+// This example creates a snapshot of the volume with a volume ID of “vol-1234567890abcdef0“
 // and a short description to identify the snapshot.
 func ExampleEC2_CreateSnapshot_shared00() {
 	svc := ec2.New(session.New())
@@ -1329,7 +1234,6 @@ func ExampleEC2_CreateSnapshot_shared00() {
 }
 
 // To create a Spot Instance datafeed
-//
 // This example creates a Spot Instance data feed for your AWS account.
 func ExampleEC2_CreateSpotDatafeedSubscription_shared00() {
 	svc := ec2.New(session.New())
@@ -1357,7 +1261,6 @@ func ExampleEC2_CreateSpotDatafeedSubscription_shared00() {
 }
 
 // To create a subnet
-//
 // This example creates a subnet in the specified VPC with the specified CIDR block.
 // We recommend that you let us select an Availability Zone for you.
 func ExampleEC2_CreateSubnet_shared00() {
@@ -1386,7 +1289,6 @@ func ExampleEC2_CreateSubnet_shared00() {
 }
 
 // To add a tag to a resource
-//
 // This example adds the tag Stack=production to the specified image, or overwrites
 // an existing tag for the AMI where the tag key is Stack.
 func ExampleEC2_CreateTags_shared00() {
@@ -1422,9 +1324,8 @@ func ExampleEC2_CreateTags_shared00() {
 }
 
 // To create a new volume
-//
 // This example creates an 80 GiB General Purpose (SSD) volume in the Availability Zone
-// ``us-east-1a``.
+// “us-east-1a“.
 func ExampleEC2_CreateVolume_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.CreateVolumeInput{
@@ -1452,9 +1353,8 @@ func ExampleEC2_CreateVolume_shared00() {
 }
 
 // To create a new Provisioned IOPS (SSD) volume from a snapshot
-//
 // This example creates a new Provisioned IOPS (SSD) volume with 1000 provisioned IOPS
-// from a snapshot in the Availability Zone ``us-east-1a``.
+// from a snapshot in the Availability Zone “us-east-1a“.
 func ExampleEC2_CreateVolume_shared01() {
 	svc := ec2.New(session.New())
 	input := &ec2.CreateVolumeInput{
@@ -1483,7 +1383,6 @@ func ExampleEC2_CreateVolume_shared01() {
 }
 
 // To create a VPC
-//
 // This example creates a VPC with the specified CIDR block.
 func ExampleEC2_CreateVpc_shared00() {
 	svc := ec2.New(session.New())
@@ -1510,7 +1409,6 @@ func ExampleEC2_CreateVpc_shared00() {
 }
 
 // To delete a customer gateway
-//
 // This example deletes the specified customer gateway.
 func ExampleEC2_DeleteCustomerGateway_shared00() {
 	svc := ec2.New(session.New())
@@ -1537,7 +1435,6 @@ func ExampleEC2_DeleteCustomerGateway_shared00() {
 }
 
 // To delete a DHCP options set
-//
 // This example deletes the specified DHCP options set.
 func ExampleEC2_DeleteDhcpOptions_shared00() {
 	svc := ec2.New(session.New())
@@ -1564,7 +1461,6 @@ func ExampleEC2_DeleteDhcpOptions_shared00() {
 }
 
 // To delete an Internet gateway
-//
 // This example deletes the specified Internet gateway.
 func ExampleEC2_DeleteInternetGateway_shared00() {
 	svc := ec2.New(session.New())
@@ -1591,7 +1487,6 @@ func ExampleEC2_DeleteInternetGateway_shared00() {
 }
 
 // To delete a key pair
-//
 // This example deletes the specified key pair.
 func ExampleEC2_DeleteKeyPair_shared00() {
 	svc := ec2.New(session.New())
@@ -1618,7 +1513,6 @@ func ExampleEC2_DeleteKeyPair_shared00() {
 }
 
 // To delete a launch template
-//
 // This example deletes the specified launch template.
 func ExampleEC2_DeleteLaunchTemplate_shared00() {
 	svc := ec2.New(session.New())
@@ -1645,7 +1539,6 @@ func ExampleEC2_DeleteLaunchTemplate_shared00() {
 }
 
 // To delete a launch template version
-//
 // This example deletes the specified launch template version.
 func ExampleEC2_DeleteLaunchTemplateVersions_shared00() {
 	svc := ec2.New(session.New())
@@ -1675,7 +1568,6 @@ func ExampleEC2_DeleteLaunchTemplateVersions_shared00() {
 }
 
 // To delete a NAT gateway
-//
 // This example deletes the specified NAT gateway.
 func ExampleEC2_DeleteNatGateway_shared00() {
 	svc := ec2.New(session.New())
@@ -1702,7 +1594,6 @@ func ExampleEC2_DeleteNatGateway_shared00() {
 }
 
 // To delete a network ACL
-//
 // This example deletes the specified network ACL.
 func ExampleEC2_DeleteNetworkAcl_shared00() {
 	svc := ec2.New(session.New())
@@ -1729,7 +1620,6 @@ func ExampleEC2_DeleteNetworkAcl_shared00() {
 }
 
 // To delete a network ACL entry
-//
 // This example deletes ingress rule number 100 from the specified network ACL.
 func ExampleEC2_DeleteNetworkAclEntry_shared00() {
 	svc := ec2.New(session.New())
@@ -1758,7 +1648,6 @@ func ExampleEC2_DeleteNetworkAclEntry_shared00() {
 }
 
 // To delete a network interface
-//
 // This example deletes the specified network interface.
 func ExampleEC2_DeleteNetworkInterface_shared00() {
 	svc := ec2.New(session.New())
@@ -1785,7 +1674,6 @@ func ExampleEC2_DeleteNetworkInterface_shared00() {
 }
 
 // To delete a placement group
-//
 // This example deletes the specified placement group.
 func ExampleEC2_DeletePlacementGroup_shared00() {
 	svc := ec2.New(session.New())
@@ -1812,7 +1700,6 @@ func ExampleEC2_DeletePlacementGroup_shared00() {
 }
 
 // To delete a route
-//
 // This example deletes the specified route from the specified route table.
 func ExampleEC2_DeleteRoute_shared00() {
 	svc := ec2.New(session.New())
@@ -1840,7 +1727,6 @@ func ExampleEC2_DeleteRoute_shared00() {
 }
 
 // To delete a route table
-//
 // This example deletes the specified route table.
 func ExampleEC2_DeleteRouteTable_shared00() {
 	svc := ec2.New(session.New())
@@ -1867,7 +1753,6 @@ func ExampleEC2_DeleteRouteTable_shared00() {
 }
 
 // To delete a security group
-//
 // This example deletes the specified security group.
 func ExampleEC2_DeleteSecurityGroup_shared00() {
 	svc := ec2.New(session.New())
@@ -1894,8 +1779,7 @@ func ExampleEC2_DeleteSecurityGroup_shared00() {
 }
 
 // To delete a snapshot
-//
-// This example deletes a snapshot with the snapshot ID of ``snap-1234567890abcdef0``.
+// This example deletes a snapshot with the snapshot ID of “snap-1234567890abcdef0“.
 // If the command succeeds, no output is returned.
 func ExampleEC2_DeleteSnapshot_shared00() {
 	svc := ec2.New(session.New())
@@ -1922,7 +1806,6 @@ func ExampleEC2_DeleteSnapshot_shared00() {
 }
 
 // To cancel a Spot Instance data feed subscription
-//
 // This example deletes a Spot data feed subscription for the account.
 func ExampleEC2_DeleteSpotDatafeedSubscription_shared00() {
 	svc := ec2.New(session.New())
@@ -1947,7 +1830,6 @@ func ExampleEC2_DeleteSpotDatafeedSubscription_shared00() {
 }
 
 // To delete a subnet
-//
 // This example deletes the specified subnet.
 func ExampleEC2_DeleteSubnet_shared00() {
 	svc := ec2.New(session.New())
@@ -1974,7 +1856,6 @@ func ExampleEC2_DeleteSubnet_shared00() {
 }
 
 // To delete a tag from a resource
-//
 // This example deletes the tag Stack=test from the specified image.
 func ExampleEC2_DeleteTags_shared00() {
 	svc := ec2.New(session.New())
@@ -2009,8 +1890,7 @@ func ExampleEC2_DeleteTags_shared00() {
 }
 
 // To delete a volume
-//
-// This example deletes an available volume with the volume ID of ``vol-049df61146c4d7901``.
+// This example deletes an available volume with the volume ID of “vol-049df61146c4d7901“.
 // If the command succeeds, no output is returned.
 func ExampleEC2_DeleteVolume_shared00() {
 	svc := ec2.New(session.New())
@@ -2037,7 +1917,6 @@ func ExampleEC2_DeleteVolume_shared00() {
 }
 
 // To delete a VPC
-//
 // This example deletes the specified VPC.
 func ExampleEC2_DeleteVpc_shared00() {
 	svc := ec2.New(session.New())
@@ -2064,7 +1943,6 @@ func ExampleEC2_DeleteVpc_shared00() {
 }
 
 // To describe a single attribute for your AWS account
-//
 // This example describes the supported-platforms attribute for your AWS account.
 func ExampleEC2_DescribeAccountAttributes_shared00() {
 	svc := ec2.New(session.New())
@@ -2093,7 +1971,6 @@ func ExampleEC2_DescribeAccountAttributes_shared00() {
 }
 
 // To describe all attributes for your AWS account
-//
 // This example describes the attributes for your AWS account.
 func ExampleEC2_DescribeAccountAttributes_shared01() {
 	svc := ec2.New(session.New())
@@ -2118,7 +1995,6 @@ func ExampleEC2_DescribeAccountAttributes_shared01() {
 }
 
 // To describe your Elastic IP addresses
-//
 // This example describes your Elastic IP addresses.
 func ExampleEC2_DescribeAddresses_shared00() {
 	svc := ec2.New(session.New())
@@ -2142,76 +2018,7 @@ func ExampleEC2_DescribeAddresses_shared00() {
 	fmt.Println(result)
 }
 
-// To describe your Elastic IP addresses for EC2-VPC
-//
-// This example describes your Elastic IP addresses for use with instances in a VPC.
-func ExampleEC2_DescribeAddresses_shared01() {
-	svc := ec2.New(session.New())
-	input := &ec2.DescribeAddressesInput{
-		Filters: []*ec2.Filter{
-			{
-				Name: aws.String("domain"),
-				Values: []*string{
-					aws.String("vpc"),
-				},
-			},
-		},
-	}
-
-	result, err := svc.DescribeAddresses(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To describe your Elastic IP addresses for EC2-Classic
-//
-// This example describes your Elastic IP addresses for use with instances in EC2-Classic.
-func ExampleEC2_DescribeAddresses_shared02() {
-	svc := ec2.New(session.New())
-	input := &ec2.DescribeAddressesInput{
-		Filters: []*ec2.Filter{
-			{
-				Name: aws.String("domain"),
-				Values: []*string{
-					aws.String("standard"),
-				},
-			},
-		},
-	}
-
-	result, err := svc.DescribeAddresses(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To describe your Availability Zones
-//
 // This example describes the Availability Zones that are available to you. The response
 // includes Availability Zones only for the current region.
 func ExampleEC2_DescribeAvailabilityZones_shared00() {
@@ -2237,7 +2044,6 @@ func ExampleEC2_DescribeAvailabilityZones_shared00() {
 }
 
 // To describe a customer gateway
-//
 // This example describes the specified customer gateway.
 func ExampleEC2_DescribeCustomerGateways_shared00() {
 	svc := ec2.New(session.New())
@@ -2266,7 +2072,6 @@ func ExampleEC2_DescribeCustomerGateways_shared00() {
 }
 
 // To describe a DHCP options set
-//
 // This example describes the specified DHCP options set.
 func ExampleEC2_DescribeDhcpOptions_shared00() {
 	svc := ec2.New(session.New())
@@ -2295,7 +2100,6 @@ func ExampleEC2_DescribeDhcpOptions_shared00() {
 }
 
 // To describe an IAM instance profile association
-//
 // This example describes the specified IAM instance profile association.
 func ExampleEC2_DescribeIamInstanceProfileAssociations_shared00() {
 	svc := ec2.New(session.New())
@@ -2324,7 +2128,6 @@ func ExampleEC2_DescribeIamInstanceProfileAssociations_shared00() {
 }
 
 // To describe the launch permissions for an AMI
-//
 // This example describes the launch permissions for the specified AMI.
 func ExampleEC2_DescribeImageAttribute_shared00() {
 	svc := ec2.New(session.New())
@@ -2352,7 +2155,6 @@ func ExampleEC2_DescribeImageAttribute_shared00() {
 }
 
 // To describe an AMI
-//
 // This example describes the specified AMI.
 func ExampleEC2_DescribeImages_shared00() {
 	svc := ec2.New(session.New())
@@ -2381,7 +2183,6 @@ func ExampleEC2_DescribeImages_shared00() {
 }
 
 // To describe the instance type
-//
 // This example describes the instance type of the specified instance.
 func ExampleEC2_DescribeInstanceAttribute_shared00() {
 	svc := ec2.New(session.New())
@@ -2409,8 +2210,7 @@ func ExampleEC2_DescribeInstanceAttribute_shared00() {
 }
 
 // To describe the disableApiTermination attribute
-//
-// This example describes the ``disableApiTermination`` attribute of the specified instance.
+// This example describes the “disableApiTermination“ attribute of the specified instance.
 func ExampleEC2_DescribeInstanceAttribute_shared01() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeInstanceAttributeInput{
@@ -2437,8 +2237,7 @@ func ExampleEC2_DescribeInstanceAttribute_shared01() {
 }
 
 // To describe the block device mapping for an instance
-//
-// This example describes the ``blockDeviceMapping`` attribute of the specified instance.
+// This example describes the “blockDeviceMapping“ attribute of the specified instance.
 func ExampleEC2_DescribeInstanceAttribute_shared02() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeInstanceAttributeInput{
@@ -2465,7 +2264,6 @@ func ExampleEC2_DescribeInstanceAttribute_shared02() {
 }
 
 // To describe the status of an instance
-//
 // This example describes the current status of the specified instance.
 func ExampleEC2_DescribeInstanceStatus_shared00() {
 	svc := ec2.New(session.New())
@@ -2494,7 +2292,6 @@ func ExampleEC2_DescribeInstanceStatus_shared00() {
 }
 
 // To describe an Amazon EC2 instance
-//
 // This example describes the specified instance.
 func ExampleEC2_DescribeInstances_shared00() {
 	svc := ec2.New(session.New())
@@ -2523,7 +2320,6 @@ func ExampleEC2_DescribeInstances_shared00() {
 }
 
 // To describe the instances with a specific instance type
-//
 // This example describes the instances with the t2.micro instance type.
 func ExampleEC2_DescribeInstances_shared01() {
 	svc := ec2.New(session.New())
@@ -2557,7 +2353,6 @@ func ExampleEC2_DescribeInstances_shared01() {
 }
 
 // To describe the instances with a specific tag
-//
 // This example describes the instances with the Purpose=test tag.
 func ExampleEC2_DescribeInstances_shared02() {
 	svc := ec2.New(session.New())
@@ -2591,7 +2386,6 @@ func ExampleEC2_DescribeInstances_shared02() {
 }
 
 // To describe the Internet gateway for a VPC
-//
 // This example describes the Internet gateway for the specified VPC.
 func ExampleEC2_DescribeInternetGateways_shared00() {
 	svc := ec2.New(session.New())
@@ -2625,7 +2419,6 @@ func ExampleEC2_DescribeInternetGateways_shared00() {
 }
 
 // To display a key pair
-//
 // This example displays the fingerprint for the specified key.
 func ExampleEC2_DescribeKeyPairs_shared00() {
 	svc := ec2.New(session.New())
@@ -2654,7 +2447,6 @@ func ExampleEC2_DescribeKeyPairs_shared00() {
 }
 
 // To describe the versions for a launch template
-//
 // This example describes the versions for the specified launch template.
 func ExampleEC2_DescribeLaunchTemplateVersions_shared00() {
 	svc := ec2.New(session.New())
@@ -2681,7 +2473,6 @@ func ExampleEC2_DescribeLaunchTemplateVersions_shared00() {
 }
 
 // To describe a launch template
-//
 // This example describes the specified launch template.
 func ExampleEC2_DescribeLaunchTemplates_shared00() {
 	svc := ec2.New(session.New())
@@ -2710,7 +2501,6 @@ func ExampleEC2_DescribeLaunchTemplates_shared00() {
 }
 
 // To describe your moving addresses
-//
 // This example describes all of your moving Elastic IP addresses.
 func ExampleEC2_DescribeMovingAddresses_shared00() {
 	svc := ec2.New(session.New())
@@ -2735,7 +2525,6 @@ func ExampleEC2_DescribeMovingAddresses_shared00() {
 }
 
 // To describe a NAT gateway
-//
 // This example describes the NAT gateway for the specified VPC.
 func ExampleEC2_DescribeNatGateways_shared00() {
 	svc := ec2.New(session.New())
@@ -2769,7 +2558,6 @@ func ExampleEC2_DescribeNatGateways_shared00() {
 }
 
 // To describe a network ACL
-//
 // This example describes the specified network ACL.
 func ExampleEC2_DescribeNetworkAcls_shared00() {
 	svc := ec2.New(session.New())
@@ -2798,7 +2586,6 @@ func ExampleEC2_DescribeNetworkAcls_shared00() {
 }
 
 // To describe the attachment attribute of a network interface
-//
 // This example describes the attachment attribute of the specified network interface.
 func ExampleEC2_DescribeNetworkInterfaceAttribute_shared00() {
 	svc := ec2.New(session.New())
@@ -2826,7 +2613,6 @@ func ExampleEC2_DescribeNetworkInterfaceAttribute_shared00() {
 }
 
 // To describe the description attribute of a network interface
-//
 // This example describes the description attribute of the specified network interface.
 func ExampleEC2_DescribeNetworkInterfaceAttribute_shared01() {
 	svc := ec2.New(session.New())
@@ -2854,7 +2640,6 @@ func ExampleEC2_DescribeNetworkInterfaceAttribute_shared01() {
 }
 
 // To describe the groupSet attribute of a network interface
-//
 // This example describes the groupSet attribute of the specified network interface.
 func ExampleEC2_DescribeNetworkInterfaceAttribute_shared02() {
 	svc := ec2.New(session.New())
@@ -2882,7 +2667,6 @@ func ExampleEC2_DescribeNetworkInterfaceAttribute_shared02() {
 }
 
 // To describe the sourceDestCheck attribute of a network interface
-//
 // This example describes the sourceDestCheck attribute of the specified network interface.
 func ExampleEC2_DescribeNetworkInterfaceAttribute_shared03() {
 	svc := ec2.New(session.New())
@@ -2939,7 +2723,6 @@ func ExampleEC2_DescribeNetworkInterfaces_shared00() {
 }
 
 // To describe your regions
-//
 // This example describes all the regions that are available to you.
 func ExampleEC2_DescribeRegions_shared00() {
 	svc := ec2.New(session.New())
@@ -2964,7 +2747,6 @@ func ExampleEC2_DescribeRegions_shared00() {
 }
 
 // To describe a route table
-//
 // This example describes the specified route table.
 func ExampleEC2_DescribeRouteTables_shared00() {
 	svc := ec2.New(session.New())
@@ -2992,75 +2774,7 @@ func ExampleEC2_DescribeRouteTables_shared00() {
 	fmt.Println(result)
 }
 
-// To describe an available schedule
-//
-// This example describes a schedule that occurs every week on Sunday, starting on the
-// specified date. Note that the output contains a single schedule as an example.
-func ExampleEC2_DescribeScheduledInstanceAvailability_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.DescribeScheduledInstanceAvailabilityInput{
-		FirstSlotStartTimeRange: &ec2.SlotDateTimeRangeRequest{
-			EarliestTime: parseTime("2006-01-02T15:04:05.999999999Z", "2016-01-31T00:00:00Z"),
-			LatestTime:   parseTime("2006-01-02T15:04:05.999999999Z", "2016-01-31T04:00:00Z"),
-		},
-		Recurrence: &ec2.ScheduledInstanceRecurrenceRequest{
-			Frequency: aws.String("Weekly"),
-			Interval:  aws.Int64(1),
-			OccurrenceDays: []*int64{
-				aws.Int64(1),
-			},
-		},
-	}
-
-	result, err := svc.DescribeScheduledInstanceAvailability(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To describe your Scheduled Instances
-//
-// This example describes the specified Scheduled Instance.
-func ExampleEC2_DescribeScheduledInstances_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.DescribeScheduledInstancesInput{
-		ScheduledInstanceIds: []*string{
-			aws.String("sci-1234-1234-1234-1234-123456789012"),
-		},
-	}
-
-	result, err := svc.DescribeScheduledInstances(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To describe security group references
-//
 // This example describes the security group references for the specified security group.
 func ExampleEC2_DescribeSecurityGroupReferences_shared00() {
 	svc := ec2.New(session.New())
@@ -3089,7 +2803,6 @@ func ExampleEC2_DescribeSecurityGroupReferences_shared00() {
 }
 
 // To describe a security group
-//
 // This example describes the specified security group.
 func ExampleEC2_DescribeSecurityGroups_shared00() {
 	svc := ec2.New(session.New())
@@ -3118,7 +2831,6 @@ func ExampleEC2_DescribeSecurityGroups_shared00() {
 }
 
 // To describe a tagged security group
-//
 // This example describes the security groups that include the specified tag (Purpose=test).
 func ExampleEC2_DescribeSecurityGroups_shared01() {
 	svc := ec2.New(session.New())
@@ -3152,9 +2864,8 @@ func ExampleEC2_DescribeSecurityGroups_shared01() {
 }
 
 // To describe snapshot attributes
-//
-// This example describes the ``createVolumePermission`` attribute on a snapshot with
-// the snapshot ID of ``snap-066877671789bd71b``.
+// This example describes the “createVolumePermission“ attribute on a snapshot with
+// the snapshot ID of “snap-066877671789bd71b“.
 func ExampleEC2_DescribeSnapshotAttribute_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeSnapshotAttributeInput{
@@ -3181,8 +2892,7 @@ func ExampleEC2_DescribeSnapshotAttribute_shared00() {
 }
 
 // To describe a snapshot
-//
-// This example describes a snapshot with the snapshot ID of ``snap-1234567890abcdef0``.
+// This example describes a snapshot with the snapshot ID of “snap-1234567890abcdef0“.
 func ExampleEC2_DescribeSnapshots_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeSnapshotsInput{
@@ -3210,9 +2920,8 @@ func ExampleEC2_DescribeSnapshots_shared00() {
 }
 
 // To describe snapshots using filters
-//
 // This example describes all snapshots owned by the ID 012345678910 that are in the
-// ``pending`` status.
+// “pending“ status.
 func ExampleEC2_DescribeSnapshots_shared01() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeSnapshotsInput{
@@ -3248,7 +2957,6 @@ func ExampleEC2_DescribeSnapshots_shared01() {
 }
 
 // To describe the datafeed for your AWS account
-//
 // This example describes the Spot Instance datafeed subscription for your AWS account.
 func ExampleEC2_DescribeSpotDatafeedSubscription_shared00() {
 	svc := ec2.New(session.New())
@@ -3273,7 +2981,6 @@ func ExampleEC2_DescribeSpotDatafeedSubscription_shared00() {
 }
 
 // To describe the Spot Instances associated with a Spot fleet
-//
 // This example lists the Spot Instances associated with the specified Spot fleet.
 func ExampleEC2_DescribeSpotFleetInstances_shared00() {
 	svc := ec2.New(session.New())
@@ -3300,7 +3007,6 @@ func ExampleEC2_DescribeSpotFleetInstances_shared00() {
 }
 
 // To describe Spot fleet history
-//
 // This example returns the history for the specified Spot fleet starting at the specified
 // time.
 func ExampleEC2_DescribeSpotFleetRequestHistory_shared00() {
@@ -3329,7 +3035,6 @@ func ExampleEC2_DescribeSpotFleetRequestHistory_shared00() {
 }
 
 // To describe a Spot fleet request
-//
 // This example describes the specified Spot fleet request.
 func ExampleEC2_DescribeSpotFleetRequests_shared00() {
 	svc := ec2.New(session.New())
@@ -3358,7 +3063,6 @@ func ExampleEC2_DescribeSpotFleetRequests_shared00() {
 }
 
 // To describe a Spot Instance request
-//
 // This example describes the specified Spot Instance request.
 func ExampleEC2_DescribeSpotInstanceRequests_shared00() {
 	svc := ec2.New(session.New())
@@ -3387,20 +3091,19 @@ func ExampleEC2_DescribeSpotInstanceRequests_shared00() {
 }
 
 // To describe Spot price history for Linux/UNIX (Amazon VPC)
-//
 // This example returns the Spot Price history for m1.xlarge, Linux/UNIX (Amazon VPC)
 // instances for a particular day in January.
 func ExampleEC2_DescribeSpotPriceHistory_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeSpotPriceHistoryInput{
-		EndTime: parseTime("2006-01-02T15:04:05.999999999Z", "2014-01-06T08:09:10"),
+		EndTime: parseTime("2006-01-02T15:04:05.999999999Z", "2014-01-06T08:09:10.05Z"),
 		InstanceTypes: []*string{
 			aws.String("m1.xlarge"),
 		},
 		ProductDescriptions: []*string{
 			aws.String("Linux/UNIX (Amazon VPC)"),
 		},
-		StartTime: parseTime("2006-01-02T15:04:05.999999999Z", "2014-01-06T07:08:09"),
+		StartTime: parseTime("2006-01-02T15:04:05.999999999Z", "2014-01-06T07:08:09.05Z"),
 	}
 
 	result, err := svc.DescribeSpotPriceHistory(input)
@@ -3422,7 +3125,6 @@ func ExampleEC2_DescribeSpotPriceHistory_shared00() {
 }
 
 // To describe the subnets for a VPC
-//
 // This example describes the subnets for the specified VPC.
 func ExampleEC2_DescribeSubnets_shared00() {
 	svc := ec2.New(session.New())
@@ -3456,7 +3158,6 @@ func ExampleEC2_DescribeSubnets_shared00() {
 }
 
 // To describe the tags for a single resource
-//
 // This example describes the tags for the specified instance.
 func ExampleEC2_DescribeTags_shared00() {
 	svc := ec2.New(session.New())
@@ -3490,8 +3191,7 @@ func ExampleEC2_DescribeTags_shared00() {
 }
 
 // To describe a volume attribute
-//
-// This example describes the ``autoEnableIo`` attribute of the volume with the ID ``vol-049df61146c4d7901``.
+// This example describes the “autoEnableIo“ attribute of the volume with the ID “vol-049df61146c4d7901“.
 func ExampleEC2_DescribeVolumeAttribute_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeVolumeAttributeInput{
@@ -3518,8 +3218,7 @@ func ExampleEC2_DescribeVolumeAttribute_shared00() {
 }
 
 // To describe the status of a single volume
-//
-// This example describes the status for the volume ``vol-1234567890abcdef0``.
+// This example describes the status for the volume “vol-1234567890abcdef0“.
 func ExampleEC2_DescribeVolumeStatus_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeVolumeStatusInput{
@@ -3547,7 +3246,6 @@ func ExampleEC2_DescribeVolumeStatus_shared00() {
 }
 
 // To describe the status of impaired volumes
-//
 // This example describes the status for all volumes that are impaired. In this example
 // output, there are no impaired volumes.
 func ExampleEC2_DescribeVolumeStatus_shared01() {
@@ -3582,7 +3280,6 @@ func ExampleEC2_DescribeVolumeStatus_shared01() {
 }
 
 // To describe all volumes
-//
 // This example describes all of your volumes in the default region.
 func ExampleEC2_DescribeVolumes_shared00() {
 	svc := ec2.New(session.New())
@@ -3607,7 +3304,6 @@ func ExampleEC2_DescribeVolumes_shared00() {
 }
 
 // To describe volumes that are attached to a specific instance
-//
 // This example describes all volumes that are both attached to the instance with the
 // ID i-1234567890abcdef0 and set to delete when the instance terminates.
 func ExampleEC2_DescribeVolumes_shared01() {
@@ -3648,7 +3344,6 @@ func ExampleEC2_DescribeVolumes_shared01() {
 }
 
 // To describe the enableDnsSupport attribute
-//
 // This example describes the enableDnsSupport attribute. This attribute indicates whether
 // DNS resolution is enabled for the VPC. If this attribute is true, the Amazon DNS
 // server resolves DNS hostnames for your instances to their corresponding IP addresses;
@@ -3679,7 +3374,6 @@ func ExampleEC2_DescribeVpcAttribute_shared00() {
 }
 
 // To describe the enableDnsHostnames attribute
-//
 // This example describes the enableDnsHostnames attribute. This attribute indicates
 // whether the instances launched in the VPC get DNS hostnames. If this attribute is
 // true, instances in the VPC get DNS hostnames; otherwise, they do not.
@@ -3709,7 +3403,6 @@ func ExampleEC2_DescribeVpcAttribute_shared01() {
 }
 
 // To describe a VPC
-//
 // This example describes the specified VPC.
 func ExampleEC2_DescribeVpcs_shared00() {
 	svc := ec2.New(session.New())
@@ -3738,7 +3431,6 @@ func ExampleEC2_DescribeVpcs_shared00() {
 }
 
 // To detach an Internet gateway from a VPC
-//
 // This example detaches the specified Internet gateway from the specified VPC.
 func ExampleEC2_DetachInternetGateway_shared00() {
 	svc := ec2.New(session.New())
@@ -3766,7 +3458,6 @@ func ExampleEC2_DetachInternetGateway_shared00() {
 }
 
 // To detach a network interface from an instance
-//
 // This example detaches the specified network interface from its attached instance.
 func ExampleEC2_DetachNetworkInterface_shared00() {
 	svc := ec2.New(session.New())
@@ -3793,8 +3484,7 @@ func ExampleEC2_DetachNetworkInterface_shared00() {
 }
 
 // To detach a volume from an instance
-//
-// This example detaches the volume (``vol-049df61146c4d7901``) from the instance it
+// This example detaches the volume (“vol-049df61146c4d7901“) from the instance it
 // is attached to.
 func ExampleEC2_DetachVolume_shared00() {
 	svc := ec2.New(session.New())
@@ -3821,7 +3511,6 @@ func ExampleEC2_DetachVolume_shared00() {
 }
 
 // To disable route propagation
-//
 // This example disables the specified virtual private gateway from propagating static
 // routes to the specified route table.
 func ExampleEC2_DisableVgwRoutePropagation_shared00() {
@@ -3849,9 +3538,8 @@ func ExampleEC2_DisableVgwRoutePropagation_shared00() {
 	fmt.Println(result)
 }
 
-// To disassociate an Elastic IP address in EC2-VPC
-//
-// This example disassociates an Elastic IP address from an instance in a VPC.
+// To disassociate an Elastic IP address
+// This example disassociates an Elastic IP address from an instance.
 func ExampleEC2_DisassociateAddress_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DisassociateAddressInput{
@@ -3876,35 +3564,7 @@ func ExampleEC2_DisassociateAddress_shared00() {
 	fmt.Println(result)
 }
 
-// To disassociate an Elastic IP addresses in EC2-Classic
-//
-// This example disassociates an Elastic IP address from an instance in EC2-Classic.
-func ExampleEC2_DisassociateAddress_shared01() {
-	svc := ec2.New(session.New())
-	input := &ec2.DisassociateAddressInput{
-		PublicIp: aws.String("198.51.100.0"),
-	}
-
-	result, err := svc.DisassociateAddress(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To disassociate an IAM instance profile
-//
 // This example disassociates the specified IAM instance profile from an instance.
 func ExampleEC2_DisassociateIamInstanceProfile_shared00() {
 	svc := ec2.New(session.New())
@@ -3931,7 +3591,6 @@ func ExampleEC2_DisassociateIamInstanceProfile_shared00() {
 }
 
 // To disassociate a route table
-//
 // This example disassociates the specified route table from its associated subnet.
 func ExampleEC2_DisassociateRouteTable_shared00() {
 	svc := ec2.New(session.New())
@@ -3958,7 +3617,6 @@ func ExampleEC2_DisassociateRouteTable_shared00() {
 }
 
 // To enable route propagation
-//
 // This example enables the specified virtual private gateway to propagate static routes
 // to the specified route table.
 func ExampleEC2_EnableVgwRoutePropagation_shared00() {
@@ -3987,8 +3645,7 @@ func ExampleEC2_EnableVgwRoutePropagation_shared00() {
 }
 
 // To enable I/O for a volume
-//
-// This example enables I/O on volume ``vol-1234567890abcdef0``.
+// This example enables I/O on volume “vol-1234567890abcdef0“.
 func ExampleEC2_EnableVolumeIO_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.EnableVolumeIOInput{
@@ -4014,7 +3671,6 @@ func ExampleEC2_EnableVolumeIO_shared00() {
 }
 
 // To get the console output
-//
 // This example gets the console output for the specified instance.
 func ExampleEC2_GetConsoleOutput_shared00() {
 	svc := ec2.New(session.New())
@@ -4041,7 +3697,6 @@ func ExampleEC2_GetConsoleOutput_shared00() {
 }
 
 // To get the launch template data for an instance
-//
 // This example gets the launch template data for the specified instance.
 func ExampleEC2_GetLaunchTemplateData_shared00() {
 	svc := ec2.New(session.New())
@@ -4068,7 +3723,6 @@ func ExampleEC2_GetLaunchTemplateData_shared00() {
 }
 
 // To make an AMI public
-//
 // This example makes the specified AMI public.
 func ExampleEC2_ModifyImageAttribute_shared00() {
 	svc := ec2.New(session.New())
@@ -4102,7 +3756,6 @@ func ExampleEC2_ModifyImageAttribute_shared00() {
 }
 
 // To grant launch permissions
-//
 // This example grants launch permissions for the specified AMI to the specified AWS
 // account.
 func ExampleEC2_ModifyImageAttribute_shared01() {
@@ -4137,7 +3790,6 @@ func ExampleEC2_ModifyImageAttribute_shared01() {
 }
 
 // To modify the instance type
-//
 // This example modifies the instance type of the specified stopped instance.
 func ExampleEC2_ModifyInstanceAttribute_shared00() {
 	svc := ec2.New(session.New())
@@ -4167,7 +3819,6 @@ func ExampleEC2_ModifyInstanceAttribute_shared00() {
 }
 
 // To enable enhanced networking
-//
 // This example enables enhanced networking for the specified stopped instance.
 func ExampleEC2_ModifyInstanceAttribute_shared01() {
 	svc := ec2.New(session.New())
@@ -4197,7 +3848,6 @@ func ExampleEC2_ModifyInstanceAttribute_shared01() {
 }
 
 // To change the default version of a launch template
-//
 // This example specifies version 2 as the default version of the specified launch template.
 func ExampleEC2_ModifyLaunchTemplate_shared00() {
 	svc := ec2.New(session.New())
@@ -4225,7 +3875,6 @@ func ExampleEC2_ModifyLaunchTemplate_shared00() {
 }
 
 // To modify the attachment attribute of a network interface
-//
 // This example modifies the attachment attribute of the specified network interface.
 func ExampleEC2_ModifyNetworkInterfaceAttribute_shared00() {
 	svc := ec2.New(session.New())
@@ -4256,7 +3905,6 @@ func ExampleEC2_ModifyNetworkInterfaceAttribute_shared00() {
 }
 
 // To modify the description attribute of a network interface
-//
 // This example modifies the description attribute of the specified network interface.
 func ExampleEC2_ModifyNetworkInterfaceAttribute_shared01() {
 	svc := ec2.New(session.New())
@@ -4286,7 +3934,6 @@ func ExampleEC2_ModifyNetworkInterfaceAttribute_shared01() {
 }
 
 // To modify the groupSet attribute of a network interface
-//
 // This example command modifies the groupSet attribute of the specified network interface.
 func ExampleEC2_ModifyNetworkInterfaceAttribute_shared02() {
 	svc := ec2.New(session.New())
@@ -4317,7 +3964,6 @@ func ExampleEC2_ModifyNetworkInterfaceAttribute_shared02() {
 }
 
 // To modify the sourceDestCheck attribute of a network interface
-//
 // This example command modifies the sourceDestCheck attribute of the specified network
 // interface.
 func ExampleEC2_ModifyNetworkInterfaceAttribute_shared03() {
@@ -4348,9 +3994,8 @@ func ExampleEC2_ModifyNetworkInterfaceAttribute_shared03() {
 }
 
 // To modify a snapshot attribute
-//
-// This example modifies snapshot ``snap-1234567890abcdef0`` to remove the create volume
-// permission for a user with the account ID ``123456789012``. If the command succeeds,
+// This example modifies snapshot “snap-1234567890abcdef0“ to remove the create volume
+// permission for a user with the account ID “123456789012“. If the command succeeds,
 // no output is returned.
 func ExampleEC2_ModifySnapshotAttribute_shared00() {
 	svc := ec2.New(session.New())
@@ -4382,8 +4027,7 @@ func ExampleEC2_ModifySnapshotAttribute_shared00() {
 }
 
 // To make a snapshot public
-//
-// This example makes the snapshot ``snap-1234567890abcdef0`` public.
+// This example makes the snapshot “snap-1234567890abcdef0“ public.
 func ExampleEC2_ModifySnapshotAttribute_shared01() {
 	svc := ec2.New(session.New())
 	input := &ec2.ModifySnapshotAttributeInput{
@@ -4414,7 +4058,6 @@ func ExampleEC2_ModifySnapshotAttribute_shared01() {
 }
 
 // To increase the target capacity of a Spot fleet request
-//
 // This example increases the target capacity of the specified Spot fleet request.
 func ExampleEC2_ModifySpotFleetRequest_shared00() {
 	svc := ec2.New(session.New())
@@ -4442,7 +4085,6 @@ func ExampleEC2_ModifySpotFleetRequest_shared00() {
 }
 
 // To decrease the target capacity of a Spot fleet request
-//
 // This example decreases the target capacity of the specified Spot fleet request without
 // terminating any Spot Instances as a result.
 func ExampleEC2_ModifySpotFleetRequest_shared01() {
@@ -4472,7 +4114,6 @@ func ExampleEC2_ModifySpotFleetRequest_shared01() {
 }
 
 // To change a subnet's public IP addressing behavior
-//
 // This example modifies the specified subnet so that all instances launched into this
 // subnet are assigned a public IP address.
 func ExampleEC2_ModifySubnetAttribute_shared00() {
@@ -4503,9 +4144,8 @@ func ExampleEC2_ModifySubnetAttribute_shared00() {
 }
 
 // To modify a volume attribute
-//
-// This example sets the ``autoEnableIo`` attribute of the volume with the ID ``vol-1234567890abcdef0``
-// to ``true``. If the command succeeds, no output is returned.
+// This example sets the “autoEnableIo“ attribute of the volume with the ID “vol-1234567890abcdef0“
+// to “true“. If the command succeeds, no output is returned.
 func ExampleEC2_ModifyVolumeAttribute_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.ModifyVolumeAttributeInput{
@@ -4535,7 +4175,6 @@ func ExampleEC2_ModifyVolumeAttribute_shared00() {
 }
 
 // To modify the enableDnsSupport attribute
-//
 // This example modifies the enableDnsSupport attribute. This attribute indicates whether
 // DNS resolution is enabled for the VPC. If this attribute is true, the Amazon DNS
 // server resolves DNS hostnames for instances in the VPC to their corresponding IP
@@ -4568,7 +4207,6 @@ func ExampleEC2_ModifyVpcAttribute_shared00() {
 }
 
 // To modify the enableDnsHostnames attribute
-//
 // This example modifies the enableDnsHostnames attribute. This attribute indicates
 // whether instances launched in the VPC get DNS hostnames. If this attribute is true,
 // instances in the VPC get DNS hostnames; otherwise, they do not.
@@ -4600,7 +4238,6 @@ func ExampleEC2_ModifyVpcAttribute_shared01() {
 }
 
 // To move an address to EC2-VPC
-//
 // This example moves the specified Elastic IP address to the EC2-VPC platform.
 func ExampleEC2_MoveAddressToVpc_shared00() {
 	svc := ec2.New(session.New())
@@ -4626,40 +4263,7 @@ func ExampleEC2_MoveAddressToVpc_shared00() {
 	fmt.Println(result)
 }
 
-// To purchase a Scheduled Instance
-//
-// This example purchases a Scheduled Instance.
-func ExampleEC2_PurchaseScheduledInstances_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.PurchaseScheduledInstancesInput{
-		PurchaseRequests: []*ec2.PurchaseRequest{
-			{
-				InstanceCount: aws.Int64(1),
-				PurchaseToken: aws.String("eyJ2IjoiMSIsInMiOjEsImMiOi..."),
-			},
-		},
-	}
-
-	result, err := svc.PurchaseScheduledInstances(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To reboot an EC2 instance
-//
 // This example reboots the specified EC2 instance.
 func ExampleEC2_RebootInstances_shared00() {
 	svc := ec2.New(session.New())
@@ -4687,9 +4291,8 @@ func ExampleEC2_RebootInstances_shared00() {
 	fmt.Println(result)
 }
 
-// To release an Elastic IP address for EC2-VPC
-//
-// This example releases an Elastic IP address for use with instances in a VPC.
+// To release an Elastic IP address
+// This example releases the specified Elastic IP address.
 func ExampleEC2_ReleaseAddress_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.ReleaseAddressInput{
@@ -4714,35 +4317,7 @@ func ExampleEC2_ReleaseAddress_shared00() {
 	fmt.Println(result)
 }
 
-// To release an Elastic IP addresses for EC2-Classic
-//
-// This example releases an Elastic IP address for use with instances in EC2-Classic.
-func ExampleEC2_ReleaseAddress_shared01() {
-	svc := ec2.New(session.New())
-	input := &ec2.ReleaseAddressInput{
-		PublicIp: aws.String("198.51.100.0"),
-	}
-
-	result, err := svc.ReleaseAddress(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To replace the network ACL associated with a subnet
-//
 // This example associates the specified network ACL with the subnet for the specified
 // network ACL association.
 func ExampleEC2_ReplaceNetworkAclAssociation_shared00() {
@@ -4771,7 +4346,6 @@ func ExampleEC2_ReplaceNetworkAclAssociation_shared00() {
 }
 
 // To replace a network ACL entry
-//
 // This example replaces an entry for the specified network ACL. The new rule 100 allows
 // ingress traffic from 203.0.113.12/24 on UDP port 53 (DNS) into any associated subnet.
 func ExampleEC2_ReplaceNetworkAclEntry_shared00() {
@@ -4808,7 +4382,6 @@ func ExampleEC2_ReplaceNetworkAclEntry_shared00() {
 }
 
 // To replace a route
-//
 // This example replaces the specified route in the specified table table. The new route
 // matches the specified CIDR and sends the traffic to the specified virtual private
 // gateway.
@@ -4839,7 +4412,6 @@ func ExampleEC2_ReplaceRoute_shared00() {
 }
 
 // To replace the route table associated with a subnet
-//
 // This example associates the specified route table with the subnet for the specified
 // route table association.
 func ExampleEC2_ReplaceRouteTableAssociation_shared00() {
@@ -4868,7 +4440,6 @@ func ExampleEC2_ReplaceRouteTableAssociation_shared00() {
 }
 
 // To request a Spot fleet in the subnet with the lowest price
-//
 // This example creates a Spot fleet request with two launch specifications that differ
 // only by subnet. The Spot fleet launches the instances in the specified subnet with
 // the lowest price. If the instances are launched in a default VPC, they receive a
@@ -4920,13 +4491,10 @@ func ExampleEC2_RequestSpotFleet_shared00() {
 }
 
 // To request a Spot fleet in the Availability Zone with the lowest price
-//
 // This example creates a Spot fleet request with two launch specifications that differ
 // only by Availability Zone. The Spot fleet launches the instances in the specified
 // Availability Zone with the lowest price. If your account supports EC2-VPC only, Amazon
-// EC2 launches the Spot instances in the default subnet of the Availability Zone. If
-// your account supports EC2-Classic, Amazon EC2 launches the instances in EC2-Classic
-// in the Availability Zone.
+// EC2 launches the Spot instances in the default subnet of the Availability Zone.
 func ExampleEC2_RequestSpotFleet_shared01() {
 	svc := ec2.New(session.New())
 	input := &ec2.RequestSpotFleetInput{
@@ -4974,7 +4542,6 @@ func ExampleEC2_RequestSpotFleet_shared01() {
 }
 
 // To launch Spot instances in a subnet and assign them public IP addresses
-//
 // This example assigns public addresses to instances launched in a nondefault VPC.
 // Note that when you specify a network interface, you must include the subnet ID and
 // security group ID using the network interface.
@@ -5027,7 +4594,6 @@ func ExampleEC2_RequestSpotFleet_shared02() {
 }
 
 // To request a Spot fleet using the diversified allocation strategy
-//
 // This example creates a Spot fleet request that launches 30 instances using the diversified
 // allocation strategy. The launch specifications differ by instance type. The Spot
 // fleet distributes the instances across the launch specifications such that there
@@ -5079,12 +4645,9 @@ func ExampleEC2_RequestSpotFleet_shared03() {
 }
 
 // To create a one-time Spot Instance request
-//
 // This example creates a one-time Spot Instance request for five instances in the specified
 // Availability Zone. If your account supports EC2-VPC only, Amazon EC2 launches the
-// instances in the default subnet of the specified Availability Zone. If your account
-// supports EC2-Classic, Amazon EC2 launches the instances in EC2-Classic in the specified
-// Availability Zone.
+// instances in the default subnet of the specified Availability Zone.
 func ExampleEC2_RequestSpotInstances_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.RequestSpotInstancesInput{
@@ -5126,7 +4689,6 @@ func ExampleEC2_RequestSpotInstances_shared00() {
 }
 
 // To create a one-time Spot Instance request
-//
 // This example command creates a one-time Spot Instance request for five instances
 // in the specified subnet. Amazon EC2 launches the instances in the specified subnet.
 // If the VPC is a nondefault VPC, the instances do not receive a public IP address
@@ -5169,7 +4731,6 @@ func ExampleEC2_RequestSpotInstances_shared01() {
 }
 
 // To reset the launchPermission attribute
-//
 // This example resets the launchPermission attribute for the specified AMI. By default,
 // AMIs are private.
 func ExampleEC2_ResetImageAttribute_shared00() {
@@ -5198,7 +4759,6 @@ func ExampleEC2_ResetImageAttribute_shared00() {
 }
 
 // To reset the sourceDestCheck attribute
-//
 // This example resets the sourceDestCheck attribute for the specified instance.
 func ExampleEC2_ResetInstanceAttribute_shared00() {
 	svc := ec2.New(session.New())
@@ -5226,8 +4786,7 @@ func ExampleEC2_ResetInstanceAttribute_shared00() {
 }
 
 // To reset a snapshot attribute
-//
-// This example resets the create volume permissions for snapshot ``snap-1234567890abcdef0``.
+// This example resets the create volume permissions for snapshot “snap-1234567890abcdef0“.
 // If the command succeeds, no output is returned.
 func ExampleEC2_ResetSnapshotAttribute_shared00() {
 	svc := ec2.New(session.New())
@@ -5254,35 +4813,7 @@ func ExampleEC2_ResetSnapshotAttribute_shared00() {
 	fmt.Println(result)
 }
 
-// To restore an address to EC2-Classic
-//
-// This example restores the specified Elastic IP address to the EC2-Classic platform.
-func ExampleEC2_RestoreAddressToClassic_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.RestoreAddressToClassicInput{
-		PublicIp: aws.String("198.51.100.0"),
-	}
-
-	result, err := svc.RestoreAddressToClassic(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To launch an instance
-//
 // This example launches an instance using the specified AMI, instance type, security
 // group, subnet, block device mapping, and tags.
 func ExampleEC2_RunInstances_shared00() {
@@ -5336,96 +4867,7 @@ func ExampleEC2_RunInstances_shared00() {
 	fmt.Println(result)
 }
 
-// To launch a Scheduled Instance in a VPC
-//
-// This example launches the specified Scheduled Instance in a VPC.
-func ExampleEC2_RunScheduledInstances_shared00() {
-	svc := ec2.New(session.New())
-	input := &ec2.RunScheduledInstancesInput{
-		InstanceCount: aws.Int64(1),
-		LaunchSpecification: &ec2.ScheduledInstancesLaunchSpecification{
-			IamInstanceProfile: &ec2.ScheduledInstancesIamInstanceProfile{
-				Name: aws.String("my-iam-role"),
-			},
-			ImageId:      aws.String("ami-12345678"),
-			InstanceType: aws.String("c4.large"),
-			KeyName:      aws.String("my-key-pair"),
-			NetworkInterfaces: []*ec2.ScheduledInstancesNetworkInterface{
-				{
-					AssociatePublicIpAddress: aws.Bool(true),
-					DeviceIndex:              aws.Int64(0),
-					Groups: []*string{
-						aws.String("sg-12345678"),
-					},
-					SubnetId: aws.String("subnet-12345678"),
-				},
-			},
-		},
-		ScheduledInstanceId: aws.String("sci-1234-1234-1234-1234-123456789012"),
-	}
-
-	result, err := svc.RunScheduledInstances(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To launch a Scheduled Instance in EC2-Classic
-//
-// This example launches the specified Scheduled Instance in EC2-Classic.
-func ExampleEC2_RunScheduledInstances_shared01() {
-	svc := ec2.New(session.New())
-	input := &ec2.RunScheduledInstancesInput{
-		InstanceCount: aws.Int64(1),
-		LaunchSpecification: &ec2.ScheduledInstancesLaunchSpecification{
-			IamInstanceProfile: &ec2.ScheduledInstancesIamInstanceProfile{
-				Name: aws.String("my-iam-role"),
-			},
-			ImageId:      aws.String("ami-12345678"),
-			InstanceType: aws.String("c4.large"),
-			KeyName:      aws.String("my-key-pair"),
-			Placement: &ec2.ScheduledInstancesPlacement{
-				AvailabilityZone: aws.String("us-west-2b"),
-			},
-			SecurityGroupIds: []*string{
-				aws.String("sg-12345678"),
-			},
-		},
-		ScheduledInstanceId: aws.String("sci-1234-1234-1234-1234-123456789012"),
-	}
-
-	result, err := svc.RunScheduledInstances(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
 // To start a stopped EC2 instance
-//
 // This example starts the specified EC2 instance.
 func ExampleEC2_StartInstances_shared00() {
 	svc := ec2.New(session.New())
@@ -5454,7 +4896,6 @@ func ExampleEC2_StartInstances_shared00() {
 }
 
 // To stop a running EC2 instance
-//
 // This example stops the specified EC2 instance.
 func ExampleEC2_StopInstances_shared00() {
 	svc := ec2.New(session.New())
@@ -5483,7 +4924,6 @@ func ExampleEC2_StopInstances_shared00() {
 }
 
 // To terminate an EC2 instance
-//
 // This example terminates the specified EC2 instance.
 func ExampleEC2_TerminateInstances_shared00() {
 	svc := ec2.New(session.New())
@@ -5512,7 +4952,6 @@ func ExampleEC2_TerminateInstances_shared00() {
 }
 
 // To unassign a secondary private IP address from a network interface
-//
 // This example unassigns the specified private IP address from the specified network
 // interface.
 func ExampleEC2_UnassignPrivateIpAddresses_shared00() {
@@ -5543,7 +4982,6 @@ func ExampleEC2_UnassignPrivateIpAddresses_shared00() {
 }
 
 // To update an outbound security group rule description
-//
 // This example updates the description for the specified security group rule.
 func ExampleEC2_UpdateSecurityGroupRuleDescriptionsEgress_shared00() {
 	svc := ec2.New(session.New())
@@ -5583,7 +5021,6 @@ func ExampleEC2_UpdateSecurityGroupRuleDescriptionsEgress_shared00() {
 }
 
 // To update an inbound security group rule description
-//
 // This example updates the description for the specified security group rule.
 func ExampleEC2_UpdateSecurityGroupRuleDescriptionsIngress_shared00() {
 	svc := ec2.New(session.New())

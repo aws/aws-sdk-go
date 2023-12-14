@@ -1,3 +1,4 @@
+//go:build go1.7
 // +build go1.7
 
 package ini
@@ -70,6 +71,16 @@ func TestBoolValue(t *testing.T) {
 		{
 			b:             []rune(`"false"`),
 			expectedError: true,
+		},
+		{
+			b:             []rune(`True`),
+			expectedRead:  4,
+			expectedValue: "True",
+		},
+		{
+			b:             []rune(`False`),
+			expectedRead:  5,
+			expectedValue: "False",
 		},
 	}
 

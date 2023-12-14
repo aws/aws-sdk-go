@@ -40,36 +40,38 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a RedshiftDataAPIService client from just a session.
-//     svc := redshiftdataapiservice.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a RedshiftDataAPIService client with additional configuration
-//     svc := redshiftdataapiservice.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a RedshiftDataAPIService client from just a session.
+//	svc := redshiftdataapiservice.New(mySession)
+//
+//	// Create a RedshiftDataAPIService client with additional configuration
+//	svc := redshiftdataapiservice.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *RedshiftDataAPIService {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "redshift-data"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *RedshiftDataAPIService {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *RedshiftDataAPIService {
 	svc := &RedshiftDataAPIService{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2019-12-20",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "RedshiftData",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2019-12-20",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "RedshiftData",
 			},
 			handlers,
 		),

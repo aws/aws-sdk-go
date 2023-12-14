@@ -3,14 +3,14 @@
 // Package finspacedata provides the client and types for making API
 // requests to FinSpace Public API.
 //
-// The FinSpace APIs let you take actions inside the FinSpace environment.
+// The FinSpace APIs let you take actions inside the FinSpace.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13 for more information on this service.
 //
 // See finspacedata package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/finspacedata/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact FinSpace Public API with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

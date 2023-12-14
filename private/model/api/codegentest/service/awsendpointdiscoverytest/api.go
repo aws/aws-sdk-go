@@ -30,14 +30,13 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEndpointsRequest method.
+//	req, resp := client.DescribeEndpointsRequest(params)
 //
-//    // Example sending a request using the DescribeEndpointsRequest method.
-//    req, resp := client.DescribeEndpointsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *AwsEndpointDiscoveryTest) DescribeEndpointsRequest(input *DescribeEndpointsInput) (req *request.Request, output *DescribeEndpointsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEndpoints,
@@ -173,14 +172,13 @@ const opTestDiscoveryIdentifiersRequired = "TestDiscoveryIdentifiersRequired"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TestDiscoveryIdentifiersRequiredRequest method.
+//	req, resp := client.TestDiscoveryIdentifiersRequiredRequest(params)
 //
-//    // Example sending a request using the TestDiscoveryIdentifiersRequiredRequest method.
-//    req, resp := client.TestDiscoveryIdentifiersRequiredRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *AwsEndpointDiscoveryTest) TestDiscoveryIdentifiersRequiredRequest(input *TestDiscoveryIdentifiersRequiredInput) (req *request.Request, output *TestDiscoveryIdentifiersRequiredOutput) {
 	op := &request.Operation{
 		Name:       opTestDiscoveryIdentifiersRequired,
@@ -266,14 +264,13 @@ const opTestDiscoveryOptional = "TestDiscoveryOptional"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TestDiscoveryOptionalRequest method.
+//	req, resp := client.TestDiscoveryOptionalRequest(params)
 //
-//    // Example sending a request using the TestDiscoveryOptionalRequest method.
-//    req, resp := client.TestDiscoveryOptionalRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *AwsEndpointDiscoveryTest) TestDiscoveryOptionalRequest(input *TestDiscoveryOptionalInput) (req *request.Request, output *TestDiscoveryOptionalOutput) {
 	op := &request.Operation{
 		Name:       opTestDiscoveryOptional,
@@ -360,14 +357,13 @@ const opTestDiscoveryRequired = "TestDiscoveryRequired"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TestDiscoveryRequiredRequest method.
+//	req, resp := client.TestDiscoveryRequiredRequest(params)
 //
-//    // Example sending a request using the TestDiscoveryRequiredRequest method.
-//    req, resp := client.TestDiscoveryRequiredRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *AwsEndpointDiscoveryTest) TestDiscoveryRequiredRequest(input *TestDiscoveryRequiredInput) (req *request.Request, output *TestDiscoveryRequiredOutput) {
 	op := &request.Operation{
 		Name:       opTestDiscoveryRequired,
@@ -444,12 +440,20 @@ type DescribeEndpointsInput struct {
 	Operation *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsInput) GoString() string {
 	return s.String()
 }
@@ -467,12 +471,20 @@ type DescribeEndpointsOutput struct {
 	Endpoints []*Endpoint `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsOutput) GoString() string {
 	return s.String()
 }
@@ -493,12 +505,20 @@ type Endpoint struct {
 	CachePeriodInMinutes *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Endpoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Endpoint) GoString() string {
 	return s.String()
 }
@@ -522,12 +542,20 @@ type TestDiscoveryIdentifiersRequiredInput struct {
 	Sdk *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryIdentifiersRequiredInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryIdentifiersRequiredInput) GoString() string {
 	return s.String()
 }
@@ -557,12 +585,20 @@ type TestDiscoveryIdentifiersRequiredOutput struct {
 	RequestSuccessful *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryIdentifiersRequiredOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryIdentifiersRequiredOutput) GoString() string {
 	return s.String()
 }
@@ -579,12 +615,20 @@ type TestDiscoveryOptionalInput struct {
 	Sdk *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryOptionalInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryOptionalInput) GoString() string {
 	return s.String()
 }
@@ -601,12 +645,20 @@ type TestDiscoveryOptionalOutput struct {
 	RequestSuccessful *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryOptionalOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryOptionalOutput) GoString() string {
 	return s.String()
 }
@@ -623,12 +675,20 @@ type TestDiscoveryRequiredInput struct {
 	Sdk *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryRequiredInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryRequiredInput) GoString() string {
 	return s.String()
 }
@@ -645,12 +705,20 @@ type TestDiscoveryRequiredOutput struct {
 	RequestSuccessful *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryRequiredOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestDiscoveryRequiredOutput) GoString() string {
 	return s.String()
 }

@@ -220,7 +220,8 @@
       "type":"string",
       "enum":[
         "standard",
-        "neural"
+        "neural",
+        "long-form"
       ]
     },
     "EngineList":{
@@ -374,7 +375,17 @@
         "ro-RO",
         "ru-RU",
         "sv-SE",
-        "tr-TR"
+        "tr-TR",
+        "en-NZ",
+        "en-ZA",
+        "ca-ES",
+        "de-AT",
+        "yue-CN",
+        "ar-AE",
+        "fi-FI",
+        "en-IE",
+        "nl-BE",
+        "fr-BE"
       ]
     },
     "LanguageCodeList":{
@@ -825,7 +836,39 @@
         "Vicki",
         "Vitoria",
         "Zeina",
-        "Zhiyu"
+        "Zhiyu",
+        "Aria",
+        "Ayanda",
+        "Arlet",
+        "Hannah",
+        "Arthur",
+        "Daniel",
+        "Liam",
+        "Pedro",
+        "Kajal",
+        "Hiujin",
+        "Laura",
+        "Elin",
+        "Ida",
+        "Suvi",
+        "Ola",
+        "Hala",
+        "Andres",
+        "Sergio",
+        "Remi",
+        "Adriano",
+        "Thiago",
+        "Ruth",
+        "Stephen",
+        "Kazuha",
+        "Tomoko",
+        "Niamh",
+        "Sofie",
+        "Lisa",
+        "Isabelle",
+        "Zayd",
+        "Danielle",
+        "Gregory"
       ]
     },
     "VoiceList":{

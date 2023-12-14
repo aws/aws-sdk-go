@@ -4,6 +4,32 @@ package route53
 
 const (
 
+	// ErrCodeCidrBlockInUseException for service response error code
+	// "CidrBlockInUseException".
+	//
+	// This CIDR block is already in use.
+	ErrCodeCidrBlockInUseException = "CidrBlockInUseException"
+
+	// ErrCodeCidrCollectionAlreadyExistsException for service response error code
+	// "CidrCollectionAlreadyExistsException".
+	//
+	// A CIDR collection with this name and a different caller reference already
+	// exists in this account.
+	ErrCodeCidrCollectionAlreadyExistsException = "CidrCollectionAlreadyExistsException"
+
+	// ErrCodeCidrCollectionInUseException for service response error code
+	// "CidrCollectionInUseException".
+	//
+	// This CIDR collection is in use, and isn't empty.
+	ErrCodeCidrCollectionInUseException = "CidrCollectionInUseException"
+
+	// ErrCodeCidrCollectionVersionMismatchException for service response error code
+	// "CidrCollectionVersionMismatchException".
+	//
+	// The CIDR collection version you provided, doesn't match the one in the ListCidrCollections
+	// operation.
+	ErrCodeCidrCollectionVersionMismatchException = "CidrCollectionVersionMismatchException"
+
 	// ErrCodeConcurrentModification for service response error code
 	// "ConcurrentModification".
 	//
@@ -162,6 +188,14 @@ const (
 	//    Resource doesn't have the necessary permissions.
 	//
 	//    * The resource policy hasn't finished propagating yet.
+	//
+	//    * The Key management service (KMS) key you specified doesn’t exist or
+	//    it can’t be used with the log group associated with query log. Update
+	//    or provide a resource policy to grant permissions for the KMS key.
+	//
+	//    * The Key management service (KMS) key you specified is marked as disabled
+	//    for the log group associated with query log. Update or provide a resource
+	//    policy to grant permissions for the KMS key.
 	ErrCodeInsufficientCloudWatchLogsResourcePolicy = "InsufficientCloudWatchLogsResourcePolicy"
 
 	// ErrCodeInvalidArgument for service response error code
@@ -241,7 +275,7 @@ const (
 	// "KeySigningKeyAlreadyExists".
 	//
 	// You've already created a key-signing key (KSK) with this name or with the
-	// same customer managed customer master key (CMK) ARN.
+	// same customer managed key ARN.
 	ErrCodeKeySigningKeyAlreadyExists = "KeySigningKeyAlreadyExists"
 
 	// ErrCodeKeySigningKeyInParentDSRecord for service response error code
@@ -275,15 +309,10 @@ const (
 	// ErrCodeLimitsExceeded for service response error code
 	// "LimitsExceeded".
 	//
-	// This operation can't be completed either because the current account has
-	// reached the limit on reusable delegation sets that it can create or because
-	// you've reached the limit on the number of Amazon VPCs that you can associate
-	// with a private hosted zone. To get the current limit on the number of reusable
-	// delegation sets, see GetAccountLimit (https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetAccountLimit.html).
-	// To get the current limit on the number of Amazon VPCs that you can associate
-	// with a private hosted zone, see GetHostedZoneLimit (https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetHostedZoneLimit.html).
-	// To request a higher limit, create a case (http://aws.amazon.com/route53-request)
-	// with the AWS Support Center.
+	// This operation can't be completed because the current account has reached
+	// the limit on the resource you are trying to create. To request a higher limit,
+	// create a case (http://aws.amazon.com/route53-request) with the Amazon Web
+	// Services Support Center.
 	ErrCodeLimitsExceeded = "LimitsExceeded"
 
 	// ErrCodeNoSuchChange for service response error code
@@ -291,6 +320,18 @@ const (
 	//
 	// A change with the specified change ID does not exist.
 	ErrCodeNoSuchChange = "NoSuchChange"
+
+	// ErrCodeNoSuchCidrCollectionException for service response error code
+	// "NoSuchCidrCollectionException".
+	//
+	// The CIDR collection you specified, doesn't exist.
+	ErrCodeNoSuchCidrCollectionException = "NoSuchCidrCollectionException"
+
+	// ErrCodeNoSuchCidrLocationException for service response error code
+	// "NoSuchCidrLocationException".
+	//
+	// The CIDR collection location doesn't match any locations in your account.
+	ErrCodeNoSuchCidrLocationException = "NoSuchCidrLocationException"
 
 	// ErrCodeNoSuchCloudWatchLogsLogGroup for service response error code
 	// "NoSuchCloudWatchLogsLogGroup".
@@ -397,11 +438,11 @@ const (
 	// For information about how to get the current limit for an account, see GetAccountLimit
 	// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetAccountLimit.html).
 	// To request a higher limit, create a case (http://aws.amazon.com/route53-request)
-	// with the AWS Support Center.
+	// with the Amazon Web Services Support Center.
 	//
-	// You have reached the maximum number of active health checks for an AWS account.
-	// To request a higher limit, create a case (http://aws.amazon.com/route53-request)
-	// with the AWS Support Center.
+	// You have reached the maximum number of active health checks for an Amazon
+	// Web Services account. To request a higher limit, create a case (http://aws.amazon.com/route53-request)
+	// with the Amazon Web Services Support Center.
 	ErrCodeTooManyHealthChecks = "TooManyHealthChecks"
 
 	// ErrCodeTooManyHostedZones for service response error code
@@ -422,7 +463,7 @@ const (
 	// delegation set, see GetReusableDelegationSetLimit (https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetReusableDelegationSetLimit.html).
 	//
 	// To request a higher limit, create a case (http://aws.amazon.com/route53-request)
-	// with the AWS Support Center.
+	// with the Amazon Web Services Support Center.
 	ErrCodeTooManyHostedZones = "TooManyHostedZones"
 
 	// ErrCodeTooManyKeySigningKeys for service response error code
@@ -444,7 +485,7 @@ const (
 	// To get the current limit for an account, see GetAccountLimit (https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetAccountLimit.html).
 	//
 	// To request a higher limit, create a case (http://aws.amazon.com/route53-request)
-	// with the AWS Support Center.
+	// with the Amazon Web Services Support Center.
 	ErrCodeTooManyTrafficPolicies = "TooManyTrafficPolicies"
 
 	// ErrCodeTooManyTrafficPolicyInstances for service response error code
@@ -460,7 +501,7 @@ const (
 	// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetAccountLimit.html).
 	//
 	// To request a higher limit, create a case (http://aws.amazon.com/route53-request)
-	// with the AWS Support Center.
+	// with the Amazon Web Services Support Center.
 	ErrCodeTooManyTrafficPolicyInstances = "TooManyTrafficPolicyInstances"
 
 	// ErrCodeTooManyTrafficPolicyVersionsForCurrentPolicy for service response error code

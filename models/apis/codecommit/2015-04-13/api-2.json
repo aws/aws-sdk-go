@@ -1084,6 +1084,31 @@
         {"shape":"InvalidContinuationTokenException"}
       ]
     },
+    "ListFileCommitHistory":{
+      "name":"ListFileCommitHistory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListFileCommitHistoryRequest"},
+      "output":{"shape":"ListFileCommitHistoryResponse"},
+      "errors":[
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidContinuationTokenException"},
+        {"shape":"InvalidMaxResultsException"},
+        {"shape":"TipsDivergenceExceededException"},
+        {"shape":"CommitRequiredException"},
+        {"shape":"InvalidCommitException"},
+        {"shape":"CommitDoesNotExistException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
+      ]
+    },
     "ListPullRequests":{
       "name":"ListPullRequests",
       "http":{
@@ -3140,6 +3165,15 @@
       },
       "exception":true
     },
+    "FileVersion":{
+      "type":"structure",
+      "members":{
+        "commit":{"shape":"Commit"},
+        "blobId":{"shape":"ObjectId"},
+        "path":{"shape":"Path"},
+        "revisionChildren":{"shape":"RevisionChildren"}
+      }
+    },
     "FilesMetadata":{
       "type":"list",
       "member":{"shape":"FileMetadata"}
@@ -4000,6 +4034,28 @@
       "type":"structure",
       "members":{
         "branches":{"shape":"BranchNameList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListFileCommitHistoryRequest":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "filePath"
+      ],
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "commitSpecifier":{"shape":"CommitName"},
+        "filePath":{"shape":"Path"},
+        "maxResults":{"shape":"Limit"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListFileCommitHistoryResponse":{
+      "type":"structure",
+      "required":["revisionDag"],
+      "members":{
+        "revisionDag":{"shape":"RevisionDag"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -5087,6 +5143,14 @@
       "members":{
       },
       "exception":true
+    },
+    "RevisionChildren":{
+      "type":"list",
+      "member":{"shape":"RevisionId"}
+    },
+    "RevisionDag":{
+      "type":"list",
+      "member":{"shape":"FileVersion"}
     },
     "RevisionId":{"type":"string"},
     "RevisionIdRequiredException":{

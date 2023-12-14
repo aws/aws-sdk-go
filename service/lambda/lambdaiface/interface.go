@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS Lambda.
-//    func myFunc(svc lambdaiface.LambdaAPI) bool {
-//        // Make svc.AddLayerVersionPermission request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS Lambda.
+//	func myFunc(svc lambdaiface.LambdaAPI) bool {
+//	    // Make svc.AddLayerVersionPermission request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := lambda.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := lambda.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockLambdaClient struct {
-//        lambdaiface.LambdaAPI
-//    }
-//    func (m *mockLambdaClient) AddLayerVersionPermission(input *lambda.AddLayerVersionPermissionInput) (*lambda.AddLayerVersionPermissionOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockLambdaClient struct {
+//	    lambdaiface.LambdaAPI
+//	}
+//	func (m *mockLambdaClient) AddLayerVersionPermission(input *lambda.AddLayerVersionPermissionInput) (*lambda.AddLayerVersionPermissionOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockLambdaClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockLambdaClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -84,6 +84,10 @@ type LambdaAPI interface {
 	CreateFunctionWithContext(aws.Context, *lambda.CreateFunctionInput, ...request.Option) (*lambda.FunctionConfiguration, error)
 	CreateFunctionRequest(*lambda.CreateFunctionInput) (*request.Request, *lambda.FunctionConfiguration)
 
+	CreateFunctionUrlConfig(*lambda.CreateFunctionUrlConfigInput) (*lambda.CreateFunctionUrlConfigOutput, error)
+	CreateFunctionUrlConfigWithContext(aws.Context, *lambda.CreateFunctionUrlConfigInput, ...request.Option) (*lambda.CreateFunctionUrlConfigOutput, error)
+	CreateFunctionUrlConfigRequest(*lambda.CreateFunctionUrlConfigInput) (*request.Request, *lambda.CreateFunctionUrlConfigOutput)
+
 	DeleteAlias(*lambda.DeleteAliasInput) (*lambda.DeleteAliasOutput, error)
 	DeleteAliasWithContext(aws.Context, *lambda.DeleteAliasInput, ...request.Option) (*lambda.DeleteAliasOutput, error)
 	DeleteAliasRequest(*lambda.DeleteAliasInput) (*request.Request, *lambda.DeleteAliasOutput)
@@ -111,6 +115,10 @@ type LambdaAPI interface {
 	DeleteFunctionEventInvokeConfig(*lambda.DeleteFunctionEventInvokeConfigInput) (*lambda.DeleteFunctionEventInvokeConfigOutput, error)
 	DeleteFunctionEventInvokeConfigWithContext(aws.Context, *lambda.DeleteFunctionEventInvokeConfigInput, ...request.Option) (*lambda.DeleteFunctionEventInvokeConfigOutput, error)
 	DeleteFunctionEventInvokeConfigRequest(*lambda.DeleteFunctionEventInvokeConfigInput) (*request.Request, *lambda.DeleteFunctionEventInvokeConfigOutput)
+
+	DeleteFunctionUrlConfig(*lambda.DeleteFunctionUrlConfigInput) (*lambda.DeleteFunctionUrlConfigOutput, error)
+	DeleteFunctionUrlConfigWithContext(aws.Context, *lambda.DeleteFunctionUrlConfigInput, ...request.Option) (*lambda.DeleteFunctionUrlConfigOutput, error)
+	DeleteFunctionUrlConfigRequest(*lambda.DeleteFunctionUrlConfigInput) (*request.Request, *lambda.DeleteFunctionUrlConfigOutput)
 
 	DeleteLayerVersion(*lambda.DeleteLayerVersionInput) (*lambda.DeleteLayerVersionOutput, error)
 	DeleteLayerVersionWithContext(aws.Context, *lambda.DeleteLayerVersionInput, ...request.Option) (*lambda.DeleteLayerVersionOutput, error)
@@ -156,6 +164,10 @@ type LambdaAPI interface {
 	GetFunctionEventInvokeConfigWithContext(aws.Context, *lambda.GetFunctionEventInvokeConfigInput, ...request.Option) (*lambda.GetFunctionEventInvokeConfigOutput, error)
 	GetFunctionEventInvokeConfigRequest(*lambda.GetFunctionEventInvokeConfigInput) (*request.Request, *lambda.GetFunctionEventInvokeConfigOutput)
 
+	GetFunctionUrlConfig(*lambda.GetFunctionUrlConfigInput) (*lambda.GetFunctionUrlConfigOutput, error)
+	GetFunctionUrlConfigWithContext(aws.Context, *lambda.GetFunctionUrlConfigInput, ...request.Option) (*lambda.GetFunctionUrlConfigOutput, error)
+	GetFunctionUrlConfigRequest(*lambda.GetFunctionUrlConfigInput) (*request.Request, *lambda.GetFunctionUrlConfigOutput)
+
 	GetLayerVersion(*lambda.GetLayerVersionInput) (*lambda.GetLayerVersionOutput, error)
 	GetLayerVersionWithContext(aws.Context, *lambda.GetLayerVersionInput, ...request.Option) (*lambda.GetLayerVersionOutput, error)
 	GetLayerVersionRequest(*lambda.GetLayerVersionInput) (*request.Request, *lambda.GetLayerVersionOutput)
@@ -176,6 +188,10 @@ type LambdaAPI interface {
 	GetProvisionedConcurrencyConfigWithContext(aws.Context, *lambda.GetProvisionedConcurrencyConfigInput, ...request.Option) (*lambda.GetProvisionedConcurrencyConfigOutput, error)
 	GetProvisionedConcurrencyConfigRequest(*lambda.GetProvisionedConcurrencyConfigInput) (*request.Request, *lambda.GetProvisionedConcurrencyConfigOutput)
 
+	GetRuntimeManagementConfig(*lambda.GetRuntimeManagementConfigInput) (*lambda.GetRuntimeManagementConfigOutput, error)
+	GetRuntimeManagementConfigWithContext(aws.Context, *lambda.GetRuntimeManagementConfigInput, ...request.Option) (*lambda.GetRuntimeManagementConfigOutput, error)
+	GetRuntimeManagementConfigRequest(*lambda.GetRuntimeManagementConfigInput) (*request.Request, *lambda.GetRuntimeManagementConfigOutput)
+
 	Invoke(*lambda.InvokeInput) (*lambda.InvokeOutput, error)
 	InvokeWithContext(aws.Context, *lambda.InvokeInput, ...request.Option) (*lambda.InvokeOutput, error)
 	InvokeRequest(*lambda.InvokeInput) (*request.Request, *lambda.InvokeOutput)
@@ -183,6 +199,10 @@ type LambdaAPI interface {
 	InvokeAsync(*lambda.InvokeAsyncInput) (*lambda.InvokeAsyncOutput, error)
 	InvokeAsyncWithContext(aws.Context, *lambda.InvokeAsyncInput, ...request.Option) (*lambda.InvokeAsyncOutput, error)
 	InvokeAsyncRequest(*lambda.InvokeAsyncInput) (*request.Request, *lambda.InvokeAsyncOutput)
+
+	InvokeWithResponseStream(*lambda.InvokeWithResponseStreamInput) (*lambda.InvokeWithResponseStreamOutput, error)
+	InvokeWithResponseStreamWithContext(aws.Context, *lambda.InvokeWithResponseStreamInput, ...request.Option) (*lambda.InvokeWithResponseStreamOutput, error)
+	InvokeWithResponseStreamRequest(*lambda.InvokeWithResponseStreamInput) (*request.Request, *lambda.InvokeWithResponseStreamOutput)
 
 	ListAliases(*lambda.ListAliasesInput) (*lambda.ListAliasesOutput, error)
 	ListAliasesWithContext(aws.Context, *lambda.ListAliasesInput, ...request.Option) (*lambda.ListAliasesOutput, error)
@@ -211,6 +231,13 @@ type LambdaAPI interface {
 
 	ListFunctionEventInvokeConfigsPages(*lambda.ListFunctionEventInvokeConfigsInput, func(*lambda.ListFunctionEventInvokeConfigsOutput, bool) bool) error
 	ListFunctionEventInvokeConfigsPagesWithContext(aws.Context, *lambda.ListFunctionEventInvokeConfigsInput, func(*lambda.ListFunctionEventInvokeConfigsOutput, bool) bool, ...request.Option) error
+
+	ListFunctionUrlConfigs(*lambda.ListFunctionUrlConfigsInput) (*lambda.ListFunctionUrlConfigsOutput, error)
+	ListFunctionUrlConfigsWithContext(aws.Context, *lambda.ListFunctionUrlConfigsInput, ...request.Option) (*lambda.ListFunctionUrlConfigsOutput, error)
+	ListFunctionUrlConfigsRequest(*lambda.ListFunctionUrlConfigsInput) (*request.Request, *lambda.ListFunctionUrlConfigsOutput)
+
+	ListFunctionUrlConfigsPages(*lambda.ListFunctionUrlConfigsInput, func(*lambda.ListFunctionUrlConfigsOutput, bool) bool) error
+	ListFunctionUrlConfigsPagesWithContext(aws.Context, *lambda.ListFunctionUrlConfigsInput, func(*lambda.ListFunctionUrlConfigsOutput, bool) bool, ...request.Option) error
 
 	ListFunctions(*lambda.ListFunctionsInput) (*lambda.ListFunctionsOutput, error)
 	ListFunctionsWithContext(aws.Context, *lambda.ListFunctionsInput, ...request.Option) (*lambda.ListFunctionsOutput, error)
@@ -282,6 +309,10 @@ type LambdaAPI interface {
 	PutProvisionedConcurrencyConfigWithContext(aws.Context, *lambda.PutProvisionedConcurrencyConfigInput, ...request.Option) (*lambda.PutProvisionedConcurrencyConfigOutput, error)
 	PutProvisionedConcurrencyConfigRequest(*lambda.PutProvisionedConcurrencyConfigInput) (*request.Request, *lambda.PutProvisionedConcurrencyConfigOutput)
 
+	PutRuntimeManagementConfig(*lambda.PutRuntimeManagementConfigInput) (*lambda.PutRuntimeManagementConfigOutput, error)
+	PutRuntimeManagementConfigWithContext(aws.Context, *lambda.PutRuntimeManagementConfigInput, ...request.Option) (*lambda.PutRuntimeManagementConfigOutput, error)
+	PutRuntimeManagementConfigRequest(*lambda.PutRuntimeManagementConfigInput) (*request.Request, *lambda.PutRuntimeManagementConfigOutput)
+
 	RemoveLayerVersionPermission(*lambda.RemoveLayerVersionPermissionInput) (*lambda.RemoveLayerVersionPermissionOutput, error)
 	RemoveLayerVersionPermissionWithContext(aws.Context, *lambda.RemoveLayerVersionPermissionInput, ...request.Option) (*lambda.RemoveLayerVersionPermissionOutput, error)
 	RemoveLayerVersionPermissionRequest(*lambda.RemoveLayerVersionPermissionInput) (*request.Request, *lambda.RemoveLayerVersionPermissionOutput)
@@ -322,14 +353,27 @@ type LambdaAPI interface {
 	UpdateFunctionEventInvokeConfigWithContext(aws.Context, *lambda.UpdateFunctionEventInvokeConfigInput, ...request.Option) (*lambda.UpdateFunctionEventInvokeConfigOutput, error)
 	UpdateFunctionEventInvokeConfigRequest(*lambda.UpdateFunctionEventInvokeConfigInput) (*request.Request, *lambda.UpdateFunctionEventInvokeConfigOutput)
 
+	UpdateFunctionUrlConfig(*lambda.UpdateFunctionUrlConfigInput) (*lambda.UpdateFunctionUrlConfigOutput, error)
+	UpdateFunctionUrlConfigWithContext(aws.Context, *lambda.UpdateFunctionUrlConfigInput, ...request.Option) (*lambda.UpdateFunctionUrlConfigOutput, error)
+	UpdateFunctionUrlConfigRequest(*lambda.UpdateFunctionUrlConfigInput) (*request.Request, *lambda.UpdateFunctionUrlConfigOutput)
+
 	WaitUntilFunctionActive(*lambda.GetFunctionConfigurationInput) error
 	WaitUntilFunctionActiveWithContext(aws.Context, *lambda.GetFunctionConfigurationInput, ...request.WaiterOption) error
+
+	WaitUntilFunctionActiveV2(*lambda.GetFunctionInput) error
+	WaitUntilFunctionActiveV2WithContext(aws.Context, *lambda.GetFunctionInput, ...request.WaiterOption) error
 
 	WaitUntilFunctionExists(*lambda.GetFunctionInput) error
 	WaitUntilFunctionExistsWithContext(aws.Context, *lambda.GetFunctionInput, ...request.WaiterOption) error
 
 	WaitUntilFunctionUpdated(*lambda.GetFunctionConfigurationInput) error
 	WaitUntilFunctionUpdatedWithContext(aws.Context, *lambda.GetFunctionConfigurationInput, ...request.WaiterOption) error
+
+	WaitUntilFunctionUpdatedV2(*lambda.GetFunctionInput) error
+	WaitUntilFunctionUpdatedV2WithContext(aws.Context, *lambda.GetFunctionInput, ...request.WaiterOption) error
+
+	WaitUntilPublishedVersionActive(*lambda.GetFunctionConfigurationInput) error
+	WaitUntilPublishedVersionActiveWithContext(aws.Context, *lambda.GetFunctionConfigurationInput, ...request.WaiterOption) error
 }
 
 var _ LambdaAPI = (*lambda.Lambda)(nil)

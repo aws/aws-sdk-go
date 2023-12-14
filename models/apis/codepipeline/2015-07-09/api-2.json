@@ -1566,6 +1566,44 @@
         "jobDetails":{"shape":"ThirdPartyJobDetails"}
       }
     },
+    "GitConfiguration":{
+      "type":"structure",
+      "required":["sourceActionName"],
+      "members":{
+        "sourceActionName":{"shape":"ActionName"},
+        "push":{"shape":"GitPushFilterList"}
+      }
+    },
+    "GitPushFilter":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"GitTagFilterCriteria"}
+      }
+    },
+    "GitPushFilterList":{
+      "type":"list",
+      "member":{"shape":"GitPushFilter"},
+      "max":1,
+      "min":1
+    },
+    "GitTagFilterCriteria":{
+      "type":"structure",
+      "members":{
+        "includes":{"shape":"GitTagPatternList"},
+        "excludes":{"shape":"GitTagPatternList"}
+      }
+    },
+    "GitTagNamePattern":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "GitTagPatternList":{
+      "type":"list",
+      "member":{"shape":"GitTagNamePattern"},
+      "max":8,
+      "min":1
+    },
     "InputArtifact":{
       "type":"structure",
       "required":["name"],
@@ -1987,7 +2025,10 @@
         "artifactStore":{"shape":"ArtifactStore"},
         "artifactStores":{"shape":"ArtifactStoreMap"},
         "stages":{"shape":"PipelineStageDeclarationList"},
-        "version":{"shape":"PipelineVersion"}
+        "version":{"shape":"PipelineVersion"},
+        "pipelineType":{"shape":"PipelineType"},
+        "triggers":{"shape":"PipelineTriggerDeclarationList"},
+        "variables":{"shape":"PipelineVariableDeclarationList"}
       }
     },
     "PipelineExecution":{
@@ -1998,7 +2039,9 @@
         "pipelineExecutionId":{"shape":"PipelineExecutionId"},
         "status":{"shape":"PipelineExecutionStatus"},
         "statusSummary":{"shape":"PipelineExecutionStatusSummary"},
-        "artifactRevisions":{"shape":"ArtifactRevisionList"}
+        "artifactRevisions":{"shape":"ArtifactRevisionList"},
+        "trigger":{"shape":"ExecutionTrigger"},
+        "variables":{"shape":"ResolvedPipelineVariableList"}
       }
     },
     "PipelineExecutionId":{
@@ -2056,7 +2099,8 @@
       "members":{
         "pipelineArn":{"shape":"PipelineArn"},
         "created":{"shape":"Timestamp"},
-        "updated":{"shape":"Timestamp"}
+        "updated":{"shape":"Timestamp"},
+        "pollingDisabledAt":{"shape":"Timestamp"}
       }
     },
     "PipelineName":{
@@ -2086,9 +2130,86 @@
       "members":{
         "name":{"shape":"PipelineName"},
         "version":{"shape":"PipelineVersion"},
+        "pipelineType":{"shape":"PipelineType"},
         "created":{"shape":"Timestamp"},
         "updated":{"shape":"Timestamp"}
       }
+    },
+    "PipelineTriggerDeclaration":{
+      "type":"structure",
+      "required":[
+        "providerType",
+        "gitConfiguration"
+      ],
+      "members":{
+        "providerType":{"shape":"PipelineTriggerProviderType"},
+        "gitConfiguration":{"shape":"GitConfiguration"}
+      }
+    },
+    "PipelineTriggerDeclarationList":{
+      "type":"list",
+      "member":{"shape":"PipelineTriggerDeclaration"},
+      "max":20
+    },
+    "PipelineTriggerProviderType":{
+      "type":"string",
+      "enum":["CodeStarSourceConnection"]
+    },
+    "PipelineType":{
+      "type":"string",
+      "enum":[
+        "V1",
+        "V2"
+      ]
+    },
+    "PipelineVariable":{
+      "type":"structure",
+      "required":[
+        "name",
+        "value"
+      ],
+      "members":{
+        "name":{"shape":"PipelineVariableName"},
+        "value":{"shape":"PipelineVariableValue"}
+      }
+    },
+    "PipelineVariableDeclaration":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"PipelineVariableName"},
+        "defaultValue":{"shape":"PipelineVariableValue"},
+        "description":{"shape":"PipelineVariableDescription"}
+      }
+    },
+    "PipelineVariableDeclarationList":{
+      "type":"list",
+      "member":{"shape":"PipelineVariableDeclaration"},
+      "max":50
+    },
+    "PipelineVariableDescription":{
+      "type":"string",
+      "max":200,
+      "min":0,
+      "pattern":".*"
+    },
+    "PipelineVariableList":{
+      "type":"list",
+      "member":{"shape":"PipelineVariable"},
+      "max":50,
+      "min":1
+    },
+    "PipelineVariableName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[A-Za-z0-9@\\-_]+"
+    },
+    "PipelineVariableValue":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":".*"
     },
     "PipelineVersion":{
       "type":"integer",
@@ -2289,6 +2410,17 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
+    "ResolvedPipelineVariable":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "resolvedValue":{"shape":"String"}
+      }
+    },
+    "ResolvedPipelineVariableList":{
+      "type":"list",
+      "member":{"shape":"ResolvedPipelineVariable"}
+    },
     "ResourceArn":{
       "type":"string",
       "pattern":"arn:aws(-[\\w]+)*:codepipeline:.+:[0-9]{12}:.+"
@@ -2397,6 +2529,33 @@
       "type":"list",
       "member":{"shape":"SourceRevision"}
     },
+    "SourceRevisionOverride":{
+      "type":"structure",
+      "required":[
+        "actionName",
+        "revisionType",
+        "revisionValue"
+      ],
+      "members":{
+        "actionName":{"shape":"ActionName"},
+        "revisionType":{"shape":"SourceRevisionType"},
+        "revisionValue":{"shape":"Revision"}
+      }
+    },
+    "SourceRevisionOverrideList":{
+      "type":"list",
+      "member":{"shape":"SourceRevisionOverride"},
+      "max":50,
+      "min":0
+    },
+    "SourceRevisionType":{
+      "type":"string",
+      "enum":[
+        "COMMIT_ID",
+        "IMAGE_DIGEST",
+        "S3_OBJECT_VERSION_ID"
+      ]
+    },
     "StageActionDeclarationList":{
       "type":"list",
       "member":{"shape":"ActionDeclaration"}
@@ -2465,7 +2624,10 @@
     },
     "StageRetryMode":{
       "type":"string",
-      "enum":["FAILED_ACTIONS"]
+      "enum":[
+        "FAILED_ACTIONS",
+        "ALL_ACTIONS"
+      ]
     },
     "StageState":{
       "type":"structure",
@@ -2493,10 +2655,12 @@
       "required":["name"],
       "members":{
         "name":{"shape":"PipelineName"},
+        "variables":{"shape":"PipelineVariableList"},
         "clientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "sourceRevisions":{"shape":"SourceRevisionOverrideList"}
       }
     },
     "StartPipelineExecutionOutput":{
@@ -2648,7 +2812,8 @@
         "PollForSourceChanges",
         "Webhook",
         "CloudWatchEvent",
-        "PutActionRevision"
+        "PutActionRevision",
+        "WebhookV2"
       ]
     },
     "UntagResourceInput":{

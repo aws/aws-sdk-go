@@ -25,6 +25,16 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListAssessmentControlInsightsByControlDomain": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListAssessmentFrameworkShareRequests": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListAssessmentFrameworks": {
       "input_token": "nextToken",
       "output_token": "nextToken",
@@ -36,6 +46,21 @@
       "limit_key": "maxResults"
     },
     "ListAssessments": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListControlDomainInsights": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListControlDomainInsightsByAssessment": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListControlInsightsByControlDomain": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"

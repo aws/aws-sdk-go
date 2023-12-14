@@ -61,33 +61,37 @@ type InputService1ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService1ProtocolTest client from just a session.
-//     svc := inputservice1protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService1ProtocolTest client with additional configuration
-//     svc := inputservice1protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a InputService1ProtocolTest client from just a session.
+//	svc := inputservice1protocoltest.New(mySession)
+//
+//	// Create a InputService1ProtocolTest client with additional configuration
+//	svc := inputservice1protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService1ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService1ProtocolTest {
 	c := p.ClientConfig("inputservice1protocoltest", cfgs...)
-	return newInputService1ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newInputService1ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newInputService1ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *InputService1ProtocolTest {
+func newInputService1ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *InputService1ProtocolTest {
 	svc := &InputService1ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "InputService1ProtocolTest",
-				ServiceID:     "InputService1ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "com.amazonaws.foo",
+				ServiceName:    "InputService1ProtocolTest",
+				ServiceID:      "InputService1ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "com.amazonaws.foo",
 			},
 			handlers,
 		),
@@ -127,14 +131,13 @@ const opInputService1TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService1TestCaseOperation1Request method.
+//	req, resp := client.InputService1TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the InputService1TestCaseOperation1Request method.
-//    req, resp := client.InputService1TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input *InputService1TestShapeInputService1TestCaseOperation1Input) (req *request.Request, output *InputService1TestShapeInputService1TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService1TestCaseOperation1,
@@ -212,33 +215,37 @@ type InputService2ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService2ProtocolTest client from just a session.
-//     svc := inputservice2protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService2ProtocolTest client with additional configuration
-//     svc := inputservice2protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a InputService2ProtocolTest client from just a session.
+//	svc := inputservice2protocoltest.New(mySession)
+//
+//	// Create a InputService2ProtocolTest client with additional configuration
+//	svc := inputservice2protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService2ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService2ProtocolTest {
 	c := p.ClientConfig("inputservice2protocoltest", cfgs...)
-	return newInputService2ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newInputService2ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newInputService2ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *InputService2ProtocolTest {
+func newInputService2ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *InputService2ProtocolTest {
 	svc := &InputService2ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "InputService2ProtocolTest",
-				ServiceID:     "InputService2ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "com.amazonaws.foo",
+				ServiceName:    "InputService2ProtocolTest",
+				ServiceID:      "InputService2ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "com.amazonaws.foo",
 			},
 			handlers,
 		),
@@ -278,14 +285,13 @@ const opInputService2TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService2TestCaseOperation1Request method.
+//	req, resp := client.InputService2TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the InputService2TestCaseOperation1Request method.
-//    req, resp := client.InputService2TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input *InputService2TestShapeInputService2TestCaseOperation1Input) (req *request.Request, output *InputService2TestShapeInputService2TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opInputService2TestCaseOperation1,
@@ -378,33 +384,37 @@ type InputService3ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService3ProtocolTest client from just a session.
-//     svc := inputservice3protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService3ProtocolTest client with additional configuration
-//     svc := inputservice3protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a InputService3ProtocolTest client from just a session.
+//	svc := inputservice3protocoltest.New(mySession)
+//
+//	// Create a InputService3ProtocolTest client with additional configuration
+//	svc := inputservice3protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService3ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService3ProtocolTest {
 	c := p.ClientConfig("inputservice3protocoltest", cfgs...)
-	return newInputService3ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newInputService3ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newInputService3ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *InputService3ProtocolTest {
+func newInputService3ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *InputService3ProtocolTest {
 	svc := &InputService3ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "InputService3ProtocolTest",
-				ServiceID:     "InputService3ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "com.amazonaws.foo",
+				ServiceName:    "InputService3ProtocolTest",
+				ServiceID:      "InputService3ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "com.amazonaws.foo",
 			},
 			handlers,
 		),
@@ -444,14 +454,13 @@ const opInputService3TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService3TestCaseOperation1Request method.
+//	req, resp := client.InputService3TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the InputService3TestCaseOperation1Request method.
-//    req, resp := client.InputService3TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input *InputService3TestShapeInputService3TestCaseOperation1Input) (req *request.Request, output *InputService3TestShapeInputService3TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opInputService3TestCaseOperation1,
@@ -513,14 +522,13 @@ const opInputService3TestCaseOperation2 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService3TestCaseOperation2Request method.
+//	req, resp := client.InputService3TestCaseOperation2Request(params)
 //
-//    // Example sending a request using the InputService3TestCaseOperation2Request method.
-//    req, resp := client.InputService3TestCaseOperation2Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation2Request(input *InputService3TestShapeInputService3TestCaseOperation2Input) (req *request.Request, output *InputService3TestShapeInputService3TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:     opInputService3TestCaseOperation2,
@@ -631,33 +639,37 @@ type InputService4ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService4ProtocolTest client from just a session.
-//     svc := inputservice4protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService4ProtocolTest client with additional configuration
-//     svc := inputservice4protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a InputService4ProtocolTest client from just a session.
+//	svc := inputservice4protocoltest.New(mySession)
+//
+//	// Create a InputService4ProtocolTest client with additional configuration
+//	svc := inputservice4protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService4ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService4ProtocolTest {
 	c := p.ClientConfig("inputservice4protocoltest", cfgs...)
-	return newInputService4ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newInputService4ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newInputService4ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *InputService4ProtocolTest {
+func newInputService4ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *InputService4ProtocolTest {
 	svc := &InputService4ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "InputService4ProtocolTest",
-				ServiceID:     "InputService4ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "com.amazonaws.foo",
+				ServiceName:    "InputService4ProtocolTest",
+				ServiceID:      "InputService4ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "com.amazonaws.foo",
 			},
 			handlers,
 		),
@@ -697,14 +709,13 @@ const opInputService4TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService4TestCaseOperation1Request method.
+//	req, resp := client.InputService4TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the InputService4TestCaseOperation1Request method.
-//    req, resp := client.InputService4TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input *InputService4TestShapeInputService4TestCaseOperation1Input) (req *request.Request, output *InputService4TestShapeInputService4TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService4TestCaseOperation1,
@@ -782,33 +793,37 @@ type InputService5ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService5ProtocolTest client from just a session.
-//     svc := inputservice5protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService5ProtocolTest client with additional configuration
-//     svc := inputservice5protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a InputService5ProtocolTest client from just a session.
+//	svc := inputservice5protocoltest.New(mySession)
+//
+//	// Create a InputService5ProtocolTest client with additional configuration
+//	svc := inputservice5protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService5ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService5ProtocolTest {
 	c := p.ClientConfig("inputservice5protocoltest", cfgs...)
-	return newInputService5ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newInputService5ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newInputService5ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *InputService5ProtocolTest {
+func newInputService5ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *InputService5ProtocolTest {
 	svc := &InputService5ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "InputService5ProtocolTest",
-				ServiceID:     "InputService5ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "com.amazonaws.foo",
+				ServiceName:    "InputService5ProtocolTest",
+				ServiceID:      "InputService5ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "com.amazonaws.foo",
 			},
 			handlers,
 		),
@@ -848,14 +863,13 @@ const opInputService5TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService5TestCaseOperation1Request method.
+//	req, resp := client.InputService5TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the InputService5TestCaseOperation1Request method.
-//    req, resp := client.InputService5TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input *InputService5TestShapeInputService5TestCaseOperation1Input) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation1,
@@ -917,14 +931,13 @@ const opInputService5TestCaseOperation2 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService5TestCaseOperation2Request method.
+//	req, resp := client.InputService5TestCaseOperation2Request(params)
 //
-//    // Example sending a request using the InputService5TestCaseOperation2Request method.
-//    req, resp := client.InputService5TestCaseOperation2Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation2Request(input *InputService5TestShapeInputService5TestCaseOperation2Input) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation2,
@@ -986,14 +999,13 @@ const opInputService5TestCaseOperation3 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService5TestCaseOperation3Request method.
+//	req, resp := client.InputService5TestCaseOperation3Request(params)
 //
-//    // Example sending a request using the InputService5TestCaseOperation3Request method.
-//    req, resp := client.InputService5TestCaseOperation3Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation3Request(input *InputService5TestShapeInputService5TestCaseOperation3Input) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation3Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation3,
@@ -1055,14 +1067,13 @@ const opInputService5TestCaseOperation4 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService5TestCaseOperation4Request method.
+//	req, resp := client.InputService5TestCaseOperation4Request(params)
 //
-//    // Example sending a request using the InputService5TestCaseOperation4Request method.
-//    req, resp := client.InputService5TestCaseOperation4Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation4Request(input *InputService5TestShapeInputService5TestCaseOperation4Input) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation4Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation4,
@@ -1124,14 +1135,13 @@ const opInputService5TestCaseOperation5 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService5TestCaseOperation5Request method.
+//	req, resp := client.InputService5TestCaseOperation5Request(params)
 //
-//    // Example sending a request using the InputService5TestCaseOperation5Request method.
-//    req, resp := client.InputService5TestCaseOperation5Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation5Request(input *InputService5TestShapeInputService5TestCaseOperation5Input) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation5Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation5,
@@ -1193,14 +1203,13 @@ const opInputService5TestCaseOperation6 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService5TestCaseOperation6Request method.
+//	req, resp := client.InputService5TestCaseOperation6Request(params)
 //
-//    // Example sending a request using the InputService5TestCaseOperation6Request method.
-//    req, resp := client.InputService5TestCaseOperation6Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation6Request(input *InputService5TestShapeInputService5TestCaseOperation6Input) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation6Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation6,
@@ -1393,33 +1402,37 @@ type InputService6ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService6ProtocolTest client from just a session.
-//     svc := inputservice6protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService6ProtocolTest client with additional configuration
-//     svc := inputservice6protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a InputService6ProtocolTest client from just a session.
+//	svc := inputservice6protocoltest.New(mySession)
+//
+//	// Create a InputService6ProtocolTest client with additional configuration
+//	svc := inputservice6protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService6ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService6ProtocolTest {
 	c := p.ClientConfig("inputservice6protocoltest", cfgs...)
-	return newInputService6ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newInputService6ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newInputService6ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *InputService6ProtocolTest {
+func newInputService6ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *InputService6ProtocolTest {
 	svc := &InputService6ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "InputService6ProtocolTest",
-				ServiceID:     "InputService6ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "com.amazonaws.foo",
+				ServiceName:    "InputService6ProtocolTest",
+				ServiceID:      "InputService6ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "com.amazonaws.foo",
 			},
 			handlers,
 		),
@@ -1459,14 +1472,13 @@ const opInputService6TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService6TestCaseOperation1Request method.
+//	req, resp := client.InputService6TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the InputService6TestCaseOperation1Request method.
-//    req, resp := client.InputService6TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input *InputService6TestShapeInputService6TestCaseOperation1Input) (req *request.Request, output *InputService6TestShapeInputService6TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService6TestCaseOperation1,
@@ -1544,31 +1556,35 @@ type InputService7ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService7ProtocolTest client from just a session.
-//     svc := inputservice7protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService7ProtocolTest client with additional configuration
-//     svc := inputservice7protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a InputService7ProtocolTest client from just a session.
+//	svc := inputservice7protocoltest.New(mySession)
+//
+//	// Create a InputService7ProtocolTest client with additional configuration
+//	svc := inputservice7protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService7ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService7ProtocolTest {
 	c := p.ClientConfig("inputservice7protocoltest", cfgs...)
-	return newInputService7ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newInputService7ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newInputService7ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *InputService7ProtocolTest {
+func newInputService7ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *InputService7ProtocolTest {
 	svc := &InputService7ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "InputService7ProtocolTest",
-				ServiceID:     "InputService7ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2014-01-01",
+				ServiceName:    "InputService7ProtocolTest",
+				ServiceID:      "InputService7ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2014-01-01",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -1608,14 +1624,13 @@ const opInputService7TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService7TestCaseOperation1Request method.
+//	req, resp := client.InputService7TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the InputService7TestCaseOperation1Request method.
-//    req, resp := client.InputService7TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input *InputService7TestShapeInputService7TestCaseOperation1Input) (req *request.Request, output *InputService7TestShapeInputService7TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService7TestCaseOperation1,
@@ -1678,14 +1693,13 @@ const opInputService7TestCaseOperation2 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService7TestCaseOperation2Request method.
+//	req, resp := client.InputService7TestCaseOperation2Request(params)
 //
-//    // Example sending a request using the InputService7TestCaseOperation2Request method.
-//    req, resp := client.InputService7TestCaseOperation2Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService7ProtocolTest) InputService7TestCaseOperation2Request(input *InputService7TestShapeInputService7TestCaseOperation2Input) (req *request.Request, output *InputService7TestShapeInputService7TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService7TestCaseOperation2,
@@ -1779,31 +1793,35 @@ type InputService8ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService8ProtocolTest client from just a session.
-//     svc := inputservice8protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService8ProtocolTest client with additional configuration
-//     svc := inputservice8protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a InputService8ProtocolTest client from just a session.
+//	svc := inputservice8protocoltest.New(mySession)
+//
+//	// Create a InputService8ProtocolTest client with additional configuration
+//	svc := inputservice8protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService8ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService8ProtocolTest {
 	c := p.ClientConfig("inputservice8protocoltest", cfgs...)
-	return newInputService8ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newInputService8ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newInputService8ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *InputService8ProtocolTest {
+func newInputService8ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *InputService8ProtocolTest {
 	svc := &InputService8ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "InputService8ProtocolTest",
-				ServiceID:     "InputService8ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2014-01-01",
+				ServiceName:    "InputService8ProtocolTest",
+				ServiceID:      "InputService8ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2014-01-01",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -1843,14 +1861,13 @@ const opInputService8TestCaseOperation1 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService8TestCaseOperation1Request method.
+//	req, resp := client.InputService8TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the InputService8TestCaseOperation1Request method.
-//    req, resp := client.InputService8TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input *InputService8TestShapeInputService8TestCaseOperation1Input) (req *request.Request, output *InputService8TestShapeInputService8TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService8TestCaseOperation1,
@@ -1913,14 +1930,13 @@ const opInputService8TestCaseOperation2 = "OperationName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService8TestCaseOperation2Request method.
+//	req, resp := client.InputService8TestCaseOperation2Request(params)
 //
-//    // Example sending a request using the InputService8TestCaseOperation2Request method.
-//    req, resp := client.InputService8TestCaseOperation2Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService8ProtocolTest) InputService8TestCaseOperation2Request(input *InputService8TestShapeInputService8TestCaseOperation2Input) (req *request.Request, output *InputService8TestShapeInputService8TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService8TestCaseOperation2,
@@ -1972,7 +1988,7 @@ type InputService8TestShapeInputService8TestCaseOperation1Input struct {
 
 	FooEnum *string `type:"string" enum:"InputService8TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService8TestShapeEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.
@@ -1996,7 +2012,7 @@ type InputService8TestShapeInputService8TestCaseOperation2Input struct {
 
 	FooEnum *string `type:"string" enum:"InputService8TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService8TestShapeEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.
@@ -2046,33 +2062,37 @@ type InputService9ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService9ProtocolTest client from just a session.
-//     svc := inputservice9protocoltest.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a InputService9ProtocolTest client with additional configuration
-//     svc := inputservice9protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a InputService9ProtocolTest client from just a session.
+//	svc := inputservice9protocoltest.New(mySession)
+//
+//	// Create a InputService9ProtocolTest client with additional configuration
+//	svc := inputservice9protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService9ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService9ProtocolTest {
 	c := p.ClientConfig("inputservice9protocoltest", cfgs...)
-	return newInputService9ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
+	return newInputService9ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newInputService9ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *InputService9ProtocolTest {
+func newInputService9ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *InputService9ProtocolTest {
 	svc := &InputService9ProtocolTest{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "InputService9ProtocolTest",
-				ServiceID:     "InputService9ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "com.amazonaws.foo",
+				ServiceName:    "InputService9ProtocolTest",
+				ServiceID:      "InputService9ProtocolTest",
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "com.amazonaws.foo",
 			},
 			handlers,
 		),
@@ -2112,14 +2132,13 @@ const opInputService9TestCaseOperation1 = "StaticOp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService9TestCaseOperation1Request method.
+//	req, resp := client.InputService9TestCaseOperation1Request(params)
 //
-//    // Example sending a request using the InputService9TestCaseOperation1Request method.
-//    req, resp := client.InputService9TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input *InputService9TestShapeInputService9TestCaseOperation1Input) (req *request.Request, output *InputService9TestShapeInputService9TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService9TestCaseOperation1,
@@ -2184,14 +2203,13 @@ const opInputService9TestCaseOperation2 = "MemberRefOp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InputService9TestCaseOperation2Request method.
+//	req, resp := client.InputService9TestCaseOperation2Request(params)
 //
-//    // Example sending a request using the InputService9TestCaseOperation2Request method.
-//    req, resp := client.InputService9TestCaseOperation2Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *InputService9ProtocolTest) InputService9TestCaseOperation2Request(input *InputService9TestShapeInputService9TestCaseOperation2Input) (req *request.Request, output *InputService9TestShapeInputService9TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService9TestCaseOperation2,
@@ -2312,6 +2330,10 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2320,17 +2342,20 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"Name": "myname"}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService2ProtocolTestTimestampValuesCase1(t *testing.T) {
@@ -2348,6 +2373,10 @@ func TestInputService2ProtocolTestTimestampValuesCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2356,17 +2385,20 @@ func TestInputService2ProtocolTestTimestampValuesCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"TimeArg": 1422172800, "TimeCustom": "Sun, 25 Jan 2015 08:00:00 GMT", "TimeFormat": "Sun, 25 Jan 2015 08:00:00 GMT"}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService3ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
@@ -2382,6 +2414,10 @@ func TestInputService3ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2390,17 +2426,20 @@ func TestInputService3ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"BlobArg": "Zm9v"}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService3ProtocolTestBase64EncodedBlobsCase2(t *testing.T) {
@@ -2419,6 +2458,10 @@ func TestInputService3ProtocolTestBase64EncodedBlobsCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2427,17 +2470,20 @@ func TestInputService3ProtocolTestBase64EncodedBlobsCase2(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"BlobMap": {"key1": "Zm9v", "key2": "YmFy"}}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService4ProtocolTestNestedBlobsCase1(t *testing.T) {
@@ -2456,6 +2502,10 @@ func TestInputService4ProtocolTestNestedBlobsCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2464,17 +2514,20 @@ func TestInputService4ProtocolTestNestedBlobsCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"ListParam": ["Zm9v", "YmFy"]}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService5ProtocolTestRecursiveShapesCase1(t *testing.T) {
@@ -2492,6 +2545,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2500,17 +2557,20 @@ func TestInputService5ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"RecursiveStruct": {"NoRecurse": "foo"}}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService5ProtocolTestRecursiveShapesCase2(t *testing.T) {
@@ -2530,6 +2590,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2538,17 +2602,20 @@ func TestInputService5ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"RecursiveStruct": {"RecursiveStruct": {"NoRecurse": "foo"}}}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService5ProtocolTestRecursiveShapesCase3(t *testing.T) {
@@ -2572,6 +2639,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2580,17 +2651,20 @@ func TestInputService5ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"RecursiveStruct": {"RecursiveStruct": {"RecursiveStruct": {"RecursiveStruct": {"NoRecurse": "foo"}}}}}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService5ProtocolTestRecursiveShapesCase4(t *testing.T) {
@@ -2615,6 +2689,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2623,17 +2701,20 @@ func TestInputService5ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"RecursiveStruct": {"RecursiveList": [{"NoRecurse": "foo"}, {"NoRecurse": "bar"}]}}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService5ProtocolTestRecursiveShapesCase5(t *testing.T) {
@@ -2660,6 +2741,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2668,17 +2753,20 @@ func TestInputService5ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"RecursiveStruct": {"RecursiveList": [{"NoRecurse": "foo"}, {"RecursiveStruct": {"NoRecurse": "bar"}}]}}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService5ProtocolTestRecursiveShapesCase6(t *testing.T) {
@@ -2703,6 +2791,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2711,17 +2803,20 @@ func TestInputService5ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"RecursiveStruct": {"RecursiveMap": {"foo": {"NoRecurse": "foo"}, "bar": {"NoRecurse": "bar"}}}}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService6ProtocolTestEmptyMapsCase1(t *testing.T) {
@@ -2737,6 +2832,10 @@ func TestInputService6ProtocolTestEmptyMapsCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2745,17 +2844,20 @@ func TestInputService6ProtocolTestEmptyMapsCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"Map": {}}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService7ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
@@ -2771,6 +2873,10 @@ func TestInputService7ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2779,11 +2885,12 @@ func TestInputService7ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"Token": "abc123"}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService7ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
@@ -2797,6 +2904,10 @@ func TestInputService7ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2805,11 +2916,12 @@ func TestInputService7ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"Token": "00000000-0000-4000-8000-000000000000"}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService8ProtocolTestEnumCase1(t *testing.T) {
@@ -2830,6 +2942,10 @@ func TestInputService8ProtocolTestEnumCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2838,11 +2954,12 @@ func TestInputService8ProtocolTestEnumCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"FooEnum": "foo", "ListEnums": ["foo", "", "bar"]}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService8ProtocolTestEnumCase2(t *testing.T) {
@@ -2856,12 +2973,13 @@ func TestInputService8ProtocolTestEnumCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService9ProtocolTestEndpointHostTraitStaticPrefixCase1(t *testing.T) {
@@ -2877,6 +2995,10 @@ func TestInputService9ProtocolTestEndpointHostTraitStaticPrefixCase1(t *testing.
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2885,17 +3007,20 @@ func TestInputService9ProtocolTestEndpointHostTraitStaticPrefixCase1(t *testing.
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"Name": "myname"}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://data-service.region.amazonaws.com/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.StaticOp", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService9ProtocolTestEndpointHostTraitStaticPrefixCase2(t *testing.T) {
@@ -2911,6 +3036,10 @@ func TestInputService9ProtocolTestEndpointHostTraitStaticPrefixCase2(t *testing.
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -2919,15 +3048,18 @@ func TestInputService9ProtocolTestEndpointHostTraitStaticPrefixCase2(t *testing.
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertJSON(t, `{"Name": "myname"}`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://foo-myname.service.region.amazonaws.com/", r.URL.String())
 
 	// assert headers
 	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect Content-Type %v header value, got %v", e, a)
 	}
 	if e, a := "com.amazonaws.foo.MemberRefOp", r.Header.Get("X-Amz-Target"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect X-Amz-Target %v header value, got %v", e, a)
 	}
-
 }

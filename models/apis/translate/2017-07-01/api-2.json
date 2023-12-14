@@ -26,7 +26,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"LimitExceededException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"ConflictException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -115,6 +117,23 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"LimitExceededException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListLanguages":{
+      "name":"ListLanguages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListLanguagesRequest"},
+      "output":{"shape":"ListLanguagesResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnsupportedDisplayLanguageCodeException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -129,6 +148,20 @@
       "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -174,6 +207,7 @@
         {"shape":"UnsupportedLanguagePairException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -189,6 +223,40 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "TranslateDocument":{
+      "name":"TranslateDocument",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TranslateDocumentRequest"},
+      "output":{"shape":"TranslateDocumentResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnsupportedLanguagePairException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"}
       ]
     },
     "TranslateText":{
@@ -208,6 +276,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "UpdateParallelData":{
@@ -244,9 +327,13 @@
     },
     "BoundedLengthString":{
       "type":"string",
-      "max":5000,
+      "max":10000,
       "min":1,
-      "pattern":"[\\P{M}\\p{M}]{1,5000}"
+      "pattern":"[\\P{M}\\p{M}]{1,10000}"
+    },
+    "Brevity":{
+      "type":"string",
+      "enum":["ON"]
     },
     "ClientTokenString":{
       "type":"string",
@@ -288,7 +375,8 @@
         "ClientToken":{
           "shape":"ClientTokenString",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateParallelDataResponse":{
@@ -345,6 +433,44 @@
       },
       "exception":true
     },
+    "Directionality":{
+      "type":"string",
+      "enum":[
+        "UNI",
+        "MULTI"
+      ]
+    },
+    "DisplayLanguageCode":{
+      "type":"string",
+      "enum":[
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "ja",
+        "ko",
+        "pt",
+        "zh",
+        "zh-TW"
+      ]
+    },
+    "Document":{
+      "type":"structure",
+      "required":[
+        "Content",
+        "ContentType"
+      ],
+      "members":{
+        "Content":{"shape":"DocumentContent"},
+        "ContentType":{"shape":"ContentType"}
+      }
+    },
+    "DocumentContent":{
+      "type":"blob",
+      "max":102400,
+      "sensitive":true
+    },
     "EncryptionKey":{
       "type":"structure",
       "required":[
@@ -366,6 +492,13 @@
       "type":"string",
       "enum":["KMS"]
     },
+    "Formality":{
+      "type":"string",
+      "enum":[
+        "FORMAL",
+        "INFORMAL"
+      ]
+    },
     "GetParallelDataRequest":{
       "type":"structure",
       "required":["Name"],
@@ -384,10 +517,7 @@
     },
     "GetTerminologyRequest":{
       "type":"structure",
-      "required":[
-        "Name",
-        "TerminologyDataFormat"
-      ],
+      "required":["Name"],
       "members":{
         "Name":{"shape":"ResourceName"},
         "TerminologyDataFormat":{"shape":"TerminologyDataFormat"}
@@ -397,7 +527,8 @@
       "type":"structure",
       "members":{
         "TerminologyProperties":{"shape":"TerminologyProperties"},
-        "TerminologyDataLocation":{"shape":"TerminologyDataLocation"}
+        "TerminologyDataLocation":{"shape":"TerminologyDataLocation"},
+        "AuxiliaryDataLocation":{"shape":"TerminologyDataLocation"}
       }
     },
     "IamRoleArn":{
@@ -418,13 +549,15 @@
         "MergeStrategy":{"shape":"MergeStrategy"},
         "Description":{"shape":"Description"},
         "TerminologyData":{"shape":"TerminologyData"},
-        "EncryptionKey":{"shape":"EncryptionKey"}
+        "EncryptionKey":{"shape":"EncryptionKey"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "ImportTerminologyResponse":{
       "type":"structure",
       "members":{
-        "TerminologyProperties":{"shape":"TerminologyProperties"}
+        "TerminologyProperties":{"shape":"TerminologyProperties"},
+        "AuxiliaryDataLocation":{"shape":"TerminologyDataLocation"}
       }
     },
     "InputDataConfig":{
@@ -500,6 +633,17 @@
         "STOPPED"
       ]
     },
+    "Language":{
+      "type":"structure",
+      "required":[
+        "LanguageName",
+        "LanguageCode"
+      ],
+      "members":{
+        "LanguageName":{"shape":"LocalizedNameString"},
+        "LanguageCode":{"shape":"LanguageCodeString"}
+      }
+    },
     "LanguageCodeString":{
       "type":"string",
       "max":5,
@@ -509,12 +653,32 @@
       "type":"list",
       "member":{"shape":"LanguageCodeString"}
     },
+    "LanguagesList":{
+      "type":"list",
+      "member":{"shape":"Language"}
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "ListLanguagesRequest":{
+      "type":"structure",
+      "members":{
+        "DisplayLanguageCode":{"shape":"DisplayLanguageCode"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListLanguagesResponse":{
+      "type":"structure",
+      "members":{
+        "Languages":{"shape":"LanguagesList"},
+        "DisplayLanguageCode":{"shape":"DisplayLanguageCode"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListParallelDataRequest":{
       "type":"structure",
@@ -528,6 +692,19 @@
       "members":{
         "ParallelDataPropertiesList":{"shape":"ParallelDataPropertiesList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
       }
     },
     "ListTerminologiesRequest":{
@@ -559,6 +736,11 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "LocalizedNameString":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "Long":{"type":"long"},
     "MaxResultsInteger":{
       "type":"integer",
@@ -578,7 +760,8 @@
       "type":"structure",
       "required":["S3Uri"],
       "members":{
-        "S3Uri":{"shape":"S3Uri"}
+        "S3Uri":{"shape":"S3Uri"},
+        "EncryptionKey":{"shape":"EncryptionKey"}
       }
     },
     "ParallelDataArn":{
@@ -588,10 +771,6 @@
     },
     "ParallelDataConfig":{
       "type":"structure",
-      "required":[
-        "S3Uri",
-        "Format"
-      ],
       "members":{
         "S3Uri":{"shape":"S3Uri"},
         "Format":{"shape":"ParallelDataFormat"}
@@ -652,6 +831,15 @@
         "FAILED"
       ]
     },
+    "Profanity":{
+      "type":"string",
+      "enum":["MASK"]
+    },
+    "ResourceArn":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
     "ResourceName":{
       "type":"string",
       "max":256,
@@ -704,7 +892,8 @@
         "ClientToken":{
           "shape":"ClientTokenString",
           "idempotencyToken":true
-        }
+        },
+        "Settings":{"shape":"TranslationSettings"}
       }
     },
     "StartTextTranslationJobResponse":{
@@ -733,10 +922,58 @@
       "max":10000,
       "pattern":"[\\P{M}\\p{M}]{0,10000}"
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "TargetLanguageCodeStringList":{
       "type":"list",
       "member":{"shape":"LanguageCodeString"},
-      "max":1,
       "min":1
     },
     "Term":{
@@ -763,14 +1000,16 @@
       ],
       "members":{
         "File":{"shape":"TerminologyFile"},
-        "Format":{"shape":"TerminologyDataFormat"}
+        "Format":{"shape":"TerminologyDataFormat"},
+        "Directionality":{"shape":"Directionality"}
       }
     },
     "TerminologyDataFormat":{
       "type":"string",
       "enum":[
         "CSV",
-        "TMX"
+        "TMX",
+        "TSV"
       ]
     },
     "TerminologyDataLocation":{
@@ -801,7 +1040,11 @@
         "SizeBytes":{"shape":"Integer"},
         "TermCount":{"shape":"Integer"},
         "CreatedAt":{"shape":"Timestamp"},
-        "LastUpdatedAt":{"shape":"Timestamp"}
+        "LastUpdatedAt":{"shape":"Timestamp"},
+        "Directionality":{"shape":"Directionality"},
+        "Message":{"shape":"UnboundedLengthString"},
+        "SkippedTermCount":{"shape":"Integer"},
+        "Format":{"shape":"TerminologyDataFormat"}
       }
     },
     "TerminologyPropertiesList":{
@@ -840,7 +1083,8 @@
         "EndTime":{"shape":"Timestamp"},
         "InputDataConfig":{"shape":"InputDataConfig"},
         "OutputDataConfig":{"shape":"OutputDataConfig"},
-        "DataAccessRoleArn":{"shape":"IamRoleArn"}
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "Settings":{"shape":"TranslationSettings"}
       }
     },
     "TextTranslationJobPropertiesList":{
@@ -855,6 +1099,44 @@
       },
       "exception":true
     },
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"},
+        "ResourceArn":{"shape":"ResourceArn"}
+      },
+      "exception":true
+    },
+    "TranslateDocumentRequest":{
+      "type":"structure",
+      "required":[
+        "Document",
+        "SourceLanguageCode",
+        "TargetLanguageCode"
+      ],
+      "members":{
+        "Document":{"shape":"Document"},
+        "TerminologyNames":{"shape":"ResourceNameList"},
+        "SourceLanguageCode":{"shape":"LanguageCodeString"},
+        "TargetLanguageCode":{"shape":"LanguageCodeString"},
+        "Settings":{"shape":"TranslationSettings"}
+      }
+    },
+    "TranslateDocumentResponse":{
+      "type":"structure",
+      "required":[
+        "TranslatedDocument",
+        "SourceLanguageCode",
+        "TargetLanguageCode"
+      ],
+      "members":{
+        "TranslatedDocument":{"shape":"TranslatedDocument"},
+        "SourceLanguageCode":{"shape":"LanguageCodeString"},
+        "TargetLanguageCode":{"shape":"LanguageCodeString"},
+        "AppliedTerminologies":{"shape":"AppliedTerminologyList"},
+        "AppliedSettings":{"shape":"TranslationSettings"}
+      }
+    },
     "TranslateTextRequest":{
       "type":"structure",
       "required":[
@@ -866,7 +1148,8 @@
         "Text":{"shape":"BoundedLengthString"},
         "TerminologyNames":{"shape":"ResourceNameList"},
         "SourceLanguageCode":{"shape":"LanguageCodeString"},
-        "TargetLanguageCode":{"shape":"LanguageCodeString"}
+        "TargetLanguageCode":{"shape":"LanguageCodeString"},
+        "Settings":{"shape":"TranslationSettings"}
       }
     },
     "TranslateTextResponse":{
@@ -877,13 +1160,46 @@
         "TargetLanguageCode"
       ],
       "members":{
-        "TranslatedText":{"shape":"String"},
+        "TranslatedText":{"shape":"TranslatedTextString"},
         "SourceLanguageCode":{"shape":"LanguageCodeString"},
         "TargetLanguageCode":{"shape":"LanguageCodeString"},
-        "AppliedTerminologies":{"shape":"AppliedTerminologyList"}
+        "AppliedTerminologies":{"shape":"AppliedTerminologyList"},
+        "AppliedSettings":{"shape":"TranslationSettings"}
+      }
+    },
+    "TranslatedDocument":{
+      "type":"structure",
+      "required":["Content"],
+      "members":{
+        "Content":{"shape":"TranslatedDocumentContent"}
+      }
+    },
+    "TranslatedDocumentContent":{
+      "type":"blob",
+      "sensitive":true
+    },
+    "TranslatedTextString":{
+      "type":"string",
+      "max":20000,
+      "pattern":"[\\P{M}\\p{M}]{0,20000}"
+    },
+    "TranslationSettings":{
+      "type":"structure",
+      "members":{
+        "Formality":{"shape":"Formality"},
+        "Profanity":{"shape":"Profanity"},
+        "Brevity":{"shape":"Brevity"}
       }
     },
     "UnboundedLengthString":{"type":"string"},
+    "UnsupportedDisplayLanguageCodeException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"},
+        "DisplayLanguageCode":{"shape":"LanguageCodeString"}
+      },
+      "exception":true
+    },
     "UnsupportedLanguagePairException":{
       "type":"structure",
       "members":{
@@ -892,6 +1208,22 @@
         "TargetLanguageCode":{"shape":"LanguageCodeString"}
       },
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateParallelDataRequest":{
       "type":"structure",

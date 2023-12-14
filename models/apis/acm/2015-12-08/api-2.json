@@ -40,6 +40,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
         {"shape":"InvalidArnException"}
       ]
     },
@@ -123,7 +126,8 @@
       "input":{"shape":"ListCertificatesRequest"},
       "output":{"shape":"ListCertificatesResponse"},
       "errors":[
-        {"shape":"InvalidArgsException"}
+        {"shape":"InvalidArgsException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListTagsForCertificate":{
@@ -252,7 +256,7 @@
       "type":"string",
       "max":2048,
       "min":20,
-      "pattern":"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+      "pattern":"arn:[\\w+=/,.@-]+:acm:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
     },
     "AvailabilityErrorMessage":{"type":"string"},
     "CertificateBody":{
@@ -334,7 +338,32 @@
       "type":"structure",
       "members":{
         "CertificateArn":{"shape":"Arn"},
-        "DomainName":{"shape":"DomainNameString"}
+        "DomainName":{"shape":"DomainNameString"},
+        "SubjectAlternativeNameSummaries":{"shape":"DomainList"},
+        "HasAdditionalSubjectAlternativeNames":{
+          "shape":"NullableBoolean",
+          "box":true
+        },
+        "Status":{"shape":"CertificateStatus"},
+        "Type":{"shape":"CertificateType"},
+        "KeyAlgorithm":{"shape":"KeyAlgorithm"},
+        "KeyUsages":{"shape":"KeyUsageNames"},
+        "ExtendedKeyUsages":{"shape":"ExtendedKeyUsageNames"},
+        "InUse":{
+          "shape":"NullableBoolean",
+          "box":true
+        },
+        "Exported":{
+          "shape":"NullableBoolean",
+          "box":true
+        },
+        "RenewalEligibility":{"shape":"RenewalEligibility"},
+        "NotBefore":{"shape":"TStamp"},
+        "NotAfter":{"shape":"TStamp"},
+        "CreatedAt":{"shape":"TStamp"},
+        "IssuedAt":{"shape":"TStamp"},
+        "ImportedAt":{"shape":"TStamp"},
+        "RevokedAt":{"shape":"TStamp"}
       }
     },
     "CertificateSummaryList":{
@@ -494,6 +523,10 @@
         "NONE",
         "CUSTOM"
       ]
+    },
+    "ExtendedKeyUsageNames":{
+      "type":"list",
+      "member":{"shape":"ExtendedKeyUsageName"}
     },
     "FailureReason":{
       "type":"string",
@@ -663,6 +696,10 @@
         "CUSTOM"
       ]
     },
+    "KeyUsageNames":{
+      "type":"list",
+      "member":{"shape":"KeyUsageName"}
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -676,7 +713,9 @@
         "CertificateStatuses":{"shape":"CertificateStatuses"},
         "Includes":{"shape":"Filters"},
         "NextToken":{"shape":"NextToken"},
-        "MaxItems":{"shape":"MaxItems"}
+        "MaxItems":{"shape":"MaxItems"},
+        "SortBy":{"shape":"SortBy"},
+        "SortOrder":{"shape":"SortOrder"}
       }
     },
     "ListCertificatesResponse":{
@@ -710,11 +749,18 @@
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]*"
     },
+    "NullableBoolean":{"type":"boolean"},
     "PassphraseBlob":{
       "type":"blob",
       "max":128,
       "min":4,
       "sensitive":true
+    },
+    "PcaArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:[\\w+=/,.@-]+:acm-pca:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
     },
     "PositiveInteger":{
       "type":"integer",
@@ -803,8 +849,9 @@
         "IdempotencyToken":{"shape":"IdempotencyToken"},
         "DomainValidationOptions":{"shape":"DomainValidationOptionList"},
         "Options":{"shape":"CertificateOptions"},
-        "CertificateAuthorityArn":{"shape":"Arn"},
-        "Tags":{"shape":"TagList"}
+        "CertificateAuthorityArn":{"shape":"PcaArn"},
+        "Tags":{"shape":"TagList"},
+        "KeyAlgorithm":{"shape":"KeyAlgorithm"}
       }
     },
     "RequestCertificateResponse":{
@@ -876,6 +923,17 @@
       ]
     },
     "ServiceErrorMessage":{"type":"string"},
+    "SortBy":{
+      "type":"string",
+      "enum":["CREATED_AT"]
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
     "String":{"type":"string"},
     "TStamp":{"type":"timestamp"},
     "Tag":{

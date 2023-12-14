@@ -27,14 +27,13 @@ const opGetIceServerConfig = "GetIceServerConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIceServerConfigRequest method.
+//	req, resp := client.GetIceServerConfigRequest(params)
 //
-//    // Example sending a request using the GetIceServerConfigRequest method.
-//    req, resp := client.GetIceServerConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-signaling-2019-12-04/GetIceServerConfig
 func (c *KinesisVideoSignalingChannels) GetIceServerConfigRequest(input *GetIceServerConfigInput) (req *request.Request, output *GetIceServerConfigOutput) {
@@ -80,26 +79,27 @@ func (c *KinesisVideoSignalingChannels) GetIceServerConfigRequest(input *GetIceS
 // API operation GetIceServerConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidClientException
-//   The specified client is invalid.
 //
-//   * SessionExpiredException
-//   If the client session is expired. Once the client is connected, the session
-//   is valid for 45 minutes. Client should reconnect to the channel to continue
-//   sending/receiving messages.
+//   - InvalidClientException
+//     The specified client is invalid.
 //
-//   * ClientLimitExceededException
-//   Your request was throttled because you have exceeded the limit of allowed
-//   client calls. Try making the call later.
+//   - SessionExpiredException
+//     If the client session is expired. Once the client is connected, the session
+//     is valid for 45 minutes. Client should reconnect to the channel to continue
+//     sending/receiving messages.
 //
-//   * ResourceNotFoundException
-//   The specified resource is not found.
+//   - ClientLimitExceededException
+//     Your request was throttled because you have exceeded the limit of allowed
+//     client calls. Try making the call later.
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//   - ResourceNotFoundException
+//     The specified resource is not found.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-signaling-2019-12-04/GetIceServerConfig
 func (c *KinesisVideoSignalingChannels) GetIceServerConfig(input *GetIceServerConfigInput) (*GetIceServerConfigOutput, error) {
@@ -139,14 +139,13 @@ const opSendAlexaOfferToMaster = "SendAlexaOfferToMaster"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendAlexaOfferToMasterRequest method.
+//	req, resp := client.SendAlexaOfferToMasterRequest(params)
 //
-//    // Example sending a request using the SendAlexaOfferToMasterRequest method.
-//    req, resp := client.SendAlexaOfferToMasterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-signaling-2019-12-04/SendAlexaOfferToMaster
 func (c *KinesisVideoSignalingChannels) SendAlexaOfferToMasterRequest(input *SendAlexaOfferToMasterInput) (req *request.Request, output *SendAlexaOfferToMasterOutput) {
@@ -182,18 +181,19 @@ func (c *KinesisVideoSignalingChannels) SendAlexaOfferToMasterRequest(input *Sen
 // API operation SendAlexaOfferToMaster for usage and error information.
 //
 // Returned Error Types:
-//   * ClientLimitExceededException
-//   Your request was throttled because you have exceeded the limit of allowed
-//   client calls. Try making the call later.
 //
-//   * ResourceNotFoundException
-//   The specified resource is not found.
+//   - ClientLimitExceededException
+//     Your request was throttled because you have exceeded the limit of allowed
+//     client calls. Try making the call later.
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//   - ResourceNotFoundException
+//     The specified resource is not found.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-signaling-2019-12-04/SendAlexaOfferToMaster
 func (c *KinesisVideoSignalingChannels) SendAlexaOfferToMaster(input *SendAlexaOfferToMasterInput) (*SendAlexaOfferToMasterOutput, error) {
@@ -226,12 +226,20 @@ type ClientLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -293,12 +301,20 @@ type GetIceServerConfigInput struct {
 	Username *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIceServerConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIceServerConfigInput) GoString() string {
 	return s.String()
 }
@@ -356,12 +372,20 @@ type GetIceServerConfigOutput struct {
 	IceServerList []*IceServer `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIceServerConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIceServerConfigOutput) GoString() string {
 	return s.String()
 }
@@ -393,12 +417,20 @@ type IceServer struct {
 	Username *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IceServer) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IceServer) GoString() string {
 	return s.String()
 }
@@ -435,12 +467,20 @@ type InvalidArgumentException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidArgumentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidArgumentException) GoString() string {
 	return s.String()
 }
@@ -491,12 +531,20 @@ type InvalidClientException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidClientException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidClientException) GoString() string {
 	return s.String()
 }
@@ -547,12 +595,20 @@ type NotAuthorizedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotAuthorizedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotAuthorizedException) GoString() string {
 	return s.String()
 }
@@ -603,12 +659,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -670,12 +734,20 @@ type SendAlexaOfferToMasterInput struct {
 	SenderClientId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendAlexaOfferToMasterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendAlexaOfferToMasterInput) GoString() string {
 	return s.String()
 }
@@ -733,12 +805,20 @@ type SendAlexaOfferToMasterOutput struct {
 	Answer *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendAlexaOfferToMasterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendAlexaOfferToMasterOutput) GoString() string {
 	return s.String()
 }
@@ -759,12 +839,20 @@ type SessionExpiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SessionExpiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SessionExpiredException) GoString() string {
 	return s.String()
 }

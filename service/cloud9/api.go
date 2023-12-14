@@ -29,14 +29,13 @@ const opCreateEnvironmentEC2 = "CreateEnvironmentEC2"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEnvironmentEC2Request method.
+//	req, resp := client.CreateEnvironmentEC2Request(params)
 //
-//    // Example sending a request using the CreateEnvironmentEC2Request method.
-//    req, resp := client.CreateEnvironmentEC2Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/CreateEnvironmentEC2
 func (c *Cloud9) CreateEnvironmentEC2Request(input *CreateEnvironmentEC2Input) (req *request.Request, output *CreateEnvironmentEC2Output) {
@@ -68,26 +67,27 @@ func (c *Cloud9) CreateEnvironmentEC2Request(input *CreateEnvironmentEC2Input) (
 // API operation CreateEnvironmentEC2 for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/CreateEnvironmentEC2
 func (c *Cloud9) CreateEnvironmentEC2(input *CreateEnvironmentEC2Input) (*CreateEnvironmentEC2Output, error) {
@@ -127,14 +127,13 @@ const opCreateEnvironmentMembership = "CreateEnvironmentMembership"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEnvironmentMembershipRequest method.
+//	req, resp := client.CreateEnvironmentMembershipRequest(params)
 //
-//    // Example sending a request using the CreateEnvironmentMembershipRequest method.
-//    req, resp := client.CreateEnvironmentMembershipRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/CreateEnvironmentMembership
 func (c *Cloud9) CreateEnvironmentMembershipRequest(input *CreateEnvironmentMembershipInput) (req *request.Request, output *CreateEnvironmentMembershipOutput) {
@@ -165,26 +164,27 @@ func (c *Cloud9) CreateEnvironmentMembershipRequest(input *CreateEnvironmentMemb
 // API operation CreateEnvironmentMembership for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/CreateEnvironmentMembership
 func (c *Cloud9) CreateEnvironmentMembership(input *CreateEnvironmentMembershipInput) (*CreateEnvironmentMembershipOutput, error) {
@@ -224,14 +224,13 @@ const opDeleteEnvironment = "DeleteEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEnvironmentRequest method.
+//	req, resp := client.DeleteEnvironmentRequest(params)
 //
-//    // Example sending a request using the DeleteEnvironmentRequest method.
-//    req, resp := client.DeleteEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DeleteEnvironment
 func (c *Cloud9) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req *request.Request, output *DeleteEnvironmentOutput) {
@@ -264,26 +263,27 @@ func (c *Cloud9) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req *r
 // API operation DeleteEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DeleteEnvironment
 func (c *Cloud9) DeleteEnvironment(input *DeleteEnvironmentInput) (*DeleteEnvironmentOutput, error) {
@@ -323,14 +323,13 @@ const opDeleteEnvironmentMembership = "DeleteEnvironmentMembership"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEnvironmentMembershipRequest method.
+//	req, resp := client.DeleteEnvironmentMembershipRequest(params)
 //
-//    // Example sending a request using the DeleteEnvironmentMembershipRequest method.
-//    req, resp := client.DeleteEnvironmentMembershipRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DeleteEnvironmentMembership
 func (c *Cloud9) DeleteEnvironmentMembershipRequest(input *DeleteEnvironmentMembershipInput) (req *request.Request, output *DeleteEnvironmentMembershipOutput) {
@@ -352,7 +351,7 @@ func (c *Cloud9) DeleteEnvironmentMembershipRequest(input *DeleteEnvironmentMemb
 
 // DeleteEnvironmentMembership API operation for AWS Cloud9.
 //
-// Deletes an environment member from an Cloud9 development environment.
+// Deletes an environment member from a development environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -362,26 +361,27 @@ func (c *Cloud9) DeleteEnvironmentMembershipRequest(input *DeleteEnvironmentMemb
 // API operation DeleteEnvironmentMembership for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DeleteEnvironmentMembership
 func (c *Cloud9) DeleteEnvironmentMembership(input *DeleteEnvironmentMembershipInput) (*DeleteEnvironmentMembershipOutput, error) {
@@ -421,14 +421,13 @@ const opDescribeEnvironmentMemberships = "DescribeEnvironmentMemberships"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEnvironmentMembershipsRequest method.
+//	req, resp := client.DescribeEnvironmentMembershipsRequest(params)
 //
-//    // Example sending a request using the DescribeEnvironmentMembershipsRequest method.
-//    req, resp := client.DescribeEnvironmentMembershipsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentMemberships
 func (c *Cloud9) DescribeEnvironmentMembershipsRequest(input *DescribeEnvironmentMembershipsInput) (req *request.Request, output *DescribeEnvironmentMembershipsOutput) {
@@ -465,26 +464,27 @@ func (c *Cloud9) DescribeEnvironmentMembershipsRequest(input *DescribeEnvironmen
 // API operation DescribeEnvironmentMemberships for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentMemberships
 func (c *Cloud9) DescribeEnvironmentMemberships(input *DescribeEnvironmentMembershipsInput) (*DescribeEnvironmentMembershipsOutput, error) {
@@ -516,15 +516,14 @@ func (c *Cloud9) DescribeEnvironmentMembershipsWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEnvironmentMemberships operation.
-//    pageNum := 0
-//    err := client.DescribeEnvironmentMembershipsPages(params,
-//        func(page *cloud9.DescribeEnvironmentMembershipsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEnvironmentMemberships operation.
+//	pageNum := 0
+//	err := client.DescribeEnvironmentMembershipsPages(params,
+//	    func(page *cloud9.DescribeEnvironmentMembershipsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Cloud9) DescribeEnvironmentMembershipsPages(input *DescribeEnvironmentMembershipsInput, fn func(*DescribeEnvironmentMembershipsOutput, bool) bool) error {
 	return c.DescribeEnvironmentMembershipsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -576,14 +575,13 @@ const opDescribeEnvironmentStatus = "DescribeEnvironmentStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEnvironmentStatusRequest method.
+//	req, resp := client.DescribeEnvironmentStatusRequest(params)
 //
-//    // Example sending a request using the DescribeEnvironmentStatusRequest method.
-//    req, resp := client.DescribeEnvironmentStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentStatus
 func (c *Cloud9) DescribeEnvironmentStatusRequest(input *DescribeEnvironmentStatusInput) (req *request.Request, output *DescribeEnvironmentStatusOutput) {
@@ -614,26 +612,27 @@ func (c *Cloud9) DescribeEnvironmentStatusRequest(input *DescribeEnvironmentStat
 // API operation DescribeEnvironmentStatus for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentStatus
 func (c *Cloud9) DescribeEnvironmentStatus(input *DescribeEnvironmentStatusInput) (*DescribeEnvironmentStatusOutput, error) {
@@ -673,14 +672,13 @@ const opDescribeEnvironments = "DescribeEnvironments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEnvironmentsRequest method.
+//	req, resp := client.DescribeEnvironmentsRequest(params)
 //
-//    // Example sending a request using the DescribeEnvironmentsRequest method.
-//    req, resp := client.DescribeEnvironmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironments
 func (c *Cloud9) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (req *request.Request, output *DescribeEnvironmentsOutput) {
@@ -711,26 +709,27 @@ func (c *Cloud9) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (
 // API operation DescribeEnvironments for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironments
 func (c *Cloud9) DescribeEnvironments(input *DescribeEnvironmentsInput) (*DescribeEnvironmentsOutput, error) {
@@ -770,14 +769,13 @@ const opListEnvironments = "ListEnvironments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEnvironmentsRequest method.
+//	req, resp := client.ListEnvironmentsRequest(params)
 //
-//    // Example sending a request using the ListEnvironmentsRequest method.
-//    req, resp := client.ListEnvironmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/ListEnvironments
 func (c *Cloud9) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *request.Request, output *ListEnvironmentsOutput) {
@@ -814,26 +812,27 @@ func (c *Cloud9) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *req
 // API operation ListEnvironments for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/ListEnvironments
 func (c *Cloud9) ListEnvironments(input *ListEnvironmentsInput) (*ListEnvironmentsOutput, error) {
@@ -865,15 +864,14 @@ func (c *Cloud9) ListEnvironmentsWithContext(ctx aws.Context, input *ListEnviron
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEnvironments operation.
-//    pageNum := 0
-//    err := client.ListEnvironmentsPages(params,
-//        func(page *cloud9.ListEnvironmentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEnvironments operation.
+//	pageNum := 0
+//	err := client.ListEnvironmentsPages(params,
+//	    func(page *cloud9.ListEnvironmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Cloud9) ListEnvironmentsPages(input *ListEnvironmentsInput, fn func(*ListEnvironmentsOutput, bool) bool) error {
 	return c.ListEnvironmentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -925,14 +923,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/ListTagsForResource
 func (c *Cloud9) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -963,14 +960,15 @@ func (c *Cloud9) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The target resource cannot be found.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * BadRequestException
-//   The target request is invalid.
+//   - InternalServerErrorException
+//     An internal server error occurred.
+//
+//   - BadRequestException
+//     The target request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/ListTagsForResource
 func (c *Cloud9) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1010,14 +1008,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/TagResource
 func (c *Cloud9) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1052,17 +1049,18 @@ func (c *Cloud9) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The target resource cannot be found.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * BadRequestException
-//   The target request is invalid.
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
-//   * ConcurrentAccessException
-//   A concurrent access issue occurred.
+//   - BadRequestException
+//     The target request is invalid.
+//
+//   - ConcurrentAccessException
+//     A concurrent access issue occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/TagResource
 func (c *Cloud9) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1102,14 +1100,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UntagResource
 func (c *Cloud9) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1141,17 +1138,18 @@ func (c *Cloud9) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The target resource cannot be found.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * BadRequestException
-//   The target request is invalid.
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
-//   * ConcurrentAccessException
-//   A concurrent access issue occurred.
+//   - BadRequestException
+//     The target request is invalid.
+//
+//   - ConcurrentAccessException
+//     A concurrent access issue occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UntagResource
 func (c *Cloud9) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1191,14 +1189,13 @@ const opUpdateEnvironment = "UpdateEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEnvironmentRequest method.
+//	req, resp := client.UpdateEnvironmentRequest(params)
 //
-//    // Example sending a request using the UpdateEnvironmentRequest method.
-//    req, resp := client.UpdateEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UpdateEnvironment
 func (c *Cloud9) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *request.Request, output *UpdateEnvironmentOutput) {
@@ -1230,26 +1227,27 @@ func (c *Cloud9) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 // API operation UpdateEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UpdateEnvironment
 func (c *Cloud9) UpdateEnvironment(input *UpdateEnvironmentInput) (*UpdateEnvironmentOutput, error) {
@@ -1289,14 +1287,13 @@ const opUpdateEnvironmentMembership = "UpdateEnvironmentMembership"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEnvironmentMembershipRequest method.
+//	req, resp := client.UpdateEnvironmentMembershipRequest(params)
 //
-//    // Example sending a request using the UpdateEnvironmentMembershipRequest method.
-//    req, resp := client.UpdateEnvironmentMembershipRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UpdateEnvironmentMembership
 func (c *Cloud9) UpdateEnvironmentMembershipRequest(input *UpdateEnvironmentMembershipInput) (req *request.Request, output *UpdateEnvironmentMembershipOutput) {
@@ -1328,26 +1325,27 @@ func (c *Cloud9) UpdateEnvironmentMembershipRequest(input *UpdateEnvironmentMemb
 // API operation UpdateEnvironmentMembership for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The target request is invalid.
 //
-//   * ConflictException
-//   A conflict occurred.
+//   - BadRequestException
+//     The target request is invalid.
 //
-//   * NotFoundException
-//   The target resource cannot be found.
+//   - ConflictException
+//     A conflict occurred.
 //
-//   * ForbiddenException
-//   An access permissions issue occurred.
+//   - NotFoundException
+//     The target resource cannot be found.
 //
-//   * TooManyRequestsException
-//   Too many service requests were made over the given time period.
+//   - ForbiddenException
+//     An access permissions issue occurred.
 //
-//   * LimitExceededException
-//   A service limit was exceeded.
+//   - TooManyRequestsException
+//     Too many service requests were made over the given time period.
 //
-//   * InternalServerErrorException
-//   An internal server error occurred.
+//   - LimitExceededException
+//     A service limit was exceeded.
+//
+//   - InternalServerErrorException
+//     An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UpdateEnvironmentMembership
 func (c *Cloud9) UpdateEnvironmentMembership(input *UpdateEnvironmentMembershipInput) (*UpdateEnvironmentMembershipOutput, error) {
@@ -1379,12 +1377,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -1435,12 +1441,20 @@ type ConcurrentAccessException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentAccessException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentAccessException) GoString() string {
 	return s.String()
 }
@@ -1491,12 +1505,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -1563,33 +1585,60 @@ type CreateEnvironmentEC2Input struct {
 	ConnectionType *string `locationName:"connectionType" type:"string" enum:"ConnectionType"`
 
 	// The description of the environment to create.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateEnvironmentEC2Input's
+	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The identifier for the Amazon Machine Image (AMI) that's used to create the
 	// EC2 instance. To choose an AMI for the instance, you must specify a valid
 	// AMI alias or a valid Amazon EC2 Systems Manager (SSM) path.
 	//
-	// The default AMI is used if the parameter isn't explicitly assigned a value
-	// in the request. Because Amazon Linux AMI has ended standard support as of
-	// December 31, 2020, we recommend you choose Amazon Linux 2, which includes
-	// long term support through 2023.
+	// From December 04, 2023, you will be required to include the imageId parameter
+	// for the CreateEnvironmentEC2 action. This change will be reflected across
+	// all direct methods of communicating with the API, such as Amazon Web Services
+	// SDK, Amazon Web Services CLI and Amazon Web Services CloudFormation. This
+	// change will only affect direct API consumers, and not Cloud9 console users.
+	//
+	// From January 22, 2024, Amazon Linux (AL1) will be removed from the list of
+	// available image IDs for Cloud9. This is necessary as AL1 will reach the end
+	// of maintenance support in December 2023, and as a result will no longer receive
+	// security updates. We recommend using Amazon Linux 2 as the AMI to create
+	// your environment as it is fully supported. This change will only affect direct
+	// API consumers, and not Cloud9 console users.
+	//
+	// Since Ubuntu 18.04 has ended standard support as of May 31, 2023, we recommend
+	// you choose Ubuntu 22.04.
 	//
 	// AMI aliases
 	//
-	//    * Amazon Linux (default): amazonlinux-1-x86_64
+	//    * Amazon Linux: amazonlinux-1-x86_64
 	//
 	//    * Amazon Linux 2: amazonlinux-2-x86_64
 	//
 	//    * Ubuntu 18.04: ubuntu-18.04-x86_64
 	//
+	//    * Ubuntu 22.04: ubuntu-22.04-x86_64
+	//
 	// SSM paths
 	//
-	//    * Amazon Linux (default): resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64
+	//    * Amazon Linux: resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64
 	//
 	//    * Amazon Linux 2: resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64
 	//
 	//    * Ubuntu 18.04: resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64
-	ImageId *string `locationName:"imageId" type:"string"`
+	//
+	//    * Ubuntu 22.04: resolve:ssm:/aws/service/cloud9/amis/ubuntu-22.04-x86_64
+	//
+	// ImageId is a required field
+	ImageId *string `locationName:"imageId" type:"string" required:"true"`
 
 	// The type of instance to connect to the environment (for example, t2.micro).
 	//
@@ -1614,15 +1663,27 @@ type CreateEnvironmentEC2Input struct {
 
 	// An array of key-value pairs that will be associated with the new Cloud9 development
 	// environment.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateEnvironmentEC2Input's
+	// String and GoString methods.
 	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentEC2Input) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentEC2Input) GoString() string {
 	return s.String()
 }
@@ -1630,6 +1691,9 @@ func (s CreateEnvironmentEC2Input) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateEnvironmentEC2Input) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateEnvironmentEC2Input"}
+	if s.ImageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageId"))
+	}
 	if s.InstanceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
 	}
@@ -1686,6 +1750,12 @@ func (s *CreateEnvironmentEC2Input) SetDescription(v string) *CreateEnvironmentE
 	return s
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *CreateEnvironmentEC2Input) SetDryRun(v bool) *CreateEnvironmentEC2Input {
+	s.DryRun = &v
+	return s
+}
+
 // SetImageId sets the ImageId field's value.
 func (s *CreateEnvironmentEC2Input) SetImageId(v string) *CreateEnvironmentEC2Input {
 	s.ImageId = &v
@@ -1729,12 +1799,20 @@ type CreateEnvironmentEC2Output struct {
 	EnvironmentId *string `locationName:"environmentId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentEC2Output) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentEC2Output) GoString() string {
 	return s.String()
 }
@@ -1770,12 +1848,20 @@ type CreateEnvironmentMembershipInput struct {
 	UserArn *string `locationName:"userArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentMembershipInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentMembershipInput) GoString() string {
 	return s.String()
 }
@@ -1826,12 +1912,20 @@ type CreateEnvironmentMembershipOutput struct {
 	Membership *EnvironmentMember `locationName:"membership" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentMembershipOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentMembershipOutput) GoString() string {
 	return s.String()
 }
@@ -1851,12 +1945,20 @@ type DeleteEnvironmentInput struct {
 	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -1895,12 +1997,20 @@ type DeleteEnvironmentMembershipInput struct {
 	UserArn *string `locationName:"userArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentMembershipInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentMembershipInput) GoString() string {
 	return s.String()
 }
@@ -1937,12 +2047,20 @@ type DeleteEnvironmentMembershipOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentMembershipOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentMembershipOutput) GoString() string {
 	return s.String()
 }
@@ -1951,12 +2069,20 @@ type DeleteEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentOutput) GoString() string {
 	return s.String()
 }
@@ -1988,7 +2114,7 @@ type DescribeEnvironmentMembershipsInput struct {
 	//    * read-write: Has read-write access to the environment.
 	//
 	// If no value is specified, information about all environment members are returned.
-	Permissions []*string `locationName:"permissions" type:"list"`
+	Permissions []*string `locationName:"permissions" type:"list" enum:"Permissions"`
 
 	// The Amazon Resource Name (ARN) of an individual environment member to get
 	// information about. If no value is specified, information about all environment
@@ -1996,12 +2122,20 @@ type DescribeEnvironmentMembershipsInput struct {
 	UserArn *string `locationName:"userArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentMembershipsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentMembershipsInput) GoString() string {
 	return s.String()
 }
@@ -2049,12 +2183,20 @@ type DescribeEnvironmentMembershipsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentMembershipsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentMembershipsOutput) GoString() string {
 	return s.String()
 }
@@ -2080,12 +2222,20 @@ type DescribeEnvironmentStatusInput struct {
 	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentStatusInput) GoString() string {
 	return s.String()
 }
@@ -2137,12 +2287,20 @@ type DescribeEnvironmentStatusOutput struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"EnvironmentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentStatusOutput) GoString() string {
 	return s.String()
 }
@@ -2168,12 +2326,20 @@ type DescribeEnvironmentsInput struct {
 	EnvironmentIds []*string `locationName:"environmentIds" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentsInput) GoString() string {
 	return s.String()
 }
@@ -2207,12 +2373,20 @@ type DescribeEnvironmentsOutput struct {
 	Environments []*Environment `locationName:"environments" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentsOutput) GoString() string {
 	return s.String()
 }
@@ -2237,6 +2411,10 @@ type Environment struct {
 	ConnectionType *string `locationName:"connectionType" type:"string" enum:"ConnectionType"`
 
 	// The description for the environment.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Environment's
+	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The ID of the environment.
@@ -2288,12 +2466,20 @@ type Environment struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EnvironmentType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Environment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Environment) GoString() string {
 	return s.String()
 }
@@ -2378,12 +2564,20 @@ type EnvironmentLifecycle struct {
 	Status *string `locationName:"status" type:"string" enum:"EnvironmentLifecycleStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentLifecycle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentLifecycle) GoString() string {
 	return s.String()
 }
@@ -2442,12 +2636,20 @@ type EnvironmentMember struct {
 	UserId *string `locationName:"userId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentMember) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentMember) GoString() string {
 	return s.String()
 }
@@ -2490,12 +2692,20 @@ type ForbiddenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) GoString() string {
 	return s.String()
 }
@@ -2546,12 +2756,20 @@ type InternalServerErrorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) GoString() string {
 	return s.String()
 }
@@ -2602,12 +2820,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -2665,12 +2891,20 @@ type ListEnvironmentsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEnvironmentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEnvironmentsInput) GoString() string {
 	return s.String()
 }
@@ -2700,12 +2934,20 @@ type ListEnvironmentsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEnvironmentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEnvironmentsOutput) GoString() string {
 	return s.String()
 }
@@ -2732,12 +2974,20 @@ type ListTagsForResourceInput struct {
 	ResourceARN *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -2765,15 +3015,27 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of tags associated with the Cloud9 development environment.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListTagsForResourceOutput's
+	// String and GoString methods.
 	Tags []*Tag `type:"list" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -2792,12 +3054,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -2851,21 +3121,37 @@ type Tag struct {
 
 	// The name part of a tag.
 	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Tag's
+	// String and GoString methods.
+	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The value part of a tag.
 	//
+	// Value is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Tag's
+	// String and GoString methods.
+	//
 	// Value is a required field
 	Value *string `type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -2912,16 +3198,28 @@ type TagResourceInput struct {
 
 	// The list of tags to add to the given Cloud9 development environment.
 	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TagResourceInput's
+	// String and GoString methods.
+	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -2968,12 +3266,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -2986,12 +3292,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -3045,16 +3359,28 @@ type UntagResourceInput struct {
 
 	// The tag names of the tags to remove from the given Cloud9 development environment.
 	//
+	// TagKeys is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UntagResourceInput's
+	// String and GoString methods.
+	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -3091,12 +3417,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3105,6 +3439,10 @@ type UpdateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
 	// Any new or replacement description for the environment.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateEnvironmentInput's
+	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The ID of the environment to change settings.
@@ -3112,16 +3450,37 @@ type UpdateEnvironmentInput struct {
 	// EnvironmentId is a required field
 	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
 
+	// Allows the environment owner to turn on or turn off the Amazon Web Services
+	// managed temporary credentials for an Cloud9 environment by using one of the
+	// following values:
+	//
+	//    * ENABLE
+	//
+	//    * DISABLE
+	//
+	// Only the environment owner can change the status of managed temporary credentials.
+	// An AccessDeniedException is thrown if an attempt to turn on or turn off managed
+	// temporary credentials is made by an account that's not the environment owner.
+	ManagedCredentialsAction *string `locationName:"managedCredentialsAction" type:"string" enum:"ManagedCredentialsAction"`
+
 	// A replacement name for the environment.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -3151,6 +3510,12 @@ func (s *UpdateEnvironmentInput) SetDescription(v string) *UpdateEnvironmentInpu
 // SetEnvironmentId sets the EnvironmentId field's value.
 func (s *UpdateEnvironmentInput) SetEnvironmentId(v string) *UpdateEnvironmentInput {
 	s.EnvironmentId = &v
+	return s
+}
+
+// SetManagedCredentialsAction sets the ManagedCredentialsAction field's value.
+func (s *UpdateEnvironmentInput) SetManagedCredentialsAction(v string) *UpdateEnvironmentInput {
+	s.ManagedCredentialsAction = &v
 	return s
 }
 
@@ -3186,12 +3551,20 @@ type UpdateEnvironmentMembershipInput struct {
 	UserArn *string `locationName:"userArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentMembershipInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentMembershipInput) GoString() string {
 	return s.String()
 }
@@ -3240,12 +3613,20 @@ type UpdateEnvironmentMembershipOutput struct {
 	Membership *EnvironmentMember `locationName:"membership" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentMembershipOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentMembershipOutput) GoString() string {
 	return s.String()
 }
@@ -3260,12 +3641,20 @@ type UpdateEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentOutput) GoString() string {
 	return s.String()
 }
@@ -3363,6 +3752,22 @@ func EnvironmentType_Values() []string {
 	return []string{
 		EnvironmentTypeSsh,
 		EnvironmentTypeEc2,
+	}
+}
+
+const (
+	// ManagedCredentialsActionEnable is a ManagedCredentialsAction enum value
+	ManagedCredentialsActionEnable = "ENABLE"
+
+	// ManagedCredentialsActionDisable is a ManagedCredentialsAction enum value
+	ManagedCredentialsActionDisable = "DISABLE"
+)
+
+// ManagedCredentialsAction_Values returns all elements of the ManagedCredentialsAction enum
+func ManagedCredentialsAction_Values() []string {
+	return []string{
+		ManagedCredentialsActionEnable,
+		ManagedCredentialsActionDisable,
 	}
 }
 

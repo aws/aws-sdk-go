@@ -17,7 +17,7 @@
 // To improve the security of your CodeGuru Reviewer API calls, you can establish
 // a private connection between your VPC and CodeGuru Reviewer by creating an
 // interface VPC endpoint. For more information, see CodeGuru Reviewer and interface
-// VPC endpoints (AWS PrivateLink) (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/vpc-interface-endpoints.html)
+// VPC endpoints (Amazon Web Services PrivateLink) (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/vpc-interface-endpoints.html)
 // in the Amazon CodeGuru Reviewer User Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19 for more information on this service.
@@ -25,7 +25,7 @@
 // See codegurureviewer package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/codegurureviewer/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact Amazon CodeGuru Reviewer with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

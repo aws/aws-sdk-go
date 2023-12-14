@@ -28,14 +28,13 @@ const opAssociateFirewallRuleGroup = "AssociateFirewallRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateFirewallRuleGroupRequest method.
+//	req, resp := client.AssociateFirewallRuleGroupRequest(params)
 //
-//    // Example sending a request using the AssociateFirewallRuleGroupRequest method.
-//    req, resp := client.AssociateFirewallRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateFirewallRuleGroup
 func (c *Route53Resolver) AssociateFirewallRuleGroupRequest(input *AssociateFirewallRuleGroupInput) (req *request.Request, output *AssociateFirewallRuleGroupOutput) {
@@ -67,25 +66,31 @@ func (c *Route53Resolver) AssociateFirewallRuleGroupRequest(input *AssociateFire
 // API operation AssociateFirewallRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * ValidationException
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * ConflictException
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateFirewallRuleGroup
 func (c *Route53Resolver) AssociateFirewallRuleGroup(input *AssociateFirewallRuleGroupInput) (*AssociateFirewallRuleGroupOutput, error) {
@@ -125,14 +130,13 @@ const opAssociateResolverEndpointIpAddress = "AssociateResolverEndpointIpAddress
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateResolverEndpointIpAddressRequest method.
+//	req, resp := client.AssociateResolverEndpointIpAddressRequest(params)
 //
-//    // Example sending a request using the AssociateResolverEndpointIpAddressRequest method.
-//    req, resp := client.AssociateResolverEndpointIpAddressRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateResolverEndpointIpAddress
 func (c *Route53Resolver) AssociateResolverEndpointIpAddressRequest(input *AssociateResolverEndpointIpAddressInput) (req *request.Request, output *AssociateResolverEndpointIpAddressOutput) {
@@ -168,26 +172,27 @@ func (c *Route53Resolver) AssociateResolverEndpointIpAddressRequest(input *Assoc
 // API operation AssociateResolverEndpointIpAddress for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ResourceExistsException
-//   The resource that you tried to create already exists.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - ResourceExistsException
+//     The resource that you tried to create already exists.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateResolverEndpointIpAddress
 func (c *Route53Resolver) AssociateResolverEndpointIpAddress(input *AssociateResolverEndpointIpAddressInput) (*AssociateResolverEndpointIpAddressOutput, error) {
@@ -227,14 +232,13 @@ const opAssociateResolverQueryLogConfig = "AssociateResolverQueryLogConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateResolverQueryLogConfigRequest method.
+//	req, resp := client.AssociateResolverQueryLogConfigRequest(params)
 //
-//    // Example sending a request using the AssociateResolverQueryLogConfigRequest method.
-//    req, resp := client.AssociateResolverQueryLogConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateResolverQueryLogConfig
 func (c *Route53Resolver) AssociateResolverQueryLogConfigRequest(input *AssociateResolverQueryLogConfigInput) (req *request.Request, output *AssociateResolverQueryLogConfigOutput) {
@@ -275,30 +279,31 @@ func (c *Route53Resolver) AssociateResolverQueryLogConfigRequest(input *Associat
 // API operation AssociateResolverQueryLogConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * ResourceExistsException
-//   The resource that you tried to create already exists.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - ResourceExistsException
+//     The resource that you tried to create already exists.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateResolverQueryLogConfig
 func (c *Route53Resolver) AssociateResolverQueryLogConfig(input *AssociateResolverQueryLogConfigInput) (*AssociateResolverQueryLogConfigOutput, error) {
@@ -338,14 +343,13 @@ const opAssociateResolverRule = "AssociateResolverRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateResolverRuleRequest method.
+//	req, resp := client.AssociateResolverRuleRequest(params)
 //
-//    // Example sending a request using the AssociateResolverRuleRequest method.
-//    req, resp := client.AssociateResolverRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateResolverRule
 func (c *Route53Resolver) AssociateResolverRuleRequest(input *AssociateResolverRuleInput) (req *request.Request, output *AssociateResolverRuleOutput) {
@@ -380,29 +384,30 @@ func (c *Route53Resolver) AssociateResolverRuleRequest(input *AssociateResolverR
 // API operation AssociateResolverRule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * ResourceUnavailableException
-//   The specified resource isn't available.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ResourceExistsException
-//   The resource that you tried to create already exists.
+//   - ResourceUnavailableException
+//     The specified resource isn't available.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - ResourceExistsException
+//     The resource that you tried to create already exists.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateResolverRule
 func (c *Route53Resolver) AssociateResolverRule(input *AssociateResolverRuleInput) (*AssociateResolverRuleOutput, error) {
@@ -442,14 +447,13 @@ const opCreateFirewallDomainList = "CreateFirewallDomainList"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFirewallDomainListRequest method.
+//	req, resp := client.CreateFirewallDomainListRequest(params)
 //
-//    // Example sending a request using the CreateFirewallDomainListRequest method.
-//    req, resp := client.CreateFirewallDomainListRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallDomainList
 func (c *Route53Resolver) CreateFirewallDomainListRequest(input *CreateFirewallDomainListInput) (req *request.Request, output *CreateFirewallDomainListOutput) {
@@ -482,20 +486,23 @@ func (c *Route53Resolver) CreateFirewallDomainListRequest(input *CreateFirewallD
 // API operation CreateFirewallDomainList for usage and error information.
 //
 // Returned Error Types:
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
 //
-//   * ValidationException
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallDomainList
 func (c *Route53Resolver) CreateFirewallDomainList(input *CreateFirewallDomainListInput) (*CreateFirewallDomainListOutput, error) {
@@ -535,14 +542,13 @@ const opCreateFirewallRule = "CreateFirewallRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFirewallRuleRequest method.
+//	req, resp := client.CreateFirewallRuleRequest(params)
 //
-//    // Example sending a request using the CreateFirewallRuleRequest method.
-//    req, resp := client.CreateFirewallRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallRule
 func (c *Route53Resolver) CreateFirewallRuleRequest(input *CreateFirewallRuleInput) (req *request.Request, output *CreateFirewallRuleOutput) {
@@ -574,23 +580,26 @@ func (c *Route53Resolver) CreateFirewallRuleRequest(input *CreateFirewallRuleInp
 // API operation CreateFirewallRule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * ValidationException
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallRule
 func (c *Route53Resolver) CreateFirewallRule(input *CreateFirewallRuleInput) (*CreateFirewallRuleOutput, error) {
@@ -630,14 +639,13 @@ const opCreateFirewallRuleGroup = "CreateFirewallRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFirewallRuleGroupRequest method.
+//	req, resp := client.CreateFirewallRuleGroupRequest(params)
 //
-//    // Example sending a request using the CreateFirewallRuleGroupRequest method.
-//    req, resp := client.CreateFirewallRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallRuleGroup
 func (c *Route53Resolver) CreateFirewallRuleGroupRequest(input *CreateFirewallRuleGroupInput) (req *request.Request, output *CreateFirewallRuleGroupOutput) {
@@ -669,20 +677,23 @@ func (c *Route53Resolver) CreateFirewallRuleGroupRequest(input *CreateFirewallRu
 // API operation CreateFirewallRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
 //
-//   * ValidationException
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallRuleGroup
 func (c *Route53Resolver) CreateFirewallRuleGroup(input *CreateFirewallRuleGroupInput) (*CreateFirewallRuleGroupOutput, error) {
@@ -706,6 +717,102 @@ func (c *Route53Resolver) CreateFirewallRuleGroupWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opCreateOutpostResolver = "CreateOutpostResolver"
+
+// CreateOutpostResolverRequest generates a "aws/request.Request" representing the
+// client's request for the CreateOutpostResolver operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateOutpostResolver for more information on using the CreateOutpostResolver
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateOutpostResolverRequest method.
+//	req, resp := client.CreateOutpostResolverRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateOutpostResolver
+func (c *Route53Resolver) CreateOutpostResolverRequest(input *CreateOutpostResolverInput) (req *request.Request, output *CreateOutpostResolverOutput) {
+	op := &request.Operation{
+		Name:       opCreateOutpostResolver,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateOutpostResolverInput{}
+	}
+
+	output = &CreateOutpostResolverOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateOutpostResolver API operation for Amazon Route 53 Resolver.
+//
+// Creates an Route 53 Resolver on an Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation CreateOutpostResolver for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ServiceQuotaExceededException
+//     Fulfilling the request would cause one or more quotas to be exceeded.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateOutpostResolver
+func (c *Route53Resolver) CreateOutpostResolver(input *CreateOutpostResolverInput) (*CreateOutpostResolverOutput, error) {
+	req, out := c.CreateOutpostResolverRequest(input)
+	return out, req.Send()
+}
+
+// CreateOutpostResolverWithContext is the same as CreateOutpostResolver with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateOutpostResolver for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) CreateOutpostResolverWithContext(ctx aws.Context, input *CreateOutpostResolverInput, opts ...request.Option) (*CreateOutpostResolverOutput, error) {
+	req, out := c.CreateOutpostResolverRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateResolverEndpoint = "CreateResolverEndpoint"
 
 // CreateResolverEndpointRequest generates a "aws/request.Request" representing the
@@ -722,14 +829,13 @@ const opCreateResolverEndpoint = "CreateResolverEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateResolverEndpointRequest method.
+//	req, resp := client.CreateResolverEndpointRequest(params)
 //
-//    // Example sending a request using the CreateResolverEndpointRequest method.
-//    req, resp := client.CreateResolverEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateResolverEndpoint
 func (c *Route53Resolver) CreateResolverEndpointRequest(input *CreateResolverEndpointInput) (req *request.Request, output *CreateResolverEndpointOutput) {
@@ -753,11 +859,11 @@ func (c *Route53Resolver) CreateResolverEndpointRequest(input *CreateResolverEnd
 // Creates a Resolver endpoint. There are two types of Resolver endpoints, inbound
 // and outbound:
 //
-//    * An inbound Resolver endpoint forwards DNS queries to the DNS service
-//    for a VPC from your network.
+//   - An inbound Resolver endpoint forwards DNS queries to the DNS service
+//     for a VPC from your network.
 //
-//    * An outbound Resolver endpoint forwards DNS queries from the DNS service
-//    for a VPC to your network.
+//   - An outbound Resolver endpoint forwards DNS queries from the DNS service
+//     for a VPC to your network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -767,26 +873,27 @@ func (c *Route53Resolver) CreateResolverEndpointRequest(input *CreateResolverEnd
 // API operation CreateResolverEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * ResourceExistsException
-//   The resource that you tried to create already exists.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - ResourceExistsException
+//     The resource that you tried to create already exists.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateResolverEndpoint
 func (c *Route53Resolver) CreateResolverEndpoint(input *CreateResolverEndpointInput) (*CreateResolverEndpointOutput, error) {
@@ -826,14 +933,13 @@ const opCreateResolverQueryLogConfig = "CreateResolverQueryLogConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateResolverQueryLogConfigRequest method.
+//	req, resp := client.CreateResolverQueryLogConfigRequest(params)
 //
-//    // Example sending a request using the CreateResolverQueryLogConfigRequest method.
-//    req, resp := client.CreateResolverQueryLogConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateResolverQueryLogConfig
 func (c *Route53Resolver) CreateResolverQueryLogConfigRequest(input *CreateResolverQueryLogConfigInput) (req *request.Request, output *CreateResolverQueryLogConfigOutput) {
@@ -862,11 +968,11 @@ func (c *Route53Resolver) CreateResolverQueryLogConfigRequest(input *CreateResol
 // To specify which VPCs you want to log queries for, you use AssociateResolverQueryLogConfig.
 // For more information, see AssociateResolverQueryLogConfig (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_AssociateResolverQueryLogConfig.html).
 //
-// You can optionally use AWS Resource Access Manager (AWS RAM) to share a query
-// logging configuration with other AWS accounts. The other accounts can then
-// associate VPCs with the configuration. The query logs that Resolver creates
-// for a configuration include all DNS queries that originate in all VPCs that
-// are associated with the configuration.
+// You can optionally use Resource Access Manager (RAM) to share a query logging
+// configuration with other Amazon Web Services accounts. The other accounts
+// can then associate VPCs with the configuration. The query logs that Resolver
+// creates for a configuration include all DNS queries that originate in all
+// VPCs that are associated with the configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -876,30 +982,31 @@ func (c *Route53Resolver) CreateResolverQueryLogConfigRequest(input *CreateResol
 // API operation CreateResolverQueryLogConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * ResourceExistsException
-//   The resource that you tried to create already exists.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - ResourceExistsException
+//     The resource that you tried to create already exists.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateResolverQueryLogConfig
 func (c *Route53Resolver) CreateResolverQueryLogConfig(input *CreateResolverQueryLogConfigInput) (*CreateResolverQueryLogConfigOutput, error) {
@@ -939,14 +1046,13 @@ const opCreateResolverRule = "CreateResolverRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateResolverRuleRequest method.
+//	req, resp := client.CreateResolverRuleRequest(params)
 //
-//    // Example sending a request using the CreateResolverRuleRequest method.
-//    req, resp := client.CreateResolverRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateResolverRule
 func (c *Route53Resolver) CreateResolverRuleRequest(input *CreateResolverRuleInput) (req *request.Request, output *CreateResolverRuleOutput) {
@@ -979,29 +1085,30 @@ func (c *Route53Resolver) CreateResolverRuleRequest(input *CreateResolverRuleInp
 // API operation CreateResolverRule for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * ResourceExistsException
-//   The resource that you tried to create already exists.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * ResourceUnavailableException
-//   The specified resource isn't available.
+//   - ResourceExistsException
+//     The resource that you tried to create already exists.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - ResourceUnavailableException
+//     The specified resource isn't available.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateResolverRule
 func (c *Route53Resolver) CreateResolverRule(input *CreateResolverRuleInput) (*CreateResolverRuleOutput, error) {
@@ -1041,14 +1148,13 @@ const opDeleteFirewallDomainList = "DeleteFirewallDomainList"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFirewallDomainListRequest method.
+//	req, resp := client.DeleteFirewallDomainListRequest(params)
 //
-//    // Example sending a request using the DeleteFirewallDomainListRequest method.
-//    req, resp := client.DeleteFirewallDomainListRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallDomainList
 func (c *Route53Resolver) DeleteFirewallDomainListRequest(input *DeleteFirewallDomainListInput) (req *request.Request, output *DeleteFirewallDomainListOutput) {
@@ -1079,20 +1185,24 @@ func (c *Route53Resolver) DeleteFirewallDomainListRequest(input *DeleteFirewallD
 // API operation DeleteFirewallDomainList for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * ConflictException
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallDomainList
 func (c *Route53Resolver) DeleteFirewallDomainList(input *DeleteFirewallDomainListInput) (*DeleteFirewallDomainListOutput, error) {
@@ -1132,14 +1242,13 @@ const opDeleteFirewallRule = "DeleteFirewallRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFirewallRuleRequest method.
+//	req, resp := client.DeleteFirewallRuleRequest(params)
 //
-//    // Example sending a request using the DeleteFirewallRuleRequest method.
-//    req, resp := client.DeleteFirewallRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallRule
 func (c *Route53Resolver) DeleteFirewallRuleRequest(input *DeleteFirewallRuleInput) (req *request.Request, output *DeleteFirewallRuleOutput) {
@@ -1170,18 +1279,19 @@ func (c *Route53Resolver) DeleteFirewallRuleRequest(input *DeleteFirewallRuleInp
 // API operation DeleteFirewallRule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallRule
 func (c *Route53Resolver) DeleteFirewallRule(input *DeleteFirewallRuleInput) (*DeleteFirewallRuleOutput, error) {
@@ -1221,14 +1331,13 @@ const opDeleteFirewallRuleGroup = "DeleteFirewallRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFirewallRuleGroupRequest method.
+//	req, resp := client.DeleteFirewallRuleGroupRequest(params)
 //
-//    // Example sending a request using the DeleteFirewallRuleGroupRequest method.
-//    req, resp := client.DeleteFirewallRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallRuleGroup
 func (c *Route53Resolver) DeleteFirewallRuleGroupRequest(input *DeleteFirewallRuleGroupInput) (req *request.Request, output *DeleteFirewallRuleGroupOutput) {
@@ -1259,22 +1368,28 @@ func (c *Route53Resolver) DeleteFirewallRuleGroupRequest(input *DeleteFirewallRu
 // API operation DeleteFirewallRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * ConflictException
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * ValidationException
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallRuleGroup
 func (c *Route53Resolver) DeleteFirewallRuleGroup(input *DeleteFirewallRuleGroupInput) (*DeleteFirewallRuleGroupOutput, error) {
@@ -1298,6 +1413,104 @@ func (c *Route53Resolver) DeleteFirewallRuleGroupWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opDeleteOutpostResolver = "DeleteOutpostResolver"
+
+// DeleteOutpostResolverRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteOutpostResolver operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteOutpostResolver for more information on using the DeleteOutpostResolver
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteOutpostResolverRequest method.
+//	req, resp := client.DeleteOutpostResolverRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteOutpostResolver
+func (c *Route53Resolver) DeleteOutpostResolverRequest(input *DeleteOutpostResolverInput) (req *request.Request, output *DeleteOutpostResolverOutput) {
+	op := &request.Operation{
+		Name:       opDeleteOutpostResolver,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteOutpostResolverInput{}
+	}
+
+	output = &DeleteOutpostResolverOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteOutpostResolver API operation for Amazon Route 53 Resolver.
+//
+// Deletes a Resolver on the Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation DeleteOutpostResolver for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteOutpostResolver
+func (c *Route53Resolver) DeleteOutpostResolver(input *DeleteOutpostResolverInput) (*DeleteOutpostResolverOutput, error) {
+	req, out := c.DeleteOutpostResolverRequest(input)
+	return out, req.Send()
+}
+
+// DeleteOutpostResolverWithContext is the same as DeleteOutpostResolver with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteOutpostResolver for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) DeleteOutpostResolverWithContext(ctx aws.Context, input *DeleteOutpostResolverInput, opts ...request.Option) (*DeleteOutpostResolverOutput, error) {
+	req, out := c.DeleteOutpostResolverRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteResolverEndpoint = "DeleteResolverEndpoint"
 
 // DeleteResolverEndpointRequest generates a "aws/request.Request" representing the
@@ -1314,14 +1527,13 @@ const opDeleteResolverEndpoint = "DeleteResolverEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteResolverEndpointRequest method.
+//	req, resp := client.DeleteResolverEndpointRequest(params)
 //
-//    // Example sending a request using the DeleteResolverEndpointRequest method.
-//    req, resp := client.DeleteResolverEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteResolverEndpoint
 func (c *Route53Resolver) DeleteResolverEndpointRequest(input *DeleteResolverEndpointInput) (req *request.Request, output *DeleteResolverEndpointOutput) {
@@ -1345,10 +1557,10 @@ func (c *Route53Resolver) DeleteResolverEndpointRequest(input *DeleteResolverEnd
 // Deletes a Resolver endpoint. The effect of deleting a Resolver endpoint depends
 // on whether it's an inbound or an outbound Resolver endpoint:
 //
-//    * Inbound: DNS queries from your network are no longer routed to the DNS
-//    service for the specified VPC.
+//   - Inbound: DNS queries from your network are no longer routed to the DNS
+//     service for the specified VPC.
 //
-//    * Outbound: DNS queries from a VPC are no longer routed to your network.
+//   - Outbound: DNS queries from a VPC are no longer routed to your network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1358,20 +1570,21 @@ func (c *Route53Resolver) DeleteResolverEndpointRequest(input *DeleteResolverEnd
 // API operation DeleteResolverEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteResolverEndpoint
 func (c *Route53Resolver) DeleteResolverEndpoint(input *DeleteResolverEndpointInput) (*DeleteResolverEndpointOutput, error) {
@@ -1411,14 +1624,13 @@ const opDeleteResolverQueryLogConfig = "DeleteResolverQueryLogConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteResolverQueryLogConfigRequest method.
+//	req, resp := client.DeleteResolverQueryLogConfigRequest(params)
 //
-//    // Example sending a request using the DeleteResolverQueryLogConfigRequest method.
-//    req, resp := client.DeleteResolverQueryLogConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteResolverQueryLogConfig
 func (c *Route53Resolver) DeleteResolverQueryLogConfigRequest(input *DeleteResolverQueryLogConfigInput) (req *request.Request, output *DeleteResolverQueryLogConfigOutput) {
@@ -1442,8 +1654,8 @@ func (c *Route53Resolver) DeleteResolverQueryLogConfigRequest(input *DeleteResol
 // Deletes a query logging configuration. When you delete a configuration, Resolver
 // stops logging DNS queries for all of the Amazon VPCs that are associated
 // with the configuration. This also applies if the query logging configuration
-// is shared with other AWS accounts, and the other accounts have associated
-// VPCs with the shared configuration.
+// is shared with other Amazon Web Services accounts, and the other accounts
+// have associated VPCs with the shared configuration.
 //
 // Before you can delete a query logging configuration, you must first disassociate
 // all VPCs from the configuration. See DisassociateResolverQueryLogConfig (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DisassociateResolverQueryLogConfig.html).
@@ -1463,24 +1675,25 @@ func (c *Route53Resolver) DeleteResolverQueryLogConfigRequest(input *DeleteResol
 // API operation DeleteResolverQueryLogConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteResolverQueryLogConfig
 func (c *Route53Resolver) DeleteResolverQueryLogConfig(input *DeleteResolverQueryLogConfigInput) (*DeleteResolverQueryLogConfigOutput, error) {
@@ -1520,14 +1733,13 @@ const opDeleteResolverRule = "DeleteResolverRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteResolverRuleRequest method.
+//	req, resp := client.DeleteResolverRuleRequest(params)
 //
-//    // Example sending a request using the DeleteResolverRuleRequest method.
-//    req, resp := client.DeleteResolverRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteResolverRule
 func (c *Route53Resolver) DeleteResolverRuleRequest(input *DeleteResolverRuleInput) (req *request.Request, output *DeleteResolverRuleOutput) {
@@ -1560,20 +1772,21 @@ func (c *Route53Resolver) DeleteResolverRuleRequest(input *DeleteResolverRuleInp
 // API operation DeleteResolverRule for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ResourceInUseException
-//   The resource that you tried to update or delete is currently in use.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - ResourceInUseException
+//     The resource that you tried to update or delete is currently in use.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteResolverRule
 func (c *Route53Resolver) DeleteResolverRule(input *DeleteResolverRuleInput) (*DeleteResolverRuleOutput, error) {
@@ -1613,14 +1826,13 @@ const opDisassociateFirewallRuleGroup = "DisassociateFirewallRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateFirewallRuleGroupRequest method.
+//	req, resp := client.DisassociateFirewallRuleGroupRequest(params)
 //
-//    // Example sending a request using the DisassociateFirewallRuleGroupRequest method.
-//    req, resp := client.DisassociateFirewallRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateFirewallRuleGroup
 func (c *Route53Resolver) DisassociateFirewallRuleGroupRequest(input *DisassociateFirewallRuleGroupInput) (req *request.Request, output *DisassociateFirewallRuleGroupOutput) {
@@ -1652,22 +1864,28 @@ func (c *Route53Resolver) DisassociateFirewallRuleGroupRequest(input *Disassocia
 // API operation DisassociateFirewallRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * ValidationException
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * ConflictException
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateFirewallRuleGroup
 func (c *Route53Resolver) DisassociateFirewallRuleGroup(input *DisassociateFirewallRuleGroupInput) (*DisassociateFirewallRuleGroupOutput, error) {
@@ -1707,14 +1925,13 @@ const opDisassociateResolverEndpointIpAddress = "DisassociateResolverEndpointIpA
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateResolverEndpointIpAddressRequest method.
+//	req, resp := client.DisassociateResolverEndpointIpAddressRequest(params)
 //
-//    // Example sending a request using the DisassociateResolverEndpointIpAddressRequest method.
-//    req, resp := client.DisassociateResolverEndpointIpAddressRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateResolverEndpointIpAddress
 func (c *Route53Resolver) DisassociateResolverEndpointIpAddressRequest(input *DisassociateResolverEndpointIpAddressInput) (req *request.Request, output *DisassociateResolverEndpointIpAddressOutput) {
@@ -1750,23 +1967,24 @@ func (c *Route53Resolver) DisassociateResolverEndpointIpAddressRequest(input *Di
 // API operation DisassociateResolverEndpointIpAddress for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ResourceExistsException
-//   The resource that you tried to create already exists.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - ResourceExistsException
+//     The resource that you tried to create already exists.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateResolverEndpointIpAddress
 func (c *Route53Resolver) DisassociateResolverEndpointIpAddress(input *DisassociateResolverEndpointIpAddressInput) (*DisassociateResolverEndpointIpAddressOutput, error) {
@@ -1806,14 +2024,13 @@ const opDisassociateResolverQueryLogConfig = "DisassociateResolverQueryLogConfig
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateResolverQueryLogConfigRequest method.
+//	req, resp := client.DisassociateResolverQueryLogConfigRequest(params)
 //
-//    // Example sending a request using the DisassociateResolverQueryLogConfigRequest method.
-//    req, resp := client.DisassociateResolverQueryLogConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateResolverQueryLogConfig
 func (c *Route53Resolver) DisassociateResolverQueryLogConfigRequest(input *DisassociateResolverQueryLogConfigInput) (req *request.Request, output *DisassociateResolverQueryLogConfigOutput) {
@@ -1837,14 +2054,14 @@ func (c *Route53Resolver) DisassociateResolverQueryLogConfigRequest(input *Disas
 // Disassociates a VPC from a query logging configuration.
 //
 // Before you can delete a query logging configuration, you must first disassociate
-// all VPCs from the configuration. If you used AWS Resource Access Manager
-// (AWS RAM) to share a query logging configuration with other accounts, VPCs
-// can be disassociated from the configuration in the following ways:
+// all VPCs from the configuration. If you used Resource Access Manager (RAM)
+// to share a query logging configuration with other accounts, VPCs can be disassociated
+// from the configuration in the following ways:
 //
-//    * The accounts that you shared the configuration with can disassociate
-//    VPCs from the configuration.
+//   - The accounts that you shared the configuration with can disassociate
+//     VPCs from the configuration.
 //
-//    * You can stop sharing the configuration.
+//   - You can stop sharing the configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1854,24 +2071,25 @@ func (c *Route53Resolver) DisassociateResolverQueryLogConfigRequest(input *Disas
 // API operation DisassociateResolverQueryLogConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateResolverQueryLogConfig
 func (c *Route53Resolver) DisassociateResolverQueryLogConfig(input *DisassociateResolverQueryLogConfigInput) (*DisassociateResolverQueryLogConfigOutput, error) {
@@ -1911,14 +2129,13 @@ const opDisassociateResolverRule = "DisassociateResolverRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateResolverRuleRequest method.
+//	req, resp := client.DisassociateResolverRuleRequest(params)
 //
-//    // Example sending a request using the DisassociateResolverRuleRequest method.
-//    req, resp := client.DisassociateResolverRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateResolverRule
 func (c *Route53Resolver) DisassociateResolverRuleRequest(input *DisassociateResolverRuleInput) (req *request.Request, output *DisassociateResolverRuleOutput) {
@@ -1953,17 +2170,18 @@ func (c *Route53Resolver) DisassociateResolverRuleRequest(input *DisassociateRes
 // API operation DisassociateResolverRule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateResolverRule
 func (c *Route53Resolver) DisassociateResolverRule(input *DisassociateResolverRuleInput) (*DisassociateResolverRuleOutput, error) {
@@ -2003,14 +2221,13 @@ const opGetFirewallConfig = "GetFirewallConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFirewallConfigRequest method.
+//	req, resp := client.GetFirewallConfigRequest(params)
 //
-//    // Example sending a request using the GetFirewallConfigRequest method.
-//    req, resp := client.GetFirewallConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallConfig
 func (c *Route53Resolver) GetFirewallConfigRequest(input *GetFirewallConfigInput) (req *request.Request, output *GetFirewallConfigOutput) {
@@ -2042,20 +2259,23 @@ func (c *Route53Resolver) GetFirewallConfigRequest(input *GetFirewallConfigInput
 // API operation GetFirewallConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * ValidationException
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallConfig
 func (c *Route53Resolver) GetFirewallConfig(input *GetFirewallConfigInput) (*GetFirewallConfigOutput, error) {
@@ -2095,14 +2315,13 @@ const opGetFirewallDomainList = "GetFirewallDomainList"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFirewallDomainListRequest method.
+//	req, resp := client.GetFirewallDomainListRequest(params)
 //
-//    // Example sending a request using the GetFirewallDomainListRequest method.
-//    req, resp := client.GetFirewallDomainListRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallDomainList
 func (c *Route53Resolver) GetFirewallDomainListRequest(input *GetFirewallDomainListInput) (req *request.Request, output *GetFirewallDomainListOutput) {
@@ -2133,18 +2352,19 @@ func (c *Route53Resolver) GetFirewallDomainListRequest(input *GetFirewallDomainL
 // API operation GetFirewallDomainList for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallDomainList
 func (c *Route53Resolver) GetFirewallDomainList(input *GetFirewallDomainListInput) (*GetFirewallDomainListOutput, error) {
@@ -2184,14 +2404,13 @@ const opGetFirewallRuleGroup = "GetFirewallRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFirewallRuleGroupRequest method.
+//	req, resp := client.GetFirewallRuleGroupRequest(params)
 //
-//    // Example sending a request using the GetFirewallRuleGroupRequest method.
-//    req, resp := client.GetFirewallRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroup
 func (c *Route53Resolver) GetFirewallRuleGroupRequest(input *GetFirewallRuleGroupInput) (req *request.Request, output *GetFirewallRuleGroupOutput) {
@@ -2222,18 +2441,19 @@ func (c *Route53Resolver) GetFirewallRuleGroupRequest(input *GetFirewallRuleGrou
 // API operation GetFirewallRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroup
 func (c *Route53Resolver) GetFirewallRuleGroup(input *GetFirewallRuleGroupInput) (*GetFirewallRuleGroupOutput, error) {
@@ -2273,14 +2493,13 @@ const opGetFirewallRuleGroupAssociation = "GetFirewallRuleGroupAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFirewallRuleGroupAssociationRequest method.
+//	req, resp := client.GetFirewallRuleGroupAssociationRequest(params)
 //
-//    // Example sending a request using the GetFirewallRuleGroupAssociationRequest method.
-//    req, resp := client.GetFirewallRuleGroupAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroupAssociation
 func (c *Route53Resolver) GetFirewallRuleGroupAssociationRequest(input *GetFirewallRuleGroupAssociationInput) (req *request.Request, output *GetFirewallRuleGroupAssociationOutput) {
@@ -2314,18 +2533,19 @@ func (c *Route53Resolver) GetFirewallRuleGroupAssociationRequest(input *GetFirew
 // API operation GetFirewallRuleGroupAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroupAssociation
 func (c *Route53Resolver) GetFirewallRuleGroupAssociation(input *GetFirewallRuleGroupAssociationInput) (*GetFirewallRuleGroupAssociationOutput, error) {
@@ -2365,14 +2585,13 @@ const opGetFirewallRuleGroupPolicy = "GetFirewallRuleGroupPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFirewallRuleGroupPolicyRequest method.
+//	req, resp := client.GetFirewallRuleGroupPolicyRequest(params)
 //
-//    // Example sending a request using the GetFirewallRuleGroupPolicyRequest method.
-//    req, resp := client.GetFirewallRuleGroupPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroupPolicy
 func (c *Route53Resolver) GetFirewallRuleGroupPolicyRequest(input *GetFirewallRuleGroupPolicyInput) (req *request.Request, output *GetFirewallRuleGroupPolicyOutput) {
@@ -2393,9 +2612,9 @@ func (c *Route53Resolver) GetFirewallRuleGroupPolicyRequest(input *GetFirewallRu
 
 // GetFirewallRuleGroupPolicy API operation for Amazon Route 53 Resolver.
 //
-// Returns the AWS Identity and Access Management (AWS IAM) policy for sharing
-// the specified rule group. You can use the policy to share the rule group
-// using AWS Resource Access Manager (AWS RAM).
+// Returns the Identity and Access Management (Amazon Web Services IAM) policy
+// for sharing the specified rule group. You can use the policy to share the
+// rule group using Resource Access Manager (RAM).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2405,20 +2624,23 @@ func (c *Route53Resolver) GetFirewallRuleGroupPolicyRequest(input *GetFirewallRu
 // API operation GetFirewallRuleGroupPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroupPolicy
 func (c *Route53Resolver) GetFirewallRuleGroupPolicy(input *GetFirewallRuleGroupPolicyInput) (*GetFirewallRuleGroupPolicyOutput, error) {
@@ -2442,6 +2664,197 @@ func (c *Route53Resolver) GetFirewallRuleGroupPolicyWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opGetOutpostResolver = "GetOutpostResolver"
+
+// GetOutpostResolverRequest generates a "aws/request.Request" representing the
+// client's request for the GetOutpostResolver operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetOutpostResolver for more information on using the GetOutpostResolver
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetOutpostResolverRequest method.
+//	req, resp := client.GetOutpostResolverRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetOutpostResolver
+func (c *Route53Resolver) GetOutpostResolverRequest(input *GetOutpostResolverInput) (req *request.Request, output *GetOutpostResolverOutput) {
+	op := &request.Operation{
+		Name:       opGetOutpostResolver,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetOutpostResolverInput{}
+	}
+
+	output = &GetOutpostResolverOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetOutpostResolver API operation for Amazon Route 53 Resolver.
+//
+// Gets information about a specified Resolver on the Outpost, such as its instance
+// count and type, name, and the current status of the Resolver.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetOutpostResolver for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetOutpostResolver
+func (c *Route53Resolver) GetOutpostResolver(input *GetOutpostResolverInput) (*GetOutpostResolverOutput, error) {
+	req, out := c.GetOutpostResolverRequest(input)
+	return out, req.Send()
+}
+
+// GetOutpostResolverWithContext is the same as GetOutpostResolver with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetOutpostResolver for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetOutpostResolverWithContext(ctx aws.Context, input *GetOutpostResolverInput, opts ...request.Option) (*GetOutpostResolverOutput, error) {
+	req, out := c.GetOutpostResolverRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetResolverConfig = "GetResolverConfig"
+
+// GetResolverConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetResolverConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResolverConfig for more information on using the GetResolverConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResolverConfigRequest method.
+//	req, resp := client.GetResolverConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverConfig
+func (c *Route53Resolver) GetResolverConfigRequest(input *GetResolverConfigInput) (req *request.Request, output *GetResolverConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetResolverConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResolverConfigInput{}
+	}
+
+	output = &GetResolverConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResolverConfig API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the behavior configuration of Route 53 Resolver behavior for a
+// single VPC from Amazon Virtual Private Cloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetResolverConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverConfig
+func (c *Route53Resolver) GetResolverConfig(input *GetResolverConfigInput) (*GetResolverConfigOutput, error) {
+	req, out := c.GetResolverConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetResolverConfigWithContext is the same as GetResolverConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResolverConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetResolverConfigWithContext(ctx aws.Context, input *GetResolverConfigInput, opts ...request.Option) (*GetResolverConfigOutput, error) {
+	req, out := c.GetResolverConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetResolverDnssecConfig = "GetResolverDnssecConfig"
 
 // GetResolverDnssecConfigRequest generates a "aws/request.Request" representing the
@@ -2458,14 +2871,13 @@ const opGetResolverDnssecConfig = "GetResolverDnssecConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResolverDnssecConfigRequest method.
+//	req, resp := client.GetResolverDnssecConfigRequest(params)
 //
-//    // Example sending a request using the GetResolverDnssecConfigRequest method.
-//    req, resp := client.GetResolverDnssecConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverDnssecConfig
 func (c *Route53Resolver) GetResolverDnssecConfigRequest(input *GetResolverDnssecConfigInput) (req *request.Request, output *GetResolverDnssecConfigOutput) {
@@ -2496,24 +2908,25 @@ func (c *Route53Resolver) GetResolverDnssecConfigRequest(input *GetResolverDnsse
 // API operation GetResolverDnssecConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverDnssecConfig
 func (c *Route53Resolver) GetResolverDnssecConfig(input *GetResolverDnssecConfigInput) (*GetResolverDnssecConfigOutput, error) {
@@ -2553,14 +2966,13 @@ const opGetResolverEndpoint = "GetResolverEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResolverEndpointRequest method.
+//	req, resp := client.GetResolverEndpointRequest(params)
 //
-//    // Example sending a request using the GetResolverEndpointRequest method.
-//    req, resp := client.GetResolverEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverEndpoint
 func (c *Route53Resolver) GetResolverEndpointRequest(input *GetResolverEndpointInput) (req *request.Request, output *GetResolverEndpointOutput) {
@@ -2593,17 +3005,18 @@ func (c *Route53Resolver) GetResolverEndpointRequest(input *GetResolverEndpointI
 // API operation GetResolverEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverEndpoint
 func (c *Route53Resolver) GetResolverEndpoint(input *GetResolverEndpointInput) (*GetResolverEndpointOutput, error) {
@@ -2643,14 +3056,13 @@ const opGetResolverQueryLogConfig = "GetResolverQueryLogConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResolverQueryLogConfigRequest method.
+//	req, resp := client.GetResolverQueryLogConfigRequest(params)
 //
-//    // Example sending a request using the GetResolverQueryLogConfigRequest method.
-//    req, resp := client.GetResolverQueryLogConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverQueryLogConfig
 func (c *Route53Resolver) GetResolverQueryLogConfigRequest(input *GetResolverQueryLogConfigInput) (req *request.Request, output *GetResolverQueryLogConfigOutput) {
@@ -2683,24 +3095,25 @@ func (c *Route53Resolver) GetResolverQueryLogConfigRequest(input *GetResolverQue
 // API operation GetResolverQueryLogConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverQueryLogConfig
 func (c *Route53Resolver) GetResolverQueryLogConfig(input *GetResolverQueryLogConfigInput) (*GetResolverQueryLogConfigOutput, error) {
@@ -2740,14 +3153,13 @@ const opGetResolverQueryLogConfigAssociation = "GetResolverQueryLogConfigAssocia
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResolverQueryLogConfigAssociationRequest method.
+//	req, resp := client.GetResolverQueryLogConfigAssociationRequest(params)
 //
-//    // Example sending a request using the GetResolverQueryLogConfigAssociationRequest method.
-//    req, resp := client.GetResolverQueryLogConfigAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverQueryLogConfigAssociation
 func (c *Route53Resolver) GetResolverQueryLogConfigAssociationRequest(input *GetResolverQueryLogConfigAssociationInput) (req *request.Request, output *GetResolverQueryLogConfigAssociationOutput) {
@@ -2780,24 +3192,25 @@ func (c *Route53Resolver) GetResolverQueryLogConfigAssociationRequest(input *Get
 // API operation GetResolverQueryLogConfigAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverQueryLogConfigAssociation
 func (c *Route53Resolver) GetResolverQueryLogConfigAssociation(input *GetResolverQueryLogConfigAssociationInput) (*GetResolverQueryLogConfigAssociationOutput, error) {
@@ -2837,14 +3250,13 @@ const opGetResolverQueryLogConfigPolicy = "GetResolverQueryLogConfigPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResolverQueryLogConfigPolicyRequest method.
+//	req, resp := client.GetResolverQueryLogConfigPolicyRequest(params)
 //
-//    // Example sending a request using the GetResolverQueryLogConfigPolicyRequest method.
-//    req, resp := client.GetResolverQueryLogConfigPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverQueryLogConfigPolicy
 func (c *Route53Resolver) GetResolverQueryLogConfigPolicyRequest(input *GetResolverQueryLogConfigPolicyInput) (req *request.Request, output *GetResolverQueryLogConfigPolicyOutput) {
@@ -2867,7 +3279,7 @@ func (c *Route53Resolver) GetResolverQueryLogConfigPolicyRequest(input *GetResol
 //
 // Gets information about a query logging policy. A query logging policy specifies
 // the Resolver query logging operations and resources that you want to allow
-// another AWS account to be able to use.
+// another Amazon Web Services account to be able to use.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2877,21 +3289,22 @@ func (c *Route53Resolver) GetResolverQueryLogConfigPolicyRequest(input *GetResol
 // API operation GetResolverQueryLogConfigPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * UnknownResourceException
-//   The specified resource doesn't exist.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - UnknownResourceException
+//     The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverQueryLogConfigPolicy
 func (c *Route53Resolver) GetResolverQueryLogConfigPolicy(input *GetResolverQueryLogConfigPolicyInput) (*GetResolverQueryLogConfigPolicyOutput, error) {
@@ -2931,14 +3344,13 @@ const opGetResolverRule = "GetResolverRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResolverRuleRequest method.
+//	req, resp := client.GetResolverRuleRequest(params)
 //
-//    // Example sending a request using the GetResolverRuleRequest method.
-//    req, resp := client.GetResolverRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverRule
 func (c *Route53Resolver) GetResolverRuleRequest(input *GetResolverRuleInput) (req *request.Request, output *GetResolverRuleOutput) {
@@ -2971,17 +3383,18 @@ func (c *Route53Resolver) GetResolverRuleRequest(input *GetResolverRuleInput) (r
 // API operation GetResolverRule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverRule
 func (c *Route53Resolver) GetResolverRule(input *GetResolverRuleInput) (*GetResolverRuleOutput, error) {
@@ -3021,14 +3434,13 @@ const opGetResolverRuleAssociation = "GetResolverRuleAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResolverRuleAssociationRequest method.
+//	req, resp := client.GetResolverRuleAssociationRequest(params)
 //
-//    // Example sending a request using the GetResolverRuleAssociationRequest method.
-//    req, resp := client.GetResolverRuleAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverRuleAssociation
 func (c *Route53Resolver) GetResolverRuleAssociationRequest(input *GetResolverRuleAssociationInput) (req *request.Request, output *GetResolverRuleAssociationOutput) {
@@ -3061,17 +3473,18 @@ func (c *Route53Resolver) GetResolverRuleAssociationRequest(input *GetResolverRu
 // API operation GetResolverRuleAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverRuleAssociation
 func (c *Route53Resolver) GetResolverRuleAssociation(input *GetResolverRuleAssociationInput) (*GetResolverRuleAssociationOutput, error) {
@@ -3111,14 +3524,13 @@ const opGetResolverRulePolicy = "GetResolverRulePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResolverRulePolicyRequest method.
+//	req, resp := client.GetResolverRulePolicyRequest(params)
 //
-//    // Example sending a request using the GetResolverRulePolicyRequest method.
-//    req, resp := client.GetResolverRulePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverRulePolicy
 func (c *Route53Resolver) GetResolverRulePolicyRequest(input *GetResolverRulePolicyInput) (req *request.Request, output *GetResolverRulePolicyOutput) {
@@ -3152,14 +3564,19 @@ func (c *Route53Resolver) GetResolverRulePolicyRequest(input *GetResolverRulePol
 // API operation GetResolverRulePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * UnknownResourceException
-//   The specified resource doesn't exist.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - UnknownResourceException
+//     The specified resource doesn't exist.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverRulePolicy
 func (c *Route53Resolver) GetResolverRulePolicy(input *GetResolverRulePolicyInput) (*GetResolverRulePolicyOutput, error) {
@@ -3199,14 +3616,13 @@ const opImportFirewallDomains = "ImportFirewallDomains"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ImportFirewallDomainsRequest method.
+//	req, resp := client.ImportFirewallDomainsRequest(params)
 //
-//    // Example sending a request using the ImportFirewallDomainsRequest method.
-//    req, resp := client.ImportFirewallDomainsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ImportFirewallDomains
 func (c *Route53Resolver) ImportFirewallDomainsRequest(input *ImportFirewallDomainsInput) (req *request.Request, output *ImportFirewallDomainsOutput) {
@@ -3233,12 +3649,12 @@ func (c *Route53Resolver) ImportFirewallDomainsRequest(input *ImportFirewallDoma
 // Each domain specification in your domain list must satisfy the following
 // requirements:
 //
-//    * It can optionally start with * (asterisk).
+//   - It can optionally start with * (asterisk).
 //
-//    * With the exception of the optional starting asterisk, it must only contain
-//    the following characters: A-Z, a-z, 0-9, - (hyphen).
+//   - With the exception of the optional starting asterisk, it must only contain
+//     the following characters: A-Z, a-z, 0-9, - (hyphen).
 //
-//    * It must be from 1-255 characters in length.
+//   - It must be from 1-255 characters in length.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3248,25 +3664,31 @@ func (c *Route53Resolver) ImportFirewallDomainsRequest(input *ImportFirewallDoma
 // API operation ImportFirewallDomains for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * ConflictException
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ImportFirewallDomains
 func (c *Route53Resolver) ImportFirewallDomains(input *ImportFirewallDomainsInput) (*ImportFirewallDomainsOutput, error) {
@@ -3306,14 +3728,13 @@ const opListFirewallConfigs = "ListFirewallConfigs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFirewallConfigsRequest method.
+//	req, resp := client.ListFirewallConfigsRequest(params)
 //
-//    // Example sending a request using the ListFirewallConfigsRequest method.
-//    req, resp := client.ListFirewallConfigsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallConfigs
 func (c *Route53Resolver) ListFirewallConfigsRequest(input *ListFirewallConfigsInput) (req *request.Request, output *ListFirewallConfigsOutput) {
@@ -3354,17 +3775,20 @@ func (c *Route53Resolver) ListFirewallConfigsRequest(input *ListFirewallConfigsI
 // API operation ListFirewallConfigs for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallConfigs
 func (c *Route53Resolver) ListFirewallConfigs(input *ListFirewallConfigsInput) (*ListFirewallConfigsOutput, error) {
@@ -3396,15 +3820,14 @@ func (c *Route53Resolver) ListFirewallConfigsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFirewallConfigs operation.
-//    pageNum := 0
-//    err := client.ListFirewallConfigsPages(params,
-//        func(page *route53resolver.ListFirewallConfigsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFirewallConfigs operation.
+//	pageNum := 0
+//	err := client.ListFirewallConfigsPages(params,
+//	    func(page *route53resolver.ListFirewallConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListFirewallConfigsPages(input *ListFirewallConfigsInput, fn func(*ListFirewallConfigsOutput, bool) bool) error {
 	return c.ListFirewallConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3456,14 +3879,13 @@ const opListFirewallDomainLists = "ListFirewallDomainLists"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFirewallDomainListsRequest method.
+//	req, resp := client.ListFirewallDomainListsRequest(params)
 //
-//    // Example sending a request using the ListFirewallDomainListsRequest method.
-//    req, resp := client.ListFirewallDomainListsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallDomainLists
 func (c *Route53Resolver) ListFirewallDomainListsRequest(input *ListFirewallDomainListsInput) (req *request.Request, output *ListFirewallDomainListsOutput) {
@@ -3505,17 +3927,20 @@ func (c *Route53Resolver) ListFirewallDomainListsRequest(input *ListFirewallDoma
 // API operation ListFirewallDomainLists for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallDomainLists
 func (c *Route53Resolver) ListFirewallDomainLists(input *ListFirewallDomainListsInput) (*ListFirewallDomainListsOutput, error) {
@@ -3547,15 +3972,14 @@ func (c *Route53Resolver) ListFirewallDomainListsWithContext(ctx aws.Context, in
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFirewallDomainLists operation.
-//    pageNum := 0
-//    err := client.ListFirewallDomainListsPages(params,
-//        func(page *route53resolver.ListFirewallDomainListsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFirewallDomainLists operation.
+//	pageNum := 0
+//	err := client.ListFirewallDomainListsPages(params,
+//	    func(page *route53resolver.ListFirewallDomainListsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListFirewallDomainListsPages(input *ListFirewallDomainListsInput, fn func(*ListFirewallDomainListsOutput, bool) bool) error {
 	return c.ListFirewallDomainListsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3607,14 +4031,13 @@ const opListFirewallDomains = "ListFirewallDomains"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFirewallDomainsRequest method.
+//	req, resp := client.ListFirewallDomainsRequest(params)
 //
-//    // Example sending a request using the ListFirewallDomainsRequest method.
-//    req, resp := client.ListFirewallDomainsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallDomains
 func (c *Route53Resolver) ListFirewallDomainsRequest(input *ListFirewallDomainsInput) (req *request.Request, output *ListFirewallDomainsOutput) {
@@ -3655,20 +4078,23 @@ func (c *Route53Resolver) ListFirewallDomainsRequest(input *ListFirewallDomainsI
 // API operation ListFirewallDomains for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * ValidationException
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallDomains
 func (c *Route53Resolver) ListFirewallDomains(input *ListFirewallDomainsInput) (*ListFirewallDomainsOutput, error) {
@@ -3700,15 +4126,14 @@ func (c *Route53Resolver) ListFirewallDomainsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFirewallDomains operation.
-//    pageNum := 0
-//    err := client.ListFirewallDomainsPages(params,
-//        func(page *route53resolver.ListFirewallDomainsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFirewallDomains operation.
+//	pageNum := 0
+//	err := client.ListFirewallDomainsPages(params,
+//	    func(page *route53resolver.ListFirewallDomainsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListFirewallDomainsPages(input *ListFirewallDomainsInput, fn func(*ListFirewallDomainsOutput, bool) bool) error {
 	return c.ListFirewallDomainsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3760,14 +4185,13 @@ const opListFirewallRuleGroupAssociations = "ListFirewallRuleGroupAssociations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFirewallRuleGroupAssociationsRequest method.
+//	req, resp := client.ListFirewallRuleGroupAssociationsRequest(params)
 //
-//    // Example sending a request using the ListFirewallRuleGroupAssociationsRequest method.
-//    req, resp := client.ListFirewallRuleGroupAssociationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRuleGroupAssociations
 func (c *Route53Resolver) ListFirewallRuleGroupAssociationsRequest(input *ListFirewallRuleGroupAssociationsInput) (req *request.Request, output *ListFirewallRuleGroupAssociationsOutput) {
@@ -3808,17 +4232,20 @@ func (c *Route53Resolver) ListFirewallRuleGroupAssociationsRequest(input *ListFi
 // API operation ListFirewallRuleGroupAssociations for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRuleGroupAssociations
 func (c *Route53Resolver) ListFirewallRuleGroupAssociations(input *ListFirewallRuleGroupAssociationsInput) (*ListFirewallRuleGroupAssociationsOutput, error) {
@@ -3850,15 +4277,14 @@ func (c *Route53Resolver) ListFirewallRuleGroupAssociationsWithContext(ctx aws.C
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFirewallRuleGroupAssociations operation.
-//    pageNum := 0
-//    err := client.ListFirewallRuleGroupAssociationsPages(params,
-//        func(page *route53resolver.ListFirewallRuleGroupAssociationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFirewallRuleGroupAssociations operation.
+//	pageNum := 0
+//	err := client.ListFirewallRuleGroupAssociationsPages(params,
+//	    func(page *route53resolver.ListFirewallRuleGroupAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListFirewallRuleGroupAssociationsPages(input *ListFirewallRuleGroupAssociationsInput, fn func(*ListFirewallRuleGroupAssociationsOutput, bool) bool) error {
 	return c.ListFirewallRuleGroupAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3910,14 +4336,13 @@ const opListFirewallRuleGroups = "ListFirewallRuleGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFirewallRuleGroupsRequest method.
+//	req, resp := client.ListFirewallRuleGroupsRequest(params)
 //
-//    // Example sending a request using the ListFirewallRuleGroupsRequest method.
-//    req, resp := client.ListFirewallRuleGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRuleGroups
 func (c *Route53Resolver) ListFirewallRuleGroupsRequest(input *ListFirewallRuleGroupsInput) (req *request.Request, output *ListFirewallRuleGroupsOutput) {
@@ -3958,17 +4383,20 @@ func (c *Route53Resolver) ListFirewallRuleGroupsRequest(input *ListFirewallRuleG
 // API operation ListFirewallRuleGroups for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRuleGroups
 func (c *Route53Resolver) ListFirewallRuleGroups(input *ListFirewallRuleGroupsInput) (*ListFirewallRuleGroupsOutput, error) {
@@ -4000,15 +4428,14 @@ func (c *Route53Resolver) ListFirewallRuleGroupsWithContext(ctx aws.Context, inp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFirewallRuleGroups operation.
-//    pageNum := 0
-//    err := client.ListFirewallRuleGroupsPages(params,
-//        func(page *route53resolver.ListFirewallRuleGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFirewallRuleGroups operation.
+//	pageNum := 0
+//	err := client.ListFirewallRuleGroupsPages(params,
+//	    func(page *route53resolver.ListFirewallRuleGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListFirewallRuleGroupsPages(input *ListFirewallRuleGroupsInput, fn func(*ListFirewallRuleGroupsOutput, bool) bool) error {
 	return c.ListFirewallRuleGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4060,14 +4487,13 @@ const opListFirewallRules = "ListFirewallRules"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFirewallRulesRequest method.
+//	req, resp := client.ListFirewallRulesRequest(params)
 //
-//    // Example sending a request using the ListFirewallRulesRequest method.
-//    req, resp := client.ListFirewallRulesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRules
 func (c *Route53Resolver) ListFirewallRulesRequest(input *ListFirewallRulesInput) (req *request.Request, output *ListFirewallRulesOutput) {
@@ -4109,20 +4535,23 @@ func (c *Route53Resolver) ListFirewallRulesRequest(input *ListFirewallRulesInput
 // API operation ListFirewallRules for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * ValidationException
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRules
 func (c *Route53Resolver) ListFirewallRules(input *ListFirewallRulesInput) (*ListFirewallRulesOutput, error) {
@@ -4154,15 +4583,14 @@ func (c *Route53Resolver) ListFirewallRulesWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFirewallRules operation.
-//    pageNum := 0
-//    err := client.ListFirewallRulesPages(params,
-//        func(page *route53resolver.ListFirewallRulesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFirewallRules operation.
+//	pageNum := 0
+//	err := client.ListFirewallRulesPages(params,
+//	    func(page *route53resolver.ListFirewallRulesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListFirewallRulesPages(input *ListFirewallRulesInput, fn func(*ListFirewallRulesOutput, bool) bool) error {
 	return c.ListFirewallRulesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4198,6 +4626,314 @@ func (c *Route53Resolver) ListFirewallRulesPagesWithContext(ctx aws.Context, inp
 	return p.Err()
 }
 
+const opListOutpostResolvers = "ListOutpostResolvers"
+
+// ListOutpostResolversRequest generates a "aws/request.Request" representing the
+// client's request for the ListOutpostResolvers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOutpostResolvers for more information on using the ListOutpostResolvers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListOutpostResolversRequest method.
+//	req, resp := client.ListOutpostResolversRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListOutpostResolvers
+func (c *Route53Resolver) ListOutpostResolversRequest(input *ListOutpostResolversInput) (req *request.Request, output *ListOutpostResolversOutput) {
+	op := &request.Operation{
+		Name:       opListOutpostResolvers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOutpostResolversInput{}
+	}
+
+	output = &ListOutpostResolversOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOutpostResolvers API operation for Amazon Route 53 Resolver.
+//
+// Lists all the Resolvers on Outposts that were created using the current Amazon
+// Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListOutpostResolvers for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListOutpostResolvers
+func (c *Route53Resolver) ListOutpostResolvers(input *ListOutpostResolversInput) (*ListOutpostResolversOutput, error) {
+	req, out := c.ListOutpostResolversRequest(input)
+	return out, req.Send()
+}
+
+// ListOutpostResolversWithContext is the same as ListOutpostResolvers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOutpostResolvers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListOutpostResolversWithContext(ctx aws.Context, input *ListOutpostResolversInput, opts ...request.Option) (*ListOutpostResolversOutput, error) {
+	req, out := c.ListOutpostResolversRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOutpostResolversPages iterates over the pages of a ListOutpostResolvers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOutpostResolvers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListOutpostResolvers operation.
+//	pageNum := 0
+//	err := client.ListOutpostResolversPages(params,
+//	    func(page *route53resolver.ListOutpostResolversOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Route53Resolver) ListOutpostResolversPages(input *ListOutpostResolversInput, fn func(*ListOutpostResolversOutput, bool) bool) error {
+	return c.ListOutpostResolversPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOutpostResolversPagesWithContext same as ListOutpostResolversPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListOutpostResolversPagesWithContext(ctx aws.Context, input *ListOutpostResolversInput, fn func(*ListOutpostResolversOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOutpostResolversInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOutpostResolversRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOutpostResolversOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListResolverConfigs = "ListResolverConfigs"
+
+// ListResolverConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListResolverConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResolverConfigs for more information on using the ListResolverConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListResolverConfigsRequest method.
+//	req, resp := client.ListResolverConfigsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverConfigs
+func (c *Route53Resolver) ListResolverConfigsRequest(input *ListResolverConfigsInput) (req *request.Request, output *ListResolverConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListResolverConfigs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListResolverConfigsInput{}
+	}
+
+	output = &ListResolverConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResolverConfigs API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the Resolver configurations that you have defined. Route 53 Resolver
+// uses the configurations to manage DNS resolution behavior for your VPCs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListResolverConfigs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidNextTokenException
+//     The value that you specified for NextToken in a List request isn't valid.
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverConfigs
+func (c *Route53Resolver) ListResolverConfigs(input *ListResolverConfigsInput) (*ListResolverConfigsOutput, error) {
+	req, out := c.ListResolverConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListResolverConfigsWithContext is the same as ListResolverConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResolverConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListResolverConfigsWithContext(ctx aws.Context, input *ListResolverConfigsInput, opts ...request.Option) (*ListResolverConfigsOutput, error) {
+	req, out := c.ListResolverConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListResolverConfigsPages iterates over the pages of a ListResolverConfigs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResolverConfigs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListResolverConfigs operation.
+//	pageNum := 0
+//	err := client.ListResolverConfigsPages(params,
+//	    func(page *route53resolver.ListResolverConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Route53Resolver) ListResolverConfigsPages(input *ListResolverConfigsInput, fn func(*ListResolverConfigsOutput, bool) bool) error {
+	return c.ListResolverConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResolverConfigsPagesWithContext same as ListResolverConfigsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListResolverConfigsPagesWithContext(ctx aws.Context, input *ListResolverConfigsInput, fn func(*ListResolverConfigsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResolverConfigsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResolverConfigsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResolverConfigsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListResolverDnssecConfigs = "ListResolverDnssecConfigs"
 
 // ListResolverDnssecConfigsRequest generates a "aws/request.Request" representing the
@@ -4214,14 +4950,13 @@ const opListResolverDnssecConfigs = "ListResolverDnssecConfigs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResolverDnssecConfigsRequest method.
+//	req, resp := client.ListResolverDnssecConfigsRequest(params)
 //
-//    // Example sending a request using the ListResolverDnssecConfigsRequest method.
-//    req, resp := client.ListResolverDnssecConfigsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverDnssecConfigs
 func (c *Route53Resolver) ListResolverDnssecConfigsRequest(input *ListResolverDnssecConfigsInput) (req *request.Request, output *ListResolverDnssecConfigsOutput) {
@@ -4249,7 +4984,7 @@ func (c *Route53Resolver) ListResolverDnssecConfigsRequest(input *ListResolverDn
 // ListResolverDnssecConfigs API operation for Amazon Route 53 Resolver.
 //
 // Lists the configurations for DNSSEC validation that are associated with the
-// current AWS account.
+// current Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4259,24 +4994,25 @@ func (c *Route53Resolver) ListResolverDnssecConfigsRequest(input *ListResolverDn
 // API operation ListResolverDnssecConfigs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidNextTokenException
+//     The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverDnssecConfigs
 func (c *Route53Resolver) ListResolverDnssecConfigs(input *ListResolverDnssecConfigsInput) (*ListResolverDnssecConfigsOutput, error) {
@@ -4308,15 +5044,14 @@ func (c *Route53Resolver) ListResolverDnssecConfigsWithContext(ctx aws.Context, 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResolverDnssecConfigs operation.
-//    pageNum := 0
-//    err := client.ListResolverDnssecConfigsPages(params,
-//        func(page *route53resolver.ListResolverDnssecConfigsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResolverDnssecConfigs operation.
+//	pageNum := 0
+//	err := client.ListResolverDnssecConfigsPages(params,
+//	    func(page *route53resolver.ListResolverDnssecConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListResolverDnssecConfigsPages(input *ListResolverDnssecConfigsInput, fn func(*ListResolverDnssecConfigsOutput, bool) bool) error {
 	return c.ListResolverDnssecConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4368,14 +5103,13 @@ const opListResolverEndpointIpAddresses = "ListResolverEndpointIpAddresses"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResolverEndpointIpAddressesRequest method.
+//	req, resp := client.ListResolverEndpointIpAddressesRequest(params)
 //
-//    // Example sending a request using the ListResolverEndpointIpAddressesRequest method.
-//    req, resp := client.ListResolverEndpointIpAddressesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverEndpointIpAddresses
 func (c *Route53Resolver) ListResolverEndpointIpAddressesRequest(input *ListResolverEndpointIpAddressesInput) (req *request.Request, output *ListResolverEndpointIpAddressesOutput) {
@@ -4412,20 +5146,21 @@ func (c *Route53Resolver) ListResolverEndpointIpAddressesRequest(input *ListReso
 // API operation ListResolverEndpointIpAddresses for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InvalidNextTokenException
-//   The value that you specified for NextToken in a List request isn't valid.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InvalidNextTokenException
+//     The value that you specified for NextToken in a List request isn't valid.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverEndpointIpAddresses
 func (c *Route53Resolver) ListResolverEndpointIpAddresses(input *ListResolverEndpointIpAddressesInput) (*ListResolverEndpointIpAddressesOutput, error) {
@@ -4457,15 +5192,14 @@ func (c *Route53Resolver) ListResolverEndpointIpAddressesWithContext(ctx aws.Con
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResolverEndpointIpAddresses operation.
-//    pageNum := 0
-//    err := client.ListResolverEndpointIpAddressesPages(params,
-//        func(page *route53resolver.ListResolverEndpointIpAddressesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResolverEndpointIpAddresses operation.
+//	pageNum := 0
+//	err := client.ListResolverEndpointIpAddressesPages(params,
+//	    func(page *route53resolver.ListResolverEndpointIpAddressesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListResolverEndpointIpAddressesPages(input *ListResolverEndpointIpAddressesInput, fn func(*ListResolverEndpointIpAddressesOutput, bool) bool) error {
 	return c.ListResolverEndpointIpAddressesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4517,14 +5251,13 @@ const opListResolverEndpoints = "ListResolverEndpoints"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResolverEndpointsRequest method.
+//	req, resp := client.ListResolverEndpointsRequest(params)
 //
-//    // Example sending a request using the ListResolverEndpointsRequest method.
-//    req, resp := client.ListResolverEndpointsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverEndpoints
 func (c *Route53Resolver) ListResolverEndpointsRequest(input *ListResolverEndpointsInput) (req *request.Request, output *ListResolverEndpointsOutput) {
@@ -4551,8 +5284,8 @@ func (c *Route53Resolver) ListResolverEndpointsRequest(input *ListResolverEndpoi
 
 // ListResolverEndpoints API operation for Amazon Route 53 Resolver.
 //
-// Lists all the Resolver endpoints that were created using the current AWS
-// account.
+// Lists all the Resolver endpoints that were created using the current Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4562,20 +5295,21 @@ func (c *Route53Resolver) ListResolverEndpointsRequest(input *ListResolverEndpoi
 // API operation ListResolverEndpoints for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidNextTokenException
+//     The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverEndpoints
 func (c *Route53Resolver) ListResolverEndpoints(input *ListResolverEndpointsInput) (*ListResolverEndpointsOutput, error) {
@@ -4607,15 +5341,14 @@ func (c *Route53Resolver) ListResolverEndpointsWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResolverEndpoints operation.
-//    pageNum := 0
-//    err := client.ListResolverEndpointsPages(params,
-//        func(page *route53resolver.ListResolverEndpointsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResolverEndpoints operation.
+//	pageNum := 0
+//	err := client.ListResolverEndpointsPages(params,
+//	    func(page *route53resolver.ListResolverEndpointsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListResolverEndpointsPages(input *ListResolverEndpointsInput, fn func(*ListResolverEndpointsOutput, bool) bool) error {
 	return c.ListResolverEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4667,14 +5400,13 @@ const opListResolverQueryLogConfigAssociations = "ListResolverQueryLogConfigAsso
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResolverQueryLogConfigAssociationsRequest method.
+//	req, resp := client.ListResolverQueryLogConfigAssociationsRequest(params)
 //
-//    // Example sending a request using the ListResolverQueryLogConfigAssociationsRequest method.
-//    req, resp := client.ListResolverQueryLogConfigAssociationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverQueryLogConfigAssociations
 func (c *Route53Resolver) ListResolverQueryLogConfigAssociationsRequest(input *ListResolverQueryLogConfigAssociationsInput) (req *request.Request, output *ListResolverQueryLogConfigAssociationsOutput) {
@@ -4712,24 +5444,25 @@ func (c *Route53Resolver) ListResolverQueryLogConfigAssociationsRequest(input *L
 // API operation ListResolverQueryLogConfigAssociations for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverQueryLogConfigAssociations
 func (c *Route53Resolver) ListResolverQueryLogConfigAssociations(input *ListResolverQueryLogConfigAssociationsInput) (*ListResolverQueryLogConfigAssociationsOutput, error) {
@@ -4761,15 +5494,14 @@ func (c *Route53Resolver) ListResolverQueryLogConfigAssociationsWithContext(ctx 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResolverQueryLogConfigAssociations operation.
-//    pageNum := 0
-//    err := client.ListResolverQueryLogConfigAssociationsPages(params,
-//        func(page *route53resolver.ListResolverQueryLogConfigAssociationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResolverQueryLogConfigAssociations operation.
+//	pageNum := 0
+//	err := client.ListResolverQueryLogConfigAssociationsPages(params,
+//	    func(page *route53resolver.ListResolverQueryLogConfigAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListResolverQueryLogConfigAssociationsPages(input *ListResolverQueryLogConfigAssociationsInput, fn func(*ListResolverQueryLogConfigAssociationsOutput, bool) bool) error {
 	return c.ListResolverQueryLogConfigAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4821,14 +5553,13 @@ const opListResolverQueryLogConfigs = "ListResolverQueryLogConfigs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResolverQueryLogConfigsRequest method.
+//	req, resp := client.ListResolverQueryLogConfigsRequest(params)
 //
-//    // Example sending a request using the ListResolverQueryLogConfigsRequest method.
-//    req, resp := client.ListResolverQueryLogConfigsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverQueryLogConfigs
 func (c *Route53Resolver) ListResolverQueryLogConfigsRequest(input *ListResolverQueryLogConfigsInput) (req *request.Request, output *ListResolverQueryLogConfigsOutput) {
@@ -4867,24 +5598,25 @@ func (c *Route53Resolver) ListResolverQueryLogConfigsRequest(input *ListResolver
 // API operation ListResolverQueryLogConfigs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidNextTokenException
+//     The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverQueryLogConfigs
 func (c *Route53Resolver) ListResolverQueryLogConfigs(input *ListResolverQueryLogConfigsInput) (*ListResolverQueryLogConfigsOutput, error) {
@@ -4916,15 +5648,14 @@ func (c *Route53Resolver) ListResolverQueryLogConfigsWithContext(ctx aws.Context
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResolverQueryLogConfigs operation.
-//    pageNum := 0
-//    err := client.ListResolverQueryLogConfigsPages(params,
-//        func(page *route53resolver.ListResolverQueryLogConfigsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResolverQueryLogConfigs operation.
+//	pageNum := 0
+//	err := client.ListResolverQueryLogConfigsPages(params,
+//	    func(page *route53resolver.ListResolverQueryLogConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListResolverQueryLogConfigsPages(input *ListResolverQueryLogConfigsInput, fn func(*ListResolverQueryLogConfigsOutput, bool) bool) error {
 	return c.ListResolverQueryLogConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4976,14 +5707,13 @@ const opListResolverRuleAssociations = "ListResolverRuleAssociations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResolverRuleAssociationsRequest method.
+//	req, resp := client.ListResolverRuleAssociationsRequest(params)
 //
-//    // Example sending a request using the ListResolverRuleAssociationsRequest method.
-//    req, resp := client.ListResolverRuleAssociationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverRuleAssociations
 func (c *Route53Resolver) ListResolverRuleAssociationsRequest(input *ListResolverRuleAssociationsInput) (req *request.Request, output *ListResolverRuleAssociationsOutput) {
@@ -5011,7 +5741,7 @@ func (c *Route53Resolver) ListResolverRuleAssociationsRequest(input *ListResolve
 // ListResolverRuleAssociations API operation for Amazon Route 53 Resolver.
 //
 // Lists the associations that were created between Resolver rules and VPCs
-// using the current AWS account.
+// using the current Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5021,20 +5751,21 @@ func (c *Route53Resolver) ListResolverRuleAssociationsRequest(input *ListResolve
 // API operation ListResolverRuleAssociations for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidNextTokenException
+//     The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverRuleAssociations
 func (c *Route53Resolver) ListResolverRuleAssociations(input *ListResolverRuleAssociationsInput) (*ListResolverRuleAssociationsOutput, error) {
@@ -5066,15 +5797,14 @@ func (c *Route53Resolver) ListResolverRuleAssociationsWithContext(ctx aws.Contex
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResolverRuleAssociations operation.
-//    pageNum := 0
-//    err := client.ListResolverRuleAssociationsPages(params,
-//        func(page *route53resolver.ListResolverRuleAssociationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResolverRuleAssociations operation.
+//	pageNum := 0
+//	err := client.ListResolverRuleAssociationsPages(params,
+//	    func(page *route53resolver.ListResolverRuleAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListResolverRuleAssociationsPages(input *ListResolverRuleAssociationsInput, fn func(*ListResolverRuleAssociationsOutput, bool) bool) error {
 	return c.ListResolverRuleAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5126,14 +5856,13 @@ const opListResolverRules = "ListResolverRules"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResolverRulesRequest method.
+//	req, resp := client.ListResolverRulesRequest(params)
 //
-//    // Example sending a request using the ListResolverRulesRequest method.
-//    req, resp := client.ListResolverRulesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverRules
 func (c *Route53Resolver) ListResolverRulesRequest(input *ListResolverRulesInput) (req *request.Request, output *ListResolverRulesOutput) {
@@ -5160,7 +5889,8 @@ func (c *Route53Resolver) ListResolverRulesRequest(input *ListResolverRulesInput
 
 // ListResolverRules API operation for Amazon Route 53 Resolver.
 //
-// Lists the Resolver rules that were created using the current AWS account.
+// Lists the Resolver rules that were created using the current Amazon Web Services
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5170,20 +5900,21 @@ func (c *Route53Resolver) ListResolverRulesRequest(input *ListResolverRulesInput
 // API operation ListResolverRules for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidNextTokenException
+//     The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverRules
 func (c *Route53Resolver) ListResolverRules(input *ListResolverRulesInput) (*ListResolverRulesOutput, error) {
@@ -5215,15 +5946,14 @@ func (c *Route53Resolver) ListResolverRulesWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResolverRules operation.
-//    pageNum := 0
-//    err := client.ListResolverRulesPages(params,
-//        func(page *route53resolver.ListResolverRulesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResolverRules operation.
+//	pageNum := 0
+//	err := client.ListResolverRulesPages(params,
+//	    func(page *route53resolver.ListResolverRulesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListResolverRulesPages(input *ListResolverRulesInput, fn func(*ListResolverRulesOutput, bool) bool) error {
 	return c.ListResolverRulesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5275,14 +6005,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListTagsForResource
 func (c *Route53Resolver) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -5319,23 +6048,24 @@ func (c *Route53Resolver) ListTagsForResourceRequest(input *ListTagsForResourceI
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidNextTokenException
-//   The value that you specified for NextToken in a List request isn't valid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidNextTokenException
+//     The value that you specified for NextToken in a List request isn't valid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListTagsForResource
 func (c *Route53Resolver) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -5367,15 +6097,14 @@ func (c *Route53Resolver) ListTagsForResourceWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
-//    pageNum := 0
-//    err := client.ListTagsForResourcePages(params,
-//        func(page *route53resolver.ListTagsForResourceOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTagsForResource operation.
+//	pageNum := 0
+//	err := client.ListTagsForResourcePages(params,
+//	    func(page *route53resolver.ListTagsForResourceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Route53Resolver) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
 	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5427,14 +6156,13 @@ const opPutFirewallRuleGroupPolicy = "PutFirewallRuleGroupPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutFirewallRuleGroupPolicyRequest method.
+//	req, resp := client.PutFirewallRuleGroupPolicyRequest(params)
 //
-//    // Example sending a request using the PutFirewallRuleGroupPolicyRequest method.
-//    req, resp := client.PutFirewallRuleGroupPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/PutFirewallRuleGroupPolicy
 func (c *Route53Resolver) PutFirewallRuleGroupPolicyRequest(input *PutFirewallRuleGroupPolicyInput) (req *request.Request, output *PutFirewallRuleGroupPolicyOutput) {
@@ -5455,9 +6183,9 @@ func (c *Route53Resolver) PutFirewallRuleGroupPolicyRequest(input *PutFirewallRu
 
 // PutFirewallRuleGroupPolicy API operation for Amazon Route 53 Resolver.
 //
-// Attaches an AWS Identity and Access Management (AWS IAM) policy for sharing
-// the rule group. You can use the policy to share the rule group using AWS
-// Resource Access Manager (AWS RAM).
+// Attaches an Identity and Access Management (Amazon Web Services IAM) policy
+// for sharing the rule group. You can use the policy to share the rule group
+// using Resource Access Manager (RAM).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5467,20 +6195,23 @@ func (c *Route53Resolver) PutFirewallRuleGroupPolicyRequest(input *PutFirewallRu
 // API operation PutFirewallRuleGroupPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/PutFirewallRuleGroupPolicy
 func (c *Route53Resolver) PutFirewallRuleGroupPolicy(input *PutFirewallRuleGroupPolicyInput) (*PutFirewallRuleGroupPolicyOutput, error) {
@@ -5520,14 +6251,13 @@ const opPutResolverQueryLogConfigPolicy = "PutResolverQueryLogConfigPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutResolverQueryLogConfigPolicyRequest method.
+//	req, resp := client.PutResolverQueryLogConfigPolicyRequest(params)
 //
-//    // Example sending a request using the PutResolverQueryLogConfigPolicyRequest method.
-//    req, resp := client.PutResolverQueryLogConfigPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/PutResolverQueryLogConfigPolicy
 func (c *Route53Resolver) PutResolverQueryLogConfigPolicyRequest(input *PutResolverQueryLogConfigPolicyInput) (req *request.Request, output *PutResolverQueryLogConfigPolicyOutput) {
@@ -5548,9 +6278,10 @@ func (c *Route53Resolver) PutResolverQueryLogConfigPolicyRequest(input *PutResol
 
 // PutResolverQueryLogConfigPolicy API operation for Amazon Route 53 Resolver.
 //
-// Specifies an AWS account that you want to share a query logging configuration
-// with, the query logging configuration that you want to share, and the operations
-// that you want the account to be able to perform on the configuration.
+// Specifies an Amazon Web Services account that you want to share a query logging
+// configuration with, the query logging configuration that you want to share,
+// and the operations that you want the account to be able to perform on the
+// configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5560,24 +6291,25 @@ func (c *Route53Resolver) PutResolverQueryLogConfigPolicyRequest(input *PutResol
 // API operation PutResolverQueryLogConfigPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidPolicyDocument
-//   The specified Resolver rule policy is invalid.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidPolicyDocument
+//     The specified Resolver rule policy is invalid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * UnknownResourceException
-//   The specified resource doesn't exist.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - UnknownResourceException
+//     The specified resource doesn't exist.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/PutResolverQueryLogConfigPolicy
 func (c *Route53Resolver) PutResolverQueryLogConfigPolicy(input *PutResolverQueryLogConfigPolicyInput) (*PutResolverQueryLogConfigPolicyOutput, error) {
@@ -5617,14 +6349,13 @@ const opPutResolverRulePolicy = "PutResolverRulePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutResolverRulePolicyRequest method.
+//	req, resp := client.PutResolverRulePolicyRequest(params)
 //
-//    // Example sending a request using the PutResolverRulePolicyRequest method.
-//    req, resp := client.PutResolverRulePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/PutResolverRulePolicy
 func (c *Route53Resolver) PutResolverRulePolicyRequest(input *PutResolverRulePolicyInput) (req *request.Request, output *PutResolverRulePolicyOutput) {
@@ -5645,9 +6376,9 @@ func (c *Route53Resolver) PutResolverRulePolicyRequest(input *PutResolverRulePol
 
 // PutResolverRulePolicy API operation for Amazon Route 53 Resolver.
 //
-// Specifies an AWS rule that you want to share with another account, the account
-// that you want to share the rule with, and the operations that you want the
-// account to be able to perform on the rule.
+// Specifies an Amazon Web Services rule that you want to share with another
+// account, the account that you want to share the rule with, and the operations
+// that you want the account to be able to perform on the rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5657,17 +6388,22 @@ func (c *Route53Resolver) PutResolverRulePolicyRequest(input *PutResolverRulePol
 // API operation PutResolverRulePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidPolicyDocument
-//   The specified Resolver rule policy is invalid.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidPolicyDocument
+//     The specified Resolver rule policy is invalid.
 //
-//   * UnknownResourceException
-//   The specified resource doesn't exist.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - UnknownResourceException
+//     The specified resource doesn't exist.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/PutResolverRulePolicy
 func (c *Route53Resolver) PutResolverRulePolicy(input *PutResolverRulePolicyInput) (*PutResolverRulePolicyOutput, error) {
@@ -5707,14 +6443,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/TagResource
 func (c *Route53Resolver) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -5746,26 +6481,27 @@ func (c *Route53Resolver) TagResourceRequest(input *TagResourceInput) (req *requ
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InvalidTagException
-//   The specified tag is invalid.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidTagException
+//     The specified tag is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/TagResource
 func (c *Route53Resolver) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -5805,14 +6541,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UntagResource
 func (c *Route53Resolver) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -5844,20 +6579,21 @@ func (c *Route53Resolver) UntagResourceRequest(input *UntagResourceInput) (req *
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UntagResource
 func (c *Route53Resolver) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -5897,14 +6633,13 @@ const opUpdateFirewallConfig = "UpdateFirewallConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFirewallConfigRequest method.
+//	req, resp := client.UpdateFirewallConfigRequest(params)
 //
-//    // Example sending a request using the UpdateFirewallConfigRequest method.
-//    req, resp := client.UpdateFirewallConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallConfig
 func (c *Route53Resolver) UpdateFirewallConfigRequest(input *UpdateFirewallConfigInput) (req *request.Request, output *UpdateFirewallConfigOutput) {
@@ -5936,20 +6671,23 @@ func (c *Route53Resolver) UpdateFirewallConfigRequest(input *UpdateFirewallConfi
 // API operation UpdateFirewallConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallConfig
 func (c *Route53Resolver) UpdateFirewallConfig(input *UpdateFirewallConfigInput) (*UpdateFirewallConfigOutput, error) {
@@ -5989,14 +6727,13 @@ const opUpdateFirewallDomains = "UpdateFirewallDomains"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFirewallDomainsRequest method.
+//	req, resp := client.UpdateFirewallDomainsRequest(params)
 //
-//    // Example sending a request using the UpdateFirewallDomainsRequest method.
-//    req, resp := client.UpdateFirewallDomainsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallDomains
 func (c *Route53Resolver) UpdateFirewallDomainsRequest(input *UpdateFirewallDomainsInput) (req *request.Request, output *UpdateFirewallDomainsOutput) {
@@ -6027,25 +6764,31 @@ func (c *Route53Resolver) UpdateFirewallDomainsRequest(input *UpdateFirewallDoma
 // API operation UpdateFirewallDomains for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * ConflictException
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallDomains
 func (c *Route53Resolver) UpdateFirewallDomains(input *UpdateFirewallDomainsInput) (*UpdateFirewallDomainsOutput, error) {
@@ -6085,14 +6828,13 @@ const opUpdateFirewallRule = "UpdateFirewallRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFirewallRuleRequest method.
+//	req, resp := client.UpdateFirewallRuleRequest(params)
 //
-//    // Example sending a request using the UpdateFirewallRuleRequest method.
-//    req, resp := client.UpdateFirewallRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallRule
 func (c *Route53Resolver) UpdateFirewallRuleRequest(input *UpdateFirewallRuleInput) (req *request.Request, output *UpdateFirewallRuleOutput) {
@@ -6123,22 +6865,28 @@ func (c *Route53Resolver) UpdateFirewallRuleRequest(input *UpdateFirewallRuleInp
 // API operation UpdateFirewallRule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * ValidationException
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * ConflictException
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallRule
 func (c *Route53Resolver) UpdateFirewallRule(input *UpdateFirewallRuleInput) (*UpdateFirewallRuleOutput, error) {
@@ -6178,14 +6926,13 @@ const opUpdateFirewallRuleGroupAssociation = "UpdateFirewallRuleGroupAssociation
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFirewallRuleGroupAssociationRequest method.
+//	req, resp := client.UpdateFirewallRuleGroupAssociationRequest(params)
 //
-//    // Example sending a request using the UpdateFirewallRuleGroupAssociationRequest method.
-//    req, resp := client.UpdateFirewallRuleGroupAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallRuleGroupAssociation
 func (c *Route53Resolver) UpdateFirewallRuleGroupAssociationRequest(input *UpdateFirewallRuleGroupAssociationInput) (req *request.Request, output *UpdateFirewallRuleGroupAssociationOutput) {
@@ -6217,22 +6964,28 @@ func (c *Route53Resolver) UpdateFirewallRuleGroupAssociationRequest(input *Updat
 // API operation UpdateFirewallRuleGroupAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * ValidationException
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * ConflictException
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallRuleGroupAssociation
 func (c *Route53Resolver) UpdateFirewallRuleGroupAssociation(input *UpdateFirewallRuleGroupAssociationInput) (*UpdateFirewallRuleGroupAssociationOutput, error) {
@@ -6256,6 +7009,214 @@ func (c *Route53Resolver) UpdateFirewallRuleGroupAssociationWithContext(ctx aws.
 	return out, req.Send()
 }
 
+const opUpdateOutpostResolver = "UpdateOutpostResolver"
+
+// UpdateOutpostResolverRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateOutpostResolver operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateOutpostResolver for more information on using the UpdateOutpostResolver
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateOutpostResolverRequest method.
+//	req, resp := client.UpdateOutpostResolverRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateOutpostResolver
+func (c *Route53Resolver) UpdateOutpostResolverRequest(input *UpdateOutpostResolverInput) (req *request.Request, output *UpdateOutpostResolverOutput) {
+	op := &request.Operation{
+		Name:       opUpdateOutpostResolver,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateOutpostResolverInput{}
+	}
+
+	output = &UpdateOutpostResolverOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateOutpostResolver API operation for Amazon Route 53 Resolver.
+//
+// You can use UpdateOutpostResolver to update the instance count, type, or
+// name of a Resolver on an Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation UpdateOutpostResolver for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ServiceQuotaExceededException
+//     Fulfilling the request would cause one or more quotas to be exceeded.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateOutpostResolver
+func (c *Route53Resolver) UpdateOutpostResolver(input *UpdateOutpostResolverInput) (*UpdateOutpostResolverOutput, error) {
+	req, out := c.UpdateOutpostResolverRequest(input)
+	return out, req.Send()
+}
+
+// UpdateOutpostResolverWithContext is the same as UpdateOutpostResolver with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateOutpostResolver for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) UpdateOutpostResolverWithContext(ctx aws.Context, input *UpdateOutpostResolverInput, opts ...request.Option) (*UpdateOutpostResolverOutput, error) {
+	req, out := c.UpdateOutpostResolverRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateResolverConfig = "UpdateResolverConfig"
+
+// UpdateResolverConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResolverConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResolverConfig for more information on using the UpdateResolverConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateResolverConfigRequest method.
+//	req, resp := client.UpdateResolverConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverConfig
+func (c *Route53Resolver) UpdateResolverConfigRequest(input *UpdateResolverConfigInput) (req *request.Request, output *UpdateResolverConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResolverConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateResolverConfigInput{}
+	}
+
+	output = &UpdateResolverConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateResolverConfig API operation for Amazon Route 53 Resolver.
+//
+// Updates the behavior configuration of Route 53 Resolver behavior for a single
+// VPC from Amazon Virtual Private Cloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation UpdateResolverConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ResourceUnavailableException
+//     The specified resource isn't available.
+//
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
+//
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverConfig
+func (c *Route53Resolver) UpdateResolverConfig(input *UpdateResolverConfigInput) (*UpdateResolverConfigOutput, error) {
+	req, out := c.UpdateResolverConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResolverConfigWithContext is the same as UpdateResolverConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResolverConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) UpdateResolverConfigWithContext(ctx aws.Context, input *UpdateResolverConfigInput, opts ...request.Option) (*UpdateResolverConfigOutput, error) {
+	req, out := c.UpdateResolverConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateResolverDnssecConfig = "UpdateResolverDnssecConfig"
 
 // UpdateResolverDnssecConfigRequest generates a "aws/request.Request" representing the
@@ -6272,14 +7233,13 @@ const opUpdateResolverDnssecConfig = "UpdateResolverDnssecConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateResolverDnssecConfigRequest method.
+//	req, resp := client.UpdateResolverDnssecConfigRequest(params)
 //
-//    // Example sending a request using the UpdateResolverDnssecConfigRequest method.
-//    req, resp := client.UpdateResolverDnssecConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverDnssecConfig
 func (c *Route53Resolver) UpdateResolverDnssecConfigRequest(input *UpdateResolverDnssecConfigInput) (req *request.Request, output *UpdateResolverDnssecConfigOutput) {
@@ -6311,24 +7271,25 @@ func (c *Route53Resolver) UpdateResolverDnssecConfigRequest(input *UpdateResolve
 // API operation UpdateResolverDnssecConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
 //
-//   * AccessDeniedException
-//   The current account doesn't have the IAM permissions required to perform
-//   the specified Resolver operation.
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverDnssecConfig
 func (c *Route53Resolver) UpdateResolverDnssecConfig(input *UpdateResolverDnssecConfigInput) (*UpdateResolverDnssecConfigOutput, error) {
@@ -6368,14 +7329,13 @@ const opUpdateResolverEndpoint = "UpdateResolverEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateResolverEndpointRequest method.
+//	req, resp := client.UpdateResolverEndpointRequest(params)
 //
-//    // Example sending a request using the UpdateResolverEndpointRequest method.
-//    req, resp := client.UpdateResolverEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverEndpoint
 func (c *Route53Resolver) UpdateResolverEndpointRequest(input *UpdateResolverEndpointInput) (req *request.Request, output *UpdateResolverEndpointOutput) {
@@ -6396,7 +7356,9 @@ func (c *Route53Resolver) UpdateResolverEndpointRequest(input *UpdateResolverEnd
 
 // UpdateResolverEndpoint API operation for Amazon Route 53 Resolver.
 //
-// Updates the name of an inbound or an outbound Resolver endpoint.
+// Updates the name, or enpoint type for an inbound or an outbound Resolver
+// endpoint. You can only update between IPV4 and DUALSTACK, IPV6 endpoint type
+// can't be updated to other type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6406,20 +7368,21 @@ func (c *Route53Resolver) UpdateResolverEndpointRequest(input *UpdateResolverEnd
 // API operation UpdateResolverEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * InvalidRequestException
-//   The request is invalid.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverEndpoint
 func (c *Route53Resolver) UpdateResolverEndpoint(input *UpdateResolverEndpointInput) (*UpdateResolverEndpointOutput, error) {
@@ -6459,14 +7422,13 @@ const opUpdateResolverRule = "UpdateResolverRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateResolverRuleRequest method.
+//	req, resp := client.UpdateResolverRuleRequest(params)
 //
-//    // Example sending a request using the UpdateResolverRuleRequest method.
-//    req, resp := client.UpdateResolverRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverRule
 func (c *Route53Resolver) UpdateResolverRuleRequest(input *UpdateResolverRuleInput) (req *request.Request, output *UpdateResolverRuleOutput) {
@@ -6499,26 +7461,27 @@ func (c *Route53Resolver) UpdateResolverRuleRequest(input *UpdateResolverRuleInp
 // API operation UpdateResolverRule for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is invalid.
 //
-//   * InvalidParameterException
-//   One or more parameters in this request are not valid.
+//   - InvalidRequestException
+//     The request is invalid.
 //
-//   * ResourceNotFoundException
-//   The specified resource doesn't exist.
+//   - InvalidParameterException
+//     One or more parameters in this request are not valid.
 //
-//   * ResourceUnavailableException
-//   The specified resource isn't available.
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
 //
-//   * LimitExceededException
-//   The request caused one or more limits to be exceeded.
+//   - ResourceUnavailableException
+//     The specified resource isn't available.
 //
-//   * InternalServiceErrorException
-//   We encountered an unknown error. Try again in a few minutes.
+//   - LimitExceededException
+//     The request caused one or more limits to be exceeded.
 //
-//   * ThrottlingException
-//   The request was throttled. Try again in a few minutes.
+//   - InternalServiceErrorException
+//     We encountered an unknown error. Try again in a few minutes.
+//
+//   - ThrottlingException
+//     The request was throttled. Try again in a few minutes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverRule
 func (c *Route53Resolver) UpdateResolverRule(input *UpdateResolverRuleInput) (*UpdateResolverRuleOutput, error) {
@@ -6551,12 +7514,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -6648,12 +7619,20 @@ type AssociateFirewallRuleGroupInput struct {
 	VpcId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFirewallRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFirewallRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -6749,12 +7728,20 @@ type AssociateFirewallRuleGroupOutput struct {
 	FirewallRuleGroupAssociation *FirewallRuleGroupAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFirewallRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFirewallRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -6781,12 +7768,20 @@ type AssociateResolverEndpointIpAddressInput struct {
 	ResolverEndpointId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverEndpointIpAddressInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverEndpointIpAddressInput) GoString() string {
 	return s.String()
 }
@@ -6834,12 +7829,20 @@ type AssociateResolverEndpointIpAddressOutput struct {
 	ResolverEndpoint *ResolverEndpoint `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverEndpointIpAddressOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverEndpointIpAddressOutput) GoString() string {
 	return s.String()
 }
@@ -6868,12 +7871,20 @@ type AssociateResolverQueryLogConfigInput struct {
 	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverQueryLogConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverQueryLogConfigInput) GoString() string {
 	return s.String()
 }
@@ -6920,12 +7931,20 @@ type AssociateResolverQueryLogConfigOutput struct {
 	ResolverQueryLogConfigAssociation *ResolverQueryLogConfigAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverQueryLogConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverQueryLogConfigOutput) GoString() string {
 	return s.String()
 }
@@ -6955,12 +7974,20 @@ type AssociateResolverRuleInput struct {
 	VPCId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverRuleInput) GoString() string {
 	return s.String()
 }
@@ -7013,12 +8040,20 @@ type AssociateResolverRuleOutput struct {
 	ResolverRuleAssociation *ResolverRuleAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateResolverRuleOutput) GoString() string {
 	return s.String()
 }
@@ -7029,6 +8064,9 @@ func (s *AssociateResolverRuleOutput) SetResolverRuleAssociation(v *ResolverRule
 	return s
 }
 
+// The requested state transition isn't valid. For example, you can't delete
+// a firewall domain list if it is in the process of being deleted, or you can't
+// import domains into a domain list that is in the process of being deleted.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7036,12 +8074,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -7102,12 +8148,20 @@ type CreateFirewallDomainListInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallDomainListInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallDomainListInput) GoString() string {
 	return s.String()
 }
@@ -7163,12 +8217,20 @@ type CreateFirewallDomainListOutput struct {
 	FirewallDomainList *FirewallDomainList `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallDomainListOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallDomainListOutput) GoString() string {
 	return s.String()
 }
@@ -7197,12 +8259,20 @@ type CreateFirewallRuleGroupInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -7258,12 +8328,20 @@ type CreateFirewallRuleGroupOutput struct {
 	FirewallRuleGroup *FirewallRuleGroup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -7359,12 +8437,20 @@ type CreateFirewallRuleInput struct {
 	Priority *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallRuleInput) GoString() string {
 	return s.String()
 }
@@ -7473,12 +8559,20 @@ type CreateFirewallRuleOutput struct {
 	FirewallRule *FirewallRule `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFirewallRuleOutput) GoString() string {
 	return s.String()
 }
@@ -7486,6 +8580,173 @@ func (s CreateFirewallRuleOutput) GoString() string {
 // SetFirewallRule sets the FirewallRule field's value.
 func (s *CreateFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *CreateFirewallRuleOutput {
 	s.FirewallRule = v
+	return s
+}
+
+type CreateOutpostResolverInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string that identifies the request and that allows failed requests
+	// to be retried without the risk of running the operation twice.
+	//
+	// CreatorRequestId can be any unique string, for example, a date/time stamp.
+	//
+	// CreatorRequestId is a required field
+	CreatorRequestId *string `min:"1" type:"string" required:"true"`
+
+	// Number of Amazon EC2 instances for the Resolver on Outpost. The default and
+	// minimal value is 4.
+	InstanceCount *int64 `type:"integer"`
+
+	// A friendly name that lets you easily find a configuration in the Resolver
+	// dashboard in the Route 53 console.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Outpost. If you specify this, you must
+	// also specify a value for the PreferredInstanceType.
+	//
+	// OutpostArn is a required field
+	OutpostArn *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon EC2 instance type. If you specify this, you must also specify
+	// a value for the OutpostArn.
+	//
+	// PreferredInstanceType is a required field
+	PreferredInstanceType *string `min:"1" type:"string" required:"true"`
+
+	// A string that helps identify the Route 53 Resolvers on Outpost.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOutpostResolverInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOutpostResolverInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateOutpostResolverInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateOutpostResolverInput"}
+	if s.CreatorRequestId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CreatorRequestId"))
+	}
+	if s.CreatorRequestId != nil && len(*s.CreatorRequestId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CreatorRequestId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.OutpostArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostArn"))
+	}
+	if s.OutpostArn != nil && len(*s.OutpostArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostArn", 1))
+	}
+	if s.PreferredInstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PreferredInstanceType"))
+	}
+	if s.PreferredInstanceType != nil && len(*s.PreferredInstanceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredInstanceType", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *CreateOutpostResolverInput) SetCreatorRequestId(v string) *CreateOutpostResolverInput {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *CreateOutpostResolverInput) SetInstanceCount(v int64) *CreateOutpostResolverInput {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateOutpostResolverInput) SetName(v string) *CreateOutpostResolverInput {
+	s.Name = &v
+	return s
+}
+
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *CreateOutpostResolverInput) SetOutpostArn(v string) *CreateOutpostResolverInput {
+	s.OutpostArn = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *CreateOutpostResolverInput) SetPreferredInstanceType(v string) *CreateOutpostResolverInput {
+	s.PreferredInstanceType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateOutpostResolverInput) SetTags(v []*Tag) *CreateOutpostResolverInput {
+	s.Tags = v
+	return s
+}
+
+type CreateOutpostResolverOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the CreateOutpostResolver request, including the status
+	// of the request.
+	OutpostResolver *OutpostResolver `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOutpostResolverOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOutpostResolverOutput) GoString() string {
+	return s.String()
+}
+
+// SetOutpostResolver sets the OutpostResolver field's value.
+func (s *CreateOutpostResolverOutput) SetOutpostResolver(v *OutpostResolver) *CreateOutpostResolverOutput {
+	s.OutpostResolver = v
 	return s
 }
 
@@ -7521,6 +8782,19 @@ type CreateResolverEndpointInput struct {
 	// dashboard in the Route 53 console.
 	Name *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the Outpost. If you specify this, you must
+	// also specify a value for the PreferredInstanceType.
+	OutpostArn *string `min:"1" type:"string"`
+
+	// The instance type. If you specify this, you must also specify a value for
+	// the OutpostArn.
+	PreferredInstanceType *string `min:"1" type:"string"`
+
+	// For the endpoint type you can choose either IPv4, IPv6, or dual-stack. A
+	// dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This
+	// endpoint type is applied to all IP addresses.
+	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
+
 	// The ID of one or more security groups that you want to use to control access
 	// to this VPC. The security group that you specify must include one or more
 	// inbound rules (for inbound Resolver endpoints) or outbound rules (for outbound
@@ -7535,12 +8809,20 @@ type CreateResolverEndpointInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverEndpointInput) GoString() string {
 	return s.String()
 }
@@ -7562,6 +8844,12 @@ func (s *CreateResolverEndpointInput) Validate() error {
 	}
 	if s.IpAddresses != nil && len(s.IpAddresses) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("IpAddresses", 1))
+	}
+	if s.OutpostArn != nil && len(*s.OutpostArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostArn", 1))
+	}
+	if s.PreferredInstanceType != nil && len(*s.PreferredInstanceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredInstanceType", 1))
 	}
 	if s.SecurityGroupIds == nil {
 		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
@@ -7617,6 +8905,24 @@ func (s *CreateResolverEndpointInput) SetName(v string) *CreateResolverEndpointI
 	return s
 }
 
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *CreateResolverEndpointInput) SetOutpostArn(v string) *CreateResolverEndpointInput {
+	s.OutpostArn = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *CreateResolverEndpointInput) SetPreferredInstanceType(v string) *CreateResolverEndpointInput {
+	s.PreferredInstanceType = &v
+	return s
+}
+
+// SetResolverEndpointType sets the ResolverEndpointType field's value.
+func (s *CreateResolverEndpointInput) SetResolverEndpointType(v string) *CreateResolverEndpointInput {
+	s.ResolverEndpointType = &v
+	return s
+}
+
 // SetSecurityGroupIds sets the SecurityGroupIds field's value.
 func (s *CreateResolverEndpointInput) SetSecurityGroupIds(v []*string) *CreateResolverEndpointInput {
 	s.SecurityGroupIds = v
@@ -7637,12 +8943,20 @@ type CreateResolverEndpointOutput struct {
 	ResolverEndpoint *ResolverEndpoint `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -7685,12 +8999,20 @@ type CreateResolverQueryLogConfigInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverQueryLogConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverQueryLogConfigInput) GoString() string {
 	return s.String()
 }
@@ -7762,12 +9084,20 @@ type CreateResolverQueryLogConfigOutput struct {
 	ResolverQueryLogConfig *ResolverQueryLogConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverQueryLogConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverQueryLogConfigOutput) GoString() string {
 	return s.String()
 }
@@ -7826,18 +9156,27 @@ type CreateResolverRuleInput struct {
 	Tags []*Tag `type:"list"`
 
 	// The IPs that you want Resolver to forward DNS queries to. You can specify
-	// only IPv4 addresses. Separate IP addresses with a space.
+	// either Ipv4 or Ipv6 addresses but not both in the same rule. Separate IP
+	// addresses with a space.
 	//
 	// TargetIps is available only when the value of Rule type is FORWARD.
 	TargetIps []*TargetAddress `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverRuleInput) GoString() string {
 	return s.String()
 }
@@ -7943,12 +9282,20 @@ type CreateResolverRuleOutput struct {
 	ResolverRule *ResolverRule `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResolverRuleOutput) GoString() string {
 	return s.String()
 }
@@ -7968,12 +9315,20 @@ type DeleteFirewallDomainListInput struct {
 	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallDomainListInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallDomainListInput) GoString() string {
 	return s.String()
 }
@@ -8007,12 +9362,20 @@ type DeleteFirewallDomainListOutput struct {
 	FirewallDomainList *FirewallDomainList `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallDomainListOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallDomainListOutput) GoString() string {
 	return s.String()
 }
@@ -8032,12 +9395,20 @@ type DeleteFirewallRuleGroupInput struct {
 	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -8071,12 +9442,20 @@ type DeleteFirewallRuleGroupOutput struct {
 	FirewallRuleGroup *FirewallRuleGroup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -8102,12 +9481,20 @@ type DeleteFirewallRuleInput struct {
 	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallRuleInput) GoString() string {
 	return s.String()
 }
@@ -8153,12 +9540,20 @@ type DeleteFirewallRuleOutput struct {
 	FirewallRule *FirewallRule `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallRuleOutput) GoString() string {
 	return s.String()
 }
@@ -8166,6 +9561,87 @@ func (s DeleteFirewallRuleOutput) GoString() string {
 // SetFirewallRule sets the FirewallRule field's value.
 func (s *DeleteFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *DeleteFirewallRuleOutput {
 	s.FirewallRule = v
+	return s
+}
+
+type DeleteOutpostResolverInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string that identifies the Resolver on the Outpost.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOutpostResolverInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOutpostResolverInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteOutpostResolverInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteOutpostResolverInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteOutpostResolverInput) SetId(v string) *DeleteOutpostResolverInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteOutpostResolverOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the DeleteOutpostResolver request, including the status
+	// of the request.
+	OutpostResolver *OutpostResolver `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOutpostResolverOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOutpostResolverOutput) GoString() string {
+	return s.String()
+}
+
+// SetOutpostResolver sets the OutpostResolver field's value.
+func (s *DeleteOutpostResolverOutput) SetOutpostResolver(v *OutpostResolver) *DeleteOutpostResolverOutput {
+	s.OutpostResolver = v
 	return s
 }
 
@@ -8178,12 +9654,20 @@ type DeleteResolverEndpointInput struct {
 	ResolverEndpointId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverEndpointInput) GoString() string {
 	return s.String()
 }
@@ -8218,12 +9702,20 @@ type DeleteResolverEndpointOutput struct {
 	ResolverEndpoint *ResolverEndpoint `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -8243,12 +9735,20 @@ type DeleteResolverQueryLogConfigInput struct {
 	ResolverQueryLogConfigId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverQueryLogConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverQueryLogConfigInput) GoString() string {
 	return s.String()
 }
@@ -8283,12 +9783,20 @@ type DeleteResolverQueryLogConfigOutput struct {
 	ResolverQueryLogConfig *ResolverQueryLogConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverQueryLogConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverQueryLogConfigOutput) GoString() string {
 	return s.String()
 }
@@ -8308,12 +9816,20 @@ type DeleteResolverRuleInput struct {
 	ResolverRuleId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverRuleInput) GoString() string {
 	return s.String()
 }
@@ -8348,12 +9864,20 @@ type DeleteResolverRuleOutput struct {
 	ResolverRule *ResolverRule `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResolverRuleOutput) GoString() string {
 	return s.String()
 }
@@ -8373,12 +9897,20 @@ type DisassociateFirewallRuleGroupInput struct {
 	FirewallRuleGroupAssociationId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFirewallRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFirewallRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -8412,12 +9944,20 @@ type DisassociateFirewallRuleGroupOutput struct {
 	FirewallRuleGroupAssociation *FirewallRuleGroupAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFirewallRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFirewallRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -8443,12 +9983,20 @@ type DisassociateResolverEndpointIpAddressInput struct {
 	ResolverEndpointId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverEndpointIpAddressInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverEndpointIpAddressInput) GoString() string {
 	return s.String()
 }
@@ -8496,12 +10044,20 @@ type DisassociateResolverEndpointIpAddressOutput struct {
 	ResolverEndpoint *ResolverEndpoint `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverEndpointIpAddressOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverEndpointIpAddressOutput) GoString() string {
 	return s.String()
 }
@@ -8528,12 +10084,20 @@ type DisassociateResolverQueryLogConfigInput struct {
 	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverQueryLogConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverQueryLogConfigInput) GoString() string {
 	return s.String()
 }
@@ -8580,12 +10144,20 @@ type DisassociateResolverQueryLogConfigOutput struct {
 	ResolverQueryLogConfigAssociation *ResolverQueryLogConfigAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverQueryLogConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverQueryLogConfigOutput) GoString() string {
 	return s.String()
 }
@@ -8611,12 +10183,20 @@ type DisassociateResolverRuleInput struct {
 	VPCId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverRuleInput) GoString() string {
 	return s.String()
 }
@@ -8663,12 +10243,20 @@ type DisassociateResolverRuleOutput struct {
 	ResolverRuleAssociation *ResolverRuleAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateResolverRuleOutput) GoString() string {
 	return s.String()
 }
@@ -8716,7 +10304,7 @@ type Filter struct {
 	//    * Direction: Whether you want to return inbound or outbound Resolver endpoints.
 	//    If you specify DIRECTION for Name, specify INBOUND or OUTBOUND for Values.
 	//
-	//    * HostVpcId: The ID of the VPC that inbound DNS queries pass through on
+	//    * HostVPCId: The ID of the VPC that inbound DNS queries pass through on
 	//    the way from your network to your VPCs in a region, or the VPC that outbound
 	//    queries pass through on the way from your VPCs to your network. In a CreateResolverEndpoint
 	//    (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html)
@@ -8793,8 +10381,8 @@ type Filter struct {
 	//    * CreatorRequestId: A unique string that identifies the request that created
 	//    the query logging configuration.
 	//
-	//    * Destination: The AWS service that you want to forward query logs to.
-	//    Valid values include the following: S3 CloudWatchLogs KinesisFirehose
+	//    * Destination: The Amazon Web Services service that you want to forward
+	//    query logs to. Valid values include the following: S3 CloudWatchLogs KinesisFirehose
 	//
 	//    * DestinationArn: The ARN of the location that Resolver is sending query
 	//    logs to. This value can be the ARN for an S3 bucket, a CloudWatch Logs
@@ -8804,13 +10392,13 @@ type Filter struct {
 	//
 	//    * Name: The name of the query logging configuration
 	//
-	//    * OwnerId: The AWS account ID for the account that created the query logging
-	//    configuration.
+	//    * OwnerId: The Amazon Web Services account ID for the account that created
+	//    the query logging configuration.
 	//
 	//    * ShareStatus: An indication of whether the query logging configuration
-	//    is shared with other AWS accounts, or was shared with the current account
-	//    by another AWS account. Valid values include: NOT_SHARED, SHARED_WITH_ME,
-	//    or SHARED_BY_ME.
+	//    is shared with other Amazon Web Services accounts, or was shared with
+	//    the current account by another Amazon Web Services account. Valid values
+	//    include: NOT_SHARED, SHARED_WITH_ME, or SHARED_BY_ME.
 	//
 	//    * Status: The status of the query logging configuration. If you specify
 	//    Status for Name, specify the applicable status code for Values: CREATING,
@@ -8848,12 +10436,20 @@ type Filter struct {
 	Values []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -8906,20 +10502,28 @@ type FirewallConfig struct {
 	// The ID of the firewall configuration.
 	Id *string `min:"1" type:"string"`
 
-	// The AWS account ID of the owner of the VPC that this firewall configuration
-	// applies to.
+	// The Amazon Web Services account ID of the owner of the VPC that this firewall
+	// configuration applies to.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The ID of the VPC that this firewall configuration applies to.
 	ResourceId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallConfig) GoString() string {
 	return s.String()
 }
@@ -8992,12 +10596,20 @@ type FirewallDomainList struct {
 	StatusMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallDomainList) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallDomainList) GoString() string {
 	return s.String()
 }
@@ -9090,12 +10702,20 @@ type FirewallDomainListMetadata struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallDomainListMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallDomainListMetadata) GoString() string {
 	return s.String()
 }
@@ -9200,12 +10820,20 @@ type FirewallRule struct {
 	Priority *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallRule) GoString() string {
 	return s.String()
 }
@@ -9310,17 +10938,17 @@ type FirewallRuleGroup struct {
 	// The name of the rule group.
 	Name *string `type:"string"`
 
-	// The AWS account ID for the account that created the rule group. When a rule
-	// group is shared with your account, this is the account that has shared the
-	// rule group with you.
+	// The Amazon Web Services account ID for the account that created the rule
+	// group. When a rule group is shared with your account, this is the account
+	// that has shared the rule group with you.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The number of rules in the rule group.
 	RuleCount *int64 `type:"integer"`
 
-	// Whether the rule group is shared with other AWS accounts, or was shared with
-	// the current account by another AWS account. Sharing is configured through
-	// AWS Resource Access Manager (AWS RAM).
+	// Whether the rule group is shared with other Amazon Web Services accounts,
+	// or was shared with the current account by another Amazon Web Services account.
+	// Sharing is configured through Resource Access Manager (RAM).
 	ShareStatus *string `type:"string" enum:"ShareStatus"`
 
 	// The status of the domain list.
@@ -9330,12 +10958,20 @@ type FirewallRuleGroup struct {
 	StatusMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallRuleGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallRuleGroup) GoString() string {
 	return s.String()
 }
@@ -9430,8 +11066,8 @@ type FirewallRuleGroupAssociation struct {
 	Id *string `min:"1" type:"string"`
 
 	// The owner of the association, used only for associations that are not managed
-	// by you. If you use AWS Firewall Manager to manage your DNS Firewalls, then
-	// this reports Firewall Manager as the managed owner.
+	// by you. If you use Firewall Manager to manage your DNS Firewalls, then this
+	// reports Firewall Manager as the managed owner.
 	ManagedOwnerName *string `min:"1" type:"string"`
 
 	// The date and time that the association was last modified, in Unix time format
@@ -9460,12 +11096,20 @@ type FirewallRuleGroupAssociation struct {
 	VpcId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallRuleGroupAssociation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallRuleGroupAssociation) GoString() string {
 	return s.String()
 }
@@ -9570,23 +11214,31 @@ type FirewallRuleGroupMetadata struct {
 	// The name of the rule group.
 	Name *string `type:"string"`
 
-	// The AWS account ID for the account that created the rule group. When a rule
-	// group is shared with your account, this is the account that has shared the
-	// rule group with you.
+	// The Amazon Web Services account ID for the account that created the rule
+	// group. When a rule group is shared with your account, this is the account
+	// that has shared the rule group with you.
 	OwnerId *string `min:"12" type:"string"`
 
-	// Whether the rule group is shared with other AWS accounts, or was shared with
-	// the current account by another AWS account. Sharing is configured through
-	// AWS Resource Access Manager (AWS RAM).
+	// Whether the rule group is shared with other Amazon Web Services accounts,
+	// or was shared with the current account by another Amazon Web Services account.
+	// Sharing is configured through Resource Access Manager (RAM).
 	ShareStatus *string `type:"string" enum:"ShareStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallRuleGroupMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallRuleGroupMetadata) GoString() string {
 	return s.String()
 }
@@ -9636,12 +11288,20 @@ type GetFirewallConfigInput struct {
 	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallConfigInput) GoString() string {
 	return s.String()
 }
@@ -9676,12 +11336,20 @@ type GetFirewallConfigOutput struct {
 	FirewallConfig *FirewallConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallConfigOutput) GoString() string {
 	return s.String()
 }
@@ -9701,12 +11369,20 @@ type GetFirewallDomainListInput struct {
 	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallDomainListInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallDomainListInput) GoString() string {
 	return s.String()
 }
@@ -9740,12 +11416,20 @@ type GetFirewallDomainListOutput struct {
 	FirewallDomainList *FirewallDomainList `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallDomainListOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallDomainListOutput) GoString() string {
 	return s.String()
 }
@@ -9765,12 +11449,20 @@ type GetFirewallRuleGroupAssociationInput struct {
 	FirewallRuleGroupAssociationId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupAssociationInput) GoString() string {
 	return s.String()
 }
@@ -9804,12 +11496,20 @@ type GetFirewallRuleGroupAssociationOutput struct {
 	FirewallRuleGroupAssociation *FirewallRuleGroupAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -9829,12 +11529,20 @@ type GetFirewallRuleGroupInput struct {
 	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -9868,12 +11576,20 @@ type GetFirewallRuleGroupOutput struct {
 	FirewallRuleGroup *FirewallRuleGroup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -9893,12 +11609,20 @@ type GetFirewallRuleGroupPolicyInput struct {
 	Arn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupPolicyInput) GoString() string {
 	return s.String()
 }
@@ -9928,18 +11652,26 @@ func (s *GetFirewallRuleGroupPolicyInput) SetArn(v string) *GetFirewallRuleGroup
 type GetFirewallRuleGroupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Identity and Access Management (AWS IAM) policy for sharing the specified
-	// rule group. You can use the policy to share the rule group using AWS Resource
-	// Access Manager (AWS RAM).
+	// The Identity and Access Management (Amazon Web Services IAM) policy for sharing
+	// the specified rule group. You can use the policy to share the rule group
+	// using Resource Access Manager (RAM).
 	FirewallRuleGroupPolicy *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFirewallRuleGroupPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -9947,6 +11679,168 @@ func (s GetFirewallRuleGroupPolicyOutput) GoString() string {
 // SetFirewallRuleGroupPolicy sets the FirewallRuleGroupPolicy field's value.
 func (s *GetFirewallRuleGroupPolicyOutput) SetFirewallRuleGroupPolicy(v string) *GetFirewallRuleGroupPolicyOutput {
 	s.FirewallRuleGroupPolicy = &v
+	return s
+}
+
+type GetOutpostResolverInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Resolver on the Outpost.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostResolverInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostResolverInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetOutpostResolverInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetOutpostResolverInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetOutpostResolverInput) SetId(v string) *GetOutpostResolverInput {
+	s.Id = &v
+	return s
+}
+
+type GetOutpostResolverOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the GetOutpostResolver request, including the status of
+	// the request.
+	OutpostResolver *OutpostResolver `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostResolverOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostResolverOutput) GoString() string {
+	return s.String()
+}
+
+// SetOutpostResolver sets the OutpostResolver field's value.
+func (s *GetOutpostResolverOutput) SetOutpostResolver(v *OutpostResolver) *GetOutpostResolverOutput {
+	s.OutpostResolver = v
+	return s
+}
+
+type GetResolverConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Resource ID of the Amazon VPC that you want to get information about.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResolverConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResolverConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResolverConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResolverConfigInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *GetResolverConfigInput) SetResourceId(v string) *GetResolverConfigInput {
+	s.ResourceId = &v
+	return s
+}
+
+type GetResolverConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the behavior configuration of Route 53 Resolver behavior
+	// for the VPC you specified in the GetResolverConfig request.
+	ResolverConfig *ResolverConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResolverConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResolverConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetResolverConfig sets the ResolverConfig field's value.
+func (s *GetResolverConfigOutput) SetResolverConfig(v *ResolverConfig) *GetResolverConfigOutput {
+	s.ResolverConfig = v
 	return s
 }
 
@@ -9959,12 +11853,20 @@ type GetResolverDnssecConfigInput struct {
 	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverDnssecConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverDnssecConfigInput) GoString() string {
 	return s.String()
 }
@@ -9998,12 +11900,20 @@ type GetResolverDnssecConfigOutput struct {
 	ResolverDNSSECConfig *ResolverDnssecConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverDnssecConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverDnssecConfigOutput) GoString() string {
 	return s.String()
 }
@@ -10023,12 +11933,20 @@ type GetResolverEndpointInput struct {
 	ResolverEndpointId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverEndpointInput) GoString() string {
 	return s.String()
 }
@@ -10063,12 +11981,20 @@ type GetResolverEndpointOutput struct {
 	ResolverEndpoint *ResolverEndpoint `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -10089,12 +12015,20 @@ type GetResolverQueryLogConfigAssociationInput struct {
 	ResolverQueryLogConfigAssociationId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigAssociationInput) GoString() string {
 	return s.String()
 }
@@ -10129,12 +12063,20 @@ type GetResolverQueryLogConfigAssociationOutput struct {
 	ResolverQueryLogConfigAssociation *ResolverQueryLogConfigAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -10155,12 +12097,20 @@ type GetResolverQueryLogConfigInput struct {
 	ResolverQueryLogConfigId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigInput) GoString() string {
 	return s.String()
 }
@@ -10195,12 +12145,20 @@ type GetResolverQueryLogConfigOutput struct {
 	ResolverQueryLogConfig *ResolverQueryLogConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigOutput) GoString() string {
 	return s.String()
 }
@@ -10221,12 +12179,20 @@ type GetResolverQueryLogConfigPolicyInput struct {
 	Arn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigPolicyInput) GoString() string {
 	return s.String()
 }
@@ -10261,12 +12227,20 @@ type GetResolverQueryLogConfigPolicyOutput struct {
 	ResolverQueryLogConfigPolicy *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverQueryLogConfigPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -10287,12 +12261,20 @@ type GetResolverRuleAssociationInput struct {
 	ResolverRuleAssociationId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRuleAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRuleAssociationInput) GoString() string {
 	return s.String()
 }
@@ -10327,12 +12309,20 @@ type GetResolverRuleAssociationOutput struct {
 	ResolverRuleAssociation *ResolverRuleAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRuleAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRuleAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -10352,12 +12342,20 @@ type GetResolverRuleInput struct {
 	ResolverRuleId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRuleInput) GoString() string {
 	return s.String()
 }
@@ -10392,12 +12390,20 @@ type GetResolverRuleOutput struct {
 	ResolverRule *ResolverRule `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRuleOutput) GoString() string {
 	return s.String()
 }
@@ -10418,12 +12424,20 @@ type GetResolverRulePolicyInput struct {
 	Arn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRulePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRulePolicyInput) GoString() string {
 	return s.String()
 }
@@ -10458,12 +12472,20 @@ type GetResolverRulePolicyOutput struct {
 	ResolverRulePolicy *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRulePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResolverRulePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -10499,12 +12521,20 @@ type ImportFirewallDomainsInput struct {
 	Operation *string `type:"string" required:"true" enum:"FirewallDomainImportOperation"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportFirewallDomainsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportFirewallDomainsInput) GoString() string {
 	return s.String()
 }
@@ -10561,18 +12591,27 @@ type ImportFirewallDomainsOutput struct {
 	// The name of the domain list.
 	Name *string `type:"string"`
 
+	// Status of the import request.
 	Status *string `type:"string" enum:"FirewallDomainListStatus"`
 
 	// Additional information about the status of the list, if available.
 	StatusMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportFirewallDomainsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportFirewallDomainsOutput) GoString() string {
 	return s.String()
 }
@@ -10609,12 +12648,20 @@ type InternalServiceErrorException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceErrorException) GoString() string {
 	return s.String()
 }
@@ -10665,12 +12712,20 @@ type InvalidNextTokenException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) GoString() string {
 	return s.String()
 }
@@ -10725,12 +12780,20 @@ type InvalidParameterException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) GoString() string {
 	return s.String()
 }
@@ -10781,12 +12844,20 @@ type InvalidPolicyDocument struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPolicyDocument) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPolicyDocument) GoString() string {
 	return s.String()
 }
@@ -10837,12 +12908,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -10893,12 +12972,20 @@ type InvalidTagException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTagException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTagException) GoString() string {
 	return s.String()
 }
@@ -10948,8 +13035,11 @@ func (s *InvalidTagException) RequestID() string {
 type IpAddressRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The IP address that you want to use for DNS queries.
+	// The IPv4 address that you want to use for DNS queries.
 	Ip *string `min:"7" type:"string"`
+
+	// The IPv6 address that you want to use for DNS queries.
+	Ipv6 *string `min:"7" type:"string"`
 
 	// The ID of the subnet that contains the IP address.
 	//
@@ -10957,12 +13047,20 @@ type IpAddressRequest struct {
 	SubnetId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IpAddressRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IpAddressRequest) GoString() string {
 	return s.String()
 }
@@ -10972,6 +13070,9 @@ func (s *IpAddressRequest) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "IpAddressRequest"}
 	if s.Ip != nil && len(*s.Ip) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("Ip", 7))
+	}
+	if s.Ipv6 != nil && len(*s.Ipv6) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("Ipv6", 7))
 	}
 	if s.SubnetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SubnetId"))
@@ -10992,6 +13093,12 @@ func (s *IpAddressRequest) SetIp(v string) *IpAddressRequest {
 	return s
 }
 
+// SetIpv6 sets the Ipv6 field's value.
+func (s *IpAddressRequest) SetIpv6(v string) *IpAddressRequest {
+	s.Ipv6 = &v
+	return s
+}
+
 // SetSubnetId sets the SubnetId field's value.
 func (s *IpAddressRequest) SetSubnetId(v string) *IpAddressRequest {
 	s.SubnetId = &v
@@ -11008,11 +13115,14 @@ type IpAddressResponse struct {
 	// Coordinated Universal Time (UTC).
 	CreationTime *string `min:"20" type:"string"`
 
-	// One IP address that the Resolver endpoint uses for DNS queries.
+	// One IPv4 address that the Resolver endpoint uses for DNS queries.
 	Ip *string `min:"7" type:"string"`
 
 	// The ID of one IP address.
 	IpId *string `min:"1" type:"string"`
+
+	// One IPv6 address that the Resolver endpoint uses for DNS queries.
+	Ipv6 *string `min:"7" type:"string"`
 
 	// The date and time that the IP address was last modified, in Unix time format
 	// and Coordinated Universal Time (UTC).
@@ -11028,12 +13138,20 @@ type IpAddressResponse struct {
 	SubnetId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IpAddressResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IpAddressResponse) GoString() string {
 	return s.String()
 }
@@ -11053,6 +13171,12 @@ func (s *IpAddressResponse) SetIp(v string) *IpAddressResponse {
 // SetIpId sets the IpId field's value.
 func (s *IpAddressResponse) SetIpId(v string) *IpAddressResponse {
 	s.IpId = &v
+	return s
+}
+
+// SetIpv6 sets the Ipv6 field's value.
+func (s *IpAddressResponse) SetIpv6(v string) *IpAddressResponse {
+	s.Ipv6 = &v
 	return s
 }
 
@@ -11085,7 +13209,7 @@ func (s *IpAddressResponse) SetSubnetId(v string) *IpAddressResponse {
 type IpAddressUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// The new IP address.
+	// The new IPv4 address.
 	Ip *string `min:"7" type:"string"`
 
 	// Only when removing an IP address from a Resolver endpoint: The ID of the
@@ -11093,17 +13217,28 @@ type IpAddressUpdate struct {
 	// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html).
 	IpId *string `min:"1" type:"string"`
 
+	// The new IPv6 address.
+	Ipv6 *string `min:"7" type:"string"`
+
 	// The ID of the subnet that includes the IP address that you want to update.
 	// To get this ID, use GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html).
 	SubnetId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IpAddressUpdate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IpAddressUpdate) GoString() string {
 	return s.String()
 }
@@ -11116,6 +13251,9 @@ func (s *IpAddressUpdate) Validate() error {
 	}
 	if s.IpId != nil && len(*s.IpId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("IpId", 1))
+	}
+	if s.Ipv6 != nil && len(*s.Ipv6) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("Ipv6", 7))
 	}
 	if s.SubnetId != nil && len(*s.SubnetId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SubnetId", 1))
@@ -11139,6 +13277,12 @@ func (s *IpAddressUpdate) SetIpId(v string) *IpAddressUpdate {
 	return s
 }
 
+// SetIpv6 sets the Ipv6 field's value.
+func (s *IpAddressUpdate) SetIpv6(v string) *IpAddressUpdate {
+	s.Ipv6 = &v
+	return s
+}
+
 // SetSubnetId sets the SubnetId field's value.
 func (s *IpAddressUpdate) SetSubnetId(v string) *IpAddressUpdate {
 	s.SubnetId = &v
@@ -11157,12 +13301,20 @@ type LimitExceededException struct {
 	ResourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -11225,12 +13377,20 @@ type ListFirewallConfigsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallConfigsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallConfigsInput) GoString() string {
 	return s.String()
 }
@@ -11273,12 +13433,20 @@ type ListFirewallConfigsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallConfigsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallConfigsOutput) GoString() string {
 	return s.String()
 }
@@ -11315,12 +13483,20 @@ type ListFirewallDomainListsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallDomainListsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallDomainListsInput) GoString() string {
 	return s.String()
 }
@@ -11365,12 +13541,20 @@ type ListFirewallDomainListsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallDomainListsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallDomainListsOutput) GoString() string {
 	return s.String()
 }
@@ -11412,12 +13596,20 @@ type ListFirewallDomainsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallDomainsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallDomainsInput) GoString() string {
 	return s.String()
 }
@@ -11474,12 +13666,20 @@ type ListFirewallDomainsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallDomainsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallDomainsOutput) GoString() string {
 	return s.String()
 }
@@ -11536,12 +13736,20 @@ type ListFirewallRuleGroupAssociationsInput struct {
 	VpcId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRuleGroupAssociationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRuleGroupAssociationsInput) GoString() string {
 	return s.String()
 }
@@ -11616,12 +13824,20 @@ type ListFirewallRuleGroupAssociationsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRuleGroupAssociationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRuleGroupAssociationsOutput) GoString() string {
 	return s.String()
 }
@@ -11658,12 +13874,20 @@ type ListFirewallRuleGroupsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRuleGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRuleGroupsInput) GoString() string {
 	return s.String()
 }
@@ -11708,12 +13932,20 @@ type ListFirewallRuleGroupsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRuleGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRuleGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -11776,12 +14008,20 @@ type ListFirewallRulesInput struct {
 	Priority *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRulesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRulesInput) GoString() string {
 	return s.String()
 }
@@ -11850,12 +14090,20 @@ type ListFirewallRulesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRulesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFirewallRulesOutput) GoString() string {
 	return s.String()
 }
@@ -11872,6 +14120,226 @@ func (s *ListFirewallRulesOutput) SetNextToken(v string) *ListFirewallRulesOutpu
 	return s
 }
 
+type ListOutpostResolversInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of Resolvers on the Outpost that you want to return in
+	// the response to a ListOutpostResolver request. If you don't specify a value
+	// for MaxResults, the request returns up to 100 Resolvers.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// For the first ListOutpostResolver request, omit this value.
+	NextToken *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Outpost.
+	OutpostArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOutpostResolversInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOutpostResolversInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOutpostResolversInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOutpostResolversInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.OutpostArn != nil && len(*s.OutpostArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOutpostResolversInput) SetMaxResults(v int64) *ListOutpostResolversInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOutpostResolversInput) SetNextToken(v string) *ListOutpostResolversInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *ListOutpostResolversInput) SetOutpostArn(v string) *ListOutpostResolversInput {
+	s.OutpostArn = &v
+	return s
+}
+
+type ListOutpostResolversOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If more than MaxResults Resolvers match the specified criteria, you can submit
+	// another ListOutpostResolver request to get the next group of results. In
+	// the next request, specify the value of NextToken from the previous response.
+	NextToken *string `type:"string"`
+
+	// The Resolvers on Outposts that were created by using the current Amazon Web
+	// Services account, and that match the specified filters, if any.
+	OutpostResolvers []*OutpostResolver `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOutpostResolversOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOutpostResolversOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOutpostResolversOutput) SetNextToken(v string) *ListOutpostResolversOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutpostResolvers sets the OutpostResolvers field's value.
+func (s *ListOutpostResolversOutput) SetOutpostResolvers(v []*OutpostResolver) *ListOutpostResolversOutput {
+	s.OutpostResolvers = v
+	return s
+}
+
+type ListResolverConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of Resolver configurations that you want to return in
+	// the response to a ListResolverConfigs request. If you don't specify a value
+	// for MaxResults, up to 100 Resolver configurations are returned.
+	MaxResults *int64 `min:"5" type:"integer"`
+
+	// (Optional) If the current Amazon Web Services account has more than MaxResults
+	// Resolver configurations, use NextToken to get the second and subsequent pages
+	// of results.
+	//
+	// For the first ListResolverConfigs request, omit this value.
+	//
+	// For the second and subsequent requests, get the value of NextToken from the
+	// previous response and specify that value for NextToken in the request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResolverConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResolverConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResolverConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResolverConfigsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListResolverConfigsInput) SetMaxResults(v int64) *ListResolverConfigsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResolverConfigsInput) SetNextToken(v string) *ListResolverConfigsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListResolverConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If a response includes the last of the Resolver configurations that are associated
+	// with the current Amazon Web Services account, NextToken doesn't appear in
+	// the response.
+	//
+	// If a response doesn't include the last of the configurations, you can get
+	// more configurations by submitting another ListResolverConfigs request. Get
+	// the value of NextToken that Amazon Route 53 returned in the previous response
+	// and include it in NextToken in the next request.
+	NextToken *string `type:"string"`
+
+	// An array that contains one ResolverConfigs element for each Resolver configuration
+	// that is associated with the current Amazon Web Services account.
+	ResolverConfigs []*ResolverConfig `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResolverConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResolverConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResolverConfigsOutput) SetNextToken(v string) *ListResolverConfigsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResolverConfigs sets the ResolverConfigs field's value.
+func (s *ListResolverConfigsOutput) SetResolverConfigs(v []*ResolverConfig) *ListResolverConfigsOutput {
+	s.ResolverConfigs = v
+	return s
+}
+
 type ListResolverDnssecConfigsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11883,8 +14351,9 @@ type ListResolverDnssecConfigsInput struct {
 	// for MaxResults, Route 53 returns up to 100 configuration per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// (Optional) If the current AWS account has more than MaxResults DNSSEC configurations,
-	// use NextToken to get the second and subsequent pages of results.
+	// (Optional) If the current Amazon Web Services account has more than MaxResults
+	// DNSSEC configurations, use NextToken to get the second and subsequent pages
+	// of results.
 	//
 	// For the first ListResolverDnssecConfigs request, omit this value.
 	//
@@ -11893,12 +14362,20 @@ type ListResolverDnssecConfigsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverDnssecConfigsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverDnssecConfigsInput) GoString() string {
 	return s.String()
 }
@@ -11948,7 +14425,8 @@ type ListResolverDnssecConfigsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If a response includes the last of the DNSSEC configurations that are associated
-	// with the current AWS account, NextToken doesn't appear in the response.
+	// with the current Amazon Web Services account, NextToken doesn't appear in
+	// the response.
 	//
 	// If a response doesn't include the last of the configurations, you can get
 	// more configurations by submitting another ListResolverDnssecConfigs (https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListResolverDnssecConfigs.html)
@@ -11958,16 +14436,24 @@ type ListResolverDnssecConfigsOutput struct {
 
 	// An array that contains one ResolverDnssecConfig (https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResolverDnssecConfig.html)
 	// element for each configuration for DNSSEC validation that is associated with
-	// the current AWS account.
+	// the current Amazon Web Services account.
 	ResolverDnssecConfigs []*ResolverDnssecConfig `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverDnssecConfigsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverDnssecConfigsOutput) GoString() string {
 	return s.String()
 }
@@ -12006,12 +14492,20 @@ type ListResolverEndpointIpAddressesInput struct {
 	ResolverEndpointId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverEndpointIpAddressesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverEndpointIpAddressesInput) GoString() string {
 	return s.String()
 }
@@ -12071,12 +14565,20 @@ type ListResolverEndpointIpAddressesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverEndpointIpAddressesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverEndpointIpAddressesOutput) GoString() string {
 	return s.String()
 }
@@ -12123,12 +14625,20 @@ type ListResolverEndpointsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverEndpointsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverEndpointsInput) GoString() string {
 	return s.String()
 }
@@ -12185,17 +14695,25 @@ type ListResolverEndpointsOutput struct {
 	// In the next request, specify the value of NextToken from the previous response.
 	NextToken *string `type:"string"`
 
-	// The Resolver endpoints that were created by using the current AWS account,
-	// and that match the specified filters, if any.
+	// The Resolver endpoints that were created by using the current Amazon Web
+	// Services account, and that match the specified filters, if any.
 	ResolverEndpoints []*ResolverEndpoint `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverEndpointsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverEndpointsOutput) GoString() string {
 	return s.String()
 }
@@ -12286,12 +14804,20 @@ type ListResolverQueryLogConfigAssociationsInput struct {
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverQueryLogConfigAssociationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverQueryLogConfigAssociationsInput) GoString() string {
 	return s.String()
 }
@@ -12380,12 +14906,20 @@ type ListResolverQueryLogConfigAssociationsOutput struct {
 	TotalFilteredCount *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverQueryLogConfigAssociationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverQueryLogConfigAssociationsOutput) GoString() string {
 	return s.String()
 }
@@ -12462,11 +14996,13 @@ type ListResolverQueryLogConfigsInput struct {
 	//
 	//    * Name: The name of the configuration
 	//
-	//    * OwnerId: The AWS account number of the account that created the configuration
+	//    * OwnerId: The Amazon Web Services account number of the account that
+	//    created the configuration
 	//
-	//    * ShareStatus: Whether the configuration is shared with other AWS accounts
-	//    or shared with the current account by another AWS account. Sharing is
-	//    configured through AWS Resource Access Manager (AWS RAM).
+	//    * ShareStatus: Whether the configuration is shared with other Amazon Web
+	//    Services accounts or shared with the current account by another Amazon
+	//    Web Services account. Sharing is configured through Resource Access Manager
+	//    (RAM).
 	//
 	//    * Status: The current status of the configuration. Valid values include
 	//    the following: CREATING: Resolver is creating the query logging configuration.
@@ -12487,12 +15023,20 @@ type ListResolverQueryLogConfigsInput struct {
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverQueryLogConfigsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverQueryLogConfigsInput) GoString() string {
 	return s.String()
 }
@@ -12579,12 +15123,20 @@ type ListResolverQueryLogConfigsOutput struct {
 	TotalFilteredCount *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverQueryLogConfigsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverQueryLogConfigsOutput) GoString() string {
 	return s.String()
 }
@@ -12637,12 +15189,20 @@ type ListResolverRuleAssociationsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverRuleAssociationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverRuleAssociationsInput) GoString() string {
 	return s.String()
 }
@@ -12701,16 +15261,25 @@ type ListResolverRuleAssociationsOutput struct {
 	NextToken *string `type:"string"`
 
 	// The associations that were created between Resolver rules and VPCs using
-	// the current AWS account, and that match the specified filters, if any.
+	// the current Amazon Web Services account, and that match the specified filters,
+	// if any.
 	ResolverRuleAssociations []*ResolverRuleAssociation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverRuleAssociationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverRuleAssociationsOutput) GoString() string {
 	return s.String()
 }
@@ -12757,12 +15326,20 @@ type ListResolverRulesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverRulesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverRulesInput) GoString() string {
 	return s.String()
 }
@@ -12819,17 +15396,25 @@ type ListResolverRulesOutput struct {
 	// In the next request, specify the value of NextToken from the previous response.
 	NextToken *string `type:"string"`
 
-	// The Resolver rules that were created using the current AWS account and that
-	// match the specified filters, if any.
+	// The Resolver rules that were created using the current Amazon Web Services
+	// account and that match the specified filters, if any.
 	ResolverRules []*ResolverRule `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverRulesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResolverRulesOutput) GoString() string {
 	return s.String()
 }
@@ -12874,12 +15459,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -12934,12 +15527,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -12956,6 +15557,132 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+// A complex type that contains settings for an existing Resolver on an Outpost.
+type OutpostResolver struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) for the Resolver on an Outpost.
+	Arn *string `min:"1" type:"string"`
+
+	// The date and time that the Outpost Resolver was created, in Unix time format
+	// and Coordinated Universal Time (UTC).
+	CreationTime *string `min:"20" type:"string"`
+
+	// A unique string that identifies the request that created the Resolver endpoint.
+	// The CreatorRequestId allows failed requests to be retried without the risk
+	// of running the operation twice.
+	CreatorRequestId *string `min:"1" type:"string"`
+
+	// The ID of the Resolver on Outpost.
+	Id *string `min:"1" type:"string"`
+
+	// Amazon EC2 instance count for the Resolver on the Outpost.
+	InstanceCount *int64 `type:"integer"`
+
+	// The date and time that the Outpost Resolver was modified, in Unix time format
+	// and Coordinated Universal Time (UTC).
+	ModificationTime *string `min:"20" type:"string"`
+
+	// Name of the Resolver.
+	Name *string `min:"1" type:"string"`
+
+	// The ARN (Amazon Resource Name) for the Outpost.
+	OutpostArn *string `min:"1" type:"string"`
+
+	// The Amazon EC2 instance type.
+	PreferredInstanceType *string `min:"1" type:"string"`
+
+	// Status of the Resolver.
+	Status *string `type:"string" enum:"OutpostResolverStatus"`
+
+	// A detailed description of the Resolver.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostResolver) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostResolver) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *OutpostResolver) SetArn(v string) *OutpostResolver {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *OutpostResolver) SetCreationTime(v string) *OutpostResolver {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *OutpostResolver) SetCreatorRequestId(v string) *OutpostResolver {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *OutpostResolver) SetId(v string) *OutpostResolver {
+	s.Id = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *OutpostResolver) SetInstanceCount(v int64) *OutpostResolver {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetModificationTime sets the ModificationTime field's value.
+func (s *OutpostResolver) SetModificationTime(v string) *OutpostResolver {
+	s.ModificationTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OutpostResolver) SetName(v string) *OutpostResolver {
+	s.Name = &v
+	return s
+}
+
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *OutpostResolver) SetOutpostArn(v string) *OutpostResolver {
+	s.OutpostArn = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *OutpostResolver) SetPreferredInstanceType(v string) *OutpostResolver {
+	s.PreferredInstanceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *OutpostResolver) SetStatus(v string) *OutpostResolver {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *OutpostResolver) SetStatusMessage(v string) *OutpostResolver {
+	s.StatusMessage = &v
+	return s
+}
+
 type PutFirewallRuleGroupPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12964,19 +15691,27 @@ type PutFirewallRuleGroupPolicyInput struct {
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
 
-	// The AWS Identity and Access Management (AWS IAM) policy to attach to the
-	// rule group.
+	// The Identity and Access Management (Amazon Web Services IAM) policy to attach
+	// to the rule group.
 	//
 	// FirewallRuleGroupPolicy is a required field
 	FirewallRuleGroupPolicy *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFirewallRuleGroupPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFirewallRuleGroupPolicyInput) GoString() string {
 	return s.String()
 }
@@ -13018,12 +15753,20 @@ type PutFirewallRuleGroupPolicyOutput struct {
 	ReturnValue *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFirewallRuleGroupPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFirewallRuleGroupPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -13043,16 +15786,14 @@ type PutResolverQueryLogConfigPolicyInput struct {
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
 
-	// An AWS Identity and Access Management policy statement that lists the query
-	// logging configurations that you want to share with another AWS account and
-	// the operations that you want the account to be able to perform. You can specify
-	// the following operations in the Actions section of the statement:
+	// An Identity and Access Management policy statement that lists the query logging
+	// configurations that you want to share with another Amazon Web Services account
+	// and the operations that you want the account to be able to perform. You can
+	// specify the following operations in the Actions section of the statement:
 	//
 	//    * route53resolver:AssociateResolverQueryLogConfig
 	//
 	//    * route53resolver:DisassociateResolverQueryLogConfig
-	//
-	//    * route53resolver:ListResolverQueryLogConfigAssociations
 	//
 	//    * route53resolver:ListResolverQueryLogConfigs
 	//
@@ -13064,12 +15805,20 @@ type PutResolverQueryLogConfigPolicyInput struct {
 	ResolverQueryLogConfigPolicy *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResolverQueryLogConfigPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResolverQueryLogConfigPolicyInput) GoString() string {
 	return s.String()
 }
@@ -13113,12 +15862,20 @@ type PutResolverQueryLogConfigPolicyOutput struct {
 	ReturnValue *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResolverQueryLogConfigPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResolverQueryLogConfigPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -13138,10 +15895,10 @@ type PutResolverRulePolicyInput struct {
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
 
-	// An AWS Identity and Access Management policy statement that lists the rules
-	// that you want to share with another AWS account and the operations that you
-	// want the account to be able to perform. You can specify the following operations
-	// in the Action section of the statement:
+	// An Identity and Access Management policy statement that lists the rules that
+	// you want to share with another Amazon Web Services account and the operations
+	// that you want the account to be able to perform. You can specify the following
+	// operations in the Action section of the statement:
 	//
 	//    * route53resolver:GetResolverRule
 	//
@@ -13161,12 +15918,20 @@ type PutResolverRulePolicyInput struct {
 	ResolverRulePolicy *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResolverRulePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResolverRulePolicyInput) GoString() string {
 	return s.String()
 }
@@ -13210,12 +15975,20 @@ type PutResolverRulePolicyOutput struct {
 	ReturnValue *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResolverRulePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResolverRulePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -13223,6 +15996,79 @@ func (s PutResolverRulePolicyOutput) GoString() string {
 // SetReturnValue sets the ReturnValue field's value.
 func (s *PutResolverRulePolicyOutput) SetReturnValue(v bool) *PutResolverRulePolicyOutput {
 	s.ReturnValue = &v
+	return s
+}
+
+// A complex type that contains information about a Resolver configuration for
+// a VPC.
+type ResolverConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The status of whether or not the Resolver will create autodefined rules for
+	// reverse DNS lookups. This is enabled by default. The status can be one of
+	// following:
+	//
+	//    * ENABLING: Autodefined rules for reverse DNS lookups are being enabled
+	//    but are not complete.
+	//
+	//    * ENABLED: Autodefined rules for reverse DNS lookups are enabled.
+	//
+	//    * DISABLING: Autodefined rules for reverse DNS lookups are being disabled
+	//    but are not complete.
+	//
+	//    * DISABLED: Autodefined rules for reverse DNS lookups are disabled.
+	AutodefinedReverse *string `type:"string" enum:"ResolverAutodefinedReverseStatus"`
+
+	// ID for the Resolver configuration.
+	Id *string `min:"1" type:"string"`
+
+	// The owner account ID of the Amazon Virtual Private Cloud VPC.
+	OwnerId *string `min:"12" type:"string"`
+
+	// The ID of the Amazon Virtual Private Cloud VPC that you're configuring Resolver
+	// for.
+	ResourceId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolverConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolverConfig) GoString() string {
+	return s.String()
+}
+
+// SetAutodefinedReverse sets the AutodefinedReverse field's value.
+func (s *ResolverConfig) SetAutodefinedReverse(v string) *ResolverConfig {
+	s.AutodefinedReverse = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ResolverConfig) SetId(v string) *ResolverConfig {
+	s.Id = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *ResolverConfig) SetOwnerId(v string) *ResolverConfig {
+	s.OwnerId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ResolverConfig) SetResourceId(v string) *ResolverConfig {
+	s.ResourceId = &v
 	return s
 }
 
@@ -13255,12 +16101,20 @@ type ResolverDnssecConfig struct {
 	ValidationStatus *string `type:"string" enum:"ResolverDNSSECValidationStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverDnssecConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverDnssecConfig) GoString() string {
 	return s.String()
 }
@@ -13292,8 +16146,8 @@ func (s *ResolverDnssecConfig) SetValidationStatus(v string) *ResolverDnssecConf
 // In the response to a CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html),
 // DeleteResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html),
 // GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html),
-// ListResolverEndpoints (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverEndpoints.html),
-// or UpdateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html)
+// Updates the name, or ResolverEndpointType for an endpoint, or UpdateResolverEndpoint
+// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html)
 // request, a complex type that contains settings for an existing inbound or
 // outbound Resolver endpoint.
 type ResolverEndpoint struct {
@@ -13335,6 +16189,15 @@ type ResolverEndpoint struct {
 	// CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html)
 	// request.
 	Name *string `type:"string"`
+
+	// The ARN (Amazon Resource Name) for the Outpost.
+	OutpostArn *string `min:"1" type:"string"`
+
+	// The Amazon EC2 instance type.
+	PreferredInstanceType *string `min:"1" type:"string"`
+
+	// The Resolver endpoint IP address type.
+	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
 
 	// The ID of one or more security groups that control access to this VPC. The
 	// security group must include one or more inbound rules (for inbound endpoints)
@@ -13381,12 +16244,20 @@ type ResolverEndpoint struct {
 	StatusMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverEndpoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverEndpoint) GoString() string {
 	return s.String()
 }
@@ -13445,6 +16316,24 @@ func (s *ResolverEndpoint) SetName(v string) *ResolverEndpoint {
 	return s
 }
 
+// SetOutpostArn sets the OutpostArn field's value.
+func (s *ResolverEndpoint) SetOutpostArn(v string) *ResolverEndpoint {
+	s.OutpostArn = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *ResolverEndpoint) SetPreferredInstanceType(v string) *ResolverEndpoint {
+	s.PreferredInstanceType = &v
+	return s
+}
+
+// SetResolverEndpointType sets the ResolverEndpointType field's value.
+func (s *ResolverEndpoint) SetResolverEndpointType(v string) *ResolverEndpoint {
+	s.ResolverEndpointType = &v
+	return s
+}
+
 // SetSecurityGroupIds sets the SecurityGroupIds field's value.
 func (s *ResolverEndpoint) SetSecurityGroupIds(v []*string) *ResolverEndpoint {
 	s.SecurityGroupIds = v
@@ -13497,12 +16386,14 @@ type ResolverQueryLogConfig struct {
 	// The name of the query logging configuration.
 	Name *string `min:"1" type:"string"`
 
-	// The AWS account ID for the account that created the query logging configuration.
+	// The Amazon Web Services account ID for the account that created the query
+	// logging configuration.
 	OwnerId *string `min:"12" type:"string"`
 
 	// An indication of whether the query logging configuration is shared with other
-	// AWS accounts, or was shared with the current account by another AWS account.
-	// Sharing is configured through AWS Resource Access Manager (AWS RAM).
+	// Amazon Web Services accounts, or was shared with the current account by another
+	// Amazon Web Services account. Sharing is configured through Resource Access
+	// Manager (RAM).
 	ShareStatus *string `type:"string" enum:"ShareStatus"`
 
 	// The status of the specified query logging configuration. Valid values include
@@ -13522,12 +16413,20 @@ type ResolverQueryLogConfig struct {
 	Status *string `type:"string" enum:"ResolverQueryLogConfigStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverQueryLogConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverQueryLogConfig) GoString() string {
 	return s.String()
 }
@@ -13645,12 +16544,20 @@ type ResolverQueryLogConfigAssociation struct {
 	Status *string `type:"string" enum:"ResolverQueryLogConfigAssociationStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverQueryLogConfigAssociation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverQueryLogConfigAssociation) GoString() string {
 	return s.String()
 }
@@ -13737,8 +16644,8 @@ type ResolverRule struct {
 	// Resolver rule.
 	Name *string `type:"string"`
 
-	// When a rule is shared with another AWS account, the account ID of the account
-	// that the rule is shared with.
+	// When a rule is shared with another Amazon Web Services account, the account
+	// ID of the account that the rule is shared with.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The ID of the endpoint that the rule is associated with.
@@ -13773,16 +16680,24 @@ type ResolverRule struct {
 
 	// An array that contains the IP addresses and ports that an outbound endpoint
 	// forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers
-	// on your network. Specify IPv4 addresses. IPv6 is not supported.
+	// on your network.
 	TargetIps []*TargetAddress `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverRule) GoString() string {
 	return s.String()
 }
@@ -13904,12 +16819,20 @@ type ResolverRuleAssociation struct {
 	VPCId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverRuleAssociation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverRuleAssociation) GoString() string {
 	return s.String()
 }
@@ -13968,12 +16891,20 @@ type ResolverRuleConfig struct {
 	TargetIps []*TargetAddress `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverRuleConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResolverRuleConfig) GoString() string {
 	return s.String()
 }
@@ -14034,12 +16965,20 @@ type ResourceExistsException struct {
 	ResourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceExistsException) GoString() string {
 	return s.String()
 }
@@ -14094,12 +17033,20 @@ type ResourceInUseException struct {
 	ResourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -14154,12 +17101,20 @@ type ResourceNotFoundException struct {
 	ResourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -14214,12 +17169,20 @@ type ResourceUnavailableException struct {
 	ResourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -14262,6 +17225,70 @@ func (s *ResourceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Fulfilling the request would cause one or more quotas to be exceeded.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // One tag that you want to add to the specified resource. A tag consists of
 // a Key (a name for the tag) and a Value.
 type Tag struct {
@@ -14281,12 +17308,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -14349,12 +17384,20 @@ type TagResourceInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -14404,12 +17447,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -14419,22 +17470,30 @@ func (s TagResourceOutput) GoString() string {
 type TargetAddress struct {
 	_ struct{} `type:"structure"`
 
-	// One IP address that you want to forward DNS queries to. You can specify only
-	// IPv4 addresses.
-	//
-	// Ip is a required field
-	Ip *string `min:"7" type:"string" required:"true"`
+	// One IPv4 address that you want to forward DNS queries to.
+	Ip *string `min:"7" type:"string"`
+
+	// One IPv6 address that you want to forward DNS queries to.
+	Ipv6 *string `min:"7" type:"string"`
 
 	// The port at Ip that you want to forward DNS queries to.
 	Port *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetAddress) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetAddress) GoString() string {
 	return s.String()
 }
@@ -14442,11 +17501,11 @@ func (s TargetAddress) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TargetAddress) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TargetAddress"}
-	if s.Ip == nil {
-		invalidParams.Add(request.NewErrParamRequired("Ip"))
-	}
 	if s.Ip != nil && len(*s.Ip) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("Ip", 7))
+	}
+	if s.Ipv6 != nil && len(*s.Ipv6) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("Ipv6", 7))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -14458,6 +17517,12 @@ func (s *TargetAddress) Validate() error {
 // SetIp sets the Ip field's value.
 func (s *TargetAddress) SetIp(v string) *TargetAddress {
 	s.Ip = &v
+	return s
+}
+
+// SetIpv6 sets the Ipv6 field's value.
+func (s *TargetAddress) SetIpv6(v string) *TargetAddress {
+	s.Ipv6 = &v
 	return s
 }
 
@@ -14475,12 +17540,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -14531,12 +17604,20 @@ type UnknownResourceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnknownResourceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnknownResourceException) GoString() string {
 	return s.String()
 }
@@ -14606,12 +17687,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -14651,12 +17740,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -14687,12 +17784,20 @@ type UpdateFirewallConfigInput struct {
 	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallConfigInput) GoString() string {
 	return s.String()
 }
@@ -14736,12 +17841,20 @@ type UpdateFirewallConfigOutput struct {
 	FirewallConfig *FirewallConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallConfigOutput) GoString() string {
 	return s.String()
 }
@@ -14756,6 +17869,8 @@ type UpdateFirewallDomainsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of domains to use in the update operation.
+	//
+	// There is a limit of 1000 domains per request.
 	//
 	// Each domain specification in your domain list must satisfy the following
 	// requirements:
@@ -14789,12 +17904,20 @@ type UpdateFirewallDomainsInput struct {
 	Operation *string `type:"string" required:"true" enum:"FirewallDomainUpdateOperation"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallDomainsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallDomainsInput) GoString() string {
 	return s.String()
 }
@@ -14848,18 +17971,27 @@ type UpdateFirewallDomainsOutput struct {
 	// The name of the domain list.
 	Name *string `type:"string"`
 
+	// Status of the UpdateFirewallDomains request.
 	Status *string `type:"string" enum:"FirewallDomainListStatus"`
 
 	// Additional information about the status of the list, if available.
 	StatusMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallDomainsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallDomainsOutput) GoString() string {
 	return s.String()
 }
@@ -14915,12 +18047,20 @@ type UpdateFirewallRuleGroupAssociationInput struct {
 	Priority *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallRuleGroupAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallRuleGroupAssociationInput) GoString() string {
 	return s.String()
 }
@@ -14972,12 +18112,20 @@ type UpdateFirewallRuleGroupAssociationOutput struct {
 	FirewallRuleGroupAssociation *FirewallRuleGroupAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallRuleGroupAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallRuleGroupAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -15053,12 +18201,20 @@ type UpdateFirewallRuleInput struct {
 	Priority *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallRuleInput) GoString() string {
 	return s.String()
 }
@@ -15149,12 +18305,20 @@ type UpdateFirewallRuleOutput struct {
 	FirewallRule *FirewallRule `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFirewallRuleOutput) GoString() string {
 	return s.String()
 }
@@ -15162,6 +18326,294 @@ func (s UpdateFirewallRuleOutput) GoString() string {
 // SetFirewallRule sets the FirewallRule field's value.
 func (s *UpdateFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *UpdateFirewallRuleOutput {
 	s.FirewallRule = v
+	return s
+}
+
+// Provides information about the IP address type in response to UpdateResolverEndpoint
+// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html).
+type UpdateIpAddress struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the IP address, specified by the ResolverEndpointId.
+	//
+	// IpId is a required field
+	IpId *string `min:"1" type:"string" required:"true"`
+
+	// The IPv6 address that you want to use for DNS queries.
+	//
+	// Ipv6 is a required field
+	Ipv6 *string `min:"7" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpAddress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpAddress) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIpAddress) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIpAddress"}
+	if s.IpId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpId"))
+	}
+	if s.IpId != nil && len(*s.IpId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IpId", 1))
+	}
+	if s.Ipv6 == nil {
+		invalidParams.Add(request.NewErrParamRequired("Ipv6"))
+	}
+	if s.Ipv6 != nil && len(*s.Ipv6) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("Ipv6", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIpId sets the IpId field's value.
+func (s *UpdateIpAddress) SetIpId(v string) *UpdateIpAddress {
+	s.IpId = &v
+	return s
+}
+
+// SetIpv6 sets the Ipv6 field's value.
+func (s *UpdateIpAddress) SetIpv6(v string) *UpdateIpAddress {
+	s.Ipv6 = &v
+	return s
+}
+
+type UpdateOutpostResolverInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string that identifies Resolver on an Outpost.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon EC2 instance count for a Resolver on the Outpost.
+	InstanceCount *int64 `type:"integer"`
+
+	// Name of the Resolver on the Outpost.
+	Name *string `min:"1" type:"string"`
+
+	// Amazon EC2 instance type.
+	PreferredInstanceType *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostResolverInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostResolverInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOutpostResolverInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOutpostResolverInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PreferredInstanceType != nil && len(*s.PreferredInstanceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredInstanceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateOutpostResolverInput) SetId(v string) *UpdateOutpostResolverInput {
+	s.Id = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *UpdateOutpostResolverInput) SetInstanceCount(v int64) *UpdateOutpostResolverInput {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateOutpostResolverInput) SetName(v string) *UpdateOutpostResolverInput {
+	s.Name = &v
+	return s
+}
+
+// SetPreferredInstanceType sets the PreferredInstanceType field's value.
+func (s *UpdateOutpostResolverInput) SetPreferredInstanceType(v string) *UpdateOutpostResolverInput {
+	s.PreferredInstanceType = &v
+	return s
+}
+
+type UpdateOutpostResolverOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The response to an UpdateOutpostResolver request.
+	OutpostResolver *OutpostResolver `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostResolverOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostResolverOutput) GoString() string {
+	return s.String()
+}
+
+// SetOutpostResolver sets the OutpostResolver field's value.
+func (s *UpdateOutpostResolverOutput) SetOutpostResolver(v *OutpostResolver) *UpdateOutpostResolverOutput {
+	s.OutpostResolver = v
+	return s
+}
+
+type UpdateResolverConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether or not the Resolver will create autodefined rules for reverse
+	// DNS lookups. This is enabled by default. Disabling this option will also
+	// affect EC2-Classic instances using ClassicLink. For more information, see
+	// ClassicLink (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
+	// in the Amazon EC2 guide.
+	//
+	// We are retiring EC2-Classic on August 15, 2022. We recommend that you migrate
+	// from EC2-Classic to a VPC. For more information, see Migrate from EC2-Classic
+	// to a VPC (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html)
+	// in the Amazon EC2 guide and the blog EC2-Classic Networking is Retiring –
+	// Here’s How to Prepare (http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/).
+	//
+	// It can take some time for the status change to be completed.
+	//
+	// AutodefinedReverseFlag is a required field
+	AutodefinedReverseFlag *string `type:"string" required:"true" enum:"AutodefinedReverseFlag"`
+
+	// Resource ID of the Amazon VPC that you want to update the Resolver configuration
+	// for.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResolverConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResolverConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResolverConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResolverConfigInput"}
+	if s.AutodefinedReverseFlag == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutodefinedReverseFlag"))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutodefinedReverseFlag sets the AutodefinedReverseFlag field's value.
+func (s *UpdateResolverConfigInput) SetAutodefinedReverseFlag(v string) *UpdateResolverConfigInput {
+	s.AutodefinedReverseFlag = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *UpdateResolverConfigInput) SetResourceId(v string) *UpdateResolverConfigInput {
+	s.ResourceId = &v
+	return s
+}
+
+type UpdateResolverConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array that contains settings for the specified Resolver configuration.
+	ResolverConfig *ResolverConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResolverConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResolverConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetResolverConfig sets the ResolverConfig field's value.
+func (s *UpdateResolverConfigOutput) SetResolverConfig(v *ResolverConfig) *UpdateResolverConfigOutput {
+	s.ResolverConfig = v
 	return s
 }
 
@@ -15182,12 +18634,20 @@ type UpdateResolverDnssecConfigInput struct {
 	Validation *string `type:"string" required:"true" enum:"Validation"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverDnssecConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverDnssecConfigInput) GoString() string {
 	return s.String()
 }
@@ -15230,12 +18690,20 @@ type UpdateResolverDnssecConfigOutput struct {
 	ResolverDNSSECConfig *ResolverDnssecConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverDnssecConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverDnssecConfigOutput) GoString() string {
 	return s.String()
 }
@@ -15256,14 +18724,33 @@ type UpdateResolverEndpointInput struct {
 	//
 	// ResolverEndpointId is a required field
 	ResolverEndpointId *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the endpoint type for what type of IP address the endpoint uses
+	// to forward DNS queries.
+	//
+	// Updating to IPV6 type isn't currently supported.
+	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
+
+	// Specifies the IPv6 address when you update the Resolver endpoint from IPv4
+	// to dual-stack. If you don't specify an IPv6 address, one will be automatically
+	// chosen from your subnet.
+	UpdateIpAddresses []*UpdateIpAddress `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverEndpointInput) GoString() string {
 	return s.String()
 }
@@ -15276,6 +18763,16 @@ func (s *UpdateResolverEndpointInput) Validate() error {
 	}
 	if s.ResolverEndpointId != nil && len(*s.ResolverEndpointId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResolverEndpointId", 1))
+	}
+	if s.UpdateIpAddresses != nil {
+		for i, v := range s.UpdateIpAddresses {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UpdateIpAddresses", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15296,6 +18793,18 @@ func (s *UpdateResolverEndpointInput) SetResolverEndpointId(v string) *UpdateRes
 	return s
 }
 
+// SetResolverEndpointType sets the ResolverEndpointType field's value.
+func (s *UpdateResolverEndpointInput) SetResolverEndpointType(v string) *UpdateResolverEndpointInput {
+	s.ResolverEndpointType = &v
+	return s
+}
+
+// SetUpdateIpAddresses sets the UpdateIpAddresses field's value.
+func (s *UpdateResolverEndpointInput) SetUpdateIpAddresses(v []*UpdateIpAddress) *UpdateResolverEndpointInput {
+	s.UpdateIpAddresses = v
+	return s
+}
+
 type UpdateResolverEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15303,12 +18812,20 @@ type UpdateResolverEndpointOutput struct {
 	ResolverEndpoint *ResolverEndpoint `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -15333,12 +18850,20 @@ type UpdateResolverRuleInput struct {
 	ResolverRuleId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverRuleInput) GoString() string {
 	return s.String()
 }
@@ -15386,12 +18911,20 @@ type UpdateResolverRuleOutput struct {
 	ResolverRule *ResolverRule `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResolverRuleOutput) GoString() string {
 	return s.String()
 }
@@ -15402,6 +18935,8 @@ func (s *UpdateResolverRuleOutput) SetResolverRule(v *ResolverRule) *UpdateResol
 	return s
 }
 
+// You have provided an invalid command. Supported values are ADD, REMOVE, or
+// REPLACE a domain.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -15409,12 +18944,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -15474,6 +19017,26 @@ func Action_Values() []string {
 		ActionAllow,
 		ActionBlock,
 		ActionAlert,
+	}
+}
+
+const (
+	// AutodefinedReverseFlagEnable is a AutodefinedReverseFlag enum value
+	AutodefinedReverseFlagEnable = "ENABLE"
+
+	// AutodefinedReverseFlagDisable is a AutodefinedReverseFlag enum value
+	AutodefinedReverseFlagDisable = "DISABLE"
+
+	// AutodefinedReverseFlagUseLocalResourceSetting is a AutodefinedReverseFlag enum value
+	AutodefinedReverseFlagUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
+)
+
+// AutodefinedReverseFlag_Values returns all elements of the AutodefinedReverseFlag enum
+func AutodefinedReverseFlag_Values() []string {
+	return []string{
+		AutodefinedReverseFlagEnable,
+		AutodefinedReverseFlagDisable,
+		AutodefinedReverseFlagUseLocalResourceSetting,
 	}
 }
 
@@ -15575,6 +19138,9 @@ const (
 
 	// FirewallFailOpenStatusDisabled is a FirewallFailOpenStatus enum value
 	FirewallFailOpenStatusDisabled = "DISABLED"
+
+	// FirewallFailOpenStatusUseLocalResourceSetting is a FirewallFailOpenStatus enum value
+	FirewallFailOpenStatusUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
 )
 
 // FirewallFailOpenStatus_Values returns all elements of the FirewallFailOpenStatus enum
@@ -15582,6 +19148,7 @@ func FirewallFailOpenStatus_Values() []string {
 	return []string{
 		FirewallFailOpenStatusEnabled,
 		FirewallFailOpenStatusDisabled,
+		FirewallFailOpenStatusUseLocalResourceSetting,
 	}
 }
 
@@ -15655,6 +19222,12 @@ const (
 
 	// IpAddressStatusDeleteFailedFasExpired is a IpAddressStatus enum value
 	IpAddressStatusDeleteFailedFasExpired = "DELETE_FAILED_FAS_EXPIRED"
+
+	// IpAddressStatusUpdating is a IpAddressStatus enum value
+	IpAddressStatusUpdating = "UPDATING"
+
+	// IpAddressStatusUpdateFailed is a IpAddressStatus enum value
+	IpAddressStatusUpdateFailed = "UPDATE_FAILED"
 )
 
 // IpAddressStatus_Values returns all elements of the IpAddressStatus enum
@@ -15670,6 +19243,8 @@ func IpAddressStatus_Values() []string {
 		IpAddressStatusFailedResourceGone,
 		IpAddressStatusDeleting,
 		IpAddressStatusDeleteFailedFasExpired,
+		IpAddressStatusUpdating,
+		IpAddressStatusUpdateFailed,
 	}
 }
 
@@ -15690,6 +19265,74 @@ func MutationProtectionStatus_Values() []string {
 }
 
 const (
+	// OutpostResolverStatusCreating is a OutpostResolverStatus enum value
+	OutpostResolverStatusCreating = "CREATING"
+
+	// OutpostResolverStatusOperational is a OutpostResolverStatus enum value
+	OutpostResolverStatusOperational = "OPERATIONAL"
+
+	// OutpostResolverStatusUpdating is a OutpostResolverStatus enum value
+	OutpostResolverStatusUpdating = "UPDATING"
+
+	// OutpostResolverStatusDeleting is a OutpostResolverStatus enum value
+	OutpostResolverStatusDeleting = "DELETING"
+
+	// OutpostResolverStatusActionNeeded is a OutpostResolverStatus enum value
+	OutpostResolverStatusActionNeeded = "ACTION_NEEDED"
+
+	// OutpostResolverStatusFailedCreation is a OutpostResolverStatus enum value
+	OutpostResolverStatusFailedCreation = "FAILED_CREATION"
+
+	// OutpostResolverStatusFailedDeletion is a OutpostResolverStatus enum value
+	OutpostResolverStatusFailedDeletion = "FAILED_DELETION"
+)
+
+// OutpostResolverStatus_Values returns all elements of the OutpostResolverStatus enum
+func OutpostResolverStatus_Values() []string {
+	return []string{
+		OutpostResolverStatusCreating,
+		OutpostResolverStatusOperational,
+		OutpostResolverStatusUpdating,
+		OutpostResolverStatusDeleting,
+		OutpostResolverStatusActionNeeded,
+		OutpostResolverStatusFailedCreation,
+		OutpostResolverStatusFailedDeletion,
+	}
+}
+
+const (
+	// ResolverAutodefinedReverseStatusEnabling is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusEnabling = "ENABLING"
+
+	// ResolverAutodefinedReverseStatusEnabled is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusEnabled = "ENABLED"
+
+	// ResolverAutodefinedReverseStatusDisabling is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusDisabling = "DISABLING"
+
+	// ResolverAutodefinedReverseStatusDisabled is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusDisabled = "DISABLED"
+
+	// ResolverAutodefinedReverseStatusUpdatingToUseLocalResourceSetting is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusUpdatingToUseLocalResourceSetting = "UPDATING_TO_USE_LOCAL_RESOURCE_SETTING"
+
+	// ResolverAutodefinedReverseStatusUseLocalResourceSetting is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
+)
+
+// ResolverAutodefinedReverseStatus_Values returns all elements of the ResolverAutodefinedReverseStatus enum
+func ResolverAutodefinedReverseStatus_Values() []string {
+	return []string{
+		ResolverAutodefinedReverseStatusEnabling,
+		ResolverAutodefinedReverseStatusEnabled,
+		ResolverAutodefinedReverseStatusDisabling,
+		ResolverAutodefinedReverseStatusDisabled,
+		ResolverAutodefinedReverseStatusUpdatingToUseLocalResourceSetting,
+		ResolverAutodefinedReverseStatusUseLocalResourceSetting,
+	}
+}
+
+const (
 	// ResolverDNSSECValidationStatusEnabling is a ResolverDNSSECValidationStatus enum value
 	ResolverDNSSECValidationStatusEnabling = "ENABLING"
 
@@ -15701,6 +19344,12 @@ const (
 
 	// ResolverDNSSECValidationStatusDisabled is a ResolverDNSSECValidationStatus enum value
 	ResolverDNSSECValidationStatusDisabled = "DISABLED"
+
+	// ResolverDNSSECValidationStatusUpdatingToUseLocalResourceSetting is a ResolverDNSSECValidationStatus enum value
+	ResolverDNSSECValidationStatusUpdatingToUseLocalResourceSetting = "UPDATING_TO_USE_LOCAL_RESOURCE_SETTING"
+
+	// ResolverDNSSECValidationStatusUseLocalResourceSetting is a ResolverDNSSECValidationStatus enum value
+	ResolverDNSSECValidationStatusUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
 )
 
 // ResolverDNSSECValidationStatus_Values returns all elements of the ResolverDNSSECValidationStatus enum
@@ -15710,6 +19359,8 @@ func ResolverDNSSECValidationStatus_Values() []string {
 		ResolverDNSSECValidationStatusEnabled,
 		ResolverDNSSECValidationStatusDisabling,
 		ResolverDNSSECValidationStatusDisabled,
+		ResolverDNSSECValidationStatusUpdatingToUseLocalResourceSetting,
+		ResolverDNSSECValidationStatusUseLocalResourceSetting,
 	}
 }
 
@@ -15758,6 +19409,26 @@ func ResolverEndpointStatus_Values() []string {
 		ResolverEndpointStatusAutoRecovering,
 		ResolverEndpointStatusActionNeeded,
 		ResolverEndpointStatusDeleting,
+	}
+}
+
+const (
+	// ResolverEndpointTypeIpv6 is a ResolverEndpointType enum value
+	ResolverEndpointTypeIpv6 = "IPV6"
+
+	// ResolverEndpointTypeIpv4 is a ResolverEndpointType enum value
+	ResolverEndpointTypeIpv4 = "IPV4"
+
+	// ResolverEndpointTypeDualstack is a ResolverEndpointType enum value
+	ResolverEndpointTypeDualstack = "DUALSTACK"
+)
+
+// ResolverEndpointType_Values returns all elements of the ResolverEndpointType enum
+func ResolverEndpointType_Values() []string {
+	return []string{
+		ResolverEndpointTypeIpv6,
+		ResolverEndpointTypeIpv4,
+		ResolverEndpointTypeDualstack,
 	}
 }
 
@@ -15951,6 +19622,9 @@ const (
 
 	// ValidationDisable is a Validation enum value
 	ValidationDisable = "DISABLE"
+
+	// ValidationUseLocalResourceSetting is a Validation enum value
+	ValidationUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
 )
 
 // Validation_Values returns all elements of the Validation enum
@@ -15958,5 +19632,6 @@ func Validation_Values() []string {
 	return []string{
 		ValidationEnable,
 		ValidationDisable,
+		ValidationUseLocalResourceSetting,
 	}
 }

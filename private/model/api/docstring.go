@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 package api
@@ -8,6 +9,7 @@ import (
 	"fmt"
 	"html"
 	"io"
+	"log"
 	"os"
 	"regexp"
 	"strings"
@@ -49,8 +51,7 @@ func (d *apiDocumentation) setup(a *API) error {
 
 	for opName, doc := range d.Operations {
 		if _, ok := a.Operations[opName]; !ok {
-			return fmt.Errorf("%s, doc op %q not found in API op set",
-				a.name, opName)
+			continue
 		}
 		a.Operations[opName].Documentation = docstring(doc)
 	}
@@ -320,10 +321,14 @@ func (e *htmlTokenEncoder) Encode(token xhtml.Token) error {
 		h.handler.OnEndTagToken(token, handlerBlockClosing)
 
 		// Remove all but the root handler as the handler is no longer needed.
-		if handlerBlockClosing {
+		if handlerBlockClosing && len(e.handlers) != 0 {
 			e.handlers = e.handlers[:len(e.handlers)-1]
 		}
 		e.depth--
+		if e.depth < 0 {
+			log.Printf("ignoring unexpected closing tag, %v", token)
+			e.depth = 0
+		}
 
 	case xhtml.SelfClosingTagToken:
 		h.handler.OnSelfClosingTagToken(token)
@@ -543,4 +548,12 @@ func getHTMLTokenAttr(attr []xhtml.Attribute, name string) (string, bool) {
 		}
 	}
 	return "", false
+}
+
+func AppendDocstring(base, toAdd string) string {
+	if base != "" {
+		base += "\n//\n"
+	}
+
+	return base + docstring(toAdd)
 }

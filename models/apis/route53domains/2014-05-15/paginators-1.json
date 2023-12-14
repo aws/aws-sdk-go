@@ -11,6 +11,18 @@
       "limit_key": "MaxItems",
       "output_token": "NextPageMarker",
       "result_key": "Operations"
+    },
+    "ListPrices": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "output_token": "NextPageMarker",
+      "result_key": "Prices"
+    },
+    "ViewBilling": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "output_token": "NextPageMarker",
+      "result_key": "BillingRecords"
     }
   }
 }

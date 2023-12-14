@@ -3,7 +3,7 @@
 // Package appsync provides the client and types for making API
 // requests to AWS AppSync.
 //
-// AWS AppSync provides API actions for creating and interacting with data sources
+// AppSync provides API actions for creating and interacting with data sources
 // using GraphQL from your application.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25 for more information on this service.
@@ -11,7 +11,7 @@
 // See appsync package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/appsync/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS AppSync with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

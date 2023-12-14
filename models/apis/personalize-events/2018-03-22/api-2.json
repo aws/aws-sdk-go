@@ -12,6 +12,32 @@
     "uid":"personalize-events-2018-03-22"
   },
   "operations":{
+    "PutActionInteractions":{
+      "name":"PutActionInteractions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/action-interactions"
+      },
+      "input":{"shape":"PutActionInteractionsRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
+    "PutActions":{
+      "name":"PutActions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/actions"
+      },
+      "input":{"shape":"PutActionsRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "PutEvents":{
       "name":"PutEvents",
       "http":{
@@ -51,6 +77,76 @@
     }
   },
   "shapes":{
+    "Action":{
+      "type":"structure",
+      "required":["actionId"],
+      "members":{
+        "actionId":{"shape":"StringType"},
+        "properties":{
+          "shape":"ActionProperties",
+          "jsonvalue":true
+        }
+      }
+    },
+    "ActionId":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "sensitive":true
+    },
+    "ActionImpression":{
+      "type":"list",
+      "member":{"shape":"ActionId"},
+      "max":25,
+      "min":1
+    },
+    "ActionInteraction":{
+      "type":"structure",
+      "required":[
+        "actionId",
+        "sessionId",
+        "timestamp",
+        "eventType"
+      ],
+      "members":{
+        "actionId":{"shape":"ActionId"},
+        "userId":{"shape":"UserId"},
+        "sessionId":{"shape":"StringType"},
+        "timestamp":{"shape":"Date"},
+        "eventType":{"shape":"StringType"},
+        "eventId":{"shape":"StringType"},
+        "recommendationId":{"shape":"RecommendationId"},
+        "impression":{"shape":"ActionImpression"},
+        "properties":{
+          "shape":"ActionInteractionProperties",
+          "jsonvalue":true
+        }
+      }
+    },
+    "ActionInteractionProperties":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "sensitive":true
+    },
+    "ActionInteractionsList":{
+      "type":"list",
+      "member":{"shape":"ActionInteraction"},
+      "max":10,
+      "min":1
+    },
+    "ActionList":{
+      "type":"list",
+      "member":{"shape":"Action"},
+      "max":10,
+      "min":1
+    },
+    "ActionProperties":{
+      "type":"string",
+      "max":32000,
+      "min":1,
+      "sensitive":true
+    },
     "Arn":{
       "type":"string",
       "max":256,
@@ -75,8 +171,15 @@
         },
         "sentAt":{"shape":"Date"},
         "recommendationId":{"shape":"RecommendationId"},
-        "impression":{"shape":"Impression"}
-      }
+        "impression":{"shape":"Impression"},
+        "metricAttribution":{"shape":"MetricAttribution"}
+      },
+      "sensitive":true
+    },
+    "EventAttributionSource":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^[\\x20-\\x7E]*[\\x21-\\x7E]+[\\x20-\\x7E]*$"
     },
     "EventList":{
       "type":"list",
@@ -87,7 +190,8 @@
     "EventPropertiesJSON":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "FloatType":{"type":"float"},
     "Impression":{
@@ -118,7 +222,8 @@
     "ItemId":{
       "type":"string",
       "max":256,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "ItemList":{
       "type":"list",
@@ -128,8 +233,38 @@
     },
     "ItemProperties":{
       "type":"string",
-      "max":24262,
-      "min":1
+      "max":32000,
+      "min":1,
+      "sensitive":true
+    },
+    "MetricAttribution":{
+      "type":"structure",
+      "required":["eventAttributionSource"],
+      "members":{
+        "eventAttributionSource":{"shape":"EventAttributionSource"}
+      }
+    },
+    "PutActionInteractionsRequest":{
+      "type":"structure",
+      "required":[
+        "trackingId",
+        "actionInteractions"
+      ],
+      "members":{
+        "trackingId":{"shape":"StringType"},
+        "actionInteractions":{"shape":"ActionInteractionsList"}
+      }
+    },
+    "PutActionsRequest":{
+      "type":"structure",
+      "required":[
+        "datasetArn",
+        "actions"
+      ],
+      "members":{
+        "datasetArn":{"shape":"Arn"},
+        "actions":{"shape":"ActionList"}
+      }
     },
     "PutEventsRequest":{
       "type":"structure",
@@ -207,7 +342,8 @@
     "UserId":{
       "type":"string",
       "max":256,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "UserList":{
       "type":"list",
@@ -217,8 +353,9 @@
     },
     "UserProperties":{
       "type":"string",
-      "max":4096,
-      "min":1
+      "max":24000,
+      "min":1,
+      "sensitive":true
     }
   }
 }

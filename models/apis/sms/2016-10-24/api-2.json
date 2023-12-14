@@ -1771,5 +1771,7 @@
       "type":"list",
       "member":{"shape":"VmServerAddress"}
     }
-  }
+  },
+  "deprecated":true,
+  "deprecatedMessage":"AWS Server Migration Service is Deprecated."
 }

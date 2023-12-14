@@ -32,6 +32,25 @@
         {"shape":"ResourceInUseException"}
       ]
     },
+    "CancelLifecycleExecution":{
+      "name":"CancelLifecycleExecution",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/CancelLifecycleExecution"
+      },
+      "input":{"shape":"CancelLifecycleExecutionRequest"},
+      "output":{"shape":"CancelLifecycleExecutionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "CreateComponent":{
       "name":"CreateComponent",
       "http":{
@@ -182,6 +201,49 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "CreateLifecyclePolicy":{
+      "name":"CreateLifecyclePolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/CreateLifecyclePolicy"
+      },
+      "input":{"shape":"CreateLifecyclePolicyRequest"},
+      "output":{"shape":"CreateLifecyclePolicyResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "CreateWorkflow":{
+      "name":"CreateWorkflow",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/CreateWorkflow"
+      },
+      "input":{"shape":"CreateWorkflowRequest"},
+      "output":{"shape":"CreateWorkflowResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"InvalidVersionNumberException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteComponent":{
       "name":"DeleteComponent",
       "http":{
@@ -298,6 +360,42 @@
       },
       "input":{"shape":"DeleteInfrastructureConfigurationRequest"},
       "output":{"shape":"DeleteInfrastructureConfigurationResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceDependencyException"}
+      ]
+    },
+    "DeleteLifecyclePolicy":{
+      "name":"DeleteLifecyclePolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/DeleteLifecyclePolicy"
+      },
+      "input":{"shape":"DeleteLifecyclePolicyRequest"},
+      "output":{"shape":"DeleteLifecyclePolicyResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceDependencyException"}
+      ]
+    },
+    "DeleteWorkflow":{
+      "name":"DeleteWorkflow",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/DeleteWorkflow"
+      },
+      "input":{"shape":"DeleteWorkflowRequest"},
+      "output":{"shape":"DeleteWorkflowResponse"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"ClientException"},
@@ -495,6 +593,91 @@
         {"shape":"CallRateLimitExceededException"}
       ]
     },
+    "GetLifecycleExecution":{
+      "name":"GetLifecycleExecution",
+      "http":{
+        "method":"GET",
+        "requestUri":"/GetLifecycleExecution"
+      },
+      "input":{"shape":"GetLifecycleExecutionRequest"},
+      "output":{"shape":"GetLifecycleExecutionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "GetLifecyclePolicy":{
+      "name":"GetLifecyclePolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/GetLifecyclePolicy"
+      },
+      "input":{"shape":"GetLifecyclePolicyRequest"},
+      "output":{"shape":"GetLifecyclePolicyResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "GetWorkflow":{
+      "name":"GetWorkflow",
+      "http":{
+        "method":"GET",
+        "requestUri":"/GetWorkflow"
+      },
+      "input":{"shape":"GetWorkflowRequest"},
+      "output":{"shape":"GetWorkflowResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "GetWorkflowExecution":{
+      "name":"GetWorkflowExecution",
+      "http":{
+        "method":"GET",
+        "requestUri":"/GetWorkflowExecution"
+      },
+      "input":{"shape":"GetWorkflowExecutionRequest"},
+      "output":{"shape":"GetWorkflowExecutionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "GetWorkflowStepExecution":{
+      "name":"GetWorkflowStepExecution",
+      "http":{
+        "method":"GET",
+        "requestUri":"/GetWorkflowStepExecution"
+      },
+      "input":{"shape":"GetWorkflowStepExecutionRequest"},
+      "output":{"shape":"GetWorkflowStepExecutionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
     "ImportComponent":{
       "name":"ImportComponent",
       "http":{
@@ -514,6 +697,20 @@
         {"shape":"InvalidVersionNumberException"},
         {"shape":"ResourceInUseException"},
         {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
+    "ImportVmImage":{
+      "name":"ImportVmImage",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/ImportVmImage"
+      },
+      "input":{"shape":"ImportVmImageRequest"},
+      "output":{"shape":"ImportVmImageResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"}
       ]
     },
     "ListComponentBuildVersions":{
@@ -680,6 +877,42 @@
         {"shape":"CallRateLimitExceededException"}
       ]
     },
+    "ListImageScanFindingAggregations":{
+      "name":"ListImageScanFindingAggregations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListImageScanFindingAggregations"
+      },
+      "input":{"shape":"ListImageScanFindingAggregationsRequest"},
+      "output":{"shape":"ListImageScanFindingAggregationsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListImageScanFindings":{
+      "name":"ListImageScanFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListImageScanFindings"
+      },
+      "input":{"shape":"ListImageScanFindingsRequest"},
+      "output":{"shape":"ListImageScanFindingsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
     "ListImages":{
       "name":"ListImages",
       "http":{
@@ -716,6 +949,60 @@
         {"shape":"CallRateLimitExceededException"}
       ]
     },
+    "ListLifecycleExecutionResources":{
+      "name":"ListLifecycleExecutionResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListLifecycleExecutionResources"
+      },
+      "input":{"shape":"ListLifecycleExecutionResourcesRequest"},
+      "output":{"shape":"ListLifecycleExecutionResourcesResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListLifecycleExecutions":{
+      "name":"ListLifecycleExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListLifecycleExecutions"
+      },
+      "input":{"shape":"ListLifecycleExecutionsRequest"},
+      "output":{"shape":"ListLifecycleExecutionsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListLifecyclePolicies":{
+      "name":"ListLifecyclePolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListLifecyclePolicies"
+      },
+      "input":{"shape":"ListLifecyclePoliciesRequest"},
+      "output":{"shape":"ListLifecyclePoliciesResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -728,6 +1015,96 @@
         {"shape":"ServiceException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListWaitingWorkflowSteps":{
+      "name":"ListWaitingWorkflowSteps",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListWaitingWorkflowSteps"
+      },
+      "input":{"shape":"ListWaitingWorkflowStepsRequest"},
+      "output":{"shape":"ListWaitingWorkflowStepsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListWorkflowBuildVersions":{
+      "name":"ListWorkflowBuildVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListWorkflowBuildVersions"
+      },
+      "input":{"shape":"ListWorkflowBuildVersionsRequest"},
+      "output":{"shape":"ListWorkflowBuildVersionsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListWorkflowExecutions":{
+      "name":"ListWorkflowExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListWorkflowExecutions"
+      },
+      "input":{"shape":"ListWorkflowExecutionsRequest"},
+      "output":{"shape":"ListWorkflowExecutionsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListWorkflowStepExecutions":{
+      "name":"ListWorkflowStepExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListWorkflowStepExecutions"
+      },
+      "input":{"shape":"ListWorkflowStepExecutionsRequest"},
+      "output":{"shape":"ListWorkflowStepExecutionsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListWorkflows":{
+      "name":"ListWorkflows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListWorkflows"
+      },
+      "input":{"shape":"ListWorkflowsRequest"},
+      "output":{"shape":"ListWorkflowsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
       ]
     },
     "PutComponentPolicy":{
@@ -806,6 +1183,27 @@
         {"shape":"CallRateLimitExceededException"}
       ]
     },
+    "SendWorkflowStepAction":{
+      "name":"SendWorkflowStepAction",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/SendWorkflowStepAction"
+      },
+      "input":{"shape":"SendWorkflowStepActionRequest"},
+      "output":{"shape":"SendWorkflowStepActionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "StartImagePipelineExecution":{
       "name":"StartImagePipelineExecution",
       "http":{
@@ -814,6 +1212,26 @@
       },
       "input":{"shape":"StartImagePipelineExecutionRequest"},
       "output":{"shape":"StartImagePipelineExecutionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
+    "StartResourceStateUpdate":{
+      "name":"StartResourceStateUpdate",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/StartResourceStateUpdate"
+      },
+      "input":{"shape":"StartResourceStateUpdateRequest"},
+      "output":{"shape":"StartResourceStateUpdateResponse"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"ClientException"},
@@ -911,9 +1329,36 @@
         {"shape":"CallRateLimitExceededException"},
         {"shape":"ResourceInUseException"}
       ]
+    },
+    "UpdateLifecyclePolicy":{
+      "name":"UpdateLifecyclePolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/UpdateLifecyclePolicy"
+      },
+      "input":{"shape":"UpdateLifecyclePolicyRequest"},
+      "output":{"shape":"UpdateLifecyclePolicyResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
     }
   },
   "shapes":{
+    "AccountAggregation":{
+      "type":"structure",
+      "members":{
+        "accountId":{"shape":"NonEmptyString"},
+        "severityCounts":{"shape":"SeverityCounts"}
+      }
+    },
     "AccountId":{
       "type":"string",
       "pattern":"^[0-9]{12}$"
@@ -965,6 +1410,14 @@
     },
     "Arn":{"type":"string"},
     "Boolean":{"type":"boolean"},
+    "BuildType":{
+      "type":"string",
+      "enum":[
+        "USER_INITIATED",
+        "SCHEDULED",
+        "IMPORT"
+      ]
+    },
     "CallRateLimitExceededException":{
       "type":"structure",
       "members":{
@@ -995,6 +1448,26 @@
         "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"}
       }
     },
+    "CancelLifecycleExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "lifecycleExecutionId",
+        "clientToken"
+      ],
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CancelLifecycleExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"}
+      }
+    },
     "ClientException":{
       "type":"structure",
       "members":{
@@ -1019,13 +1492,16 @@
         "type":{"shape":"ComponentType"},
         "platform":{"shape":"Platform"},
         "supportedOsVersions":{"shape":"OsVersionList"},
+        "state":{"shape":"ComponentState"},
         "parameters":{"shape":"ComponentParameterDetailList"},
         "owner":{"shape":"NonEmptyString"},
         "data":{"shape":"ComponentData"},
         "kmsKeyId":{"shape":"NonEmptyString"},
         "encrypted":{"shape":"NullableBoolean"},
         "dateCreated":{"shape":"DateTime"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "publisher":{"shape":"NonEmptyString"},
+        "obfuscate":{"shape":"Boolean"}
       }
     },
     "ComponentBuildVersionArn":{
@@ -1103,12 +1579,23 @@
     },
     "ComponentParameterValue":{
       "type":"string",
-      "min":1,
-      "pattern":"[^\\x00]+"
+      "min":0,
+      "pattern":"[^\\x00]*"
     },
     "ComponentParameterValueList":{
       "type":"list",
       "member":{"shape":"ComponentParameterValue"}
+    },
+    "ComponentState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"ComponentStatus"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "ComponentStatus":{
+      "type":"string",
+      "enum":["DEPRECATED"]
     },
     "ComponentSummary":{
       "type":"structure",
@@ -1118,12 +1605,15 @@
         "version":{"shape":"VersionNumber"},
         "platform":{"shape":"Platform"},
         "supportedOsVersions":{"shape":"OsVersionList"},
+        "state":{"shape":"ComponentState"},
         "type":{"shape":"ComponentType"},
         "owner":{"shape":"NonEmptyString"},
         "description":{"shape":"NonEmptyString"},
         "changeDescription":{"shape":"NonEmptyString"},
         "dateCreated":{"shape":"DateTime"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "publisher":{"shape":"NonEmptyString"},
+        "obfuscate":{"shape":"Boolean"}
       }
     },
     "ComponentSummaryList":{
@@ -1356,7 +1846,10 @@
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "workflows":{"shape":"WorkflowConfigurationList"},
+        "executionRole":{"shape":"RoleNameOrArn"}
       }
     },
     "CreateImagePipelineResponse":{
@@ -1417,7 +1910,10 @@
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "workflows":{"shape":"WorkflowConfigurationList"},
+        "executionRole":{"shape":"RoleNameOrArn"}
       }
     },
     "CreateImageResponse":{
@@ -1447,6 +1943,7 @@
         "terminateInstanceOnFailure":{"shape":"NullableBoolean"},
         "snsTopicArn":{"shape":"SnsTopicArn"},
         "resourceTags":{"shape":"ResourceTagMap"},
+        "instanceMetadataOptions":{"shape":"InstanceMetadataOptions"},
         "tags":{"shape":"TagMap"},
         "clientToken":{
           "shape":"ClientToken",
@@ -1462,7 +1959,106 @@
         "infrastructureConfigurationArn":{"shape":"InfrastructureConfigurationArn"}
       }
     },
+    "CreateLifecyclePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "executionRole",
+        "resourceType",
+        "policyDetails",
+        "resourceSelection",
+        "clientToken"
+      ],
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "description":{"shape":"NonEmptyString"},
+        "status":{"shape":"LifecyclePolicyStatus"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "resourceType":{"shape":"LifecyclePolicyResourceType"},
+        "policyDetails":{"shape":"LifecyclePolicyDetails"},
+        "resourceSelection":{"shape":"LifecyclePolicyResourceSelection"},
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateLifecyclePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "clientToken":{"shape":"ClientToken"},
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"}
+      }
+    },
+    "CreateWorkflowRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "semanticVersion",
+        "clientToken",
+        "type"
+      ],
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "semanticVersion":{"shape":"VersionNumber"},
+        "description":{"shape":"NonEmptyString"},
+        "changeDescription":{"shape":"NonEmptyString"},
+        "data":{"shape":"InlineWorkflowData"},
+        "uri":{"shape":"Uri"},
+        "kmsKeyId":{"shape":"NonEmptyString"},
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "type":{"shape":"WorkflowType"}
+      }
+    },
+    "CreateWorkflowResponse":{
+      "type":"structure",
+      "members":{
+        "clientToken":{"shape":"ClientToken"},
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"}
+      }
+    },
+    "CvssScore":{
+      "type":"structure",
+      "members":{
+        "baseScore":{"shape":"NonNegativeDouble"},
+        "scoringVector":{"shape":"NonEmptyString"},
+        "version":{"shape":"NonEmptyString"},
+        "source":{"shape":"NonEmptyString"}
+      }
+    },
+    "CvssScoreAdjustment":{
+      "type":"structure",
+      "members":{
+        "metric":{"shape":"NonEmptyString"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "CvssScoreAdjustmentList":{
+      "type":"list",
+      "member":{"shape":"CvssScoreAdjustment"}
+    },
+    "CvssScoreDetails":{
+      "type":"structure",
+      "members":{
+        "scoreSource":{"shape":"NonEmptyString"},
+        "cvssSource":{"shape":"NonEmptyString"},
+        "version":{"shape":"NonEmptyString"},
+        "score":{"shape":"NonNegativeDouble"},
+        "scoringVector":{"shape":"NonEmptyString"},
+        "adjustments":{"shape":"CvssScoreAdjustmentList"}
+      }
+    },
+    "CvssScoreList":{
+      "type":"list",
+      "member":{"shape":"CvssScore"}
+    },
     "DateTime":{"type":"string"},
+    "DateTimeTimestamp":{"type":"timestamp"},
     "DeleteComponentRequest":{
       "type":"structure",
       "required":["componentBuildVersionArn"],
@@ -1589,6 +2185,48 @@
         "infrastructureConfigurationArn":{"shape":"InfrastructureConfigurationArn"}
       }
     },
+    "DeleteLifecyclePolicyRequest":{
+      "type":"structure",
+      "required":["lifecyclePolicyArn"],
+      "members":{
+        "lifecyclePolicyArn":{
+          "shape":"LifecyclePolicyArn",
+          "location":"querystring",
+          "locationName":"lifecyclePolicyArn"
+        }
+      }
+    },
+    "DeleteLifecyclePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"}
+      }
+    },
+    "DeleteWorkflowRequest":{
+      "type":"structure",
+      "required":["workflowBuildVersionArn"],
+      "members":{
+        "workflowBuildVersionArn":{
+          "shape":"WorkflowBuildVersionArn",
+          "location":"querystring",
+          "locationName":"workflowBuildVersionArn"
+        }
+      }
+    },
+    "DeleteWorkflowResponse":{
+      "type":"structure",
+      "members":{
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"}
+      }
+    },
+    "DiskImageFormat":{
+      "type":"string",
+      "enum":[
+        "VMDK",
+        "RAW",
+        "VHD"
+      ]
+    },
     "Distribution":{
       "type":"structure",
       "required":["region"],
@@ -1597,7 +2235,9 @@
         "amiDistributionConfiguration":{"shape":"AmiDistributionConfiguration"},
         "containerDistributionConfiguration":{"shape":"ContainerDistributionConfiguration"},
         "licenseConfigurationArns":{"shape":"LicenseConfigurationArnList"},
-        "launchTemplateConfigurations":{"shape":"LaunchTemplateConfigurationList"}
+        "launchTemplateConfigurations":{"shape":"LaunchTemplateConfigurationList"},
+        "s3ExportConfiguration":{"shape":"S3ExportConfiguration"},
+        "fastLaunchConfigurations":{"shape":"FastLaunchConfigurationList"}
       }
     },
     "DistributionConfiguration":{
@@ -1653,18 +2293,24 @@
         "kmsKeyId":{"shape":"NonEmptyString"},
         "snapshotId":{"shape":"NonEmptyString"},
         "volumeSize":{"shape":"EbsVolumeSizeInteger"},
-        "volumeType":{"shape":"EbsVolumeType"}
+        "volumeType":{"shape":"EbsVolumeType"},
+        "throughput":{"shape":"EbsVolumeThroughput"}
       }
     },
     "EbsIopsInteger":{
       "type":"integer",
-      "max":10000,
+      "max":64000,
       "min":100
     },
     "EbsVolumeSizeInteger":{
       "type":"integer",
       "max":16000,
       "min":1
+    },
+    "EbsVolumeThroughput":{
+      "type":"integer",
+      "max":1000,
+      "min":125
     },
     "EbsVolumeType":{
       "type":"string",
@@ -1678,12 +2324,50 @@
         "st1"
       ]
     },
+    "EcrConfiguration":{
+      "type":"structure",
+      "members":{
+        "repositoryName":{"shape":"NonEmptyString"},
+        "containerTags":{"shape":"StringList"}
+      }
+    },
     "EmptyString":{
       "type":"string",
       "max":0,
       "min":0
     },
     "ErrorMessage":{"type":"string"},
+    "FastLaunchConfiguration":{
+      "type":"structure",
+      "required":["enabled"],
+      "members":{
+        "enabled":{"shape":"Boolean"},
+        "snapshotConfiguration":{"shape":"FastLaunchSnapshotConfiguration"},
+        "maxParallelLaunches":{"shape":"MaxParallelLaunches"},
+        "launchTemplate":{"shape":"FastLaunchLaunchTemplateSpecification"},
+        "accountId":{"shape":"AccountId"}
+      }
+    },
+    "FastLaunchConfigurationList":{
+      "type":"list",
+      "member":{"shape":"FastLaunchConfiguration"},
+      "max":1000,
+      "min":1
+    },
+    "FastLaunchLaunchTemplateSpecification":{
+      "type":"structure",
+      "members":{
+        "launchTemplateId":{"shape":"LaunchTemplateId"},
+        "launchTemplateName":{"shape":"NonEmptyString"},
+        "launchTemplateVersion":{"shape":"NonEmptyString"}
+      }
+    },
+    "FastLaunchSnapshotConfiguration":{
+      "type":"structure",
+      "members":{
+        "targetResourceCount":{"shape":"TargetResourceCount"}
+      }
+    },
     "Filter":{
       "type":"structure",
       "members":{
@@ -1917,6 +2601,129 @@
         "infrastructureConfiguration":{"shape":"InfrastructureConfiguration"}
       }
     },
+    "GetLifecycleExecutionRequest":{
+      "type":"structure",
+      "required":["lifecycleExecutionId"],
+      "members":{
+        "lifecycleExecutionId":{
+          "shape":"LifecycleExecutionId",
+          "location":"querystring",
+          "locationName":"lifecycleExecutionId"
+        }
+      }
+    },
+    "GetLifecycleExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecution":{"shape":"LifecycleExecution"}
+      }
+    },
+    "GetLifecyclePolicyRequest":{
+      "type":"structure",
+      "required":["lifecyclePolicyArn"],
+      "members":{
+        "lifecyclePolicyArn":{
+          "shape":"LifecyclePolicyArn",
+          "location":"querystring",
+          "locationName":"lifecyclePolicyArn"
+        }
+      }
+    },
+    "GetLifecyclePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "lifecyclePolicy":{"shape":"LifecyclePolicy"}
+      }
+    },
+    "GetWorkflowExecutionRequest":{
+      "type":"structure",
+      "required":["workflowExecutionId"],
+      "members":{
+        "workflowExecutionId":{
+          "shape":"WorkflowExecutionId",
+          "location":"querystring",
+          "locationName":"workflowExecutionId"
+        }
+      }
+    },
+    "GetWorkflowExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "requestId":{"shape":"NonEmptyString"},
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"},
+        "workflowExecutionId":{"shape":"WorkflowExecutionId"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "type":{"shape":"WorkflowType"},
+        "status":{"shape":"WorkflowExecutionStatus"},
+        "message":{"shape":"WorkflowExecutionMessage"},
+        "totalStepCount":{"shape":"WorkflowStepCount"},
+        "totalStepsSucceeded":{"shape":"WorkflowStepCount"},
+        "totalStepsFailed":{"shape":"WorkflowStepCount"},
+        "totalStepsSkipped":{"shape":"WorkflowStepCount"},
+        "startTime":{"shape":"DateTime"},
+        "endTime":{"shape":"DateTime"},
+        "parallelGroup":{"shape":"ParallelGroup"}
+      }
+    },
+    "GetWorkflowRequest":{
+      "type":"structure",
+      "required":["workflowBuildVersionArn"],
+      "members":{
+        "workflowBuildVersionArn":{
+          "shape":"WorkflowVersionArnOrBuildVersionArn",
+          "location":"querystring",
+          "locationName":"workflowBuildVersionArn"
+        }
+      }
+    },
+    "GetWorkflowResponse":{
+      "type":"structure",
+      "members":{
+        "workflow":{"shape":"Workflow"}
+      }
+    },
+    "GetWorkflowStepExecutionRequest":{
+      "type":"structure",
+      "required":["stepExecutionId"],
+      "members":{
+        "stepExecutionId":{
+          "shape":"WorkflowStepExecutionId",
+          "location":"querystring",
+          "locationName":"stepExecutionId"
+        }
+      }
+    },
+    "GetWorkflowStepExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "requestId":{"shape":"NonEmptyString"},
+        "stepExecutionId":{"shape":"WorkflowStepExecutionId"},
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"},
+        "workflowExecutionId":{"shape":"WorkflowExecutionId"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "name":{"shape":"WorkflowStepName"},
+        "description":{"shape":"WorkflowStepDescription"},
+        "action":{"shape":"WorkflowStepAction"},
+        "status":{"shape":"WorkflowStepExecutionStatus"},
+        "rollbackStatus":{"shape":"WorkflowStepExecutionRollbackStatus"},
+        "message":{"shape":"WorkflowStepMessage"},
+        "inputs":{"shape":"WorkflowStepInputs"},
+        "outputs":{"shape":"WorkflowStepOutputs"},
+        "startTime":{"shape":"DateTime"},
+        "endTime":{"shape":"DateTime"},
+        "onFailure":{"shape":"NonEmptyString"},
+        "timeoutSeconds":{"shape":"WorkflowStepTimeoutSecondsInteger"}
+      }
+    },
+    "HttpPutResponseHopLimit":{
+      "type":"integer",
+      "max":64,
+      "min":1
+    },
+    "HttpTokens":{
+      "type":"string",
+      "pattern":"optional|required"
+    },
     "IdempotentParameterMismatchException":{
       "type":"structure",
       "members":{
@@ -1945,8 +2752,28 @@
         "imageTestsConfiguration":{"shape":"ImageTestsConfiguration"},
         "dateCreated":{"shape":"DateTime"},
         "outputResources":{"shape":"OutputResources"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "buildType":{"shape":"BuildType"},
+        "imageSource":{"shape":"ImageSource"},
+        "scanState":{"shape":"ImageScanState"},
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "deprecationTime":{"shape":"DateTimeTimestamp"},
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "workflows":{"shape":"WorkflowConfigurationList"}
       }
+    },
+    "ImageAggregation":{
+      "type":"structure",
+      "members":{
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "severityCounts":{"shape":"SeverityCounts"}
+      }
+    },
+    "ImageBuildMessage":{
+      "type":"string",
+      "max":500,
+      "min":0
     },
     "ImageBuildVersionArn":{
       "type":"string",
@@ -1954,7 +2781,7 @@
     },
     "ImageBuilderArn":{
       "type":"string",
-      "pattern":"^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws):(?:image-recipe|container-recipe|infrastructure-configuration|distribution-configuration|component|image|image-pipeline)/[a-z0-9-_]+(?:/(?:(?:x|[0-9]+)\\.(?:x|[0-9]+)\\.(?:x|[0-9]+))(?:/[0-9]+)?)?$"
+      "pattern":"^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws):(?:image-recipe|container-recipe|infrastructure-configuration|distribution-configuration|component|image|image-pipeline|lifecycle-policy|workflow\\/(?:build|test|distribution))/[a-z0-9-_]+(?:/(?:(?:x|[0-9]+)\\.(?:x|[0-9]+)\\.(?:x|[0-9]+))(?:/[0-9]+)?)?$"
     },
     "ImagePackage":{
       "type":"structure",
@@ -1986,7 +2813,17 @@
         "dateUpdated":{"shape":"DateTime"},
         "dateLastRun":{"shape":"DateTime"},
         "dateNextRun":{"shape":"DateTime"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "workflows":{"shape":"WorkflowConfigurationList"}
+      }
+    },
+    "ImagePipelineAggregation":{
+      "type":"structure",
+      "members":{
+        "imagePipelineArn":{"shape":"ImagePipelineArn"},
+        "severityCounts":{"shape":"SeverityCounts"}
       }
     },
     "ImagePipelineArn":{
@@ -2036,6 +2873,97 @@
       "type":"list",
       "member":{"shape":"ImageRecipeSummary"}
     },
+    "ImageScanFinding":{
+      "type":"structure",
+      "members":{
+        "awsAccountId":{"shape":"NonEmptyString"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "imagePipelineArn":{"shape":"ImagePipelineArn"},
+        "type":{"shape":"NonEmptyString"},
+        "description":{"shape":"NonEmptyString"},
+        "title":{"shape":"NonEmptyString"},
+        "remediation":{"shape":"Remediation"},
+        "severity":{"shape":"NonEmptyString"},
+        "firstObservedAt":{"shape":"DateTimeTimestamp"},
+        "updatedAt":{"shape":"DateTimeTimestamp"},
+        "inspectorScore":{"shape":"NonNegativeDouble"},
+        "inspectorScoreDetails":{"shape":"InspectorScoreDetails"},
+        "packageVulnerabilityDetails":{"shape":"PackageVulnerabilityDetails"},
+        "fixAvailable":{"shape":"NonEmptyString"}
+      }
+    },
+    "ImageScanFindingAggregation":{
+      "type":"structure",
+      "members":{
+        "accountAggregation":{"shape":"AccountAggregation"},
+        "imageAggregation":{"shape":"ImageAggregation"},
+        "imagePipelineAggregation":{"shape":"ImagePipelineAggregation"},
+        "vulnerabilityIdAggregation":{"shape":"VulnerabilityIdAggregation"}
+      }
+    },
+    "ImageScanFindingAggregationsList":{
+      "type":"list",
+      "member":{"shape":"ImageScanFindingAggregation"}
+    },
+    "ImageScanFindingsFilter":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"FilterName"},
+        "values":{"shape":"ImageScanFindingsFilterValues"}
+      }
+    },
+    "ImageScanFindingsFilterList":{
+      "type":"list",
+      "member":{"shape":"ImageScanFindingsFilter"},
+      "max":1,
+      "min":1
+    },
+    "ImageScanFindingsFilterValues":{
+      "type":"list",
+      "member":{"shape":"FilterValue"},
+      "max":1,
+      "min":1
+    },
+    "ImageScanFindingsList":{
+      "type":"list",
+      "member":{"shape":"ImageScanFinding"},
+      "max":25
+    },
+    "ImageScanState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"ImageScanStatus"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "ImageScanStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "SCANNING",
+        "COLLECTING",
+        "COMPLETED",
+        "ABANDONED",
+        "FAILED",
+        "TIMED_OUT"
+      ]
+    },
+    "ImageScanningConfiguration":{
+      "type":"structure",
+      "members":{
+        "imageScanningEnabled":{"shape":"NullableBoolean"},
+        "ecrConfiguration":{"shape":"EcrConfiguration"}
+      }
+    },
+    "ImageSource":{
+      "type":"string",
+      "enum":[
+        "AMAZON_MANAGED",
+        "AWS_MARKETPLACE",
+        "IMPORTED",
+        "CUSTOM"
+      ]
+    },
     "ImageState":{
       "type":"structure",
       "members":{
@@ -2056,7 +2984,8 @@
         "CANCELLED",
         "FAILED",
         "DEPRECATED",
-        "DELETED"
+        "DELETED",
+        "DISABLED"
       ]
     },
     "ImageSummary":{
@@ -2072,7 +3001,11 @@
         "owner":{"shape":"NonEmptyString"},
         "dateCreated":{"shape":"DateTime"},
         "outputResources":{"shape":"OutputResources"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "buildType":{"shape":"BuildType"},
+        "imageSource":{"shape":"ImageSource"},
+        "deprecationTime":{"shape":"DateTimeTimestamp"},
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"}
       }
     },
     "ImageSummaryList":{
@@ -2108,7 +3041,9 @@
         "platform":{"shape":"Platform"},
         "osVersion":{"shape":"OsVersion"},
         "owner":{"shape":"NonEmptyString"},
-        "dateCreated":{"shape":"DateTime"}
+        "dateCreated":{"shape":"DateTime"},
+        "buildType":{"shape":"BuildType"},
+        "imageSource":{"shape":"ImageSource"}
       }
     },
     "ImageVersionArn":{
@@ -2159,6 +3094,37 @@
         "componentBuildVersionArn":{"shape":"ComponentBuildVersionArn"}
       }
     },
+    "ImportVmImageRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "semanticVersion",
+        "platform",
+        "vmImportTaskId",
+        "clientToken"
+      ],
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "semanticVersion":{"shape":"VersionNumber"},
+        "description":{"shape":"NonEmptyString"},
+        "platform":{"shape":"Platform"},
+        "osVersion":{"shape":"OsVersion"},
+        "vmImportTaskId":{"shape":"NonEmptyString"},
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "ImportVmImageResponse":{
+      "type":"structure",
+      "members":{
+        "requestId":{"shape":"NonEmptyString"},
+        "imageArn":{"shape":"Arn"},
+        "clientToken":{"shape":"ClientToken"}
+      }
+    },
     "InfrastructureConfiguration":{
       "type":"structure",
       "members":{
@@ -2176,6 +3142,7 @@
         "dateCreated":{"shape":"DateTime"},
         "dateUpdated":{"shape":"DateTime"},
         "resourceTags":{"shape":"ResourceTagMap"},
+        "instanceMetadataOptions":{"shape":"InstanceMetadataOptions"},
         "tags":{"shape":"TagMap"}
       }
     },
@@ -2213,6 +3180,18 @@
       "min":1,
       "pattern":"[^\\x00]+"
     },
+    "InlineWorkflowData":{
+      "type":"string",
+      "max":16000,
+      "min":1,
+      "pattern":"[^\\x00]+"
+    },
+    "InspectorScoreDetails":{
+      "type":"structure",
+      "members":{
+        "adjustedCvss":{"shape":"CvssScoreDetails"}
+      }
+    },
     "InstanceBlockDeviceMapping":{
       "type":"structure",
       "members":{
@@ -2231,6 +3210,13 @@
       "members":{
         "image":{"shape":"NonEmptyString"},
         "blockDeviceMappings":{"shape":"InstanceBlockDeviceMappings"}
+      }
+    },
+    "InstanceMetadataOptions":{
+      "type":"structure",
+      "members":{
+        "httpTokens":{"shape":"HttpTokens"},
+        "httpPutResponseHopLimit":{"shape":"HttpPutResponseHopLimit"}
       }
     },
     "InstanceProfileNameType":{
@@ -2296,7 +3282,9 @@
       "type":"structure",
       "members":{
         "userIds":{"shape":"AccountList"},
-        "userGroups":{"shape":"StringList"}
+        "userGroups":{"shape":"StringList"},
+        "organizationArns":{"shape":"OrganizationArnList"},
+        "organizationalUnitArns":{"shape":"OrganizationalUnitArnList"}
       }
     },
     "LaunchTemplateConfiguration":{
@@ -2327,6 +3315,300 @@
       "member":{"shape":"LicenseConfigurationArn"},
       "max":50,
       "min":1
+    },
+    "LifecycleExecution":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"},
+        "resourcesImpactedSummary":{"shape":"LifecycleExecutionResourcesImpactedSummary"},
+        "state":{"shape":"LifecycleExecutionState"},
+        "startTime":{"shape":"DateTimeTimestamp"},
+        "endTime":{"shape":"DateTimeTimestamp"}
+      }
+    },
+    "LifecycleExecutionId":{
+      "type":"string",
+      "pattern":"^lce-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "LifecycleExecutionResource":{
+      "type":"structure",
+      "members":{
+        "accountId":{"shape":"NonEmptyString"},
+        "resourceId":{"shape":"NonEmptyString"},
+        "state":{"shape":"LifecycleExecutionResourceState"},
+        "action":{"shape":"LifecycleExecutionResourceAction"},
+        "region":{"shape":"NonEmptyString"},
+        "snapshots":{"shape":"LifecycleExecutionSnapshotResourceList"},
+        "imageUris":{"shape":"StringList"}
+      }
+    },
+    "LifecycleExecutionResourceAction":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"LifecycleExecutionResourceActionName"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "LifecycleExecutionResourceActionName":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "DELETE",
+        "DEPRECATE",
+        "DISABLE"
+      ]
+    },
+    "LifecycleExecutionResourceList":{
+      "type":"list",
+      "member":{"shape":"LifecycleExecutionResource"}
+    },
+    "LifecycleExecutionResourceState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"LifecycleExecutionResourceStatus"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "LifecycleExecutionResourceStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "IN_PROGRESS",
+        "SKIPPED",
+        "SUCCESS"
+      ]
+    },
+    "LifecycleExecutionResourcesImpactedSummary":{
+      "type":"structure",
+      "members":{
+        "hasImpactedResources":{"shape":"Boolean"}
+      }
+    },
+    "LifecycleExecutionSnapshotResource":{
+      "type":"structure",
+      "members":{
+        "snapshotId":{"shape":"NonEmptyString"},
+        "state":{"shape":"LifecycleExecutionResourceState"}
+      }
+    },
+    "LifecycleExecutionSnapshotResourceList":{
+      "type":"list",
+      "member":{"shape":"LifecycleExecutionSnapshotResource"}
+    },
+    "LifecycleExecutionState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"LifecycleExecutionStatus"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "LifecycleExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "CANCELLED",
+        "CANCELLING",
+        "FAILED",
+        "SUCCESS"
+      ]
+    },
+    "LifecycleExecutionsList":{
+      "type":"list",
+      "member":{"shape":"LifecycleExecution"}
+    },
+    "LifecyclePolicy":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"LifecyclePolicyArn"},
+        "name":{"shape":"ResourceName"},
+        "description":{"shape":"NonEmptyString"},
+        "status":{"shape":"LifecyclePolicyStatus"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "resourceType":{"shape":"LifecyclePolicyResourceType"},
+        "policyDetails":{"shape":"LifecyclePolicyDetails"},
+        "resourceSelection":{"shape":"LifecyclePolicyResourceSelection"},
+        "dateCreated":{"shape":"DateTimeTimestamp"},
+        "dateUpdated":{"shape":"DateTimeTimestamp"},
+        "dateLastRun":{"shape":"DateTimeTimestamp"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "LifecyclePolicyArn":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):lifecycle-policy/[a-z0-9-_]+$"
+    },
+    "LifecyclePolicyDetail":{
+      "type":"structure",
+      "required":[
+        "action",
+        "filter"
+      ],
+      "members":{
+        "action":{"shape":"LifecyclePolicyDetailAction"},
+        "filter":{"shape":"LifecyclePolicyDetailFilter"},
+        "exclusionRules":{"shape":"LifecyclePolicyDetailExclusionRules"}
+      }
+    },
+    "LifecyclePolicyDetailAction":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"LifecyclePolicyDetailActionType"},
+        "includeResources":{"shape":"LifecyclePolicyDetailActionIncludeResources"}
+      }
+    },
+    "LifecyclePolicyDetailActionIncludeResources":{
+      "type":"structure",
+      "members":{
+        "amis":{"shape":"Boolean"},
+        "snapshots":{"shape":"Boolean"},
+        "containers":{"shape":"Boolean"}
+      }
+    },
+    "LifecyclePolicyDetailActionType":{
+      "type":"string",
+      "enum":[
+        "DELETE",
+        "DEPRECATE",
+        "DISABLE"
+      ]
+    },
+    "LifecyclePolicyDetailExclusionRules":{
+      "type":"structure",
+      "members":{
+        "tagMap":{"shape":"TagMap"},
+        "amis":{"shape":"LifecyclePolicyDetailExclusionRulesAmis"}
+      }
+    },
+    "LifecyclePolicyDetailExclusionRulesAmis":{
+      "type":"structure",
+      "members":{
+        "isPublic":{"shape":"Boolean"},
+        "regions":{"shape":"StringList"},
+        "sharedAccounts":{"shape":"AccountList"},
+        "lastLaunched":{"shape":"LifecyclePolicyDetailExclusionRulesAmisLastLaunched"},
+        "tagMap":{"shape":"TagMap"}
+      }
+    },
+    "LifecyclePolicyDetailExclusionRulesAmisLastLaunched":{
+      "type":"structure",
+      "required":[
+        "value",
+        "unit"
+      ],
+      "members":{
+        "value":{"shape":"LifecyclePolicyDetailExclusionRulesAmisLastLaunchedValue"},
+        "unit":{"shape":"LifecyclePolicyTimeUnit"}
+      }
+    },
+    "LifecyclePolicyDetailExclusionRulesAmisLastLaunchedValue":{
+      "type":"integer",
+      "max":365,
+      "min":1
+    },
+    "LifecyclePolicyDetailFilter":{
+      "type":"structure",
+      "required":[
+        "type",
+        "value"
+      ],
+      "members":{
+        "type":{"shape":"LifecyclePolicyDetailFilterType"},
+        "value":{"shape":"LifecyclePolicyDetailFilterValue"},
+        "unit":{"shape":"LifecyclePolicyTimeUnit"},
+        "retainAtLeast":{"shape":"LifecyclePolicyDetailFilterRetainAtLeast"}
+      }
+    },
+    "LifecyclePolicyDetailFilterRetainAtLeast":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
+    "LifecyclePolicyDetailFilterType":{
+      "type":"string",
+      "enum":[
+        "AGE",
+        "COUNT"
+      ]
+    },
+    "LifecyclePolicyDetailFilterValue":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "LifecyclePolicyDetails":{
+      "type":"list",
+      "member":{"shape":"LifecyclePolicyDetail"},
+      "max":3,
+      "min":1
+    },
+    "LifecyclePolicyResourceSelection":{
+      "type":"structure",
+      "members":{
+        "recipes":{"shape":"LifecyclePolicyResourceSelectionRecipes"},
+        "tagMap":{"shape":"TagMap"}
+      }
+    },
+    "LifecyclePolicyResourceSelectionRecipe":{
+      "type":"structure",
+      "required":[
+        "name",
+        "semanticVersion"
+      ],
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "semanticVersion":{"shape":"VersionNumber"}
+      }
+    },
+    "LifecyclePolicyResourceSelectionRecipes":{
+      "type":"list",
+      "member":{"shape":"LifecyclePolicyResourceSelectionRecipe"},
+      "max":50,
+      "min":1
+    },
+    "LifecyclePolicyResourceType":{
+      "type":"string",
+      "enum":[
+        "AMI_IMAGE",
+        "CONTAINER_IMAGE"
+      ]
+    },
+    "LifecyclePolicyStatus":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "LifecyclePolicySummary":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"LifecyclePolicyArn"},
+        "name":{"shape":"ResourceName"},
+        "description":{"shape":"NonEmptyString"},
+        "status":{"shape":"LifecyclePolicyStatus"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "resourceType":{"shape":"LifecyclePolicyResourceType"},
+        "dateCreated":{"shape":"DateTimeTimestamp"},
+        "dateUpdated":{"shape":"DateTimeTimestamp"},
+        "dateLastRun":{"shape":"DateTimeTimestamp"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "LifecyclePolicySummaryList":{
+      "type":"list",
+      "member":{"shape":"LifecyclePolicySummary"}
+    },
+    "LifecyclePolicyTimeUnit":{
+      "type":"string",
+      "enum":[
+        "DAYS",
+        "WEEKS",
+        "MONTHS",
+        "YEARS"
+      ]
     },
     "ListComponentBuildVersionsRequest":{
       "type":"structure",
@@ -2509,6 +3791,41 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListImageScanFindingAggregationsRequest":{
+      "type":"structure",
+      "members":{
+        "filter":{"shape":"Filter"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImageScanFindingAggregationsResponse":{
+      "type":"structure",
+      "members":{
+        "requestId":{"shape":"NonEmptyString"},
+        "aggregationType":{"shape":"NonEmptyString"},
+        "responses":{"shape":"ImageScanFindingAggregationsList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImageScanFindingsRequest":{
+      "type":"structure",
+      "members":{
+        "filters":{"shape":"ImageScanFindingsFilterList"},
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImageScanFindingsResponse":{
+      "type":"structure",
+      "members":{
+        "requestId":{"shape":"NonEmptyString"},
+        "findings":{"shape":"ImageScanFindingsList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListImagesRequest":{
       "type":"structure",
       "members":{
@@ -2550,6 +3867,65 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListLifecycleExecutionResourcesRequest":{
+      "type":"structure",
+      "required":["lifecycleExecutionId"],
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "parentResourceId":{"shape":"NonEmptyString"},
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLifecycleExecutionResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "lifecycleExecutionState":{"shape":"LifecycleExecutionState"},
+        "resources":{"shape":"LifecycleExecutionResourceList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLifecycleExecutionsRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"},
+        "resourceArn":{"shape":"ImageBuilderArn"}
+      }
+    },
+    "ListLifecycleExecutionsResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutions":{"shape":"LifecycleExecutionsList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLifecyclePoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "filters":{"shape":"FilterList"},
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLifecyclePoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "lifecyclePolicySummaryList":{"shape":"LifecyclePolicySummaryList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["resourceArn"],
@@ -2567,18 +3943,160 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "ListWaitingWorkflowStepsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWaitingWorkflowStepsResponse":{
+      "type":"structure",
+      "members":{
+        "steps":{"shape":"WorkflowStepExecutionList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWorkflowBuildVersionsRequest":{
+      "type":"structure",
+      "required":["workflowVersionArn"],
+      "members":{
+        "workflowVersionArn":{"shape":"WorkflowWildcardVersionArn"},
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWorkflowBuildVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "workflowSummaryList":{"shape":"WorkflowSummaryList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWorkflowExecutionsRequest":{
+      "type":"structure",
+      "required":["imageBuildVersionArn"],
+      "members":{
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"}
+      }
+    },
+    "ListWorkflowExecutionsResponse":{
+      "type":"structure",
+      "members":{
+        "requestId":{"shape":"NonEmptyString"},
+        "workflowExecutions":{"shape":"WorkflowExecutionsList"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "message":{"shape":"ImageBuildMessage"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWorkflowStepExecutionsRequest":{
+      "type":"structure",
+      "required":["workflowExecutionId"],
+      "members":{
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"},
+        "workflowExecutionId":{"shape":"WorkflowExecutionId"}
+      }
+    },
+    "ListWorkflowStepExecutionsResponse":{
+      "type":"structure",
+      "members":{
+        "requestId":{"shape":"NonEmptyString"},
+        "steps":{"shape":"WorkflowStepExecutionsList"},
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"},
+        "workflowExecutionId":{"shape":"WorkflowExecutionId"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "message":{"shape":"ImageBuildMessage"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWorkflowsRequest":{
+      "type":"structure",
+      "members":{
+        "owner":{"shape":"Ownership"},
+        "filters":{"shape":"FilterList"},
+        "byName":{"shape":"Boolean"},
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWorkflowsResponse":{
+      "type":"structure",
+      "members":{
+        "workflowVersionList":{"shape":"WorkflowVersionList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "Logging":{
       "type":"structure",
       "members":{
         "s3Logs":{"shape":"S3Logs"}
       }
     },
+    "MaxParallelLaunches":{
+      "type":"integer",
+      "min":1
+    },
     "NonEmptyString":{
       "type":"string",
       "max":1024,
       "min":1
     },
+    "NonEmptyStringList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "min":1
+    },
+    "NonNegativeDouble":{
+      "type":"double",
+      "min":0
+    },
     "NullableBoolean":{"type":"boolean"},
+    "OnWorkflowFailure":{
+      "type":"string",
+      "enum":[
+        "CONTINUE",
+        "ABORT"
+      ]
+    },
+    "OrganizationArn":{
+      "type":"string",
+      "pattern":"^arn:aws[^:]*:organizations::[0-9]{12}:organization/o-[a-z0-9]{10,32}$"
+    },
+    "OrganizationArnList":{
+      "type":"list",
+      "member":{"shape":"OrganizationArn"},
+      "max":25,
+      "min":1
+    },
+    "OrganizationalUnitArn":{
+      "type":"string",
+      "pattern":"^arn:aws[^:]*:organizations::[0-9]{12}:ou/o-[a-z0-9]{10,32}/ou-[0-9a-z]{4,32}-[0-9a-z]{8,32}"
+    },
+    "OrganizationalUnitArnList":{
+      "type":"list",
+      "member":{"shape":"OrganizationalUnitArn"},
+      "max":25,
+      "min":1
+    },
     "OsVersion":{
       "type":"string",
       "min":1
@@ -2601,13 +4119,38 @@
       "enum":[
         "Self",
         "Shared",
-        "Amazon"
+        "Amazon",
+        "ThirdParty"
       ]
+    },
+    "PackageArchitecture":{"type":"string"},
+    "PackageEpoch":{"type":"integer"},
+    "PackageVulnerabilityDetails":{
+      "type":"structure",
+      "required":["vulnerabilityId"],
+      "members":{
+        "vulnerabilityId":{"shape":"VulnerabilityId"},
+        "vulnerablePackages":{"shape":"VulnerablePackageList"},
+        "source":{"shape":"NonEmptyString"},
+        "cvss":{"shape":"CvssScoreList"},
+        "relatedVulnerabilities":{"shape":"VulnerabilityIdList"},
+        "sourceUrl":{"shape":"NonEmptyString"},
+        "vendorSeverity":{"shape":"NonEmptyString"},
+        "vendorCreatedAt":{"shape":"DateTimeTimestamp"},
+        "vendorUpdatedAt":{"shape":"DateTimeTimestamp"},
+        "referenceUrls":{"shape":"NonEmptyStringList"}
+      }
     },
     "PaginationToken":{
       "type":"string",
       "max":65535,
       "min":1
+    },
+    "ParallelGroup":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[A-Za-z0-9][A-Za-z0-9-_+#]{0,99}$"
     },
     "PipelineExecutionStartCondition":{
       "type":"string",
@@ -2706,6 +4249,19 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"}
     },
+    "Remediation":{
+      "type":"structure",
+      "members":{
+        "recommendation":{"shape":"RemediationRecommendation"}
+      }
+    },
+    "RemediationRecommendation":{
+      "type":"structure",
+      "members":{
+        "text":{"shape":"NonEmptyString"},
+        "url":{"shape":"NonEmptyString"}
+      }
+    },
     "ResourceAlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -2747,6 +4303,35 @@
       "max":30000,
       "min":1
     },
+    "ResourceState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"ResourceStatus"}
+      }
+    },
+    "ResourceStateUpdateExclusionRules":{
+      "type":"structure",
+      "members":{
+        "amis":{"shape":"LifecyclePolicyDetailExclusionRulesAmis"}
+      }
+    },
+    "ResourceStateUpdateIncludeResources":{
+      "type":"structure",
+      "members":{
+        "amis":{"shape":"Boolean"},
+        "snapshots":{"shape":"Boolean"},
+        "containers":{"shape":"Boolean"}
+      }
+    },
+    "ResourceStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "DELETED",
+        "DEPRECATED",
+        "DISABLED"
+      ]
+    },
     "ResourceTagMap":{
       "type":"map",
       "key":{"shape":"TagKey"},
@@ -2758,6 +4343,26 @@
       "type":"integer",
       "max":25,
       "min":1
+    },
+    "RoleNameOrArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^(?:arn:aws(?:-[a-z]+)*:iam::[0-9]{12}:role/)?[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
+    "S3ExportConfiguration":{
+      "type":"structure",
+      "required":[
+        "roleName",
+        "diskImageFormat",
+        "s3Bucket"
+      ],
+      "members":{
+        "roleName":{"shape":"NonEmptyString"},
+        "diskImageFormat":{"shape":"DiskImageFormat"},
+        "s3Bucket":{"shape":"NonEmptyString"},
+        "s3Prefix":{"shape":"NonEmptyString"}
+      }
     },
     "S3Logs":{
       "type":"structure",
@@ -2777,6 +4382,33 @@
     "SecurityGroupIds":{
       "type":"list",
       "member":{"shape":"NonEmptyString"}
+    },
+    "SendWorkflowStepActionRequest":{
+      "type":"structure",
+      "required":[
+        "stepExecutionId",
+        "imageBuildVersionArn",
+        "action",
+        "clientToken"
+      ],
+      "members":{
+        "stepExecutionId":{"shape":"WorkflowStepExecutionId"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "action":{"shape":"WorkflowStepActionType"},
+        "reason":{"shape":"NonEmptyString"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "SendWorkflowStepActionResponse":{
+      "type":"structure",
+      "members":{
+        "stepExecutionId":{"shape":"WorkflowStepExecutionId"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "clientToken":{"shape":"ClientToken"}
+      }
     },
     "ServiceException":{
       "type":"structure",
@@ -2802,10 +4434,21 @@
       "error":{"httpStatusCode":503},
       "exception":true
     },
+    "SeverityCountNumber":{"type":"long"},
+    "SeverityCounts":{
+      "type":"structure",
+      "members":{
+        "all":{"shape":"SeverityCountNumber"},
+        "critical":{"shape":"SeverityCountNumber"},
+        "high":{"shape":"SeverityCountNumber"},
+        "medium":{"shape":"SeverityCountNumber"}
+      }
+    },
     "SnsTopicArn":{
       "type":"string",
       "pattern":"^arn:aws[^:]*:sns:[^:]+:[0-9]{12}:[a-zA-Z0-9-_]{1,256}$"
     },
+    "SourceLayerHash":{"type":"string"},
     "StartImagePipelineExecutionRequest":{
       "type":"structure",
       "required":[
@@ -2826,6 +4469,33 @@
         "requestId":{"shape":"NonEmptyString"},
         "clientToken":{"shape":"ClientToken"},
         "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"}
+      }
+    },
+    "StartResourceStateUpdateRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "state",
+        "clientToken"
+      ],
+      "members":{
+        "resourceArn":{"shape":"ImageBuildVersionArn"},
+        "state":{"shape":"ResourceState"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "includeResources":{"shape":"ResourceStateUpdateIncludeResources"},
+        "exclusionRules":{"shape":"ResourceStateUpdateExclusionRules"},
+        "updateAt":{"shape":"DateTimeTimestamp"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartResourceStateUpdateResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "resourceArn":{"shape":"ImageBuildVersionArn"}
       }
     },
     "StringList":{
@@ -2891,6 +4561,11 @@
         "service":{"shape":"ContainerRepositoryService"},
         "repositoryName":{"shape":"NonEmptyString"}
       }
+    },
+    "TargetResourceCount":{
+      "type":"integer",
+      "max":10000,
+      "min":1
     },
     "Timezone":{
       "type":"string",
@@ -2968,7 +4643,10 @@
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "workflows":{"shape":"WorkflowConfigurationList"},
+        "executionRole":{"shape":"RoleNameOrArn"}
       }
     },
     "UpdateImagePipelineResponse":{
@@ -3001,7 +4679,8 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "resourceTags":{"shape":"ResourceTagMap"}
+        "resourceTags":{"shape":"ResourceTagMap"},
+        "instanceMetadataOptions":{"shape":"InstanceMetadataOptions"}
       }
     },
     "UpdateInfrastructureConfigurationResponse":{
@@ -3010,6 +4689,36 @@
         "requestId":{"shape":"NonEmptyString"},
         "clientToken":{"shape":"ClientToken"},
         "infrastructureConfigurationArn":{"shape":"InfrastructureConfigurationArn"}
+      }
+    },
+    "UpdateLifecyclePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "lifecyclePolicyArn",
+        "executionRole",
+        "resourceType",
+        "policyDetails",
+        "resourceSelection",
+        "clientToken"
+      ],
+      "members":{
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"},
+        "description":{"shape":"NonEmptyString"},
+        "status":{"shape":"LifecyclePolicyStatus"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "resourceType":{"shape":"LifecyclePolicyResourceType"},
+        "policyDetails":{"shape":"LifecyclePolicyDetails"},
+        "resourceSelection":{"shape":"LifecyclePolicyResourceSelection"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateLifecyclePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"}
       }
     },
     "Uri":{"type":"string"},
@@ -3022,6 +4731,341 @@
     "VersionNumber":{
       "type":"string",
       "pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "VulnerabilityId":{"type":"string"},
+    "VulnerabilityIdAggregation":{
+      "type":"structure",
+      "members":{
+        "vulnerabilityId":{"shape":"NonEmptyString"},
+        "severityCounts":{"shape":"SeverityCounts"}
+      }
+    },
+    "VulnerabilityIdList":{
+      "type":"list",
+      "member":{"shape":"VulnerabilityId"}
+    },
+    "VulnerablePackage":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "version":{"shape":"NonEmptyString"},
+        "sourceLayerHash":{"shape":"SourceLayerHash"},
+        "epoch":{"shape":"PackageEpoch"},
+        "release":{"shape":"NonEmptyString"},
+        "arch":{"shape":"PackageArchitecture"},
+        "packageManager":{"shape":"NonEmptyString"},
+        "filePath":{"shape":"NonEmptyString"},
+        "fixedInVersion":{"shape":"NonEmptyString"},
+        "remediation":{"shape":"NonEmptyString"}
+      }
+    },
+    "VulnerablePackageList":{
+      "type":"list",
+      "member":{"shape":"VulnerablePackage"}
+    },
+    "Workflow":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"WorkflowBuildVersionArn"},
+        "name":{"shape":"ResourceName"},
+        "version":{"shape":"VersionNumber"},
+        "description":{"shape":"NonEmptyString"},
+        "changeDescription":{"shape":"NonEmptyString"},
+        "type":{"shape":"WorkflowType"},
+        "state":{"shape":"WorkflowState"},
+        "owner":{"shape":"NonEmptyString"},
+        "data":{"shape":"WorkflowData"},
+        "kmsKeyId":{"shape":"NonEmptyString"},
+        "dateCreated":{"shape":"DateTime"},
+        "tags":{"shape":"TagMap"},
+        "parameters":{"shape":"WorkflowParameterDetailList"}
+      }
+    },
+    "WorkflowBuildVersionArn":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+/[0-9]+$"
+    },
+    "WorkflowConfiguration":{
+      "type":"structure",
+      "required":["workflowArn"],
+      "members":{
+        "workflowArn":{"shape":"WorkflowVersionArnOrBuildVersionArn"},
+        "parameters":{"shape":"WorkflowParameterList"},
+        "parallelGroup":{"shape":"ParallelGroup"},
+        "onFailure":{"shape":"OnWorkflowFailure"}
+      }
+    },
+    "WorkflowConfigurationList":{
+      "type":"list",
+      "member":{"shape":"WorkflowConfiguration"}
+    },
+    "WorkflowData":{"type":"string"},
+    "WorkflowExecutionId":{
+      "type":"string",
+      "pattern":"^wf-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "WorkflowExecutionMessage":{
+      "type":"string",
+      "max":500,
+      "min":0
+    },
+    "WorkflowExecutionMetadata":{
+      "type":"structure",
+      "members":{
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"},
+        "workflowExecutionId":{"shape":"WorkflowExecutionId"},
+        "type":{"shape":"WorkflowType"},
+        "status":{"shape":"WorkflowExecutionStatus"},
+        "message":{"shape":"WorkflowExecutionMessage"},
+        "totalStepCount":{"shape":"WorkflowStepCount"},
+        "totalStepsSucceeded":{"shape":"WorkflowStepCount"},
+        "totalStepsFailed":{"shape":"WorkflowStepCount"},
+        "totalStepsSkipped":{"shape":"WorkflowStepCount"},
+        "startTime":{"shape":"DateTime"},
+        "endTime":{"shape":"DateTime"},
+        "parallelGroup":{"shape":"ParallelGroup"}
+      }
+    },
+    "WorkflowExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "SKIPPED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED",
+        "ROLLBACK_IN_PROGRESS",
+        "ROLLBACK_COMPLETED",
+        "CANCELLED"
+      ]
+    },
+    "WorkflowExecutionsList":{
+      "type":"list",
+      "member":{"shape":"WorkflowExecutionMetadata"}
+    },
+    "WorkflowNameArn":{
+      "type":"string",
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/x\\.x\\.x$"
+    },
+    "WorkflowParameter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "value"
+      ],
+      "members":{
+        "name":{"shape":"WorkflowParameterName"},
+        "value":{"shape":"WorkflowParameterValueList"}
+      }
+    },
+    "WorkflowParameterDescription":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[^\\x00]+"
+    },
+    "WorkflowParameterDetail":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type"
+      ],
+      "members":{
+        "name":{"shape":"WorkflowParameterName"},
+        "type":{"shape":"WorkflowParameterType"},
+        "defaultValue":{"shape":"WorkflowParameterValueList"},
+        "description":{"shape":"WorkflowParameterDescription"}
+      }
+    },
+    "WorkflowParameterDetailList":{
+      "type":"list",
+      "member":{"shape":"WorkflowParameterDetail"}
+    },
+    "WorkflowParameterList":{
+      "type":"list",
+      "member":{"shape":"WorkflowParameter"},
+      "min":1
+    },
+    "WorkflowParameterName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[^\\x00]+"
+    },
+    "WorkflowParameterType":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^string|integer|boolean|stringList$"
+    },
+    "WorkflowParameterValue":{
+      "type":"string",
+      "min":0,
+      "pattern":"[^\\x00]*"
+    },
+    "WorkflowParameterValueList":{
+      "type":"list",
+      "member":{"shape":"WorkflowParameterValue"}
+    },
+    "WorkflowState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"WorkflowStatus"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "WorkflowStatus":{
+      "type":"string",
+      "enum":["DEPRECATED"]
+    },
+    "WorkflowStepAction":{
+      "type":"string",
+      "pattern":"^[A-Za-z][A-Za-z0-9-_]{1,99}$"
+    },
+    "WorkflowStepActionType":{
+      "type":"string",
+      "enum":[
+        "RESUME",
+        "STOP"
+      ]
+    },
+    "WorkflowStepCount":{"type":"integer"},
+    "WorkflowStepDescription":{
+      "type":"string",
+      "max":500,
+      "min":0
+    },
+    "WorkflowStepExecution":{
+      "type":"structure",
+      "members":{
+        "stepExecutionId":{"shape":"WorkflowStepExecutionId"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "workflowExecutionId":{"shape":"WorkflowExecutionId"},
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"},
+        "name":{"shape":"WorkflowStepName"},
+        "action":{"shape":"WorkflowStepAction"},
+        "startTime":{"shape":"DateTime"}
+      }
+    },
+    "WorkflowStepExecutionId":{
+      "type":"string",
+      "pattern":"^step-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "WorkflowStepExecutionList":{
+      "type":"list",
+      "member":{"shape":"WorkflowStepExecution"}
+    },
+    "WorkflowStepExecutionRollbackStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "COMPLETED",
+        "SKIPPED",
+        "FAILED"
+      ]
+    },
+    "WorkflowStepExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "SKIPPED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED",
+        "CANCELLED"
+      ]
+    },
+    "WorkflowStepExecutionsList":{
+      "type":"list",
+      "member":{"shape":"WorkflowStepMetadata"}
+    },
+    "WorkflowStepInputs":{"type":"string"},
+    "WorkflowStepMessage":{
+      "type":"string",
+      "max":500,
+      "min":0
+    },
+    "WorkflowStepMetadata":{
+      "type":"structure",
+      "members":{
+        "stepExecutionId":{"shape":"WorkflowStepExecutionId"},
+        "name":{"shape":"WorkflowStepName"},
+        "description":{"shape":"WorkflowStepDescription"},
+        "action":{"shape":"WorkflowStepAction"},
+        "status":{"shape":"WorkflowStepExecutionStatus"},
+        "rollbackStatus":{"shape":"WorkflowStepExecutionRollbackStatus"},
+        "message":{"shape":"WorkflowStepMessage"},
+        "inputs":{"shape":"WorkflowStepInputs"},
+        "outputs":{"shape":"WorkflowStepOutputs"},
+        "startTime":{"shape":"DateTime"},
+        "endTime":{"shape":"DateTime"}
+      }
+    },
+    "WorkflowStepName":{
+      "type":"string",
+      "pattern":"^[A-Za-z][A-Za-z0-9-_]{1,99}$"
+    },
+    "WorkflowStepOutputs":{"type":"string"},
+    "WorkflowStepTimeoutSecondsInteger":{
+      "type":"integer",
+      "max":43200,
+      "min":0
+    },
+    "WorkflowSummary":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"WorkflowNameArn"},
+        "name":{"shape":"ResourceName"},
+        "version":{"shape":"VersionNumber"},
+        "description":{"shape":"NonEmptyString"},
+        "changeDescription":{"shape":"NonEmptyString"},
+        "type":{"shape":"WorkflowType"},
+        "owner":{"shape":"NonEmptyString"},
+        "state":{"shape":"WorkflowState"},
+        "dateCreated":{"shape":"DateTime"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "WorkflowSummaryList":{
+      "type":"list",
+      "member":{"shape":"WorkflowSummary"}
+    },
+    "WorkflowType":{
+      "type":"string",
+      "enum":[
+        "BUILD",
+        "TEST",
+        "DISTRIBUTION"
+      ]
+    },
+    "WorkflowVersion":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"WorkflowVersionArn"},
+        "name":{"shape":"ResourceName"},
+        "version":{"shape":"VersionNumber"},
+        "description":{"shape":"NonEmptyString"},
+        "type":{"shape":"WorkflowType"},
+        "owner":{"shape":"NonEmptyString"},
+        "dateCreated":{"shape":"DateTime"}
+      }
+    },
+    "WorkflowVersionArn":{
+      "type":"string",
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "WorkflowVersionArnOrBuildVersionArn":{
+      "type":"string",
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/(?:(?:([0-9]+|x)\\.([0-9]+|x)\\.([0-9]+|x))|(?:[0-9]+\\.[0-9]+\\.[0-9]+/[0-9]+))$"
+    },
+    "WorkflowVersionList":{
+      "type":"list",
+      "member":{"shape":"WorkflowVersion"}
+    },
+    "WorkflowWildcardVersionArn":{
+      "type":"string",
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/(?:[0-9]+|x)\\.(?:[0-9]+|x)\\.(?:[0-9]+|x)$"
     }
   }
 }

@@ -28,14 +28,13 @@ const opDescribeEntitiesDetectionV2Job = "DescribeEntitiesDetectionV2Job"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEntitiesDetectionV2JobRequest method.
+//	req, resp := client.DescribeEntitiesDetectionV2JobRequest(params)
 //
-//    // Example sending a request using the DescribeEntitiesDetectionV2JobRequest method.
-//    req, resp := client.DescribeEntitiesDetectionV2JobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribeEntitiesDetectionV2Job
 func (c *ComprehendMedical) DescribeEntitiesDetectionV2JobRequest(input *DescribeEntitiesDetectionV2JobInput) (req *request.Request, output *DescribeEntitiesDetectionV2JobOutput) {
@@ -67,21 +66,22 @@ func (c *ComprehendMedical) DescribeEntitiesDetectionV2JobRequest(input *Describ
 // API operation DescribeEntitiesDetectionV2Job for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribeEntitiesDetectionV2Job
 func (c *ComprehendMedical) DescribeEntitiesDetectionV2Job(input *DescribeEntitiesDetectionV2JobInput) (*DescribeEntitiesDetectionV2JobOutput, error) {
@@ -121,14 +121,13 @@ const opDescribeICD10CMInferenceJob = "DescribeICD10CMInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeICD10CMInferenceJobRequest method.
+//	req, resp := client.DescribeICD10CMInferenceJobRequest(params)
 //
-//    // Example sending a request using the DescribeICD10CMInferenceJobRequest method.
-//    req, resp := client.DescribeICD10CMInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribeICD10CMInferenceJob
 func (c *ComprehendMedical) DescribeICD10CMInferenceJobRequest(input *DescribeICD10CMInferenceJobInput) (req *request.Request, output *DescribeICD10CMInferenceJobOutput) {
@@ -160,21 +159,22 @@ func (c *ComprehendMedical) DescribeICD10CMInferenceJobRequest(input *DescribeIC
 // API operation DescribeICD10CMInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribeICD10CMInferenceJob
 func (c *ComprehendMedical) DescribeICD10CMInferenceJob(input *DescribeICD10CMInferenceJobInput) (*DescribeICD10CMInferenceJobOutput, error) {
@@ -214,14 +214,13 @@ const opDescribePHIDetectionJob = "DescribePHIDetectionJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePHIDetectionJobRequest method.
+//	req, resp := client.DescribePHIDetectionJobRequest(params)
 //
-//    // Example sending a request using the DescribePHIDetectionJobRequest method.
-//    req, resp := client.DescribePHIDetectionJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribePHIDetectionJob
 func (c *ComprehendMedical) DescribePHIDetectionJobRequest(input *DescribePHIDetectionJobInput) (req *request.Request, output *DescribePHIDetectionJobOutput) {
@@ -253,21 +252,22 @@ func (c *ComprehendMedical) DescribePHIDetectionJobRequest(input *DescribePHIDet
 // API operation DescribePHIDetectionJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribePHIDetectionJob
 func (c *ComprehendMedical) DescribePHIDetectionJob(input *DescribePHIDetectionJobInput) (*DescribePHIDetectionJobOutput, error) {
@@ -307,14 +307,13 @@ const opDescribeRxNormInferenceJob = "DescribeRxNormInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRxNormInferenceJobRequest method.
+//	req, resp := client.DescribeRxNormInferenceJobRequest(params)
 //
-//    // Example sending a request using the DescribeRxNormInferenceJobRequest method.
-//    req, resp := client.DescribeRxNormInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribeRxNormInferenceJob
 func (c *ComprehendMedical) DescribeRxNormInferenceJobRequest(input *DescribeRxNormInferenceJobInput) (req *request.Request, output *DescribeRxNormInferenceJobOutput) {
@@ -346,21 +345,22 @@ func (c *ComprehendMedical) DescribeRxNormInferenceJobRequest(input *DescribeRxN
 // API operation DescribeRxNormInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribeRxNormInferenceJob
 func (c *ComprehendMedical) DescribeRxNormInferenceJob(input *DescribeRxNormInferenceJobInput) (*DescribeRxNormInferenceJobOutput, error) {
@@ -384,6 +384,99 @@ func (c *ComprehendMedical) DescribeRxNormInferenceJobWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opDescribeSNOMEDCTInferenceJob = "DescribeSNOMEDCTInferenceJob"
+
+// DescribeSNOMEDCTInferenceJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSNOMEDCTInferenceJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSNOMEDCTInferenceJob for more information on using the DescribeSNOMEDCTInferenceJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeSNOMEDCTInferenceJobRequest method.
+//	req, resp := client.DescribeSNOMEDCTInferenceJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribeSNOMEDCTInferenceJob
+func (c *ComprehendMedical) DescribeSNOMEDCTInferenceJobRequest(input *DescribeSNOMEDCTInferenceJobInput) (req *request.Request, output *DescribeSNOMEDCTInferenceJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSNOMEDCTInferenceJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeSNOMEDCTInferenceJobInput{}
+	}
+
+	output = &DescribeSNOMEDCTInferenceJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSNOMEDCTInferenceJob API operation for AWS Comprehend Medical.
+//
+// Gets the properties associated with an InferSNOMEDCT job. Use this operation
+// to get the status of an inference job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Comprehend Medical's
+// API operation DescribeSNOMEDCTInferenceJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
+//
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
+//
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribeSNOMEDCTInferenceJob
+func (c *ComprehendMedical) DescribeSNOMEDCTInferenceJob(input *DescribeSNOMEDCTInferenceJobInput) (*DescribeSNOMEDCTInferenceJobOutput, error) {
+	req, out := c.DescribeSNOMEDCTInferenceJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSNOMEDCTInferenceJobWithContext is the same as DescribeSNOMEDCTInferenceJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSNOMEDCTInferenceJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComprehendMedical) DescribeSNOMEDCTInferenceJobWithContext(ctx aws.Context, input *DescribeSNOMEDCTInferenceJobInput, opts ...request.Option) (*DescribeSNOMEDCTInferenceJobOutput, error) {
+	req, out := c.DescribeSNOMEDCTInferenceJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDetectEntities = "DetectEntities"
 
 // DetectEntitiesRequest generates a "aws/request.Request" representing the
@@ -400,14 +493,13 @@ const opDetectEntities = "DetectEntities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DetectEntitiesRequest method.
+//	req, resp := client.DetectEntitiesRequest(params)
 //
-//    // Example sending a request using the DetectEntitiesRequest method.
-//    req, resp := client.DetectEntitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DetectEntities
 //
@@ -438,7 +530,7 @@ func (c *ComprehendMedical) DetectEntitiesRequest(input *DetectEntitiesInput) (r
 //
 // Inspects the clinical text for a variety of medical entities and returns
 // specific information about them such as entity category, location, and confidence
-// score on that information .
+// score on that information.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -448,29 +540,30 @@ func (c *ComprehendMedical) DetectEntitiesRequest(input *DetectEntitiesInput) (r
 // API operation DetectEntities for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ServiceUnavailableException
-//   The Amazon Comprehend Medical service is temporarily unavailable. Please
-//   wait and then retry your request.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - ServiceUnavailableException
+//     The Amazon Comprehend Medical service is temporarily unavailable. Please
+//     wait and then retry your request.
 //
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InvalidEncodingException
-//   The input text was not in valid UTF-8 character encoding. Check your text
-//   then retry your request.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * TextSizeLimitExceededException
-//   The size of the text you submitted exceeds the size limit. Reduce the size
-//   of the text or use a smaller document and then retry your request.
+//   - InvalidEncodingException
+//     The input text was not in valid UTF-8 character encoding. Check your text
+//     then retry your request.
+//
+//   - TextSizeLimitExceededException
+//     The size of the text you submitted exceeds the size limit. Reduce the size
+//     of the text or use a smaller document and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DetectEntities
 //
@@ -514,14 +607,13 @@ const opDetectEntitiesV2 = "DetectEntitiesV2"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DetectEntitiesV2Request method.
+//	req, resp := client.DetectEntitiesV2Request(params)
 //
-//    // Example sending a request using the DetectEntitiesV2Request method.
-//    req, resp := client.DetectEntitiesV2Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DetectEntitiesV2
 func (c *ComprehendMedical) DetectEntitiesV2Request(input *DetectEntitiesV2Input) (req *request.Request, output *DetectEntitiesV2Output) {
@@ -563,29 +655,30 @@ func (c *ComprehendMedical) DetectEntitiesV2Request(input *DetectEntitiesV2Input
 // API operation DetectEntitiesV2 for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ServiceUnavailableException
-//   The Amazon Comprehend Medical service is temporarily unavailable. Please
-//   wait and then retry your request.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - ServiceUnavailableException
+//     The Amazon Comprehend Medical service is temporarily unavailable. Please
+//     wait and then retry your request.
 //
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InvalidEncodingException
-//   The input text was not in valid UTF-8 character encoding. Check your text
-//   then retry your request.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * TextSizeLimitExceededException
-//   The size of the text you submitted exceeds the size limit. Reduce the size
-//   of the text or use a smaller document and then retry your request.
+//   - InvalidEncodingException
+//     The input text was not in valid UTF-8 character encoding. Check your text
+//     then retry your request.
+//
+//   - TextSizeLimitExceededException
+//     The size of the text you submitted exceeds the size limit. Reduce the size
+//     of the text or use a smaller document and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DetectEntitiesV2
 func (c *ComprehendMedical) DetectEntitiesV2(input *DetectEntitiesV2Input) (*DetectEntitiesV2Output, error) {
@@ -625,14 +718,13 @@ const opDetectPHI = "DetectPHI"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DetectPHIRequest method.
+//	req, resp := client.DetectPHIRequest(params)
 //
-//    // Example sending a request using the DetectPHIRequest method.
-//    req, resp := client.DetectPHIRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DetectPHI
 func (c *ComprehendMedical) DetectPHIRequest(input *DetectPHIInput) (req *request.Request, output *DetectPHIOutput) {
@@ -666,29 +758,30 @@ func (c *ComprehendMedical) DetectPHIRequest(input *DetectPHIInput) (req *reques
 // API operation DetectPHI for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ServiceUnavailableException
-//   The Amazon Comprehend Medical service is temporarily unavailable. Please
-//   wait and then retry your request.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - ServiceUnavailableException
+//     The Amazon Comprehend Medical service is temporarily unavailable. Please
+//     wait and then retry your request.
 //
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InvalidEncodingException
-//   The input text was not in valid UTF-8 character encoding. Check your text
-//   then retry your request.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * TextSizeLimitExceededException
-//   The size of the text you submitted exceeds the size limit. Reduce the size
-//   of the text or use a smaller document and then retry your request.
+//   - InvalidEncodingException
+//     The input text was not in valid UTF-8 character encoding. Check your text
+//     then retry your request.
+//
+//   - TextSizeLimitExceededException
+//     The size of the text you submitted exceeds the size limit. Reduce the size
+//     of the text or use a smaller document and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DetectPHI
 func (c *ComprehendMedical) DetectPHI(input *DetectPHIInput) (*DetectPHIOutput, error) {
@@ -728,14 +821,13 @@ const opInferICD10CM = "InferICD10CM"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InferICD10CMRequest method.
+//	req, resp := client.InferICD10CMRequest(params)
 //
-//    // Example sending a request using the InferICD10CMRequest method.
-//    req, resp := client.InferICD10CMRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferICD10CM
 func (c *ComprehendMedical) InferICD10CMRequest(input *InferICD10CMInput) (req *request.Request, output *InferICD10CMOutput) {
@@ -769,29 +861,30 @@ func (c *ComprehendMedical) InferICD10CMRequest(input *InferICD10CMInput) (req *
 // API operation InferICD10CM for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ServiceUnavailableException
-//   The Amazon Comprehend Medical service is temporarily unavailable. Please
-//   wait and then retry your request.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - ServiceUnavailableException
+//     The Amazon Comprehend Medical service is temporarily unavailable. Please
+//     wait and then retry your request.
 //
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InvalidEncodingException
-//   The input text was not in valid UTF-8 character encoding. Check your text
-//   then retry your request.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * TextSizeLimitExceededException
-//   The size of the text you submitted exceeds the size limit. Reduce the size
-//   of the text or use a smaller document and then retry your request.
+//   - InvalidEncodingException
+//     The input text was not in valid UTF-8 character encoding. Check your text
+//     then retry your request.
+//
+//   - TextSizeLimitExceededException
+//     The size of the text you submitted exceeds the size limit. Reduce the size
+//     of the text or use a smaller document and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferICD10CM
 func (c *ComprehendMedical) InferICD10CM(input *InferICD10CMInput) (*InferICD10CMOutput, error) {
@@ -831,14 +924,13 @@ const opInferRxNorm = "InferRxNorm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InferRxNormRequest method.
+//	req, resp := client.InferRxNormRequest(params)
 //
-//    // Example sending a request using the InferRxNormRequest method.
-//    req, resp := client.InferRxNormRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferRxNorm
 func (c *ComprehendMedical) InferRxNormRequest(input *InferRxNormInput) (req *request.Request, output *InferRxNormOutput) {
@@ -872,29 +964,30 @@ func (c *ComprehendMedical) InferRxNormRequest(input *InferRxNormInput) (req *re
 // API operation InferRxNorm for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ServiceUnavailableException
-//   The Amazon Comprehend Medical service is temporarily unavailable. Please
-//   wait and then retry your request.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - ServiceUnavailableException
+//     The Amazon Comprehend Medical service is temporarily unavailable. Please
+//     wait and then retry your request.
 //
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InvalidEncodingException
-//   The input text was not in valid UTF-8 character encoding. Check your text
-//   then retry your request.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * TextSizeLimitExceededException
-//   The size of the text you submitted exceeds the size limit. Reduce the size
-//   of the text or use a smaller document and then retry your request.
+//   - InvalidEncodingException
+//     The input text was not in valid UTF-8 character encoding. Check your text
+//     then retry your request.
+//
+//   - TextSizeLimitExceededException
+//     The size of the text you submitted exceeds the size limit. Reduce the size
+//     of the text or use a smaller document and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferRxNorm
 func (c *ComprehendMedical) InferRxNorm(input *InferRxNormInput) (*InferRxNormOutput, error) {
@@ -918,6 +1011,108 @@ func (c *ComprehendMedical) InferRxNormWithContext(ctx aws.Context, input *Infer
 	return out, req.Send()
 }
 
+const opInferSNOMEDCT = "InferSNOMEDCT"
+
+// InferSNOMEDCTRequest generates a "aws/request.Request" representing the
+// client's request for the InferSNOMEDCT operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InferSNOMEDCT for more information on using the InferSNOMEDCT
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the InferSNOMEDCTRequest method.
+//	req, resp := client.InferSNOMEDCTRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferSNOMEDCT
+func (c *ComprehendMedical) InferSNOMEDCTRequest(input *InferSNOMEDCTInput) (req *request.Request, output *InferSNOMEDCTOutput) {
+	op := &request.Operation{
+		Name:       opInferSNOMEDCT,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &InferSNOMEDCTInput{}
+	}
+
+	output = &InferSNOMEDCTOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// InferSNOMEDCT API operation for AWS Comprehend Medical.
+//
+// InferSNOMEDCT detects possible medical concepts as entities and links them
+// to codes from the Systematized Nomenclature of Medicine, Clinical Terms (SNOMED-CT)
+// ontology
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Comprehend Medical's
+// API operation InferSNOMEDCT for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ServiceUnavailableException
+//     The Amazon Comprehend Medical service is temporarily unavailable. Please
+//     wait and then retry your request.
+//
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
+//
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
+//
+//   - InvalidEncodingException
+//     The input text was not in valid UTF-8 character encoding. Check your text
+//     then retry your request.
+//
+//   - TextSizeLimitExceededException
+//     The size of the text you submitted exceeds the size limit. Reduce the size
+//     of the text or use a smaller document and then retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferSNOMEDCT
+func (c *ComprehendMedical) InferSNOMEDCT(input *InferSNOMEDCTInput) (*InferSNOMEDCTOutput, error) {
+	req, out := c.InferSNOMEDCTRequest(input)
+	return out, req.Send()
+}
+
+// InferSNOMEDCTWithContext is the same as InferSNOMEDCT with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InferSNOMEDCT for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComprehendMedical) InferSNOMEDCTWithContext(ctx aws.Context, input *InferSNOMEDCTInput, opts ...request.Option) (*InferSNOMEDCTOutput, error) {
+	req, out := c.InferSNOMEDCTRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListEntitiesDetectionV2Jobs = "ListEntitiesDetectionV2Jobs"
 
 // ListEntitiesDetectionV2JobsRequest generates a "aws/request.Request" representing the
@@ -934,14 +1129,13 @@ const opListEntitiesDetectionV2Jobs = "ListEntitiesDetectionV2Jobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEntitiesDetectionV2JobsRequest method.
+//	req, resp := client.ListEntitiesDetectionV2JobsRequest(params)
 //
-//    // Example sending a request using the ListEntitiesDetectionV2JobsRequest method.
-//    req, resp := client.ListEntitiesDetectionV2JobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListEntitiesDetectionV2Jobs
 func (c *ComprehendMedical) ListEntitiesDetectionV2JobsRequest(input *ListEntitiesDetectionV2JobsInput) (req *request.Request, output *ListEntitiesDetectionV2JobsOutput) {
@@ -972,21 +1166,22 @@ func (c *ComprehendMedical) ListEntitiesDetectionV2JobsRequest(input *ListEntiti
 // API operation ListEntitiesDetectionV2Jobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * ValidationException
-//   The filter that you specified for the operation is invalid. Check the filter
-//   values that you entered and try your request again.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - ValidationException
+//     The filter that you specified for the operation is invalid. Check the filter
+//     values that you entered and try your request again.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListEntitiesDetectionV2Jobs
 func (c *ComprehendMedical) ListEntitiesDetectionV2Jobs(input *ListEntitiesDetectionV2JobsInput) (*ListEntitiesDetectionV2JobsOutput, error) {
@@ -1026,14 +1221,13 @@ const opListICD10CMInferenceJobs = "ListICD10CMInferenceJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListICD10CMInferenceJobsRequest method.
+//	req, resp := client.ListICD10CMInferenceJobsRequest(params)
 //
-//    // Example sending a request using the ListICD10CMInferenceJobsRequest method.
-//    req, resp := client.ListICD10CMInferenceJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListICD10CMInferenceJobs
 func (c *ComprehendMedical) ListICD10CMInferenceJobsRequest(input *ListICD10CMInferenceJobsInput) (req *request.Request, output *ListICD10CMInferenceJobsOutput) {
@@ -1064,21 +1258,22 @@ func (c *ComprehendMedical) ListICD10CMInferenceJobsRequest(input *ListICD10CMIn
 // API operation ListICD10CMInferenceJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * ValidationException
-//   The filter that you specified for the operation is invalid. Check the filter
-//   values that you entered and try your request again.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - ValidationException
+//     The filter that you specified for the operation is invalid. Check the filter
+//     values that you entered and try your request again.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListICD10CMInferenceJobs
 func (c *ComprehendMedical) ListICD10CMInferenceJobs(input *ListICD10CMInferenceJobsInput) (*ListICD10CMInferenceJobsOutput, error) {
@@ -1118,14 +1313,13 @@ const opListPHIDetectionJobs = "ListPHIDetectionJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPHIDetectionJobsRequest method.
+//	req, resp := client.ListPHIDetectionJobsRequest(params)
 //
-//    // Example sending a request using the ListPHIDetectionJobsRequest method.
-//    req, resp := client.ListPHIDetectionJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListPHIDetectionJobs
 func (c *ComprehendMedical) ListPHIDetectionJobsRequest(input *ListPHIDetectionJobsInput) (req *request.Request, output *ListPHIDetectionJobsOutput) {
@@ -1146,8 +1340,8 @@ func (c *ComprehendMedical) ListPHIDetectionJobsRequest(input *ListPHIDetectionJ
 
 // ListPHIDetectionJobs API operation for AWS Comprehend Medical.
 //
-// Gets a list of protected health information (PHI) detection jobs that you
-// have submitted.
+// Gets a list of protected health information (PHI) detection jobs you have
+// submitted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1157,21 +1351,22 @@ func (c *ComprehendMedical) ListPHIDetectionJobsRequest(input *ListPHIDetectionJ
 // API operation ListPHIDetectionJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * ValidationException
-//   The filter that you specified for the operation is invalid. Check the filter
-//   values that you entered and try your request again.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - ValidationException
+//     The filter that you specified for the operation is invalid. Check the filter
+//     values that you entered and try your request again.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListPHIDetectionJobs
 func (c *ComprehendMedical) ListPHIDetectionJobs(input *ListPHIDetectionJobsInput) (*ListPHIDetectionJobsOutput, error) {
@@ -1211,14 +1406,13 @@ const opListRxNormInferenceJobs = "ListRxNormInferenceJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRxNormInferenceJobsRequest method.
+//	req, resp := client.ListRxNormInferenceJobsRequest(params)
 //
-//    // Example sending a request using the ListRxNormInferenceJobsRequest method.
-//    req, resp := client.ListRxNormInferenceJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListRxNormInferenceJobs
 func (c *ComprehendMedical) ListRxNormInferenceJobsRequest(input *ListRxNormInferenceJobsInput) (req *request.Request, output *ListRxNormInferenceJobsOutput) {
@@ -1249,21 +1443,22 @@ func (c *ComprehendMedical) ListRxNormInferenceJobsRequest(input *ListRxNormInfe
 // API operation ListRxNormInferenceJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * ValidationException
-//   The filter that you specified for the operation is invalid. Check the filter
-//   values that you entered and try your request again.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - ValidationException
+//     The filter that you specified for the operation is invalid. Check the filter
+//     values that you entered and try your request again.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListRxNormInferenceJobs
 func (c *ComprehendMedical) ListRxNormInferenceJobs(input *ListRxNormInferenceJobsInput) (*ListRxNormInferenceJobsOutput, error) {
@@ -1287,6 +1482,98 @@ func (c *ComprehendMedical) ListRxNormInferenceJobsWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opListSNOMEDCTInferenceJobs = "ListSNOMEDCTInferenceJobs"
+
+// ListSNOMEDCTInferenceJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSNOMEDCTInferenceJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSNOMEDCTInferenceJobs for more information on using the ListSNOMEDCTInferenceJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSNOMEDCTInferenceJobsRequest method.
+//	req, resp := client.ListSNOMEDCTInferenceJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListSNOMEDCTInferenceJobs
+func (c *ComprehendMedical) ListSNOMEDCTInferenceJobsRequest(input *ListSNOMEDCTInferenceJobsInput) (req *request.Request, output *ListSNOMEDCTInferenceJobsOutput) {
+	op := &request.Operation{
+		Name:       opListSNOMEDCTInferenceJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListSNOMEDCTInferenceJobsInput{}
+	}
+
+	output = &ListSNOMEDCTInferenceJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSNOMEDCTInferenceJobs API operation for AWS Comprehend Medical.
+//
+// Gets a list of InferSNOMEDCT jobs a user has submitted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Comprehend Medical's
+// API operation ListSNOMEDCTInferenceJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
+//
+//   - ValidationException
+//     The filter that you specified for the operation is invalid. Check the filter
+//     values that you entered and try your request again.
+//
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListSNOMEDCTInferenceJobs
+func (c *ComprehendMedical) ListSNOMEDCTInferenceJobs(input *ListSNOMEDCTInferenceJobsInput) (*ListSNOMEDCTInferenceJobsOutput, error) {
+	req, out := c.ListSNOMEDCTInferenceJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListSNOMEDCTInferenceJobsWithContext is the same as ListSNOMEDCTInferenceJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSNOMEDCTInferenceJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComprehendMedical) ListSNOMEDCTInferenceJobsWithContext(ctx aws.Context, input *ListSNOMEDCTInferenceJobsInput, opts ...request.Option) (*ListSNOMEDCTInferenceJobsOutput, error) {
+	req, out := c.ListSNOMEDCTInferenceJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartEntitiesDetectionV2Job = "StartEntitiesDetectionV2Job"
 
 // StartEntitiesDetectionV2JobRequest generates a "aws/request.Request" representing the
@@ -1303,14 +1590,13 @@ const opStartEntitiesDetectionV2Job = "StartEntitiesDetectionV2Job"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartEntitiesDetectionV2JobRequest method.
+//	req, resp := client.StartEntitiesDetectionV2JobRequest(params)
 //
-//    // Example sending a request using the StartEntitiesDetectionV2JobRequest method.
-//    req, resp := client.StartEntitiesDetectionV2JobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartEntitiesDetectionV2Job
 func (c *ComprehendMedical) StartEntitiesDetectionV2JobRequest(input *StartEntitiesDetectionV2JobInput) (req *request.Request, output *StartEntitiesDetectionV2JobOutput) {
@@ -1343,21 +1629,22 @@ func (c *ComprehendMedical) StartEntitiesDetectionV2JobRequest(input *StartEntit
 // API operation StartEntitiesDetectionV2Job for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartEntitiesDetectionV2Job
 func (c *ComprehendMedical) StartEntitiesDetectionV2Job(input *StartEntitiesDetectionV2JobInput) (*StartEntitiesDetectionV2JobOutput, error) {
@@ -1397,14 +1684,13 @@ const opStartICD10CMInferenceJob = "StartICD10CMInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartICD10CMInferenceJobRequest method.
+//	req, resp := client.StartICD10CMInferenceJobRequest(params)
 //
-//    // Example sending a request using the StartICD10CMInferenceJobRequest method.
-//    req, resp := client.StartICD10CMInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartICD10CMInferenceJob
 func (c *ComprehendMedical) StartICD10CMInferenceJobRequest(input *StartICD10CMInferenceJobInput) (req *request.Request, output *StartICD10CMInferenceJobOutput) {
@@ -1437,21 +1723,22 @@ func (c *ComprehendMedical) StartICD10CMInferenceJobRequest(input *StartICD10CMI
 // API operation StartICD10CMInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartICD10CMInferenceJob
 func (c *ComprehendMedical) StartICD10CMInferenceJob(input *StartICD10CMInferenceJobInput) (*StartICD10CMInferenceJobOutput, error) {
@@ -1491,14 +1778,13 @@ const opStartPHIDetectionJob = "StartPHIDetectionJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartPHIDetectionJobRequest method.
+//	req, resp := client.StartPHIDetectionJobRequest(params)
 //
-//    // Example sending a request using the StartPHIDetectionJobRequest method.
-//    req, resp := client.StartPHIDetectionJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartPHIDetectionJob
 func (c *ComprehendMedical) StartPHIDetectionJobRequest(input *StartPHIDetectionJobInput) (req *request.Request, output *StartPHIDetectionJobOutput) {
@@ -1530,21 +1816,22 @@ func (c *ComprehendMedical) StartPHIDetectionJobRequest(input *StartPHIDetection
 // API operation StartPHIDetectionJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartPHIDetectionJob
 func (c *ComprehendMedical) StartPHIDetectionJob(input *StartPHIDetectionJobInput) (*StartPHIDetectionJobOutput, error) {
@@ -1584,14 +1871,13 @@ const opStartRxNormInferenceJob = "StartRxNormInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartRxNormInferenceJobRequest method.
+//	req, resp := client.StartRxNormInferenceJobRequest(params)
 //
-//    // Example sending a request using the StartRxNormInferenceJobRequest method.
-//    req, resp := client.StartRxNormInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartRxNormInferenceJob
 func (c *ComprehendMedical) StartRxNormInferenceJobRequest(input *StartRxNormInferenceJobInput) (req *request.Request, output *StartRxNormInferenceJobOutput) {
@@ -1624,21 +1910,22 @@ func (c *ComprehendMedical) StartRxNormInferenceJobRequest(input *StartRxNormInf
 // API operation StartRxNormInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * TooManyRequestsException
-//   You have made too many requests within a short period of time. Wait for a
-//   short time and then try your request again. Contact customer support for
-//   more information about a service limit increase.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartRxNormInferenceJob
 func (c *ComprehendMedical) StartRxNormInferenceJob(input *StartRxNormInferenceJobInput) (*StartRxNormInferenceJobOutput, error) {
@@ -1662,6 +1949,100 @@ func (c *ComprehendMedical) StartRxNormInferenceJobWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opStartSNOMEDCTInferenceJob = "StartSNOMEDCTInferenceJob"
+
+// StartSNOMEDCTInferenceJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartSNOMEDCTInferenceJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSNOMEDCTInferenceJob for more information on using the StartSNOMEDCTInferenceJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartSNOMEDCTInferenceJobRequest method.
+//	req, resp := client.StartSNOMEDCTInferenceJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartSNOMEDCTInferenceJob
+func (c *ComprehendMedical) StartSNOMEDCTInferenceJobRequest(input *StartSNOMEDCTInferenceJobInput) (req *request.Request, output *StartSNOMEDCTInferenceJobOutput) {
+	op := &request.Operation{
+		Name:       opStartSNOMEDCTInferenceJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartSNOMEDCTInferenceJobInput{}
+	}
+
+	output = &StartSNOMEDCTInferenceJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSNOMEDCTInferenceJob API operation for AWS Comprehend Medical.
+//
+// Starts an asynchronous job to detect medical concepts and link them to the
+// SNOMED-CT ontology. Use the DescribeSNOMEDCTInferenceJob operation to track
+// the status of a job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Comprehend Medical's
+// API operation StartSNOMEDCTInferenceJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
+//
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
+//
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartSNOMEDCTInferenceJob
+func (c *ComprehendMedical) StartSNOMEDCTInferenceJob(input *StartSNOMEDCTInferenceJobInput) (*StartSNOMEDCTInferenceJobOutput, error) {
+	req, out := c.StartSNOMEDCTInferenceJobRequest(input)
+	return out, req.Send()
+}
+
+// StartSNOMEDCTInferenceJobWithContext is the same as StartSNOMEDCTInferenceJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSNOMEDCTInferenceJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComprehendMedical) StartSNOMEDCTInferenceJobWithContext(ctx aws.Context, input *StartSNOMEDCTInferenceJobInput, opts ...request.Option) (*StartSNOMEDCTInferenceJobOutput, error) {
+	req, out := c.StartSNOMEDCTInferenceJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopEntitiesDetectionV2Job = "StopEntitiesDetectionV2Job"
 
 // StopEntitiesDetectionV2JobRequest generates a "aws/request.Request" representing the
@@ -1678,14 +2059,13 @@ const opStopEntitiesDetectionV2Job = "StopEntitiesDetectionV2Job"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopEntitiesDetectionV2JobRequest method.
+//	req, resp := client.StopEntitiesDetectionV2JobRequest(params)
 //
-//    // Example sending a request using the StopEntitiesDetectionV2JobRequest method.
-//    req, resp := client.StopEntitiesDetectionV2JobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopEntitiesDetectionV2Job
 func (c *ComprehendMedical) StopEntitiesDetectionV2JobRequest(input *StopEntitiesDetectionV2JobInput) (req *request.Request, output *StopEntitiesDetectionV2JobOutput) {
@@ -1716,16 +2096,17 @@ func (c *ComprehendMedical) StopEntitiesDetectionV2JobRequest(input *StopEntitie
 // API operation StopEntitiesDetectionV2Job for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopEntitiesDetectionV2Job
 func (c *ComprehendMedical) StopEntitiesDetectionV2Job(input *StopEntitiesDetectionV2JobInput) (*StopEntitiesDetectionV2JobOutput, error) {
@@ -1765,14 +2146,13 @@ const opStopICD10CMInferenceJob = "StopICD10CMInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopICD10CMInferenceJobRequest method.
+//	req, resp := client.StopICD10CMInferenceJobRequest(params)
 //
-//    // Example sending a request using the StopICD10CMInferenceJobRequest method.
-//    req, resp := client.StopICD10CMInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopICD10CMInferenceJob
 func (c *ComprehendMedical) StopICD10CMInferenceJobRequest(input *StopICD10CMInferenceJobInput) (req *request.Request, output *StopICD10CMInferenceJobOutput) {
@@ -1803,16 +2183,17 @@ func (c *ComprehendMedical) StopICD10CMInferenceJobRequest(input *StopICD10CMInf
 // API operation StopICD10CMInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopICD10CMInferenceJob
 func (c *ComprehendMedical) StopICD10CMInferenceJob(input *StopICD10CMInferenceJobInput) (*StopICD10CMInferenceJobOutput, error) {
@@ -1852,14 +2233,13 @@ const opStopPHIDetectionJob = "StopPHIDetectionJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopPHIDetectionJobRequest method.
+//	req, resp := client.StopPHIDetectionJobRequest(params)
 //
-//    // Example sending a request using the StopPHIDetectionJobRequest method.
-//    req, resp := client.StopPHIDetectionJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopPHIDetectionJob
 func (c *ComprehendMedical) StopPHIDetectionJobRequest(input *StopPHIDetectionJobInput) (req *request.Request, output *StopPHIDetectionJobOutput) {
@@ -1890,16 +2270,17 @@ func (c *ComprehendMedical) StopPHIDetectionJobRequest(input *StopPHIDetectionJo
 // API operation StopPHIDetectionJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopPHIDetectionJob
 func (c *ComprehendMedical) StopPHIDetectionJob(input *StopPHIDetectionJobInput) (*StopPHIDetectionJobOutput, error) {
@@ -1939,14 +2320,13 @@ const opStopRxNormInferenceJob = "StopRxNormInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopRxNormInferenceJobRequest method.
+//	req, resp := client.StopRxNormInferenceJobRequest(params)
 //
-//    // Example sending a request using the StopRxNormInferenceJobRequest method.
-//    req, resp := client.StopRxNormInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopRxNormInferenceJob
 func (c *ComprehendMedical) StopRxNormInferenceJobRequest(input *StopRxNormInferenceJobInput) (req *request.Request, output *StopRxNormInferenceJobOutput) {
@@ -1977,16 +2357,17 @@ func (c *ComprehendMedical) StopRxNormInferenceJobRequest(input *StopRxNormInfer
 // API operation StopRxNormInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request that you made is invalid. Check your request to determine why
-//   it's invalid and then retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource identified by the specified Amazon Resource Name (ARN) was not
-//   found. Check the ARN and try your request again.
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
 //
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopRxNormInferenceJob
 func (c *ComprehendMedical) StopRxNormInferenceJob(input *StopRxNormInferenceJobInput) (*StopRxNormInferenceJobOutput, error) {
@@ -2005,6 +2386,98 @@ func (c *ComprehendMedical) StopRxNormInferenceJob(input *StopRxNormInferenceJob
 // for more information on using Contexts.
 func (c *ComprehendMedical) StopRxNormInferenceJobWithContext(ctx aws.Context, input *StopRxNormInferenceJobInput, opts ...request.Option) (*StopRxNormInferenceJobOutput, error) {
 	req, out := c.StopRxNormInferenceJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopSNOMEDCTInferenceJob = "StopSNOMEDCTInferenceJob"
+
+// StopSNOMEDCTInferenceJobRequest generates a "aws/request.Request" representing the
+// client's request for the StopSNOMEDCTInferenceJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopSNOMEDCTInferenceJob for more information on using the StopSNOMEDCTInferenceJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopSNOMEDCTInferenceJobRequest method.
+//	req, resp := client.StopSNOMEDCTInferenceJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopSNOMEDCTInferenceJob
+func (c *ComprehendMedical) StopSNOMEDCTInferenceJobRequest(input *StopSNOMEDCTInferenceJobInput) (req *request.Request, output *StopSNOMEDCTInferenceJobOutput) {
+	op := &request.Operation{
+		Name:       opStopSNOMEDCTInferenceJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopSNOMEDCTInferenceJobInput{}
+	}
+
+	output = &StopSNOMEDCTInferenceJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopSNOMEDCTInferenceJob API operation for AWS Comprehend Medical.
+//
+// Stops an InferSNOMEDCT inference job in progress.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Comprehend Medical's
+// API operation StopSNOMEDCTInferenceJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request that you made is invalid. Check your request to determine why
+//     it's invalid and then retry the request.
+//
+//   - ResourceNotFoundException
+//     The resource identified by the specified Amazon Resource Name (ARN) was not
+//     found. Check the ARN and try your request again.
+//
+//   - TooManyRequestsException
+//     You have made too many requests within a short period of time. Wait for a
+//     short time and then try your request again. Contact customer support for
+//     more information about a service limit increase.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopSNOMEDCTInferenceJob
+func (c *ComprehendMedical) StopSNOMEDCTInferenceJob(input *StopSNOMEDCTInferenceJobInput) (*StopSNOMEDCTInferenceJobOutput, error) {
+	req, out := c.StopSNOMEDCTInferenceJobRequest(input)
+	return out, req.Send()
+}
+
+// StopSNOMEDCTInferenceJobWithContext is the same as StopSNOMEDCTInferenceJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopSNOMEDCTInferenceJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComprehendMedical) StopSNOMEDCTInferenceJobWithContext(ctx aws.Context, input *StopSNOMEDCTInferenceJobInput, opts ...request.Option) (*StopSNOMEDCTInferenceJobOutput, error) {
+	req, out := c.StopSNOMEDCTInferenceJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2054,12 +2527,20 @@ type Attribute struct {
 	Type *string `type:"string" enum:"EntitySubType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Attribute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Attribute) GoString() string {
 	return s.String()
 }
@@ -2124,6 +2605,39 @@ func (s *Attribute) SetType(v string) *Attribute {
 	return s
 }
 
+// The number of characters in the input text to be analyzed.
+type Characters struct {
+	_ struct{} `type:"structure"`
+
+	// The number of characters present in the input text document as processed
+	// by Amazon Comprehend Medical.
+	OriginalTextCharacters *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Characters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Characters) GoString() string {
+	return s.String()
+}
+
+// SetOriginalTextCharacters sets the OriginalTextCharacters field's value.
+func (s *Characters) SetOriginalTextCharacters(v int64) *Characters {
+	s.OriginalTextCharacters = &v
+	return s
+}
+
 // Provides information for filtering a list of detection jobs.
 type ComprehendMedicalAsyncJobFilter struct {
 	_ struct{} `type:"structure"`
@@ -2146,12 +2660,20 @@ type ComprehendMedicalAsyncJobFilter struct {
 	SubmitTimeBefore *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComprehendMedicalAsyncJobFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComprehendMedicalAsyncJobFilter) GoString() string {
 	return s.String()
 }
@@ -2249,12 +2771,20 @@ type ComprehendMedicalAsyncJobProperties struct {
 	SubmitTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComprehendMedicalAsyncJobProperties) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComprehendMedicalAsyncJobProperties) GoString() string {
 	return s.String()
 }
@@ -2353,12 +2883,20 @@ type DescribeEntitiesDetectionV2JobInput struct {
 	JobId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEntitiesDetectionV2JobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEntitiesDetectionV2JobInput) GoString() string {
 	return s.String()
 }
@@ -2392,12 +2930,20 @@ type DescribeEntitiesDetectionV2JobOutput struct {
 	ComprehendMedicalAsyncJobProperties *ComprehendMedicalAsyncJobProperties `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEntitiesDetectionV2JobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEntitiesDetectionV2JobOutput) GoString() string {
 	return s.String()
 }
@@ -2418,12 +2964,20 @@ type DescribeICD10CMInferenceJobInput struct {
 	JobId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeICD10CMInferenceJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeICD10CMInferenceJobInput) GoString() string {
 	return s.String()
 }
@@ -2457,12 +3011,20 @@ type DescribeICD10CMInferenceJobOutput struct {
 	ComprehendMedicalAsyncJobProperties *ComprehendMedicalAsyncJobProperties `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeICD10CMInferenceJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeICD10CMInferenceJobOutput) GoString() string {
 	return s.String()
 }
@@ -2483,12 +3045,20 @@ type DescribePHIDetectionJobInput struct {
 	JobId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePHIDetectionJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePHIDetectionJobInput) GoString() string {
 	return s.String()
 }
@@ -2522,12 +3092,20 @@ type DescribePHIDetectionJobOutput struct {
 	ComprehendMedicalAsyncJobProperties *ComprehendMedicalAsyncJobProperties `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePHIDetectionJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePHIDetectionJobOutput) GoString() string {
 	return s.String()
 }
@@ -2548,12 +3126,20 @@ type DescribeRxNormInferenceJobInput struct {
 	JobId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRxNormInferenceJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRxNormInferenceJobInput) GoString() string {
 	return s.String()
 }
@@ -2587,12 +3173,20 @@ type DescribeRxNormInferenceJobOutput struct {
 	ComprehendMedicalAsyncJobProperties *ComprehendMedicalAsyncJobProperties `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRxNormInferenceJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRxNormInferenceJobOutput) GoString() string {
 	return s.String()
 }
@@ -2603,22 +3197,110 @@ func (s *DescribeRxNormInferenceJobOutput) SetComprehendMedicalAsyncJobPropertie
 	return s
 }
 
+type DescribeSNOMEDCTInferenceJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier that Amazon Comprehend Medical generated for the job. The
+	// StartSNOMEDCTInferenceJob operation returns this identifier in its response.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSNOMEDCTInferenceJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSNOMEDCTInferenceJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSNOMEDCTInferenceJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSNOMEDCTInferenceJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DescribeSNOMEDCTInferenceJobInput) SetJobId(v string) *DescribeSNOMEDCTInferenceJobInput {
+	s.JobId = &v
+	return s
+}
+
+type DescribeSNOMEDCTInferenceJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about a detection job.
+	ComprehendMedicalAsyncJobProperties *ComprehendMedicalAsyncJobProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSNOMEDCTInferenceJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSNOMEDCTInferenceJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetComprehendMedicalAsyncJobProperties sets the ComprehendMedicalAsyncJobProperties field's value.
+func (s *DescribeSNOMEDCTInferenceJobOutput) SetComprehendMedicalAsyncJobProperties(v *ComprehendMedicalAsyncJobProperties) *DescribeSNOMEDCTInferenceJobOutput {
+	s.ComprehendMedicalAsyncJobProperties = v
+	return s
+}
+
 type DetectEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A UTF-8 text string containing the clinical content being examined for entities.
-	// Each string must contain fewer than 20,000 bytes of characters.
 	//
 	// Text is a required field
 	Text *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectEntitiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectEntitiesInput) GoString() string {
 	return s.String()
 }
@@ -2673,12 +3355,20 @@ type DetectEntitiesOutput struct {
 	UnmappedAttributes []*UnmappedAttribute `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectEntitiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectEntitiesOutput) GoString() string {
 	return s.String()
 }
@@ -2711,18 +3401,25 @@ type DetectEntitiesV2Input struct {
 	_ struct{} `type:"structure"`
 
 	// A UTF-8 string containing the clinical content being examined for entities.
-	// Each string must contain fewer than 20,000 bytes of characters.
 	//
 	// Text is a required field
 	Text *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectEntitiesV2Input) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectEntitiesV2Input) GoString() string {
 	return s.String()
 }
@@ -2776,12 +3473,20 @@ type DetectEntitiesV2Output struct {
 	UnmappedAttributes []*UnmappedAttribute `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectEntitiesV2Output) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectEntitiesV2Output) GoString() string {
 	return s.String()
 }
@@ -2814,18 +3519,26 @@ type DetectPHIInput struct {
 	_ struct{} `type:"structure"`
 
 	// A UTF-8 text string containing the clinical content being examined for PHI
-	// entities. Each string must contain fewer than 20,000 bytes of characters.
+	// entities.
 	//
 	// Text is a required field
 	Text *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectPHIInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectPHIInput) GoString() string {
 	return s.String()
 }
@@ -2875,12 +3588,20 @@ type DetectPHIOutput struct {
 	PaginationToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectPHIOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectPHIOutput) GoString() string {
 	return s.String()
 }
@@ -2939,12 +3660,20 @@ type Entity struct {
 	Type *string `type:"string" enum:"EntitySubType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Entity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Entity) GoString() string {
 	return s.String()
 }
@@ -3048,12 +3777,20 @@ type ICD10CMAttribute struct {
 	Type *string `type:"string" enum:"ICD10CMAttributeType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ICD10CMAttribute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ICD10CMAttribute) GoString() string {
 	return s.String()
 }
@@ -3135,12 +3872,20 @@ type ICD10CMConcept struct {
 	Score *float64 `type:"float"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ICD10CMConcept) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ICD10CMConcept) GoString() string {
 	return s.String()
 }
@@ -3212,12 +3957,20 @@ type ICD10CMEntity struct {
 	Type *string `type:"string" enum:"ICD10CMEntityType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ICD10CMEntity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ICD10CMEntity) GoString() string {
 	return s.String()
 }
@@ -3295,12 +4048,20 @@ type ICD10CMTrait struct {
 	Score *float64 `type:"float"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ICD10CMTrait) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ICD10CMTrait) GoString() string {
 	return s.String()
 }
@@ -3320,19 +4081,26 @@ func (s *ICD10CMTrait) SetScore(v float64) *ICD10CMTrait {
 type InferICD10CMInput struct {
 	_ struct{} `type:"structure"`
 
-	// The input text used for analysis. The input for InferICD10CM is a string
-	// from 1 to 10000 characters.
+	// The input text used for analysis.
 	//
 	// Text is a required field
 	Text *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InferICD10CMInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InferICD10CMInput) GoString() string {
 	return s.String()
 }
@@ -3379,12 +4147,20 @@ type InferICD10CMOutput struct {
 	PaginationToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InferICD10CMOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InferICD10CMOutput) GoString() string {
 	return s.String()
 }
@@ -3410,19 +4186,26 @@ func (s *InferICD10CMOutput) SetPaginationToken(v string) *InferICD10CMOutput {
 type InferRxNormInput struct {
 	_ struct{} `type:"structure"`
 
-	// The input text used for analysis. The input for InferRxNorm is a string from
-	// 1 to 10000 characters.
+	// The input text used for analysis.
 	//
 	// Text is a required field
 	Text *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InferRxNormInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InferRxNormInput) GoString() string {
 	return s.String()
 }
@@ -3469,12 +4252,20 @@ type InferRxNormOutput struct {
 	PaginationToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InferRxNormOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InferRxNormOutput) GoString() string {
 	return s.String()
 }
@@ -3497,6 +4288,132 @@ func (s *InferRxNormOutput) SetPaginationToken(v string) *InferRxNormOutput {
 	return s
 }
 
+type InferSNOMEDCTInput struct {
+	_ struct{} `type:"structure"`
+
+	// The input text to be analyzed using InferSNOMEDCT.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferSNOMEDCTInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferSNOMEDCTInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InferSNOMEDCTInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InferSNOMEDCTInput"}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetText sets the Text field's value.
+func (s *InferSNOMEDCTInput) SetText(v string) *InferSNOMEDCTInput {
+	s.Text = &v
+	return s
+}
+
+type InferSNOMEDCTOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of characters in the input request documentation.
+	Characters *Characters `type:"structure"`
+
+	// The collection of medical concept entities extracted from the input text
+	// and their associated information. For each entity, the response provides
+	// the entity text, the entity category, where the entity text begins and ends,
+	// and the level of confidence that Amazon Comprehend Medical has in the detection
+	// and analysis. Attributes and traits of the entity are also returned.
+	//
+	// Entities is a required field
+	Entities []*SNOMEDCTEntity `type:"list" required:"true"`
+
+	// The version of the model used to analyze the documents, in the format n.n.n
+	// You can use this information to track the model used for a particular batch
+	// of documents.
+	ModelVersion *string `min:"1" type:"string"`
+
+	// If the result of the request is truncated, the pagination token can be used
+	// to fetch the next page of entities.
+	PaginationToken *string `min:"1" type:"string"`
+
+	// The details of the SNOMED-CT revision, including the edition, language, and
+	// version date.
+	SNOMEDCTDetails *SNOMEDCTDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferSNOMEDCTOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferSNOMEDCTOutput) GoString() string {
+	return s.String()
+}
+
+// SetCharacters sets the Characters field's value.
+func (s *InferSNOMEDCTOutput) SetCharacters(v *Characters) *InferSNOMEDCTOutput {
+	s.Characters = v
+	return s
+}
+
+// SetEntities sets the Entities field's value.
+func (s *InferSNOMEDCTOutput) SetEntities(v []*SNOMEDCTEntity) *InferSNOMEDCTOutput {
+	s.Entities = v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *InferSNOMEDCTOutput) SetModelVersion(v string) *InferSNOMEDCTOutput {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetPaginationToken sets the PaginationToken field's value.
+func (s *InferSNOMEDCTOutput) SetPaginationToken(v string) *InferSNOMEDCTOutput {
+	s.PaginationToken = &v
+	return s
+}
+
+// SetSNOMEDCTDetails sets the SNOMEDCTDetails field's value.
+func (s *InferSNOMEDCTOutput) SetSNOMEDCTDetails(v *SNOMEDCTDetails) *InferSNOMEDCTOutput {
+	s.SNOMEDCTDetails = v
+	return s
+}
+
 // The input properties for an entities detection job. This includes the name
 // of the S3 bucket and the path to the files to be analyzed.
 type InputDataConfig struct {
@@ -3505,9 +4422,6 @@ type InputDataConfig struct {
 	// The URI of the S3 bucket that contains the input data. The bucket must be
 	// in the same region as the API endpoint that you are calling.
 	//
-	// Each file in the document collection must be less than 40 KB. You can store
-	// a maximum of 30 GB in the bucket.
-	//
 	// S3Bucket is a required field
 	S3Bucket *string `min:"3" type:"string" required:"true"`
 
@@ -3515,12 +4429,20 @@ type InputDataConfig struct {
 	S3Key *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputDataConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputDataConfig) GoString() string {
 	return s.String()
 }
@@ -3561,12 +4483,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -3618,12 +4548,20 @@ type InvalidEncodingException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidEncodingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidEncodingException) GoString() string {
 	return s.String()
 }
@@ -3675,12 +4613,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -3738,12 +4684,20 @@ type ListEntitiesDetectionV2JobsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEntitiesDetectionV2JobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEntitiesDetectionV2JobsInput) GoString() string {
 	return s.String()
 }
@@ -3797,12 +4751,20 @@ type ListEntitiesDetectionV2JobsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEntitiesDetectionV2JobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEntitiesDetectionV2JobsOutput) GoString() string {
 	return s.String()
 }
@@ -3834,12 +4796,20 @@ type ListICD10CMInferenceJobsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListICD10CMInferenceJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListICD10CMInferenceJobsInput) GoString() string {
 	return s.String()
 }
@@ -3893,12 +4863,20 @@ type ListICD10CMInferenceJobsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListICD10CMInferenceJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListICD10CMInferenceJobsOutput) GoString() string {
 	return s.String()
 }
@@ -3930,12 +4908,20 @@ type ListPHIDetectionJobsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPHIDetectionJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPHIDetectionJobsInput) GoString() string {
 	return s.String()
 }
@@ -3989,12 +4975,20 @@ type ListPHIDetectionJobsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPHIDetectionJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPHIDetectionJobsOutput) GoString() string {
 	return s.String()
 }
@@ -4026,12 +5020,20 @@ type ListRxNormInferenceJobsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRxNormInferenceJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRxNormInferenceJobsInput) GoString() string {
 	return s.String()
 }
@@ -4085,12 +5087,20 @@ type ListRxNormInferenceJobsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRxNormInferenceJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRxNormInferenceJobsOutput) GoString() string {
 	return s.String()
 }
@@ -4103,6 +5113,116 @@ func (s *ListRxNormInferenceJobsOutput) SetComprehendMedicalAsyncJobPropertiesLi
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListRxNormInferenceJobsOutput) SetNextToken(v string) *ListRxNormInferenceJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSNOMEDCTInferenceJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information for filtering a list of detection jobs.
+	Filter *ComprehendMedicalAsyncJobFilter `type:"structure"`
+
+	// The maximum number of results to return in each page. The default is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of InferSNOMEDCT results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSNOMEDCTInferenceJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSNOMEDCTInferenceJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSNOMEDCTInferenceJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSNOMEDCTInferenceJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListSNOMEDCTInferenceJobsInput) SetFilter(v *ComprehendMedicalAsyncJobFilter) *ListSNOMEDCTInferenceJobsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSNOMEDCTInferenceJobsInput) SetMaxResults(v int64) *ListSNOMEDCTInferenceJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSNOMEDCTInferenceJobsInput) SetNextToken(v string) *ListSNOMEDCTInferenceJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSNOMEDCTInferenceJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list containing the properties of each job that is returned.
+	ComprehendMedicalAsyncJobPropertiesList []*ComprehendMedicalAsyncJobProperties `type:"list"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSNOMEDCTInferenceJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSNOMEDCTInferenceJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetComprehendMedicalAsyncJobPropertiesList sets the ComprehendMedicalAsyncJobPropertiesList field's value.
+func (s *ListSNOMEDCTInferenceJobsOutput) SetComprehendMedicalAsyncJobPropertiesList(v []*ComprehendMedicalAsyncJobProperties) *ListSNOMEDCTInferenceJobsOutput {
+	s.ComprehendMedicalAsyncJobPropertiesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSNOMEDCTInferenceJobsOutput) SetNextToken(v string) *ListSNOMEDCTInferenceJobsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -4125,12 +5245,20 @@ type OutputDataConfig struct {
 	S3Key *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputDataConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputDataConfig) GoString() string {
 	return s.String()
 }
@@ -4172,12 +5300,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -4241,8 +5377,8 @@ type RxNormAttribute struct {
 	// is accurately linked to an entity.
 	RelationshipScore *float64 `type:"float"`
 
-	// The level of confidence that Comprehend Medical has that the segment of text
-	// is correctly recognized as an attribute.
+	// The level of confidence that Amazon Comprehend Medical has that the segment
+	// of text is correctly recognized as an attribute.
 	Score *float64 `type:"float"`
 
 	// The segment of input text which corresponds to the detected attribute.
@@ -4258,12 +5394,20 @@ type RxNormAttribute struct {
 	Type *string `type:"string" enum:"RxNormAttributeType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RxNormAttribute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RxNormAttribute) GoString() string {
 	return s.String()
 }
@@ -4332,12 +5476,20 @@ type RxNormConcept struct {
 	Score *float64 `type:"float"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RxNormConcept) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RxNormConcept) GoString() string {
 	return s.String()
 }
@@ -4407,12 +5559,20 @@ type RxNormEntity struct {
 	Type *string `type:"string" enum:"RxNormEntityType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RxNormEntity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RxNormEntity) GoString() string {
 	return s.String()
 }
@@ -4490,12 +5650,20 @@ type RxNormTrait struct {
 	Score *float64 `type:"float"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RxNormTrait) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RxNormTrait) GoString() string {
 	return s.String()
 }
@@ -4512,6 +5680,413 @@ func (s *RxNormTrait) SetScore(v float64) *RxNormTrait {
 	return s
 }
 
+// The extracted attributes that relate to an entity. An extracted segment of
+// the text that is an attribute of an entity, or otherwise related to an entity,
+// such as the dosage of a medication taken.
+type SNOMEDCTAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// The 0-based character offset in the input text that shows where the attribute
+	// begins. The offset returns the UTF-8 code point in the string.
+	BeginOffset *int64 `type:"integer"`
+
+	// The category of the detected attribute. Possible categories include MEDICAL_CONDITION,
+	// ANATOMY, and TEST_TREATMENT_PROCEDURE.
+	Category *string `type:"string" enum:"SNOMEDCTEntityCategory"`
+
+	// The 0-based character offset in the input text that shows where the attribute
+	// ends. The offset returns the UTF-8 code point in the string.
+	EndOffset *int64 `type:"integer"`
+
+	// The numeric identifier for this attribute. This is a monotonically increasing
+	// id unique within this response rather than a global unique identifier.
+	Id *int64 `type:"integer"`
+
+	// The level of confidence that Amazon Comprehend Medical has that this attribute
+	// is correctly related to this entity.
+	RelationshipScore *float64 `type:"float"`
+
+	// The type of relationship that exists between the entity and the related attribute.
+	RelationshipType *string `type:"string" enum:"SNOMEDCTRelationshipType"`
+
+	// The SNOMED-CT concepts specific to an attribute, along with a score indicating
+	// the likelihood of the match.
+	SNOMEDCTConcepts []*SNOMEDCTConcept `type:"list"`
+
+	// The level of confidence that Amazon Comprehend Medical has that the segment
+	// of text is correctly recognized as an attribute.
+	Score *float64 `type:"float"`
+
+	// The segment of input text extracted as this attribute.
+	Text *string `min:"1" type:"string"`
+
+	// Contextual information for an attribute. Examples include signs, symptoms,
+	// diagnosis, and negation.
+	Traits []*SNOMEDCTTrait `type:"list"`
+
+	// The type of attribute. Possible types include DX_NAME, ACUITY, DIRECTION,
+	// SYSTEM_ORGAN_SITE,TEST_NAME, TEST_VALUE, TEST_UNIT, PROCEDURE_NAME, and TREATMENT_NAME.
+	Type *string `type:"string" enum:"SNOMEDCTAttributeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTAttribute) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *SNOMEDCTAttribute) SetBeginOffset(v int64) *SNOMEDCTAttribute {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *SNOMEDCTAttribute) SetCategory(v string) *SNOMEDCTAttribute {
+	s.Category = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *SNOMEDCTAttribute) SetEndOffset(v int64) *SNOMEDCTAttribute {
+	s.EndOffset = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SNOMEDCTAttribute) SetId(v int64) *SNOMEDCTAttribute {
+	s.Id = &v
+	return s
+}
+
+// SetRelationshipScore sets the RelationshipScore field's value.
+func (s *SNOMEDCTAttribute) SetRelationshipScore(v float64) *SNOMEDCTAttribute {
+	s.RelationshipScore = &v
+	return s
+}
+
+// SetRelationshipType sets the RelationshipType field's value.
+func (s *SNOMEDCTAttribute) SetRelationshipType(v string) *SNOMEDCTAttribute {
+	s.RelationshipType = &v
+	return s
+}
+
+// SetSNOMEDCTConcepts sets the SNOMEDCTConcepts field's value.
+func (s *SNOMEDCTAttribute) SetSNOMEDCTConcepts(v []*SNOMEDCTConcept) *SNOMEDCTAttribute {
+	s.SNOMEDCTConcepts = v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *SNOMEDCTAttribute) SetScore(v float64) *SNOMEDCTAttribute {
+	s.Score = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *SNOMEDCTAttribute) SetText(v string) *SNOMEDCTAttribute {
+	s.Text = &v
+	return s
+}
+
+// SetTraits sets the Traits field's value.
+func (s *SNOMEDCTAttribute) SetTraits(v []*SNOMEDCTTrait) *SNOMEDCTAttribute {
+	s.Traits = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SNOMEDCTAttribute) SetType(v string) *SNOMEDCTAttribute {
+	s.Type = &v
+	return s
+}
+
+// The SNOMED-CT concepts that the entity could refer to, along with a score
+// indicating the likelihood of the match.
+type SNOMEDCTConcept struct {
+	_ struct{} `type:"structure"`
+
+	// The numeric ID for the SNOMED-CT concept.
+	Code *string `min:"1" type:"string"`
+
+	// The description of the SNOMED-CT concept.
+	Description *string `min:"1" type:"string"`
+
+	// The level of confidence Amazon Comprehend Medical has that the entity should
+	// be linked to the identified SNOMED-CT concept.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTConcept) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTConcept) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *SNOMEDCTConcept) SetCode(v string) *SNOMEDCTConcept {
+	s.Code = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *SNOMEDCTConcept) SetDescription(v string) *SNOMEDCTConcept {
+	s.Description = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *SNOMEDCTConcept) SetScore(v float64) *SNOMEDCTConcept {
+	s.Score = &v
+	return s
+}
+
+// The information about the revision of the SNOMED-CT ontology in the response.
+// Specifically, the details include the SNOMED-CT edition, language, and version
+// date.
+type SNOMEDCTDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The edition of SNOMED-CT used. The edition used for the InferSNOMEDCT editions
+	// is the US edition.
+	Edition *string `min:"1" type:"string"`
+
+	// The language used in the SNOMED-CT ontology. All Amazon Comprehend Medical
+	// operations are US English (en).
+	Language *string `min:"1" type:"string"`
+
+	// The version date of the SNOMED-CT ontology used.
+	VersionDate *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTDetails) GoString() string {
+	return s.String()
+}
+
+// SetEdition sets the Edition field's value.
+func (s *SNOMEDCTDetails) SetEdition(v string) *SNOMEDCTDetails {
+	s.Edition = &v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *SNOMEDCTDetails) SetLanguage(v string) *SNOMEDCTDetails {
+	s.Language = &v
+	return s
+}
+
+// SetVersionDate sets the VersionDate field's value.
+func (s *SNOMEDCTDetails) SetVersionDate(v string) *SNOMEDCTDetails {
+	s.VersionDate = &v
+	return s
+}
+
+// The collection of medical entities extracted from the input text and their
+// associated information. For each entity, the response provides the entity
+// text, the entity category, where the entity text begins and ends, and the
+// level of confidence that Amazon Comprehend Medical has in the detection and
+// analysis. Attributes and traits of the entity are also returned.
+type SNOMEDCTEntity struct {
+	_ struct{} `type:"structure"`
+
+	// An extracted segment of the text that is an attribute of an entity, or otherwise
+	// related to an entity, such as the dosage of a medication taken.
+	Attributes []*SNOMEDCTAttribute `type:"list"`
+
+	// The 0-based character offset in the input text that shows where the entity
+	// begins. The offset returns the UTF-8 code point in the string.
+	BeginOffset *int64 `type:"integer"`
+
+	// The category of the detected entity. Possible categories are MEDICAL_CONDITION,
+	// ANATOMY, or TEST_TREATMENT_PROCEDURE.
+	Category *string `type:"string" enum:"SNOMEDCTEntityCategory"`
+
+	// The 0-based character offset in the input text that shows where the entity
+	// ends. The offset returns the UTF-8 code point in the string.
+	EndOffset *int64 `type:"integer"`
+
+	// The numeric identifier for the entity. This is a monotonically increasing
+	// id unique within this response rather than a global unique identifier.
+	Id *int64 `type:"integer"`
+
+	// The SNOMED concepts that the entity could refer to, along with a score indicating
+	// the likelihood of the match.
+	SNOMEDCTConcepts []*SNOMEDCTConcept `type:"list"`
+
+	// The level of confidence that Amazon Comprehend Medical has in the accuracy
+	// of the detected entity.
+	Score *float64 `type:"float"`
+
+	// The segment of input text extracted as this entity.
+	Text *string `min:"1" type:"string"`
+
+	// Contextual information for the entity.
+	Traits []*SNOMEDCTTrait `type:"list"`
+
+	// Describes the specific type of entity with category of entities. Possible
+	// types include DX_NAME, ACUITY, DIRECTION, SYSTEM_ORGAN_SITE, TEST_NAME, TEST_VALUE,
+	// TEST_UNIT, PROCEDURE_NAME, or TREATMENT_NAME.
+	Type *string `type:"string" enum:"SNOMEDCTEntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTEntity) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *SNOMEDCTEntity) SetAttributes(v []*SNOMEDCTAttribute) *SNOMEDCTEntity {
+	s.Attributes = v
+	return s
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *SNOMEDCTEntity) SetBeginOffset(v int64) *SNOMEDCTEntity {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *SNOMEDCTEntity) SetCategory(v string) *SNOMEDCTEntity {
+	s.Category = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *SNOMEDCTEntity) SetEndOffset(v int64) *SNOMEDCTEntity {
+	s.EndOffset = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SNOMEDCTEntity) SetId(v int64) *SNOMEDCTEntity {
+	s.Id = &v
+	return s
+}
+
+// SetSNOMEDCTConcepts sets the SNOMEDCTConcepts field's value.
+func (s *SNOMEDCTEntity) SetSNOMEDCTConcepts(v []*SNOMEDCTConcept) *SNOMEDCTEntity {
+	s.SNOMEDCTConcepts = v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *SNOMEDCTEntity) SetScore(v float64) *SNOMEDCTEntity {
+	s.Score = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *SNOMEDCTEntity) SetText(v string) *SNOMEDCTEntity {
+	s.Text = &v
+	return s
+}
+
+// SetTraits sets the Traits field's value.
+func (s *SNOMEDCTEntity) SetTraits(v []*SNOMEDCTTrait) *SNOMEDCTEntity {
+	s.Traits = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SNOMEDCTEntity) SetType(v string) *SNOMEDCTEntity {
+	s.Type = &v
+	return s
+}
+
+// Contextual information for an entity.
+type SNOMEDCTTrait struct {
+	_ struct{} `type:"structure"`
+
+	// The name or contextual description of a detected trait.
+	Name *string `type:"string" enum:"SNOMEDCTTraitName"`
+
+	// The level of confidence that Amazon Comprehend Medical has in the accuracy
+	// of a detected trait.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTTrait) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SNOMEDCTTrait) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *SNOMEDCTTrait) SetName(v string) *SNOMEDCTTrait {
+	s.Name = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *SNOMEDCTTrait) SetScore(v float64) *SNOMEDCTTrait {
+	s.Score = &v
+	return s
+}
+
 // The Amazon Comprehend Medical service is temporarily unavailable. Please
 // wait and then retry your request.
 type ServiceUnavailableException struct {
@@ -4521,12 +6096,20 @@ type ServiceUnavailableException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -4573,7 +6156,7 @@ type StartEntitiesDetectionV2JobInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier for the request. If you don't set the client request
-	// token, Amazon Comprehend Medical generates one.
+	// token, Amazon Comprehend Medical generates one for you.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
@@ -4584,7 +6167,8 @@ type StartEntitiesDetectionV2JobInput struct {
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
 
-	// Specifies the format and location of the input data for the job.
+	// The input configuration that specifies the format and location of the input
+	// data for the job.
 	//
 	// InputDataConfig is a required field
 	InputDataConfig *InputDataConfig `type:"structure" required:"true"`
@@ -4597,22 +6181,31 @@ type StartEntitiesDetectionV2JobInput struct {
 	KMSKey *string `min:"1" type:"string"`
 
 	// The language of the input documents. All documents must be in the same language.
+	// Amazon Comprehend Medical processes files in US English (en).
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// Specifies where to send the output files.
+	// The output configuration that specifies where to send the output files.
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartEntitiesDetectionV2JobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartEntitiesDetectionV2JobInput) GoString() string {
 	return s.String()
 }
@@ -4711,12 +6304,20 @@ type StartEntitiesDetectionV2JobOutput struct {
 	JobId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartEntitiesDetectionV2JobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartEntitiesDetectionV2JobOutput) GoString() string {
 	return s.String()
 }
@@ -4765,12 +6366,20 @@ type StartICD10CMInferenceJobInput struct {
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartICD10CMInferenceJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartICD10CMInferenceJobInput) GoString() string {
 	return s.String()
 }
@@ -4869,12 +6478,20 @@ type StartICD10CMInferenceJobOutput struct {
 	JobId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartICD10CMInferenceJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartICD10CMInferenceJobOutput) GoString() string {
 	return s.String()
 }
@@ -4923,12 +6540,20 @@ type StartPHIDetectionJobInput struct {
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartPHIDetectionJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartPHIDetectionJobInput) GoString() string {
 	return s.String()
 }
@@ -5027,12 +6652,20 @@ type StartPHIDetectionJobOutput struct {
 	JobId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartPHIDetectionJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartPHIDetectionJobOutput) GoString() string {
 	return s.String()
 }
@@ -5081,12 +6714,20 @@ type StartRxNormInferenceJobInput struct {
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartRxNormInferenceJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartRxNormInferenceJobInput) GoString() string {
 	return s.String()
 }
@@ -5184,18 +6825,200 @@ type StartRxNormInferenceJobOutput struct {
 	JobId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartRxNormInferenceJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartRxNormInferenceJobOutput) GoString() string {
 	return s.String()
 }
 
 // SetJobId sets the JobId field's value.
 func (s *StartRxNormInferenceJobOutput) SetJobId(v string) *StartRxNormInferenceJobOutput {
+	s.JobId = &v
+	return s
+}
+
+type StartSNOMEDCTInferenceJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. If you don't set the client request
+	// token, Amazon Comprehend Medical generates one.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend Medical read access to your input
+	// data.
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// The input properties for an entities detection job. This includes the name
+	// of the S3 bucket and the path to the files to be analyzed.
+	//
+	// InputDataConfig is a required field
+	InputDataConfig *InputDataConfig `type:"structure" required:"true"`
+
+	// The user generated name the asynchronous InferSNOMEDCT job.
+	JobName *string `min:"1" type:"string"`
+
+	// An AWS Key Management Service key used to encrypt your output files. If you
+	// do not specify a key, the files are written in plain text.
+	KMSKey *string `min:"1" type:"string"`
+
+	// The language of the input documents. All documents must be in the same language.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// The output properties for a detection job.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSNOMEDCTInferenceJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSNOMEDCTInferenceJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSNOMEDCTInferenceJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSNOMEDCTInferenceJobInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.InputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDataConfig"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.KMSKey != nil && len(*s.KMSKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSKey", 1))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.OutputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
+	}
+	if s.InputDataConfig != nil {
+		if err := s.InputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputDataConfig != nil {
+		if err := s.OutputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartSNOMEDCTInferenceJobInput) SetClientRequestToken(v string) *StartSNOMEDCTInferenceJobInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *StartSNOMEDCTInferenceJobInput) SetDataAccessRoleArn(v string) *StartSNOMEDCTInferenceJobInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *StartSNOMEDCTInferenceJobInput) SetInputDataConfig(v *InputDataConfig) *StartSNOMEDCTInferenceJobInput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *StartSNOMEDCTInferenceJobInput) SetJobName(v string) *StartSNOMEDCTInferenceJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetKMSKey sets the KMSKey field's value.
+func (s *StartSNOMEDCTInferenceJobInput) SetKMSKey(v string) *StartSNOMEDCTInferenceJobInput {
+	s.KMSKey = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartSNOMEDCTInferenceJobInput) SetLanguageCode(v string) *StartSNOMEDCTInferenceJobInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *StartSNOMEDCTInferenceJobInput) SetOutputDataConfig(v *OutputDataConfig) *StartSNOMEDCTInferenceJobInput {
+	s.OutputDataConfig = v
+	return s
+}
+
+type StartSNOMEDCTInferenceJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier generated for the job. To get the status of a job, use this
+	// identifier with the StartSNOMEDCTInferenceJob operation.
+	JobId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSNOMEDCTInferenceJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSNOMEDCTInferenceJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartSNOMEDCTInferenceJobOutput) SetJobId(v string) *StartSNOMEDCTInferenceJobOutput {
 	s.JobId = &v
 	return s
 }
@@ -5209,12 +7032,20 @@ type StopEntitiesDetectionV2JobInput struct {
 	JobId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopEntitiesDetectionV2JobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopEntitiesDetectionV2JobInput) GoString() string {
 	return s.String()
 }
@@ -5248,12 +7079,20 @@ type StopEntitiesDetectionV2JobOutput struct {
 	JobId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopEntitiesDetectionV2JobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopEntitiesDetectionV2JobOutput) GoString() string {
 	return s.String()
 }
@@ -5273,12 +7112,20 @@ type StopICD10CMInferenceJobInput struct {
 	JobId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopICD10CMInferenceJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopICD10CMInferenceJobInput) GoString() string {
 	return s.String()
 }
@@ -5313,12 +7160,20 @@ type StopICD10CMInferenceJobOutput struct {
 	JobId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopICD10CMInferenceJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopICD10CMInferenceJobOutput) GoString() string {
 	return s.String()
 }
@@ -5338,12 +7193,20 @@ type StopPHIDetectionJobInput struct {
 	JobId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopPHIDetectionJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopPHIDetectionJobInput) GoString() string {
 	return s.String()
 }
@@ -5377,12 +7240,20 @@ type StopPHIDetectionJobOutput struct {
 	JobId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopPHIDetectionJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopPHIDetectionJobOutput) GoString() string {
 	return s.String()
 }
@@ -5402,12 +7273,20 @@ type StopRxNormInferenceJobInput struct {
 	JobId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRxNormInferenceJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRxNormInferenceJobInput) GoString() string {
 	return s.String()
 }
@@ -5442,18 +7321,107 @@ type StopRxNormInferenceJobOutput struct {
 	JobId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRxNormInferenceJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRxNormInferenceJobOutput) GoString() string {
 	return s.String()
 }
 
 // SetJobId sets the JobId field's value.
 func (s *StopRxNormInferenceJobOutput) SetJobId(v string) *StopRxNormInferenceJobOutput {
+	s.JobId = &v
+	return s
+}
+
+type StopSNOMEDCTInferenceJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The job id of the asynchronous InferSNOMEDCT job to be stopped.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSNOMEDCTInferenceJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSNOMEDCTInferenceJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopSNOMEDCTInferenceJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopSNOMEDCTInferenceJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StopSNOMEDCTInferenceJobInput) SetJobId(v string) *StopSNOMEDCTInferenceJobInput {
+	s.JobId = &v
+	return s
+}
+
+type StopSNOMEDCTInferenceJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier generated for the job. To get the status of job, use this
+	// identifier with the DescribeSNOMEDCTInferenceJob operation.
+	JobId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSNOMEDCTInferenceJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSNOMEDCTInferenceJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StopSNOMEDCTInferenceJobOutput) SetJobId(v string) *StopSNOMEDCTInferenceJobOutput {
 	s.JobId = &v
 	return s
 }
@@ -5467,12 +7435,20 @@ type TextSizeLimitExceededException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextSizeLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextSizeLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -5525,12 +7501,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -5585,12 +7569,20 @@ type Trait struct {
 	Score *float64 `type:"float"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Trait) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Trait) GoString() string {
 	return s.String()
 }
@@ -5607,24 +7599,34 @@ func (s *Trait) SetScore(v float64) *Trait {
 	return s
 }
 
-// An attribute that we extracted, but were unable to relate to an entity.
+// An attribute that was extracted, but Amazon Comprehend Medical was unable
+// to relate to an entity.
 type UnmappedAttribute struct {
 	_ struct{} `type:"structure"`
 
 	// The specific attribute that has been extracted but not mapped to an entity.
 	Attribute *Attribute `type:"structure"`
 
-	// The type of the attribute, could be one of the following values: "MEDICATION",
-	// "MEDICAL_CONDITION", "ANATOMY", "TEST_AND_TREATMENT_PROCEDURE" or "PROTECTED_HEALTH_INFORMATION".
+	// The type of the unmapped attribute, could be one of the following values:
+	// "MEDICATION", "MEDICAL_CONDITION", "ANATOMY", "TEST_AND_TREATMENT_PROCEDURE"
+	// or "PROTECTED_HEALTH_INFORMATION".
 	Type *string `type:"string" enum:"EntityType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnmappedAttribute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnmappedAttribute) GoString() string {
 	return s.String()
 }
@@ -5650,12 +7652,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -5710,6 +7720,21 @@ const (
 
 	// AttributeNameNegation is a AttributeName enum value
 	AttributeNameNegation = "NEGATION"
+
+	// AttributeNamePertainsToFamily is a AttributeName enum value
+	AttributeNamePertainsToFamily = "PERTAINS_TO_FAMILY"
+
+	// AttributeNameHypothetical is a AttributeName enum value
+	AttributeNameHypothetical = "HYPOTHETICAL"
+
+	// AttributeNameLowConfidence is a AttributeName enum value
+	AttributeNameLowConfidence = "LOW_CONFIDENCE"
+
+	// AttributeNamePastHistory is a AttributeName enum value
+	AttributeNamePastHistory = "PAST_HISTORY"
+
+	// AttributeNameFuture is a AttributeName enum value
+	AttributeNameFuture = "FUTURE"
 )
 
 // AttributeName_Values returns all elements of the AttributeName enum
@@ -5719,12 +7744,20 @@ func AttributeName_Values() []string {
 		AttributeNameSymptom,
 		AttributeNameDiagnosis,
 		AttributeNameNegation,
+		AttributeNamePertainsToFamily,
+		AttributeNameHypothetical,
+		AttributeNameLowConfidence,
+		AttributeNamePastHistory,
+		AttributeNameFuture,
 	}
 }
 
 const (
 	// EntitySubTypeName is a EntitySubType enum value
 	EntitySubTypeName = "NAME"
+
+	// EntitySubTypeDxName is a EntitySubType enum value
+	EntitySubTypeDxName = "DX_NAME"
 
 	// EntitySubTypeDosage is a EntitySubType enum value
 	EntitySubTypeDosage = "DOSAGE"
@@ -5765,6 +7798,9 @@ const (
 	// EntitySubTypeTestUnits is a EntitySubType enum value
 	EntitySubTypeTestUnits = "TEST_UNITS"
 
+	// EntitySubTypeTestUnit is a EntitySubType enum value
+	EntitySubTypeTestUnit = "TEST_UNIT"
+
 	// EntitySubTypeProcedureName is a EntitySubType enum value
 	EntitySubTypeProcedureName = "PROCEDURE_NAME"
 
@@ -5780,11 +7816,17 @@ const (
 	// EntitySubTypeContactPoint is a EntitySubType enum value
 	EntitySubTypeContactPoint = "CONTACT_POINT"
 
+	// EntitySubTypePhoneOrFax is a EntitySubType enum value
+	EntitySubTypePhoneOrFax = "PHONE_OR_FAX"
+
 	// EntitySubTypeEmail is a EntitySubType enum value
 	EntitySubTypeEmail = "EMAIL"
 
 	// EntitySubTypeIdentifier is a EntitySubType enum value
 	EntitySubTypeIdentifier = "IDENTIFIER"
+
+	// EntitySubTypeId is a EntitySubType enum value
+	EntitySubTypeId = "ID"
 
 	// EntitySubTypeUrl is a EntitySubType enum value
 	EntitySubTypeUrl = "URL"
@@ -5824,12 +7866,34 @@ const (
 
 	// EntitySubTypeTimeToTreatmentName is a EntitySubType enum value
 	EntitySubTypeTimeToTreatmentName = "TIME_TO_TREATMENT_NAME"
+
+	// EntitySubTypeAmount is a EntitySubType enum value
+	EntitySubTypeAmount = "AMOUNT"
+
+	// EntitySubTypeGender is a EntitySubType enum value
+	EntitySubTypeGender = "GENDER"
+
+	// EntitySubTypeRaceEthnicity is a EntitySubType enum value
+	EntitySubTypeRaceEthnicity = "RACE_ETHNICITY"
+
+	// EntitySubTypeAllergies is a EntitySubType enum value
+	EntitySubTypeAllergies = "ALLERGIES"
+
+	// EntitySubTypeTobaccoUse is a EntitySubType enum value
+	EntitySubTypeTobaccoUse = "TOBACCO_USE"
+
+	// EntitySubTypeAlcoholConsumption is a EntitySubType enum value
+	EntitySubTypeAlcoholConsumption = "ALCOHOL_CONSUMPTION"
+
+	// EntitySubTypeRecDrugUse is a EntitySubType enum value
+	EntitySubTypeRecDrugUse = "REC_DRUG_USE"
 )
 
 // EntitySubType_Values returns all elements of the EntitySubType enum
 func EntitySubType_Values() []string {
 	return []string{
 		EntitySubTypeName,
+		EntitySubTypeDxName,
 		EntitySubTypeDosage,
 		EntitySubTypeRouteOrMode,
 		EntitySubTypeForm,
@@ -5843,13 +7907,16 @@ func EntitySubType_Values() []string {
 		EntitySubTypeTestName,
 		EntitySubTypeTestValue,
 		EntitySubTypeTestUnits,
+		EntitySubTypeTestUnit,
 		EntitySubTypeProcedureName,
 		EntitySubTypeTreatmentName,
 		EntitySubTypeDate,
 		EntitySubTypeAge,
 		EntitySubTypeContactPoint,
+		EntitySubTypePhoneOrFax,
 		EntitySubTypeEmail,
 		EntitySubTypeIdentifier,
+		EntitySubTypeId,
 		EntitySubTypeUrl,
 		EntitySubTypeAddress,
 		EntitySubTypeProfession,
@@ -5863,6 +7930,13 @@ func EntitySubType_Values() []string {
 		EntitySubTypeTimeToTestName,
 		EntitySubTypeTimeToProcedureName,
 		EntitySubTypeTimeToTreatmentName,
+		EntitySubTypeAmount,
+		EntitySubTypeGender,
+		EntitySubTypeRaceEthnicity,
+		EntitySubTypeAllergies,
+		EntitySubTypeTobaccoUse,
+		EntitySubTypeAlcoholConsumption,
+		EntitySubTypeRecDrugUse,
 	}
 }
 
@@ -5884,6 +7958,9 @@ const (
 
 	// EntityTypeTimeExpression is a EntityType enum value
 	EntityTypeTimeExpression = "TIME_EXPRESSION"
+
+	// EntityTypeBehavioralEnvironmentalSocial is a EntityType enum value
+	EntityTypeBehavioralEnvironmentalSocial = "BEHAVIORAL_ENVIRONMENTAL_SOCIAL"
 )
 
 // EntityType_Values returns all elements of the EntityType enum
@@ -5895,6 +7972,7 @@ func EntityType_Values() []string {
 		EntityTypeTestTreatmentProcedure,
 		EntityTypeAnatomy,
 		EntityTypeTimeExpression,
+		EntityTypeBehavioralEnvironmentalSocial,
 	}
 }
 
@@ -5968,6 +8046,9 @@ const (
 
 	// ICD10CMRelationshipTypeSystemOrganSite is a ICD10CMRelationshipType enum value
 	ICD10CMRelationshipTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
+
+	// ICD10CMRelationshipTypeQuality is a ICD10CMRelationshipType enum value
+	ICD10CMRelationshipTypeQuality = "QUALITY"
 )
 
 // ICD10CMRelationshipType_Values returns all elements of the ICD10CMRelationshipType enum
@@ -5975,6 +8056,7 @@ func ICD10CMRelationshipType_Values() []string {
 	return []string{
 		ICD10CMRelationshipTypeOverlap,
 		ICD10CMRelationshipTypeSystemOrganSite,
+		ICD10CMRelationshipTypeQuality,
 	}
 }
 
@@ -5990,6 +8072,15 @@ const (
 
 	// ICD10CMTraitNameSymptom is a ICD10CMTraitName enum value
 	ICD10CMTraitNameSymptom = "SYMPTOM"
+
+	// ICD10CMTraitNamePertainsToFamily is a ICD10CMTraitName enum value
+	ICD10CMTraitNamePertainsToFamily = "PERTAINS_TO_FAMILY"
+
+	// ICD10CMTraitNameHypothetical is a ICD10CMTraitName enum value
+	ICD10CMTraitNameHypothetical = "HYPOTHETICAL"
+
+	// ICD10CMTraitNameLowConfidence is a ICD10CMTraitName enum value
+	ICD10CMTraitNameLowConfidence = "LOW_CONFIDENCE"
 )
 
 // ICD10CMTraitName_Values returns all elements of the ICD10CMTraitName enum
@@ -5999,6 +8090,9 @@ func ICD10CMTraitName_Values() []string {
 		ICD10CMTraitNameDiagnosis,
 		ICD10CMTraitNameSign,
 		ICD10CMTraitNameSymptom,
+		ICD10CMTraitNamePertainsToFamily,
+		ICD10CMTraitNameHypothetical,
+		ICD10CMTraitNameLowConfidence,
 	}
 }
 
@@ -6099,11 +8193,23 @@ const (
 	// RelationshipTypeTestUnits is a RelationshipType enum value
 	RelationshipTypeTestUnits = "TEST_UNITS"
 
+	// RelationshipTypeTestUnit is a RelationshipType enum value
+	RelationshipTypeTestUnit = "TEST_UNIT"
+
 	// RelationshipTypeDirection is a RelationshipType enum value
 	RelationshipTypeDirection = "DIRECTION"
 
 	// RelationshipTypeSystemOrganSite is a RelationshipType enum value
 	RelationshipTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
+
+	// RelationshipTypeAmount is a RelationshipType enum value
+	RelationshipTypeAmount = "AMOUNT"
+
+	// RelationshipTypeUsage is a RelationshipType enum value
+	RelationshipTypeUsage = "USAGE"
+
+	// RelationshipTypeQuality is a RelationshipType enum value
+	RelationshipTypeQuality = "QUALITY"
 )
 
 // RelationshipType_Values returns all elements of the RelationshipType enum
@@ -6125,8 +8231,12 @@ func RelationshipType_Values() []string {
 		RelationshipTypeAcuity,
 		RelationshipTypeTestValue,
 		RelationshipTypeTestUnits,
+		RelationshipTypeTestUnit,
 		RelationshipTypeDirection,
 		RelationshipTypeSystemOrganSite,
+		RelationshipTypeAmount,
+		RelationshipTypeUsage,
+		RelationshipTypeQuality,
 	}
 }
 
@@ -6197,11 +8307,171 @@ func RxNormEntityType_Values() []string {
 const (
 	// RxNormTraitNameNegation is a RxNormTraitName enum value
 	RxNormTraitNameNegation = "NEGATION"
+
+	// RxNormTraitNamePastHistory is a RxNormTraitName enum value
+	RxNormTraitNamePastHistory = "PAST_HISTORY"
 )
 
 // RxNormTraitName_Values returns all elements of the RxNormTraitName enum
 func RxNormTraitName_Values() []string {
 	return []string{
 		RxNormTraitNameNegation,
+		RxNormTraitNamePastHistory,
+	}
+}
+
+const (
+	// SNOMEDCTAttributeTypeAcuity is a SNOMEDCTAttributeType enum value
+	SNOMEDCTAttributeTypeAcuity = "ACUITY"
+
+	// SNOMEDCTAttributeTypeQuality is a SNOMEDCTAttributeType enum value
+	SNOMEDCTAttributeTypeQuality = "QUALITY"
+
+	// SNOMEDCTAttributeTypeDirection is a SNOMEDCTAttributeType enum value
+	SNOMEDCTAttributeTypeDirection = "DIRECTION"
+
+	// SNOMEDCTAttributeTypeSystemOrganSite is a SNOMEDCTAttributeType enum value
+	SNOMEDCTAttributeTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
+
+	// SNOMEDCTAttributeTypeTestValue is a SNOMEDCTAttributeType enum value
+	SNOMEDCTAttributeTypeTestValue = "TEST_VALUE"
+
+	// SNOMEDCTAttributeTypeTestUnit is a SNOMEDCTAttributeType enum value
+	SNOMEDCTAttributeTypeTestUnit = "TEST_UNIT"
+)
+
+// SNOMEDCTAttributeType_Values returns all elements of the SNOMEDCTAttributeType enum
+func SNOMEDCTAttributeType_Values() []string {
+	return []string{
+		SNOMEDCTAttributeTypeAcuity,
+		SNOMEDCTAttributeTypeQuality,
+		SNOMEDCTAttributeTypeDirection,
+		SNOMEDCTAttributeTypeSystemOrganSite,
+		SNOMEDCTAttributeTypeTestValue,
+		SNOMEDCTAttributeTypeTestUnit,
+	}
+}
+
+const (
+	// SNOMEDCTEntityCategoryMedicalCondition is a SNOMEDCTEntityCategory enum value
+	SNOMEDCTEntityCategoryMedicalCondition = "MEDICAL_CONDITION"
+
+	// SNOMEDCTEntityCategoryAnatomy is a SNOMEDCTEntityCategory enum value
+	SNOMEDCTEntityCategoryAnatomy = "ANATOMY"
+
+	// SNOMEDCTEntityCategoryTestTreatmentProcedure is a SNOMEDCTEntityCategory enum value
+	SNOMEDCTEntityCategoryTestTreatmentProcedure = "TEST_TREATMENT_PROCEDURE"
+)
+
+// SNOMEDCTEntityCategory_Values returns all elements of the SNOMEDCTEntityCategory enum
+func SNOMEDCTEntityCategory_Values() []string {
+	return []string{
+		SNOMEDCTEntityCategoryMedicalCondition,
+		SNOMEDCTEntityCategoryAnatomy,
+		SNOMEDCTEntityCategoryTestTreatmentProcedure,
+	}
+}
+
+const (
+	// SNOMEDCTEntityTypeDxName is a SNOMEDCTEntityType enum value
+	SNOMEDCTEntityTypeDxName = "DX_NAME"
+
+	// SNOMEDCTEntityTypeTestName is a SNOMEDCTEntityType enum value
+	SNOMEDCTEntityTypeTestName = "TEST_NAME"
+
+	// SNOMEDCTEntityTypeProcedureName is a SNOMEDCTEntityType enum value
+	SNOMEDCTEntityTypeProcedureName = "PROCEDURE_NAME"
+
+	// SNOMEDCTEntityTypeTreatmentName is a SNOMEDCTEntityType enum value
+	SNOMEDCTEntityTypeTreatmentName = "TREATMENT_NAME"
+)
+
+// SNOMEDCTEntityType_Values returns all elements of the SNOMEDCTEntityType enum
+func SNOMEDCTEntityType_Values() []string {
+	return []string{
+		SNOMEDCTEntityTypeDxName,
+		SNOMEDCTEntityTypeTestName,
+		SNOMEDCTEntityTypeProcedureName,
+		SNOMEDCTEntityTypeTreatmentName,
+	}
+}
+
+const (
+	// SNOMEDCTRelationshipTypeAcuity is a SNOMEDCTRelationshipType enum value
+	SNOMEDCTRelationshipTypeAcuity = "ACUITY"
+
+	// SNOMEDCTRelationshipTypeQuality is a SNOMEDCTRelationshipType enum value
+	SNOMEDCTRelationshipTypeQuality = "QUALITY"
+
+	// SNOMEDCTRelationshipTypeTestValue is a SNOMEDCTRelationshipType enum value
+	SNOMEDCTRelationshipTypeTestValue = "TEST_VALUE"
+
+	// SNOMEDCTRelationshipTypeTestUnits is a SNOMEDCTRelationshipType enum value
+	SNOMEDCTRelationshipTypeTestUnits = "TEST_UNITS"
+
+	// SNOMEDCTRelationshipTypeDirection is a SNOMEDCTRelationshipType enum value
+	SNOMEDCTRelationshipTypeDirection = "DIRECTION"
+
+	// SNOMEDCTRelationshipTypeSystemOrganSite is a SNOMEDCTRelationshipType enum value
+	SNOMEDCTRelationshipTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
+
+	// SNOMEDCTRelationshipTypeTestUnit is a SNOMEDCTRelationshipType enum value
+	SNOMEDCTRelationshipTypeTestUnit = "TEST_UNIT"
+)
+
+// SNOMEDCTRelationshipType_Values returns all elements of the SNOMEDCTRelationshipType enum
+func SNOMEDCTRelationshipType_Values() []string {
+	return []string{
+		SNOMEDCTRelationshipTypeAcuity,
+		SNOMEDCTRelationshipTypeQuality,
+		SNOMEDCTRelationshipTypeTestValue,
+		SNOMEDCTRelationshipTypeTestUnits,
+		SNOMEDCTRelationshipTypeDirection,
+		SNOMEDCTRelationshipTypeSystemOrganSite,
+		SNOMEDCTRelationshipTypeTestUnit,
+	}
+}
+
+const (
+	// SNOMEDCTTraitNameNegation is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameNegation = "NEGATION"
+
+	// SNOMEDCTTraitNameDiagnosis is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameDiagnosis = "DIAGNOSIS"
+
+	// SNOMEDCTTraitNameSign is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameSign = "SIGN"
+
+	// SNOMEDCTTraitNameSymptom is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameSymptom = "SYMPTOM"
+
+	// SNOMEDCTTraitNamePertainsToFamily is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNamePertainsToFamily = "PERTAINS_TO_FAMILY"
+
+	// SNOMEDCTTraitNameHypothetical is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameHypothetical = "HYPOTHETICAL"
+
+	// SNOMEDCTTraitNameLowConfidence is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameLowConfidence = "LOW_CONFIDENCE"
+
+	// SNOMEDCTTraitNamePastHistory is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNamePastHistory = "PAST_HISTORY"
+
+	// SNOMEDCTTraitNameFuture is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameFuture = "FUTURE"
+)
+
+// SNOMEDCTTraitName_Values returns all elements of the SNOMEDCTTraitName enum
+func SNOMEDCTTraitName_Values() []string {
+	return []string{
+		SNOMEDCTTraitNameNegation,
+		SNOMEDCTTraitNameDiagnosis,
+		SNOMEDCTTraitNameSign,
+		SNOMEDCTTraitNameSymptom,
+		SNOMEDCTTraitNamePertainsToFamily,
+		SNOMEDCTTraitNameHypothetical,
+		SNOMEDCTTraitNameLowConfidence,
+		SNOMEDCTTraitNamePastHistory,
+		SNOMEDCTTraitNameFuture,
 	}
 }

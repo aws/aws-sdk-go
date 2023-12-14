@@ -12,6 +12,20 @@
     "uid":"guardduty-2017-11-28"
   },
   "operations":{
+    "AcceptAdministratorInvitation":{
+      "name":"AcceptAdministratorInvitation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/administrator",
+        "responseCode":200
+      },
+      "input":{"shape":"AcceptAdministratorInvitationRequest"},
+      "output":{"shape":"AcceptAdministratorInvitationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "AcceptInvitation":{
       "name":"AcceptInvitation",
       "http":{
@@ -24,7 +38,9 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This operation is deprecated, use AcceptAdministratorInvitation instead"
     },
     "ArchiveFindings":{
       "name":"ArchiveFindings",
@@ -250,6 +266,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "DescribeMalwareScans":{
+      "name":"DescribeMalwareScans",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/malware-scans",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeMalwareScansRequest"},
+      "output":{"shape":"DescribeMalwareScansResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "DescribeOrganizationConfiguration":{
       "name":"DescribeOrganizationConfiguration",
       "http":{
@@ -292,6 +322,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "DisassociateFromAdministratorAccount":{
+      "name":"DisassociateFromAdministratorAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/administrator/disassociate",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociateFromAdministratorAccountRequest"},
+      "output":{"shape":"DisassociateFromAdministratorAccountResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "DisassociateFromMasterAccount":{
       "name":"DisassociateFromMasterAccount",
       "http":{
@@ -304,7 +348,9 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This operation is deprecated, use DisassociateFromAdministratorAccount instead"
     },
     "DisassociateMembers":{
       "name":"DisassociateMembers",
@@ -329,6 +375,34 @@
       },
       "input":{"shape":"EnableOrganizationAdminAccountRequest"},
       "output":{"shape":"EnableOrganizationAdminAccountResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "GetAdministratorAccount":{
+      "name":"GetAdministratorAccount",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/administrator",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAdministratorAccountRequest"},
+      "output":{"shape":"GetAdministratorAccountResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "GetCoverageStatistics":{
+      "name":"GetCoverageStatistics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/coverage/statistics",
+        "responseCode":200
+      },
+      "input":{"shape":"GetCoverageStatisticsRequest"},
+      "output":{"shape":"GetCoverageStatisticsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -418,6 +492,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "GetMalwareScanSettings":{
+      "name":"GetMalwareScanSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/malware-scan-settings",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMalwareScanSettingsRequest"},
+      "output":{"shape":"GetMalwareScanSettingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "GetMasterAccount":{
       "name":"GetMasterAccount",
       "http":{
@@ -430,7 +518,9 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This operation is deprecated, use GetAdministratorAccount instead"
     },
     "GetMemberDetectors":{
       "name":"GetMemberDetectors",
@@ -455,6 +545,20 @@
       },
       "input":{"shape":"GetMembersRequest"},
       "output":{"shape":"GetMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "GetRemainingFreeTrialDays":{
+      "name":"GetRemainingFreeTrialDays",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/freeTrial/daysRemaining",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRemainingFreeTrialDaysRequest"},
+      "output":{"shape":"GetRemainingFreeTrialDaysResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -497,6 +601,20 @@
       },
       "input":{"shape":"InviteMembersRequest"},
       "output":{"shape":"InviteMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "ListCoverage":{
+      "name":"ListCoverage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/coverage",
+        "responseCode":200
+      },
+      "input":{"shape":"ListCoverageRequest"},
+      "output":{"shape":"ListCoverageResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -625,6 +743,7 @@
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -639,6 +758,21 @@
       "output":{"shape":"ListThreatIntelSetsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "StartMalwareScan":{
+      "name":"StartMalwareScan",
+      "http":{
+        "method":"POST",
+        "requestUri":"/malware-scan/start",
+        "responseCode":200
+      },
+      "input":{"shape":"StartMalwareScanRequest"},
+      "output":{"shape":"StartMalwareScanResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -681,6 +815,7 @@
       "output":{"shape":"TagResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -709,6 +844,7 @@
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -763,6 +899,20 @@
       },
       "input":{"shape":"UpdateIPSetRequest"},
       "output":{"shape":"UpdateIPSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "UpdateMalwareScanSettings":{
+      "name":"UpdateMalwareScanSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/malware-scan-settings",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateMalwareScanSettingsRequest"},
+      "output":{"shape":"UpdateMalwareScanSettingsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -826,6 +976,34 @@
     }
   },
   "shapes":{
+    "AcceptAdministratorInvitationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AdministratorId",
+        "InvitationId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AdministratorId":{
+          "shape":"String",
+          "locationName":"administratorId"
+        },
+        "InvitationId":{
+          "shape":"String",
+          "locationName":"invitationId"
+        }
+      }
+    },
+    "AcceptAdministratorInvitationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AcceptInvitationRequest":{
       "type":"structure",
       "required":[
@@ -847,12 +1025,16 @@
           "shape":"String",
           "locationName":"invitationId"
         }
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This input is deprecated, use AcceptAdministratorInvitationRequest instead"
     },
     "AcceptInvitationResponse":{
       "type":"structure",
       "members":{
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This output is deprecated, use AcceptAdministratorInvitationResponse instead"
     },
     "AccessControlList":{
       "type":"structure",
@@ -866,6 +1048,21 @@
           "locationName":"allowsPublicWriteAccess"
         }
       }
+    },
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"__type"
+        }
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
     },
     "AccessKeyDetails":{
       "type":"structure",
@@ -911,6 +1108,29 @@
       "max":50,
       "min":1
     },
+    "AccountFreeTrialInfo":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "locationName":"accountId"
+        },
+        "DataSources":{
+          "shape":"DataSourcesFreeTrial",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
+          "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"FreeTrialFeatureConfigurationsResults",
+          "locationName":"features"
+        }
+      }
+    },
+    "AccountFreeTrialInfos":{
+      "type":"list",
+      "member":{"shape":"AccountFreeTrialInfo"}
+    },
     "AccountId":{
       "type":"string",
       "max":12,
@@ -953,6 +1173,39 @@
         "PortProbeAction":{
           "shape":"PortProbeAction",
           "locationName":"portProbeAction"
+        },
+        "KubernetesApiCallAction":{
+          "shape":"KubernetesApiCallAction",
+          "locationName":"kubernetesApiCallAction"
+        },
+        "RdsLoginAttemptAction":{
+          "shape":"RdsLoginAttemptAction",
+          "locationName":"rdsLoginAttemptAction"
+        },
+        "KubernetesPermissionCheckedDetails":{
+          "shape":"KubernetesPermissionCheckedDetails",
+          "locationName":"kubernetesPermissionCheckedDetails"
+        },
+        "KubernetesRoleBindingDetails":{
+          "shape":"KubernetesRoleBindingDetails",
+          "locationName":"kubernetesRoleBindingDetails"
+        },
+        "KubernetesRoleDetails":{
+          "shape":"KubernetesRoleDetails",
+          "locationName":"kubernetesRoleDetails"
+        }
+      }
+    },
+    "AddonDetails":{
+      "type":"structure",
+      "members":{
+        "AddonVersion":{
+          "shape":"String",
+          "locationName":"addonVersion"
+        },
+        "AddonStatus":{
+          "shape":"String",
+          "locationName":"addonStatus"
         }
       }
     },
@@ -984,6 +1237,99 @@
       "max":300,
       "min":1
     },
+    "Administrator":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "InvitationId":{
+          "shape":"String",
+          "locationName":"invitationId"
+        },
+        "RelationshipStatus":{
+          "shape":"String",
+          "locationName":"relationshipStatus"
+        },
+        "InvitedAt":{
+          "shape":"String",
+          "locationName":"invitedAt"
+        }
+      }
+    },
+    "AffectedResources":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
+    "AgentDetails":{
+      "type":"structure",
+      "members":{
+        "Version":{
+          "shape":"String",
+          "locationName":"version"
+        }
+      }
+    },
+    "Anomaly":{
+      "type":"structure",
+      "members":{
+        "Profiles":{
+          "shape":"AnomalyProfiles",
+          "locationName":"profiles"
+        },
+        "Unusual":{
+          "shape":"AnomalyUnusual",
+          "locationName":"unusual"
+        }
+      }
+    },
+    "AnomalyObject":{
+      "type":"structure",
+      "members":{
+        "ProfileType":{
+          "shape":"ProfileType",
+          "locationName":"profileType"
+        },
+        "ProfileSubtype":{
+          "shape":"ProfileSubtype",
+          "locationName":"profileSubtype"
+        },
+        "Observations":{
+          "shape":"Observations",
+          "locationName":"observations"
+        }
+      }
+    },
+    "AnomalyProfileFeatureObjects":{
+      "type":"list",
+      "member":{"shape":"AnomalyObject"}
+    },
+    "AnomalyProfileFeatures":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AnomalyProfileFeatureObjects"}
+    },
+    "AnomalyProfiles":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AnomalyProfileFeatures"}
+    },
+    "AnomalyUnusual":{
+      "type":"structure",
+      "members":{
+        "Behavior":{
+          "shape":"Behavior",
+          "locationName":"behavior"
+        }
+      }
+    },
+    "AnomalyUnusualBehaviorFeature":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AnomalyObject"}
+    },
     "ArchiveFindingsRequest":{
       "type":"structure",
       "required":[
@@ -1007,6 +1353,14 @@
       "members":{
       }
     },
+    "AutoEnableMembers":{
+      "type":"string",
+      "enum":[
+        "NEW",
+        "ALL",
+        "NONE"
+      ]
+    },
     "AwsApiCallAction":{
       "type":"structure",
       "members":{
@@ -1026,6 +1380,10 @@
           "shape":"String",
           "locationName":"errorCode"
         },
+        "UserAgent":{
+          "shape":"String",
+          "locationName":"userAgent"
+        },
         "RemoteIpDetails":{
           "shape":"RemoteIpDetails",
           "locationName":"remoteIpDetails"
@@ -1033,6 +1391,14 @@
         "ServiceName":{
           "shape":"String",
           "locationName":"serviceName"
+        },
+        "RemoteAccountDetails":{
+          "shape":"RemoteAccountDetails",
+          "locationName":"remoteAccountDetails"
+        },
+        "AffectedResources":{
+          "shape":"AffectedResources",
+          "locationName":"affectedResources"
         }
       }
     },
@@ -1050,6 +1416,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "Behavior":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AnomalyUnusualBehaviorFeature"}
     },
     "BlockPublicAccess":{
       "type":"structure",
@@ -1186,6 +1557,81 @@
         }
       }
     },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"__type"
+        }
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "Container":{
+      "type":"structure",
+      "members":{
+        "ContainerRuntime":{
+          "shape":"String",
+          "locationName":"containerRuntime"
+        },
+        "Id":{
+          "shape":"String",
+          "locationName":"id"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Image":{
+          "shape":"String",
+          "locationName":"image"
+        },
+        "ImagePrefix":{
+          "shape":"String",
+          "locationName":"imagePrefix"
+        },
+        "VolumeMounts":{
+          "shape":"VolumeMounts",
+          "locationName":"volumeMounts"
+        },
+        "SecurityContext":{
+          "shape":"SecurityContext",
+          "locationName":"securityContext"
+        }
+      }
+    },
+    "ContainerInstanceDetails":{
+      "type":"structure",
+      "members":{
+        "CoveredContainerInstances":{
+          "shape":"Long",
+          "locationName":"coveredContainerInstances"
+        },
+        "CompatibleContainerInstances":{
+          "shape":"Long",
+          "locationName":"compatibleContainerInstances"
+        }
+      }
+    },
+    "Containers":{
+      "type":"list",
+      "member":{"shape":"Container"}
+    },
+    "CountByCoverageStatus":{
+      "type":"map",
+      "key":{"shape":"CoverageStatus"},
+      "value":{"shape":"Long"}
+    },
+    "CountByResourceType":{
+      "type":"map",
+      "key":{"shape":"ResourceType"},
+      "value":{"shape":"Long"}
+    },
     "CountBySeverity":{
       "type":"map",
       "key":{"shape":"String"},
@@ -1203,6 +1649,246 @@
           "locationName":"countryName"
         }
       }
+    },
+    "CoverageEc2InstanceDetails":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "ClusterArn":{
+          "shape":"String",
+          "locationName":"clusterArn"
+        },
+        "AgentDetails":{
+          "shape":"AgentDetails",
+          "locationName":"agentDetails"
+        },
+        "ManagementType":{
+          "shape":"ManagementType",
+          "locationName":"managementType"
+        }
+      }
+    },
+    "CoverageEcsClusterDetails":{
+      "type":"structure",
+      "members":{
+        "ClusterName":{
+          "shape":"String",
+          "locationName":"clusterName"
+        },
+        "FargateDetails":{
+          "shape":"FargateDetails",
+          "locationName":"fargateDetails"
+        },
+        "ContainerInstanceDetails":{
+          "shape":"ContainerInstanceDetails",
+          "locationName":"containerInstanceDetails"
+        }
+      }
+    },
+    "CoverageEksClusterDetails":{
+      "type":"structure",
+      "members":{
+        "ClusterName":{
+          "shape":"String",
+          "locationName":"clusterName"
+        },
+        "CoveredNodes":{
+          "shape":"Long",
+          "locationName":"coveredNodes"
+        },
+        "CompatibleNodes":{
+          "shape":"Long",
+          "locationName":"compatibleNodes"
+        },
+        "AddonDetails":{
+          "shape":"AddonDetails",
+          "locationName":"addonDetails"
+        },
+        "ManagementType":{
+          "shape":"ManagementType",
+          "locationName":"managementType"
+        }
+      }
+    },
+    "CoverageFilterCondition":{
+      "type":"structure",
+      "members":{
+        "Equals":{
+          "shape":"Equals",
+          "locationName":"equals"
+        },
+        "NotEquals":{
+          "shape":"NotEquals",
+          "locationName":"notEquals"
+        }
+      }
+    },
+    "CoverageFilterCriteria":{
+      "type":"structure",
+      "members":{
+        "FilterCriterion":{
+          "shape":"CoverageFilterCriterionList",
+          "locationName":"filterCriterion"
+        }
+      }
+    },
+    "CoverageFilterCriterion":{
+      "type":"structure",
+      "members":{
+        "CriterionKey":{
+          "shape":"CoverageFilterCriterionKey",
+          "locationName":"criterionKey"
+        },
+        "FilterCondition":{
+          "shape":"CoverageFilterCondition",
+          "locationName":"filterCondition"
+        }
+      }
+    },
+    "CoverageFilterCriterionKey":{
+      "type":"string",
+      "enum":[
+        "ACCOUNT_ID",
+        "CLUSTER_NAME",
+        "RESOURCE_TYPE",
+        "COVERAGE_STATUS",
+        "ADDON_VERSION",
+        "MANAGEMENT_TYPE",
+        "EKS_CLUSTER_NAME",
+        "ECS_CLUSTER_NAME",
+        "AGENT_VERSION",
+        "INSTANCE_ID",
+        "CLUSTER_ARN"
+      ]
+    },
+    "CoverageFilterCriterionList":{
+      "type":"list",
+      "member":{"shape":"CoverageFilterCriterion"},
+      "max":50,
+      "min":0
+    },
+    "CoverageResource":{
+      "type":"structure",
+      "members":{
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
+        },
+        "DetectorId":{
+          "shape":"DetectorId",
+          "locationName":"detectorId"
+        },
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "ResourceDetails":{
+          "shape":"CoverageResourceDetails",
+          "locationName":"resourceDetails"
+        },
+        "CoverageStatus":{
+          "shape":"CoverageStatus",
+          "locationName":"coverageStatus"
+        },
+        "Issue":{
+          "shape":"String",
+          "locationName":"issue"
+        },
+        "UpdatedAt":{
+          "shape":"Timestamp",
+          "locationName":"updatedAt"
+        }
+      }
+    },
+    "CoverageResourceDetails":{
+      "type":"structure",
+      "members":{
+        "EksClusterDetails":{
+          "shape":"CoverageEksClusterDetails",
+          "locationName":"eksClusterDetails"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "locationName":"resourceType"
+        },
+        "EcsClusterDetails":{
+          "shape":"CoverageEcsClusterDetails",
+          "locationName":"ecsClusterDetails"
+        },
+        "Ec2InstanceDetails":{
+          "shape":"CoverageEc2InstanceDetails",
+          "locationName":"ec2InstanceDetails"
+        }
+      }
+    },
+    "CoverageResources":{
+      "type":"list",
+      "member":{"shape":"CoverageResource"}
+    },
+    "CoverageSortCriteria":{
+      "type":"structure",
+      "members":{
+        "AttributeName":{
+          "shape":"CoverageSortKey",
+          "locationName":"attributeName"
+        },
+        "OrderBy":{
+          "shape":"OrderBy",
+          "locationName":"orderBy"
+        }
+      }
+    },
+    "CoverageSortKey":{
+      "type":"string",
+      "enum":[
+        "ACCOUNT_ID",
+        "CLUSTER_NAME",
+        "COVERAGE_STATUS",
+        "ISSUE",
+        "ADDON_VERSION",
+        "UPDATED_AT",
+        "EKS_CLUSTER_NAME",
+        "ECS_CLUSTER_NAME",
+        "INSTANCE_ID"
+      ]
+    },
+    "CoverageStatistics":{
+      "type":"structure",
+      "members":{
+        "CountByResourceType":{
+          "shape":"CountByResourceType",
+          "locationName":"countByResourceType"
+        },
+        "CountByCoverageStatus":{
+          "shape":"CountByCoverageStatus",
+          "locationName":"countByCoverageStatus"
+        }
+      }
+    },
+    "CoverageStatisticsType":{
+      "type":"string",
+      "enum":[
+        "COUNT_BY_RESOURCE_TYPE",
+        "COUNT_BY_COVERAGE_STATUS"
+      ]
+    },
+    "CoverageStatisticsTypeList":{
+      "type":"list",
+      "member":{"shape":"CoverageStatisticsType"}
+    },
+    "CoverageStatus":{
+      "type":"string",
+      "enum":[
+        "HEALTHY",
+        "UNHEALTHY"
+      ]
     },
     "CreateDetectorRequest":{
       "type":"structure",
@@ -1223,11 +1909,17 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurations",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
         },
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"
+        },
+        "Features":{
+          "shape":"DetectorFeatureConfigurations",
+          "locationName":"features"
         }
       }
     },
@@ -1237,6 +1929,10 @@
         "DetectorId":{
           "shape":"DetectorId",
           "locationName":"detectorId"
+        },
+        "UnprocessedDataSources":{
+          "shape":"UnprocessedDataSourcesResult",
+          "locationName":"unprocessedDataSources"
         }
       }
     },
@@ -1489,6 +2185,18 @@
       "key":{"shape":"String"},
       "value":{"shape":"Condition"}
     },
+    "CriterionKey":{
+      "type":"string",
+      "enum":[
+        "EC2_INSTANCE_ARN",
+        "SCAN_ID",
+        "ACCOUNT_ID",
+        "GUARDDUTY_FINDING_ID",
+        "SCAN_START_TIME",
+        "SCAN_STATUS",
+        "SCAN_TYPE"
+      ]
+    },
     "DNSLogsConfigurationResult":{
       "type":"structure",
       "required":["Status"],
@@ -1505,7 +2213,9 @@
         "FLOW_LOGS",
         "CLOUD_TRAIL",
         "DNS_LOGS",
-        "S3_LOGS"
+        "S3_LOGS",
+        "KUBERNETES_AUDIT_LOGS",
+        "EC2_MALWARE_SCAN"
       ]
     },
     "DataSourceConfigurations":{
@@ -1514,6 +2224,14 @@
         "S3Logs":{
           "shape":"S3LogsConfiguration",
           "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"KubernetesConfiguration",
+          "locationName":"kubernetes"
+        },
+        "MalwareProtection":{
+          "shape":"MalwareProtectionConfiguration",
+          "locationName":"malwareProtection"
         }
       }
     },
@@ -1541,6 +2259,23 @@
         "S3Logs":{
           "shape":"S3LogsConfigurationResult",
           "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"KubernetesConfigurationResult",
+          "locationName":"kubernetes"
+        },
+        "MalwareProtection":{
+          "shape":"MalwareProtectionConfigurationResult",
+          "locationName":"malwareProtection"
+        }
+      }
+    },
+    "DataSourceFreeTrial":{
+      "type":"structure",
+      "members":{
+        "FreeTrialDaysRemaining":{
+          "shape":"Integer",
+          "locationName":"freeTrialDaysRemaining"
         }
       }
     },
@@ -1556,6 +2291,35 @@
       ],
       "max":300,
       "min":1
+    },
+    "DataSourcesFreeTrial":{
+      "type":"structure",
+      "members":{
+        "CloudTrail":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"cloudTrail"
+        },
+        "DnsLogs":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"dnsLogs"
+        },
+        "FlowLogs":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"flowLogs"
+        },
+        "S3Logs":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"KubernetesDataSourceFreeTrial",
+          "locationName":"kubernetes"
+        },
+        "MalwareProtection":{
+          "shape":"MalwareProtectionDataSourceFreeTrial",
+          "locationName":"malwareProtection"
+        }
+      }
     },
     "DeclineInvitationsRequest":{
       "type":"structure",
@@ -1750,6 +2514,47 @@
       "members":{
       }
     },
+    "DescribeMalwareScansRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"IntegerValueWithMax",
+          "locationName":"maxResults"
+        },
+        "FilterCriteria":{
+          "shape":"FilterCriteria",
+          "locationName":"filterCriteria"
+        },
+        "SortCriteria":{
+          "shape":"SortCriteria",
+          "locationName":"sortCriteria"
+        }
+      }
+    },
+    "DescribeMalwareScansResponse":{
+      "type":"structure",
+      "required":["Scans"],
+      "members":{
+        "Scans":{
+          "shape":"Scans",
+          "locationName":"scans"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeOrganizationConfigurationRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -1758,18 +2563,27 @@
           "shape":"DetectorId",
           "location":"uri",
           "locationName":"detectorId"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         }
       }
     },
     "DescribeOrganizationConfigurationResponse":{
       "type":"structure",
-      "required":[
-        "AutoEnable",
-        "MemberAccountLimitReached"
-      ],
+      "required":["MemberAccountLimitReached"],
       "members":{
         "AutoEnable":{
           "shape":"Boolean",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use AutoEnableOrganizationMembers instead",
           "locationName":"autoEnable"
         },
         "MemberAccountLimitReached":{
@@ -1778,7 +2592,21 @@
         },
         "DataSources":{
           "shape":"OrganizationDataSourceConfigurationsResult",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"OrganizationFeaturesConfigurationsResults",
+          "locationName":"features"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "AutoEnableOrganizationMembers":{
+          "shape":"AutoEnableMembers",
+          "locationName":"autoEnableOrganizationMembers"
         }
       }
     },
@@ -1878,6 +2706,126 @@
       "type":"list",
       "member":{"shape":"Destination"}
     },
+    "Detection":{
+      "type":"structure",
+      "members":{
+        "Anomaly":{
+          "shape":"Anomaly",
+          "locationName":"anomaly"
+        }
+      }
+    },
+    "DetectorAdditionalConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"FeatureAdditionalConfiguration",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "DetectorAdditionalConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"FeatureAdditionalConfiguration",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        },
+        "UpdatedAt":{
+          "shape":"Timestamp",
+          "locationName":"updatedAt"
+        }
+      }
+    },
+    "DetectorAdditionalConfigurationResults":{
+      "type":"list",
+      "member":{"shape":"DetectorAdditionalConfigurationResult"}
+    },
+    "DetectorAdditionalConfigurations":{
+      "type":"list",
+      "member":{"shape":"DetectorAdditionalConfiguration"}
+    },
+    "DetectorFeature":{
+      "type":"string",
+      "enum":[
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS",
+        "EKS_RUNTIME_MONITORING",
+        "LAMBDA_NETWORK_LOGS",
+        "RUNTIME_MONITORING"
+      ]
+    },
+    "DetectorFeatureConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"DetectorFeature",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        },
+        "AdditionalConfiguration":{
+          "shape":"DetectorAdditionalConfigurations",
+          "locationName":"additionalConfiguration"
+        }
+      }
+    },
+    "DetectorFeatureConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"DetectorFeatureResult",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        },
+        "UpdatedAt":{
+          "shape":"Timestamp",
+          "locationName":"updatedAt"
+        },
+        "AdditionalConfiguration":{
+          "shape":"DetectorAdditionalConfigurationResults",
+          "locationName":"additionalConfiguration"
+        }
+      }
+    },
+    "DetectorFeatureConfigurations":{
+      "type":"list",
+      "member":{"shape":"DetectorFeatureConfiguration"}
+    },
+    "DetectorFeatureConfigurationsResults":{
+      "type":"list",
+      "member":{"shape":"DetectorFeatureConfigurationResult"}
+    },
+    "DetectorFeatureResult":{
+      "type":"string",
+      "enum":[
+        "FLOW_LOGS",
+        "CLOUD_TRAIL",
+        "DNS_LOGS",
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS",
+        "EKS_RUNTIME_MONITORING",
+        "LAMBDA_NETWORK_LOGS",
+        "RUNTIME_MONITORING"
+      ]
+    },
     "DetectorId":{
       "type":"string",
       "max":300,
@@ -1913,7 +2861,7 @@
       "members":{
       }
     },
-    "DisassociateFromMasterAccountRequest":{
+    "DisassociateFromAdministratorAccountRequest":{
       "type":"structure",
       "required":["DetectorId"],
       "members":{
@@ -1924,10 +2872,30 @@
         }
       }
     },
-    "DisassociateFromMasterAccountResponse":{
+    "DisassociateFromAdministratorAccountResponse":{
       "type":"structure",
       "members":{
       }
+    },
+    "DisassociateFromMasterAccountRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This input is deprecated, use DisassociateFromAdministratorAccountRequest instead"
+    },
+    "DisassociateFromMasterAccountResponse":{
+      "type":"structure",
+      "members":{
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This output is deprecated, use DisassociateFromAdministratorAccountResponse instead"
     },
     "DisassociateMembersRequest":{
       "type":"structure",
@@ -1963,6 +2931,18 @@
         "Domain":{
           "shape":"String",
           "locationName":"domain"
+        },
+        "Protocol":{
+          "shape":"String",
+          "locationName":"protocol"
+        },
+        "Blocked":{
+          "shape":"Boolean",
+          "locationName":"blocked"
+        },
+        "DomainWithSuffix":{
+          "shape":"String",
+          "locationName":"domainWithSuffix"
         }
       }
     },
@@ -1976,6 +2956,183 @@
       }
     },
     "Double":{"type":"double"},
+    "EbsSnapshotPreservation":{
+      "type":"string",
+      "enum":[
+        "NO_RETENTION",
+        "RETENTION_WITH_FINDING"
+      ]
+    },
+    "EbsVolumeDetails":{
+      "type":"structure",
+      "members":{
+        "ScannedVolumeDetails":{
+          "shape":"VolumeDetails",
+          "locationName":"scannedVolumeDetails"
+        },
+        "SkippedVolumeDetails":{
+          "shape":"VolumeDetails",
+          "locationName":"skippedVolumeDetails"
+        }
+      }
+    },
+    "EbsVolumeScanDetails":{
+      "type":"structure",
+      "members":{
+        "ScanId":{
+          "shape":"String",
+          "locationName":"scanId"
+        },
+        "ScanStartedAt":{
+          "shape":"Timestamp",
+          "locationName":"scanStartedAt"
+        },
+        "ScanCompletedAt":{
+          "shape":"Timestamp",
+          "locationName":"scanCompletedAt"
+        },
+        "TriggerFindingId":{
+          "shape":"String",
+          "locationName":"triggerFindingId"
+        },
+        "Sources":{
+          "shape":"Sources",
+          "locationName":"sources"
+        },
+        "ScanDetections":{
+          "shape":"ScanDetections",
+          "locationName":"scanDetections"
+        },
+        "ScanType":{
+          "shape":"ScanType",
+          "locationName":"scanType"
+        }
+      }
+    },
+    "EbsVolumesResult":{
+      "type":"structure",
+      "members":{
+        "Status":{
+          "shape":"DataSourceStatus",
+          "locationName":"status"
+        },
+        "Reason":{
+          "shape":"String",
+          "locationName":"reason"
+        }
+      }
+    },
+    "EcsClusterDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
+        },
+        "Status":{
+          "shape":"String",
+          "locationName":"status"
+        },
+        "ActiveServicesCount":{
+          "shape":"Integer",
+          "locationName":"activeServicesCount"
+        },
+        "RegisteredContainerInstancesCount":{
+          "shape":"Integer",
+          "locationName":"registeredContainerInstancesCount"
+        },
+        "RunningTasksCount":{
+          "shape":"Integer",
+          "locationName":"runningTasksCount"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        },
+        "TaskDetails":{
+          "shape":"EcsTaskDetails",
+          "locationName":"taskDetails"
+        }
+      }
+    },
+    "EcsTaskDetails":{
+      "type":"structure",
+      "members":{
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
+        },
+        "DefinitionArn":{
+          "shape":"String",
+          "locationName":"definitionArn"
+        },
+        "Version":{
+          "shape":"String",
+          "locationName":"version"
+        },
+        "TaskCreatedAt":{
+          "shape":"Timestamp",
+          "locationName":"createdAt"
+        },
+        "StartedAt":{
+          "shape":"Timestamp",
+          "locationName":"startedAt"
+        },
+        "StartedBy":{
+          "shape":"String",
+          "locationName":"startedBy"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        },
+        "Volumes":{
+          "shape":"Volumes",
+          "locationName":"volumes"
+        },
+        "Containers":{
+          "shape":"Containers",
+          "locationName":"containers"
+        },
+        "Group":{
+          "shape":"String",
+          "locationName":"group"
+        }
+      }
+    },
+    "EksClusterDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "Status":{
+          "shape":"String",
+          "locationName":"status"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        },
+        "CreatedAt":{
+          "shape":"Timestamp",
+          "locationName":"createdAt"
+        }
+      }
+    },
     "Email":{
       "type":"string",
       "max":64,
@@ -2013,12 +3170,43 @@
         }
       }
     },
+    "FargateDetails":{
+      "type":"structure",
+      "members":{
+        "Issues":{
+          "shape":"Issues",
+          "locationName":"issues"
+        },
+        "ManagementType":{
+          "shape":"ManagementType",
+          "locationName":"managementType"
+        }
+      }
+    },
+    "FeatureAdditionalConfiguration":{
+      "type":"string",
+      "enum":[
+        "EKS_ADDON_MANAGEMENT",
+        "ECS_FARGATE_AGENT_MANAGEMENT"
+      ]
+    },
+    "FeatureStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "Feedback":{
       "type":"string",
       "enum":[
         "USEFUL",
         "NOT_USEFUL"
       ]
+    },
+    "FilePaths":{
+      "type":"list",
+      "member":{"shape":"ScanFilePath"}
     },
     "FilterAction":{
       "type":"string",
@@ -2028,6 +3216,51 @@
       ],
       "max":300,
       "min":1
+    },
+    "FilterCondition":{
+      "type":"structure",
+      "members":{
+        "EqualsValue":{
+          "shape":"NonEmptyString",
+          "locationName":"equalsValue"
+        },
+        "GreaterThan":{
+          "shape":"LongValue",
+          "locationName":"greaterThan"
+        },
+        "LessThan":{
+          "shape":"LongValue",
+          "locationName":"lessThan"
+        }
+      }
+    },
+    "FilterCriteria":{
+      "type":"structure",
+      "members":{
+        "FilterCriterion":{
+          "shape":"FilterCriterionList",
+          "locationName":"filterCriterion"
+        }
+      }
+    },
+    "FilterCriterion":{
+      "type":"structure",
+      "members":{
+        "CriterionKey":{
+          "shape":"CriterionKey",
+          "locationName":"criterionKey"
+        },
+        "FilterCondition":{
+          "shape":"FilterCondition",
+          "locationName":"filterCondition"
+        }
+      }
+    },
+    "FilterCriterionList":{
+      "type":"list",
+      "member":{"shape":"FilterCriterion"},
+      "max":1,
+      "min":0
     },
     "FilterDescription":{
       "type":"string",
@@ -2191,6 +3424,10 @@
       "max":50,
       "min":0
     },
+    "FlagsList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "FlowLogsConfigurationResult":{
       "type":"structure",
       "required":["Status"],
@@ -2200,6 +3437,39 @@
           "locationName":"status"
         }
       }
+    },
+    "FreeTrialFeatureConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"FreeTrialFeatureResult",
+          "locationName":"name"
+        },
+        "FreeTrialDaysRemaining":{
+          "shape":"Integer",
+          "locationName":"freeTrialDaysRemaining"
+        }
+      }
+    },
+    "FreeTrialFeatureConfigurationsResults":{
+      "type":"list",
+      "member":{"shape":"FreeTrialFeatureConfigurationResult"}
+    },
+    "FreeTrialFeatureResult":{
+      "type":"string",
+      "enum":[
+        "FLOW_LOGS",
+        "CLOUD_TRAIL",
+        "DNS_LOGS",
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS",
+        "EKS_RUNTIME_MONITORING",
+        "LAMBDA_NETWORK_LOGS",
+        "FARGATE_RUNTIME_MONITORING",
+        "EC2_RUNTIME_MONITORING"
+      ]
     },
     "GeoLocation":{
       "type":"structure",
@@ -2211,6 +3481,58 @@
         "Lon":{
           "shape":"Double",
           "locationName":"lon"
+        }
+      }
+    },
+    "GetAdministratorAccountRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        }
+      }
+    },
+    "GetAdministratorAccountResponse":{
+      "type":"structure",
+      "required":["Administrator"],
+      "members":{
+        "Administrator":{
+          "shape":"Administrator",
+          "locationName":"administrator"
+        }
+      }
+    },
+    "GetCoverageStatisticsRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "StatisticsType"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "FilterCriteria":{
+          "shape":"CoverageFilterCriteria",
+          "locationName":"filterCriteria"
+        },
+        "StatisticsType":{
+          "shape":"CoverageStatisticsTypeList",
+          "locationName":"statisticsType"
+        }
+      }
+    },
+    "GetCoverageStatisticsResponse":{
+      "type":"structure",
+      "members":{
+        "CoverageStatistics":{
+          "shape":"CoverageStatistics",
+          "locationName":"coverageStatistics"
         }
       }
     },
@@ -2254,11 +3576,17 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurationsResult",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
         },
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"
+        },
+        "Features":{
+          "shape":"DetectorFeatureConfigurationsResults",
+          "locationName":"features"
         }
       }
     },
@@ -2443,7 +3771,7 @@
         }
       }
     },
-    "GetMasterAccountRequest":{
+    "GetMalwareScanSettingsRequest":{
       "type":"structure",
       "required":["DetectorId"],
       "members":{
@@ -2454,6 +3782,32 @@
         }
       }
     },
+    "GetMalwareScanSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "ScanResourceCriteria":{
+          "shape":"ScanResourceCriteria",
+          "locationName":"scanResourceCriteria"
+        },
+        "EbsSnapshotPreservation":{
+          "shape":"EbsSnapshotPreservation",
+          "locationName":"ebsSnapshotPreservation"
+        }
+      }
+    },
+    "GetMasterAccountRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This input is deprecated, use GetAdministratorAccountRequest instead"
+    },
     "GetMasterAccountResponse":{
       "type":"structure",
       "required":["Master"],
@@ -2462,7 +3816,9 @@
           "shape":"Master",
           "locationName":"master"
         }
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This output is deprecated, use GetAdministratorAccountResponse instead"
     },
     "GetMemberDetectorsRequest":{
       "type":"structure",
@@ -2527,6 +3883,34 @@
         "Members":{
           "shape":"Members",
           "locationName":"members"
+        },
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
+        }
+      }
+    },
+    "GetRemainingFreeTrialDaysRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
+        }
+      }
+    },
+    "GetRemainingFreeTrialDaysResponse":{
+      "type":"structure",
+      "members":{
+        "Accounts":{
+          "shape":"AccountFreeTrialInfos",
+          "locationName":"accounts"
         },
         "UnprocessedAccounts":{
           "shape":"UnprocessedAccounts",
@@ -2632,9 +4016,39 @@
         }
       }
     },
+    "Groups":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "GuardDutyArn":{
       "type":"string",
       "pattern":"^arn:[A-Za-z_.-]{1,20}:guardduty:[A-Za-z0-9_/.-]{0,63}:\\d+:detector/[A-Za-z0-9_/.-]{32,264}$"
+    },
+    "HighestSeverityThreatDetails":{
+      "type":"structure",
+      "members":{
+        "Severity":{
+          "shape":"String",
+          "locationName":"severity"
+        },
+        "ThreatName":{
+          "shape":"String",
+          "locationName":"threatName"
+        },
+        "Count":{
+          "shape":"Integer",
+          "locationName":"count"
+        }
+      }
+    },
+    "HostPath":{
+      "type":"structure",
+      "members":{
+        "Path":{
+          "shape":"String",
+          "locationName":"path"
+        }
+      }
     },
     "IamInstanceProfile":{
       "type":"structure",
@@ -2648,6 +4062,23 @@
           "locationName":"id"
         }
       }
+    },
+    "ImpersonatedUser":{
+      "type":"structure",
+      "members":{
+        "Username":{
+          "shape":"String",
+          "locationName":"username"
+        },
+        "Groups":{
+          "shape":"Groups",
+          "locationName":"groups"
+        }
+      }
+    },
+    "InstanceArn":{
+      "type":"string",
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov):[a-z]+:[a-z]+(-[0-9]+|-[a-z]+)+:([0-9]{12}):[a-z\\-]+\\/[a-zA-Z0-9]*$"
     },
     "InstanceDetails":{
       "type":"structure",
@@ -2707,6 +4138,11 @@
       }
     },
     "Integer":{"type":"integer"},
+    "IntegerValueWithMax":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
     "InternalServerErrorException":{
       "type":"structure",
       "members":{
@@ -2821,6 +4257,383 @@
     "Ipv6Addresses":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "Issues":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":50,
+      "min":0
+    },
+    "KubernetesApiCallAction":{
+      "type":"structure",
+      "members":{
+        "RequestUri":{
+          "shape":"String",
+          "locationName":"requestUri"
+        },
+        "Verb":{
+          "shape":"String",
+          "locationName":"verb"
+        },
+        "SourceIps":{
+          "shape":"SourceIps",
+          "locationName":"sourceIps"
+        },
+        "UserAgent":{
+          "shape":"String",
+          "locationName":"userAgent"
+        },
+        "RemoteIpDetails":{
+          "shape":"RemoteIpDetails",
+          "locationName":"remoteIpDetails"
+        },
+        "StatusCode":{
+          "shape":"Integer",
+          "locationName":"statusCode"
+        },
+        "Parameters":{
+          "shape":"String",
+          "locationName":"parameters"
+        },
+        "Resource":{
+          "shape":"String",
+          "locationName":"resource"
+        },
+        "Subresource":{
+          "shape":"String",
+          "locationName":"subresource"
+        },
+        "Namespace":{
+          "shape":"String",
+          "locationName":"namespace"
+        },
+        "ResourceName":{
+          "shape":"String",
+          "locationName":"resourceName"
+        }
+      }
+    },
+    "KubernetesAuditLogsConfiguration":{
+      "type":"structure",
+      "required":["Enable"],
+      "members":{
+        "Enable":{
+          "shape":"Boolean",
+          "locationName":"enable"
+        }
+      }
+    },
+    "KubernetesAuditLogsConfigurationResult":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{
+          "shape":"DataSourceStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "KubernetesConfiguration":{
+      "type":"structure",
+      "required":["AuditLogs"],
+      "members":{
+        "AuditLogs":{
+          "shape":"KubernetesAuditLogsConfiguration",
+          "locationName":"auditLogs"
+        }
+      }
+    },
+    "KubernetesConfigurationResult":{
+      "type":"structure",
+      "required":["AuditLogs"],
+      "members":{
+        "AuditLogs":{
+          "shape":"KubernetesAuditLogsConfigurationResult",
+          "locationName":"auditLogs"
+        }
+      }
+    },
+    "KubernetesDataSourceFreeTrial":{
+      "type":"structure",
+      "members":{
+        "AuditLogs":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"auditLogs"
+        }
+      }
+    },
+    "KubernetesDetails":{
+      "type":"structure",
+      "members":{
+        "KubernetesUserDetails":{
+          "shape":"KubernetesUserDetails",
+          "locationName":"kubernetesUserDetails"
+        },
+        "KubernetesWorkloadDetails":{
+          "shape":"KubernetesWorkloadDetails",
+          "locationName":"kubernetesWorkloadDetails"
+        }
+      }
+    },
+    "KubernetesPermissionCheckedDetails":{
+      "type":"structure",
+      "members":{
+        "Verb":{
+          "shape":"String",
+          "locationName":"verb"
+        },
+        "Resource":{
+          "shape":"String",
+          "locationName":"resource"
+        },
+        "Namespace":{
+          "shape":"String",
+          "locationName":"namespace"
+        },
+        "Allowed":{
+          "shape":"Boolean",
+          "locationName":"allowed"
+        }
+      }
+    },
+    "KubernetesRoleBindingDetails":{
+      "type":"structure",
+      "members":{
+        "Kind":{
+          "shape":"String",
+          "locationName":"kind"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Uid":{
+          "shape":"String",
+          "locationName":"uid"
+        },
+        "RoleRefName":{
+          "shape":"String",
+          "locationName":"roleRefName"
+        },
+        "RoleRefKind":{
+          "shape":"String",
+          "locationName":"roleRefKind"
+        }
+      }
+    },
+    "KubernetesRoleDetails":{
+      "type":"structure",
+      "members":{
+        "Kind":{
+          "shape":"String",
+          "locationName":"kind"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Uid":{
+          "shape":"String",
+          "locationName":"uid"
+        }
+      }
+    },
+    "KubernetesUserDetails":{
+      "type":"structure",
+      "members":{
+        "Username":{
+          "shape":"String",
+          "locationName":"username"
+        },
+        "Uid":{
+          "shape":"String",
+          "locationName":"uid"
+        },
+        "Groups":{
+          "shape":"Groups",
+          "locationName":"groups"
+        },
+        "SessionName":{
+          "shape":"SessionNameList",
+          "locationName":"sessionName"
+        },
+        "ImpersonatedUser":{
+          "shape":"ImpersonatedUser",
+          "locationName":"impersonatedUser"
+        }
+      }
+    },
+    "KubernetesWorkloadDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"type"
+        },
+        "Uid":{
+          "shape":"String",
+          "locationName":"uid"
+        },
+        "Namespace":{
+          "shape":"String",
+          "locationName":"namespace"
+        },
+        "HostNetwork":{
+          "shape":"Boolean",
+          "locationName":"hostNetwork"
+        },
+        "Containers":{
+          "shape":"Containers",
+          "locationName":"containers"
+        },
+        "Volumes":{
+          "shape":"Volumes",
+          "locationName":"volumes"
+        },
+        "ServiceAccountName":{
+          "shape":"String",
+          "locationName":"serviceAccountName"
+        },
+        "HostIPC":{
+          "shape":"Boolean",
+          "locationName":"hostIPC"
+        },
+        "HostPID":{
+          "shape":"Boolean",
+          "locationName":"hostPID"
+        }
+      }
+    },
+    "LambdaDetails":{
+      "type":"structure",
+      "members":{
+        "FunctionArn":{
+          "shape":"String",
+          "locationName":"functionArn"
+        },
+        "FunctionName":{
+          "shape":"String",
+          "locationName":"functionName"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "LastModifiedAt":{
+          "shape":"Timestamp",
+          "locationName":"lastModifiedAt"
+        },
+        "RevisionId":{
+          "shape":"String",
+          "locationName":"revisionId"
+        },
+        "FunctionVersion":{
+          "shape":"String",
+          "locationName":"functionVersion"
+        },
+        "Role":{
+          "shape":"String",
+          "locationName":"role"
+        },
+        "VpcConfig":{
+          "shape":"VpcConfig",
+          "locationName":"vpcConfig"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        }
+      }
+    },
+    "Lineage":{
+      "type":"list",
+      "member":{"shape":"LineageObject"}
+    },
+    "LineageObject":{
+      "type":"structure",
+      "members":{
+        "StartTime":{
+          "shape":"Timestamp",
+          "locationName":"startTime"
+        },
+        "NamespacePid":{
+          "shape":"Integer",
+          "locationName":"namespacePid"
+        },
+        "UserId":{
+          "shape":"Integer",
+          "locationName":"userId"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Pid":{
+          "shape":"Integer",
+          "locationName":"pid"
+        },
+        "Uuid":{
+          "shape":"String",
+          "locationName":"uuid"
+        },
+        "ExecutablePath":{
+          "shape":"String",
+          "locationName":"executablePath"
+        },
+        "Euid":{
+          "shape":"Integer",
+          "locationName":"euid"
+        },
+        "ParentUuid":{
+          "shape":"String",
+          "locationName":"parentUuid"
+        }
+      }
+    },
+    "ListCoverageRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "locationName":"maxResults"
+        },
+        "FilterCriteria":{
+          "shape":"CoverageFilterCriteria",
+          "locationName":"filterCriteria"
+        },
+        "SortCriteria":{
+          "shape":"CoverageSortCriteria",
+          "locationName":"sortCriteria"
+        }
+      }
+    },
+    "ListCoverageResponse":{
+      "type":"structure",
+      "required":["Resources"],
+      "members":{
+        "Resources":{
+          "shape":"CoverageResources",
+          "locationName":"resources"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
     },
     "ListDetectorsRequest":{
       "type":"structure",
@@ -3174,7 +4987,76 @@
       "max":300,
       "min":1
     },
+    "LoginAttribute":{
+      "type":"structure",
+      "members":{
+        "User":{
+          "shape":"String",
+          "locationName":"user"
+        },
+        "Application":{
+          "shape":"String",
+          "locationName":"application"
+        },
+        "FailedLoginAttempts":{
+          "shape":"Integer",
+          "locationName":"failedLoginAttempts"
+        },
+        "SuccessfulLoginAttempts":{
+          "shape":"Integer",
+          "locationName":"successfulLoginAttempts"
+        }
+      }
+    },
+    "LoginAttributes":{
+      "type":"list",
+      "member":{"shape":"LoginAttribute"}
+    },
     "Long":{"type":"long"},
+    "LongValue":{"type":"long"},
+    "MalwareProtectionConfiguration":{
+      "type":"structure",
+      "members":{
+        "ScanEc2InstanceWithFindings":{
+          "shape":"ScanEc2InstanceWithFindings",
+          "locationName":"scanEc2InstanceWithFindings"
+        }
+      }
+    },
+    "MalwareProtectionConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "ScanEc2InstanceWithFindings":{
+          "shape":"ScanEc2InstanceWithFindingsResult",
+          "locationName":"scanEc2InstanceWithFindings"
+        },
+        "ServiceRole":{
+          "shape":"String",
+          "locationName":"serviceRole"
+        }
+      }
+    },
+    "MalwareProtectionDataSourceFreeTrial":{
+      "type":"structure",
+      "members":{
+        "ScanEc2InstanceWithFindings":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"scanEc2InstanceWithFindings"
+        }
+      }
+    },
+    "ManagementType":{
+      "type":"string",
+      "enum":[
+        "AUTO_MANAGED",
+        "MANUAL",
+        "DISABLED"
+      ]
+    },
+    "MapEquals":{
+      "type":"list",
+      "member":{"shape":"ScanConditionPair"}
+    },
     "Master":{
       "type":"structure",
       "members":{
@@ -3238,15 +5120,54 @@
         "UpdatedAt":{
           "shape":"String",
           "locationName":"updatedAt"
+        },
+        "AdministratorId":{
+          "shape":"String",
+          "locationName":"administratorId"
         }
       }
     },
+    "MemberAdditionalConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeatureAdditionalConfiguration",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "MemberAdditionalConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeatureAdditionalConfiguration",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        },
+        "UpdatedAt":{
+          "shape":"Timestamp",
+          "locationName":"updatedAt"
+        }
+      }
+    },
+    "MemberAdditionalConfigurationResults":{
+      "type":"list",
+      "member":{"shape":"MemberAdditionalConfigurationResult"}
+    },
+    "MemberAdditionalConfigurations":{
+      "type":"list",
+      "member":{"shape":"MemberAdditionalConfiguration"}
+    },
     "MemberDataSourceConfiguration":{
       "type":"structure",
-      "required":[
-        "AccountId",
-        "DataSources"
-      ],
+      "required":["AccountId"],
       "members":{
         "AccountId":{
           "shape":"AccountId",
@@ -3254,7 +5175,13 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurationsResult",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"MemberFeaturesConfigurationsResults",
+          "locationName":"features"
         }
       }
     },
@@ -3264,11 +5191,61 @@
       "max":50,
       "min":1
     },
+    "MemberFeaturesConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeature",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        },
+        "AdditionalConfiguration":{
+          "shape":"MemberAdditionalConfigurations",
+          "locationName":"additionalConfiguration"
+        }
+      }
+    },
+    "MemberFeaturesConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeature",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        },
+        "UpdatedAt":{
+          "shape":"Timestamp",
+          "locationName":"updatedAt"
+        },
+        "AdditionalConfiguration":{
+          "shape":"MemberAdditionalConfigurationResults",
+          "locationName":"additionalConfiguration"
+        }
+      }
+    },
+    "MemberFeaturesConfigurations":{
+      "type":"list",
+      "member":{"shape":"MemberFeaturesConfiguration"}
+    },
+    "MemberFeaturesConfigurationsResults":{
+      "type":"list",
+      "member":{"shape":"MemberFeaturesConfigurationResult"}
+    },
     "Members":{
       "type":"list",
       "member":{"shape":"Member"},
       "max":50,
       "min":0
+    },
+    "MemoryRegionsList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "Name":{
       "type":"string",
@@ -3361,15 +5338,60 @@
       "type":"list",
       "member":{"shape":"NetworkInterface"}
     },
+    "NonEmptyString":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
     "NotEquals":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "ObservationTexts":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "Observations":{
+      "type":"structure",
+      "members":{
+        "Text":{
+          "shape":"ObservationTexts",
+          "locationName":"text"
+        }
+      }
     },
     "OrderBy":{
       "type":"string",
       "enum":[
         "ASC",
         "DESC"
+      ]
+    },
+    "OrgFeature":{
+      "type":"string",
+      "enum":[
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS",
+        "EKS_RUNTIME_MONITORING",
+        "LAMBDA_NETWORK_LOGS",
+        "RUNTIME_MONITORING"
+      ]
+    },
+    "OrgFeatureAdditionalConfiguration":{
+      "type":"string",
+      "enum":[
+        "EKS_ADDON_MANAGEMENT",
+        "ECS_FARGATE_AGENT_MANAGEMENT"
+      ]
+    },
+    "OrgFeatureStatus":{
+      "type":"string",
+      "enum":[
+        "NEW",
+        "NONE",
+        "ALL"
       ]
     },
     "Organization":{
@@ -3393,12 +5415,54 @@
         }
       }
     },
+    "OrganizationAdditionalConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeatureAdditionalConfiguration",
+          "locationName":"name"
+        },
+        "AutoEnable":{
+          "shape":"OrgFeatureStatus",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationAdditionalConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeatureAdditionalConfiguration",
+          "locationName":"name"
+        },
+        "AutoEnable":{
+          "shape":"OrgFeatureStatus",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationAdditionalConfigurationResults":{
+      "type":"list",
+      "member":{"shape":"OrganizationAdditionalConfigurationResult"}
+    },
+    "OrganizationAdditionalConfigurations":{
+      "type":"list",
+      "member":{"shape":"OrganizationAdditionalConfiguration"}
+    },
     "OrganizationDataSourceConfigurations":{
       "type":"structure",
       "members":{
         "S3Logs":{
           "shape":"OrganizationS3LogsConfiguration",
           "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"OrganizationKubernetesConfiguration",
+          "locationName":"kubernetes"
+        },
+        "MalwareProtection":{
+          "shape":"OrganizationMalwareProtectionConfiguration",
+          "locationName":"malwareProtection"
         }
       }
     },
@@ -3409,6 +5473,132 @@
         "S3Logs":{
           "shape":"OrganizationS3LogsConfigurationResult",
           "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"OrganizationKubernetesConfigurationResult",
+          "locationName":"kubernetes"
+        },
+        "MalwareProtection":{
+          "shape":"OrganizationMalwareProtectionConfigurationResult",
+          "locationName":"malwareProtection"
+        }
+      }
+    },
+    "OrganizationEbsVolumes":{
+      "type":"structure",
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationEbsVolumesResult":{
+      "type":"structure",
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationFeatureConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeature",
+          "locationName":"name"
+        },
+        "AutoEnable":{
+          "shape":"OrgFeatureStatus",
+          "locationName":"autoEnable"
+        },
+        "AdditionalConfiguration":{
+          "shape":"OrganizationAdditionalConfigurations",
+          "locationName":"additionalConfiguration"
+        }
+      }
+    },
+    "OrganizationFeatureConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeature",
+          "locationName":"name"
+        },
+        "AutoEnable":{
+          "shape":"OrgFeatureStatus",
+          "locationName":"autoEnable"
+        },
+        "AdditionalConfiguration":{
+          "shape":"OrganizationAdditionalConfigurationResults",
+          "locationName":"additionalConfiguration"
+        }
+      }
+    },
+    "OrganizationFeaturesConfigurations":{
+      "type":"list",
+      "member":{"shape":"OrganizationFeatureConfiguration"}
+    },
+    "OrganizationFeaturesConfigurationsResults":{
+      "type":"list",
+      "member":{"shape":"OrganizationFeatureConfigurationResult"}
+    },
+    "OrganizationKubernetesAuditLogsConfiguration":{
+      "type":"structure",
+      "required":["AutoEnable"],
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationKubernetesAuditLogsConfigurationResult":{
+      "type":"structure",
+      "required":["AutoEnable"],
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationKubernetesConfiguration":{
+      "type":"structure",
+      "required":["AuditLogs"],
+      "members":{
+        "AuditLogs":{
+          "shape":"OrganizationKubernetesAuditLogsConfiguration",
+          "locationName":"auditLogs"
+        }
+      }
+    },
+    "OrganizationKubernetesConfigurationResult":{
+      "type":"structure",
+      "required":["AuditLogs"],
+      "members":{
+        "AuditLogs":{
+          "shape":"OrganizationKubernetesAuditLogsConfigurationResult",
+          "locationName":"auditLogs"
+        }
+      }
+    },
+    "OrganizationMalwareProtectionConfiguration":{
+      "type":"structure",
+      "members":{
+        "ScanEc2InstanceWithFindings":{
+          "shape":"OrganizationScanEc2InstanceWithFindings",
+          "locationName":"scanEc2InstanceWithFindings"
+        }
+      }
+    },
+    "OrganizationMalwareProtectionConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "ScanEc2InstanceWithFindings":{
+          "shape":"OrganizationScanEc2InstanceWithFindingsResult",
+          "locationName":"scanEc2InstanceWithFindings"
         }
       }
     },
@@ -3429,6 +5619,24 @@
         "AutoEnable":{
           "shape":"Boolean",
           "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationScanEc2InstanceWithFindings":{
+      "type":"structure",
+      "members":{
+        "EbsVolumes":{
+          "shape":"OrganizationEbsVolumes",
+          "locationName":"ebsVolumes"
+        }
+      }
+    },
+    "OrganizationScanEc2InstanceWithFindingsResult":{
+      "type":"structure",
+      "members":{
+        "EbsVolumes":{
+          "shape":"OrganizationEbsVolumesResult",
+          "locationName":"ebsVolumes"
         }
       }
     },
@@ -3488,6 +5696,10 @@
       "type":"list",
       "member":{"shape":"PortProbeDetail"}
     },
+    "PositiveLong":{
+      "type":"long",
+      "min":0
+    },
     "PrivateIpAddressDetails":{
       "type":"structure",
       "members":{
@@ -3505,22 +5717,92 @@
       "type":"list",
       "member":{"shape":"PrivateIpAddressDetails"}
     },
+    "ProcessDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "ExecutablePath":{
+          "shape":"String",
+          "locationName":"executablePath"
+        },
+        "ExecutableSha256":{
+          "shape":"String",
+          "locationName":"executableSha256"
+        },
+        "NamespacePid":{
+          "shape":"Integer",
+          "locationName":"namespacePid"
+        },
+        "Pwd":{
+          "shape":"String",
+          "locationName":"pwd"
+        },
+        "Pid":{
+          "shape":"Integer",
+          "locationName":"pid"
+        },
+        "StartTime":{
+          "shape":"Timestamp",
+          "locationName":"startTime"
+        },
+        "Uuid":{
+          "shape":"String",
+          "locationName":"uuid"
+        },
+        "ParentUuid":{
+          "shape":"String",
+          "locationName":"parentUuid"
+        },
+        "User":{
+          "shape":"String",
+          "locationName":"user"
+        },
+        "UserId":{
+          "shape":"Integer",
+          "locationName":"userId"
+        },
+        "Euid":{
+          "shape":"Integer",
+          "locationName":"euid"
+        },
+        "Lineage":{
+          "shape":"Lineage",
+          "locationName":"lineage"
+        }
+      }
+    },
     "ProductCode":{
       "type":"structure",
       "members":{
         "Code":{
           "shape":"String",
-          "locationName":"code"
+          "locationName":"productCodeId"
         },
         "ProductType":{
           "shape":"String",
-          "locationName":"productType"
+          "locationName":"productCodeType"
         }
       }
     },
     "ProductCodes":{
       "type":"list",
       "member":{"shape":"ProductCode"}
+    },
+    "ProfileSubtype":{
+      "type":"string",
+      "enum":[
+        "FREQUENT",
+        "INFREQUENT",
+        "UNSEEN",
+        "RARE"
+      ]
+    },
+    "ProfileType":{
+      "type":"string",
+      "enum":["FREQUENCY"]
     },
     "PublicAccess":{
       "type":"structure",
@@ -3545,6 +5827,83 @@
       ],
       "max":300,
       "min":1
+    },
+    "RdsDbInstanceDetails":{
+      "type":"structure",
+      "members":{
+        "DbInstanceIdentifier":{
+          "shape":"String",
+          "locationName":"dbInstanceIdentifier"
+        },
+        "Engine":{
+          "shape":"String",
+          "locationName":"engine"
+        },
+        "EngineVersion":{
+          "shape":"String",
+          "locationName":"engineVersion"
+        },
+        "DbClusterIdentifier":{
+          "shape":"String",
+          "locationName":"dbClusterIdentifier"
+        },
+        "DbInstanceArn":{
+          "shape":"String",
+          "locationName":"dbInstanceArn"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        }
+      }
+    },
+    "RdsDbUserDetails":{
+      "type":"structure",
+      "members":{
+        "User":{
+          "shape":"String",
+          "locationName":"user"
+        },
+        "Application":{
+          "shape":"String",
+          "locationName":"application"
+        },
+        "Database":{
+          "shape":"String",
+          "locationName":"database"
+        },
+        "Ssl":{
+          "shape":"String",
+          "locationName":"ssl"
+        },
+        "AuthMethod":{
+          "shape":"String",
+          "locationName":"authMethod"
+        }
+      }
+    },
+    "RdsLoginAttemptAction":{
+      "type":"structure",
+      "members":{
+        "RemoteIpDetails":{
+          "shape":"RemoteIpDetails",
+          "locationName":"remoteIpDetails"
+        },
+        "LoginAttributes":{"shape":"LoginAttributes"}
+      }
+    },
+    "RemoteAccountDetails":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "locationName":"accountId"
+        },
+        "Affiliated":{
+          "shape":"Boolean",
+          "locationName":"affiliated"
+        }
+      }
     },
     "RemoteIpDetails":{
       "type":"structure",
@@ -3599,15 +5958,166 @@
           "shape":"InstanceDetails",
           "locationName":"instanceDetails"
         },
+        "EksClusterDetails":{
+          "shape":"EksClusterDetails",
+          "locationName":"eksClusterDetails"
+        },
+        "KubernetesDetails":{
+          "shape":"KubernetesDetails",
+          "locationName":"kubernetesDetails"
+        },
         "ResourceType":{
           "shape":"String",
           "locationName":"resourceType"
+        },
+        "EbsVolumeDetails":{
+          "shape":"EbsVolumeDetails",
+          "locationName":"ebsVolumeDetails"
+        },
+        "EcsClusterDetails":{
+          "shape":"EcsClusterDetails",
+          "locationName":"ecsClusterDetails"
+        },
+        "ContainerDetails":{
+          "shape":"Container",
+          "locationName":"containerDetails"
+        },
+        "RdsDbInstanceDetails":{
+          "shape":"RdsDbInstanceDetails",
+          "locationName":"rdsDbInstanceDetails"
+        },
+        "RdsDbUserDetails":{
+          "shape":"RdsDbUserDetails",
+          "locationName":"rdsDbUserDetails"
+        },
+        "LambdaDetails":{
+          "shape":"LambdaDetails",
+          "locationName":"lambdaDetails"
+        }
+      }
+    },
+    "ResourceArn":{
+      "type":"string",
+      "pattern":"^arn:[A-Za-z-]+:[A-Za-z0-9]+:[A-Za-z0-9-]+:\\d+:(([A-Za-z0-9-]+)[:\\/])?[A-Za-z0-9-]*$"
+    },
+    "ResourceDetails":{
+      "type":"structure",
+      "members":{
+        "InstanceArn":{
+          "shape":"InstanceArn",
+          "locationName":"instanceArn"
         }
       }
     },
     "ResourceList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":[
+        "EKS",
+        "ECS",
+        "EC2"
+      ]
+    },
+    "RuntimeContext":{
+      "type":"structure",
+      "members":{
+        "ModifyingProcess":{
+          "shape":"ProcessDetails",
+          "locationName":"modifyingProcess"
+        },
+        "ModifiedAt":{
+          "shape":"Timestamp",
+          "locationName":"modifiedAt"
+        },
+        "ScriptPath":{
+          "shape":"String",
+          "locationName":"scriptPath"
+        },
+        "LibraryPath":{
+          "shape":"String",
+          "locationName":"libraryPath"
+        },
+        "LdPreloadValue":{
+          "shape":"String",
+          "locationName":"ldPreloadValue"
+        },
+        "SocketPath":{
+          "shape":"String",
+          "locationName":"socketPath"
+        },
+        "RuncBinaryPath":{
+          "shape":"String",
+          "locationName":"runcBinaryPath"
+        },
+        "ReleaseAgentPath":{
+          "shape":"String",
+          "locationName":"releaseAgentPath"
+        },
+        "MountSource":{
+          "shape":"String",
+          "locationName":"mountSource"
+        },
+        "MountTarget":{
+          "shape":"String",
+          "locationName":"mountTarget"
+        },
+        "FileSystemType":{
+          "shape":"String",
+          "locationName":"fileSystemType"
+        },
+        "Flags":{
+          "shape":"FlagsList",
+          "locationName":"flags"
+        },
+        "ModuleName":{
+          "shape":"String",
+          "locationName":"moduleName"
+        },
+        "ModuleFilePath":{
+          "shape":"String",
+          "locationName":"moduleFilePath"
+        },
+        "ModuleSha256":{
+          "shape":"String",
+          "locationName":"moduleSha256"
+        },
+        "ShellHistoryFilePath":{
+          "shape":"String",
+          "locationName":"shellHistoryFilePath"
+        },
+        "TargetProcess":{
+          "shape":"ProcessDetails",
+          "locationName":"targetProcess"
+        },
+        "AddressFamily":{
+          "shape":"String",
+          "locationName":"addressFamily"
+        },
+        "IanaProtocolNumber":{
+          "shape":"Integer",
+          "locationName":"ianaProtocolNumber"
+        },
+        "MemoryRegions":{
+          "shape":"MemoryRegionsList",
+          "locationName":"memoryRegions"
+        }
+      }
+    },
+    "RuntimeDetails":{
+      "type":"structure",
+      "members":{
+        "Process":{
+          "shape":"ProcessDetails",
+          "locationName":"process"
+        },
+        "Context":{
+          "shape":"RuntimeContext",
+          "locationName":"context"
+        }
+      }
     },
     "S3BucketDetail":{
       "type":"structure",
@@ -3670,6 +6180,268 @@
         }
       }
     },
+    "Scan":{
+      "type":"structure",
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "locationName":"detectorId"
+        },
+        "AdminDetectorId":{
+          "shape":"DetectorId",
+          "locationName":"adminDetectorId"
+        },
+        "ScanId":{
+          "shape":"NonEmptyString",
+          "locationName":"scanId"
+        },
+        "ScanStatus":{
+          "shape":"ScanStatus",
+          "locationName":"scanStatus"
+        },
+        "FailureReason":{
+          "shape":"NonEmptyString",
+          "locationName":"failureReason"
+        },
+        "ScanStartTime":{
+          "shape":"Timestamp",
+          "locationName":"scanStartTime"
+        },
+        "ScanEndTime":{
+          "shape":"Timestamp",
+          "locationName":"scanEndTime"
+        },
+        "TriggerDetails":{
+          "shape":"TriggerDetails",
+          "locationName":"triggerDetails"
+        },
+        "ResourceDetails":{
+          "shape":"ResourceDetails",
+          "locationName":"resourceDetails"
+        },
+        "ScanResultDetails":{
+          "shape":"ScanResultDetails",
+          "locationName":"scanResultDetails"
+        },
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "TotalBytes":{
+          "shape":"PositiveLong",
+          "locationName":"totalBytes"
+        },
+        "FileCount":{
+          "shape":"PositiveLong",
+          "locationName":"fileCount"
+        },
+        "AttachedVolumes":{
+          "shape":"VolumeDetails",
+          "locationName":"attachedVolumes"
+        },
+        "ScanType":{
+          "shape":"ScanType",
+          "locationName":"scanType"
+        }
+      }
+    },
+    "ScanCondition":{
+      "type":"structure",
+      "required":["MapEquals"],
+      "members":{
+        "MapEquals":{
+          "shape":"MapEquals",
+          "locationName":"mapEquals"
+        }
+      }
+    },
+    "ScanConditionPair":{
+      "type":"structure",
+      "required":["Key"],
+      "members":{
+        "Key":{
+          "shape":"TagKey",
+          "locationName":"key"
+        },
+        "Value":{
+          "shape":"TagValue",
+          "locationName":"value"
+        }
+      }
+    },
+    "ScanCriterion":{
+      "type":"map",
+      "key":{"shape":"ScanCriterionKey"},
+      "value":{"shape":"ScanCondition"}
+    },
+    "ScanCriterionKey":{
+      "type":"string",
+      "enum":["EC2_INSTANCE_TAG"]
+    },
+    "ScanDetections":{
+      "type":"structure",
+      "members":{
+        "ScannedItemCount":{
+          "shape":"ScannedItemCount",
+          "locationName":"scannedItemCount"
+        },
+        "ThreatsDetectedItemCount":{
+          "shape":"ThreatsDetectedItemCount",
+          "locationName":"threatsDetectedItemCount"
+        },
+        "HighestSeverityThreatDetails":{
+          "shape":"HighestSeverityThreatDetails",
+          "locationName":"highestSeverityThreatDetails"
+        },
+        "ThreatDetectedByName":{
+          "shape":"ThreatDetectedByName",
+          "locationName":"threatDetectedByName"
+        }
+      }
+    },
+    "ScanEc2InstanceWithFindings":{
+      "type":"structure",
+      "members":{
+        "EbsVolumes":{
+          "shape":"Boolean",
+          "locationName":"ebsVolumes"
+        }
+      }
+    },
+    "ScanEc2InstanceWithFindingsResult":{
+      "type":"structure",
+      "members":{
+        "EbsVolumes":{
+          "shape":"EbsVolumesResult",
+          "locationName":"ebsVolumes"
+        }
+      }
+    },
+    "ScanFilePath":{
+      "type":"structure",
+      "members":{
+        "FilePath":{
+          "shape":"String",
+          "locationName":"filePath"
+        },
+        "VolumeArn":{
+          "shape":"String",
+          "locationName":"volumeArn"
+        },
+        "Hash":{
+          "shape":"String",
+          "locationName":"hash"
+        },
+        "FileName":{
+          "shape":"String",
+          "locationName":"fileName"
+        }
+      }
+    },
+    "ScanResourceCriteria":{
+      "type":"structure",
+      "members":{
+        "Include":{
+          "shape":"ScanCriterion",
+          "locationName":"include"
+        },
+        "Exclude":{
+          "shape":"ScanCriterion",
+          "locationName":"exclude"
+        }
+      }
+    },
+    "ScanResult":{
+      "type":"string",
+      "enum":[
+        "CLEAN",
+        "INFECTED"
+      ]
+    },
+    "ScanResultDetails":{
+      "type":"structure",
+      "members":{
+        "ScanResult":{
+          "shape":"ScanResult",
+          "locationName":"scanResult"
+        }
+      }
+    },
+    "ScanStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "COMPLETED",
+        "FAILED",
+        "SKIPPED"
+      ]
+    },
+    "ScanThreatName":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Severity":{
+          "shape":"String",
+          "locationName":"severity"
+        },
+        "ItemCount":{
+          "shape":"Integer",
+          "locationName":"itemCount"
+        },
+        "FilePaths":{
+          "shape":"FilePaths",
+          "locationName":"filePaths"
+        }
+      }
+    },
+    "ScanThreatNames":{
+      "type":"list",
+      "member":{"shape":"ScanThreatName"}
+    },
+    "ScanType":{
+      "type":"string",
+      "enum":[
+        "GUARDDUTY_INITIATED",
+        "ON_DEMAND"
+      ]
+    },
+    "ScannedItemCount":{
+      "type":"structure",
+      "members":{
+        "TotalGb":{
+          "shape":"Integer",
+          "locationName":"totalGb"
+        },
+        "Files":{
+          "shape":"Integer",
+          "locationName":"files"
+        },
+        "Volumes":{
+          "shape":"Integer",
+          "locationName":"volumes"
+        }
+      }
+    },
+    "Scans":{
+      "type":"list",
+      "member":{"shape":"Scan"}
+    },
+    "SecurityContext":{
+      "type":"structure",
+      "members":{
+        "Privileged":{
+          "shape":"Boolean",
+          "locationName":"privileged"
+        },
+        "AllowPrivilegeEscalation":{
+          "shape":"Boolean",
+          "locationName":"allowPrivilegeEscalation"
+        }
+      }
+    },
     "SecurityGroup":{
       "type":"structure",
       "members":{
@@ -3729,8 +6501,45 @@
         "UserFeedback":{
           "shape":"String",
           "locationName":"userFeedback"
+        },
+        "AdditionalInfo":{
+          "shape":"ServiceAdditionalInfo",
+          "locationName":"additionalInfo"
+        },
+        "FeatureName":{
+          "shape":"String",
+          "locationName":"featureName"
+        },
+        "EbsVolumeScanDetails":{
+          "shape":"EbsVolumeScanDetails",
+          "locationName":"ebsVolumeScanDetails"
+        },
+        "RuntimeDetails":{
+          "shape":"RuntimeDetails",
+          "locationName":"runtimeDetails"
+        },
+        "Detection":{
+          "shape":"Detection",
+          "locationName":"detection"
         }
       }
+    },
+    "ServiceAdditionalInfo":{
+      "type":"structure",
+      "members":{
+        "Value":{
+          "shape":"String",
+          "locationName":"value"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"type"
+        }
+      }
+    },
+    "SessionNameList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "SortCriteria":{
       "type":"structure",
@@ -3742,6 +6551,33 @@
         "OrderBy":{
           "shape":"OrderBy",
           "locationName":"orderBy"
+        }
+      }
+    },
+    "SourceIps":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "Sources":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "StartMalwareScanRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{
+          "shape":"ResourceArn",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "StartMalwareScanResponse":{
+      "type":"structure",
+      "members":{
+        "ScanId":{
+          "shape":"NonEmptyString",
+          "locationName":"scanId"
         }
       }
     },
@@ -3802,6 +6638,10 @@
       }
     },
     "String":{"type":"string"},
+    "SubnetIds":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Tag":{
       "type":"structure",
       "members":{
@@ -3865,6 +6705,27 @@
       "type":"list",
       "member":{"shape":"Tag"}
     },
+    "ThreatDetectedByName":{
+      "type":"structure",
+      "members":{
+        "ItemCount":{
+          "shape":"Integer",
+          "locationName":"itemCount"
+        },
+        "UniqueThreatNameCount":{
+          "shape":"Integer",
+          "locationName":"uniqueThreatNameCount"
+        },
+        "Shortened":{
+          "shape":"Boolean",
+          "locationName":"shortened"
+        },
+        "ThreatNames":{
+          "shape":"ScanThreatNames",
+          "locationName":"threatNames"
+        }
+      }
+    },
     "ThreatIntelSetFormat":{
       "type":"string",
       "enum":[
@@ -3919,6 +6780,15 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "ThreatsDetectedItemCount":{
+      "type":"structure",
+      "members":{
+        "Files":{
+          "shape":"Integer",
+          "locationName":"files"
+        }
+      }
+    },
     "Timestamp":{"type":"timestamp"},
     "Total":{
       "type":"structure",
@@ -3930,6 +6800,19 @@
         "Unit":{
           "shape":"String",
           "locationName":"unit"
+        }
+      }
+    },
+    "TriggerDetails":{
+      "type":"structure",
+      "members":{
+        "GuardDutyFindingId":{
+          "shape":"NonEmptyString",
+          "locationName":"guardDutyFindingId"
+        },
+        "Description":{
+          "shape":"NonEmptyString",
+          "locationName":"description"
         }
       }
     },
@@ -3979,6 +6862,15 @@
       "max":50,
       "min":0
     },
+    "UnprocessedDataSourcesResult":{
+      "type":"structure",
+      "members":{
+        "MalwareProtection":{
+          "shape":"MalwareProtectionConfigurationResult",
+          "locationName":"malwareProtection"
+        }
+      }
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -4022,7 +6914,13 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurations",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"DetectorFeatureConfigurations",
+          "locationName":"features"
         }
       }
     },
@@ -4144,6 +7042,30 @@
       "members":{
       }
     },
+    "UpdateMalwareScanSettingsRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "ScanResourceCriteria":{
+          "shape":"ScanResourceCriteria",
+          "locationName":"scanResourceCriteria"
+        },
+        "EbsSnapshotPreservation":{
+          "shape":"EbsSnapshotPreservation",
+          "locationName":"ebsSnapshotPreservation"
+        }
+      }
+    },
+    "UpdateMalwareScanSettingsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateMemberDetectorsRequest":{
       "type":"structure",
       "required":[
@@ -4162,7 +7084,13 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurations",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"MemberFeaturesConfigurations",
+          "locationName":"features"
         }
       }
     },
@@ -4178,10 +7106,7 @@
     },
     "UpdateOrganizationConfigurationRequest":{
       "type":"structure",
-      "required":[
-        "DetectorId",
-        "AutoEnable"
-      ],
+      "required":["DetectorId"],
       "members":{
         "DetectorId":{
           "shape":"DetectorId",
@@ -4190,11 +7115,23 @@
         },
         "AutoEnable":{
           "shape":"Boolean",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use AutoEnableOrganizationMembers instead",
           "locationName":"autoEnable"
         },
         "DataSources":{
           "shape":"OrganizationDataSourceConfigurations",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"OrganizationFeaturesConfigurations",
+          "locationName":"features"
+        },
+        "AutoEnableOrganizationMembers":{
+          "shape":"AutoEnableMembers",
+          "locationName":"autoEnableOrganizationMembers"
         }
       }
     },
@@ -4286,7 +7223,6 @@
     },
     "UsageCriteria":{
       "type":"structure",
-      "required":["DataSources"],
       "members":{
         "AccountIds":{
           "shape":"AccountIds",
@@ -4294,11 +7230,17 @@
         },
         "DataSources":{
           "shape":"DataSourceList",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
         },
         "Resources":{
           "shape":"ResourceList",
           "locationName":"resources"
+        },
+        "Features":{
+          "shape":"UsageFeatureList",
+          "locationName":"features"
         }
       }
     },
@@ -4318,6 +7260,43 @@
     "UsageDataSourceResultList":{
       "type":"list",
       "member":{"shape":"UsageDataSourceResult"}
+    },
+    "UsageFeature":{
+      "type":"string",
+      "enum":[
+        "FLOW_LOGS",
+        "CLOUD_TRAIL",
+        "DNS_LOGS",
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS",
+        "LAMBDA_NETWORK_LOGS",
+        "EKS_RUNTIME_MONITORING",
+        "FARGATE_RUNTIME_MONITORING",
+        "EC2_RUNTIME_MONITORING"
+      ]
+    },
+    "UsageFeatureList":{
+      "type":"list",
+      "member":{"shape":"UsageFeature"}
+    },
+    "UsageFeatureResult":{
+      "type":"structure",
+      "members":{
+        "Feature":{
+          "shape":"UsageFeature",
+          "locationName":"feature"
+        },
+        "Total":{
+          "shape":"Total",
+          "locationName":"total"
+        }
+      }
+    },
+    "UsageFeatureResultList":{
+      "type":"list",
+      "member":{"shape":"UsageFeatureResult"}
     },
     "UsageResourceResult":{
       "type":"structure",
@@ -4342,7 +7321,8 @@
         "SUM_BY_ACCOUNT",
         "SUM_BY_DATA_SOURCE",
         "SUM_BY_RESOURCE",
-        "TOP_RESOURCES"
+        "TOP_RESOURCES",
+        "SUM_BY_FEATURES"
       ]
     },
     "UsageStatistics":{
@@ -4363,6 +7343,98 @@
         "TopResources":{
           "shape":"UsageResourceResultList",
           "locationName":"topResources"
+        },
+        "SumByFeature":{
+          "shape":"UsageFeatureResultList",
+          "locationName":"sumByFeature"
+        }
+      }
+    },
+    "Volume":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "HostPath":{
+          "shape":"HostPath",
+          "locationName":"hostPath"
+        }
+      }
+    },
+    "VolumeDetail":{
+      "type":"structure",
+      "members":{
+        "VolumeArn":{
+          "shape":"String",
+          "locationName":"volumeArn"
+        },
+        "VolumeType":{
+          "shape":"String",
+          "locationName":"volumeType"
+        },
+        "DeviceName":{
+          "shape":"String",
+          "locationName":"deviceName"
+        },
+        "VolumeSizeInGB":{
+          "shape":"Integer",
+          "locationName":"volumeSizeInGB"
+        },
+        "EncryptionType":{
+          "shape":"String",
+          "locationName":"encryptionType"
+        },
+        "SnapshotArn":{
+          "shape":"String",
+          "locationName":"snapshotArn"
+        },
+        "KmsKeyArn":{
+          "shape":"String",
+          "locationName":"kmsKeyArn"
+        }
+      }
+    },
+    "VolumeDetails":{
+      "type":"list",
+      "member":{"shape":"VolumeDetail"}
+    },
+    "VolumeMount":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "MountPath":{
+          "shape":"String",
+          "locationName":"mountPath"
+        }
+      }
+    },
+    "VolumeMounts":{
+      "type":"list",
+      "member":{"shape":"VolumeMount"}
+    },
+    "Volumes":{
+      "type":"list",
+      "member":{"shape":"Volume"}
+    },
+    "VpcConfig":{
+      "type":"structure",
+      "members":{
+        "SubnetIds":{
+          "shape":"SubnetIds",
+          "locationName":"subnetIds"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "SecurityGroups":{
+          "shape":"SecurityGroups",
+          "locationName":"securityGroups"
         }
       }
     }

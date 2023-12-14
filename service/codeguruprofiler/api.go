@@ -29,14 +29,13 @@ const opAddNotificationChannels = "AddNotificationChannels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddNotificationChannelsRequest method.
+//	req, resp := client.AddNotificationChannelsRequest(params)
 //
-//    // Example sending a request using the AddNotificationChannelsRequest method.
-//    req, resp := client.AddNotificationChannelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/AddNotificationChannels
 func (c *CodeGuruProfiler) AddNotificationChannelsRequest(input *AddNotificationChannelsInput) (req *request.Request, output *AddNotificationChannelsOutput) {
@@ -67,27 +66,28 @@ func (c *CodeGuruProfiler) AddNotificationChannelsRequest(input *AddNotification
 // API operation AddNotificationChannels for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   You have exceeded your service quota. To perform the requested action, remove
-//   some of the relevant resources, or use Service Quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html)
-//   to request a service quota increase.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ServiceQuotaExceededException
+//     You have exceeded your service quota. To perform the requested action, remove
+//     some of the relevant resources, or use Service Quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html)
+//     to request a service quota increase.
 //
-//   * ConflictException
-//   The requested operation would cause a conflict with the current state of
-//   a service resource associated with the request. Resolve the conflict before
-//   retrying this request.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/AddNotificationChannels
 func (c *CodeGuruProfiler) AddNotificationChannels(input *AddNotificationChannelsInput) (*AddNotificationChannelsOutput, error) {
@@ -127,14 +127,13 @@ const opBatchGetFrameMetricData = "BatchGetFrameMetricData"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchGetFrameMetricDataRequest method.
+//	req, resp := client.BatchGetFrameMetricDataRequest(params)
 //
-//    // Example sending a request using the BatchGetFrameMetricDataRequest method.
-//    req, resp := client.BatchGetFrameMetricDataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/BatchGetFrameMetricData
 func (c *CodeGuruProfiler) BatchGetFrameMetricDataRequest(input *BatchGetFrameMetricDataInput) (req *request.Request, output *BatchGetFrameMetricDataOutput) {
@@ -166,17 +165,18 @@ func (c *CodeGuruProfiler) BatchGetFrameMetricDataRequest(input *BatchGetFrameMe
 // API operation BatchGetFrameMetricData for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/BatchGetFrameMetricData
 func (c *CodeGuruProfiler) BatchGetFrameMetricData(input *BatchGetFrameMetricDataInput) (*BatchGetFrameMetricDataOutput, error) {
@@ -216,14 +216,13 @@ const opConfigureAgent = "ConfigureAgent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ConfigureAgentRequest method.
+//	req, resp := client.ConfigureAgentRequest(params)
 //
-//    // Example sending a request using the ConfigureAgentRequest method.
-//    req, resp := client.ConfigureAgentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ConfigureAgent
 func (c *CodeGuruProfiler) ConfigureAgentRequest(input *ConfigureAgentInput) (req *request.Request, output *ConfigureAgentOutput) {
@@ -256,17 +255,18 @@ func (c *CodeGuruProfiler) ConfigureAgentRequest(input *ConfigureAgentInput) (re
 // API operation ConfigureAgent for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ConfigureAgent
 func (c *CodeGuruProfiler) ConfigureAgent(input *ConfigureAgentInput) (*ConfigureAgentOutput, error) {
@@ -306,14 +306,13 @@ const opCreateProfilingGroup = "CreateProfilingGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProfilingGroupRequest method.
+//	req, resp := client.CreateProfilingGroupRequest(params)
 //
-//    // Example sending a request using the CreateProfilingGroupRequest method.
-//    req, resp := client.CreateProfilingGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/CreateProfilingGroup
 func (c *CodeGuruProfiler) CreateProfilingGroupRequest(input *CreateProfilingGroupInput) (req *request.Request, output *CreateProfilingGroupOutput) {
@@ -344,24 +343,25 @@ func (c *CodeGuruProfiler) CreateProfilingGroupRequest(input *CreateProfilingGro
 // API operation CreateProfilingGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   You have exceeded your service quota. To perform the requested action, remove
-//   some of the relevant resources, or use Service Quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html)
-//   to request a service quota increase.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ServiceQuotaExceededException
+//     You have exceeded your service quota. To perform the requested action, remove
+//     some of the relevant resources, or use Service Quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html)
+//     to request a service quota increase.
 //
-//   * ConflictException
-//   The requested operation would cause a conflict with the current state of
-//   a service resource associated with the request. Resolve the conflict before
-//   retrying this request.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/CreateProfilingGroup
 func (c *CodeGuruProfiler) CreateProfilingGroup(input *CreateProfilingGroupInput) (*CreateProfilingGroupOutput, error) {
@@ -401,14 +401,13 @@ const opDeleteProfilingGroup = "DeleteProfilingGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProfilingGroupRequest method.
+//	req, resp := client.DeleteProfilingGroupRequest(params)
 //
-//    // Example sending a request using the DeleteProfilingGroupRequest method.
-//    req, resp := client.DeleteProfilingGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/DeleteProfilingGroup
 func (c *CodeGuruProfiler) DeleteProfilingGroupRequest(input *DeleteProfilingGroupInput) (req *request.Request, output *DeleteProfilingGroupOutput) {
@@ -440,22 +439,23 @@ func (c *CodeGuruProfiler) DeleteProfilingGroupRequest(input *DeleteProfilingGro
 // API operation DeleteProfilingGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ConflictException
-//   The requested operation would cause a conflict with the current state of
-//   a service resource associated with the request. Resolve the conflict before
-//   retrying this request.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/DeleteProfilingGroup
 func (c *CodeGuruProfiler) DeleteProfilingGroup(input *DeleteProfilingGroupInput) (*DeleteProfilingGroupOutput, error) {
@@ -495,14 +495,13 @@ const opDescribeProfilingGroup = "DescribeProfilingGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProfilingGroupRequest method.
+//	req, resp := client.DescribeProfilingGroupRequest(params)
 //
-//    // Example sending a request using the DescribeProfilingGroupRequest method.
-//    req, resp := client.DescribeProfilingGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/DescribeProfilingGroup
 func (c *CodeGuruProfiler) DescribeProfilingGroupRequest(input *DescribeProfilingGroupInput) (req *request.Request, output *DescribeProfilingGroupOutput) {
@@ -534,17 +533,18 @@ func (c *CodeGuruProfiler) DescribeProfilingGroupRequest(input *DescribeProfilin
 // API operation DescribeProfilingGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/DescribeProfilingGroup
 func (c *CodeGuruProfiler) DescribeProfilingGroup(input *DescribeProfilingGroupInput) (*DescribeProfilingGroupOutput, error) {
@@ -584,14 +584,13 @@ const opGetFindingsReportAccountSummary = "GetFindingsReportAccountSummary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFindingsReportAccountSummaryRequest method.
+//	req, resp := client.GetFindingsReportAccountSummaryRequest(params)
 //
-//    // Example sending a request using the GetFindingsReportAccountSummaryRequest method.
-//    req, resp := client.GetFindingsReportAccountSummaryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetFindingsReportAccountSummary
 func (c *CodeGuruProfiler) GetFindingsReportAccountSummaryRequest(input *GetFindingsReportAccountSummaryInput) (req *request.Request, output *GetFindingsReportAccountSummaryOutput) {
@@ -630,14 +629,15 @@ func (c *CodeGuruProfiler) GetFindingsReportAccountSummaryRequest(input *GetFind
 // API operation GetFindingsReportAccountSummary for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetFindingsReportAccountSummary
 func (c *CodeGuruProfiler) GetFindingsReportAccountSummary(input *GetFindingsReportAccountSummaryInput) (*GetFindingsReportAccountSummaryOutput, error) {
@@ -669,15 +669,14 @@ func (c *CodeGuruProfiler) GetFindingsReportAccountSummaryWithContext(ctx aws.Co
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetFindingsReportAccountSummary operation.
-//    pageNum := 0
-//    err := client.GetFindingsReportAccountSummaryPages(params,
-//        func(page *codeguruprofiler.GetFindingsReportAccountSummaryOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetFindingsReportAccountSummary operation.
+//	pageNum := 0
+//	err := client.GetFindingsReportAccountSummaryPages(params,
+//	    func(page *codeguruprofiler.GetFindingsReportAccountSummaryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeGuruProfiler) GetFindingsReportAccountSummaryPages(input *GetFindingsReportAccountSummaryInput, fn func(*GetFindingsReportAccountSummaryOutput, bool) bool) error {
 	return c.GetFindingsReportAccountSummaryPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -729,14 +728,13 @@ const opGetNotificationConfiguration = "GetNotificationConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetNotificationConfigurationRequest method.
+//	req, resp := client.GetNotificationConfigurationRequest(params)
 //
-//    // Example sending a request using the GetNotificationConfigurationRequest method.
-//    req, resp := client.GetNotificationConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetNotificationConfiguration
 func (c *CodeGuruProfiler) GetNotificationConfigurationRequest(input *GetNotificationConfigurationInput) (req *request.Request, output *GetNotificationConfigurationOutput) {
@@ -767,17 +765,18 @@ func (c *CodeGuruProfiler) GetNotificationConfigurationRequest(input *GetNotific
 // API operation GetNotificationConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetNotificationConfiguration
 func (c *CodeGuruProfiler) GetNotificationConfiguration(input *GetNotificationConfigurationInput) (*GetNotificationConfigurationOutput, error) {
@@ -817,14 +816,13 @@ const opGetPolicy = "GetPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPolicyRequest method.
+//	req, resp := client.GetPolicyRequest(params)
 //
-//    // Example sending a request using the GetPolicyRequest method.
-//    req, resp := client.GetPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetPolicy
 func (c *CodeGuruProfiler) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, output *GetPolicyOutput) {
@@ -855,14 +853,15 @@ func (c *CodeGuruProfiler) GetPolicyRequest(input *GetPolicyInput) (req *request
 // API operation GetPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetPolicy
 func (c *CodeGuruProfiler) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
@@ -902,14 +901,13 @@ const opGetProfile = "GetProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetProfileRequest method.
+//	req, resp := client.GetProfileRequest(params)
 //
-//    // Example sending a request using the GetProfileRequest method.
-//    req, resp := client.GetProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetProfile
 func (c *CodeGuruProfiler) GetProfileRequest(input *GetProfileInput) (req *request.Request, output *GetProfileOutput) {
@@ -934,37 +932,37 @@ func (c *CodeGuruProfiler) GetProfileRequest(input *GetProfileInput) (req *reque
 // Amazon CodeGuru Profiler collects posted agent profiles for a profiling group
 // into aggregated profiles.
 //
-//    <note> <p> Because aggregated profiles expire over time <code>GetProfile</code>
-//    is not idempotent. </p> </note> <p> Specify the time range for the requested
-//    aggregated profile using 1 or 2 of the following parameters: <code>startTime</code>,
-//    <code>endTime</code>, <code>period</code>. The maximum time range allowed
-//    is 7 days. If you specify all 3 parameters, an exception is thrown. If
-//    you specify only <code>period</code>, the latest aggregated profile is
-//    returned. </p> <p> Aggregated profiles are available with aggregation
-//    periods of 5 minutes, 1 hour, and 1 day, aligned to UTC. The aggregation
-//    period of an aggregated profile determines how long it is retained. For
-//    more information, see <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AggregatedProfileTime.html">
-//    <code>AggregatedProfileTime</code> </a>. The aggregated profile's aggregation
-//    period determines how long it is retained by CodeGuru Profiler. </p> <ul>
-//    <li> <p> If the aggregation period is 5 minutes, the aggregated profile
-//    is retained for 15 days. </p> </li> <li> <p> If the aggregation period
-//    is 1 hour, the aggregated profile is retained for 60 days. </p> </li>
-//    <li> <p> If the aggregation period is 1 day, the aggregated profile is
-//    retained for 3 years. </p> </li> </ul> <p>There are two use cases for
-//    calling <code>GetProfile</code>.</p> <ol> <li> <p> If you want to return
-//    an aggregated profile that already exists, use <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ListProfileTimes.html">
-//    <code>ListProfileTimes</code> </a> to view the time ranges of existing
-//    aggregated profiles. Use them in a <code>GetProfile</code> request to
-//    return a specific, existing aggregated profile. </p> </li> <li> <p> If
-//    you want to return an aggregated profile for a time range that doesn't
-//    align with an existing aggregated profile, then CodeGuru Profiler makes
-//    a best effort to combine existing aggregated profiles from the requested
-//    time range and return them as one aggregated profile. </p> <p> If aggregated
-//    profiles do not exist for the full time range requested, then aggregated
-//    profiles for a smaller time range are returned. For example, if the requested
-//    time range is from 00:00 to 00:20, and the existing aggregated profiles
-//    are from 00:15 and 00:25, then the aggregated profiles from 00:15 to 00:20
-//    are returned. </p> </li> </ol>
+//	<note> <p> Because aggregated profiles expire over time <code>GetProfile</code>
+//	is not idempotent. </p> </note> <p> Specify the time range for the requested
+//	aggregated profile using 1 or 2 of the following parameters: <code>startTime</code>,
+//	<code>endTime</code>, <code>period</code>. The maximum time range allowed
+//	is 7 days. If you specify all 3 parameters, an exception is thrown. If
+//	you specify only <code>period</code>, the latest aggregated profile is
+//	returned. </p> <p> Aggregated profiles are available with aggregation
+//	periods of 5 minutes, 1 hour, and 1 day, aligned to UTC. The aggregation
+//	period of an aggregated profile determines how long it is retained. For
+//	more information, see <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AggregatedProfileTime.html">
+//	<code>AggregatedProfileTime</code> </a>. The aggregated profile's aggregation
+//	period determines how long it is retained by CodeGuru Profiler. </p> <ul>
+//	<li> <p> If the aggregation period is 5 minutes, the aggregated profile
+//	is retained for 15 days. </p> </li> <li> <p> If the aggregation period
+//	is 1 hour, the aggregated profile is retained for 60 days. </p> </li>
+//	<li> <p> If the aggregation period is 1 day, the aggregated profile is
+//	retained for 3 years. </p> </li> </ul> <p>There are two use cases for
+//	calling <code>GetProfile</code>.</p> <ol> <li> <p> If you want to return
+//	an aggregated profile that already exists, use <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ListProfileTimes.html">
+//	<code>ListProfileTimes</code> </a> to view the time ranges of existing
+//	aggregated profiles. Use them in a <code>GetProfile</code> request to
+//	return a specific, existing aggregated profile. </p> </li> <li> <p> If
+//	you want to return an aggregated profile for a time range that doesn't
+//	align with an existing aggregated profile, then CodeGuru Profiler makes
+//	a best effort to combine existing aggregated profiles from the requested
+//	time range and return them as one aggregated profile. </p> <p> If aggregated
+//	profiles do not exist for the full time range requested, then aggregated
+//	profiles for a smaller time range are returned. For example, if the requested
+//	time range is from 00:00 to 00:20, and the existing aggregated profiles
+//	are from 00:15 and 00:25, then the aggregated profiles from 00:15 to 00:20
+//	are returned. </p> </li> </ol>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -974,17 +972,18 @@ func (c *CodeGuruProfiler) GetProfileRequest(input *GetProfileInput) (req *reque
 // API operation GetProfile for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetProfile
 func (c *CodeGuruProfiler) GetProfile(input *GetProfileInput) (*GetProfileOutput, error) {
@@ -1024,14 +1023,13 @@ const opGetRecommendations = "GetRecommendations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRecommendationsRequest method.
+//	req, resp := client.GetRecommendationsRequest(params)
 //
-//    // Example sending a request using the GetRecommendationsRequest method.
-//    req, resp := client.GetRecommendationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetRecommendations
 func (c *CodeGuruProfiler) GetRecommendationsRequest(input *GetRecommendationsInput) (req *request.Request, output *GetRecommendationsOutput) {
@@ -1066,17 +1064,18 @@ func (c *CodeGuruProfiler) GetRecommendationsRequest(input *GetRecommendationsIn
 // API operation GetRecommendations for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetRecommendations
 func (c *CodeGuruProfiler) GetRecommendations(input *GetRecommendationsInput) (*GetRecommendationsOutput, error) {
@@ -1116,14 +1115,13 @@ const opListFindingsReports = "ListFindingsReports"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFindingsReportsRequest method.
+//	req, resp := client.ListFindingsReportsRequest(params)
 //
-//    // Example sending a request using the ListFindingsReportsRequest method.
-//    req, resp := client.ListFindingsReportsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListFindingsReports
 func (c *CodeGuruProfiler) ListFindingsReportsRequest(input *ListFindingsReportsInput) (req *request.Request, output *ListFindingsReportsOutput) {
@@ -1160,17 +1158,18 @@ func (c *CodeGuruProfiler) ListFindingsReportsRequest(input *ListFindingsReports
 // API operation ListFindingsReports for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListFindingsReports
 func (c *CodeGuruProfiler) ListFindingsReports(input *ListFindingsReportsInput) (*ListFindingsReportsOutput, error) {
@@ -1202,15 +1201,14 @@ func (c *CodeGuruProfiler) ListFindingsReportsWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFindingsReports operation.
-//    pageNum := 0
-//    err := client.ListFindingsReportsPages(params,
-//        func(page *codeguruprofiler.ListFindingsReportsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFindingsReports operation.
+//	pageNum := 0
+//	err := client.ListFindingsReportsPages(params,
+//	    func(page *codeguruprofiler.ListFindingsReportsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeGuruProfiler) ListFindingsReportsPages(input *ListFindingsReportsInput, fn func(*ListFindingsReportsOutput, bool) bool) error {
 	return c.ListFindingsReportsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1262,14 +1260,13 @@ const opListProfileTimes = "ListProfileTimes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProfileTimesRequest method.
+//	req, resp := client.ListProfileTimesRequest(params)
 //
-//    // Example sending a request using the ListProfileTimesRequest method.
-//    req, resp := client.ListProfileTimesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListProfileTimes
 func (c *CodeGuruProfiler) ListProfileTimesRequest(input *ListProfileTimesInput) (req *request.Request, output *ListProfileTimesOutput) {
@@ -1307,17 +1304,18 @@ func (c *CodeGuruProfiler) ListProfileTimesRequest(input *ListProfileTimesInput)
 // API operation ListProfileTimes for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListProfileTimes
 func (c *CodeGuruProfiler) ListProfileTimes(input *ListProfileTimesInput) (*ListProfileTimesOutput, error) {
@@ -1349,15 +1347,14 @@ func (c *CodeGuruProfiler) ListProfileTimesWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProfileTimes operation.
-//    pageNum := 0
-//    err := client.ListProfileTimesPages(params,
-//        func(page *codeguruprofiler.ListProfileTimesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProfileTimes operation.
+//	pageNum := 0
+//	err := client.ListProfileTimesPages(params,
+//	    func(page *codeguruprofiler.ListProfileTimesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeGuruProfiler) ListProfileTimesPages(input *ListProfileTimesInput, fn func(*ListProfileTimesOutput, bool) bool) error {
 	return c.ListProfileTimesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1409,14 +1406,13 @@ const opListProfilingGroups = "ListProfilingGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProfilingGroupsRequest method.
+//	req, resp := client.ListProfilingGroupsRequest(params)
 //
-//    // Example sending a request using the ListProfilingGroupsRequest method.
-//    req, resp := client.ListProfilingGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListProfilingGroups
 func (c *CodeGuruProfiler) ListProfilingGroupsRequest(input *ListProfilingGroupsInput) (req *request.Request, output *ListProfilingGroupsOutput) {
@@ -1455,11 +1451,12 @@ func (c *CodeGuruProfiler) ListProfilingGroupsRequest(input *ListProfilingGroups
 // API operation ListProfilingGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListProfilingGroups
 func (c *CodeGuruProfiler) ListProfilingGroups(input *ListProfilingGroupsInput) (*ListProfilingGroupsOutput, error) {
@@ -1491,15 +1488,14 @@ func (c *CodeGuruProfiler) ListProfilingGroupsWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProfilingGroups operation.
-//    pageNum := 0
-//    err := client.ListProfilingGroupsPages(params,
-//        func(page *codeguruprofiler.ListProfilingGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProfilingGroups operation.
+//	pageNum := 0
+//	err := client.ListProfilingGroupsPages(params,
+//	    func(page *codeguruprofiler.ListProfilingGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeGuruProfiler) ListProfilingGroupsPages(input *ListProfilingGroupsInput, fn func(*ListProfilingGroupsOutput, bool) bool) error {
 	return c.ListProfilingGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1551,14 +1547,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListTagsForResource
 func (c *CodeGuruProfiler) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1589,14 +1584,15 @@ func (c *CodeGuruProfiler) ListTagsForResourceRequest(input *ListTagsForResource
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListTagsForResource
 func (c *CodeGuruProfiler) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1636,14 +1632,13 @@ const opPostAgentProfile = "PostAgentProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PostAgentProfileRequest method.
+//	req, resp := client.PostAgentProfileRequest(params)
 //
-//    // Example sending a request using the PostAgentProfileRequest method.
-//    req, resp := client.PostAgentProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/PostAgentProfile
 func (c *CodeGuruProfiler) PostAgentProfileRequest(input *PostAgentProfileInput) (req *request.Request, output *PostAgentProfileOutput) {
@@ -1677,17 +1672,18 @@ func (c *CodeGuruProfiler) PostAgentProfileRequest(input *PostAgentProfileInput)
 // API operation PostAgentProfile for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/PostAgentProfile
 func (c *CodeGuruProfiler) PostAgentProfile(input *PostAgentProfileInput) (*PostAgentProfileOutput, error) {
@@ -1727,14 +1723,13 @@ const opPutPermission = "PutPermission"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutPermissionRequest method.
+//	req, resp := client.PutPermissionRequest(params)
 //
-//    // Example sending a request using the PutPermissionRequest method.
-//    req, resp := client.PutPermissionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/PutPermission
 func (c *CodeGuruProfiler) PutPermissionRequest(input *PutPermissionInput) (req *request.Request, output *PutPermissionOutput) {
@@ -1760,18 +1755,18 @@ func (c *CodeGuruProfiler) PutPermissionRequest(input *PutPermissionInput) (req 
 // policy, one is created for it using the permissions in the action group and
 // the roles and users in the principals parameter.
 //
-//    <p> The one supported action group that can be added is <code>agentPermission</code>
-//    which grants <code>ConfigureAgent</code> and <code>PostAgent</code> permissions.
-//    For more information, see <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-ug/resource-based-policies.html">Resource-based
-//    policies in CodeGuru Profiler</a> in the <i>Amazon CodeGuru Profiler User
-//    Guide</i>, <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html">
-//    <code>ConfigureAgent</code> </a>, and <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_PostAgentProfile.html">
-//    <code>PostAgentProfile</code> </a>. </p> <p> The first time you call <code>PutPermission</code>
-//    on a profiling group, do not specify a <code>revisionId</code> because
-//    it doesn't have a resource-based policy. Subsequent calls must provide
-//    a <code>revisionId</code> to specify which revision of the resource-based
-//    policy to add the permissions to. </p> <p> The response contains the profiling
-//    group's JSON-formatted resource policy. </p>
+//	<p> The one supported action group that can be added is <code>agentPermission</code>
+//	which grants <code>ConfigureAgent</code> and <code>PostAgent</code> permissions.
+//	For more information, see <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-ug/resource-based-policies.html">Resource-based
+//	policies in CodeGuru Profiler</a> in the <i>Amazon CodeGuru Profiler User
+//	Guide</i>, <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html">
+//	<code>ConfigureAgent</code> </a>, and <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_PostAgentProfile.html">
+//	<code>PostAgentProfile</code> </a>. </p> <p> The first time you call <code>PutPermission</code>
+//	on a profiling group, do not specify a <code>revisionId</code> because
+//	it doesn't have a resource-based policy. Subsequent calls must provide
+//	a <code>revisionId</code> to specify which revision of the resource-based
+//	policy to add the permissions to. </p> <p> The response contains the profiling
+//	group's JSON-formatted resource policy. </p>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1781,22 +1776,23 @@ func (c *CodeGuruProfiler) PutPermissionRequest(input *PutPermissionInput) (req 
 // API operation PutPermission for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ConflictException
-//   The requested operation would cause a conflict with the current state of
-//   a service resource associated with the request. Resolve the conflict before
-//   retrying this request.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/PutPermission
 func (c *CodeGuruProfiler) PutPermission(input *PutPermissionInput) (*PutPermissionOutput, error) {
@@ -1836,14 +1832,13 @@ const opRemoveNotificationChannel = "RemoveNotificationChannel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveNotificationChannelRequest method.
+//	req, resp := client.RemoveNotificationChannelRequest(params)
 //
-//    // Example sending a request using the RemoveNotificationChannelRequest method.
-//    req, resp := client.RemoveNotificationChannelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/RemoveNotificationChannel
 func (c *CodeGuruProfiler) RemoveNotificationChannelRequest(input *RemoveNotificationChannelInput) (req *request.Request, output *RemoveNotificationChannelOutput) {
@@ -1874,17 +1869,18 @@ func (c *CodeGuruProfiler) RemoveNotificationChannelRequest(input *RemoveNotific
 // API operation RemoveNotificationChannel for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/RemoveNotificationChannel
 func (c *CodeGuruProfiler) RemoveNotificationChannel(input *RemoveNotificationChannelInput) (*RemoveNotificationChannelOutput, error) {
@@ -1924,14 +1920,13 @@ const opRemovePermission = "RemovePermission"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemovePermissionRequest method.
+//	req, resp := client.RemovePermissionRequest(params)
 //
-//    // Example sending a request using the RemovePermissionRequest method.
-//    req, resp := client.RemovePermissionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/RemovePermission
 func (c *CodeGuruProfiler) RemovePermissionRequest(input *RemovePermissionInput) (req *request.Request, output *RemovePermissionOutput) {
@@ -1967,22 +1962,23 @@ func (c *CodeGuruProfiler) RemovePermissionRequest(input *RemovePermissionInput)
 // API operation RemovePermission for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ConflictException
-//   The requested operation would cause a conflict with the current state of
-//   a service resource associated with the request. Resolve the conflict before
-//   retrying this request.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/RemovePermission
 func (c *CodeGuruProfiler) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, error) {
@@ -2022,14 +2018,13 @@ const opSubmitFeedback = "SubmitFeedback"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SubmitFeedbackRequest method.
+//	req, resp := client.SubmitFeedbackRequest(params)
 //
-//    // Example sending a request using the SubmitFeedbackRequest method.
-//    req, resp := client.SubmitFeedbackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/SubmitFeedback
 func (c *CodeGuruProfiler) SubmitFeedbackRequest(input *SubmitFeedbackInput) (req *request.Request, output *SubmitFeedbackOutput) {
@@ -2062,17 +2057,18 @@ func (c *CodeGuruProfiler) SubmitFeedbackRequest(input *SubmitFeedbackInput) (re
 // API operation SubmitFeedback for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/SubmitFeedback
 func (c *CodeGuruProfiler) SubmitFeedback(input *SubmitFeedbackInput) (*SubmitFeedbackOutput, error) {
@@ -2112,14 +2108,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/TagResource
 func (c *CodeGuruProfiler) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2151,14 +2146,15 @@ func (c *CodeGuruProfiler) TagResourceRequest(input *TagResourceInput) (req *req
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/TagResource
 func (c *CodeGuruProfiler) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2198,14 +2194,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/UntagResource
 func (c *CodeGuruProfiler) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2237,14 +2232,15 @@ func (c *CodeGuruProfiler) UntagResourceRequest(input *UntagResourceInput) (req 
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/UntagResource
 func (c *CodeGuruProfiler) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2284,14 +2280,13 @@ const opUpdateProfilingGroup = "UpdateProfilingGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProfilingGroupRequest method.
+//	req, resp := client.UpdateProfilingGroupRequest(params)
 //
-//    // Example sending a request using the UpdateProfilingGroupRequest method.
-//    req, resp := client.UpdateProfilingGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/UpdateProfilingGroup
 func (c *CodeGuruProfiler) UpdateProfilingGroupRequest(input *UpdateProfilingGroupInput) (req *request.Request, output *UpdateProfilingGroupOutput) {
@@ -2322,22 +2317,23 @@ func (c *CodeGuruProfiler) UpdateProfilingGroupRequest(input *UpdateProfilingGro
 // API operation UpdateProfilingGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ConflictException
-//   The requested operation would cause a conflict with the current state of
-//   a service resource associated with the request. Resolve the conflict before
-//   retrying this request.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource specified in the request does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/UpdateProfilingGroup
 func (c *CodeGuruProfiler) UpdateProfilingGroup(input *UpdateProfilingGroupInput) (*UpdateProfilingGroupOutput, error) {
@@ -2376,12 +2372,20 @@ type AddNotificationChannelsInput struct {
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddNotificationChannelsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddNotificationChannelsInput) GoString() string {
 	return s.String()
 }
@@ -2438,12 +2442,20 @@ type AddNotificationChannelsOutput struct {
 	NotificationConfiguration *NotificationConfiguration `locationName:"notificationConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddNotificationChannelsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddNotificationChannelsOutput) GoString() string {
 	return s.String()
 }
@@ -2497,12 +2509,20 @@ type AgentConfiguration struct {
 	ShouldProfile *bool `locationName:"shouldProfile" type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentConfiguration) GoString() string {
 	return s.String()
 }
@@ -2538,12 +2558,20 @@ type AgentOrchestrationConfig struct {
 	ProfilingEnabled *bool `locationName:"profilingEnabled" type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentOrchestrationConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentOrchestrationConfig) GoString() string {
 	return s.String()
 }
@@ -2595,12 +2623,20 @@ type AggregatedProfileTime struct {
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregatedProfileTime) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregatedProfileTime) GoString() string {
 	return s.String()
 }
@@ -2640,12 +2676,20 @@ type Anomaly struct {
 	Reason *string `locationName:"reason" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Anomaly) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Anomaly) GoString() string {
 	return s.String()
 }
@@ -2694,12 +2738,20 @@ type AnomalyInstance struct {
 	UserFeedback *UserFeedback `locationName:"userFeedback" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnomalyInstance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnomalyInstance) GoString() string {
 	return s.String()
 }
@@ -2773,12 +2825,20 @@ type BatchGetFrameMetricDataInput struct {
 	TargetResolution *string `location:"querystring" locationName:"targetResolution" type:"string" enum:"AggregationPeriod"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetFrameMetricDataInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetFrameMetricDataInput) GoString() string {
 	return s.String()
 }
@@ -2901,12 +2961,20 @@ type BatchGetFrameMetricDataOutput struct {
 	UnprocessedEndTimes map[string][]*TimestampStructure `locationName:"unprocessedEndTimes" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetFrameMetricDataOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetFrameMetricDataOutput) GoString() string {
 	return s.String()
 }
@@ -2957,7 +3025,7 @@ type Channel struct {
 	// in Profiler.
 	//
 	// EventPublishers is a required field
-	EventPublishers []*string `locationName:"eventPublishers" min:"1" type:"list" required:"true"`
+	EventPublishers []*string `locationName:"eventPublishers" min:"1" type:"list" required:"true" enum:"EventPublisher"`
 
 	// Unique identifier for each Channel in the notification configuration of a
 	// Profiling Group. A random UUID for channelId is used when adding a channel
@@ -2971,12 +3039,20 @@ type Channel struct {
 	Uri *string `locationName:"uri" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Channel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Channel) GoString() string {
 	return s.String()
 }
@@ -3061,12 +3137,20 @@ type ConfigureAgentInput struct {
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigureAgentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigureAgentInput) GoString() string {
 	return s.String()
 }
@@ -3120,12 +3204,20 @@ type ConfigureAgentOutput struct {
 	Configuration *AgentConfiguration `locationName:"configuration" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigureAgentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigureAgentOutput) GoString() string {
 	return s.String()
 }
@@ -3146,12 +3238,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -3222,12 +3322,20 @@ type CreateProfilingGroupInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProfilingGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProfilingGroupInput) GoString() string {
 	return s.String()
 }
@@ -3297,12 +3405,20 @@ type CreateProfilingGroupOutput struct {
 	ProfilingGroup *ProfilingGroupDescription `locationName:"profilingGroup" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProfilingGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProfilingGroupOutput) GoString() string {
 	return s.String()
 }
@@ -3315,7 +3431,7 @@ func (s *CreateProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescript
 
 // The structure representing the deleteProfilingGroupRequest.
 type DeleteProfilingGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the profiling group to delete.
 	//
@@ -3323,12 +3439,20 @@ type DeleteProfilingGroupInput struct {
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProfilingGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProfilingGroupInput) GoString() string {
 	return s.String()
 }
@@ -3360,19 +3484,27 @@ type DeleteProfilingGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProfilingGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProfilingGroupOutput) GoString() string {
 	return s.String()
 }
 
 // The structure representing the describeProfilingGroupRequest.
 type DescribeProfilingGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the profiling group to get information about.
 	//
@@ -3380,12 +3512,20 @@ type DescribeProfilingGroupInput struct {
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProfilingGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProfilingGroupInput) GoString() string {
 	return s.String()
 }
@@ -3423,12 +3563,20 @@ type DescribeProfilingGroupOutput struct {
 	ProfilingGroup *ProfilingGroupDescription `locationName:"profilingGroup" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProfilingGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProfilingGroupOutput) GoString() string {
 	return s.String()
 }
@@ -3464,12 +3612,20 @@ type FindingsReportSummary struct {
 	TotalNumberOfFindings *int64 `locationName:"totalNumberOfFindings" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FindingsReportSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FindingsReportSummary) GoString() string {
 	return s.String()
 }
@@ -3530,12 +3686,20 @@ type FrameMetric struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"MetricType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FrameMetric) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FrameMetric) GoString() string {
 	return s.String()
 }
@@ -3593,12 +3757,20 @@ type FrameMetricDatum struct {
 	Values []*float64 `locationName:"values" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FrameMetricDatum) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FrameMetricDatum) GoString() string {
 	return s.String()
 }
@@ -3617,7 +3789,7 @@ func (s *FrameMetricDatum) SetValues(v []*float64) *FrameMetricDatum {
 
 // The structure representing the GetFindingsReportAccountSummaryRequest.
 type GetFindingsReportAccountSummaryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A Boolean value indicating whether to only return reports from daily profiles.
 	// If set to True, only analysis data from daily profiles is returned. If set
@@ -3643,12 +3815,20 @@ type GetFindingsReportAccountSummaryInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFindingsReportAccountSummaryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFindingsReportAccountSummaryInput) GoString() string {
 	return s.String()
 }
@@ -3705,12 +3885,20 @@ type GetFindingsReportAccountSummaryOutput struct {
 	ReportSummaries []*FindingsReportSummary `locationName:"reportSummaries" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFindingsReportAccountSummaryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFindingsReportAccountSummaryOutput) GoString() string {
 	return s.String()
 }
@@ -3729,7 +3917,7 @@ func (s *GetFindingsReportAccountSummaryOutput) SetReportSummaries(v []*Findings
 
 // The structure representing the GetNotificationConfigurationRequest.
 type GetNotificationConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the profiling group we want to get the notification configuration
 	// for.
@@ -3738,12 +3926,20 @@ type GetNotificationConfigurationInput struct {
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetNotificationConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetNotificationConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -3780,12 +3976,20 @@ type GetNotificationConfigurationOutput struct {
 	NotificationConfiguration *NotificationConfiguration `locationName:"notificationConfiguration" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetNotificationConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetNotificationConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -3798,7 +4002,7 @@ func (s *GetNotificationConfigurationOutput) SetNotificationConfiguration(v *Not
 
 // The structure representing the getPolicyRequest.
 type GetPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the profiling group.
 	//
@@ -3806,12 +4010,20 @@ type GetPolicyInput struct {
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPolicyInput) GoString() string {
 	return s.String()
 }
@@ -3853,12 +4065,20 @@ type GetPolicyOutput struct {
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -3877,7 +4097,7 @@ func (s *GetPolicyOutput) SetRevisionId(v string) *GetPolicyOutput {
 
 // The structure representing the getProfileRequest.
 type GetProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The format of the returned profiling data. The format maps to the Accept
 	// and Content-Type headers of the HTTP request. You can specify one of the
@@ -3925,12 +4145,20 @@ type GetProfileInput struct {
 	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProfileInput) GoString() string {
 	return s.String()
 }
@@ -4012,12 +4240,20 @@ type GetProfileOutput struct {
 	Profile []byte `locationName:"profile" type:"blob" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProfileOutput) GoString() string {
 	return s.String()
 }
@@ -4042,7 +4278,7 @@ func (s *GetProfileOutput) SetProfile(v []byte) *GetProfileOutput {
 
 // The structure representing the GetRecommendationsRequest.
 type GetRecommendationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The start time of the profile to get analysis data about. You must specify
 	// startTime and endTime. This is specified using the ISO 8601 format. For example,
@@ -4092,12 +4328,20 @@ type GetRecommendationsInput struct {
 	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRecommendationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRecommendationsInput) GoString() string {
 	return s.String()
 }
@@ -4182,12 +4426,20 @@ type GetRecommendationsOutput struct {
 	Recommendations []*Recommendation `locationName:"recommendations" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRecommendationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRecommendationsOutput) GoString() string {
 	return s.String()
 }
@@ -4230,12 +4482,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -4280,7 +4540,7 @@ func (s *InternalServerException) RequestID() string {
 
 // The structure representing the ListFindingsReportsRequest.
 type ListFindingsReportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A Boolean value indicating whether to only return reports from daily profiles.
 	// If set to True, only analysis data from daily profiles is returned. If set
@@ -4326,12 +4586,20 @@ type ListFindingsReportsInput struct {
 	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFindingsReportsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFindingsReportsInput) GoString() string {
 	return s.String()
 }
@@ -4416,12 +4684,20 @@ type ListFindingsReportsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFindingsReportsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFindingsReportsOutput) GoString() string {
 	return s.String()
 }
@@ -4440,7 +4716,7 @@ func (s *ListFindingsReportsOutput) SetNextToken(v string) *ListFindingsReportsO
 
 // The structure representing the listProfileTimesRequest.
 type ListProfileTimesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The end time of the time range from which to list the profiles.
 	//
@@ -4491,12 +4767,20 @@ type ListProfileTimesInput struct {
 	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfileTimesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfileTimesInput) GoString() string {
 	return s.String()
 }
@@ -4591,12 +4875,20 @@ type ListProfileTimesOutput struct {
 	ProfileTimes []*ProfileTime `locationName:"profileTimes" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfileTimesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfileTimesOutput) GoString() string {
 	return s.String()
 }
@@ -4615,7 +4907,7 @@ func (s *ListProfileTimesOutput) SetProfileTimes(v []*ProfileTime) *ListProfileT
 
 // The structure representing the listProfilingGroupsRequest.
 type ListProfilingGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A Boolean value indicating whether to include a description. If true, then
 	// a list of ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
@@ -4640,12 +4932,20 @@ type ListProfilingGroupsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfilingGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfilingGroupsInput) GoString() string {
 	return s.String()
 }
@@ -4709,12 +5009,20 @@ type ListProfilingGroupsOutput struct {
 	ProfilingGroups []*ProfilingGroupDescription `locationName:"profilingGroups" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfilingGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfilingGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -4738,7 +5046,7 @@ func (s *ListProfilingGroupsOutput) SetProfilingGroups(v []*ProfilingGroupDescri
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that contains the tags to
 	// return.
@@ -4747,12 +5055,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -4787,12 +5103,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -4818,12 +5142,20 @@ type Match struct {
 	ThresholdBreachValue *float64 `locationName:"thresholdBreachValue" type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Match) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Match) GoString() string {
 	return s.String()
 }
@@ -4872,12 +5204,20 @@ type Metric struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"MetricType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Metric) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Metric) GoString() string {
 	return s.String()
 }
@@ -4911,12 +5251,20 @@ type NotificationConfiguration struct {
 	Channels []*Channel `locationName:"channels" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationConfiguration) GoString() string {
 	return s.String()
 }
@@ -4957,12 +5305,20 @@ type Pattern struct {
 	ThresholdPercent *float64 `locationName:"thresholdPercent" type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Pattern) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Pattern) GoString() string {
 	return s.String()
 }
@@ -5042,12 +5398,20 @@ type PostAgentProfileInput struct {
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostAgentProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostAgentProfileInput) GoString() string {
 	return s.String()
 }
@@ -5106,12 +5470,20 @@ type PostAgentProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostAgentProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostAgentProfileOutput) GoString() string {
 	return s.String()
 }
@@ -5126,12 +5498,20 @@ type ProfileTime struct {
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProfileTime) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProfileTime) GoString() string {
 	return s.String()
 }
@@ -5183,12 +5563,20 @@ type ProfilingGroupDescription struct {
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProfilingGroupDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProfilingGroupDescription) GoString() string {
 	return s.String()
 }
@@ -5263,12 +5651,20 @@ type ProfilingStatus struct {
 	LatestAggregatedProfile *AggregatedProfileTime `locationName:"latestAggregatedProfile" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProfilingStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProfilingStatus) GoString() string {
 	return s.String()
 }
@@ -5321,12 +5717,20 @@ type PutPermissionInput struct {
 	RevisionId *string `locationName:"revisionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionInput) GoString() string {
 	return s.String()
 }
@@ -5401,12 +5805,20 @@ type PutPermissionOutput struct {
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionOutput) GoString() string {
 	return s.String()
 }
@@ -5462,12 +5874,20 @@ type Recommendation struct {
 	TopMatches []*Match `locationName:"topMatches" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Recommendation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Recommendation) GoString() string {
 	return s.String()
 }
@@ -5510,7 +5930,7 @@ func (s *Recommendation) SetTopMatches(v []*Match) *Recommendation {
 
 // The structure representing the RemoveNotificationChannelRequest.
 type RemoveNotificationChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the channel that we want to stop receiving notifications.
 	//
@@ -5524,12 +5944,20 @@ type RemoveNotificationChannelInput struct {
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveNotificationChannelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveNotificationChannelInput) GoString() string {
 	return s.String()
 }
@@ -5576,12 +6004,20 @@ type RemoveNotificationChannelOutput struct {
 	NotificationConfiguration *NotificationConfiguration `locationName:"notificationConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveNotificationChannelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveNotificationChannelOutput) GoString() string {
 	return s.String()
 }
@@ -5593,7 +6029,7 @@ func (s *RemoveNotificationChannelOutput) SetNotificationConfiguration(v *Notifi
 }
 
 type RemovePermissionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies an action group that contains the permissions to remove from a
 	// profiling group's resource-based policy. One action group is supported, agentPermissions,
@@ -5614,12 +6050,20 @@ type RemovePermissionInput struct {
 	RevisionId *string `location:"querystring" locationName:"revisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemovePermissionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemovePermissionInput) GoString() string {
 	return s.String()
 }
@@ -5685,12 +6129,20 @@ type RemovePermissionOutput struct {
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemovePermissionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemovePermissionOutput) GoString() string {
 	return s.String()
 }
@@ -5715,12 +6167,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -5773,12 +6233,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -5845,12 +6313,20 @@ type SubmitFeedbackInput struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"FeedbackType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubmitFeedbackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubmitFeedbackInput) GoString() string {
 	return s.String()
 }
@@ -5909,12 +6385,20 @@ type SubmitFeedbackOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubmitFeedbackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubmitFeedbackOutput) GoString() string {
 	return s.String()
 }
@@ -5933,12 +6417,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -5978,12 +6470,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5996,12 +6496,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -6057,12 +6565,20 @@ type TimestampStructure struct {
 	Value *time.Time `locationName:"value" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimestampStructure) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimestampStructure) GoString() string {
 	return s.String()
 }
@@ -6074,7 +6590,7 @@ func (s *TimestampStructure) SetValue(v time.Time) *TimestampStructure {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that contains the tags to
 	// remove.
@@ -6089,12 +6605,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6134,12 +6658,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6159,12 +6691,20 @@ type UpdateProfilingGroupInput struct {
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProfilingGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProfilingGroupInput) GoString() string {
 	return s.String()
 }
@@ -6216,12 +6756,20 @@ type UpdateProfilingGroupOutput struct {
 	ProfilingGroup *ProfilingGroupDescription `locationName:"profilingGroup" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProfilingGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProfilingGroupOutput) GoString() string {
 	return s.String()
 }
@@ -6245,12 +6793,20 @@ type UserFeedback struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"FeedbackType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserFeedback) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserFeedback) GoString() string {
 	return s.String()
 }
@@ -6269,12 +6825,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }

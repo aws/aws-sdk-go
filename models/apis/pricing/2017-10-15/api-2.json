@@ -23,10 +23,10 @@
       "input":{"shape":"DescribeServicesRequest"},
       "output":{"shape":"DescribeServicesResponse"},
       "errors":[
-        {"shape":"InternalErrorException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"NotFoundException"},
         {"shape":"InvalidNextTokenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalErrorException"},
         {"shape":"ExpiredNextTokenException"}
       ]
     },
@@ -39,11 +39,26 @@
       "input":{"shape":"GetAttributeValuesRequest"},
       "output":{"shape":"GetAttributeValuesResponse"},
       "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"NotFoundException"},
         {"shape":"InternalErrorException"},
+        {"shape":"ExpiredNextTokenException"}
+      ]
+    },
+    "GetPriceListFileUrl":{
+      "name":"GetPriceListFileUrl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPriceListFileUrlRequest"},
+      "output":{"shape":"GetPriceListFileUrlResponse"},
+      "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"NotFoundException"},
-        {"shape":"InvalidNextTokenException"},
-        {"shape":"ExpiredNextTokenException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "GetProducts":{
@@ -55,15 +70,39 @@
       "input":{"shape":"GetProductsRequest"},
       "output":{"shape":"GetProductsResponse"},
       "errors":[
-        {"shape":"InternalErrorException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"NotFoundException"},
         {"shape":"InvalidNextTokenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"ExpiredNextTokenException"}
+      ]
+    },
+    "ListPriceLists":{
+      "name":"ListPriceLists",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPriceListsRequest"},
+      "output":{"shape":"ListPriceListsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalErrorException"},
         {"shape":"ExpiredNextTokenException"}
       ]
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"errorMessage"}
+      },
+      "exception":true
+    },
     "AttributeNameList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -80,8 +119,13 @@
     },
     "BoxedInteger":{
       "type":"integer",
+      "box":true,
       "max":100,
       "min":1
+    },
+    "CurrencyCode":{
+      "type":"string",
+      "pattern":"[A-Z]{3}"
     },
     "DescribeServicesRequest":{
       "type":"structure",
@@ -89,10 +133,7 @@
         "ServiceCode":{"shape":"String"},
         "FormatVersion":{"shape":"String"},
         "NextToken":{"shape":"String"},
-        "MaxResults":{
-          "shape":"BoxedInteger",
-          "box":true
-        }
+        "MaxResults":{"shape":"BoxedInteger"}
       }
     },
     "DescribeServicesResponse":{
@@ -103,12 +144,22 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "EffectiveDate":{"type":"timestamp"},
     "ExpiredNextTokenException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"errorMessage"}
       },
       "exception":true
+    },
+    "FileFormat":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "FileFormats":{
+      "type":"list",
+      "member":{"shape":"FileFormat"}
     },
     "Filter":{
       "type":"structure",
@@ -141,10 +192,7 @@
         "ServiceCode":{"shape":"String"},
         "AttributeName":{"shape":"String"},
         "NextToken":{"shape":"String"},
-        "MaxResults":{
-          "shape":"BoxedInteger",
-          "box":true
-        }
+        "MaxResults":{"shape":"BoxedInteger"}
       }
     },
     "GetAttributeValuesResponse":{
@@ -154,24 +202,39 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "GetPriceListFileUrlRequest":{
+      "type":"structure",
+      "required":[
+        "PriceListArn",
+        "FileFormat"
+      ],
+      "members":{
+        "PriceListArn":{"shape":"PriceListArn"},
+        "FileFormat":{"shape":"FileFormat"}
+      }
+    },
+    "GetPriceListFileUrlResponse":{
+      "type":"structure",
+      "members":{
+        "Url":{"shape":"String"}
+      }
+    },
     "GetProductsRequest":{
       "type":"structure",
+      "required":["ServiceCode"],
       "members":{
         "ServiceCode":{"shape":"String"},
         "Filters":{"shape":"Filters"},
         "FormatVersion":{"shape":"String"},
         "NextToken":{"shape":"String"},
-        "MaxResults":{
-          "shape":"BoxedInteger",
-          "box":true
-        }
+        "MaxResults":{"shape":"BoxedInteger"}
       }
     },
     "GetProductsResponse":{
       "type":"structure",
       "members":{
         "FormatVersion":{"shape":"String"},
-        "PriceList":{"shape":"PriceList"},
+        "PriceList":{"shape":"PriceListJsonItems"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -180,7 +243,8 @@
       "members":{
         "Message":{"shape":"errorMessage"}
       },
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "InvalidNextTokenException":{
       "type":"structure",
@@ -196,6 +260,35 @@
       },
       "exception":true
     },
+    "ListPriceListsRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceCode",
+        "EffectiveDate",
+        "CurrencyCode"
+      ],
+      "members":{
+        "ServiceCode":{"shape":"ServiceCode"},
+        "EffectiveDate":{"shape":"EffectiveDate"},
+        "RegionCode":{"shape":"RegionCode"},
+        "CurrencyCode":{"shape":"CurrencyCode"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListPriceListsResponse":{
+      "type":"structure",
+      "members":{
+        "PriceLists":{"shape":"PriceLists"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "MaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
     "NotFoundException":{
       "type":"structure",
       "members":{
@@ -204,25 +297,55 @@
       "exception":true
     },
     "PriceList":{
+      "type":"structure",
+      "members":{
+        "PriceListArn":{"shape":"PriceListArn"},
+        "RegionCode":{"shape":"RegionCode"},
+        "CurrencyCode":{"shape":"CurrencyCode"},
+        "FileFormats":{"shape":"FileFormats"}
+      }
+    },
+    "PriceListArn":{
+      "type":"string",
+      "max":2048,
+      "min":18,
+      "pattern":"arn:[A-Za-z0-9][-.A-Za-z0-9]{0,62}:pricing:::price-list/[A-Za-z0-9_/.-]{1,1023}"
+    },
+    "PriceListJsonItems":{
       "type":"list",
       "member":{
-        "shape":"PriceListItemJSON",
+        "shape":"SynthesizedJsonPriceListJsonItem",
         "jsonvalue":true
       }
     },
-    "PriceListItemJSON":{"type":"string"},
+    "PriceLists":{
+      "type":"list",
+      "member":{"shape":"PriceList"}
+    },
+    "RegionCode":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "Service":{
       "type":"structure",
+      "required":["ServiceCode"],
       "members":{
         "ServiceCode":{"shape":"String"},
         "AttributeNames":{"shape":"AttributeNameList"}
       }
+    },
+    "ServiceCode":{
+      "type":"string",
+      "max":32,
+      "min":1
     },
     "ServiceList":{
       "type":"list",
       "member":{"shape":"Service"}
     },
     "String":{"type":"string"},
+    "SynthesizedJsonPriceListJsonItem":{"type":"string"},
     "errorMessage":{"type":"string"}
   }
 }

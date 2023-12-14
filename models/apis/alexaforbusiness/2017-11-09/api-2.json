@@ -24,7 +24,9 @@
         {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "AssociateContactWithAddressBook":{
       "name":"AssociateContactWithAddressBook",
@@ -36,7 +38,9 @@
       "output":{"shape":"AssociateContactWithAddressBookResponse"},
       "errors":[
         {"shape":"LimitExceededException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "AssociateDeviceWithNetworkProfile":{
       "name":"AssociateDeviceWithNetworkProfile",
@@ -50,7 +54,9 @@
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"DeviceNotRegisteredException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "AssociateDeviceWithRoom":{
       "name":"AssociateDeviceWithRoom",
@@ -64,7 +70,9 @@
         {"shape":"LimitExceededException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"DeviceNotRegisteredException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "AssociateSkillGroupWithRoom":{
       "name":"AssociateSkillGroupWithRoom",
@@ -76,7 +84,9 @@
       "output":{"shape":"AssociateSkillGroupWithRoomResponse"},
       "errors":[
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "AssociateSkillWithSkillGroup":{
       "name":"AssociateSkillWithSkillGroup",
@@ -90,7 +100,9 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"SkillNotLinkedException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "AssociateSkillWithUsers":{
       "name":"AssociateSkillWithUsers",
@@ -103,7 +115,9 @@
       "errors":[
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateAddressBook":{
       "name":"CreateAddressBook",
@@ -116,7 +130,9 @@
       "errors":[
         {"shape":"AlreadyExistsException"},
         {"shape":"LimitExceededException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateBusinessReportSchedule":{
       "name":"CreateBusinessReportSchedule",
@@ -128,7 +144,9 @@
       "output":{"shape":"CreateBusinessReportScheduleResponse"},
       "errors":[
         {"shape":"AlreadyExistsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateConferenceProvider":{
       "name":"CreateConferenceProvider",
@@ -140,7 +158,9 @@
       "output":{"shape":"CreateConferenceProviderResponse"},
       "errors":[
         {"shape":"AlreadyExistsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateContact":{
       "name":"CreateContact",
@@ -153,7 +173,9 @@
       "errors":[
         {"shape":"AlreadyExistsException"},
         {"shape":"LimitExceededException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateGatewayGroup":{
       "name":"CreateGatewayGroup",
@@ -166,7 +188,9 @@
       "errors":[
         {"shape":"AlreadyExistsException"},
         {"shape":"LimitExceededException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateNetworkProfile":{
       "name":"CreateNetworkProfile",
@@ -182,7 +206,9 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidCertificateAuthorityException"},
         {"shape":"InvalidServiceLinkedRoleStateException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateProfile":{
       "name":"CreateProfile",
@@ -196,7 +222,9 @@
         {"shape":"LimitExceededException"},
         {"shape":"AlreadyExistsException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateRoom":{
       "name":"CreateRoom",
@@ -209,7 +237,9 @@
       "errors":[
         {"shape":"AlreadyExistsException"},
         {"shape":"LimitExceededException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateSkillGroup":{
       "name":"CreateSkillGroup",
@@ -223,7 +253,9 @@
         {"shape":"AlreadyExistsException"},
         {"shape":"LimitExceededException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "CreateUser":{
       "name":"CreateUser",
@@ -237,7 +269,9 @@
         {"shape":"ResourceInUseException"},
         {"shape":"LimitExceededException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteAddressBook":{
       "name":"DeleteAddressBook",
@@ -250,7 +284,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteBusinessReportSchedule":{
       "name":"DeleteBusinessReportSchedule",
@@ -263,7 +299,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteConferenceProvider":{
       "name":"DeleteConferenceProvider",
@@ -275,7 +313,9 @@
       "output":{"shape":"DeleteConferenceProviderResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteContact":{
       "name":"DeleteContact",
@@ -288,7 +328,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteDevice":{
       "name":"DeleteDevice",
@@ -302,7 +344,9 @@
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidCertificateAuthorityException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteDeviceUsageData":{
       "name":"DeleteDeviceUsageData",
@@ -316,7 +360,9 @@
         {"shape":"NotFoundException"},
         {"shape":"DeviceNotRegisteredException"},
         {"shape":"LimitExceededException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteGatewayGroup":{
       "name":"DeleteGatewayGroup",
@@ -328,7 +374,9 @@
       "output":{"shape":"DeleteGatewayGroupResponse"},
       "errors":[
         {"shape":"ResourceAssociatedException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteNetworkProfile":{
       "name":"DeleteNetworkProfile",
@@ -342,7 +390,9 @@
         {"shape":"ResourceInUseException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteProfile":{
       "name":"DeleteProfile",
@@ -355,7 +405,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteRoom":{
       "name":"DeleteRoom",
@@ -368,7 +420,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteRoomSkillParameter":{
       "name":"DeleteRoomSkillParameter",
@@ -380,7 +434,9 @@
       "output":{"shape":"DeleteRoomSkillParameterResponse"},
       "errors":[
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteSkillAuthorization":{
       "name":"DeleteSkillAuthorization",
@@ -393,7 +449,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteSkillGroup":{
       "name":"DeleteSkillGroup",
@@ -406,7 +464,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DeleteUser":{
       "name":"DeleteUser",
@@ -419,7 +479,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DisassociateContactFromAddressBook":{
       "name":"DisassociateContactFromAddressBook",
@@ -428,7 +490,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"DisassociateContactFromAddressBookRequest"},
-      "output":{"shape":"DisassociateContactFromAddressBookResponse"}
+      "output":{"shape":"DisassociateContactFromAddressBookResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DisassociateDeviceFromRoom":{
       "name":"DisassociateDeviceFromRoom",
@@ -441,7 +505,9 @@
       "errors":[
         {"shape":"ConcurrentModificationException"},
         {"shape":"DeviceNotRegisteredException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DisassociateSkillFromSkillGroup":{
       "name":"DisassociateSkillFromSkillGroup",
@@ -454,7 +520,9 @@
       "errors":[
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DisassociateSkillFromUsers":{
       "name":"DisassociateSkillFromUsers",
@@ -467,7 +535,9 @@
       "errors":[
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "DisassociateSkillGroupFromRoom":{
       "name":"DisassociateSkillGroupFromRoom",
@@ -479,7 +549,9 @@
       "output":{"shape":"DisassociateSkillGroupFromRoomResponse"},
       "errors":[
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ForgetSmartHomeAppliances":{
       "name":"ForgetSmartHomeAppliances",
@@ -491,7 +563,9 @@
       "output":{"shape":"ForgetSmartHomeAppliancesResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetAddressBook":{
       "name":"GetAddressBook",
@@ -503,7 +577,9 @@
       "output":{"shape":"GetAddressBookResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetConferencePreference":{
       "name":"GetConferencePreference",
@@ -515,7 +591,9 @@
       "output":{"shape":"GetConferencePreferenceResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetConferenceProvider":{
       "name":"GetConferenceProvider",
@@ -527,7 +605,9 @@
       "output":{"shape":"GetConferenceProviderResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetContact":{
       "name":"GetContact",
@@ -539,7 +619,9 @@
       "output":{"shape":"GetContactResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetDevice":{
       "name":"GetDevice",
@@ -551,7 +633,9 @@
       "output":{"shape":"GetDeviceResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetGateway":{
       "name":"GetGateway",
@@ -563,7 +647,9 @@
       "output":{"shape":"GetGatewayResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetGatewayGroup":{
       "name":"GetGatewayGroup",
@@ -575,7 +661,9 @@
       "output":{"shape":"GetGatewayGroupResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetInvitationConfiguration":{
       "name":"GetInvitationConfiguration",
@@ -587,7 +675,9 @@
       "output":{"shape":"GetInvitationConfigurationResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetNetworkProfile":{
       "name":"GetNetworkProfile",
@@ -600,7 +690,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"InvalidSecretsManagerResourceException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetProfile":{
       "name":"GetProfile",
@@ -612,7 +704,9 @@
       "output":{"shape":"GetProfileResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetRoom":{
       "name":"GetRoom",
@@ -624,7 +718,9 @@
       "output":{"shape":"GetRoomResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetRoomSkillParameter":{
       "name":"GetRoomSkillParameter",
@@ -636,7 +732,9 @@
       "output":{"shape":"GetRoomSkillParameterResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "GetSkillGroup":{
       "name":"GetSkillGroup",
@@ -648,7 +746,9 @@
       "output":{"shape":"GetSkillGroupResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListBusinessReportSchedules":{
       "name":"ListBusinessReportSchedules",
@@ -657,7 +757,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListBusinessReportSchedulesRequest"},
-      "output":{"shape":"ListBusinessReportSchedulesResponse"}
+      "output":{"shape":"ListBusinessReportSchedulesResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListConferenceProviders":{
       "name":"ListConferenceProviders",
@@ -666,7 +768,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListConferenceProvidersRequest"},
-      "output":{"shape":"ListConferenceProvidersResponse"}
+      "output":{"shape":"ListConferenceProvidersResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListDeviceEvents":{
       "name":"ListDeviceEvents",
@@ -678,7 +782,9 @@
       "output":{"shape":"ListDeviceEventsResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListGatewayGroups":{
       "name":"ListGatewayGroups",
@@ -687,7 +793,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListGatewayGroupsRequest"},
-      "output":{"shape":"ListGatewayGroupsResponse"}
+      "output":{"shape":"ListGatewayGroupsResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListGateways":{
       "name":"ListGateways",
@@ -696,7 +804,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListGatewaysRequest"},
-      "output":{"shape":"ListGatewaysResponse"}
+      "output":{"shape":"ListGatewaysResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListSkills":{
       "name":"ListSkills",
@@ -705,7 +815,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListSkillsRequest"},
-      "output":{"shape":"ListSkillsResponse"}
+      "output":{"shape":"ListSkillsResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListSkillsStoreCategories":{
       "name":"ListSkillsStoreCategories",
@@ -714,7 +826,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListSkillsStoreCategoriesRequest"},
-      "output":{"shape":"ListSkillsStoreCategoriesResponse"}
+      "output":{"shape":"ListSkillsStoreCategoriesResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListSkillsStoreSkillsByCategory":{
       "name":"ListSkillsStoreSkillsByCategory",
@@ -723,7 +837,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListSkillsStoreSkillsByCategoryRequest"},
-      "output":{"shape":"ListSkillsStoreSkillsByCategoryResponse"}
+      "output":{"shape":"ListSkillsStoreSkillsByCategoryResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListSmartHomeAppliances":{
       "name":"ListSmartHomeAppliances",
@@ -735,7 +851,9 @@
       "output":{"shape":"ListSmartHomeAppliancesResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ListTags":{
       "name":"ListTags",
@@ -747,7 +865,9 @@
       "output":{"shape":"ListTagsResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "PutConferencePreference":{
       "name":"PutConferencePreference",
@@ -759,7 +879,9 @@
       "output":{"shape":"PutConferencePreferenceResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "PutInvitationConfiguration":{
       "name":"PutInvitationConfiguration",
@@ -772,7 +894,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "PutRoomSkillParameter":{
       "name":"PutRoomSkillParameter",
@@ -784,7 +908,9 @@
       "output":{"shape":"PutRoomSkillParameterResponse"},
       "errors":[
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "PutSkillAuthorization":{
       "name":"PutSkillAuthorization",
@@ -797,7 +923,9 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "RegisterAVSDevice":{
       "name":"RegisterAVSDevice",
@@ -812,7 +940,9 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"InvalidDeviceException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "RejectSkill":{
       "name":"RejectSkill",
@@ -825,7 +955,9 @@
       "errors":[
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "ResolveRoom":{
       "name":"ResolveRoom",
@@ -837,7 +969,9 @@
       "output":{"shape":"ResolveRoomResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "RevokeInvitation":{
       "name":"RevokeInvitation",
@@ -850,7 +984,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "SearchAddressBooks":{
       "name":"SearchAddressBooks",
@@ -859,7 +995,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"SearchAddressBooksRequest"},
-      "output":{"shape":"SearchAddressBooksResponse"}
+      "output":{"shape":"SearchAddressBooksResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "SearchContacts":{
       "name":"SearchContacts",
@@ -868,7 +1006,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"SearchContactsRequest"},
-      "output":{"shape":"SearchContactsResponse"}
+      "output":{"shape":"SearchContactsResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "SearchDevices":{
       "name":"SearchDevices",
@@ -877,7 +1017,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"SearchDevicesRequest"},
-      "output":{"shape":"SearchDevicesResponse"}
+      "output":{"shape":"SearchDevicesResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "SearchNetworkProfiles":{
       "name":"SearchNetworkProfiles",
@@ -886,7 +1028,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"SearchNetworkProfilesRequest"},
-      "output":{"shape":"SearchNetworkProfilesResponse"}
+      "output":{"shape":"SearchNetworkProfilesResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "SearchProfiles":{
       "name":"SearchProfiles",
@@ -895,7 +1039,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"SearchProfilesRequest"},
-      "output":{"shape":"SearchProfilesResponse"}
+      "output":{"shape":"SearchProfilesResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "SearchRooms":{
       "name":"SearchRooms",
@@ -904,7 +1050,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"SearchRoomsRequest"},
-      "output":{"shape":"SearchRoomsResponse"}
+      "output":{"shape":"SearchRoomsResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "SearchSkillGroups":{
       "name":"SearchSkillGroups",
@@ -913,7 +1061,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"SearchSkillGroupsRequest"},
-      "output":{"shape":"SearchSkillGroupsResponse"}
+      "output":{"shape":"SearchSkillGroupsResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "SearchUsers":{
       "name":"SearchUsers",
@@ -922,7 +1072,9 @@
         "requestUri":"/"
       },
       "input":{"shape":"SearchUsersRequest"},
-      "output":{"shape":"SearchUsersResponse"}
+      "output":{"shape":"SearchUsersResponse"},
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "SendAnnouncement":{
       "name":"SendAnnouncement",
@@ -949,7 +1101,9 @@
         {"shape":"NotFoundException"},
         {"shape":"InvalidUserStatusException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "StartDeviceSync":{
       "name":"StartDeviceSync",
@@ -961,7 +1115,9 @@
       "output":{"shape":"StartDeviceSyncResponse"},
       "errors":[
         {"shape":"DeviceNotRegisteredException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "StartSmartHomeApplianceDiscovery":{
       "name":"StartSmartHomeApplianceDiscovery",
@@ -973,7 +1129,9 @@
       "output":{"shape":"StartSmartHomeApplianceDiscoveryResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "TagResource":{
       "name":"TagResource",
@@ -985,7 +1143,9 @@
       "output":{"shape":"TagResourceResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UntagResource":{
       "name":"UntagResource",
@@ -997,7 +1157,9 @@
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateAddressBook":{
       "name":"UpdateAddressBook",
@@ -1011,7 +1173,9 @@
         {"shape":"NotFoundException"},
         {"shape":"NameInUseException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateBusinessReportSchedule":{
       "name":"UpdateBusinessReportSchedule",
@@ -1024,7 +1188,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateConferenceProvider":{
       "name":"UpdateConferenceProvider",
@@ -1036,7 +1202,9 @@
       "output":{"shape":"UpdateConferenceProviderResponse"},
       "errors":[
         {"shape":"NotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateContact":{
       "name":"UpdateContact",
@@ -1049,7 +1217,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateDevice":{
       "name":"UpdateDevice",
@@ -1063,7 +1233,9 @@
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"DeviceNotRegisteredException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateGateway":{
       "name":"UpdateGateway",
@@ -1076,7 +1248,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"NameInUseException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateGatewayGroup":{
       "name":"UpdateGatewayGroup",
@@ -1089,7 +1263,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"NameInUseException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateNetworkProfile":{
       "name":"UpdateNetworkProfile",
@@ -1105,7 +1281,9 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidCertificateAuthorityException"},
         {"shape":"InvalidSecretsManagerResourceException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateProfile":{
       "name":"UpdateProfile",
@@ -1119,7 +1297,9 @@
         {"shape":"NotFoundException"},
         {"shape":"NameInUseException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateRoom":{
       "name":"UpdateRoom",
@@ -1132,7 +1312,9 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"NameInUseException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     },
     "UpdateSkillGroup":{
       "name":"UpdateSkillGroup",
@@ -1146,7 +1328,9 @@
         {"shape":"NotFoundException"},
         {"shape":"NameInUseException"},
         {"shape":"ConcurrentModificationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Alexa For Business is no longer supported"
     }
   },
   "shapes":{
@@ -1703,7 +1887,8 @@
         "RoomUtilizationMetricsEnabled":{"shape":"Boolean"},
         "EndOfMeetingReminder":{"shape":"CreateEndOfMeetingReminder"},
         "InstantBooking":{"shape":"CreateInstantBooking"},
-        "RequireCheckIn":{"shape":"CreateRequireCheckIn"}
+        "RequireCheckIn":{"shape":"CreateRequireCheckIn"},
+        "ProactiveJoin":{"shape":"CreateProactiveJoin"}
       }
     },
     "CreateNetworkProfileRequest":{
@@ -1735,6 +1920,13 @@
       "type":"structure",
       "members":{
         "NetworkProfileArn":{"shape":"Arn"}
+      }
+    },
+    "CreateProactiveJoin":{
+      "type":"structure",
+      "required":["EnabledByMotion"],
+      "members":{
+        "EnabledByMotion":{"shape":"Boolean"}
       }
     },
     "CreateProfileRequest":{
@@ -2279,7 +2471,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"([0-9a-zA-Z]([+-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z]([-\\w]*[0-9a-zA-Z]+)*\\.)+[a-zA-Z]{2,9})"
+      "pattern":"\\w[+-.\\w]*@\\w[\\w\\.\\-]+\\.[0-9a-zA-Z]{2,24}"
     },
     "EnablementType":{
       "type":"string",
@@ -2881,7 +3073,8 @@
         "RoomUtilizationMetricsEnabled":{"shape":"Boolean"},
         "EndOfMeetingReminder":{"shape":"EndOfMeetingReminder"},
         "InstantBooking":{"shape":"InstantBooking"},
-        "RequireCheckIn":{"shape":"RequireCheckIn"}
+        "RequireCheckIn":{"shape":"RequireCheckIn"},
+        "ProactiveJoin":{"shape":"ProactiveJoin"}
       }
     },
     "MeetingSetting":{
@@ -3047,6 +3240,12 @@
       "sensitive":true
     },
     "PrivacyPolicy":{"type":"string"},
+    "ProactiveJoin":{
+      "type":"structure",
+      "members":{
+        "EnabledByMotion":{"shape":"Boolean"}
+      }
+    },
     "ProductDescription":{"type":"string"},
     "ProductId":{
       "type":"string",
@@ -4013,7 +4212,8 @@
         "RoomUtilizationMetricsEnabled":{"shape":"Boolean"},
         "EndOfMeetingReminder":{"shape":"UpdateEndOfMeetingReminder"},
         "InstantBooking":{"shape":"UpdateInstantBooking"},
-        "RequireCheckIn":{"shape":"UpdateRequireCheckIn"}
+        "RequireCheckIn":{"shape":"UpdateRequireCheckIn"},
+        "ProactiveJoin":{"shape":"UpdateProactiveJoin"}
       }
     },
     "UpdateNetworkProfileRequest":{
@@ -4032,6 +4232,13 @@
     "UpdateNetworkProfileResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateProactiveJoin":{
+      "type":"structure",
+      "required":["EnabledByMotion"],
+      "members":{
+        "EnabledByMotion":{"shape":"Boolean"}
       }
     },
     "UpdateProfileRequest":{
@@ -4151,5 +4358,7 @@
       "min":1,
       "pattern":"[a-zA-Z0-9@_+.-]*"
     }
-  }
+  },
+  "deprecated":true,
+  "deprecatedMessage":"Alexa For Business is no longer supported"
 }

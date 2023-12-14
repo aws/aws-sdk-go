@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To push an SSH key to an EC2 instance
-//
 // The following example pushes a sample SSH public key to the EC2 instance i-abcd1234
 // in AZ us-west-2b for use by the instance OS user ec2-user.
 func ExampleEC2InstanceConnect_SendSSHPublicKey_shared00() {
@@ -52,6 +51,10 @@ func ExampleEC2InstanceConnect_SendSSHPublicKey_shared00() {
 				fmt.Println(ec2instanceconnect.ErrCodeThrottlingException, aerr.Error())
 			case ec2instanceconnect.ErrCodeEC2InstanceNotFoundException:
 				fmt.Println(ec2instanceconnect.ErrCodeEC2InstanceNotFoundException, aerr.Error())
+			case ec2instanceconnect.ErrCodeEC2InstanceStateInvalidException:
+				fmt.Println(ec2instanceconnect.ErrCodeEC2InstanceStateInvalidException, aerr.Error())
+			case ec2instanceconnect.ErrCodeEC2InstanceUnavailableException:
+				fmt.Println(ec2instanceconnect.ErrCodeEC2InstanceUnavailableException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

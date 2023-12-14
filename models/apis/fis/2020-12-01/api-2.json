@@ -29,6 +29,22 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "CreateTargetAccountConfiguration":{
+      "name":"CreateTargetAccountConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/experimentTemplates/{id}/targetAccountConfigurations/{accountId}",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateTargetAccountConfigurationRequest"},
+      "output":{"shape":"CreateTargetAccountConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteExperimentTemplate":{
       "name":"DeleteExperimentTemplate",
       "http":{
@@ -38,6 +54,20 @@
       },
       "input":{"shape":"DeleteExperimentTemplateRequest"},
       "output":{"shape":"DeleteExperimentTemplateResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DeleteTargetAccountConfiguration":{
+      "name":"DeleteTargetAccountConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/experimentTemplates/{id}/targetAccountConfigurations/{accountId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteTargetAccountConfigurationRequest"},
+      "output":{"shape":"DeleteTargetAccountConfigurationResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
@@ -71,6 +101,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetExperimentTargetAccountConfiguration":{
+      "name":"GetExperimentTargetAccountConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/experiments/{id}/targetAccountConfigurations/{accountId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetExperimentTargetAccountConfigurationRequest"},
+      "output":{"shape":"GetExperimentTargetAccountConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetExperimentTemplate":{
       "name":"GetExperimentTemplate",
       "http":{
@@ -80,6 +124,34 @@
       },
       "input":{"shape":"GetExperimentTemplateRequest"},
       "output":{"shape":"GetExperimentTemplateResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetTargetAccountConfiguration":{
+      "name":"GetTargetAccountConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/experimentTemplates/{id}/targetAccountConfigurations/{accountId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetTargetAccountConfigurationRequest"},
+      "output":{"shape":"GetTargetAccountConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "GetTargetResourceType":{
+      "name":"GetTargetResourceType",
+      "http":{
+        "method":"GET",
+        "requestUri":"/targetResourceTypes/{resourceType}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetTargetResourceTypeRequest"},
+      "output":{"shape":"GetTargetResourceTypeResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
@@ -96,6 +168,34 @@
       "output":{"shape":"ListActionsResponse"},
       "errors":[
         {"shape":"ValidationException"}
+      ]
+    },
+    "ListExperimentResolvedTargets":{
+      "name":"ListExperimentResolvedTargets",
+      "http":{
+        "method":"GET",
+        "requestUri":"/experiments/{id}/resolvedTargets",
+        "responseCode":200
+      },
+      "input":{"shape":"ListExperimentResolvedTargetsRequest"},
+      "output":{"shape":"ListExperimentResolvedTargetsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListExperimentTargetAccountConfigurations":{
+      "name":"ListExperimentTargetAccountConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/experiments/{id}/targetAccountConfigurations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListExperimentTargetAccountConfigurationsRequest"},
+      "output":{"shape":"ListExperimentTargetAccountConfigurationsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListExperimentTemplates":{
@@ -133,6 +233,33 @@
       },
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"}
+    },
+    "ListTargetAccountConfigurations":{
+      "name":"ListTargetAccountConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/experimentTemplates/{id}/targetAccountConfigurations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTargetAccountConfigurationsRequest"},
+      "output":{"shape":"ListTargetAccountConfigurationsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListTargetResourceTypes":{
+      "name":"ListTargetResourceTypes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/targetResourceTypes",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTargetResourceTypesRequest"},
+      "output":{"shape":"ListTargetResourceTypesResponse"},
+      "errors":[
+        {"shape":"ValidationException"}
+      ]
     },
     "StartExperiment":{
       "name":"StartExperiment",
@@ -198,9 +325,30 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"}
       ]
+    },
+    "UpdateTargetAccountConfiguration":{
+      "name":"UpdateTargetAccountConfiguration",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/experimentTemplates/{id}/targetAccountConfigurations/{accountId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateTargetAccountConfigurationRequest"},
+      "output":{"shape":"UpdateTargetAccountConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
     }
   },
   "shapes":{
+    "AccountTargeting":{
+      "type":"string",
+      "enum":[
+        "single-account",
+        "multi-account"
+      ]
+    },
     "Action":{
       "type":"structure",
       "members":{
@@ -263,7 +411,7 @@
     "ActionTarget":{
       "type":"structure",
       "members":{
-        "resourceType":{"shape":"TargetResourceType"}
+        "resourceType":{"shape":"TargetResourceTypeId"}
       }
     },
     "ActionTargetMap":{
@@ -280,6 +428,12 @@
       "type":"string",
       "max":1024,
       "min":1,
+      "pattern":"[\\S]+"
+    },
+    "CloudWatchLogGroupArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
       "pattern":"[\\S]+"
     },
     "ConflictException":{
@@ -306,6 +460,22 @@
       "key":{"shape":"ExperimentTemplateActionName"},
       "value":{"shape":"CreateExperimentTemplateActionInput"}
     },
+    "CreateExperimentTemplateExperimentOptionsInput":{
+      "type":"structure",
+      "members":{
+        "accountTargeting":{"shape":"AccountTargeting"},
+        "emptyTargetResolutionMode":{"shape":"EmptyTargetResolutionMode"}
+      }
+    },
+    "CreateExperimentTemplateLogConfigurationInput":{
+      "type":"structure",
+      "required":["logSchemaVersion"],
+      "members":{
+        "cloudWatchLogsConfiguration":{"shape":"ExperimentTemplateCloudWatchLogsLogConfigurationInput"},
+        "s3Configuration":{"shape":"ExperimentTemplateS3LogConfigurationInput"},
+        "logSchemaVersion":{"shape":"LogSchemaVersion"}
+      }
+    },
     "CreateExperimentTemplateRequest":{
       "type":"structure",
       "required":[
@@ -325,7 +495,9 @@
         "targets":{"shape":"CreateExperimentTemplateTargetInputMap"},
         "actions":{"shape":"CreateExperimentTemplateActionInputMap"},
         "roleArn":{"shape":"RoleArn"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "logConfiguration":{"shape":"CreateExperimentTemplateLogConfigurationInput"},
+        "experimentOptions":{"shape":"CreateExperimentTemplateExperimentOptionsInput"}
       }
     },
     "CreateExperimentTemplateResponse":{
@@ -353,17 +525,50 @@
         "selectionMode"
       ],
       "members":{
-        "resourceType":{"shape":"ResourceType"},
+        "resourceType":{"shape":"TargetResourceTypeId"},
         "resourceArns":{"shape":"ResourceArnList"},
         "resourceTags":{"shape":"TagMap"},
         "filters":{"shape":"ExperimentTemplateTargetFilterInputList"},
-        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"}
+        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"},
+        "parameters":{"shape":"ExperimentTemplateTargetParameterMap"}
       }
     },
     "CreateExperimentTemplateTargetInputMap":{
       "type":"map",
       "key":{"shape":"ExperimentTemplateTargetName"},
       "value":{"shape":"CreateExperimentTemplateTargetInput"}
+    },
+    "CreateTargetAccountConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "experimentTemplateId",
+        "accountId",
+        "roleArn"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "experimentTemplateId":{
+          "shape":"ExperimentTemplateId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "accountId":{
+          "shape":"TargetAccountId",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "roleArn":{"shape":"RoleArn"},
+        "description":{"shape":"TargetAccountConfigurationDescription"}
+      }
+    },
+    "CreateTargetAccountConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "targetAccountConfiguration":{"shape":"TargetAccountConfiguration"}
+      }
     },
     "CreationTime":{"type":"timestamp"},
     "DeleteExperimentTemplateRequest":{
@@ -383,6 +588,38 @@
         "experimentTemplate":{"shape":"ExperimentTemplate"}
       }
     },
+    "DeleteTargetAccountConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "experimentTemplateId",
+        "accountId"
+      ],
+      "members":{
+        "experimentTemplateId":{
+          "shape":"ExperimentTemplateId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "accountId":{
+          "shape":"TargetAccountId",
+          "location":"uri",
+          "locationName":"accountId"
+        }
+      }
+    },
+    "DeleteTargetAccountConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "targetAccountConfiguration":{"shape":"TargetAccountConfiguration"}
+      }
+    },
+    "EmptyTargetResolutionMode":{
+      "type":"string",
+      "enum":[
+        "fail",
+        "skip"
+      ]
+    },
     "ExceptionMessage":{
       "type":"string",
       "max":1024,
@@ -401,7 +638,10 @@
         "creationTime":{"shape":"CreationTime"},
         "startTime":{"shape":"ExperimentStartTime"},
         "endTime":{"shape":"ExperimentEndTime"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "logConfiguration":{"shape":"ExperimentLogConfiguration"},
+        "experimentOptions":{"shape":"ExperimentOptions"},
+        "targetAccountConfigurationsCount":{"shape":"TargetAccountConfigurationsCount"}
       }
     },
     "ExperimentAction":{
@@ -412,7 +652,9 @@
         "parameters":{"shape":"ExperimentActionParameterMap"},
         "targets":{"shape":"ExperimentActionTargetMap"},
         "startAfter":{"shape":"ExperimentActionStartAfterList"},
-        "state":{"shape":"ExperimentActionState"}
+        "state":{"shape":"ExperimentActionState"},
+        "startTime":{"shape":"ExperimentActionStartTime"},
+        "endTime":{"shape":"ExperimentActionEndTime"}
       }
     },
     "ExperimentActionDescription":{
@@ -420,6 +662,7 @@
       "max":512,
       "pattern":"[\\s\\S]+"
     },
+    "ExperimentActionEndTime":{"type":"timestamp"},
     "ExperimentActionMap":{
       "type":"map",
       "key":{"shape":"ExperimentActionName"},
@@ -454,6 +697,7 @@
       "type":"list",
       "member":{"shape":"ExperimentActionStartAfter"}
     },
+    "ExperimentActionStartTime":{"type":"timestamp"},
     "ExperimentActionState":{
       "type":"structure",
       "members":{
@@ -471,7 +715,8 @@
         "cancelled",
         "stopping",
         "stopped",
-        "failed"
+        "failed",
+        "skipped"
       ]
     },
     "ExperimentActionStatusReason":{
@@ -489,11 +734,39 @@
       "max":64,
       "pattern":"[\\S]+"
     },
+    "ExperimentCloudWatchLogsLogConfiguration":{
+      "type":"structure",
+      "members":{
+        "logGroupArn":{"shape":"CloudWatchLogGroupArn"}
+      }
+    },
     "ExperimentEndTime":{"type":"timestamp"},
     "ExperimentId":{
       "type":"string",
       "max":64,
       "pattern":"[\\S]+"
+    },
+    "ExperimentLogConfiguration":{
+      "type":"structure",
+      "members":{
+        "cloudWatchLogsConfiguration":{"shape":"ExperimentCloudWatchLogsLogConfiguration"},
+        "s3Configuration":{"shape":"ExperimentS3LogConfiguration"},
+        "logSchemaVersion":{"shape":"LogSchemaVersion"}
+      }
+    },
+    "ExperimentOptions":{
+      "type":"structure",
+      "members":{
+        "accountTargeting":{"shape":"AccountTargeting"},
+        "emptyTargetResolutionMode":{"shape":"EmptyTargetResolutionMode"}
+      }
+    },
+    "ExperimentS3LogConfiguration":{
+      "type":"structure",
+      "members":{
+        "bucketName":{"shape":"S3BucketName"},
+        "prefix":{"shape":"S3ObjectKey"}
+      }
     },
     "ExperimentStartTime":{"type":"timestamp"},
     "ExperimentState":{
@@ -548,11 +821,32 @@
     "ExperimentTarget":{
       "type":"structure",
       "members":{
-        "resourceType":{"shape":"ResourceType"},
+        "resourceType":{"shape":"TargetResourceTypeId"},
         "resourceArns":{"shape":"ResourceArnList"},
         "resourceTags":{"shape":"TagMap"},
         "filters":{"shape":"ExperimentTargetFilterList"},
-        "selectionMode":{"shape":"ExperimentTargetSelectionMode"}
+        "selectionMode":{"shape":"ExperimentTargetSelectionMode"},
+        "parameters":{"shape":"ExperimentTargetParameterMap"}
+      }
+    },
+    "ExperimentTargetAccountConfiguration":{
+      "type":"structure",
+      "members":{
+        "roleArn":{"shape":"RoleArn"},
+        "accountId":{"shape":"TargetAccountId"},
+        "description":{"shape":"TargetAccountConfigurationDescription"}
+      }
+    },
+    "ExperimentTargetAccountConfigurationList":{
+      "type":"list",
+      "member":{"shape":"ExperimentTargetAccountConfigurationSummary"}
+    },
+    "ExperimentTargetAccountConfigurationSummary":{
+      "type":"structure",
+      "members":{
+        "roleArn":{"shape":"RoleArn"},
+        "accountId":{"shape":"TargetAccountId"},
+        "description":{"shape":"TargetAccountConfigurationDescription"}
       }
     },
     "ExperimentTargetFilter":{
@@ -590,6 +884,21 @@
       "max":64,
       "pattern":"[\\S]+"
     },
+    "ExperimentTargetParameterMap":{
+      "type":"map",
+      "key":{"shape":"ExperimentTargetParameterName"},
+      "value":{"shape":"ExperimentTargetParameterValue"}
+    },
+    "ExperimentTargetParameterName":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\S]+"
+    },
+    "ExperimentTargetParameterValue":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ExperimentTargetSelectionMode":{
       "type":"string",
       "max":64,
@@ -606,7 +915,10 @@
         "creationTime":{"shape":"CreationTime"},
         "lastUpdateTime":{"shape":"LastUpdateTime"},
         "roleArn":{"shape":"RoleArn"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "logConfiguration":{"shape":"ExperimentTemplateLogConfiguration"},
+        "experimentOptions":{"shape":"ExperimentTemplateExperimentOptions"},
+        "targetAccountConfigurationsCount":{"shape":"TargetAccountConfigurationsCount"}
       }
     },
     "ExperimentTemplateAction":{
@@ -668,15 +980,58 @@
       "max":64,
       "pattern":"[\\S]+"
     },
+    "ExperimentTemplateCloudWatchLogsLogConfiguration":{
+      "type":"structure",
+      "members":{
+        "logGroupArn":{"shape":"CloudWatchLogGroupArn"}
+      }
+    },
+    "ExperimentTemplateCloudWatchLogsLogConfigurationInput":{
+      "type":"structure",
+      "required":["logGroupArn"],
+      "members":{
+        "logGroupArn":{"shape":"CloudWatchLogGroupArn"}
+      }
+    },
     "ExperimentTemplateDescription":{
       "type":"string",
       "max":512,
       "pattern":"[\\s\\S]+"
     },
+    "ExperimentTemplateExperimentOptions":{
+      "type":"structure",
+      "members":{
+        "accountTargeting":{"shape":"AccountTargeting"},
+        "emptyTargetResolutionMode":{"shape":"EmptyTargetResolutionMode"}
+      }
+    },
     "ExperimentTemplateId":{
       "type":"string",
       "max":64,
       "pattern":"[\\S]+"
+    },
+    "ExperimentTemplateLogConfiguration":{
+      "type":"structure",
+      "members":{
+        "cloudWatchLogsConfiguration":{"shape":"ExperimentTemplateCloudWatchLogsLogConfiguration"},
+        "s3Configuration":{"shape":"ExperimentTemplateS3LogConfiguration"},
+        "logSchemaVersion":{"shape":"LogSchemaVersion"}
+      }
+    },
+    "ExperimentTemplateS3LogConfiguration":{
+      "type":"structure",
+      "members":{
+        "bucketName":{"shape":"S3BucketName"},
+        "prefix":{"shape":"S3ObjectKey"}
+      }
+    },
+    "ExperimentTemplateS3LogConfigurationInput":{
+      "type":"structure",
+      "required":["bucketName"],
+      "members":{
+        "bucketName":{"shape":"S3BucketName"},
+        "prefix":{"shape":"S3ObjectKey"}
+      }
     },
     "ExperimentTemplateStopCondition":{
       "type":"structure",
@@ -706,11 +1061,12 @@
     "ExperimentTemplateTarget":{
       "type":"structure",
       "members":{
-        "resourceType":{"shape":"ResourceType"},
+        "resourceType":{"shape":"TargetResourceTypeId"},
         "resourceArns":{"shape":"ResourceArnList"},
         "resourceTags":{"shape":"TagMap"},
         "filters":{"shape":"ExperimentTemplateTargetFilterList"},
-        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"}
+        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"},
+        "parameters":{"shape":"ExperimentTemplateTargetParameterMap"}
       }
     },
     "ExperimentTemplateTargetFilter":{
@@ -763,6 +1119,22 @@
       "max":64,
       "pattern":"[\\S]+"
     },
+    "ExperimentTemplateTargetParameterMap":{
+      "type":"map",
+      "key":{"shape":"ExperimentTemplateTargetParameterName"},
+      "value":{"shape":"ExperimentTemplateTargetParameterValue"}
+    },
+    "ExperimentTemplateTargetParameterName":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\S]+"
+    },
+    "ExperimentTemplateTargetParameterValue":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]+$"
+    },
     "ExperimentTemplateTargetSelectionMode":{
       "type":"string",
       "max":64,
@@ -802,6 +1174,31 @@
         "experiment":{"shape":"Experiment"}
       }
     },
+    "GetExperimentTargetAccountConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "experimentId",
+        "accountId"
+      ],
+      "members":{
+        "experimentId":{
+          "shape":"ExperimentId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "accountId":{
+          "shape":"TargetAccountId",
+          "location":"uri",
+          "locationName":"accountId"
+        }
+      }
+    },
+    "GetExperimentTargetAccountConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "targetAccountConfiguration":{"shape":"ExperimentTargetAccountConfiguration"}
+      }
+    },
     "GetExperimentTemplateRequest":{
       "type":"structure",
       "required":["id"],
@@ -817,6 +1214,48 @@
       "type":"structure",
       "members":{
         "experimentTemplate":{"shape":"ExperimentTemplate"}
+      }
+    },
+    "GetTargetAccountConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "experimentTemplateId",
+        "accountId"
+      ],
+      "members":{
+        "experimentTemplateId":{
+          "shape":"ExperimentTemplateId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "accountId":{
+          "shape":"TargetAccountId",
+          "location":"uri",
+          "locationName":"accountId"
+        }
+      }
+    },
+    "GetTargetAccountConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "targetAccountConfiguration":{"shape":"TargetAccountConfiguration"}
+      }
+    },
+    "GetTargetResourceTypeRequest":{
+      "type":"structure",
+      "required":["resourceType"],
+      "members":{
+        "resourceType":{
+          "shape":"TargetResourceTypeId",
+          "location":"uri",
+          "locationName":"resourceType"
+        }
+      }
+    },
+    "GetTargetResourceTypeResponse":{
+      "type":"structure",
+      "members":{
+        "targetResourceType":{"shape":"TargetResourceType"}
       }
     },
     "LastUpdateTime":{"type":"timestamp"},
@@ -845,6 +1284,68 @@
       "type":"structure",
       "members":{
         "actions":{"shape":"ActionSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListExperimentResolvedTargetsMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListExperimentResolvedTargetsRequest":{
+      "type":"structure",
+      "required":["experimentId"],
+      "members":{
+        "experimentId":{
+          "shape":"ExperimentId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "maxResults":{
+          "shape":"ListExperimentResolvedTargetsMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "targetName":{
+          "shape":"TargetName",
+          "location":"querystring",
+          "locationName":"targetName"
+        }
+      }
+    },
+    "ListExperimentResolvedTargetsResponse":{
+      "type":"structure",
+      "members":{
+        "resolvedTargets":{"shape":"ResolvedTargetList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListExperimentTargetAccountConfigurationsRequest":{
+      "type":"structure",
+      "required":["experimentId"],
+      "members":{
+        "experimentId":{
+          "shape":"ExperimentId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListExperimentTargetAccountConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "targetAccountConfigurations":{"shape":"ExperimentTargetAccountConfigurationList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -921,11 +1422,86 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "ListTargetAccountConfigurationsMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListTargetAccountConfigurationsRequest":{
+      "type":"structure",
+      "required":["experimentTemplateId"],
+      "members":{
+        "experimentTemplateId":{
+          "shape":"ExperimentTemplateId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "maxResults":{
+          "shape":"ListTargetAccountConfigurationsMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListTargetAccountConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "targetAccountConfigurations":{"shape":"TargetAccountConfigurationList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTargetResourceTypesMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "ListTargetResourceTypesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"ListTargetResourceTypesMaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListTargetResourceTypesResponse":{
+      "type":"structure",
+      "members":{
+        "targetResourceTypes":{"shape":"TargetResourceTypeSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "LogSchemaVersion":{"type":"integer"},
     "NextToken":{
       "type":"string",
       "max":1024,
       "min":1,
       "pattern":"[\\S]+"
+    },
+    "ResolvedTarget":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"TargetResourceTypeId"},
+        "targetName":{"shape":"TargetName"},
+        "targetInformation":{"shape":"TargetInformationMap"}
+      }
+    },
+    "ResolvedTargetList":{
+      "type":"list",
+      "member":{"shape":"ResolvedTarget"}
     },
     "ResourceArn":{
       "type":"string",
@@ -946,16 +1522,23 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
-    "ResourceType":{
-      "type":"string",
-      "max":64,
-      "pattern":"[\\S]+"
-    },
     "RoleArn":{
       "type":"string",
       "max":2048,
       "min":20,
       "pattern":"[\\S]+"
+    },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"[\\S]+"
+    },
+    "S3ObjectKey":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\s\\S]+"
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -1054,10 +1637,115 @@
       "max":256,
       "pattern":"[\\s\\S]*"
     },
+    "TargetAccountConfiguration":{
+      "type":"structure",
+      "members":{
+        "roleArn":{"shape":"RoleArn"},
+        "accountId":{"shape":"TargetAccountId"},
+        "description":{"shape":"TargetAccountConfigurationDescription"}
+      }
+    },
+    "TargetAccountConfigurationDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":"[\\s\\S]*"
+    },
+    "TargetAccountConfigurationList":{
+      "type":"list",
+      "member":{"shape":"TargetAccountConfigurationSummary"}
+    },
+    "TargetAccountConfigurationSummary":{
+      "type":"structure",
+      "members":{
+        "roleArn":{"shape":"RoleArn"},
+        "accountId":{"shape":"TargetAccountId"},
+        "description":{"shape":"TargetAccountConfigurationDescription"}
+      }
+    },
+    "TargetAccountConfigurationsCount":{
+      "type":"long",
+      "min":0
+    },
+    "TargetAccountId":{
+      "type":"string",
+      "max":48,
+      "min":12,
+      "pattern":"[\\S]+"
+    },
+    "TargetInformationKey":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\S]+"
+    },
+    "TargetInformationMap":{
+      "type":"map",
+      "key":{"shape":"TargetInformationKey"},
+      "value":{"shape":"TargetInformationValue"}
+    },
+    "TargetInformationValue":{
+      "type":"string",
+      "max":2048,
+      "pattern":"[\\S]+"
+    },
+    "TargetName":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\S]+"
+    },
     "TargetResourceType":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"TargetResourceTypeId"},
+        "description":{"shape":"TargetResourceTypeDescription"},
+        "parameters":{"shape":"TargetResourceTypeParameterMap"}
+      }
+    },
+    "TargetResourceTypeDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":"[\\s\\S]+"
+    },
+    "TargetResourceTypeId":{
       "type":"string",
       "max":128,
       "pattern":"[\\S]+"
+    },
+    "TargetResourceTypeParameter":{
+      "type":"structure",
+      "members":{
+        "description":{"shape":"TargetResourceTypeParameterDescription"},
+        "required":{
+          "shape":"TargetResourceTypeParameterRequired",
+          "box":true
+        }
+      }
+    },
+    "TargetResourceTypeParameterDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":"[\\s\\S]+"
+    },
+    "TargetResourceTypeParameterMap":{
+      "type":"map",
+      "key":{"shape":"TargetResourceTypeParameterName"},
+      "value":{"shape":"TargetResourceTypeParameter"}
+    },
+    "TargetResourceTypeParameterName":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\S]+"
+    },
+    "TargetResourceTypeParameterRequired":{"type":"boolean"},
+    "TargetResourceTypeSummary":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"TargetResourceTypeId"},
+        "description":{"shape":"TargetResourceTypeDescription"}
+      }
+    },
+    "TargetResourceTypeSummaryList":{
+      "type":"list",
+      "member":{"shape":"TargetResourceTypeSummary"}
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -1095,6 +1783,20 @@
       "key":{"shape":"ExperimentTemplateActionName"},
       "value":{"shape":"UpdateExperimentTemplateActionInputItem"}
     },
+    "UpdateExperimentTemplateExperimentOptionsInput":{
+      "type":"structure",
+      "members":{
+        "emptyTargetResolutionMode":{"shape":"EmptyTargetResolutionMode"}
+      }
+    },
+    "UpdateExperimentTemplateLogConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "cloudWatchLogsConfiguration":{"shape":"ExperimentTemplateCloudWatchLogsLogConfigurationInput"},
+        "s3Configuration":{"shape":"ExperimentTemplateS3LogConfigurationInput"},
+        "logSchemaVersion":{"shape":"LogSchemaVersion"}
+      }
+    },
     "UpdateExperimentTemplateRequest":{
       "type":"structure",
       "required":["id"],
@@ -1108,7 +1810,9 @@
         "stopConditions":{"shape":"UpdateExperimentTemplateStopConditionInputList"},
         "targets":{"shape":"UpdateExperimentTemplateTargetInputMap"},
         "actions":{"shape":"UpdateExperimentTemplateActionInputMap"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "logConfiguration":{"shape":"UpdateExperimentTemplateLogConfigurationInput"},
+        "experimentOptions":{"shape":"UpdateExperimentTemplateExperimentOptionsInput"}
       }
     },
     "UpdateExperimentTemplateResponse":{
@@ -1136,17 +1840,45 @@
         "selectionMode"
       ],
       "members":{
-        "resourceType":{"shape":"ResourceType"},
+        "resourceType":{"shape":"TargetResourceTypeId"},
         "resourceArns":{"shape":"ResourceArnList"},
         "resourceTags":{"shape":"TagMap"},
         "filters":{"shape":"ExperimentTemplateTargetFilterInputList"},
-        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"}
+        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"},
+        "parameters":{"shape":"ExperimentTemplateTargetParameterMap"}
       }
     },
     "UpdateExperimentTemplateTargetInputMap":{
       "type":"map",
       "key":{"shape":"ExperimentTemplateTargetName"},
       "value":{"shape":"UpdateExperimentTemplateTargetInput"}
+    },
+    "UpdateTargetAccountConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "experimentTemplateId",
+        "accountId"
+      ],
+      "members":{
+        "experimentTemplateId":{
+          "shape":"ExperimentTemplateId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "accountId":{
+          "shape":"TargetAccountId",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "roleArn":{"shape":"RoleArn"},
+        "description":{"shape":"TargetAccountConfigurationDescription"}
+      }
+    },
+    "UpdateTargetAccountConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "targetAccountConfiguration":{"shape":"TargetAccountConfiguration"}
+      }
     },
     "ValidationException":{
       "type":"structure",

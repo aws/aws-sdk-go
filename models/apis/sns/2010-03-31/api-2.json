@@ -61,7 +61,8 @@
         {"shape":"NotFoundException"},
         {"shape":"InternalErrorException"},
         {"shape":"AuthorizationErrorException"},
-        {"shape":"FilterPolicyLimitExceededException"}
+        {"shape":"FilterPolicyLimitExceededException"},
+        {"shape":"ReplayLimitExceededException"}
       ]
     },
     "CreatePlatformApplication":{
@@ -197,12 +198,32 @@
       "input":{"shape":"DeleteTopicInput"},
       "errors":[
         {"shape":"InvalidParameterException"},
+        {"shape":"InvalidStateException"},
         {"shape":"InternalErrorException"},
         {"shape":"AuthorizationErrorException"},
         {"shape":"NotFoundException"},
         {"shape":"StaleTagException"},
         {"shape":"TagPolicyException"},
         {"shape":"ConcurrentAccessException"}
+      ]
+    },
+    "GetDataProtectionPolicy":{
+      "name":"GetDataProtectionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDataProtectionPolicyInput"},
+      "output":{
+        "shape":"GetDataProtectionPolicyResponse",
+        "resultWrapper":"GetDataProtectionPolicyResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidSecurityException"}
       ]
     },
     "GetEndpointAttributes":{
@@ -518,6 +539,56 @@
         {"shape":"KMSOptInRequired"},
         {"shape":"KMSThrottlingException"},
         {"shape":"KMSAccessDeniedException"},
+        {"shape":"InvalidSecurityException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "PublishBatch":{
+      "name":"PublishBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PublishBatchInput"},
+      "output":{
+        "shape":"PublishBatchResponse",
+        "resultWrapper":"PublishBatchResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"EndpointDisabledException"},
+        {"shape":"PlatformApplicationDisabledException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"BatchEntryIdsNotDistinctException"},
+        {"shape":"BatchRequestTooLongException"},
+        {"shape":"EmptyBatchRequestException"},
+        {"shape":"InvalidBatchEntryIdException"},
+        {"shape":"TooManyEntriesInBatchRequestException"},
+        {"shape":"KMSDisabledException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"KMSNotFoundException"},
+        {"shape":"KMSOptInRequired"},
+        {"shape":"KMSThrottlingException"},
+        {"shape":"KMSAccessDeniedException"},
+        {"shape":"InvalidSecurityException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "PutDataProtectionPolicy":{
+      "name":"PutDataProtectionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutDataProtectionPolicyInput"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidSecurityException"}
       ]
     },
@@ -591,6 +662,7 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"FilterPolicyLimitExceededException"},
+        {"shape":"ReplayLimitExceededException"},
         {"shape":"InternalErrorException"},
         {"shape":"NotFoundException"},
         {"shape":"AuthorizationErrorException"}
@@ -625,6 +697,7 @@
       "errors":[
         {"shape":"SubscriptionLimitExceededException"},
         {"shape":"FilterPolicyLimitExceededException"},
+        {"shape":"ReplayLimitExceededException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InternalErrorException"},
         {"shape":"NotFoundException"},
@@ -747,6 +820,48 @@
       },
       "exception":true
     },
+    "BatchEntryIdsNotDistinctException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"BatchEntryIdsNotDistinct",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "BatchRequestTooLongException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"BatchRequestTooLong",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "BatchResultErrorEntry":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Code",
+        "SenderFault"
+      ],
+      "members":{
+        "Id":{"shape":"String"},
+        "Code":{"shape":"String"},
+        "Message":{"shape":"String"},
+        "SenderFault":{"shape":"boolean"}
+      }
+    },
+    "BatchResultErrorEntryList":{
+      "type":"list",
+      "member":{"shape":"BatchResultErrorEntry"}
+    },
     "Binary":{"type":"blob"},
     "CheckIfPhoneNumberIsOptedOutInput":{
       "type":"structure",
@@ -848,7 +963,8 @@
       "members":{
         "Name":{"shape":"topicName"},
         "Attributes":{"shape":"TopicAttributesMap"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DataProtectionPolicy":{"shape":"attributeValue"}
       }
     },
     "CreateTopicResponse":{
@@ -894,6 +1010,18 @@
         "TopicArn":{"shape":"topicARN"}
       }
     },
+    "EmptyBatchRequestException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"EmptyBatchRequest",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Endpoint":{
       "type":"structure",
       "members":{
@@ -924,6 +1052,19 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "GetDataProtectionPolicyInput":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"topicARN"}
+      }
+    },
+    "GetDataProtectionPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "DataProtectionPolicy":{"shape":"attributeValue"}
+      }
     },
     "GetEndpointAttributesInput":{
       "type":"structure",
@@ -1013,6 +1154,18 @@
       "exception":true,
       "fault":true
     },
+    "InvalidBatchEntryIdException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"InvalidBatchEntryId",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidParameterException":{
       "type":"structure",
       "members":{
@@ -1045,6 +1198,18 @@
       "error":{
         "code":"InvalidSecurity",
         "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidStateException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"InvalidState",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -1413,6 +1578,56 @@
       },
       "exception":true
     },
+    "PublishBatchInput":{
+      "type":"structure",
+      "required":[
+        "TopicArn",
+        "PublishBatchRequestEntries"
+      ],
+      "members":{
+        "TopicArn":{"shape":"topicARN"},
+        "PublishBatchRequestEntries":{"shape":"PublishBatchRequestEntryList"}
+      }
+    },
+    "PublishBatchRequestEntry":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Message"
+      ],
+      "members":{
+        "Id":{"shape":"String"},
+        "Message":{"shape":"message"},
+        "Subject":{"shape":"subject"},
+        "MessageStructure":{"shape":"messageStructure"},
+        "MessageAttributes":{"shape":"MessageAttributeMap"},
+        "MessageDeduplicationId":{"shape":"String"},
+        "MessageGroupId":{"shape":"String"}
+      }
+    },
+    "PublishBatchRequestEntryList":{
+      "type":"list",
+      "member":{"shape":"PublishBatchRequestEntry"}
+    },
+    "PublishBatchResponse":{
+      "type":"structure",
+      "members":{
+        "Successful":{"shape":"PublishBatchResultEntryList"},
+        "Failed":{"shape":"BatchResultErrorEntryList"}
+      }
+    },
+    "PublishBatchResultEntry":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"String"},
+        "MessageId":{"shape":"messageId"},
+        "SequenceNumber":{"shape":"String"}
+      }
+    },
+    "PublishBatchResultEntryList":{
+      "type":"list",
+      "member":{"shape":"PublishBatchResultEntry"}
+    },
     "PublishInput":{
       "type":"structure",
       "required":["Message"],
@@ -1435,6 +1650,17 @@
         "SequenceNumber":{"shape":"String"}
       }
     },
+    "PutDataProtectionPolicyInput":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "DataProtectionPolicy"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"topicARN"},
+        "DataProtectionPolicy":{"shape":"attributeValue"}
+      }
+    },
     "RemovePermissionInput":{
       "type":"structure",
       "required":[
@@ -1445,6 +1671,18 @@
         "TopicArn":{"shape":"topicARN"},
         "Label":{"shape":"label"}
       }
+    },
+    "ReplayLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"ReplayLimitExceeded",
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1688,6 +1926,18 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "TooManyEntriesInBatchRequestException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"TooManyEntriesInBatchRequest",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Topic":{
       "type":"structure",
       "members":{

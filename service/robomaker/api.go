@@ -29,14 +29,13 @@ const opBatchDeleteWorlds = "BatchDeleteWorlds"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDeleteWorldsRequest method.
+//	req, resp := client.BatchDeleteWorldsRequest(params)
 //
-//    // Example sending a request using the BatchDeleteWorldsRequest method.
-//    req, resp := client.BatchDeleteWorldsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/BatchDeleteWorlds
 func (c *RoboMaker) BatchDeleteWorldsRequest(input *BatchDeleteWorldsInput) (req *request.Request, output *BatchDeleteWorldsOutput) {
@@ -67,16 +66,17 @@ func (c *RoboMaker) BatchDeleteWorldsRequest(input *BatchDeleteWorldsInput) (req
 // API operation BatchDeleteWorlds for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/BatchDeleteWorlds
 func (c *RoboMaker) BatchDeleteWorlds(input *BatchDeleteWorldsInput) (*BatchDeleteWorldsOutput, error) {
@@ -116,14 +116,13 @@ const opBatchDescribeSimulationJob = "BatchDescribeSimulationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDescribeSimulationJobRequest method.
+//	req, resp := client.BatchDescribeSimulationJobRequest(params)
 //
-//    // Example sending a request using the BatchDescribeSimulationJobRequest method.
-//    req, resp := client.BatchDescribeSimulationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/BatchDescribeSimulationJob
 func (c *RoboMaker) BatchDescribeSimulationJobRequest(input *BatchDescribeSimulationJobInput) (req *request.Request, output *BatchDescribeSimulationJobOutput) {
@@ -154,19 +153,20 @@ func (c *RoboMaker) BatchDescribeSimulationJobRequest(input *BatchDescribeSimula
 // API operation BatchDescribeSimulationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/BatchDescribeSimulationJob
 func (c *RoboMaker) BatchDescribeSimulationJob(input *BatchDescribeSimulationJobInput) (*BatchDescribeSimulationJobOutput, error) {
@@ -206,17 +206,21 @@ const opCancelDeploymentJob = "CancelDeploymentJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelDeploymentJobRequest method.
+//	req, resp := client.CancelDeploymentJobRequest(params)
 //
-//    // Example sending a request using the CancelDeploymentJobRequest method.
-//    req, resp := client.CancelDeploymentJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CancelDeploymentJobRequest(input *CancelDeploymentJobInput) (req *request.Request, output *CancelDeploymentJobOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, CancelDeploymentJob, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opCancelDeploymentJob,
 		HTTPMethod: "POST",
@@ -237,6 +241,9 @@ func (c *RoboMaker) CancelDeploymentJobRequest(input *CancelDeploymentJobInput) 
 //
 // Cancels the specified deployment job.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -245,21 +252,24 @@ func (c *RoboMaker) CancelDeploymentJobRequest(input *CancelDeploymentJobInput) 
 // API operation CancelDeploymentJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CancelDeploymentJob(input *CancelDeploymentJobInput) (*CancelDeploymentJobOutput, error) {
 	req, out := c.CancelDeploymentJobRequest(input)
 	return out, req.Send()
@@ -274,6 +284,8 @@ func (c *RoboMaker) CancelDeploymentJob(input *CancelDeploymentJobInput) (*Cance
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CancelDeploymentJobWithContext(ctx aws.Context, input *CancelDeploymentJobInput, opts ...request.Option) (*CancelDeploymentJobOutput, error) {
 	req, out := c.CancelDeploymentJobRequest(input)
 	req.SetContext(ctx)
@@ -297,14 +309,13 @@ const opCancelSimulationJob = "CancelSimulationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelSimulationJobRequest method.
+//	req, resp := client.CancelSimulationJobRequest(params)
 //
-//    // Example sending a request using the CancelSimulationJobRequest method.
-//    req, resp := client.CancelSimulationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelSimulationJob
 func (c *RoboMaker) CancelSimulationJobRequest(input *CancelSimulationJobInput) (req *request.Request, output *CancelSimulationJobOutput) {
@@ -336,19 +347,20 @@ func (c *RoboMaker) CancelSimulationJobRequest(input *CancelSimulationJobInput) 
 // API operation CancelSimulationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelSimulationJob
 func (c *RoboMaker) CancelSimulationJob(input *CancelSimulationJobInput) (*CancelSimulationJobOutput, error) {
@@ -388,14 +400,13 @@ const opCancelSimulationJobBatch = "CancelSimulationJobBatch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelSimulationJobBatchRequest method.
+//	req, resp := client.CancelSimulationJobBatchRequest(params)
 //
-//    // Example sending a request using the CancelSimulationJobBatchRequest method.
-//    req, resp := client.CancelSimulationJobBatchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelSimulationJobBatch
 func (c *RoboMaker) CancelSimulationJobBatchRequest(input *CancelSimulationJobBatchInput) (req *request.Request, output *CancelSimulationJobBatchOutput) {
@@ -429,19 +440,20 @@ func (c *RoboMaker) CancelSimulationJobBatchRequest(input *CancelSimulationJobBa
 // API operation CancelSimulationJobBatch for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelSimulationJobBatch
 func (c *RoboMaker) CancelSimulationJobBatch(input *CancelSimulationJobBatchInput) (*CancelSimulationJobBatchOutput, error) {
@@ -481,14 +493,13 @@ const opCancelWorldExportJob = "CancelWorldExportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelWorldExportJobRequest method.
+//	req, resp := client.CancelWorldExportJobRequest(params)
 //
-//    // Example sending a request using the CancelWorldExportJobRequest method.
-//    req, resp := client.CancelWorldExportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelWorldExportJob
 func (c *RoboMaker) CancelWorldExportJobRequest(input *CancelWorldExportJobInput) (req *request.Request, output *CancelWorldExportJobOutput) {
@@ -520,19 +531,20 @@ func (c *RoboMaker) CancelWorldExportJobRequest(input *CancelWorldExportJobInput
 // API operation CancelWorldExportJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelWorldExportJob
 func (c *RoboMaker) CancelWorldExportJob(input *CancelWorldExportJobInput) (*CancelWorldExportJobOutput, error) {
@@ -572,14 +584,13 @@ const opCancelWorldGenerationJob = "CancelWorldGenerationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelWorldGenerationJobRequest method.
+//	req, resp := client.CancelWorldGenerationJobRequest(params)
 //
-//    // Example sending a request using the CancelWorldGenerationJobRequest method.
-//    req, resp := client.CancelWorldGenerationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelWorldGenerationJob
 func (c *RoboMaker) CancelWorldGenerationJobRequest(input *CancelWorldGenerationJobInput) (req *request.Request, output *CancelWorldGenerationJobOutput) {
@@ -611,19 +622,20 @@ func (c *RoboMaker) CancelWorldGenerationJobRequest(input *CancelWorldGeneration
 // API operation CancelWorldGenerationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelWorldGenerationJob
 func (c *RoboMaker) CancelWorldGenerationJob(input *CancelWorldGenerationJobInput) (*CancelWorldGenerationJobOutput, error) {
@@ -663,17 +675,21 @@ const opCreateDeploymentJob = "CreateDeploymentJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDeploymentJobRequest method.
+//	req, resp := client.CreateDeploymentJobRequest(params)
 //
-//    // Example sending a request using the CreateDeploymentJobRequest method.
-//    req, resp := client.CreateDeploymentJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateDeploymentJob
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateDeploymentJobRequest(input *CreateDeploymentJobInput) (req *request.Request, output *CreateDeploymentJobOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, CreateDeploymentJob, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opCreateDeploymentJob,
 		HTTPMethod: "POST",
@@ -693,6 +709,8 @@ func (c *RoboMaker) CreateDeploymentJobRequest(input *CreateDeploymentJobInput) 
 //
 // Deploys a specific version of a robot application to robots in a fleet.
 //
+// This API is no longer supported and will throw an error if used.
+//
 // The robot application must have a numbered applicationVersion for consistency
 // reasons. To create a new version, use CreateRobotApplicationVersion or see
 // Creating a Robot Application Version (https://docs.aws.amazon.com/robomaker/latest/dg/create-robot-application-version.html).
@@ -708,33 +726,36 @@ func (c *RoboMaker) CreateDeploymentJobRequest(input *CreateDeploymentJobInput) 
 // API operation CreateDeploymentJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * ConcurrentDeploymentException
-//   The failure percentage threshold percentage was met.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - ConcurrentDeploymentException
+//     The failure percentage threshold percentage was met.
+//
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateDeploymentJob
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateDeploymentJob(input *CreateDeploymentJobInput) (*CreateDeploymentJobOutput, error) {
 	req, out := c.CreateDeploymentJobRequest(input)
 	return out, req.Send()
@@ -749,6 +770,8 @@ func (c *RoboMaker) CreateDeploymentJob(input *CreateDeploymentJobInput) (*Creat
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateDeploymentJobWithContext(ctx aws.Context, input *CreateDeploymentJobInput, opts ...request.Option) (*CreateDeploymentJobOutput, error) {
 	req, out := c.CreateDeploymentJobRequest(input)
 	req.SetContext(ctx)
@@ -772,17 +795,21 @@ const opCreateFleet = "CreateFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFleetRequest method.
+//	req, resp := client.CreateFleetRequest(params)
 //
-//    // Example sending a request using the CreateFleetRequest method.
-//    req, resp := client.CreateFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateFleet
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateFleetRequest(input *CreateFleetInput) (req *request.Request, output *CreateFleetOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, CreateFleet, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opCreateFleet,
 		HTTPMethod: "POST",
@@ -802,6 +829,8 @@ func (c *RoboMaker) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 //
 // Creates a fleet, a logical group of robots running the same robot application.
 //
+// This API is no longer supported and will throw an error if used.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -810,22 +839,25 @@ func (c *RoboMaker) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 // API operation CreateFleet for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateFleet
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, error) {
 	req, out := c.CreateFleetRequest(input)
 	return out, req.Send()
@@ -840,6 +872,8 @@ func (c *RoboMaker) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, er
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateFleetWithContext(ctx aws.Context, input *CreateFleetInput, opts ...request.Option) (*CreateFleetOutput, error) {
 	req, out := c.CreateFleetRequest(input)
 	req.SetContext(ctx)
@@ -863,17 +897,21 @@ const opCreateRobot = "CreateRobot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRobotRequest method.
+//	req, resp := client.CreateRobotRequest(params)
 //
-//    // Example sending a request using the CreateRobotRequest method.
-//    req, resp := client.CreateRobotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateRobot
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateRobotRequest(input *CreateRobotInput) (req *request.Request, output *CreateRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, CreateRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opCreateRobot,
 		HTTPMethod: "POST",
@@ -893,6 +931,8 @@ func (c *RoboMaker) CreateRobotRequest(input *CreateRobotInput) (req *request.Re
 //
 // Creates a robot.
 //
+// This API is no longer supported and will throw an error if used.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -901,25 +941,28 @@ func (c *RoboMaker) CreateRobotRequest(input *CreateRobotInput) (req *request.Re
 // API operation CreateRobot for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateRobot
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateRobot(input *CreateRobotInput) (*CreateRobotOutput, error) {
 	req, out := c.CreateRobotRequest(input)
 	return out, req.Send()
@@ -934,6 +977,8 @@ func (c *RoboMaker) CreateRobot(input *CreateRobotInput) (*CreateRobotOutput, er
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateRobotWithContext(ctx aws.Context, input *CreateRobotInput, opts ...request.Option) (*CreateRobotOutput, error) {
 	req, out := c.CreateRobotRequest(input)
 	req.SetContext(ctx)
@@ -957,14 +1002,13 @@ const opCreateRobotApplication = "CreateRobotApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRobotApplicationRequest method.
+//	req, resp := client.CreateRobotApplicationRequest(params)
 //
-//    // Example sending a request using the CreateRobotApplicationRequest method.
-//    req, resp := client.CreateRobotApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateRobotApplication
 func (c *RoboMaker) CreateRobotApplicationRequest(input *CreateRobotApplicationInput) (req *request.Request, output *CreateRobotApplicationOutput) {
@@ -995,28 +1039,29 @@ func (c *RoboMaker) CreateRobotApplicationRequest(input *CreateRobotApplicationI
 // API operation CreateRobotApplication for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateRobotApplication
 func (c *RoboMaker) CreateRobotApplication(input *CreateRobotApplicationInput) (*CreateRobotApplicationOutput, error) {
@@ -1056,14 +1101,13 @@ const opCreateRobotApplicationVersion = "CreateRobotApplicationVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRobotApplicationVersionRequest method.
+//	req, resp := client.CreateRobotApplicationVersionRequest(params)
 //
-//    // Example sending a request using the CreateRobotApplicationVersionRequest method.
-//    req, resp := client.CreateRobotApplicationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateRobotApplicationVersion
 func (c *RoboMaker) CreateRobotApplicationVersionRequest(input *CreateRobotApplicationVersionInput) (req *request.Request, output *CreateRobotApplicationVersionOutput) {
@@ -1094,25 +1138,26 @@ func (c *RoboMaker) CreateRobotApplicationVersionRequest(input *CreateRobotAppli
 // API operation CreateRobotApplicationVersion for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateRobotApplicationVersion
 func (c *RoboMaker) CreateRobotApplicationVersion(input *CreateRobotApplicationVersionInput) (*CreateRobotApplicationVersionOutput, error) {
@@ -1152,14 +1197,13 @@ const opCreateSimulationApplication = "CreateSimulationApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSimulationApplicationRequest method.
+//	req, resp := client.CreateSimulationApplicationRequest(params)
 //
-//    // Example sending a request using the CreateSimulationApplicationRequest method.
-//    req, resp := client.CreateSimulationApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateSimulationApplication
 func (c *RoboMaker) CreateSimulationApplicationRequest(input *CreateSimulationApplicationInput) (req *request.Request, output *CreateSimulationApplicationOutput) {
@@ -1190,28 +1234,29 @@ func (c *RoboMaker) CreateSimulationApplicationRequest(input *CreateSimulationAp
 // API operation CreateSimulationApplication for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateSimulationApplication
 func (c *RoboMaker) CreateSimulationApplication(input *CreateSimulationApplicationInput) (*CreateSimulationApplicationOutput, error) {
@@ -1251,14 +1296,13 @@ const opCreateSimulationApplicationVersion = "CreateSimulationApplicationVersion
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSimulationApplicationVersionRequest method.
+//	req, resp := client.CreateSimulationApplicationVersionRequest(params)
 //
-//    // Example sending a request using the CreateSimulationApplicationVersionRequest method.
-//    req, resp := client.CreateSimulationApplicationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateSimulationApplicationVersion
 func (c *RoboMaker) CreateSimulationApplicationVersionRequest(input *CreateSimulationApplicationVersionInput) (req *request.Request, output *CreateSimulationApplicationVersionOutput) {
@@ -1289,25 +1333,26 @@ func (c *RoboMaker) CreateSimulationApplicationVersionRequest(input *CreateSimul
 // API operation CreateSimulationApplicationVersion for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateSimulationApplicationVersion
 func (c *RoboMaker) CreateSimulationApplicationVersion(input *CreateSimulationApplicationVersionInput) (*CreateSimulationApplicationVersionOutput, error) {
@@ -1347,14 +1392,13 @@ const opCreateSimulationJob = "CreateSimulationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSimulationJobRequest method.
+//	req, resp := client.CreateSimulationJobRequest(params)
 //
-//    // Example sending a request using the CreateSimulationJobRequest method.
-//    req, resp := client.CreateSimulationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateSimulationJob
 func (c *RoboMaker) CreateSimulationJobRequest(input *CreateSimulationJobInput) (req *request.Request, output *CreateSimulationJobOutput) {
@@ -1388,31 +1432,32 @@ func (c *RoboMaker) CreateSimulationJobRequest(input *CreateSimulationJobInput) 
 // API operation CreateSimulationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the server.
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
+//
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateSimulationJob
 func (c *RoboMaker) CreateSimulationJob(input *CreateSimulationJobInput) (*CreateSimulationJobOutput, error) {
@@ -1452,14 +1497,13 @@ const opCreateWorldExportJob = "CreateWorldExportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateWorldExportJobRequest method.
+//	req, resp := client.CreateWorldExportJobRequest(params)
 //
-//    // Example sending a request using the CreateWorldExportJobRequest method.
-//    req, resp := client.CreateWorldExportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateWorldExportJob
 func (c *RoboMaker) CreateWorldExportJobRequest(input *CreateWorldExportJobInput) (req *request.Request, output *CreateWorldExportJobOutput) {
@@ -1490,27 +1534,28 @@ func (c *RoboMaker) CreateWorldExportJobRequest(input *CreateWorldExportJobInput
 // API operation CreateWorldExportJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the server.
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
+//
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateWorldExportJob
 func (c *RoboMaker) CreateWorldExportJob(input *CreateWorldExportJobInput) (*CreateWorldExportJobOutput, error) {
@@ -1550,14 +1595,13 @@ const opCreateWorldGenerationJob = "CreateWorldGenerationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateWorldGenerationJobRequest method.
+//	req, resp := client.CreateWorldGenerationJobRequest(params)
 //
-//    // Example sending a request using the CreateWorldGenerationJobRequest method.
-//    req, resp := client.CreateWorldGenerationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateWorldGenerationJob
 func (c *RoboMaker) CreateWorldGenerationJobRequest(input *CreateWorldGenerationJobInput) (req *request.Request, output *CreateWorldGenerationJobOutput) {
@@ -1588,31 +1632,32 @@ func (c *RoboMaker) CreateWorldGenerationJobRequest(input *CreateWorldGeneration
 // API operation CreateWorldGenerationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the server.
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
+//
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateWorldGenerationJob
 func (c *RoboMaker) CreateWorldGenerationJob(input *CreateWorldGenerationJobInput) (*CreateWorldGenerationJobOutput, error) {
@@ -1652,14 +1697,13 @@ const opCreateWorldTemplate = "CreateWorldTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateWorldTemplateRequest method.
+//	req, resp := client.CreateWorldTemplateRequest(params)
 //
-//    // Example sending a request using the CreateWorldTemplateRequest method.
-//    req, resp := client.CreateWorldTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateWorldTemplate
 func (c *RoboMaker) CreateWorldTemplateRequest(input *CreateWorldTemplateInput) (req *request.Request, output *CreateWorldTemplateOutput) {
@@ -1690,26 +1734,27 @@ func (c *RoboMaker) CreateWorldTemplateRequest(input *CreateWorldTemplateInput) 
 // API operation CreateWorldTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateWorldTemplate
 func (c *RoboMaker) CreateWorldTemplate(input *CreateWorldTemplateInput) (*CreateWorldTemplateOutput, error) {
@@ -1749,17 +1794,21 @@ const opDeleteFleet = "DeleteFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFleetRequest method.
+//	req, resp := client.DeleteFleetRequest(params)
 //
-//    // Example sending a request using the DeleteFleetRequest method.
-//    req, resp := client.DeleteFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteFleet
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Request, output *DeleteFleetOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DeleteFleet, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDeleteFleet,
 		HTTPMethod: "POST",
@@ -1780,6 +1829,9 @@ func (c *RoboMaker) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Re
 //
 // Deletes a fleet.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1788,18 +1840,21 @@ func (c *RoboMaker) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Re
 // API operation DeleteFleet for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteFleet
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, error) {
 	req, out := c.DeleteFleetRequest(input)
 	return out, req.Send()
@@ -1814,6 +1869,8 @@ func (c *RoboMaker) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, er
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteFleetWithContext(ctx aws.Context, input *DeleteFleetInput, opts ...request.Option) (*DeleteFleetOutput, error) {
 	req, out := c.DeleteFleetRequest(input)
 	req.SetContext(ctx)
@@ -1837,17 +1894,21 @@ const opDeleteRobot = "DeleteRobot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRobotRequest method.
+//	req, resp := client.DeleteRobotRequest(params)
 //
-//    // Example sending a request using the DeleteRobotRequest method.
-//    req, resp := client.DeleteRobotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteRobotRequest(input *DeleteRobotInput) (req *request.Request, output *DeleteRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DeleteRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDeleteRobot,
 		HTTPMethod: "POST",
@@ -1868,6 +1929,9 @@ func (c *RoboMaker) DeleteRobotRequest(input *DeleteRobotInput) (req *request.Re
 //
 // Deletes a robot.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1876,18 +1940,21 @@ func (c *RoboMaker) DeleteRobotRequest(input *DeleteRobotInput) (req *request.Re
 // API operation DeleteRobot for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteRobot(input *DeleteRobotInput) (*DeleteRobotOutput, error) {
 	req, out := c.DeleteRobotRequest(input)
 	return out, req.Send()
@@ -1902,6 +1969,8 @@ func (c *RoboMaker) DeleteRobot(input *DeleteRobotInput) (*DeleteRobotOutput, er
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteRobotWithContext(ctx aws.Context, input *DeleteRobotInput, opts ...request.Option) (*DeleteRobotOutput, error) {
 	req, out := c.DeleteRobotRequest(input)
 	req.SetContext(ctx)
@@ -1925,14 +1994,13 @@ const opDeleteRobotApplication = "DeleteRobotApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRobotApplicationRequest method.
+//	req, resp := client.DeleteRobotApplicationRequest(params)
 //
-//    // Example sending a request using the DeleteRobotApplicationRequest method.
-//    req, resp := client.DeleteRobotApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteRobotApplication
 func (c *RoboMaker) DeleteRobotApplicationRequest(input *DeleteRobotApplicationInput) (req *request.Request, output *DeleteRobotApplicationOutput) {
@@ -1964,16 +2032,17 @@ func (c *RoboMaker) DeleteRobotApplicationRequest(input *DeleteRobotApplicationI
 // API operation DeleteRobotApplication for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteRobotApplication
 func (c *RoboMaker) DeleteRobotApplication(input *DeleteRobotApplicationInput) (*DeleteRobotApplicationOutput, error) {
@@ -2013,14 +2082,13 @@ const opDeleteSimulationApplication = "DeleteSimulationApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSimulationApplicationRequest method.
+//	req, resp := client.DeleteSimulationApplicationRequest(params)
 //
-//    // Example sending a request using the DeleteSimulationApplicationRequest method.
-//    req, resp := client.DeleteSimulationApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteSimulationApplication
 func (c *RoboMaker) DeleteSimulationApplicationRequest(input *DeleteSimulationApplicationInput) (req *request.Request, output *DeleteSimulationApplicationOutput) {
@@ -2052,16 +2120,17 @@ func (c *RoboMaker) DeleteSimulationApplicationRequest(input *DeleteSimulationAp
 // API operation DeleteSimulationApplication for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteSimulationApplication
 func (c *RoboMaker) DeleteSimulationApplication(input *DeleteSimulationApplicationInput) (*DeleteSimulationApplicationOutput, error) {
@@ -2101,14 +2170,13 @@ const opDeleteWorldTemplate = "DeleteWorldTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteWorldTemplateRequest method.
+//	req, resp := client.DeleteWorldTemplateRequest(params)
 //
-//    // Example sending a request using the DeleteWorldTemplateRequest method.
-//    req, resp := client.DeleteWorldTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteWorldTemplate
 func (c *RoboMaker) DeleteWorldTemplateRequest(input *DeleteWorldTemplateInput) (req *request.Request, output *DeleteWorldTemplateOutput) {
@@ -2140,19 +2208,20 @@ func (c *RoboMaker) DeleteWorldTemplateRequest(input *DeleteWorldTemplateInput) 
 // API operation DeleteWorldTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteWorldTemplate
 func (c *RoboMaker) DeleteWorldTemplate(input *DeleteWorldTemplateInput) (*DeleteWorldTemplateOutput, error) {
@@ -2192,17 +2261,21 @@ const opDeregisterRobot = "DeregisterRobot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeregisterRobotRequest method.
+//	req, resp := client.DeregisterRobotRequest(params)
 //
-//    // Example sending a request using the DeregisterRobotRequest method.
-//    req, resp := client.DeregisterRobotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeregisterRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeregisterRobotRequest(input *DeregisterRobotInput) (req *request.Request, output *DeregisterRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DeregisterRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDeregisterRobot,
 		HTTPMethod: "POST",
@@ -2222,6 +2295,9 @@ func (c *RoboMaker) DeregisterRobotRequest(input *DeregisterRobotInput) (req *re
 //
 // Deregisters a robot.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2230,21 +2306,24 @@ func (c *RoboMaker) DeregisterRobotRequest(input *DeregisterRobotInput) (req *re
 // API operation DeregisterRobot for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeregisterRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeregisterRobot(input *DeregisterRobotInput) (*DeregisterRobotOutput, error) {
 	req, out := c.DeregisterRobotRequest(input)
 	return out, req.Send()
@@ -2259,6 +2338,8 @@ func (c *RoboMaker) DeregisterRobot(input *DeregisterRobotInput) (*DeregisterRob
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeregisterRobotWithContext(ctx aws.Context, input *DeregisterRobotInput, opts ...request.Option) (*DeregisterRobotOutput, error) {
 	req, out := c.DeregisterRobotRequest(input)
 	req.SetContext(ctx)
@@ -2282,17 +2363,21 @@ const opDescribeDeploymentJob = "DescribeDeploymentJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDeploymentJobRequest method.
+//	req, resp := client.DescribeDeploymentJobRequest(params)
 //
-//    // Example sending a request using the DescribeDeploymentJobRequest method.
-//    req, resp := client.DescribeDeploymentJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeDeploymentJobRequest(input *DescribeDeploymentJobInput) (req *request.Request, output *DescribeDeploymentJobOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeDeploymentJob, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeDeploymentJob,
 		HTTPMethod: "POST",
@@ -2312,6 +2397,9 @@ func (c *RoboMaker) DescribeDeploymentJobRequest(input *DescribeDeploymentJobInp
 //
 // Describes a deployment job.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2320,21 +2408,24 @@ func (c *RoboMaker) DescribeDeploymentJobRequest(input *DescribeDeploymentJobInp
 // API operation DescribeDeploymentJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeDeploymentJob(input *DescribeDeploymentJobInput) (*DescribeDeploymentJobOutput, error) {
 	req, out := c.DescribeDeploymentJobRequest(input)
 	return out, req.Send()
@@ -2349,6 +2440,8 @@ func (c *RoboMaker) DescribeDeploymentJob(input *DescribeDeploymentJobInput) (*D
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeDeploymentJobWithContext(ctx aws.Context, input *DescribeDeploymentJobInput, opts ...request.Option) (*DescribeDeploymentJobOutput, error) {
 	req, out := c.DescribeDeploymentJobRequest(input)
 	req.SetContext(ctx)
@@ -2372,17 +2465,21 @@ const opDescribeFleet = "DescribeFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFleetRequest method.
+//	req, resp := client.DescribeFleetRequest(params)
 //
-//    // Example sending a request using the DescribeFleetRequest method.
-//    req, resp := client.DescribeFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeFleet
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeFleetRequest(input *DescribeFleetInput) (req *request.Request, output *DescribeFleetOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeFleet, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeFleet,
 		HTTPMethod: "POST",
@@ -2402,6 +2499,9 @@ func (c *RoboMaker) DescribeFleetRequest(input *DescribeFleetInput) (req *reques
 //
 // Describes a fleet.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2410,21 +2510,24 @@ func (c *RoboMaker) DescribeFleetRequest(input *DescribeFleetInput) (req *reques
 // API operation DescribeFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeFleet
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeFleet(input *DescribeFleetInput) (*DescribeFleetOutput, error) {
 	req, out := c.DescribeFleetRequest(input)
 	return out, req.Send()
@@ -2439,6 +2542,8 @@ func (c *RoboMaker) DescribeFleet(input *DescribeFleetInput) (*DescribeFleetOutp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeFleetWithContext(ctx aws.Context, input *DescribeFleetInput, opts ...request.Option) (*DescribeFleetOutput, error) {
 	req, out := c.DescribeFleetRequest(input)
 	req.SetContext(ctx)
@@ -2462,17 +2567,21 @@ const opDescribeRobot = "DescribeRobot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRobotRequest method.
+//	req, resp := client.DescribeRobotRequest(params)
 //
-//    // Example sending a request using the DescribeRobotRequest method.
-//    req, resp := client.DescribeRobotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeRobotRequest(input *DescribeRobotInput) (req *request.Request, output *DescribeRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeRobot,
 		HTTPMethod: "POST",
@@ -2492,6 +2601,9 @@ func (c *RoboMaker) DescribeRobotRequest(input *DescribeRobotInput) (req *reques
 //
 // Describes a robot.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2500,21 +2612,24 @@ func (c *RoboMaker) DescribeRobotRequest(input *DescribeRobotInput) (req *reques
 // API operation DescribeRobot for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeRobot(input *DescribeRobotInput) (*DescribeRobotOutput, error) {
 	req, out := c.DescribeRobotRequest(input)
 	return out, req.Send()
@@ -2529,6 +2644,8 @@ func (c *RoboMaker) DescribeRobot(input *DescribeRobotInput) (*DescribeRobotOutp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeRobotWithContext(ctx aws.Context, input *DescribeRobotInput, opts ...request.Option) (*DescribeRobotOutput, error) {
 	req, out := c.DescribeRobotRequest(input)
 	req.SetContext(ctx)
@@ -2552,14 +2669,13 @@ const opDescribeRobotApplication = "DescribeRobotApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRobotApplicationRequest method.
+//	req, resp := client.DescribeRobotApplicationRequest(params)
 //
-//    // Example sending a request using the DescribeRobotApplicationRequest method.
-//    req, resp := client.DescribeRobotApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeRobotApplication
 func (c *RoboMaker) DescribeRobotApplicationRequest(input *DescribeRobotApplicationInput) (req *request.Request, output *DescribeRobotApplicationOutput) {
@@ -2590,19 +2706,20 @@ func (c *RoboMaker) DescribeRobotApplicationRequest(input *DescribeRobotApplicat
 // API operation DescribeRobotApplication for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeRobotApplication
 func (c *RoboMaker) DescribeRobotApplication(input *DescribeRobotApplicationInput) (*DescribeRobotApplicationOutput, error) {
@@ -2642,14 +2759,13 @@ const opDescribeSimulationApplication = "DescribeSimulationApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSimulationApplicationRequest method.
+//	req, resp := client.DescribeSimulationApplicationRequest(params)
 //
-//    // Example sending a request using the DescribeSimulationApplicationRequest method.
-//    req, resp := client.DescribeSimulationApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeSimulationApplication
 func (c *RoboMaker) DescribeSimulationApplicationRequest(input *DescribeSimulationApplicationInput) (req *request.Request, output *DescribeSimulationApplicationOutput) {
@@ -2680,19 +2796,20 @@ func (c *RoboMaker) DescribeSimulationApplicationRequest(input *DescribeSimulati
 // API operation DescribeSimulationApplication for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeSimulationApplication
 func (c *RoboMaker) DescribeSimulationApplication(input *DescribeSimulationApplicationInput) (*DescribeSimulationApplicationOutput, error) {
@@ -2732,14 +2849,13 @@ const opDescribeSimulationJob = "DescribeSimulationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSimulationJobRequest method.
+//	req, resp := client.DescribeSimulationJobRequest(params)
 //
-//    // Example sending a request using the DescribeSimulationJobRequest method.
-//    req, resp := client.DescribeSimulationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeSimulationJob
 func (c *RoboMaker) DescribeSimulationJobRequest(input *DescribeSimulationJobInput) (req *request.Request, output *DescribeSimulationJobOutput) {
@@ -2770,19 +2886,20 @@ func (c *RoboMaker) DescribeSimulationJobRequest(input *DescribeSimulationJobInp
 // API operation DescribeSimulationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeSimulationJob
 func (c *RoboMaker) DescribeSimulationJob(input *DescribeSimulationJobInput) (*DescribeSimulationJobOutput, error) {
@@ -2822,14 +2939,13 @@ const opDescribeSimulationJobBatch = "DescribeSimulationJobBatch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSimulationJobBatchRequest method.
+//	req, resp := client.DescribeSimulationJobBatchRequest(params)
 //
-//    // Example sending a request using the DescribeSimulationJobBatchRequest method.
-//    req, resp := client.DescribeSimulationJobBatchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeSimulationJobBatch
 func (c *RoboMaker) DescribeSimulationJobBatchRequest(input *DescribeSimulationJobBatchInput) (req *request.Request, output *DescribeSimulationJobBatchOutput) {
@@ -2860,15 +2976,16 @@ func (c *RoboMaker) DescribeSimulationJobBatchRequest(input *DescribeSimulationJ
 // API operation DescribeSimulationJobBatch for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeSimulationJobBatch
 func (c *RoboMaker) DescribeSimulationJobBatch(input *DescribeSimulationJobBatchInput) (*DescribeSimulationJobBatchOutput, error) {
@@ -2908,14 +3025,13 @@ const opDescribeWorld = "DescribeWorld"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeWorldRequest method.
+//	req, resp := client.DescribeWorldRequest(params)
 //
-//    // Example sending a request using the DescribeWorldRequest method.
-//    req, resp := client.DescribeWorldRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeWorld
 func (c *RoboMaker) DescribeWorldRequest(input *DescribeWorldInput) (req *request.Request, output *DescribeWorldOutput) {
@@ -2946,19 +3062,20 @@ func (c *RoboMaker) DescribeWorldRequest(input *DescribeWorldInput) (req *reques
 // API operation DescribeWorld for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeWorld
 func (c *RoboMaker) DescribeWorld(input *DescribeWorldInput) (*DescribeWorldOutput, error) {
@@ -2998,14 +3115,13 @@ const opDescribeWorldExportJob = "DescribeWorldExportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeWorldExportJobRequest method.
+//	req, resp := client.DescribeWorldExportJobRequest(params)
 //
-//    // Example sending a request using the DescribeWorldExportJobRequest method.
-//    req, resp := client.DescribeWorldExportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeWorldExportJob
 func (c *RoboMaker) DescribeWorldExportJobRequest(input *DescribeWorldExportJobInput) (req *request.Request, output *DescribeWorldExportJobOutput) {
@@ -3036,19 +3152,20 @@ func (c *RoboMaker) DescribeWorldExportJobRequest(input *DescribeWorldExportJobI
 // API operation DescribeWorldExportJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeWorldExportJob
 func (c *RoboMaker) DescribeWorldExportJob(input *DescribeWorldExportJobInput) (*DescribeWorldExportJobOutput, error) {
@@ -3088,14 +3205,13 @@ const opDescribeWorldGenerationJob = "DescribeWorldGenerationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeWorldGenerationJobRequest method.
+//	req, resp := client.DescribeWorldGenerationJobRequest(params)
 //
-//    // Example sending a request using the DescribeWorldGenerationJobRequest method.
-//    req, resp := client.DescribeWorldGenerationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeWorldGenerationJob
 func (c *RoboMaker) DescribeWorldGenerationJobRequest(input *DescribeWorldGenerationJobInput) (req *request.Request, output *DescribeWorldGenerationJobOutput) {
@@ -3126,19 +3242,20 @@ func (c *RoboMaker) DescribeWorldGenerationJobRequest(input *DescribeWorldGenera
 // API operation DescribeWorldGenerationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeWorldGenerationJob
 func (c *RoboMaker) DescribeWorldGenerationJob(input *DescribeWorldGenerationJobInput) (*DescribeWorldGenerationJobOutput, error) {
@@ -3178,14 +3295,13 @@ const opDescribeWorldTemplate = "DescribeWorldTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeWorldTemplateRequest method.
+//	req, resp := client.DescribeWorldTemplateRequest(params)
 //
-//    // Example sending a request using the DescribeWorldTemplateRequest method.
-//    req, resp := client.DescribeWorldTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeWorldTemplate
 func (c *RoboMaker) DescribeWorldTemplateRequest(input *DescribeWorldTemplateInput) (req *request.Request, output *DescribeWorldTemplateOutput) {
@@ -3216,19 +3332,20 @@ func (c *RoboMaker) DescribeWorldTemplateRequest(input *DescribeWorldTemplateInp
 // API operation DescribeWorldTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeWorldTemplate
 func (c *RoboMaker) DescribeWorldTemplate(input *DescribeWorldTemplateInput) (*DescribeWorldTemplateOutput, error) {
@@ -3268,14 +3385,13 @@ const opGetWorldTemplateBody = "GetWorldTemplateBody"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetWorldTemplateBodyRequest method.
+//	req, resp := client.GetWorldTemplateBodyRequest(params)
 //
-//    // Example sending a request using the GetWorldTemplateBodyRequest method.
-//    req, resp := client.GetWorldTemplateBodyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/GetWorldTemplateBody
 func (c *RoboMaker) GetWorldTemplateBodyRequest(input *GetWorldTemplateBodyInput) (req *request.Request, output *GetWorldTemplateBodyOutput) {
@@ -3306,19 +3422,20 @@ func (c *RoboMaker) GetWorldTemplateBodyRequest(input *GetWorldTemplateBodyInput
 // API operation GetWorldTemplateBody for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/GetWorldTemplateBody
 func (c *RoboMaker) GetWorldTemplateBody(input *GetWorldTemplateBodyInput) (*GetWorldTemplateBodyOutput, error) {
@@ -3358,17 +3475,21 @@ const opListDeploymentJobs = "ListDeploymentJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeploymentJobsRequest method.
+//	req, resp := client.ListDeploymentJobsRequest(params)
 //
-//    // Example sending a request using the ListDeploymentJobsRequest method.
-//    req, resp := client.ListDeploymentJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListDeploymentJobs
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobsRequest(input *ListDeploymentJobsInput) (req *request.Request, output *ListDeploymentJobsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ListDeploymentJobs, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opListDeploymentJobs,
 		HTTPMethod: "POST",
@@ -3395,6 +3516,9 @@ func (c *RoboMaker) ListDeploymentJobsRequest(input *ListDeploymentJobsInput) (r
 // Returns a list of deployment jobs for a fleet. You can optionally provide
 // filters to retrieve specific deployment jobs.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3403,21 +3527,24 @@ func (c *RoboMaker) ListDeploymentJobsRequest(input *ListDeploymentJobsInput) (r
 // API operation ListDeploymentJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListDeploymentJobs
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobs(input *ListDeploymentJobsInput) (*ListDeploymentJobsOutput, error) {
 	req, out := c.ListDeploymentJobsRequest(input)
 	return out, req.Send()
@@ -3432,6 +3559,8 @@ func (c *RoboMaker) ListDeploymentJobs(input *ListDeploymentJobsInput) (*ListDep
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobsWithContext(ctx aws.Context, input *ListDeploymentJobsInput, opts ...request.Option) (*ListDeploymentJobsOutput, error) {
 	req, out := c.ListDeploymentJobsRequest(input)
 	req.SetContext(ctx)
@@ -3447,15 +3576,16 @@ func (c *RoboMaker) ListDeploymentJobsWithContext(ctx aws.Context, input *ListDe
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDeploymentJobs operation.
-//    pageNum := 0
-//    err := client.ListDeploymentJobsPages(params,
-//        func(page *robomaker.ListDeploymentJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
+//	// Example iterating over at most 3 pages of a ListDeploymentJobs operation.
+//	pageNum := 0
+//	err := client.ListDeploymentJobsPages(params,
+//	    func(page *robomaker.ListDeploymentJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 //
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobsPages(input *ListDeploymentJobsInput, fn func(*ListDeploymentJobsOutput, bool) bool) error {
 	return c.ListDeploymentJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3467,6 +3597,8 @@ func (c *RoboMaker) ListDeploymentJobsPages(input *ListDeploymentJobsInput, fn f
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobsPagesWithContext(ctx aws.Context, input *ListDeploymentJobsInput, fn func(*ListDeploymentJobsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
@@ -3507,17 +3639,21 @@ const opListFleets = "ListFleets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFleetsRequest method.
+//	req, resp := client.ListFleetsRequest(params)
 //
-//    // Example sending a request using the ListFleetsRequest method.
-//    req, resp := client.ListFleetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListFleets
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleetsRequest(input *ListFleetsInput) (req *request.Request, output *ListFleetsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ListFleets, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opListFleets,
 		HTTPMethod: "POST",
@@ -3544,6 +3680,9 @@ func (c *RoboMaker) ListFleetsRequest(input *ListFleetsInput) (req *request.Requ
 // Returns a list of fleets. You can optionally provide filters to retrieve
 // specific fleets.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3552,21 +3691,24 @@ func (c *RoboMaker) ListFleetsRequest(input *ListFleetsInput) (req *request.Requ
 // API operation ListFleets for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListFleets
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleets(input *ListFleetsInput) (*ListFleetsOutput, error) {
 	req, out := c.ListFleetsRequest(input)
 	return out, req.Send()
@@ -3581,6 +3723,8 @@ func (c *RoboMaker) ListFleets(input *ListFleetsInput) (*ListFleetsOutput, error
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleetsWithContext(ctx aws.Context, input *ListFleetsInput, opts ...request.Option) (*ListFleetsOutput, error) {
 	req, out := c.ListFleetsRequest(input)
 	req.SetContext(ctx)
@@ -3596,15 +3740,16 @@ func (c *RoboMaker) ListFleetsWithContext(ctx aws.Context, input *ListFleetsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFleets operation.
-//    pageNum := 0
-//    err := client.ListFleetsPages(params,
-//        func(page *robomaker.ListFleetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
+//	// Example iterating over at most 3 pages of a ListFleets operation.
+//	pageNum := 0
+//	err := client.ListFleetsPages(params,
+//	    func(page *robomaker.ListFleetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 //
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleetsPages(input *ListFleetsInput, fn func(*ListFleetsOutput, bool) bool) error {
 	return c.ListFleetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3616,6 +3761,8 @@ func (c *RoboMaker) ListFleetsPages(input *ListFleetsInput, fn func(*ListFleetsO
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleetsPagesWithContext(ctx aws.Context, input *ListFleetsInput, fn func(*ListFleetsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
@@ -3656,14 +3803,13 @@ const opListRobotApplications = "ListRobotApplications"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRobotApplicationsRequest method.
+//	req, resp := client.ListRobotApplicationsRequest(params)
 //
-//    // Example sending a request using the ListRobotApplicationsRequest method.
-//    req, resp := client.ListRobotApplicationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListRobotApplications
 func (c *RoboMaker) ListRobotApplicationsRequest(input *ListRobotApplicationsInput) (req *request.Request, output *ListRobotApplicationsOutput) {
@@ -3701,16 +3847,17 @@ func (c *RoboMaker) ListRobotApplicationsRequest(input *ListRobotApplicationsInp
 // API operation ListRobotApplications for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListRobotApplications
 func (c *RoboMaker) ListRobotApplications(input *ListRobotApplicationsInput) (*ListRobotApplicationsOutput, error) {
@@ -3742,15 +3889,14 @@ func (c *RoboMaker) ListRobotApplicationsWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRobotApplications operation.
-//    pageNum := 0
-//    err := client.ListRobotApplicationsPages(params,
-//        func(page *robomaker.ListRobotApplicationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRobotApplications operation.
+//	pageNum := 0
+//	err := client.ListRobotApplicationsPages(params,
+//	    func(page *robomaker.ListRobotApplicationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RoboMaker) ListRobotApplicationsPages(input *ListRobotApplicationsInput, fn func(*ListRobotApplicationsOutput, bool) bool) error {
 	return c.ListRobotApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3802,17 +3948,21 @@ const opListRobots = "ListRobots"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRobotsRequest method.
+//	req, resp := client.ListRobotsRequest(params)
 //
-//    // Example sending a request using the ListRobotsRequest method.
-//    req, resp := client.ListRobotsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListRobots
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobotsRequest(input *ListRobotsInput) (req *request.Request, output *ListRobotsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ListRobots, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opListRobots,
 		HTTPMethod: "POST",
@@ -3839,6 +3989,9 @@ func (c *RoboMaker) ListRobotsRequest(input *ListRobotsInput) (req *request.Requ
 // Returns a list of robots. You can optionally provide filters to retrieve
 // specific robots.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3847,21 +4000,24 @@ func (c *RoboMaker) ListRobotsRequest(input *ListRobotsInput) (req *request.Requ
 // API operation ListRobots for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListRobots
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobots(input *ListRobotsInput) (*ListRobotsOutput, error) {
 	req, out := c.ListRobotsRequest(input)
 	return out, req.Send()
@@ -3876,6 +4032,8 @@ func (c *RoboMaker) ListRobots(input *ListRobotsInput) (*ListRobotsOutput, error
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobotsWithContext(ctx aws.Context, input *ListRobotsInput, opts ...request.Option) (*ListRobotsOutput, error) {
 	req, out := c.ListRobotsRequest(input)
 	req.SetContext(ctx)
@@ -3891,15 +4049,16 @@ func (c *RoboMaker) ListRobotsWithContext(ctx aws.Context, input *ListRobotsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRobots operation.
-//    pageNum := 0
-//    err := client.ListRobotsPages(params,
-//        func(page *robomaker.ListRobotsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
+//	// Example iterating over at most 3 pages of a ListRobots operation.
+//	pageNum := 0
+//	err := client.ListRobotsPages(params,
+//	    func(page *robomaker.ListRobotsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 //
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobotsPages(input *ListRobotsInput, fn func(*ListRobotsOutput, bool) bool) error {
 	return c.ListRobotsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3911,6 +4070,8 @@ func (c *RoboMaker) ListRobotsPages(input *ListRobotsInput, fn func(*ListRobotsO
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobotsPagesWithContext(ctx aws.Context, input *ListRobotsInput, fn func(*ListRobotsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
@@ -3951,14 +4112,13 @@ const opListSimulationApplications = "ListSimulationApplications"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSimulationApplicationsRequest method.
+//	req, resp := client.ListSimulationApplicationsRequest(params)
 //
-//    // Example sending a request using the ListSimulationApplicationsRequest method.
-//    req, resp := client.ListSimulationApplicationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListSimulationApplications
 func (c *RoboMaker) ListSimulationApplicationsRequest(input *ListSimulationApplicationsInput) (req *request.Request, output *ListSimulationApplicationsOutput) {
@@ -3996,16 +4156,17 @@ func (c *RoboMaker) ListSimulationApplicationsRequest(input *ListSimulationAppli
 // API operation ListSimulationApplications for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListSimulationApplications
 func (c *RoboMaker) ListSimulationApplications(input *ListSimulationApplicationsInput) (*ListSimulationApplicationsOutput, error) {
@@ -4037,15 +4198,14 @@ func (c *RoboMaker) ListSimulationApplicationsWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSimulationApplications operation.
-//    pageNum := 0
-//    err := client.ListSimulationApplicationsPages(params,
-//        func(page *robomaker.ListSimulationApplicationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSimulationApplications operation.
+//	pageNum := 0
+//	err := client.ListSimulationApplicationsPages(params,
+//	    func(page *robomaker.ListSimulationApplicationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RoboMaker) ListSimulationApplicationsPages(input *ListSimulationApplicationsInput, fn func(*ListSimulationApplicationsOutput, bool) bool) error {
 	return c.ListSimulationApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4097,14 +4257,13 @@ const opListSimulationJobBatches = "ListSimulationJobBatches"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSimulationJobBatchesRequest method.
+//	req, resp := client.ListSimulationJobBatchesRequest(params)
 //
-//    // Example sending a request using the ListSimulationJobBatchesRequest method.
-//    req, resp := client.ListSimulationJobBatchesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListSimulationJobBatches
 func (c *RoboMaker) ListSimulationJobBatchesRequest(input *ListSimulationJobBatchesInput) (req *request.Request, output *ListSimulationJobBatchesOutput) {
@@ -4142,12 +4301,13 @@ func (c *RoboMaker) ListSimulationJobBatchesRequest(input *ListSimulationJobBatc
 // API operation ListSimulationJobBatches for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListSimulationJobBatches
 func (c *RoboMaker) ListSimulationJobBatches(input *ListSimulationJobBatchesInput) (*ListSimulationJobBatchesOutput, error) {
@@ -4179,15 +4339,14 @@ func (c *RoboMaker) ListSimulationJobBatchesWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSimulationJobBatches operation.
-//    pageNum := 0
-//    err := client.ListSimulationJobBatchesPages(params,
-//        func(page *robomaker.ListSimulationJobBatchesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSimulationJobBatches operation.
+//	pageNum := 0
+//	err := client.ListSimulationJobBatchesPages(params,
+//	    func(page *robomaker.ListSimulationJobBatchesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RoboMaker) ListSimulationJobBatchesPages(input *ListSimulationJobBatchesInput, fn func(*ListSimulationJobBatchesOutput, bool) bool) error {
 	return c.ListSimulationJobBatchesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4239,14 +4398,13 @@ const opListSimulationJobs = "ListSimulationJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSimulationJobsRequest method.
+//	req, resp := client.ListSimulationJobsRequest(params)
 //
-//    // Example sending a request using the ListSimulationJobsRequest method.
-//    req, resp := client.ListSimulationJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListSimulationJobs
 func (c *RoboMaker) ListSimulationJobsRequest(input *ListSimulationJobsInput) (req *request.Request, output *ListSimulationJobsOutput) {
@@ -4284,16 +4442,17 @@ func (c *RoboMaker) ListSimulationJobsRequest(input *ListSimulationJobsInput) (r
 // API operation ListSimulationJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListSimulationJobs
 func (c *RoboMaker) ListSimulationJobs(input *ListSimulationJobsInput) (*ListSimulationJobsOutput, error) {
@@ -4325,15 +4484,14 @@ func (c *RoboMaker) ListSimulationJobsWithContext(ctx aws.Context, input *ListSi
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSimulationJobs operation.
-//    pageNum := 0
-//    err := client.ListSimulationJobsPages(params,
-//        func(page *robomaker.ListSimulationJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSimulationJobs operation.
+//	pageNum := 0
+//	err := client.ListSimulationJobsPages(params,
+//	    func(page *robomaker.ListSimulationJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RoboMaker) ListSimulationJobsPages(input *ListSimulationJobsInput, fn func(*ListSimulationJobsOutput, bool) bool) error {
 	return c.ListSimulationJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4385,14 +4543,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListTagsForResource
 func (c *RoboMaker) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -4423,19 +4580,20 @@ func (c *RoboMaker) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListTagsForResource
 func (c *RoboMaker) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -4475,14 +4633,13 @@ const opListWorldExportJobs = "ListWorldExportJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWorldExportJobsRequest method.
+//	req, resp := client.ListWorldExportJobsRequest(params)
 //
-//    // Example sending a request using the ListWorldExportJobsRequest method.
-//    req, resp := client.ListWorldExportJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListWorldExportJobs
 func (c *RoboMaker) ListWorldExportJobsRequest(input *ListWorldExportJobsInput) (req *request.Request, output *ListWorldExportJobsOutput) {
@@ -4519,16 +4676,17 @@ func (c *RoboMaker) ListWorldExportJobsRequest(input *ListWorldExportJobsInput) 
 // API operation ListWorldExportJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListWorldExportJobs
 func (c *RoboMaker) ListWorldExportJobs(input *ListWorldExportJobsInput) (*ListWorldExportJobsOutput, error) {
@@ -4560,15 +4718,14 @@ func (c *RoboMaker) ListWorldExportJobsWithContext(ctx aws.Context, input *ListW
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListWorldExportJobs operation.
-//    pageNum := 0
-//    err := client.ListWorldExportJobsPages(params,
-//        func(page *robomaker.ListWorldExportJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListWorldExportJobs operation.
+//	pageNum := 0
+//	err := client.ListWorldExportJobsPages(params,
+//	    func(page *robomaker.ListWorldExportJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RoboMaker) ListWorldExportJobsPages(input *ListWorldExportJobsInput, fn func(*ListWorldExportJobsOutput, bool) bool) error {
 	return c.ListWorldExportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4620,14 +4777,13 @@ const opListWorldGenerationJobs = "ListWorldGenerationJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWorldGenerationJobsRequest method.
+//	req, resp := client.ListWorldGenerationJobsRequest(params)
 //
-//    // Example sending a request using the ListWorldGenerationJobsRequest method.
-//    req, resp := client.ListWorldGenerationJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListWorldGenerationJobs
 func (c *RoboMaker) ListWorldGenerationJobsRequest(input *ListWorldGenerationJobsInput) (req *request.Request, output *ListWorldGenerationJobsOutput) {
@@ -4664,16 +4820,17 @@ func (c *RoboMaker) ListWorldGenerationJobsRequest(input *ListWorldGenerationJob
 // API operation ListWorldGenerationJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListWorldGenerationJobs
 func (c *RoboMaker) ListWorldGenerationJobs(input *ListWorldGenerationJobsInput) (*ListWorldGenerationJobsOutput, error) {
@@ -4705,15 +4862,14 @@ func (c *RoboMaker) ListWorldGenerationJobsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListWorldGenerationJobs operation.
-//    pageNum := 0
-//    err := client.ListWorldGenerationJobsPages(params,
-//        func(page *robomaker.ListWorldGenerationJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListWorldGenerationJobs operation.
+//	pageNum := 0
+//	err := client.ListWorldGenerationJobsPages(params,
+//	    func(page *robomaker.ListWorldGenerationJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RoboMaker) ListWorldGenerationJobsPages(input *ListWorldGenerationJobsInput, fn func(*ListWorldGenerationJobsOutput, bool) bool) error {
 	return c.ListWorldGenerationJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4765,14 +4921,13 @@ const opListWorldTemplates = "ListWorldTemplates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWorldTemplatesRequest method.
+//	req, resp := client.ListWorldTemplatesRequest(params)
 //
-//    // Example sending a request using the ListWorldTemplatesRequest method.
-//    req, resp := client.ListWorldTemplatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListWorldTemplates
 func (c *RoboMaker) ListWorldTemplatesRequest(input *ListWorldTemplatesInput) (req *request.Request, output *ListWorldTemplatesOutput) {
@@ -4809,16 +4964,17 @@ func (c *RoboMaker) ListWorldTemplatesRequest(input *ListWorldTemplatesInput) (r
 // API operation ListWorldTemplates for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListWorldTemplates
 func (c *RoboMaker) ListWorldTemplates(input *ListWorldTemplatesInput) (*ListWorldTemplatesOutput, error) {
@@ -4850,15 +5006,14 @@ func (c *RoboMaker) ListWorldTemplatesWithContext(ctx aws.Context, input *ListWo
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListWorldTemplates operation.
-//    pageNum := 0
-//    err := client.ListWorldTemplatesPages(params,
-//        func(page *robomaker.ListWorldTemplatesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListWorldTemplates operation.
+//	pageNum := 0
+//	err := client.ListWorldTemplatesPages(params,
+//	    func(page *robomaker.ListWorldTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RoboMaker) ListWorldTemplatesPages(input *ListWorldTemplatesInput, fn func(*ListWorldTemplatesOutput, bool) bool) error {
 	return c.ListWorldTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4910,14 +5065,13 @@ const opListWorlds = "ListWorlds"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWorldsRequest method.
+//	req, resp := client.ListWorldsRequest(params)
 //
-//    // Example sending a request using the ListWorldsRequest method.
-//    req, resp := client.ListWorldsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListWorlds
 func (c *RoboMaker) ListWorldsRequest(input *ListWorldsInput) (req *request.Request, output *ListWorldsOutput) {
@@ -4954,16 +5108,17 @@ func (c *RoboMaker) ListWorldsRequest(input *ListWorldsInput) (req *request.Requ
 // API operation ListWorlds for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListWorlds
 func (c *RoboMaker) ListWorlds(input *ListWorldsInput) (*ListWorldsOutput, error) {
@@ -4995,15 +5150,14 @@ func (c *RoboMaker) ListWorldsWithContext(ctx aws.Context, input *ListWorldsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListWorlds operation.
-//    pageNum := 0
-//    err := client.ListWorldsPages(params,
-//        func(page *robomaker.ListWorldsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListWorlds operation.
+//	pageNum := 0
+//	err := client.ListWorldsPages(params,
+//	    func(page *robomaker.ListWorldsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RoboMaker) ListWorldsPages(input *ListWorldsInput, fn func(*ListWorldsOutput, bool) bool) error {
 	return c.ListWorldsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5055,17 +5209,21 @@ const opRegisterRobot = "RegisterRobot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RegisterRobotRequest method.
+//	req, resp := client.RegisterRobotRequest(params)
 //
-//    // Example sending a request using the RegisterRobotRequest method.
-//    req, resp := client.RegisterRobotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/RegisterRobot
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) RegisterRobotRequest(input *RegisterRobotInput) (req *request.Request, output *RegisterRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, RegisterRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opRegisterRobot,
 		HTTPMethod: "POST",
@@ -5085,6 +5243,8 @@ func (c *RoboMaker) RegisterRobotRequest(input *RegisterRobotInput) (req *reques
 //
 // Registers a robot with a fleet.
 //
+// This API is no longer supported and will throw an error if used.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5093,25 +5253,28 @@ func (c *RoboMaker) RegisterRobotRequest(input *RegisterRobotInput) (req *reques
 // API operation RegisterRobot for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/RegisterRobot
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) RegisterRobot(input *RegisterRobotInput) (*RegisterRobotOutput, error) {
 	req, out := c.RegisterRobotRequest(input)
 	return out, req.Send()
@@ -5126,6 +5289,8 @@ func (c *RoboMaker) RegisterRobot(input *RegisterRobotInput) (*RegisterRobotOutp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) RegisterRobotWithContext(ctx aws.Context, input *RegisterRobotInput, opts ...request.Option) (*RegisterRobotOutput, error) {
 	req, out := c.RegisterRobotRequest(input)
 	req.SetContext(ctx)
@@ -5149,14 +5314,13 @@ const opRestartSimulationJob = "RestartSimulationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RestartSimulationJobRequest method.
+//	req, resp := client.RestartSimulationJobRequest(params)
 //
-//    // Example sending a request using the RestartSimulationJobRequest method.
-//    req, resp := client.RestartSimulationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/RestartSimulationJob
 func (c *RoboMaker) RestartSimulationJobRequest(input *RestartSimulationJobInput) (req *request.Request, output *RestartSimulationJobOutput) {
@@ -5188,23 +5352,24 @@ func (c *RoboMaker) RestartSimulationJobRequest(input *RestartSimulationJobInput
 // API operation RestartSimulationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/RestartSimulationJob
 func (c *RoboMaker) RestartSimulationJob(input *RestartSimulationJobInput) (*RestartSimulationJobOutput, error) {
@@ -5244,14 +5409,13 @@ const opStartSimulationJobBatch = "StartSimulationJobBatch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartSimulationJobBatchRequest method.
+//	req, resp := client.StartSimulationJobBatchRequest(params)
 //
-//    // Example sending a request using the StartSimulationJobBatchRequest method.
-//    req, resp := client.StartSimulationJobBatchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/StartSimulationJobBatch
 func (c *RoboMaker) StartSimulationJobBatchRequest(input *StartSimulationJobBatchInput) (req *request.Request, output *StartSimulationJobBatchOutput) {
@@ -5283,25 +5447,26 @@ func (c *RoboMaker) StartSimulationJobBatchRequest(input *StartSimulationJobBatc
 // API operation StartSimulationJobBatch for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/StartSimulationJobBatch
 func (c *RoboMaker) StartSimulationJobBatch(input *StartSimulationJobBatchInput) (*StartSimulationJobBatchOutput, error) {
@@ -5341,17 +5506,21 @@ const opSyncDeploymentJob = "SyncDeploymentJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SyncDeploymentJobRequest method.
+//	req, resp := client.SyncDeploymentJobRequest(params)
 //
-//    // Example sending a request using the SyncDeploymentJobRequest method.
-//    req, resp := client.SyncDeploymentJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/SyncDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) SyncDeploymentJobRequest(input *SyncDeploymentJobInput) (req *request.Request, output *SyncDeploymentJobOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, SyncDeploymentJob, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opSyncDeploymentJob,
 		HTTPMethod: "POST",
@@ -5372,6 +5541,9 @@ func (c *RoboMaker) SyncDeploymentJobRequest(input *SyncDeploymentJobInput) (req
 // Syncrhonizes robots in a fleet to the latest deployment. This is helpful
 // if robots were added after a deployment.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5380,33 +5552,36 @@ func (c *RoboMaker) SyncDeploymentJobRequest(input *SyncDeploymentJobInput) (req
 // API operation SyncDeploymentJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
-//   * ConcurrentDeploymentException
-//   The failure percentage threshold percentage was met.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * IdempotentParameterMismatchException
-//   The request uses the same client token as a previous, but non-identical request.
-//   Do not reuse a client token with different requests, unless the requests
-//   are identical.
+//   - ConcurrentDeploymentException
+//     The failure percentage threshold percentage was met.
+//
+//   - IdempotentParameterMismatchException
+//     The request uses the same client token as a previous, but non-identical request.
+//     Do not reuse a client token with different requests, unless the requests
+//     are identical.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/SyncDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) SyncDeploymentJob(input *SyncDeploymentJobInput) (*SyncDeploymentJobOutput, error) {
 	req, out := c.SyncDeploymentJobRequest(input)
 	return out, req.Send()
@@ -5421,6 +5596,8 @@ func (c *RoboMaker) SyncDeploymentJob(input *SyncDeploymentJobInput) (*SyncDeplo
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) SyncDeploymentJobWithContext(ctx aws.Context, input *SyncDeploymentJobInput, opts ...request.Option) (*SyncDeploymentJobOutput, error) {
 	req, out := c.SyncDeploymentJobRequest(input)
 	req.SetContext(ctx)
@@ -5444,14 +5621,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/TagResource
 func (c *RoboMaker) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -5490,19 +5666,20 @@ func (c *RoboMaker) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/TagResource
 func (c *RoboMaker) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -5542,14 +5719,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/UntagResource
 func (c *RoboMaker) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -5584,19 +5760,20 @@ func (c *RoboMaker) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
+//
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/UntagResource
 func (c *RoboMaker) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -5636,14 +5813,13 @@ const opUpdateRobotApplication = "UpdateRobotApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRobotApplicationRequest method.
+//	req, resp := client.UpdateRobotApplicationRequest(params)
 //
-//    // Example sending a request using the UpdateRobotApplicationRequest method.
-//    req, resp := client.UpdateRobotApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/UpdateRobotApplication
 func (c *RoboMaker) UpdateRobotApplicationRequest(input *UpdateRobotApplicationInput) (req *request.Request, output *UpdateRobotApplicationOutput) {
@@ -5674,23 +5850,24 @@ func (c *RoboMaker) UpdateRobotApplicationRequest(input *UpdateRobotApplicationI
 // API operation UpdateRobotApplication for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/UpdateRobotApplication
 func (c *RoboMaker) UpdateRobotApplication(input *UpdateRobotApplicationInput) (*UpdateRobotApplicationOutput, error) {
@@ -5730,14 +5907,13 @@ const opUpdateSimulationApplication = "UpdateSimulationApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSimulationApplicationRequest method.
+//	req, resp := client.UpdateSimulationApplicationRequest(params)
 //
-//    // Example sending a request using the UpdateSimulationApplicationRequest method.
-//    req, resp := client.UpdateSimulationApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/UpdateSimulationApplication
 func (c *RoboMaker) UpdateSimulationApplicationRequest(input *UpdateSimulationApplicationInput) (req *request.Request, output *UpdateSimulationApplicationOutput) {
@@ -5768,23 +5944,24 @@ func (c *RoboMaker) UpdateSimulationApplicationRequest(input *UpdateSimulationAp
 // API operation UpdateSimulationApplication for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * LimitExceededException
-//   The requested resource exceeds the maximum number allowed, or the number
-//   of concurrent stream requests exceeds the maximum number allowed.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/UpdateSimulationApplication
 func (c *RoboMaker) UpdateSimulationApplication(input *UpdateSimulationApplicationInput) (*UpdateSimulationApplicationOutput, error) {
@@ -5824,14 +6001,13 @@ const opUpdateWorldTemplate = "UpdateWorldTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateWorldTemplateRequest method.
+//	req, resp := client.UpdateWorldTemplateRequest(params)
 //
-//    // Example sending a request using the UpdateWorldTemplateRequest method.
-//    req, resp := client.UpdateWorldTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/UpdateWorldTemplate
 func (c *RoboMaker) UpdateWorldTemplateRequest(input *UpdateWorldTemplateInput) (req *request.Request, output *UpdateWorldTemplateOutput) {
@@ -5862,19 +6038,20 @@ func (c *RoboMaker) UpdateWorldTemplateRequest(input *UpdateWorldTemplateInput) 
 // API operation UpdateWorldTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A parameter specified in a request is not valid, is unsupported, or cannot
-//   be used. The returned message provides an explanation of the error value.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidParameterException
+//     A parameter specified in a request is not valid, is unsupported, or cannot
+//     be used. The returned message provides an explanation of the error value.
 //
-//   * ThrottlingException
-//   AWS RoboMaker is temporarily unable to process the request. Try your call
-//   again.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   AWS RoboMaker experienced a service issue. Try your call again.
+//   - ThrottlingException
+//     AWS RoboMaker is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InternalServerException
+//     AWS RoboMaker experienced a service issue. Try your call again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/UpdateWorldTemplate
 func (c *RoboMaker) UpdateWorldTemplate(input *UpdateWorldTemplateInput) (*UpdateWorldTemplateOutput, error) {
@@ -5907,12 +6084,20 @@ type BatchDeleteWorldsInput struct {
 	Worlds []*string `locationName:"worlds" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDeleteWorldsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDeleteWorldsInput) GoString() string {
 	return s.String()
 }
@@ -5947,12 +6132,20 @@ type BatchDeleteWorldsOutput struct {
 	UnprocessedWorlds []*string `locationName:"unprocessedWorlds" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDeleteWorldsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDeleteWorldsOutput) GoString() string {
 	return s.String()
 }
@@ -5972,12 +6165,20 @@ type BatchDescribeSimulationJobInput struct {
 	Jobs []*string `locationName:"jobs" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeSimulationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeSimulationJobInput) GoString() string {
 	return s.String()
 }
@@ -6014,12 +6215,20 @@ type BatchDescribeSimulationJobOutput struct {
 	UnprocessedJobs []*string `locationName:"unprocessedJobs" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeSimulationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeSimulationJobOutput) GoString() string {
 	return s.String()
 }
@@ -6057,12 +6266,20 @@ type BatchPolicy struct {
 	TimeoutInSeconds *int64 `locationName:"timeoutInSeconds" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchPolicy) GoString() string {
 	return s.String()
 }
@@ -6079,8 +6296,9 @@ func (s *BatchPolicy) SetTimeoutInSeconds(v int64) *BatchPolicy {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CancelDeploymentJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The deployment job ARN to cancel.
 	//
@@ -6088,12 +6306,20 @@ type CancelDeploymentJobInput struct {
 	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelDeploymentJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelDeploymentJobInput) GoString() string {
 	return s.String()
 }
@@ -6120,16 +6346,25 @@ func (s *CancelDeploymentJobInput) SetJob(v string) *CancelDeploymentJobInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CancelDeploymentJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelDeploymentJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelDeploymentJobOutput) GoString() string {
 	return s.String()
 }
@@ -6143,12 +6378,20 @@ type CancelSimulationJobBatchInput struct {
 	Batch *string `locationName:"batch" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSimulationJobBatchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSimulationJobBatchInput) GoString() string {
 	return s.String()
 }
@@ -6179,12 +6422,20 @@ type CancelSimulationJobBatchOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSimulationJobBatchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSimulationJobBatchOutput) GoString() string {
 	return s.String()
 }
@@ -6198,12 +6449,20 @@ type CancelSimulationJobInput struct {
 	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSimulationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSimulationJobInput) GoString() string {
 	return s.String()
 }
@@ -6234,12 +6493,20 @@ type CancelSimulationJobOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSimulationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSimulationJobOutput) GoString() string {
 	return s.String()
 }
@@ -6253,12 +6520,20 @@ type CancelWorldExportJobInput struct {
 	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelWorldExportJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelWorldExportJobInput) GoString() string {
 	return s.String()
 }
@@ -6289,12 +6564,20 @@ type CancelWorldExportJobOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelWorldExportJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelWorldExportJobOutput) GoString() string {
 	return s.String()
 }
@@ -6308,12 +6591,20 @@ type CancelWorldGenerationJobInput struct {
 	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelWorldGenerationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelWorldGenerationJobInput) GoString() string {
 	return s.String()
 }
@@ -6344,12 +6635,20 @@ type CancelWorldGenerationJobOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelWorldGenerationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelWorldGenerationJobOutput) GoString() string {
 	return s.String()
 }
@@ -6358,19 +6657,34 @@ func (s CancelWorldGenerationJobOutput) GoString() string {
 type Compute struct {
 	_ struct{} `type:"structure"`
 
+	// Compute type information for the simulation job.
+	ComputeType *string `locationName:"computeType" type:"string" enum:"ComputeType"`
+
+	// Compute GPU unit limit for the simulation job. It is the same as the number
+	// of GPUs allocated to the SimulationJob.
+	GpuUnitLimit *int64 `locationName:"gpuUnitLimit" type:"integer"`
+
 	// The simulation unit limit. Your simulation is allocated CPU and memory proportional
 	// to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB
 	// of memory. You are only billed for the SU utilization you consume up to the
-	// maximim value provided. The default is 15.
+	// maximum value provided. The default is 15.
 	SimulationUnitLimit *int64 `locationName:"simulationUnitLimit" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Compute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Compute) GoString() string {
 	return s.String()
 }
@@ -6388,6 +6702,18 @@ func (s *Compute) Validate() error {
 	return nil
 }
 
+// SetComputeType sets the ComputeType field's value.
+func (s *Compute) SetComputeType(v string) *Compute {
+	s.ComputeType = &v
+	return s
+}
+
+// SetGpuUnitLimit sets the GpuUnitLimit field's value.
+func (s *Compute) SetGpuUnitLimit(v int64) *Compute {
+	s.GpuUnitLimit = &v
+	return s
+}
+
 // SetSimulationUnitLimit sets the SimulationUnitLimit field's value.
 func (s *Compute) SetSimulationUnitLimit(v int64) *Compute {
 	s.SimulationUnitLimit = &v
@@ -6398,21 +6724,48 @@ func (s *Compute) SetSimulationUnitLimit(v int64) *Compute {
 type ComputeResponse struct {
 	_ struct{} `type:"structure"`
 
+	// Compute type response information for the simulation job.
+	ComputeType *string `locationName:"computeType" type:"string" enum:"ComputeType"`
+
+	// Compute GPU unit limit for the simulation job. It is the same as the number
+	// of GPUs allocated to the SimulationJob.
+	GpuUnitLimit *int64 `locationName:"gpuUnitLimit" type:"integer"`
+
 	// The simulation unit limit. Your simulation is allocated CPU and memory proportional
 	// to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB
 	// of memory. You are only billed for the SU utilization you consume up to the
-	// maximim value provided. The default is 15.
+	// maximum value provided. The default is 15.
 	SimulationUnitLimit *int64 `locationName:"simulationUnitLimit" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComputeResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComputeResponse) GoString() string {
 	return s.String()
+}
+
+// SetComputeType sets the ComputeType field's value.
+func (s *ComputeResponse) SetComputeType(v string) *ComputeResponse {
+	s.ComputeType = &v
+	return s
+}
+
+// SetGpuUnitLimit sets the GpuUnitLimit field's value.
+func (s *ComputeResponse) SetGpuUnitLimit(v int64) *ComputeResponse {
+	s.GpuUnitLimit = &v
+	return s
 }
 
 // SetSimulationUnitLimit sets the SimulationUnitLimit field's value.
@@ -6429,12 +6782,20 @@ type ConcurrentDeploymentException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentDeploymentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentDeploymentException) GoString() string {
 	return s.String()
 }
@@ -6477,8 +6838,9 @@ func (s *ConcurrentDeploymentException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateDeploymentJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
@@ -6502,12 +6864,20 @@ type CreateDeploymentJobInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentJobInput) GoString() string {
 	return s.String()
 }
@@ -6582,8 +6952,9 @@ func (s *CreateDeploymentJobInput) SetTags(v map[string]*string) *CreateDeployme
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateDeploymentJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the deployment job.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -6670,12 +7041,20 @@ type CreateDeploymentJobOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentJobOutput) GoString() string {
 	return s.String()
 }
@@ -6734,8 +7113,9 @@ func (s *CreateDeploymentJobOutput) SetTags(v map[string]*string) *CreateDeploym
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateFleetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The name of the fleet.
 	//
@@ -6746,12 +7126,20 @@ type CreateFleetInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFleetInput) GoString() string {
 	return s.String()
 }
@@ -6784,8 +7172,9 @@ func (s *CreateFleetInput) SetTags(v map[string]*string) *CreateFleetInput {
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateFleetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -6800,12 +7189,20 @@ type CreateFleetOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFleetOutput) GoString() string {
 	return s.String()
 }
@@ -6837,6 +7234,10 @@ func (s *CreateFleetOutput) SetTags(v map[string]*string) *CreateFleetOutput {
 type CreateRobotApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The object that contains that URI of the Docker image that you use for your
+	// robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The name of the robot application.
 	//
 	// Name is a required field
@@ -6848,21 +7249,27 @@ type CreateRobotApplicationInput struct {
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure" required:"true"`
 
 	// The sources of the robot application.
-	//
-	// Sources is a required field
-	Sources []*SourceConfig `locationName:"sources" type:"list" required:"true"`
+	Sources []*SourceConfig `locationName:"sources" type:"list"`
 
 	// A map that contains tag keys and tag values that are attached to the robot
 	// application.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotApplicationInput) GoString() string {
 	return s.String()
 }
@@ -6879,8 +7286,10 @@ func (s *CreateRobotApplicationInput) Validate() error {
 	if s.RobotSoftwareSuite == nil {
 		invalidParams.Add(request.NewErrParamRequired("RobotSoftwareSuite"))
 	}
-	if s.Sources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	if s.Environment != nil {
+		if err := s.Environment.Validate(); err != nil {
+			invalidParams.AddNested("Environment", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Sources != nil {
 		for i, v := range s.Sources {
@@ -6897,6 +7306,12 @@ func (s *CreateRobotApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateRobotApplicationInput) SetEnvironment(v *Environment) *CreateRobotApplicationInput {
+	s.Environment = v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -6929,6 +7344,10 @@ type CreateRobotApplicationOutput struct {
 	// The Amazon Resource Name (ARN) of the robot application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// An object that contains the Docker image URI used to a create your robot
+	// application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The time, in milliseconds since the epoch, when the robot application was
 	// last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
@@ -6952,12 +7371,20 @@ type CreateRobotApplicationOutput struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -6965,6 +7392,12 @@ func (s CreateRobotApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateRobotApplicationOutput) SetArn(v string) *CreateRobotApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateRobotApplicationOutput) SetEnvironment(v *Environment) *CreateRobotApplicationOutput {
+	s.Environment = v
 	return s
 }
 
@@ -7021,14 +7454,29 @@ type CreateRobotApplicationVersionInput struct {
 	// The current revision id for the robot application. If you provide a value
 	// and it matches the latest revision ID, a new version will be created.
 	CurrentRevisionId *string `locationName:"currentRevisionId" min:"1" type:"string"`
+
+	// A SHA256 identifier for the Docker image that you use for your robot application.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
+	// The Amazon S3 identifier for the zip file bundle that you use for your robot
+	// application.
+	S3Etags []*string `locationName:"s3Etags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotApplicationVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotApplicationVersionInput) GoString() string {
 	return s.String()
 }
@@ -7064,11 +7512,26 @@ func (s *CreateRobotApplicationVersionInput) SetCurrentRevisionId(v string) *Cre
 	return s
 }
 
+// SetImageDigest sets the ImageDigest field's value.
+func (s *CreateRobotApplicationVersionInput) SetImageDigest(v string) *CreateRobotApplicationVersionInput {
+	s.ImageDigest = &v
+	return s
+}
+
+// SetS3Etags sets the S3Etags field's value.
+func (s *CreateRobotApplicationVersionInput) SetS3Etags(v []*string) *CreateRobotApplicationVersionInput {
+	s.S3Etags = v
+	return s
+}
+
 type CreateRobotApplicationVersionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the robot application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The object that contains the Docker image URI used to create your robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the robot application was
 	// last updated.
@@ -7090,12 +7553,20 @@ type CreateRobotApplicationVersionOutput struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotApplicationVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotApplicationVersionOutput) GoString() string {
 	return s.String()
 }
@@ -7103,6 +7574,12 @@ func (s CreateRobotApplicationVersionOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateRobotApplicationVersionOutput) SetArn(v string) *CreateRobotApplicationVersionOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateRobotApplicationVersionOutput) SetEnvironment(v *Environment) *CreateRobotApplicationVersionOutput {
+	s.Environment = v
 	return s
 }
 
@@ -7142,8 +7619,9 @@ func (s *CreateRobotApplicationVersionOutput) SetVersion(v string) *CreateRobotA
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The target architecture of the robot.
 	//
@@ -7164,12 +7642,20 @@ type CreateRobotInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotInput) GoString() string {
 	return s.String()
 }
@@ -7223,8 +7709,9 @@ func (s *CreateRobotInput) SetTags(v map[string]*string) *CreateRobotInput {
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The target architecture of the robot.
 	Architecture *string `locationName:"architecture" type:"string" enum:"Architecture"`
@@ -7246,12 +7733,20 @@ type CreateRobotOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRobotOutput) GoString() string {
 	return s.String()
 }
@@ -7295,6 +7790,10 @@ func (s *CreateRobotOutput) SetTags(v map[string]*string) *CreateRobotOutput {
 type CreateSimulationApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The object that contains the Docker image URI used to create your simulation
+	// application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The name of the simulation application.
 	//
 	// Name is a required field
@@ -7314,21 +7813,27 @@ type CreateSimulationApplicationInput struct {
 	SimulationSoftwareSuite *SimulationSoftwareSuite `locationName:"simulationSoftwareSuite" type:"structure" required:"true"`
 
 	// The sources of the simulation application.
-	//
-	// Sources is a required field
-	Sources []*SourceConfig `locationName:"sources" type:"list" required:"true"`
+	Sources []*SourceConfig `locationName:"sources" type:"list"`
 
 	// A map that contains tag keys and tag values that are attached to the simulation
 	// application.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationApplicationInput) GoString() string {
 	return s.String()
 }
@@ -7348,8 +7853,10 @@ func (s *CreateSimulationApplicationInput) Validate() error {
 	if s.SimulationSoftwareSuite == nil {
 		invalidParams.Add(request.NewErrParamRequired("SimulationSoftwareSuite"))
 	}
-	if s.Sources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	if s.Environment != nil {
+		if err := s.Environment.Validate(); err != nil {
+			invalidParams.AddNested("Environment", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RenderingEngine != nil {
 		if err := s.RenderingEngine.Validate(); err != nil {
@@ -7371,6 +7878,12 @@ func (s *CreateSimulationApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateSimulationApplicationInput) SetEnvironment(v *Environment) *CreateSimulationApplicationInput {
+	s.Environment = v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -7415,6 +7928,10 @@ type CreateSimulationApplicationOutput struct {
 	// The Amazon Resource Name (ARN) of the simulation application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI that you used to create your
+	// simulation application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The time, in milliseconds since the epoch, when the simulation application
 	// was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
@@ -7444,12 +7961,20 @@ type CreateSimulationApplicationOutput struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -7457,6 +7982,12 @@ func (s CreateSimulationApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateSimulationApplicationOutput) SetArn(v string) *CreateSimulationApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateSimulationApplicationOutput) SetEnvironment(v *Environment) *CreateSimulationApplicationOutput {
+	s.Environment = v
 	return s
 }
 
@@ -7525,14 +8056,30 @@ type CreateSimulationApplicationVersionInput struct {
 	// The current revision id for the simulation application. If you provide a
 	// value and it matches the latest revision ID, a new version will be created.
 	CurrentRevisionId *string `locationName:"currentRevisionId" min:"1" type:"string"`
+
+	// The SHA256 digest used to identify the Docker image URI used to created the
+	// simulation application.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
+	// The Amazon S3 eTag identifier for the zip file bundle that you use to create
+	// the simulation application.
+	S3Etags []*string `locationName:"s3Etags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationApplicationVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationApplicationVersionInput) GoString() string {
 	return s.String()
 }
@@ -7568,11 +8115,27 @@ func (s *CreateSimulationApplicationVersionInput) SetCurrentRevisionId(v string)
 	return s
 }
 
+// SetImageDigest sets the ImageDigest field's value.
+func (s *CreateSimulationApplicationVersionInput) SetImageDigest(v string) *CreateSimulationApplicationVersionInput {
+	s.ImageDigest = &v
+	return s
+}
+
+// SetS3Etags sets the S3Etags field's value.
+func (s *CreateSimulationApplicationVersionInput) SetS3Etags(v []*string) *CreateSimulationApplicationVersionInput {
+	s.S3Etags = v
+	return s
+}
+
 type CreateSimulationApplicationVersionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the simulation application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The object that contains the Docker image URI used to create the simulation
+	// application.
+	Environment *Environment `locationName:"environment" type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the simulation application
 	// was last updated.
@@ -7600,12 +8163,20 @@ type CreateSimulationApplicationVersionOutput struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationApplicationVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationApplicationVersionOutput) GoString() string {
 	return s.String()
 }
@@ -7613,6 +8184,12 @@ func (s CreateSimulationApplicationVersionOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateSimulationApplicationVersionOutput) SetArn(v string) *CreateSimulationApplicationVersionOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateSimulationApplicationVersionOutput) SetEnvironment(v *Environment) *CreateSimulationApplicationVersionOutput {
+	s.Environment = v
 	return s
 }
 
@@ -7685,7 +8262,8 @@ type CreateSimulationJobInput struct {
 	//
 	// Continue
 	//
-	// Restart the simulation job in the same host instance.
+	// Leaves the instance running for its maximum timeout duration after a 4XX
+	// error code.
 	//
 	// Fail
 	//
@@ -7729,12 +8307,20 @@ type CreateSimulationJobInput struct {
 	VpcConfig *VPCConfig `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationJobInput) GoString() string {
 	return s.String()
 }
@@ -7776,11 +8362,6 @@ func (s *CreateSimulationJobInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSources", i), err.(request.ErrInvalidParams))
 			}
-		}
-	}
-	if s.LoggingConfig != nil {
-		if err := s.LoggingConfig.Validate(); err != nil {
-			invalidParams.AddNested("LoggingConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.OutputLocation != nil {
@@ -8012,12 +8593,20 @@ type CreateSimulationJobOutput struct {
 	VpcConfig *VPCConfigResponse `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSimulationJobOutput) GoString() string {
 	return s.String()
 }
@@ -8158,12 +8747,20 @@ type CreateWorldExportJobInput struct {
 	Worlds []*string `locationName:"worlds" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldExportJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldExportJobInput) GoString() string {
 	return s.String()
 }
@@ -8316,12 +8913,20 @@ type CreateWorldExportJobOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldExportJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldExportJobOutput) GoString() string {
 	return s.String()
 }
@@ -8401,12 +9006,20 @@ type CreateWorldGenerationJobInput struct {
 	WorldTags map[string]*string `locationName:"worldTags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldGenerationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldGenerationJobInput) GoString() string {
 	return s.String()
 }
@@ -8547,12 +9160,20 @@ type CreateWorldGenerationJobOutput struct {
 	WorldTags map[string]*string `locationName:"worldTags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldGenerationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldGenerationJobOutput) GoString() string {
 	return s.String()
 }
@@ -8632,12 +9253,20 @@ type CreateWorldTemplateInput struct {
 	TemplateLocation *TemplateLocation `locationName:"templateLocation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldTemplateInput) GoString() string {
 	return s.String()
 }
@@ -8714,12 +9343,20 @@ type CreateWorldTemplateOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWorldTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -8758,6 +9395,20 @@ func (s *CreateWorldTemplateOutput) SetTags(v map[string]*string) *CreateWorldTe
 type DataSource struct {
 	_ struct{} `type:"structure"`
 
+	// The location where your files are mounted in the container image.
+	//
+	// If you've specified the type of the data source as an Archive, you must provide
+	// an Amazon S3 object key to your archive. The object key must point to either
+	// a .zip or .tar.gz file.
+	//
+	// If you've specified the type of the data source as a Prefix, you provide
+	// the Amazon S3 prefix that points to the files that you are using for your
+	// data source.
+	//
+	// If you've specified the type of the data source as a File, you provide the
+	// Amazon S3 path to the file that you're using as your data source.
+	Destination *string `locationName:"destination" min:"1" type:"string"`
+
 	// The name of the data source.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -8766,16 +9417,37 @@ type DataSource struct {
 
 	// The list of S3 keys identifying the data source files.
 	S3Keys []*S3KeyOutput `locationName:"s3Keys" type:"list"`
+
+	// The data type for the data source that you're using for your container image
+	// or simulation job. You can use this field to specify whether your data source
+	// is an Archive, an Amazon S3 prefix, or a file.
+	//
+	// If you don't specify a field, the default value is File.
+	Type *string `locationName:"type" type:"string" enum:"DataSourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSource) GoString() string {
 	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *DataSource) SetDestination(v string) *DataSource {
+	s.Destination = &v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -8796,9 +9468,29 @@ func (s *DataSource) SetS3Keys(v []*S3KeyOutput) *DataSource {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *DataSource) SetType(v string) *DataSource {
+	s.Type = &v
+	return s
+}
+
 // Information about a data source.
 type DataSourceConfig struct {
 	_ struct{} `type:"structure"`
+
+	// The location where your files are mounted in the container image.
+	//
+	// If you've specified the type of the data source as an Archive, you must provide
+	// an Amazon S3 object key to your archive. The object key must point to either
+	// a .zip or .tar.gz file.
+	//
+	// If you've specified the type of the data source as a Prefix, you provide
+	// the Amazon S3 prefix that points to the files that you are using for your
+	// data source.
+	//
+	// If you've specified the type of the data source as a File, you provide the
+	// Amazon S3 path to the file that you're using as your data source.
+	Destination *string `locationName:"destination" min:"1" type:"string"`
 
 	// The name of the data source.
 	//
@@ -8814,14 +9506,29 @@ type DataSourceConfig struct {
 	//
 	// S3Keys is a required field
 	S3Keys []*string `locationName:"s3Keys" min:"1" type:"list" required:"true"`
+
+	// The data type for the data source that you're using for your container image
+	// or simulation job. You can use this field to specify whether your data source
+	// is an Archive, an Amazon S3 prefix, or a file.
+	//
+	// If you don't specify a field, the default value is File.
+	Type *string `locationName:"type" type:"string" enum:"DataSourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSourceConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSourceConfig) GoString() string {
 	return s.String()
 }
@@ -8829,6 +9536,9 @@ func (s DataSourceConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataSourceConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataSourceConfig"}
+	if s.Destination != nil && len(*s.Destination) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Destination", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -8854,6 +9564,12 @@ func (s *DataSourceConfig) Validate() error {
 	return nil
 }
 
+// SetDestination sets the Destination field's value.
+func (s *DataSourceConfig) SetDestination(v string) *DataSourceConfig {
+	s.Destination = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *DataSourceConfig) SetName(v string) *DataSourceConfig {
 	s.Name = &v
@@ -8872,8 +9588,15 @@ func (s *DataSourceConfig) SetS3Keys(v []*string) *DataSourceConfig {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *DataSourceConfig) SetType(v string) *DataSourceConfig {
+	s.Type = &v
+	return s
+}
+
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeleteFleetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -8881,12 +9604,20 @@ type DeleteFleetInput struct {
 	Fleet *string `locationName:"fleet" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFleetInput) GoString() string {
 	return s.String()
 }
@@ -8913,16 +9644,25 @@ func (s *DeleteFleetInput) SetFleet(v string) *DeleteFleetInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeleteFleetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFleetOutput) GoString() string {
 	return s.String()
 }
@@ -8939,12 +9679,20 @@ type DeleteRobotApplicationInput struct {
 	ApplicationVersion *string `locationName:"applicationVersion" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRobotApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRobotApplicationInput) GoString() string {
 	return s.String()
 }
@@ -8984,18 +9732,27 @@ type DeleteRobotApplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRobotApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRobotApplicationOutput) GoString() string {
 	return s.String()
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeleteRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the robot.
 	//
@@ -9003,12 +9760,20 @@ type DeleteRobotInput struct {
 	Robot *string `locationName:"robot" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRobotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRobotInput) GoString() string {
 	return s.String()
 }
@@ -9035,16 +9800,25 @@ func (s *DeleteRobotInput) SetRobot(v string) *DeleteRobotInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeleteRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRobotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRobotOutput) GoString() string {
 	return s.String()
 }
@@ -9061,12 +9835,20 @@ type DeleteSimulationApplicationInput struct {
 	ApplicationVersion *string `locationName:"applicationVersion" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSimulationApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSimulationApplicationInput) GoString() string {
 	return s.String()
 }
@@ -9106,12 +9888,20 @@ type DeleteSimulationApplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSimulationApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSimulationApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -9125,12 +9915,20 @@ type DeleteWorldTemplateInput struct {
 	Template *string `locationName:"template" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWorldTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWorldTemplateInput) GoString() string {
 	return s.String()
 }
@@ -9161,12 +9959,20 @@ type DeleteWorldTemplateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWorldTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWorldTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -9191,12 +9997,20 @@ type DeploymentApplicationConfig struct {
 	LaunchConfig *DeploymentLaunchConfig `locationName:"launchConfig" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentApplicationConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentApplicationConfig) GoString() string {
 	return s.String()
 }
@@ -9268,12 +10082,20 @@ type DeploymentConfig struct {
 	RobotDeploymentTimeoutInSeconds *int64 `locationName:"robotDeploymentTimeoutInSeconds" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentConfig) GoString() string {
 	return s.String()
 }
@@ -9352,12 +10174,20 @@ type DeploymentJob struct {
 	Status *string `locationName:"status" type:"string" enum:"DeploymentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentJob) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentJob) GoString() string {
 	return s.String()
 }
@@ -9437,12 +10267,20 @@ type DeploymentLaunchConfig struct {
 	PreLaunchFile *string `locationName:"preLaunchFile" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentLaunchConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentLaunchConfig) GoString() string {
 	return s.String()
 }
@@ -9505,8 +10343,9 @@ func (s *DeploymentLaunchConfig) SetPreLaunchFile(v string) *DeploymentLaunchCon
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeregisterRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -9519,12 +10358,20 @@ type DeregisterRobotInput struct {
 	Robot *string `locationName:"robot" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterRobotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterRobotInput) GoString() string {
 	return s.String()
 }
@@ -9563,8 +10410,9 @@ func (s *DeregisterRobotInput) SetRobot(v string) *DeregisterRobotInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeregisterRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	Fleet *string `locationName:"fleet" min:"1" type:"string"`
@@ -9573,12 +10421,20 @@ type DeregisterRobotOutput struct {
 	Robot *string `locationName:"robot" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterRobotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterRobotOutput) GoString() string {
 	return s.String()
 }
@@ -9595,8 +10451,9 @@ func (s *DeregisterRobotOutput) SetRobot(v string) *DeregisterRobotOutput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeDeploymentJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the deployment job.
 	//
@@ -9604,12 +10461,20 @@ type DescribeDeploymentJobInput struct {
 	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeploymentJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeploymentJobInput) GoString() string {
 	return s.String()
 }
@@ -9636,8 +10501,9 @@ func (s *DescribeDeploymentJobInput) SetJob(v string) *DescribeDeploymentJobInpu
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeDeploymentJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the deployment job.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -9670,12 +10536,20 @@ type DescribeDeploymentJobOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeploymentJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeploymentJobOutput) GoString() string {
 	return s.String()
 }
@@ -9740,8 +10614,9 @@ func (s *DescribeDeploymentJobOutput) SetTags(v map[string]*string) *DescribeDep
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeFleetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -9749,12 +10624,20 @@ type DescribeFleetInput struct {
 	Fleet *string `locationName:"fleet" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFleetInput) GoString() string {
 	return s.String()
 }
@@ -9781,8 +10664,9 @@ func (s *DescribeFleetInput) SetFleet(v string) *DescribeFleetInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeFleetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -9809,12 +10693,20 @@ type DescribeFleetOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFleetOutput) GoString() string {
 	return s.String()
 }
@@ -9879,12 +10771,20 @@ type DescribeRobotApplicationInput struct {
 	ApplicationVersion *string `locationName:"applicationVersion" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRobotApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRobotApplicationInput) GoString() string {
 	return s.String()
 }
@@ -9926,6 +10826,12 @@ type DescribeRobotApplicationOutput struct {
 	// The Amazon Resource Name (ARN) of the robot application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI used to create the robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
+	// A SHA256 identifier for the Docker image that you use for your robot application.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
 	// The time, in milliseconds since the epoch, when the robot application was
 	// last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
@@ -9949,12 +10855,20 @@ type DescribeRobotApplicationOutput struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRobotApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRobotApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -9962,6 +10876,18 @@ func (s DescribeRobotApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeRobotApplicationOutput) SetArn(v string) *DescribeRobotApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *DescribeRobotApplicationOutput) SetEnvironment(v *Environment) *DescribeRobotApplicationOutput {
+	s.Environment = v
+	return s
+}
+
+// SetImageDigest sets the ImageDigest field's value.
+func (s *DescribeRobotApplicationOutput) SetImageDigest(v string) *DescribeRobotApplicationOutput {
+	s.ImageDigest = &v
 	return s
 }
 
@@ -10007,8 +10933,9 @@ func (s *DescribeRobotApplicationOutput) SetVersion(v string) *DescribeRobotAppl
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the robot to be described.
 	//
@@ -10016,12 +10943,20 @@ type DescribeRobotInput struct {
 	Robot *string `locationName:"robot" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRobotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRobotInput) GoString() string {
 	return s.String()
 }
@@ -10048,8 +10983,9 @@ func (s *DescribeRobotInput) SetRobot(v string) *DescribeRobotInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The target architecture of the robot application.
 	Architecture *string `locationName:"architecture" type:"string" enum:"Architecture"`
@@ -10082,12 +11018,20 @@ type DescribeRobotOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRobotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRobotOutput) GoString() string {
 	return s.String()
 }
@@ -10164,12 +11108,20 @@ type DescribeSimulationApplicationInput struct {
 	ApplicationVersion *string `locationName:"applicationVersion" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationApplicationInput) GoString() string {
 	return s.String()
 }
@@ -10211,6 +11163,14 @@ type DescribeSimulationApplicationOutput struct {
 	// The Amazon Resource Name (ARN) of the robot simulation application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI used to create the simulation
+	// application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
+	// A SHA256 identifier for the Docker image that you use for your simulation
+	// application.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
 	// The time, in milliseconds since the epoch, when the simulation application
 	// was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
@@ -10240,12 +11200,20 @@ type DescribeSimulationApplicationOutput struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -10253,6 +11221,18 @@ func (s DescribeSimulationApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeSimulationApplicationOutput) SetArn(v string) *DescribeSimulationApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *DescribeSimulationApplicationOutput) SetEnvironment(v *Environment) *DescribeSimulationApplicationOutput {
+	s.Environment = v
+	return s
+}
+
+// SetImageDigest sets the ImageDigest field's value.
+func (s *DescribeSimulationApplicationOutput) SetImageDigest(v string) *DescribeSimulationApplicationOutput {
+	s.ImageDigest = &v
 	return s
 }
 
@@ -10319,12 +11299,20 @@ type DescribeSimulationJobBatchInput struct {
 	Batch *string `locationName:"batch" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationJobBatchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationJobBatchInput) GoString() string {
 	return s.String()
 }
@@ -10444,12 +11432,20 @@ type DescribeSimulationJobBatchOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationJobBatchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationJobBatchOutput) GoString() string {
 	return s.String()
 }
@@ -10535,12 +11531,20 @@ type DescribeSimulationJobInput struct {
 	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationJobInput) GoString() string {
 	return s.String()
 }
@@ -10698,12 +11702,20 @@ type DescribeSimulationJobOutput struct {
 	VpcConfig *VPCConfigResponse `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSimulationJobOutput) GoString() string {
 	return s.String()
 }
@@ -10843,12 +11855,20 @@ type DescribeWorldExportJobInput struct {
 	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldExportJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldExportJobInput) GoString() string {
 	return s.String()
 }
@@ -10958,12 +11978,20 @@ type DescribeWorldExportJobOutput struct {
 	Worlds []*string `locationName:"worlds" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldExportJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldExportJobOutput) GoString() string {
 	return s.String()
 }
@@ -11037,12 +12065,20 @@ type DescribeWorldGenerationJobInput struct {
 	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldGenerationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldGenerationJobInput) GoString() string {
 	return s.String()
 }
@@ -11159,12 +12195,20 @@ type DescribeWorldGenerationJobOutput struct {
 	WorldTags map[string]*string `locationName:"worldTags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldGenerationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldGenerationJobOutput) GoString() string {
 	return s.String()
 }
@@ -11244,12 +12288,20 @@ type DescribeWorldInput struct {
 	World *string `locationName:"world" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldInput) GoString() string {
 	return s.String()
 }
@@ -11294,14 +12346,25 @@ type DescribeWorldOutput struct {
 
 	// The world template.
 	Template *string `locationName:"template" min:"1" type:"string"`
+
+	// Returns the JSON formatted string that describes the contents of your world.
+	WorldDescriptionBody *string `locationName:"worldDescriptionBody" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldOutput) GoString() string {
 	return s.String()
 }
@@ -11336,6 +12399,12 @@ func (s *DescribeWorldOutput) SetTemplate(v string) *DescribeWorldOutput {
 	return s
 }
 
+// SetWorldDescriptionBody sets the WorldDescriptionBody field's value.
+func (s *DescribeWorldOutput) SetWorldDescriptionBody(v string) *DescribeWorldOutput {
+	s.WorldDescriptionBody = &v
+	return s
+}
+
 type DescribeWorldTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11345,12 +12414,20 @@ type DescribeWorldTemplateInput struct {
 	Template *string `locationName:"template" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldTemplateInput) GoString() string {
 	return s.String()
 }
@@ -11400,14 +12477,25 @@ type DescribeWorldTemplateOutput struct {
 	// A map that contains tag keys and tag values that are attached to the world
 	// template.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The version of the world template that you're using.
+	Version *string `locationName:"version" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeWorldTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -11448,6 +12536,58 @@ func (s *DescribeWorldTemplateOutput) SetTags(v map[string]*string) *DescribeWor
 	return s
 }
 
+// SetVersion sets the Version field's value.
+func (s *DescribeWorldTemplateOutput) SetVersion(v string) *DescribeWorldTemplateOutput {
+	s.Version = &v
+	return s
+}
+
+// The object that contains the Docker image URI for either your robot or simulation
+// applications.
+type Environment struct {
+	_ struct{} `type:"structure"`
+
+	// The Docker image URI for either your robot or simulation applications.
+	Uri *string `locationName:"uri" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Environment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Environment) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Environment) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Environment"}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUri sets the Uri field's value.
+func (s *Environment) SetUri(v string) *Environment {
+	s.Uri = &v
+	return s
+}
+
 // Information about a failed create simulation job request.
 type FailedCreateSimulationJobRequest struct {
 	_ struct{} `type:"structure"`
@@ -11466,12 +12606,20 @@ type FailedCreateSimulationJobRequest struct {
 	Request *SimulationJobRequest `locationName:"request" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedCreateSimulationJobRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedCreateSimulationJobRequest) GoString() string {
 	return s.String()
 }
@@ -11511,12 +12659,20 @@ type FailureSummary struct {
 	TotalFailureCount *int64 `locationName:"totalFailureCount" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailureSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailureSummary) GoString() string {
 	return s.String()
 }
@@ -11544,12 +12700,20 @@ type Filter struct {
 	Values []*string `locationName:"values" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -11596,12 +12760,20 @@ type FinishedWorldsSummary struct {
 	SucceededWorlds []*string `locationName:"succeededWorlds" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FinishedWorldsSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FinishedWorldsSummary) GoString() string {
 	return s.String()
 }
@@ -11647,12 +12819,20 @@ type Fleet struct {
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Fleet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Fleet) GoString() string {
 	return s.String()
 }
@@ -11703,12 +12883,20 @@ type GetWorldTemplateBodyInput struct {
 	Template *string `locationName:"template" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWorldTemplateBodyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWorldTemplateBodyInput) GoString() string {
 	return s.String()
 }
@@ -11748,12 +12936,20 @@ type GetWorldTemplateBodyOutput struct {
 	TemplateBody *string `locationName:"templateBody" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWorldTemplateBodyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWorldTemplateBodyOutput) GoString() string {
 	return s.String()
 }
@@ -11774,12 +12970,20 @@ type IdempotentParameterMismatchException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdempotentParameterMismatchException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdempotentParameterMismatchException) GoString() string {
 	return s.String()
 }
@@ -11830,12 +13034,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -11887,12 +13099,20 @@ type InvalidParameterException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) GoString() string {
 	return s.String()
 }
@@ -11939,18 +13159,21 @@ func (s *InvalidParameterException) RequestID() string {
 type LaunchConfig struct {
 	_ struct{} `type:"structure"`
 
+	// If you've specified General as the value for your RobotSoftwareSuite, you
+	// can use this field to specify a list of commands for your container image.
+	//
+	// If you've specified SimulationRuntime as the value for your SimulationSoftwareSuite,
+	// you can use this field to specify a list of commands for your container image.
+	Command []*string `locationName:"command" type:"list"`
+
 	// The environment variables for the application launch.
 	EnvironmentVariables map[string]*string `locationName:"environmentVariables" type:"map"`
 
 	// The launch file name.
-	//
-	// LaunchFile is a required field
-	LaunchFile *string `locationName:"launchFile" min:"1" type:"string" required:"true"`
+	LaunchFile *string `locationName:"launchFile" min:"1" type:"string"`
 
 	// The package name.
-	//
-	// PackageName is a required field
-	PackageName *string `locationName:"packageName" min:"1" type:"string" required:"true"`
+	PackageName *string `locationName:"packageName" min:"1" type:"string"`
 
 	// The port forwarding configuration.
 	PortForwardingConfig *PortForwardingConfig `locationName:"portForwardingConfig" type:"structure"`
@@ -11962,12 +13185,20 @@ type LaunchConfig struct {
 	StreamUI *bool `locationName:"streamUI" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchConfig) GoString() string {
 	return s.String()
 }
@@ -11975,14 +13206,8 @@ func (s LaunchConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *LaunchConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "LaunchConfig"}
-	if s.LaunchFile == nil {
-		invalidParams.Add(request.NewErrParamRequired("LaunchFile"))
-	}
 	if s.LaunchFile != nil && len(*s.LaunchFile) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LaunchFile", 1))
-	}
-	if s.PackageName == nil {
-		invalidParams.Add(request.NewErrParamRequired("PackageName"))
 	}
 	if s.PackageName != nil && len(*s.PackageName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
@@ -11997,6 +13222,12 @@ func (s *LaunchConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCommand sets the Command field's value.
+func (s *LaunchConfig) SetCommand(v []*string) *LaunchConfig {
+	s.Command = v
+	return s
 }
 
 // SetEnvironmentVariables sets the EnvironmentVariables field's value.
@@ -12038,12 +13269,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -12086,8 +13325,9 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListDeploymentJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Optional filters to limit results.
 	//
@@ -12113,12 +13353,20 @@ type ListDeploymentJobsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentJobsInput) GoString() string {
 	return s.String()
 }
@@ -12167,8 +13415,9 @@ func (s *ListDeploymentJobsInput) SetNextToken(v string) *ListDeploymentJobsInpu
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListDeploymentJobsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// A list of deployment jobs that meet the criteria of the request.
 	DeploymentJobs []*DeploymentJob `locationName:"deploymentJobs" type:"list"`
@@ -12181,12 +13430,20 @@ type ListDeploymentJobsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentJobsOutput) GoString() string {
 	return s.String()
 }
@@ -12203,8 +13460,9 @@ func (s *ListDeploymentJobsOutput) SetNextToken(v string) *ListDeploymentJobsOut
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListFleetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Optional filters to limit results.
 	//
@@ -12231,12 +13489,20 @@ type ListFleetsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFleetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFleetsInput) GoString() string {
 	return s.String()
 }
@@ -12285,8 +13551,9 @@ func (s *ListFleetsInput) SetNextToken(v string) *ListFleetsInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListFleetsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// A list of fleet details meeting the request criteria.
 	FleetDetails []*Fleet `locationName:"fleetDetails" type:"list"`
@@ -12299,12 +13566,20 @@ type ListFleetsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFleetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFleetsOutput) GoString() string {
 	return s.String()
 }
@@ -12349,12 +13624,20 @@ type ListRobotApplicationsInput struct {
 	VersionQualifier *string `locationName:"versionQualifier" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRobotApplicationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRobotApplicationsInput) GoString() string {
 	return s.String()
 }
@@ -12426,12 +13709,20 @@ type ListRobotApplicationsOutput struct {
 	RobotApplicationSummaries []*RobotApplicationSummary `locationName:"robotApplicationSummaries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRobotApplicationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRobotApplicationsOutput) GoString() string {
 	return s.String()
 }
@@ -12448,8 +13739,9 @@ func (s *ListRobotApplicationsOutput) SetRobotApplicationSummaries(v []*RobotApp
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListRobotsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Optional filters to limit results.
 	//
@@ -12475,12 +13767,20 @@ type ListRobotsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRobotsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRobotsInput) GoString() string {
 	return s.String()
 }
@@ -12529,8 +13829,9 @@ func (s *ListRobotsInput) SetNextToken(v string) *ListRobotsInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListRobotsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// If the previous paginated request did not return all of the remaining results,
 	// the response object's nextToken parameter value is set to a token. To retrieve
@@ -12543,12 +13844,20 @@ type ListRobotsOutput struct {
 	Robots []*Robot `locationName:"robots" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRobotsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRobotsOutput) GoString() string {
 	return s.String()
 }
@@ -12593,12 +13902,20 @@ type ListSimulationApplicationsInput struct {
 	VersionQualifier *string `locationName:"versionQualifier" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationApplicationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationApplicationsInput) GoString() string {
 	return s.String()
 }
@@ -12671,12 +13988,20 @@ type ListSimulationApplicationsOutput struct {
 	SimulationApplicationSummaries []*SimulationApplicationSummary `locationName:"simulationApplicationSummaries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationApplicationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationApplicationsOutput) GoString() string {
 	return s.String()
 }
@@ -12713,12 +14038,20 @@ type ListSimulationJobBatchesInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationJobBatchesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationJobBatchesInput) GoString() string {
 	return s.String()
 }
@@ -12781,12 +14114,20 @@ type ListSimulationJobBatchesOutput struct {
 	SimulationJobBatchSummaries []*SimulationJobBatchSummary `locationName:"simulationJobBatchSummaries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationJobBatchesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationJobBatchesOutput) GoString() string {
 	return s.String()
 }
@@ -12831,12 +14172,20 @@ type ListSimulationJobsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationJobsInput) GoString() string {
 	return s.String()
 }
@@ -12901,12 +14250,20 @@ type ListSimulationJobsOutput struct {
 	SimulationJobSummaries []*SimulationJobSummary `locationName:"simulationJobSummaries" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSimulationJobsOutput) GoString() string {
 	return s.String()
 }
@@ -12924,7 +14281,7 @@ func (s *ListSimulationJobsOutput) SetSimulationJobSummaries(v []*SimulationJobS
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS RoboMaker Amazon Resource Name (ARN) with tags to be listed.
 	//
@@ -12932,12 +14289,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -12971,12 +14336,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -13009,12 +14382,20 @@ type ListWorldExportJobsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldExportJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldExportJobsInput) GoString() string {
 	return s.String()
 }
@@ -13079,12 +14460,20 @@ type ListWorldExportJobsOutput struct {
 	WorldExportJobSummaries []*WorldExportJobSummary `locationName:"worldExportJobSummaries" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldExportJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldExportJobsOutput) GoString() string {
 	return s.String()
 }
@@ -13123,12 +14512,20 @@ type ListWorldGenerationJobsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldGenerationJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldGenerationJobsInput) GoString() string {
 	return s.String()
 }
@@ -13193,12 +14590,20 @@ type ListWorldGenerationJobsOutput struct {
 	WorldGenerationJobSummaries []*WorldGenerationJobSummary `locationName:"worldGenerationJobSummaries" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldGenerationJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldGenerationJobsOutput) GoString() string {
 	return s.String()
 }
@@ -13234,12 +14639,20 @@ type ListWorldTemplatesInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldTemplatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldTemplatesInput) GoString() string {
 	return s.String()
 }
@@ -13283,12 +14696,20 @@ type ListWorldTemplatesOutput struct {
 	TemplateSummaries []*TemplateSummary `locationName:"templateSummaries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldTemplatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldTemplatesOutput) GoString() string {
 	return s.String()
 }
@@ -13327,12 +14748,20 @@ type ListWorldsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldsInput) GoString() string {
 	return s.String()
 }
@@ -13395,12 +14824,20 @@ type ListWorldsOutput struct {
 	WorldSummaries []*WorldSummary `locationName:"worldSummaries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWorldsOutput) GoString() string {
 	return s.String()
 }
@@ -13423,31 +14860,28 @@ type LoggingConfig struct {
 
 	// A boolean indicating whether to record all ROS topics.
 	//
-	// RecordAllRosTopics is a required field
-	RecordAllRosTopics *bool `locationName:"recordAllRosTopics" type:"boolean" required:"true"`
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	RecordAllRosTopics *bool `locationName:"recordAllRosTopics" deprecated:"true" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingConfig) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *LoggingConfig) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "LoggingConfig"}
-	if s.RecordAllRosTopics == nil {
-		invalidParams.Add(request.NewErrParamRequired("RecordAllRosTopics"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetRecordAllRosTopics sets the RecordAllRosTopics field's value.
@@ -13470,12 +14904,20 @@ type NetworkInterface struct {
 	PublicIpAddress *string `locationName:"publicIpAddress" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NetworkInterface) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NetworkInterface) GoString() string {
 	return s.String()
 }
@@ -13509,12 +14951,20 @@ type OutputLocation struct {
 	S3Prefix *string `locationName:"s3Prefix" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputLocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputLocation) GoString() string {
 	return s.String()
 }
@@ -13555,12 +15005,20 @@ type PortForwardingConfig struct {
 	PortMappings []*PortMapping `locationName:"portMappings" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortForwardingConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortForwardingConfig) GoString() string {
 	return s.String()
 }
@@ -13610,12 +15068,20 @@ type PortMapping struct {
 	JobPort *int64 `locationName:"jobPort" min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortMapping) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortMapping) GoString() string {
 	return s.String()
 }
@@ -13704,12 +15170,20 @@ type ProgressDetail struct {
 	TargetResource *string `locationName:"targetResource" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProgressDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProgressDetail) GoString() string {
 	return s.String()
 }
@@ -13738,8 +15212,9 @@ func (s *ProgressDetail) SetTargetResource(v string) *ProgressDetail {
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type RegisterRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -13752,12 +15227,20 @@ type RegisterRobotInput struct {
 	Robot *string `locationName:"robot" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterRobotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterRobotInput) GoString() string {
 	return s.String()
 }
@@ -13796,8 +15279,9 @@ func (s *RegisterRobotInput) SetRobot(v string) *RegisterRobotInput {
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type RegisterRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet that the robot will join.
 	Fleet *string `locationName:"fleet" min:"1" type:"string"`
@@ -13806,12 +15290,20 @@ type RegisterRobotOutput struct {
 	Robot *string `locationName:"robot" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterRobotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterRobotOutput) GoString() string {
 	return s.String()
 }
@@ -13839,12 +15331,20 @@ type RenderingEngine struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RenderingEngine) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RenderingEngine) GoString() string {
 	return s.String()
 }
@@ -13882,12 +15382,20 @@ type ResourceAlreadyExistsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) GoString() string {
 	return s.String()
 }
@@ -13938,12 +15446,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -13995,12 +15511,20 @@ type RestartSimulationJobInput struct {
 	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestartSimulationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestartSimulationJobInput) GoString() string {
 	return s.String()
 }
@@ -14031,12 +15555,20 @@ type RestartSimulationJobOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestartSimulationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestartSimulationJobOutput) GoString() string {
 	return s.String()
 }
@@ -14073,12 +15605,20 @@ type Robot struct {
 	Status *string `locationName:"status" type:"string" enum:"RobotStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Robot) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Robot) GoString() string {
 	return s.String()
 }
@@ -14162,22 +15702,38 @@ type RobotApplicationConfig struct {
 
 	// A Boolean indicating whether to use default robot application tools. The
 	// default tools are rviz, rqt, terminal and rosbag record. The default is False.
-	UseDefaultTools *bool `locationName:"useDefaultTools" type:"boolean"`
+	//
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	UseDefaultTools *bool `locationName:"useDefaultTools" deprecated:"true" type:"boolean"`
 
 	// A Boolean indicating whether to use default upload configurations. By default,
 	// .ros and .gazebo files are uploaded when the application terminates and all
 	// ROS topics will be recorded.
 	//
 	// If you set this value, you must specify an outputLocation.
-	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" type:"boolean"`
+	//
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" deprecated:"true" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RobotApplicationConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RobotApplicationConfig) GoString() string {
 	return s.String()
 }
@@ -14292,12 +15848,20 @@ type RobotApplicationSummary struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RobotApplicationSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RobotApplicationSummary) GoString() string {
 	return s.String()
 }
@@ -14358,12 +15922,20 @@ type RobotDeployment struct {
 	Status *string `locationName:"status" type:"string" enum:"RobotStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RobotDeployment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RobotDeployment) GoString() string {
 	return s.String()
 }
@@ -14421,12 +15993,20 @@ type RobotSoftwareSuite struct {
 	Version *string `locationName:"version" type:"string" enum:"RobotSoftwareSuiteVersionType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RobotSoftwareSuite) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RobotSoftwareSuite) GoString() string {
 	return s.String()
 }
@@ -14451,15 +16031,23 @@ type S3KeyOutput struct {
 	Etag *string `locationName:"etag" type:"string"`
 
 	// The S3 key.
-	S3Key *string `locationName:"s3Key" min:"1" type:"string"`
+	S3Key *string `locationName:"s3Key" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3KeyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3KeyOutput) GoString() string {
 	return s.String()
 }
@@ -14494,12 +16082,20 @@ type S3Object struct {
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Object) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Object) GoString() string {
 	return s.String()
 }
@@ -14552,12 +16148,20 @@ type ServiceUnavailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -14626,25 +16230,41 @@ type SimulationApplicationConfig struct {
 	// A Boolean indicating whether to use default simulation application tools.
 	// The default tools are rviz, rqt, terminal and rosbag record. The default
 	// is False.
-	UseDefaultTools *bool `locationName:"useDefaultTools" type:"boolean"`
+	//
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	UseDefaultTools *bool `locationName:"useDefaultTools" deprecated:"true" type:"boolean"`
 
 	// A Boolean indicating whether to use default upload configurations. By default,
 	// .ros and .gazebo files are uploaded when the application terminates and all
 	// ROS topics will be recorded.
 	//
 	// If you set this value, you must specify an outputLocation.
-	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" type:"boolean"`
+	//
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" deprecated:"true" type:"boolean"`
 
 	// A list of world configurations.
 	WorldConfigs []*WorldConfig `locationName:"worldConfigs" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationApplicationConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationApplicationConfig) GoString() string {
 	return s.String()
 }
@@ -14778,12 +16398,20 @@ type SimulationApplicationSummary struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationApplicationSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationApplicationSummary) GoString() string {
 	return s.String()
 }
@@ -14844,7 +16472,8 @@ type SimulationJob struct {
 	//
 	// Continue
 	//
-	// Restart the simulation job in the same host instance.
+	// Leaves the host running for its maximum timeout duration after a 4XX error
+	// code.
 	//
 	// Fail
 	//
@@ -14906,12 +16535,20 @@ type SimulationJob struct {
 	VpcConfig *VPCConfigResponse `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationJob) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationJob) GoString() string {
 	return s.String()
 }
@@ -15116,12 +16753,20 @@ type SimulationJobBatchSummary struct {
 	Status *string `locationName:"status" type:"string" enum:"SimulationJobBatchStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationJobBatchSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationJobBatchSummary) GoString() string {
 	return s.String()
 }
@@ -15186,7 +16831,8 @@ type SimulationJobRequest struct {
 	//
 	// Continue
 	//
-	// Restart the simulation job in the same host instance.
+	// Leaves the host running for its maximum timeout duration after a 4XX error
+	// code.
 	//
 	// Fail
 	//
@@ -15231,12 +16877,20 @@ type SimulationJobRequest struct {
 	VpcConfig *VPCConfig `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationJobRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationJobRequest) GoString() string {
 	return s.String()
 }
@@ -15272,11 +16926,6 @@ func (s *SimulationJobRequest) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSources", i), err.(request.ErrInvalidParams))
 			}
-		}
-	}
-	if s.LoggingConfig != nil {
-		if err := s.LoggingConfig.Validate(); err != nil {
-			invalidParams.AddNested("LoggingConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.OutputLocation != nil {
@@ -15395,6 +17044,9 @@ type SimulationJobSummary struct {
 	// The Amazon Resource Name (ARN) of the simulation job.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// The compute type for the simulation job summary.
+	ComputeType *string `locationName:"computeType" type:"string" enum:"ComputeType"`
+
 	// The names of the data sources.
 	DataSourceNames []*string `locationName:"dataSourceNames" type:"list"`
 
@@ -15415,12 +17067,20 @@ type SimulationJobSummary struct {
 	Status *string `locationName:"status" type:"string" enum:"SimulationJobStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationJobSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationJobSummary) GoString() string {
 	return s.String()
 }
@@ -15428,6 +17088,12 @@ func (s SimulationJobSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *SimulationJobSummary) SetArn(v string) *SimulationJobSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetComputeType sets the ComputeType field's value.
+func (s *SimulationJobSummary) SetComputeType(v string) *SimulationJobSummary {
+	s.ComputeType = &v
 	return s
 }
 
@@ -15478,12 +17144,20 @@ type SimulationSoftwareSuite struct {
 	Version *string `locationName:"version" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationSoftwareSuite) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimulationSoftwareSuite) GoString() string {
 	return s.String()
 }
@@ -15517,12 +17191,20 @@ type Source struct {
 	S3Key *string `locationName:"s3Key" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Source) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Source) GoString() string {
 	return s.String()
 }
@@ -15565,12 +17247,20 @@ type SourceConfig struct {
 	S3Key *string `locationName:"s3Key" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceConfig) GoString() string {
 	return s.String()
 }
@@ -15629,12 +17319,20 @@ type StartSimulationJobBatchInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSimulationJobBatchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSimulationJobBatchInput) GoString() string {
 	return s.String()
 }
@@ -15780,12 +17478,20 @@ type StartSimulationJobBatchOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSimulationJobBatchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSimulationJobBatchOutput) GoString() string {
 	return s.String()
 }
@@ -15856,8 +17562,9 @@ func (s *StartSimulationJobBatchOutput) SetTags(v map[string]*string) *StartSimu
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type SyncDeploymentJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
@@ -15869,12 +17576,20 @@ type SyncDeploymentJobInput struct {
 	Fleet *string `locationName:"fleet" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SyncDeploymentJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SyncDeploymentJobInput) GoString() string {
 	return s.String()
 }
@@ -15910,8 +17625,9 @@ func (s *SyncDeploymentJobInput) SetFleet(v string) *SyncDeploymentJobInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type SyncDeploymentJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the synchronization request.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -15996,12 +17712,20 @@ type SyncDeploymentJobOutput struct {
 	Status *string `locationName:"status" type:"string" enum:"DeploymentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SyncDeploymentJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SyncDeploymentJobOutput) GoString() string {
 	return s.String()
 }
@@ -16068,12 +17792,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -16113,12 +17845,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -16138,12 +17878,20 @@ type TemplateLocation struct {
 	S3Key *string `locationName:"s3Key" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateLocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateLocation) GoString() string {
 	return s.String()
 }
@@ -16197,14 +17945,25 @@ type TemplateSummary struct {
 
 	// The name of the template.
 	Name *string `locationName:"name" type:"string"`
+
+	// The version of the template that you're using.
+	Version *string `locationName:"version" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSummary) GoString() string {
 	return s.String()
 }
@@ -16233,6 +17992,12 @@ func (s *TemplateSummary) SetName(v string) *TemplateSummary {
 	return s
 }
 
+// SetVersion sets the Version field's value.
+func (s *TemplateSummary) SetVersion(v string) *TemplateSummary {
+	s.Version = &v
+	return s
+}
+
 // AWS RoboMaker is temporarily unable to process the request. Try your call
 // again.
 type ThrottlingException struct {
@@ -16242,12 +18007,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -16321,12 +18094,20 @@ type Tool struct {
 	StreamUI *bool `locationName:"streamUI" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tool) GoString() string {
 	return s.String()
 }
@@ -16384,7 +18165,7 @@ func (s *Tool) SetStreamUI(v bool) *Tool {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the AWS RoboMaker resource you are removing
 	// tags.
@@ -16399,12 +18180,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -16444,12 +18233,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -16465,23 +18262,32 @@ type UpdateRobotApplicationInput struct {
 	// The revision id for the robot application.
 	CurrentRevisionId *string `locationName:"currentRevisionId" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI for your robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The robot software suite (ROS distribution) used by the robot application.
 	//
 	// RobotSoftwareSuite is a required field
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure" required:"true"`
 
 	// The sources of the robot application.
-	//
-	// Sources is a required field
-	Sources []*SourceConfig `locationName:"sources" type:"list" required:"true"`
+	Sources []*SourceConfig `locationName:"sources" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRobotApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRobotApplicationInput) GoString() string {
 	return s.String()
 }
@@ -16501,8 +18307,10 @@ func (s *UpdateRobotApplicationInput) Validate() error {
 	if s.RobotSoftwareSuite == nil {
 		invalidParams.Add(request.NewErrParamRequired("RobotSoftwareSuite"))
 	}
-	if s.Sources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	if s.Environment != nil {
+		if err := s.Environment.Validate(); err != nil {
+			invalidParams.AddNested("Environment", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Sources != nil {
 		for i, v := range s.Sources {
@@ -16533,6 +18341,12 @@ func (s *UpdateRobotApplicationInput) SetCurrentRevisionId(v string) *UpdateRobo
 	return s
 }
 
+// SetEnvironment sets the Environment field's value.
+func (s *UpdateRobotApplicationInput) SetEnvironment(v *Environment) *UpdateRobotApplicationInput {
+	s.Environment = v
+	return s
+}
+
 // SetRobotSoftwareSuite sets the RobotSoftwareSuite field's value.
 func (s *UpdateRobotApplicationInput) SetRobotSoftwareSuite(v *RobotSoftwareSuite) *UpdateRobotApplicationInput {
 	s.RobotSoftwareSuite = v
@@ -16550,6 +18364,9 @@ type UpdateRobotApplicationOutput struct {
 
 	// The Amazon Resource Name (ARN) of the updated robot application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The object that contains the Docker image URI for your robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the robot application was
 	// last updated.
@@ -16571,12 +18388,20 @@ type UpdateRobotApplicationOutput struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRobotApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRobotApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -16584,6 +18409,12 @@ func (s UpdateRobotApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *UpdateRobotApplicationOutput) SetArn(v string) *UpdateRobotApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *UpdateRobotApplicationOutput) SetEnvironment(v *Environment) *UpdateRobotApplicationOutput {
+	s.Environment = v
 	return s
 }
 
@@ -16634,6 +18465,9 @@ type UpdateSimulationApplicationInput struct {
 	// The revision id for the robot application.
 	CurrentRevisionId *string `locationName:"currentRevisionId" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI for your simulation application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The rendering engine for the simulation application.
 	RenderingEngine *RenderingEngine `locationName:"renderingEngine" type:"structure"`
 
@@ -16648,17 +18482,23 @@ type UpdateSimulationApplicationInput struct {
 	SimulationSoftwareSuite *SimulationSoftwareSuite `locationName:"simulationSoftwareSuite" type:"structure" required:"true"`
 
 	// The sources of the simulation application.
-	//
-	// Sources is a required field
-	Sources []*SourceConfig `locationName:"sources" type:"list" required:"true"`
+	Sources []*SourceConfig `locationName:"sources" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSimulationApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSimulationApplicationInput) GoString() string {
 	return s.String()
 }
@@ -16681,8 +18521,10 @@ func (s *UpdateSimulationApplicationInput) Validate() error {
 	if s.SimulationSoftwareSuite == nil {
 		invalidParams.Add(request.NewErrParamRequired("SimulationSoftwareSuite"))
 	}
-	if s.Sources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	if s.Environment != nil {
+		if err := s.Environment.Validate(); err != nil {
+			invalidParams.AddNested("Environment", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RenderingEngine != nil {
 		if err := s.RenderingEngine.Validate(); err != nil {
@@ -16718,6 +18560,12 @@ func (s *UpdateSimulationApplicationInput) SetCurrentRevisionId(v string) *Updat
 	return s
 }
 
+// SetEnvironment sets the Environment field's value.
+func (s *UpdateSimulationApplicationInput) SetEnvironment(v *Environment) *UpdateSimulationApplicationInput {
+	s.Environment = v
+	return s
+}
+
 // SetRenderingEngine sets the RenderingEngine field's value.
 func (s *UpdateSimulationApplicationInput) SetRenderingEngine(v *RenderingEngine) *UpdateSimulationApplicationInput {
 	s.RenderingEngine = v
@@ -16748,6 +18596,9 @@ type UpdateSimulationApplicationOutput struct {
 	// The Amazon Resource Name (ARN) of the updated simulation application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI used for your simulation application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The time, in milliseconds since the epoch, when the simulation application
 	// was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
@@ -16774,12 +18625,20 @@ type UpdateSimulationApplicationOutput struct {
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSimulationApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSimulationApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -16787,6 +18646,12 @@ func (s UpdateSimulationApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *UpdateSimulationApplicationOutput) SetArn(v string) *UpdateSimulationApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *UpdateSimulationApplicationOutput) SetEnvironment(v *Environment) *UpdateSimulationApplicationOutput {
+	s.Environment = v
 	return s
 }
 
@@ -16856,12 +18721,20 @@ type UpdateWorldTemplateInput struct {
 	TemplateLocation *TemplateLocation `locationName:"templateLocation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWorldTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWorldTemplateInput) GoString() string {
 	return s.String()
 }
@@ -16931,12 +18804,20 @@ type UpdateWorldTemplateOutput struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWorldTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWorldTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -17008,12 +18889,20 @@ type UploadConfiguration struct {
 	UploadBehavior *string `locationName:"uploadBehavior" type:"string" required:"true" enum:"UploadBehavior"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UploadConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UploadConfiguration) GoString() string {
 	return s.String()
 }
@@ -17080,12 +18969,20 @@ type VPCConfig struct {
 	Subnets []*string `locationName:"subnets" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCConfig) GoString() string {
 	return s.String()
 }
@@ -17144,12 +19041,20 @@ type VPCConfigResponse struct {
 	VpcId *string `locationName:"vpcId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCConfigResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCConfigResponse) GoString() string {
 	return s.String()
 }
@@ -17186,12 +19091,20 @@ type WorldConfig struct {
 	World *string `locationName:"world" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldConfig) GoString() string {
 	return s.String()
 }
@@ -17233,12 +19146,20 @@ type WorldCount struct {
 	InteriorCountPerFloorplan *int64 `locationName:"interiorCountPerFloorplan" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldCount) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldCount) GoString() string {
 	return s.String()
 }
@@ -17265,6 +19186,9 @@ type WorldExportJobSummary struct {
 	// The time, in milliseconds since the epoch, when the world export job was
 	// created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The output location.
+	OutputLocation *OutputLocation `locationName:"outputLocation" type:"structure"`
 
 	// The status of the world export job.
 	//
@@ -17297,12 +19221,20 @@ type WorldExportJobSummary struct {
 	Worlds []*string `locationName:"worlds" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldExportJobSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldExportJobSummary) GoString() string {
 	return s.String()
 }
@@ -17316,6 +19248,12 @@ func (s *WorldExportJobSummary) SetArn(v string) *WorldExportJobSummary {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *WorldExportJobSummary) SetCreatedAt(v time.Time) *WorldExportJobSummary {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetOutputLocation sets the OutputLocation field's value.
+func (s *WorldExportJobSummary) SetOutputLocation(v *OutputLocation) *WorldExportJobSummary {
+	s.OutputLocation = v
 	return s
 }
 
@@ -17367,12 +19305,20 @@ type WorldFailure struct {
 	SampleFailureReason *string `locationName:"sampleFailureReason" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldFailure) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldFailure) GoString() string {
 	return s.String()
 }
@@ -17450,12 +19396,20 @@ type WorldGenerationJobSummary struct {
 	WorldCount *WorldCount `locationName:"worldCount" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldGenerationJobSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldGenerationJobSummary) GoString() string {
 	return s.String()
 }
@@ -17519,12 +19473,20 @@ type WorldSummary struct {
 	Template *string `locationName:"template" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorldSummary) GoString() string {
 	return s.String()
 }
@@ -17570,6 +19532,42 @@ func Architecture_Values() []string {
 		ArchitectureX8664,
 		ArchitectureArm64,
 		ArchitectureArmhf,
+	}
+}
+
+const (
+	// ComputeTypeCpu is a ComputeType enum value
+	ComputeTypeCpu = "CPU"
+
+	// ComputeTypeGpuAndCpu is a ComputeType enum value
+	ComputeTypeGpuAndCpu = "GPU_AND_CPU"
+)
+
+// ComputeType_Values returns all elements of the ComputeType enum
+func ComputeType_Values() []string {
+	return []string{
+		ComputeTypeCpu,
+		ComputeTypeGpuAndCpu,
+	}
+}
+
+const (
+	// DataSourceTypePrefix is a DataSourceType enum value
+	DataSourceTypePrefix = "Prefix"
+
+	// DataSourceTypeArchive is a DataSourceType enum value
+	DataSourceTypeArchive = "Archive"
+
+	// DataSourceTypeFile is a DataSourceType enum value
+	DataSourceTypeFile = "File"
+)
+
+// DataSourceType_Values returns all elements of the DataSourceType enum
+func DataSourceType_Values() []string {
+	return []string{
+		DataSourceTypePrefix,
+		DataSourceTypeArchive,
+		DataSourceTypeFile,
 	}
 }
 
@@ -17795,6 +19793,9 @@ const (
 
 	// RobotSoftwareSuiteTypeRos2 is a RobotSoftwareSuiteType enum value
 	RobotSoftwareSuiteTypeRos2 = "ROS2"
+
+	// RobotSoftwareSuiteTypeGeneral is a RobotSoftwareSuiteType enum value
+	RobotSoftwareSuiteTypeGeneral = "General"
 )
 
 // RobotSoftwareSuiteType_Values returns all elements of the RobotSoftwareSuiteType enum
@@ -17802,6 +19803,7 @@ func RobotSoftwareSuiteType_Values() []string {
 	return []string{
 		RobotSoftwareSuiteTypeRos,
 		RobotSoftwareSuiteTypeRos2,
+		RobotSoftwareSuiteTypeGeneral,
 	}
 }
 
@@ -18107,6 +20109,9 @@ const (
 
 	// SimulationSoftwareSuiteTypeRosbagPlay is a SimulationSoftwareSuiteType enum value
 	SimulationSoftwareSuiteTypeRosbagPlay = "RosbagPlay"
+
+	// SimulationSoftwareSuiteTypeSimulationRuntime is a SimulationSoftwareSuiteType enum value
+	SimulationSoftwareSuiteTypeSimulationRuntime = "SimulationRuntime"
 )
 
 // SimulationSoftwareSuiteType_Values returns all elements of the SimulationSoftwareSuiteType enum
@@ -18114,6 +20119,7 @@ func SimulationSoftwareSuiteType_Values() []string {
 	return []string{
 		SimulationSoftwareSuiteTypeGazebo,
 		SimulationSoftwareSuiteTypeRosbagPlay,
+		SimulationSoftwareSuiteTypeSimulationRuntime,
 	}
 }
 

@@ -1,0 +1,417 @@
+{
+  "version": "2.0",
+  "service": "<p>The new Amazon Elastic DocumentDB service endpoint.</p>",
+  "operations": {
+    "CreateCluster": "<p>Creates a new Elastic DocumentDB cluster and returns its Cluster structure.</p>",
+    "CreateClusterSnapshot": "<p>Creates a snapshot of a cluster.</p>",
+    "DeleteCluster": "<p>Delete a Elastic DocumentDB cluster.</p>",
+    "DeleteClusterSnapshot": "<p>Delete a Elastic DocumentDB snapshot.</p>",
+    "GetCluster": "<p>Returns information about a specific Elastic DocumentDB cluster.</p>",
+    "GetClusterSnapshot": "<p>Returns information about a specific Elastic DocumentDB snapshot</p>",
+    "ListClusterSnapshots": "<p>Returns information about Elastic DocumentDB snapshots for a specified cluster.</p>",
+    "ListClusters": "<p>Returns information about provisioned Elastic DocumentDB clusters.</p>",
+    "ListTagsForResource": "<p>Lists all tags on a Elastic DocumentDB resource</p>",
+    "RestoreClusterFromSnapshot": "<p>Restores a Elastic DocumentDB cluster from a snapshot.</p>",
+    "TagResource": "<p>Adds metadata tags to a Elastic DocumentDB resource</p>",
+    "UntagResource": "<p>Removes metadata tags to a Elastic DocumentDB resource</p>",
+    "UpdateCluster": "<p>Modifies a Elastic DocumentDB cluster. This includes updating admin-username/password, upgrading API version setting up a backup window and maintenance window</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>An exception that occurs when there are not sufficient permissions to perform an action.</p>",
+      "refs": {
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$resourceArn": "<p>The arn of the Elastic DocumentDB resource.</p>",
+        "TagResourceRequest$resourceArn": "<p>The arn of the Elastic DocumentDB resource.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The arn of the Elastic DocumentDB resource.</p>"
+      }
+    },
+    "Auth": {
+      "base": null,
+      "refs": {
+        "Cluster$authType": "<p>The authentication type for the Elastic DocumentDB cluster.</p>",
+        "CreateClusterInput$authType": "<p>The authentication type for the Elastic DocumentDB cluster.</p>",
+        "UpdateClusterInput$authType": "<p>The authentication type for the Elastic DocumentDB cluster.</p>"
+      }
+    },
+    "Cluster": {
+      "base": "<p>Returns information about a specific Elastic DocumentDB cluster.</p>",
+      "refs": {
+        "CreateClusterOutput$cluster": "<p>The new Elastic DocumentDB cluster that has been created.</p>",
+        "DeleteClusterOutput$cluster": "<p>Returns information about the newly deleted Elastic DocumentDB cluster.</p>",
+        "GetClusterOutput$cluster": "<p>Returns information about a specific Elastic DocumentDB cluster.</p>",
+        "RestoreClusterFromSnapshotOutput$cluster": "<p>Returns information about a the restored Elastic DocumentDB cluster.</p>",
+        "UpdateClusterOutput$cluster": "<p>Returns information about the updated Elastic DocumentDB cluster.</p>"
+      }
+    },
+    "ClusterInList": {
+      "base": "<p>A list of Elastic DocumentDB cluster.</p>",
+      "refs": {
+        "ClusterList$member": null
+      }
+    },
+    "ClusterList": {
+      "base": null,
+      "refs": {
+        "ListClustersOutput$clusters": "<p>A list of Elastic DocumentDB cluster.</p>"
+      }
+    },
+    "ClusterSnapshot": {
+      "base": "<p>Returns information about a specific Elastic DocumentDB snapshot.</p>",
+      "refs": {
+        "CreateClusterSnapshotOutput$snapshot": "<p>Returns information about the new Elastic DocumentDB snapshot.</p>",
+        "DeleteClusterSnapshotOutput$snapshot": "<p>Returns information about the newly deleted Elastic DocumentDB snapshot.</p>",
+        "GetClusterSnapshotOutput$snapshot": "<p>Returns information about a specific Elastic DocumentDB snapshot.</p>"
+      }
+    },
+    "ClusterSnapshotInList": {
+      "base": "<p>A list of Elastic DocumentDB snapshots.</p>",
+      "refs": {
+        "ClusterSnapshotList$member": null
+      }
+    },
+    "ClusterSnapshotList": {
+      "base": null,
+      "refs": {
+        "ListClusterSnapshotsOutput$snapshots": "<p>A list of Elastic DocumentDB snapshots for a specified cluster.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>There was an access conflict.</p>",
+      "refs": {
+      }
+    },
+    "CreateClusterInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateClusterOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateClusterSnapshotInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateClusterSnapshotInputSnapshotNameString": {
+      "base": null,
+      "refs": {
+        "CreateClusterSnapshotInput$snapshotName": "<p>The name of the Elastic DocumentDB snapshot.</p>"
+      }
+    },
+    "CreateClusterSnapshotOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteClusterInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteClusterOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteClusterSnapshotInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteClusterSnapshotOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetClusterInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetClusterOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetClusterSnapshotInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetClusterSnapshotOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "Cluster$shardCapacity": "<p>The capacity of each shard in the Elastic DocumentDB cluster.</p>",
+        "Cluster$shardCount": "<p>The number of shards in the Elastic DocumentDB cluster.</p>",
+        "CreateClusterInput$shardCapacity": "<p>The capacity of each shard in the new Elastic DocumentDB cluster.</p>",
+        "CreateClusterInput$shardCount": "<p>The number of shards to create in the new Elastic DocumentDB cluster.</p>",
+        "ThrottlingException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the operation.</p>",
+        "UpdateClusterInput$shardCapacity": "<p>The capacity of each shard in the Elastic DocumentDB cluster.</p>",
+        "UpdateClusterInput$shardCount": "<p>The number of shards to create in the Elastic DocumentDB cluster.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>There was an internal server error.</p>",
+      "refs": {
+      }
+    },
+    "ListClusterSnapshotsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListClusterSnapshotsInputMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListClusterSnapshotsInput$maxResults": "<p>The maximum number of entries to recieve in the response.</p>"
+      }
+    },
+    "ListClusterSnapshotsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListClustersInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListClustersInputMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListClustersInput$maxResults": "<p>The maximum number of entries to recieve in the response.</p>"
+      }
+    },
+    "ListClustersOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PaginationToken": {
+      "base": "<p>Token or cursor used in paginated operations.</p> <p>When this value is provided as operation input, the service returns results from where the previous response left off. When this value is present in operation output, it indicates that there are more results to retrieve.</p> <p>This should be opaque to not expose implementation details and potentially versioned to allow evolution of pagination strategy.</p>",
+      "refs": {
+        "ListClusterSnapshotsInput$nextToken": "<p>The nextToken which is used the get the next page of data.</p>",
+        "ListClusterSnapshotsOutput$nextToken": "<p>The response will provide a nextToken if there is more data beyond the maxResults.</p> <p>If there is no more data in the responce, the nextToken will not be returned.</p>",
+        "ListClustersInput$nextToken": "<p>The nextToken which is used the get the next page of data.</p>",
+        "ListClustersOutput$nextToken": "<p>The response will provide a nextToken if there is more data beyond the maxResults.</p> <p>If there is no more data in the responce, the nextToken will not be returned.</p>"
+      }
+    },
+    "Password": {
+      "base": null,
+      "refs": {
+        "CreateClusterInput$adminUserPassword": "<p>The password for the Elastic DocumentDB cluster administrator and can contain any printable ASCII characters.</p> <p> <i>Constraints</i>:</p> <ul> <li> <p>Must contain from 8 to 100 characters.</p> </li> <li> <p>Cannot contain a forward slash (/), double quote (\"), or the \"at\" symbol (@).</p> </li> </ul>",
+        "UpdateClusterInput$adminUserPassword": "<p>The password for the Elastic DocumentDB cluster administrator. This password can contain any printable ASCII character except forward slash (/), double quote (\"), or the \"at\" symbol (@).</p> <p> <i>Constraints</i>: Must contain from 8 to 100 characters.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The specified resource could not be located.</p>",
+      "refs": {
+      }
+    },
+    "RestoreClusterFromSnapshotInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestoreClusterFromSnapshotOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>The service quota for the action was exceeded.</p>",
+      "refs": {
+      }
+    },
+    "Status": {
+      "base": null,
+      "refs": {
+        "Cluster$status": "<p>The status of the Elastic DocumentDB cluster.</p>",
+        "ClusterInList$status": "<p>The status of the Elastic DocumentDB cluster.</p>",
+        "ClusterSnapshot$status": "<p>The status of the Elastic DocumentDB snapshot.</p>",
+        "ClusterSnapshotInList$status": "<p>The status of the Elastic DocumentDB snapshot.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": "<p>An error message explaining why access was denied.</p>",
+        "Cluster$adminUserName": "<p>The name of the Elastic DocumentDB cluster administrator.</p>",
+        "Cluster$clusterArn": "<p>The arn of the Elastic DocumentDB cluster.</p>",
+        "Cluster$clusterEndpoint": "<p>The URL used to connect to the Elastic DocumentDB cluster.</p>",
+        "Cluster$clusterName": "<p>The name of the Elastic DocumentDB cluster.</p>",
+        "Cluster$createTime": "<p>The time when the Elastic DocumentDB cluster was created in Universal Coordinated Time (UTC).</p>",
+        "Cluster$kmsKeyId": "<p>The KMS key identifier to use to encrypt the Elastic DocumentDB cluster.</p>",
+        "Cluster$preferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p> <p> <i>Format</i>: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p>",
+        "ClusterInList$clusterArn": "<p>The arn of the Elastic DocumentDB cluster.</p>",
+        "ClusterInList$clusterName": "<p>The name of the Elastic DocumentDB cluster.</p>",
+        "ClusterSnapshot$adminUserName": "<p>The name of the Elastic DocumentDB cluster administrator.</p>",
+        "ClusterSnapshot$clusterArn": "<p>The arn of the Elastic DocumentDB cluster.</p>",
+        "ClusterSnapshot$clusterCreationTime": "<p>The time when the Elastic DocumentDB cluster was created in Universal Coordinated Time (UTC).</p>",
+        "ClusterSnapshot$kmsKeyId": "<p>The KMS key identifier to use to encrypt the Elastic DocumentDB cluster.</p>",
+        "ClusterSnapshot$snapshotArn": "<p>The arn of the Elastic DocumentDB snapshot</p>",
+        "ClusterSnapshot$snapshotCreationTime": "<p>The time when the Elastic DocumentDB snapshot was created in Universal Coordinated Time (UTC).</p>",
+        "ClusterSnapshot$snapshotName": "<p>The name of the Elastic DocumentDB snapshot.</p>",
+        "ClusterSnapshotInList$clusterArn": "<p>The arn of the Elastic DocumentDB cluster.</p>",
+        "ClusterSnapshotInList$snapshotArn": "<p>The arn of the Elastic DocumentDB snapshot</p>",
+        "ClusterSnapshotInList$snapshotCreationTime": "<p>The time when the Elastic DocumentDB snapshot was created in Universal Coordinated Time (UTC).</p>",
+        "ClusterSnapshotInList$snapshotName": "<p>The name of the Elastic DocumentDB snapshot.</p>",
+        "ConflictException$message": null,
+        "ConflictException$resourceId": "<p>The ID of the resource where there was an access conflict.</p>",
+        "ConflictException$resourceType": "<p>The type of the resource where there was an access conflict.</p>",
+        "CreateClusterInput$adminUserName": "<p>The name of the Elastic DocumentDB cluster administrator.</p> <p> <i>Constraints</i>:</p> <ul> <li> <p>Must be from 1 to 63 letters or numbers.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Cannot be a reserved word.</p> </li> </ul>",
+        "CreateClusterInput$clientToken": "<p>The client token for the Elastic DocumentDB cluster.</p>",
+        "CreateClusterInput$clusterName": "<p>The name of the new Elastic DocumentDB cluster. This parameter is stored as a lowercase string.</p> <p> <i>Constraints</i>:</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p> <i>Example</i>: <code>my-cluster</code> </p>",
+        "CreateClusterInput$kmsKeyId": "<p>The KMS key identifier to use to encrypt the new Elastic DocumentDB cluster.</p> <p>The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a cluster using the same Amazon account that owns this KMS encryption key, you can use the KMS key alias instead of the ARN as the KMS encryption key.</p> <p>If an encryption key is not specified, Elastic DocumentDB uses the default encryption key that KMS creates for your account. Your account has a different default encryption key for each Amazon Region.</p>",
+        "CreateClusterInput$preferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p> <p> <i>Format</i>: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p> <i>Default</i>: a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region, occurring on a random day of the week.</p> <p> <i>Valid days</i>: Mon, Tue, Wed, Thu, Fri, Sat, Sun</p> <p> <i>Constraints</i>: Minimum 30-minute window.</p>",
+        "CreateClusterSnapshotInput$clusterArn": "<p>The arn of the Elastic DocumentDB cluster that the snapshot will be taken from.</p>",
+        "DeleteClusterInput$clusterArn": "<p>The arn of the Elastic DocumentDB cluster that is to be deleted.</p>",
+        "DeleteClusterSnapshotInput$snapshotArn": "<p>The arn of the Elastic DocumentDB snapshot that is to be deleted.</p>",
+        "GetClusterInput$clusterArn": "<p>The arn of the Elastic DocumentDB cluster.</p>",
+        "GetClusterSnapshotInput$snapshotArn": "<p>The arn of the Elastic DocumentDB snapshot.</p>",
+        "InternalServerException$message": null,
+        "ListClusterSnapshotsInput$clusterArn": "<p>The arn of the Elastic DocumentDB cluster.</p>",
+        "ResourceNotFoundException$message": "<p>An error message describing the failure.</p>",
+        "ResourceNotFoundException$resourceId": "<p>The ID of the resource that could not be located.</p>",
+        "ResourceNotFoundException$resourceType": "<p>The type of the resource that could not be found.</p>",
+        "RestoreClusterFromSnapshotInput$clusterName": "<p>The name of the Elastic DocumentDB cluster.</p>",
+        "RestoreClusterFromSnapshotInput$kmsKeyId": "<p>The KMS key identifier to use to encrypt the new Elastic DocumentDB cluster.</p> <p>The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a cluster using the same Amazon account that owns this KMS encryption key, you can use the KMS key alias instead of the ARN as the KMS encryption key.</p> <p>If an encryption key is not specified here, Elastic DocumentDB uses the default encryption key that KMS creates for your account. Your account has a different default encryption key for each Amazon Region.</p>",
+        "RestoreClusterFromSnapshotInput$snapshotArn": "<p>The arn of the Elastic DocumentDB snapshot.</p>",
+        "ServiceQuotaExceededException$message": null,
+        "StringList$member": null,
+        "ThrottlingException$message": null,
+        "UpdateClusterInput$clientToken": "<p>The client token for the Elastic DocumentDB cluster.</p>",
+        "UpdateClusterInput$clusterArn": "<p>The arn of the Elastic DocumentDB cluster.</p>",
+        "UpdateClusterInput$preferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p> <p> <i>Format</i>: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p> <i>Default</i>: a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region, occurring on a random day of the week.</p> <p> <i>Valid days</i>: Mon, Tue, Wed, Thu, Fri, Sat, Sun</p> <p> <i>Constraints</i>: Minimum 30-minute window.</p>",
+        "ValidationException$message": "<p>An error message describing the validation exception.</p>",
+        "ValidationExceptionField$message": "<p>An error message describing the validation exception in this field.</p>",
+        "ValidationExceptionField$name": "<p>The name of the field where the validation exception occurred.</p>"
+      }
+    },
+    "StringList": {
+      "base": null,
+      "refs": {
+        "Cluster$subnetIds": "<p>The Amazon EC2 subnet IDs for the Elastic DocumentDB cluster.</p>",
+        "Cluster$vpcSecurityGroupIds": "<p>A list of EC2 VPC security groups associated with this cluster.</p>",
+        "ClusterSnapshot$subnetIds": "<p>A list of the IDs of subnets associated with the DB cluster snapshot.</p>",
+        "ClusterSnapshot$vpcSecurityGroupIds": "<p>A list of the IDs of the VPC security groups associated with the cluster snapshot.</p>",
+        "CreateClusterInput$subnetIds": "<p>The Amazon EC2 subnet IDs for the new Elastic DocumentDB cluster.</p>",
+        "CreateClusterInput$vpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to associate with the new Elastic DocumentDB cluster.</p>",
+        "RestoreClusterFromSnapshotInput$subnetIds": "<p>The Amazon EC2 subnet IDs for the Elastic DocumentDB cluster.</p>",
+        "RestoreClusterFromSnapshotInput$vpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to associate with the Elastic DocumentDB cluster.</p>",
+        "UpdateClusterInput$subnetIds": "<p>The number of shards to create in the Elastic DocumentDB cluster.</p>",
+        "UpdateClusterInput$vpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to associate with the new Elastic DocumentDB cluster.</p>"
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>The tag keys to be removed from the Elastic DocumentDB resource.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateClusterInput$tags": "<p>The tags to be assigned to the new Elastic DocumentDB cluster.</p>",
+        "CreateClusterSnapshotInput$tags": "<p>The tags to be assigned to the new Elastic DocumentDB snapshot.</p>",
+        "ListTagsForResourceResponse$tags": "<p>The list of tags for the specified Elastic DocumentDB resource.</p>",
+        "RestoreClusterFromSnapshotInput$tags": "<p>A list of the tag names to be assigned to the restored DB cluster, in the form of an array of key-value pairs in which the key is the tag name and the value is the key value.</p>",
+        "TagResourceRequest$tags": "<p>The tags to be assigned to the Elastic DocumentDB resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>ThrottlingException will be thrown when request was denied due to request throttling.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateClusterInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateClusterOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p>A structure defining a validation exception.</p>",
+      "refs": {
+      }
+    },
+    "ValidationExceptionField": {
+      "base": "<p>A specific field in which a given validation exception occurred.</p>",
+      "refs": {
+        "ValidationExceptionFieldList$member": null
+      }
+    },
+    "ValidationExceptionFieldList": {
+      "base": null,
+      "refs": {
+        "ValidationException$fieldList": "<p>A list of the fields in which the validation exception occurred.</p>"
+      }
+    },
+    "ValidationExceptionReason": {
+      "base": null,
+      "refs": {
+        "ValidationException$reason": "<p>The reason why the validation exception occurred (one of <code>unknownOperation</code>, <code>cannotParse</code>, <code>fieldValidationFailed</code>, or <code>other</code>).</p>"
+      }
+    }
+  }
+}

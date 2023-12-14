@@ -15,7 +15,7 @@ const (
 	// validated. You might not be authorized to carry out the request. Make sure
 	// that your account is authorized to use the Amazon QuickSight service, that
 	// your policies have the correct permissions, and that you are using the correct
-	// access keys.
+	// credentials.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConcurrentUpdatingException for service response error code
@@ -62,6 +62,13 @@ const (
 	//
 	// One or more parameters has a value that isn't valid.
 	ErrCodeInvalidParameterValueException = "InvalidParameterValueException"
+
+	// ErrCodeInvalidRequestException for service response error code
+	// "InvalidRequestException".
+	//
+	// You don't have this feature activated for your account. To fix this issue,
+	// contact Amazon Web Services support.
+	ErrCodeInvalidRequestException = "InvalidRequestException"
 
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
@@ -110,13 +117,13 @@ const (
 	// "UnsupportedPricingPlanException".
 	//
 	// This error indicates that you are calling an embedding operation in Amazon
-	// QuickSight without the required pricing plan on your AWS account. Before
-	// you can use embedding for anonymous users, a QuickSight administrator needs
-	// to add capacity pricing to QuickSight. You can do this on the Manage QuickSight
-	// page.
+	// QuickSight without the required pricing plan on your Amazon Web Services
+	// account. Before you can use embedding for anonymous users, a QuickSight administrator
+	// needs to add capacity pricing to Amazon QuickSight. You can do this on the
+	// Manage Amazon QuickSight page.
 	//
-	// After capacity pricing is added, you can use the GetDashboardEmbedUrl API
-	// operation with the --identity-type ANONYMOUS option.
+	// After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+	// API operation with the --identity-type ANONYMOUS option.
 	ErrCodeUnsupportedPricingPlanException = "UnsupportedPricingPlanException"
 
 	// ErrCodeUnsupportedUserEditionException for service response error code
@@ -124,7 +131,7 @@ const (
 	//
 	// This error indicates that you are calling an operation on an Amazon QuickSight
 	// subscription where the edition doesn't include support for that operation.
-	// Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+	// Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 	// Not every operation and capability is available in every edition.
 	ErrCodeUnsupportedUserEditionException = "UnsupportedUserEditionException"
 
@@ -146,6 +153,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InternalFailureException":                 newErrorInternalFailureException,
 	"InvalidNextTokenException":                newErrorInvalidNextTokenException,
 	"InvalidParameterValueException":           newErrorInvalidParameterValueException,
+	"InvalidRequestException":                  newErrorInvalidRequestException,
 	"LimitExceededException":                   newErrorLimitExceededException,
 	"PreconditionNotMetException":              newErrorPreconditionNotMetException,
 	"ResourceExistsException":                  newErrorResourceExistsException,

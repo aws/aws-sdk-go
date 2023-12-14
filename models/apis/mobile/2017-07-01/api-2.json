@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"rest-json",
     "serviceFullName":"AWS Mobile",
+    "serviceId":"Mobile",
     "signatureVersion":"v4",
     "signingName":"AWSMobileHubService",
     "uid":"mobile-2017-07-01"

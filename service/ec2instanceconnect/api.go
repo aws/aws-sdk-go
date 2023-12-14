@@ -27,14 +27,13 @@ const opSendSSHPublicKey = "SendSSHPublicKey"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendSSHPublicKeyRequest method.
+//	req, resp := client.SendSSHPublicKeyRequest(params)
 //
-//    // Example sending a request using the SendSSHPublicKeyRequest method.
-//    req, resp := client.SendSSHPublicKeyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-instance-connect-2018-04-02/SendSSHPublicKey
 func (c *EC2InstanceConnect) SendSSHPublicKeyRequest(input *SendSSHPublicKeyInput) (req *request.Request, output *SendSSHPublicKeyOutput) {
@@ -68,24 +67,33 @@ func (c *EC2InstanceConnect) SendSSHPublicKeyRequest(input *SendSSHPublicKeyInpu
 // API operation SendSSHPublicKey for usage and error information.
 //
 // Returned Error Types:
-//   * AuthException
-//   Either your AWS credentials are not valid or you do not have access to the
-//   EC2 instance.
 //
-//   * InvalidArgsException
-//   One of the parameters is not valid.
+//   - AuthException
+//     Either your AWS credentials are not valid or you do not have access to the
+//     EC2 instance.
 //
-//   * ServiceException
-//   The service encountered an error. Follow the instructions in the error message
-//   and try again.
+//   - InvalidArgsException
+//     One of the parameters is not valid.
 //
-//   * ThrottlingException
-//   The requests were made too frequently and have been throttled. Wait a while
-//   and try again. To increase the limit on your request frequency, contact AWS
-//   Support.
+//   - ServiceException
+//     The service encountered an error. Follow the instructions in the error message
+//     and try again.
 //
-//   * EC2InstanceNotFoundException
-//   The specified instance was not found.
+//   - ThrottlingException
+//     The requests were made too frequently and have been throttled. Wait a while
+//     and try again. To increase the limit on your request frequency, contact AWS
+//     Support.
+//
+//   - EC2InstanceNotFoundException
+//     The specified instance was not found.
+//
+//   - EC2InstanceStateInvalidException
+//     Unable to connect because the instance is not in a valid state. Connecting
+//     to a stopped or terminated instance is not supported. If the instance is
+//     stopped, start your instance, and try to connect again.
+//
+//   - EC2InstanceUnavailableException
+//     The instance is currently unavailable. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-instance-connect-2018-04-02/SendSSHPublicKey
 func (c *EC2InstanceConnect) SendSSHPublicKey(input *SendSSHPublicKeyInput) (*SendSSHPublicKeyOutput, error) {
@@ -125,14 +133,13 @@ const opSendSerialConsoleSSHPublicKey = "SendSerialConsoleSSHPublicKey"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendSerialConsoleSSHPublicKeyRequest method.
+//	req, resp := client.SendSerialConsoleSSHPublicKeyRequest(params)
 //
-//    // Example sending a request using the SendSerialConsoleSSHPublicKeyRequest method.
-//    req, resp := client.SendSerialConsoleSSHPublicKeyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-instance-connect-2018-04-02/SendSerialConsoleSSHPublicKey
 func (c *EC2InstanceConnect) SendSerialConsoleSSHPublicKeyRequest(input *SendSerialConsoleSSHPublicKeyInput) (req *request.Request, output *SendSerialConsoleSSHPublicKeyOutput) {
@@ -166,41 +173,50 @@ func (c *EC2InstanceConnect) SendSerialConsoleSSHPublicKeyRequest(input *SendSer
 // API operation SendSerialConsoleSSHPublicKey for usage and error information.
 //
 // Returned Error Types:
-//   * AuthException
-//   Either your AWS credentials are not valid or you do not have access to the
-//   EC2 instance.
 //
-//   * SerialConsoleAccessDisabledException
-//   Your account is not authorized to use the EC2 Serial Console. To authorize
-//   your account, run the EnableSerialConsoleAccess API. For more information,
-//   see EnableSerialConsoleAccess (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EnableSerialConsoleAccess.html)
-//   in the Amazon EC2 API Reference.
+//   - AuthException
+//     Either your AWS credentials are not valid or you do not have access to the
+//     EC2 instance.
 //
-//   * InvalidArgsException
-//   One of the parameters is not valid.
+//   - SerialConsoleAccessDisabledException
+//     Your account is not authorized to use the EC2 Serial Console. To authorize
+//     your account, run the EnableSerialConsoleAccess API. For more information,
+//     see EnableSerialConsoleAccess (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EnableSerialConsoleAccess.html)
+//     in the Amazon EC2 API Reference.
 //
-//   * ServiceException
-//   The service encountered an error. Follow the instructions in the error message
-//   and try again.
+//   - InvalidArgsException
+//     One of the parameters is not valid.
 //
-//   * ThrottlingException
-//   The requests were made too frequently and have been throttled. Wait a while
-//   and try again. To increase the limit on your request frequency, contact AWS
-//   Support.
+//   - ServiceException
+//     The service encountered an error. Follow the instructions in the error message
+//     and try again.
 //
-//   * EC2InstanceNotFoundException
-//   The specified instance was not found.
+//   - ThrottlingException
+//     The requests were made too frequently and have been throttled. Wait a while
+//     and try again. To increase the limit on your request frequency, contact AWS
+//     Support.
 //
-//   * EC2InstanceTypeInvalidException
-//   The instance type is not supported for connecting via the serial console.
-//   Only Nitro instance types are currently supported.
+//   - EC2InstanceNotFoundException
+//     The specified instance was not found.
 //
-//   * SerialConsoleSessionLimitExceededException
-//   The instance currently has 1 active serial console session. Only 1 session
-//   is supported at a time.
+//   - EC2InstanceTypeInvalidException
+//     The instance type is not supported for connecting via the serial console.
+//     Only Nitro instance types are currently supported.
 //
-//   * SerialConsoleSessionUnavailableException
-//   Unable to start a serial console session. Please try again.
+//   - SerialConsoleSessionLimitExceededException
+//     The instance currently has 1 active serial console session. Only 1 session
+//     is supported at a time.
+//
+//   - SerialConsoleSessionUnavailableException
+//     Unable to start a serial console session. Please try again.
+//
+//   - EC2InstanceStateInvalidException
+//     Unable to connect because the instance is not in a valid state. Connecting
+//     to a stopped or terminated instance is not supported. If the instance is
+//     stopped, start your instance, and try to connect again.
+//
+//   - EC2InstanceUnavailableException
+//     The instance is currently unavailable. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-instance-connect-2018-04-02/SendSerialConsoleSSHPublicKey
 func (c *EC2InstanceConnect) SendSerialConsoleSSHPublicKey(input *SendSerialConsoleSSHPublicKeyInput) (*SendSerialConsoleSSHPublicKeyOutput, error) {
@@ -233,12 +249,20 @@ type AuthException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuthException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuthException) GoString() string {
 	return s.String()
 }
@@ -289,12 +313,20 @@ type EC2InstanceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EC2InstanceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EC2InstanceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -337,6 +369,72 @@ func (s *EC2InstanceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Unable to connect because the instance is not in a valid state. Connecting
+// to a stopped or terminated instance is not supported. If the instance is
+// stopped, start your instance, and try to connect again.
+type EC2InstanceStateInvalidException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EC2InstanceStateInvalidException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EC2InstanceStateInvalidException) GoString() string {
+	return s.String()
+}
+
+func newErrorEC2InstanceStateInvalidException(v protocol.ResponseMetadata) error {
+	return &EC2InstanceStateInvalidException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EC2InstanceStateInvalidException) Code() string {
+	return "EC2InstanceStateInvalidException"
+}
+
+// Message returns the exception's message.
+func (s *EC2InstanceStateInvalidException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EC2InstanceStateInvalidException) OrigErr() error {
+	return nil
+}
+
+func (s *EC2InstanceStateInvalidException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EC2InstanceStateInvalidException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EC2InstanceStateInvalidException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The instance type is not supported for connecting via the serial console.
 // Only Nitro instance types are currently supported.
 type EC2InstanceTypeInvalidException struct {
@@ -346,12 +444,20 @@ type EC2InstanceTypeInvalidException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EC2InstanceTypeInvalidException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EC2InstanceTypeInvalidException) GoString() string {
 	return s.String()
 }
@@ -394,6 +500,70 @@ func (s *EC2InstanceTypeInvalidException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The instance is currently unavailable. Wait a few minutes and try again.
+type EC2InstanceUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EC2InstanceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EC2InstanceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorEC2InstanceUnavailableException(v protocol.ResponseMetadata) error {
+	return &EC2InstanceUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EC2InstanceUnavailableException) Code() string {
+	return "EC2InstanceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *EC2InstanceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EC2InstanceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *EC2InstanceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EC2InstanceUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EC2InstanceUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // One of the parameters is not valid.
 type InvalidArgsException struct {
 	_            struct{}                  `type:"structure"`
@@ -402,12 +572,20 @@ type InvalidArgsException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidArgsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidArgsException) GoString() string {
 	return s.String()
 }
@@ -454,9 +632,7 @@ type SendSSHPublicKeyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone in which the EC2 instance was launched.
-	//
-	// AvailabilityZone is a required field
-	AvailabilityZone *string `min:"6" type:"string" required:"true"`
+	AvailabilityZone *string `min:"6" type:"string"`
 
 	// The ID of the EC2 instance.
 	//
@@ -472,15 +648,23 @@ type SendSSHPublicKeyInput struct {
 	// private key.
 	//
 	// SSHPublicKey is a required field
-	SSHPublicKey *string `min:"256" type:"string" required:"true"`
+	SSHPublicKey *string `min:"80" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendSSHPublicKeyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendSSHPublicKeyInput) GoString() string {
 	return s.String()
 }
@@ -488,9 +672,6 @@ func (s SendSSHPublicKeyInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SendSSHPublicKeyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SendSSHPublicKeyInput"}
-	if s.AvailabilityZone == nil {
-		invalidParams.Add(request.NewErrParamRequired("AvailabilityZone"))
-	}
 	if s.AvailabilityZone != nil && len(*s.AvailabilityZone) < 6 {
 		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZone", 6))
 	}
@@ -509,8 +690,8 @@ func (s *SendSSHPublicKeyInput) Validate() error {
 	if s.SSHPublicKey == nil {
 		invalidParams.Add(request.NewErrParamRequired("SSHPublicKey"))
 	}
-	if s.SSHPublicKey != nil && len(*s.SSHPublicKey) < 256 {
-		invalidParams.Add(request.NewErrParamMinLen("SSHPublicKey", 256))
+	if s.SSHPublicKey != nil && len(*s.SSHPublicKey) < 80 {
+		invalidParams.Add(request.NewErrParamMinLen("SSHPublicKey", 80))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -554,12 +735,20 @@ type SendSSHPublicKeyOutput struct {
 	Success *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendSSHPublicKeyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendSSHPublicKeyOutput) GoString() string {
 	return s.String()
 }
@@ -590,7 +779,7 @@ type SendSerialConsoleSSHPublicKeyInput struct {
 	// in the Amazon EC2 User Guide.
 	//
 	// SSHPublicKey is a required field
-	SSHPublicKey *string `min:"256" type:"string" required:"true"`
+	SSHPublicKey *string `min:"80" type:"string" required:"true"`
 
 	// The serial port of the EC2 instance. Currently only port 0 is supported.
 	//
@@ -598,12 +787,20 @@ type SendSerialConsoleSSHPublicKeyInput struct {
 	SerialPort *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendSerialConsoleSSHPublicKeyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendSerialConsoleSSHPublicKeyInput) GoString() string {
 	return s.String()
 }
@@ -620,8 +817,8 @@ func (s *SendSerialConsoleSSHPublicKeyInput) Validate() error {
 	if s.SSHPublicKey == nil {
 		invalidParams.Add(request.NewErrParamRequired("SSHPublicKey"))
 	}
-	if s.SSHPublicKey != nil && len(*s.SSHPublicKey) < 256 {
-		invalidParams.Add(request.NewErrParamMinLen("SSHPublicKey", 256))
+	if s.SSHPublicKey != nil && len(*s.SSHPublicKey) < 80 {
+		invalidParams.Add(request.NewErrParamMinLen("SSHPublicKey", 80))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -659,12 +856,20 @@ type SendSerialConsoleSSHPublicKeyOutput struct {
 	Success *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendSerialConsoleSSHPublicKeyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendSerialConsoleSSHPublicKeyOutput) GoString() string {
 	return s.String()
 }
@@ -692,12 +897,20 @@ type SerialConsoleAccessDisabledException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SerialConsoleAccessDisabledException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SerialConsoleAccessDisabledException) GoString() string {
 	return s.String()
 }
@@ -749,12 +962,20 @@ type SerialConsoleSessionLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SerialConsoleSessionLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SerialConsoleSessionLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -805,12 +1026,20 @@ type SerialConsoleSessionUnavailableException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SerialConsoleSessionUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SerialConsoleSessionUnavailableException) GoString() string {
 	return s.String()
 }
@@ -862,12 +1091,20 @@ type ServiceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceException) GoString() string {
 	return s.String()
 }
@@ -920,12 +1157,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }

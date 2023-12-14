@@ -100,6 +100,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeactivateAnomalyDetector":{
+      "name":"DeactivateAnomalyDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeactivateAnomalyDetector"
+      },
+      "input":{"shape":"DeactivateAnomalyDetectorRequest"},
+      "output":{"shape":"DeactivateAnomalyDetectorResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteAlert":{
       "name":"DeleteAlert",
       "http":{
@@ -197,6 +214,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DetectMetricSetConfig":{
+      "name":"DetectMetricSetConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DetectMetricSetConfig"
+      },
+      "input":{"shape":"DetectMetricSetConfigRequest"},
+      "output":{"shape":"DetectMetricSetConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "GetAnomalyGroup":{
       "name":"GetAnomalyGroup",
       "http":{
@@ -211,6 +244,22 @@
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "GetDataQualityMetrics":{
+      "name":"GetDataQualityMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetDataQualityMetrics"
+      },
+      "input":{"shape":"GetDataQualityMetricsRequest"},
+      "output":{"shape":"GetDataQualityMetricsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetFeedback":{
@@ -275,6 +324,22 @@
         {"shape":"AccessDeniedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "ListAnomalyGroupRelatedMetrics":{
+      "name":"ListAnomalyGroupRelatedMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListAnomalyGroupRelatedMetrics"
+      },
+      "input":{"shape":"ListAnomalyGroupRelatedMetricsRequest"},
+      "output":{"shape":"ListAnomalyGroupRelatedMetricsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListAnomalyGroupSummaries":{
@@ -386,6 +451,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateAlert":{
+      "name":"UpdateAlert",
+      "http":{
+        "method":"POST",
+        "requestUri":"/UpdateAlert"
+      },
+      "input":{"shape":"UpdateAlertRequest"},
+      "output":{"shape":"UpdateAlertResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "UpdateAnomalyDetector":{
       "name":"UpdateAnomalyDetector",
       "http":{
@@ -415,7 +496,8 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     }
   },
@@ -467,13 +549,21 @@
         "AlertType":{"shape":"AlertType"},
         "AlertStatus":{"shape":"AlertStatus"},
         "LastModificationTime":{"shape":"Timestamp"},
-        "CreationTime":{"shape":"Timestamp"}
+        "CreationTime":{"shape":"Timestamp"},
+        "AlertFilters":{"shape":"AlertFilters"}
       }
     },
     "AlertDescription":{
       "type":"string",
       "max":256,
       "pattern":".*\\S.*"
+    },
+    "AlertFilters":{
+      "type":"structure",
+      "members":{
+        "MetricList":{"shape":"MetricNameList"},
+        "DimensionFilterList":{"shape":"DimensionFilterList"}
+      }
     },
     "AlertName":{
       "type":"string",
@@ -541,11 +631,31 @@
         "AnomalyDetectorFrequency":{"shape":"Frequency"}
       }
     },
+    "AnomalyDetectorDataQualityMetric":{
+      "type":"structure",
+      "members":{
+        "StartTimestamp":{"shape":"Timestamp"},
+        "MetricSetDataQualityMetricList":{"shape":"MetricSetDataQualityMetricList"}
+      }
+    },
+    "AnomalyDetectorDataQualityMetricList":{
+      "type":"list",
+      "member":{"shape":"AnomalyDetectorDataQualityMetric"}
+    },
     "AnomalyDetectorDescription":{
       "type":"string",
       "max":256,
       "min":1,
       "pattern":".*\\S.*"
+    },
+    "AnomalyDetectorFailureType":{
+      "type":"string",
+      "enum":[
+        "ACTIVATION_FAILURE",
+        "BACK_TEST_ACTIVATION_FAILURE",
+        "DELETION_FAILURE",
+        "DEACTIVATION_FAILURE"
+      ]
     },
     "AnomalyDetectorName":{
       "type":"string",
@@ -564,7 +674,9 @@
         "LEARNING",
         "BACK_TEST_ACTIVATING",
         "BACK_TEST_ACTIVE",
-        "BACK_TEST_COMPLETE"
+        "BACK_TEST_COMPLETE",
+        "DEACTIVATED",
+        "DEACTIVATING"
       ]
     },
     "AnomalyDetectorSummary":{
@@ -639,10 +751,6 @@
     },
     "AppFlowConfig":{
       "type":"structure",
-      "required":[
-        "RoleArn",
-        "FlowName"
-      ],
       "members":{
         "RoleArn":{"shape":"Arn"},
         "FlowName":{"shape":"FlowName"}
@@ -652,6 +760,71 @@
       "type":"string",
       "max":256,
       "pattern":"arn:([a-z\\d-]+):.*:.*:.*:.+"
+    },
+    "AthenaDataCatalog":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "AthenaDatabaseName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_]+"
+    },
+    "AthenaS3ResultsPath":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^s3://[a-z0-9].+$"
+    },
+    "AthenaSourceConfig":{
+      "type":"structure",
+      "members":{
+        "RoleArn":{"shape":"Arn"},
+        "DatabaseName":{"shape":"AthenaDatabaseName"},
+        "DataCatalog":{"shape":"AthenaDataCatalog"},
+        "TableName":{"shape":"AthenaTableName"},
+        "WorkGroupName":{"shape":"AthenaWorkGroupName"},
+        "S3ResultsPath":{"shape":"AthenaS3ResultsPath"},
+        "BackTestConfiguration":{"shape":"BackTestConfiguration"}
+      }
+    },
+    "AthenaTableName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_]+"
+    },
+    "AthenaWorkGroupName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9._-]{1,128}"
+    },
+    "AttributeValue":{
+      "type":"structure",
+      "members":{
+        "S":{"shape":"StringAttributeValue"},
+        "N":{"shape":"NumberAttributeValue"},
+        "B":{"shape":"BinaryAttributeValue"},
+        "SS":{"shape":"StringListAttributeValue"},
+        "NS":{"shape":"NumberListAttributeValue"},
+        "BS":{"shape":"BinaryListAttributeValue"}
+      }
+    },
+    "AutoDetectionMetricSource":{
+      "type":"structure",
+      "members":{
+        "S3SourceConfig":{"shape":"AutoDetectionS3SourceConfig"}
+      }
+    },
+    "AutoDetectionS3SourceConfig":{
+      "type":"structure",
+      "members":{
+        "TemplatedPathList":{"shape":"TemplatedPathList"},
+        "HistoricalDataPathList":{"shape":"HistoricalDataPathList"}
+      }
     },
     "BackTestAnomalyDetectorRequest":{
       "type":"structure",
@@ -664,6 +837,18 @@
       "type":"structure",
       "members":{
       }
+    },
+    "BackTestConfiguration":{
+      "type":"structure",
+      "required":["RunBackTestMode"],
+      "members":{
+        "RunBackTestMode":{"shape":"Boolean"}
+      }
+    },
+    "BinaryAttributeValue":{"type":"string"},
+    "BinaryListAttributeValue":{
+      "type":"list",
+      "member":{"shape":"BinaryAttributeValue"}
     },
     "Boolean":{"type":"boolean"},
     "CSVFileCompression":{
@@ -680,9 +865,9 @@
     },
     "CloudWatchConfig":{
       "type":"structure",
-      "required":["RoleArn"],
       "members":{
-        "RoleArn":{"shape":"Arn"}
+        "RoleArn":{"shape":"Arn"},
+        "BackTestConfiguration":{"shape":"BackTestConfiguration"}
       }
     },
     "ColumnName":{
@@ -690,6 +875,14 @@
       "max":63,
       "min":1,
       "pattern":"^[a-zA-Z0-9][a-zA-Z0-9\\-_]*"
+    },
+    "Confidence":{
+      "type":"string",
+      "enum":[
+        "HIGH",
+        "LOW",
+        "NONE"
+      ]
     },
     "ConflictException":{
       "type":"structure",
@@ -712,7 +905,6 @@
       "type":"structure",
       "required":[
         "AlertName",
-        "AlertSensitivityThreshold",
         "AnomalyDetectorArn",
         "Action"
       ],
@@ -722,7 +914,8 @@
         "AlertDescription":{"shape":"AlertDescription"},
         "AnomalyDetectorArn":{"shape":"Arn"},
         "Action":{"shape":"Action"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "AlertFilters":{"shape":"AlertFilters"}
       }
     },
     "CreateAlertResponse":{
@@ -773,7 +966,8 @@
         "MetricSetFrequency":{"shape":"Frequency"},
         "MetricSource":{"shape":"MetricSource"},
         "Timezone":{"shape":"Timezone"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "DimensionFilterList":{"shape":"MetricSetDimensionFilterList"}
       }
     },
     "CreateMetricSetResponse":{
@@ -794,6 +988,40 @@
       }
     },
     "DataItem":{"type":"string"},
+    "DataQualityMetric":{
+      "type":"structure",
+      "members":{
+        "MetricType":{"shape":"DataQualityMetricType"},
+        "MetricDescription":{"shape":"DataQualityMetricDescription"},
+        "RelatedColumnName":{"shape":"RelatedColumnName"},
+        "MetricValue":{"shape":"Double"}
+      }
+    },
+    "DataQualityMetricDescription":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "DataQualityMetricList":{
+      "type":"list",
+      "member":{"shape":"DataQualityMetric"}
+    },
+    "DataQualityMetricType":{
+      "type":"string",
+      "enum":[
+        "COLUMN_COMPLETENESS",
+        "DIMENSION_UNIQUENESS",
+        "TIME_SERIES_COUNT",
+        "ROWS_PROCESSED",
+        "ROWS_PARTIAL_COMPLIANCE",
+        "INVALID_ROWS_COMPLIANCE",
+        "BACKTEST_TRAINING_DATA_START_TIME_STAMP",
+        "BACKTEST_TRAINING_DATA_END_TIME_STAMP",
+        "BACKTEST_INFERENCE_DATA_START_TIME_STAMP",
+        "BACKTEST_INFERENCE_DATA_END_TIME_STAMP"
+      ]
+    },
     "DatabaseHost":{
       "type":"string",
       "max":253,
@@ -809,6 +1037,18 @@
       "type":"string",
       "max":63,
       "pattern":".*\\S.*"
+    },
+    "DeactivateAnomalyDetectorRequest":{
+      "type":"structure",
+      "required":["AnomalyDetectorArn"],
+      "members":{
+        "AnomalyDetectorArn":{"shape":"Arn"}
+      }
+    },
+    "DeactivateAnomalyDetectorResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeleteAlertRequest":{
       "type":"structure",
@@ -890,7 +1130,8 @@
         "LastModificationTime":{"shape":"Timestamp"},
         "Status":{"shape":"AnomalyDetectorStatus"},
         "FailureReason":{"shape":"ErrorMessage"},
-        "KmsKeyArn":{"shape":"KmsKeyArn"}
+        "KmsKeyArn":{"shape":"KmsKeyArn"},
+        "FailureType":{"shape":"AnomalyDetectorFailureType"}
       }
     },
     "DescribeMetricSetRequest":{
@@ -918,7 +1159,78 @@
         "DimensionList":{"shape":"DimensionList"},
         "MetricSetFrequency":{"shape":"Frequency"},
         "Timezone":{"shape":"Timezone"},
-        "MetricSource":{"shape":"MetricSource"}
+        "MetricSource":{"shape":"MetricSource"},
+        "DimensionFilterList":{"shape":"MetricSetDimensionFilterList"}
+      }
+    },
+    "DetectMetricSetConfigRequest":{
+      "type":"structure",
+      "required":[
+        "AnomalyDetectorArn",
+        "AutoDetectionMetricSource"
+      ],
+      "members":{
+        "AnomalyDetectorArn":{"shape":"Arn"},
+        "AutoDetectionMetricSource":{"shape":"AutoDetectionMetricSource"}
+      }
+    },
+    "DetectMetricSetConfigResponse":{
+      "type":"structure",
+      "members":{
+        "DetectedMetricSetConfig":{"shape":"DetectedMetricSetConfig"}
+      }
+    },
+    "DetectedCsvFormatDescriptor":{
+      "type":"structure",
+      "members":{
+        "FileCompression":{"shape":"DetectedField"},
+        "Charset":{"shape":"DetectedField"},
+        "ContainsHeader":{"shape":"DetectedField"},
+        "Delimiter":{"shape":"DetectedField"},
+        "HeaderList":{"shape":"DetectedField"},
+        "QuoteSymbol":{"shape":"DetectedField"}
+      }
+    },
+    "DetectedField":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"AttributeValue"},
+        "Confidence":{"shape":"Confidence"},
+        "Message":{"shape":"Message"}
+      }
+    },
+    "DetectedFileFormatDescriptor":{
+      "type":"structure",
+      "members":{
+        "CsvFormatDescriptor":{"shape":"DetectedCsvFormatDescriptor"},
+        "JsonFormatDescriptor":{"shape":"DetectedJsonFormatDescriptor"}
+      }
+    },
+    "DetectedJsonFormatDescriptor":{
+      "type":"structure",
+      "members":{
+        "FileCompression":{"shape":"DetectedField"},
+        "Charset":{"shape":"DetectedField"}
+      }
+    },
+    "DetectedMetricSetConfig":{
+      "type":"structure",
+      "members":{
+        "Offset":{"shape":"DetectedField"},
+        "MetricSetFrequency":{"shape":"DetectedField"},
+        "MetricSource":{"shape":"DetectedMetricSource"}
+      }
+    },
+    "DetectedMetricSource":{
+      "type":"structure",
+      "members":{
+        "S3SourceConfig":{"shape":"DetectedS3SourceConfig"}
+      }
+    },
+    "DetectedS3SourceConfig":{
+      "type":"structure",
+      "members":{
+        "FileFormatDescriptor":{"shape":"DetectedFileFormatDescriptor"}
       }
     },
     "DimensionContribution":{
@@ -931,6 +1243,19 @@
     "DimensionContributionList":{
       "type":"list",
       "member":{"shape":"DimensionContribution"}
+    },
+    "DimensionFilter":{
+      "type":"structure",
+      "members":{
+        "DimensionName":{"shape":"ColumnName"},
+        "DimensionValueList":{"shape":"DimensionValueList"}
+      }
+    },
+    "DimensionFilterList":{
+      "type":"list",
+      "member":{"shape":"DimensionFilter"},
+      "max":5,
+      "min":1
     },
     "DimensionList":{
       "type":"list",
@@ -964,6 +1289,13 @@
       "type":"list",
       "member":{"shape":"DimensionValueContribution"}
     },
+    "DimensionValueList":{
+      "type":"list",
+      "member":{"shape":"DimensionValue"},
+      "max":10,
+      "min":1
+    },
+    "Double":{"type":"double"},
     "ErrorMessage":{
       "type":"string",
       "max":256
@@ -987,6 +1319,22 @@
         "CsvFormatDescriptor":{"shape":"CsvFormatDescriptor"},
         "JsonFormatDescriptor":{"shape":"JsonFormatDescriptor"}
       }
+    },
+    "Filter":{
+      "type":"structure",
+      "members":{
+        "DimensionValue":{"shape":"DimensionValue"},
+        "FilterOperation":{"shape":"FilterOperation"}
+      }
+    },
+    "FilterList":{
+      "type":"list",
+      "member":{"shape":"Filter"},
+      "min":1
+    },
+    "FilterOperation":{
+      "type":"string",
+      "enum":["EQUALS"]
     },
     "FlowName":{
       "type":"string",
@@ -1017,6 +1365,20 @@
       "type":"structure",
       "members":{
         "AnomalyGroup":{"shape":"AnomalyGroup"}
+      }
+    },
+    "GetDataQualityMetricsRequest":{
+      "type":"structure",
+      "required":["AnomalyDetectorArn"],
+      "members":{
+        "AnomalyDetectorArn":{"shape":"Arn"},
+        "MetricSetArn":{"shape":"Arn"}
+      }
+    },
+    "GetDataQualityMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "AnomalyDetectorDataQualityMetricList":{"shape":"AnomalyDetectorDataQualityMetricList"}
       }
     },
     "GetFeedbackRequest":{
@@ -1076,6 +1438,19 @@
       "min":1
     },
     "Integer":{"type":"integer"},
+    "InterMetricImpactDetails":{
+      "type":"structure",
+      "members":{
+        "MetricName":{"shape":"MetricName"},
+        "AnomalyGroupId":{"shape":"UUID"},
+        "RelationshipType":{"shape":"RelationshipType"},
+        "ContributionPercentage":{"shape":"MetricChangePercentage"}
+      }
+    },
+    "InterMetricImpactList":{
+      "type":"list",
+      "member":{"shape":"InterMetricImpactDetails"}
+    },
     "InternalServerException":{
       "type":"structure",
       "required":["Message"],
@@ -1160,6 +1535,30 @@
       "type":"structure",
       "members":{
         "AnomalyDetectorSummaryList":{"shape":"AnomalyDetectorSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAnomalyGroupRelatedMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "AnomalyDetectorArn",
+        "AnomalyGroupId"
+      ],
+      "members":{
+        "AnomalyDetectorArn":{"shape":"Arn"},
+        "AnomalyGroupId":{"shape":"UUID"},
+        "RelationshipTypeFilter":{"shape":"RelationshipType"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAnomalyGroupRelatedMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "InterMetricImpactList":{"shape":"InterMetricImpactList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1271,6 +1670,11 @@
         "Namespace":{"shape":"Namespace"}
       }
     },
+    "MetricChangePercentage":{
+      "type":"double",
+      "max":100.0,
+      "min":0.0
+    },
     "MetricLevelImpact":{
       "type":"structure",
       "members":{
@@ -1293,11 +1697,39 @@
       "max":256,
       "pattern":"^[a-zA-Z0-9][a-zA-Z0-9\\-_]*"
     },
+    "MetricNameList":{
+      "type":"list",
+      "member":{"shape":"MetricName"},
+      "max":5,
+      "min":1
+    },
+    "MetricSetDataQualityMetric":{
+      "type":"structure",
+      "members":{
+        "MetricSetArn":{"shape":"Arn"},
+        "DataQualityMetricList":{"shape":"DataQualityMetricList"}
+      }
+    },
+    "MetricSetDataQualityMetricList":{
+      "type":"list",
+      "member":{"shape":"MetricSetDataQualityMetric"}
+    },
     "MetricSetDescription":{
       "type":"string",
       "max":256,
       "min":1,
       "pattern":".*\\S.*"
+    },
+    "MetricSetDimensionFilter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ColumnName"},
+        "FilterList":{"shape":"FilterList"}
+      }
+    },
+    "MetricSetDimensionFilterList":{
+      "type":"list",
+      "member":{"shape":"MetricSetDimensionFilter"}
     },
     "MetricSetName":{
       "type":"string",
@@ -1328,7 +1760,8 @@
         "AppFlowConfig":{"shape":"AppFlowConfig"},
         "CloudWatchConfig":{"shape":"CloudWatchConfig"},
         "RDSSourceConfig":{"shape":"RDSSourceConfig"},
-        "RedshiftSourceConfig":{"shape":"RedshiftSourceConfig"}
+        "RedshiftSourceConfig":{"shape":"RedshiftSourceConfig"},
+        "AthenaSourceConfig":{"shape":"AthenaSourceConfig"}
       }
     },
     "MetricValue":{"type":"double"},
@@ -1347,6 +1780,11 @@
       "max":3000,
       "min":1,
       "pattern":".*\\S.*"
+    },
+    "NumberAttributeValue":{"type":"string"},
+    "NumberListAttributeValue":{
+      "type":"list",
+      "member":{"shape":"NumberAttributeValue"}
     },
     "Offset":{
       "type":"integer",
@@ -1394,16 +1832,6 @@
     },
     "RDSSourceConfig":{
       "type":"structure",
-      "required":[
-        "DBInstanceIdentifier",
-        "DatabaseHost",
-        "DatabasePort",
-        "SecretManagerArn",
-        "DatabaseName",
-        "TableName",
-        "RoleArn",
-        "VpcConfiguration"
-      ],
       "members":{
         "DBInstanceIdentifier":{"shape":"RDSDatabaseIdentifier"},
         "DatabaseHost":{"shape":"DatabaseHost"},
@@ -1432,16 +1860,6 @@
     },
     "RedshiftSourceConfig":{
       "type":"structure",
-      "required":[
-        "ClusterIdentifier",
-        "DatabaseHost",
-        "DatabasePort",
-        "SecretManagerArn",
-        "DatabaseName",
-        "TableName",
-        "RoleArn",
-        "VpcConfiguration"
-      ],
       "members":{
         "ClusterIdentifier":{"shape":"RedshiftClusterIdentifier"},
         "DatabaseHost":{"shape":"DatabaseHost"},
@@ -1455,6 +1873,19 @@
         "RoleArn":{"shape":"Arn"},
         "VpcConfiguration":{"shape":"VpcConfiguration"}
       }
+    },
+    "RelatedColumnName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "RelationshipType":{
+      "type":"string",
+      "enum":[
+        "CAUSE_OF_INPUT_ANOMALY_GROUP",
+        "EFFECT_OF_INPUT_ANOMALY_GROUP"
+      ]
     },
     "ResourceId":{"type":"string"},
     "ResourceNotFoundException":{
@@ -1471,7 +1902,6 @@
     "ResourceType":{"type":"string"},
     "S3SourceConfig":{
       "type":"structure",
-      "required":["RoleArn"],
       "members":{
         "RoleArn":{"shape":"Arn"},
         "TemplatedPathList":{"shape":"TemplatedPathList"},
@@ -1487,7 +1917,8 @@
       ],
       "members":{
         "RoleArn":{"shape":"Arn"},
-        "SnsTopicArn":{"shape":"Arn"}
+        "SnsTopicArn":{"shape":"Arn"},
+        "SnsFormat":{"shape":"SnsFormat"}
       }
     },
     "SampleDataS3SourceConfig":{
@@ -1544,6 +1975,19 @@
       },
       "error":{"httpStatusCode":402},
       "exception":true
+    },
+    "SnsFormat":{
+      "type":"string",
+      "enum":[
+        "LONG_TEXT",
+        "SHORT_TEXT",
+        "JSON"
+      ]
+    },
+    "StringAttributeValue":{"type":"string"},
+    "StringListAttributeValue":{
+      "type":"list",
+      "member":{"shape":"StringAttributeValue"}
     },
     "SubnetId":{
       "type":"string",
@@ -1709,6 +2153,23 @@
       "members":{
       }
     },
+    "UpdateAlertRequest":{
+      "type":"structure",
+      "required":["AlertArn"],
+      "members":{
+        "AlertArn":{"shape":"Arn"},
+        "AlertDescription":{"shape":"AlertDescription"},
+        "AlertSensitivityThreshold":{"shape":"SensitivityThreshold"},
+        "Action":{"shape":"Action"},
+        "AlertFilters":{"shape":"AlertFilters"}
+      }
+    },
+    "UpdateAlertResponse":{
+      "type":"structure",
+      "members":{
+        "AlertArn":{"shape":"Arn"}
+      }
+    },
     "UpdateAnomalyDetectorRequest":{
       "type":"structure",
       "required":["AnomalyDetectorArn"],
@@ -1739,7 +2200,8 @@
         "TimestampColumn":{"shape":"TimestampColumn"},
         "DimensionList":{"shape":"DimensionList"},
         "MetricSetFrequency":{"shape":"Frequency"},
-        "MetricSource":{"shape":"MetricSource"}
+        "MetricSource":{"shape":"MetricSource"},
+        "DimensionFilterList":{"shape":"MetricSetDimensionFilterList"}
       }
     },
     "UpdateMetricSetResponse":{

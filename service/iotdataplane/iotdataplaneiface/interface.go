@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS IoT Data Plane.
-//    func myFunc(svc iotdataplaneiface.IoTDataPlaneAPI) bool {
-//        // Make svc.DeleteThingShadow request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS IoT Data Plane.
+//	func myFunc(svc iotdataplaneiface.IoTDataPlaneAPI) bool {
+//	    // Make svc.DeleteThingShadow request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := iotdataplane.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := iotdataplane.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockIoTDataPlaneClient struct {
-//        iotdataplaneiface.IoTDataPlaneAPI
-//    }
-//    func (m *mockIoTDataPlaneClient) DeleteThingShadow(input *iotdataplane.DeleteThingShadowInput) (*iotdataplane.DeleteThingShadowOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockIoTDataPlaneClient struct {
+//	    iotdataplaneiface.IoTDataPlaneAPI
+//	}
+//	func (m *mockIoTDataPlaneClient) DeleteThingShadow(input *iotdataplane.DeleteThingShadowInput) (*iotdataplane.DeleteThingShadowOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockIoTDataPlaneClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockIoTDataPlaneClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -64,6 +64,10 @@ type IoTDataPlaneAPI interface {
 	DeleteThingShadowWithContext(aws.Context, *iotdataplane.DeleteThingShadowInput, ...request.Option) (*iotdataplane.DeleteThingShadowOutput, error)
 	DeleteThingShadowRequest(*iotdataplane.DeleteThingShadowInput) (*request.Request, *iotdataplane.DeleteThingShadowOutput)
 
+	GetRetainedMessage(*iotdataplane.GetRetainedMessageInput) (*iotdataplane.GetRetainedMessageOutput, error)
+	GetRetainedMessageWithContext(aws.Context, *iotdataplane.GetRetainedMessageInput, ...request.Option) (*iotdataplane.GetRetainedMessageOutput, error)
+	GetRetainedMessageRequest(*iotdataplane.GetRetainedMessageInput) (*request.Request, *iotdataplane.GetRetainedMessageOutput)
+
 	GetThingShadow(*iotdataplane.GetThingShadowInput) (*iotdataplane.GetThingShadowOutput, error)
 	GetThingShadowWithContext(aws.Context, *iotdataplane.GetThingShadowInput, ...request.Option) (*iotdataplane.GetThingShadowOutput, error)
 	GetThingShadowRequest(*iotdataplane.GetThingShadowInput) (*request.Request, *iotdataplane.GetThingShadowOutput)
@@ -71,6 +75,13 @@ type IoTDataPlaneAPI interface {
 	ListNamedShadowsForThing(*iotdataplane.ListNamedShadowsForThingInput) (*iotdataplane.ListNamedShadowsForThingOutput, error)
 	ListNamedShadowsForThingWithContext(aws.Context, *iotdataplane.ListNamedShadowsForThingInput, ...request.Option) (*iotdataplane.ListNamedShadowsForThingOutput, error)
 	ListNamedShadowsForThingRequest(*iotdataplane.ListNamedShadowsForThingInput) (*request.Request, *iotdataplane.ListNamedShadowsForThingOutput)
+
+	ListRetainedMessages(*iotdataplane.ListRetainedMessagesInput) (*iotdataplane.ListRetainedMessagesOutput, error)
+	ListRetainedMessagesWithContext(aws.Context, *iotdataplane.ListRetainedMessagesInput, ...request.Option) (*iotdataplane.ListRetainedMessagesOutput, error)
+	ListRetainedMessagesRequest(*iotdataplane.ListRetainedMessagesInput) (*request.Request, *iotdataplane.ListRetainedMessagesOutput)
+
+	ListRetainedMessagesPages(*iotdataplane.ListRetainedMessagesInput, func(*iotdataplane.ListRetainedMessagesOutput, bool) bool) error
+	ListRetainedMessagesPagesWithContext(aws.Context, *iotdataplane.ListRetainedMessagesInput, func(*iotdataplane.ListRetainedMessagesOutput, bool) bool, ...request.Option) error
 
 	Publish(*iotdataplane.PublishInput) (*iotdataplane.PublishOutput, error)
 	PublishWithContext(aws.Context, *iotdataplane.PublishInput, ...request.Option) (*iotdataplane.PublishOutput, error)

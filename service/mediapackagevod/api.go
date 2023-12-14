@@ -28,14 +28,13 @@ const opConfigureLogs = "ConfigureLogs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ConfigureLogsRequest method.
+//	req, resp := client.ConfigureLogsRequest(params)
 //
-//    // Example sending a request using the ConfigureLogsRequest method.
-//    req, resp := client.ConfigureLogsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ConfigureLogs
 func (c *MediaPackageVod) ConfigureLogsRequest(input *ConfigureLogsInput) (req *request.Request, output *ConfigureLogsOutput) {
@@ -56,7 +55,7 @@ func (c *MediaPackageVod) ConfigureLogsRequest(input *ConfigureLogsInput) (req *
 
 // ConfigureLogs API operation for AWS Elemental MediaPackage VOD.
 //
-// Changes the packaging group's properities to configure log subscription
+// # Changes the packaging group's properities to configure log subscription
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -66,17 +65,18 @@ func (c *MediaPackageVod) ConfigureLogsRequest(input *ConfigureLogsInput) (req *
 // API operation ConfigureLogs for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ConfigureLogs
 func (c *MediaPackageVod) ConfigureLogs(input *ConfigureLogsInput) (*ConfigureLogsOutput, error) {
@@ -116,14 +116,13 @@ const opCreateAsset = "CreateAsset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAssetRequest method.
+//	req, resp := client.CreateAssetRequest(params)
 //
-//    // Example sending a request using the CreateAssetRequest method.
-//    req, resp := client.CreateAssetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/CreateAsset
 func (c *MediaPackageVod) CreateAssetRequest(input *CreateAssetInput) (req *request.Request, output *CreateAssetOutput) {
@@ -154,17 +153,18 @@ func (c *MediaPackageVod) CreateAssetRequest(input *CreateAssetInput) (req *requ
 // API operation CreateAsset for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/CreateAsset
 func (c *MediaPackageVod) CreateAsset(input *CreateAssetInput) (*CreateAssetOutput, error) {
@@ -204,14 +204,13 @@ const opCreatePackagingConfiguration = "CreatePackagingConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePackagingConfigurationRequest method.
+//	req, resp := client.CreatePackagingConfigurationRequest(params)
 //
-//    // Example sending a request using the CreatePackagingConfigurationRequest method.
-//    req, resp := client.CreatePackagingConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/CreatePackagingConfiguration
 func (c *MediaPackageVod) CreatePackagingConfigurationRequest(input *CreatePackagingConfigurationInput) (req *request.Request, output *CreatePackagingConfigurationOutput) {
@@ -242,17 +241,18 @@ func (c *MediaPackageVod) CreatePackagingConfigurationRequest(input *CreatePacka
 // API operation CreatePackagingConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/CreatePackagingConfiguration
 func (c *MediaPackageVod) CreatePackagingConfiguration(input *CreatePackagingConfigurationInput) (*CreatePackagingConfigurationOutput, error) {
@@ -292,14 +292,13 @@ const opCreatePackagingGroup = "CreatePackagingGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePackagingGroupRequest method.
+//	req, resp := client.CreatePackagingGroupRequest(params)
 //
-//    // Example sending a request using the CreatePackagingGroupRequest method.
-//    req, resp := client.CreatePackagingGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/CreatePackagingGroup
 func (c *MediaPackageVod) CreatePackagingGroupRequest(input *CreatePackagingGroupInput) (req *request.Request, output *CreatePackagingGroupOutput) {
@@ -330,17 +329,18 @@ func (c *MediaPackageVod) CreatePackagingGroupRequest(input *CreatePackagingGrou
 // API operation CreatePackagingGroup for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/CreatePackagingGroup
 func (c *MediaPackageVod) CreatePackagingGroup(input *CreatePackagingGroupInput) (*CreatePackagingGroupOutput, error) {
@@ -380,14 +380,13 @@ const opDeleteAsset = "DeleteAsset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAssetRequest method.
+//	req, resp := client.DeleteAssetRequest(params)
 //
-//    // Example sending a request using the DeleteAssetRequest method.
-//    req, resp := client.DeleteAssetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DeleteAsset
 func (c *MediaPackageVod) DeleteAssetRequest(input *DeleteAssetInput) (req *request.Request, output *DeleteAssetOutput) {
@@ -419,17 +418,18 @@ func (c *MediaPackageVod) DeleteAssetRequest(input *DeleteAssetInput) (req *requ
 // API operation DeleteAsset for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DeleteAsset
 func (c *MediaPackageVod) DeleteAsset(input *DeleteAssetInput) (*DeleteAssetOutput, error) {
@@ -469,14 +469,13 @@ const opDeletePackagingConfiguration = "DeletePackagingConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePackagingConfigurationRequest method.
+//	req, resp := client.DeletePackagingConfigurationRequest(params)
 //
-//    // Example sending a request using the DeletePackagingConfigurationRequest method.
-//    req, resp := client.DeletePackagingConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DeletePackagingConfiguration
 func (c *MediaPackageVod) DeletePackagingConfigurationRequest(input *DeletePackagingConfigurationInput) (req *request.Request, output *DeletePackagingConfigurationOutput) {
@@ -508,17 +507,18 @@ func (c *MediaPackageVod) DeletePackagingConfigurationRequest(input *DeletePacka
 // API operation DeletePackagingConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DeletePackagingConfiguration
 func (c *MediaPackageVod) DeletePackagingConfiguration(input *DeletePackagingConfigurationInput) (*DeletePackagingConfigurationOutput, error) {
@@ -558,14 +558,13 @@ const opDeletePackagingGroup = "DeletePackagingGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePackagingGroupRequest method.
+//	req, resp := client.DeletePackagingGroupRequest(params)
 //
-//    // Example sending a request using the DeletePackagingGroupRequest method.
-//    req, resp := client.DeletePackagingGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DeletePackagingGroup
 func (c *MediaPackageVod) DeletePackagingGroupRequest(input *DeletePackagingGroupInput) (req *request.Request, output *DeletePackagingGroupOutput) {
@@ -597,17 +596,18 @@ func (c *MediaPackageVod) DeletePackagingGroupRequest(input *DeletePackagingGrou
 // API operation DeletePackagingGroup for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DeletePackagingGroup
 func (c *MediaPackageVod) DeletePackagingGroup(input *DeletePackagingGroupInput) (*DeletePackagingGroupOutput, error) {
@@ -647,14 +647,13 @@ const opDescribeAsset = "DescribeAsset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAssetRequest method.
+//	req, resp := client.DescribeAssetRequest(params)
 //
-//    // Example sending a request using the DescribeAssetRequest method.
-//    req, resp := client.DescribeAssetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DescribeAsset
 func (c *MediaPackageVod) DescribeAssetRequest(input *DescribeAssetInput) (req *request.Request, output *DescribeAssetOutput) {
@@ -685,17 +684,18 @@ func (c *MediaPackageVod) DescribeAssetRequest(input *DescribeAssetInput) (req *
 // API operation DescribeAsset for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DescribeAsset
 func (c *MediaPackageVod) DescribeAsset(input *DescribeAssetInput) (*DescribeAssetOutput, error) {
@@ -735,14 +735,13 @@ const opDescribePackagingConfiguration = "DescribePackagingConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePackagingConfigurationRequest method.
+//	req, resp := client.DescribePackagingConfigurationRequest(params)
 //
-//    // Example sending a request using the DescribePackagingConfigurationRequest method.
-//    req, resp := client.DescribePackagingConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DescribePackagingConfiguration
 func (c *MediaPackageVod) DescribePackagingConfigurationRequest(input *DescribePackagingConfigurationInput) (req *request.Request, output *DescribePackagingConfigurationOutput) {
@@ -773,17 +772,18 @@ func (c *MediaPackageVod) DescribePackagingConfigurationRequest(input *DescribeP
 // API operation DescribePackagingConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DescribePackagingConfiguration
 func (c *MediaPackageVod) DescribePackagingConfiguration(input *DescribePackagingConfigurationInput) (*DescribePackagingConfigurationOutput, error) {
@@ -823,14 +823,13 @@ const opDescribePackagingGroup = "DescribePackagingGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePackagingGroupRequest method.
+//	req, resp := client.DescribePackagingGroupRequest(params)
 //
-//    // Example sending a request using the DescribePackagingGroupRequest method.
-//    req, resp := client.DescribePackagingGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DescribePackagingGroup
 func (c *MediaPackageVod) DescribePackagingGroupRequest(input *DescribePackagingGroupInput) (req *request.Request, output *DescribePackagingGroupOutput) {
@@ -861,17 +860,18 @@ func (c *MediaPackageVod) DescribePackagingGroupRequest(input *DescribePackaging
 // API operation DescribePackagingGroup for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/DescribePackagingGroup
 func (c *MediaPackageVod) DescribePackagingGroup(input *DescribePackagingGroupInput) (*DescribePackagingGroupOutput, error) {
@@ -911,14 +911,13 @@ const opListAssets = "ListAssets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAssetsRequest method.
+//	req, resp := client.ListAssetsRequest(params)
 //
-//    // Example sending a request using the ListAssetsRequest method.
-//    req, resp := client.ListAssetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ListAssets
 func (c *MediaPackageVod) ListAssetsRequest(input *ListAssetsInput) (req *request.Request, output *ListAssetsOutput) {
@@ -955,17 +954,18 @@ func (c *MediaPackageVod) ListAssetsRequest(input *ListAssetsInput) (req *reques
 // API operation ListAssets for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ListAssets
 func (c *MediaPackageVod) ListAssets(input *ListAssetsInput) (*ListAssetsOutput, error) {
@@ -997,15 +997,14 @@ func (c *MediaPackageVod) ListAssetsWithContext(ctx aws.Context, input *ListAsse
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAssets operation.
-//    pageNum := 0
-//    err := client.ListAssetsPages(params,
-//        func(page *mediapackagevod.ListAssetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAssets operation.
+//	pageNum := 0
+//	err := client.ListAssetsPages(params,
+//	    func(page *mediapackagevod.ListAssetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *MediaPackageVod) ListAssetsPages(input *ListAssetsInput, fn func(*ListAssetsOutput, bool) bool) error {
 	return c.ListAssetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1057,14 +1056,13 @@ const opListPackagingConfigurations = "ListPackagingConfigurations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPackagingConfigurationsRequest method.
+//	req, resp := client.ListPackagingConfigurationsRequest(params)
 //
-//    // Example sending a request using the ListPackagingConfigurationsRequest method.
-//    req, resp := client.ListPackagingConfigurationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ListPackagingConfigurations
 func (c *MediaPackageVod) ListPackagingConfigurationsRequest(input *ListPackagingConfigurationsInput) (req *request.Request, output *ListPackagingConfigurationsOutput) {
@@ -1101,17 +1099,18 @@ func (c *MediaPackageVod) ListPackagingConfigurationsRequest(input *ListPackagin
 // API operation ListPackagingConfigurations for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ListPackagingConfigurations
 func (c *MediaPackageVod) ListPackagingConfigurations(input *ListPackagingConfigurationsInput) (*ListPackagingConfigurationsOutput, error) {
@@ -1143,15 +1142,14 @@ func (c *MediaPackageVod) ListPackagingConfigurationsWithContext(ctx aws.Context
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPackagingConfigurations operation.
-//    pageNum := 0
-//    err := client.ListPackagingConfigurationsPages(params,
-//        func(page *mediapackagevod.ListPackagingConfigurationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPackagingConfigurations operation.
+//	pageNum := 0
+//	err := client.ListPackagingConfigurationsPages(params,
+//	    func(page *mediapackagevod.ListPackagingConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *MediaPackageVod) ListPackagingConfigurationsPages(input *ListPackagingConfigurationsInput, fn func(*ListPackagingConfigurationsOutput, bool) bool) error {
 	return c.ListPackagingConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1203,14 +1201,13 @@ const opListPackagingGroups = "ListPackagingGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPackagingGroupsRequest method.
+//	req, resp := client.ListPackagingGroupsRequest(params)
 //
-//    // Example sending a request using the ListPackagingGroupsRequest method.
-//    req, resp := client.ListPackagingGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ListPackagingGroups
 func (c *MediaPackageVod) ListPackagingGroupsRequest(input *ListPackagingGroupsInput) (req *request.Request, output *ListPackagingGroupsOutput) {
@@ -1247,17 +1244,18 @@ func (c *MediaPackageVod) ListPackagingGroupsRequest(input *ListPackagingGroupsI
 // API operation ListPackagingGroups for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ListPackagingGroups
 func (c *MediaPackageVod) ListPackagingGroups(input *ListPackagingGroupsInput) (*ListPackagingGroupsOutput, error) {
@@ -1289,15 +1287,14 @@ func (c *MediaPackageVod) ListPackagingGroupsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPackagingGroups operation.
-//    pageNum := 0
-//    err := client.ListPackagingGroupsPages(params,
-//        func(page *mediapackagevod.ListPackagingGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPackagingGroups operation.
+//	pageNum := 0
+//	err := client.ListPackagingGroupsPages(params,
+//	    func(page *mediapackagevod.ListPackagingGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *MediaPackageVod) ListPackagingGroupsPages(input *ListPackagingGroupsInput, fn func(*ListPackagingGroupsOutput, bool) bool) error {
 	return c.ListPackagingGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1349,14 +1346,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ListTagsForResource
 func (c *MediaPackageVod) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1423,14 +1419,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/TagResource
 func (c *MediaPackageVod) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1499,14 +1494,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/UntagResource
 func (c *MediaPackageVod) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1575,14 +1569,13 @@ const opUpdatePackagingGroup = "UpdatePackagingGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePackagingGroupRequest method.
+//	req, resp := client.UpdatePackagingGroupRequest(params)
 //
-//    // Example sending a request using the UpdatePackagingGroupRequest method.
-//    req, resp := client.UpdatePackagingGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/UpdatePackagingGroup
 func (c *MediaPackageVod) UpdatePackagingGroupRequest(input *UpdatePackagingGroupInput) (req *request.Request, output *UpdatePackagingGroupOutput) {
@@ -1614,17 +1607,18 @@ func (c *MediaPackageVod) UpdatePackagingGroupRequest(input *UpdatePackagingGrou
 // API operation UpdatePackagingGroup for usage and error information.
 //
 // Returned Error Types:
-//   * UnprocessableEntityException
 //
-//   * InternalServerErrorException
+//   - UnprocessableEntityException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/UpdatePackagingGroup
 func (c *MediaPackageVod) UpdatePackagingGroup(input *UpdatePackagingGroupInput) (*UpdatePackagingGroupOutput, error) {
@@ -1677,12 +1671,20 @@ type AssetShallow struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetShallow) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetShallow) GoString() string {
 	return s.String()
 }
@@ -1752,12 +1754,20 @@ type Authorization struct {
 	SecretsRoleArn *string `locationName:"secretsRoleArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Authorization) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Authorization) GoString() string {
 	return s.String()
 }
@@ -1806,12 +1816,20 @@ type CmafEncryption struct {
 	SpekeKeyProvider *SpekeKeyProvider `locationName:"spekeKeyProvider" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CmafEncryption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CmafEncryption) GoString() string {
 	return s.String()
 }
@@ -1870,12 +1888,20 @@ type CmafPackage struct {
 	SegmentDurationSeconds *int64 `locationName:"segmentDurationSeconds" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CmafPackage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CmafPackage) GoString() string {
 	return s.String()
 }
@@ -1932,12 +1958,20 @@ type ConfigureLogsInput struct {
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigureLogsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigureLogsInput) GoString() string {
 	return s.String()
 }
@@ -1978,6 +2012,8 @@ type ConfigureLogsOutput struct {
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	DomainName *string `locationName:"domainName" type:"string"`
 
 	// Configure egress access logging.
@@ -1989,12 +2025,20 @@ type ConfigureLogsOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigureLogsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigureLogsOutput) GoString() string {
 	return s.String()
 }
@@ -2008,6 +2052,12 @@ func (s *ConfigureLogsOutput) SetArn(v string) *ConfigureLogsOutput {
 // SetAuthorization sets the Authorization field's value.
 func (s *ConfigureLogsOutput) SetAuthorization(v *Authorization) *ConfigureLogsOutput {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ConfigureLogsOutput) SetCreatedAt(v string) *ConfigureLogsOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -2056,12 +2106,20 @@ type CreateAssetInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAssetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAssetInput) GoString() string {
 	return s.String()
 }
@@ -2147,12 +2205,20 @@ type CreateAssetOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAssetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAssetOutput) GoString() string {
 	return s.String()
 }
@@ -2236,12 +2302,20 @@ type CreatePackagingConfigurationInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackagingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackagingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -2332,6 +2406,8 @@ type CreatePackagingConfigurationOutput struct {
 	// A CMAF packaging configuration.
 	CmafPackage *CmafPackage `locationName:"cmafPackage" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	// A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration.
 	DashPackage *DashPackage `locationName:"dashPackage" type:"structure"`
 
@@ -2349,12 +2425,20 @@ type CreatePackagingConfigurationOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackagingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackagingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -2368,6 +2452,12 @@ func (s *CreatePackagingConfigurationOutput) SetArn(v string) *CreatePackagingCo
 // SetCmafPackage sets the CmafPackage field's value.
 func (s *CreatePackagingConfigurationOutput) SetCmafPackage(v *CmafPackage) *CreatePackagingConfigurationOutput {
 	s.CmafPackage = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreatePackagingConfigurationOutput) SetCreatedAt(v string) *CreatePackagingConfigurationOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -2423,12 +2513,20 @@ type CreatePackagingGroupInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackagingGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackagingGroupInput) GoString() string {
 	return s.String()
 }
@@ -2483,6 +2581,8 @@ type CreatePackagingGroupOutput struct {
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	DomainName *string `locationName:"domainName" type:"string"`
 
 	// Configure egress access logging.
@@ -2494,12 +2594,20 @@ type CreatePackagingGroupOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackagingGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackagingGroupOutput) GoString() string {
 	return s.String()
 }
@@ -2513,6 +2621,12 @@ func (s *CreatePackagingGroupOutput) SetArn(v string) *CreatePackagingGroupOutpu
 // SetAuthorization sets the Authorization field's value.
 func (s *CreatePackagingGroupOutput) SetAuthorization(v *Authorization) *CreatePackagingGroupOutput {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreatePackagingGroupOutput) SetCreatedAt(v string) *CreatePackagingGroupOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -2551,12 +2665,20 @@ type DashEncryption struct {
 	SpekeKeyProvider *SpekeKeyProvider `locationName:"spekeKeyProvider" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashEncryption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashEncryption) GoString() string {
 	return s.String()
 }
@@ -2606,16 +2728,29 @@ type DashManifest struct {
 	// "HBBTV_1_5", HbbTV 1.5 compliant output is enabled.
 	Profile *string `locationName:"profile" type:"string" enum:"Profile"`
 
+	// The source of scte markers used. When set to SEGMENTS, the scte markers are
+	// sourced from the segments of the ingested content. When set to MANIFEST,
+	// the scte markers are sourced from the manifest of the ingested content.
+	ScteMarkersSource *string `locationName:"scteMarkersSource" type:"string" enum:"ScteMarkersSource"`
+
 	// A StreamSelection configuration.
 	StreamSelection *StreamSelection `locationName:"streamSelection" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashManifest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashManifest) GoString() string {
 	return s.String()
 }
@@ -2644,6 +2779,12 @@ func (s *DashManifest) SetProfile(v string) *DashManifest {
 	return s
 }
 
+// SetScteMarkersSource sets the ScteMarkersSource field's value.
+func (s *DashManifest) SetScteMarkersSource(v string) *DashManifest {
+	s.ScteMarkersSource = &v
+	return s
+}
+
 // SetStreamSelection sets the StreamSelection field's value.
 func (s *DashManifest) SetStreamSelection(v *StreamSelection) *DashManifest {
 	s.StreamSelection = v
@@ -2669,12 +2810,15 @@ type DashPackage struct {
 	// your assets during content playback.
 	IncludeEncoderConfigurationInSegments *bool `locationName:"includeEncoderConfigurationInSegments" type:"boolean"`
 
+	// When enabled, an I-Frame only stream will be included in the output.
+	IncludeIframeOnlyStream *bool `locationName:"includeIframeOnlyStream" type:"boolean"`
+
 	// A list of triggers that controls when the outgoing Dynamic Adaptive Streaming
 	// over HTTP (DASH)Media Presentation Description (MPD) will be partitioned
 	// into multiple periods. If empty, the content will notbe partitioned into
 	// more than one period. If the list contains "ADS", new periods will be created
 	// wherethe Asset contains SCTE-35 ad markers.
-	PeriodTriggers []*string `locationName:"periodTriggers" type:"list"`
+	PeriodTriggers []*string `locationName:"periodTriggers" type:"list" enum:"PeriodTriggersElement"`
 
 	// Duration (in seconds) of each segment. Actual segments will berounded to
 	// the nearest multiple of the source segment duration.
@@ -2689,12 +2833,20 @@ type DashPackage struct {
 	SegmentTemplateFormat *string `locationName:"segmentTemplateFormat" type:"string" enum:"SegmentTemplateFormat"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashPackage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashPackage) GoString() string {
 	return s.String()
 }
@@ -2735,6 +2887,12 @@ func (s *DashPackage) SetIncludeEncoderConfigurationInSegments(v bool) *DashPack
 	return s
 }
 
+// SetIncludeIframeOnlyStream sets the IncludeIframeOnlyStream field's value.
+func (s *DashPackage) SetIncludeIframeOnlyStream(v bool) *DashPackage {
+	s.IncludeIframeOnlyStream = &v
+	return s
+}
+
 // SetPeriodTriggers sets the PeriodTriggers field's value.
 func (s *DashPackage) SetPeriodTriggers(v []*string) *DashPackage {
 	s.PeriodTriggers = v
@@ -2754,18 +2912,26 @@ func (s *DashPackage) SetSegmentTemplateFormat(v string) *DashPackage {
 }
 
 type DeleteAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAssetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAssetInput) GoString() string {
 	return s.String()
 }
@@ -2796,29 +2962,45 @@ type DeleteAssetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAssetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAssetOutput) GoString() string {
 	return s.String()
 }
 
 type DeletePackagingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackagingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackagingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -2849,29 +3031,45 @@ type DeletePackagingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackagingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackagingConfigurationOutput) GoString() string {
 	return s.String()
 }
 
 type DeletePackagingGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackagingGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackagingGroupInput) GoString() string {
 	return s.String()
 }
@@ -2902,29 +3100,45 @@ type DeletePackagingGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackagingGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackagingGroupOutput) GoString() string {
 	return s.String()
 }
 
 type DescribeAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAssetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAssetInput) GoString() string {
 	return s.String()
 }
@@ -2974,12 +3188,20 @@ type DescribeAssetOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAssetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAssetOutput) GoString() string {
 	return s.String()
 }
@@ -3039,18 +3261,26 @@ func (s *DescribeAssetOutput) SetTags(v map[string]*string) *DescribeAssetOutput
 }
 
 type DescribePackagingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -3085,6 +3315,8 @@ type DescribePackagingConfigurationOutput struct {
 	// A CMAF packaging configuration.
 	CmafPackage *CmafPackage `locationName:"cmafPackage" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	// A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration.
 	DashPackage *DashPackage `locationName:"dashPackage" type:"structure"`
 
@@ -3102,12 +3334,20 @@ type DescribePackagingConfigurationOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -3121,6 +3361,12 @@ func (s *DescribePackagingConfigurationOutput) SetArn(v string) *DescribePackagi
 // SetCmafPackage sets the CmafPackage field's value.
 func (s *DescribePackagingConfigurationOutput) SetCmafPackage(v *CmafPackage) *DescribePackagingConfigurationOutput {
 	s.CmafPackage = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribePackagingConfigurationOutput) SetCreatedAt(v string) *DescribePackagingConfigurationOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -3161,18 +3407,26 @@ func (s *DescribePackagingConfigurationOutput) SetTags(v map[string]*string) *De
 }
 
 type DescribePackagingGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagingGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagingGroupInput) GoString() string {
 	return s.String()
 }
@@ -3202,10 +3456,14 @@ func (s *DescribePackagingGroupInput) SetId(v string) *DescribePackagingGroupInp
 type DescribePackagingGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	ApproximateAssetCount *int64 `locationName:"approximateAssetCount" type:"integer"`
+
 	Arn *string `locationName:"arn" type:"string"`
 
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
+	CreatedAt *string `locationName:"createdAt" type:"string"`
 
 	DomainName *string `locationName:"domainName" type:"string"`
 
@@ -3218,14 +3476,28 @@ type DescribePackagingGroupOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagingGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagingGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetApproximateAssetCount sets the ApproximateAssetCount field's value.
+func (s *DescribePackagingGroupOutput) SetApproximateAssetCount(v int64) *DescribePackagingGroupOutput {
+	s.ApproximateAssetCount = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -3237,6 +3509,12 @@ func (s *DescribePackagingGroupOutput) SetArn(v string) *DescribePackagingGroupO
 // SetAuthorization sets the Authorization field's value.
 func (s *DescribePackagingGroupOutput) SetAuthorization(v *Authorization) *DescribePackagingGroupOutput {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribePackagingGroupOutput) SetCreatedAt(v string) *DescribePackagingGroupOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -3272,12 +3550,20 @@ type EgressAccessLogs struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EgressAccessLogs) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EgressAccessLogs) GoString() string {
 	return s.String()
 }
@@ -3295,16 +3581,29 @@ type EgressEndpoint struct {
 	// The ID of the PackagingConfiguration being applied to the Asset.
 	PackagingConfigurationId *string `locationName:"packagingConfigurationId" type:"string"`
 
+	// The current processing status of the asset used for the packaging configuration.
+	// The status can be either QUEUED, PROCESSING, PLAYABLE, or FAILED. Status
+	// information won't be available for most assets ingested before 2021-09-30.
+	Status *string `locationName:"status" type:"string"`
+
 	// The URL of the parent manifest for the repackaged Asset.
 	Url *string `locationName:"url" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EgressEndpoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EgressEndpoint) GoString() string {
 	return s.String()
 }
@@ -3315,9 +3614,83 @@ func (s *EgressEndpoint) SetPackagingConfigurationId(v string) *EgressEndpoint {
 	return s
 }
 
+// SetStatus sets the Status field's value.
+func (s *EgressEndpoint) SetStatus(v string) *EgressEndpoint {
+	s.Status = &v
+	return s
+}
+
 // SetUrl sets the Url field's value.
 func (s *EgressEndpoint) SetUrl(v string) *EgressEndpoint {
 	s.Url = &v
+	return s
+}
+
+// Use encryptionContractConfiguration to configure one or more content encryption
+// keys for your endpoints that use SPEKE 2.0. The encryption contract defines
+// which content keys are used to encrypt the audio and video tracks in your
+// stream. To configure the encryption contract, specify which audio and video
+// encryption presets to use.Note the following considerations when using encryptionContractConfiguration:encryptionContractConfiguration
+// can be used for DASH endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the
+// CPIX 2.3 specification.You must disable key rotation for this endpoint by
+// setting keyRotationIntervalSeconds to 0.
+type EncryptionContractConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of audio encryption presets.
+	//
+	// PresetSpeke20Audio is a required field
+	PresetSpeke20Audio *string `locationName:"presetSpeke20Audio" type:"string" required:"true" enum:"PresetSpeke20Audio"`
+
+	// A collection of video encryption presets.
+	//
+	// PresetSpeke20Video is a required field
+	PresetSpeke20Video *string `locationName:"presetSpeke20Video" type:"string" required:"true" enum:"PresetSpeke20Video"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionContractConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionContractConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionContractConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionContractConfiguration"}
+	if s.PresetSpeke20Audio == nil {
+		invalidParams.Add(request.NewErrParamRequired("PresetSpeke20Audio"))
+	}
+	if s.PresetSpeke20Video == nil {
+		invalidParams.Add(request.NewErrParamRequired("PresetSpeke20Video"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPresetSpeke20Audio sets the PresetSpeke20Audio field's value.
+func (s *EncryptionContractConfiguration) SetPresetSpeke20Audio(v string) *EncryptionContractConfiguration {
+	s.PresetSpeke20Audio = &v
+	return s
+}
+
+// SetPresetSpeke20Video sets the PresetSpeke20Video field's value.
+func (s *EncryptionContractConfiguration) SetPresetSpeke20Video(v string) *EncryptionContractConfiguration {
+	s.PresetSpeke20Video = &v
 	return s
 }
 
@@ -3328,12 +3701,20 @@ type ForbiddenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) GoString() string {
 	return s.String()
 }
@@ -3394,12 +3775,20 @@ type HlsEncryption struct {
 	SpekeKeyProvider *SpekeKeyProvider `locationName:"spekeKeyProvider" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HlsEncryption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HlsEncryption) GoString() string {
 	return s.String()
 }
@@ -3474,12 +3863,20 @@ type HlsManifest struct {
 	StreamSelection *StreamSelection `locationName:"streamSelection" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HlsManifest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HlsManifest) GoString() string {
 	return s.String()
 }
@@ -3532,6 +3929,10 @@ type HlsPackage struct {
 	// HlsManifests is a required field
 	HlsManifests []*HlsManifest `locationName:"hlsManifests" type:"list" required:"true"`
 
+	// When enabled, MediaPackage passes through digital video broadcasting (DVB)
+	// subtitles into the output.
+	IncludeDvbSubtitles *bool `locationName:"includeDvbSubtitles" type:"boolean"`
+
 	// Duration (in seconds) of each fragment. Actual fragments will berounded to
 	// the nearest multiple of the source fragment duration.
 	SegmentDurationSeconds *int64 `locationName:"segmentDurationSeconds" type:"integer"`
@@ -3540,12 +3941,20 @@ type HlsPackage struct {
 	UseAudioRenditionGroup *bool `locationName:"useAudioRenditionGroup" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HlsPackage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HlsPackage) GoString() string {
 	return s.String()
 }
@@ -3580,6 +3989,12 @@ func (s *HlsPackage) SetHlsManifests(v []*HlsManifest) *HlsPackage {
 	return s
 }
 
+// SetIncludeDvbSubtitles sets the IncludeDvbSubtitles field's value.
+func (s *HlsPackage) SetIncludeDvbSubtitles(v bool) *HlsPackage {
+	s.IncludeDvbSubtitles = &v
+	return s
+}
+
 // SetSegmentDurationSeconds sets the SegmentDurationSeconds field's value.
 func (s *HlsPackage) SetSegmentDurationSeconds(v int64) *HlsPackage {
 	s.SegmentDurationSeconds = &v
@@ -3599,12 +4014,20 @@ type InternalServerErrorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) GoString() string {
 	return s.String()
 }
@@ -3648,7 +4071,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListAssetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -3657,12 +4080,20 @@ type ListAssetsInput struct {
 	PackagingGroupId *string `location:"querystring" locationName:"packagingGroupId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssetsInput) GoString() string {
 	return s.String()
 }
@@ -3706,12 +4137,20 @@ type ListAssetsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssetsOutput) GoString() string {
 	return s.String()
 }
@@ -3729,7 +4168,7 @@ func (s *ListAssetsOutput) SetNextToken(v string) *ListAssetsOutput {
 }
 
 type ListPackagingConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -3738,12 +4177,20 @@ type ListPackagingConfigurationsInput struct {
 	PackagingGroupId *string `location:"querystring" locationName:"packagingGroupId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagingConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagingConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -3787,12 +4234,20 @@ type ListPackagingConfigurationsOutput struct {
 	PackagingConfigurations []*PackagingConfiguration `locationName:"packagingConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagingConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagingConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -3810,19 +4265,27 @@ func (s *ListPackagingConfigurationsOutput) SetPackagingConfigurations(v []*Pack
 }
 
 type ListPackagingGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagingGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagingGroupsInput) GoString() string {
 	return s.String()
 }
@@ -3860,12 +4323,20 @@ type ListPackagingGroupsOutput struct {
 	PackagingGroups []*PackagingGroup `locationName:"packagingGroups" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagingGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagingGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -3883,18 +4354,26 @@ func (s *ListPackagingGroupsOutput) SetPackagingGroups(v []*PackagingGroup) *Lis
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -3927,12 +4406,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3954,12 +4441,20 @@ type MssEncryption struct {
 	SpekeKeyProvider *SpekeKeyProvider `locationName:"spekeKeyProvider" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MssEncryption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MssEncryption) GoString() string {
 	return s.String()
 }
@@ -3999,12 +4494,20 @@ type MssManifest struct {
 	StreamSelection *StreamSelection `locationName:"streamSelection" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MssManifest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MssManifest) GoString() string {
 	return s.String()
 }
@@ -4037,12 +4540,20 @@ type MssPackage struct {
 	SegmentDurationSeconds *int64 `locationName:"segmentDurationSeconds" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MssPackage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MssPackage) GoString() string {
 	return s.String()
 }
@@ -4090,12 +4601,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -4148,6 +4667,9 @@ type PackagingConfiguration struct {
 	// A CMAF packaging configuration.
 	CmafPackage *CmafPackage `locationName:"cmafPackage" type:"structure"`
 
+	// The time the PackagingConfiguration was created.
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	// A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration.
 	DashPackage *DashPackage `locationName:"dashPackage" type:"structure"`
 
@@ -4167,12 +4689,20 @@ type PackagingConfiguration struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackagingConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackagingConfiguration) GoString() string {
 	return s.String()
 }
@@ -4186,6 +4716,12 @@ func (s *PackagingConfiguration) SetArn(v string) *PackagingConfiguration {
 // SetCmafPackage sets the CmafPackage field's value.
 func (s *PackagingConfiguration) SetCmafPackage(v *CmafPackage) *PackagingConfiguration {
 	s.CmafPackage = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PackagingConfiguration) SetCreatedAt(v string) *PackagingConfiguration {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -4229,11 +4765,17 @@ func (s *PackagingConfiguration) SetTags(v map[string]*string) *PackagingConfigu
 type PackagingGroup struct {
 	_ struct{} `type:"structure"`
 
+	// The approximate asset count of the PackagingGroup.
+	ApproximateAssetCount *int64 `locationName:"approximateAssetCount" type:"integer"`
+
 	// The ARN of the PackagingGroup.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
+	// The time the PackagingGroup was created.
+	CreatedAt *string `locationName:"createdAt" type:"string"`
 
 	// The fully qualified domain name for Assets in the PackagingGroup.
 	DomainName *string `locationName:"domainName" type:"string"`
@@ -4248,14 +4790,28 @@ type PackagingGroup struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackagingGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackagingGroup) GoString() string {
 	return s.String()
+}
+
+// SetApproximateAssetCount sets the ApproximateAssetCount field's value.
+func (s *PackagingGroup) SetApproximateAssetCount(v int64) *PackagingGroup {
+	s.ApproximateAssetCount = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -4267,6 +4823,12 @@ func (s *PackagingGroup) SetArn(v string) *PackagingGroup {
 // SetAuthorization sets the Authorization field's value.
 func (s *PackagingGroup) SetAuthorization(v *Authorization) *PackagingGroup {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PackagingGroup) SetCreatedAt(v string) *PackagingGroup {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -4301,12 +4863,20 @@ type ServiceUnavailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -4354,6 +4924,16 @@ func (s *ServiceUnavailableException) RequestID() string {
 type SpekeKeyProvider struct {
 	_ struct{} `type:"structure"`
 
+	// Use encryptionContractConfiguration to configure one or more content encryption
+	// keys for your endpoints that use SPEKE 2.0. The encryption contract defines
+	// which content keys are used to encrypt the audio and video tracks in your
+	// stream. To configure the encryption contract, specify which audio and video
+	// encryption presets to use.Note the following considerations when using encryptionContractConfiguration:encryptionContractConfiguration
+	// can be used for DASH endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the
+	// CPIX 2.3 specification.You must disable key rotation for this endpoint by
+	// setting keyRotationIntervalSeconds to 0.
+	EncryptionContractConfiguration *EncryptionContractConfiguration `locationName:"encryptionContractConfiguration" type:"structure"`
+
 	// An Amazon Resource Name (ARN) of an IAM role that AWS ElementalMediaPackage
 	// will assume when accessing the key provider service.
 	//
@@ -4371,12 +4951,20 @@ type SpekeKeyProvider struct {
 	Url *string `locationName:"url" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SpekeKeyProvider) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SpekeKeyProvider) GoString() string {
 	return s.String()
 }
@@ -4393,11 +4981,22 @@ func (s *SpekeKeyProvider) Validate() error {
 	if s.Url == nil {
 		invalidParams.Add(request.NewErrParamRequired("Url"))
 	}
+	if s.EncryptionContractConfiguration != nil {
+		if err := s.EncryptionContractConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionContractConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEncryptionContractConfiguration sets the EncryptionContractConfiguration field's value.
+func (s *SpekeKeyProvider) SetEncryptionContractConfiguration(v *EncryptionContractConfiguration) *SpekeKeyProvider {
+	s.EncryptionContractConfiguration = v
+	return s
 }
 
 // SetRoleArn sets the RoleArn field's value.
@@ -4432,12 +5031,20 @@ type StreamSelection struct {
 	StreamOrder *string `locationName:"streamOrder" type:"string" enum:"StreamOrder"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StreamSelection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StreamSelection) GoString() string {
 	return s.String()
 }
@@ -4470,12 +5077,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -4515,12 +5130,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -4532,12 +5155,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -4587,12 +5218,20 @@ type UnprocessableEntityException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnprocessableEntityException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnprocessableEntityException) GoString() string {
 	return s.String()
 }
@@ -4636,7 +5275,7 @@ func (s *UnprocessableEntityException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -4645,12 +5284,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -4690,12 +5337,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -4710,12 +5365,20 @@ type UpdatePackagingGroupInput struct {
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePackagingGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePackagingGroupInput) GoString() string {
 	return s.String()
 }
@@ -4756,10 +5419,14 @@ func (s *UpdatePackagingGroupInput) SetId(v string) *UpdatePackagingGroupInput {
 type UpdatePackagingGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	ApproximateAssetCount *int64 `locationName:"approximateAssetCount" type:"integer"`
+
 	Arn *string `locationName:"arn" type:"string"`
 
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
+	CreatedAt *string `locationName:"createdAt" type:"string"`
 
 	DomainName *string `locationName:"domainName" type:"string"`
 
@@ -4772,14 +5439,28 @@ type UpdatePackagingGroupOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePackagingGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePackagingGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetApproximateAssetCount sets the ApproximateAssetCount field's value.
+func (s *UpdatePackagingGroupOutput) SetApproximateAssetCount(v int64) *UpdatePackagingGroupOutput {
+	s.ApproximateAssetCount = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -4791,6 +5472,12 @@ func (s *UpdatePackagingGroupOutput) SetArn(v string) *UpdatePackagingGroupOutpu
 // SetAuthorization sets the Authorization field's value.
 func (s *UpdatePackagingGroupOutput) SetAuthorization(v *Authorization) *UpdatePackagingGroupOutput {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdatePackagingGroupOutput) SetCreatedAt(v string) *UpdatePackagingGroupOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -4883,6 +5570,82 @@ func PeriodTriggersElement_Values() []string {
 }
 
 const (
+	// PresetSpeke20AudioPresetAudio1 is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioPresetAudio1 = "PRESET-AUDIO-1"
+
+	// PresetSpeke20AudioPresetAudio2 is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioPresetAudio2 = "PRESET-AUDIO-2"
+
+	// PresetSpeke20AudioPresetAudio3 is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioPresetAudio3 = "PRESET-AUDIO-3"
+
+	// PresetSpeke20AudioShared is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioShared = "SHARED"
+
+	// PresetSpeke20AudioUnencrypted is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioUnencrypted = "UNENCRYPTED"
+)
+
+// PresetSpeke20Audio_Values returns all elements of the PresetSpeke20Audio enum
+func PresetSpeke20Audio_Values() []string {
+	return []string{
+		PresetSpeke20AudioPresetAudio1,
+		PresetSpeke20AudioPresetAudio2,
+		PresetSpeke20AudioPresetAudio3,
+		PresetSpeke20AudioShared,
+		PresetSpeke20AudioUnencrypted,
+	}
+}
+
+const (
+	// PresetSpeke20VideoPresetVideo1 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo1 = "PRESET-VIDEO-1"
+
+	// PresetSpeke20VideoPresetVideo2 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo2 = "PRESET-VIDEO-2"
+
+	// PresetSpeke20VideoPresetVideo3 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo3 = "PRESET-VIDEO-3"
+
+	// PresetSpeke20VideoPresetVideo4 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo4 = "PRESET-VIDEO-4"
+
+	// PresetSpeke20VideoPresetVideo5 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo5 = "PRESET-VIDEO-5"
+
+	// PresetSpeke20VideoPresetVideo6 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo6 = "PRESET-VIDEO-6"
+
+	// PresetSpeke20VideoPresetVideo7 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo7 = "PRESET-VIDEO-7"
+
+	// PresetSpeke20VideoPresetVideo8 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo8 = "PRESET-VIDEO-8"
+
+	// PresetSpeke20VideoShared is a PresetSpeke20Video enum value
+	PresetSpeke20VideoShared = "SHARED"
+
+	// PresetSpeke20VideoUnencrypted is a PresetSpeke20Video enum value
+	PresetSpeke20VideoUnencrypted = "UNENCRYPTED"
+)
+
+// PresetSpeke20Video_Values returns all elements of the PresetSpeke20Video enum
+func PresetSpeke20Video_Values() []string {
+	return []string{
+		PresetSpeke20VideoPresetVideo1,
+		PresetSpeke20VideoPresetVideo2,
+		PresetSpeke20VideoPresetVideo3,
+		PresetSpeke20VideoPresetVideo4,
+		PresetSpeke20VideoPresetVideo5,
+		PresetSpeke20VideoPresetVideo6,
+		PresetSpeke20VideoPresetVideo7,
+		PresetSpeke20VideoPresetVideo8,
+		PresetSpeke20VideoShared,
+		PresetSpeke20VideoUnencrypted,
+	}
+}
+
+const (
 	// ProfileNone is a Profile enum value
 	ProfileNone = "NONE"
 
@@ -4895,6 +5658,22 @@ func Profile_Values() []string {
 	return []string{
 		ProfileNone,
 		ProfileHbbtv15,
+	}
+}
+
+const (
+	// ScteMarkersSourceSegments is a ScteMarkersSource enum value
+	ScteMarkersSourceSegments = "SEGMENTS"
+
+	// ScteMarkersSourceManifest is a ScteMarkersSource enum value
+	ScteMarkersSourceManifest = "MANIFEST"
+)
+
+// ScteMarkersSource_Values returns all elements of the ScteMarkersSource enum
+func ScteMarkersSource_Values() []string {
+	return []string{
+		ScteMarkersSourceSegments,
+		ScteMarkersSourceManifest,
 	}
 }
 

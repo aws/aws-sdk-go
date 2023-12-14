@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 package main
@@ -70,12 +71,13 @@ type testCase struct {
 }
 
 type testExpectation struct {
-	Body       string
-	Host       string
-	URI        string
-	Headers    map[string]string
-	JSONValues map[string]string
-	StatusCode uint `json:"status_code"`
+	Body          string
+	Host          string
+	URI           string
+	Headers       map[string]string
+	ForbidHeaders []string
+	JSONValues    map[string]string
+	StatusCode    uint `json:"status_code"`
 }
 
 const preamble = `
@@ -153,7 +155,11 @@ func (t *testSuite) TestSuite() string {
 	return buf.String()
 }
 
-var tplInputTestCase = template.Must(template.New("inputcase").Parse(`
+var tplInputTestCase = template.Must(template.New("inputcase").
+	Funcs(template.FuncMap{
+		"stringsEqualFold": strings.EqualFold,
+	}).
+	Parse(`
 func Test{{ .OpName }}(t *testing.T) {
 	svc := New{{ .TestCase.TestSuite.API.StructName }}(unit.Session, &aws.Config{Endpoint: aws.String("{{ .TestCase.TestSuite.ClientEndpoint  }}")})
 	{{ if ne .ParamsString "" }}input := {{ .ParamsString }}
@@ -168,22 +174,54 @@ func Test{{ .OpName }}(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
-
-	{{ if ne .TestCase.InputTest.Body "" }}// assert body
-	if r.Body == nil {
-		t.Errorf("expect body not to be nil")
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
 	}
-	{{ .BodyAssertions }}{{ end }}
+
+	{{- if ne .TestCase.InputTest.Body "" }}
+
+		// assert body
+		if r.Body == nil {
+			t.Errorf("expect body not to be nil")
+		}
+		{{ .BodyAssertions }}
+
+		if e, a := int64(len(body)), r.ContentLength; e != a {
+			t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+		}
+	{{- end }}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://{{ .TestCase.InputTest.Host }}{{ .TestCase.InputTest.URI }}", r.URL.String())
 
-	// assert headers
-	{{ range $k, $v := .TestCase.InputTest.Headers -}}
-		if e, a := "{{ $v }}", r.Header.Get("{{ $k }}"); e != a {
-			t.Errorf("expect %v, got %v", e, a)
-		}
-	{{ end }}
+	{{- if .TestCase.InputTest.Headers }}
+
+		// assert headers
+		{{- range $k, $v := .TestCase.InputTest.Headers }}
+			{{- if not (stringsEqualFold $k "Content-Length") }}
+				if e, a := "{{ $v }}", r.Header.Get("{{ $k }}"); e != a {
+					t.Errorf("expect {{ $k }} %v header value, got %v", e, a)
+				}
+			{{- end }}
+		{{- end }}
+	{{- end }}
+
+
+	{{- if .TestCase.InputTest.ForbidHeaders }}
+
+		// assert exclude headers
+		{{- range $_, $k := .TestCase.InputTest.ForbidHeaders }}
+			{{- if eq $k "Content-Length" }}
+				if v := r.ContentLength; v > 0 {
+					t.Errorf("expect no content-length, got %v", v)
+				}
+			{{- end }}
+			if v := r.Header.Get("{{ $k }}"); v != "" {
+				t.Errorf("expect not to have {{ $k }} header, got with value %v", v)
+			}
+		{{- end }}
+	{{- end }}
 }
 `))
 
@@ -411,9 +449,10 @@ func generateTestSuite(filename string) string {
 		}
 
 		suite.Type = getType(inout)
-		suite.API.NoInitMethods = true       // don't generate init methods
-		suite.API.NoStringerMethods = true   // don't generate stringer methods
-		suite.API.NoConstServiceNames = true // don't generate service names
+		suite.API.NoInitMethods = true                // don't generate init methods
+		suite.API.NoStringerMethods = true            // don't generate stringer methods
+		suite.API.NoConstServiceNames = true          // don't generate service names
+		suite.API.NoRemoveUnsupportedJSONValue = true // don't remove JSON values
 		suite.API.Setup()
 		suite.API.Metadata.EndpointPrefix = suite.API.PackageName()
 		suite.API.Metadata.EndpointsID = suite.API.Metadata.EndpointPrefix

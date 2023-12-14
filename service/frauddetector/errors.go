@@ -19,18 +19,7 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// An exception indicating there was a conflict during a delete operation. The
-	// following delete operations can cause a conflict exception:
-	//
-	//    * DeleteDetector: A conflict exception will occur if the detector has
-	//    associated Rules or DetectorVersions. You can only delete a detector if
-	//    it has no Rules or DetectorVersions.
-	//
-	//    * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-	//    status is ACTIVE.
-	//
-	//    * DeleteRule: A conflict exception will occur if the RuleVersion is in
-	//    use by an associated ACTIVE or INACTIVE DetectorVersion.
+	// An exception indicating there was a conflict during a delete operation.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
@@ -44,6 +33,13 @@ const (
 	//
 	// An exception indicating the specified resource was not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeResourceUnavailableException for service response error code
+	// "ResourceUnavailableException".
+	//
+	// An exception indicating that the attached customer-owned (external) model
+	// threw an exception when Amazon Fraud Detector invoked the model.
+	ErrCodeResourceUnavailableException = "ResourceUnavailableException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
@@ -59,10 +55,11 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":     newErrorAccessDeniedException,
-	"ConflictException":         newErrorConflictException,
-	"InternalServerException":   newErrorInternalServerException,
-	"ResourceNotFoundException": newErrorResourceNotFoundException,
-	"ThrottlingException":       newErrorThrottlingException,
-	"ValidationException":       newErrorValidationException,
+	"AccessDeniedException":        newErrorAccessDeniedException,
+	"ConflictException":            newErrorConflictException,
+	"InternalServerException":      newErrorInternalServerException,
+	"ResourceNotFoundException":    newErrorResourceNotFoundException,
+	"ResourceUnavailableException": newErrorResourceUnavailableException,
+	"ThrottlingException":          newErrorThrottlingException,
+	"ValidationException":          newErrorValidationException,
 }

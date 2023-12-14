@@ -12,6 +12,119 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
+const opBatchExecuteStatement = "BatchExecuteStatement"
+
+// BatchExecuteStatementRequest generates a "aws/request.Request" representing the
+// client's request for the BatchExecuteStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchExecuteStatement for more information on using the BatchExecuteStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchExecuteStatementRequest method.
+//	req, resp := client.BatchExecuteStatementRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/BatchExecuteStatement
+func (c *RedshiftDataAPIService) BatchExecuteStatementRequest(input *BatchExecuteStatementInput) (req *request.Request, output *BatchExecuteStatementOutput) {
+	op := &request.Operation{
+		Name:       opBatchExecuteStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchExecuteStatementInput{}
+	}
+
+	output = &BatchExecuteStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchExecuteStatement API operation for Redshift Data API Service.
+//
+// Runs one or more SQL statements, which can be data manipulation language
+// (DML) or data definition language (DDL). Depending on the authorization method,
+// use one of the following combinations of request parameters:
+//
+//   - Secrets Manager - when connecting to a cluster, provide the secret-arn
+//     of a secret stored in Secrets Manager which has username and password.
+//     The specified secret contains credentials to connect to the database you
+//     specify. When you are connecting to a cluster, you also supply the database
+//     name, If you provide a cluster identifier (dbClusterIdentifier), it must
+//     match the cluster identifier stored in the secret. When you are connecting
+//     to a serverless workgroup, you also supply the database name.
+//
+//   - Temporary credentials - when connecting to your data warehouse, choose
+//     one of the following options: When connecting to a serverless workgroup,
+//     specify the workgroup name and database name. The database user name is
+//     derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials
+//     operation is required. When connecting to a cluster as an IAM identity,
+//     specify the cluster identifier and the database name. The database user
+//     name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM
+//     operation is required. When connecting to a cluster as a database user,
+//     specify the cluster identifier, the database name, and the database user
+//     name. Also, permission to call the redshift:GetClusterCredentials operation
+//     is required.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Data API Service's
+// API operation BatchExecuteStatement for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - ActiveStatementsExceededException
+//     The number of active statements exceeds the limit.
+//
+//   - BatchExecuteStatementException
+//     An SQL statement encountered an environmental error while running.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/BatchExecuteStatement
+func (c *RedshiftDataAPIService) BatchExecuteStatement(input *BatchExecuteStatementInput) (*BatchExecuteStatementOutput, error) {
+	req, out := c.BatchExecuteStatementRequest(input)
+	return out, req.Send()
+}
+
+// BatchExecuteStatementWithContext is the same as BatchExecuteStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchExecuteStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftDataAPIService) BatchExecuteStatementWithContext(ctx aws.Context, input *BatchExecuteStatementInput, opts ...request.Option) (*BatchExecuteStatementOutput, error) {
+	req, out := c.BatchExecuteStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelStatement = "CancelStatement"
 
 // CancelStatementRequest generates a "aws/request.Request" representing the
@@ -28,14 +141,13 @@ const opCancelStatement = "CancelStatement"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelStatementRequest method.
+//	req, resp := client.CancelStatementRequest(params)
 //
-//    // Example sending a request using the CancelStatementRequest method.
-//    req, resp := client.CancelStatementRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/CancelStatement
 func (c *RedshiftDataAPIService) CancelStatementRequest(input *CancelStatementInput) (req *request.Request, output *CancelStatementOutput) {
@@ -58,6 +170,10 @@ func (c *RedshiftDataAPIService) CancelStatementRequest(input *CancelStatementIn
 //
 // Cancels a running query. To be canceled, a query must be running.
 //
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -66,11 +182,18 @@ func (c *RedshiftDataAPIService) CancelStatementRequest(input *CancelStatementIn
 // API operation CancelStatement for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The Amazon Redshift Data API operation failed due to a missing resource.
 //
-//   * InternalServerException
-//   The Amazon Redshift Data API operation failed due to invalid input.
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - ResourceNotFoundException
+//     The Amazon Redshift Data API operation failed due to a missing resource.
+//
+//   - InternalServerException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - DatabaseConnectionException
+//     Connection to a database failed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/CancelStatement
 func (c *RedshiftDataAPIService) CancelStatement(input *CancelStatementInput) (*CancelStatementOutput, error) {
@@ -110,14 +233,13 @@ const opDescribeStatement = "DescribeStatement"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeStatementRequest method.
+//	req, resp := client.DescribeStatementRequest(params)
 //
-//    // Example sending a request using the DescribeStatementRequest method.
-//    req, resp := client.DescribeStatementRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/DescribeStatement
 func (c *RedshiftDataAPIService) DescribeStatementRequest(input *DescribeStatementInput) (req *request.Request, output *DescribeStatementOutput) {
@@ -143,6 +265,10 @@ func (c *RedshiftDataAPIService) DescribeStatementRequest(input *DescribeStateme
 // when it finished, the query status, the number of rows returned, and the
 // SQL statement.
 //
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -151,14 +277,15 @@ func (c *RedshiftDataAPIService) DescribeStatementRequest(input *DescribeStateme
 // API operation DescribeStatement for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * ResourceNotFoundException
-//   The Amazon Redshift Data API operation failed due to a missing resource.
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * InternalServerException
-//   The Amazon Redshift Data API operation failed due to invalid input.
+//   - ResourceNotFoundException
+//     The Amazon Redshift Data API operation failed due to a missing resource.
+//
+//   - InternalServerException
+//     The Amazon Redshift Data API operation failed due to invalid input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/DescribeStatement
 func (c *RedshiftDataAPIService) DescribeStatement(input *DescribeStatementInput) (*DescribeStatementOutput, error) {
@@ -198,14 +325,13 @@ const opDescribeTable = "DescribeTable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTableRequest method.
+//	req, resp := client.DescribeTableRequest(params)
 //
-//    // Example sending a request using the DescribeTableRequest method.
-//    req, resp := client.DescribeTableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/DescribeTable
 func (c *RedshiftDataAPIService) DescribeTableRequest(input *DescribeTableInput) (req *request.Request, output *DescribeTableOutput) {
@@ -237,12 +363,31 @@ func (c *RedshiftDataAPIService) DescribeTableRequest(input *DescribeTableInput)
 // the column list. Depending on the authorization method, use one of the following
 // combinations of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//   - Secrets Manager - when connecting to a cluster, provide the secret-arn
+//     of a secret stored in Secrets Manager which has username and password.
+//     The specified secret contains credentials to connect to the database you
+//     specify. When you are connecting to a cluster, you also supply the database
+//     name, If you provide a cluster identifier (dbClusterIdentifier), it must
+//     match the cluster identifier stored in the secret. When you are connecting
+//     to a serverless workgroup, you also supply the database name.
 //
-//    * Temporary credentials - specify the cluster identifier, the database
-//    name, and the database user name. Permission to call the redshift:GetClusterCredentials
-//    operation is required to use this method.
+//   - Temporary credentials - when connecting to your data warehouse, choose
+//     one of the following options: When connecting to a serverless workgroup,
+//     specify the workgroup name and database name. The database user name is
+//     derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials
+//     operation is required. When connecting to a cluster as an IAM identity,
+//     specify the cluster identifier and the database name. The database user
+//     name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM
+//     operation is required. When connecting to a cluster as a database user,
+//     specify the cluster identifier, the database name, and the database user
+//     name. Also, permission to call the redshift:GetClusterCredentials operation
+//     is required.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -252,11 +397,15 @@ func (c *RedshiftDataAPIService) DescribeTableRequest(input *DescribeTableInput)
 // API operation DescribeTable for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * InternalServerException
-//   The Amazon Redshift Data API operation failed due to invalid input.
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - InternalServerException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - DatabaseConnectionException
+//     Connection to a database failed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/DescribeTable
 func (c *RedshiftDataAPIService) DescribeTable(input *DescribeTableInput) (*DescribeTableOutput, error) {
@@ -288,15 +437,14 @@ func (c *RedshiftDataAPIService) DescribeTableWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeTable operation.
-//    pageNum := 0
-//    err := client.DescribeTablePages(params,
-//        func(page *redshiftdataapiservice.DescribeTableOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeTable operation.
+//	pageNum := 0
+//	err := client.DescribeTablePages(params,
+//	    func(page *redshiftdataapiservice.DescribeTableOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftDataAPIService) DescribeTablePages(input *DescribeTableInput, fn func(*DescribeTableOutput, bool) bool) error {
 	return c.DescribeTablePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -348,14 +496,13 @@ const opExecuteStatement = "ExecuteStatement"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ExecuteStatementRequest method.
+//	req, resp := client.ExecuteStatementRequest(params)
 //
-//    // Example sending a request using the ExecuteStatementRequest method.
-//    req, resp := client.ExecuteStatementRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ExecuteStatement
 func (c *RedshiftDataAPIService) ExecuteStatementRequest(input *ExecuteStatementInput) (req *request.Request, output *ExecuteStatementOutput) {
@@ -381,12 +528,31 @@ func (c *RedshiftDataAPIService) ExecuteStatementRequest(input *ExecuteStatement
 // Depending on the authorization method, use one of the following combinations
 // of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//   - Secrets Manager - when connecting to a cluster, provide the secret-arn
+//     of a secret stored in Secrets Manager which has username and password.
+//     The specified secret contains credentials to connect to the database you
+//     specify. When you are connecting to a cluster, you also supply the database
+//     name, If you provide a cluster identifier (dbClusterIdentifier), it must
+//     match the cluster identifier stored in the secret. When you are connecting
+//     to a serverless workgroup, you also supply the database name.
 //
-//    * Temporary credentials - specify the cluster identifier, the database
-//    name, and the database user name. Permission to call the redshift:GetClusterCredentials
-//    operation is required to use this method.
+//   - Temporary credentials - when connecting to your data warehouse, choose
+//     one of the following options: When connecting to a serverless workgroup,
+//     specify the workgroup name and database name. The database user name is
+//     derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials
+//     operation is required. When connecting to a cluster as an IAM identity,
+//     specify the cluster identifier and the database name. The database user
+//     name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM
+//     operation is required. When connecting to a cluster as a database user,
+//     specify the cluster identifier, the database name, and the database user
+//     name. Also, permission to call the redshift:GetClusterCredentials operation
+//     is required.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -396,14 +562,15 @@ func (c *RedshiftDataAPIService) ExecuteStatementRequest(input *ExecuteStatement
 // API operation ExecuteStatement for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * ExecuteStatementException
-//   The SQL statement encountered an environmental error while running.
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * ActiveStatementsExceededException
-//   The number of active statements exceeds the limit.
+//   - ExecuteStatementException
+//     The SQL statement encountered an environmental error while running.
+//
+//   - ActiveStatementsExceededException
+//     The number of active statements exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ExecuteStatement
 func (c *RedshiftDataAPIService) ExecuteStatement(input *ExecuteStatementInput) (*ExecuteStatementOutput, error) {
@@ -443,14 +610,13 @@ const opGetStatementResult = "GetStatementResult"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetStatementResultRequest method.
+//	req, resp := client.GetStatementResultRequest(params)
 //
-//    // Example sending a request using the GetStatementResultRequest method.
-//    req, resp := client.GetStatementResultRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/GetStatementResult
 func (c *RedshiftDataAPIService) GetStatementResultRequest(input *GetStatementResultInput) (req *request.Request, output *GetStatementResultOutput) {
@@ -480,6 +646,10 @@ func (c *RedshiftDataAPIService) GetStatementResultRequest(input *GetStatementRe
 // Fetches the temporarily cached result of an SQL statement. A token is returned
 // to page through the statement results.
 //
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -488,14 +658,15 @@ func (c *RedshiftDataAPIService) GetStatementResultRequest(input *GetStatementRe
 // API operation GetStatementResult for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * ResourceNotFoundException
-//   The Amazon Redshift Data API operation failed due to a missing resource.
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * InternalServerException
-//   The Amazon Redshift Data API operation failed due to invalid input.
+//   - ResourceNotFoundException
+//     The Amazon Redshift Data API operation failed due to a missing resource.
+//
+//   - InternalServerException
+//     The Amazon Redshift Data API operation failed due to invalid input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/GetStatementResult
 func (c *RedshiftDataAPIService) GetStatementResult(input *GetStatementResultInput) (*GetStatementResultOutput, error) {
@@ -527,15 +698,14 @@ func (c *RedshiftDataAPIService) GetStatementResultWithContext(ctx aws.Context, 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetStatementResult operation.
-//    pageNum := 0
-//    err := client.GetStatementResultPages(params,
-//        func(page *redshiftdataapiservice.GetStatementResultOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetStatementResult operation.
+//	pageNum := 0
+//	err := client.GetStatementResultPages(params,
+//	    func(page *redshiftdataapiservice.GetStatementResultOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftDataAPIService) GetStatementResultPages(input *GetStatementResultInput, fn func(*GetStatementResultOutput, bool) bool) error {
 	return c.GetStatementResultPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -587,14 +757,13 @@ const opListDatabases = "ListDatabases"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatabasesRequest method.
+//	req, resp := client.ListDatabasesRequest(params)
 //
-//    // Example sending a request using the ListDatabasesRequest method.
-//    req, resp := client.ListDatabasesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ListDatabases
 func (c *RedshiftDataAPIService) ListDatabasesRequest(input *ListDatabasesInput) (req *request.Request, output *ListDatabasesOutput) {
@@ -625,12 +794,31 @@ func (c *RedshiftDataAPIService) ListDatabasesRequest(input *ListDatabasesInput)
 // database list. Depending on the authorization method, use one of the following
 // combinations of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//   - Secrets Manager - when connecting to a cluster, provide the secret-arn
+//     of a secret stored in Secrets Manager which has username and password.
+//     The specified secret contains credentials to connect to the database you
+//     specify. When you are connecting to a cluster, you also supply the database
+//     name, If you provide a cluster identifier (dbClusterIdentifier), it must
+//     match the cluster identifier stored in the secret. When you are connecting
+//     to a serverless workgroup, you also supply the database name.
 //
-//    * Temporary credentials - specify the cluster identifier, the database
-//    name, and the database user name. Permission to call the redshift:GetClusterCredentials
-//    operation is required to use this method.
+//   - Temporary credentials - when connecting to your data warehouse, choose
+//     one of the following options: When connecting to a serverless workgroup,
+//     specify the workgroup name and database name. The database user name is
+//     derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials
+//     operation is required. When connecting to a cluster as an IAM identity,
+//     specify the cluster identifier and the database name. The database user
+//     name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM
+//     operation is required. When connecting to a cluster as a database user,
+//     specify the cluster identifier, the database name, and the database user
+//     name. Also, permission to call the redshift:GetClusterCredentials operation
+//     is required.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -640,11 +828,15 @@ func (c *RedshiftDataAPIService) ListDatabasesRequest(input *ListDatabasesInput)
 // API operation ListDatabases for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * InternalServerException
-//   The Amazon Redshift Data API operation failed due to invalid input.
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - InternalServerException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - DatabaseConnectionException
+//     Connection to a database failed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ListDatabases
 func (c *RedshiftDataAPIService) ListDatabases(input *ListDatabasesInput) (*ListDatabasesOutput, error) {
@@ -676,15 +868,14 @@ func (c *RedshiftDataAPIService) ListDatabasesWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatabases operation.
-//    pageNum := 0
-//    err := client.ListDatabasesPages(params,
-//        func(page *redshiftdataapiservice.ListDatabasesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatabases operation.
+//	pageNum := 0
+//	err := client.ListDatabasesPages(params,
+//	    func(page *redshiftdataapiservice.ListDatabasesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftDataAPIService) ListDatabasesPages(input *ListDatabasesInput, fn func(*ListDatabasesOutput, bool) bool) error {
 	return c.ListDatabasesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -736,14 +927,13 @@ const opListSchemas = "ListSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSchemasRequest method.
+//	req, resp := client.ListSchemasRequest(params)
 //
-//    // Example sending a request using the ListSchemasRequest method.
-//    req, resp := client.ListSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ListSchemas
 func (c *RedshiftDataAPIService) ListSchemasRequest(input *ListSchemasInput) (req *request.Request, output *ListSchemasOutput) {
@@ -774,12 +964,31 @@ func (c *RedshiftDataAPIService) ListSchemasRequest(input *ListSchemasInput) (re
 // schema list. Depending on the authorization method, use one of the following
 // combinations of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//   - Secrets Manager - when connecting to a cluster, provide the secret-arn
+//     of a secret stored in Secrets Manager which has username and password.
+//     The specified secret contains credentials to connect to the database you
+//     specify. When you are connecting to a cluster, you also supply the database
+//     name, If you provide a cluster identifier (dbClusterIdentifier), it must
+//     match the cluster identifier stored in the secret. When you are connecting
+//     to a serverless workgroup, you also supply the database name.
 //
-//    * Temporary credentials - specify the cluster identifier, the database
-//    name, and the database user name. Permission to call the redshift:GetClusterCredentials
-//    operation is required to use this method.
+//   - Temporary credentials - when connecting to your data warehouse, choose
+//     one of the following options: When connecting to a serverless workgroup,
+//     specify the workgroup name and database name. The database user name is
+//     derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials
+//     operation is required. When connecting to a cluster as an IAM identity,
+//     specify the cluster identifier and the database name. The database user
+//     name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM
+//     operation is required. When connecting to a cluster as a database user,
+//     specify the cluster identifier, the database name, and the database user
+//     name. Also, permission to call the redshift:GetClusterCredentials operation
+//     is required.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -789,11 +998,15 @@ func (c *RedshiftDataAPIService) ListSchemasRequest(input *ListSchemasInput) (re
 // API operation ListSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * InternalServerException
-//   The Amazon Redshift Data API operation failed due to invalid input.
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - InternalServerException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - DatabaseConnectionException
+//     Connection to a database failed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ListSchemas
 func (c *RedshiftDataAPIService) ListSchemas(input *ListSchemasInput) (*ListSchemasOutput, error) {
@@ -825,15 +1038,14 @@ func (c *RedshiftDataAPIService) ListSchemasWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSchemas operation.
-//    pageNum := 0
-//    err := client.ListSchemasPages(params,
-//        func(page *redshiftdataapiservice.ListSchemasOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSchemas operation.
+//	pageNum := 0
+//	err := client.ListSchemasPages(params,
+//	    func(page *redshiftdataapiservice.ListSchemasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftDataAPIService) ListSchemasPages(input *ListSchemasInput, fn func(*ListSchemasOutput, bool) bool) error {
 	return c.ListSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -885,14 +1097,13 @@ const opListStatements = "ListStatements"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListStatementsRequest method.
+//	req, resp := client.ListStatementsRequest(params)
 //
-//    // Example sending a request using the ListStatementsRequest method.
-//    req, resp := client.ListStatementsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ListStatements
 func (c *RedshiftDataAPIService) ListStatementsRequest(input *ListStatementsInput) (req *request.Request, output *ListStatementsOutput) {
@@ -922,6 +1133,10 @@ func (c *RedshiftDataAPIService) ListStatementsRequest(input *ListStatementsInpu
 // List of SQL statements. By default, only finished statements are shown. A
 // token is returned to page through the statement list.
 //
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -930,11 +1145,12 @@ func (c *RedshiftDataAPIService) ListStatementsRequest(input *ListStatementsInpu
 // API operation ListStatements for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * InternalServerException
-//   The Amazon Redshift Data API operation failed due to invalid input.
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - InternalServerException
+//     The Amazon Redshift Data API operation failed due to invalid input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ListStatements
 func (c *RedshiftDataAPIService) ListStatements(input *ListStatementsInput) (*ListStatementsOutput, error) {
@@ -966,15 +1182,14 @@ func (c *RedshiftDataAPIService) ListStatementsWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListStatements operation.
-//    pageNum := 0
-//    err := client.ListStatementsPages(params,
-//        func(page *redshiftdataapiservice.ListStatementsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListStatements operation.
+//	pageNum := 0
+//	err := client.ListStatementsPages(params,
+//	    func(page *redshiftdataapiservice.ListStatementsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftDataAPIService) ListStatementsPages(input *ListStatementsInput, fn func(*ListStatementsOutput, bool) bool) error {
 	return c.ListStatementsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1026,14 +1241,13 @@ const opListTables = "ListTables"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTablesRequest method.
+//	req, resp := client.ListTablesRequest(params)
 //
-//    // Example sending a request using the ListTablesRequest method.
-//    req, resp := client.ListTablesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ListTables
 func (c *RedshiftDataAPIService) ListTablesRequest(input *ListTablesInput) (req *request.Request, output *ListTablesOutput) {
@@ -1065,12 +1279,31 @@ func (c *RedshiftDataAPIService) ListTablesRequest(input *ListTablesInput) (req 
 // to page through the table list. Depending on the authorization method, use
 // one of the following combinations of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//   - Secrets Manager - when connecting to a cluster, provide the secret-arn
+//     of a secret stored in Secrets Manager which has username and password.
+//     The specified secret contains credentials to connect to the database you
+//     specify. When you are connecting to a cluster, you also supply the database
+//     name, If you provide a cluster identifier (dbClusterIdentifier), it must
+//     match the cluster identifier stored in the secret. When you are connecting
+//     to a serverless workgroup, you also supply the database name.
 //
-//    * Temporary credentials - specify the cluster identifier, the database
-//    name, and the database user name. Permission to call the redshift:GetClusterCredentials
-//    operation is required to use this method.
+//   - Temporary credentials - when connecting to your data warehouse, choose
+//     one of the following options: When connecting to a serverless workgroup,
+//     specify the workgroup name and database name. The database user name is
+//     derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials
+//     operation is required. When connecting to a cluster as an IAM identity,
+//     specify the cluster identifier and the database name. The database user
+//     name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo
+//     has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM
+//     operation is required. When connecting to a cluster as a database user,
+//     specify the cluster identifier, the database name, and the database user
+//     name. Also, permission to call the redshift:GetClusterCredentials operation
+//     is required.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1080,11 +1313,15 @@ func (c *RedshiftDataAPIService) ListTablesRequest(input *ListTablesInput) (req 
 // API operation ListTables for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The Amazon Redshift Data API operation failed due to invalid input.
 //
-//   * InternalServerException
-//   The Amazon Redshift Data API operation failed due to invalid input.
+//   - ValidationException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - InternalServerException
+//     The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   - DatabaseConnectionException
+//     Connection to a database failed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/ListTables
 func (c *RedshiftDataAPIService) ListTables(input *ListTablesInput) (*ListTablesOutput, error) {
@@ -1116,15 +1353,14 @@ func (c *RedshiftDataAPIService) ListTablesWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTables operation.
-//    pageNum := 0
-//    err := client.ListTablesPages(params,
-//        func(page *redshiftdataapiservice.ListTablesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTables operation.
+//	pageNum := 0
+//	err := client.ListTablesPages(params,
+//	    func(page *redshiftdataapiservice.ListTablesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftDataAPIService) ListTablesPages(input *ListTablesInput, fn func(*ListTablesOutput, bool) bool) error {
 	return c.ListTablesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1168,12 +1404,20 @@ type ActiveStatementsExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveStatementsExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveStatementsExceededException) GoString() string {
 	return s.String()
 }
@@ -1216,23 +1460,328 @@ func (s *ActiveStatementsExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An SQL statement encountered an environmental error while running.
+type BatchExecuteStatementException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// Statement identifier of the exception.
+	//
+	// StatementId is a required field
+	StatementId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchExecuteStatementException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchExecuteStatementException) GoString() string {
+	return s.String()
+}
+
+func newErrorBatchExecuteStatementException(v protocol.ResponseMetadata) error {
+	return &BatchExecuteStatementException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *BatchExecuteStatementException) Code() string {
+	return "BatchExecuteStatementException"
+}
+
+// Message returns the exception's message.
+func (s *BatchExecuteStatementException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *BatchExecuteStatementException) OrigErr() error {
+	return nil
+}
+
+func (s *BatchExecuteStatementException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *BatchExecuteStatementException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *BatchExecuteStatementException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type BatchExecuteStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The cluster identifier. This parameter is required when connecting to a cluster
+	// and authenticating using either Secrets Manager or temporary credentials.
+	ClusterIdentifier *string `type:"string"`
+
+	// The name of the database. This parameter is required when authenticating
+	// using either Secrets Manager or temporary credentials.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
+
+	// The database user name. This parameter is required when connecting to a cluster
+	// as a database user and authenticating using temporary credentials.
+	DbUser *string `type:"string"`
+
+	// The name or ARN of the secret that enables access to the database. This parameter
+	// is required when authenticating using Secrets Manager.
+	SecretArn *string `type:"string"`
+
+	// Sqls is a required field
+	Sqls []*string `min:"1" type:"list" required:"true"`
+
+	// The name of the SQL statements. You can name the SQL statements when you
+	// create them to identify the query.
+	StatementName *string `type:"string"`
+
+	// A value that indicates whether to send an event to the Amazon EventBridge
+	// event bus after the SQL statements run.
+	WithEvent *bool `type:"boolean"`
+
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
+	WorkgroupName *string `min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchExecuteStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchExecuteStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchExecuteStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchExecuteStatementInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.Sqls == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sqls"))
+	}
+	if s.Sqls != nil && len(s.Sqls) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sqls", 1))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *BatchExecuteStatementInput) SetClientToken(v string) *BatchExecuteStatementInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *BatchExecuteStatementInput) SetClusterIdentifier(v string) *BatchExecuteStatementInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *BatchExecuteStatementInput) SetDatabase(v string) *BatchExecuteStatementInput {
+	s.Database = &v
+	return s
+}
+
+// SetDbUser sets the DbUser field's value.
+func (s *BatchExecuteStatementInput) SetDbUser(v string) *BatchExecuteStatementInput {
+	s.DbUser = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *BatchExecuteStatementInput) SetSecretArn(v string) *BatchExecuteStatementInput {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSqls sets the Sqls field's value.
+func (s *BatchExecuteStatementInput) SetSqls(v []*string) *BatchExecuteStatementInput {
+	s.Sqls = v
+	return s
+}
+
+// SetStatementName sets the StatementName field's value.
+func (s *BatchExecuteStatementInput) SetStatementName(v string) *BatchExecuteStatementInput {
+	s.StatementName = &v
+	return s
+}
+
+// SetWithEvent sets the WithEvent field's value.
+func (s *BatchExecuteStatementInput) SetWithEvent(v bool) *BatchExecuteStatementInput {
+	s.WithEvent = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *BatchExecuteStatementInput) SetWorkgroupName(v string) *BatchExecuteStatementInput {
+	s.WorkgroupName = &v
+	return s
+}
+
+type BatchExecuteStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster identifier. This element is not returned when connecting to a
+	// serverless workgroup.
+	ClusterIdentifier *string `type:"string"`
+
+	// The date and time (UTC) the statement was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The name of the database.
+	Database *string `type:"string"`
+
+	// The database user name.
+	DbUser *string `type:"string"`
+
+	// The identifier of the SQL statement whose results are to be fetched. This
+	// value is a universally unique identifier (UUID) generated by Amazon Redshift
+	// Data API. This identifier is returned by BatchExecuteStatment.
+	Id *string `type:"string"`
+
+	// The name or ARN of the secret that enables access to the database.
+	SecretArn *string `type:"string"`
+
+	// The serverless workgroup name or Amazon Resource Name (ARN). This element
+	// is not returned when connecting to a provisioned cluster.
+	WorkgroupName *string `min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchExecuteStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchExecuteStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *BatchExecuteStatementOutput) SetClusterIdentifier(v string) *BatchExecuteStatementOutput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *BatchExecuteStatementOutput) SetCreatedAt(v time.Time) *BatchExecuteStatementOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *BatchExecuteStatementOutput) SetDatabase(v string) *BatchExecuteStatementOutput {
+	s.Database = &v
+	return s
+}
+
+// SetDbUser sets the DbUser field's value.
+func (s *BatchExecuteStatementOutput) SetDbUser(v string) *BatchExecuteStatementOutput {
+	s.DbUser = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *BatchExecuteStatementOutput) SetId(v string) *BatchExecuteStatementOutput {
+	s.Id = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *BatchExecuteStatementOutput) SetSecretArn(v string) *BatchExecuteStatementOutput {
+	s.SecretArn = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *BatchExecuteStatementOutput) SetWorkgroupName(v string) *BatchExecuteStatementOutput {
+	s.WorkgroupName = &v
+	return s
+}
+
 type CancelStatementInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the SQL statement to cancel. This value is a universally
 	// unique identifier (UUID) generated by Amazon Redshift Data API. This identifier
-	// is returned by ExecuteStatment and ListStatements.
+	// is returned by BatchExecuteStatment, ExecuteStatment, and ListStatements.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStatementInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStatementInput) GoString() string {
 	return s.String()
 }
@@ -1263,12 +1812,20 @@ type CancelStatementOutput struct {
 	Status *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStatementOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStatementOutput) GoString() string {
 	return s.String()
 }
@@ -1323,12 +1880,20 @@ type ColumnMetadata struct {
 	TypeName *string `locationName:"typeName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnMetadata) GoString() string {
 	return s.String()
 }
@@ -1411,23 +1976,98 @@ func (s *ColumnMetadata) SetTypeName(v string) *ColumnMetadata {
 	return s
 }
 
+// Connection to a database failed.
+type DatabaseConnectionException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseConnectionException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseConnectionException) GoString() string {
+	return s.String()
+}
+
+func newErrorDatabaseConnectionException(v protocol.ResponseMetadata) error {
+	return &DatabaseConnectionException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DatabaseConnectionException) Code() string {
+	return "DatabaseConnectionException"
+}
+
+// Message returns the exception's message.
+func (s *DatabaseConnectionException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DatabaseConnectionException) OrigErr() error {
+	return nil
+}
+
+func (s *DatabaseConnectionException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DatabaseConnectionException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DatabaseConnectionException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type DescribeStatementInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the SQL statement to describe. This value is a universally
-	// unique identifier (UUID) generated by Amazon Redshift Data API. This identifier
-	// is returned by ExecuteStatment and ListStatements.
+	// unique identifier (UUID) generated by Amazon Redshift Data API. A suffix
+	// indicates the number of the SQL statement. For example, d9b6c0c9-0747-4bf4-b142-e8883122f766:2
+	// has a suffix of :2 that indicates the second SQL statement of a batch query.
+	// This identifier is returned by BatchExecuteStatment, ExecuteStatement, and
+	// ListStatements.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStatementInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStatementInput) GoString() string {
 	return s.String()
 }
@@ -1474,7 +2114,8 @@ type DescribeStatementOutput struct {
 	Error *string `type:"string"`
 
 	// A value that indicates whether the statement has a result set. The result
-	// set can be empty.
+	// set can be empty. The value is true for an empty result set. The value is
+	// true if any substatement returns a result set.
 	HasResultSet *bool `type:"boolean"`
 
 	// The identifier of the SQL statement described. This value is a universally
@@ -1499,10 +2140,10 @@ type DescribeStatementOutput struct {
 	// Either the number of rows returned from the SQL statement or the number of
 	// rows affected. If result size is greater than zero, the result rows can be
 	// the number of rows affected by SQL statements such as INSERT, UPDATE, DELETE,
-	// COPY, and others.
+	// COPY, and others. A -1 indicates the value is null.
 	ResultRows *int64 `type:"long"`
 
-	// The size in bytes of the returned results.
+	// The size in bytes of the returned results. A -1 indicates the value is null.
 	ResultSize *int64 `type:"long"`
 
 	// The name or Amazon Resource Name (ARN) of the secret that enables access
@@ -1528,17 +2169,31 @@ type DescribeStatementOutput struct {
 	//    * SUBMITTED - The query was submitted, but not yet processed.
 	Status *string `type:"string" enum:"StatusString"`
 
+	// The SQL statements from a multiple statement run.
+	SubStatements []*SubStatementData `type:"list"`
+
 	// The date and time (UTC) that the metadata for the SQL statement was last
 	// updated. An example is the time the status last changed.
 	UpdatedAt *time.Time `type:"timestamp"`
+
+	// The serverless workgroup name or Amazon Resource Name (ARN).
+	WorkgroupName *string `min:"3" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStatementOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStatementOutput) GoString() string {
 	return s.String()
 }
@@ -1639,20 +2294,30 @@ func (s *DescribeStatementOutput) SetStatus(v string) *DescribeStatementOutput {
 	return s
 }
 
+// SetSubStatements sets the SubStatements field's value.
+func (s *DescribeStatementOutput) SetSubStatements(v []*SubStatementData) *DescribeStatementOutput {
+	s.SubStatements = v
+	return s
+}
+
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *DescribeStatementOutput) SetUpdatedAt(v time.Time) *DescribeStatementOutput {
 	s.UpdatedAt = &v
 	return s
 }
 
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *DescribeStatementOutput) SetWorkgroupName(v string) *DescribeStatementOutput {
+	s.WorkgroupName = &v
+	return s
+}
+
 type DescribeTableInput struct {
 	_ struct{} `type:"structure"`
 
-	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
-	//
-	// ClusterIdentifier is a required field
-	ClusterIdentifier *string `type:"string" required:"true"`
+	// The cluster identifier. This parameter is required when connecting to a cluster
+	// and authenticating using either Secrets Manager or temporary credentials.
+	ClusterIdentifier *string `type:"string"`
 
 	// A database name. The connected database is specified when you connect with
 	// your authentication credentials.
@@ -1665,8 +2330,8 @@ type DescribeTableInput struct {
 	// Database is a required field
 	Database *string `type:"string" required:"true"`
 
-	// The database user name. This parameter is required when authenticating using
-	// temporary credentials.
+	// The database user name. This parameter is required when connecting to a cluster
+	// as a database user and authenticating using temporary credentials.
 	DbUser *string `type:"string"`
 
 	// The maximum number of tables to return in the response. If more tables exist
@@ -1686,21 +2351,34 @@ type DescribeTableInput struct {
 	Schema *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 
 	// The table name. If no table is specified, then all tables for all matching
 	// schemas are returned. If no table and no schema is specified, then all tables
 	// for all schemas in the database are returned
 	Table *string `type:"string"`
+
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
+	WorkgroupName *string `min:"3" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableInput) GoString() string {
 	return s.String()
 }
@@ -1708,11 +2386,11 @@ func (s DescribeTableInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeTableInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeTableInput"}
-	if s.ClusterIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
-	}
 	if s.Database == nil {
 		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1775,6 +2453,12 @@ func (s *DescribeTableInput) SetTable(v string) *DescribeTableInput {
 	return s
 }
 
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *DescribeTableInput) SetWorkgroupName(v string) *DescribeTableInput {
+	s.WorkgroupName = &v
+	return s
+}
+
 type DescribeTableOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1792,12 +2476,20 @@ type DescribeTableOutput struct {
 	TableName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableOutput) GoString() string {
 	return s.String()
 }
@@ -1834,12 +2526,20 @@ type ExecuteStatementException struct {
 	StatementId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteStatementException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteStatementException) GoString() string {
 	return s.String()
 }
@@ -1885,25 +2585,29 @@ func (s *ExecuteStatementException) RequestID() string {
 type ExecuteStatementInput struct {
 	_ struct{} `type:"structure"`
 
-	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
-	//
-	// ClusterIdentifier is a required field
-	ClusterIdentifier *string `type:"string" required:"true"`
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The cluster identifier. This parameter is required when connecting to a cluster
+	// and authenticating using either Secrets Manager or temporary credentials.
+	ClusterIdentifier *string `type:"string"`
 
 	// The name of the database. This parameter is required when authenticating
-	// using temporary credentials.
-	Database *string `type:"string"`
+	// using either Secrets Manager or temporary credentials.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
 
-	// The database user name. This parameter is required when authenticating using
-	// temporary credentials.
+	// The database user name. This parameter is required when connecting to a cluster
+	// as a database user and authenticating using temporary credentials.
 	DbUser *string `type:"string"`
 
 	// The parameters for the SQL statement.
 	Parameters []*SqlParameter `min:"1" type:"list"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 
 	// The SQL statement text to run.
@@ -1918,14 +2622,27 @@ type ExecuteStatementInput struct {
 	// A value that indicates whether to send an event to the Amazon EventBridge
 	// event bus after the SQL statement runs.
 	WithEvent *bool `type:"boolean"`
+
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
+	WorkgroupName *string `min:"3" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteStatementInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteStatementInput) GoString() string {
 	return s.String()
 }
@@ -1933,14 +2650,20 @@ func (s ExecuteStatementInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ExecuteStatementInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ExecuteStatementInput"}
-	if s.ClusterIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
 	}
 	if s.Parameters != nil && len(s.Parameters) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
 	}
 	if s.Sql == nil {
 		invalidParams.Add(request.NewErrParamRequired("Sql"))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
 	}
 	if s.Parameters != nil {
 		for i, v := range s.Parameters {
@@ -1957,6 +2680,12 @@ func (s *ExecuteStatementInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ExecuteStatementInput) SetClientToken(v string) *ExecuteStatementInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
@@ -2007,10 +2736,17 @@ func (s *ExecuteStatementInput) SetWithEvent(v bool) *ExecuteStatementInput {
 	return s
 }
 
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *ExecuteStatementInput) SetWorkgroupName(v string) *ExecuteStatementInput {
+	s.WorkgroupName = &v
+	return s
+}
+
 type ExecuteStatementOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The cluster identifier.
+	// The cluster identifier. This element is not returned when connecting to a
+	// serverless workgroup.
 	ClusterIdentifier *string `type:"string"`
 
 	// The date and time (UTC) the statement was created.
@@ -2022,20 +2758,33 @@ type ExecuteStatementOutput struct {
 	// The database user name.
 	DbUser *string `type:"string"`
 
-	// The identifier of the statement to be run. This value is a universally unique
-	// identifier (UUID) generated by Amazon Redshift Data API.
+	// The identifier of the SQL statement whose results are to be fetched. This
+	// value is a universally unique identifier (UUID) generated by Amazon Redshift
+	// Data API.
 	Id *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database.
 	SecretArn *string `type:"string"`
+
+	// The serverless workgroup name or Amazon Resource Name (ARN). This element
+	// is not returned when connecting to a provisioned cluster.
+	WorkgroupName *string `min:"3" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteStatementOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteStatementOutput) GoString() string {
 	return s.String()
 }
@@ -2076,12 +2825,17 @@ func (s *ExecuteStatementOutput) SetSecretArn(v string) *ExecuteStatementOutput 
 	return s
 }
 
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *ExecuteStatementOutput) SetWorkgroupName(v string) *ExecuteStatementOutput {
+	s.WorkgroupName = &v
+	return s
+}
+
 // A data value in a column.
 type Field struct {
 	_ struct{} `type:"structure"`
 
 	// A value of the BLOB data type.
-	//
 	// BlobValue is automatically base64 encoded/decoded by the SDK.
 	BlobValue []byte `locationName:"blobValue" type:"blob"`
 
@@ -2101,12 +2855,20 @@ type Field struct {
 	StringValue *string `locationName:"stringValue" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Field) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Field) GoString() string {
 	return s.String()
 }
@@ -2152,7 +2914,10 @@ type GetStatementResultInput struct {
 
 	// The identifier of the SQL statement whose results are to be fetched. This
 	// value is a universally unique identifier (UUID) generated by Amazon Redshift
-	// Data API. This identifier is returned by ExecuteStatment and ListStatements.
+	// Data API. A suffix indicates then number of the SQL statement. For example,
+	// d9b6c0c9-0747-4bf4-b142-e8883122f766:2 has a suffix of :2 that indicates
+	// the second SQL statement of a batch query. This identifier is returned by
+	// BatchExecuteStatment, ExecuteStatment, and ListStatements.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
@@ -2165,12 +2930,20 @@ type GetStatementResultInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStatementResultInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStatementResultInput) GoString() string {
 	return s.String()
 }
@@ -2224,12 +2997,20 @@ type GetStatementResultOutput struct {
 	TotalNumRows *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStatementResultOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStatementResultOutput) GoString() string {
 	return s.String()
 }
@@ -2267,12 +3048,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -2318,18 +3107,18 @@ func (s *InternalServerException) RequestID() string {
 type ListDatabasesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
-	//
-	// ClusterIdentifier is a required field
-	ClusterIdentifier *string `type:"string" required:"true"`
+	// The cluster identifier. This parameter is required when connecting to a cluster
+	// and authenticating using either Secrets Manager or temporary credentials.
+	ClusterIdentifier *string `type:"string"`
 
 	// The name of the database. This parameter is required when authenticating
-	// using temporary credentials.
-	Database *string `type:"string"`
+	// using either Secrets Manager or temporary credentials.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
 
-	// The database user name. This parameter is required when authenticating using
-	// temporary credentials.
+	// The database user name. This parameter is required when connecting to a cluster
+	// as a database user and authenticating using temporary credentials.
 	DbUser *string `type:"string"`
 
 	// The maximum number of databases to return in the response. If more databases
@@ -2345,16 +3134,29 @@ type ListDatabasesInput struct {
 	NextToken *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
+
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
+	WorkgroupName *string `min:"3" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatabasesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatabasesInput) GoString() string {
 	return s.String()
 }
@@ -2362,8 +3164,11 @@ func (s ListDatabasesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListDatabasesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListDatabasesInput"}
-	if s.ClusterIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2408,6 +3213,12 @@ func (s *ListDatabasesInput) SetSecretArn(v string) *ListDatabasesInput {
 	return s
 }
 
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *ListDatabasesInput) SetWorkgroupName(v string) *ListDatabasesInput {
+	s.WorkgroupName = &v
+	return s
+}
+
 type ListDatabasesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2422,12 +3233,20 @@ type ListDatabasesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatabasesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatabasesOutput) GoString() string {
 	return s.String()
 }
@@ -2447,11 +3266,9 @@ func (s *ListDatabasesOutput) SetNextToken(v string) *ListDatabasesOutput {
 type ListSchemasInput struct {
 	_ struct{} `type:"structure"`
 
-	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
-	//
-	// ClusterIdentifier is a required field
-	ClusterIdentifier *string `type:"string" required:"true"`
+	// The cluster identifier. This parameter is required when connecting to a cluster
+	// and authenticating using either Secrets Manager or temporary credentials.
+	ClusterIdentifier *string `type:"string"`
 
 	// A database name. The connected database is specified when you connect with
 	// your authentication credentials.
@@ -2464,8 +3281,8 @@ type ListSchemasInput struct {
 	// Database is a required field
 	Database *string `type:"string" required:"true"`
 
-	// The database user name. This parameter is required when authenticating using
-	// temporary credentials.
+	// The database user name. This parameter is required when connecting to a cluster
+	// as a database user and authenticating using temporary credentials.
 	DbUser *string `type:"string"`
 
 	// The maximum number of schemas to return in the response. If more schemas
@@ -2486,16 +3303,29 @@ type ListSchemasInput struct {
 	SchemaPattern *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
+
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
+	WorkgroupName *string `min:"3" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasInput) GoString() string {
 	return s.String()
 }
@@ -2503,11 +3333,11 @@ func (s ListSchemasInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListSchemasInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListSchemasInput"}
-	if s.ClusterIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
-	}
 	if s.Database == nil {
 		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2564,6 +3394,12 @@ func (s *ListSchemasInput) SetSecretArn(v string) *ListSchemasInput {
 	return s
 }
 
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *ListSchemasInput) SetWorkgroupName(v string) *ListSchemasInput {
+	s.WorkgroupName = &v
+	return s
+}
+
 type ListSchemasOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2578,12 +3414,20 @@ type ListSchemasOutput struct {
 	Schemas []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasOutput) GoString() string {
 	return s.String()
 }
@@ -2621,12 +3465,12 @@ type ListStatementsInput struct {
 	// The default is true.
 	RoleLevel *bool `type:"boolean"`
 
-	// The name of the SQL statement specified as input to ExecuteStatement to identify
-	// the query. You can list multiple statements by providing a prefix that matches
-	// the beginning of the statement name. For example, to list myStatement1, myStatement2,
-	// myStatement3, and so on, then provide the a value of myStatement. Data API
-	// does a case-sensitive match of SQL statement names to the prefix value you
-	// provide.
+	// The name of the SQL statement specified as input to BatchExecuteStatement
+	// or ExecuteStatement to identify the query. You can list multiple statements
+	// by providing a prefix that matches the beginning of the statement name. For
+	// example, to list myStatement1, myStatement2, myStatement3, and so on, then
+	// provide the a value of myStatement. Data API does a case-sensitive match
+	// of SQL statement names to the prefix value you provide.
 	StatementName *string `type:"string"`
 
 	// The status of the SQL statement to list. Status values are defined as follows:
@@ -2648,12 +3492,20 @@ type ListStatementsInput struct {
 	Status *string `type:"string" enum:"StatusString"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStatementsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStatementsInput) GoString() string {
 	return s.String()
 }
@@ -2704,12 +3556,20 @@ type ListStatementsOutput struct {
 	Statements []*StatementData `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStatementsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStatementsOutput) GoString() string {
 	return s.String()
 }
@@ -2729,11 +3589,9 @@ func (s *ListStatementsOutput) SetStatements(v []*StatementData) *ListStatements
 type ListTablesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
-	//
-	// ClusterIdentifier is a required field
-	ClusterIdentifier *string `type:"string" required:"true"`
+	// The cluster identifier. This parameter is required when connecting to a cluster
+	// and authenticating using either Secrets Manager or temporary credentials.
+	ClusterIdentifier *string `type:"string"`
 
 	// A database name. The connected database is specified when you connect with
 	// your authentication credentials.
@@ -2746,8 +3604,8 @@ type ListTablesInput struct {
 	// Database is a required field
 	Database *string `type:"string" required:"true"`
 
-	// The database user name. This parameter is required when authenticating using
-	// temporary credentials.
+	// The database user name. This parameter is required when connecting to a cluster
+	// as a database user and authenticating using temporary credentials.
 	DbUser *string `type:"string"`
 
 	// The maximum number of tables to return in the response. If more tables exist
@@ -2771,7 +3629,7 @@ type ListTablesInput struct {
 	SchemaPattern *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 
 	// A pattern to filter results by table name. Within a table pattern, "%" means
@@ -2781,14 +3639,27 @@ type ListTablesInput struct {
 	// neither SchemaPattern or TablePattern are specified, then all tables are
 	// returned.
 	TablePattern *string `type:"string"`
+
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
+	WorkgroupName *string `min:"3" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesInput) GoString() string {
 	return s.String()
 }
@@ -2796,11 +3667,11 @@ func (s ListTablesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListTablesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListTablesInput"}
-	if s.ClusterIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
-	}
 	if s.Database == nil {
 		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2863,6 +3734,12 @@ func (s *ListTablesInput) SetTablePattern(v string) *ListTablesInput {
 	return s
 }
 
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *ListTablesInput) SetWorkgroupName(v string) *ListTablesInput {
+	s.WorkgroupName = &v
+	return s
+}
+
 type ListTablesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2877,12 +3754,20 @@ type ListTablesOutput struct {
 	Tables []*TableMember `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesOutput) GoString() string {
 	return s.String()
 }
@@ -2913,12 +3798,20 @@ type ResourceNotFoundException struct {
 	ResourceId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -2971,19 +3864,27 @@ type SqlParameter struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The value of the parameter. Amazon Redshift implicitly converts to the proper
-	// data type. For more inforation, see Data types (https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html)
+	// data type. For more information, see Data types (https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html)
 	// in the Amazon Redshift Database Developer Guide.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqlParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqlParameter) GoString() string {
 	return s.String()
 }
@@ -3032,11 +3933,18 @@ type StatementData struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// A value that indicates whether the statement is a batch query request.
+	IsBatchStatement *bool `type:"boolean"`
+
 	// The parameters used in a SQL statement.
 	QueryParameters []*SqlParameter `min:"1" type:"list"`
 
 	// The SQL statement.
 	QueryString *string `type:"string"`
+
+	// One or more SQL statements. Each query string in the array corresponds to
+	// one of the queries in a batch query request.
+	QueryStrings []*string `type:"list"`
 
 	// The name or Amazon Resource Name (ARN) of the secret that enables access
 	// to the database.
@@ -3053,12 +3961,20 @@ type StatementData struct {
 	UpdatedAt *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StatementData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StatementData) GoString() string {
 	return s.String()
 }
@@ -3075,6 +3991,12 @@ func (s *StatementData) SetId(v string) *StatementData {
 	return s
 }
 
+// SetIsBatchStatement sets the IsBatchStatement field's value.
+func (s *StatementData) SetIsBatchStatement(v bool) *StatementData {
+	s.IsBatchStatement = &v
+	return s
+}
+
 // SetQueryParameters sets the QueryParameters field's value.
 func (s *StatementData) SetQueryParameters(v []*SqlParameter) *StatementData {
 	s.QueryParameters = v
@@ -3084,6 +4006,12 @@ func (s *StatementData) SetQueryParameters(v []*SqlParameter) *StatementData {
 // SetQueryString sets the QueryString field's value.
 func (s *StatementData) SetQueryString(v string) *StatementData {
 	s.QueryString = &v
+	return s
+}
+
+// SetQueryStrings sets the QueryStrings field's value.
+func (s *StatementData) SetQueryStrings(v []*string) *StatementData {
+	s.QueryStrings = v
 	return s
 }
 
@@ -3111,6 +4039,140 @@ func (s *StatementData) SetUpdatedAt(v time.Time) *StatementData {
 	return s
 }
 
+// Information about an SQL statement.
+type SubStatementData struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (UTC) the statement was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The amount of time in nanoseconds that the statement ran.
+	Duration *int64 `type:"long"`
+
+	// The error message from the cluster if the SQL statement encountered an error
+	// while running.
+	Error *string `type:"string"`
+
+	// A value that indicates whether the statement has a result set. The result
+	// set can be empty. The value is true for an empty result set.
+	HasResultSet *bool `type:"boolean"`
+
+	// The identifier of the SQL statement. This value is a universally unique identifier
+	// (UUID) generated by Amazon Redshift Data API. A suffix indicates the number
+	// of the SQL statement. For example, d9b6c0c9-0747-4bf4-b142-e8883122f766:2
+	// has a suffix of :2 that indicates the second SQL statement of a batch query.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// The SQL statement text.
+	QueryString *string `type:"string"`
+
+	// The SQL statement identifier. This value is a universally unique identifier
+	// (UUID) generated by Amazon Redshift Data API.
+	RedshiftQueryId *int64 `type:"long"`
+
+	// Either the number of rows returned from the SQL statement or the number of
+	// rows affected. If result size is greater than zero, the result rows can be
+	// the number of rows affected by SQL statements such as INSERT, UPDATE, DELETE,
+	// COPY, and others. A -1 indicates the value is null.
+	ResultRows *int64 `type:"long"`
+
+	// The size in bytes of the returned results. A -1 indicates the value is null.
+	ResultSize *int64 `type:"long"`
+
+	// The status of the SQL statement. An example is the that the SQL statement
+	// finished.
+	Status *string `type:"string" enum:"StatementStatusString"`
+
+	// The date and time (UTC) that the statement metadata was last updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubStatementData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubStatementData) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *SubStatementData) SetCreatedAt(v time.Time) *SubStatementData {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *SubStatementData) SetDuration(v int64) *SubStatementData {
+	s.Duration = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *SubStatementData) SetError(v string) *SubStatementData {
+	s.Error = &v
+	return s
+}
+
+// SetHasResultSet sets the HasResultSet field's value.
+func (s *SubStatementData) SetHasResultSet(v bool) *SubStatementData {
+	s.HasResultSet = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SubStatementData) SetId(v string) *SubStatementData {
+	s.Id = &v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *SubStatementData) SetQueryString(v string) *SubStatementData {
+	s.QueryString = &v
+	return s
+}
+
+// SetRedshiftQueryId sets the RedshiftQueryId field's value.
+func (s *SubStatementData) SetRedshiftQueryId(v int64) *SubStatementData {
+	s.RedshiftQueryId = &v
+	return s
+}
+
+// SetResultRows sets the ResultRows field's value.
+func (s *SubStatementData) SetResultRows(v int64) *SubStatementData {
+	s.ResultRows = &v
+	return s
+}
+
+// SetResultSize sets the ResultSize field's value.
+func (s *SubStatementData) SetResultSize(v int64) *SubStatementData {
+	s.ResultSize = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SubStatementData) SetStatus(v string) *SubStatementData {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *SubStatementData) SetUpdatedAt(v time.Time) *SubStatementData {
+	s.UpdatedAt = &v
+	return s
+}
+
 // The properties of a table.
 type TableMember struct {
 	_ struct{} `type:"structure"`
@@ -3126,12 +4188,20 @@ type TableMember struct {
 	Type *string `locationName:"type" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableMember) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableMember) GoString() string {
 	return s.String()
 }
@@ -3163,12 +4233,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -3209,6 +4287,38 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// StatementStatusStringSubmitted is a StatementStatusString enum value
+	StatementStatusStringSubmitted = "SUBMITTED"
+
+	// StatementStatusStringPicked is a StatementStatusString enum value
+	StatementStatusStringPicked = "PICKED"
+
+	// StatementStatusStringStarted is a StatementStatusString enum value
+	StatementStatusStringStarted = "STARTED"
+
+	// StatementStatusStringFinished is a StatementStatusString enum value
+	StatementStatusStringFinished = "FINISHED"
+
+	// StatementStatusStringAborted is a StatementStatusString enum value
+	StatementStatusStringAborted = "ABORTED"
+
+	// StatementStatusStringFailed is a StatementStatusString enum value
+	StatementStatusStringFailed = "FAILED"
+)
+
+// StatementStatusString_Values returns all elements of the StatementStatusString enum
+func StatementStatusString_Values() []string {
+	return []string{
+		StatementStatusStringSubmitted,
+		StatementStatusStringPicked,
+		StatementStatusStringStarted,
+		StatementStatusStringFinished,
+		StatementStatusStringAborted,
+		StatementStatusStringFailed,
+	}
 }
 
 const (

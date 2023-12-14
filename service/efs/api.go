@@ -29,14 +29,13 @@ const opCreateAccessPoint = "CreateAccessPoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAccessPointRequest method.
+//	req, resp := client.CreateAccessPointRequest(params)
 //
-//    // Example sending a request using the CreateAccessPointRequest method.
-//    req, resp := client.CreateAccessPointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateAccessPoint
 func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *request.Request, output *CreateAccessPointOutput) {
@@ -63,11 +62,24 @@ func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *requ
 // point. The operating system user and group override any identity information
 // provided by the NFS client. The file system path is exposed as the access
 // point's root directory. Applications using the access point can only access
-// data in its own directory and below. To learn more, see Mounting a file system
-// using EFS access points (https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
+// data in the application's own directory and any subdirectories. To learn
+// more, see Mounting a file system using EFS access points (https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
+//
+// If multiple requests to create access points on the same file system are
+// sent in quick succession, and the file system is near the limit of 1,000
+// access points, you may experience a throttling response for these requests.
+// This is to ensure that the file system does not exceed the stated access
+// point limit.
 //
 // This operation requires permissions for the elasticfilesystem:CreateAccessPoint
 // action.
+//
+// Access points can be tagged on creation. If tags are specified in the creation
+// action, IAM performs additional authorization on the elasticfilesystem:TagResource
+// action to verify if users have permissions to create tags. Therefore, you
+// must grant explicit permissions to use the elasticfilesystem:TagResource
+// action. For more information, see Granting permissions to tag resources during
+// creation (https://docs.aws.amazon.com/efs/latest/ug/using-tags-efs.html#supported-iam-actions-tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -77,27 +89,35 @@ func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *requ
 // API operation CreateAccessPoint for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * AccessPointAlreadyExists
-//   Returned if the access point you are trying to create already exists, with
-//   the creation token you provided in the request.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * IncorrectFileSystemLifeCycleState
-//   Returned if the file system's lifecycle state is not "available".
+//   - AccessPointAlreadyExists
+//     Returned if the access point that you are trying to create already exists,
+//     with the creation token you provided in the request.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * AccessPointLimitExceeded
-//   Returned if the AWS account has already created the maximum number of access
-//   points allowed per file system.
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - AccessPointLimitExceeded
+//     Returned if the Amazon Web Services account has already created the maximum
+//     number of access points allowed per file system. For more informaton, see
+//     https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region
+//     (https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region).
+//
+//   - ThrottlingException
+//     Returned when the CreateAccessPoint API action is called too quickly and
+//     the number of Access Points on the file system is nearing the limit of 120
+//     (https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateAccessPoint
 func (c *EFS) CreateAccessPoint(input *CreateAccessPointInput) (*CreateAccessPointOutput, error) {
@@ -137,14 +157,13 @@ const opCreateFileSystem = "CreateFileSystem"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFileSystemRequest method.
+//	req, resp := client.CreateFileSystemRequest(params)
 //
-//    // Example sending a request using the CreateFileSystemRequest method.
-//    req, resp := client.CreateFileSystemRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateFileSystem
 func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *request.Request, output *FileSystemDescription) {
@@ -168,13 +187,13 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // Creates a new, empty file system. The operation requires a creation token
 // in the request that Amazon EFS uses to ensure idempotent creation (calling
 // the operation with same creation token has no effect). If a file system does
-// not currently exist that is owned by the caller's AWS account with the specified
-// creation token, this operation does the following:
+// not currently exist that is owned by the caller's Amazon Web Services account
+// with the specified creation token, this operation does the following:
 //
-//    * Creates a new, empty file system. The file system will have an Amazon
-//    EFS assigned ID, and an initial lifecycle state creating.
+//   - Creates a new, empty file system. The file system will have an Amazon
+//     EFS assigned ID, and an initial lifecycle state creating.
 //
-//    * Returns with the description of the created file system.
+//   - Returns with the description of the created file system.
 //
 // Otherwise, this operation returns a FileSystemAlreadyExists error with the
 // ID of the existing file system.
@@ -199,12 +218,18 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // system state.
 //
 // This operation accepts an optional PerformanceMode parameter that you choose
-// for your file system. We recommend generalPurpose performance mode for most
-// file systems. File systems using the maxIO performance mode can scale to
-// higher levels of aggregate throughput and operations per second with a tradeoff
-// of slightly higher latencies for most file operations. The performance mode
-// can't be changed after the file system has been created. For more information,
-// see Amazon EFS performance modes (https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes.html).
+// for your file system. We recommend generalPurpose performance mode for all
+// file systems. File systems using the maxIO mode is a previous generation
+// performance type that is designed for highly parallelized workloads that
+// can tolerate higher latencies than the General Purpose mode. Max I/O mode
+// is not supported for One Zone file systems or file systems that use Elastic
+// throughput.
+//
+// Due to the higher per-operation latencies with Max I/O, we recommend using
+// General Purpose performance mode for all file systems.
+//
+// The performance mode can't be changed after the file system has been created.
+// For more information, see Amazon EFS performance modes (https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes.html).
 //
 // You can set the throughput mode for the file system using the ThroughputMode
 // parameter.
@@ -219,6 +244,13 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // This operation requires permissions for the elasticfilesystem:CreateFileSystem
 // action.
 //
+// File systems can be tagged on creation. If tags are specified in the creation
+// action, IAM performs additional authorization on the elasticfilesystem:TagResource
+// action to verify if users have permissions to create tags. Therefore, you
+// must grant explicit permissions to use the elasticfilesystem:TagResource
+// action. For more information, see Granting permissions to tag resources during
+// creation (https://docs.aws.amazon.com/efs/latest/ug/using-tags-efs.html#supported-iam-actions-tagging.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -227,35 +259,37 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // API operation CreateFileSystem for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemAlreadyExists
-//   Returned if the file system you are trying to create already exists, with
-//   the creation token you provided.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * FileSystemLimitExceeded
-//   Returned if the AWS account has already created the maximum number of file
-//   systems allowed per account.
+//   - FileSystemAlreadyExists
+//     Returned if the file system you are trying to create already exists, with
+//     the creation token you provided.
 //
-//   * InsufficientThroughputCapacity
-//   Returned if there's not enough capacity to provision additional throughput.
-//   This value might be returned when you try to create a file system in provisioned
-//   throughput mode, when you attempt to increase the provisioned throughput
-//   of an existing file system, or when you attempt to change an existing file
-//   system from bursting to provisioned throughput mode. Try again later.
+//   - FileSystemLimitExceeded
+//     Returned if the Amazon Web Services account has already created the maximum
+//     number of file systems allowed per account.
 //
-//   * ThroughputLimitExceeded
-//   Returned if the throughput mode or amount of provisioned throughput can't
-//   be changed because the throughput limit of 1024 MiB/s has been reached.
+//   - InsufficientThroughputCapacity
+//     Returned if there's not enough capacity to provision additional throughput.
+//     This value might be returned when you try to create a file system in provisioned
+//     throughput mode, when you attempt to increase the provisioned throughput
+//     of an existing file system, or when you attempt to change an existing file
+//     system from Bursting Throughput to Provisioned Throughput mode. Try again
+//     later.
 //
-//   * UnsupportedAvailabilityZone
-//   Returned if the requested Amazon EFS functionality is not available in the
-//   specified Availability Zone.
+//   - ThroughputLimitExceeded
+//     Returned if the throughput mode or amount of provisioned throughput can't
+//     be changed because the throughput limit of 1024 MiB/s has been reached.
+//
+//   - UnsupportedAvailabilityZone
+//     Returned if the requested Amazon EFS functionality is not available in the
+//     specified Availability Zone.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateFileSystem
 func (c *EFS) CreateFileSystem(input *CreateFileSystemInput) (*FileSystemDescription, error) {
@@ -295,14 +329,13 @@ const opCreateMountTarget = "CreateMountTarget"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateMountTargetRequest method.
+//	req, resp := client.CreateMountTargetRequest(params)
 //
-//    // Example sending a request using the CreateMountTargetRequest method.
-//    req, resp := client.CreateMountTargetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateMountTarget
 func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *request.Request, output *MountTargetDescription) {
@@ -333,12 +366,12 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // need to be in the same subnet as the mount target in order to access their
 // file system.
 //
-// You can create only one mount target for an EFS file system using One Zone
-// storage classes. You must create that mount target in the same Availability
-// Zone in which the file system is located. Use the AvailabilityZoneName and
-// AvailabiltyZoneId properties in the DescribeFileSystems response object to
-// get this information. Use the subnetId associated with the file system's
-// Availability Zone when creating the mount target.
+// You can create only one mount target for a One Zone file system. You must
+// create that mount target in the same Availability Zone in which the file
+// system is located. Use the AvailabilityZoneName and AvailabiltyZoneId properties
+// in the DescribeFileSystems response object to get this information. Use the
+// subnetId associated with the file system's Availability Zone when creating
+// the mount target.
 //
 // For more information, see Amazon EFS: How it Works (https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html).
 //
@@ -347,13 +380,13 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //
 // In the request, provide the following:
 //
-//    * The file system ID for which you are creating the mount target.
+//   - The file system ID for which you are creating the mount target.
 //
-//    * A subnet ID, which determines the following: The VPC in which Amazon
-//    EFS creates the mount target The Availability Zone in which Amazon EFS
-//    creates the mount target The IP address range from which Amazon EFS selects
-//    the IP address of the mount target (if you don't specify an IP address
-//    in the request)
+//   - A subnet ID, which determines the following: The VPC in which Amazon
+//     EFS creates the mount target The Availability Zone in which Amazon EFS
+//     creates the mount target The IP address range from which Amazon EFS selects
+//     the IP address of the mount target (if you don't specify an IP address
+//     in the request)
 //
 // After creating the mount target, Amazon EFS returns a response that includes,
 // a MountTargetId and an IpAddress. You use this IP address when mounting the
@@ -369,31 +402,31 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // subnet specified in the request to add another mount target must meet the
 // following requirements:
 //
-//    * Must belong to the same VPC as the subnets of the existing mount targets
+//   - Must belong to the same VPC as the subnets of the existing mount targets
 //
-//    * Must not be in the same Availability Zone as any of the subnets of the
-//    existing mount targets
+//   - Must not be in the same Availability Zone as any of the subnets of the
+//     existing mount targets
 //
 // If the request satisfies the requirements, Amazon EFS does the following:
 //
-//    * Creates a new mount target in the specified subnet.
+//   - Creates a new mount target in the specified subnet.
 //
-//    * Also creates a new network interface in the subnet as follows: If the
-//    request provides an IpAddress, Amazon EFS assigns that IP address to the
-//    network interface. Otherwise, Amazon EFS assigns a free address in the
-//    subnet (in the same way that the Amazon EC2 CreateNetworkInterface call
-//    does when a request does not specify a primary private IP address). If
-//    the request provides SecurityGroups, this network interface is associated
-//    with those security groups. Otherwise, it belongs to the default security
-//    group for the subnet's VPC. Assigns the description Mount target fsmt-id
-//    for file system fs-id where fsmt-id is the mount target ID, and fs-id
-//    is the FileSystemId. Sets the requesterManaged property of the network
-//    interface to true, and the requesterId value to EFS. Each Amazon EFS mount
-//    target has one corresponding requester-managed EC2 network interface.
-//    After the network interface is created, Amazon EFS sets the NetworkInterfaceId
-//    field in the mount target's description to the network interface ID, and
-//    the IpAddress field to its address. If network interface creation fails,
-//    the entire CreateMountTarget operation fails.
+//   - Also creates a new network interface in the subnet as follows: If the
+//     request provides an IpAddress, Amazon EFS assigns that IP address to the
+//     network interface. Otherwise, Amazon EFS assigns a free address in the
+//     subnet (in the same way that the Amazon EC2 CreateNetworkInterface call
+//     does when a request does not specify a primary private IP address). If
+//     the request provides SecurityGroups, this network interface is associated
+//     with those security groups. Otherwise, it belongs to the default security
+//     group for the subnet's VPC. Assigns the description Mount target fsmt-id
+//     for file system fs-id where fsmt-id is the mount target ID, and fs-id
+//     is the FileSystemId. Sets the requesterManaged property of the network
+//     interface to true, and the requesterId value to EFS. Each Amazon EFS mount
+//     target has one corresponding requester-managed EC2 network interface.
+//     After the network interface is created, Amazon EFS sets the NetworkInterfaceId
+//     field in the mount target's description to the network interface ID, and
+//     the IpAddress field to its address. If network interface creation fails,
+//     the entire CreateMountTarget operation fails.
 //
 // The CreateMountTarget call returns only after creating the network interface,
 // but while the mount target state is still creating, you can check the mount
@@ -412,15 +445,15 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // This operation requires permissions for the following action on the file
 // system:
 //
-//    * elasticfilesystem:CreateMountTarget
+//   - elasticfilesystem:CreateMountTarget
 //
 // This operation also requires permissions for the following Amazon EC2 actions:
 //
-//    * ec2:DescribeSubnets
+//   - ec2:DescribeSubnets
 //
-//    * ec2:DescribeNetworkInterfaces
+//   - ec2:DescribeNetworkInterfaces
 //
-//    * ec2:CreateNetworkInterface
+//   - ec2:CreateNetworkInterface
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -430,60 +463,60 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // API operation CreateMountTarget for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * IncorrectFileSystemLifeCycleState
-//   Returned if the file system's lifecycle state is not "available".
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
-//   * MountTargetConflict
-//   Returned if the mount target would violate one of the specified restrictions
-//   based on the file system's existing mount targets.
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
 //
-//   * SubnetNotFound
-//   Returned if there is no subnet with ID SubnetId provided in the request.
+//   - MountTargetConflict
+//     Returned if the mount target would violate one of the specified restrictions
+//     based on the file system's existing mount targets.
 //
-//   * NoFreeAddressesInSubnet
-//   Returned if IpAddress was not specified in the request and there are no free
-//   IP addresses in the subnet.
+//   - SubnetNotFound
+//     Returned if there is no subnet with ID SubnetId provided in the request.
 //
-//   * IpAddressInUse
-//   Returned if the request specified an IpAddress that is already in use in
-//   the subnet.
+//   - NoFreeAddressesInSubnet
+//     Returned if IpAddress was not specified in the request and there are no free
+//     IP addresses in the subnet.
 //
-//   * NetworkInterfaceLimitExceeded
-//   The calling account has reached the limit for elastic network interfaces
-//   for the specific AWS Region. The client should try to delete some elastic
-//   network interfaces or get the account limit raised. For more information,
-//   see Amazon VPC Limits (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
-//   in the Amazon VPC User Guide (see the Network interfaces per VPC entry in
-//   the table).
+//   - IpAddressInUse
+//     Returned if the request specified an IpAddress that is already in use in
+//     the subnet.
 //
-//   * SecurityGroupLimitExceeded
-//   Returned if the size of SecurityGroups specified in the request is greater
-//   than five.
+//   - NetworkInterfaceLimitExceeded
+//     The calling account has reached the limit for elastic network interfaces
+//     for the specific Amazon Web Services Region. Either delete some network interfaces
+//     or request that the account quota be raised. For more information, see Amazon
+//     VPC Quotas (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
+//     in the Amazon VPC User Guide (see the Network interfaces per Region entry
+//     in the Network interfaces table).
 //
-//   * SecurityGroupNotFound
-//   Returned if one of the specified security groups doesn't exist in the subnet's
-//   VPC.
+//   - SecurityGroupLimitExceeded
+//     Returned if the size of SecurityGroups specified in the request is greater
+//     than five.
 //
-//   * UnsupportedAvailabilityZone
-//   Returned if the requested Amazon EFS functionality is not available in the
-//   specified Availability Zone.
+//   - SecurityGroupNotFound
+//     Returned if one of the specified security groups doesn't exist in the subnet's
+//     virtual private cloud (VPC).
 //
-//   * AvailabilityZonesMismatch
-//   Returned if the Availability Zone that was specified for a mount target is
-//   different from the Availability Zone that was specified for One Zone storage
-//   classes. For more information, see Regional and One Zone storage redundancy
-//   (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html).
+//   - UnsupportedAvailabilityZone
+//     Returned if the requested Amazon EFS functionality is not available in the
+//     specified Availability Zone.
+//
+//   - AvailabilityZonesMismatch
+//     Returned if the Availability Zone that was specified for a mount target is
+//     different from the Availability Zone that was specified for One Zone storage.
+//     For more information, see Regional and One Zone storage redundancy (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateMountTarget
 func (c *EFS) CreateMountTarget(input *CreateMountTargetInput) (*MountTargetDescription, error) {
@@ -507,6 +540,184 @@ func (c *EFS) CreateMountTargetWithContext(ctx aws.Context, input *CreateMountTa
 	return out, req.Send()
 }
 
+const opCreateReplicationConfiguration = "CreateReplicationConfiguration"
+
+// CreateReplicationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReplicationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateReplicationConfiguration for more information on using the CreateReplicationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateReplicationConfigurationRequest method.
+//	req, resp := client.CreateReplicationConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateReplicationConfiguration
+func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConfigurationInput) (req *request.Request, output *CreateReplicationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateReplicationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
+	}
+
+	if input == nil {
+		input = &CreateReplicationConfigurationInput{}
+	}
+
+	output = &CreateReplicationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateReplicationConfiguration API operation for Amazon Elastic File System.
+//
+// Creates a replication configuration that replicates an existing EFS file
+// system to a new, read-only file system. For more information, see Amazon
+// EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html)
+// in the Amazon EFS User Guide. The replication configuration specifies the
+// following:
+//
+//   - Source file system – The EFS file system that you want replicated.
+//     The source file system cannot be a destination file system in an existing
+//     replication configuration.
+//
+//   - Amazon Web Services Region – The Amazon Web Services Region in which
+//     the destination file system is created. Amazon EFS replication is available
+//     in all Amazon Web Services Regions in which EFS is available. The Region
+//     must be enabled. For more information, see Managing Amazon Web Services
+//     Regions (https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)
+//     in the Amazon Web Services General Reference Reference Guide.
+//
+//   - Destination file system configuration – The configuration of the destination
+//     file system to which the source file system will be replicated. There
+//     can only be one destination file system in a replication configuration.
+//     Parameters for the replication configuration include: File system ID –
+//     The ID of the destination file system for the replication. If no ID is
+//     provided, then EFS creates a new file system with the default settings.
+//     For existing file systems, the file system's replication overwrite protection
+//     must be disabled. For more information, see Replicating to an existing
+//     file system (https://docs.aws.amazon.com/efs/latest/ug/efs-replication#replicate-existing-destination).
+//     Availability Zone – If you want the destination file system to use One
+//     Zone storage, you must specify the Availability Zone to create the file
+//     system in. For more information, see EFS file system types (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+//     in the Amazon EFS User Guide. Encryption – All destination file systems
+//     are created with encryption at rest enabled. You can specify the Key Management
+//     Service (KMS) key that is used to encrypt the destination file system.
+//     If you don't specify a KMS key, your service-managed KMS key for Amazon
+//     EFS is used. After the file system is created, you cannot change the KMS
+//     key.
+//
+// After the file system is created, you cannot change the KMS key.
+//
+// For new destination file systems, the following properties are set by default:
+//
+//   - Performance mode - The destination file system's performance mode matches
+//     that of the source file system, unless the destination file system uses
+//     EFS One Zone storage. In that case, the General Purpose performance mode
+//     is used. The performance mode cannot be changed.
+//
+//   - Throughput mode - The destination file system's throughput mode matches
+//     that of the source file system. After the file system is created, you
+//     can modify the throughput mode.
+//
+//   - Lifecycle management – Lifecycle management is not enabled on the
+//     destination file system. After the destination file system is created,
+//     you can enable lifecycle management.
+//
+//   - Automatic backups – Automatic daily backups are enabled on the destination
+//     file system. After the file system is created, you can change this setting.
+//
+// For more information, see Amazon EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html)
+// in the Amazon EFS User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation CreateReplicationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
+//
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
+//
+//   - ValidationException
+//     Returned if the Backup service is not available in the Amazon Web Services
+//     Region in which the request was made.
+//
+//   - ReplicationNotFound
+//     Returned if the specified file system does not have a replication configuration.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - UnsupportedAvailabilityZone
+//     Returned if the requested Amazon EFS functionality is not available in the
+//     specified Availability Zone.
+//
+//   - FileSystemLimitExceeded
+//     Returned if the Amazon Web Services account has already created the maximum
+//     number of file systems allowed per account.
+//
+//   - InsufficientThroughputCapacity
+//     Returned if there's not enough capacity to provision additional throughput.
+//     This value might be returned when you try to create a file system in provisioned
+//     throughput mode, when you attempt to increase the provisioned throughput
+//     of an existing file system, or when you attempt to change an existing file
+//     system from Bursting Throughput to Provisioned Throughput mode. Try again
+//     later.
+//
+//   - ThroughputLimitExceeded
+//     Returned if the throughput mode or amount of provisioned throughput can't
+//     be changed because the throughput limit of 1024 MiB/s has been reached.
+//
+//   - ConflictException
+//     Returned if the source file system in a replication is encrypted but the
+//     destination file system is unencrypted.
+//
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateReplicationConfiguration
+func (c *EFS) CreateReplicationConfiguration(input *CreateReplicationConfigurationInput) (*CreateReplicationConfigurationOutput, error) {
+	req, out := c.CreateReplicationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateReplicationConfigurationWithContext is the same as CreateReplicationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateReplicationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) CreateReplicationConfigurationWithContext(ctx aws.Context, input *CreateReplicationConfigurationInput, opts ...request.Option) (*CreateReplicationConfigurationOutput, error) {
+	req, out := c.CreateReplicationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a "aws/request.Request" representing the
@@ -523,14 +734,13 @@ const opCreateTags = "CreateTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTagsRequest method.
+//	req, resp := client.CreateTagsRequest(params)
 //
-//    // Example sending a request using the CreateTagsRequest method.
-//    req, resp := client.CreateTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateTags
 //
@@ -557,9 +767,8 @@ func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 
 // CreateTags API operation for Amazon Elastic File System.
 //
-//
-// DEPRECATED - CreateTags is deprecated and not maintained. Please use the
-// API action to create tags for EFS resources.
+// DEPRECATED - CreateTags is deprecated and not maintained. To create tags
+// for EFS resources, use the API action.
 //
 // Creates or overwrites tags associated with a file system. Each tag is a key-value
 // pair. If a tag key specified in the request already exists on the file system,
@@ -577,16 +786,17 @@ func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 // API operation CreateTags for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateTags
 //
@@ -630,14 +840,13 @@ const opDeleteAccessPoint = "DeleteAccessPoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAccessPointRequest method.
+//	req, resp := client.DeleteAccessPointRequest(params)
 //
-//    // Example sending a request using the DeleteAccessPointRequest method.
-//    req, resp := client.DeleteAccessPointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteAccessPoint
 func (c *EFS) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req *request.Request, output *DeleteAccessPointOutput) {
@@ -675,16 +884,17 @@ func (c *EFS) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req *requ
 // API operation DeleteAccessPoint for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * AccessPointNotFound
-//   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - AccessPointNotFound
+//     Returned if the specified AccessPointId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteAccessPoint
 func (c *EFS) DeleteAccessPoint(input *DeleteAccessPointInput) (*DeleteAccessPointOutput, error) {
@@ -724,14 +934,13 @@ const opDeleteFileSystem = "DeleteFileSystem"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFileSystemRequest method.
+//	req, resp := client.DeleteFileSystemRequest(params)
 //
-//    // Example sending a request using the DeleteFileSystemRequest method.
-//    req, resp := client.DeleteFileSystemRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteFileSystem
 func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *request.Request, output *DeleteFileSystemOutput) {
@@ -757,6 +966,13 @@ func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 // return, the file system no longer exists and you can't access any contents
 // of the deleted file system.
 //
+// You need to manually delete mount targets attached to a file system before
+// you can delete an EFS file system. This step is performed for you when you
+// use the Amazon Web Services console to delete a file system.
+//
+// You cannot delete a file system that is part of an EFS Replication configuration.
+// You need to delete the replication configuration first.
+//
 // You can't delete a file system that is in use. That is, if the file system
 // has any mount targets, you must first delete them. For more information,
 // see DescribeMountTargets and DeleteMountTarget.
@@ -778,19 +994,20 @@ func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 // API operation DeleteFileSystem for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * FileSystemInUse
-//   Returned if a file system has mount targets.
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - FileSystemInUse
+//     Returned if a file system has mount targets.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteFileSystem
 func (c *EFS) DeleteFileSystem(input *DeleteFileSystemInput) (*DeleteFileSystemOutput, error) {
@@ -830,14 +1047,13 @@ const opDeleteFileSystemPolicy = "DeleteFileSystemPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFileSystemPolicyRequest method.
+//	req, resp := client.DeleteFileSystemPolicyRequest(params)
 //
-//    // Example sending a request using the DeleteFileSystemPolicyRequest method.
-//    req, resp := client.DeleteFileSystemPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteFileSystemPolicy
 func (c *EFS) DeleteFileSystemPolicyRequest(input *DeleteFileSystemPolicyInput) (req *request.Request, output *DeleteFileSystemPolicyOutput) {
@@ -875,15 +1091,20 @@ func (c *EFS) DeleteFileSystemPolicyRequest(input *DeleteFileSystemPolicyInput) 
 // API operation DeleteFileSystemPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * IncorrectFileSystemLifeCycleState
-//   Returned if the file system's lifecycle state is not "available".
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteFileSystemPolicy
 func (c *EFS) DeleteFileSystemPolicy(input *DeleteFileSystemPolicyInput) (*DeleteFileSystemPolicyOutput, error) {
@@ -923,14 +1144,13 @@ const opDeleteMountTarget = "DeleteMountTarget"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteMountTargetRequest method.
+//	req, resp := client.DeleteMountTargetRequest(params)
 //
-//    // Example sending a request using the DeleteMountTargetRequest method.
-//    req, resp := client.DeleteMountTargetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteMountTarget
 func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *request.Request, output *DeleteMountTargetOutput) {
@@ -966,7 +1186,7 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 // This operation requires permissions for the following action on the file
 // system:
 //
-//    * elasticfilesystem:DeleteMountTarget
+//   - elasticfilesystem:DeleteMountTarget
 //
 // The DeleteMountTarget call returns while the mount target state is still
 // deleting. You can check the mount target deletion by calling the DescribeMountTargets
@@ -976,7 +1196,7 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 // The operation also requires permissions for the following Amazon EC2 action
 // on the mount target's network interface:
 //
-//    * ec2:DeleteNetworkInterface
+//   - ec2:DeleteNetworkInterface
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -986,20 +1206,21 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 // API operation DeleteMountTarget for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * DependencyTimeout
-//   The service timed out trying to fulfill the request, and the client should
-//   try the call again.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * MountTargetNotFound
-//   Returned if there is no mount target with the specified ID found in the caller's
-//   account.
+//   - DependencyTimeout
+//     The service timed out trying to fulfill the request, and the client should
+//     try the call again.
+//
+//   - MountTargetNotFound
+//     Returned if there is no mount target with the specified ID found in the caller's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteMountTarget
 func (c *EFS) DeleteMountTarget(input *DeleteMountTargetInput) (*DeleteMountTargetOutput, error) {
@@ -1023,6 +1244,104 @@ func (c *EFS) DeleteMountTargetWithContext(ctx aws.Context, input *DeleteMountTa
 	return out, req.Send()
 }
 
+const opDeleteReplicationConfiguration = "DeleteReplicationConfiguration"
+
+// DeleteReplicationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReplicationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteReplicationConfiguration for more information on using the DeleteReplicationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteReplicationConfigurationRequest method.
+//	req, resp := client.DeleteReplicationConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteReplicationConfiguration
+func (c *EFS) DeleteReplicationConfigurationRequest(input *DeleteReplicationConfigurationInput) (req *request.Request, output *DeleteReplicationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteReplicationConfiguration,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
+	}
+
+	if input == nil {
+		input = &DeleteReplicationConfigurationInput{}
+	}
+
+	output = &DeleteReplicationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteReplicationConfiguration API operation for Amazon Elastic File System.
+//
+// Deletes a replication configuration. Deleting a replication configuration
+// ends the replication process. After a replication configuration is deleted,
+// the destination file system becomes Writeable and its replication overwrite
+// protection is re-enabled. For more information, see Delete a replication
+// configuration (https://docs.aws.amazon.com/efs/latest/ug/delete-replications.html).
+//
+// This operation requires permissions for the elasticfilesystem:DeleteReplicationConfiguration
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation DeleteReplicationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
+//
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - ReplicationNotFound
+//     Returned if the specified file system does not have a replication configuration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteReplicationConfiguration
+func (c *EFS) DeleteReplicationConfiguration(input *DeleteReplicationConfigurationInput) (*DeleteReplicationConfigurationOutput, error) {
+	req, out := c.DeleteReplicationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteReplicationConfigurationWithContext is the same as DeleteReplicationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteReplicationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) DeleteReplicationConfigurationWithContext(ctx aws.Context, input *DeleteReplicationConfigurationInput, opts ...request.Option) (*DeleteReplicationConfigurationOutput, error) {
+	req, out := c.DeleteReplicationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a "aws/request.Request" representing the
@@ -1039,14 +1358,13 @@ const opDeleteTags = "DeleteTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTagsRequest method.
+//	req, resp := client.DeleteTagsRequest(params)
 //
-//    // Example sending a request using the DeleteTagsRequest method.
-//    req, resp := client.DeleteTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteTags
 //
@@ -1073,15 +1391,14 @@ func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, o
 
 // DeleteTags API operation for Amazon Elastic File System.
 //
-//
-// DEPRECATED - DeleteTags is deprecated and not maintained. Please use the
-// API action to remove tags from EFS resources.
+// DEPRECATED - DeleteTags is deprecated and not maintained. To remove tags
+// from EFS resources, use the API action.
 //
 // Deletes the specified tags from a file system. If the DeleteTags request
 // includes a tag key that doesn't exist, Amazon EFS ignores it and doesn't
 // cause an error. For more information about tags and related restrictions,
-// see Tag Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
-// in the AWS Billing and Cost Management User Guide.
+// see Tag restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
+// in the Billing and Cost Management User Guide.
 //
 // This operation requires permissions for the elasticfilesystem:DeleteTags
 // action.
@@ -1094,16 +1411,17 @@ func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, o
 // API operation DeleteTags for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteTags
 //
@@ -1147,14 +1465,13 @@ const opDescribeAccessPoints = "DescribeAccessPoints"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAccessPointsRequest method.
+//	req, resp := client.DescribeAccessPointsRequest(params)
 //
-//    // Example sending a request using the DescribeAccessPointsRequest method.
-//    req, resp := client.DescribeAccessPointsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeAccessPoints
 func (c *EFS) DescribeAccessPointsRequest(input *DescribeAccessPointsInput) (req *request.Request, output *DescribeAccessPointsOutput) {
@@ -1197,20 +1514,21 @@ func (c *EFS) DescribeAccessPointsRequest(input *DescribeAccessPointsInput) (req
 // API operation DescribeAccessPoints for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * AccessPointNotFound
-//   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - AccessPointNotFound
+//     Returned if the specified AccessPointId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeAccessPoints
 func (c *EFS) DescribeAccessPoints(input *DescribeAccessPointsInput) (*DescribeAccessPointsOutput, error) {
@@ -1242,15 +1560,14 @@ func (c *EFS) DescribeAccessPointsWithContext(ctx aws.Context, input *DescribeAc
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeAccessPoints operation.
-//    pageNum := 0
-//    err := client.DescribeAccessPointsPages(params,
-//        func(page *efs.DescribeAccessPointsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeAccessPoints operation.
+//	pageNum := 0
+//	err := client.DescribeAccessPointsPages(params,
+//	    func(page *efs.DescribeAccessPointsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EFS) DescribeAccessPointsPages(input *DescribeAccessPointsInput, fn func(*DescribeAccessPointsOutput, bool) bool) error {
 	return c.DescribeAccessPointsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1302,14 +1619,13 @@ const opDescribeAccountPreferences = "DescribeAccountPreferences"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAccountPreferencesRequest method.
+//	req, resp := client.DescribeAccountPreferencesRequest(params)
 //
-//    // Example sending a request using the DescribeAccountPreferencesRequest method.
-//    req, resp := client.DescribeAccountPreferencesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeAccountPreferences
 func (c *EFS) DescribeAccountPreferencesRequest(input *DescribeAccountPreferencesInput) (req *request.Request, output *DescribeAccountPreferencesOutput) {
@@ -1330,6 +1646,10 @@ func (c *EFS) DescribeAccountPreferencesRequest(input *DescribeAccountPreference
 
 // DescribeAccountPreferences API operation for Amazon Elastic File System.
 //
+// Returns the account preferences settings for the Amazon Web Services account
+// associated with the user making the request, in the current Amazon Web Services
+// Region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1338,8 +1658,8 @@ func (c *EFS) DescribeAccountPreferencesRequest(input *DescribeAccountPreference
 // API operation DescribeAccountPreferences for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeAccountPreferences
 func (c *EFS) DescribeAccountPreferences(input *DescribeAccountPreferencesInput) (*DescribeAccountPreferencesOutput, error) {
@@ -1379,14 +1699,13 @@ const opDescribeBackupPolicy = "DescribeBackupPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBackupPolicyRequest method.
+//	req, resp := client.DescribeBackupPolicyRequest(params)
 //
-//    // Example sending a request using the DescribeBackupPolicyRequest method.
-//    req, resp := client.DescribeBackupPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeBackupPolicy
 func (c *EFS) DescribeBackupPolicyRequest(input *DescribeBackupPolicyInput) (req *request.Request, output *DescribeBackupPolicyOutput) {
@@ -1417,24 +1736,25 @@ func (c *EFS) DescribeBackupPolicyRequest(input *DescribeBackupPolicyInput) (req
 // API operation DescribeBackupPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
-//   * PolicyNotFound
-//   Returned if the default file system policy is in effect for the EFS file
-//   system specified.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * ValidationException
-//   Returned if the AWS Backup service is not available in the Region in which
-//   the request was made.
+//   - PolicyNotFound
+//     Returned if the default file system policy is in effect for the EFS file
+//     system specified.
+//
+//   - ValidationException
+//     Returned if the Backup service is not available in the Amazon Web Services
+//     Region in which the request was made.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeBackupPolicy
 func (c *EFS) DescribeBackupPolicy(input *DescribeBackupPolicyInput) (*DescribeBackupPolicyOutput, error) {
@@ -1474,14 +1794,13 @@ const opDescribeFileSystemPolicy = "DescribeFileSystemPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFileSystemPolicyRequest method.
+//	req, resp := client.DescribeFileSystemPolicyRequest(params)
 //
-//    // Example sending a request using the DescribeFileSystemPolicyRequest method.
-//    req, resp := client.DescribeFileSystemPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy
 func (c *EFS) DescribeFileSystemPolicyRequest(input *DescribeFileSystemPolicyInput) (req *request.Request, output *DescribeFileSystemPolicyOutput) {
@@ -1515,16 +1834,21 @@ func (c *EFS) DescribeFileSystemPolicyRequest(input *DescribeFileSystemPolicyInp
 // API operation DescribeFileSystemPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * PolicyNotFound
-//   Returned if the default file system policy is in effect for the EFS file
-//   system specified.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - PolicyNotFound
+//     Returned if the default file system policy is in effect for the EFS file
+//     system specified.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy
 func (c *EFS) DescribeFileSystemPolicy(input *DescribeFileSystemPolicyInput) (*DescribeFileSystemPolicyOutput, error) {
@@ -1564,14 +1888,13 @@ const opDescribeFileSystems = "DescribeFileSystems"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFileSystemsRequest method.
+//	req, resp := client.DescribeFileSystemsRequest(params)
 //
-//    // Example sending a request using the DescribeFileSystemsRequest method.
-//    req, resp := client.DescribeFileSystemsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeFileSystems
 func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *request.Request, output *DescribeFileSystemsOutput) {
@@ -1600,12 +1923,13 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 //
 // Returns the description of a specific Amazon EFS file system if either the
 // file system CreationToken or the FileSystemId is provided. Otherwise, it
-// returns descriptions of all file systems owned by the caller's AWS account
-// in the AWS Region of the endpoint that you're calling.
+// returns descriptions of all file systems owned by the caller's Amazon Web
+// Services account in the Amazon Web Services Region of the endpoint that you're
+// calling.
 //
 // When retrieving all file system descriptions, you can optionally specify
 // the MaxItems parameter to limit the number of descriptions in a response.
-// Currently, this number is automatically set to 10. If more file system descriptions
+// This number is automatically set to 100. If more file system descriptions
 // remain, Amazon EFS returns a NextMarker, an opaque token, in the response.
 // In this case, you should send a subsequent request with the Marker request
 // parameter set to the value of NextMarker.
@@ -1631,16 +1955,17 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 // API operation DescribeFileSystems for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeFileSystems
 func (c *EFS) DescribeFileSystems(input *DescribeFileSystemsInput) (*DescribeFileSystemsOutput, error) {
@@ -1672,15 +1997,14 @@ func (c *EFS) DescribeFileSystemsWithContext(ctx aws.Context, input *DescribeFil
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeFileSystems operation.
-//    pageNum := 0
-//    err := client.DescribeFileSystemsPages(params,
-//        func(page *efs.DescribeFileSystemsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeFileSystems operation.
+//	pageNum := 0
+//	err := client.DescribeFileSystemsPages(params,
+//	    func(page *efs.DescribeFileSystemsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EFS) DescribeFileSystemsPages(input *DescribeFileSystemsInput, fn func(*DescribeFileSystemsOutput, bool) bool) error {
 	return c.DescribeFileSystemsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1732,14 +2056,13 @@ const opDescribeLifecycleConfiguration = "DescribeLifecycleConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLifecycleConfigurationRequest method.
+//	req, resp := client.DescribeLifecycleConfigurationRequest(params)
 //
-//    // Example sending a request using the DescribeLifecycleConfigurationRequest method.
-//    req, resp := client.DescribeLifecycleConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeLifecycleConfiguration
 func (c *EFS) DescribeLifecycleConfigurationRequest(input *DescribeLifecycleConfigurationInput) (req *request.Request, output *DescribeLifecycleConfigurationOutput) {
@@ -1761,10 +2084,10 @@ func (c *EFS) DescribeLifecycleConfigurationRequest(input *DescribeLifecycleConf
 // DescribeLifecycleConfiguration API operation for Amazon Elastic File System.
 //
 // Returns the current LifecycleConfiguration object for the specified Amazon
-// EFS file system. EFS lifecycle management uses the LifecycleConfiguration
-// object to identify which files to move to the EFS Infrequent Access (IA)
-// storage class. For a file system without a LifecycleConfiguration object,
-// the call returns an empty array in the response.
+// EFS file system. Lifecycle management uses the LifecycleConfiguration object
+// to identify when to move files between storage classes. For a file system
+// without a LifecycleConfiguration object, the call returns an empty array
+// in the response.
 //
 // This operation requires permissions for the elasticfilesystem:DescribeLifecycleConfiguration
 // operation.
@@ -1777,16 +2100,17 @@ func (c *EFS) DescribeLifecycleConfigurationRequest(input *DescribeLifecycleConf
 // API operation DescribeLifecycleConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
 //
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeLifecycleConfiguration
 func (c *EFS) DescribeLifecycleConfiguration(input *DescribeLifecycleConfigurationInput) (*DescribeLifecycleConfigurationOutput, error) {
@@ -1826,14 +2150,13 @@ const opDescribeMountTargetSecurityGroups = "DescribeMountTargetSecurityGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeMountTargetSecurityGroupsRequest method.
+//	req, resp := client.DescribeMountTargetSecurityGroupsRequest(params)
 //
-//    // Example sending a request using the DescribeMountTargetSecurityGroupsRequest method.
-//    req, resp := client.DescribeMountTargetSecurityGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups
 func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTargetSecurityGroupsInput) (req *request.Request, output *DescribeMountTargetSecurityGroupsOutput) {
@@ -1860,11 +2183,11 @@ func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTarge
 //
 // This operation requires permissions for the following actions:
 //
-//    * elasticfilesystem:DescribeMountTargetSecurityGroups action on the mount
-//    target's file system.
+//   - elasticfilesystem:DescribeMountTargetSecurityGroups action on the mount
+//     target's file system.
 //
-//    * ec2:DescribeNetworkInterfaceAttribute action on the mount target's network
-//    interface.
+//   - ec2:DescribeNetworkInterfaceAttribute action on the mount target's network
+//     interface.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1874,19 +2197,20 @@ func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTarge
 // API operation DescribeMountTargetSecurityGroups for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * MountTargetNotFound
-//   Returned if there is no mount target with the specified ID found in the caller's
-//   account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * IncorrectMountTargetState
-//   Returned if the mount target is not in the correct state for the operation.
+//   - MountTargetNotFound
+//     Returned if there is no mount target with the specified ID found in the caller's
+//     Amazon Web Services account.
+//
+//   - IncorrectMountTargetState
+//     Returned if the mount target is not in the correct state for the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups
 func (c *EFS) DescribeMountTargetSecurityGroups(input *DescribeMountTargetSecurityGroupsInput) (*DescribeMountTargetSecurityGroupsOutput, error) {
@@ -1926,14 +2250,13 @@ const opDescribeMountTargets = "DescribeMountTargets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeMountTargetsRequest method.
+//	req, resp := client.DescribeMountTargetsRequest(params)
 //
-//    // Example sending a request using the DescribeMountTargetsRequest method.
-//    req, resp := client.DescribeMountTargetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeMountTargets
 func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req *request.Request, output *DescribeMountTargetsOutput) {
@@ -1941,6 +2264,12 @@ func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req
 		Name:       opDescribeMountTargets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-02-01/mount-targets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1970,24 +2299,25 @@ func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req
 // API operation DescribeMountTargets for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * MountTargetNotFound
-//   Returned if there is no mount target with the specified ID found in the caller's
-//   account.
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
-//   * AccessPointNotFound
-//   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   - MountTargetNotFound
+//     Returned if there is no mount target with the specified ID found in the caller's
+//     Amazon Web Services account.
+//
+//   - AccessPointNotFound
+//     Returned if the specified AccessPointId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeMountTargets
 func (c *EFS) DescribeMountTargets(input *DescribeMountTargetsInput) (*DescribeMountTargetsOutput, error) {
@@ -2011,6 +2341,210 @@ func (c *EFS) DescribeMountTargetsWithContext(ctx aws.Context, input *DescribeMo
 	return out, req.Send()
 }
 
+// DescribeMountTargetsPages iterates over the pages of a DescribeMountTargets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeMountTargets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeMountTargets operation.
+//	pageNum := 0
+//	err := client.DescribeMountTargetsPages(params,
+//	    func(page *efs.DescribeMountTargetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EFS) DescribeMountTargetsPages(input *DescribeMountTargetsInput, fn func(*DescribeMountTargetsOutput, bool) bool) error {
+	return c.DescribeMountTargetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeMountTargetsPagesWithContext same as DescribeMountTargetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) DescribeMountTargetsPagesWithContext(ctx aws.Context, input *DescribeMountTargetsInput, fn func(*DescribeMountTargetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeMountTargetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeMountTargetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeMountTargetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeReplicationConfigurations = "DescribeReplicationConfigurations"
+
+// DescribeReplicationConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReplicationConfigurations for more information on using the DescribeReplicationConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeReplicationConfigurationsRequest method.
+//	req, resp := client.DescribeReplicationConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeReplicationConfigurations
+func (c *EFS) DescribeReplicationConfigurationsRequest(input *DescribeReplicationConfigurationsInput) (req *request.Request, output *DescribeReplicationConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReplicationConfigurations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2015-02-01/file-systems/replication-configurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeReplicationConfigurationsInput{}
+	}
+
+	output = &DescribeReplicationConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReplicationConfigurations API operation for Amazon Elastic File System.
+//
+// Retrieves the replication configuration for a specific file system. If a
+// file system is not specified, all of the replication configurations for the
+// Amazon Web Services account in an Amazon Web Services Region are retrieved.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation DescribeReplicationConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - ReplicationNotFound
+//     Returned if the specified file system does not have a replication configuration.
+//
+//   - ValidationException
+//     Returned if the Backup service is not available in the Amazon Web Services
+//     Region in which the request was made.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeReplicationConfigurations
+func (c *EFS) DescribeReplicationConfigurations(input *DescribeReplicationConfigurationsInput) (*DescribeReplicationConfigurationsOutput, error) {
+	req, out := c.DescribeReplicationConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReplicationConfigurationsWithContext is the same as DescribeReplicationConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReplicationConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) DescribeReplicationConfigurationsWithContext(ctx aws.Context, input *DescribeReplicationConfigurationsInput, opts ...request.Option) (*DescribeReplicationConfigurationsOutput, error) {
+	req, out := c.DescribeReplicationConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeReplicationConfigurationsPages iterates over the pages of a DescribeReplicationConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReplicationConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeReplicationConfigurations operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationConfigurationsPages(params,
+//	    func(page *efs.DescribeReplicationConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EFS) DescribeReplicationConfigurationsPages(input *DescribeReplicationConfigurationsInput, fn func(*DescribeReplicationConfigurationsOutput, bool) bool) error {
+	return c.DescribeReplicationConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeReplicationConfigurationsPagesWithContext same as DescribeReplicationConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) DescribeReplicationConfigurationsPagesWithContext(ctx aws.Context, input *DescribeReplicationConfigurationsInput, fn func(*DescribeReplicationConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeReplicationConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeReplicationConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeReplicationConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a "aws/request.Request" representing the
@@ -2027,14 +2561,13 @@ const opDescribeTags = "DescribeTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTagsRequest method.
+//	req, resp := client.DescribeTagsRequest(params)
 //
-//    // Example sending a request using the DescribeTagsRequest method.
-//    req, resp := client.DescribeTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeTags
 //
@@ -2066,9 +2599,9 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 
 // DescribeTags API operation for Amazon Elastic File System.
 //
-//
-// DEPRECATED - The DeleteTags action is deprecated and not maintained. Please
-// use the API action to remove tags from EFS resources.
+// DEPRECATED - The DescribeTags action is deprecated and not maintained. To
+// view tags associated with EFS resources, use the ListTagsForResource API
+// action.
 //
 // Returns the tags associated with a file system. The order of tags returned
 // in the response of one DescribeTags call and the order of tags returned across
@@ -2085,16 +2618,17 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 // API operation DescribeTags for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeTags
 //
@@ -2130,15 +2664,14 @@ func (c *EFS) DescribeTagsWithContext(ctx aws.Context, input *DescribeTagsInput,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeTags operation.
-//    pageNum := 0
-//    err := client.DescribeTagsPages(params,
-//        func(page *efs.DescribeTagsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeTags operation.
+//	pageNum := 0
+//	err := client.DescribeTagsPages(params,
+//	    func(page *efs.DescribeTagsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 //
 // Deprecated: Use ListTagsForResource.
 func (c *EFS) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsOutput, bool) bool) error {
@@ -2194,14 +2727,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/ListTagsForResource
 func (c *EFS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2242,20 +2774,21 @@ func (c *EFS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * AccessPointNotFound
-//   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - AccessPointNotFound
+//     Returned if the specified AccessPointId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/ListTagsForResource
 func (c *EFS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2287,15 +2820,14 @@ func (c *EFS) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsFor
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
-//    pageNum := 0
-//    err := client.ListTagsForResourcePages(params,
-//        func(page *efs.ListTagsForResourceOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTagsForResource operation.
+//	pageNum := 0
+//	err := client.ListTagsForResourcePages(params,
+//	    func(page *efs.ListTagsForResourceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EFS) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
 	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2347,14 +2879,13 @@ const opModifyMountTargetSecurityGroups = "ModifyMountTargetSecurityGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyMountTargetSecurityGroupsRequest method.
+//	req, resp := client.ModifyMountTargetSecurityGroupsRequest(params)
 //
-//    // Example sending a request using the ModifyMountTargetSecurityGroupsRequest method.
-//    req, resp := client.ModifyMountTargetSecurityGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups
 func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSecurityGroupsInput) (req *request.Request, output *ModifyMountTargetSecurityGroupsOutput) {
@@ -2387,11 +2918,11 @@ func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSec
 //
 // The operation requires permissions for the following actions:
 //
-//    * elasticfilesystem:ModifyMountTargetSecurityGroups action on the mount
-//    target's file system.
+//   - elasticfilesystem:ModifyMountTargetSecurityGroups action on the mount
+//     target's file system.
 //
-//    * ec2:ModifyNetworkInterfaceAttribute action on the mount target's network
-//    interface.
+//   - ec2:ModifyNetworkInterfaceAttribute action on the mount target's network
+//     interface.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2401,27 +2932,28 @@ func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSec
 // API operation ModifyMountTargetSecurityGroups for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * MountTargetNotFound
-//   Returned if there is no mount target with the specified ID found in the caller's
-//   account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * IncorrectMountTargetState
-//   Returned if the mount target is not in the correct state for the operation.
+//   - MountTargetNotFound
+//     Returned if there is no mount target with the specified ID found in the caller's
+//     Amazon Web Services account.
 //
-//   * SecurityGroupLimitExceeded
-//   Returned if the size of SecurityGroups specified in the request is greater
-//   than five.
+//   - IncorrectMountTargetState
+//     Returned if the mount target is not in the correct state for the operation.
 //
-//   * SecurityGroupNotFound
-//   Returned if one of the specified security groups doesn't exist in the subnet's
-//   VPC.
+//   - SecurityGroupLimitExceeded
+//     Returned if the size of SecurityGroups specified in the request is greater
+//     than five.
+//
+//   - SecurityGroupNotFound
+//     Returned if one of the specified security groups doesn't exist in the subnet's
+//     virtual private cloud (VPC).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups
 func (c *EFS) ModifyMountTargetSecurityGroups(input *ModifyMountTargetSecurityGroupsInput) (*ModifyMountTargetSecurityGroupsOutput, error) {
@@ -2461,14 +2993,13 @@ const opPutAccountPreferences = "PutAccountPreferences"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutAccountPreferencesRequest method.
+//	req, resp := client.PutAccountPreferencesRequest(params)
 //
-//    // Example sending a request using the PutAccountPreferencesRequest method.
-//    req, resp := client.PutAccountPreferencesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutAccountPreferences
 func (c *EFS) PutAccountPreferencesRequest(input *PutAccountPreferencesInput) (req *request.Request, output *PutAccountPreferencesOutput) {
@@ -2489,6 +3020,18 @@ func (c *EFS) PutAccountPreferencesRequest(input *PutAccountPreferencesInput) (r
 
 // PutAccountPreferences API operation for Amazon Elastic File System.
 //
+// Use this operation to set the account preference in the current Amazon Web
+// Services Region to use long 17 character (63 bit) or short 8 character (32
+// bit) resource IDs for new EFS file system and mount target resources. All
+// existing resource IDs are not affected by any changes you make. You can set
+// the ID preference during the opt-in period as EFS transitions to long resource
+// IDs. For more information, see Managing Amazon EFS resource IDs (https://docs.aws.amazon.com/efs/latest/ug/manage-efs-resource-ids.html).
+//
+// Starting in October, 2021, you will receive an error if you try to set the
+// account preference to use the short 8 character format resource ID. Contact
+// Amazon Web Services support if you receive an error and must use short IDs
+// for file system and mount target resources.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2497,8 +3040,13 @@ func (c *EFS) PutAccountPreferencesRequest(input *PutAccountPreferencesInput) (r
 // API operation PutAccountPreferences for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
+//
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutAccountPreferences
 func (c *EFS) PutAccountPreferences(input *PutAccountPreferencesInput) (*PutAccountPreferencesOutput, error) {
@@ -2538,14 +3086,13 @@ const opPutBackupPolicy = "PutBackupPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutBackupPolicyRequest method.
+//	req, resp := client.PutBackupPolicyRequest(params)
 //
-//    // Example sending a request using the PutBackupPolicyRequest method.
-//    req, resp := client.PutBackupPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutBackupPolicy
 func (c *EFS) PutBackupPolicyRequest(input *PutBackupPolicyInput) (req *request.Request, output *PutBackupPolicyOutput) {
@@ -2577,23 +3124,24 @@ func (c *EFS) PutBackupPolicyRequest(input *PutBackupPolicyInput) (req *request.
 // API operation PutBackupPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * IncorrectFileSystemLifeCycleState
-//   Returned if the file system's lifecycle state is not "available".
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
 //
-//   * ValidationException
-//   Returned if the AWS Backup service is not available in the Region in which
-//   the request was made.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - ValidationException
+//     Returned if the Backup service is not available in the Amazon Web Services
+//     Region in which the request was made.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutBackupPolicy
 func (c *EFS) PutBackupPolicy(input *PutBackupPolicyInput) (*PutBackupPolicyOutput, error) {
@@ -2633,14 +3181,13 @@ const opPutFileSystemPolicy = "PutFileSystemPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutFileSystemPolicyRequest method.
+//	req, resp := client.PutFileSystemPolicyRequest(params)
 //
-//    // Example sending a request using the PutFileSystemPolicyRequest method.
-//    req, resp := client.PutFileSystemPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutFileSystemPolicy
 func (c *EFS) PutFileSystemPolicyRequest(input *PutFileSystemPolicyInput) (req *request.Request, output *PutFileSystemPolicyOutput) {
@@ -2683,20 +3230,25 @@ func (c *EFS) PutFileSystemPolicyRequest(input *PutFileSystemPolicyInput) (req *
 // API operation PutFileSystemPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * InvalidPolicyException
-//   Returned if the FileSystemPolicy is is malformed or contains an error such
-//   as an invalid parameter value or a missing required parameter. Returned in
-//   the case of a policy lockout safety check error.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * IncorrectFileSystemLifeCycleState
-//   Returned if the file system's lifecycle state is not "available".
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - InvalidPolicyException
+//     Returned if the FileSystemPolicy is malformed or contains an error such as
+//     a parameter value that is not valid or a missing required parameter. Returned
+//     in the case of a policy lockout safety check error.
+//
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutFileSystemPolicy
 func (c *EFS) PutFileSystemPolicy(input *PutFileSystemPolicyInput) (*PutFileSystemPolicyOutput, error) {
@@ -2736,14 +3288,13 @@ const opPutLifecycleConfiguration = "PutLifecycleConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutLifecycleConfigurationRequest method.
+//	req, resp := client.PutLifecycleConfigurationRequest(params)
 //
-//    // Example sending a request using the PutLifecycleConfigurationRequest method.
-//    req, resp := client.PutLifecycleConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutLifecycleConfiguration
 func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationInput) (req *request.Request, output *PutLifecycleConfigurationOutput) {
@@ -2764,34 +3315,49 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 
 // PutLifecycleConfiguration API operation for Amazon Elastic File System.
 //
-// Enables lifecycle management by creating a new LifecycleConfiguration object.
-// A LifecycleConfiguration object defines when files in an Amazon EFS file
-// system are automatically transitioned to the lower-cost EFS Infrequent Access
-// (IA) storage class. A LifecycleConfiguration applies to all files in a file
-// system.
+// Use this action to manage storage for your file system. A LifecycleConfiguration
+// consists of one or more LifecyclePolicy objects that define the following:
+//
+//   - TransitionToIA – When to move files in the file system from primary
+//     storage (Standard storage class) into the Infrequent Access (IA) storage.
+//
+//   - TransitionToArchive – When to move files in the file system from their
+//     current storage class (either IA or Standard storage) into the Archive
+//     storage. File systems cannot transition into Archive storage before transitioning
+//     into IA storage. Therefore, TransitionToArchive must either not be set
+//     or must be later than TransitionToIA. The Archive storage class is available
+//     only for file systems that use the Elastic Throughput mode and the General
+//     Purpose Performance mode.
+//
+//   - TransitionToPrimaryStorageClass – Whether to move files in the file
+//     system back to primary storage (Standard storage class) after they are
+//     accessed in IA or Archive storage.
+//
+// For more information, see Managing file system storage (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
 //
 // Each Amazon EFS file system supports one lifecycle configuration, which applies
 // to all files in the file system. If a LifecycleConfiguration object already
 // exists for the specified file system, a PutLifecycleConfiguration call modifies
 // the existing configuration. A PutLifecycleConfiguration call with an empty
-// LifecyclePolicies array in the request body deletes any existing LifecycleConfiguration
-// and disables lifecycle management.
-//
+// LifecyclePolicies array in the request body deletes any existing LifecycleConfiguration.
 // In the request, specify the following:
 //
-//    * The ID for the file system for which you are enabling, disabling, or
-//    modifying lifecycle management.
+//   - The ID for the file system for which you are enabling, disabling, or
+//     modifying Lifecycle management.
 //
-//    * A LifecyclePolicies array of LifecyclePolicy objects that define when
-//    files are moved to the IA storage class. The array can contain only one
-//    LifecyclePolicy item.
+//   - A LifecyclePolicies array of LifecyclePolicy objects that define when
+//     to move files to IA storage, to Archive storage, and back to primary storage.
+//     Amazon EFS requires that each LifecyclePolicy object have only have a
+//     single transition, so the LifecyclePolicies array needs to be structured
+//     with separate LifecyclePolicy objects. See the example requests in the
+//     following section for more information.
 //
 // This operation requires permissions for the elasticfilesystem:PutLifecycleConfiguration
 // operation.
 //
 // To apply a LifecycleConfiguration object to an encrypted file system, you
-// need the same AWS Key Management Service (AWS KMS) permissions as when you
-// created the encrypted file system.
+// need the same Key Management Service permissions as when you created the
+// encrypted file system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2801,19 +3367,20 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 // API operation PutLifecycleConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * IncorrectFileSystemLifeCycleState
-//   Returned if the file system's lifecycle state is not "available".
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutLifecycleConfiguration
 func (c *EFS) PutLifecycleConfiguration(input *PutLifecycleConfigurationInput) (*PutLifecycleConfigurationOutput, error) {
@@ -2853,14 +3420,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/TagResource
 func (c *EFS) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2896,20 +3462,21 @@ func (c *EFS) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * AccessPointNotFound
-//   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - AccessPointNotFound
+//     Returned if the specified AccessPointId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/TagResource
 func (c *EFS) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2949,14 +3516,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UntagResource
 func (c *EFS) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2992,20 +3558,21 @@ func (c *EFS) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * AccessPointNotFound
-//   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - AccessPointNotFound
+//     Returned if the specified AccessPointId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UntagResource
 func (c *EFS) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3045,14 +3612,13 @@ const opUpdateFileSystem = "UpdateFileSystem"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFileSystemRequest method.
+//	req, resp := client.UpdateFileSystemRequest(params)
 //
-//    // Example sending a request using the UpdateFileSystemRequest method.
-//    req, resp := client.UpdateFileSystemRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UpdateFileSystem
 func (c *EFS) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *request.Request, output *UpdateFileSystemOutput) {
@@ -3084,34 +3650,36 @@ func (c *EFS) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 // API operation UpdateFileSystem for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   Returned if the request is malformed or contains an error such as an invalid
-//   parameter value or a missing required parameter.
 //
-//   * FileSystemNotFound
-//   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
 //
-//   * IncorrectFileSystemLifeCycleState
-//   Returned if the file system's lifecycle state is not "available".
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
 //
-//   * InsufficientThroughputCapacity
-//   Returned if there's not enough capacity to provision additional throughput.
-//   This value might be returned when you try to create a file system in provisioned
-//   throughput mode, when you attempt to increase the provisioned throughput
-//   of an existing file system, or when you attempt to change an existing file
-//   system from bursting to provisioned throughput mode. Try again later.
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
 //
-//   * InternalServerError
-//   Returned if an error occurred on the server side.
+//   - InsufficientThroughputCapacity
+//     Returned if there's not enough capacity to provision additional throughput.
+//     This value might be returned when you try to create a file system in provisioned
+//     throughput mode, when you attempt to increase the provisioned throughput
+//     of an existing file system, or when you attempt to change an existing file
+//     system from Bursting Throughput to Provisioned Throughput mode. Try again
+//     later.
 //
-//   * ThroughputLimitExceeded
-//   Returned if the throughput mode or amount of provisioned throughput can't
-//   be changed because the throughput limit of 1024 MiB/s has been reached.
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
 //
-//   * TooManyRequests
-//   Returned if you don’t wait at least 24 hours before changing the throughput
-//   mode, or decreasing the Provisioned Throughput value.
+//   - ThroughputLimitExceeded
+//     Returned if the throughput mode or amount of provisioned throughput can't
+//     be changed because the throughput limit of 1024 MiB/s has been reached.
+//
+//   - TooManyRequests
+//     Returned if you don’t wait at least 24 hours before either changing the
+//     throughput mode, or decreasing the Provisioned Throughput value.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UpdateFileSystem
 func (c *EFS) UpdateFileSystem(input *UpdateFileSystemInput) (*UpdateFileSystemOutput, error) {
@@ -3135,8 +3703,120 @@ func (c *EFS) UpdateFileSystemWithContext(ctx aws.Context, input *UpdateFileSyst
 	return out, req.Send()
 }
 
-// Returned if the access point you are trying to create already exists, with
-// the creation token you provided in the request.
+const opUpdateFileSystemProtection = "UpdateFileSystemProtection"
+
+// UpdateFileSystemProtectionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFileSystemProtection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFileSystemProtection for more information on using the UpdateFileSystemProtection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateFileSystemProtectionRequest method.
+//	req, resp := client.UpdateFileSystemProtectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UpdateFileSystemProtection
+func (c *EFS) UpdateFileSystemProtectionRequest(input *UpdateFileSystemProtectionInput) (req *request.Request, output *UpdateFileSystemProtectionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFileSystemProtection,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2015-02-01/file-systems/{FileSystemId}/protection",
+	}
+
+	if input == nil {
+		input = &UpdateFileSystemProtectionInput{}
+	}
+
+	output = &UpdateFileSystemProtectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFileSystemProtection API operation for Amazon Elastic File System.
+//
+// Updates protection on the file system.
+//
+// This operation requires permissions for the elasticfilesystem:UpdateFileSystemProtection
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation UpdateFileSystemProtection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
+//
+//   - InsufficientThroughputCapacity
+//     Returned if there's not enough capacity to provision additional throughput.
+//     This value might be returned when you try to create a file system in provisioned
+//     throughput mode, when you attempt to increase the provisioned throughput
+//     of an existing file system, or when you attempt to change an existing file
+//     system from Bursting Throughput to Provisioned Throughput mode. Try again
+//     later.
+//
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - ThroughputLimitExceeded
+//     Returned if the throughput mode or amount of provisioned throughput can't
+//     be changed because the throughput limit of 1024 MiB/s has been reached.
+//
+//   - ReplicationAlreadyExists
+//     Returned if the file system is already included in a replication configuration.>
+//
+//   - TooManyRequests
+//     Returned if you don’t wait at least 24 hours before either changing the
+//     throughput mode, or decreasing the Provisioned Throughput value.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UpdateFileSystemProtection
+func (c *EFS) UpdateFileSystemProtection(input *UpdateFileSystemProtectionInput) (*UpdateFileSystemProtectionOutput, error) {
+	req, out := c.UpdateFileSystemProtectionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFileSystemProtectionWithContext is the same as UpdateFileSystemProtection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFileSystemProtection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) UpdateFileSystemProtectionWithContext(ctx aws.Context, input *UpdateFileSystemProtectionInput, opts ...request.Option) (*UpdateFileSystemProtectionOutput, error) {
+	req, out := c.UpdateFileSystemProtectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// Returned if the access point that you are trying to create already exists,
+// with the creation token you provided in the request.
 type AccessPointAlreadyExists struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3144,18 +3824,36 @@ type AccessPointAlreadyExists struct {
 	// AccessPointId is a required field
 	AccessPointId *string `type:"string" required:"true"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPointAlreadyExists) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPointAlreadyExists) GoString() string {
 	return s.String()
 }
@@ -3220,7 +3918,7 @@ type AccessPointDescription struct {
 	// The name of the access point. This is the value of the Name tag.
 	Name *string `type:"string"`
 
-	// Identified the AWS account that owns the access point resource.
+	// Identifies the Amazon Web Services account that owns the access point resource.
 	OwnerId *string `type:"string"`
 
 	// The full POSIX identity, including the user ID, group ID, and secondary group
@@ -3228,20 +3926,28 @@ type AccessPointDescription struct {
 	// using the access point.
 	PosixUser *PosixUser `type:"structure"`
 
-	// The directory on the Amazon EFS file system that the access point exposes
-	// as the root directory to NFS clients using the access point.
+	// The directory on the EFS file system that the access point exposes as the
+	// root directory to NFS clients using the access point.
 	RootDirectory *RootDirectory `type:"structure"`
 
 	// The tags associated with the access point, presented as an array of Tag objects.
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPointDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPointDescription) GoString() string {
 	return s.String()
 }
@@ -3306,24 +4012,44 @@ func (s *AccessPointDescription) SetTags(v []*Tag) *AccessPointDescription {
 	return s
 }
 
-// Returned if the AWS account has already created the maximum number of access
-// points allowed per file system.
+// Returned if the Amazon Web Services account has already created the maximum
+// number of access points allowed per file system. For more informaton, see
+// https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region
+// (https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region).
 type AccessPointLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPointLimitExceeded) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPointLimitExceeded) GoString() string {
 	return s.String()
 }
@@ -3367,23 +4093,41 @@ func (s *AccessPointLimitExceeded) RequestID() string {
 }
 
 // Returned if the specified AccessPointId value doesn't exist in the requester's
-// AWS account.
+// Amazon Web Services account.
 type AccessPointNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPointNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPointNotFound) GoString() string {
 	return s.String()
 }
@@ -3427,24 +4171,40 @@ func (s *AccessPointNotFound) RequestID() string {
 }
 
 // Returned if the Availability Zone that was specified for a mount target is
-// different from the Availability Zone that was specified for One Zone storage
-// classes. For more information, see Regional and One Zone storage redundancy
-// (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html).
+// different from the Availability Zone that was specified for One Zone storage.
+// For more information, see Regional and One Zone storage redundancy (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html).
 type AvailabilityZonesMismatch struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
 	ErrorCode *string `min:"1" type:"string"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AvailabilityZonesMismatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AvailabilityZonesMismatch) GoString() string {
 	return s.String()
 }
@@ -3495,24 +4255,32 @@ type BackupPolicy struct {
 
 	// Describes the status of the file system's backup policy.
 	//
-	//    * ENABLED - EFS is automatically backing up the file system.
+	//    * ENABLED – EFS is automatically backing up the file system.
 	//
-	//    * ENABLING - EFS is turning on automatic backups for the file system.
+	//    * ENABLING – EFS is turning on automatic backups for the file system.
 	//
-	//    * DISABLED - automatic back ups are turned off for the file system.
+	//    * DISABLED – Automatic back ups are turned off for the file system.
 	//
-	//    * DISABLING - EFS is turning off automatic backups for the file system.
+	//    * DISABLING – EFS is turning off automatic backups for the file system.
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupPolicy) GoString() string {
 	return s.String()
 }
@@ -3542,18 +4310,36 @@ type BadRequest struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequest) GoString() string {
 	return s.String()
 }
@@ -3596,6 +4382,82 @@ func (s *BadRequest) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Returned if the source file system in a replication is encrypted but the
+// destination file system is unencrypted.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type CreateAccessPointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3612,13 +4474,13 @@ type CreateAccessPointInput struct {
 	// using the access point.
 	PosixUser *PosixUser `type:"structure"`
 
-	// Specifies the directory on the Amazon EFS file system that the access point
-	// exposes as the root directory of your file system to NFS clients using the
-	// access point. The clients using the access point can only access the root
-	// directory and below. If the RootDirectory > Path specified does not exist,
-	// EFS creates it and applies the CreationInfo settings when a client connects
-	// to an access point. When specifying a RootDirectory, you need to provide
-	// the Path, and the CreationInfo.
+	// Specifies the directory on the EFS file system that the access point exposes
+	// as the root directory of your file system to NFS clients using the access
+	// point. The clients using the access point can only access the root directory
+	// and below. If the RootDirectory > Path specified does not exist, Amazon EFS
+	// creates it and applies the CreationInfo settings when a client connects to
+	// an access point. When specifying a RootDirectory, you must provide the Path,
+	// and the CreationInfo.
 	//
 	// Amazon EFS creates a root directory only if you have provided the CreationInfo:
 	// OwnUid, OwnGID, and permissions for the directory. If you do not provide
@@ -3626,16 +4488,27 @@ type CreateAccessPointInput struct {
 	// directory does not exist, attempts to mount using the access point will fail.
 	RootDirectory *RootDirectory `type:"structure"`
 
-	// Creates tags associated with the access point. Each tag is a key-value pair.
+	// Creates tags associated with the access point. Each tag is a key-value pair,
+	// each key must be unique. For more information, see Tagging Amazon Web Services
+	// resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointInput) GoString() string {
 	return s.String()
 }
@@ -3728,7 +4601,7 @@ type CreateAccessPointOutput struct {
 	// The name of the access point. This is the value of the Name tag.
 	Name *string `type:"string"`
 
-	// Identified the AWS account that owns the access point resource.
+	// Identifies the Amazon Web Services account that owns the access point resource.
 	OwnerId *string `type:"string"`
 
 	// The full POSIX identity, including the user ID, group ID, and secondary group
@@ -3736,20 +4609,28 @@ type CreateAccessPointOutput struct {
 	// using the access point.
 	PosixUser *PosixUser `type:"structure"`
 
-	// The directory on the Amazon EFS file system that the access point exposes
-	// as the root directory to NFS clients using the access point.
+	// The directory on the EFS file system that the access point exposes as the
+	// root directory to NFS clients using the access point.
 	RootDirectory *RootDirectory `type:"structure"`
 
 	// The tags associated with the access point, presented as an array of Tag objects.
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointOutput) GoString() string {
 	return s.String()
 }
@@ -3817,26 +4698,27 @@ func (s *CreateAccessPointOutput) SetTags(v []*Tag) *CreateAccessPointOutput {
 type CreateFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
-	// Used to create a file system that uses One Zone storage classes. It specifies
-	// the AWS Availability Zone in which to create the file system. Use the format
-	// us-east-1a to specify the Availability Zone. For more information about One
-	// Zone storage classes, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+	// Used to create a One Zone file system. It specifies the Amazon Web Services
+	// Availability Zone in which to create the file system. Use the format us-east-1a
+	// to specify the Availability Zone. For more information about One Zone file
+	// systems, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 	// in the Amazon EFS User Guide.
 	//
-	// One Zone storage classes are not available in all Availability Zones in AWS
-	// Regions where Amazon EFS is available.
+	// One Zone file systems are not available in all Availability Zones in Amazon
+	// Web Services Regions where Amazon EFS is available.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
 	// Specifies whether automatic backups are enabled on the file system that you
 	// are creating. Set the value to true to enable automatic backups. If you are
-	// creating a file system that uses One Zone storage classes, automatic backups
-	// are enabled by default. For more information, see Automatic backups (https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups)
+	// creating a One Zone file system, automatic backups are enabled by default.
+	// For more information, see Automatic backups (https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups)
 	// in the Amazon EFS User Guide.
 	//
 	// Default is false. However, if you specify an AvailabilityZoneName, the default
 	// is true.
 	//
-	// AWS Backup is not available in all AWS Regions where Amazon EFS is available.
+	// Backup is not available in all Amazon Web Services Regions where Amazon EFS
+	// is available.
 	Backup *bool `type:"boolean"`
 
 	// A string of up to 64 ASCII characters. Amazon EFS uses this to ensure idempotent
@@ -3844,16 +4726,16 @@ type CreateFileSystemInput struct {
 	CreationToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A Boolean value that, if true, creates an encrypted file system. When creating
-	// an encrypted file system, you have the option of specifying CreateFileSystemRequest$KmsKeyId
-	// for an existing AWS Key Management Service (AWS KMS) customer master key
-	// (CMK). If you don't specify a CMK, then the default CMK for Amazon EFS, /aws/elasticfilesystem,
-	// is used to protect the encrypted file system.
+	// an encrypted file system, you have the option of specifying an existing Key
+	// Management Service key (KMS key). If you don't specify a KMS key, then the
+	// default KMS key for Amazon EFS, /aws/elasticfilesystem, is used to protect
+	// the encrypted file system.
 	Encrypted *bool `type:"boolean"`
 
-	// The ID of the AWS KMS CMK that you want to use to protect the encrypted file
-	// system. This parameter is only required if you want to use a non-default
-	// KMS key. If this parameter is not specified, the default CMK for Amazon EFS
-	// is used. This ID can be in one of the following formats:
+	// The ID of the KMS key that you want to use to protect the encrypted file
+	// system. This parameter is required only if you want to use a non-default
+	// KMS key. If this parameter is not specified, the default KMS key for Amazon
+	// EFS is used. You can specify a KMS key ID using the following formats:
 	//
 	//    * Key ID - A unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab.
 	//
@@ -3864,54 +4746,68 @@ type CreateFileSystemInput struct {
 	//
 	//    * Key alias ARN - An ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1.
 	//
-	// If KmsKeyId is specified, the CreateFileSystemRequest$Encrypted parameter
-	// must be set to true.
+	// If you use KmsKeyId, you must set the CreateFileSystemRequest$Encrypted parameter
+	// to true.
 	//
 	// EFS accepts only symmetric KMS keys. You cannot use asymmetric KMS keys with
-	// EFS file systems.
+	// Amazon EFS file systems.
 	KmsKeyId *string `type:"string"`
 
-	// The performance mode of the file system. We recommend generalPurpose performance
-	// mode for most file systems. File systems using the maxIO performance mode
+	// The Performance mode of the file system. We recommend generalPurpose performance
+	// mode for all file systems. File systems using the maxIO performance mode
 	// can scale to higher levels of aggregate throughput and operations per second
 	// with a tradeoff of slightly higher latencies for most file operations. The
 	// performance mode can't be changed after the file system has been created.
+	// The maxIO mode is not supported on One Zone file systems.
 	//
-	// The maxIO mode is not supported on file systems using One Zone storage classes.
+	// Due to the higher per-operation latencies with Max I/O, we recommend using
+	// General Purpose performance mode for all file systems.
+	//
+	// Default is generalPurpose.
 	PerformanceMode *string `type:"string" enum:"PerformanceMode"`
 
-	// The throughput, measured in MiB/s, that you want to provision for a file
-	// system that you're creating. Valid values are 1-1024. Required if ThroughputMode
-	// is set to provisioned. The upper limit for throughput is 1024 MiB/s. To increase
-	// this limit, contact AWS Support. For more information, see Amazon EFS quotas
-	// that you can increase (https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits)
-	// in the Amazon EFS User Guide.
+	// The throughput, measured in mebibytes per second (MiBps), that you want to
+	// provision for a file system that you're creating. Required if ThroughputMode
+	// is set to provisioned. Valid values are 1-3414 MiBps, with the upper limit
+	// depending on Region. To increase this limit, contact Amazon Web Services
+	// Support. For more information, see Amazon EFS quotas that you can increase
+	// (https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the
+	// Amazon EFS User Guide.
 	ProvisionedThroughputInMibps *float64 `min:"1" type:"double"`
 
-	// A value that specifies to create one or more tags associated with the file
-	// system. Each tag is a user-defined key-value pair. Name your file system
-	// on creation by including a "Key":"Name","Value":"{value}" key-value pair.
+	// Use to create one or more tags associated with the file system. Each tag
+	// is a user-defined key-value pair. Name your file system on creation by including
+	// a "Key":"Name","Value":"{value}" key-value pair. Each key must be unique.
+	// For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 
-	// Specifies the throughput mode for the file system, either bursting or provisioned.
-	// If you set ThroughputMode to provisioned, you must also set a value for ProvisionedThroughputInMibps.
-	// After you create the file system, you can decrease your file system's throughput
-	// in Provisioned Throughput mode or change between the throughput modes, as
-	// long as it’s been more than 24 hours since the last decrease or throughput
-	// mode change. For more information, see Specifying throughput with provisioned
-	// mode (https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput)
+	// Specifies the throughput mode for the file system. The mode can be bursting,
+	// provisioned, or elastic. If you set ThroughputMode to provisioned, you must
+	// also set a value for ProvisionedThroughputInMibps. After you create the file
+	// system, you can decrease your file system's Provisioned throughput or change
+	// between the throughput modes, with certain time restrictions. For more information,
+	// see Specifying throughput with provisioned mode (https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput)
 	// in the Amazon EFS User Guide.
 	//
 	// Default is bursting.
 	ThroughputMode *string `type:"string" enum:"ThroughputMode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemInput) GoString() string {
 	return s.String()
 }
@@ -4014,20 +4910,27 @@ type CreateMountTargetInput struct {
 	// for the same VPC as subnet specified.
 	SecurityGroups []*string `type:"list"`
 
-	// The ID of the subnet to add the mount target in. For file systems that use
-	// One Zone storage classes, use the subnet that is associated with the file
-	// system's Availability Zone.
+	// The ID of the subnet to add the mount target in. For One Zone file systems,
+	// use the subnet that is associated with the file system's Availability Zone.
 	//
 	// SubnetId is a required field
 	SubnetId *string `min:"15" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateMountTargetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateMountTargetInput) GoString() string {
 	return s.String()
 }
@@ -4078,6 +4981,173 @@ func (s *CreateMountTargetInput) SetSubnetId(v string) *CreateMountTargetInput {
 	return s
 }
 
+type CreateReplicationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of destination configuration objects. Only one destination configuration
+	// object is supported.
+	//
+	// Destinations is a required field
+	Destinations []*DestinationToCreate `type:"list" required:"true"`
+
+	// Specifies the Amazon EFS file system that you want to replicate. This file
+	// system cannot already be a source or destination file system in another replication
+	// configuration.
+	//
+	// SourceFileSystemId is a required field
+	SourceFileSystemId *string `location:"uri" locationName:"SourceFileSystemId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReplicationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReplicationConfigurationInput"}
+	if s.Destinations == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destinations"))
+	}
+	if s.SourceFileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceFileSystemId"))
+	}
+	if s.SourceFileSystemId != nil && len(*s.SourceFileSystemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceFileSystemId", 1))
+	}
+	if s.Destinations != nil {
+		for i, v := range s.Destinations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Destinations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *CreateReplicationConfigurationInput) SetDestinations(v []*DestinationToCreate) *CreateReplicationConfigurationInput {
+	s.Destinations = v
+	return s
+}
+
+// SetSourceFileSystemId sets the SourceFileSystemId field's value.
+func (s *CreateReplicationConfigurationInput) SetSourceFileSystemId(v string) *CreateReplicationConfigurationInput {
+	s.SourceFileSystemId = &v
+	return s
+}
+
+// Describes the replication configuration for a specific file system.
+type CreateReplicationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes when the replication configuration was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// An array of destination objects. Only one destination object is supported.
+	//
+	// Destinations is a required field
+	Destinations []*Destination `type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the original source EFS file system in
+	// the replication configuration.
+	//
+	// OriginalSourceFileSystemArn is a required field
+	OriginalSourceFileSystemArn *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the current source file system in the replication
+	// configuration.
+	//
+	// SourceFileSystemArn is a required field
+	SourceFileSystemArn *string `type:"string" required:"true"`
+
+	// The ID of the source Amazon EFS file system that is being replicated.
+	//
+	// SourceFileSystemId is a required field
+	SourceFileSystemId *string `type:"string" required:"true"`
+
+	// The Amazon Web Services Region in which the source EFS file system is located.
+	//
+	// SourceFileSystemRegion is a required field
+	SourceFileSystemRegion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateReplicationConfigurationOutput) SetCreationTime(v time.Time) *CreateReplicationConfigurationOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *CreateReplicationConfigurationOutput) SetDestinations(v []*Destination) *CreateReplicationConfigurationOutput {
+	s.Destinations = v
+	return s
+}
+
+// SetOriginalSourceFileSystemArn sets the OriginalSourceFileSystemArn field's value.
+func (s *CreateReplicationConfigurationOutput) SetOriginalSourceFileSystemArn(v string) *CreateReplicationConfigurationOutput {
+	s.OriginalSourceFileSystemArn = &v
+	return s
+}
+
+// SetSourceFileSystemArn sets the SourceFileSystemArn field's value.
+func (s *CreateReplicationConfigurationOutput) SetSourceFileSystemArn(v string) *CreateReplicationConfigurationOutput {
+	s.SourceFileSystemArn = &v
+	return s
+}
+
+// SetSourceFileSystemId sets the SourceFileSystemId field's value.
+func (s *CreateReplicationConfigurationOutput) SetSourceFileSystemId(v string) *CreateReplicationConfigurationOutput {
+	s.SourceFileSystemId = &v
+	return s
+}
+
+// SetSourceFileSystemRegion sets the SourceFileSystemRegion field's value.
+func (s *CreateReplicationConfigurationOutput) SetSourceFileSystemRegion(v string) *CreateReplicationConfigurationOutput {
+	s.SourceFileSystemRegion = &v
+	return s
+}
+
 type CreateTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4093,12 +5163,20 @@ type CreateTagsInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagsInput) GoString() string {
 	return s.String()
 }
@@ -4148,12 +5226,20 @@ type CreateTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagsOutput) GoString() string {
 	return s.String()
 }
@@ -4193,12 +5279,20 @@ type CreationInfo struct {
 	Permissions *string `min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreationInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreationInfo) GoString() string {
 	return s.String()
 }
@@ -4244,7 +5338,7 @@ func (s *CreationInfo) SetPermissions(v string) *CreationInfo {
 }
 
 type DeleteAccessPointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the access point that you want to delete.
 	//
@@ -4252,12 +5346,20 @@ type DeleteAccessPointInput struct {
 	AccessPointId *string `location:"uri" locationName:"AccessPointId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointInput) GoString() string {
 	return s.String()
 }
@@ -4288,18 +5390,26 @@ type DeleteAccessPointOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteFileSystemInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the file system you want to delete.
 	//
@@ -4307,12 +5417,20 @@ type DeleteFileSystemInput struct {
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemInput) GoString() string {
 	return s.String()
 }
@@ -4343,18 +5461,26 @@ type DeleteFileSystemOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteFileSystemPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies the EFS file system for which to delete the FileSystemPolicy.
 	//
@@ -4362,12 +5488,20 @@ type DeleteFileSystemPolicyInput struct {
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemPolicyInput) GoString() string {
 	return s.String()
 }
@@ -4398,18 +5532,26 @@ type DeleteFileSystemPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemPolicyOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteMountTargetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the mount target to delete (String).
 	//
@@ -4417,12 +5559,20 @@ type DeleteMountTargetInput struct {
 	MountTargetId *string `location:"uri" locationName:"MountTargetId" min:"13" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMountTargetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMountTargetInput) GoString() string {
 	return s.String()
 }
@@ -4453,13 +5603,92 @@ type DeleteMountTargetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMountTargetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMountTargetOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteReplicationConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the source file system in the replication configuration.
+	//
+	// SourceFileSystemId is a required field
+	SourceFileSystemId *string `location:"uri" locationName:"SourceFileSystemId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReplicationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReplicationConfigurationInput"}
+	if s.SourceFileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceFileSystemId"))
+	}
+	if s.SourceFileSystemId != nil && len(*s.SourceFileSystemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceFileSystemId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceFileSystemId sets the SourceFileSystemId field's value.
+func (s *DeleteReplicationConfigurationInput) SetSourceFileSystemId(v string) *DeleteReplicationConfigurationInput {
+	s.SourceFileSystemId = &v
+	return s
+}
+
+type DeleteReplicationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -4477,12 +5706,20 @@ type DeleteTagsInput struct {
 	TagKeys []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagsInput) GoString() string {
 	return s.String()
 }
@@ -4525,12 +5762,20 @@ type DeleteTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagsOutput) GoString() string {
 	return s.String()
 }
@@ -4541,18 +5786,36 @@ type DependencyTimeout struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DependencyTimeout) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DependencyTimeout) GoString() string {
 	return s.String()
 }
@@ -4596,7 +5859,7 @@ func (s *DependencyTimeout) RequestID() string {
 }
 
 type DescribeAccessPointsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) Specifies an EFS access point to describe in the response; mutually
 	// exclusive with FileSystemId.
@@ -4616,12 +5879,20 @@ type DescribeAccessPointsInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccessPointsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccessPointsInput) GoString() string {
 	return s.String()
 }
@@ -4678,12 +5949,20 @@ type DescribeAccessPointsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccessPointsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccessPointsOutput) GoString() string {
 	return s.String()
 }
@@ -4703,19 +5982,31 @@ func (s *DescribeAccessPointsOutput) SetNextToken(v string) *DescribeAccessPoint
 type DescribeAccountPreferencesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Max results used for pagination.
+	// (Optional) When retrieving account preferences, you can optionally specify
+	// the MaxItems parameter to limit the number of objects returned in a response.
+	// The default value is 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Token used for pagination.
+	// (Optional) You can use NextToken in a subsequent request to fetch the next
+	// page of Amazon Web Services account preferences if the response payload was
+	// paginated.
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountPreferencesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountPreferencesInput) GoString() string {
 	return s.String()
 }
@@ -4751,18 +6042,30 @@ func (s *DescribeAccountPreferencesInput) SetNextToken(v string) *DescribeAccoun
 type DescribeAccountPreferencesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Token used for pagination.
+	// Present if there are more records than returned in the response. You can
+	// use the NextToken in the subsequent request to fetch the additional descriptions.
 	NextToken *string `min:"1" type:"string"`
 
+	// Describes the resource ID preference setting for the Amazon Web Services
+	// account associated with the user making the request, in the current Amazon
+	// Web Services Region.
 	ResourceIdPreference *ResourceIdPreference `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountPreferencesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountPreferencesOutput) GoString() string {
 	return s.String()
 }
@@ -4780,20 +6083,28 @@ func (s *DescribeAccountPreferencesOutput) SetResourceIdPreference(v *ResourceId
 }
 
 type DescribeBackupPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Specifies which EFS file system to retrieve the BackupPolicy for.
+	// Specifies which EFS file system for which to retrieve the BackupPolicy.
 	//
 	// FileSystemId is a required field
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupPolicyInput) GoString() string {
 	return s.String()
 }
@@ -4824,16 +6135,24 @@ type DescribeBackupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Describes the file system's backup policy, indicating whether automatic backups
-	// are turned on or off..
+	// are turned on or off.
 	BackupPolicy *BackupPolicy `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -4845,7 +6164,7 @@ func (s *DescribeBackupPolicyOutput) SetBackupPolicy(v *BackupPolicy) *DescribeB
 }
 
 type DescribeFileSystemPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies which EFS file system to retrieve the FileSystemPolicy for.
 	//
@@ -4853,12 +6172,20 @@ type DescribeFileSystemPolicyInput struct {
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemPolicyInput) GoString() string {
 	return s.String()
 }
@@ -4895,12 +6222,20 @@ type DescribeFileSystemPolicyOutput struct {
 	Policy *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -4918,7 +6253,7 @@ func (s *DescribeFileSystemPolicyOutput) SetPolicy(v string) *DescribeFileSystem
 }
 
 type DescribeFileSystemsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) Restricts the list to the file system with this creation token
 	// (String). You specify a creation token when you create an Amazon EFS file
@@ -4939,12 +6274,20 @@ type DescribeFileSystemsInput struct {
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemsInput) GoString() string {
 	return s.String()
 }
@@ -5006,12 +6349,20 @@ type DescribeFileSystemsOutput struct {
 	NextMarker *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemsOutput) GoString() string {
 	return s.String()
 }
@@ -5035,7 +6386,7 @@ func (s *DescribeFileSystemsOutput) SetNextMarker(v string) *DescribeFileSystems
 }
 
 type DescribeLifecycleConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the file system whose LifecycleConfiguration object you want to
 	// retrieve (String).
@@ -5044,12 +6395,20 @@ type DescribeLifecycleConfigurationInput struct {
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLifecycleConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLifecycleConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -5079,17 +6438,25 @@ func (s *DescribeLifecycleConfigurationInput) SetFileSystemId(v string) *Describ
 type DescribeLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of lifecycle management policies. Currently, EFS supports a maximum
-	// of one policy per file system.
+	// An array of lifecycle management policies. EFS supports a maximum of one
+	// policy per file system.
 	LifecyclePolicies []*LifecyclePolicy `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLifecycleConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLifecycleConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -5101,7 +6468,7 @@ func (s *DescribeLifecycleConfigurationOutput) SetLifecyclePolicies(v []*Lifecyc
 }
 
 type DescribeMountTargetSecurityGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the mount target whose security groups you want to retrieve.
 	//
@@ -5109,12 +6476,20 @@ type DescribeMountTargetSecurityGroupsInput struct {
 	MountTargetId *string `location:"uri" locationName:"MountTargetId" min:"13" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMountTargetSecurityGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMountTargetSecurityGroupsInput) GoString() string {
 	return s.String()
 }
@@ -5150,12 +6525,20 @@ type DescribeMountTargetSecurityGroupsOutput struct {
 	SecurityGroups []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMountTargetSecurityGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMountTargetSecurityGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -5167,7 +6550,7 @@ func (s *DescribeMountTargetSecurityGroupsOutput) SetSecurityGroups(v []*string)
 }
 
 type DescribeMountTargetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) The ID of the access point whose mount targets that you want to
 	// list. It must be included in your request if a FileSystemId or MountTargetId
@@ -5196,12 +6579,20 @@ type DescribeMountTargetsInput struct {
 	MountTargetId *string `location:"querystring" locationName:"MountTargetId" min:"13" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMountTargetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMountTargetsInput) GoString() string {
 	return s.String()
 }
@@ -5272,12 +6663,20 @@ type DescribeMountTargetsOutput struct {
 	NextMarker *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMountTargetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMountTargetsOutput) GoString() string {
 	return s.String()
 }
@@ -5300,8 +6699,117 @@ func (s *DescribeMountTargetsOutput) SetNextMarker(v string) *DescribeMountTarge
 	return s
 }
 
-type DescribeTagsInput struct {
+type DescribeReplicationConfigurationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// You can retrieve the replication configuration for a specific file system
+	// by providing its file system ID.
+	FileSystemId *string `location:"querystring" locationName:"FileSystemId" type:"string"`
+
+	// (Optional) To limit the number of objects returned in a response, you can
+	// specify the MaxItems parameter. The default value is 100.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// NextToken is present if the response is paginated. You can use NextToken
+	// in a subsequent request to fetch the next page of output.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationConfigurationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DescribeReplicationConfigurationsInput) SetFileSystemId(v string) *DescribeReplicationConfigurationsInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeReplicationConfigurationsInput) SetMaxResults(v int64) *DescribeReplicationConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReplicationConfigurationsInput) SetNextToken(v string) *DescribeReplicationConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeReplicationConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// You can use the NextToken from the previous response in a subsequent request
+	// to fetch the additional descriptions.
+	NextToken *string `min:"1" type:"string"`
+
+	// The collection of replication configurations that is returned.
+	Replications []*ReplicationConfigurationDescription `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReplicationConfigurationsOutput) SetNextToken(v string) *DescribeReplicationConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReplications sets the Replications field's value.
+func (s *DescribeReplicationConfigurationsOutput) SetReplications(v []*ReplicationConfigurationDescription) *DescribeReplicationConfigurationsOutput {
+	s.Replications = v
+	return s
+}
+
+type DescribeTagsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the file system whose tag set you want to retrieve.
 	//
@@ -5320,12 +6828,20 @@ type DescribeTagsInput struct {
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagsInput) GoString() string {
 	return s.String()
 }
@@ -5388,12 +6904,20 @@ type DescribeTagsOutput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagsOutput) GoString() string {
 	return s.String()
 }
@@ -5416,27 +6940,219 @@ func (s *DescribeTagsOutput) SetTags(v []*Tag) *DescribeTagsOutput {
 	return s
 }
 
+// Describes the destination file system in the replication configuration.
+type Destination struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the destination Amazon EFS file system.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `type:"string" required:"true"`
+
+	// The time when the most recent sync was successfully completed on the destination
+	// file system. Any changes to data on the source file system that occurred
+	// before this time have been successfully replicated to the destination file
+	// system. Any changes that occurred after this time might not be fully replicated.
+	LastReplicatedTimestamp *time.Time `type:"timestamp"`
+
+	// The Amazon Web Services Region in which the destination file system is located.
+	//
+	// Region is a required field
+	Region *string `min:"1" type:"string" required:"true"`
+
+	// Describes the status of the destination EFS file system.
+	//
+	//    * The Paused state occurs as a result of opting out of the source or destination
+	//    Region after the replication configuration was created. To resume replication
+	//    for the file system, you need to again opt in to the Amazon Web Services
+	//    Region. For more information, see Managing Amazon Web Services Regions
+	//    (https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)
+	//    in the Amazon Web Services General Reference Guide.
+	//
+	//    * The Error state occurs when either the source or the destination file
+	//    system (or both) is in a failed state and is unrecoverable. For more information,
+	//    see Monitoring replication status (https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#restoring-backup-efsmonitoring-replication-status.html)
+	//    in the Amazon EFS User Guide. You must delete the replication configuration,
+	//    and then restore the most recent backup of the failed file system (either
+	//    the source or the destination) to a new file system.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ReplicationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Destination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Destination) GoString() string {
+	return s.String()
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *Destination) SetFileSystemId(v string) *Destination {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetLastReplicatedTimestamp sets the LastReplicatedTimestamp field's value.
+func (s *Destination) SetLastReplicatedTimestamp(v time.Time) *Destination {
+	s.LastReplicatedTimestamp = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *Destination) SetRegion(v string) *Destination {
+	s.Region = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Destination) SetStatus(v string) *Destination {
+	s.Status = &v
+	return s
+}
+
+// Describes the new or existing destination file system for the replication
+// configuration.
+type DestinationToCreate struct {
+	_ struct{} `type:"structure"`
+
+	// To create a file system that uses One Zone storage, specify the name of the
+	// Availability Zone in which to create the destination file system.
+	AvailabilityZoneName *string `min:"1" type:"string"`
+
+	// The ID of the file system to use for the destination. The file system's replication
+	// overwrite replication must be disabled. If you do not provide an ID, then
+	// EFS creates a new file system for the replication destination.
+	FileSystemId *string `type:"string"`
+
+	// Specify the Key Management Service (KMS) key that you want to use to encrypt
+	// the destination file system. If you do not specify a KMS key, Amazon EFS
+	// uses your default KMS key for Amazon EFS, /aws/elasticfilesystem. This ID
+	// can be in one of the following formats:
+	//
+	//    * Key ID - The unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab.
+	//
+	//    * ARN - The Amazon Resource Name (ARN) for the key, for example arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
+	//
+	//    * Key alias - A previously created display name for a key, for example
+	//    alias/projectKey1.
+	//
+	//    * Key alias ARN - The ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1.
+	KmsKeyId *string `type:"string"`
+
+	// To create a file system that uses Regional storage, specify the Amazon Web
+	// Services Region in which to create the destination file system.
+	Region *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationToCreate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationToCreate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DestinationToCreate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DestinationToCreate"}
+	if s.AvailabilityZoneName != nil && len(*s.AvailabilityZoneName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZoneName", 1))
+	}
+	if s.Region != nil && len(*s.Region) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Region", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAvailabilityZoneName sets the AvailabilityZoneName field's value.
+func (s *DestinationToCreate) SetAvailabilityZoneName(v string) *DestinationToCreate {
+	s.AvailabilityZoneName = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DestinationToCreate) SetFileSystemId(v string) *DestinationToCreate {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DestinationToCreate) SetKmsKeyId(v string) *DestinationToCreate {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *DestinationToCreate) SetRegion(v string) *DestinationToCreate {
+	s.Region = &v
+	return s
+}
+
 // Returned if the file system you are trying to create already exists, with
 // the creation token you provided.
 type FileSystemAlreadyExists struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemAlreadyExists) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemAlreadyExists) GoString() string {
 	return s.String()
 }
@@ -5484,14 +7200,15 @@ type FileSystemDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The unique and consistent identifier of the Availability Zone in which the
-	// file system's One Zone storage classes exist. For example, use1-az1 is an
-	// Availability Zone ID for the us-east-1 AWS Region, and it has the same location
-	// in every AWS account.
+	// file system is located, and is valid only for One Zone file systems. For
+	// example, use1-az1 is an Availability Zone ID for the us-east-1 Amazon Web
+	// Services Region, and it has the same location in every Amazon Web Services
+	// account.
 	AvailabilityZoneId *string `type:"string"`
 
-	// Describes the AWS Availability Zone in which the file system is located,
-	// and is valid only for file systems using One Zone storage classes. For more
-	// information, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+	// Describes the Amazon Web Services Availability Zone in which the file system
+	// is located, and is valid only for One Zone file systems. For more information,
+	// see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 	// in the Amazon EFS User Guide.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
@@ -5517,8 +7234,10 @@ type FileSystemDescription struct {
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
-	// The ID of an AWS Key Management Service (AWS KMS) customer master key (CMK)
-	// that was used to protect the encrypted file system.
+	// Describes the protection on the file system.
+	FileSystemProtection *FileSystemProtectionDescription `type:"structure"`
+
+	// The ID of an KMS key used to protect the encrypted file system.
 	KmsKeyId *string `type:"string"`
 
 	// The lifecycle phase of the file system.
@@ -5537,18 +7256,17 @@ type FileSystemDescription struct {
 	// NumberOfMountTargets is a required field
 	NumberOfMountTargets *int64 `type:"integer" required:"true"`
 
-	// The AWS account that created the file system. If the file system was created
-	// by an IAM user, the parent account to which the user belongs is the owner.
+	// The Amazon Web Services account that created the file system.
 	//
 	// OwnerId is a required field
 	OwnerId *string `type:"string" required:"true"`
 
-	// The performance mode of the file system.
+	// The Performance mode of the file system.
 	//
 	// PerformanceMode is a required field
 	PerformanceMode *string `type:"string" required:"true" enum:"PerformanceMode"`
 
-	// The amount of provisioned throughput, measured in MiB/s, for the file system.
+	// The amount of provisioned throughput, measured in MiBps, for the file system.
 	// Valid for file systems using ThroughputMode set to provisioned.
 	ProvisionedThroughputInMibps *float64 `min:"1" type:"double"`
 
@@ -5576,12 +7294,20 @@ type FileSystemDescription struct {
 	ThroughputMode *string `type:"string" enum:"ThroughputMode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemDescription) GoString() string {
 	return s.String()
 }
@@ -5625,6 +7351,12 @@ func (s *FileSystemDescription) SetFileSystemArn(v string) *FileSystemDescriptio
 // SetFileSystemId sets the FileSystemId field's value.
 func (s *FileSystemDescription) SetFileSystemId(v string) *FileSystemDescription {
 	s.FileSystemId = &v
+	return s
+}
+
+// SetFileSystemProtection sets the FileSystemProtection field's value.
+func (s *FileSystemDescription) SetFileSystemProtection(v *FileSystemProtectionDescription) *FileSystemDescription {
+	s.FileSystemProtection = v
 	return s
 }
 
@@ -5693,18 +7425,36 @@ type FileSystemInUse struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemInUse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemInUse) GoString() string {
 	return s.String()
 }
@@ -5747,24 +7497,42 @@ func (s *FileSystemInUse) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Returned if the AWS account has already created the maximum number of file
-// systems allowed per account.
+// Returned if the Amazon Web Services account has already created the maximum
+// number of file systems allowed per account.
 type FileSystemLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemLimitExceeded) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemLimitExceeded) GoString() string {
 	return s.String()
 }
@@ -5808,23 +7576,41 @@ func (s *FileSystemLimitExceeded) RequestID() string {
 }
 
 // Returned if the specified FileSystemId value doesn't exist in the requester's
-// AWS account.
+// Amazon Web Services account.
 type FileSystemNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemNotFound) GoString() string {
 	return s.String()
 }
@@ -5867,6 +7653,53 @@ func (s *FileSystemNotFound) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes the protection on a file system.
+type FileSystemProtectionDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the file system's replication overwrite protection.
+	//
+	//    * ENABLED – The file system cannot be used as the destination file system
+	//    in a replication configuration. The file system is writeable. Replication
+	//    overwrite protection is ENABLED by default.
+	//
+	//    * DISABLED – The file system can be used as the destination file system
+	//    in a replication configuration. The file system is read-only and can only
+	//    be modified by EFS replication.
+	//
+	//    * REPLICATING – The file system is being used as the destination file
+	//    system in a replication configuration. The file system is read-only and
+	//    is only modified only by EFS replication.
+	//
+	// If the replication configuration is deleted, the file system's replication
+	// overwrite protection is re-enabled, the file system becomes writeable.
+	ReplicationOverwriteProtection *string `type:"string" enum:"ReplicationOverwriteProtection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSystemProtectionDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSystemProtectionDescription) GoString() string {
+	return s.String()
+}
+
+// SetReplicationOverwriteProtection sets the ReplicationOverwriteProtection field's value.
+func (s *FileSystemProtectionDescription) SetReplicationOverwriteProtection(v string) *FileSystemProtectionDescription {
+	s.ReplicationOverwriteProtection = &v
+	return s
+}
+
 // The latest known metered size (in bytes) of data stored in the file system,
 // in its Value field, and the time at which that size was determined in its
 // Timestamp field. The value doesn't represent the size of a consistent snapshot
@@ -5887,6 +7720,10 @@ type FileSystemSize struct {
 	// Value is a required field
 	Value *int64 `type:"long" required:"true"`
 
+	// The latest known metered size (in bytes) of data stored in the Archive storage
+	// class.
+	ValueInArchive *int64 `type:"long"`
+
 	// The latest known metered size (in bytes) of data stored in the Infrequent
 	// Access storage class.
 	ValueInIA *int64 `type:"long"`
@@ -5896,12 +7733,20 @@ type FileSystemSize struct {
 	ValueInStandard *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemSize) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemSize) GoString() string {
 	return s.String()
 }
@@ -5915,6 +7760,12 @@ func (s *FileSystemSize) SetTimestamp(v time.Time) *FileSystemSize {
 // SetValue sets the Value field's value.
 func (s *FileSystemSize) SetValue(v int64) *FileSystemSize {
 	s.Value = &v
+	return s
+}
+
+// SetValueInArchive sets the ValueInArchive field's value.
+func (s *FileSystemSize) SetValueInArchive(v int64) *FileSystemSize {
+	s.ValueInArchive = &v
 	return s
 }
 
@@ -5935,18 +7786,36 @@ type IncorrectFileSystemLifeCycleState struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncorrectFileSystemLifeCycleState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncorrectFileSystemLifeCycleState) GoString() string {
 	return s.String()
 }
@@ -5994,18 +7863,36 @@ type IncorrectMountTargetState struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncorrectMountTargetState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncorrectMountTargetState) GoString() string {
 	return s.String()
 }
@@ -6052,23 +7939,42 @@ func (s *IncorrectMountTargetState) RequestID() string {
 // This value might be returned when you try to create a file system in provisioned
 // throughput mode, when you attempt to increase the provisioned throughput
 // of an existing file system, or when you attempt to change an existing file
-// system from bursting to provisioned throughput mode. Try again later.
+// system from Bursting Throughput to Provisioned Throughput mode. Try again
+// later.
 type InsufficientThroughputCapacity struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsufficientThroughputCapacity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsufficientThroughputCapacity) GoString() string {
 	return s.String()
 }
@@ -6116,18 +8022,36 @@ type InternalServerError struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerError) GoString() string {
 	return s.String()
 }
@@ -6170,24 +8094,41 @@ func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Returned if the FileSystemPolicy is is malformed or contains an error such
-// as an invalid parameter value or a missing required parameter. Returned in
-// the case of a policy lockout safety check error.
+// Returned if the FileSystemPolicy is malformed or contains an error such as
+// a parameter value that is not valid or a missing required parameter. Returned
+// in the case of a policy lockout safety check error.
 type InvalidPolicyException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
 	ErrorCode *string `min:"1" type:"string"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPolicyException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPolicyException) GoString() string {
 	return s.String()
 }
@@ -6236,18 +8177,36 @@ type IpAddressInUse struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IpAddressInUse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IpAddressInUse) GoString() string {
 	return s.String()
 }
@@ -6290,25 +8249,58 @@ func (s *IpAddressInUse) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a policy used by EFS lifecycle management to transition files to
-// the Infrequent Access (IA) storage class.
+// Describes a policy used by Lifecycle management that specifies when to transition
+// files into and out of storage classes. For more information, see Managing
+// file system storage (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
+//
+// When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration
+// API action, Amazon EFS requires that each LifecyclePolicy object have only
+// a single transition. This means that in a request body, LifecyclePolicies
+// must be structured as an array of LifecyclePolicy objects, one object for
+// each transition. For more information, see the request examples in PutLifecycleConfiguration.
 type LifecyclePolicy struct {
 	_ struct{} `type:"structure"`
 
-	// A value that describes the period of time that a file is not accessed, after
-	// which it transitions to the IA storage class. Metadata operations such as
-	// listing the contents of a directory don't count as file access events.
+	// The number of days after files were last accessed in primary storage (the
+	// Standard storage class) files at which to move them to Archive storage. Metadata
+	// operations such as listing the contents of a directory don't count as file
+	// access events.
+	TransitionToArchive *string `type:"string" enum:"TransitionToArchiveRules"`
+
+	// The number of days after files were last accessed in primary storage (the
+	// Standard storage class) at which to move them to Infrequent Access (IA) storage.
+	// Metadata operations such as listing the contents of a directory don't count
+	// as file access events.
 	TransitionToIA *string `type:"string" enum:"TransitionToIARules"`
+
+	// Whether to move files back to primary (Standard) storage after they are accessed
+	// in IA or Archive storage. Metadata operations such as listing the contents
+	// of a directory don't count as file access events.
+	TransitionToPrimaryStorageClass *string `type:"string" enum:"TransitionToPrimaryStorageClassRules"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecyclePolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecyclePolicy) GoString() string {
 	return s.String()
+}
+
+// SetTransitionToArchive sets the TransitionToArchive field's value.
+func (s *LifecyclePolicy) SetTransitionToArchive(v string) *LifecyclePolicy {
+	s.TransitionToArchive = &v
+	return s
 }
 
 // SetTransitionToIA sets the TransitionToIA field's value.
@@ -6317,8 +8309,14 @@ func (s *LifecyclePolicy) SetTransitionToIA(v string) *LifecyclePolicy {
 	return s
 }
 
+// SetTransitionToPrimaryStorageClass sets the TransitionToPrimaryStorageClass field's value.
+func (s *LifecyclePolicy) SetTransitionToPrimaryStorageClass(v string) *LifecyclePolicy {
+	s.TransitionToPrimaryStorageClass = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) Specifies the maximum number of tag objects to return in the response.
 	// The default value is 100.
@@ -6335,12 +8333,20 @@ type ListTagsForResourceInput struct {
 	ResourceId *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -6396,12 +8402,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6430,12 +8444,20 @@ type ModifyMountTargetSecurityGroupsInput struct {
 	SecurityGroups []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyMountTargetSecurityGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyMountTargetSecurityGroupsInput) GoString() string {
 	return s.String()
 }
@@ -6472,12 +8494,20 @@ type ModifyMountTargetSecurityGroupsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyMountTargetSecurityGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyMountTargetSecurityGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -6488,18 +8518,36 @@ type MountTargetConflict struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MountTargetConflict) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MountTargetConflict) GoString() string {
 	return s.String()
 }
@@ -6548,13 +8596,14 @@ type MountTargetDescription struct {
 
 	// The unique and consistent identifier of the Availability Zone that the mount
 	// target resides in. For example, use1-az1 is an AZ ID for the us-east-1 Region
-	// and it has the same location in every AWS account.
+	// and it has the same location in every Amazon Web Services account.
 	AvailabilityZoneId *string `type:"string"`
 
 	// The name of the Availability Zone in which the mount target is located. Availability
-	// Zones are independently mapped to names for each AWS account. For example,
-	// the Availability Zone us-east-1a for your AWS account might not be the same
-	// location as us-east-1a for another AWS account.
+	// Zones are independently mapped to names for each Amazon Web Services account.
+	// For example, the Availability Zone us-east-1a for your Amazon Web Services
+	// account might not be the same location as us-east-1a for another Amazon Web
+	// Services account.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
 	// The ID of the file system for which the mount target is intended.
@@ -6579,7 +8628,7 @@ type MountTargetDescription struct {
 	// mount target.
 	NetworkInterfaceId *string `type:"string"`
 
-	// AWS account ID that owns the resource.
+	// Amazon Web Services account ID that owns the resource.
 	OwnerId *string `type:"string"`
 
 	// The ID of the mount target's subnet.
@@ -6591,12 +8640,20 @@ type MountTargetDescription struct {
 	VpcId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MountTargetDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MountTargetDescription) GoString() string {
 	return s.String()
 }
@@ -6662,23 +8719,41 @@ func (s *MountTargetDescription) SetVpcId(v string) *MountTargetDescription {
 }
 
 // Returned if there is no mount target with the specified ID found in the caller's
-// account.
+// Amazon Web Services account.
 type MountTargetNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MountTargetNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MountTargetNotFound) GoString() string {
 	return s.String()
 }
@@ -6722,27 +8797,45 @@ func (s *MountTargetNotFound) RequestID() string {
 }
 
 // The calling account has reached the limit for elastic network interfaces
-// for the specific AWS Region. The client should try to delete some elastic
-// network interfaces or get the account limit raised. For more information,
-// see Amazon VPC Limits (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
-// in the Amazon VPC User Guide (see the Network interfaces per VPC entry in
-// the table).
+// for the specific Amazon Web Services Region. Either delete some network interfaces
+// or request that the account quota be raised. For more information, see Amazon
+// VPC Quotas (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
+// in the Amazon VPC User Guide (see the Network interfaces per Region entry
+// in the Network interfaces table).
 type NetworkInterfaceLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NetworkInterfaceLimitExceeded) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NetworkInterfaceLimitExceeded) GoString() string {
 	return s.String()
 }
@@ -6791,18 +8884,36 @@ type NoFreeAddressesInSubnet struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoFreeAddressesInSubnet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoFreeAddressesInSubnet) GoString() string {
 	return s.String()
 }
@@ -6851,17 +8962,34 @@ type PolicyNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
 	ErrorCode *string `min:"1" type:"string"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PolicyNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PolicyNotFound) GoString() string {
 	return s.String()
 }
@@ -6926,12 +9054,20 @@ type PosixUser struct {
 	Uid *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PosixUser) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PosixUser) GoString() string {
 	return s.String()
 }
@@ -6973,19 +9109,32 @@ func (s *PosixUser) SetUid(v int64) *PosixUser {
 type PutAccountPreferencesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A preference indicating a choice to use 63bit/32bit IDs for all applicable
-	// resources.
+	// Specifies the EFS resource ID preference to set for the user's Amazon Web
+	// Services account, in the current Amazon Web Services Region, either LONG_ID
+	// (17 characters), or SHORT_ID (8 characters).
+	//
+	// Starting in October, 2021, you will receive an error when setting the account
+	// preference to SHORT_ID. Contact Amazon Web Services support if you receive
+	// an error and must use short IDs for file system and mount target resources.
 	//
 	// ResourceIdType is a required field
 	ResourceIdType *string `type:"string" required:"true" enum:"ResourceIdType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountPreferencesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountPreferencesInput) GoString() string {
 	return s.String()
 }
@@ -7012,15 +9161,25 @@ func (s *PutAccountPreferencesInput) SetResourceIdType(v string) *PutAccountPref
 type PutAccountPreferencesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Describes the resource type and its ID preference for the user's Amazon Web
+	// Services account, in the current Amazon Web Services Region.
 	ResourceIdPreference *ResourceIdPreference `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountPreferencesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountPreferencesOutput) GoString() string {
 	return s.String()
 }
@@ -7045,12 +9204,20 @@ type PutBackupPolicyInput struct {
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBackupPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBackupPolicyInput) GoString() string {
 	return s.String()
 }
@@ -7095,16 +9262,24 @@ type PutBackupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Describes the file system's backup policy, indicating whether automatic backups
-	// are turned on or off..
+	// are turned on or off.
 	BackupPolicy *BackupPolicy `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBackupPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBackupPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -7118,13 +9293,13 @@ func (s *PutBackupPolicyOutput) SetBackupPolicy(v *BackupPolicy) *PutBackupPolic
 type PutFileSystemPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// (Optional) A flag to indicate whether to bypass the FileSystemPolicy lockout
-	// safety check. The policy lockout safety check determines whether the policy
-	// in the request will prevent the principal making the request will be locked
-	// out from making future PutFileSystemPolicy requests on the file system. Set
-	// BypassPolicyLockoutSafetyCheck to True only when you intend to prevent the
-	// principal that is making the request from making a subsequent PutFileSystemPolicy
-	// request on the file system. The default value is False.
+	// (Optional) A boolean that specifies whether or not to bypass the FileSystemPolicy
+	// lockout safety check. The lockout safety check determines whether the policy
+	// in the request will lock out, or prevent, the IAM principal that is making
+	// the request from making future PutFileSystemPolicy requests on this file
+	// system. Set BypassPolicyLockoutSafetyCheck to True only when you intend to
+	// prevent the IAM principal that is making the request from making subsequent
+	// PutFileSystemPolicy requests on this file system. The default value is False.
 	BypassPolicyLockoutSafetyCheck *bool `type:"boolean"`
 
 	// The ID of the EFS file system that you want to create or update the FileSystemPolicy
@@ -7142,12 +9317,20 @@ type PutFileSystemPolicyInput struct {
 	Policy *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileSystemPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileSystemPolicyInput) GoString() string {
 	return s.String()
 }
@@ -7202,12 +9385,20 @@ type PutFileSystemPolicyOutput struct {
 	Policy *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileSystemPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileSystemPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -7234,20 +9425,49 @@ type PutLifecycleConfigurationInput struct {
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// An array of LifecyclePolicy objects that define the file system's LifecycleConfiguration
-	// object. A LifecycleConfiguration object tells lifecycle management when to
-	// transition files from the Standard storage class to the Infrequent Access
-	// storage class.
+	// object. A LifecycleConfiguration object informs EFS Lifecycle management
+	// of the following:
+	//
+	//    * TransitionToIA – When to move files in the file system from primary
+	//    storage (Standard storage class) into the Infrequent Access (IA) storage.
+	//
+	//    * TransitionToArchive – When to move files in the file system from their
+	//    current storage class (either IA or Standard storage) into the Archive
+	//    storage. File systems cannot transition into Archive storage before transitioning
+	//    into IA storage. Therefore, TransitionToArchive must either not be set
+	//    or must be later than TransitionToIA. The Archive storage class is available
+	//    only for file systems that use the Elastic Throughput mode and the General
+	//    Purpose Performance mode.
+	//
+	//    * TransitionToPrimaryStorageClass – Whether to move files in the file
+	//    system back to primary storage (Standard storage class) after they are
+	//    accessed in IA or Archive storage.
+	//
+	// When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration
+	// API action, Amazon EFS requires that each LifecyclePolicy object have only
+	// a single transition. This means that in a request body, LifecyclePolicies
+	// must be structured as an array of LifecyclePolicy objects, one object for
+	// each storage transition. See the example requests in the following section
+	// for more information.
 	//
 	// LifecyclePolicies is a required field
 	LifecyclePolicies []*LifecyclePolicy `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLifecycleConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLifecycleConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -7286,17 +9506,25 @@ func (s *PutLifecycleConfigurationInput) SetLifecyclePolicies(v []*LifecyclePoli
 type PutLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of lifecycle management policies. Currently, EFS supports a maximum
-	// of one policy per file system.
+	// An array of lifecycle management policies. EFS supports a maximum of one
+	// policy per file system.
 	LifecyclePolicies []*LifecyclePolicy `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLifecycleConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLifecycleConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -7307,23 +9535,273 @@ func (s *PutLifecycleConfigurationOutput) SetLifecyclePolicies(v []*LifecyclePol
 	return s
 }
 
+// Returned if the file system is already included in a replication configuration.>
+type ReplicationAlreadyExists struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationAlreadyExists) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationAlreadyExists) GoString() string {
+	return s.String()
+}
+
+func newErrorReplicationAlreadyExists(v protocol.ResponseMetadata) error {
+	return &ReplicationAlreadyExists{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ReplicationAlreadyExists) Code() string {
+	return "ReplicationAlreadyExists"
+}
+
+// Message returns the exception's message.
+func (s *ReplicationAlreadyExists) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ReplicationAlreadyExists) OrigErr() error {
+	return nil
+}
+
+func (s *ReplicationAlreadyExists) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ReplicationAlreadyExists) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ReplicationAlreadyExists) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Describes the replication configuration for a specific file system.
+type ReplicationConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// Describes when the replication configuration was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// An array of destination objects. Only one destination object is supported.
+	//
+	// Destinations is a required field
+	Destinations []*Destination `type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the original source EFS file system in
+	// the replication configuration.
+	//
+	// OriginalSourceFileSystemArn is a required field
+	OriginalSourceFileSystemArn *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the current source file system in the replication
+	// configuration.
+	//
+	// SourceFileSystemArn is a required field
+	SourceFileSystemArn *string `type:"string" required:"true"`
+
+	// The ID of the source Amazon EFS file system that is being replicated.
+	//
+	// SourceFileSystemId is a required field
+	SourceFileSystemId *string `type:"string" required:"true"`
+
+	// The Amazon Web Services Region in which the source EFS file system is located.
+	//
+	// SourceFileSystemRegion is a required field
+	SourceFileSystemRegion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ReplicationConfigurationDescription) SetCreationTime(v time.Time) *ReplicationConfigurationDescription {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *ReplicationConfigurationDescription) SetDestinations(v []*Destination) *ReplicationConfigurationDescription {
+	s.Destinations = v
+	return s
+}
+
+// SetOriginalSourceFileSystemArn sets the OriginalSourceFileSystemArn field's value.
+func (s *ReplicationConfigurationDescription) SetOriginalSourceFileSystemArn(v string) *ReplicationConfigurationDescription {
+	s.OriginalSourceFileSystemArn = &v
+	return s
+}
+
+// SetSourceFileSystemArn sets the SourceFileSystemArn field's value.
+func (s *ReplicationConfigurationDescription) SetSourceFileSystemArn(v string) *ReplicationConfigurationDescription {
+	s.SourceFileSystemArn = &v
+	return s
+}
+
+// SetSourceFileSystemId sets the SourceFileSystemId field's value.
+func (s *ReplicationConfigurationDescription) SetSourceFileSystemId(v string) *ReplicationConfigurationDescription {
+	s.SourceFileSystemId = &v
+	return s
+}
+
+// SetSourceFileSystemRegion sets the SourceFileSystemRegion field's value.
+func (s *ReplicationConfigurationDescription) SetSourceFileSystemRegion(v string) *ReplicationConfigurationDescription {
+	s.SourceFileSystemRegion = &v
+	return s
+}
+
+// Returned if the specified file system does not have a replication configuration.
+type ReplicationNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// ReplicationNotFound
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorReplicationNotFound(v protocol.ResponseMetadata) error {
+	return &ReplicationNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ReplicationNotFound) Code() string {
+	return "ReplicationNotFound"
+}
+
+// Message returns the exception's message.
+func (s *ReplicationNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ReplicationNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *ReplicationNotFound) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ReplicationNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ReplicationNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Describes the resource type and its ID preference for the user's Amazon Web
+// Services account, in the current Amazon Web Services Region.
 type ResourceIdPreference struct {
 	_ struct{} `type:"structure"`
 
-	// A preference indicating a choice to use 63bit/32bit IDs for all applicable
-	// resources.
+	// Identifies the EFS resource ID preference, either LONG_ID (17 characters)
+	// or SHORT_ID (8 characters).
 	ResourceIdType *string `type:"string" enum:"ResourceIdType"`
 
-	// EFS resources to which a preference applies to.
-	Resources []*string `type:"list"`
+	// Identifies the Amazon EFS resources to which the ID preference setting applies,
+	// FILE_SYSTEM and MOUNT_TARGET.
+	Resources []*string `type:"list" enum:"Resource"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceIdPreference) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceIdPreference) GoString() string {
 	return s.String()
 }
@@ -7366,12 +9844,20 @@ type RootDirectory struct {
 	Path *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RootDirectory) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RootDirectory) GoString() string {
 	return s.String()
 }
@@ -7412,18 +9898,36 @@ type SecurityGroupLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityGroupLimitExceeded) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityGroupLimitExceeded) GoString() string {
 	return s.String()
 }
@@ -7467,23 +9971,41 @@ func (s *SecurityGroupLimitExceeded) RequestID() string {
 }
 
 // Returned if one of the specified security groups doesn't exist in the subnet's
-// VPC.
+// virtual private cloud (VPC).
 type SecurityGroupNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityGroupNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityGroupNotFound) GoString() string {
 	return s.String()
 }
@@ -7531,18 +10053,36 @@ type SubnetNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubnetNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubnetNotFound) GoString() string {
 	return s.String()
 }
@@ -7602,12 +10142,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -7657,12 +10205,20 @@ type TagResourceInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -7712,14 +10268,99 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// Returned when the CreateAccessPoint API action is called too quickly and
+// the number of Access Points on the file system is nearing the limit of 120
+// (https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region).
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the throughput mode or amount of provisioned throughput can't
@@ -7728,18 +10369,36 @@ type ThroughputLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThroughputLimitExceeded) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThroughputLimitExceeded) GoString() string {
 	return s.String()
 }
@@ -7782,24 +10441,42 @@ func (s *ThroughputLimitExceeded) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Returned if you don’t wait at least 24 hours before changing the throughput
-// mode, or decreasing the Provisioned Throughput value.
+// Returned if you don’t wait at least 24 hours before either changing the
+// throughput mode, or decreasing the Provisioned Throughput value.
 type TooManyRequests struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequests) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequests) GoString() string {
 	return s.String()
 }
@@ -7848,18 +10525,36 @@ type UnsupportedAvailabilityZone struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedAvailabilityZone) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedAvailabilityZone) GoString() string {
 	return s.String()
 }
@@ -7903,7 +10598,7 @@ func (s *UnsupportedAvailabilityZone) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies the EFS resource that you want to remove tags from.
 	//
@@ -7917,12 +10612,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -7965,12 +10668,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -7983,10 +10694,13 @@ type UpdateFileSystemInput struct {
 	// FileSystemId is a required field
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
-	// (Optional) Sets the amount of provisioned throughput, in MiB/s, for the file
-	// system. Valid values are 1-1024. If you are changing the throughput mode
-	// to provisioned, you must also provide the amount of provisioned throughput.
-	// Required if ThroughputMode is changed to provisioned on update.
+	// (Optional) The throughput, measured in mebibytes per second (MiBps), that
+	// you want to provision for a file system that you're creating. Required if
+	// ThroughputMode is set to provisioned. Valid values are 1-3414 MiBps, with
+	// the upper limit depending on Region. To increase this limit, contact Amazon
+	// Web Services Support. For more information, see Amazon EFS quotas that you
+	// can increase (https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits)
+	// in the Amazon EFS User Guide.
 	ProvisionedThroughputInMibps *float64 `min:"1" type:"double"`
 
 	// (Optional) Updates the file system's throughput mode. If you're not updating
@@ -7996,12 +10710,20 @@ type UpdateFileSystemInput struct {
 	ThroughputMode *string `type:"string" enum:"ThroughputMode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemInput) GoString() string {
 	return s.String()
 }
@@ -8048,14 +10770,15 @@ type UpdateFileSystemOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique and consistent identifier of the Availability Zone in which the
-	// file system's One Zone storage classes exist. For example, use1-az1 is an
-	// Availability Zone ID for the us-east-1 AWS Region, and it has the same location
-	// in every AWS account.
+	// file system is located, and is valid only for One Zone file systems. For
+	// example, use1-az1 is an Availability Zone ID for the us-east-1 Amazon Web
+	// Services Region, and it has the same location in every Amazon Web Services
+	// account.
 	AvailabilityZoneId *string `type:"string"`
 
-	// Describes the AWS Availability Zone in which the file system is located,
-	// and is valid only for file systems using One Zone storage classes. For more
-	// information, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+	// Describes the Amazon Web Services Availability Zone in which the file system
+	// is located, and is valid only for One Zone file systems. For more information,
+	// see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 	// in the Amazon EFS User Guide.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
@@ -8081,8 +10804,10 @@ type UpdateFileSystemOutput struct {
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
-	// The ID of an AWS Key Management Service (AWS KMS) customer master key (CMK)
-	// that was used to protect the encrypted file system.
+	// Describes the protection on the file system.
+	FileSystemProtection *FileSystemProtectionDescription `type:"structure"`
+
+	// The ID of an KMS key used to protect the encrypted file system.
 	KmsKeyId *string `type:"string"`
 
 	// The lifecycle phase of the file system.
@@ -8101,18 +10826,17 @@ type UpdateFileSystemOutput struct {
 	// NumberOfMountTargets is a required field
 	NumberOfMountTargets *int64 `type:"integer" required:"true"`
 
-	// The AWS account that created the file system. If the file system was created
-	// by an IAM user, the parent account to which the user belongs is the owner.
+	// The Amazon Web Services account that created the file system.
 	//
 	// OwnerId is a required field
 	OwnerId *string `type:"string" required:"true"`
 
-	// The performance mode of the file system.
+	// The Performance mode of the file system.
 	//
 	// PerformanceMode is a required field
 	PerformanceMode *string `type:"string" required:"true" enum:"PerformanceMode"`
 
-	// The amount of provisioned throughput, measured in MiB/s, for the file system.
+	// The amount of provisioned throughput, measured in MiBps, for the file system.
 	// Valid for file systems using ThroughputMode set to provisioned.
 	ProvisionedThroughputInMibps *float64 `min:"1" type:"double"`
 
@@ -8140,12 +10864,20 @@ type UpdateFileSystemOutput struct {
 	ThroughputMode *string `type:"string" enum:"ThroughputMode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemOutput) GoString() string {
 	return s.String()
 }
@@ -8189,6 +10921,12 @@ func (s *UpdateFileSystemOutput) SetFileSystemArn(v string) *UpdateFileSystemOut
 // SetFileSystemId sets the FileSystemId field's value.
 func (s *UpdateFileSystemOutput) SetFileSystemId(v string) *UpdateFileSystemOutput {
 	s.FileSystemId = &v
+	return s
+}
+
+// SetFileSystemProtection sets the FileSystemProtection field's value.
+func (s *UpdateFileSystemOutput) SetFileSystemProtection(v *FileSystemProtectionDescription) *UpdateFileSystemOutput {
+	s.FileSystemProtection = v
 	return s
 }
 
@@ -8252,24 +10990,162 @@ func (s *UpdateFileSystemOutput) SetThroughputMode(v string) *UpdateFileSystemOu
 	return s
 }
 
-// Returned if the AWS Backup service is not available in the Region in which
-// the request was made.
+type UpdateFileSystemProtectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the file system to update.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
+
+	// The status of the file system's replication overwrite protection.
+	//
+	//    * ENABLED – The file system cannot be used as the destination file system
+	//    in a replication configuration. The file system is writeable. Replication
+	//    overwrite protection is ENABLED by default.
+	//
+	//    * DISABLED – The file system can be used as the destination file system
+	//    in a replication configuration. The file system is read-only and can only
+	//    be modified by EFS replication.
+	//
+	//    * REPLICATING – The file system is being used as the destination file
+	//    system in a replication configuration. The file system is read-only and
+	//    is only modified only by EFS replication.
+	//
+	// If the replication configuration is deleted, the file system's replication
+	// overwrite protection is re-enabled, the file system becomes writeable.
+	ReplicationOverwriteProtection *string `type:"string" enum:"ReplicationOverwriteProtection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemProtectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemProtectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFileSystemProtectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFileSystemProtectionInput"}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *UpdateFileSystemProtectionInput) SetFileSystemId(v string) *UpdateFileSystemProtectionInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetReplicationOverwriteProtection sets the ReplicationOverwriteProtection field's value.
+func (s *UpdateFileSystemProtectionInput) SetReplicationOverwriteProtection(v string) *UpdateFileSystemProtectionInput {
+	s.ReplicationOverwriteProtection = &v
+	return s
+}
+
+// Describes the protection on a file system.
+type UpdateFileSystemProtectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the file system's replication overwrite protection.
+	//
+	//    * ENABLED – The file system cannot be used as the destination file system
+	//    in a replication configuration. The file system is writeable. Replication
+	//    overwrite protection is ENABLED by default.
+	//
+	//    * DISABLED – The file system can be used as the destination file system
+	//    in a replication configuration. The file system is read-only and can only
+	//    be modified by EFS replication.
+	//
+	//    * REPLICATING – The file system is being used as the destination file
+	//    system in a replication configuration. The file system is read-only and
+	//    is only modified only by EFS replication.
+	//
+	// If the replication configuration is deleted, the file system's replication
+	// overwrite protection is re-enabled, the file system becomes writeable.
+	ReplicationOverwriteProtection *string `type:"string" enum:"ReplicationOverwriteProtection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemProtectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemProtectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationOverwriteProtection sets the ReplicationOverwriteProtection field's value.
+func (s *UpdateFileSystemProtectionOutput) SetReplicationOverwriteProtection(v string) *UpdateFileSystemProtectionOutput {
+	s.ReplicationOverwriteProtection = &v
+	return s
+}
+
+// Returned if the Backup service is not available in the Amazon Web Services
+// Region in which the request was made.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -8360,6 +11236,58 @@ func PerformanceMode_Values() []string {
 	}
 }
 
+const (
+	// ReplicationOverwriteProtectionEnabled is a ReplicationOverwriteProtection enum value
+	ReplicationOverwriteProtectionEnabled = "ENABLED"
+
+	// ReplicationOverwriteProtectionDisabled is a ReplicationOverwriteProtection enum value
+	ReplicationOverwriteProtectionDisabled = "DISABLED"
+
+	// ReplicationOverwriteProtectionReplicating is a ReplicationOverwriteProtection enum value
+	ReplicationOverwriteProtectionReplicating = "REPLICATING"
+)
+
+// ReplicationOverwriteProtection_Values returns all elements of the ReplicationOverwriteProtection enum
+func ReplicationOverwriteProtection_Values() []string {
+	return []string{
+		ReplicationOverwriteProtectionEnabled,
+		ReplicationOverwriteProtectionDisabled,
+		ReplicationOverwriteProtectionReplicating,
+	}
+}
+
+const (
+	// ReplicationStatusEnabled is a ReplicationStatus enum value
+	ReplicationStatusEnabled = "ENABLED"
+
+	// ReplicationStatusEnabling is a ReplicationStatus enum value
+	ReplicationStatusEnabling = "ENABLING"
+
+	// ReplicationStatusDeleting is a ReplicationStatus enum value
+	ReplicationStatusDeleting = "DELETING"
+
+	// ReplicationStatusError is a ReplicationStatus enum value
+	ReplicationStatusError = "ERROR"
+
+	// ReplicationStatusPaused is a ReplicationStatus enum value
+	ReplicationStatusPaused = "PAUSED"
+
+	// ReplicationStatusPausing is a ReplicationStatus enum value
+	ReplicationStatusPausing = "PAUSING"
+)
+
+// ReplicationStatus_Values returns all elements of the ReplicationStatus enum
+func ReplicationStatus_Values() []string {
+	return []string{
+		ReplicationStatusEnabled,
+		ReplicationStatusEnabling,
+		ReplicationStatusDeleting,
+		ReplicationStatusError,
+		ReplicationStatusPaused,
+		ReplicationStatusPausing,
+	}
+}
+
 // An EFS resource, for example a file system or a mount target.
 const (
 	// ResourceFileSystem is a Resource enum value
@@ -8425,6 +11353,9 @@ const (
 
 	// ThroughputModeProvisioned is a ThroughputMode enum value
 	ThroughputModeProvisioned = "provisioned"
+
+	// ThroughputModeElastic is a ThroughputMode enum value
+	ThroughputModeElastic = "elastic"
 )
 
 // ThroughputMode_Values returns all elements of the ThroughputMode enum
@@ -8432,6 +11363,51 @@ func ThroughputMode_Values() []string {
 	return []string{
 		ThroughputModeBursting,
 		ThroughputModeProvisioned,
+		ThroughputModeElastic,
+	}
+}
+
+const (
+	// TransitionToArchiveRulesAfter1Day is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter1Day = "AFTER_1_DAY"
+
+	// TransitionToArchiveRulesAfter7Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter7Days = "AFTER_7_DAYS"
+
+	// TransitionToArchiveRulesAfter14Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter14Days = "AFTER_14_DAYS"
+
+	// TransitionToArchiveRulesAfter30Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter30Days = "AFTER_30_DAYS"
+
+	// TransitionToArchiveRulesAfter60Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter60Days = "AFTER_60_DAYS"
+
+	// TransitionToArchiveRulesAfter90Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter90Days = "AFTER_90_DAYS"
+
+	// TransitionToArchiveRulesAfter180Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter180Days = "AFTER_180_DAYS"
+
+	// TransitionToArchiveRulesAfter270Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter270Days = "AFTER_270_DAYS"
+
+	// TransitionToArchiveRulesAfter365Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter365Days = "AFTER_365_DAYS"
+)
+
+// TransitionToArchiveRules_Values returns all elements of the TransitionToArchiveRules enum
+func TransitionToArchiveRules_Values() []string {
+	return []string{
+		TransitionToArchiveRulesAfter1Day,
+		TransitionToArchiveRulesAfter7Days,
+		TransitionToArchiveRulesAfter14Days,
+		TransitionToArchiveRulesAfter30Days,
+		TransitionToArchiveRulesAfter60Days,
+		TransitionToArchiveRulesAfter90Days,
+		TransitionToArchiveRulesAfter180Days,
+		TransitionToArchiveRulesAfter270Days,
+		TransitionToArchiveRulesAfter365Days,
 	}
 }
 
@@ -8450,6 +11426,18 @@ const (
 
 	// TransitionToIARulesAfter90Days is a TransitionToIARules enum value
 	TransitionToIARulesAfter90Days = "AFTER_90_DAYS"
+
+	// TransitionToIARulesAfter1Day is a TransitionToIARules enum value
+	TransitionToIARulesAfter1Day = "AFTER_1_DAY"
+
+	// TransitionToIARulesAfter180Days is a TransitionToIARules enum value
+	TransitionToIARulesAfter180Days = "AFTER_180_DAYS"
+
+	// TransitionToIARulesAfter270Days is a TransitionToIARules enum value
+	TransitionToIARulesAfter270Days = "AFTER_270_DAYS"
+
+	// TransitionToIARulesAfter365Days is a TransitionToIARules enum value
+	TransitionToIARulesAfter365Days = "AFTER_365_DAYS"
 )
 
 // TransitionToIARules_Values returns all elements of the TransitionToIARules enum
@@ -8460,5 +11448,21 @@ func TransitionToIARules_Values() []string {
 		TransitionToIARulesAfter30Days,
 		TransitionToIARulesAfter60Days,
 		TransitionToIARulesAfter90Days,
+		TransitionToIARulesAfter1Day,
+		TransitionToIARulesAfter180Days,
+		TransitionToIARulesAfter270Days,
+		TransitionToIARulesAfter365Days,
+	}
+}
+
+const (
+	// TransitionToPrimaryStorageClassRulesAfter1Access is a TransitionToPrimaryStorageClassRules enum value
+	TransitionToPrimaryStorageClassRulesAfter1Access = "AFTER_1_ACCESS"
+)
+
+// TransitionToPrimaryStorageClassRules_Values returns all elements of the TransitionToPrimaryStorageClassRules enum
+func TransitionToPrimaryStorageClassRules_Values() []string {
+	return []string{
+		TransitionToPrimaryStorageClassRulesAfter1Access,
 	}
 }

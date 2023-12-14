@@ -30,14 +30,13 @@ const opCreateIdentityPool = "CreateIdentityPool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateIdentityPoolRequest method.
+//	req, resp := client.CreateIdentityPoolRequest(params)
 //
-//    // Example sending a request using the CreateIdentityPoolRequest method.
-//    req, resp := client.CreateIdentityPoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/CreateIdentityPool
 func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInput) (req *request.Request, output *IdentityPool) {
@@ -62,15 +61,15 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 // information that is specific to your AWS account. The keys for SupportedLoginProviders
 // are as follows:
 //
-//    * Facebook: graph.facebook.com
+//   - Facebook: graph.facebook.com
 //
-//    * Google: accounts.google.com
+//   - Google: accounts.google.com
 //
-//    * Amazon: www.amazon.com
+//   - Amazon: www.amazon.com
 //
-//    * Twitter: api.twitter.com
+//   - Twitter: api.twitter.com
 //
-//    * Digits: www.digits.com
+//   - Digits: www.digits.com
 //
 // You must use AWS Developer credentials to call this API.
 //
@@ -82,24 +81,25 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 // API operation CreateIdentityPool for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
 //
-//   * LimitExceededException
-//   Thrown when the total number of user pools has exceeded a preset limit.
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
+//
+//   - LimitExceededException
+//     Thrown when the total number of user pools has exceeded a preset limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/CreateIdentityPool
 func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (*IdentityPool, error) {
@@ -139,14 +139,13 @@ const opDeleteIdentities = "DeleteIdentities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteIdentitiesRequest method.
+//	req, resp := client.DeleteIdentitiesRequest(params)
 //
-//    // Example sending a request using the DeleteIdentitiesRequest method.
-//    req, resp := client.DeleteIdentitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentities
 func (c *CognitoIdentity) DeleteIdentitiesRequest(input *DeleteIdentitiesInput) (req *request.Request, output *DeleteIdentitiesOutput) {
@@ -180,14 +179,15 @@ func (c *CognitoIdentity) DeleteIdentitiesRequest(input *DeleteIdentitiesInput) 
 // API operation DeleteIdentities for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentities
 func (c *CognitoIdentity) DeleteIdentities(input *DeleteIdentitiesInput) (*DeleteIdentitiesOutput, error) {
@@ -227,14 +227,13 @@ const opDeleteIdentityPool = "DeleteIdentityPool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteIdentityPoolRequest method.
+//	req, resp := client.DeleteIdentityPoolRequest(params)
 //
-//    // Example sending a request using the DeleteIdentityPoolRequest method.
-//    req, resp := client.DeleteIdentityPoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentityPool
 func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInput) (req *request.Request, output *DeleteIdentityPoolOutput) {
@@ -269,21 +268,22 @@ func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInp
 // API operation DeleteIdentityPool for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentityPool
 func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (*DeleteIdentityPoolOutput, error) {
@@ -323,14 +323,13 @@ const opDescribeIdentity = "DescribeIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeIdentityRequest method.
+//	req, resp := client.DescribeIdentityRequest(params)
 //
-//    // Example sending a request using the DescribeIdentityRequest method.
-//    req, resp := client.DescribeIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentity
 func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) (req *request.Request, output *IdentityDescription) {
@@ -364,21 +363,22 @@ func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) 
 // API operation DescribeIdentity for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentity
 func (c *CognitoIdentity) DescribeIdentity(input *DescribeIdentityInput) (*IdentityDescription, error) {
@@ -418,14 +418,13 @@ const opDescribeIdentityPool = "DescribeIdentityPool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeIdentityPoolRequest method.
+//	req, resp := client.DescribeIdentityPoolRequest(params)
 //
-//    // Example sending a request using the DescribeIdentityPoolRequest method.
-//    req, resp := client.DescribeIdentityPoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentityPool
 func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoolInput) (req *request.Request, output *IdentityPool) {
@@ -459,21 +458,22 @@ func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoo
 // API operation DescribeIdentityPool for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentityPool
 func (c *CognitoIdentity) DescribeIdentityPool(input *DescribeIdentityPoolInput) (*IdentityPool, error) {
@@ -513,14 +513,13 @@ const opGetCredentialsForIdentity = "GetCredentialsForIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCredentialsForIdentityRequest method.
+//	req, resp := client.GetCredentialsForIdentityRequest(params)
 //
-//    // Example sending a request using the GetCredentialsForIdentityRequest method.
-//    req, resp := client.GetCredentialsForIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetCredentialsForIdentity
 func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentialsForIdentityInput) (req *request.Request, output *GetCredentialsForIdentityOutput) {
@@ -557,33 +556,34 @@ func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentials
 // API operation GetCredentialsForIdentity for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InvalidIdentityPoolConfigurationException
-//   Thrown if the identity pool has no role associated for the given auth type
-//   (auth/unauth) or if the AssumeRole fails.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - InvalidIdentityPoolConfigurationException
+//     Thrown if the identity pool has no role associated for the given auth type
+//     (auth/unauth) or if the AssumeRole fails.
 //
-//   * ExternalServiceException
-//   An exception thrown when a dependent service such as Facebook or Twitter
-//   is not responding
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
+//
+//   - ExternalServiceException
+//     An exception thrown when a dependent service such as Facebook or Twitter
+//     is not responding
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetCredentialsForIdentity
 func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIdentityInput) (*GetCredentialsForIdentityOutput, error) {
@@ -623,14 +623,13 @@ const opGetId = "GetId"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIdRequest method.
+//	req, resp := client.GetIdRequest(params)
 //
-//    // Example sending a request using the GetIdRequest method.
-//    req, resp := client.GetIdRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetId
 func (c *CognitoIdentity) GetIdRequest(input *GetIdInput) (req *request.Request, output *GetIdOutput) {
@@ -665,32 +664,33 @@ func (c *CognitoIdentity) GetIdRequest(input *GetIdInput) (req *request.Request,
 // API operation GetId for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
 //
-//   * LimitExceededException
-//   Thrown when the total number of user pools has exceeded a preset limit.
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
-//   * ExternalServiceException
-//   An exception thrown when a dependent service such as Facebook or Twitter
-//   is not responding
+//   - LimitExceededException
+//     Thrown when the total number of user pools has exceeded a preset limit.
+//
+//   - ExternalServiceException
+//     An exception thrown when a dependent service such as Facebook or Twitter
+//     is not responding
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetId
 func (c *CognitoIdentity) GetId(input *GetIdInput) (*GetIdOutput, error) {
@@ -730,14 +730,13 @@ const opGetIdentityPoolRoles = "GetIdentityPoolRoles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIdentityPoolRolesRequest method.
+//	req, resp := client.GetIdentityPoolRolesRequest(params)
 //
-//    // Example sending a request using the GetIdentityPoolRolesRequest method.
-//    req, resp := client.GetIdentityPoolRolesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetIdentityPoolRoles
 func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRolesInput) (req *request.Request, output *GetIdentityPoolRolesOutput) {
@@ -770,25 +769,26 @@ func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRole
 // API operation GetIdentityPoolRoles for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetIdentityPoolRoles
 func (c *CognitoIdentity) GetIdentityPoolRoles(input *GetIdentityPoolRolesInput) (*GetIdentityPoolRolesOutput, error) {
@@ -828,14 +828,13 @@ const opGetOpenIdToken = "GetOpenIdToken"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetOpenIdTokenRequest method.
+//	req, resp := client.GetOpenIdTokenRequest(params)
 //
-//    // Example sending a request using the GetOpenIdTokenRequest method.
-//    req, resp := client.GetOpenIdTokenRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdToken
 func (c *CognitoIdentity) GetOpenIdTokenRequest(input *GetOpenIdTokenInput) (req *request.Request, output *GetOpenIdTokenOutput) {
@@ -873,29 +872,30 @@ func (c *CognitoIdentity) GetOpenIdTokenRequest(input *GetOpenIdTokenInput) (req
 // API operation GetOpenIdToken for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
 //
-//   * ExternalServiceException
-//   An exception thrown when a dependent service such as Facebook or Twitter
-//   is not responding
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
+//
+//   - ExternalServiceException
+//     An exception thrown when a dependent service such as Facebook or Twitter
+//     is not responding
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdToken
 func (c *CognitoIdentity) GetOpenIdToken(input *GetOpenIdTokenInput) (*GetOpenIdTokenOutput, error) {
@@ -935,14 +935,13 @@ const opGetOpenIdTokenForDeveloperIdentity = "GetOpenIdTokenForDeveloperIdentity
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetOpenIdTokenForDeveloperIdentityRequest method.
+//	req, resp := client.GetOpenIdTokenForDeveloperIdentityRequest(params)
 //
-//    // Example sending a request using the GetOpenIdTokenForDeveloperIdentityRequest method.
-//    req, resp := client.GetOpenIdTokenForDeveloperIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdTokenForDeveloperIdentity
 func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentityRequest(input *GetOpenIdTokenForDeveloperIdentityInput) (req *request.Request, output *GetOpenIdTokenForDeveloperIdentityOutput) {
@@ -988,29 +987,30 @@ func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentityRequest(input *GetOp
 // API operation GetOpenIdTokenForDeveloperIdentity for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
 //
-//   * DeveloperUserAlreadyRegisteredException
-//   The provided developer user identifier is already registered with Cognito
-//   under a different identity ID.
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
+//
+//   - DeveloperUserAlreadyRegisteredException
+//     The provided developer user identifier is already registered with Cognito
+//     under a different identity ID.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdTokenForDeveloperIdentity
 func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentity(input *GetOpenIdTokenForDeveloperIdentityInput) (*GetOpenIdTokenForDeveloperIdentityOutput, error) {
@@ -1050,14 +1050,13 @@ const opGetPrincipalTagAttributeMap = "GetPrincipalTagAttributeMap"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPrincipalTagAttributeMapRequest method.
+//	req, resp := client.GetPrincipalTagAttributeMapRequest(params)
 //
-//    // Example sending a request using the GetPrincipalTagAttributeMapRequest method.
-//    req, resp := client.GetPrincipalTagAttributeMapRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetPrincipalTagAttributeMap
 func (c *CognitoIdentity) GetPrincipalTagAttributeMapRequest(input *GetPrincipalTagAttributeMapInput) (req *request.Request, output *GetPrincipalTagAttributeMapOutput) {
@@ -1089,21 +1088,22 @@ func (c *CognitoIdentity) GetPrincipalTagAttributeMapRequest(input *GetPrincipal
 // API operation GetPrincipalTagAttributeMap for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetPrincipalTagAttributeMap
 func (c *CognitoIdentity) GetPrincipalTagAttributeMap(input *GetPrincipalTagAttributeMapInput) (*GetPrincipalTagAttributeMapOutput, error) {
@@ -1143,14 +1143,13 @@ const opListIdentities = "ListIdentities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListIdentitiesRequest method.
+//	req, resp := client.ListIdentitiesRequest(params)
 //
-//    // Example sending a request using the ListIdentitiesRequest method.
-//    req, resp := client.ListIdentitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentities
 func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req *request.Request, output *ListIdentitiesOutput) {
@@ -1183,21 +1182,22 @@ func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req
 // API operation ListIdentities for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentities
 func (c *CognitoIdentity) ListIdentities(input *ListIdentitiesInput) (*ListIdentitiesOutput, error) {
@@ -1237,14 +1237,13 @@ const opListIdentityPools = "ListIdentityPools"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListIdentityPoolsRequest method.
+//	req, resp := client.ListIdentityPoolsRequest(params)
 //
-//    // Example sending a request using the ListIdentityPoolsRequest method.
-//    req, resp := client.ListIdentityPoolsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentityPools
 func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput) (req *request.Request, output *ListIdentityPoolsOutput) {
@@ -1283,21 +1282,22 @@ func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput
 // API operation ListIdentityPools for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentityPools
 func (c *CognitoIdentity) ListIdentityPools(input *ListIdentityPoolsInput) (*ListIdentityPoolsOutput, error) {
@@ -1329,15 +1329,14 @@ func (c *CognitoIdentity) ListIdentityPoolsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListIdentityPools operation.
-//    pageNum := 0
-//    err := client.ListIdentityPoolsPages(params,
-//        func(page *cognitoidentity.ListIdentityPoolsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListIdentityPools operation.
+//	pageNum := 0
+//	err := client.ListIdentityPoolsPages(params,
+//	    func(page *cognitoidentity.ListIdentityPoolsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CognitoIdentity) ListIdentityPoolsPages(input *ListIdentityPoolsInput, fn func(*ListIdentityPoolsOutput, bool) bool) error {
 	return c.ListIdentityPoolsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1389,14 +1388,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListTagsForResource
 func (c *CognitoIdentity) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1433,21 +1431,22 @@ func (c *CognitoIdentity) ListTagsForResourceRequest(input *ListTagsForResourceI
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListTagsForResource
 func (c *CognitoIdentity) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1487,14 +1486,13 @@ const opLookupDeveloperIdentity = "LookupDeveloperIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the LookupDeveloperIdentityRequest method.
+//	req, resp := client.LookupDeveloperIdentityRequest(params)
 //
-//    // Example sending a request using the LookupDeveloperIdentityRequest method.
-//    req, resp := client.LookupDeveloperIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/LookupDeveloperIdentity
 func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperIdentityInput) (req *request.Request, output *LookupDeveloperIdentityOutput) {
@@ -1541,25 +1539,26 @@ func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperI
 // API operation LookupDeveloperIdentity for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/LookupDeveloperIdentity
 func (c *CognitoIdentity) LookupDeveloperIdentity(input *LookupDeveloperIdentityInput) (*LookupDeveloperIdentityOutput, error) {
@@ -1599,14 +1598,13 @@ const opMergeDeveloperIdentities = "MergeDeveloperIdentities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the MergeDeveloperIdentitiesRequest method.
+//	req, resp := client.MergeDeveloperIdentitiesRequest(params)
 //
-//    // Example sending a request using the MergeDeveloperIdentitiesRequest method.
-//    req, resp := client.MergeDeveloperIdentitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/MergeDeveloperIdentities
 func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperIdentitiesInput) (req *request.Request, output *MergeDeveloperIdentitiesOutput) {
@@ -1649,25 +1647,26 @@ func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperI
 // API operation MergeDeveloperIdentities for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/MergeDeveloperIdentities
 func (c *CognitoIdentity) MergeDeveloperIdentities(input *MergeDeveloperIdentitiesInput) (*MergeDeveloperIdentitiesOutput, error) {
@@ -1707,14 +1706,13 @@ const opSetIdentityPoolRoles = "SetIdentityPoolRoles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetIdentityPoolRolesRequest method.
+//	req, resp := client.SetIdentityPoolRolesRequest(params)
 //
-//    // Example sending a request using the SetIdentityPoolRolesRequest method.
-//    req, resp := client.SetIdentityPoolRolesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetIdentityPoolRoles
 func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRolesInput) (req *request.Request, output *SetIdentityPoolRolesOutput) {
@@ -1749,28 +1747,29 @@ func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRole
 // API operation SetIdentityPoolRoles for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
 //
-//   * ConcurrentModificationException
-//   Thrown if there are parallel requests to modify a resource.
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
+//
+//   - ConcurrentModificationException
+//     Thrown if there are parallel requests to modify a resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetIdentityPoolRoles
 func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput) (*SetIdentityPoolRolesOutput, error) {
@@ -1810,14 +1809,13 @@ const opSetPrincipalTagAttributeMap = "SetPrincipalTagAttributeMap"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetPrincipalTagAttributeMapRequest method.
+//	req, resp := client.SetPrincipalTagAttributeMapRequest(params)
 //
-//    // Example sending a request using the SetPrincipalTagAttributeMapRequest method.
-//    req, resp := client.SetPrincipalTagAttributeMapRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetPrincipalTagAttributeMap
 func (c *CognitoIdentity) SetPrincipalTagAttributeMapRequest(input *SetPrincipalTagAttributeMapInput) (req *request.Request, output *SetPrincipalTagAttributeMapOutput) {
@@ -1849,21 +1847,22 @@ func (c *CognitoIdentity) SetPrincipalTagAttributeMapRequest(input *SetPrincipal
 // API operation SetPrincipalTagAttributeMap for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetPrincipalTagAttributeMap
 func (c *CognitoIdentity) SetPrincipalTagAttributeMap(input *SetPrincipalTagAttributeMapInput) (*SetPrincipalTagAttributeMapOutput, error) {
@@ -1903,14 +1902,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/TagResource
 func (c *CognitoIdentity) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1959,21 +1957,22 @@ func (c *CognitoIdentity) TagResourceRequest(input *TagResourceInput) (req *requ
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/TagResource
 func (c *CognitoIdentity) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2013,14 +2012,13 @@ const opUnlinkDeveloperIdentity = "UnlinkDeveloperIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UnlinkDeveloperIdentityRequest method.
+//	req, resp := client.UnlinkDeveloperIdentityRequest(params)
 //
-//    // Example sending a request using the UnlinkDeveloperIdentityRequest method.
-//    req, resp := client.UnlinkDeveloperIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkDeveloperIdentity
 func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperIdentityInput) (req *request.Request, output *UnlinkDeveloperIdentityOutput) {
@@ -2057,25 +2055,26 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperI
 // API operation UnlinkDeveloperIdentity for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkDeveloperIdentity
 func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentityInput) (*UnlinkDeveloperIdentityOutput, error) {
@@ -2115,14 +2114,13 @@ const opUnlinkIdentity = "UnlinkIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UnlinkIdentityRequest method.
+//	req, resp := client.UnlinkIdentityRequest(params)
 //
-//    // Example sending a request using the UnlinkIdentityRequest method.
-//    req, resp := client.UnlinkIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkIdentity
 func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req *request.Request, output *UnlinkIdentityOutput) {
@@ -2159,29 +2157,30 @@ func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req
 // API operation UnlinkIdentity for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
 //
-//   * ExternalServiceException
-//   An exception thrown when a dependent service such as Facebook or Twitter
-//   is not responding
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
+//
+//   - ExternalServiceException
+//     An exception thrown when a dependent service such as Facebook or Twitter
+//     is not responding
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkIdentity
 func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (*UnlinkIdentityOutput, error) {
@@ -2221,14 +2220,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UntagResource
 func (c *CognitoIdentity) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2261,21 +2259,22 @@ func (c *CognitoIdentity) UntagResourceRequest(input *UntagResourceInput) (req *
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
+//
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UntagResource
 func (c *CognitoIdentity) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2315,14 +2314,13 @@ const opUpdateIdentityPool = "UpdateIdentityPool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateIdentityPoolRequest method.
+//	req, resp := client.UpdateIdentityPoolRequest(params)
 //
-//    // Example sending a request using the UpdateIdentityPoolRequest method.
-//    req, resp := client.UpdateIdentityPoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UpdateIdentityPool
 func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *request.Request, output *IdentityPool) {
@@ -2355,31 +2353,32 @@ func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *r
 // API operation UpdateIdentityPool for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   Thrown for missing or bad input parameter(s).
 //
-//   * ResourceNotFoundException
-//   Thrown when the requested resource (for example, a dataset or record) does
-//   not exist.
+//   - InvalidParameterException
+//     Thrown for missing or bad input parameter(s).
 //
-//   * NotAuthorizedException
-//   Thrown when a user is not authorized to access the requested resource.
+//   - ResourceNotFoundException
+//     Thrown when the requested resource (for example, a dataset or record) does
+//     not exist.
 //
-//   * ResourceConflictException
-//   Thrown when a user tries to use a login which is already linked to another
-//   account.
+//   - NotAuthorizedException
+//     Thrown when a user is not authorized to access the requested resource.
 //
-//   * TooManyRequestsException
-//   Thrown when a request is throttled.
+//   - ResourceConflictException
+//     Thrown when a user tries to use a login which is already linked to another
+//     account.
 //
-//   * InternalErrorException
-//   Thrown when the service encounters an error during processing the request.
+//   - TooManyRequestsException
+//     Thrown when a request is throttled.
 //
-//   * ConcurrentModificationException
-//   Thrown if there are parallel requests to modify a resource.
+//   - InternalErrorException
+//     Thrown when the service encounters an error during processing the request.
 //
-//   * LimitExceededException
-//   Thrown when the total number of user pools has exceeded a preset limit.
+//   - ConcurrentModificationException
+//     Thrown if there are parallel requests to modify a resource.
+//
+//   - LimitExceededException
+//     Thrown when the total number of user pools has exceeded a preset limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UpdateIdentityPool
 func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (*IdentityPool, error) {
@@ -2412,12 +2411,20 @@ type ConcurrentModificationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentModificationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentModificationException) GoString() string {
 	return s.String()
 }
@@ -2507,12 +2514,20 @@ type CreateIdentityPoolInput struct {
 	SupportedLoginProviders map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIdentityPoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIdentityPoolInput) GoString() string {
 	return s.String()
 }
@@ -2620,12 +2635,20 @@ type Credentials struct {
 	SessionToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Credentials) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Credentials) GoString() string {
 	return s.String()
 }
@@ -2664,12 +2687,20 @@ type DeleteIdentitiesInput struct {
 	IdentityIdsToDelete []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentitiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentitiesInput) GoString() string {
 	return s.String()
 }
@@ -2705,12 +2736,20 @@ type DeleteIdentitiesOutput struct {
 	UnprocessedIdentityIds []*UnprocessedIdentityId `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentitiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentitiesOutput) GoString() string {
 	return s.String()
 }
@@ -2731,12 +2770,20 @@ type DeleteIdentityPoolInput struct {
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityPoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityPoolInput) GoString() string {
 	return s.String()
 }
@@ -2767,12 +2814,20 @@ type DeleteIdentityPoolOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityPoolOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityPoolOutput) GoString() string {
 	return s.String()
 }
@@ -2787,12 +2842,20 @@ type DescribeIdentityInput struct {
 	IdentityId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIdentityInput) GoString() string {
 	return s.String()
 }
@@ -2829,12 +2892,20 @@ type DescribeIdentityPoolInput struct {
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIdentityPoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIdentityPoolInput) GoString() string {
 	return s.String()
 }
@@ -2871,12 +2942,20 @@ type DeveloperUserAlreadyRegisteredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeveloperUserAlreadyRegisteredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeveloperUserAlreadyRegisteredException) GoString() string {
 	return s.String()
 }
@@ -2929,12 +3008,20 @@ type ExternalServiceException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExternalServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExternalServiceException) GoString() string {
 	return s.String()
 }
@@ -3005,12 +3092,20 @@ type GetCredentialsForIdentityInput struct {
 	Logins map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCredentialsForIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCredentialsForIdentityInput) GoString() string {
 	return s.String()
 }
@@ -3063,12 +3158,20 @@ type GetCredentialsForIdentityOutput struct {
 	IdentityId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCredentialsForIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCredentialsForIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -3115,12 +3218,20 @@ type GetIdInput struct {
 	Logins map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdInput) GoString() string {
 	return s.String()
 }
@@ -3170,12 +3281,20 @@ type GetIdOutput struct {
 	IdentityId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdOutput) GoString() string {
 	return s.String()
 }
@@ -3196,12 +3315,20 @@ type GetIdentityPoolRolesInput struct {
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityPoolRolesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityPoolRolesInput) GoString() string {
 	return s.String()
 }
@@ -3245,12 +3372,20 @@ type GetIdentityPoolRolesOutput struct {
 	Roles map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityPoolRolesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityPoolRolesOutput) GoString() string {
 	return s.String()
 }
@@ -3315,12 +3450,20 @@ type GetOpenIdTokenForDeveloperIdentityInput struct {
 	TokenDuration *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOpenIdTokenForDeveloperIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOpenIdTokenForDeveloperIdentityInput) GoString() string {
 	return s.String()
 }
@@ -3391,12 +3534,20 @@ type GetOpenIdTokenForDeveloperIdentityOutput struct {
 	Token *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOpenIdTokenForDeveloperIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOpenIdTokenForDeveloperIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -3430,12 +3581,20 @@ type GetOpenIdTokenInput struct {
 	Logins map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOpenIdTokenInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOpenIdTokenInput) GoString() string {
 	return s.String()
 }
@@ -3480,12 +3639,20 @@ type GetOpenIdTokenOutput struct {
 	Token *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOpenIdTokenOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOpenIdTokenOutput) GoString() string {
 	return s.String()
 }
@@ -3517,12 +3684,20 @@ type GetPrincipalTagAttributeMapInput struct {
 	IdentityProviderName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPrincipalTagAttributeMapInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPrincipalTagAttributeMapInput) GoString() string {
 	return s.String()
 }
@@ -3579,12 +3754,20 @@ type GetPrincipalTagAttributeMapOutput struct {
 	UseDefaults *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPrincipalTagAttributeMapOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPrincipalTagAttributeMapOutput) GoString() string {
 	return s.String()
 }
@@ -3630,12 +3813,20 @@ type IdentityDescription struct {
 	Logins []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityDescription) GoString() string {
 	return s.String()
 }
@@ -3710,12 +3901,20 @@ type IdentityPool struct {
 	SupportedLoginProviders map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityPool) GoString() string {
 	return s.String()
 }
@@ -3829,12 +4028,20 @@ type IdentityPoolShortDescription struct {
 	IdentityPoolName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityPoolShortDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityPoolShortDescription) GoString() string {
 	return s.String()
 }
@@ -3860,12 +4067,20 @@ type InternalErrorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalErrorException) GoString() string {
 	return s.String()
 }
@@ -3918,12 +4133,20 @@ type InvalidIdentityPoolConfigurationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidIdentityPoolConfigurationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidIdentityPoolConfigurationException) GoString() string {
 	return s.String()
 }
@@ -3975,12 +4198,20 @@ type InvalidParameterException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) GoString() string {
 	return s.String()
 }
@@ -4032,12 +4263,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -4103,12 +4342,20 @@ type ListIdentitiesInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentitiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentitiesInput) GoString() string {
 	return s.String()
 }
@@ -4176,12 +4423,20 @@ type ListIdentitiesOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentitiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentitiesOutput) GoString() string {
 	return s.String()
 }
@@ -4217,12 +4472,20 @@ type ListIdentityPoolsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentityPoolsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentityPoolsInput) GoString() string {
 	return s.String()
 }
@@ -4269,12 +4532,20 @@ type ListIdentityPoolsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentityPoolsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentityPoolsOutput) GoString() string {
 	return s.String()
 }
@@ -4301,12 +4572,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -4340,12 +4619,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -4385,12 +4672,20 @@ type LookupDeveloperIdentityInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LookupDeveloperIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LookupDeveloperIdentityInput) GoString() string {
 	return s.String()
 }
@@ -4474,12 +4769,20 @@ type LookupDeveloperIdentityOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LookupDeveloperIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LookupDeveloperIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -4530,12 +4833,20 @@ type MappingRule struct {
 	Value *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MappingRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MappingRule) GoString() string {
 	return s.String()
 }
@@ -4624,12 +4935,20 @@ type MergeDeveloperIdentitiesInput struct {
 	SourceUserIdentifier *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeDeveloperIdentitiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeDeveloperIdentitiesInput) GoString() string {
 	return s.String()
 }
@@ -4700,12 +5019,20 @@ type MergeDeveloperIdentitiesOutput struct {
 	IdentityId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeDeveloperIdentitiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeDeveloperIdentitiesOutput) GoString() string {
 	return s.String()
 }
@@ -4725,12 +5052,20 @@ type NotAuthorizedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotAuthorizedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotAuthorizedException) GoString() string {
 	return s.String()
 }
@@ -4796,12 +5131,20 @@ type Provider struct {
 	ServerSideTokenCheck *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Provider) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Provider) GoString() string {
 	return s.String()
 }
@@ -4850,12 +5193,20 @@ type ResourceConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceConflictException) GoString() string {
 	return s.String()
 }
@@ -4908,12 +5259,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -4980,12 +5339,20 @@ type RoleMapping struct {
 	Type *string `type:"string" required:"true" enum:"RoleMappingType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoleMapping) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoleMapping) GoString() string {
 	return s.String()
 }
@@ -5038,12 +5405,20 @@ type RulesConfigurationType struct {
 	Rules []*MappingRule `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RulesConfigurationType) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RulesConfigurationType) GoString() string {
 	return s.String()
 }
@@ -5104,12 +5479,20 @@ type SetIdentityPoolRolesInput struct {
 	Roles map[string]*string `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityPoolRolesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityPoolRolesInput) GoString() string {
 	return s.String()
 }
@@ -5165,12 +5548,20 @@ type SetIdentityPoolRolesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityPoolRolesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityPoolRolesOutput) GoString() string {
 	return s.String()
 }
@@ -5196,12 +5587,20 @@ type SetPrincipalTagAttributeMapInput struct {
 	UseDefaults *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetPrincipalTagAttributeMapInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetPrincipalTagAttributeMapInput) GoString() string {
 	return s.String()
 }
@@ -5270,12 +5669,20 @@ type SetPrincipalTagAttributeMapOutput struct {
 	UseDefaults *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetPrincipalTagAttributeMapOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetPrincipalTagAttributeMapOutput) GoString() string {
 	return s.String()
 }
@@ -5318,12 +5725,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -5363,12 +5778,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5382,12 +5805,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -5455,12 +5886,20 @@ type UnlinkDeveloperIdentityInput struct {
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnlinkDeveloperIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnlinkDeveloperIdentityInput) GoString() string {
 	return s.String()
 }
@@ -5527,12 +5966,20 @@ type UnlinkDeveloperIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnlinkDeveloperIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnlinkDeveloperIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -5557,12 +6004,20 @@ type UnlinkIdentityInput struct {
 	LoginsToRemove []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnlinkIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnlinkIdentityInput) GoString() string {
 	return s.String()
 }
@@ -5611,12 +6066,20 @@ type UnlinkIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnlinkIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnlinkIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -5633,12 +6096,20 @@ type UnprocessedIdentityId struct {
 	IdentityId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnprocessedIdentityId) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnprocessedIdentityId) GoString() string {
 	return s.String()
 }
@@ -5669,12 +6140,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -5714,12 +6193,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }

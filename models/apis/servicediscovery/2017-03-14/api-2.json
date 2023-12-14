@@ -138,6 +138,22 @@
       ],
       "endpoint":{"hostPrefix":"data-"}
     },
+    "DiscoverInstancesRevision":{
+      "name":"DiscoverInstancesRevision",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DiscoverInstancesRevisionRequest"},
+      "output":{"shape":"DiscoverInstancesRevisionResponse"},
+      "errors":[
+        {"shape":"ServiceNotFound"},
+        {"shape":"NamespaceNotFound"},
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
+      ],
+      "endpoint":{"hostPrefix":"data-"}
+    },
     "GetInstance":{
       "name":"GetInstance",
       "http":{
@@ -571,7 +587,25 @@
     "DiscoverInstancesResponse":{
       "type":"structure",
       "members":{
-        "Instances":{"shape":"HttpInstanceSummaryList"}
+        "Instances":{"shape":"HttpInstanceSummaryList"},
+        "InstancesRevision":{"shape":"Revision"}
+      }
+    },
+    "DiscoverInstancesRevisionRequest":{
+      "type":"structure",
+      "required":[
+        "NamespaceName",
+        "ServiceName"
+      ],
+      "members":{
+        "NamespaceName":{"shape":"NamespaceName"},
+        "ServiceName":{"shape":"ServiceName"}
+      }
+    },
+    "DiscoverInstancesRevisionResponse":{
+      "type":"structure",
+      "members":{
+        "InstancesRevision":{"shape":"Revision"}
       }
     },
     "DiscoverMaxResults":{
@@ -640,7 +674,8 @@
       "enum":[
         "EQ",
         "IN",
-        "BETWEEN"
+        "BETWEEN",
+        "BEGINS_WITH"
       ]
     },
     "FilterValue":{
@@ -962,7 +997,11 @@
     },
     "NamespaceFilterName":{
       "type":"string",
-      "enum":["TYPE"]
+      "enum":[
+        "TYPE",
+        "NAME",
+        "HTTP_NAME"
+      ]
     },
     "NamespaceFilters":{
       "type":"list",
@@ -979,12 +1018,12 @@
     },
     "NamespaceNamePrivate":{
       "type":"string",
-      "max":1024,
-      "pattern":"^[!-~]{1,1024}$"
+      "max":253,
+      "pattern":"^[!-~]{1,253}$"
     },
     "NamespaceNamePublic":{
       "type":"string",
-      "max":1024,
+      "max":253,
       "pattern":"^([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?$"
     },
     "NamespaceNotFound":{
@@ -1272,6 +1311,7 @@
       "type":"string",
       "max":255
     },
+    "Revision":{"type":"long"},
     "RoutingPolicy":{
       "type":"string",
       "enum":[

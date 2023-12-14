@@ -5,6 +5,7 @@
     "apiVersion":"2010-06-01",
     "endpointPrefix":"importexport",
     "globalEndpoint":"importexport.amazonaws.com",
+    "serviceId": "Import Export",
     "serviceFullName":"AWS Import/Export",
     "signatureVersion":"v2",
     "xmlNamespace":"http://importexport.amazonaws.com/doc/2010-06-01/",

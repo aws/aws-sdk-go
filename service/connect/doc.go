@@ -16,17 +16,16 @@
 // For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
 // in the Amazon Connect Administrator Guide.
 //
-// You can connect programmatically to an AWS service by using an endpoint.
-// For a list of Amazon Connect endpoints, see Amazon Connect Endpoints (https://docs.aws.amazon.com/general/latest/gr/connect_region.html).
-//
-// Working with contact flows? Check out the Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// You can connect programmatically to an Amazon Web Services service by using
+// an endpoint. For a list of Amazon Connect endpoints, see Amazon Connect Endpoints
+// (https://docs.aws.amazon.com/general/latest/gr/connect_region.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08 for more information on this service.
 //
 // See connect package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/connect/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact Amazon Connect Service with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

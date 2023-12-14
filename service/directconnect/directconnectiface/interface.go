@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS Direct Connect.
-//    func myFunc(svc directconnectiface.DirectConnectAPI) bool {
-//        // Make svc.AcceptDirectConnectGatewayAssociationProposal request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS Direct Connect.
+//	func myFunc(svc directconnectiface.DirectConnectAPI) bool {
+//	    // Make svc.AcceptDirectConnectGatewayAssociationProposal request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := directconnect.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := directconnect.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockDirectConnectClient struct {
-//        directconnectiface.DirectConnectAPI
-//    }
-//    func (m *mockDirectConnectClient) AcceptDirectConnectGatewayAssociationProposal(input *directconnect.AcceptDirectConnectGatewayAssociationProposalInput) (*directconnect.AcceptDirectConnectGatewayAssociationProposalOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockDirectConnectClient struct {
+//	    directconnectiface.DirectConnectAPI
+//	}
+//	func (m *mockDirectConnectClient) AcceptDirectConnectGatewayAssociationProposal(input *directconnect.AcceptDirectConnectGatewayAssociationProposalInput) (*directconnect.AcceptDirectConnectGatewayAssociationProposalOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockDirectConnectClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockDirectConnectClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -103,6 +103,10 @@ type DirectConnectAPI interface {
 	ConfirmConnection(*directconnect.ConfirmConnectionInput) (*directconnect.ConfirmConnectionOutput, error)
 	ConfirmConnectionWithContext(aws.Context, *directconnect.ConfirmConnectionInput, ...request.Option) (*directconnect.ConfirmConnectionOutput, error)
 	ConfirmConnectionRequest(*directconnect.ConfirmConnectionInput) (*request.Request, *directconnect.ConfirmConnectionOutput)
+
+	ConfirmCustomerAgreement(*directconnect.ConfirmCustomerAgreementInput) (*directconnect.ConfirmCustomerAgreementOutput, error)
+	ConfirmCustomerAgreementWithContext(aws.Context, *directconnect.ConfirmCustomerAgreementInput, ...request.Option) (*directconnect.ConfirmCustomerAgreementOutput, error)
+	ConfirmCustomerAgreementRequest(*directconnect.ConfirmCustomerAgreementInput) (*request.Request, *directconnect.ConfirmCustomerAgreementOutput)
 
 	ConfirmPrivateVirtualInterface(*directconnect.ConfirmPrivateVirtualInterfaceInput) (*directconnect.ConfirmPrivateVirtualInterfaceOutput, error)
 	ConfirmPrivateVirtualInterfaceWithContext(aws.Context, *directconnect.ConfirmPrivateVirtualInterfaceInput, ...request.Option) (*directconnect.ConfirmPrivateVirtualInterfaceOutput, error)
@@ -200,6 +204,10 @@ type DirectConnectAPI interface {
 	DescribeConnectionsOnInterconnectWithContext(aws.Context, *directconnect.DescribeConnectionsOnInterconnectInput, ...request.Option) (*directconnect.Connections, error)
 	DescribeConnectionsOnInterconnectRequest(*directconnect.DescribeConnectionsOnInterconnectInput) (*request.Request, *directconnect.Connections)
 
+	DescribeCustomerMetadata(*directconnect.DescribeCustomerMetadataInput) (*directconnect.DescribeCustomerMetadataOutput, error)
+	DescribeCustomerMetadataWithContext(aws.Context, *directconnect.DescribeCustomerMetadataInput, ...request.Option) (*directconnect.DescribeCustomerMetadataOutput, error)
+	DescribeCustomerMetadataRequest(*directconnect.DescribeCustomerMetadataInput) (*request.Request, *directconnect.DescribeCustomerMetadataOutput)
+
 	DescribeDirectConnectGatewayAssociationProposals(*directconnect.DescribeDirectConnectGatewayAssociationProposalsInput) (*directconnect.DescribeDirectConnectGatewayAssociationProposalsOutput, error)
 	DescribeDirectConnectGatewayAssociationProposalsWithContext(aws.Context, *directconnect.DescribeDirectConnectGatewayAssociationProposalsInput, ...request.Option) (*directconnect.DescribeDirectConnectGatewayAssociationProposalsOutput, error)
 	DescribeDirectConnectGatewayAssociationProposalsRequest(*directconnect.DescribeDirectConnectGatewayAssociationProposalsInput) (*request.Request, *directconnect.DescribeDirectConnectGatewayAssociationProposalsOutput)
@@ -239,6 +247,10 @@ type DirectConnectAPI interface {
 	DescribeLocations(*directconnect.DescribeLocationsInput) (*directconnect.DescribeLocationsOutput, error)
 	DescribeLocationsWithContext(aws.Context, *directconnect.DescribeLocationsInput, ...request.Option) (*directconnect.DescribeLocationsOutput, error)
 	DescribeLocationsRequest(*directconnect.DescribeLocationsInput) (*request.Request, *directconnect.DescribeLocationsOutput)
+
+	DescribeRouterConfiguration(*directconnect.DescribeRouterConfigurationInput) (*directconnect.DescribeRouterConfigurationOutput, error)
+	DescribeRouterConfigurationWithContext(aws.Context, *directconnect.DescribeRouterConfigurationInput, ...request.Option) (*directconnect.DescribeRouterConfigurationOutput, error)
+	DescribeRouterConfigurationRequest(*directconnect.DescribeRouterConfigurationInput) (*request.Request, *directconnect.DescribeRouterConfigurationOutput)
 
 	DescribeTags(*directconnect.DescribeTagsInput) (*directconnect.DescribeTagsOutput, error)
 	DescribeTagsWithContext(aws.Context, *directconnect.DescribeTagsInput, ...request.Option) (*directconnect.DescribeTagsOutput, error)
@@ -283,6 +295,10 @@ type DirectConnectAPI interface {
 	UpdateConnection(*directconnect.UpdateConnectionInput) (*directconnect.UpdateConnectionOutput, error)
 	UpdateConnectionWithContext(aws.Context, *directconnect.UpdateConnectionInput, ...request.Option) (*directconnect.UpdateConnectionOutput, error)
 	UpdateConnectionRequest(*directconnect.UpdateConnectionInput) (*request.Request, *directconnect.UpdateConnectionOutput)
+
+	UpdateDirectConnectGateway(*directconnect.UpdateDirectConnectGatewayInput) (*directconnect.UpdateDirectConnectGatewayOutput, error)
+	UpdateDirectConnectGatewayWithContext(aws.Context, *directconnect.UpdateDirectConnectGatewayInput, ...request.Option) (*directconnect.UpdateDirectConnectGatewayOutput, error)
+	UpdateDirectConnectGatewayRequest(*directconnect.UpdateDirectConnectGatewayInput) (*request.Request, *directconnect.UpdateDirectConnectGatewayOutput)
 
 	UpdateDirectConnectGatewayAssociation(*directconnect.UpdateDirectConnectGatewayAssociationInput) (*directconnect.UpdateDirectConnectGatewayAssociationOutput, error)
 	UpdateDirectConnectGatewayAssociationWithContext(aws.Context, *directconnect.UpdateDirectConnectGatewayAssociationInput, ...request.Option) (*directconnect.UpdateDirectConnectGatewayAssociationOutput, error)

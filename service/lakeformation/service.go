@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/private/protocol"
-	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 // LakeFormation provides the API operation methods for making requests to
@@ -40,36 +40,36 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a LakeFormation client from just a session.
-//     svc := lakeformation.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a LakeFormation client with additional configuration
-//     svc := lakeformation.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a LakeFormation client from just a session.
+//	svc := lakeformation.New(mySession)
+//
+//	// Create a LakeFormation client with additional configuration
+//	svc := lakeformation.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *LakeFormation {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "lakeformation"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *LakeFormation {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *LakeFormation {
 	svc := &LakeFormation{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2017-03-31",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "AWSLakeFormation",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2017-03-31",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -77,11 +77,11 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 
 	// Handlers
 	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
-	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
-	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
-	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
 	svc.Handlers.UnmarshalError.PushBackNamed(
-		protocol.NewUnmarshalErrorHandler(jsonrpc.NewUnmarshalTypedError(exceptionFromCode)).NamedHandler(),
+		protocol.NewUnmarshalErrorHandler(restjson.NewUnmarshalTypedError(exceptionFromCode)).NamedHandler(),
 	)
 
 	// Run custom client initialization if present

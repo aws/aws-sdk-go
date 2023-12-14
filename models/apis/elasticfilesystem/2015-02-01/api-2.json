@@ -26,7 +26,8 @@
         {"shape":"IncorrectFileSystemLifeCycleState"},
         {"shape":"InternalServerError"},
         {"shape":"FileSystemNotFound"},
-        {"shape":"AccessPointLimitExceeded"}
+        {"shape":"AccessPointLimitExceeded"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateFileSystem":{
@@ -71,6 +72,29 @@
         {"shape":"SecurityGroupNotFound"},
         {"shape":"UnsupportedAvailabilityZone"},
         {"shape":"AvailabilityZonesMismatch"}
+      ]
+    },
+    "CreateReplicationConfiguration":{
+      "name":"CreateReplicationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateReplicationConfigurationRequest"},
+      "output":{"shape":"ReplicationConfigurationDescription"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"IncorrectFileSystemLifeCycleState"},
+        {"shape":"ValidationException"},
+        {"shape":"ReplicationNotFound"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"UnsupportedAvailabilityZone"},
+        {"shape":"FileSystemLimitExceeded"},
+        {"shape":"InsufficientThroughputCapacity"},
+        {"shape":"ThroughputLimitExceeded"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerError"}
       ]
     },
     "CreateTags":{
@@ -127,6 +151,7 @@
       },
       "input":{"shape":"DeleteFileSystemPolicyRequest"},
       "errors":[
+        {"shape":"BadRequest"},
         {"shape":"InternalServerError"},
         {"shape":"FileSystemNotFound"},
         {"shape":"IncorrectFileSystemLifeCycleState"}
@@ -145,6 +170,21 @@
         {"shape":"InternalServerError"},
         {"shape":"DependencyTimeout"},
         {"shape":"MountTargetNotFound"}
+      ]
+    },
+    "DeleteReplicationConfiguration":{
+      "name":"DeleteReplicationConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteReplicationConfigurationRequest"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"ReplicationNotFound"}
       ]
     },
     "DeleteTags":{
@@ -219,6 +259,7 @@
       "input":{"shape":"DescribeFileSystemPolicyRequest"},
       "output":{"shape":"FileSystemPolicyDescription"},
       "errors":[
+        {"shape":"BadRequest"},
         {"shape":"InternalServerError"},
         {"shape":"FileSystemNotFound"},
         {"shape":"PolicyNotFound"}
@@ -287,6 +328,23 @@
         {"shape":"AccessPointNotFound"}
       ]
     },
+    "DescribeReplicationConfigurations":{
+      "name":"DescribeReplicationConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-02-01/file-systems/replication-configurations",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeReplicationConfigurationsRequest"},
+      "output":{"shape":"DescribeReplicationConfigurationsResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"InternalServerError"},
+        {"shape":"ReplicationNotFound"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeTags":{
       "name":"DescribeTags",
       "http":{
@@ -347,6 +405,7 @@
       "input":{"shape":"PutAccountPreferencesRequest"},
       "output":{"shape":"PutAccountPreferencesResponse"},
       "errors":[
+        {"shape":"BadRequest"},
         {"shape":"InternalServerError"}
       ]
     },
@@ -377,6 +436,7 @@
       "input":{"shape":"PutFileSystemPolicyRequest"},
       "output":{"shape":"FileSystemPolicyDescription"},
       "errors":[
+        {"shape":"BadRequest"},
         {"shape":"InternalServerError"},
         {"shape":"FileSystemNotFound"},
         {"shape":"InvalidPolicyException"},
@@ -447,6 +507,27 @@
         {"shape":"ThroughputLimitExceeded"},
         {"shape":"TooManyRequests"}
       ]
+    },
+    "UpdateFileSystemProtection":{
+      "name":"UpdateFileSystemProtection",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2015-02-01/file-systems/{FileSystemId}/protection",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateFileSystemProtectionRequest"},
+      "output":{"shape":"FileSystemProtectionDescription"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"IncorrectFileSystemLifeCycleState"},
+        {"shape":"InsufficientThroughputCapacity"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThroughputLimitExceeded"},
+        {"shape":"ReplicationAlreadyExists"},
+        {"shape":"TooManyRequests"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
@@ -565,6 +646,15 @@
       "min":1,
       "pattern":".+"
     },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "CreateAccessPointRequest":{
       "type":"structure",
       "required":[
@@ -611,6 +701,21 @@
         "SubnetId":{"shape":"SubnetId"},
         "IpAddress":{"shape":"IpAddress"},
         "SecurityGroups":{"shape":"SecurityGroups"}
+      }
+    },
+    "CreateReplicationConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "SourceFileSystemId",
+        "Destinations"
+      ],
+      "members":{
+        "SourceFileSystemId":{
+          "shape":"FileSystemId",
+          "location":"uri",
+          "locationName":"SourceFileSystemId"
+        },
+        "Destinations":{"shape":"DestinationsToCreate"}
       }
     },
     "CreateTagsRequest":{
@@ -688,6 +793,17 @@
           "shape":"MountTargetId",
           "location":"uri",
           "locationName":"MountTargetId"
+        }
+      }
+    },
+    "DeleteReplicationConfigurationRequest":{
+      "type":"structure",
+      "required":["SourceFileSystemId"],
+      "members":{
+        "SourceFileSystemId":{
+          "shape":"FileSystemId",
+          "location":"uri",
+          "locationName":"SourceFileSystemId"
         }
       }
     },
@@ -884,6 +1000,33 @@
         "NextMarker":{"shape":"Marker"}
       }
     },
+    "DescribeReplicationConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "FileSystemId":{
+          "shape":"FileSystemId",
+          "location":"querystring",
+          "locationName":"FileSystemId"
+        },
+        "NextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        }
+      }
+    },
+    "DescribeReplicationConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "Replications":{"shape":"ReplicationConfigurationDescriptions"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "DescribeTagsRequest":{
       "type":"structure",
       "required":["FileSystemId"],
@@ -913,6 +1056,37 @@
         "Tags":{"shape":"Tags"},
         "NextMarker":{"shape":"Marker"}
       }
+    },
+    "Destination":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "FileSystemId",
+        "Region"
+      ],
+      "members":{
+        "Status":{"shape":"ReplicationStatus"},
+        "FileSystemId":{"shape":"FileSystemId"},
+        "Region":{"shape":"RegionName"},
+        "LastReplicatedTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "DestinationToCreate":{
+      "type":"structure",
+      "members":{
+        "Region":{"shape":"RegionName"},
+        "AvailabilityZoneName":{"shape":"AvailabilityZoneName"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "FileSystemId":{"shape":"FileSystemId"}
+      }
+    },
+    "Destinations":{
+      "type":"list",
+      "member":{"shape":"Destination"}
+    },
+    "DestinationsToCreate":{
+      "type":"list",
+      "member":{"shape":"DestinationToCreate"}
     },
     "Encrypted":{"type":"boolean"},
     "ErrorCode":{
@@ -965,7 +1139,8 @@
         "ProvisionedThroughputInMibps":{"shape":"ProvisionedThroughputInMibps"},
         "AvailabilityZoneName":{"shape":"AvailabilityZoneName"},
         "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "FileSystemProtection":{"shape":"FileSystemProtectionDescription"}
       }
     },
     "FileSystemDescriptions":{
@@ -1018,6 +1193,12 @@
         "Policy":{"shape":"Policy"}
       }
     },
+    "FileSystemProtectionDescription":{
+      "type":"structure",
+      "members":{
+        "ReplicationOverwriteProtection":{"shape":"ReplicationOverwriteProtection"}
+      }
+    },
     "FileSystemSize":{
       "type":"structure",
       "required":["Value"],
@@ -1025,7 +1206,8 @@
         "Value":{"shape":"FileSystemSizeValue"},
         "Timestamp":{"shape":"Timestamp"},
         "ValueInIA":{"shape":"FileSystemNullableSizeValue"},
-        "ValueInStandard":{"shape":"FileSystemNullableSizeValue"}
+        "ValueInStandard":{"shape":"FileSystemNullableSizeValue"},
+        "ValueInArchive":{"shape":"FileSystemNullableSizeValue"}
       }
     },
     "FileSystemSizeValue":{
@@ -1126,12 +1308,15 @@
     },
     "LifecyclePolicies":{
       "type":"list",
-      "member":{"shape":"LifecyclePolicy"}
+      "member":{"shape":"LifecyclePolicy"},
+      "max":3
     },
     "LifecyclePolicy":{
       "type":"structure",
       "members":{
-        "TransitionToIA":{"shape":"TransitionToIARules"}
+        "TransitionToIA":{"shape":"TransitionToIARules"},
+        "TransitionToPrimaryStorageClass":{"shape":"TransitionToPrimaryStorageClassRules"},
+        "TransitionToArchive":{"shape":"TransitionToArchiveRules"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -1384,6 +1569,72 @@
         "LifecyclePolicies":{"shape":"LifecyclePolicies"}
       }
     },
+    "RegionName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-{0,1}[0-9]{0,1}$"
+    },
+    "ReplicationAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "ReplicationConfigurationDescription":{
+      "type":"structure",
+      "required":[
+        "SourceFileSystemId",
+        "SourceFileSystemRegion",
+        "SourceFileSystemArn",
+        "OriginalSourceFileSystemArn",
+        "CreationTime",
+        "Destinations"
+      ],
+      "members":{
+        "SourceFileSystemId":{"shape":"FileSystemId"},
+        "SourceFileSystemRegion":{"shape":"RegionName"},
+        "SourceFileSystemArn":{"shape":"FileSystemArn"},
+        "OriginalSourceFileSystemArn":{"shape":"FileSystemArn"},
+        "CreationTime":{"shape":"Timestamp"},
+        "Destinations":{"shape":"Destinations"}
+      }
+    },
+    "ReplicationConfigurationDescriptions":{
+      "type":"list",
+      "member":{"shape":"ReplicationConfigurationDescription"}
+    },
+    "ReplicationNotFound":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "ReplicationOverwriteProtection":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED",
+        "REPLICATING"
+      ]
+    },
+    "ReplicationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "ENABLING",
+        "DELETING",
+        "ERROR",
+        "PAUSED",
+        "PAUSING"
+      ]
+    },
     "Resource":{
       "type":"string",
       "enum":[
@@ -1456,7 +1707,7 @@
     "SecurityGroups":{
       "type":"list",
       "member":{"shape":"SecurityGroup"},
-      "max":5
+      "max":100
     },
     "Status":{
       "type":"string",
@@ -1530,6 +1781,15 @@
       "type":"list",
       "member":{"shape":"Tag"}
     },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true
+    },
     "ThroughputLimitExceeded":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -1544,7 +1804,8 @@
       "type":"string",
       "enum":[
         "bursting",
-        "provisioned"
+        "provisioned",
+        "elastic"
       ]
     },
     "Timestamp":{"type":"timestamp"},
@@ -1564,6 +1825,20 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "TransitionToArchiveRules":{
+      "type":"string",
+      "enum":[
+        "AFTER_1_DAY",
+        "AFTER_7_DAYS",
+        "AFTER_14_DAYS",
+        "AFTER_30_DAYS",
+        "AFTER_60_DAYS",
+        "AFTER_90_DAYS",
+        "AFTER_180_DAYS",
+        "AFTER_270_DAYS",
+        "AFTER_365_DAYS"
+      ]
+    },
     "TransitionToIARules":{
       "type":"string",
       "enum":[
@@ -1571,8 +1846,16 @@
         "AFTER_14_DAYS",
         "AFTER_30_DAYS",
         "AFTER_60_DAYS",
-        "AFTER_90_DAYS"
+        "AFTER_90_DAYS",
+        "AFTER_1_DAY",
+        "AFTER_180_DAYS",
+        "AFTER_270_DAYS",
+        "AFTER_365_DAYS"
       ]
+    },
+    "TransitionToPrimaryStorageClassRules":{
+      "type":"string",
+      "enum":["AFTER_1_ACCESS"]
     },
     "Uid":{
       "type":"long",
@@ -1606,6 +1889,18 @@
           "location":"querystring",
           "locationName":"tagKeys"
         }
+      }
+    },
+    "UpdateFileSystemProtectionRequest":{
+      "type":"structure",
+      "required":["FileSystemId"],
+      "members":{
+        "FileSystemId":{
+          "shape":"FileSystemId",
+          "location":"uri",
+          "locationName":"FileSystemId"
+        },
+        "ReplicationOverwriteProtection":{"shape":"ReplicationOverwriteProtection"}
       }
     },
     "UpdateFileSystemRequest":{

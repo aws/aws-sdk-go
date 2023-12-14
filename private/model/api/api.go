@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 // Package api represents API abstractions for rendering service generated files.
@@ -23,7 +24,7 @@ type API struct {
 	Operations    map[string]*Operation
 	Shapes        map[string]*Shape
 	Waiters       []Waiter
-	Documentation string
+	Documentation string `json:"-"`
 	Examples      Examples
 	SmokeTests    SmokeTestSuite
 
@@ -50,6 +51,9 @@ type API struct {
 	// Set to true to not generate struct field accessors
 	NoGenStructFieldAccessors bool
 
+	// Set to not remove unsupported (non-legacy) JSON from API, (for generated tests).
+	NoRemoveUnsupportedJSONValue bool
+
 	BaseImportPath string
 
 	initialized bool
@@ -70,6 +74,9 @@ type API struct {
 	HasAccountIdWithARN bool `json:"-"`
 
 	WithGeneratedTypedErrors bool
+
+	// Set to true to strictly enforce usage of the serviceId for the package naming
+	StrictServiceId bool
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -88,8 +95,11 @@ type Metadata struct {
 	EndpointsID         string
 	ServiceID           string
 
-	NoResolveEndpoint bool
+	NoResolveEndpoint  bool
+	AWSQueryCompatible *awsQueryCompatible
 }
+
+type awsQueryCompatible struct{}
 
 // ProtocolSettings define how the SDK should handle requests in the context
 // of of a protocol.
@@ -123,20 +133,28 @@ func (a *API) StructName() string {
 		return a.name
 	}
 
-	name := a.Metadata.ServiceAbbreviation
-	if len(name) == 0 {
-		name = a.Metadata.ServiceFullName
+	var name string
+	if a.StrictServiceId {
+		name = a.Metadata.ServiceID
+		if len(name) == 0 {
+			panic("expect serviceId to be set, but was not")
+		}
+		if legacyName, ok := legacyStructNames[strings.ToLower(name)]; ok {
+			// The legacy names come from service abbreviations or service full names,
+			// so we will want to apply the old procedure to them.
+			name = makeLikeServiceId(legacyName)
+		}
+	} else {
+		name = a.Metadata.ServiceAbbreviation
+		if len(name) == 0 {
+			name = a.Metadata.ServiceFullName
+		}
+		// If we aren't using the strictly modeled service id, then
+		// strip out prefix names not reflected in service client symbol names.
+		name = makeLikeServiceId(name)
 	}
 
 	name = strings.TrimSpace(name)
-
-	// Strip out prefix names not reflected in service client symbol names.
-	for _, prefix := range stripServiceNamePrefixes {
-		if strings.HasPrefix(name, prefix) {
-			name = name[len(prefix):]
-			break
-		}
-	}
 
 	// Replace all Non-letter/number values with space
 	runes := []rune(name)
@@ -560,17 +578,21 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
 	{{- else -}}
 		c := p.ClientConfig({{ EndpointsIDValue . }}, cfgs...)
 	{{- end }}
-
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
 	{{- if .Metadata.SigningName }}
-		if c.SigningNameDerived || len(c.SigningName) == 0{
-			c.SigningName = "{{ .Metadata.SigningName }}"
-		}
+		c.SigningName = "{{ .Metadata.SigningName }}"
+    {{- else }}
+		{{- if not .NoConstServiceNames -}}
+		c.SigningName = {{ EndpointsIDValue . }}
+		// No Fallback
+		{{- end }}
 	{{- end }}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	}
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *{{ .StructName }} {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *{{ .StructName }} {
     svc := &{{ .StructName }}{
     	Client: client.New(
     		cfg,
@@ -582,6 +604,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 			PartitionID: partitionID,
 			Endpoint:     endpoint,
 			APIVersion:   "{{ .Metadata.APIVersion }}",
+            ResolvedRegion: resolvedRegion,
 			{{ if and (.Metadata.JSONVersion) (eq .Metadata.Protocol "json") -}}
 				JSONVersion:  "{{ .Metadata.JSONVersion }}",
 			{{- end }}
@@ -619,7 +642,11 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 	{{- if and $.WithGeneratedTypedErrors (gt (len $.ShapeListErrors) 0) }}
 		{{- $_ := $.AddSDKImport "private/protocol" }}
 		svc.Handlers.UnmarshalError.PushBackNamed(
+			{{-  if .Metadata.AWSQueryCompatible }}
+			protocol.NewUnmarshalErrorHandler({{ .ProtocolPackage }}.NewUnmarshalTypedErrorWithOptions(exceptionFromCode, {{ .ProtocolPackage }}.WithQueryCompatibility(queryExceptionFromCode))).NamedHandler(),
+			{{- else }}
 			protocol.NewUnmarshalErrorHandler({{ .ProtocolPackage }}.NewUnmarshalTypedError(exceptionFromCode)).NamedHandler(),
+			{{- end}}
 		)
 	{{- else }}
 		svc.Handlers.UnmarshalError.PushBackNamed({{ .ProtocolPackage }}.UnmarshalErrorHandler)
@@ -913,6 +940,96 @@ const (
 			"{{ $s.ErrorName }}": newError{{ $s.ShapeName }},
 		{{- end }}
 	}
+	{{- if .Metadata.AWSQueryCompatible }}
+	var queryExceptionFromCode = map[string]func(protocol.ResponseMetadata, string)error {
+		{{- range $_, $s := $.ShapeListErrors }}
+			"{{ $s.ErrorName }}": newQueryCompatibleError{{ $s.ShapeName }},
+		{{- end }}
+	}
+	{{- end }}
+{{- end }}
+`))
+
+// A tplAPIErrors is the top level template for the API
+var tplAPIErrorsSQS = template.Must(template.New("api").Parse(`
+const (
+	{{- range $_, $s := $.ShapeListErrors }}
+
+		// {{ $s.ErrorCodeName }} for service response error code
+		{{- if eq $s.ErrorCodeName "ErrCodeBatchEntryIdsNotDistinct" }}
+			// "AWS.SimpleQueueService.BatchEntryIdsNotDistinct".
+		{{- else if eq $s.ErrorCodeName "ErrCodeBatchRequestTooLong" }}
+			// "AWS.SimpleQueueService.BatchRequestTooLong".
+		{{- else if eq $s.ErrorCodeName "ErrCodeEmptyBatchRequest" }}
+			// "AWS.SimpleQueueService.EmptyBatchRequest".
+		{{- else if eq $s.ErrorCodeName "ErrCodeInvalidBatchEntryId" }}
+			// "AWS.SimpleQueueService.InvalidBatchEntryId".
+		{{- else if eq $s.ErrorCodeName "ErrCodeMessageNotInflight" }}
+			// "AWS.SimpleQueueService.MessageNotInflight".
+		{{- else if eq $s.ErrorCodeName "ErrCodePurgeQueueInProgress" }}
+			// "AWS.SimpleQueueService.PurgeQueueInProgress".
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueDeletedRecently" }}
+			// "AWS.SimpleQueueService.QueueDeletedRecently".
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueDoesNotExist" }}
+			// "AWS.SimpleQueueService.NonExistentQueue".
+		{{- else if eq $s.ErrorCodeName "ErrCodeTooManyEntriesInBatchRequest" }}
+			// "AWS.SimpleQueueService.TooManyEntriesInBatchRequest".
+		{{- else if eq $s.ErrorCodeName "ErrCodeUnsupportedOperation" }}
+			// "AWS.SimpleQueueService.UnsupportedOperation".
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueNameExists" }}
+			// "QueueAlreadyExists".
+		{{- else }}
+			// {{ printf "%q" $s.ErrorName }}.
+		{{- end }}
+		{{ if $s.Docstring -}}
+			//
+			{{ $s.Docstring }}
+		{{ end -}}
+
+
+		{{- if eq $s.ErrorCodeName "ErrCodeBatchEntryIdsNotDistinct" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.BatchEntryIdsNotDistinct"
+		{{- else if eq $s.ErrorCodeName "ErrCodeBatchRequestTooLong" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.BatchRequestTooLong"
+		{{- else if eq $s.ErrorCodeName "ErrCodeEmptyBatchRequest" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.EmptyBatchRequest"
+		{{- else if eq $s.ErrorCodeName "ErrCodeInvalidBatchEntryId" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.InvalidBatchEntryId"
+		{{- else if eq $s.ErrorCodeName "ErrCodeMessageNotInflight" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.MessageNotInflight"
+		{{- else if eq $s.ErrorCodeName "ErrCodePurgeQueueInProgress" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.PurgeQueueInProgress"
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueDeletedRecently" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.QueueDeletedRecently"
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueDoesNotExist" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.NonExistentQueue"
+		{{- else if eq $s.ErrorCodeName "ErrCodeTooManyEntriesInBatchRequest" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.TooManyEntriesInBatchRequest"
+		{{- else if eq $s.ErrorCodeName "ErrCodeUnsupportedOperation" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.UnsupportedOperation"
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueNameExists" -}}
+			{{ $s.ErrorCodeName }} = "QueueAlreadyExists"
+		{{- else -}}
+			{{ $s.ErrorCodeName }} = {{ printf "%q" $s.ErrorName }}
+		{{- end -}}
+	{{- end }}
+)
+
+{{- if $.WithGeneratedTypedErrors }}
+	{{- $_ := $.AddSDKImport "private/protocol" }}
+
+	var exceptionFromCode = map[string]func(protocol.ResponseMetadata)error {
+		{{- range $_, $s := $.ShapeListErrors }}
+			"{{ $s.ErrorName }}": newError{{ $s.ShapeName }},
+		{{- end }}
+	}
+	{{- if .Metadata.AWSQueryCompatible }}
+	var queryExceptionFromCode = map[string]func(protocol.ResponseMetadata, string)error {
+		{{- range $_, $s := $.ShapeListErrors }}
+			"{{ $s.ErrorName }}": newQueryCompatibleError{{ $s.ShapeName }},
+		{{- end }}
+	}
+	{{- end }}
 {{- end }}
 `))
 
@@ -921,7 +1038,12 @@ func (a *API) APIErrorsGoCode() string {
 	a.resetImports()
 
 	var buf bytes.Buffer
-	err := tplAPIErrors.Execute(&buf, a)
+	var err error
+	if a.Metadata.ServiceID == "SQS" {
+		err = tplAPIErrorsSQS.Execute(&buf, a)
+	} else {
+		err = tplAPIErrors.Execute(&buf, a)
+	}
 
 	if err != nil {
 		panic(err)
@@ -1019,10 +1141,50 @@ func (a *API) addHeaderMapDocumentation() {
 	}
 }
 
+func (a *API) validateNoDocumentShapes() error {
+	var shapes []string
+	for name, shape := range a.Shapes {
+		if shape.Type != "structure" {
+			continue
+		}
+		if shape.Document {
+			shapes = append(shapes, name)
+		}
+	}
+
+	if len(shapes) == 0 {
+		return nil
+	}
+
+	return fmt.Errorf("model contains document shapes: %s", strings.Join(shapes, ", "))
+}
+
+func (a *API) backfillSigningName() {
+	backfill := map[string]string{
+		"kinesisvideo": "kinesisvideo",
+	}
+
+	if value, ok := backfill[a.PackageName()]; ok && len(a.Metadata.SigningName) == 0 {
+		a.Metadata.SigningName = value
+	} else if ok && len(a.Metadata.SigningName) > 0 {
+		debugLogger.Logf("%s no longer requires signingName backfill", a.PackageName())
+	}
+}
+
 func getDeprecatedMessage(msg string, name string) string {
 	if len(msg) == 0 {
 		return name + " has been deprecated"
 	}
 
 	return msg
+}
+
+func makeLikeServiceId(name string) string {
+	for _, prefix := range stripServiceNamePrefixes {
+		if strings.HasPrefix(name, prefix) {
+			name = name[len(prefix):]
+			break
+		}
+	}
+	return name
 }

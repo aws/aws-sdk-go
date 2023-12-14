@@ -1,3 +1,4 @@
+//go:build go1.8
 // +build go1.8
 
 package query
@@ -28,6 +29,27 @@ func TestUnmarshalError(t *testing.T) {
 						`<ErrorResponse>
 							<Error>
 								<Code>codeAbc</Code><Message>msg123</Message>
+							</Error>
+							<RequestId>reqID123</RequestId>
+						</ErrorResponse>`)),
+				},
+			},
+			Code: "codeAbc", Msg: "msg123",
+			Status: 400, ReqID: "reqID123",
+		},
+		"ErrorResponse with spaces": {
+			Request: &request.Request{
+				HTTPResponse: &http.Response{
+					StatusCode: 400,
+					Header:     http.Header{},
+					Body: ioutil.NopCloser(strings.NewReader(
+						`<ErrorResponse>
+							<Error>
+								<Code>
+								codeAbc
+								</Code><Message>
+								msg123
+								</Message>
 							</Error>
 							<RequestId>reqID123</RequestId>
 						</ErrorResponse>`)),

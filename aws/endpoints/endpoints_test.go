@@ -1,6 +1,15 @@
+//go:build go1.9
+// +build go1.9
+
 package endpoints
 
 import "testing"
+
+// ***************************************************************************
+// All endpoint metadata is sourced from the testdata/endpoints.json file at
+// test startup. Not the live endpoints model file. Update the testdata file
+// for the tests to use the latest live model.
+// ***************************************************************************
 
 func TestEnumDefaultPartitions(t *testing.T) {
 	resolver := DefaultResolver()
@@ -255,12 +264,13 @@ func TestResolverFunc(t *testing.T) {
 
 func TestOptionsSet(t *testing.T) {
 	var actual Options
-	actual.Set(DisableSSLOption, UseDualStackOption, StrictMatchingOption)
+	actual.Set(DisableSSLOption, UseDualStackOption, StrictMatchingOption, UseDualStackEndpointOption)
 
 	expect := Options{
-		DisableSSL:     true,
-		UseDualStack:   true,
-		StrictMatching: true,
+		DisableSSL:           true,
+		UseDualStack:         true,
+		UseDualStackEndpoint: DualStackEndpointStateEnabled,
+		StrictMatching:       true,
 	}
 
 	if actual != expect {

@@ -28,14 +28,13 @@ const opCreateProject = "CreateProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProjectRequest method.
+//	req, resp := client.CreateProjectRequest(params)
 //
-//    // Example sending a request using the CreateProjectRequest method.
-//    req, resp := client.CreateProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/CreateProject
 func (c *Mobile) CreateProjectRequest(input *CreateProjectInput) (req *request.Request, output *CreateProjectOutput) {
@@ -66,33 +65,34 @@ func (c *Mobile) CreateProjectRequest(input *CreateProjectInput) (req *request.R
 // API operation CreateProject for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service has encountered an unexpected error condition which prevents
-//   it from servicing the request.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable. The request should be retried after
-//   some time delay.
+//   - InternalFailureException
+//     The service has encountered an unexpected error condition which prevents
+//     it from servicing the request.
 //
-//   * UnauthorizedException
-//   Credentials of the caller are insufficient to authorize the request.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable. The request should be retried after
+//     some time delay.
 //
-//   * TooManyRequestsException
-//   Too many requests have been received for this AWS account in too short a
-//   time. The request should be retried after some time delay.
+//   - UnauthorizedException
+//     Credentials of the caller are insufficient to authorize the request.
 //
-//   * BadRequestException
-//   The request cannot be processed because some parameter is not valid or the
-//   project state prevents the operation from being performed.
+//   - TooManyRequestsException
+//     Too many requests have been received for this AWS account in too short a
+//     time. The request should be retried after some time delay.
 //
-//   * NotFoundException
-//   No entity can be found with the specified identifier.
+//   - BadRequestException
+//     The request cannot be processed because some parameter is not valid or the
+//     project state prevents the operation from being performed.
 //
-//   * LimitExceededException
-//   There are too many AWS Mobile Hub projects in the account or the account
-//   has exceeded the maximum number of resources in some AWS service. You should
-//   create another sub-account using AWS Organizations or remove some resources
-//   and retry your request.
+//   - NotFoundException
+//     No entity can be found with the specified identifier.
+//
+//   - LimitExceededException
+//     There are too many AWS Mobile Hub projects in the account or the account
+//     has exceeded the maximum number of resources in some AWS service. You should
+//     create another sub-account using AWS Organizations or remove some resources
+//     and retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/CreateProject
 func (c *Mobile) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
@@ -132,14 +132,13 @@ const opDeleteProject = "DeleteProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProjectRequest method.
+//	req, resp := client.DeleteProjectRequest(params)
 //
-//    // Example sending a request using the DeleteProjectRequest method.
-//    req, resp := client.DeleteProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/DeleteProject
 func (c *Mobile) DeleteProjectRequest(input *DeleteProjectInput) (req *request.Request, output *DeleteProjectOutput) {
@@ -170,23 +169,24 @@ func (c *Mobile) DeleteProjectRequest(input *DeleteProjectInput) (req *request.R
 // API operation DeleteProject for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service has encountered an unexpected error condition which prevents
-//   it from servicing the request.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable. The request should be retried after
-//   some time delay.
+//   - InternalFailureException
+//     The service has encountered an unexpected error condition which prevents
+//     it from servicing the request.
 //
-//   * UnauthorizedException
-//   Credentials of the caller are insufficient to authorize the request.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable. The request should be retried after
+//     some time delay.
 //
-//   * TooManyRequestsException
-//   Too many requests have been received for this AWS account in too short a
-//   time. The request should be retried after some time delay.
+//   - UnauthorizedException
+//     Credentials of the caller are insufficient to authorize the request.
 //
-//   * NotFoundException
-//   No entity can be found with the specified identifier.
+//   - TooManyRequestsException
+//     Too many requests have been received for this AWS account in too short a
+//     time. The request should be retried after some time delay.
+//
+//   - NotFoundException
+//     No entity can be found with the specified identifier.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/DeleteProject
 func (c *Mobile) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
@@ -226,14 +226,13 @@ const opDescribeBundle = "DescribeBundle"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBundleRequest method.
+//	req, resp := client.DescribeBundleRequest(params)
 //
-//    // Example sending a request using the DescribeBundleRequest method.
-//    req, resp := client.DescribeBundleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/DescribeBundle
 func (c *Mobile) DescribeBundleRequest(input *DescribeBundleInput) (req *request.Request, output *DescribeBundleOutput) {
@@ -264,27 +263,28 @@ func (c *Mobile) DescribeBundleRequest(input *DescribeBundleInput) (req *request
 // API operation DescribeBundle for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service has encountered an unexpected error condition which prevents
-//   it from servicing the request.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable. The request should be retried after
-//   some time delay.
+//   - InternalFailureException
+//     The service has encountered an unexpected error condition which prevents
+//     it from servicing the request.
 //
-//   * UnauthorizedException
-//   Credentials of the caller are insufficient to authorize the request.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable. The request should be retried after
+//     some time delay.
 //
-//   * TooManyRequestsException
-//   Too many requests have been received for this AWS account in too short a
-//   time. The request should be retried after some time delay.
+//   - UnauthorizedException
+//     Credentials of the caller are insufficient to authorize the request.
 //
-//   * BadRequestException
-//   The request cannot be processed because some parameter is not valid or the
-//   project state prevents the operation from being performed.
+//   - TooManyRequestsException
+//     Too many requests have been received for this AWS account in too short a
+//     time. The request should be retried after some time delay.
 //
-//   * NotFoundException
-//   No entity can be found with the specified identifier.
+//   - BadRequestException
+//     The request cannot be processed because some parameter is not valid or the
+//     project state prevents the operation from being performed.
+//
+//   - NotFoundException
+//     No entity can be found with the specified identifier.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/DescribeBundle
 func (c *Mobile) DescribeBundle(input *DescribeBundleInput) (*DescribeBundleOutput, error) {
@@ -324,14 +324,13 @@ const opDescribeProject = "DescribeProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProjectRequest method.
+//	req, resp := client.DescribeProjectRequest(params)
 //
-//    // Example sending a request using the DescribeProjectRequest method.
-//    req, resp := client.DescribeProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/DescribeProject
 func (c *Mobile) DescribeProjectRequest(input *DescribeProjectInput) (req *request.Request, output *DescribeProjectOutput) {
@@ -362,27 +361,28 @@ func (c *Mobile) DescribeProjectRequest(input *DescribeProjectInput) (req *reque
 // API operation DescribeProject for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service has encountered an unexpected error condition which prevents
-//   it from servicing the request.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable. The request should be retried after
-//   some time delay.
+//   - InternalFailureException
+//     The service has encountered an unexpected error condition which prevents
+//     it from servicing the request.
 //
-//   * UnauthorizedException
-//   Credentials of the caller are insufficient to authorize the request.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable. The request should be retried after
+//     some time delay.
 //
-//   * TooManyRequestsException
-//   Too many requests have been received for this AWS account in too short a
-//   time. The request should be retried after some time delay.
+//   - UnauthorizedException
+//     Credentials of the caller are insufficient to authorize the request.
 //
-//   * BadRequestException
-//   The request cannot be processed because some parameter is not valid or the
-//   project state prevents the operation from being performed.
+//   - TooManyRequestsException
+//     Too many requests have been received for this AWS account in too short a
+//     time. The request should be retried after some time delay.
 //
-//   * NotFoundException
-//   No entity can be found with the specified identifier.
+//   - BadRequestException
+//     The request cannot be processed because some parameter is not valid or the
+//     project state prevents the operation from being performed.
+//
+//   - NotFoundException
+//     No entity can be found with the specified identifier.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/DescribeProject
 func (c *Mobile) DescribeProject(input *DescribeProjectInput) (*DescribeProjectOutput, error) {
@@ -422,14 +422,13 @@ const opExportBundle = "ExportBundle"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ExportBundleRequest method.
+//	req, resp := client.ExportBundleRequest(params)
 //
-//    // Example sending a request using the ExportBundleRequest method.
-//    req, resp := client.ExportBundleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/ExportBundle
 func (c *Mobile) ExportBundleRequest(input *ExportBundleInput) (req *request.Request, output *ExportBundleOutput) {
@@ -461,27 +460,28 @@ func (c *Mobile) ExportBundleRequest(input *ExportBundleInput) (req *request.Req
 // API operation ExportBundle for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service has encountered an unexpected error condition which prevents
-//   it from servicing the request.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable. The request should be retried after
-//   some time delay.
+//   - InternalFailureException
+//     The service has encountered an unexpected error condition which prevents
+//     it from servicing the request.
 //
-//   * UnauthorizedException
-//   Credentials of the caller are insufficient to authorize the request.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable. The request should be retried after
+//     some time delay.
 //
-//   * TooManyRequestsException
-//   Too many requests have been received for this AWS account in too short a
-//   time. The request should be retried after some time delay.
+//   - UnauthorizedException
+//     Credentials of the caller are insufficient to authorize the request.
 //
-//   * BadRequestException
-//   The request cannot be processed because some parameter is not valid or the
-//   project state prevents the operation from being performed.
+//   - TooManyRequestsException
+//     Too many requests have been received for this AWS account in too short a
+//     time. The request should be retried after some time delay.
 //
-//   * NotFoundException
-//   No entity can be found with the specified identifier.
+//   - BadRequestException
+//     The request cannot be processed because some parameter is not valid or the
+//     project state prevents the operation from being performed.
+//
+//   - NotFoundException
+//     No entity can be found with the specified identifier.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/ExportBundle
 func (c *Mobile) ExportBundle(input *ExportBundleInput) (*ExportBundleOutput, error) {
@@ -521,14 +521,13 @@ const opExportProject = "ExportProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ExportProjectRequest method.
+//	req, resp := client.ExportProjectRequest(params)
 //
-//    // Example sending a request using the ExportProjectRequest method.
-//    req, resp := client.ExportProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/ExportProject
 func (c *Mobile) ExportProjectRequest(input *ExportProjectInput) (req *request.Request, output *ExportProjectOutput) {
@@ -561,27 +560,28 @@ func (c *Mobile) ExportProjectRequest(input *ExportProjectInput) (req *request.R
 // API operation ExportProject for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service has encountered an unexpected error condition which prevents
-//   it from servicing the request.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable. The request should be retried after
-//   some time delay.
+//   - InternalFailureException
+//     The service has encountered an unexpected error condition which prevents
+//     it from servicing the request.
 //
-//   * UnauthorizedException
-//   Credentials of the caller are insufficient to authorize the request.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable. The request should be retried after
+//     some time delay.
 //
-//   * TooManyRequestsException
-//   Too many requests have been received for this AWS account in too short a
-//   time. The request should be retried after some time delay.
+//   - UnauthorizedException
+//     Credentials of the caller are insufficient to authorize the request.
 //
-//   * BadRequestException
-//   The request cannot be processed because some parameter is not valid or the
-//   project state prevents the operation from being performed.
+//   - TooManyRequestsException
+//     Too many requests have been received for this AWS account in too short a
+//     time. The request should be retried after some time delay.
 //
-//   * NotFoundException
-//   No entity can be found with the specified identifier.
+//   - BadRequestException
+//     The request cannot be processed because some parameter is not valid or the
+//     project state prevents the operation from being performed.
+//
+//   - NotFoundException
+//     No entity can be found with the specified identifier.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/ExportProject
 func (c *Mobile) ExportProject(input *ExportProjectInput) (*ExportProjectOutput, error) {
@@ -621,14 +621,13 @@ const opListBundles = "ListBundles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBundlesRequest method.
+//	req, resp := client.ListBundlesRequest(params)
 //
-//    // Example sending a request using the ListBundlesRequest method.
-//    req, resp := client.ListBundlesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/ListBundles
 func (c *Mobile) ListBundlesRequest(input *ListBundlesInput) (req *request.Request, output *ListBundlesOutput) {
@@ -665,24 +664,25 @@ func (c *Mobile) ListBundlesRequest(input *ListBundlesInput) (req *request.Reque
 // API operation ListBundles for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service has encountered an unexpected error condition which prevents
-//   it from servicing the request.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable. The request should be retried after
-//   some time delay.
+//   - InternalFailureException
+//     The service has encountered an unexpected error condition which prevents
+//     it from servicing the request.
 //
-//   * UnauthorizedException
-//   Credentials of the caller are insufficient to authorize the request.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable. The request should be retried after
+//     some time delay.
 //
-//   * TooManyRequestsException
-//   Too many requests have been received for this AWS account in too short a
-//   time. The request should be retried after some time delay.
+//   - UnauthorizedException
+//     Credentials of the caller are insufficient to authorize the request.
 //
-//   * BadRequestException
-//   The request cannot be processed because some parameter is not valid or the
-//   project state prevents the operation from being performed.
+//   - TooManyRequestsException
+//     Too many requests have been received for this AWS account in too short a
+//     time. The request should be retried after some time delay.
+//
+//   - BadRequestException
+//     The request cannot be processed because some parameter is not valid or the
+//     project state prevents the operation from being performed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/ListBundles
 func (c *Mobile) ListBundles(input *ListBundlesInput) (*ListBundlesOutput, error) {
@@ -714,15 +714,14 @@ func (c *Mobile) ListBundlesWithContext(ctx aws.Context, input *ListBundlesInput
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBundles operation.
-//    pageNum := 0
-//    err := client.ListBundlesPages(params,
-//        func(page *mobile.ListBundlesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBundles operation.
+//	pageNum := 0
+//	err := client.ListBundlesPages(params,
+//	    func(page *mobile.ListBundlesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Mobile) ListBundlesPages(input *ListBundlesInput, fn func(*ListBundlesOutput, bool) bool) error {
 	return c.ListBundlesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -774,14 +773,13 @@ const opListProjects = "ListProjects"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProjectsRequest method.
+//	req, resp := client.ListProjectsRequest(params)
 //
-//    // Example sending a request using the ListProjectsRequest method.
-//    req, resp := client.ListProjectsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/ListProjects
 func (c *Mobile) ListProjectsRequest(input *ListProjectsInput) (req *request.Request, output *ListProjectsOutput) {
@@ -818,24 +816,25 @@ func (c *Mobile) ListProjectsRequest(input *ListProjectsInput) (req *request.Req
 // API operation ListProjects for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service has encountered an unexpected error condition which prevents
-//   it from servicing the request.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable. The request should be retried after
-//   some time delay.
+//   - InternalFailureException
+//     The service has encountered an unexpected error condition which prevents
+//     it from servicing the request.
 //
-//   * UnauthorizedException
-//   Credentials of the caller are insufficient to authorize the request.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable. The request should be retried after
+//     some time delay.
 //
-//   * TooManyRequestsException
-//   Too many requests have been received for this AWS account in too short a
-//   time. The request should be retried after some time delay.
+//   - UnauthorizedException
+//     Credentials of the caller are insufficient to authorize the request.
 //
-//   * BadRequestException
-//   The request cannot be processed because some parameter is not valid or the
-//   project state prevents the operation from being performed.
+//   - TooManyRequestsException
+//     Too many requests have been received for this AWS account in too short a
+//     time. The request should be retried after some time delay.
+//
+//   - BadRequestException
+//     The request cannot be processed because some parameter is not valid or the
+//     project state prevents the operation from being performed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/ListProjects
 func (c *Mobile) ListProjects(input *ListProjectsInput) (*ListProjectsOutput, error) {
@@ -867,15 +866,14 @@ func (c *Mobile) ListProjectsWithContext(ctx aws.Context, input *ListProjectsInp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProjects operation.
-//    pageNum := 0
-//    err := client.ListProjectsPages(params,
-//        func(page *mobile.ListProjectsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProjects operation.
+//	pageNum := 0
+//	err := client.ListProjectsPages(params,
+//	    func(page *mobile.ListProjectsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Mobile) ListProjectsPages(input *ListProjectsInput, fn func(*ListProjectsOutput, bool) bool) error {
 	return c.ListProjectsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -927,14 +925,13 @@ const opUpdateProject = "UpdateProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProjectRequest method.
+//	req, resp := client.UpdateProjectRequest(params)
 //
-//    // Example sending a request using the UpdateProjectRequest method.
-//    req, resp := client.UpdateProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/UpdateProject
 func (c *Mobile) UpdateProjectRequest(input *UpdateProjectInput) (req *request.Request, output *UpdateProjectOutput) {
@@ -965,36 +962,37 @@ func (c *Mobile) UpdateProjectRequest(input *UpdateProjectInput) (req *request.R
 // API operation UpdateProject for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service has encountered an unexpected error condition which prevents
-//   it from servicing the request.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable. The request should be retried after
-//   some time delay.
+//   - InternalFailureException
+//     The service has encountered an unexpected error condition which prevents
+//     it from servicing the request.
 //
-//   * UnauthorizedException
-//   Credentials of the caller are insufficient to authorize the request.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable. The request should be retried after
+//     some time delay.
 //
-//   * TooManyRequestsException
-//   Too many requests have been received for this AWS account in too short a
-//   time. The request should be retried after some time delay.
+//   - UnauthorizedException
+//     Credentials of the caller are insufficient to authorize the request.
 //
-//   * BadRequestException
-//   The request cannot be processed because some parameter is not valid or the
-//   project state prevents the operation from being performed.
+//   - TooManyRequestsException
+//     Too many requests have been received for this AWS account in too short a
+//     time. The request should be retried after some time delay.
 //
-//   * NotFoundException
-//   No entity can be found with the specified identifier.
+//   - BadRequestException
+//     The request cannot be processed because some parameter is not valid or the
+//     project state prevents the operation from being performed.
 //
-//   * AccountActionRequiredException
-//   Account Action is required in order to continue the request.
+//   - NotFoundException
+//     No entity can be found with the specified identifier.
 //
-//   * LimitExceededException
-//   There are too many AWS Mobile Hub projects in the account or the account
-//   has exceeded the maximum number of resources in some AWS service. You should
-//   create another sub-account using AWS Organizations or remove some resources
-//   and retry your request.
+//   - AccountActionRequiredException
+//     Account Action is required in order to continue the request.
+//
+//   - LimitExceededException
+//     There are too many AWS Mobile Hub projects in the account or the account
+//     has exceeded the maximum number of resources in some AWS service. You should
+//     create another sub-account using AWS Organizations or remove some resources
+//     and retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mobile-2017-07-01/UpdateProject
 func (c *Mobile) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
@@ -1027,12 +1025,20 @@ type AccountActionRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountActionRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountActionRequiredException) GoString() string {
 	return s.String()
 }
@@ -1085,12 +1091,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -1138,7 +1152,7 @@ type BundleDetails struct {
 	_ struct{} `type:"structure"`
 
 	// Developer desktop or mobile app or website platforms.
-	AvailablePlatforms []*string `locationName:"availablePlatforms" type:"list"`
+	AvailablePlatforms []*string `locationName:"availablePlatforms" type:"list" enum:"Platform"`
 
 	// Unique bundle identifier.
 	BundleId *string `locationName:"bundleId" type:"string"`
@@ -1156,12 +1170,20 @@ type BundleDetails struct {
 	Version *string `locationName:"version" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BundleDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BundleDetails) GoString() string {
 	return s.String()
 }
@@ -1222,12 +1244,20 @@ type CreateProjectInput struct {
 	SnapshotId *string `location:"querystring" locationName:"snapshotId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProjectInput) GoString() string {
 	return s.String()
 }
@@ -1264,12 +1294,20 @@ type CreateProjectOutput struct {
 	Details *ProjectDetails `locationName:"details" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProjectOutput) GoString() string {
 	return s.String()
 }
@@ -1282,7 +1320,7 @@ func (s *CreateProjectOutput) SetDetails(v *ProjectDetails) *CreateProjectOutput
 
 // Request structure used to request a project be deleted.
 type DeleteProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique project identifier.
 	//
@@ -1290,12 +1328,20 @@ type DeleteProjectInput struct {
 	ProjectId *string `location:"uri" locationName:"projectId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProjectInput) GoString() string {
 	return s.String()
 }
@@ -1334,12 +1380,20 @@ type DeleteProjectOutput struct {
 	OrphanedResources []*Resource `locationName:"orphanedResources" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProjectOutput) GoString() string {
 	return s.String()
 }
@@ -1358,7 +1412,7 @@ func (s *DeleteProjectOutput) SetOrphanedResources(v []*Resource) *DeleteProject
 
 // Request structure to request the details of a specific bundle.
 type DescribeBundleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique bundle identifier.
 	//
@@ -1366,12 +1420,20 @@ type DescribeBundleInput struct {
 	BundleId *string `location:"uri" locationName:"bundleId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBundleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBundleInput) GoString() string {
 	return s.String()
 }
@@ -1406,12 +1468,20 @@ type DescribeBundleOutput struct {
 	Details *BundleDetails `locationName:"details" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBundleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBundleOutput) GoString() string {
 	return s.String()
 }
@@ -1424,7 +1494,7 @@ func (s *DescribeBundleOutput) SetDetails(v *BundleDetails) *DescribeBundleOutpu
 
 // Request structure used to request details about a project.
 type DescribeProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique project identifier.
 	//
@@ -1437,12 +1507,20 @@ type DescribeProjectInput struct {
 	SyncFromResources *bool `location:"querystring" locationName:"syncFromResources" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProjectInput) GoString() string {
 	return s.String()
 }
@@ -1480,12 +1558,20 @@ type DescribeProjectOutput struct {
 	Details *ProjectDetails `locationName:"details" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProjectOutput) GoString() string {
 	return s.String()
 }
@@ -1499,7 +1585,7 @@ func (s *DescribeProjectOutput) SetDetails(v *ProjectDetails) *DescribeProjectOu
 // Request structure used to request generation of custom SDK and tool packages
 // required to integrate mobile web or app clients with backed AWS resources.
 type ExportBundleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique bundle identifier.
 	//
@@ -1513,12 +1599,20 @@ type ExportBundleInput struct {
 	ProjectId *string `location:"querystring" locationName:"projectId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportBundleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportBundleInput) GoString() string {
 	return s.String()
 }
@@ -1569,12 +1663,20 @@ type ExportBundleOutput struct {
 	DownloadUrl *string `locationName:"downloadUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportBundleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportBundleOutput) GoString() string {
 	return s.String()
 }
@@ -1587,7 +1689,7 @@ func (s *ExportBundleOutput) SetDownloadUrl(v string) *ExportBundleOutput {
 
 // Request structure used in requests to export project configuration details.
 type ExportProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique project identifier.
 	//
@@ -1595,12 +1697,20 @@ type ExportProjectInput struct {
 	ProjectId *string `location:"uri" locationName:"projectId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportProjectInput) GoString() string {
 	return s.String()
 }
@@ -1647,12 +1757,20 @@ type ExportProjectOutput struct {
 	SnapshotId *string `locationName:"snapshotId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportProjectOutput) GoString() string {
 	return s.String()
 }
@@ -1685,12 +1803,20 @@ type InternalFailureException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) GoString() string {
 	return s.String()
 }
@@ -1748,12 +1874,20 @@ type LimitExceededException struct {
 	RetryAfterSeconds *string `location:"header" locationName:"Retry-After" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -1798,7 +1932,7 @@ func (s *LimitExceededException) RequestID() string {
 
 // Request structure to request all available bundles.
 type ListBundlesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of records to list in a single response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -1809,12 +1943,20 @@ type ListBundlesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBundlesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBundlesInput) GoString() string {
 	return s.String()
 }
@@ -1843,12 +1985,20 @@ type ListBundlesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBundlesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBundlesOutput) GoString() string {
 	return s.String()
 }
@@ -1867,7 +2017,7 @@ func (s *ListBundlesOutput) SetNextToken(v string) *ListBundlesOutput {
 
 // Request structure used to request projects list in AWS Mobile Hub.
 type ListProjectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of records to list in a single response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -1878,12 +2028,20 @@ type ListProjectsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProjectsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProjectsInput) GoString() string {
 	return s.String()
 }
@@ -1913,12 +2071,20 @@ type ListProjectsOutput struct {
 	Projects []*ProjectSummary `locationName:"projects" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProjectsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProjectsOutput) GoString() string {
 	return s.String()
 }
@@ -1944,12 +2110,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -2021,12 +2195,20 @@ type ProjectDetails struct {
 	State *string `locationName:"state" type:"string" enum:"ProjectState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProjectDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProjectDetails) GoString() string {
 	return s.String()
 }
@@ -2090,12 +2272,20 @@ type ProjectSummary struct {
 	ProjectId *string `locationName:"projectId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProjectSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProjectSummary) GoString() string {
 	return s.String()
 }
@@ -2133,12 +2323,20 @@ type Resource struct {
 	Type *string `locationName:"type" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Resource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Resource) GoString() string {
 	return s.String()
 }
@@ -2186,12 +2384,20 @@ type ServiceUnavailableException struct {
 	RetryAfterSeconds *string `location:"header" locationName:"Retry-After" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -2247,12 +2453,20 @@ type TooManyRequestsException struct {
 	RetryAfterSeconds *string `location:"header" locationName:"Retry-After" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -2304,12 +2518,20 @@ type UnauthorizedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) GoString() string {
 	return s.String()
 }
@@ -2367,12 +2589,20 @@ type UpdateProjectInput struct {
 	ProjectId *string `location:"querystring" locationName:"projectId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProjectInput) GoString() string {
 	return s.String()
 }
@@ -2410,12 +2640,20 @@ type UpdateProjectOutput struct {
 	Details *ProjectDetails `locationName:"details" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProjectOutput) GoString() string {
 	return s.String()
 }

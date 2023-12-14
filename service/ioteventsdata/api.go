@@ -28,14 +28,13 @@ const opBatchAcknowledgeAlarm = "BatchAcknowledgeAlarm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchAcknowledgeAlarmRequest method.
+//	req, resp := client.BatchAcknowledgeAlarmRequest(params)
 //
-//    // Example sending a request using the BatchAcknowledgeAlarmRequest method.
-//    req, resp := client.BatchAcknowledgeAlarmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchAcknowledgeAlarm
 func (c *IoTEventsData) BatchAcknowledgeAlarmRequest(input *BatchAcknowledgeAlarmInput) (req *request.Request, output *BatchAcknowledgeAlarmOutput) {
@@ -67,17 +66,18 @@ func (c *IoTEventsData) BatchAcknowledgeAlarmRequest(input *BatchAcknowledgeAlar
 // API operation BatchAcknowledgeAlarm for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchAcknowledgeAlarm
 func (c *IoTEventsData) BatchAcknowledgeAlarm(input *BatchAcknowledgeAlarmInput) (*BatchAcknowledgeAlarmOutput, error) {
@@ -101,6 +101,98 @@ func (c *IoTEventsData) BatchAcknowledgeAlarmWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opBatchDeleteDetector = "BatchDeleteDetector"
+
+// BatchDeleteDetectorRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDeleteDetector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDeleteDetector for more information on using the BatchDeleteDetector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchDeleteDetectorRequest method.
+//	req, resp := client.BatchDeleteDetectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchDeleteDetector
+func (c *IoTEventsData) BatchDeleteDetectorRequest(input *BatchDeleteDetectorInput) (req *request.Request, output *BatchDeleteDetectorOutput) {
+	op := &request.Operation{
+		Name:       opBatchDeleteDetector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/detectors/delete",
+	}
+
+	if input == nil {
+		input = &BatchDeleteDetectorInput{}
+	}
+
+	output = &BatchDeleteDetectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDeleteDetector API operation for AWS IoT Events Data.
+//
+// Deletes one or more detectors that were created. When a detector is deleted,
+// its state will be cleared and the detector will be removed from the list
+// of detectors. The deleted detector will no longer appear if referenced in
+// the ListDetectors (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_ListDetectors.html)
+// API call.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Events Data's
+// API operation BatchDeleteDetector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request was invalid.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchDeleteDetector
+func (c *IoTEventsData) BatchDeleteDetector(input *BatchDeleteDetectorInput) (*BatchDeleteDetectorOutput, error) {
+	req, out := c.BatchDeleteDetectorRequest(input)
+	return out, req.Send()
+}
+
+// BatchDeleteDetectorWithContext is the same as BatchDeleteDetector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDeleteDetector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTEventsData) BatchDeleteDetectorWithContext(ctx aws.Context, input *BatchDeleteDetectorInput, opts ...request.Option) (*BatchDeleteDetectorOutput, error) {
+	req, out := c.BatchDeleteDetectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchDisableAlarm = "BatchDisableAlarm"
 
 // BatchDisableAlarmRequest generates a "aws/request.Request" representing the
@@ -117,14 +209,13 @@ const opBatchDisableAlarm = "BatchDisableAlarm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDisableAlarmRequest method.
+//	req, resp := client.BatchDisableAlarmRequest(params)
 //
-//    // Example sending a request using the BatchDisableAlarmRequest method.
-//    req, resp := client.BatchDisableAlarmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchDisableAlarm
 func (c *IoTEventsData) BatchDisableAlarmRequest(input *BatchDisableAlarmInput) (req *request.Request, output *BatchDisableAlarmOutput) {
@@ -156,17 +247,18 @@ func (c *IoTEventsData) BatchDisableAlarmRequest(input *BatchDisableAlarmInput) 
 // API operation BatchDisableAlarm for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchDisableAlarm
 func (c *IoTEventsData) BatchDisableAlarm(input *BatchDisableAlarmInput) (*BatchDisableAlarmOutput, error) {
@@ -206,14 +298,13 @@ const opBatchEnableAlarm = "BatchEnableAlarm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchEnableAlarmRequest method.
+//	req, resp := client.BatchEnableAlarmRequest(params)
 //
-//    // Example sending a request using the BatchEnableAlarmRequest method.
-//    req, resp := client.BatchEnableAlarmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchEnableAlarm
 func (c *IoTEventsData) BatchEnableAlarmRequest(input *BatchEnableAlarmInput) (req *request.Request, output *BatchEnableAlarmOutput) {
@@ -245,17 +336,18 @@ func (c *IoTEventsData) BatchEnableAlarmRequest(input *BatchEnableAlarmInput) (r
 // API operation BatchEnableAlarm for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchEnableAlarm
 func (c *IoTEventsData) BatchEnableAlarm(input *BatchEnableAlarmInput) (*BatchEnableAlarmOutput, error) {
@@ -295,14 +387,13 @@ const opBatchPutMessage = "BatchPutMessage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchPutMessageRequest method.
+//	req, resp := client.BatchPutMessageRequest(params)
 //
-//    // Example sending a request using the BatchPutMessageRequest method.
-//    req, resp := client.BatchPutMessageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchPutMessage
 func (c *IoTEventsData) BatchPutMessageRequest(input *BatchPutMessageInput) (req *request.Request, output *BatchPutMessageOutput) {
@@ -323,12 +414,11 @@ func (c *IoTEventsData) BatchPutMessageRequest(input *BatchPutMessageInput) (req
 
 // BatchPutMessage API operation for AWS IoT Events Data.
 //
-// Sends a set of messages to the AWS IoT Events system. Each message payload
-// is transformed into the input you specify ("inputName") and ingested into
-// any detectors that monitor that input. If multiple messages are sent, the
-// order in which the messages are processed isn't guaranteed. To guarantee
-// ordering, you must send messages one at a time and wait for a successful
-// response.
+// Sends a set of messages to the IoT Events system. Each message payload is
+// transformed into the input you specify ("inputName") and ingested into any
+// detectors that monitor that input. If multiple messages are sent, the order
+// in which the messages are processed isn't guaranteed. To guarantee ordering,
+// you must send messages one at a time and wait for a successful response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -338,17 +428,18 @@ func (c *IoTEventsData) BatchPutMessageRequest(input *BatchPutMessageInput) (req
 // API operation BatchPutMessage for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchPutMessage
 func (c *IoTEventsData) BatchPutMessage(input *BatchPutMessageInput) (*BatchPutMessageOutput, error) {
@@ -388,14 +479,13 @@ const opBatchResetAlarm = "BatchResetAlarm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchResetAlarmRequest method.
+//	req, resp := client.BatchResetAlarmRequest(params)
 //
-//    // Example sending a request using the BatchResetAlarmRequest method.
-//    req, resp := client.BatchResetAlarmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchResetAlarm
 func (c *IoTEventsData) BatchResetAlarmRequest(input *BatchResetAlarmInput) (req *request.Request, output *BatchResetAlarmOutput) {
@@ -427,17 +517,18 @@ func (c *IoTEventsData) BatchResetAlarmRequest(input *BatchResetAlarmInput) (req
 // API operation BatchResetAlarm for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchResetAlarm
 func (c *IoTEventsData) BatchResetAlarm(input *BatchResetAlarmInput) (*BatchResetAlarmOutput, error) {
@@ -477,14 +568,13 @@ const opBatchSnoozeAlarm = "BatchSnoozeAlarm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchSnoozeAlarmRequest method.
+//	req, resp := client.BatchSnoozeAlarmRequest(params)
 //
-//    // Example sending a request using the BatchSnoozeAlarmRequest method.
-//    req, resp := client.BatchSnoozeAlarmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchSnoozeAlarm
 func (c *IoTEventsData) BatchSnoozeAlarmRequest(input *BatchSnoozeAlarmInput) (req *request.Request, output *BatchSnoozeAlarmOutput) {
@@ -516,17 +606,18 @@ func (c *IoTEventsData) BatchSnoozeAlarmRequest(input *BatchSnoozeAlarmInput) (r
 // API operation BatchSnoozeAlarm for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchSnoozeAlarm
 func (c *IoTEventsData) BatchSnoozeAlarm(input *BatchSnoozeAlarmInput) (*BatchSnoozeAlarmOutput, error) {
@@ -566,14 +657,13 @@ const opBatchUpdateDetector = "BatchUpdateDetector"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchUpdateDetectorRequest method.
+//	req, resp := client.BatchUpdateDetectorRequest(params)
 //
-//    // Example sending a request using the BatchUpdateDetectorRequest method.
-//    req, resp := client.BatchUpdateDetectorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchUpdateDetector
 func (c *IoTEventsData) BatchUpdateDetectorRequest(input *BatchUpdateDetectorInput) (req *request.Request, output *BatchUpdateDetectorOutput) {
@@ -605,17 +695,18 @@ func (c *IoTEventsData) BatchUpdateDetectorRequest(input *BatchUpdateDetectorInp
 // API operation BatchUpdateDetector for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchUpdateDetector
 func (c *IoTEventsData) BatchUpdateDetector(input *BatchUpdateDetectorInput) (*BatchUpdateDetectorOutput, error) {
@@ -655,14 +746,13 @@ const opDescribeAlarm = "DescribeAlarm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAlarmRequest method.
+//	req, resp := client.DescribeAlarmRequest(params)
 //
-//    // Example sending a request using the DescribeAlarmRequest method.
-//    req, resp := client.DescribeAlarmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/DescribeAlarm
 func (c *IoTEventsData) DescribeAlarmRequest(input *DescribeAlarmInput) (req *request.Request, output *DescribeAlarmOutput) {
@@ -693,20 +783,21 @@ func (c *IoTEventsData) DescribeAlarmRequest(input *DescribeAlarmInput) (req *re
 // API operation DescribeAlarm for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/DescribeAlarm
 func (c *IoTEventsData) DescribeAlarm(input *DescribeAlarmInput) (*DescribeAlarmOutput, error) {
@@ -746,14 +837,13 @@ const opDescribeDetector = "DescribeDetector"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDetectorRequest method.
+//	req, resp := client.DescribeDetectorRequest(params)
 //
-//    // Example sending a request using the DescribeDetectorRequest method.
-//    req, resp := client.DescribeDetectorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/DescribeDetector
 func (c *IoTEventsData) DescribeDetectorRequest(input *DescribeDetectorInput) (req *request.Request, output *DescribeDetectorOutput) {
@@ -784,20 +874,21 @@ func (c *IoTEventsData) DescribeDetectorRequest(input *DescribeDetectorInput) (r
 // API operation DescribeDetector for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/DescribeDetector
 func (c *IoTEventsData) DescribeDetector(input *DescribeDetectorInput) (*DescribeDetectorOutput, error) {
@@ -837,14 +928,13 @@ const opListAlarms = "ListAlarms"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAlarmsRequest method.
+//	req, resp := client.ListAlarmsRequest(params)
 //
-//    // Example sending a request using the ListAlarmsRequest method.
-//    req, resp := client.ListAlarmsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/ListAlarms
 func (c *IoTEventsData) ListAlarmsRequest(input *ListAlarmsInput) (req *request.Request, output *ListAlarmsOutput) {
@@ -876,20 +966,21 @@ func (c *IoTEventsData) ListAlarmsRequest(input *ListAlarmsInput) (req *request.
 // API operation ListAlarms for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/ListAlarms
 func (c *IoTEventsData) ListAlarms(input *ListAlarmsInput) (*ListAlarmsOutput, error) {
@@ -929,14 +1020,13 @@ const opListDetectors = "ListDetectors"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDetectorsRequest method.
+//	req, resp := client.ListDetectorsRequest(params)
 //
-//    // Example sending a request using the ListDetectorsRequest method.
-//    req, resp := client.ListDetectorsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/ListDetectors
 func (c *IoTEventsData) ListDetectorsRequest(input *ListDetectorsInput) (req *request.Request, output *ListDetectorsOutput) {
@@ -967,20 +1057,21 @@ func (c *IoTEventsData) ListDetectorsRequest(input *ListDetectorsInput) (req *re
 // API operation ListDetectors for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/ListDetectors
 func (c *IoTEventsData) ListDetectors(input *ListDetectorsInput) (*ListDetectorsOutput, error) {
@@ -1012,12 +1103,20 @@ type AcknowledgeActionConfiguration struct {
 	Note *string `locationName:"note" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeActionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeActionConfiguration) GoString() string {
 	return s.String()
 }
@@ -1050,12 +1149,20 @@ type AcknowledgeAlarmActionRequest struct {
 	RequestId *string `locationName:"requestId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeAlarmActionRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeAlarmActionRequest) GoString() string {
 	return s.String()
 }
@@ -1136,12 +1243,20 @@ type Alarm struct {
 	Severity *int64 `locationName:"severity" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Alarm) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Alarm) GoString() string {
 	return s.String()
 }
@@ -1227,12 +1342,20 @@ type AlarmState struct {
 	SystemEvent *SystemEvent `locationName:"systemEvent" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmState) GoString() string {
 	return s.String()
 }
@@ -1306,12 +1429,20 @@ type AlarmSummary struct {
 	StateName *string `locationName:"stateName" type:"string" enum:"AlarmStateName"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmSummary) GoString() string {
 	return s.String()
 }
@@ -1362,12 +1493,20 @@ type BatchAcknowledgeAlarmInput struct {
 	AcknowledgeActionRequests []*AcknowledgeAlarmActionRequest `locationName:"acknowledgeActionRequests" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAcknowledgeAlarmInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAcknowledgeAlarmInput) GoString() string {
 	return s.String()
 }
@@ -1413,12 +1552,20 @@ type BatchAcknowledgeAlarmOutput struct {
 	ErrorEntries []*BatchAlarmActionErrorEntry `locationName:"errorEntries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAcknowledgeAlarmOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAcknowledgeAlarmOutput) GoString() string {
 	return s.String()
 }
@@ -1431,15 +1578,15 @@ func (s *BatchAcknowledgeAlarmOutput) SetErrorEntries(v []*BatchAlarmActionError
 
 // Contains error messages associated with one of the following requests:
 //
-//    * BatchAcknowledgeAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchAcknowledgeAlarm.html)
+//   - BatchAcknowledgeAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchAcknowledgeAlarm.html)
 //
-//    * BatchDisableAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchDisableAlarm.html)
+//   - BatchDisableAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchDisableAlarm.html)
 //
-//    * BatchEnableAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchEnableAlarm.html)
+//   - BatchEnableAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchEnableAlarm.html)
 //
-//    * BatchResetAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchResetAlarm.html)
+//   - BatchResetAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchResetAlarm.html)
 //
-//    * BatchSnoozeAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchSnoozeAlarm.html)
+//   - BatchSnoozeAlarm (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchSnoozeAlarm.html)
 type BatchAlarmActionErrorEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -1453,12 +1600,20 @@ type BatchAlarmActionErrorEntry struct {
 	RequestId *string `locationName:"requestId" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAlarmActionErrorEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAlarmActionErrorEntry) GoString() string {
 	return s.String()
 }
@@ -1481,6 +1636,150 @@ func (s *BatchAlarmActionErrorEntry) SetRequestId(v string) *BatchAlarmActionErr
 	return s
 }
 
+// Contains error messages associated with the deletion request.
+type BatchDeleteDetectorErrorEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"ErrorCode"`
+
+	// A message that describes the error.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// The ID of the message that caused the error. (See the value of the "messageId"
+	// in the detectors (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchDeleteDetector.html#iotevents-iotevents-data_BatchDeleteDetector-request-detectors)
+	// object of the DeleteDetectorRequest.)
+	MessageId *string `locationName:"messageId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteDetectorErrorEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteDetectorErrorEntry) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchDeleteDetectorErrorEntry) SetErrorCode(v string) *BatchDeleteDetectorErrorEntry {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchDeleteDetectorErrorEntry) SetErrorMessage(v string) *BatchDeleteDetectorErrorEntry {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *BatchDeleteDetectorErrorEntry) SetMessageId(v string) *BatchDeleteDetectorErrorEntry {
+	s.MessageId = &v
+	return s
+}
+
+type BatchDeleteDetectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of one or more detectors to be deleted.
+	//
+	// Detectors is a required field
+	Detectors []*DeleteDetectorRequest `locationName:"detectors" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteDetectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteDetectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDeleteDetectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDeleteDetectorInput"}
+	if s.Detectors == nil {
+		invalidParams.Add(request.NewErrParamRequired("Detectors"))
+	}
+	if s.Detectors != nil && len(s.Detectors) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Detectors", 1))
+	}
+	if s.Detectors != nil {
+		for i, v := range s.Detectors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Detectors", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectors sets the Detectors field's value.
+func (s *BatchDeleteDetectorInput) SetDetectors(v []*DeleteDetectorRequest) *BatchDeleteDetectorInput {
+	s.Detectors = v
+	return s
+}
+
+type BatchDeleteDetectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of errors associated with the request, or an empty array ([]) if there
+	// are no errors. Each error entry contains a messageId that helps you identify
+	// the entry that failed.
+	BatchDeleteDetectorErrorEntries []*BatchDeleteDetectorErrorEntry `locationName:"batchDeleteDetectorErrorEntries" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteDetectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteDetectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchDeleteDetectorErrorEntries sets the BatchDeleteDetectorErrorEntries field's value.
+func (s *BatchDeleteDetectorOutput) SetBatchDeleteDetectorErrorEntries(v []*BatchDeleteDetectorErrorEntry) *BatchDeleteDetectorOutput {
+	s.BatchDeleteDetectorErrorEntries = v
+	return s
+}
+
 type BatchDisableAlarmInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1491,12 +1790,20 @@ type BatchDisableAlarmInput struct {
 	DisableActionRequests []*DisableAlarmActionRequest `locationName:"disableActionRequests" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisableAlarmInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisableAlarmInput) GoString() string {
 	return s.String()
 }
@@ -1542,12 +1849,20 @@ type BatchDisableAlarmOutput struct {
 	ErrorEntries []*BatchAlarmActionErrorEntry `locationName:"errorEntries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisableAlarmOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisableAlarmOutput) GoString() string {
 	return s.String()
 }
@@ -1568,12 +1883,20 @@ type BatchEnableAlarmInput struct {
 	EnableActionRequests []*EnableAlarmActionRequest `locationName:"enableActionRequests" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchEnableAlarmInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchEnableAlarmInput) GoString() string {
 	return s.String()
 }
@@ -1619,12 +1942,20 @@ type BatchEnableAlarmOutput struct {
 	ErrorEntries []*BatchAlarmActionErrorEntry `locationName:"errorEntries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchEnableAlarmOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchEnableAlarmOutput) GoString() string {
 	return s.String()
 }
@@ -1650,12 +1981,20 @@ type BatchPutMessageErrorEntry struct {
 	MessageId *string `locationName:"messageId" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchPutMessageErrorEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchPutMessageErrorEntry) GoString() string {
 	return s.String()
 }
@@ -1688,12 +2027,20 @@ type BatchPutMessageInput struct {
 	Messages []*Message `locationName:"messages" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchPutMessageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchPutMessageInput) GoString() string {
 	return s.String()
 }
@@ -1737,12 +2084,20 @@ type BatchPutMessageOutput struct {
 	BatchPutMessageErrorEntries []*BatchPutMessageErrorEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchPutMessageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchPutMessageOutput) GoString() string {
 	return s.String()
 }
@@ -1763,12 +2118,20 @@ type BatchResetAlarmInput struct {
 	ResetActionRequests []*ResetAlarmActionRequest `locationName:"resetActionRequests" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchResetAlarmInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchResetAlarmInput) GoString() string {
 	return s.String()
 }
@@ -1814,12 +2177,20 @@ type BatchResetAlarmOutput struct {
 	ErrorEntries []*BatchAlarmActionErrorEntry `locationName:"errorEntries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchResetAlarmOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchResetAlarmOutput) GoString() string {
 	return s.String()
 }
@@ -1840,12 +2211,20 @@ type BatchSnoozeAlarmInput struct {
 	SnoozeActionRequests []*SnoozeAlarmActionRequest `locationName:"snoozeActionRequests" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchSnoozeAlarmInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchSnoozeAlarmInput) GoString() string {
 	return s.String()
 }
@@ -1891,12 +2270,20 @@ type BatchSnoozeAlarmOutput struct {
 	ErrorEntries []*BatchAlarmActionErrorEntry `locationName:"errorEntries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchSnoozeAlarmOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchSnoozeAlarmOutput) GoString() string {
 	return s.String()
 }
@@ -1922,12 +2309,20 @@ type BatchUpdateDetectorErrorEntry struct {
 	MessageId *string `locationName:"messageId" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateDetectorErrorEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateDetectorErrorEntry) GoString() string {
 	return s.String()
 }
@@ -1959,12 +2354,20 @@ type BatchUpdateDetectorInput struct {
 	Detectors []*UpdateDetectorRequest `locationName:"detectors" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateDetectorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateDetectorInput) GoString() string {
 	return s.String()
 }
@@ -2009,12 +2412,20 @@ type BatchUpdateDetectorOutput struct {
 	BatchUpdateDetectorErrorEntries []*BatchUpdateDetectorErrorEntry `locationName:"batchUpdateDetectorErrorEntries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateDetectorOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateDetectorOutput) GoString() string {
 	return s.String()
 }
@@ -2063,12 +2474,20 @@ type CustomerAction struct {
 	SnoozeActionConfiguration *SnoozeActionConfiguration `locationName:"snoozeActionConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomerAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomerAction) GoString() string {
 	return s.String()
 }
@@ -2109,8 +2528,89 @@ func (s *CustomerAction) SetSnoozeActionConfiguration(v *SnoozeActionConfigurati
 	return s
 }
 
-type DescribeAlarmInput struct {
+// Information used to delete the detector model.
+type DeleteDetectorRequest struct {
 	_ struct{} `type:"structure"`
+
+	// The name of the detector model that was used to create the detector instance.
+	//
+	// DetectorModelName is a required field
+	DetectorModelName *string `locationName:"detectorModelName" min:"1" type:"string" required:"true"`
+
+	// The value of the key (https://docs.aws.amazon.com/iotevents/latest/apireference/API_CreateDetectorModel.html#iotevents-CreateDetectorModel-request-key)
+	// used to identify the detector.
+	KeyValue *string `locationName:"keyValue" min:"1" type:"string"`
+
+	// The ID to assign to the DeleteDetectorRequest. Each "messageId" must be unique
+	// within each batch sent.
+	//
+	// MessageId is a required field
+	MessageId *string `locationName:"messageId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDetectorRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDetectorRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDetectorRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDetectorRequest"}
+	if s.DetectorModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorModelName"))
+	}
+	if s.DetectorModelName != nil && len(*s.DetectorModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorModelName", 1))
+	}
+	if s.KeyValue != nil && len(*s.KeyValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyValue", 1))
+	}
+	if s.MessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageId"))
+	}
+	if s.MessageId != nil && len(*s.MessageId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectorModelName sets the DetectorModelName field's value.
+func (s *DeleteDetectorRequest) SetDetectorModelName(v string) *DeleteDetectorRequest {
+	s.DetectorModelName = &v
+	return s
+}
+
+// SetKeyValue sets the KeyValue field's value.
+func (s *DeleteDetectorRequest) SetKeyValue(v string) *DeleteDetectorRequest {
+	s.KeyValue = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *DeleteDetectorRequest) SetMessageId(v string) *DeleteDetectorRequest {
+	s.MessageId = &v
+	return s
+}
+
+type DescribeAlarmInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -2122,12 +2622,20 @@ type DescribeAlarmInput struct {
 	KeyValue *string `location:"querystring" locationName:"keyValue" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlarmInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlarmInput) GoString() string {
 	return s.String()
 }
@@ -2170,12 +2678,20 @@ type DescribeAlarmOutput struct {
 	Alarm *Alarm `locationName:"alarm" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlarmOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlarmOutput) GoString() string {
 	return s.String()
 }
@@ -2187,7 +2703,7 @@ func (s *DescribeAlarmOutput) SetAlarm(v *Alarm) *DescribeAlarmOutput {
 }
 
 type DescribeDetectorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model whose detectors (instances) you want information
 	// about.
@@ -2200,12 +2716,20 @@ type DescribeDetectorInput struct {
 	KeyValue *string `location:"querystring" locationName:"keyValue" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorInput) GoString() string {
 	return s.String()
 }
@@ -2248,12 +2772,20 @@ type DescribeDetectorOutput struct {
 	Detector *Detector `locationName:"detector" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorOutput) GoString() string {
 	return s.String()
 }
@@ -2288,12 +2820,20 @@ type Detector struct {
 	State *DetectorState `locationName:"state" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Detector) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Detector) GoString() string {
 	return s.String()
 }
@@ -2354,12 +2894,20 @@ type DetectorState struct {
 	Variables []*Variable `locationName:"variables" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorState) GoString() string {
 	return s.String()
 }
@@ -2404,12 +2952,20 @@ type DetectorStateDefinition struct {
 	Variables []*VariableDefinition `locationName:"variables" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorStateDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorStateDefinition) GoString() string {
 	return s.String()
 }
@@ -2482,12 +3038,20 @@ type DetectorStateSummary struct {
 	StateName *string `locationName:"stateName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorStateSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorStateSummary) GoString() string {
 	return s.String()
 }
@@ -2522,12 +3086,20 @@ type DetectorSummary struct {
 	State *DetectorStateSummary `locationName:"state" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorSummary) GoString() string {
 	return s.String()
 }
@@ -2576,12 +3148,20 @@ type DisableActionConfiguration struct {
 	Note *string `locationName:"note" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableActionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableActionConfiguration) GoString() string {
 	return s.String()
 }
@@ -2614,12 +3194,20 @@ type DisableAlarmActionRequest struct {
 	RequestId *string `locationName:"requestId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableAlarmActionRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableAlarmActionRequest) GoString() string {
 	return s.String()
 }
@@ -2681,12 +3269,20 @@ type EnableActionConfiguration struct {
 	Note *string `locationName:"note" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableActionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableActionConfiguration) GoString() string {
 	return s.String()
 }
@@ -2719,12 +3315,20 @@ type EnableAlarmActionRequest struct {
 	RequestId *string `locationName:"requestId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableAlarmActionRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableAlarmActionRequest) GoString() string {
 	return s.String()
 }
@@ -2787,12 +3391,20 @@ type InternalFailureException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) GoString() string {
 	return s.String()
 }
@@ -2844,12 +3456,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -2893,7 +3513,7 @@ func (s *InvalidRequestException) RequestID() string {
 }
 
 type ListAlarmsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -2907,12 +3527,20 @@ type ListAlarmsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmsInput) GoString() string {
 	return s.String()
 }
@@ -2965,12 +3593,20 @@ type ListAlarmsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmsOutput) GoString() string {
 	return s.String()
 }
@@ -2988,7 +3624,7 @@ func (s *ListAlarmsOutput) SetNextToken(v string) *ListAlarmsOutput {
 }
 
 type ListDetectorsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model whose detectors (instances) are listed.
 	//
@@ -3006,12 +3642,20 @@ type ListDetectorsInput struct {
 	StateName *string `location:"querystring" locationName:"stateName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorsInput) GoString() string {
 	return s.String()
 }
@@ -3073,12 +3717,20 @@ type ListDetectorsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorsOutput) GoString() string {
 	return s.String()
 }
@@ -3112,7 +3764,6 @@ type Message struct {
 
 	// The payload of the message. This can be a JSON string or a Base-64-encoded
 	// string representing binary data (in which case you must decode it).
-	//
 	// Payload is automatically base64 encoded/decoded by the SDK.
 	//
 	// Payload is a required field
@@ -3122,12 +3773,20 @@ type Message struct {
 	Timestamp *TimestampValue `locationName:"timestamp" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Message) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Message) GoString() string {
 	return s.String()
 }
@@ -3194,12 +3853,20 @@ type ResetActionConfiguration struct {
 	Note *string `locationName:"note" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetActionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetActionConfiguration) GoString() string {
 	return s.String()
 }
@@ -3232,12 +3899,20 @@ type ResetAlarmActionRequest struct {
 	RequestId *string `locationName:"requestId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetAlarmActionRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetAlarmActionRequest) GoString() string {
 	return s.String()
 }
@@ -3300,12 +3975,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -3356,12 +4039,20 @@ type RuleEvaluation struct {
 	SimpleRuleEvaluation *SimpleRuleEvaluation `locationName:"simpleRuleEvaluation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleEvaluation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleEvaluation) GoString() string {
 	return s.String()
 }
@@ -3381,12 +4072,20 @@ type ServiceUnavailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -3443,12 +4142,20 @@ type SimpleRuleEvaluation struct {
 	ThresholdValue *string `locationName:"thresholdValue" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimpleRuleEvaluation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimpleRuleEvaluation) GoString() string {
 	return s.String()
 }
@@ -3483,12 +4190,20 @@ type SnoozeActionConfiguration struct {
 	SnoozeDuration *int64 `locationName:"snoozeDuration" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnoozeActionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnoozeActionConfiguration) GoString() string {
 	return s.String()
 }
@@ -3533,12 +4248,20 @@ type SnoozeAlarmActionRequest struct {
 	SnoozeDuration *int64 `locationName:"snoozeDuration" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnoozeAlarmActionRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnoozeAlarmActionRequest) GoString() string {
 	return s.String()
 }
@@ -3610,12 +4333,20 @@ type StateChangeConfiguration struct {
 	TriggerType *string `locationName:"triggerType" type:"string" enum:"TriggerType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StateChangeConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StateChangeConfiguration) GoString() string {
 	return s.String()
 }
@@ -3638,12 +4369,20 @@ type SystemEvent struct {
 	StateChangeConfiguration *StateChangeConfiguration `locationName:"stateChangeConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SystemEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SystemEvent) GoString() string {
 	return s.String()
 }
@@ -3669,12 +4408,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -3726,18 +4473,26 @@ type Timer struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The number of seconds which have elapsed on the timer.
+	// The expiration time for the timer.
 	//
 	// Timestamp is a required field
 	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Timer) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Timer) GoString() string {
 	return s.String()
 }
@@ -3769,12 +4524,20 @@ type TimerDefinition struct {
 	Seconds *int64 `locationName:"seconds" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimerDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimerDefinition) GoString() string {
 	return s.String()
 }
@@ -3818,12 +4581,20 @@ type TimestampValue struct {
 	TimeInMillis *int64 `locationName:"timeInMillis" min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimestampValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimestampValue) GoString() string {
 	return s.String()
 }
@@ -3872,12 +4643,20 @@ type UpdateDetectorRequest struct {
 	State *DetectorStateDefinition `locationName:"state" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDetectorRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDetectorRequest) GoString() string {
 	return s.String()
 }
@@ -3954,12 +4733,20 @@ type Variable struct {
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Variable) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Variable) GoString() string {
 	return s.String()
 }
@@ -3991,12 +4778,20 @@ type VariableDefinition struct {
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VariableDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VariableDefinition) GoString() string {
 	return s.String()
 }

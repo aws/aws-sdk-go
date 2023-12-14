@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To delete the AWS Cost and Usage report named ExampleReport.
-//
 // The following example deletes the AWS Cost and Usage report named ExampleReport.
 func ExampleCostandUsageReportService_DeleteReportDefinition_shared00() {
 	svc := costandusagereportservice.New(session.New())
@@ -57,7 +56,6 @@ func ExampleCostandUsageReportService_DeleteReportDefinition_shared00() {
 }
 
 // To list the AWS Cost and Usage reports for the account.
-//
 // The following example lists the AWS Cost and Usage reports for the account.
 func ExampleCostandUsageReportService_DescribeReportDefinitions_shared00() {
 	svc := costandusagereportservice.New(session.New())
@@ -86,7 +84,6 @@ func ExampleCostandUsageReportService_DescribeReportDefinitions_shared00() {
 }
 
 // To create a report named ExampleReport.
-//
 // The following example creates a AWS Cost and Usage report named ExampleReport.
 func ExampleCostandUsageReportService_PutReportDefinition_shared00() {
 	svc := costandusagereportservice.New(session.New())
@@ -121,6 +118,8 @@ func ExampleCostandUsageReportService_PutReportDefinition_shared00() {
 				fmt.Println(costandusagereportservice.ErrCodeInternalErrorException, aerr.Error())
 			case costandusagereportservice.ErrCodeValidationException:
 				fmt.Println(costandusagereportservice.ErrCodeValidationException, aerr.Error())
+			case costandusagereportservice.ErrCodeResourceNotFoundException:
+				fmt.Println(costandusagereportservice.ErrCodeResourceNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

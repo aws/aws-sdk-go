@@ -13,6 +13,94 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAddWorkload = "AddWorkload"
+
+// AddWorkloadRequest generates a "aws/request.Request" representing the
+// client's request for the AddWorkload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddWorkload for more information on using the AddWorkload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AddWorkloadRequest method.
+//	req, resp := client.AddWorkloadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/AddWorkload
+func (c *ApplicationInsights) AddWorkloadRequest(input *AddWorkloadInput) (req *request.Request, output *AddWorkloadOutput) {
+	op := &request.Operation{
+		Name:       opAddWorkload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddWorkloadInput{}
+	}
+
+	output = &AddWorkloadOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddWorkload API operation for Amazon CloudWatch Application Insights.
+//
+// Adds a workload to a component. Each component can have at most five workloads.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Application Insights's
+// API operation AddWorkload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceInUseException
+//     The resource is already created or in use.
+//
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/AddWorkload
+func (c *ApplicationInsights) AddWorkload(input *AddWorkloadInput) (*AddWorkloadOutput, error) {
+	req, out := c.AddWorkloadRequest(input)
+	return out, req.Send()
+}
+
+// AddWorkloadWithContext is the same as AddWorkload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddWorkload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationInsights) AddWorkloadWithContext(ctx aws.Context, input *AddWorkloadInput, opts ...request.Option) (*AddWorkloadOutput, error) {
+	req, out := c.AddWorkloadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateApplication = "CreateApplication"
 
 // CreateApplicationRequest generates a "aws/request.Request" representing the
@@ -29,14 +117,13 @@ const opCreateApplication = "CreateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateApplicationRequest method.
+//	req, resp := client.CreateApplicationRequest(params)
 //
-//    // Example sending a request using the CreateApplicationRequest method.
-//    req, resp := client.CreateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/CreateApplication
 func (c *ApplicationInsights) CreateApplicationRequest(input *CreateApplicationInput) (req *request.Request, output *CreateApplicationOutput) {
@@ -67,23 +154,24 @@ func (c *ApplicationInsights) CreateApplicationRequest(input *CreateApplicationI
 // API operation CreateApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The resource is already created or in use.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ResourceInUseException
+//     The resource is already created or in use.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * TagsAlreadyExistException
-//   Tags are already registered for the specified application ARN.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * AccessDeniedException
-//   User does not have permissions to perform this action.
+//   - TagsAlreadyExistException
+//     Tags are already registered for the specified application ARN.
+//
+//   - AccessDeniedException
+//     User does not have permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/CreateApplication
 func (c *ApplicationInsights) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
@@ -123,14 +211,13 @@ const opCreateComponent = "CreateComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateComponentRequest method.
+//	req, resp := client.CreateComponentRequest(params)
 //
-//    // Example sending a request using the CreateComponentRequest method.
-//    req, resp := client.CreateComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/CreateComponent
 func (c *ApplicationInsights) CreateComponentRequest(input *CreateComponentInput) (req *request.Request, output *CreateComponentOutput) {
@@ -162,17 +249,18 @@ func (c *ApplicationInsights) CreateComponentRequest(input *CreateComponentInput
 // API operation CreateComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The resource is already created or in use.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ResourceInUseException
+//     The resource is already created or in use.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/CreateComponent
 func (c *ApplicationInsights) CreateComponent(input *CreateComponentInput) (*CreateComponentOutput, error) {
@@ -212,14 +300,13 @@ const opCreateLogPattern = "CreateLogPattern"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateLogPatternRequest method.
+//	req, resp := client.CreateLogPatternRequest(params)
 //
-//    // Example sending a request using the CreateLogPatternRequest method.
-//    req, resp := client.CreateLogPatternRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/CreateLogPattern
 func (c *ApplicationInsights) CreateLogPatternRequest(input *CreateLogPatternInput) (req *request.Request, output *CreateLogPatternOutput) {
@@ -250,17 +337,18 @@ func (c *ApplicationInsights) CreateLogPatternRequest(input *CreateLogPatternInp
 // API operation CreateLogPattern for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The resource is already created or in use.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ResourceInUseException
+//     The resource is already created or in use.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/CreateLogPattern
 func (c *ApplicationInsights) CreateLogPattern(input *CreateLogPatternInput) (*CreateLogPatternOutput, error) {
@@ -300,14 +388,13 @@ const opDeleteApplication = "DeleteApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteApplicationRequest method.
+//	req, resp := client.DeleteApplicationRequest(params)
 //
-//    // Example sending a request using the DeleteApplicationRequest method.
-//    req, resp := client.DeleteApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DeleteApplication
 func (c *ApplicationInsights) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
@@ -339,17 +426,18 @@ func (c *ApplicationInsights) DeleteApplicationRequest(input *DeleteApplicationI
 // API operation DeleteApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * BadRequestException
-//   The request is not understood by the server.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - BadRequestException
+//     The request is not understood by the server.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DeleteApplication
 func (c *ApplicationInsights) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
@@ -389,14 +477,13 @@ const opDeleteComponent = "DeleteComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteComponentRequest method.
+//	req, resp := client.DeleteComponentRequest(params)
 //
-//    // Example sending a request using the DeleteComponentRequest method.
-//    req, resp := client.DeleteComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DeleteComponent
 func (c *ApplicationInsights) DeleteComponentRequest(input *DeleteComponentInput) (req *request.Request, output *DeleteComponentOutput) {
@@ -430,14 +517,15 @@ func (c *ApplicationInsights) DeleteComponentRequest(input *DeleteComponentInput
 // API operation DeleteComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DeleteComponent
 func (c *ApplicationInsights) DeleteComponent(input *DeleteComponentInput) (*DeleteComponentOutput, error) {
@@ -477,14 +565,13 @@ const opDeleteLogPattern = "DeleteLogPattern"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteLogPatternRequest method.
+//	req, resp := client.DeleteLogPatternRequest(params)
 //
-//    // Example sending a request using the DeleteLogPatternRequest method.
-//    req, resp := client.DeleteLogPatternRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DeleteLogPattern
 func (c *ApplicationInsights) DeleteLogPatternRequest(input *DeleteLogPatternInput) (req *request.Request, output *DeleteLogPatternOutput) {
@@ -516,17 +603,18 @@ func (c *ApplicationInsights) DeleteLogPatternRequest(input *DeleteLogPatternInp
 // API operation DeleteLogPattern for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * BadRequestException
-//   The request is not understood by the server.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - BadRequestException
+//     The request is not understood by the server.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DeleteLogPattern
 func (c *ApplicationInsights) DeleteLogPattern(input *DeleteLogPatternInput) (*DeleteLogPatternOutput, error) {
@@ -566,14 +654,13 @@ const opDescribeApplication = "DescribeApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeApplicationRequest method.
+//	req, resp := client.DescribeApplicationRequest(params)
 //
-//    // Example sending a request using the DescribeApplicationRequest method.
-//    req, resp := client.DescribeApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeApplication
 func (c *ApplicationInsights) DescribeApplicationRequest(input *DescribeApplicationInput) (req *request.Request, output *DescribeApplicationOutput) {
@@ -604,14 +691,15 @@ func (c *ApplicationInsights) DescribeApplicationRequest(input *DescribeApplicat
 // API operation DescribeApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeApplication
 func (c *ApplicationInsights) DescribeApplication(input *DescribeApplicationInput) (*DescribeApplicationOutput, error) {
@@ -651,14 +739,13 @@ const opDescribeComponent = "DescribeComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeComponentRequest method.
+//	req, resp := client.DescribeComponentRequest(params)
 //
-//    // Example sending a request using the DescribeComponentRequest method.
-//    req, resp := client.DescribeComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeComponent
 func (c *ApplicationInsights) DescribeComponentRequest(input *DescribeComponentInput) (req *request.Request, output *DescribeComponentOutput) {
@@ -690,14 +777,15 @@ func (c *ApplicationInsights) DescribeComponentRequest(input *DescribeComponentI
 // API operation DescribeComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeComponent
 func (c *ApplicationInsights) DescribeComponent(input *DescribeComponentInput) (*DescribeComponentOutput, error) {
@@ -737,14 +825,13 @@ const opDescribeComponentConfiguration = "DescribeComponentConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeComponentConfigurationRequest method.
+//	req, resp := client.DescribeComponentConfigurationRequest(params)
 //
-//    // Example sending a request using the DescribeComponentConfigurationRequest method.
-//    req, resp := client.DescribeComponentConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeComponentConfiguration
 func (c *ApplicationInsights) DescribeComponentConfigurationRequest(input *DescribeComponentConfigurationInput) (req *request.Request, output *DescribeComponentConfigurationOutput) {
@@ -775,14 +862,15 @@ func (c *ApplicationInsights) DescribeComponentConfigurationRequest(input *Descr
 // API operation DescribeComponentConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeComponentConfiguration
 func (c *ApplicationInsights) DescribeComponentConfiguration(input *DescribeComponentConfigurationInput) (*DescribeComponentConfigurationOutput, error) {
@@ -822,14 +910,13 @@ const opDescribeComponentConfigurationRecommendation = "DescribeComponentConfigu
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeComponentConfigurationRecommendationRequest method.
+//	req, resp := client.DescribeComponentConfigurationRecommendationRequest(params)
 //
-//    // Example sending a request using the DescribeComponentConfigurationRecommendationRequest method.
-//    req, resp := client.DescribeComponentConfigurationRecommendationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeComponentConfigurationRecommendation
 func (c *ApplicationInsights) DescribeComponentConfigurationRecommendationRequest(input *DescribeComponentConfigurationRecommendationInput) (req *request.Request, output *DescribeComponentConfigurationRecommendationOutput) {
@@ -860,14 +947,15 @@ func (c *ApplicationInsights) DescribeComponentConfigurationRecommendationReques
 // API operation DescribeComponentConfigurationRecommendation for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeComponentConfigurationRecommendation
 func (c *ApplicationInsights) DescribeComponentConfigurationRecommendation(input *DescribeComponentConfigurationRecommendationInput) (*DescribeComponentConfigurationRecommendationOutput, error) {
@@ -907,14 +995,13 @@ const opDescribeLogPattern = "DescribeLogPattern"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLogPatternRequest method.
+//	req, resp := client.DescribeLogPatternRequest(params)
 //
-//    // Example sending a request using the DescribeLogPatternRequest method.
-//    req, resp := client.DescribeLogPatternRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeLogPattern
 func (c *ApplicationInsights) DescribeLogPatternRequest(input *DescribeLogPatternInput) (req *request.Request, output *DescribeLogPatternOutput) {
@@ -945,14 +1032,15 @@ func (c *ApplicationInsights) DescribeLogPatternRequest(input *DescribeLogPatter
 // API operation DescribeLogPattern for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeLogPattern
 func (c *ApplicationInsights) DescribeLogPattern(input *DescribeLogPatternInput) (*DescribeLogPatternOutput, error) {
@@ -992,14 +1080,13 @@ const opDescribeObservation = "DescribeObservation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeObservationRequest method.
+//	req, resp := client.DescribeObservationRequest(params)
 //
-//    // Example sending a request using the DescribeObservationRequest method.
-//    req, resp := client.DescribeObservationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeObservation
 func (c *ApplicationInsights) DescribeObservationRequest(input *DescribeObservationInput) (req *request.Request, output *DescribeObservationOutput) {
@@ -1030,14 +1117,15 @@ func (c *ApplicationInsights) DescribeObservationRequest(input *DescribeObservat
 // API operation DescribeObservation for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeObservation
 func (c *ApplicationInsights) DescribeObservation(input *DescribeObservationInput) (*DescribeObservationOutput, error) {
@@ -1077,14 +1165,13 @@ const opDescribeProblem = "DescribeProblem"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProblemRequest method.
+//	req, resp := client.DescribeProblemRequest(params)
 //
-//    // Example sending a request using the DescribeProblemRequest method.
-//    req, resp := client.DescribeProblemRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeProblem
 func (c *ApplicationInsights) DescribeProblemRequest(input *DescribeProblemInput) (req *request.Request, output *DescribeProblemOutput) {
@@ -1115,14 +1202,15 @@ func (c *ApplicationInsights) DescribeProblemRequest(input *DescribeProblemInput
 // API operation DescribeProblem for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeProblem
 func (c *ApplicationInsights) DescribeProblem(input *DescribeProblemInput) (*DescribeProblemOutput, error) {
@@ -1162,14 +1250,13 @@ const opDescribeProblemObservations = "DescribeProblemObservations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProblemObservationsRequest method.
+//	req, resp := client.DescribeProblemObservationsRequest(params)
 //
-//    // Example sending a request using the DescribeProblemObservationsRequest method.
-//    req, resp := client.DescribeProblemObservationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeProblemObservations
 func (c *ApplicationInsights) DescribeProblemObservationsRequest(input *DescribeProblemObservationsInput) (req *request.Request, output *DescribeProblemObservationsOutput) {
@@ -1200,14 +1287,15 @@ func (c *ApplicationInsights) DescribeProblemObservationsRequest(input *Describe
 // API operation DescribeProblemObservations for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeProblemObservations
 func (c *ApplicationInsights) DescribeProblemObservations(input *DescribeProblemObservationsInput) (*DescribeProblemObservationsOutput, error) {
@@ -1231,6 +1319,91 @@ func (c *ApplicationInsights) DescribeProblemObservationsWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opDescribeWorkload = "DescribeWorkload"
+
+// DescribeWorkloadRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeWorkload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeWorkload for more information on using the DescribeWorkload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeWorkloadRequest method.
+//	req, resp := client.DescribeWorkloadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeWorkload
+func (c *ApplicationInsights) DescribeWorkloadRequest(input *DescribeWorkloadInput) (req *request.Request, output *DescribeWorkloadOutput) {
+	op := &request.Operation{
+		Name:       opDescribeWorkload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeWorkloadInput{}
+	}
+
+	output = &DescribeWorkloadOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeWorkload API operation for Amazon CloudWatch Application Insights.
+//
+// Describes a workload and its configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Application Insights's
+// API operation DescribeWorkload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/DescribeWorkload
+func (c *ApplicationInsights) DescribeWorkload(input *DescribeWorkloadInput) (*DescribeWorkloadOutput, error) {
+	req, out := c.DescribeWorkloadRequest(input)
+	return out, req.Send()
+}
+
+// DescribeWorkloadWithContext is the same as DescribeWorkload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeWorkload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationInsights) DescribeWorkloadWithContext(ctx aws.Context, input *DescribeWorkloadInput, opts ...request.Option) (*DescribeWorkloadOutput, error) {
+	req, out := c.DescribeWorkloadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListApplications = "ListApplications"
 
 // ListApplicationsRequest generates a "aws/request.Request" representing the
@@ -1247,14 +1420,13 @@ const opListApplications = "ListApplications"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListApplicationsRequest method.
+//	req, resp := client.ListApplicationsRequest(params)
 //
-//    // Example sending a request using the ListApplicationsRequest method.
-//    req, resp := client.ListApplicationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListApplications
 func (c *ApplicationInsights) ListApplicationsRequest(input *ListApplicationsInput) (req *request.Request, output *ListApplicationsOutput) {
@@ -1291,11 +1463,12 @@ func (c *ApplicationInsights) ListApplicationsRequest(input *ListApplicationsInp
 // API operation ListApplications for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The parameter is not valid.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListApplications
 func (c *ApplicationInsights) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
@@ -1327,15 +1500,14 @@ func (c *ApplicationInsights) ListApplicationsWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApplications operation.
-//    pageNum := 0
-//    err := client.ListApplicationsPages(params,
-//        func(page *applicationinsights.ListApplicationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApplications operation.
+//	pageNum := 0
+//	err := client.ListApplicationsPages(params,
+//	    func(page *applicationinsights.ListApplicationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationInsights) ListApplicationsPages(input *ListApplicationsInput, fn func(*ListApplicationsOutput, bool) bool) error {
 	return c.ListApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1387,14 +1559,13 @@ const opListComponents = "ListComponents"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListComponentsRequest method.
+//	req, resp := client.ListComponentsRequest(params)
 //
-//    // Example sending a request using the ListComponentsRequest method.
-//    req, resp := client.ListComponentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListComponents
 func (c *ApplicationInsights) ListComponentsRequest(input *ListComponentsInput) (req *request.Request, output *ListComponentsOutput) {
@@ -1431,14 +1602,15 @@ func (c *ApplicationInsights) ListComponentsRequest(input *ListComponentsInput) 
 // API operation ListComponents for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListComponents
 func (c *ApplicationInsights) ListComponents(input *ListComponentsInput) (*ListComponentsOutput, error) {
@@ -1470,15 +1642,14 @@ func (c *ApplicationInsights) ListComponentsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListComponents operation.
-//    pageNum := 0
-//    err := client.ListComponentsPages(params,
-//        func(page *applicationinsights.ListComponentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListComponents operation.
+//	pageNum := 0
+//	err := client.ListComponentsPages(params,
+//	    func(page *applicationinsights.ListComponentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationInsights) ListComponentsPages(input *ListComponentsInput, fn func(*ListComponentsOutput, bool) bool) error {
 	return c.ListComponentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1530,14 +1701,13 @@ const opListConfigurationHistory = "ListConfigurationHistory"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListConfigurationHistoryRequest method.
+//	req, resp := client.ListConfigurationHistoryRequest(params)
 //
-//    // Example sending a request using the ListConfigurationHistoryRequest method.
-//    req, resp := client.ListConfigurationHistoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListConfigurationHistory
 func (c *ApplicationInsights) ListConfigurationHistoryRequest(input *ListConfigurationHistoryInput) (req *request.Request, output *ListConfigurationHistoryOutput) {
@@ -1567,12 +1737,12 @@ func (c *ApplicationInsights) ListConfigurationHistoryRequest(input *ListConfigu
 // Lists the INFO, WARN, and ERROR events for periodic configuration updates
 // performed by Application Insights. Examples of events represented are:
 //
-//    * INFO: creating a new alarm or updating an alarm threshold.
+//   - INFO: creating a new alarm or updating an alarm threshold.
 //
-//    * WARN: alarm not created due to insufficient data points used to predict
-//    thresholds.
+//   - WARN: alarm not created due to insufficient data points used to predict
+//     thresholds.
 //
-//    * ERROR: alarm not created due to permission errors or exceeding quotas.
+//   - ERROR: alarm not created due to permission errors or exceeding quotas.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1582,14 +1752,15 @@ func (c *ApplicationInsights) ListConfigurationHistoryRequest(input *ListConfigu
 // API operation ListConfigurationHistory for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListConfigurationHistory
 func (c *ApplicationInsights) ListConfigurationHistory(input *ListConfigurationHistoryInput) (*ListConfigurationHistoryOutput, error) {
@@ -1621,15 +1792,14 @@ func (c *ApplicationInsights) ListConfigurationHistoryWithContext(ctx aws.Contex
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListConfigurationHistory operation.
-//    pageNum := 0
-//    err := client.ListConfigurationHistoryPages(params,
-//        func(page *applicationinsights.ListConfigurationHistoryOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListConfigurationHistory operation.
+//	pageNum := 0
+//	err := client.ListConfigurationHistoryPages(params,
+//	    func(page *applicationinsights.ListConfigurationHistoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationInsights) ListConfigurationHistoryPages(input *ListConfigurationHistoryInput, fn func(*ListConfigurationHistoryOutput, bool) bool) error {
 	return c.ListConfigurationHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1681,14 +1851,13 @@ const opListLogPatternSets = "ListLogPatternSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLogPatternSetsRequest method.
+//	req, resp := client.ListLogPatternSetsRequest(params)
 //
-//    // Example sending a request using the ListLogPatternSetsRequest method.
-//    req, resp := client.ListLogPatternSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListLogPatternSets
 func (c *ApplicationInsights) ListLogPatternSetsRequest(input *ListLogPatternSetsInput) (req *request.Request, output *ListLogPatternSetsOutput) {
@@ -1725,14 +1894,15 @@ func (c *ApplicationInsights) ListLogPatternSetsRequest(input *ListLogPatternSet
 // API operation ListLogPatternSets for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListLogPatternSets
 func (c *ApplicationInsights) ListLogPatternSets(input *ListLogPatternSetsInput) (*ListLogPatternSetsOutput, error) {
@@ -1764,15 +1934,14 @@ func (c *ApplicationInsights) ListLogPatternSetsWithContext(ctx aws.Context, inp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListLogPatternSets operation.
-//    pageNum := 0
-//    err := client.ListLogPatternSetsPages(params,
-//        func(page *applicationinsights.ListLogPatternSetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListLogPatternSets operation.
+//	pageNum := 0
+//	err := client.ListLogPatternSetsPages(params,
+//	    func(page *applicationinsights.ListLogPatternSetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationInsights) ListLogPatternSetsPages(input *ListLogPatternSetsInput, fn func(*ListLogPatternSetsOutput, bool) bool) error {
 	return c.ListLogPatternSetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1824,14 +1993,13 @@ const opListLogPatterns = "ListLogPatterns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLogPatternsRequest method.
+//	req, resp := client.ListLogPatternsRequest(params)
 //
-//    // Example sending a request using the ListLogPatternsRequest method.
-//    req, resp := client.ListLogPatternsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListLogPatterns
 func (c *ApplicationInsights) ListLogPatternsRequest(input *ListLogPatternsInput) (req *request.Request, output *ListLogPatternsOutput) {
@@ -1868,14 +2036,15 @@ func (c *ApplicationInsights) ListLogPatternsRequest(input *ListLogPatternsInput
 // API operation ListLogPatterns for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListLogPatterns
 func (c *ApplicationInsights) ListLogPatterns(input *ListLogPatternsInput) (*ListLogPatternsOutput, error) {
@@ -1907,15 +2076,14 @@ func (c *ApplicationInsights) ListLogPatternsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListLogPatterns operation.
-//    pageNum := 0
-//    err := client.ListLogPatternsPages(params,
-//        func(page *applicationinsights.ListLogPatternsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListLogPatterns operation.
+//	pageNum := 0
+//	err := client.ListLogPatternsPages(params,
+//	    func(page *applicationinsights.ListLogPatternsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationInsights) ListLogPatternsPages(input *ListLogPatternsInput, fn func(*ListLogPatternsOutput, bool) bool) error {
 	return c.ListLogPatternsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1967,14 +2135,13 @@ const opListProblems = "ListProblems"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProblemsRequest method.
+//	req, resp := client.ListProblemsRequest(params)
 //
-//    // Example sending a request using the ListProblemsRequest method.
-//    req, resp := client.ListProblemsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListProblems
 func (c *ApplicationInsights) ListProblemsRequest(input *ListProblemsInput) (req *request.Request, output *ListProblemsOutput) {
@@ -2011,14 +2178,15 @@ func (c *ApplicationInsights) ListProblemsRequest(input *ListProblemsInput) (req
 // API operation ListProblems for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The parameter is not valid.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ValidationException
+//     The parameter is not valid.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListProblems
 func (c *ApplicationInsights) ListProblems(input *ListProblemsInput) (*ListProblemsOutput, error) {
@@ -2050,15 +2218,14 @@ func (c *ApplicationInsights) ListProblemsWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProblems operation.
-//    pageNum := 0
-//    err := client.ListProblemsPages(params,
-//        func(page *applicationinsights.ListProblemsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProblems operation.
+//	pageNum := 0
+//	err := client.ListProblemsPages(params,
+//	    func(page *applicationinsights.ListProblemsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationInsights) ListProblemsPages(input *ListProblemsInput, fn func(*ListProblemsOutput, bool) bool) error {
 	return c.ListProblemsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2110,14 +2277,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListTagsForResource
 func (c *ApplicationInsights) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2153,11 +2319,12 @@ func (c *ApplicationInsights) ListTagsForResourceRequest(input *ListTagsForResou
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - ValidationException
+//     The parameter is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListTagsForResource
 func (c *ApplicationInsights) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2181,6 +2348,234 @@ func (c *ApplicationInsights) ListTagsForResourceWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opListWorkloads = "ListWorkloads"
+
+// ListWorkloadsRequest generates a "aws/request.Request" representing the
+// client's request for the ListWorkloads operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListWorkloads for more information on using the ListWorkloads
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListWorkloadsRequest method.
+//	req, resp := client.ListWorkloadsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListWorkloads
+func (c *ApplicationInsights) ListWorkloadsRequest(input *ListWorkloadsInput) (req *request.Request, output *ListWorkloadsOutput) {
+	op := &request.Operation{
+		Name:       opListWorkloads,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListWorkloadsInput{}
+	}
+
+	output = &ListWorkloadsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListWorkloads API operation for Amazon CloudWatch Application Insights.
+//
+// Lists the workloads that are configured on a given component.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Application Insights's
+// API operation ListWorkloads for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/ListWorkloads
+func (c *ApplicationInsights) ListWorkloads(input *ListWorkloadsInput) (*ListWorkloadsOutput, error) {
+	req, out := c.ListWorkloadsRequest(input)
+	return out, req.Send()
+}
+
+// ListWorkloadsWithContext is the same as ListWorkloads with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListWorkloads for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationInsights) ListWorkloadsWithContext(ctx aws.Context, input *ListWorkloadsInput, opts ...request.Option) (*ListWorkloadsOutput, error) {
+	req, out := c.ListWorkloadsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListWorkloadsPages iterates over the pages of a ListWorkloads operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListWorkloads method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListWorkloads operation.
+//	pageNum := 0
+//	err := client.ListWorkloadsPages(params,
+//	    func(page *applicationinsights.ListWorkloadsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ApplicationInsights) ListWorkloadsPages(input *ListWorkloadsInput, fn func(*ListWorkloadsOutput, bool) bool) error {
+	return c.ListWorkloadsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListWorkloadsPagesWithContext same as ListWorkloadsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationInsights) ListWorkloadsPagesWithContext(ctx aws.Context, input *ListWorkloadsInput, fn func(*ListWorkloadsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListWorkloadsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListWorkloadsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListWorkloadsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opRemoveWorkload = "RemoveWorkload"
+
+// RemoveWorkloadRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveWorkload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveWorkload for more information on using the RemoveWorkload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RemoveWorkloadRequest method.
+//	req, resp := client.RemoveWorkloadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/RemoveWorkload
+func (c *ApplicationInsights) RemoveWorkloadRequest(input *RemoveWorkloadInput) (req *request.Request, output *RemoveWorkloadOutput) {
+	op := &request.Operation{
+		Name:       opRemoveWorkload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveWorkloadInput{}
+	}
+
+	output = &RemoveWorkloadOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RemoveWorkload API operation for Amazon CloudWatch Application Insights.
+//
+// Remove workload from a component.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Application Insights's
+// API operation RemoveWorkload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/RemoveWorkload
+func (c *ApplicationInsights) RemoveWorkload(input *RemoveWorkloadInput) (*RemoveWorkloadOutput, error) {
+	req, out := c.RemoveWorkloadRequest(input)
+	return out, req.Send()
+}
+
+// RemoveWorkloadWithContext is the same as RemoveWorkload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveWorkload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationInsights) RemoveWorkloadWithContext(ctx aws.Context, input *RemoveWorkloadInput, opts ...request.Option) (*RemoveWorkloadOutput, error) {
+	req, out := c.RemoveWorkloadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -2197,14 +2592,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/TagResource
 func (c *ApplicationInsights) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2244,15 +2638,16 @@ func (c *ApplicationInsights) TagResourceRequest(input *TagResourceInput) (req *
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * TooManyTagsException
-//   The number of the provided tags is beyond the limit, or the number of total
-//   tags you are trying to attach to the specified resource exceeds the limit.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - TooManyTagsException
+//     The number of the provided tags is beyond the limit, or the number of total
+//     tags you are trying to attach to the specified resource exceeds the limit.
+//
+//   - ValidationException
+//     The parameter is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/TagResource
 func (c *ApplicationInsights) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2292,14 +2687,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UntagResource
 func (c *ApplicationInsights) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2331,11 +2725,12 @@ func (c *ApplicationInsights) UntagResourceRequest(input *UntagResourceInput) (r
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - ValidationException
+//     The parameter is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UntagResource
 func (c *ApplicationInsights) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2375,14 +2770,13 @@ const opUpdateApplication = "UpdateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApplicationRequest method.
+//	req, resp := client.UpdateApplicationRequest(params)
 //
-//    // Example sending a request using the UpdateApplicationRequest method.
-//    req, resp := client.UpdateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateApplication
 func (c *ApplicationInsights) UpdateApplicationRequest(input *UpdateApplicationInput) (req *request.Request, output *UpdateApplicationOutput) {
@@ -2413,14 +2807,15 @@ func (c *ApplicationInsights) UpdateApplicationRequest(input *UpdateApplicationI
 // API operation UpdateApplication for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - ValidationException
+//     The parameter is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateApplication
 func (c *ApplicationInsights) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -2460,14 +2855,13 @@ const opUpdateComponent = "UpdateComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateComponentRequest method.
+//	req, resp := client.UpdateComponentRequest(params)
 //
-//    // Example sending a request using the UpdateComponentRequest method.
-//    req, resp := client.UpdateComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateComponent
 func (c *ApplicationInsights) UpdateComponentRequest(input *UpdateComponentInput) (req *request.Request, output *UpdateComponentOutput) {
@@ -2500,17 +2894,18 @@ func (c *ApplicationInsights) UpdateComponentRequest(input *UpdateComponentInput
 // API operation UpdateComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The resource is already created or in use.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ResourceInUseException
+//     The resource is already created or in use.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateComponent
 func (c *ApplicationInsights) UpdateComponent(input *UpdateComponentInput) (*UpdateComponentOutput, error) {
@@ -2550,14 +2945,13 @@ const opUpdateComponentConfiguration = "UpdateComponentConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateComponentConfigurationRequest method.
+//	req, resp := client.UpdateComponentConfigurationRequest(params)
 //
-//    // Example sending a request using the UpdateComponentConfigurationRequest method.
-//    req, resp := client.UpdateComponentConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateComponentConfiguration
 func (c *ApplicationInsights) UpdateComponentConfigurationRequest(input *UpdateComponentConfigurationInput) (req *request.Request, output *UpdateComponentConfigurationOutput) {
@@ -2591,14 +2985,18 @@ func (c *ApplicationInsights) UpdateComponentConfigurationRequest(input *UpdateC
 // API operation UpdateComponentConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
+//
+//   - ResourceInUseException
+//     The resource is already created or in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateComponentConfiguration
 func (c *ApplicationInsights) UpdateComponentConfiguration(input *UpdateComponentConfigurationInput) (*UpdateComponentConfigurationOutput, error) {
@@ -2638,14 +3036,13 @@ const opUpdateLogPattern = "UpdateLogPattern"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateLogPatternRequest method.
+//	req, resp := client.UpdateLogPatternRequest(params)
 //
-//    // Example sending a request using the UpdateLogPatternRequest method.
-//    req, resp := client.UpdateLogPatternRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateLogPattern
 func (c *ApplicationInsights) UpdateLogPatternRequest(input *UpdateLogPatternInput) (req *request.Request, output *UpdateLogPatternOutput) {
@@ -2676,17 +3073,18 @@ func (c *ApplicationInsights) UpdateLogPatternRequest(input *UpdateLogPatternInp
 // API operation UpdateLogPattern for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The resource is already created or in use.
 //
-//   * ResourceNotFoundException
-//   The resource does not exist in the customer account.
+//   - ResourceInUseException
+//     The resource is already created or in use.
 //
-//   * ValidationException
-//   The parameter is not valid.
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
 //
-//   * InternalServerException
-//   The server encountered an internal error and is unable to complete the request.
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateLogPattern
 func (c *ApplicationInsights) UpdateLogPattern(input *UpdateLogPatternInput) (*UpdateLogPatternOutput, error) {
@@ -2710,6 +3108,177 @@ func (c *ApplicationInsights) UpdateLogPatternWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opUpdateProblem = "UpdateProblem"
+
+// UpdateProblemRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateProblem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateProblem for more information on using the UpdateProblem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateProblemRequest method.
+//	req, resp := client.UpdateProblemRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateProblem
+func (c *ApplicationInsights) UpdateProblemRequest(input *UpdateProblemInput) (req *request.Request, output *UpdateProblemOutput) {
+	op := &request.Operation{
+		Name:       opUpdateProblem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateProblemInput{}
+	}
+
+	output = &UpdateProblemOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateProblem API operation for Amazon CloudWatch Application Insights.
+//
+// Updates the visibility of the problem or specifies the problem as RESOLVED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Application Insights's
+// API operation UpdateProblem for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
+//
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateProblem
+func (c *ApplicationInsights) UpdateProblem(input *UpdateProblemInput) (*UpdateProblemOutput, error) {
+	req, out := c.UpdateProblemRequest(input)
+	return out, req.Send()
+}
+
+// UpdateProblemWithContext is the same as UpdateProblem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateProblem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationInsights) UpdateProblemWithContext(ctx aws.Context, input *UpdateProblemInput, opts ...request.Option) (*UpdateProblemOutput, error) {
+	req, out := c.UpdateProblemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateWorkload = "UpdateWorkload"
+
+// UpdateWorkloadRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateWorkload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateWorkload for more information on using the UpdateWorkload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateWorkloadRequest method.
+//	req, resp := client.UpdateWorkloadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateWorkload
+func (c *ApplicationInsights) UpdateWorkloadRequest(input *UpdateWorkloadInput) (req *request.Request, output *UpdateWorkloadOutput) {
+	op := &request.Operation{
+		Name:       opUpdateWorkload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateWorkloadInput{}
+	}
+
+	output = &UpdateWorkloadOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateWorkload API operation for Amazon CloudWatch Application Insights.
+//
+// Adds a workload to a component. Each component can have at most five workloads.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Application Insights's
+// API operation UpdateWorkload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource does not exist in the customer account.
+//
+//   - ValidationException
+//     The parameter is not valid.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateWorkload
+func (c *ApplicationInsights) UpdateWorkload(input *UpdateWorkloadInput) (*UpdateWorkloadOutput, error) {
+	req, out := c.UpdateWorkloadRequest(input)
+	return out, req.Send()
+}
+
+// UpdateWorkloadWithContext is the same as UpdateWorkload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateWorkload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationInsights) UpdateWorkloadWithContext(ctx aws.Context, input *UpdateWorkloadInput, opts ...request.Option) (*UpdateWorkloadOutput, error) {
+	req, out := c.UpdateWorkloadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // User does not have permissions to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -2718,12 +3287,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -2766,6 +3343,133 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type AddWorkloadInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the component.
+	//
+	// ComponentName is a required field
+	ComponentName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the resource group.
+	//
+	// ResourceGroupName is a required field
+	ResourceGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The configuration settings of the workload. The value is the escaped JSON
+	// of the configuration.
+	//
+	// WorkloadConfiguration is a required field
+	WorkloadConfiguration *WorkloadConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddWorkloadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddWorkloadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddWorkloadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddWorkloadInput"}
+	if s.ComponentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComponentName"))
+	}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
+	if s.ResourceGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceGroupName"))
+	}
+	if s.ResourceGroupName != nil && len(*s.ResourceGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupName", 1))
+	}
+	if s.WorkloadConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkloadConfiguration"))
+	}
+	if s.WorkloadConfiguration != nil {
+		if err := s.WorkloadConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("WorkloadConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *AddWorkloadInput) SetComponentName(v string) *AddWorkloadInput {
+	s.ComponentName = &v
+	return s
+}
+
+// SetResourceGroupName sets the ResourceGroupName field's value.
+func (s *AddWorkloadInput) SetResourceGroupName(v string) *AddWorkloadInput {
+	s.ResourceGroupName = &v
+	return s
+}
+
+// SetWorkloadConfiguration sets the WorkloadConfiguration field's value.
+func (s *AddWorkloadInput) SetWorkloadConfiguration(v *WorkloadConfiguration) *AddWorkloadInput {
+	s.WorkloadConfiguration = v
+	return s
+}
+
+type AddWorkloadOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration settings of the workload. The value is the escaped JSON
+	// of the configuration.
+	WorkloadConfiguration *WorkloadConfiguration `type:"structure"`
+
+	// The ID of the workload.
+	WorkloadId *string `min:"38" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddWorkloadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddWorkloadOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkloadConfiguration sets the WorkloadConfiguration field's value.
+func (s *AddWorkloadOutput) SetWorkloadConfiguration(v *WorkloadConfiguration) *AddWorkloadOutput {
+	s.WorkloadConfiguration = v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *AddWorkloadOutput) SetWorkloadId(v string) *AddWorkloadOutput {
+	s.WorkloadId = &v
+	return s
+}
+
 // Describes a standalone resource or similarly grouped resources that the application
 // is made up of.
 type ApplicationComponent struct {
@@ -2795,12 +3499,20 @@ type ApplicationComponent struct {
 	Tier *string `min:"1" type:"string" enum:"Tier"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationComponent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationComponent) GoString() string {
 	return s.String()
 }
@@ -2851,10 +3563,23 @@ func (s *ApplicationComponent) SetTier(v string) *ApplicationComponent {
 type ApplicationInfo struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the owner of the application.
+	AccountId *string `min:"12" type:"string"`
+
+	// If set to true, the managed policies for SSM and CW will be attached to the
+	// instance roles if they are missing.
+	AttachMissingPermission *bool `type:"boolean"`
+
+	// Indicates whether auto-configuration is turned on for this application.
+	AutoConfigEnabled *bool `type:"boolean"`
+
 	// Indicates whether Application Insights can listen to CloudWatch events for
 	// the application resources, such as instance terminated, failed deployment,
 	// and others.
 	CWEMonitorEnabled *bool `type:"boolean"`
+
+	// The method used by Application Insights to onboard your resources.
+	DiscoveryType *string `type:"string" enum:"DiscoveryType"`
 
 	// The lifecycle of the application.
 	LifeCycle *string `type:"string"`
@@ -2879,19 +3604,51 @@ type ApplicationInfo struct {
 	ResourceGroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationInfo) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ApplicationInfo) SetAccountId(v string) *ApplicationInfo {
+	s.AccountId = &v
+	return s
+}
+
+// SetAttachMissingPermission sets the AttachMissingPermission field's value.
+func (s *ApplicationInfo) SetAttachMissingPermission(v bool) *ApplicationInfo {
+	s.AttachMissingPermission = &v
+	return s
+}
+
+// SetAutoConfigEnabled sets the AutoConfigEnabled field's value.
+func (s *ApplicationInfo) SetAutoConfigEnabled(v bool) *ApplicationInfo {
+	s.AutoConfigEnabled = &v
+	return s
 }
 
 // SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
 func (s *ApplicationInfo) SetCWEMonitorEnabled(v bool) *ApplicationInfo {
 	s.CWEMonitorEnabled = &v
+	return s
+}
+
+// SetDiscoveryType sets the DiscoveryType field's value.
+func (s *ApplicationInfo) SetDiscoveryType(v string) *ApplicationInfo {
+	s.DiscoveryType = &v
 	return s
 }
 
@@ -2933,12 +3690,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -2985,6 +3750,10 @@ func (s *BadRequestException) RequestID() string {
 type ConfigurationEvent struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the owner of the application to which the configuration
+	// event belongs.
+	AccountId *string `min:"12" type:"string"`
+
 	// The details of the event in plain text.
 	EventDetail *string `type:"string"`
 
@@ -3004,16 +3773,34 @@ type ConfigurationEvent struct {
 
 	// The resource monitored by Application Insights.
 	MonitoredResourceARN *string `type:"string"`
+
+	// The name of the resource group of the application to which the configuration
+	// event belongs.
+	ResourceGroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationEvent) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ConfigurationEvent) SetAccountId(v string) *ConfigurationEvent {
+	s.AccountId = &v
+	return s
 }
 
 // SetEventDetail sets the EventDetail field's value.
@@ -3052,13 +3839,36 @@ func (s *ConfigurationEvent) SetMonitoredResourceARN(v string) *ConfigurationEve
 	return s
 }
 
+// SetResourceGroupName sets the ResourceGroupName field's value.
+func (s *ConfigurationEvent) SetResourceGroupName(v string) *ConfigurationEvent {
+	s.ResourceGroupName = &v
+	return s
+}
+
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
+
+	// If set to true, the managed policies for SSM and CW will be attached to the
+	// instance roles if they are missing.
+	AttachMissingPermission *bool `type:"boolean"`
+
+	// Indicates whether Application Insights automatically configures unmonitored
+	// resources in the resource group.
+	AutoConfigEnabled *bool `type:"boolean"`
+
+	// Configures all of the resources in the resource group by applying the recommended
+	// configurations.
+	AutoCreate *bool `type:"boolean"`
 
 	// Indicates whether Application Insights can listen to CloudWatch events for
 	// the application resources, such as instance terminated, failed deployment,
 	// and others.
 	CWEMonitorEnabled *bool `type:"boolean"`
+
+	// Application Insights can create applications based on a resource group or
+	// on an account. To create an account-based application using all of the resources
+	// in the account, set this parameter to ACCOUNT_BASED.
+	GroupingType *string `type:"string" enum:"GroupingType"`
 
 	// When set to true, creates opsItems for any problems detected on an application.
 	OpsCenterEnabled *bool `type:"boolean"`
@@ -3068,9 +3878,7 @@ type CreateApplicationInput struct {
 	OpsItemSNSTopicArn *string `min:"20" type:"string"`
 
 	// The name of the resource group.
-	//
-	// ResourceGroupName is a required field
-	ResourceGroupName *string `min:"1" type:"string" required:"true"`
+	ResourceGroupName *string `min:"1" type:"string"`
 
 	// List of tags to add to the application. tag key (Key) and an associated tag
 	// value (Value). The maximum length of a tag key is 128 characters. The maximum
@@ -3078,12 +3886,20 @@ type CreateApplicationInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationInput) GoString() string {
 	return s.String()
 }
@@ -3093,9 +3909,6 @@ func (s *CreateApplicationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateApplicationInput"}
 	if s.OpsItemSNSTopicArn != nil && len(*s.OpsItemSNSTopicArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("OpsItemSNSTopicArn", 20))
-	}
-	if s.ResourceGroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("ResourceGroupName"))
 	}
 	if s.ResourceGroupName != nil && len(*s.ResourceGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupName", 1))
@@ -3117,9 +3930,33 @@ func (s *CreateApplicationInput) Validate() error {
 	return nil
 }
 
+// SetAttachMissingPermission sets the AttachMissingPermission field's value.
+func (s *CreateApplicationInput) SetAttachMissingPermission(v bool) *CreateApplicationInput {
+	s.AttachMissingPermission = &v
+	return s
+}
+
+// SetAutoConfigEnabled sets the AutoConfigEnabled field's value.
+func (s *CreateApplicationInput) SetAutoConfigEnabled(v bool) *CreateApplicationInput {
+	s.AutoConfigEnabled = &v
+	return s
+}
+
+// SetAutoCreate sets the AutoCreate field's value.
+func (s *CreateApplicationInput) SetAutoCreate(v bool) *CreateApplicationInput {
+	s.AutoCreate = &v
+	return s
+}
+
 // SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
 func (s *CreateApplicationInput) SetCWEMonitorEnabled(v bool) *CreateApplicationInput {
 	s.CWEMonitorEnabled = &v
+	return s
+}
+
+// SetGroupingType sets the GroupingType field's value.
+func (s *CreateApplicationInput) SetGroupingType(v string) *CreateApplicationInput {
+	s.GroupingType = &v
 	return s
 }
 
@@ -3154,12 +3991,20 @@ type CreateApplicationOutput struct {
 	ApplicationInfo *ApplicationInfo `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -3189,12 +4034,20 @@ type CreateComponentInput struct {
 	ResourceList []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateComponentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateComponentInput) GoString() string {
 	return s.String()
 }
@@ -3246,12 +4099,20 @@ type CreateComponentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateComponentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateComponentOutput) GoString() string {
 	return s.String()
 }
@@ -3293,12 +4154,20 @@ type CreateLogPatternInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLogPatternInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLogPatternInput) GoString() string {
 	return s.String()
 }
@@ -3380,12 +4249,20 @@ type CreateLogPatternOutput struct {
 	ResourceGroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLogPatternOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLogPatternOutput) GoString() string {
 	return s.String()
 }
@@ -3411,12 +4288,20 @@ type DeleteApplicationInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationInput) GoString() string {
 	return s.String()
 }
@@ -3447,12 +4332,20 @@ type DeleteApplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -3471,12 +4364,20 @@ type DeleteComponentInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteComponentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteComponentInput) GoString() string {
 	return s.String()
 }
@@ -3519,12 +4420,20 @@ type DeleteComponentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteComponentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteComponentOutput) GoString() string {
 	return s.String()
 }
@@ -3548,12 +4457,20 @@ type DeleteLogPatternInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLogPatternInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLogPatternInput) GoString() string {
 	return s.String()
 }
@@ -3608,12 +4525,20 @@ type DeleteLogPatternOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLogPatternOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLogPatternOutput) GoString() string {
 	return s.String()
 }
@@ -3621,18 +4546,29 @@ func (s DeleteLogPatternOutput) GoString() string {
 type DescribeApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The name of the resource group.
 	//
 	// ResourceGroupName is a required field
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationInput) GoString() string {
 	return s.String()
 }
@@ -3640,6 +4576,9 @@ func (s DescribeApplicationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeApplicationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeApplicationInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.ResourceGroupName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceGroupName"))
 	}
@@ -3651,6 +4590,12 @@ func (s *DescribeApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeApplicationInput) SetAccountId(v string) *DescribeApplicationInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetResourceGroupName sets the ResourceGroupName field's value.
@@ -3666,12 +4611,20 @@ type DescribeApplicationOutput struct {
 	ApplicationInfo *ApplicationInfo `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -3685,6 +4638,9 @@ func (s *DescribeApplicationOutput) SetApplicationInfo(v *ApplicationInfo) *Desc
 type DescribeComponentConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The name of the component.
 	//
 	// ComponentName is a required field
@@ -3696,12 +4652,20 @@ type DescribeComponentConfigurationInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -3709,6 +4673,9 @@ func (s DescribeComponentConfigurationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeComponentConfigurationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeComponentConfigurationInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.ComponentName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ComponentName"))
 	}
@@ -3726,6 +4693,12 @@ func (s *DescribeComponentConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeComponentConfigurationInput) SetAccountId(v string) *DescribeComponentConfigurationInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetComponentName sets the ComponentName field's value.
@@ -3755,12 +4728,20 @@ type DescribeComponentConfigurationOutput struct {
 	Tier *string `min:"1" type:"string" enum:"Tier"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -3791,24 +4772,37 @@ type DescribeComponentConfigurationRecommendationInput struct {
 	// ComponentName is a required field
 	ComponentName *string `min:"1" type:"string" required:"true"`
 
+	// The recommended configuration type.
+	RecommendationType *string `type:"string" enum:"RecommendationType"`
+
 	// The name of the resource group.
 	//
 	// ResourceGroupName is a required field
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 
-	// The tier of the application component. Supported tiers include DOT_NET_CORE,
-	// DOT_NET_WORKER, DOT_NET_WEB, SQL_SERVER, and DEFAULT.
+	// The tier of the application component.
 	//
 	// Tier is a required field
 	Tier *string `min:"1" type:"string" required:"true" enum:"Tier"`
+
+	// The name of the workload.
+	WorkloadName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentConfigurationRecommendationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentConfigurationRecommendationInput) GoString() string {
 	return s.String()
 }
@@ -3834,6 +4828,9 @@ func (s *DescribeComponentConfigurationRecommendationInput) Validate() error {
 	if s.Tier != nil && len(*s.Tier) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tier", 1))
 	}
+	if s.WorkloadName != nil && len(*s.WorkloadName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3844,6 +4841,12 @@ func (s *DescribeComponentConfigurationRecommendationInput) Validate() error {
 // SetComponentName sets the ComponentName field's value.
 func (s *DescribeComponentConfigurationRecommendationInput) SetComponentName(v string) *DescribeComponentConfigurationRecommendationInput {
 	s.ComponentName = &v
+	return s
+}
+
+// SetRecommendationType sets the RecommendationType field's value.
+func (s *DescribeComponentConfigurationRecommendationInput) SetRecommendationType(v string) *DescribeComponentConfigurationRecommendationInput {
+	s.RecommendationType = &v
 	return s
 }
 
@@ -3859,6 +4862,12 @@ func (s *DescribeComponentConfigurationRecommendationInput) SetTier(v string) *D
 	return s
 }
 
+// SetWorkloadName sets the WorkloadName field's value.
+func (s *DescribeComponentConfigurationRecommendationInput) SetWorkloadName(v string) *DescribeComponentConfigurationRecommendationInput {
+	s.WorkloadName = &v
+	return s
+}
+
 type DescribeComponentConfigurationRecommendationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3867,12 +4876,20 @@ type DescribeComponentConfigurationRecommendationOutput struct {
 	ComponentConfiguration *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentConfigurationRecommendationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentConfigurationRecommendationOutput) GoString() string {
 	return s.String()
 }
@@ -3886,6 +4903,9 @@ func (s *DescribeComponentConfigurationRecommendationOutput) SetComponentConfigu
 type DescribeComponentInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The name of the component.
 	//
 	// ComponentName is a required field
@@ -3897,12 +4917,20 @@ type DescribeComponentInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentInput) GoString() string {
 	return s.String()
 }
@@ -3910,6 +4938,9 @@ func (s DescribeComponentInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeComponentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeComponentInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.ComponentName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ComponentName"))
 	}
@@ -3927,6 +4958,12 @@ func (s *DescribeComponentInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeComponentInput) SetAccountId(v string) *DescribeComponentInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetComponentName sets the ComponentName field's value.
@@ -3952,12 +4989,20 @@ type DescribeComponentOutput struct {
 	ResourceList []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComponentOutput) GoString() string {
 	return s.String()
 }
@@ -3977,6 +5022,9 @@ func (s *DescribeComponentOutput) SetResourceList(v []*string) *DescribeComponen
 type DescribeLogPatternInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The name of the log pattern.
 	//
 	// PatternName is a required field
@@ -3993,12 +5041,20 @@ type DescribeLogPatternInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLogPatternInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLogPatternInput) GoString() string {
 	return s.String()
 }
@@ -4006,6 +5062,9 @@ func (s DescribeLogPatternInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeLogPatternInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeLogPatternInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.PatternName == nil {
 		invalidParams.Add(request.NewErrParamRequired("PatternName"))
 	}
@@ -4031,6 +5090,12 @@ func (s *DescribeLogPatternInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeLogPatternInput) SetAccountId(v string) *DescribeLogPatternInput {
+	s.AccountId = &v
+	return s
+}
+
 // SetPatternName sets the PatternName field's value.
 func (s *DescribeLogPatternInput) SetPatternName(v string) *DescribeLogPatternInput {
 	s.PatternName = &v
@@ -4052,6 +5117,9 @@ func (s *DescribeLogPatternInput) SetResourceGroupName(v string) *DescribeLogPat
 type DescribeLogPatternOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The successfully created log pattern.
 	LogPattern *LogPattern `type:"structure"`
 
@@ -4059,14 +5127,28 @@ type DescribeLogPatternOutput struct {
 	ResourceGroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLogPatternOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLogPatternOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeLogPatternOutput) SetAccountId(v string) *DescribeLogPatternOutput {
+	s.AccountId = &v
+	return s
 }
 
 // SetLogPattern sets the LogPattern field's value.
@@ -4084,18 +5166,29 @@ func (s *DescribeLogPatternOutput) SetResourceGroupName(v string) *DescribeLogPa
 type DescribeObservationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The ID of the observation.
 	//
 	// ObservationId is a required field
 	ObservationId *string `min:"38" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeObservationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeObservationInput) GoString() string {
 	return s.String()
 }
@@ -4103,6 +5196,9 @@ func (s DescribeObservationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeObservationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeObservationInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.ObservationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ObservationId"))
 	}
@@ -4114,6 +5210,12 @@ func (s *DescribeObservationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeObservationInput) SetAccountId(v string) *DescribeObservationInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetObservationId sets the ObservationId field's value.
@@ -4129,12 +5231,20 @@ type DescribeObservationOutput struct {
 	Observation *Observation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeObservationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeObservationOutput) GoString() string {
 	return s.String()
 }
@@ -4148,18 +5258,29 @@ func (s *DescribeObservationOutput) SetObservation(v *Observation) *DescribeObse
 type DescribeProblemInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the owner of the resource group affected by the problem.
+	AccountId *string `min:"12" type:"string"`
+
 	// The ID of the problem.
 	//
 	// ProblemId is a required field
 	ProblemId *string `min:"38" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProblemInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProblemInput) GoString() string {
 	return s.String()
 }
@@ -4167,6 +5288,9 @@ func (s DescribeProblemInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeProblemInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProblemInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.ProblemId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProblemId"))
 	}
@@ -4178,6 +5302,12 @@ func (s *DescribeProblemInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeProblemInput) SetAccountId(v string) *DescribeProblemInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetProblemId sets the ProblemId field's value.
@@ -4189,18 +5319,29 @@ func (s *DescribeProblemInput) SetProblemId(v string) *DescribeProblemInput {
 type DescribeProblemObservationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The ID of the problem.
 	//
 	// ProblemId is a required field
 	ProblemId *string `min:"38" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProblemObservationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProblemObservationsInput) GoString() string {
 	return s.String()
 }
@@ -4208,6 +5349,9 @@ func (s DescribeProblemObservationsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeProblemObservationsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProblemObservationsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.ProblemId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProblemId"))
 	}
@@ -4219,6 +5363,12 @@ func (s *DescribeProblemObservationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeProblemObservationsInput) SetAccountId(v string) *DescribeProblemObservationsInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetProblemId sets the ProblemId field's value.
@@ -4234,12 +5384,20 @@ type DescribeProblemObservationsOutput struct {
 	RelatedObservations *RelatedObservations `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProblemObservationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProblemObservationsOutput) GoString() string {
 	return s.String()
 }
@@ -4257,12 +5415,20 @@ type DescribeProblemOutput struct {
 	Problem *Problem `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProblemOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProblemOutput) GoString() string {
 	return s.String()
 }
@@ -4270,6 +5436,152 @@ func (s DescribeProblemOutput) GoString() string {
 // SetProblem sets the Problem field's value.
 func (s *DescribeProblemOutput) SetProblem(v *Problem) *DescribeProblemOutput {
 	s.Problem = v
+	return s
+}
+
+type DescribeWorkloadInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID for the workload owner.
+	AccountId *string `min:"12" type:"string"`
+
+	// The name of the component.
+	//
+	// ComponentName is a required field
+	ComponentName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the resource group.
+	//
+	// ResourceGroupName is a required field
+	ResourceGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the workload.
+	//
+	// WorkloadId is a required field
+	WorkloadId *string `min:"38" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkloadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkloadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkloadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkloadInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ComponentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComponentName"))
+	}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
+	if s.ResourceGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceGroupName"))
+	}
+	if s.ResourceGroupName != nil && len(*s.ResourceGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupName", 1))
+	}
+	if s.WorkloadId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkloadId"))
+	}
+	if s.WorkloadId != nil && len(*s.WorkloadId) < 38 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadId", 38))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeWorkloadInput) SetAccountId(v string) *DescribeWorkloadInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *DescribeWorkloadInput) SetComponentName(v string) *DescribeWorkloadInput {
+	s.ComponentName = &v
+	return s
+}
+
+// SetResourceGroupName sets the ResourceGroupName field's value.
+func (s *DescribeWorkloadInput) SetResourceGroupName(v string) *DescribeWorkloadInput {
+	s.ResourceGroupName = &v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *DescribeWorkloadInput) SetWorkloadId(v string) *DescribeWorkloadInput {
+	s.WorkloadId = &v
+	return s
+}
+
+type DescribeWorkloadOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration settings of the workload. The value is the escaped JSON
+	// of the configuration.
+	WorkloadConfiguration *WorkloadConfiguration `type:"structure"`
+
+	// The ID of the workload.
+	WorkloadId *string `min:"38" type:"string"`
+
+	// If logging is supported for the resource type, shows whether the component
+	// has configured logs to be monitored.
+	WorkloadRemarks *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkloadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkloadOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkloadConfiguration sets the WorkloadConfiguration field's value.
+func (s *DescribeWorkloadOutput) SetWorkloadConfiguration(v *WorkloadConfiguration) *DescribeWorkloadOutput {
+	s.WorkloadConfiguration = v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *DescribeWorkloadOutput) SetWorkloadId(v string) *DescribeWorkloadOutput {
+	s.WorkloadId = &v
+	return s
+}
+
+// SetWorkloadRemarks sets the WorkloadRemarks field's value.
+func (s *DescribeWorkloadOutput) SetWorkloadRemarks(v string) *DescribeWorkloadOutput {
+	s.WorkloadRemarks = &v
 	return s
 }
 
@@ -4281,12 +5593,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -4332,6 +5652,9 @@ func (s *InternalServerException) RequestID() string {
 type ListApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The maximum number of results to return in a single call. To retrieve the
 	// remaining results, make another call with the returned NextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -4340,12 +5663,20 @@ type ListApplicationsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsInput) GoString() string {
 	return s.String()
 }
@@ -4353,6 +5684,9 @@ func (s ListApplicationsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListApplicationsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListApplicationsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -4364,6 +5698,12 @@ func (s *ListApplicationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListApplicationsInput) SetAccountId(v string) *ListApplicationsInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -4389,12 +5729,20 @@ type ListApplicationsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsOutput) GoString() string {
 	return s.String()
 }
@@ -4414,6 +5762,9 @@ func (s *ListApplicationsOutput) SetNextToken(v string) *ListApplicationsOutput 
 type ListComponentsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The maximum number of results to return in a single call. To retrieve the
 	// remaining results, make another call with the returned NextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -4427,12 +5778,20 @@ type ListComponentsInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListComponentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListComponentsInput) GoString() string {
 	return s.String()
 }
@@ -4440,6 +5799,9 @@ func (s ListComponentsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListComponentsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListComponentsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -4457,6 +5819,12 @@ func (s *ListComponentsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListComponentsInput) SetAccountId(v string) *ListComponentsInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -4487,12 +5855,20 @@ type ListComponentsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListComponentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListComponentsOutput) GoString() string {
 	return s.String()
 }
@@ -4511,6 +5887,9 @@ func (s *ListComponentsOutput) SetNextToken(v string) *ListComponentsOutput {
 
 type ListConfigurationHistoryInput struct {
 	_ struct{} `type:"structure"`
+
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
 
 	// The end time of the event.
 	EndTime *time.Time `type:"timestamp"`
@@ -4541,12 +5920,20 @@ type ListConfigurationHistoryInput struct {
 	StartTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationHistoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationHistoryInput) GoString() string {
 	return s.String()
 }
@@ -4554,6 +5941,9 @@ func (s ListConfigurationHistoryInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListConfigurationHistoryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListConfigurationHistoryInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -4568,6 +5958,12 @@ func (s *ListConfigurationHistoryInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListConfigurationHistoryInput) SetAccountId(v string) *ListConfigurationHistoryInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -4619,12 +6015,20 @@ type ListConfigurationHistoryOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationHistoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationHistoryOutput) GoString() string {
 	return s.String()
 }
@@ -4644,6 +6048,9 @@ func (s *ListConfigurationHistoryOutput) SetNextToken(v string) *ListConfigurati
 type ListLogPatternSetsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The maximum number of results to return in a single call. To retrieve the
 	// remaining results, make another call with the returned NextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -4657,12 +6064,20 @@ type ListLogPatternSetsInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLogPatternSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLogPatternSetsInput) GoString() string {
 	return s.String()
 }
@@ -4670,6 +6085,9 @@ func (s ListLogPatternSetsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListLogPatternSetsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListLogPatternSetsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -4687,6 +6105,12 @@ func (s *ListLogPatternSetsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListLogPatternSetsInput) SetAccountId(v string) *ListLogPatternSetsInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -4710,6 +6134,9 @@ func (s *ListLogPatternSetsInput) SetResourceGroupName(v string) *ListLogPattern
 type ListLogPatternSetsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The list of log pattern sets.
 	LogPatternSets []*string `type:"list"`
 
@@ -4721,14 +6148,28 @@ type ListLogPatternSetsOutput struct {
 	ResourceGroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLogPatternSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLogPatternSetsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListLogPatternSetsOutput) SetAccountId(v string) *ListLogPatternSetsOutput {
+	s.AccountId = &v
+	return s
 }
 
 // SetLogPatternSets sets the LogPatternSets field's value.
@@ -4752,6 +6193,9 @@ func (s *ListLogPatternSetsOutput) SetResourceGroupName(v string) *ListLogPatter
 type ListLogPatternsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The maximum number of results to return in a single call. To retrieve the
 	// remaining results, make another call with the returned NextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -4768,12 +6212,20 @@ type ListLogPatternsInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLogPatternsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLogPatternsInput) GoString() string {
 	return s.String()
 }
@@ -4781,6 +6233,9 @@ func (s ListLogPatternsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListLogPatternsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListLogPatternsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -4801,6 +6256,12 @@ func (s *ListLogPatternsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListLogPatternsInput) SetAccountId(v string) *ListLogPatternsInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -4830,6 +6291,9 @@ func (s *ListLogPatternsInput) SetResourceGroupName(v string) *ListLogPatternsIn
 type ListLogPatternsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
 	// The list of log patterns.
 	LogPatterns []*LogPattern `type:"list"`
 
@@ -4841,14 +6305,28 @@ type ListLogPatternsOutput struct {
 	ResourceGroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLogPatternsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLogPatternsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListLogPatternsOutput) SetAccountId(v string) *ListLogPatternsOutput {
+	s.AccountId = &v
+	return s
 }
 
 // SetLogPatterns sets the LogPatterns field's value.
@@ -4872,6 +6350,12 @@ func (s *ListLogPatternsOutput) SetResourceGroupName(v string) *ListLogPatternsO
 type ListProblemsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
+
+	// The name of the component.
+	ComponentName *string `min:"1" type:"string"`
+
 	// The time when the problem ended, in epoch seconds. If not specified, problems
 	// within the past seven days are returned.
 	EndTime *time.Time `type:"timestamp"`
@@ -4889,14 +6373,26 @@ type ListProblemsInput struct {
 	// The time when the problem was detected, in epoch seconds. If you don't specify
 	// a time frame for the request, problems within the past seven days are returned.
 	StartTime *time.Time `type:"timestamp"`
+
+	// Specifies whether or not you can view the problem. If not specified, visible
+	// and ignored problems are returned.
+	Visibility *string `type:"string" enum:"Visibility"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProblemsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProblemsInput) GoString() string {
 	return s.String()
 }
@@ -4904,6 +6400,12 @@ func (s ListProblemsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListProblemsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListProblemsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -4918,6 +6420,18 @@ func (s *ListProblemsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListProblemsInput) SetAccountId(v string) *ListProblemsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *ListProblemsInput) SetComponentName(v string) *ListProblemsInput {
+	s.ComponentName = &v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -4950,8 +6464,17 @@ func (s *ListProblemsInput) SetStartTime(v time.Time) *ListProblemsInput {
 	return s
 }
 
+// SetVisibility sets the Visibility field's value.
+func (s *ListProblemsInput) SetVisibility(v string) *ListProblemsInput {
+	s.Visibility = &v
+	return s
+}
+
 type ListProblemsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The AWS account ID for the resource group owner.
+	AccountId *string `min:"12" type:"string"`
 
 	// The token used to retrieve the next page of results. This value is null when
 	// there are no more results to return.
@@ -4959,16 +6482,33 @@ type ListProblemsOutput struct {
 
 	// The list of problems.
 	ProblemList []*Problem `type:"list"`
+
+	// The name of the resource group.
+	ResourceGroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProblemsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProblemsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListProblemsOutput) SetAccountId(v string) *ListProblemsOutput {
+	s.AccountId = &v
+	return s
 }
 
 // SetNextToken sets the NextToken field's value.
@@ -4983,6 +6523,12 @@ func (s *ListProblemsOutput) SetProblemList(v []*Problem) *ListProblemsOutput {
 	return s
 }
 
+// SetResourceGroupName sets the ResourceGroupName field's value.
+func (s *ListProblemsOutput) SetResourceGroupName(v string) *ListProblemsOutput {
+	s.ResourceGroupName = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4993,12 +6539,20 @@ type ListTagsForResourceInput struct {
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -5034,12 +6588,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5047,6 +6609,149 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+type ListWorkloadsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID of the owner of the workload.
+	AccountId *string `min:"12" type:"string"`
+
+	// The name of the component.
+	//
+	// ComponentName is a required field
+	ComponentName *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return in a single call. To retrieve the
+	// remaining results, make another call with the returned NextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to request the next page of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The name of the resource group.
+	//
+	// ResourceGroupName is a required field
+	ResourceGroupName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkloadsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkloadsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListWorkloadsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListWorkloadsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ComponentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComponentName"))
+	}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceGroupName"))
+	}
+	if s.ResourceGroupName != nil && len(*s.ResourceGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListWorkloadsInput) SetAccountId(v string) *ListWorkloadsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *ListWorkloadsInput) SetComponentName(v string) *ListWorkloadsInput {
+	s.ComponentName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListWorkloadsInput) SetMaxResults(v int64) *ListWorkloadsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWorkloadsInput) SetNextToken(v string) *ListWorkloadsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceGroupName sets the ResourceGroupName field's value.
+func (s *ListWorkloadsInput) SetResourceGroupName(v string) *ListWorkloadsInput {
+	s.ResourceGroupName = &v
+	return s
+}
+
+type ListWorkloadsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to request the next page of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The list of workloads.
+	WorkloadList []*Workload `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkloadsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkloadsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWorkloadsOutput) SetNextToken(v string) *ListWorkloadsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkloadList sets the WorkloadList field's value.
+func (s *ListWorkloadsOutput) SetWorkloadList(v []*Workload) *ListWorkloadsOutput {
+	s.WorkloadList = v
 	return s
 }
 
@@ -5081,12 +6786,20 @@ type LogPattern struct {
 	Rank *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogPattern) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogPattern) GoString() string {
 	return s.String()
 }
@@ -5260,12 +6973,20 @@ type Observation struct {
 	XRayThrottlePercent *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Observation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Observation) GoString() string {
 	return s.String()
 }
@@ -5544,6 +7265,9 @@ func (s *Observation) SetXRayThrottlePercent(v int64) *Observation {
 type Problem struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID for the owner of the resource group affected by the problem.
+	AccountId *string `min:"12" type:"string"`
+
 	// The resource affected by the problem.
 	AffectedResource *string `type:"string"`
 
@@ -5559,6 +7283,18 @@ type Problem struct {
 	// A detailed analysis of the problem using machine learning.
 	Insights *string `type:"string"`
 
+	// The last time that the problem reoccurred after its last resolution.
+	LastRecurrenceTime *time.Time `type:"timestamp"`
+
+	// The number of times that the same problem reoccurred after the first time
+	// it was resolved.
+	RecurringCount *int64 `type:"long"`
+
+	// Specifies how the problem was resolved. If the value is AUTOMATIC, the system
+	// resolved the problem. If the value is MANUAL, the user resolved the problem.
+	// If the value is UNRESOLVED, then the problem is not resolved.
+	ResolutionMethod *string `type:"string" enum:"ResolutionMethod"`
+
 	// The name of the resource group affected by the problem.
 	ResourceGroupName *string `min:"1" type:"string"`
 
@@ -5573,16 +7309,34 @@ type Problem struct {
 
 	// The name of the problem.
 	Title *string `type:"string"`
+
+	// Specifies whether or not you can view the problem. Updates to ignored problems
+	// do not generate notifications.
+	Visibility *string `type:"string" enum:"Visibility"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Problem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Problem) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *Problem) SetAccountId(v string) *Problem {
+	s.AccountId = &v
+	return s
 }
 
 // SetAffectedResource sets the AffectedResource field's value.
@@ -5612,6 +7366,24 @@ func (s *Problem) SetId(v string) *Problem {
 // SetInsights sets the Insights field's value.
 func (s *Problem) SetInsights(v string) *Problem {
 	s.Insights = &v
+	return s
+}
+
+// SetLastRecurrenceTime sets the LastRecurrenceTime field's value.
+func (s *Problem) SetLastRecurrenceTime(v time.Time) *Problem {
+	s.LastRecurrenceTime = &v
+	return s
+}
+
+// SetRecurringCount sets the RecurringCount field's value.
+func (s *Problem) SetRecurringCount(v int64) *Problem {
+	s.RecurringCount = &v
+	return s
+}
+
+// SetResolutionMethod sets the ResolutionMethod field's value.
+func (s *Problem) SetResolutionMethod(v string) *Problem {
+	s.ResolutionMethod = &v
 	return s
 }
 
@@ -5645,6 +7417,12 @@ func (s *Problem) SetTitle(v string) *Problem {
 	return s
 }
 
+// SetVisibility sets the Visibility field's value.
+func (s *Problem) SetVisibility(v string) *Problem {
+	s.Visibility = &v
+	return s
+}
+
 // Describes observations related to the problem.
 type RelatedObservations struct {
 	_ struct{} `type:"structure"`
@@ -5653,12 +7431,20 @@ type RelatedObservations struct {
 	ObservationList []*Observation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RelatedObservations) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RelatedObservations) GoString() string {
 	return s.String()
 }
@@ -5669,6 +7455,111 @@ func (s *RelatedObservations) SetObservationList(v []*Observation) *RelatedObser
 	return s
 }
 
+type RemoveWorkloadInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the component.
+	//
+	// ComponentName is a required field
+	ComponentName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the resource group.
+	//
+	// ResourceGroupName is a required field
+	ResourceGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the workload.
+	//
+	// WorkloadId is a required field
+	WorkloadId *string `min:"38" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveWorkloadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveWorkloadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveWorkloadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveWorkloadInput"}
+	if s.ComponentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComponentName"))
+	}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
+	if s.ResourceGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceGroupName"))
+	}
+	if s.ResourceGroupName != nil && len(*s.ResourceGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupName", 1))
+	}
+	if s.WorkloadId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkloadId"))
+	}
+	if s.WorkloadId != nil && len(*s.WorkloadId) < 38 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadId", 38))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *RemoveWorkloadInput) SetComponentName(v string) *RemoveWorkloadInput {
+	s.ComponentName = &v
+	return s
+}
+
+// SetResourceGroupName sets the ResourceGroupName field's value.
+func (s *RemoveWorkloadInput) SetResourceGroupName(v string) *RemoveWorkloadInput {
+	s.ResourceGroupName = &v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *RemoveWorkloadInput) SetWorkloadId(v string) *RemoveWorkloadInput {
+	s.WorkloadId = &v
+	return s
+}
+
+type RemoveWorkloadOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveWorkloadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveWorkloadOutput) GoString() string {
+	return s.String()
+}
+
 // The resource is already created or in use.
 type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
@@ -5677,12 +7568,20 @@ type ResourceInUseException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -5733,12 +7632,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -5794,14 +7701,14 @@ func (s *ResourceNotFoundException) RequestID() string {
 // digits, white space, or one of the following symbols: _ . : / = + -. The
 // following additional restrictions apply to tags:
 //
-//    * Tag keys and values are case sensitive.
+//   - Tag keys and values are case sensitive.
 //
-//    * For each associated resource, each tag key must be unique and it can
-//    have only one value.
+//   - For each associated resource, each tag key must be unique and it can
+//     have only one value.
 //
-//    * The aws: prefix is reserved for use by AWS; you can’t use it in any
-//    tag keys or values that you define. In addition, you can't edit or remove
-//    tag keys or values that use this prefix.
+//   - The aws: prefix is reserved for use by AWS; you can’t use it in any
+//     tag keys or values that you define. In addition, you can't edit or remove
+//     tag keys or values that use this prefix.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -5820,12 +7727,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -5878,12 +7793,20 @@ type TagResourceInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -5933,12 +7856,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5951,12 +7882,20 @@ type TagsAlreadyExistException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagsAlreadyExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagsAlreadyExistException) GoString() string {
 	return s.String()
 }
@@ -6011,12 +7950,20 @@ type TooManyTagsException struct {
 	ResourceName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) GoString() string {
 	return s.String()
 }
@@ -6078,12 +8025,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6123,18 +8078,33 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
 type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
+
+	// If set to true, the managed policies for SSM and CW will be attached to the
+	// instance roles if they are missing.
+	AttachMissingPermission *bool `type:"boolean"`
+
+	// Turns auto-configuration on or off.
+	AutoConfigEnabled *bool `type:"boolean"`
 
 	// Indicates whether Application Insights can listen to CloudWatch events for
 	// the application resources, such as instance terminated, failed deployment,
@@ -6157,12 +8127,20 @@ type UpdateApplicationInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationInput) GoString() string {
 	return s.String()
 }
@@ -6184,6 +8162,18 @@ func (s *UpdateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttachMissingPermission sets the AttachMissingPermission field's value.
+func (s *UpdateApplicationInput) SetAttachMissingPermission(v bool) *UpdateApplicationInput {
+	s.AttachMissingPermission = &v
+	return s
+}
+
+// SetAutoConfigEnabled sets the AutoConfigEnabled field's value.
+func (s *UpdateApplicationInput) SetAutoConfigEnabled(v bool) *UpdateApplicationInput {
+	s.AutoConfigEnabled = &v
+	return s
 }
 
 // SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
@@ -6223,12 +8213,20 @@ type UpdateApplicationOutput struct {
 	ApplicationInfo *ApplicationInfo `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -6241,6 +8239,9 @@ func (s *UpdateApplicationOutput) SetApplicationInfo(v *ApplicationInfo) *Update
 
 type UpdateComponentConfigurationInput struct {
 	_ struct{} `type:"structure"`
+
+	// Automatically configures the component by applying the recommended configurations.
+	AutoConfigEnabled *bool `type:"boolean"`
 
 	// The configuration settings of the component. The value is the escaped JSON
 	// of the configuration. For more information about the JSON format, see Working
@@ -6263,17 +8264,24 @@ type UpdateComponentConfigurationInput struct {
 	// ResourceGroupName is a required field
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 
-	// The tier of the application component. Supported tiers include DOT_NET_WORKER,
-	// DOT_NET_WEB, DOT_NET_CORE, SQL_SERVER, and DEFAULT.
+	// The tier of the application component.
 	Tier *string `min:"1" type:"string" enum:"Tier"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateComponentConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateComponentConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -6304,6 +8312,12 @@ func (s *UpdateComponentConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoConfigEnabled sets the AutoConfigEnabled field's value.
+func (s *UpdateComponentConfigurationInput) SetAutoConfigEnabled(v bool) *UpdateComponentConfigurationInput {
+	s.AutoConfigEnabled = &v
+	return s
 }
 
 // SetComponentConfiguration sets the ComponentConfiguration field's value.
@@ -6340,12 +8354,20 @@ type UpdateComponentConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateComponentConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateComponentConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -6370,12 +8392,20 @@ type UpdateComponentInput struct {
 	ResourceList []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateComponentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateComponentInput) GoString() string {
 	return s.String()
 }
@@ -6433,12 +8463,20 @@ type UpdateComponentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateComponentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateComponentOutput) GoString() string {
 	return s.String()
 }
@@ -6476,12 +8514,20 @@ type UpdateLogPatternInput struct {
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLogPatternInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLogPatternInput) GoString() string {
 	return s.String()
 }
@@ -6557,12 +8603,20 @@ type UpdateLogPatternOutput struct {
 	ResourceGroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLogPatternOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLogPatternOutput) GoString() string {
 	return s.String()
 }
@@ -6579,6 +8633,237 @@ func (s *UpdateLogPatternOutput) SetResourceGroupName(v string) *UpdateLogPatter
 	return s
 }
 
+type UpdateProblemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the problem.
+	//
+	// ProblemId is a required field
+	ProblemId *string `min:"38" type:"string" required:"true"`
+
+	// The status of the problem. Arguments can be passed for only problems that
+	// show a status of RECOVERING.
+	UpdateStatus *string `type:"string" enum:"UpdateStatus"`
+
+	// The visibility of a problem. When you pass a value of IGNORED, the problem
+	// is removed from the default view, and all notifications for the problem are
+	// suspended. When VISIBLE is passed, the IGNORED action is reversed.
+	Visibility *string `type:"string" enum:"Visibility"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProblemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProblemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateProblemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateProblemInput"}
+	if s.ProblemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProblemId"))
+	}
+	if s.ProblemId != nil && len(*s.ProblemId) < 38 {
+		invalidParams.Add(request.NewErrParamMinLen("ProblemId", 38))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProblemId sets the ProblemId field's value.
+func (s *UpdateProblemInput) SetProblemId(v string) *UpdateProblemInput {
+	s.ProblemId = &v
+	return s
+}
+
+// SetUpdateStatus sets the UpdateStatus field's value.
+func (s *UpdateProblemInput) SetUpdateStatus(v string) *UpdateProblemInput {
+	s.UpdateStatus = &v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *UpdateProblemInput) SetVisibility(v string) *UpdateProblemInput {
+	s.Visibility = &v
+	return s
+}
+
+type UpdateProblemOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProblemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProblemOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateWorkloadInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the component.
+	//
+	// ComponentName is a required field
+	ComponentName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the resource group.
+	//
+	// ResourceGroupName is a required field
+	ResourceGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The configuration settings of the workload. The value is the escaped JSON
+	// of the configuration.
+	//
+	// WorkloadConfiguration is a required field
+	WorkloadConfiguration *WorkloadConfiguration `type:"structure" required:"true"`
+
+	// The ID of the workload.
+	WorkloadId *string `min:"38" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkloadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkloadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateWorkloadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateWorkloadInput"}
+	if s.ComponentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComponentName"))
+	}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
+	if s.ResourceGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceGroupName"))
+	}
+	if s.ResourceGroupName != nil && len(*s.ResourceGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupName", 1))
+	}
+	if s.WorkloadConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkloadConfiguration"))
+	}
+	if s.WorkloadId != nil && len(*s.WorkloadId) < 38 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadId", 38))
+	}
+	if s.WorkloadConfiguration != nil {
+		if err := s.WorkloadConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("WorkloadConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *UpdateWorkloadInput) SetComponentName(v string) *UpdateWorkloadInput {
+	s.ComponentName = &v
+	return s
+}
+
+// SetResourceGroupName sets the ResourceGroupName field's value.
+func (s *UpdateWorkloadInput) SetResourceGroupName(v string) *UpdateWorkloadInput {
+	s.ResourceGroupName = &v
+	return s
+}
+
+// SetWorkloadConfiguration sets the WorkloadConfiguration field's value.
+func (s *UpdateWorkloadInput) SetWorkloadConfiguration(v *WorkloadConfiguration) *UpdateWorkloadInput {
+	s.WorkloadConfiguration = v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *UpdateWorkloadInput) SetWorkloadId(v string) *UpdateWorkloadInput {
+	s.WorkloadId = &v
+	return s
+}
+
+type UpdateWorkloadOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration settings of the workload. The value is the escaped JSON
+	// of the configuration.
+	WorkloadConfiguration *WorkloadConfiguration `type:"structure"`
+
+	// The ID of the workload.
+	WorkloadId *string `min:"38" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkloadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkloadOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkloadConfiguration sets the WorkloadConfiguration field's value.
+func (s *UpdateWorkloadOutput) SetWorkloadConfiguration(v *WorkloadConfiguration) *UpdateWorkloadOutput {
+	s.WorkloadConfiguration = v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *UpdateWorkloadOutput) SetWorkloadId(v string) *UpdateWorkloadOutput {
+	s.WorkloadId = &v
+	return s
+}
+
 // The parameter is not valid.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -6587,12 +8872,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -6633,6 +8926,144 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Describes the workloads on a component.
+type Workload struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the component.
+	ComponentName *string `min:"1" type:"string"`
+
+	// The tier of the workload.
+	Tier *string `min:"1" type:"string" enum:"Tier"`
+
+	// The ID of the workload.
+	WorkloadId *string `min:"38" type:"string"`
+
+	// The name of the workload.
+	WorkloadName *string `min:"1" type:"string"`
+
+	// If logging is supported for the resource type, shows whether the component
+	// has configured logs to be monitored.
+	WorkloadRemarks *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Workload) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Workload) GoString() string {
+	return s.String()
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *Workload) SetComponentName(v string) *Workload {
+	s.ComponentName = &v
+	return s
+}
+
+// SetTier sets the Tier field's value.
+func (s *Workload) SetTier(v string) *Workload {
+	s.Tier = &v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *Workload) SetWorkloadId(v string) *Workload {
+	s.WorkloadId = &v
+	return s
+}
+
+// SetWorkloadName sets the WorkloadName field's value.
+func (s *Workload) SetWorkloadName(v string) *Workload {
+	s.WorkloadName = &v
+	return s
+}
+
+// SetWorkloadRemarks sets the WorkloadRemarks field's value.
+func (s *Workload) SetWorkloadRemarks(v string) *Workload {
+	s.WorkloadRemarks = &v
+	return s
+}
+
+// The configuration of the workload.
+type WorkloadConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration settings of the workload.
+	Configuration *string `min:"1" type:"string"`
+
+	// The configuration of the workload tier.
+	Tier *string `min:"1" type:"string" enum:"Tier"`
+
+	// The name of the workload.
+	WorkloadName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkloadConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkloadConfiguration"}
+	if s.Configuration != nil && len(*s.Configuration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Configuration", 1))
+	}
+	if s.Tier != nil && len(*s.Tier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tier", 1))
+	}
+	if s.WorkloadName != nil && len(*s.WorkloadName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *WorkloadConfiguration) SetConfiguration(v string) *WorkloadConfiguration {
+	s.Configuration = &v
+	return s
+}
+
+// SetTier sets the Tier field's value.
+func (s *WorkloadConfiguration) SetTier(v string) *WorkloadConfiguration {
+	s.Tier = &v
+	return s
+}
+
+// SetWorkloadName sets the WorkloadName field's value.
+func (s *WorkloadConfiguration) SetWorkloadName(v string) *WorkloadConfiguration {
+	s.WorkloadName = &v
+	return s
 }
 
 const (
@@ -6704,6 +9135,22 @@ func ConfigurationEventStatus_Values() []string {
 }
 
 const (
+	// DiscoveryTypeResourceGroupBased is a DiscoveryType enum value
+	DiscoveryTypeResourceGroupBased = "RESOURCE_GROUP_BASED"
+
+	// DiscoveryTypeAccountBased is a DiscoveryType enum value
+	DiscoveryTypeAccountBased = "ACCOUNT_BASED"
+)
+
+// DiscoveryType_Values returns all elements of the DiscoveryType enum
+func DiscoveryType_Values() []string {
+	return []string{
+		DiscoveryTypeResourceGroupBased,
+		DiscoveryTypeAccountBased,
+	}
+}
+
+const (
 	// FeedbackKeyInsightsFeedback is a FeedbackKey enum value
 	FeedbackKeyInsightsFeedback = "INSIGHTS_FEEDBACK"
 )
@@ -6732,6 +9179,18 @@ func FeedbackValue_Values() []string {
 		FeedbackValueNotSpecified,
 		FeedbackValueUseful,
 		FeedbackValueNotUseful,
+	}
+}
+
+const (
+	// GroupingTypeAccountBased is a GroupingType enum value
+	GroupingTypeAccountBased = "ACCOUNT_BASED"
+)
+
+// GroupingType_Values returns all elements of the GroupingType enum
+func GroupingType_Values() []string {
+	return []string{
+		GroupingTypeAccountBased,
 	}
 }
 
@@ -6772,6 +9231,49 @@ func OsType_Values() []string {
 }
 
 const (
+	// RecommendationTypeInfraOnly is a RecommendationType enum value
+	RecommendationTypeInfraOnly = "INFRA_ONLY"
+
+	// RecommendationTypeWorkloadOnly is a RecommendationType enum value
+	RecommendationTypeWorkloadOnly = "WORKLOAD_ONLY"
+
+	// RecommendationTypeAll is a RecommendationType enum value
+	RecommendationTypeAll = "ALL"
+)
+
+// RecommendationType_Values returns all elements of the RecommendationType enum
+func RecommendationType_Values() []string {
+	return []string{
+		RecommendationTypeInfraOnly,
+		RecommendationTypeWorkloadOnly,
+		RecommendationTypeAll,
+	}
+}
+
+const (
+	// ResolutionMethodManual is a ResolutionMethod enum value
+	ResolutionMethodManual = "MANUAL"
+
+	// ResolutionMethodAutomatic is a ResolutionMethod enum value
+	ResolutionMethodAutomatic = "AUTOMATIC"
+
+	// ResolutionMethodUnresolved is a ResolutionMethod enum value
+	ResolutionMethodUnresolved = "UNRESOLVED"
+)
+
+// ResolutionMethod_Values returns all elements of the ResolutionMethod enum
+func ResolutionMethod_Values() []string {
+	return []string{
+		ResolutionMethodManual,
+		ResolutionMethodAutomatic,
+		ResolutionMethodUnresolved,
+	}
+}
+
+const (
+	// SeverityLevelInformative is a SeverityLevel enum value
+	SeverityLevelInformative = "Informative"
+
 	// SeverityLevelLow is a SeverityLevel enum value
 	SeverityLevelLow = "Low"
 
@@ -6785,6 +9287,7 @@ const (
 // SeverityLevel_Values returns all elements of the SeverityLevel enum
 func SeverityLevel_Values() []string {
 	return []string{
+		SeverityLevelInformative,
 		SeverityLevelLow,
 		SeverityLevelMedium,
 		SeverityLevelHigh,
@@ -6800,6 +9303,12 @@ const (
 
 	// StatusPending is a Status enum value
 	StatusPending = "PENDING"
+
+	// StatusRecurring is a Status enum value
+	StatusRecurring = "RECURRING"
+
+	// StatusRecovering is a Status enum value
+	StatusRecovering = "RECOVERING"
 )
 
 // Status_Values returns all elements of the Status enum
@@ -6808,6 +9317,8 @@ func Status_Values() []string {
 		StatusIgnore,
 		StatusResolved,
 		StatusPending,
+		StatusRecurring,
+		StatusRecovering,
 	}
 }
 
@@ -6847,6 +9358,33 @@ const (
 
 	// TierOracle is a Tier enum value
 	TierOracle = "ORACLE"
+
+	// TierSapHanaMultiNode is a Tier enum value
+	TierSapHanaMultiNode = "SAP_HANA_MULTI_NODE"
+
+	// TierSapHanaSingleNode is a Tier enum value
+	TierSapHanaSingleNode = "SAP_HANA_SINGLE_NODE"
+
+	// TierSapHanaHighAvailability is a Tier enum value
+	TierSapHanaHighAvailability = "SAP_HANA_HIGH_AVAILABILITY"
+
+	// TierSqlServerFailoverClusterInstance is a Tier enum value
+	TierSqlServerFailoverClusterInstance = "SQL_SERVER_FAILOVER_CLUSTER_INSTANCE"
+
+	// TierSharepoint is a Tier enum value
+	TierSharepoint = "SHAREPOINT"
+
+	// TierActiveDirectory is a Tier enum value
+	TierActiveDirectory = "ACTIVE_DIRECTORY"
+
+	// TierSapNetweaverStandard is a Tier enum value
+	TierSapNetweaverStandard = "SAP_NETWEAVER_STANDARD"
+
+	// TierSapNetweaverDistributed is a Tier enum value
+	TierSapNetweaverDistributed = "SAP_NETWEAVER_DISTRIBUTED"
+
+	// TierSapNetweaverHighAvailability is a Tier enum value
+	TierSapNetweaverHighAvailability = "SAP_NETWEAVER_HIGH_AVAILABILITY"
 )
 
 // Tier_Values returns all elements of the Tier enum
@@ -6864,5 +9402,42 @@ func Tier_Values() []string {
 		TierPostgresql,
 		TierJavaJmx,
 		TierOracle,
+		TierSapHanaMultiNode,
+		TierSapHanaSingleNode,
+		TierSapHanaHighAvailability,
+		TierSqlServerFailoverClusterInstance,
+		TierSharepoint,
+		TierActiveDirectory,
+		TierSapNetweaverStandard,
+		TierSapNetweaverDistributed,
+		TierSapNetweaverHighAvailability,
+	}
+}
+
+const (
+	// UpdateStatusResolved is a UpdateStatus enum value
+	UpdateStatusResolved = "RESOLVED"
+)
+
+// UpdateStatus_Values returns all elements of the UpdateStatus enum
+func UpdateStatus_Values() []string {
+	return []string{
+		UpdateStatusResolved,
+	}
+}
+
+const (
+	// VisibilityIgnored is a Visibility enum value
+	VisibilityIgnored = "IGNORED"
+
+	// VisibilityVisible is a Visibility enum value
+	VisibilityVisible = "VISIBLE"
+)
+
+// Visibility_Values returns all elements of the Visibility enum
+func Visibility_Values() []string {
+	return []string{
+		VisibilityIgnored,
+		VisibilityVisible,
 	}
 }

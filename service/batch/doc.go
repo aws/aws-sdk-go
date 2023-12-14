@@ -3,29 +3,28 @@
 // Package batch provides the client and types for making API
 // requests to AWS Batch.
 //
-// Using AWS Batch, you can run batch computing workloads on the AWS Cloud.
-// Batch computing is a common means for developers, scientists, and engineers
-// to access large amounts of compute resources. AWS Batch uses the advantages
-// of this computing workload to remove the undifferentiated heavy lifting of
-// configuring and managing required infrastructure. At the same time, it also
-// adopts a familiar batch computing software approach. Given these advantages,
-// AWS Batch can help you to efficiently provision resources in response to
-// jobs submitted, thus effectively helping you to eliminate capacity constraints,
-// reduce compute costs, and deliver your results more quickly.
+// Using Batch, you can run batch computing workloads on the Amazon Web Services
+// Cloud. Batch computing is a common means for developers, scientists, and
+// engineers to access large amounts of compute resources. Batch uses the advantages
+// of the batch computing to remove the undifferentiated heavy lifting of configuring
+// and managing required infrastructure. At the same time, it also adopts a
+// familiar batch computing software approach. You can use Batch to efficiently
+// provision resources d, and work toward eliminating capacity constraints,
+// reducing your overall compute costs, and delivering results more quickly.
 //
-// As a fully managed service, AWS Batch can run batch computing workloads of
-// any scale. AWS Batch automatically provisions compute resources and optimizes
-// workload distribution based on the quantity and scale of your specific workloads.
-// With AWS Batch, there's no need to install or manage batch computing software.
-// This means that you can focus your time and energy on analyzing results and
-// solving your specific problems.
+// As a fully managed service, Batch can run batch computing workloads of any
+// scale. Batch automatically provisions compute resources and optimizes workload
+// distribution based on the quantity and scale of your specific workloads.
+// With Batch, there's no need to install or manage batch computing software.
+// This means that you can focus on analyzing results and solving your specific
+// problems instead.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10 for more information on this service.
 //
 // See batch package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/batch/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS Batch with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

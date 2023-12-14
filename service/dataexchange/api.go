@@ -29,14 +29,13 @@ const opCancelJob = "CancelJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelJobRequest method.
+//	req, resp := client.CancelJobRequest(params)
 //
-//    // Example sending a request using the CancelJobRequest method.
-//    req, resp := client.CancelJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CancelJob
 func (c *DataExchange) CancelJobRequest(input *CancelJobInput) (req *request.Request, output *CancelJobOutput) {
@@ -69,21 +68,22 @@ func (c *DataExchange) CancelJobRequest(input *CancelJobInput) (req *request.Req
 // API operation CancelJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CancelJob
 func (c *DataExchange) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
@@ -123,14 +123,13 @@ const opCreateDataSet = "CreateDataSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDataSetRequest method.
+//	req, resp := client.CreateDataSetRequest(params)
 //
-//    // Example sending a request using the CreateDataSetRequest method.
-//    req, resp := client.CreateDataSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateDataSet
 func (c *DataExchange) CreateDataSetRequest(input *CreateDataSetInput) (req *request.Request, output *CreateDataSetOutput) {
@@ -161,20 +160,21 @@ func (c *DataExchange) CreateDataSetRequest(input *CreateDataSetInput) (req *req
 // API operation CreateDataSet for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ServiceLimitExceededException
+//     The request has exceeded the quotas imposed by the service.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * ServiceLimitExceededException
-//   The request has exceeded the quotas imposed by the service.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateDataSet
 func (c *DataExchange) CreateDataSet(input *CreateDataSetInput) (*CreateDataSetOutput, error) {
@@ -198,6 +198,97 @@ func (c *DataExchange) CreateDataSetWithContext(ctx aws.Context, input *CreateDa
 	return out, req.Send()
 }
 
+const opCreateEventAction = "CreateEventAction"
+
+// CreateEventActionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEventAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEventAction for more information on using the CreateEventAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateEventActionRequest method.
+//	req, resp := client.CreateEventActionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateEventAction
+func (c *DataExchange) CreateEventActionRequest(input *CreateEventActionInput) (req *request.Request, output *CreateEventActionOutput) {
+	op := &request.Operation{
+		Name:       opCreateEventAction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/event-actions",
+	}
+
+	if input == nil {
+		input = &CreateEventActionInput{}
+	}
+
+	output = &CreateEventActionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEventAction API operation for AWS Data Exchange.
+//
+// This operation creates an event action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation CreateEventAction for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceLimitExceededException
+//     The request has exceeded the quotas imposed by the service.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateEventAction
+func (c *DataExchange) CreateEventAction(input *CreateEventActionInput) (*CreateEventActionOutput, error) {
+	req, out := c.CreateEventActionRequest(input)
+	return out, req.Send()
+}
+
+// CreateEventActionWithContext is the same as CreateEventAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEventAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) CreateEventActionWithContext(ctx aws.Context, input *CreateEventActionInput, opts ...request.Option) (*CreateEventActionOutput, error) {
+	req, out := c.CreateEventActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateJob = "CreateJob"
 
 // CreateJobRequest generates a "aws/request.Request" representing the
@@ -214,14 +305,13 @@ const opCreateJob = "CreateJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateJobRequest method.
+//	req, resp := client.CreateJobRequest(params)
 //
-//    // Example sending a request using the CreateJobRequest method.
-//    req, resp := client.CreateJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateJob
 func (c *DataExchange) CreateJobRequest(input *CreateJobInput) (req *request.Request, output *CreateJobOutput) {
@@ -252,20 +342,25 @@ func (c *DataExchange) CreateJobRequest(input *CreateJobInput) (req *request.Req
 // API operation CreateJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateJob
 func (c *DataExchange) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
@@ -305,14 +400,13 @@ const opCreateRevision = "CreateRevision"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRevisionRequest method.
+//	req, resp := client.CreateRevisionRequest(params)
 //
-//    // Example sending a request using the CreateRevisionRequest method.
-//    req, resp := client.CreateRevisionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateRevision
 func (c *DataExchange) CreateRevisionRequest(input *CreateRevisionInput) (req *request.Request, output *CreateRevisionOutput) {
@@ -343,20 +437,21 @@ func (c *DataExchange) CreateRevisionRequest(input *CreateRevisionInput) (req *r
 // API operation CreateRevision for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateRevision
 func (c *DataExchange) CreateRevision(input *CreateRevisionInput) (*CreateRevisionOutput, error) {
@@ -396,14 +491,13 @@ const opDeleteAsset = "DeleteAsset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAssetRequest method.
+//	req, resp := client.DeleteAssetRequest(params)
 //
-//    // Example sending a request using the DeleteAssetRequest method.
-//    req, resp := client.DeleteAssetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteAsset
 func (c *DataExchange) DeleteAssetRequest(input *DeleteAssetInput) (req *request.Request, output *DeleteAssetOutput) {
@@ -435,24 +529,25 @@ func (c *DataExchange) DeleteAssetRequest(input *DeleteAssetInput) (req *request
 // API operation DeleteAsset for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request was invalid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteAsset
 func (c *DataExchange) DeleteAsset(input *DeleteAssetInput) (*DeleteAssetOutput, error) {
@@ -492,14 +587,13 @@ const opDeleteDataSet = "DeleteDataSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDataSetRequest method.
+//	req, resp := client.DeleteDataSetRequest(params)
 //
-//    // Example sending a request using the DeleteDataSetRequest method.
-//    req, resp := client.DeleteDataSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteDataSet
 func (c *DataExchange) DeleteDataSetRequest(input *DeleteDataSetInput) (req *request.Request, output *DeleteDataSetOutput) {
@@ -531,24 +625,25 @@ func (c *DataExchange) DeleteDataSetRequest(input *DeleteDataSetInput) (req *req
 // API operation DeleteDataSet for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request was invalid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteDataSet
 func (c *DataExchange) DeleteDataSet(input *DeleteDataSetInput) (*DeleteDataSetOutput, error) {
@@ -572,6 +667,95 @@ func (c *DataExchange) DeleteDataSetWithContext(ctx aws.Context, input *DeleteDa
 	return out, req.Send()
 }
 
+const opDeleteEventAction = "DeleteEventAction"
+
+// DeleteEventActionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEventAction for more information on using the DeleteEventAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteEventActionRequest method.
+//	req, resp := client.DeleteEventActionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteEventAction
+func (c *DataExchange) DeleteEventActionRequest(input *DeleteEventActionInput) (req *request.Request, output *DeleteEventActionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEventAction,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/event-actions/{EventActionId}",
+	}
+
+	if input == nil {
+		input = &DeleteEventActionInput{}
+	}
+
+	output = &DeleteEventActionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEventAction API operation for AWS Data Exchange.
+//
+// This operation deletes the event action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation DeleteEventAction for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteEventAction
+func (c *DataExchange) DeleteEventAction(input *DeleteEventActionInput) (*DeleteEventActionOutput, error) {
+	req, out := c.DeleteEventActionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEventActionWithContext is the same as DeleteEventAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEventAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) DeleteEventActionWithContext(ctx aws.Context, input *DeleteEventActionInput, opts ...request.Option) (*DeleteEventActionOutput, error) {
+	req, out := c.DeleteEventActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteRevision = "DeleteRevision"
 
 // DeleteRevisionRequest generates a "aws/request.Request" representing the
@@ -588,14 +772,13 @@ const opDeleteRevision = "DeleteRevision"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRevisionRequest method.
+//	req, resp := client.DeleteRevisionRequest(params)
 //
-//    // Example sending a request using the DeleteRevisionRequest method.
-//    req, resp := client.DeleteRevisionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteRevision
 func (c *DataExchange) DeleteRevisionRequest(input *DeleteRevisionInput) (req *request.Request, output *DeleteRevisionOutput) {
@@ -627,24 +810,25 @@ func (c *DataExchange) DeleteRevisionRequest(input *DeleteRevisionInput) (req *r
 // API operation DeleteRevision for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request was invalid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteRevision
 func (c *DataExchange) DeleteRevision(input *DeleteRevisionInput) (*DeleteRevisionOutput, error) {
@@ -684,14 +868,13 @@ const opGetAsset = "GetAsset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAssetRequest method.
+//	req, resp := client.GetAssetRequest(params)
 //
-//    // Example sending a request using the GetAssetRequest method.
-//    req, resp := client.GetAssetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetAsset
 func (c *DataExchange) GetAssetRequest(input *GetAssetInput) (req *request.Request, output *GetAssetOutput) {
@@ -722,17 +905,18 @@ func (c *DataExchange) GetAssetRequest(input *GetAssetInput) (req *request.Reque
 // API operation GetAsset for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetAsset
 func (c *DataExchange) GetAsset(input *GetAssetInput) (*GetAssetOutput, error) {
@@ -772,14 +956,13 @@ const opGetDataSet = "GetDataSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDataSetRequest method.
+//	req, resp := client.GetDataSetRequest(params)
 //
-//    // Example sending a request using the GetDataSetRequest method.
-//    req, resp := client.GetDataSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetDataSet
 func (c *DataExchange) GetDataSetRequest(input *GetDataSetInput) (req *request.Request, output *GetDataSetOutput) {
@@ -810,17 +993,18 @@ func (c *DataExchange) GetDataSetRequest(input *GetDataSetInput) (req *request.R
 // API operation GetDataSet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetDataSet
 func (c *DataExchange) GetDataSet(input *GetDataSetInput) (*GetDataSetOutput, error) {
@@ -844,6 +1028,94 @@ func (c *DataExchange) GetDataSetWithContext(ctx aws.Context, input *GetDataSetI
 	return out, req.Send()
 }
 
+const opGetEventAction = "GetEventAction"
+
+// GetEventActionRequest generates a "aws/request.Request" representing the
+// client's request for the GetEventAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEventAction for more information on using the GetEventAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEventActionRequest method.
+//	req, resp := client.GetEventActionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetEventAction
+func (c *DataExchange) GetEventActionRequest(input *GetEventActionInput) (req *request.Request, output *GetEventActionOutput) {
+	op := &request.Operation{
+		Name:       opGetEventAction,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/event-actions/{EventActionId}",
+	}
+
+	if input == nil {
+		input = &GetEventActionInput{}
+	}
+
+	output = &GetEventActionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEventAction API operation for AWS Data Exchange.
+//
+// This operation retrieves information about an event action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation GetEventAction for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetEventAction
+func (c *DataExchange) GetEventAction(input *GetEventActionInput) (*GetEventActionOutput, error) {
+	req, out := c.GetEventActionRequest(input)
+	return out, req.Send()
+}
+
+// GetEventActionWithContext is the same as GetEventAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEventAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) GetEventActionWithContext(ctx aws.Context, input *GetEventActionInput, opts ...request.Option) (*GetEventActionOutput, error) {
+	req, out := c.GetEventActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetJob = "GetJob"
 
 // GetJobRequest generates a "aws/request.Request" representing the
@@ -860,14 +1132,13 @@ const opGetJob = "GetJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetJobRequest method.
+//	req, resp := client.GetJobRequest(params)
 //
-//    // Example sending a request using the GetJobRequest method.
-//    req, resp := client.GetJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetJob
 func (c *DataExchange) GetJobRequest(input *GetJobInput) (req *request.Request, output *GetJobOutput) {
@@ -898,17 +1169,18 @@ func (c *DataExchange) GetJobRequest(input *GetJobInput) (req *request.Request, 
 // API operation GetJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetJob
 func (c *DataExchange) GetJob(input *GetJobInput) (*GetJobOutput, error) {
@@ -948,14 +1220,13 @@ const opGetRevision = "GetRevision"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRevisionRequest method.
+//	req, resp := client.GetRevisionRequest(params)
 //
-//    // Example sending a request using the GetRevisionRequest method.
-//    req, resp := client.GetRevisionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetRevision
 func (c *DataExchange) GetRevisionRequest(input *GetRevisionInput) (req *request.Request, output *GetRevisionOutput) {
@@ -986,17 +1257,18 @@ func (c *DataExchange) GetRevisionRequest(input *GetRevisionInput) (req *request
 // API operation GetRevision for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetRevision
 func (c *DataExchange) GetRevision(input *GetRevisionInput) (*GetRevisionOutput, error) {
@@ -1036,14 +1308,13 @@ const opListDataSetRevisions = "ListDataSetRevisions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDataSetRevisionsRequest method.
+//	req, resp := client.ListDataSetRevisionsRequest(params)
 //
-//    // Example sending a request using the ListDataSetRevisionsRequest method.
-//    req, resp := client.ListDataSetRevisionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListDataSetRevisions
 func (c *DataExchange) ListDataSetRevisionsRequest(input *ListDataSetRevisionsInput) (req *request.Request, output *ListDataSetRevisionsOutput) {
@@ -1081,17 +1352,18 @@ func (c *DataExchange) ListDataSetRevisionsRequest(input *ListDataSetRevisionsIn
 // API operation ListDataSetRevisions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListDataSetRevisions
 func (c *DataExchange) ListDataSetRevisions(input *ListDataSetRevisionsInput) (*ListDataSetRevisionsOutput, error) {
@@ -1123,15 +1395,14 @@ func (c *DataExchange) ListDataSetRevisionsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDataSetRevisions operation.
-//    pageNum := 0
-//    err := client.ListDataSetRevisionsPages(params,
-//        func(page *dataexchange.ListDataSetRevisionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDataSetRevisions operation.
+//	pageNum := 0
+//	err := client.ListDataSetRevisionsPages(params,
+//	    func(page *dataexchange.ListDataSetRevisionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DataExchange) ListDataSetRevisionsPages(input *ListDataSetRevisionsInput, fn func(*ListDataSetRevisionsOutput, bool) bool) error {
 	return c.ListDataSetRevisionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1183,14 +1454,13 @@ const opListDataSets = "ListDataSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDataSetsRequest method.
+//	req, resp := client.ListDataSetsRequest(params)
 //
-//    // Example sending a request using the ListDataSetsRequest method.
-//    req, resp := client.ListDataSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListDataSets
 func (c *DataExchange) ListDataSetsRequest(input *ListDataSetsInput) (req *request.Request, output *ListDataSetsOutput) {
@@ -1229,17 +1499,18 @@ func (c *DataExchange) ListDataSetsRequest(input *ListDataSetsInput) (req *reque
 // API operation ListDataSets for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListDataSets
 func (c *DataExchange) ListDataSets(input *ListDataSetsInput) (*ListDataSetsOutput, error) {
@@ -1271,15 +1542,14 @@ func (c *DataExchange) ListDataSetsWithContext(ctx aws.Context, input *ListDataS
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDataSets operation.
-//    pageNum := 0
-//    err := client.ListDataSetsPages(params,
-//        func(page *dataexchange.ListDataSetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDataSets operation.
+//	pageNum := 0
+//	err := client.ListDataSetsPages(params,
+//	    func(page *dataexchange.ListDataSetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DataExchange) ListDataSetsPages(input *ListDataSetsInput, fn func(*ListDataSetsOutput, bool) bool) error {
 	return c.ListDataSetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1315,6 +1585,151 @@ func (c *DataExchange) ListDataSetsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListEventActions = "ListEventActions"
+
+// ListEventActionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEventActions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEventActions for more information on using the ListEventActions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEventActionsRequest method.
+//	req, resp := client.ListEventActionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListEventActions
+func (c *DataExchange) ListEventActionsRequest(input *ListEventActionsInput) (req *request.Request, output *ListEventActionsOutput) {
+	op := &request.Operation{
+		Name:       opListEventActions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/event-actions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEventActionsInput{}
+	}
+
+	output = &ListEventActionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEventActions API operation for AWS Data Exchange.
+//
+// This operation lists your event actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation ListEventActions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListEventActions
+func (c *DataExchange) ListEventActions(input *ListEventActionsInput) (*ListEventActionsOutput, error) {
+	req, out := c.ListEventActionsRequest(input)
+	return out, req.Send()
+}
+
+// ListEventActionsWithContext is the same as ListEventActions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEventActions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) ListEventActionsWithContext(ctx aws.Context, input *ListEventActionsInput, opts ...request.Option) (*ListEventActionsOutput, error) {
+	req, out := c.ListEventActionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEventActionsPages iterates over the pages of a ListEventActions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEventActions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEventActions operation.
+//	pageNum := 0
+//	err := client.ListEventActionsPages(params,
+//	    func(page *dataexchange.ListEventActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DataExchange) ListEventActionsPages(input *ListEventActionsInput, fn func(*ListEventActionsOutput, bool) bool) error {
+	return c.ListEventActionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEventActionsPagesWithContext same as ListEventActionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) ListEventActionsPagesWithContext(ctx aws.Context, input *ListEventActionsInput, fn func(*ListEventActionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEventActionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEventActionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEventActionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListJobs = "ListJobs"
 
 // ListJobsRequest generates a "aws/request.Request" representing the
@@ -1331,14 +1746,13 @@ const opListJobs = "ListJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListJobsRequest method.
+//	req, resp := client.ListJobsRequest(params)
 //
-//    // Example sending a request using the ListJobsRequest method.
-//    req, resp := client.ListJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListJobs
 func (c *DataExchange) ListJobsRequest(input *ListJobsInput) (req *request.Request, output *ListJobsOutput) {
@@ -1375,17 +1789,18 @@ func (c *DataExchange) ListJobsRequest(input *ListJobsInput) (req *request.Reque
 // API operation ListJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListJobs
 func (c *DataExchange) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
@@ -1417,15 +1832,14 @@ func (c *DataExchange) ListJobsWithContext(ctx aws.Context, input *ListJobsInput
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListJobs operation.
-//    pageNum := 0
-//    err := client.ListJobsPages(params,
-//        func(page *dataexchange.ListJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListJobs operation.
+//	pageNum := 0
+//	err := client.ListJobsPages(params,
+//	    func(page *dataexchange.ListJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DataExchange) ListJobsPages(input *ListJobsInput, fn func(*ListJobsOutput, bool) bool) error {
 	return c.ListJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1477,14 +1891,13 @@ const opListRevisionAssets = "ListRevisionAssets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRevisionAssetsRequest method.
+//	req, resp := client.ListRevisionAssetsRequest(params)
 //
-//    // Example sending a request using the ListRevisionAssetsRequest method.
-//    req, resp := client.ListRevisionAssetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListRevisionAssets
 func (c *DataExchange) ListRevisionAssetsRequest(input *ListRevisionAssetsInput) (req *request.Request, output *ListRevisionAssetsOutput) {
@@ -1522,17 +1935,18 @@ func (c *DataExchange) ListRevisionAssetsRequest(input *ListRevisionAssetsInput)
 // API operation ListRevisionAssets for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListRevisionAssets
 func (c *DataExchange) ListRevisionAssets(input *ListRevisionAssetsInput) (*ListRevisionAssetsOutput, error) {
@@ -1564,15 +1978,14 @@ func (c *DataExchange) ListRevisionAssetsWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRevisionAssets operation.
-//    pageNum := 0
-//    err := client.ListRevisionAssetsPages(params,
-//        func(page *dataexchange.ListRevisionAssetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRevisionAssets operation.
+//	pageNum := 0
+//	err := client.ListRevisionAssetsPages(params,
+//	    func(page *dataexchange.ListRevisionAssetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DataExchange) ListRevisionAssetsPages(input *ListRevisionAssetsInput, fn func(*ListRevisionAssetsOutput, bool) bool) error {
 	return c.ListRevisionAssetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1624,21 +2037,20 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListTagsForResource
 func (c *DataExchange) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
 	op := &request.Operation{
 		Name:       opListTagsForResource,
 		HTTPMethod: "GET",
-		HTTPPath:   "/tags/{resource-arn}",
+		HTTPPath:   "/tags/{ResourceArn}",
 	}
 
 	if input == nil {
@@ -1682,6 +2094,291 @@ func (c *DataExchange) ListTagsForResourceWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
+const opRevokeRevision = "RevokeRevision"
+
+// RevokeRevisionRequest generates a "aws/request.Request" representing the
+// client's request for the RevokeRevision operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RevokeRevision for more information on using the RevokeRevision
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RevokeRevisionRequest method.
+//	req, resp := client.RevokeRevisionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/RevokeRevision
+func (c *DataExchange) RevokeRevisionRequest(input *RevokeRevisionInput) (req *request.Request, output *RevokeRevisionOutput) {
+	op := &request.Operation{
+		Name:       opRevokeRevision,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/revoke",
+	}
+
+	if input == nil {
+		input = &RevokeRevisionInput{}
+	}
+
+	output = &RevokeRevisionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RevokeRevision API operation for AWS Data Exchange.
+//
+// This operation revokes subscribers' access to a revision.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation RevokeRevision for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/RevokeRevision
+func (c *DataExchange) RevokeRevision(input *RevokeRevisionInput) (*RevokeRevisionOutput, error) {
+	req, out := c.RevokeRevisionRequest(input)
+	return out, req.Send()
+}
+
+// RevokeRevisionWithContext is the same as RevokeRevision with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RevokeRevision for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) RevokeRevisionWithContext(ctx aws.Context, input *RevokeRevisionInput, opts ...request.Option) (*RevokeRevisionOutput, error) {
+	req, out := c.RevokeRevisionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSendApiAsset = "SendApiAsset"
+
+// SendApiAssetRequest generates a "aws/request.Request" representing the
+// client's request for the SendApiAsset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendApiAsset for more information on using the SendApiAsset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SendApiAssetRequest method.
+//	req, resp := client.SendApiAssetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/SendApiAsset
+func (c *DataExchange) SendApiAssetRequest(input *SendApiAssetInput) (req *request.Request, output *SendApiAssetOutput) {
+	op := &request.Operation{
+		Name:       opSendApiAsset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1",
+	}
+
+	if input == nil {
+		input = &SendApiAssetInput{}
+	}
+
+	output = &SendApiAssetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api-fulfill.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// SendApiAsset API operation for AWS Data Exchange.
+//
+// This operation invokes an API Gateway API asset. The request is proxied to
+// the provider’s API Gateway API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation SendApiAsset for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/SendApiAsset
+func (c *DataExchange) SendApiAsset(input *SendApiAssetInput) (*SendApiAssetOutput, error) {
+	req, out := c.SendApiAssetRequest(input)
+	return out, req.Send()
+}
+
+// SendApiAssetWithContext is the same as SendApiAsset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendApiAsset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) SendApiAssetWithContext(ctx aws.Context, input *SendApiAssetInput, opts ...request.Option) (*SendApiAssetOutput, error) {
+	req, out := c.SendApiAssetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSendDataSetNotification = "SendDataSetNotification"
+
+// SendDataSetNotificationRequest generates a "aws/request.Request" representing the
+// client's request for the SendDataSetNotification operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendDataSetNotification for more information on using the SendDataSetNotification
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SendDataSetNotificationRequest method.
+//	req, resp := client.SendDataSetNotificationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/SendDataSetNotification
+func (c *DataExchange) SendDataSetNotificationRequest(input *SendDataSetNotificationInput) (req *request.Request, output *SendDataSetNotificationOutput) {
+	op := &request.Operation{
+		Name:       opSendDataSetNotification,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/data-sets/{DataSetId}/notification",
+	}
+
+	if input == nil {
+		input = &SendDataSetNotificationInput{}
+	}
+
+	output = &SendDataSetNotificationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// SendDataSetNotification API operation for AWS Data Exchange.
+//
+// The type of event associated with the data set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation SendDataSetNotification for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/SendDataSetNotification
+func (c *DataExchange) SendDataSetNotification(input *SendDataSetNotificationInput) (*SendDataSetNotificationOutput, error) {
+	req, out := c.SendDataSetNotificationRequest(input)
+	return out, req.Send()
+}
+
+// SendDataSetNotificationWithContext is the same as SendDataSetNotification with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendDataSetNotification for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) SendDataSetNotificationWithContext(ctx aws.Context, input *SendDataSetNotificationInput, opts ...request.Option) (*SendDataSetNotificationOutput, error) {
+	req, out := c.SendDataSetNotificationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartJob = "StartJob"
 
 // StartJobRequest generates a "aws/request.Request" representing the
@@ -1698,14 +2395,13 @@ const opStartJob = "StartJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartJobRequest method.
+//	req, resp := client.StartJobRequest(params)
 //
-//    // Example sending a request using the StartJobRequest method.
-//    req, resp := client.StartJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/StartJob
 func (c *DataExchange) StartJobRequest(input *StartJobInput) (req *request.Request, output *StartJobOutput) {
@@ -1737,24 +2433,25 @@ func (c *DataExchange) StartJobRequest(input *StartJobInput) (req *request.Reque
 // API operation StartJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request was invalid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/StartJob
 func (c *DataExchange) StartJob(input *StartJobInput) (*StartJobOutput, error) {
@@ -1794,21 +2491,20 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/TagResource
 func (c *DataExchange) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
 	op := &request.Operation{
 		Name:       opTagResource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/tags/{resource-arn}",
+		HTTPPath:   "/tags/{ResourceArn}",
 	}
 
 	if input == nil {
@@ -1869,21 +2565,20 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UntagResource
 func (c *DataExchange) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
 	op := &request.Operation{
 		Name:       opUntagResource,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/tags/{resource-arn}",
+		HTTPPath:   "/tags/{ResourceArn}",
 	}
 
 	if input == nil {
@@ -1944,14 +2639,13 @@ const opUpdateAsset = "UpdateAsset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateAssetRequest method.
+//	req, resp := client.UpdateAssetRequest(params)
 //
-//    // Example sending a request using the UpdateAssetRequest method.
-//    req, resp := client.UpdateAssetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateAsset
 func (c *DataExchange) UpdateAssetRequest(input *UpdateAssetInput) (req *request.Request, output *UpdateAssetOutput) {
@@ -1982,24 +2676,25 @@ func (c *DataExchange) UpdateAssetRequest(input *UpdateAssetInput) (req *request
 // API operation UpdateAsset for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request was invalid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateAsset
 func (c *DataExchange) UpdateAsset(input *UpdateAssetInput) (*UpdateAssetOutput, error) {
@@ -2039,14 +2734,13 @@ const opUpdateDataSet = "UpdateDataSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDataSetRequest method.
+//	req, resp := client.UpdateDataSetRequest(params)
 //
-//    // Example sending a request using the UpdateDataSetRequest method.
-//    req, resp := client.UpdateDataSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateDataSet
 func (c *DataExchange) UpdateDataSetRequest(input *UpdateDataSetInput) (req *request.Request, output *UpdateDataSetOutput) {
@@ -2077,20 +2771,21 @@ func (c *DataExchange) UpdateDataSetRequest(input *UpdateDataSetInput) (req *req
 // API operation UpdateDataSet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * ValidationException
-//   The request was invalid.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateDataSet
 func (c *DataExchange) UpdateDataSet(input *UpdateDataSetInput) (*UpdateDataSetOutput, error) {
@@ -2114,6 +2809,97 @@ func (c *DataExchange) UpdateDataSetWithContext(ctx aws.Context, input *UpdateDa
 	return out, req.Send()
 }
 
+const opUpdateEventAction = "UpdateEventAction"
+
+// UpdateEventActionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEventAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEventAction for more information on using the UpdateEventAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateEventActionRequest method.
+//	req, resp := client.UpdateEventActionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateEventAction
+func (c *DataExchange) UpdateEventActionRequest(input *UpdateEventActionInput) (req *request.Request, output *UpdateEventActionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEventAction,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/v1/event-actions/{EventActionId}",
+	}
+
+	if input == nil {
+		input = &UpdateEventActionInput{}
+	}
+
+	output = &UpdateEventActionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateEventAction API operation for AWS Data Exchange.
+//
+// This operation updates the event action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation UpdateEventAction for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateEventAction
+func (c *DataExchange) UpdateEventAction(input *UpdateEventActionInput) (*UpdateEventActionOutput, error) {
+	req, out := c.UpdateEventActionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEventActionWithContext is the same as UpdateEventAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEventAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) UpdateEventActionWithContext(ctx aws.Context, input *UpdateEventActionInput, opts ...request.Option) (*UpdateEventActionOutput, error) {
+	req, out := c.UpdateEventActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateRevision = "UpdateRevision"
 
 // UpdateRevisionRequest generates a "aws/request.Request" representing the
@@ -2130,14 +2916,13 @@ const opUpdateRevision = "UpdateRevision"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRevisionRequest method.
+//	req, resp := client.UpdateRevisionRequest(params)
 //
-//    // Example sending a request using the UpdateRevisionRequest method.
-//    req, resp := client.UpdateRevisionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateRevision
 func (c *DataExchange) UpdateRevisionRequest(input *UpdateRevisionInput) (req *request.Request, output *UpdateRevisionOutput) {
@@ -2168,24 +2953,25 @@ func (c *DataExchange) UpdateRevisionRequest(input *UpdateRevisionInput) (req *r
 // API operation UpdateRevision for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request was invalid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
 //
-//   * AccessDeniedException
-//   Access to the resource is denied.
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateRevision
 func (c *DataExchange) UpdateRevision(input *UpdateRevisionInput) (*UpdateRevisionOutput, error) {
@@ -2218,12 +3004,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -2266,6 +3060,157 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// What occurs after a certain event.
+type Action struct {
+	_ struct{} `type:"structure"`
+
+	// Details for the export revision to Amazon S3 action.
+	ExportRevisionToS3 *AutoExportRevisionToS3RequestDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Action) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Action) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Action) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Action"}
+	if s.ExportRevisionToS3 != nil {
+		if err := s.ExportRevisionToS3.Validate(); err != nil {
+			invalidParams.AddNested("ExportRevisionToS3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportRevisionToS3 sets the ExportRevisionToS3 field's value.
+func (s *Action) SetExportRevisionToS3(v *AutoExportRevisionToS3RequestDetails) *Action {
+	s.ExportRevisionToS3 = v
+	return s
+}
+
+// The API Gateway API that is the asset.
+type ApiGatewayApiAsset struct {
+	_ struct{} `type:"structure"`
+
+	// The API description of the API asset.
+	ApiDescription *string `type:"string"`
+
+	// The API endpoint of the API asset.
+	ApiEndpoint *string `type:"string"`
+
+	// The unique identifier of the API asset.
+	ApiId *string `type:"string"`
+
+	// The API key of the API asset.
+	ApiKey *string `type:"string"`
+
+	// The API name of the API asset.
+	ApiName *string `type:"string"`
+
+	// The download URL of the API specification of the API asset.
+	ApiSpecificationDownloadUrl *string `type:"string"`
+
+	// The date and time that the upload URL expires, in ISO 8601 format.
+	ApiSpecificationDownloadUrlExpiresAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The protocol type of the API asset.
+	ProtocolType *string `type:"string" enum:"ProtocolType"`
+
+	// The stage of the API asset.
+	Stage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApiGatewayApiAsset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApiGatewayApiAsset) GoString() string {
+	return s.String()
+}
+
+// SetApiDescription sets the ApiDescription field's value.
+func (s *ApiGatewayApiAsset) SetApiDescription(v string) *ApiGatewayApiAsset {
+	s.ApiDescription = &v
+	return s
+}
+
+// SetApiEndpoint sets the ApiEndpoint field's value.
+func (s *ApiGatewayApiAsset) SetApiEndpoint(v string) *ApiGatewayApiAsset {
+	s.ApiEndpoint = &v
+	return s
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *ApiGatewayApiAsset) SetApiId(v string) *ApiGatewayApiAsset {
+	s.ApiId = &v
+	return s
+}
+
+// SetApiKey sets the ApiKey field's value.
+func (s *ApiGatewayApiAsset) SetApiKey(v string) *ApiGatewayApiAsset {
+	s.ApiKey = &v
+	return s
+}
+
+// SetApiName sets the ApiName field's value.
+func (s *ApiGatewayApiAsset) SetApiName(v string) *ApiGatewayApiAsset {
+	s.ApiName = &v
+	return s
+}
+
+// SetApiSpecificationDownloadUrl sets the ApiSpecificationDownloadUrl field's value.
+func (s *ApiGatewayApiAsset) SetApiSpecificationDownloadUrl(v string) *ApiGatewayApiAsset {
+	s.ApiSpecificationDownloadUrl = &v
+	return s
+}
+
+// SetApiSpecificationDownloadUrlExpiresAt sets the ApiSpecificationDownloadUrlExpiresAt field's value.
+func (s *ApiGatewayApiAsset) SetApiSpecificationDownloadUrlExpiresAt(v time.Time) *ApiGatewayApiAsset {
+	s.ApiSpecificationDownloadUrlExpiresAt = &v
+	return s
+}
+
+// SetProtocolType sets the ProtocolType field's value.
+func (s *ApiGatewayApiAsset) SetProtocolType(v string) *ApiGatewayApiAsset {
+	s.ProtocolType = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *ApiGatewayApiAsset) SetStage(v string) *ApiGatewayApiAsset {
+	s.Stage = &v
+	return s
+}
+
 // The destination for the asset.
 type AssetDestinationEntry struct {
 	_ struct{} `type:"structure"`
@@ -2275,7 +3220,7 @@ type AssetDestinationEntry struct {
 	// AssetId is a required field
 	AssetId *string `type:"string" required:"true"`
 
-	// The S3 bucket that is the destination for the asset.
+	// The Amazon S3 bucket that is the destination for the asset.
 	//
 	// Bucket is a required field
 	Bucket *string `type:"string" required:"true"`
@@ -2284,12 +3229,20 @@ type AssetDestinationEntry struct {
 	Key *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetDestinationEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetDestinationEntry) GoString() string {
 	return s.String()
 }
@@ -2328,21 +3281,66 @@ func (s *AssetDestinationEntry) SetKey(v string) *AssetDestinationEntry {
 	return s
 }
 
+// Details about the asset.
 type AssetDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 object that is the asset.
+	// Information about the API Gateway API asset.
+	ApiGatewayApiAsset *ApiGatewayApiAsset `type:"structure"`
+
+	// The AWS Lake Formation data permission that is the asset.
+	LakeFormationDataPermissionAsset *LakeFormationDataPermissionAsset `type:"structure"`
+
+	// The Amazon Redshift datashare that is the asset.
+	RedshiftDataShareAsset *RedshiftDataShareAsset `type:"structure"`
+
+	// The Amazon S3 data access that is the asset.
+	S3DataAccessAsset *S3DataAccessAsset `type:"structure"`
+
+	// The Amazon S3 object that is the asset.
 	S3SnapshotAsset *S3SnapshotAsset `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetDetails) GoString() string {
 	return s.String()
+}
+
+// SetApiGatewayApiAsset sets the ApiGatewayApiAsset field's value.
+func (s *AssetDetails) SetApiGatewayApiAsset(v *ApiGatewayApiAsset) *AssetDetails {
+	s.ApiGatewayApiAsset = v
+	return s
+}
+
+// SetLakeFormationDataPermissionAsset sets the LakeFormationDataPermissionAsset field's value.
+func (s *AssetDetails) SetLakeFormationDataPermissionAsset(v *LakeFormationDataPermissionAsset) *AssetDetails {
+	s.LakeFormationDataPermissionAsset = v
+	return s
+}
+
+// SetRedshiftDataShareAsset sets the RedshiftDataShareAsset field's value.
+func (s *AssetDetails) SetRedshiftDataShareAsset(v *RedshiftDataShareAsset) *AssetDetails {
+	s.RedshiftDataShareAsset = v
+	return s
+}
+
+// SetS3DataAccessAsset sets the S3DataAccessAsset field's value.
+func (s *AssetDetails) SetS3DataAccessAsset(v *S3DataAccessAsset) *AssetDetails {
+	s.S3DataAccessAsset = v
+	return s
 }
 
 // SetS3SnapshotAsset sets the S3SnapshotAsset field's value.
@@ -2351,10 +3349,15 @@ func (s *AssetDetails) SetS3SnapshotAsset(v *S3SnapshotAsset) *AssetDetails {
 	return s
 }
 
-// An asset in AWS Data Exchange is a piece of data that can be stored as an
-// S3 object. The asset can be a structured data file, an image file, or some
-// other data file. When you create an import job for your files, you create
-// an asset in AWS Data Exchange for each of those files.
+// An asset in AWS Data Exchange is a piece of data (Amazon S3 object) or a
+// means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway
+// API, AWS Lake Formation data permission, or Amazon S3 data access). The asset
+// can be a structured data file, an image file, or some other data file that
+// can be stored as an Amazon S3 object, an Amazon API Gateway API, or an Amazon
+// Redshift datashare, an AWS Lake Formation data permission, or an Amazon S3
+// data access. When you create an import job for your files, API Gateway APIs,
+// Amazon Redshift datashares, AWS Lake Formation data permission, or Amazon
+// S3 data access, you create an asset in AWS Data Exchange.
 type AssetEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -2363,13 +3366,12 @@ type AssetEntry struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
-	// Information about the asset, including its size.
+	// Details about the asset.
 	//
 	// AssetDetails is a required field
 	AssetDetails *AssetDetails `type:"structure" required:"true"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	//
 	// AssetType is a required field
 	AssetType *string `type:"string" required:"true" enum:"AssetType"`
@@ -2389,9 +3391,13 @@ type AssetEntry struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name. When exporting to Amazon S3, the asset name
+	// is used as default target Amazon S3 object key. When importing from Amazon
+	// API Gateway API, the API name is used as the asset name. When importing from
+	// Amazon Redshift, the datashare name is used as the asset name. When importing
+	// from AWS Lake Formation, the static values of "Database(s) included in LF-tag
+	// policy" or "Table(s) included in LF-tag policy" are used as the asset name.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -2412,12 +3418,20 @@ type AssetEntry struct {
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetEntry) GoString() string {
 	return s.String()
 }
@@ -2486,7 +3500,7 @@ func (s *AssetEntry) SetUpdatedAt(v time.Time) *AssetEntry {
 type AssetSourceEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket that's part of the source of the asset.
+	// The Amazon S3 bucket that's part of the source of the asset.
 	//
 	// Bucket is a required field
 	Bucket *string `type:"string" required:"true"`
@@ -2497,12 +3511,20 @@ type AssetSourceEntry struct {
 	Key *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetSourceEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetSourceEntry) GoString() string {
 	return s.String()
 }
@@ -2535,19 +3557,155 @@ func (s *AssetSourceEntry) SetKey(v string) *AssetSourceEntry {
 	return s
 }
 
-type CancelJobInput struct {
+// A revision destination is the Amazon S3 bucket folder destination to where
+// the export will be sent.
+type AutoExportRevisionDestinationEntry struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon S3 bucket that is the destination for the event action.
+	//
+	// Bucket is a required field
+	Bucket *string `type:"string" required:"true"`
+
+	// A string representing the pattern for generated names of the individual assets
+	// in the revision. For more information about key patterns, see Key patterns
+	// when exporting revisions (https://docs.aws.amazon.com/data-exchange/latest/userguide/jobs.html#revision-export-keypatterns).
+	KeyPattern *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportRevisionDestinationEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportRevisionDestinationEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoExportRevisionDestinationEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoExportRevisionDestinationEntry"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *AutoExportRevisionDestinationEntry) SetBucket(v string) *AutoExportRevisionDestinationEntry {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPattern sets the KeyPattern field's value.
+func (s *AutoExportRevisionDestinationEntry) SetKeyPattern(v string) *AutoExportRevisionDestinationEntry {
+	s.KeyPattern = &v
+	return s
+}
+
+// Details of the operation to be performed by the job.
+type AutoExportRevisionToS3RequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Encryption configuration for the auto export job.
+	Encryption *ExportServerSideEncryption `type:"structure"`
+
+	// A revision destination is the Amazon S3 bucket folder destination to where
+	// the export will be sent.
+	//
+	// RevisionDestination is a required field
+	RevisionDestination *AutoExportRevisionDestinationEntry `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportRevisionToS3RequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportRevisionToS3RequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoExportRevisionToS3RequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoExportRevisionToS3RequestDetails"}
+	if s.RevisionDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionDestination"))
+	}
+	if s.Encryption != nil {
+		if err := s.Encryption.Validate(); err != nil {
+			invalidParams.AddNested("Encryption", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RevisionDestination != nil {
+		if err := s.RevisionDestination.Validate(); err != nil {
+			invalidParams.AddNested("RevisionDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryption sets the Encryption field's value.
+func (s *AutoExportRevisionToS3RequestDetails) SetEncryption(v *ExportServerSideEncryption) *AutoExportRevisionToS3RequestDetails {
+	s.Encryption = v
+	return s
+}
+
+// SetRevisionDestination sets the RevisionDestination field's value.
+func (s *AutoExportRevisionToS3RequestDetails) SetRevisionDestination(v *AutoExportRevisionDestinationEntry) *AutoExportRevisionToS3RequestDetails {
+	s.RevisionDestination = v
+	return s
+}
+
+type CancelJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for a job.
+	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"JobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelJobInput) GoString() string {
 	return s.String()
 }
@@ -2578,12 +3736,20 @@ type CancelJobOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelJobOutput) GoString() string {
 	return s.String()
 }
@@ -2605,12 +3771,20 @@ type ConflictException struct {
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -2653,12 +3827,10 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A request to create a data set that contains one or more revisions.
 type CreateDataSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	//
 	// AssetType is a required field
 	AssetType *string `type:"string" required:"true" enum:"AssetType"`
@@ -2681,12 +3853,20 @@ type CreateDataSetInput struct {
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSetInput) GoString() string {
 	return s.String()
 }
@@ -2737,48 +3917,58 @@ func (s *CreateDataSetInput) SetTags(v map[string]*string) *CreateDataSetInput {
 type CreateDataSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the data set.
 	Arn *string `type:"string"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A description of a resource.
+	// The description for the data set.
 	Description *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the data set.
 	Id *string `type:"string"`
 
-	// The name of the model.
+	// The name of the data set.
 	Name *string `type:"string"`
 
 	// A property that defines the data set as OWNED by the account (for providers)
-	// or ENTITLED to the account (for subscribers). When an owned data set is published
-	// in a product, AWS Data Exchange creates a copy of the data set. Subscribers
-	// can access that copy of the data set as an entitled data set.
+	// or ENTITLED to the account (for subscribers).
 	Origin *string `type:"string" enum:"Origin"`
 
+	// If the origin of this data set is ENTITLED, includes the details for the
+	// product on AWS Marketplace.
 	OriginDetails *OriginDetails `type:"structure"`
 
-	// A unique identifier.
+	// The data set ID of the owned data set corresponding to the entitled data
+	// set being viewed. This parameter is returned when a data set owner is viewing
+	// the entitled copy of its owned data set.
 	SourceId *string `type:"string"`
 
+	// The tags for the data set.
 	Tags map[string]*string `type:"map"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSetOutput) GoString() string {
 	return s.String()
 }
@@ -2849,11 +4039,152 @@ func (s *CreateDataSetOutput) SetUpdatedAt(v time.Time) *CreateDataSetOutput {
 	return s
 }
 
-// The CreateJob request. AWS Data Exchange Jobs are asynchronous import or
-// export operations used to create or copy assets. A data set owner can both
-// import and export assets. A subscriber with an entitlement to a data set
-// can only export. Jobs are deleted 90 days after they are created. Created
-// jobs must be started with the StartJob operation.
+type CreateEventActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// What occurs after a certain event.
+	//
+	// Action is a required field
+	Action *Action `type:"structure" required:"true"`
+
+	// What occurs to start an action.
+	//
+	// Event is a required field
+	Event *Event `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEventActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEventActionInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Event == nil {
+		invalidParams.Add(request.NewErrParamRequired("Event"))
+	}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Event != nil {
+		if err := s.Event.Validate(); err != nil {
+			invalidParams.AddNested("Event", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *CreateEventActionInput) SetAction(v *Action) *CreateEventActionInput {
+	s.Action = v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *CreateEventActionInput) SetEvent(v *Event) *CreateEventActionInput {
+	s.Event = v
+	return s
+}
+
+type CreateEventActionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// What occurs after a certain event.
+	Action *Action `type:"structure"`
+
+	// The ARN for the event action.
+	Arn *string `type:"string"`
+
+	// The date and time that the event action was created, in ISO 8601 format.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// What occurs to start an action.
+	Event *Event `type:"structure"`
+
+	// The unique identifier for the event action.
+	Id *string `type:"string"`
+
+	// The date and time that the event action was last updated, in ISO 8601 format.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventActionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *CreateEventActionOutput) SetAction(v *Action) *CreateEventActionOutput {
+	s.Action = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateEventActionOutput) SetArn(v string) *CreateEventActionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateEventActionOutput) SetCreatedAt(v time.Time) *CreateEventActionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *CreateEventActionOutput) SetEvent(v *Event) *CreateEventActionOutput {
+	s.Event = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateEventActionOutput) SetId(v string) *CreateEventActionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CreateEventActionOutput) SetUpdatedAt(v time.Time) *CreateEventActionOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
 type CreateJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2868,12 +4199,20 @@ type CreateJobInput struct {
 	Type *string `type:"string" required:"true" enum:"Type"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateJobInput) GoString() string {
 	return s.String()
 }
@@ -2914,34 +4253,45 @@ func (s *CreateJobInput) SetType(v string) *CreateJobInput {
 type CreateJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the job.
 	Arn *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the job was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Details for the response.
+	// Details about the job.
 	Details *ResponseDetails `type:"structure"`
 
+	// The errors associated with jobs.
 	Errors []*JobError `type:"list"`
 
-	// A unique identifier.
+	// The unique identifier for the job.
 	Id *string `type:"string"`
 
+	// The state of the job.
 	State *string `type:"string" enum:"State"`
 
+	// The job type.
 	Type *string `type:"string" enum:"Type"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the job was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateJobOutput) GoString() string {
 	return s.String()
 }
@@ -2994,16 +4344,14 @@ func (s *CreateJobOutput) SetUpdatedAt(v time.Time) *CreateJobOutput {
 	return s
 }
 
-// Creates a revision for a data set. When they're created, revisions are not
-// published to products, and therefore are not available to subscribers. To
-// publish a revision to a data set in a product, the revision must first be
-// finalized.
 type CreateRevisionInput struct {
 	_ struct{} `type:"structure"`
 
 	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
@@ -3014,12 +4362,20 @@ type CreateRevisionInput struct {
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRevisionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRevisionInput) GoString() string {
 	return s.String()
 }
@@ -3061,37 +4417,66 @@ func (s *CreateRevisionInput) SetTags(v map[string]*string) *CreateRevisionInput
 type CreateRevisionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the revision.
 	Arn *string `type:"string"`
 
+	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with the data set revision.
 	DataSetId *string `type:"string"`
 
+	// To publish a revision to a data set in a product, the revision must first
+	// be finalized. Finalizing a revision tells AWS Data Exchange that your changes
+	// to the assets in the revision are complete. After it's in this read-only
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
 	Finalized *bool `type:"boolean"`
 
-	// A unique identifier.
+	// The unique identifier for the revision.
 	Id *string `type:"string"`
 
-	// A unique identifier.
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
+	RevocationComment *string `min:"10" type:"string"`
+
+	// A status indicating that subscribers' access to the revision was revoked.
+	Revoked *bool `type:"boolean"`
+
+	// The date and time that the revision was revoked, in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The revision ID of the owned revision corresponding to the entitled revision
+	// being viewed. This parameter is returned when a revision owner is viewing
+	// the entitled copy of its owned revision.
 	SourceId *string `type:"string"`
 
+	// The tags for the revision.
 	Tags map[string]*string `type:"map"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRevisionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRevisionOutput) GoString() string {
 	return s.String()
 }
@@ -3132,6 +4517,24 @@ func (s *CreateRevisionOutput) SetId(v string) *CreateRevisionOutput {
 	return s
 }
 
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *CreateRevisionOutput) SetRevocationComment(v string) *CreateRevisionOutput {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *CreateRevisionOutput) SetRevoked(v bool) *CreateRevisionOutput {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *CreateRevisionOutput) SetRevokedAt(v time.Time) *CreateRevisionOutput {
+	s.RevokedAt = &v
+	return s
+}
+
 // SetSourceId sets the SourceId field's value.
 func (s *CreateRevisionOutput) SetSourceId(v string) *CreateRevisionOutput {
 	s.SourceId = &v
@@ -3150,6 +4553,144 @@ func (s *CreateRevisionOutput) SetUpdatedAt(v time.Time) *CreateRevisionOutput {
 	return s
 }
 
+// Details of the operation to create an Amazon S3 data access from an S3 bucket.
+type CreateS3DataAccessFromS3BucketRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the S3 data access source asset.
+	//
+	// AssetSource is a required field
+	AssetSource *S3DataAccessAssetSourceEntry `type:"structure" required:"true"`
+
+	// The unique identifier for the data set associated with the creation of this
+	// Amazon S3 data access.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The unique identifier for a revision.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateS3DataAccessFromS3BucketRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateS3DataAccessFromS3BucketRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateS3DataAccessFromS3BucketRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateS3DataAccessFromS3BucketRequestDetails"}
+	if s.AssetSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetSource"))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.AssetSource != nil {
+		if err := s.AssetSource.Validate(); err != nil {
+			invalidParams.AddNested("AssetSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetSource sets the AssetSource field's value.
+func (s *CreateS3DataAccessFromS3BucketRequestDetails) SetAssetSource(v *S3DataAccessAssetSourceEntry) *CreateS3DataAccessFromS3BucketRequestDetails {
+	s.AssetSource = v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *CreateS3DataAccessFromS3BucketRequestDetails) SetDataSetId(v string) *CreateS3DataAccessFromS3BucketRequestDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *CreateS3DataAccessFromS3BucketRequestDetails) SetRevisionId(v string) *CreateS3DataAccessFromS3BucketRequestDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// Details about the response of the operation to create an S3 data access from
+// an S3 bucket.
+type CreateS3DataAccessFromS3BucketResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the asset source from an Amazon S3 bucket.
+	//
+	// AssetSource is a required field
+	AssetSource *S3DataAccessAssetSourceEntry `type:"structure" required:"true"`
+
+	// The unique identifier for this data set.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The unique identifier for the revision.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateS3DataAccessFromS3BucketResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateS3DataAccessFromS3BucketResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssetSource sets the AssetSource field's value.
+func (s *CreateS3DataAccessFromS3BucketResponseDetails) SetAssetSource(v *S3DataAccessAssetSourceEntry) *CreateS3DataAccessFromS3BucketResponseDetails {
+	s.AssetSource = v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *CreateS3DataAccessFromS3BucketResponseDetails) SetDataSetId(v string) *CreateS3DataAccessFromS3BucketResponseDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *CreateS3DataAccessFromS3BucketResponseDetails) SetRevisionId(v string) *CreateS3DataAccessFromS3BucketResponseDetails {
+	s.RevisionId = &v
+	return s
+}
+
 // A data set is an AWS resource with one or more revisions.
 type DataSetEntry struct {
 	_ struct{} `type:"structure"`
@@ -3159,8 +4700,7 @@ type DataSetEntry struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	//
 	// AssetType is a required field
 	AssetType *string `type:"string" required:"true" enum:"AssetType"`
@@ -3206,12 +4746,20 @@ type DataSetEntry struct {
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetEntry) GoString() string {
 	return s.String()
 }
@@ -3276,25 +4824,177 @@ func (s *DataSetEntry) SetUpdatedAt(v time.Time) *DataSetEntry {
 	return s
 }
 
-type DeleteAssetInput struct {
+// Extra details specific to a data update type notification.
+type DataUpdateRequestDetails struct {
 	_ struct{} `type:"structure"`
 
+	// A datetime in the past when the data was updated. This typically means that
+	// the underlying resource supporting the data set was updated.
+	DataUpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataUpdateRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataUpdateRequestDetails) GoString() string {
+	return s.String()
+}
+
+// SetDataUpdatedAt sets the DataUpdatedAt field's value.
+func (s *DataUpdateRequestDetails) SetDataUpdatedAt(v time.Time) *DataUpdateRequestDetails {
+	s.DataUpdatedAt = &v
+	return s
+}
+
+// The LF-tag policy for database resources.
+type DatabaseLFTagPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A list of LF-tag conditions that apply to database resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseLFTagPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseLFTagPolicy) GoString() string {
+	return s.String()
+}
+
+// SetExpression sets the Expression field's value.
+func (s *DatabaseLFTagPolicy) SetExpression(v []*LFTag) *DatabaseLFTagPolicy {
+	s.Expression = v
+	return s
+}
+
+// The LF-tag policy and permissions for database resources.
+type DatabaseLFTagPolicyAndPermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of LF-tag conditions that apply to database resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `type:"list" required:"true"`
+
+	// The permissions granted to subscribers on database resources.
+	//
+	// Permissions is a required field
+	Permissions []*string `type:"list" required:"true" enum:"DatabaseLFTagPolicyPermission"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseLFTagPolicyAndPermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseLFTagPolicyAndPermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatabaseLFTagPolicyAndPermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatabaseLFTagPolicyAndPermissions"}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.Expression != nil {
+		for i, v := range s.Expression {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Expression", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *DatabaseLFTagPolicyAndPermissions) SetExpression(v []*LFTag) *DatabaseLFTagPolicyAndPermissions {
+	s.Expression = v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *DatabaseLFTagPolicyAndPermissions) SetPermissions(v []*string) *DatabaseLFTagPolicyAndPermissions {
+	s.Permissions = v
+	return s
+}
+
+type DeleteAssetInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for an asset.
+	//
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"AssetId" type:"string" required:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAssetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAssetInput) GoString() string {
 	return s.String()
 }
@@ -3349,29 +5049,47 @@ type DeleteAssetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAssetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAssetOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteDataSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSetInput) GoString() string {
 	return s.String()
 }
@@ -3402,32 +5120,123 @@ type DeleteDataSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSetOutput) GoString() string {
 	return s.String()
 }
 
-type DeleteRevisionInput struct {
-	_ struct{} `type:"structure"`
+type DeleteEventActionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for the event action.
+	//
+	// EventActionId is a required field
+	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEventActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEventActionInput"}
+	if s.EventActionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventActionId"))
+	}
+	if s.EventActionId != nil && len(*s.EventActionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventActionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventActionId sets the EventActionId field's value.
+func (s *DeleteEventActionInput) SetEventActionId(v string) *DeleteEventActionInput {
+	s.EventActionId = &v
+	return s
+}
+
+type DeleteEventActionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventActionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteRevisionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRevisionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRevisionInput) GoString() string {
 	return s.String()
 }
@@ -3470,31 +5279,96 @@ type DeleteRevisionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRevisionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRevisionOutput) GoString() string {
 	return s.String()
 }
 
+// Extra details specific to a deprecation type notification.
+type DeprecationRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A datetime in the future when the data set will be deprecated.
+	//
+	// DeprecationAt is a required field
+	DeprecationAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeprecationRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeprecationRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeprecationRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeprecationRequestDetails"}
+	if s.DeprecationAt == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeprecationAt"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeprecationAt sets the DeprecationAt field's value.
+func (s *DeprecationRequestDetails) SetDeprecationAt(v time.Time) *DeprecationRequestDetails {
+	s.DeprecationAt = &v
+	return s
+}
+
+// Information about the job error.
 type Details struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the job error.
 	ImportAssetFromSignedUrlJobErrorDetails *ImportAssetFromSignedUrlJobErrorDetails `type:"structure"`
 
-	// The list of sources for the assets.
+	// Details about the job error.
 	ImportAssetsFromS3JobErrorDetails []*AssetSourceEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Details) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Details) GoString() string {
 	return s.String()
 }
@@ -3508,6 +5382,143 @@ func (s *Details) SetImportAssetFromSignedUrlJobErrorDetails(v *ImportAssetFromS
 // SetImportAssetsFromS3JobErrorDetails sets the ImportAssetsFromS3JobErrorDetails field's value.
 func (s *Details) SetImportAssetsFromS3JobErrorDetails(v []*AssetSourceEntry) *Details {
 	s.ImportAssetsFromS3JobErrorDetails = v
+	return s
+}
+
+// What occurs to start an action.
+type Event struct {
+	_ struct{} `type:"structure"`
+
+	// What occurs to start the revision publish action.
+	RevisionPublished *RevisionPublished `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Event) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Event) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Event) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Event"}
+	if s.RevisionPublished != nil {
+		if err := s.RevisionPublished.Validate(); err != nil {
+			invalidParams.AddNested("RevisionPublished", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRevisionPublished sets the RevisionPublished field's value.
+func (s *Event) SetRevisionPublished(v *RevisionPublished) *Event {
+	s.RevisionPublished = v
+	return s
+}
+
+// An event action is an object that defines the relationship between a specific
+// event and an automated action that will be taken on behalf of the customer.
+type EventActionEntry struct {
+	_ struct{} `type:"structure"`
+
+	// What occurs after a certain event.
+	//
+	// Action is a required field
+	Action *Action `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the event action.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The date and time that the event action was created, in ISO 8601 format.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// What occurs to start an action.
+	//
+	// Event is a required field
+	Event *Event `type:"structure" required:"true"`
+
+	// The unique identifier for the event action.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// The date and time that the event action was last updated, in ISO 8601 format.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventActionEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventActionEntry) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *EventActionEntry) SetAction(v *Action) *EventActionEntry {
+	s.Action = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *EventActionEntry) SetArn(v string) *EventActionEntry {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *EventActionEntry) SetCreatedAt(v time.Time) *EventActionEntry {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *EventActionEntry) SetEvent(v *Event) *EventActionEntry {
+	s.Event = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *EventActionEntry) SetId(v string) *EventActionEntry {
+	s.Id = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *EventActionEntry) SetUpdatedAt(v time.Time) *EventActionEntry {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -3531,12 +5542,20 @@ type ExportAssetToSignedUrlRequestDetails struct {
 	RevisionId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportAssetToSignedUrlRequestDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportAssetToSignedUrlRequestDetails) GoString() string {
 	return s.String()
 }
@@ -3604,12 +5623,20 @@ type ExportAssetToSignedUrlResponseDetails struct {
 	SignedUrlExpiresAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportAssetToSignedUrlResponseDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportAssetToSignedUrlResponseDetails) GoString() string {
 	return s.String()
 }
@@ -3667,12 +5694,20 @@ type ExportAssetsToS3RequestDetails struct {
 	RevisionId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportAssetsToS3RequestDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportAssetsToS3RequestDetails) GoString() string {
 	return s.String()
 }
@@ -3758,12 +5793,20 @@ type ExportAssetsToS3ResponseDetails struct {
 	RevisionId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportAssetsToS3ResponseDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportAssetsToS3ResponseDetails) GoString() string {
 	return s.String()
 }
@@ -3810,12 +5853,20 @@ type ExportRevisionsToS3RequestDetails struct {
 	RevisionDestinations []*RevisionDestinationEntry `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportRevisionsToS3RequestDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportRevisionsToS3RequestDetails) GoString() string {
 	return s.String()
 }
@@ -3881,18 +5932,29 @@ type ExportRevisionsToS3ResponseDetails struct {
 	// Encryption configuration of the export job.
 	Encryption *ExportServerSideEncryption `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the event action.
+	EventActionArn *string `type:"string"`
+
 	// The destination in Amazon S3 where the revision is exported.
 	//
 	// RevisionDestinations is a required field
 	RevisionDestinations []*RevisionDestinationEntry `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportRevisionsToS3ResponseDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportRevisionsToS3ResponseDetails) GoString() string {
 	return s.String()
 }
@@ -3909,6 +5971,12 @@ func (s *ExportRevisionsToS3ResponseDetails) SetEncryption(v *ExportServerSideEn
 	return s
 }
 
+// SetEventActionArn sets the EventActionArn field's value.
+func (s *ExportRevisionsToS3ResponseDetails) SetEventActionArn(v string) *ExportRevisionsToS3ResponseDetails {
+	s.EventActionArn = &v
+	return s
+}
+
 // SetRevisionDestinations sets the RevisionDestinations field's value.
 func (s *ExportRevisionsToS3ResponseDetails) SetRevisionDestinations(v []*RevisionDestinationEntry) *ExportRevisionsToS3ResponseDetails {
 	s.RevisionDestinations = v
@@ -3916,14 +5984,14 @@ func (s *ExportRevisionsToS3ResponseDetails) SetRevisionDestinations(v []*Revisi
 }
 
 // Encryption configuration of the export job. Includes the encryption type
-// as well as the AWS KMS key. The KMS key is only necessary if you chose the
-// KMS encryption type.
+// in addition to the AWS KMS key. The KMS key is only necessary if you chose
+// the KMS encryption type.
 type ExportServerSideEncryption struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the the AWS KMS key you want to use to
-	// encrypt the Amazon S3 objects. This parameter is required if you choose aws:kms
-	// as an encryption type.
+	// The Amazon Resource Name (ARN) of the AWS KMS key you want to use to encrypt
+	// the Amazon S3 objects. This parameter is required if you choose aws:kms as
+	// an encryption type.
 	KmsKeyArn *string `type:"string"`
 
 	// The type of server side encryption used for encrypting the objects in Amazon
@@ -3933,12 +6001,20 @@ type ExportServerSideEncryption struct {
 	Type *string `type:"string" required:"true" enum:"ServerSideEncryptionTypes"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportServerSideEncryption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportServerSideEncryption) GoString() string {
 	return s.String()
 }
@@ -3969,24 +6045,38 @@ func (s *ExportServerSideEncryption) SetType(v string) *ExportServerSideEncrypti
 }
 
 type GetAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for an asset.
+	//
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"AssetId" type:"string" required:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAssetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAssetInput) GoString() string {
 	return s.String()
 }
@@ -4040,45 +6130,60 @@ func (s *GetAssetInput) SetRevisionId(v string) *GetAssetInput {
 type GetAssetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the asset.
 	Arn *string `type:"string"`
 
+	// Details about the asset.
 	AssetDetails *AssetDetails `type:"structure"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the asset was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with this asset.
 	DataSetId *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the asset.
 	Id *string `type:"string"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name. When exporting to Amazon S3, the asset name
+	// is used as default target Amazon S3 object key. When importing from Amazon
+	// API Gateway API, the API name is used as the asset name. When importing from
+	// Amazon Redshift, the datashare name is used as the asset name. When importing
+	// from AWS Lake Formation, the static values of "Database(s) included in the
+	// LF-tag policy" or "Table(s) included in the LF-tag policy" are used as the
+	// asset name.
 	Name *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the revision associated with this asset.
 	RevisionId *string `type:"string"`
 
-	// A unique identifier.
+	// The asset ID of the owned asset corresponding to the entitled asset being
+	// viewed. This parameter is returned when an asset owner is viewing the entitled
+	// copy of its owned asset.
 	SourceId *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the asset was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAssetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAssetOutput) GoString() string {
 	return s.String()
 }
@@ -4144,18 +6249,28 @@ func (s *GetAssetOutput) SetUpdatedAt(v time.Time) *GetAssetOutput {
 }
 
 type GetDataSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDataSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDataSetInput) GoString() string {
 	return s.String()
 }
@@ -4185,48 +6300,58 @@ func (s *GetDataSetInput) SetDataSetId(v string) *GetDataSetInput {
 type GetDataSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the data set.
 	Arn *string `type:"string"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A description of a resource.
+	// The description for the data set.
 	Description *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the data set.
 	Id *string `type:"string"`
 
-	// The name of the model.
+	// The name of the data set.
 	Name *string `type:"string"`
 
 	// A property that defines the data set as OWNED by the account (for providers)
-	// or ENTITLED to the account (for subscribers). When an owned data set is published
-	// in a product, AWS Data Exchange creates a copy of the data set. Subscribers
-	// can access that copy of the data set as an entitled data set.
+	// or ENTITLED to the account (for subscribers).
 	Origin *string `type:"string" enum:"Origin"`
 
+	// If the origin of this data set is ENTITLED, includes the details for the
+	// product on AWS Marketplace.
 	OriginDetails *OriginDetails `type:"structure"`
 
-	// A unique identifier.
+	// The data set ID of the owned data set corresponding to the entitled data
+	// set being viewed. This parameter is returned when a data set owner is viewing
+	// the entitled copy of its owned data set.
 	SourceId *string `type:"string"`
 
+	// The tags for the data set.
 	Tags map[string]*string `type:"map"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDataSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDataSetOutput) GoString() string {
 	return s.String()
 }
@@ -4297,19 +6422,154 @@ func (s *GetDataSetOutput) SetUpdatedAt(v time.Time) *GetDataSetOutput {
 	return s
 }
 
-type GetJobInput struct {
+type GetEventActionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the event action.
+	//
+	// EventActionId is a required field
+	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventActionInput"}
+	if s.EventActionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventActionId"))
+	}
+	if s.EventActionId != nil && len(*s.EventActionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventActionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventActionId sets the EventActionId field's value.
+func (s *GetEventActionInput) SetEventActionId(v string) *GetEventActionInput {
+	s.EventActionId = &v
+	return s
+}
+
+type GetEventActionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// What occurs after a certain event.
+	Action *Action `type:"structure"`
+
+	// The ARN for the event action.
+	Arn *string `type:"string"`
+
+	// The date and time that the event action was created, in ISO 8601 format.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// What occurs to start an action.
+	Event *Event `type:"structure"`
+
+	// The unique identifier for the event action.
+	Id *string `type:"string"`
+
+	// The date and time that the event action was last updated, in ISO 8601 format.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventActionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GetEventActionOutput) SetAction(v *Action) *GetEventActionOutput {
+	s.Action = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetEventActionOutput) SetArn(v string) *GetEventActionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetEventActionOutput) SetCreatedAt(v time.Time) *GetEventActionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *GetEventActionOutput) SetEvent(v *Event) *GetEventActionOutput {
+	s.Event = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetEventActionOutput) SetId(v string) *GetEventActionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetEventActionOutput) SetUpdatedAt(v time.Time) *GetEventActionOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type GetJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for a job.
+	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"JobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobInput) GoString() string {
 	return s.String()
 }
@@ -4339,34 +6599,45 @@ func (s *GetJobInput) SetJobId(v string) *GetJobInput {
 type GetJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the job.
 	Arn *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the job was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Details for the response.
+	// Details about the job.
 	Details *ResponseDetails `type:"structure"`
 
+	// The errors associated with jobs.
 	Errors []*JobError `type:"list"`
 
-	// A unique identifier.
+	// The unique identifier for the job.
 	Id *string `type:"string"`
 
+	// The state of the job.
 	State *string `type:"string" enum:"State"`
 
+	// The job type.
 	Type *string `type:"string" enum:"Type"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the job was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobOutput) GoString() string {
 	return s.String()
 }
@@ -4420,21 +6691,33 @@ func (s *GetJobOutput) SetUpdatedAt(v time.Time) *GetJobOutput {
 }
 
 type GetRevisionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRevisionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRevisionInput) GoString() string {
 	return s.String()
 }
@@ -4476,37 +6759,66 @@ func (s *GetRevisionInput) SetRevisionId(v string) *GetRevisionInput {
 type GetRevisionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the revision.
 	Arn *string `type:"string"`
 
+	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with the data set revision.
 	DataSetId *string `type:"string"`
 
+	// To publish a revision to a data set in a product, the revision must first
+	// be finalized. Finalizing a revision tells AWS Data Exchange that your changes
+	// to the assets in the revision are complete. After it's in this read-only
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
 	Finalized *bool `type:"boolean"`
 
-	// A unique identifier.
+	// The unique identifier for the revision.
 	Id *string `type:"string"`
 
-	// A unique identifier.
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
+	RevocationComment *string `min:"10" type:"string"`
+
+	// A status indicating that subscribers' access to the revision was revoked.
+	Revoked *bool `type:"boolean"`
+
+	// The date and time that the revision was revoked, in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The revision ID of the owned revision corresponding to the entitled revision
+	// being viewed. This parameter is returned when a revision owner is viewing
+	// the entitled copy of its owned revision.
 	SourceId *string `type:"string"`
 
+	// The tags for the revision.
 	Tags map[string]*string `type:"map"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRevisionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRevisionOutput) GoString() string {
 	return s.String()
 }
@@ -4547,6 +6859,24 @@ func (s *GetRevisionOutput) SetId(v string) *GetRevisionOutput {
 	return s
 }
 
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *GetRevisionOutput) SetRevocationComment(v string) *GetRevisionOutput {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *GetRevisionOutput) SetRevoked(v bool) *GetRevisionOutput {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *GetRevisionOutput) SetRevokedAt(v time.Time) *GetRevisionOutput {
+	s.RevokedAt = &v
+	return s
+}
+
 // SetSourceId sets the SourceId field's value.
 func (s *GetRevisionOutput) SetSourceId(v string) *GetRevisionOutput {
 	s.SourceId = &v
@@ -4565,23 +6895,324 @@ func (s *GetRevisionOutput) SetUpdatedAt(v time.Time) *GetRevisionOutput {
 	return s
 }
 
+// The request details.
+type ImportAssetFromApiGatewayApiRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The API description. Markdown supported.
+	ApiDescription *string `type:"string"`
+
+	// The API Gateway API ID.
+	//
+	// ApiId is a required field
+	ApiId *string `type:"string" required:"true"`
+
+	// The API Gateway API key.
+	ApiKey *string `type:"string"`
+
+	// The API name.
+	//
+	// ApiName is a required field
+	ApiName *string `type:"string" required:"true"`
+
+	// The Base64-encoded MD5 hash of the OpenAPI 3.0 JSON API specification file.
+	// It is used to ensure the integrity of the file.
+	//
+	// ApiSpecificationMd5Hash is a required field
+	ApiSpecificationMd5Hash *string `min:"24" type:"string" required:"true"`
+
+	// The data set ID.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The protocol type.
+	//
+	// ProtocolType is a required field
+	ProtocolType *string `type:"string" required:"true" enum:"ProtocolType"`
+
+	// The revision ID.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+
+	// The API stage.
+	//
+	// Stage is a required field
+	Stage *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetFromApiGatewayApiRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetFromApiGatewayApiRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportAssetFromApiGatewayApiRequestDetails"}
+	if s.ApiId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiId"))
+	}
+	if s.ApiName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiName"))
+	}
+	if s.ApiSpecificationMd5Hash == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiSpecificationMd5Hash"))
+	}
+	if s.ApiSpecificationMd5Hash != nil && len(*s.ApiSpecificationMd5Hash) < 24 {
+		invalidParams.Add(request.NewErrParamMinLen("ApiSpecificationMd5Hash", 24))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.ProtocolType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtocolType"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.Stage == nil {
+		invalidParams.Add(request.NewErrParamRequired("Stage"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiDescription sets the ApiDescription field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiDescription(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiDescription = &v
+	return s
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiId(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiId = &v
+	return s
+}
+
+// SetApiKey sets the ApiKey field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiKey(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiKey = &v
+	return s
+}
+
+// SetApiName sets the ApiName field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiName(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiName = &v
+	return s
+}
+
+// SetApiSpecificationMd5Hash sets the ApiSpecificationMd5Hash field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiSpecificationMd5Hash(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiSpecificationMd5Hash = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetDataSetId(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetProtocolType sets the ProtocolType field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetProtocolType(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ProtocolType = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetRevisionId(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetStage(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.Stage = &v
+	return s
+}
+
+// The response details.
+type ImportAssetFromApiGatewayApiResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The API description.
+	ApiDescription *string `type:"string"`
+
+	// The API ID.
+	//
+	// ApiId is a required field
+	ApiId *string `type:"string" required:"true"`
+
+	// The API key.
+	ApiKey *string `type:"string"`
+
+	// The API name.
+	//
+	// ApiName is a required field
+	ApiName *string `type:"string" required:"true"`
+
+	// The Base64-encoded Md5 hash for the API asset, used to ensure the integrity
+	// of the API at that location.
+	//
+	// ApiSpecificationMd5Hash is a required field
+	ApiSpecificationMd5Hash *string `min:"24" type:"string" required:"true"`
+
+	// The upload URL of the API specification.
+	//
+	// ApiSpecificationUploadUrl is a required field
+	ApiSpecificationUploadUrl *string `type:"string" required:"true"`
+
+	// The date and time that the upload URL expires, in ISO 8601 format.
+	//
+	// ApiSpecificationUploadUrlExpiresAt is a required field
+	ApiSpecificationUploadUrlExpiresAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The data set ID.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The protocol type.
+	//
+	// ProtocolType is a required field
+	ProtocolType *string `type:"string" required:"true" enum:"ProtocolType"`
+
+	// The revision ID.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+
+	// The API stage.
+	//
+	// Stage is a required field
+	Stage *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetFromApiGatewayApiResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetFromApiGatewayApiResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetApiDescription sets the ApiDescription field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiDescription(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiDescription = &v
+	return s
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiId(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiId = &v
+	return s
+}
+
+// SetApiKey sets the ApiKey field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiKey(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiKey = &v
+	return s
+}
+
+// SetApiName sets the ApiName field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiName(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiName = &v
+	return s
+}
+
+// SetApiSpecificationMd5Hash sets the ApiSpecificationMd5Hash field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiSpecificationMd5Hash(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiSpecificationMd5Hash = &v
+	return s
+}
+
+// SetApiSpecificationUploadUrl sets the ApiSpecificationUploadUrl field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiSpecificationUploadUrl(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiSpecificationUploadUrl = &v
+	return s
+}
+
+// SetApiSpecificationUploadUrlExpiresAt sets the ApiSpecificationUploadUrlExpiresAt field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiSpecificationUploadUrlExpiresAt(v time.Time) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiSpecificationUploadUrlExpiresAt = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetDataSetId(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetProtocolType sets the ProtocolType field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetProtocolType(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ProtocolType = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetRevisionId(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetStage(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.Stage = &v
+	return s
+}
+
+// Details about the job error.
 type ImportAssetFromSignedUrlJobErrorDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// Details about the job error.
 	//
 	// AssetName is a required field
 	AssetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetFromSignedUrlJobErrorDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetFromSignedUrlJobErrorDetails) GoString() string {
 	return s.String()
 }
@@ -4596,8 +7227,8 @@ func (s *ImportAssetFromSignedUrlJobErrorDetails) SetAssetName(v string) *Import
 type ImportAssetFromSignedUrlRequestDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name.
 	//
 	// AssetName is a required field
 	AssetName *string `type:"string" required:"true"`
@@ -4619,12 +7250,20 @@ type ImportAssetFromSignedUrlRequestDetails struct {
 	RevisionId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetFromSignedUrlRequestDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetFromSignedUrlRequestDetails) GoString() string {
 	return s.String()
 }
@@ -4683,7 +7322,7 @@ func (s *ImportAssetFromSignedUrlRequestDetails) SetRevisionId(v string) *Import
 type ImportAssetFromSignedUrlResponseDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The name for the asset associated with this import response.
+	// The name for the asset associated with this import job.
 	//
 	// AssetName is a required field
 	AssetName *string `type:"string" required:"true"`
@@ -4709,12 +7348,20 @@ type ImportAssetFromSignedUrlResponseDetails struct {
 	SignedUrlExpiresAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetFromSignedUrlResponseDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetFromSignedUrlResponseDetails) GoString() string {
 	return s.String()
 }
@@ -4755,11 +7402,359 @@ func (s *ImportAssetFromSignedUrlResponseDetails) SetSignedUrlExpiresAt(v time.T
 	return s
 }
 
+// Details about the assets imported from an AWS Lake Formation tag policy request.
+type ImportAssetsFromLakeFormationTagPolicyRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the AWS Glue Data Catalog.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"12" type:"string" required:"true"`
+
+	// The unique identifier for the data set associated with this import job.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// A structure for the database object.
+	Database *DatabaseLFTagPolicyAndPermissions `type:"structure"`
+
+	// The unique identifier for the revision associated with this import job.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+
+	// The IAM role's ARN that allows AWS Data Exchange to assume the role and grant
+	// and revoke permissions of subscribers to AWS Lake Formation data permissions.
+	//
+	// RoleArn is a required field
+	RoleArn *string `type:"string" required:"true"`
+
+	// A structure for the table object.
+	Table *TableLFTagPolicyAndPermissions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromLakeFormationTagPolicyRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromLakeFormationTagPolicyRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportAssetsFromLakeFormationTagPolicyRequestDetails"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.Database != nil {
+		if err := s.Database.Validate(); err != nil {
+			invalidParams.AddNested("Database", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Table != nil {
+		if err := s.Table.Validate(); err != nil {
+			invalidParams.AddNested("Table", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetCatalogId(v string) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetDataSetId(v string) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetDatabase(v *DatabaseLFTagPolicyAndPermissions) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.Database = v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetRevisionId(v string) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetRoleArn(v string) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetTable(v *TableLFTagPolicyAndPermissions) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.Table = v
+	return s
+}
+
+// Details from an import AWS Lake Formation tag policy job response.
+type ImportAssetsFromLakeFormationTagPolicyResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the AWS Glue Data Catalog.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"12" type:"string" required:"true"`
+
+	// The unique identifier for the data set associated with this import job.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// A structure for the database object.
+	Database *DatabaseLFTagPolicyAndPermissions `type:"structure"`
+
+	// The unique identifier for the revision associated with this import job.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+
+	// The IAM role's ARN that allows AWS Data Exchange to assume the role and grant
+	// and revoke permissions to AWS Lake Formation data permissions.
+	//
+	// RoleArn is a required field
+	RoleArn *string `type:"string" required:"true"`
+
+	// A structure for the table object.
+	Table *TableLFTagPolicyAndPermissions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromLakeFormationTagPolicyResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromLakeFormationTagPolicyResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetCatalogId(v string) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetDataSetId(v string) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetDatabase(v *DatabaseLFTagPolicyAndPermissions) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.Database = v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetRevisionId(v string) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetRoleArn(v string) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetTable(v *TableLFTagPolicyAndPermissions) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.Table = v
+	return s
+}
+
+// Details from an import from Amazon Redshift datashare request.
+type ImportAssetsFromRedshiftDataSharesRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Amazon Redshift datashare assets.
+	//
+	// AssetSources is a required field
+	AssetSources []*RedshiftDataShareAssetSourceEntry `type:"list" required:"true"`
+
+	// The unique identifier for the data set associated with this import job.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The unique identifier for the revision associated with this import job.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromRedshiftDataSharesRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromRedshiftDataSharesRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportAssetsFromRedshiftDataSharesRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportAssetsFromRedshiftDataSharesRequestDetails"}
+	if s.AssetSources == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetSources"))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.AssetSources != nil {
+		for i, v := range s.AssetSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AssetSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetSources sets the AssetSources field's value.
+func (s *ImportAssetsFromRedshiftDataSharesRequestDetails) SetAssetSources(v []*RedshiftDataShareAssetSourceEntry) *ImportAssetsFromRedshiftDataSharesRequestDetails {
+	s.AssetSources = v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetsFromRedshiftDataSharesRequestDetails) SetDataSetId(v string) *ImportAssetsFromRedshiftDataSharesRequestDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetsFromRedshiftDataSharesRequestDetails) SetRevisionId(v string) *ImportAssetsFromRedshiftDataSharesRequestDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// Details from an import from Amazon Redshift datashare response.
+type ImportAssetsFromRedshiftDataSharesResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Amazon Redshift datashare asset sources.
+	//
+	// AssetSources is a required field
+	AssetSources []*RedshiftDataShareAssetSourceEntry `type:"list" required:"true"`
+
+	// The unique identifier for the data set associated with this import job.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The unique identifier for the revision associated with this import job.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromRedshiftDataSharesResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromRedshiftDataSharesResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssetSources sets the AssetSources field's value.
+func (s *ImportAssetsFromRedshiftDataSharesResponseDetails) SetAssetSources(v []*RedshiftDataShareAssetSourceEntry) *ImportAssetsFromRedshiftDataSharesResponseDetails {
+	s.AssetSources = v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetsFromRedshiftDataSharesResponseDetails) SetDataSetId(v string) *ImportAssetsFromRedshiftDataSharesResponseDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetsFromRedshiftDataSharesResponseDetails) SetRevisionId(v string) *ImportAssetsFromRedshiftDataSharesResponseDetails {
+	s.RevisionId = &v
+	return s
+}
+
 // Details of the operation to be performed by the job.
 type ImportAssetsFromS3RequestDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Is a list of S3 bucket and object key pairs.
+	// Is a list of Amazon S3 bucket and object key pairs.
 	//
 	// AssetSources is a required field
 	AssetSources []*AssetSourceEntry `type:"list" required:"true"`
@@ -4775,12 +7770,20 @@ type ImportAssetsFromS3RequestDetails struct {
 	RevisionId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetsFromS3RequestDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetsFromS3RequestDetails) GoString() string {
 	return s.String()
 }
@@ -4852,12 +7855,20 @@ type ImportAssetsFromS3ResponseDetails struct {
 	RevisionId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetsFromS3ResponseDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAssetsFromS3ResponseDetails) GoString() string {
 	return s.String()
 }
@@ -4889,12 +7900,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -4984,12 +8003,20 @@ type JobEntry struct {
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobEntry) GoString() string {
 	return s.String()
 }
@@ -5051,6 +8078,7 @@ type JobError struct {
 	// Code is a required field
 	Code *string `type:"string" required:"true" enum:"Code"`
 
+	// The details about the job error.
 	Details *Details `type:"structure"`
 
 	// The name of the limit that was reached.
@@ -5071,12 +8099,20 @@ type JobError struct {
 	ResourceType *string `type:"string" enum:"JobErrorResourceTypes"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobError) GoString() string {
 	return s.String()
 }
@@ -5123,23 +8159,390 @@ func (s *JobError) SetResourceType(v string) *JobError {
 	return s
 }
 
-type ListDataSetRevisionsInput struct {
+// The Amazon Resource Name (ARN) of the AWS KMS key used to encrypt the shared
+// S3 objects.
+type KmsKeyToGrant struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS KMS CMK (Key Management System Customer Managed Key) used to encrypt
+	// S3 objects in the shared S3 Bucket. AWS Data exchange will create a KMS grant
+	// for each subscriber to allow them to access and decrypt their entitled data
+	// that is encrypted using this KMS key specified.
+	//
+	// KmsKeyArn is a required field
+	KmsKeyArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsKeyToGrant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsKeyToGrant) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KmsKeyToGrant) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KmsKeyToGrant"}
+	if s.KmsKeyArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsKeyArn"))
+	}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *KmsKeyToGrant) SetKmsKeyArn(v string) *KmsKeyToGrant {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// Details about the AWS Lake Formation resource (Table or Database) included
+// in the AWS Lake Formation data permission.
+type LFResourceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the database resource included in the AWS Lake Formation data
+	// permission.
+	Database *DatabaseLFTagPolicy `type:"structure"`
+
+	// Details about the table resource included in the AWS Lake Formation data
+	// permission.
+	Table *TableLFTagPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFResourceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFResourceDetails) GoString() string {
+	return s.String()
+}
+
+// SetDatabase sets the Database field's value.
+func (s *LFResourceDetails) SetDatabase(v *DatabaseLFTagPolicy) *LFResourceDetails {
+	s.Database = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *LFResourceDetails) SetTable(v *TableLFTagPolicy) *LFResourceDetails {
+	s.Table = v
+	return s
+}
+
+// A structure that allows an LF-admin to grant permissions on certain conditions.
+type LFTag struct {
+	_ struct{} `type:"structure"`
+
+	// The key name for the LF-tag.
+	//
+	// TagKey is a required field
+	TagKey *string `type:"string" required:"true"`
+
+	// A list of LF-tag values.
+	//
+	// TagValues is a required field
+	TagValues []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFTag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LFTag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LFTag"}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *LFTag) SetTagKey(v string) *LFTag {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *LFTag) SetTagValues(v []*string) *LFTag {
+	s.TagValues = v
+	return s
+}
+
+// Details about the LF-tag policy.
+type LFTagPolicyDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the AWS Glue Data Catalog.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"12" type:"string" required:"true"`
+
+	// Details for the Lake Formation Resources included in the LF-tag policy.
+	//
+	// ResourceDetails is a required field
+	ResourceDetails *LFResourceDetails `type:"structure" required:"true"`
+
+	// The resource type for which the LF-tag policy applies.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true" enum:"LFResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFTagPolicyDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFTagPolicyDetails) GoString() string {
+	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *LFTagPolicyDetails) SetCatalogId(v string) *LFTagPolicyDetails {
+	s.CatalogId = &v
+	return s
+}
+
+// SetResourceDetails sets the ResourceDetails field's value.
+func (s *LFTagPolicyDetails) SetResourceDetails(v *LFResourceDetails) *LFTagPolicyDetails {
+	s.ResourceDetails = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *LFTagPolicyDetails) SetResourceType(v string) *LFTagPolicyDetails {
+	s.ResourceType = &v
+	return s
+}
+
+// The AWS Lake Formation data permission asset.
+type LakeFormationDataPermissionAsset struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the AWS Lake Formation data permission.
+	//
+	// LakeFormationDataPermissionDetails is a required field
+	LakeFormationDataPermissionDetails *LakeFormationDataPermissionDetails `type:"structure" required:"true"`
+
+	// The data permission type.
+	//
+	// LakeFormationDataPermissionType is a required field
+	LakeFormationDataPermissionType *string `type:"string" required:"true" enum:"LakeFormationDataPermissionType"`
+
+	// The permissions granted to the subscribers on the resource.
+	//
+	// Permissions is a required field
+	Permissions []*string `type:"list" required:"true" enum:"LFPermission"`
+
+	// The IAM role's ARN that allows AWS Data Exchange to assume the role and grant
+	// and revoke permissions to AWS Lake Formation data permissions.
+	RoleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationDataPermissionAsset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationDataPermissionAsset) GoString() string {
+	return s.String()
+}
+
+// SetLakeFormationDataPermissionDetails sets the LakeFormationDataPermissionDetails field's value.
+func (s *LakeFormationDataPermissionAsset) SetLakeFormationDataPermissionDetails(v *LakeFormationDataPermissionDetails) *LakeFormationDataPermissionAsset {
+	s.LakeFormationDataPermissionDetails = v
+	return s
+}
+
+// SetLakeFormationDataPermissionType sets the LakeFormationDataPermissionType field's value.
+func (s *LakeFormationDataPermissionAsset) SetLakeFormationDataPermissionType(v string) *LakeFormationDataPermissionAsset {
+	s.LakeFormationDataPermissionType = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *LakeFormationDataPermissionAsset) SetPermissions(v []*string) *LakeFormationDataPermissionAsset {
+	s.Permissions = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *LakeFormationDataPermissionAsset) SetRoleArn(v string) *LakeFormationDataPermissionAsset {
+	s.RoleArn = &v
+	return s
+}
+
+// Details about the AWS Lake Formation data permission.
+type LakeFormationDataPermissionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the LF-tag policy.
+	LFTagPolicy *LFTagPolicyDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationDataPermissionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationDataPermissionDetails) GoString() string {
+	return s.String()
+}
+
+// SetLFTagPolicy sets the LFTagPolicy field's value.
+func (s *LakeFormationDataPermissionDetails) SetLFTagPolicy(v *LFTagPolicyDetails) *LakeFormationDataPermissionDetails {
+	s.LFTagPolicy = v
+	return s
+}
+
+// Extra details specific to the affected scope in this LF data set.
+type LakeFormationTagPolicyDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The underlying Glue database that the notification is referring to.
+	Database *string `type:"string"`
+
+	// The underlying Glue table that the notification is referring to.
+	Table *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationTagPolicyDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationTagPolicyDetails) GoString() string {
+	return s.String()
+}
+
+// SetDatabase sets the Database field's value.
+func (s *LakeFormationTagPolicyDetails) SetDatabase(v string) *LakeFormationTagPolicyDetails {
+	s.Database = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *LakeFormationTagPolicyDetails) SetTable(v string) *LakeFormationTagPolicyDetails {
+	s.Table = &v
+	return s
+}
+
+type ListDataSetRevisionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The maximum number of results returned by a single call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetRevisionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetRevisionsInput) GoString() string {
 	return s.String()
 }
@@ -5188,15 +8591,24 @@ type ListDataSetRevisionsOutput struct {
 	// results.
 	NextToken *string `type:"string"`
 
+	// The asset objects listed by the request.
 	Revisions []*RevisionEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetRevisionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetRevisionsOutput) GoString() string {
 	return s.String()
 }
@@ -5214,21 +8626,34 @@ func (s *ListDataSetRevisionsOutput) SetRevisions(v []*RevisionEntry) *ListDataS
 }
 
 type ListDataSetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results returned by a single call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// A property that defines the data set as OWNED by the account (for providers)
+	// or ENTITLED to the account (for subscribers).
 	Origin *string `location:"querystring" locationName:"origin" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetsInput) GoString() string {
 	return s.String()
 }
@@ -5267,6 +8692,7 @@ func (s *ListDataSetsInput) SetOrigin(v string) *ListDataSetsInput {
 type ListDataSetsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The data set objects listed by the request.
 	DataSets []*DataSetEntry `type:"list"`
 
 	// The token value retrieved from a previous call to access the next page of
@@ -5274,12 +8700,20 @@ type ListDataSetsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetsOutput) GoString() string {
 	return s.String()
 }
@@ -5296,24 +8730,141 @@ func (s *ListDataSetsOutput) SetNextToken(v string) *ListDataSetsOutput {
 	return s
 }
 
-type ListJobsInput struct {
-	_ struct{} `type:"structure"`
+type ListEventActionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	DataSetId *string `location:"querystring" locationName:"dataSetId" type:"string"`
+	// The unique identifier for the event source.
+	EventSourceId *string `location:"querystring" locationName:"eventSourceId" type:"string"`
 
+	// The maximum number of results returned by a single call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventActionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventActionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEventActionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEventActionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventSourceId sets the EventSourceId field's value.
+func (s *ListEventActionsInput) SetEventSourceId(v string) *ListEventActionsInput {
+	s.EventSourceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEventActionsInput) SetMaxResults(v int64) *ListEventActionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventActionsInput) SetNextToken(v string) *ListEventActionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEventActionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The event action objects listed by the request.
+	EventActions []*EventActionEntry `type:"list"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventActionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventActionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventActions sets the EventActions field's value.
+func (s *ListEventActionsOutput) SetEventActions(v []*EventActionEntry) *ListEventActionsOutput {
+	s.EventActions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventActionsOutput) SetNextToken(v string) *ListEventActionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListJobsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for a data set.
+	DataSetId *string `location:"querystring" locationName:"dataSetId" type:"string"`
+
+	// The maximum number of results returned by a single call.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The unique identifier for a revision.
 	RevisionId *string `location:"querystring" locationName:"revisionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsInput) GoString() string {
 	return s.String()
 }
@@ -5358,6 +8909,7 @@ func (s *ListJobsInput) SetRevisionId(v string) *ListJobsInput {
 type ListJobsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The jobs listed by the request.
 	Jobs []*JobEntry `type:"list"`
 
 	// The token value retrieved from a previous call to access the next page of
@@ -5365,12 +8917,20 @@ type ListJobsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsOutput) GoString() string {
 	return s.String()
 }
@@ -5388,25 +8948,40 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 }
 
 type ListRevisionAssetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The maximum number of results returned by a single call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRevisionAssetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRevisionAssetsInput) GoString() string {
 	return s.String()
 }
@@ -5463,6 +9038,7 @@ func (s *ListRevisionAssetsInput) SetRevisionId(v string) *ListRevisionAssetsInp
 type ListRevisionAssetsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The asset objects listed by the request.
 	Assets []*AssetEntry `type:"list"`
 
 	// The token value retrieved from a previous call to access the next page of
@@ -5470,12 +9046,20 @@ type ListRevisionAssetsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRevisionAssetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRevisionAssetsOutput) GoString() string {
 	return s.String()
 }
@@ -5493,18 +9077,28 @@ func (s *ListRevisionAssetsOutput) SetNextToken(v string) *ListRevisionAssetsOut
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	//
 	// ResourceArn is a required field
-	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -5534,15 +9128,24 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A label that consists of a customer-defined key and an optional value.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5553,19 +9156,98 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// Extra details specific to this notification.
+type NotificationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Extra details specific to a data update type notification.
+	DataUpdate *DataUpdateRequestDetails `type:"structure"`
+
+	// Extra details specific to a deprecation type notification.
+	Deprecation *DeprecationRequestDetails `type:"structure"`
+
+	// Extra details specific to a schema change type notification.
+	SchemaChange *SchemaChangeRequestDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotificationDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotificationDetails"}
+	if s.Deprecation != nil {
+		if err := s.Deprecation.Validate(); err != nil {
+			invalidParams.AddNested("Deprecation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SchemaChange != nil {
+		if err := s.SchemaChange.Validate(); err != nil {
+			invalidParams.AddNested("SchemaChange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataUpdate sets the DataUpdate field's value.
+func (s *NotificationDetails) SetDataUpdate(v *DataUpdateRequestDetails) *NotificationDetails {
+	s.DataUpdate = v
+	return s
+}
+
+// SetDeprecation sets the Deprecation field's value.
+func (s *NotificationDetails) SetDeprecation(v *DeprecationRequestDetails) *NotificationDetails {
+	s.Deprecation = v
+	return s
+}
+
+// SetSchemaChange sets the SchemaChange field's value.
+func (s *NotificationDetails) SetSchemaChange(v *SchemaChangeRequestDetails) *NotificationDetails {
+	s.SchemaChange = v
+	return s
+}
+
+// Details about the origin of the data set.
 type OriginDetails struct {
 	_ struct{} `type:"structure"`
 
-	// ProductId is a required field
-	ProductId *string `type:"string" required:"true"`
+	// The product ID of the origin of the data set.
+	ProductId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OriginDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OriginDetails) GoString() string {
 	return s.String()
 }
@@ -5576,9 +9258,192 @@ func (s *OriginDetails) SetProductId(v string) *OriginDetails {
 	return s
 }
 
+// The Amazon Redshift datashare asset.
+type RedshiftDataShareAsset struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the datashare asset.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareAsset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareAsset) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RedshiftDataShareAsset) SetArn(v string) *RedshiftDataShareAsset {
+	s.Arn = &v
+	return s
+}
+
+// The source of the Amazon Redshift datashare asset.
+type RedshiftDataShareAssetSourceEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the datashare asset.
+	//
+	// DataShareArn is a required field
+	DataShareArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareAssetSourceEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareAssetSourceEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftDataShareAssetSourceEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftDataShareAssetSourceEntry"}
+	if s.DataShareArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataShareArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *RedshiftDataShareAssetSourceEntry) SetDataShareArn(v string) *RedshiftDataShareAssetSourceEntry {
+	s.DataShareArn = &v
+	return s
+}
+
+// Extra details specific to the affected scope in this Redshift data set.
+type RedshiftDataShareDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the underlying Redshift data share that is being affected by this
+	// notification.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The database name in the Redshift data share that is being affected by this
+	// notification.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
+
+	// A function name in the Redshift database that is being affected by this notification.
+	Function *string `type:"string"`
+
+	// A schema name in the Redshift database that is being affected by this notification.
+	Schema *string `type:"string"`
+
+	// A table name in the Redshift database that is being affected by this notification.
+	Table *string `type:"string"`
+
+	// A view name in the Redshift database that is being affected by this notification.
+	View *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftDataShareDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftDataShareDetails"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *RedshiftDataShareDetails) SetArn(v string) *RedshiftDataShareDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *RedshiftDataShareDetails) SetDatabase(v string) *RedshiftDataShareDetails {
+	s.Database = &v
+	return s
+}
+
+// SetFunction sets the Function field's value.
+func (s *RedshiftDataShareDetails) SetFunction(v string) *RedshiftDataShareDetails {
+	s.Function = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *RedshiftDataShareDetails) SetSchema(v string) *RedshiftDataShareDetails {
+	s.Schema = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *RedshiftDataShareDetails) SetTable(v string) *RedshiftDataShareDetails {
+	s.Table = &v
+	return s
+}
+
+// SetView sets the View field's value.
+func (s *RedshiftDataShareDetails) SetView(v string) *RedshiftDataShareDetails {
+	s.View = &v
+	return s
+}
+
 // The details for the request.
 type RequestDetails struct {
 	_ struct{} `type:"structure"`
+
+	// Details of the request to create S3 data access from the Amazon S3 bucket.
+	CreateS3DataAccessFromS3Bucket *CreateS3DataAccessFromS3BucketRequestDetails `type:"structure"`
 
 	// Details about the export to signed URL request.
 	ExportAssetToSignedUrl *ExportAssetToSignedUrlRequestDetails `type:"structure"`
@@ -5590,18 +9455,35 @@ type RequestDetails struct {
 	ExportRevisionsToS3 *ExportRevisionsToS3RequestDetails `type:"structure"`
 
 	// Details about the import from signed URL request.
-	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlRequestDetails `type:"structure"`
+	ImportAssetFromApiGatewayApi *ImportAssetFromApiGatewayApiRequestDetails `type:"structure"`
 
 	// Details about the import from Amazon S3 request.
+	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlRequestDetails `type:"structure"`
+
+	// Request details for the ImportAssetsFromLakeFormationTagPolicy job.
+	ImportAssetsFromLakeFormationTagPolicy *ImportAssetsFromLakeFormationTagPolicyRequestDetails `type:"structure"`
+
+	// Details from an import from Amazon Redshift datashare request.
+	ImportAssetsFromRedshiftDataShares *ImportAssetsFromRedshiftDataSharesRequestDetails `type:"structure"`
+
+	// Details about the import asset from API Gateway API request.
 	ImportAssetsFromS3 *ImportAssetsFromS3RequestDetails `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestDetails) GoString() string {
 	return s.String()
 }
@@ -5609,6 +9491,11 @@ func (s RequestDetails) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RequestDetails) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RequestDetails"}
+	if s.CreateS3DataAccessFromS3Bucket != nil {
+		if err := s.CreateS3DataAccessFromS3Bucket.Validate(); err != nil {
+			invalidParams.AddNested("CreateS3DataAccessFromS3Bucket", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ExportAssetToSignedUrl != nil {
 		if err := s.ExportAssetToSignedUrl.Validate(); err != nil {
 			invalidParams.AddNested("ExportAssetToSignedUrl", err.(request.ErrInvalidParams))
@@ -5624,9 +9511,24 @@ func (s *RequestDetails) Validate() error {
 			invalidParams.AddNested("ExportRevisionsToS3", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ImportAssetFromApiGatewayApi != nil {
+		if err := s.ImportAssetFromApiGatewayApi.Validate(); err != nil {
+			invalidParams.AddNested("ImportAssetFromApiGatewayApi", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ImportAssetFromSignedUrl != nil {
 		if err := s.ImportAssetFromSignedUrl.Validate(); err != nil {
 			invalidParams.AddNested("ImportAssetFromSignedUrl", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ImportAssetsFromLakeFormationTagPolicy != nil {
+		if err := s.ImportAssetsFromLakeFormationTagPolicy.Validate(); err != nil {
+			invalidParams.AddNested("ImportAssetsFromLakeFormationTagPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ImportAssetsFromRedshiftDataShares != nil {
+		if err := s.ImportAssetsFromRedshiftDataShares.Validate(); err != nil {
+			invalidParams.AddNested("ImportAssetsFromRedshiftDataShares", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.ImportAssetsFromS3 != nil {
@@ -5639,6 +9541,12 @@ func (s *RequestDetails) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCreateS3DataAccessFromS3Bucket sets the CreateS3DataAccessFromS3Bucket field's value.
+func (s *RequestDetails) SetCreateS3DataAccessFromS3Bucket(v *CreateS3DataAccessFromS3BucketRequestDetails) *RequestDetails {
+	s.CreateS3DataAccessFromS3Bucket = v
+	return s
 }
 
 // SetExportAssetToSignedUrl sets the ExportAssetToSignedUrl field's value.
@@ -5659,9 +9567,27 @@ func (s *RequestDetails) SetExportRevisionsToS3(v *ExportRevisionsToS3RequestDet
 	return s
 }
 
+// SetImportAssetFromApiGatewayApi sets the ImportAssetFromApiGatewayApi field's value.
+func (s *RequestDetails) SetImportAssetFromApiGatewayApi(v *ImportAssetFromApiGatewayApiRequestDetails) *RequestDetails {
+	s.ImportAssetFromApiGatewayApi = v
+	return s
+}
+
 // SetImportAssetFromSignedUrl sets the ImportAssetFromSignedUrl field's value.
 func (s *RequestDetails) SetImportAssetFromSignedUrl(v *ImportAssetFromSignedUrlRequestDetails) *RequestDetails {
 	s.ImportAssetFromSignedUrl = v
+	return s
+}
+
+// SetImportAssetsFromLakeFormationTagPolicy sets the ImportAssetsFromLakeFormationTagPolicy field's value.
+func (s *RequestDetails) SetImportAssetsFromLakeFormationTagPolicy(v *ImportAssetsFromLakeFormationTagPolicyRequestDetails) *RequestDetails {
+	s.ImportAssetsFromLakeFormationTagPolicy = v
+	return s
+}
+
+// SetImportAssetsFromRedshiftDataShares sets the ImportAssetsFromRedshiftDataShares field's value.
+func (s *RequestDetails) SetImportAssetsFromRedshiftDataShares(v *ImportAssetsFromRedshiftDataSharesRequestDetails) *RequestDetails {
+	s.ImportAssetsFromRedshiftDataShares = v
 	return s
 }
 
@@ -5686,12 +9612,20 @@ type ResourceNotFoundException struct {
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -5738,6 +9672,9 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ResponseDetails struct {
 	_ struct{} `type:"structure"`
 
+	// Response details from the CreateS3DataAccessFromS3Bucket job.
+	CreateS3DataAccessFromS3Bucket *CreateS3DataAccessFromS3BucketResponseDetails `type:"structure"`
+
 	// Details for the export to signed URL response.
 	ExportAssetToSignedUrl *ExportAssetToSignedUrlResponseDetails `type:"structure"`
 
@@ -5747,21 +9684,44 @@ type ResponseDetails struct {
 	// Details for the export revisions to Amazon S3 response.
 	ExportRevisionsToS3 *ExportRevisionsToS3ResponseDetails `type:"structure"`
 
+	// The response details.
+	ImportAssetFromApiGatewayApi *ImportAssetFromApiGatewayApiResponseDetails `type:"structure"`
+
 	// Details for the import from signed URL response.
 	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlResponseDetails `type:"structure"`
+
+	// Response details from the ImportAssetsFromLakeFormationTagPolicy job.
+	ImportAssetsFromLakeFormationTagPolicy *ImportAssetsFromLakeFormationTagPolicyResponseDetails `type:"structure"`
+
+	// Details from an import from Amazon Redshift datashare response.
+	ImportAssetsFromRedshiftDataShares *ImportAssetsFromRedshiftDataSharesResponseDetails `type:"structure"`
 
 	// Details for the import from Amazon S3 response.
 	ImportAssetsFromS3 *ImportAssetsFromS3ResponseDetails `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResponseDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResponseDetails) GoString() string {
 	return s.String()
+}
+
+// SetCreateS3DataAccessFromS3Bucket sets the CreateS3DataAccessFromS3Bucket field's value.
+func (s *ResponseDetails) SetCreateS3DataAccessFromS3Bucket(v *CreateS3DataAccessFromS3BucketResponseDetails) *ResponseDetails {
+	s.CreateS3DataAccessFromS3Bucket = v
+	return s
 }
 
 // SetExportAssetToSignedUrl sets the ExportAssetToSignedUrl field's value.
@@ -5782,9 +9742,27 @@ func (s *ResponseDetails) SetExportRevisionsToS3(v *ExportRevisionsToS3ResponseD
 	return s
 }
 
+// SetImportAssetFromApiGatewayApi sets the ImportAssetFromApiGatewayApi field's value.
+func (s *ResponseDetails) SetImportAssetFromApiGatewayApi(v *ImportAssetFromApiGatewayApiResponseDetails) *ResponseDetails {
+	s.ImportAssetFromApiGatewayApi = v
+	return s
+}
+
 // SetImportAssetFromSignedUrl sets the ImportAssetFromSignedUrl field's value.
 func (s *ResponseDetails) SetImportAssetFromSignedUrl(v *ImportAssetFromSignedUrlResponseDetails) *ResponseDetails {
 	s.ImportAssetFromSignedUrl = v
+	return s
+}
+
+// SetImportAssetsFromLakeFormationTagPolicy sets the ImportAssetsFromLakeFormationTagPolicy field's value.
+func (s *ResponseDetails) SetImportAssetsFromLakeFormationTagPolicy(v *ImportAssetsFromLakeFormationTagPolicyResponseDetails) *ResponseDetails {
+	s.ImportAssetsFromLakeFormationTagPolicy = v
+	return s
+}
+
+// SetImportAssetsFromRedshiftDataShares sets the ImportAssetsFromRedshiftDataShares field's value.
+func (s *ResponseDetails) SetImportAssetsFromRedshiftDataShares(v *ImportAssetsFromRedshiftDataSharesResponseDetails) *ResponseDetails {
+	s.ImportAssetsFromRedshiftDataShares = v
 	return s
 }
 
@@ -5798,7 +9776,7 @@ func (s *ResponseDetails) SetImportAssetsFromS3(v *ImportAssetsFromS3ResponseDet
 type RevisionDestinationEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket that is the destination for the assets in the revision.
+	// The Amazon S3 bucket that is the destination for the assets in the revision.
 	//
 	// Bucket is a required field
 	Bucket *string `type:"string" required:"true"`
@@ -5814,12 +9792,20 @@ type RevisionDestinationEntry struct {
 	RevisionId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevisionDestinationEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevisionDestinationEntry) GoString() string {
 	return s.String()
 }
@@ -5875,7 +9861,7 @@ type RevisionEntry struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The unique identifier for the data set associated with this revision.
+	// The unique identifier for the data set associated with the data set revision.
 	//
 	// DataSetId is a required field
 	DataSetId *string `type:"string" required:"true"`
@@ -5883,18 +9869,26 @@ type RevisionEntry struct {
 	// To publish a revision to a data set in a product, the revision must first
 	// be finalized. Finalizing a revision tells AWS Data Exchange that your changes
 	// to the assets in the revision are complete. After it's in this read-only
-	// state, you can publish the revision to your products.
-	//
-	// Finalized revisions can be published through the AWS Data Exchange console
-	// or the AWS Marketplace Catalog API, using the StartChangeSet AWS Marketplace
-	// Catalog API action. When using the API, revisions are uniquely identified
-	// by their ARN.
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
 	Finalized *bool `type:"boolean"`
 
 	// The unique identifier for the revision.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
+
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
+	RevocationComment *string `min:"10" type:"string"`
+
+	// A status indicating that subscribers' access to the revision was revoked.
+	Revoked *bool `type:"boolean"`
+
+	// The date and time that the revision was revoked, in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The revision ID of the owned revision corresponding to the entitled revision
 	// being viewed. This parameter is returned when a revision owner is viewing
@@ -5907,12 +9901,20 @@ type RevisionEntry struct {
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevisionEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevisionEntry) GoString() string {
 	return s.String()
 }
@@ -5953,6 +9955,24 @@ func (s *RevisionEntry) SetId(v string) *RevisionEntry {
 	return s
 }
 
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *RevisionEntry) SetRevocationComment(v string) *RevisionEntry {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *RevisionEntry) SetRevoked(v bool) *RevisionEntry {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *RevisionEntry) SetRevokedAt(v time.Time) *RevisionEntry {
+	s.RevokedAt = &v
+	return s
+}
+
 // SetSourceId sets the SourceId field's value.
 func (s *RevisionEntry) SetSourceId(v string) *RevisionEntry {
 	s.SourceId = &v
@@ -5965,22 +9985,507 @@ func (s *RevisionEntry) SetUpdatedAt(v time.Time) *RevisionEntry {
 	return s
 }
 
-// The S3 object that is the asset.
+// Information about the published revision.
+type RevisionPublished struct {
+	_ struct{} `type:"structure"`
+
+	// The data set ID of the published revision.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevisionPublished) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevisionPublished) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RevisionPublished) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RevisionPublished"}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *RevisionPublished) SetDataSetId(v string) *RevisionPublished {
+	s.DataSetId = &v
+	return s
+}
+
+type RevokeRevisionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for a data set.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// The unique identifier for a revision.
+	//
+	// RevisionId is a required field
+	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
+
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
+	//
+	// RevocationComment is a required field
+	RevocationComment *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeRevisionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeRevisionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RevokeRevisionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RevokeRevisionInput"}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.RevisionId != nil && len(*s.RevisionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevisionId", 1))
+	}
+	if s.RevocationComment == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevocationComment"))
+	}
+	if s.RevocationComment != nil && len(*s.RevocationComment) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("RevocationComment", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *RevokeRevisionInput) SetDataSetId(v string) *RevokeRevisionInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *RevokeRevisionInput) SetRevisionId(v string) *RevokeRevisionInput {
+	s.RevisionId = &v
+	return s
+}
+
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *RevokeRevisionInput) SetRevocationComment(v string) *RevokeRevisionInput {
+	s.RevocationComment = &v
+	return s
+}
+
+type RevokeRevisionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN for the revision.
+	Arn *string `type:"string"`
+
+	// An optional comment about the revision.
+	Comment *string `type:"string"`
+
+	// The date and time that the revision was created, in ISO 8601 format.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The unique identifier for the data set associated with the data set revision.
+	DataSetId *string `type:"string"`
+
+	// To publish a revision to a data set in a product, the revision must first
+	// be finalized. Finalizing a revision tells AWS Data Exchange that changes
+	// to the assets in the revision are complete. After it's in this read-only
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
+	Finalized *bool `type:"boolean"`
+
+	// The unique identifier for the revision.
+	Id *string `type:"string"`
+
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
+	RevocationComment *string `min:"10" type:"string"`
+
+	// A status indicating that subscribers' access to the revision was revoked.
+	Revoked *bool `type:"boolean"`
+
+	// The date and time that the revision was revoked, in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The revision ID of the owned revision corresponding to the entitled revision
+	// being viewed. This parameter is returned when a revision owner is viewing
+	// the entitled copy of its owned revision.
+	SourceId *string `type:"string"`
+
+	// The date and time that the revision was last updated, in ISO 8601 format.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeRevisionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeRevisionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RevokeRevisionOutput) SetArn(v string) *RevokeRevisionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *RevokeRevisionOutput) SetComment(v string) *RevokeRevisionOutput {
+	s.Comment = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *RevokeRevisionOutput) SetCreatedAt(v time.Time) *RevokeRevisionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *RevokeRevisionOutput) SetDataSetId(v string) *RevokeRevisionOutput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetFinalized sets the Finalized field's value.
+func (s *RevokeRevisionOutput) SetFinalized(v bool) *RevokeRevisionOutput {
+	s.Finalized = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *RevokeRevisionOutput) SetId(v string) *RevokeRevisionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *RevokeRevisionOutput) SetRevocationComment(v string) *RevokeRevisionOutput {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *RevokeRevisionOutput) SetRevoked(v bool) *RevokeRevisionOutput {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *RevokeRevisionOutput) SetRevokedAt(v time.Time) *RevokeRevisionOutput {
+	s.RevokedAt = &v
+	return s
+}
+
+// SetSourceId sets the SourceId field's value.
+func (s *RevokeRevisionOutput) SetSourceId(v string) *RevokeRevisionOutput {
+	s.SourceId = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *RevokeRevisionOutput) SetUpdatedAt(v time.Time) *RevokeRevisionOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// The Amazon S3 data access that is the asset.
+type S3DataAccessAsset struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket hosting data to be shared in the S3 data access.
+	//
+	// Bucket is a required field
+	Bucket *string `type:"string" required:"true"`
+
+	// The Amazon S3 bucket used for hosting shared data in the Amazon S3 data access.
+	KeyPrefixes []*string `type:"list"`
+
+	// S3 keys made available using this asset.
+	Keys []*string `type:"list"`
+
+	// List of AWS KMS CMKs (Key Management System Customer Managed Keys) and ARNs
+	// used to encrypt S3 objects being shared in this S3 Data Access asset. Providers
+	// must include all AWS KMS keys used to encrypt these shared S3 objects.
+	KmsKeysToGrant []*KmsKeyToGrant `min:"1" type:"list"`
+
+	// The automatically-generated bucket-style alias for your Amazon S3 Access
+	// Point. Customers can access their entitled data using the S3 Access Point
+	// alias.
+	S3AccessPointAlias *string `type:"string"`
+
+	// The ARN for your Amazon S3 Access Point. Customers can also access their
+	// entitled data using the S3 Access Point ARN.
+	S3AccessPointArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessAsset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessAsset) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3DataAccessAsset) SetBucket(v string) *S3DataAccessAsset {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefixes sets the KeyPrefixes field's value.
+func (s *S3DataAccessAsset) SetKeyPrefixes(v []*string) *S3DataAccessAsset {
+	s.KeyPrefixes = v
+	return s
+}
+
+// SetKeys sets the Keys field's value.
+func (s *S3DataAccessAsset) SetKeys(v []*string) *S3DataAccessAsset {
+	s.Keys = v
+	return s
+}
+
+// SetKmsKeysToGrant sets the KmsKeysToGrant field's value.
+func (s *S3DataAccessAsset) SetKmsKeysToGrant(v []*KmsKeyToGrant) *S3DataAccessAsset {
+	s.KmsKeysToGrant = v
+	return s
+}
+
+// SetS3AccessPointAlias sets the S3AccessPointAlias field's value.
+func (s *S3DataAccessAsset) SetS3AccessPointAlias(v string) *S3DataAccessAsset {
+	s.S3AccessPointAlias = &v
+	return s
+}
+
+// SetS3AccessPointArn sets the S3AccessPointArn field's value.
+func (s *S3DataAccessAsset) SetS3AccessPointArn(v string) *S3DataAccessAsset {
+	s.S3AccessPointArn = &v
+	return s
+}
+
+// Source details for an Amazon S3 data access asset.
+type S3DataAccessAssetSourceEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket used for hosting shared data in the Amazon S3 data access.
+	//
+	// Bucket is a required field
+	Bucket *string `type:"string" required:"true"`
+
+	// Organizes Amazon S3 asset key prefixes stored in an Amazon S3 bucket.
+	KeyPrefixes []*string `type:"list"`
+
+	// The keys used to create the Amazon S3 data access.
+	Keys []*string `type:"list"`
+
+	// List of AWS KMS CMKs (Key Management System Customer Managed Keys) and ARNs
+	// used to encrypt S3 objects being shared in this S3 Data Access asset.
+	KmsKeysToGrant []*KmsKeyToGrant `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessAssetSourceEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessAssetSourceEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3DataAccessAssetSourceEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3DataAccessAssetSourceEntry"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.KmsKeysToGrant != nil && len(s.KmsKeysToGrant) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeysToGrant", 1))
+	}
+	if s.KmsKeysToGrant != nil {
+		for i, v := range s.KmsKeysToGrant {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "KmsKeysToGrant", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3DataAccessAssetSourceEntry) SetBucket(v string) *S3DataAccessAssetSourceEntry {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefixes sets the KeyPrefixes field's value.
+func (s *S3DataAccessAssetSourceEntry) SetKeyPrefixes(v []*string) *S3DataAccessAssetSourceEntry {
+	s.KeyPrefixes = v
+	return s
+}
+
+// SetKeys sets the Keys field's value.
+func (s *S3DataAccessAssetSourceEntry) SetKeys(v []*string) *S3DataAccessAssetSourceEntry {
+	s.Keys = v
+	return s
+}
+
+// SetKmsKeysToGrant sets the KmsKeysToGrant field's value.
+func (s *S3DataAccessAssetSourceEntry) SetKmsKeysToGrant(v []*KmsKeyToGrant) *S3DataAccessAssetSourceEntry {
+	s.KmsKeysToGrant = v
+	return s
+}
+
+// Extra details specific to the affected scope in this S3 Data Access data
+// set.
+type S3DataAccessDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the key prefixes affected by this notification. This can have up
+	// to 50 entries.
+	KeyPrefixes []*string `type:"list"`
+
+	// A list of the keys affected by this notification. This can have up to 50
+	// entries.
+	Keys []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessDetails) GoString() string {
+	return s.String()
+}
+
+// SetKeyPrefixes sets the KeyPrefixes field's value.
+func (s *S3DataAccessDetails) SetKeyPrefixes(v []*string) *S3DataAccessDetails {
+	s.KeyPrefixes = v
+	return s
+}
+
+// SetKeys sets the Keys field's value.
+func (s *S3DataAccessDetails) SetKeys(v []*string) *S3DataAccessDetails {
+	s.Keys = v
+	return s
+}
+
+// The Amazon S3 object that is the asset.
 type S3SnapshotAsset struct {
 	_ struct{} `type:"structure"`
 
-	// The size of the S3 object that is the object.
+	// The size of the Amazon S3 object that is the object.
 	//
 	// Size is a required field
 	Size *float64 `type:"double" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SnapshotAsset) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SnapshotAsset) GoString() string {
 	return s.String()
 }
@@ -5991,24 +10496,549 @@ func (s *S3SnapshotAsset) SetSize(v float64) *S3SnapshotAsset {
 	return s
 }
 
+// Object encompassing information about a schema change to a single, particular
+// field, a notification can have up to 100 of these.
+type SchemaChangeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Description of what's changing about this field. This value can be up to
+	// 512 characters long.
+	Description *string `type:"string"`
+
+	// Name of the changing field. This value can be up to 255 characters long.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Is the field being added, removed, or modified?
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"SchemaChangeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaChangeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaChangeDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SchemaChangeDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SchemaChangeDetails"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *SchemaChangeDetails) SetDescription(v string) *SchemaChangeDetails {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SchemaChangeDetails) SetName(v string) *SchemaChangeDetails {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SchemaChangeDetails) SetType(v string) *SchemaChangeDetails {
+	s.Type = &v
+	return s
+}
+
+// Extra details specific to this schema change type notification.
+type SchemaChangeRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// List of schema changes happening in the scope of this notification. This
+	// can have up to 100 entries.
+	Changes []*SchemaChangeDetails `type:"list"`
+
+	// A date in the future when the schema change is taking effect.
+	//
+	// SchemaChangeAt is a required field
+	SchemaChangeAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaChangeRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaChangeRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SchemaChangeRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SchemaChangeRequestDetails"}
+	if s.SchemaChangeAt == nil {
+		invalidParams.Add(request.NewErrParamRequired("SchemaChangeAt"))
+	}
+	if s.Changes != nil {
+		for i, v := range s.Changes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Changes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChanges sets the Changes field's value.
+func (s *SchemaChangeRequestDetails) SetChanges(v []*SchemaChangeDetails) *SchemaChangeRequestDetails {
+	s.Changes = v
+	return s
+}
+
+// SetSchemaChangeAt sets the SchemaChangeAt field's value.
+func (s *SchemaChangeRequestDetails) SetSchemaChangeAt(v time.Time) *SchemaChangeRequestDetails {
+	s.SchemaChangeAt = &v
+	return s
+}
+
+// Details about the scope of the notifications such as the affected resources.
+type ScopeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Underlying LF resources that will be affected by this notification.
+	LakeFormationTagPolicies []*LakeFormationTagPolicyDetails `type:"list"`
+
+	// Underlying Redshift resources that will be affected by this notification.
+	RedshiftDataShares []*RedshiftDataShareDetails `type:"list"`
+
+	// Underlying S3 resources that will be affected by this notification.
+	S3DataAccesses []*S3DataAccessDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScopeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScopeDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScopeDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScopeDetails"}
+	if s.RedshiftDataShares != nil {
+		for i, v := range s.RedshiftDataShares {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RedshiftDataShares", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLakeFormationTagPolicies sets the LakeFormationTagPolicies field's value.
+func (s *ScopeDetails) SetLakeFormationTagPolicies(v []*LakeFormationTagPolicyDetails) *ScopeDetails {
+	s.LakeFormationTagPolicies = v
+	return s
+}
+
+// SetRedshiftDataShares sets the RedshiftDataShares field's value.
+func (s *ScopeDetails) SetRedshiftDataShares(v []*RedshiftDataShareDetails) *ScopeDetails {
+	s.RedshiftDataShares = v
+	return s
+}
+
+// SetS3DataAccesses sets the S3DataAccesses field's value.
+func (s *ScopeDetails) SetS3DataAccesses(v []*S3DataAccessDetails) *ScopeDetails {
+	s.S3DataAccesses = v
+	return s
+}
+
+type SendApiAssetInput struct {
+	_ struct{} `type:"structure" payload:"Body"`
+
+	// Asset ID value for the API request.
+	//
+	// AssetId is a required field
+	AssetId *string `location:"header" locationName:"x-amzn-dataexchange-asset-id" type:"string" required:"true"`
+
+	// The request body.
+	Body *string `type:"string"`
+
+	// Data set ID value for the API request.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"header" locationName:"x-amzn-dataexchange-data-set-id" type:"string" required:"true"`
+
+	// HTTP method value for the API request. Alternatively, you can use the appropriate
+	// verb in your request.
+	Method *string `location:"header" locationName:"x-amzn-dataexchange-http-method" type:"string"`
+
+	// URI path value for the API request. Alternatively, you can set the URI path
+	// directly by invoking /v1/{pathValue}.
+	Path *string `location:"header" locationName:"x-amzn-dataexchange-path" type:"string"`
+
+	// Attach query string parameters to the end of the URI (for example, /v1/examplePath?exampleParam=exampleValue).
+	QueryStringParameters map[string]*string `location:"querystring" type:"map"`
+
+	// Any header value prefixed with x-amzn-dataexchange-header- will have that
+	// stripped before sending the Asset API request. Use this when you want to
+	// override a header that AWS Data Exchange uses. Alternatively, you can use
+	// the header without a prefix to the HTTP request.
+	RequestHeaders map[string]*string `location:"headers" locationName:"x-amzn-dataexchange-header-" type:"map"`
+
+	// Revision ID value for the API request.
+	//
+	// RevisionId is a required field
+	RevisionId *string `location:"header" locationName:"x-amzn-dataexchange-revision-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendApiAssetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendApiAssetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendApiAssetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendApiAssetInput"}
+	if s.AssetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetId"))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *SendApiAssetInput) SetAssetId(v string) *SendApiAssetInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetBody sets the Body field's value.
+func (s *SendApiAssetInput) SetBody(v string) *SendApiAssetInput {
+	s.Body = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *SendApiAssetInput) SetDataSetId(v string) *SendApiAssetInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetMethod sets the Method field's value.
+func (s *SendApiAssetInput) SetMethod(v string) *SendApiAssetInput {
+	s.Method = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *SendApiAssetInput) SetPath(v string) *SendApiAssetInput {
+	s.Path = &v
+	return s
+}
+
+// SetQueryStringParameters sets the QueryStringParameters field's value.
+func (s *SendApiAssetInput) SetQueryStringParameters(v map[string]*string) *SendApiAssetInput {
+	s.QueryStringParameters = v
+	return s
+}
+
+// SetRequestHeaders sets the RequestHeaders field's value.
+func (s *SendApiAssetInput) SetRequestHeaders(v map[string]*string) *SendApiAssetInput {
+	s.RequestHeaders = v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *SendApiAssetInput) SetRevisionId(v string) *SendApiAssetInput {
+	s.RevisionId = &v
+	return s
+}
+
+type SendApiAssetOutput struct {
+	_ struct{} `type:"structure" payload:"Body"`
+
+	// The response body from the underlying API tracked by the API asset.
+	Body *string `type:"string"`
+
+	// The response headers from the underlying API tracked by the API asset.
+	//
+	// By default unmarshaled keys are written as a map keys in following canonicalized format:
+	// the first letter and any letter following a hyphen will be capitalized, and the rest as lowercase.
+	// Set `aws.Config.LowerCaseHeaderMaps` to `true` to write unmarshaled keys to the map as lowercase.
+	ResponseHeaders map[string]*string `location:"headers" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendApiAssetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendApiAssetOutput) GoString() string {
+	return s.String()
+}
+
+// SetBody sets the Body field's value.
+func (s *SendApiAssetOutput) SetBody(v string) *SendApiAssetOutput {
+	s.Body = &v
+	return s
+}
+
+// SetResponseHeaders sets the ResponseHeaders field's value.
+func (s *SendApiAssetOutput) SetResponseHeaders(v map[string]*string) *SendApiAssetOutput {
+	s.ResponseHeaders = v
+	return s
+}
+
+type SendDataSetNotificationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotency key for the notification, this key allows us to deduplicate notifications
+	// that are sent in quick succession erroneously.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Free-form text field for providers to add information about their notifications.
+	Comment *string `type:"string"`
+
+	// Affected data set of the notification.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// Extra details specific to this notification type.
+	Details *NotificationDetails `type:"structure"`
+
+	// Affected scope of this notification such as the underlying resources affected
+	// by the notification event.
+	Scope *ScopeDetails `type:"structure"`
+
+	// The type of the notification. Describing the kind of event the notification
+	// is alerting you to.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"NotificationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataSetNotificationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataSetNotificationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendDataSetNotificationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendDataSetNotificationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Details != nil {
+		if err := s.Details.Validate(); err != nil {
+			invalidParams.AddNested("Details", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Scope != nil {
+		if err := s.Scope.Validate(); err != nil {
+			invalidParams.AddNested("Scope", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *SendDataSetNotificationInput) SetClientToken(v string) *SendDataSetNotificationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *SendDataSetNotificationInput) SetComment(v string) *SendDataSetNotificationInput {
+	s.Comment = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *SendDataSetNotificationInput) SetDataSetId(v string) *SendDataSetNotificationInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *SendDataSetNotificationInput) SetDetails(v *NotificationDetails) *SendDataSetNotificationInput {
+	s.Details = v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *SendDataSetNotificationInput) SetScope(v *ScopeDetails) *SendDataSetNotificationInput {
+	s.Scope = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SendDataSetNotificationInput) SetType(v string) *SendDataSetNotificationInput {
+	s.Type = &v
+	return s
+}
+
+type SendDataSetNotificationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataSetNotificationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataSetNotificationOutput) GoString() string {
+	return s.String()
+}
+
 // The request has exceeded the quotas imposed by the service.
 type ServiceLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The name of the limit that was reached.
 	LimitName *string `type:"string" enum:"LimitName"`
 
+	// The value of the exceeded limit.
 	LimitValue *float64 `type:"double"`
 
+	// The request has exceeded the quotas imposed by the service.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -6052,18 +11082,28 @@ func (s *ServiceLimitExceededException) RequestID() string {
 }
 
 type StartJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a job.
+	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"JobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartJobInput) GoString() string {
 	return s.String()
 }
@@ -6094,32 +11134,157 @@ type StartJobOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartJobOutput) GoString() string {
 	return s.String()
+}
+
+// The LF-tag policy for a table resource.
+type TableLFTagPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A list of LF-tag conditions that apply to table resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableLFTagPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableLFTagPolicy) GoString() string {
+	return s.String()
+}
+
+// SetExpression sets the Expression field's value.
+func (s *TableLFTagPolicy) SetExpression(v []*LFTag) *TableLFTagPolicy {
+	s.Expression = v
+	return s
+}
+
+// The LF-tag policy and permissions that apply to table resources.
+type TableLFTagPolicyAndPermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of LF-tag conditions that apply to table resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `type:"list" required:"true"`
+
+	// The permissions granted to subscribers on table resources.
+	//
+	// Permissions is a required field
+	Permissions []*string `type:"list" required:"true" enum:"TableTagPolicyLFPermission"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableLFTagPolicyAndPermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableLFTagPolicyAndPermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TableLFTagPolicyAndPermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TableLFTagPolicyAndPermissions"}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.Expression != nil {
+		for i, v := range s.Expression {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Expression", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *TableLFTagPolicyAndPermissions) SetExpression(v []*LFTag) *TableLFTagPolicyAndPermissions {
+	s.Expression = v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *TableLFTagPolicyAndPermissions) SetPermissions(v []*string) *TableLFTagPolicyAndPermissions {
+	s.Permissions = v
+	return s
 }
 
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	//
 	// ResourceArn is a required field
-	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
+	// A label that consists of a customer-defined key and an optional value.
+	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6159,12 +11324,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6178,12 +11351,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -6227,21 +11408,33 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	//
 	// ResourceArn is a required field
-	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
+	// The key tags.
+	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6281,43 +11474,68 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The request to update an asset.
 type UpdateAssetInput struct {
 	_ struct{} `type:"structure"`
 
+	// The unique identifier for an asset.
+	//
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"AssetId" type:"string" required:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name. When exporting to Amazon S3, the asset name
+	// is used as default target Amazon S3 object key. When importing from Amazon
+	// API Gateway API, the API name is used as the asset name. When importing from
+	// Amazon Redshift, the datashare name is used as the asset name. When importing
+	// from AWS Lake Formation, the static values of "Database(s) included in the
+	// LF-tag policy" or "Table(s) included in LF-tag policy" are used as the name.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAssetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAssetInput) GoString() string {
 	return s.String()
 }
@@ -6380,45 +11598,60 @@ func (s *UpdateAssetInput) SetRevisionId(v string) *UpdateAssetInput {
 type UpdateAssetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the asset.
 	Arn *string `type:"string"`
 
+	// Details about the asset.
 	AssetDetails *AssetDetails `type:"structure"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the asset was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with this asset.
 	DataSetId *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the asset.
 	Id *string `type:"string"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name. When exporting to Amazon S3, the asset name
+	// is used as default target Amazon S3 object key. When importing from Amazon
+	// API Gateway API, the API name is used as the asset name. When importing from
+	// Amazon Redshift, the datashare name is used as the asset name. When importing
+	// from AWS Lake Formation, the static values of "Database(s) included in the
+	// LF-tag policy"- or "Table(s) included in LF-tag policy" are used as the asset
+	// name.
 	Name *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the revision associated with this asset.
 	RevisionId *string `type:"string"`
 
-	// A unique identifier.
+	// The asset ID of the owned asset corresponding to the entitled asset being
+	// viewed. This parameter is returned when an asset owner is viewing the entitled
+	// copy of its owned asset.
 	SourceId *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the asset was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAssetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAssetOutput) GoString() string {
 	return s.String()
 }
@@ -6483,10 +11716,11 @@ func (s *UpdateAssetOutput) SetUpdatedAt(v time.Time) *UpdateAssetOutput {
 	return s
 }
 
-// The request to update a data set.
 type UpdateDataSetInput struct {
 	_ struct{} `type:"structure"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
@@ -6497,12 +11731,20 @@ type UpdateDataSetInput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetInput) GoString() string {
 	return s.String()
 }
@@ -6544,46 +11786,55 @@ func (s *UpdateDataSetInput) SetName(v string) *UpdateDataSetInput {
 type UpdateDataSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the data set.
 	Arn *string `type:"string"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A description of a resource.
+	// The description for the data set.
 	Description *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the data set.
 	Id *string `type:"string"`
 
-	// The name of the model.
+	// The name of the data set.
 	Name *string `type:"string"`
 
 	// A property that defines the data set as OWNED by the account (for providers)
-	// or ENTITLED to the account (for subscribers). When an owned data set is published
-	// in a product, AWS Data Exchange creates a copy of the data set. Subscribers
-	// can access that copy of the data set as an entitled data set.
+	// or ENTITLED to the account (for subscribers).
 	Origin *string `type:"string" enum:"Origin"`
 
+	// If the origin of this data set is ENTITLED, includes the details for the
+	// product on AWS Marketplace.
 	OriginDetails *OriginDetails `type:"structure"`
 
-	// A unique identifier.
+	// The data set ID of the owned data set corresponding to the entitled data
+	// set being viewed. This parameter is returned when a data set owner is viewing
+	// the entitled copy of its owned data set.
 	SourceId *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetOutput) GoString() string {
 	return s.String()
 }
@@ -6648,13 +11899,153 @@ func (s *UpdateDataSetOutput) SetUpdatedAt(v time.Time) *UpdateDataSetOutput {
 	return s
 }
 
-// The request to update a revision.
+type UpdateEventActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// What occurs after a certain event.
+	Action *Action `type:"structure"`
+
+	// The unique identifier for the event action.
+	//
+	// EventActionId is a required field
+	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEventActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEventActionInput"}
+	if s.EventActionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventActionId"))
+	}
+	if s.EventActionId != nil && len(*s.EventActionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventActionId", 1))
+	}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *UpdateEventActionInput) SetAction(v *Action) *UpdateEventActionInput {
+	s.Action = v
+	return s
+}
+
+// SetEventActionId sets the EventActionId field's value.
+func (s *UpdateEventActionInput) SetEventActionId(v string) *UpdateEventActionInput {
+	s.EventActionId = &v
+	return s
+}
+
+type UpdateEventActionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// What occurs after a certain event.
+	Action *Action `type:"structure"`
+
+	// The ARN for the event action.
+	Arn *string `type:"string"`
+
+	// The date and time that the event action was created, in ISO 8601 format.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// What occurs to start an action.
+	Event *Event `type:"structure"`
+
+	// The unique identifier for the event action.
+	Id *string `type:"string"`
+
+	// The date and time that the event action was last updated, in ISO 8601 format.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventActionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *UpdateEventActionOutput) SetAction(v *Action) *UpdateEventActionOutput {
+	s.Action = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateEventActionOutput) SetArn(v string) *UpdateEventActionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateEventActionOutput) SetCreatedAt(v time.Time) *UpdateEventActionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *UpdateEventActionOutput) SetEvent(v *Event) *UpdateEventActionOutput {
+	s.Event = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateEventActionOutput) SetId(v string) *UpdateEventActionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *UpdateEventActionOutput) SetUpdatedAt(v time.Time) *UpdateEventActionOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
 type UpdateRevisionInput struct {
 	_ struct{} `type:"structure"`
 
 	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
@@ -6663,16 +12054,26 @@ type UpdateRevisionInput struct {
 	// publish the revision to your products.
 	Finalized *bool `type:"boolean"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRevisionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRevisionInput) GoString() string {
 	return s.String()
 }
@@ -6726,35 +12127,63 @@ func (s *UpdateRevisionInput) SetRevisionId(v string) *UpdateRevisionInput {
 type UpdateRevisionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the revision.
 	Arn *string `type:"string"`
 
+	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with the data set revision.
 	DataSetId *string `type:"string"`
 
+	// To publish a revision to a data set in a product, the revision must first
+	// be finalized. Finalizing a revision tells AWS Data Exchange that changes
+	// to the assets in the revision are complete. After it's in this read-only
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
 	Finalized *bool `type:"boolean"`
 
-	// A unique identifier.
+	// The unique identifier for the revision.
 	Id *string `type:"string"`
 
-	// A unique identifier.
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
+	RevocationComment *string `min:"10" type:"string"`
+
+	// A status indicating that subscribers' access to the revision was revoked.
+	Revoked *bool `type:"boolean"`
+
+	// The date and time that the revision was revoked, in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The revision ID of the owned revision corresponding to the entitled revision
+	// being viewed. This parameter is returned when a revision owner is viewing
+	// the entitled copy of its owned revision.
 	SourceId *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRevisionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRevisionOutput) GoString() string {
 	return s.String()
 }
@@ -6795,6 +12224,24 @@ func (s *UpdateRevisionOutput) SetId(v string) *UpdateRevisionOutput {
 	return s
 }
 
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *UpdateRevisionOutput) SetRevocationComment(v string) *UpdateRevisionOutput {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *UpdateRevisionOutput) SetRevoked(v bool) *UpdateRevisionOutput {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *UpdateRevisionOutput) SetRevokedAt(v time.Time) *UpdateRevisionOutput {
+	s.RevokedAt = &v
+	return s
+}
+
 // SetSourceId sets the SourceId field's value.
 func (s *UpdateRevisionOutput) SetSourceId(v string) *UpdateRevisionOutput {
 	s.SourceId = &v
@@ -6812,16 +12259,27 @@ type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The unique identifier for the resource that couldn't be found.
+	ExceptionCause *string `type:"string" enum:"ExceptionCause"`
+
 	// The message that informs you about what was invalid about the request.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -6851,7 +12309,7 @@ func (s *ValidationException) OrigErr() error {
 }
 
 func (s *ValidationException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -6864,17 +12322,31 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The type of file your data is stored in. Currently, the supported asset type
-// is S3_SNAPSHOT.
 const (
 	// AssetTypeS3Snapshot is a AssetType enum value
 	AssetTypeS3Snapshot = "S3_SNAPSHOT"
+
+	// AssetTypeRedshiftDataShare is a AssetType enum value
+	AssetTypeRedshiftDataShare = "REDSHIFT_DATA_SHARE"
+
+	// AssetTypeApiGatewayApi is a AssetType enum value
+	AssetTypeApiGatewayApi = "API_GATEWAY_API"
+
+	// AssetTypeS3DataAccess is a AssetType enum value
+	AssetTypeS3DataAccess = "S3_DATA_ACCESS"
+
+	// AssetTypeLakeFormationDataPermission is a AssetType enum value
+	AssetTypeLakeFormationDataPermission = "LAKE_FORMATION_DATA_PERMISSION"
 )
 
 // AssetType_Values returns all elements of the AssetType enum
 func AssetType_Values() []string {
 	return []string{
 		AssetTypeS3Snapshot,
+		AssetTypeRedshiftDataShare,
+		AssetTypeApiGatewayApi,
+		AssetTypeS3DataAccess,
+		AssetTypeLakeFormationDataPermission,
 	}
 }
 
@@ -6914,13 +12386,49 @@ func Code_Values() []string {
 	}
 }
 
-// The name of the limit that was reached.
+const (
+	// DatabaseLFTagPolicyPermissionDescribe is a DatabaseLFTagPolicyPermission enum value
+	DatabaseLFTagPolicyPermissionDescribe = "DESCRIBE"
+)
+
+// DatabaseLFTagPolicyPermission_Values returns all elements of the DatabaseLFTagPolicyPermission enum
+func DatabaseLFTagPolicyPermission_Values() []string {
+	return []string{
+		DatabaseLFTagPolicyPermissionDescribe,
+	}
+}
+
+const (
+	// ExceptionCauseInsufficientS3bucketPolicy is a ExceptionCause enum value
+	ExceptionCauseInsufficientS3bucketPolicy = "InsufficientS3BucketPolicy"
+
+	// ExceptionCauseS3accessDenied is a ExceptionCause enum value
+	ExceptionCauseS3accessDenied = "S3AccessDenied"
+)
+
+// ExceptionCause_Values returns all elements of the ExceptionCause enum
+func ExceptionCause_Values() []string {
+	return []string{
+		ExceptionCauseInsufficientS3bucketPolicy,
+		ExceptionCauseS3accessDenied,
+	}
+}
+
 const (
 	// JobErrorLimitNameAssetsperrevision is a JobErrorLimitName enum value
 	JobErrorLimitNameAssetsperrevision = "Assets per revision"
 
 	// JobErrorLimitNameAssetsizeinGb is a JobErrorLimitName enum value
 	JobErrorLimitNameAssetsizeinGb = "Asset size in GB"
+
+	// JobErrorLimitNameAmazonRedshiftdatashareassetsperrevision is a JobErrorLimitName enum value
+	JobErrorLimitNameAmazonRedshiftdatashareassetsperrevision = "Amazon Redshift datashare assets per revision"
+
+	// JobErrorLimitNameAwslakeFormationdatapermissionassetsperrevision is a JobErrorLimitName enum value
+	JobErrorLimitNameAwslakeFormationdatapermissionassetsperrevision = "AWS Lake Formation data permission assets per revision"
+
+	// JobErrorLimitNameAmazonS3dataaccessassetsperrevision is a JobErrorLimitName enum value
+	JobErrorLimitNameAmazonS3dataaccessassetsperrevision = "Amazon S3 data access assets per revision"
 )
 
 // JobErrorLimitName_Values returns all elements of the JobErrorLimitName enum
@@ -6928,16 +12436,21 @@ func JobErrorLimitName_Values() []string {
 	return []string{
 		JobErrorLimitNameAssetsperrevision,
 		JobErrorLimitNameAssetsizeinGb,
+		JobErrorLimitNameAmazonRedshiftdatashareassetsperrevision,
+		JobErrorLimitNameAwslakeFormationdatapermissionassetsperrevision,
+		JobErrorLimitNameAmazonS3dataaccessassetsperrevision,
 	}
 }
 
-// The types of resource which the job error can apply to.
 const (
 	// JobErrorResourceTypesRevision is a JobErrorResourceTypes enum value
 	JobErrorResourceTypesRevision = "REVISION"
 
 	// JobErrorResourceTypesAsset is a JobErrorResourceTypes enum value
 	JobErrorResourceTypesAsset = "ASSET"
+
+	// JobErrorResourceTypesDataSet is a JobErrorResourceTypes enum value
+	JobErrorResourceTypesDataSet = "DATA_SET"
 )
 
 // JobErrorResourceTypes_Values returns all elements of the JobErrorResourceTypes enum
@@ -6945,6 +12458,51 @@ func JobErrorResourceTypes_Values() []string {
 	return []string{
 		JobErrorResourceTypesRevision,
 		JobErrorResourceTypesAsset,
+		JobErrorResourceTypesDataSet,
+	}
+}
+
+const (
+	// LFPermissionDescribe is a LFPermission enum value
+	LFPermissionDescribe = "DESCRIBE"
+
+	// LFPermissionSelect is a LFPermission enum value
+	LFPermissionSelect = "SELECT"
+)
+
+// LFPermission_Values returns all elements of the LFPermission enum
+func LFPermission_Values() []string {
+	return []string{
+		LFPermissionDescribe,
+		LFPermissionSelect,
+	}
+}
+
+const (
+	// LFResourceTypeTable is a LFResourceType enum value
+	LFResourceTypeTable = "TABLE"
+
+	// LFResourceTypeDatabase is a LFResourceType enum value
+	LFResourceTypeDatabase = "DATABASE"
+)
+
+// LFResourceType_Values returns all elements of the LFResourceType enum
+func LFResourceType_Values() []string {
+	return []string{
+		LFResourceTypeTable,
+		LFResourceTypeDatabase,
+	}
+}
+
+const (
+	// LakeFormationDataPermissionTypeLftagPolicy is a LakeFormationDataPermissionType enum value
+	LakeFormationDataPermissionTypeLftagPolicy = "LFTagPolicy"
+)
+
+// LakeFormationDataPermissionType_Values returns all elements of the LakeFormationDataPermissionType enum
+func LakeFormationDataPermissionType_Values() []string {
+	return []string{
+		LakeFormationDataPermissionTypeLftagPolicy,
 	}
 }
 
@@ -6973,17 +12531,65 @@ const (
 	// LimitNameAssetsizeinGb is a LimitName enum value
 	LimitNameAssetsizeinGb = "Asset size in GB"
 
+	// LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3 is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3 = "Concurrent in progress jobs to export assets to Amazon S3"
+
+	// LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl = "Concurrent in progress jobs to export assets to a signed URL"
+
 	// LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3 is a LimitName enum value
 	LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3 = "Concurrent in progress jobs to import assets from Amazon S3"
 
 	// LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl is a LimitName enum value
 	LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl = "Concurrent in progress jobs to import assets from a signed URL"
 
-	// LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3 is a LimitName enum value
-	LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3 = "Concurrent in progress jobs to export assets to Amazon S3"
+	// LimitNameConcurrentinprogressjobstoexportrevisionstoAmazonS3 is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoexportrevisionstoAmazonS3 = "Concurrent in progress jobs to export revisions to Amazon S3"
 
-	// LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl is a LimitName enum value
-	LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl = "Concurrent in progress jobs to export assets to a signed URL"
+	// LimitNameEventactionsperaccount is a LimitName enum value
+	LimitNameEventactionsperaccount = "Event actions per account"
+
+	// LimitNameAutoexporteventactionsperdataset is a LimitName enum value
+	LimitNameAutoexporteventactionsperdataset = "Auto export event actions per data set"
+
+	// LimitNameAmazonRedshiftdatashareassetsperimportjobfromRedshift is a LimitName enum value
+	LimitNameAmazonRedshiftdatashareassetsperimportjobfromRedshift = "Amazon Redshift datashare assets per import job from Redshift"
+
+	// LimitNameConcurrentinprogressjobstoimportassetsfromAmazonRedshiftdatashares is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoimportassetsfromAmazonRedshiftdatashares = "Concurrent in progress jobs to import assets from Amazon Redshift datashares"
+
+	// LimitNameRevisionsperAmazonRedshiftdatasharedataset is a LimitName enum value
+	LimitNameRevisionsperAmazonRedshiftdatasharedataset = "Revisions per Amazon Redshift datashare data set"
+
+	// LimitNameAmazonRedshiftdatashareassetsperrevision is a LimitName enum value
+	LimitNameAmazonRedshiftdatashareassetsperrevision = "Amazon Redshift datashare assets per revision"
+
+	// LimitNameConcurrentinprogressjobstoimportassetsfromanApigatewayApi is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoimportassetsfromanApigatewayApi = "Concurrent in progress jobs to import assets from an API Gateway API"
+
+	// LimitNameAmazonApigatewayApiassetsperrevision is a LimitName enum value
+	LimitNameAmazonApigatewayApiassetsperrevision = "Amazon API Gateway API assets per revision"
+
+	// LimitNameRevisionsperAmazonApigatewayApidataset is a LimitName enum value
+	LimitNameRevisionsperAmazonApigatewayApidataset = "Revisions per Amazon API Gateway API data set"
+
+	// LimitNameConcurrentinprogressjobstoimportassetsfromanAwslakeFormationtagpolicy is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoimportassetsfromanAwslakeFormationtagpolicy = "Concurrent in progress jobs to import assets from an AWS Lake Formation tag policy"
+
+	// LimitNameAwslakeFormationdatapermissionassetsperrevision is a LimitName enum value
+	LimitNameAwslakeFormationdatapermissionassetsperrevision = "AWS Lake Formation data permission assets per revision"
+
+	// LimitNameRevisionsperAwslakeFormationdatapermissiondataset is a LimitName enum value
+	LimitNameRevisionsperAwslakeFormationdatapermissiondataset = "Revisions per AWS Lake Formation data permission data set"
+
+	// LimitNameRevisionsperAmazonS3dataaccessdataset is a LimitName enum value
+	LimitNameRevisionsperAmazonS3dataaccessdataset = "Revisions per Amazon S3 data access data set"
+
+	// LimitNameAmazonS3dataaccessassetsperrevision is a LimitName enum value
+	LimitNameAmazonS3dataaccessassetsperrevision = "Amazon S3 data access assets per revision"
+
+	// LimitNameConcurrentinprogressjobstocreateAmazonS3dataaccessassetsfromS3buckets is a LimitName enum value
+	LimitNameConcurrentinprogressjobstocreateAmazonS3dataaccessassetsfromS3buckets = "Concurrent in progress jobs to create Amazon S3 data access assets from S3 buckets"
 )
 
 // LimitName_Values returns all elements of the LimitName enum
@@ -6997,17 +12603,53 @@ func LimitName_Values() []string {
 		LimitNameAssetsperimportjobfromAmazonS3,
 		LimitNameAssetperexportjobfromAmazonS3,
 		LimitNameAssetsizeinGb,
-		LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3,
-		LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl,
 		LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3,
 		LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl,
+		LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3,
+		LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl,
+		LimitNameConcurrentinprogressjobstoexportrevisionstoAmazonS3,
+		LimitNameEventactionsperaccount,
+		LimitNameAutoexporteventactionsperdataset,
+		LimitNameAmazonRedshiftdatashareassetsperimportjobfromRedshift,
+		LimitNameConcurrentinprogressjobstoimportassetsfromAmazonRedshiftdatashares,
+		LimitNameRevisionsperAmazonRedshiftdatasharedataset,
+		LimitNameAmazonRedshiftdatashareassetsperrevision,
+		LimitNameConcurrentinprogressjobstoimportassetsfromanApigatewayApi,
+		LimitNameAmazonApigatewayApiassetsperrevision,
+		LimitNameRevisionsperAmazonApigatewayApidataset,
+		LimitNameConcurrentinprogressjobstoimportassetsfromanAwslakeFormationtagpolicy,
+		LimitNameAwslakeFormationdatapermissionassetsperrevision,
+		LimitNameRevisionsperAwslakeFormationdatapermissiondataset,
+		LimitNameRevisionsperAmazonS3dataaccessdataset,
+		LimitNameAmazonS3dataaccessassetsperrevision,
+		LimitNameConcurrentinprogressjobstocreateAmazonS3dataaccessassetsfromS3buckets,
 	}
 }
 
-// A property that defines the data set as OWNED by the account (for providers)
-// or ENTITLED to the account (for subscribers). When an owned data set is published
-// in a product, AWS Data Exchange creates a copy of the data set. Subscribers
-// can access that copy of the data set as an entitled data set.
+const (
+	// NotificationTypeDataDelay is a NotificationType enum value
+	NotificationTypeDataDelay = "DATA_DELAY"
+
+	// NotificationTypeDataUpdate is a NotificationType enum value
+	NotificationTypeDataUpdate = "DATA_UPDATE"
+
+	// NotificationTypeDeprecation is a NotificationType enum value
+	NotificationTypeDeprecation = "DEPRECATION"
+
+	// NotificationTypeSchemaChange is a NotificationType enum value
+	NotificationTypeSchemaChange = "SCHEMA_CHANGE"
+)
+
+// NotificationType_Values returns all elements of the NotificationType enum
+func NotificationType_Values() []string {
+	return []string{
+		NotificationTypeDataDelay,
+		NotificationTypeDataUpdate,
+		NotificationTypeDeprecation,
+		NotificationTypeSchemaChange,
+	}
+}
+
 const (
 	// OriginOwned is a Origin enum value
 	OriginOwned = "OWNED"
@@ -7025,6 +12667,18 @@ func Origin_Values() []string {
 }
 
 const (
+	// ProtocolTypeRest is a ProtocolType enum value
+	ProtocolTypeRest = "REST"
+)
+
+// ProtocolType_Values returns all elements of the ProtocolType enum
+func ProtocolType_Values() []string {
+	return []string{
+		ProtocolTypeRest,
+	}
+}
+
+const (
 	// ResourceTypeDataSet is a ResourceType enum value
 	ResourceTypeDataSet = "DATA_SET"
 
@@ -7036,6 +12690,9 @@ const (
 
 	// ResourceTypeJob is a ResourceType enum value
 	ResourceTypeJob = "JOB"
+
+	// ResourceTypeEventAction is a ResourceType enum value
+	ResourceTypeEventAction = "EVENT_ACTION"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -7045,10 +12702,30 @@ func ResourceType_Values() []string {
 		ResourceTypeRevision,
 		ResourceTypeAsset,
 		ResourceTypeJob,
+		ResourceTypeEventAction,
 	}
 }
 
-// The types of encryption supported in export jobs to Amazon S3.
+const (
+	// SchemaChangeTypeAdd is a SchemaChangeType enum value
+	SchemaChangeTypeAdd = "ADD"
+
+	// SchemaChangeTypeRemove is a SchemaChangeType enum value
+	SchemaChangeTypeRemove = "REMOVE"
+
+	// SchemaChangeTypeModify is a SchemaChangeType enum value
+	SchemaChangeTypeModify = "MODIFY"
+)
+
+// SchemaChangeType_Values returns all elements of the SchemaChangeType enum
+func SchemaChangeType_Values() []string {
+	return []string{
+		SchemaChangeTypeAdd,
+		SchemaChangeTypeRemove,
+		SchemaChangeTypeModify,
+	}
+}
+
 const (
 	// ServerSideEncryptionTypesAwsKms is a ServerSideEncryptionTypes enum value
 	ServerSideEncryptionTypesAwsKms = "aws:kms"
@@ -7098,6 +12775,22 @@ func State_Values() []string {
 }
 
 const (
+	// TableTagPolicyLFPermissionDescribe is a TableTagPolicyLFPermission enum value
+	TableTagPolicyLFPermissionDescribe = "DESCRIBE"
+
+	// TableTagPolicyLFPermissionSelect is a TableTagPolicyLFPermission enum value
+	TableTagPolicyLFPermissionSelect = "SELECT"
+)
+
+// TableTagPolicyLFPermission_Values returns all elements of the TableTagPolicyLFPermission enum
+func TableTagPolicyLFPermission_Values() []string {
+	return []string{
+		TableTagPolicyLFPermissionDescribe,
+		TableTagPolicyLFPermissionSelect,
+	}
+}
+
+const (
 	// TypeImportAssetsFromS3 is a Type enum value
 	TypeImportAssetsFromS3 = "IMPORT_ASSETS_FROM_S3"
 
@@ -7112,6 +12805,18 @@ const (
 
 	// TypeExportRevisionsToS3 is a Type enum value
 	TypeExportRevisionsToS3 = "EXPORT_REVISIONS_TO_S3"
+
+	// TypeImportAssetsFromRedshiftDataShares is a Type enum value
+	TypeImportAssetsFromRedshiftDataShares = "IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES"
+
+	// TypeImportAssetFromApiGatewayApi is a Type enum value
+	TypeImportAssetFromApiGatewayApi = "IMPORT_ASSET_FROM_API_GATEWAY_API"
+
+	// TypeCreateS3DataAccessFromS3Bucket is a Type enum value
+	TypeCreateS3DataAccessFromS3Bucket = "CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET"
+
+	// TypeImportAssetsFromLakeFormationTagPolicy is a Type enum value
+	TypeImportAssetsFromLakeFormationTagPolicy = "IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY"
 )
 
 // Type_Values returns all elements of the Type enum
@@ -7122,5 +12827,9 @@ func Type_Values() []string {
 		TypeExportAssetsToS3,
 		TypeExportAssetToSignedUrl,
 		TypeExportRevisionsToS3,
+		TypeImportAssetsFromRedshiftDataShares,
+		TypeImportAssetFromApiGatewayApi,
+		TypeCreateS3DataAccessFromS3Bucket,
+		TypeImportAssetsFromLakeFormationTagPolicy,
 	}
 }

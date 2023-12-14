@@ -40,33 +40,39 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a WorkSpaces client from just a session.
-//     svc := workspaces.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a WorkSpaces client with additional configuration
-//     svc := workspaces.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a WorkSpaces client from just a session.
+//	svc := workspaces.New(mySession)
+//
+//	// Create a WorkSpaces client with additional configuration
+//	svc := workspaces.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *WorkSpaces {
 	c := p.ClientConfig(EndpointsID, cfgs...)
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+		c.SigningName = EndpointsID
+		// No Fallback
+	}
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *WorkSpaces {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *WorkSpaces {
 	svc := &WorkSpaces{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2015-04-08",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "WorkspacesService",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2015-04-08",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "WorkspacesService",
 			},
 			handlers,
 		),

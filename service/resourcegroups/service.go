@@ -40,34 +40,36 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a ResourceGroups client from just a session.
-//     svc := resourcegroups.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a ResourceGroups client with additional configuration
-//     svc := resourcegroups.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a ResourceGroups client from just a session.
+//	svc := resourcegroups.New(mySession)
+//
+//	// Create a ResourceGroups client with additional configuration
+//	svc := resourcegroups.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ResourceGroups {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "resource-groups"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *ResourceGroups {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *ResourceGroups {
 	svc := &ResourceGroups{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2017-11-27",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2017-11-27",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),

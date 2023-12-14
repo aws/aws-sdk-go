@@ -10,6 +10,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListInferenceEvents": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListInferenceExecutions": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -20,7 +25,32 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListLabelGroups": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListLabels": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListModelVersions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListModels": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListRetrainingSchedulers": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListSensorStatistics": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"

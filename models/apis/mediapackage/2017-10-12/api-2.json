@@ -646,6 +646,10 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "Description": {
           "locationName": "description",
           "shape": "__string"
@@ -721,6 +725,10 @@
           "locationName": "constantInitializationVector",
           "shape": "__string"
         },
+        "EncryptionMethod": {
+          "locationName": "encryptionMethod",
+          "shape": "CmafEncryptionMethod"
+        },
         "KeyRotationIntervalSeconds": {
           "locationName": "keyRotationIntervalSeconds",
           "shape": "__integer"
@@ -734,6 +742,13 @@
         "SpekeKeyProvider"
       ],
       "type": "structure"
+    },
+    "CmafEncryptionMethod": {
+      "enum": [
+        "SAMPLE_AES",
+        "AES_CTR"
+      ],
+      "type": "string"
     },
     "CmafPackage": {
       "members": {
@@ -825,6 +840,10 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "Description": {
           "locationName": "description",
           "shape": "__string"
@@ -876,6 +895,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
           "shape": "__string"
         },
         "Description": {
@@ -1061,6 +1084,10 @@
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DashPackage": {
           "locationName": "dashPackage",
           "shape": "DashPackage"
@@ -1141,6 +1168,10 @@
         "Encryption": {
           "locationName": "encryption",
           "shape": "DashEncryption"
+        },
+        "IncludeIframeOnlyStream": {
+          "locationName": "includeIframeOnlyStream",
+          "shape": "__boolean"
         },
         "ManifestLayout": {
           "locationName": "manifestLayout",
@@ -1244,6 +1275,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
           "shape": "__string"
         },
         "Description": {
@@ -1357,6 +1392,10 @@
         "CmafPackage": {
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
         },
         "DashPackage": {
           "locationName": "dashPackage",
@@ -1680,6 +1719,10 @@
           "locationName": "encryption",
           "shape": "HlsEncryption"
         },
+        "IncludeDvbSubtitles": {
+          "locationName": "includeDvbSubtitles",
+          "shape": "__boolean"
+        },
         "IncludeIframeOnlyStream": {
           "locationName": "includeIframeOnlyStream",
           "shape": "__boolean"
@@ -1719,7 +1762,7 @@
         },
         "Password": {
           "locationName": "password",
-          "shape": "__string"
+          "shape": "SensitiveString"
         },
         "Url": {
           "locationName": "url",
@@ -1727,7 +1770,7 @@
         },
         "Username": {
           "locationName": "username",
-          "shape": "__string"
+          "shape": "SensitiveString"
         }
       },
       "type": "structure"
@@ -1878,7 +1921,8 @@
     "ManifestLayout": {
       "enum": [
         "FULL",
-        "COMPACT"
+        "COMPACT",
+        "DRM_TOP_LEVEL_COMPACT"
       ],
       "type": "string"
     },
@@ -1950,6 +1994,10 @@
         "CmafPackage": {
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
         },
         "DashPackage": {
           "locationName": "dashPackage",
@@ -2146,20 +2194,35 @@
     },
     "PresetSpeke20Audio": {
       "enum": [
-        "PRESET-AUDIO-1"
+        "PRESET-AUDIO-1",
+        "PRESET-AUDIO-2",
+        "PRESET-AUDIO-3",
+        "SHARED",
+        "UNENCRYPTED"
       ],
       "type": "string"
     },
     "PresetSpeke20Video": {
       "enum": [
-        "PRESET-VIDEO-1"
+        "PRESET-VIDEO-1",
+        "PRESET-VIDEO-2",
+        "PRESET-VIDEO-3",
+        "PRESET-VIDEO-4",
+        "PRESET-VIDEO-5",
+        "PRESET-VIDEO-6",
+        "PRESET-VIDEO-7",
+        "PRESET-VIDEO-8",
+        "SHARED",
+        "UNENCRYPTED"
       ],
       "type": "string"
     },
     "Profile": {
       "enum": [
         "NONE",
-        "HBBTV_1_5"
+        "HBBTV_1_5",
+        "HYBRIDCAST",
+        "DVB_DASH_2014"
       ],
       "type": "string"
     },
@@ -2182,6 +2245,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
           "shape": "__string"
         },
         "Description": {
@@ -2234,6 +2301,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
           "shape": "__string"
         },
         "Description": {
@@ -2291,6 +2362,10 @@
         "TIME_WITH_TIMELINE",
         "NUMBER_WITH_DURATION"
       ],
+      "type": "string"
+    },
+    "SensitiveString": {
+      "sensitive": true,
       "type": "string"
     },
     "ServiceUnavailableException": {
@@ -2481,6 +2556,10 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "Description": {
           "locationName": "description",
           "shape": "__string"
@@ -2583,6 +2662,10 @@
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DashPackage": {
           "locationName": "dashPackage",
           "shape": "DashPackage"
@@ -2638,7 +2721,8 @@
       "enum": [
         "NONE",
         "HTTP-HEAD",
-        "HTTP-ISO"
+        "HTTP-ISO",
+        "HTTP-XSDATE"
       ],
       "type": "string"
     },

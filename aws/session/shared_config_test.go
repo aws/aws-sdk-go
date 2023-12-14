@@ -1,3 +1,4 @@
+//go:build go1.7
 // +build go1.7
 
 package session
@@ -10,6 +11,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/internal/ini"
@@ -335,6 +337,105 @@ func TestLoadSharedConfig(t *testing.T) {
 				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeStateIPv6,
 			},
 		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseDualStackEndpointEnabled",
+			Expected: sharedConfig{
+				Profile:              "UseDualStackEndpointEnabled",
+				Region:               "us-west-2",
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateEnabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseDualStackEndpointDisabled",
+			Expected: sharedConfig{
+				Profile:              "UseDualStackEndpointDisabled",
+				Region:               "us-west-2",
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateDisabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseDualStackEndpointInvalid",
+			Expected: sharedConfig{
+				Profile:              "UseDualStackEndpointInvalid",
+				Region:               "us-west-2",
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateDisabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseFIPSEndpointEnabled",
+			Expected: sharedConfig{
+				Profile:         "UseFIPSEndpointEnabled",
+				Region:          "us-west-2",
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseFIPSEndpointDisabled",
+			Expected: sharedConfig{
+				Profile:         "UseFIPSEndpointDisabled",
+				Region:          "us-west-2",
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateDisabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseFIPSEndpointInvalid",
+			Expected: sharedConfig{
+				Profile:         "UseFIPSEndpointInvalid",
+				Region:          "us-west-2",
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateDisabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "sso-session-success",
+			Expected: sharedConfig{
+				Profile:        "sso-session-success",
+				Region:         "us-east-1",
+				SSOAccountID:   "123456789012",
+				SSORoleName:    "testRole",
+				SSOSessionName: "sso-session-success-dev",
+				SSOSession: &ssoSession{
+					Name:        "sso-session-success-dev",
+					SSORegion:   "us-east-1",
+					SSOStartURL: "https://d-123456789a.awsapps.com/start",
+				},
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "sso-session-not-exist",
+			Err:       fmt.Errorf("failed to find SSO session section, sso-session-lost"),
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "ec2-metadata-v1-disabled-false",
+			Expected: sharedConfig{
+				Profile:           "ec2-metadata-v1-disabled-false",
+				EC2IMDSv1Disabled: aws.Bool(false),
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "ec2-metadata-v1-disabled-true",
+			Expected: sharedConfig{
+				Profile:           "ec2-metadata-v1-disabled-true",
+				EC2IMDSv1Disabled: aws.Bool(true),
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "ec2-metadata-v1-disabled-invalid",
+			Expected: sharedConfig{
+				Profile:           "ec2-metadata-v1-disabled-invalid",
+				EC2IMDSv1Disabled: aws.Bool(false),
+			},
+		},
 	}
 
 	for i, c := range cases {
@@ -450,6 +551,15 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 			Profile: "valid_arn_region",
 			Expected: sharedConfig{
 				S3UseARNRegion: true,
+			},
+		},
+		{
+			Profile: "sso-session-success",
+			Expected: sharedConfig{
+				Region:         "us-east-1",
+				SSOAccountID:   "123456789012",
+				SSORoleName:    "testRole",
+				SSOSessionName: "sso-session-success-dev",
 			},
 		},
 	}

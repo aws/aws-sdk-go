@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 package api
@@ -31,7 +32,7 @@ type XMLInfo struct {
 type ShapeRef struct {
 	API           *API   `json:"-"`
 	Shape         *Shape `json:"-"`
-	Documentation string
+	Documentation string `json:"-"`
 	ShapeName     string `json:"shape"`
 	Location      string
 	LocationName  string
@@ -39,6 +40,11 @@ type ShapeRef struct {
 	Flattened     bool
 	Streaming     bool
 	XMLAttribute  bool
+
+	// References of struct members will include their originally modeled
+	// member name for cross references.
+	OriginalMemberName string `json:"-"`
+
 	// Ignore, if set, will not be sent over the wire
 	Ignore              bool
 	XMLNamespace        XMLInfo
@@ -69,13 +75,22 @@ type ShapeRef struct {
 
 	// Flag whether the member reference is a Account ID when endpoint shape ARN is present
 	AccountIDMemberWithARN bool
+
+	// Flags that the member was modeled as JSONValue but suppressed by the SDK.
+	SuppressedJSONValue bool `json:"-"`
 }
 
 // A Shape defines the definition of a shape type
 type Shape struct {
-	API              *API `json:"-"`
-	ShapeName        string
-	Documentation    string
+	API           *API `json:"-"`
+	ShapeName     string
+	Documentation string `json:"-"`
+
+	// References of struct members will include their originally modeled
+	// member name for cross references.
+	OriginalShapeName string `json:"-"`
+
+	// Map of exported member names to the ShapeReference.
 	MemberRefs       map[string]*ShapeRef `json:"members"`
 	MemberRef        ShapeRef             `json:"member"` // List ref
 	KeyRef           ShapeRef             `json:"key"`    // map key ref
@@ -142,6 +157,9 @@ type Shape struct {
 
 	// Indicates the Shape is used as an operation output
 	UsedAsOutput bool
+
+	// Indicates a structure shape is a document type
+	Document bool `json:"document"`
 }
 
 // CanBeEmpty returns if the shape value can sent request as an empty value.
@@ -220,6 +238,10 @@ func (s *Shape) Rename(newName string) {
 		r.ShapeName = newName
 	}
 
+	if s.OriginalShapeName == "" {
+		s.OriginalShapeName = s.ShapeName
+	}
+
 	delete(s.API.Shapes, s.ShapeName)
 	s.API.Shapes[newName] = s
 	s.ShapeName = newName
@@ -236,11 +258,23 @@ func (s *Shape) MemberNames() []string {
 	return names
 }
 
-// HasMember will return whether or not the shape has a given
-// member by name.
+// HasMember will return whether or not the shape has a given member by name.
+// Name passed in must match the SDK's exported name for the member, not the
+// modeled member name
 func (s *Shape) HasMember(name string) bool {
 	_, ok := s.MemberRefs[name]
 	return ok
+}
+
+// GetModeledMember returns the member's ShapeReference if it exists within the
+// shape. Returns nil if the member could not be found.
+func (s *Shape) GetModeledMember(name string) *ShapeRef {
+	for _, ref := range s.MemberRefs {
+		if ref.OriginalMemberName == name {
+			return ref
+		}
+	}
+	return nil
 }
 
 // GoTypeWithPkgName returns a shape's type as a string with the package name in
@@ -464,12 +498,16 @@ func (s ShapeTags) String() string {
 func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	tags := append(ShapeTags{}, ref.CustomTags...)
 
+	var location string
 	if ref.Location != "" {
 		tags = append(tags, ShapeTag{"location", ref.Location})
+		location = ref.Location
 	} else if ref.Shape.Location != "" {
 		tags = append(tags, ShapeTag{"location", ref.Shape.Location})
+		location = ref.Shape.Location
 	} else if ref.IsEventHeader {
 		tags = append(tags, ShapeTag{"location", "header"})
+		location = "header"
 	}
 
 	if ref.LocationName != "" {
@@ -513,6 +551,10 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 			})
 		}
 	}
+	// Value that is encoded as a header that needs to be base64 encoded
+	if ref.SuppressedJSONValue && location == "header" {
+		tags = append(tags, ShapeTag{"suppressedJSONValue", "true"})
+	}
 
 	if ref.Shape.Flattened || ref.Flattened {
 		tags = append(tags, ShapeTag{"flattened", "true"})
@@ -525,11 +567,16 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	}
 	if ref.Shape.IsEnum() {
 		tags = append(tags, ShapeTag{"enum", ref.ShapeName})
+	} else if ref.Shape.Type == "list" && ref.Shape.MemberRef.Shape.IsEnum() {
+		tags = append(tags, ShapeTag{"enum", ref.Shape.MemberRef.ShapeName})
 	}
 
 	if toplevel {
 		if name := ref.Shape.PayloadRefName(); len(name) > 0 {
 			tags = append(tags, ShapeTag{"payload", name})
+		}
+		if ref.Shape.UsedAsInput && !ref.Shape.HasPayloadMembers() && ref.API.Metadata.Protocol == "rest-json" {
+			tags = append(tags, ShapeTag{"nopayload", "true"})
 		}
 	}
 
@@ -560,6 +607,18 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	return fmt.Sprintf("`%s`", tags)
 }
 
+// HasPayloadMembers returns if the shape has any members that will be
+// serialized to the payload of a API message.
+func (s *Shape) HasPayloadMembers() bool {
+	for _, ref := range s.MemberRefs {
+		if ref.Location == "" && ref.Shape.Location == "" {
+			return true
+		}
+	}
+
+	return false
+}
+
 // Docstring returns the godocs formated documentation
 func (ref *ShapeRef) Docstring() string {
 	if ref.Documentation != "" {
@@ -580,11 +639,19 @@ func (ref *ShapeRef) IndentedDocstring() string {
 }
 
 var goCodeStringerTmpl = template.Must(template.New("goCodeStringerTmpl").Parse(`
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s {{ $.ShapeName }}) String() string {
 	return awsutil.Prettify(s)
 }
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s {{ $.ShapeName }}) GoString() string {
 	return s.String()
 }
@@ -716,6 +783,9 @@ type {{ $.ShapeName }} struct {
 	{{- if $.Exception }}
 		{{- $_ := $.API.AddSDKImport "private/protocol" }}
 		RespMetadata protocol.ResponseMetadata` + "`json:\"-\" xml:\"-\"`" + `
+	{{- if $.API.Metadata.AWSQueryCompatible }}
+		Code_ *string
+	{{- end }}
 	{{- end }}
 
 	{{- if $.OutputEventStreamAPI }}
@@ -727,6 +797,7 @@ type {{ $.ShapeName }} struct {
 
 		{{ $isBlob := $.WillRefBeBase64Encoded $name -}}
 		{{ $isRequired := $.IsRequired $name -}}
+		{{ $isSensitive := $elem.Shape.Sensitive -}}
 		{{ $doc := $elem.Docstring -}}
 
 		{{ if $doc -}}
@@ -736,8 +807,16 @@ type {{ $.ShapeName }} struct {
 			// Deprecated: {{ GetDeprecatedMsg $elem.DeprecatedMsg $name }}
 			{{ end -}}
 		{{ end -}}
-		{{ if $isBlob -}}
+		{{ if $isSensitive -}}
 			{{ if $doc -}}
+				//
+			{{ end -}}
+			// {{ $name }} is a sensitive parameter and its value will be
+			// replaced with "sensitive" in string returned by {{ $.ShapeName }}'s
+			// String and GoString methods.
+		{{ end -}}
+		{{ if $isBlob -}}
+			{{ if $isSensitive -}}
 				//
 			{{ end -}}
 			// {{ $name }} is automatically base64 encoded/decoded by the SDK.
@@ -846,8 +925,22 @@ func newError{{ $.ShapeName }}(v protocol.ResponseMetadata) error {
 	}
 }
 
+{{- if $.API.Metadata.AWSQueryCompatible }}
+func newQueryCompatibleError{{ $.ShapeName }}(v protocol.ResponseMetadata, code string) error {
+	return &{{ $.ShapeName }}{
+		RespMetadata: v,
+		Code_: &code,
+	}
+}
+{{- end }}
+
 // Code returns the exception type name.
 func (s *{{ $.ShapeName }}) Code() string {
+	{{- if $.API.Metadata.AWSQueryCompatible }}
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	{{- end }}
 	return "{{ $.ErrorName }}"
 }
 

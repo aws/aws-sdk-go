@@ -80,6 +80,12 @@
         "CmafPackageCreateOrUpdateParameters$Encryption" : null
       }
     },
+    "CmafEncryptionMethod" : {
+      "base" : "The encryption method to use.",
+      "refs" : {
+        "CmafEncryption$EncryptionMethod" : null
+      }
+    },
     "CmafPackage" : {
       "base" : "A Common Media Application Format (CMAF) packaging configuration.",
       "refs" : {
@@ -119,7 +125,7 @@
       }
     },
     "EncryptionContractConfiguration" : {
-      "base" : "Use encryptionContractConfiguration to configure one or more content encryption keys for your endpoints that use SPEKE 2.0. \nThe encryption contract defines which content keys are used to encrypt the audio and video tracks in your stream. \nTo configure the encryption contract, specify which audio and video encryption presets to use.\nNote the following considerations when using encryptionContractConfiguration:\nencryptionContractConfiguration can be used for DASH endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the CPIX 2.3 specification.\nYou must disable key rotation for this endpoint by setting keyRotationIntervalSeconds to 0.\n",
+      "base" : "Use encryptionContractConfiguration to configure one or more content encryption keys for your endpoints that use SPEKE 2.0. \nThe encryption contract defines which content keys are used to encrypt the audio and video tracks in your stream. \nTo configure the encryption contract, specify which audio and video encryption presets to use.\nNote the following considerations when using encryptionContractConfiguration:\nencryptionContractConfiguration can be used for DASH or CMAF endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the CPIX 2.3 specification.\nYou must disable key rotation for this endpoint by setting keyRotationIntervalSeconds to 0.\n",
       "refs" : {
         "SpekeKeyProvider$EncryptionContractConfiguration" : null
       }
@@ -192,7 +198,7 @@
     "ManifestLayout" : {
       "base" : null,
       "refs" : {
-        "DashPackage$ManifestLayout" : "Determines the position of some tags in the Media Presentation Description (MPD).  When set to FULL, elements like SegmentTemplate and ContentProtection are included in each Representation.  When set to COMPACT, duplicate elements are combined and presented at the AdaptationSet level."
+        "DashPackage$ManifestLayout" : "Determines the position of some tags in the Media Presentation Description (MPD).  When set to FULL, elements like SegmentTemplate and ContentProtection are included in each Representation.  When set to COMPACT, duplicate elements are combined and presented at the AdaptationSet level. When set to DRM_TOP_LEVEL_COMPACT, content protection elements are placed the MPD level and referenced at the AdaptationSet level."
       }
     },
     "MssEncryption" : {
@@ -258,7 +264,7 @@
     "Profile" : {
       "base" : null,
       "refs" : {
-        "DashPackage$Profile" : "The Dynamic Adaptive Streaming over HTTP (DASH) profile type.  When set to \"HBBTV_1_5\", HbbTV 1.5 compliant output is enabled."
+        "DashPackage$Profile" : "The Dynamic Adaptive Streaming over HTTP (DASH) profile type.  When set to \"HBBTV_1_5\", HbbTV 1.5 compliant output is enabled. When set to \"DVB-DASH_2014\", DVB-DASH 2014 compliant output is enabled."
       }
     },
     "S3Destination" : {
@@ -339,9 +345,11 @@
     "__boolean" : {
       "base" : null,
       "refs" : {
+        "DashPackage$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
         "HlsEncryption$RepeatExtXKey" : "When enabled, the EXT-X-KEY tag will be repeated in output manifests.",
         "HlsManifest$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
         "HlsManifestCreateOrUpdateParameters$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
+        "HlsPackage$IncludeDvbSubtitles" : "When enabled, MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.",
         "HlsPackage$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
         "HlsPackage$UseAudioRenditionGroup" : "When enabled, audio streams will be placed in rendition groups in the output."
       }
@@ -441,6 +449,7 @@
         "Authorization$CdnIdentifierSecret" : "The Amazon Resource Name (ARN) for the secret in Secrets Manager that your Content Distribution Network (CDN) uses for authorization to access your endpoint.\n",
         "Authorization$SecretsRoleArn" : "The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager.\n",
         "Channel$Arn" : "The Amazon Resource Name (ARN) assigned to the Channel.",
+        "Channel$CreatedAt" : "The date and time the Channel was created.",
         "Channel$Description" : "A short text description of the Channel.",
         "Channel$Id" : "The ID of the Channel.",
         "ChannelCreateParameters$Description" : "A short text description of the Channel.",
@@ -450,11 +459,11 @@
         "CmafEncryption$ConstantInitializationVector" : "An optional 128-bit, 16-byte hex value represented by a 32-character string, used in conjunction with the key for encrypting blocks. If you don't specify a value, then MediaPackage creates the constant initialization vector (IV).",
         "CmafPackage$SegmentPrefix" : "An optional custom string that is prepended to the name of each segment. If not specified, it defaults to the ChannelId.",
         "CmafPackageCreateOrUpdateParameters$SegmentPrefix" : "An optional custom string that is prepended to the name of each segment. If not specified, it defaults to the ChannelId.",
-        "DashPackage$UtcTimingUri" : "Specifies the value attribute of the UTCTiming field when utcTiming is set to HTTP-ISO or HTTP-HEAD",
+        "DashPackage$UtcTimingUri" : "Specifies the value attribute of the UTCTiming field when utcTiming is set to HTTP-ISO, HTTP-HEAD or HTTP-XSDATE",
         "EgressAccessLogs$LogGroupName" : "Customize the log group name.",
         "HarvestJob$Arn" : "The Amazon Resource Name (ARN) assigned to the HarvestJob.\n",
         "HarvestJob$ChannelId" : "The ID of the Channel that the HarvestJob will harvest from.\n",
-        "HarvestJob$CreatedAt" : "The time the HarvestJob was submitted\n",
+        "HarvestJob$CreatedAt" : "The date and time the HarvestJob was submitted.\n",
         "HarvestJob$EndTime" : "The end of the time-window which will be harvested.\n",
         "HarvestJob$Id" : "The ID of the HarvestJob. The ID must be unique within the region\nand it cannot be changed after the HarvestJob is submitted.\n",
         "HarvestJob$OriginEndpointId" : "The ID of the OriginEndpoint that the HarvestJob will harvest from.\nThis cannot be changed after the HarvestJob is submitted.\n",
@@ -477,6 +486,7 @@
         "IngressAccessLogs$LogGroupName" : "Customize the log group name.",
         "OriginEndpoint$Arn" : "The Amazon Resource Name (ARN) assigned to the OriginEndpoint.",
         "OriginEndpoint$ChannelId" : "The ID of the Channel the OriginEndpoint is associated with.",
+        "OriginEndpoint$CreatedAt" : "The date and time the OriginEndpoint was created.",
         "OriginEndpoint$Description" : "A short text description of the OriginEndpoint.",
         "OriginEndpoint$Id" : "The ID of the OriginEndpoint.",
         "OriginEndpoint$ManifestName" : "A short string appended to the end of the OriginEndpoint URL.",

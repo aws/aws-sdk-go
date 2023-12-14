@@ -40,36 +40,38 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a ComprehendMedical client from just a session.
-//     svc := comprehendmedical.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a ComprehendMedical client with additional configuration
-//     svc := comprehendmedical.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a ComprehendMedical client from just a session.
+//	svc := comprehendmedical.New(mySession)
+//
+//	// Create a ComprehendMedical client with additional configuration
+//	svc := comprehendmedical.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ComprehendMedical {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "comprehendmedical"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *ComprehendMedical {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *ComprehendMedical {
 	svc := &ComprehendMedical{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2018-10-30",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "ComprehendMedical_20181030",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2018-10-30",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "ComprehendMedical_20181030",
 			},
 			handlers,
 		),

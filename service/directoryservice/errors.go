@@ -55,14 +55,15 @@ const (
 	// ErrCodeDirectoryAlreadyInRegionException for service response error code
 	// "DirectoryAlreadyInRegionException".
 	//
-	// The Region you specified is the same Region where the AWS Managed Microsoft
-	// AD directory was created. Specify a different Region and try again.
+	// The Region you specified is the same Region where the Managed Microsoft AD
+	// directory was created. Specify a different Region and try again.
 	ErrCodeDirectoryAlreadyInRegionException = "DirectoryAlreadyInRegionException"
 
 	// ErrCodeDirectoryAlreadySharedException for service response error code
 	// "DirectoryAlreadySharedException".
 	//
-	// The specified directory has already been shared with this AWS account.
+	// The specified directory has already been shared with this Amazon Web Services
+	// account.
 	ErrCodeDirectoryAlreadySharedException = "DirectoryAlreadySharedException"
 
 	// ErrCodeDirectoryDoesNotExistException for service response error code
@@ -70,6 +71,12 @@ const (
 	//
 	// The specified directory does not exist in the system.
 	ErrCodeDirectoryDoesNotExistException = "DirectoryDoesNotExistException"
+
+	// ErrCodeDirectoryInDesiredStateException for service response error code
+	// "DirectoryInDesiredStateException".
+	//
+	// The directory is already updated to desired update type settings.
+	ErrCodeDirectoryInDesiredStateException = "DirectoryInDesiredStateException"
 
 	// ErrCodeDirectoryLimitExceededException for service response error code
 	// "DirectoryLimitExceededException".
@@ -82,7 +89,8 @@ const (
 	// ErrCodeDirectoryNotSharedException for service response error code
 	// "DirectoryNotSharedException".
 	//
-	// The specified directory has not been shared with this AWS account.
+	// The specified directory has not been shared with this Amazon Web Services
+	// account.
 	ErrCodeDirectoryNotSharedException = "DirectoryNotSharedException"
 
 	// ErrCodeDirectoryUnavailableException for service response error code
@@ -109,6 +117,12 @@ const (
 	//
 	// The specified entity could not be found.
 	ErrCodeEntityDoesNotExistException = "EntityDoesNotExistException"
+
+	// ErrCodeIncompatibleSettingsException for service response error code
+	// "IncompatibleSettingsException".
+	//
+	// The specified directory setting is not compatible with other settings.
+	ErrCodeIncompatibleSettingsException = "IncompatibleSettingsException"
 
 	// ErrCodeInsufficientPermissionsException for service response error code
 	// "InsufficientPermissionsException".
@@ -177,7 +191,7 @@ const (
 	// ErrCodeOrganizationsException for service response error code
 	// "OrganizationsException".
 	//
-	// Exception encountered while trying to access your AWS organization.
+	// Exception encountered while trying to access your Amazon Web Services organization.
 	ErrCodeOrganizationsException = "OrganizationsException"
 
 	// ErrCodeRegionLimitExceededException for service response error code
@@ -190,14 +204,14 @@ const (
 	// ErrCodeServiceException for service response error code
 	// "ServiceException".
 	//
-	// An exception has occurred in AWS Directory Service.
+	// An exception has occurred in Directory Service.
 	ErrCodeServiceException = "ServiceException"
 
 	// ErrCodeShareLimitExceededException for service response error code
 	// "ShareLimitExceededException".
 	//
-	// The maximum number of AWS accounts that you can share with this directory
-	// has been reached.
+	// The maximum number of Amazon Web Services accounts that you can share with
+	// this directory has been reached.
 	ErrCodeShareLimitExceededException = "ShareLimitExceededException"
 
 	// ErrCodeSnapshotLimitExceededException for service response error code
@@ -220,6 +234,12 @@ const (
 	// The operation is not supported.
 	ErrCodeUnsupportedOperationException = "UnsupportedOperationException"
 
+	// ErrCodeUnsupportedSettingsException for service response error code
+	// "UnsupportedSettingsException".
+	//
+	// The specified directory setting is not supported.
+	ErrCodeUnsupportedSettingsException = "UnsupportedSettingsException"
+
 	// ErrCodeUserDoesNotExistException for service response error code
 	// "UserDoesNotExistException".
 	//
@@ -238,12 +258,14 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"DirectoryAlreadyInRegionException":      newErrorDirectoryAlreadyInRegionException,
 	"DirectoryAlreadySharedException":        newErrorDirectoryAlreadySharedException,
 	"DirectoryDoesNotExistException":         newErrorDirectoryDoesNotExistException,
+	"DirectoryInDesiredStateException":       newErrorDirectoryInDesiredStateException,
 	"DirectoryLimitExceededException":        newErrorDirectoryLimitExceededException,
 	"DirectoryNotSharedException":            newErrorDirectoryNotSharedException,
 	"DirectoryUnavailableException":          newErrorDirectoryUnavailableException,
 	"DomainControllerLimitExceededException": newErrorDomainControllerLimitExceededException,
 	"EntityAlreadyExistsException":           newErrorEntityAlreadyExistsException,
 	"EntityDoesNotExistException":            newErrorEntityDoesNotExistException,
+	"IncompatibleSettingsException":          newErrorIncompatibleSettingsException,
 	"InsufficientPermissionsException":       newErrorInsufficientPermissionsException,
 	"InvalidCertificateException":            newErrorInvalidCertificateException,
 	"InvalidClientAuthStatusException":       newErrorInvalidClientAuthStatusException,
@@ -261,5 +283,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"SnapshotLimitExceededException":         newErrorSnapshotLimitExceededException,
 	"TagLimitExceededException":              newErrorTagLimitExceededException,
 	"UnsupportedOperationException":          newErrorUnsupportedOperationException,
+	"UnsupportedSettingsException":           newErrorUnsupportedSettingsException,
 	"UserDoesNotExistException":              newErrorUserDoesNotExistException,
 }

@@ -29,14 +29,13 @@ const opCreateDiscoverer = "CreateDiscoverer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDiscovererRequest method.
+//	req, resp := client.CreateDiscovererRequest(params)
 //
-//    // Example sending a request using the CreateDiscovererRequest method.
-//    req, resp := client.CreateDiscovererRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/CreateDiscoverer
 func (c *Schemas) CreateDiscovererRequest(input *CreateDiscovererInput) (req *request.Request, output *CreateDiscovererOutput) {
@@ -67,17 +66,18 @@ func (c *Schemas) CreateDiscovererRequest(input *CreateDiscovererInput) (req *re
 // API operation CreateDiscoverer for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * InternalServerErrorException
+//   - BadRequestException
 //
-//   * UnauthorizedException
+//   - InternalServerErrorException
 //
-//   * ForbiddenException
+//   - UnauthorizedException
 //
-//   * ServiceUnavailableException
+//   - ForbiddenException
 //
-//   * ConflictException
+//   - ServiceUnavailableException
+//
+//   - ConflictException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/CreateDiscoverer
 func (c *Schemas) CreateDiscoverer(input *CreateDiscovererInput) (*CreateDiscovererOutput, error) {
@@ -117,14 +117,13 @@ const opCreateRegistry = "CreateRegistry"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRegistryRequest method.
+//	req, resp := client.CreateRegistryRequest(params)
 //
-//    // Example sending a request using the CreateRegistryRequest method.
-//    req, resp := client.CreateRegistryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/CreateRegistry
 func (c *Schemas) CreateRegistryRequest(input *CreateRegistryInput) (req *request.Request, output *CreateRegistryOutput) {
@@ -155,17 +154,18 @@ func (c *Schemas) CreateRegistryRequest(input *CreateRegistryInput) (req *reques
 // API operation CreateRegistry for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * InternalServerErrorException
+//   - BadRequestException
 //
-//   * UnauthorizedException
+//   - InternalServerErrorException
 //
-//   * ForbiddenException
+//   - UnauthorizedException
 //
-//   * ServiceUnavailableException
+//   - ForbiddenException
 //
-//   * ConflictException
+//   - ServiceUnavailableException
+//
+//   - ConflictException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/CreateRegistry
 func (c *Schemas) CreateRegistry(input *CreateRegistryInput) (*CreateRegistryOutput, error) {
@@ -205,14 +205,13 @@ const opCreateSchema = "CreateSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSchemaRequest method.
+//	req, resp := client.CreateSchemaRequest(params)
 //
-//    // Example sending a request using the CreateSchemaRequest method.
-//    req, resp := client.CreateSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/CreateSchema
 func (c *Schemas) CreateSchemaRequest(input *CreateSchemaInput) (req *request.Request, output *CreateSchemaOutput) {
@@ -245,13 +244,14 @@ func (c *Schemas) CreateSchemaRequest(input *CreateSchemaInput) (req *request.Re
 // API operation CreateSchema for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceUnavailableException
 //
-//   * BadRequestException
+//   - ServiceUnavailableException
 //
-//   * InternalServerErrorException
+//   - BadRequestException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/CreateSchema
 func (c *Schemas) CreateSchema(input *CreateSchemaInput) (*CreateSchemaOutput, error) {
@@ -291,14 +291,13 @@ const opDeleteDiscoverer = "DeleteDiscoverer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDiscovererRequest method.
+//	req, resp := client.DeleteDiscovererRequest(params)
 //
-//    // Example sending a request using the DeleteDiscovererRequest method.
-//    req, resp := client.DeleteDiscovererRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteDiscoverer
 func (c *Schemas) DeleteDiscovererRequest(input *DeleteDiscovererInput) (req *request.Request, output *DeleteDiscovererOutput) {
@@ -330,17 +329,18 @@ func (c *Schemas) DeleteDiscovererRequest(input *DeleteDiscovererInput) (req *re
 // API operation DeleteDiscoverer for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteDiscoverer
 func (c *Schemas) DeleteDiscoverer(input *DeleteDiscovererInput) (*DeleteDiscovererOutput, error) {
@@ -380,14 +380,13 @@ const opDeleteRegistry = "DeleteRegistry"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRegistryRequest method.
+//	req, resp := client.DeleteRegistryRequest(params)
 //
-//    // Example sending a request using the DeleteRegistryRequest method.
-//    req, resp := client.DeleteRegistryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteRegistry
 func (c *Schemas) DeleteRegistryRequest(input *DeleteRegistryInput) (req *request.Request, output *DeleteRegistryOutput) {
@@ -419,17 +418,18 @@ func (c *Schemas) DeleteRegistryRequest(input *DeleteRegistryInput) (req *reques
 // API operation DeleteRegistry for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteRegistry
 func (c *Schemas) DeleteRegistry(input *DeleteRegistryInput) (*DeleteRegistryOutput, error) {
@@ -469,14 +469,13 @@ const opDeleteResourcePolicy = "DeleteResourcePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteResourcePolicyRequest method.
+//	req, resp := client.DeleteResourcePolicyRequest(params)
 //
-//    // Example sending a request using the DeleteResourcePolicyRequest method.
-//    req, resp := client.DeleteResourcePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteResourcePolicy
 func (c *Schemas) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
@@ -508,17 +507,18 @@ func (c *Schemas) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) 
 // API operation DeleteResourcePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteResourcePolicy
 func (c *Schemas) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
@@ -558,14 +558,13 @@ const opDeleteSchema = "DeleteSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSchemaRequest method.
+//	req, resp := client.DeleteSchemaRequest(params)
 //
-//    // Example sending a request using the DeleteSchemaRequest method.
-//    req, resp := client.DeleteSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteSchema
 func (c *Schemas) DeleteSchemaRequest(input *DeleteSchemaInput) (req *request.Request, output *DeleteSchemaOutput) {
@@ -597,17 +596,18 @@ func (c *Schemas) DeleteSchemaRequest(input *DeleteSchemaInput) (req *request.Re
 // API operation DeleteSchema for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteSchema
 func (c *Schemas) DeleteSchema(input *DeleteSchemaInput) (*DeleteSchemaOutput, error) {
@@ -647,14 +647,13 @@ const opDeleteSchemaVersion = "DeleteSchemaVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSchemaVersionRequest method.
+//	req, resp := client.DeleteSchemaVersionRequest(params)
 //
-//    // Example sending a request using the DeleteSchemaVersionRequest method.
-//    req, resp := client.DeleteSchemaVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteSchemaVersion
 func (c *Schemas) DeleteSchemaVersionRequest(input *DeleteSchemaVersionInput) (req *request.Request, output *DeleteSchemaVersionOutput) {
@@ -676,7 +675,7 @@ func (c *Schemas) DeleteSchemaVersionRequest(input *DeleteSchemaVersionInput) (r
 
 // DeleteSchemaVersion API operation for Schemas.
 //
-// Delete the schema version definition
+// # Delete the schema version definition
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -686,17 +685,18 @@ func (c *Schemas) DeleteSchemaVersionRequest(input *DeleteSchemaVersionInput) (r
 // API operation DeleteSchemaVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteSchemaVersion
 func (c *Schemas) DeleteSchemaVersion(input *DeleteSchemaVersionInput) (*DeleteSchemaVersionOutput, error) {
@@ -736,14 +736,13 @@ const opDescribeCodeBinding = "DescribeCodeBinding"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCodeBindingRequest method.
+//	req, resp := client.DescribeCodeBindingRequest(params)
 //
-//    // Example sending a request using the DescribeCodeBindingRequest method.
-//    req, resp := client.DescribeCodeBindingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeCodeBinding
 func (c *Schemas) DescribeCodeBindingRequest(input *DescribeCodeBindingInput) (req *request.Request, output *DescribeCodeBindingOutput) {
@@ -774,17 +773,18 @@ func (c *Schemas) DescribeCodeBindingRequest(input *DescribeCodeBindingInput) (r
 // API operation DescribeCodeBinding for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * TooManyRequestsException
+//   - NotFoundException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeCodeBinding
 func (c *Schemas) DescribeCodeBinding(input *DescribeCodeBindingInput) (*DescribeCodeBindingOutput, error) {
@@ -824,14 +824,13 @@ const opDescribeDiscoverer = "DescribeDiscoverer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDiscovererRequest method.
+//	req, resp := client.DescribeDiscovererRequest(params)
 //
-//    // Example sending a request using the DescribeDiscovererRequest method.
-//    req, resp := client.DescribeDiscovererRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeDiscoverer
 func (c *Schemas) DescribeDiscovererRequest(input *DescribeDiscovererInput) (req *request.Request, output *DescribeDiscovererOutput) {
@@ -862,17 +861,18 @@ func (c *Schemas) DescribeDiscovererRequest(input *DescribeDiscovererInput) (req
 // API operation DescribeDiscoverer for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeDiscoverer
 func (c *Schemas) DescribeDiscoverer(input *DescribeDiscovererInput) (*DescribeDiscovererOutput, error) {
@@ -912,14 +912,13 @@ const opDescribeRegistry = "DescribeRegistry"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRegistryRequest method.
+//	req, resp := client.DescribeRegistryRequest(params)
 //
-//    // Example sending a request using the DescribeRegistryRequest method.
-//    req, resp := client.DescribeRegistryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeRegistry
 func (c *Schemas) DescribeRegistryRequest(input *DescribeRegistryInput) (req *request.Request, output *DescribeRegistryOutput) {
@@ -950,17 +949,18 @@ func (c *Schemas) DescribeRegistryRequest(input *DescribeRegistryInput) (req *re
 // API operation DescribeRegistry for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeRegistry
 func (c *Schemas) DescribeRegistry(input *DescribeRegistryInput) (*DescribeRegistryOutput, error) {
@@ -1000,14 +1000,13 @@ const opDescribeSchema = "DescribeSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSchemaRequest method.
+//	req, resp := client.DescribeSchemaRequest(params)
 //
-//    // Example sending a request using the DescribeSchemaRequest method.
-//    req, resp := client.DescribeSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeSchema
 func (c *Schemas) DescribeSchemaRequest(input *DescribeSchemaInput) (req *request.Request, output *DescribeSchemaOutput) {
@@ -1038,17 +1037,18 @@ func (c *Schemas) DescribeSchemaRequest(input *DescribeSchemaInput) (req *reques
 // API operation DescribeSchema for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeSchema
 func (c *Schemas) DescribeSchema(input *DescribeSchemaInput) (*DescribeSchemaOutput, error) {
@@ -1088,14 +1088,13 @@ const opExportSchema = "ExportSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ExportSchemaRequest method.
+//	req, resp := client.ExportSchemaRequest(params)
 //
-//    // Example sending a request using the ExportSchemaRequest method.
-//    req, resp := client.ExportSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ExportSchema
 func (c *Schemas) ExportSchemaRequest(input *ExportSchemaInput) (req *request.Request, output *ExportSchemaOutput) {
@@ -1126,19 +1125,20 @@ func (c *Schemas) ExportSchemaRequest(input *ExportSchemaInput) (req *request.Re
 // API operation ExportSchema for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
 //
-//   * TooManyRequestsException
+//   - ServiceUnavailableException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ExportSchema
 func (c *Schemas) ExportSchema(input *ExportSchemaInput) (*ExportSchemaOutput, error) {
@@ -1178,14 +1178,13 @@ const opGetCodeBindingSource = "GetCodeBindingSource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCodeBindingSourceRequest method.
+//	req, resp := client.GetCodeBindingSourceRequest(params)
 //
-//    // Example sending a request using the GetCodeBindingSourceRequest method.
-//    req, resp := client.GetCodeBindingSourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/GetCodeBindingSource
 func (c *Schemas) GetCodeBindingSourceRequest(input *GetCodeBindingSourceInput) (req *request.Request, output *GetCodeBindingSourceOutput) {
@@ -1216,17 +1215,18 @@ func (c *Schemas) GetCodeBindingSourceRequest(input *GetCodeBindingSourceInput) 
 // API operation GetCodeBindingSource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * TooManyRequestsException
+//   - NotFoundException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/GetCodeBindingSource
 func (c *Schemas) GetCodeBindingSource(input *GetCodeBindingSourceInput) (*GetCodeBindingSourceOutput, error) {
@@ -1266,14 +1266,13 @@ const opGetDiscoveredSchema = "GetDiscoveredSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDiscoveredSchemaRequest method.
+//	req, resp := client.GetDiscoveredSchemaRequest(params)
 //
-//    // Example sending a request using the GetDiscoveredSchemaRequest method.
-//    req, resp := client.GetDiscoveredSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/GetDiscoveredSchema
 func (c *Schemas) GetDiscoveredSchemaRequest(input *GetDiscoveredSchemaInput) (req *request.Request, output *GetDiscoveredSchemaOutput) {
@@ -1304,15 +1303,16 @@ func (c *Schemas) GetDiscoveredSchemaRequest(input *GetDiscoveredSchemaInput) (r
 // API operation GetDiscoveredSchema for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceUnavailableException
 //
-//   * BadRequestException
+//   - ServiceUnavailableException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/GetDiscoveredSchema
 func (c *Schemas) GetDiscoveredSchema(input *GetDiscoveredSchemaInput) (*GetDiscoveredSchemaOutput, error) {
@@ -1352,14 +1352,13 @@ const opGetResourcePolicy = "GetResourcePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResourcePolicyRequest method.
+//	req, resp := client.GetResourcePolicyRequest(params)
 //
-//    // Example sending a request using the GetResourcePolicyRequest method.
-//    req, resp := client.GetResourcePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/GetResourcePolicy
 func (c *Schemas) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req *request.Request, output *GetResourcePolicyOutput) {
@@ -1390,17 +1389,18 @@ func (c *Schemas) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req *
 // API operation GetResourcePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/GetResourcePolicy
 func (c *Schemas) GetResourcePolicy(input *GetResourcePolicyInput) (*GetResourcePolicyOutput, error) {
@@ -1440,14 +1440,13 @@ const opListDiscoverers = "ListDiscoverers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDiscoverersRequest method.
+//	req, resp := client.ListDiscoverersRequest(params)
 //
-//    // Example sending a request using the ListDiscoverersRequest method.
-//    req, resp := client.ListDiscoverersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListDiscoverers
 func (c *Schemas) ListDiscoverersRequest(input *ListDiscoverersInput) (req *request.Request, output *ListDiscoverersOutput) {
@@ -1484,15 +1483,16 @@ func (c *Schemas) ListDiscoverersRequest(input *ListDiscoverersInput) (req *requ
 // API operation ListDiscoverers for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceUnavailableException
 //
-//   * BadRequestException
+//   - ServiceUnavailableException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListDiscoverers
 func (c *Schemas) ListDiscoverers(input *ListDiscoverersInput) (*ListDiscoverersOutput, error) {
@@ -1524,15 +1524,14 @@ func (c *Schemas) ListDiscoverersWithContext(ctx aws.Context, input *ListDiscove
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDiscoverers operation.
-//    pageNum := 0
-//    err := client.ListDiscoverersPages(params,
-//        func(page *schemas.ListDiscoverersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDiscoverers operation.
+//	pageNum := 0
+//	err := client.ListDiscoverersPages(params,
+//	    func(page *schemas.ListDiscoverersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Schemas) ListDiscoverersPages(input *ListDiscoverersInput, fn func(*ListDiscoverersOutput, bool) bool) error {
 	return c.ListDiscoverersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1584,14 +1583,13 @@ const opListRegistries = "ListRegistries"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRegistriesRequest method.
+//	req, resp := client.ListRegistriesRequest(params)
 //
-//    // Example sending a request using the ListRegistriesRequest method.
-//    req, resp := client.ListRegistriesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListRegistries
 func (c *Schemas) ListRegistriesRequest(input *ListRegistriesInput) (req *request.Request, output *ListRegistriesOutput) {
@@ -1628,15 +1626,16 @@ func (c *Schemas) ListRegistriesRequest(input *ListRegistriesInput) (req *reques
 // API operation ListRegistries for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceUnavailableException
 //
-//   * BadRequestException
+//   - ServiceUnavailableException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListRegistries
 func (c *Schemas) ListRegistries(input *ListRegistriesInput) (*ListRegistriesOutput, error) {
@@ -1668,15 +1667,14 @@ func (c *Schemas) ListRegistriesWithContext(ctx aws.Context, input *ListRegistri
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRegistries operation.
-//    pageNum := 0
-//    err := client.ListRegistriesPages(params,
-//        func(page *schemas.ListRegistriesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRegistries operation.
+//	pageNum := 0
+//	err := client.ListRegistriesPages(params,
+//	    func(page *schemas.ListRegistriesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Schemas) ListRegistriesPages(input *ListRegistriesInput, fn func(*ListRegistriesOutput, bool) bool) error {
 	return c.ListRegistriesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1728,14 +1726,13 @@ const opListSchemaVersions = "ListSchemaVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSchemaVersionsRequest method.
+//	req, resp := client.ListSchemaVersionsRequest(params)
 //
-//    // Example sending a request using the ListSchemaVersionsRequest method.
-//    req, resp := client.ListSchemaVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListSchemaVersions
 func (c *Schemas) ListSchemaVersionsRequest(input *ListSchemaVersionsInput) (req *request.Request, output *ListSchemaVersionsOutput) {
@@ -1772,17 +1769,18 @@ func (c *Schemas) ListSchemaVersionsRequest(input *ListSchemaVersionsInput) (req
 // API operation ListSchemaVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListSchemaVersions
 func (c *Schemas) ListSchemaVersions(input *ListSchemaVersionsInput) (*ListSchemaVersionsOutput, error) {
@@ -1814,15 +1812,14 @@ func (c *Schemas) ListSchemaVersionsWithContext(ctx aws.Context, input *ListSche
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSchemaVersions operation.
-//    pageNum := 0
-//    err := client.ListSchemaVersionsPages(params,
-//        func(page *schemas.ListSchemaVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSchemaVersions operation.
+//	pageNum := 0
+//	err := client.ListSchemaVersionsPages(params,
+//	    func(page *schemas.ListSchemaVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Schemas) ListSchemaVersionsPages(input *ListSchemaVersionsInput, fn func(*ListSchemaVersionsOutput, bool) bool) error {
 	return c.ListSchemaVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1874,14 +1871,13 @@ const opListSchemas = "ListSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSchemasRequest method.
+//	req, resp := client.ListSchemasRequest(params)
 //
-//    // Example sending a request using the ListSchemasRequest method.
-//    req, resp := client.ListSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListSchemas
 func (c *Schemas) ListSchemasRequest(input *ListSchemasInput) (req *request.Request, output *ListSchemasOutput) {
@@ -1918,15 +1914,16 @@ func (c *Schemas) ListSchemasRequest(input *ListSchemasInput) (req *request.Requ
 // API operation ListSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceUnavailableException
 //
-//   * BadRequestException
+//   - ServiceUnavailableException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListSchemas
 func (c *Schemas) ListSchemas(input *ListSchemasInput) (*ListSchemasOutput, error) {
@@ -1958,15 +1955,14 @@ func (c *Schemas) ListSchemasWithContext(ctx aws.Context, input *ListSchemasInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSchemas operation.
-//    pageNum := 0
-//    err := client.ListSchemasPages(params,
-//        func(page *schemas.ListSchemasOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSchemas operation.
+//	pageNum := 0
+//	err := client.ListSchemasPages(params,
+//	    func(page *schemas.ListSchemasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Schemas) ListSchemasPages(input *ListSchemasInput, fn func(*ListSchemasOutput, bool) bool) error {
 	return c.ListSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2018,14 +2014,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListTagsForResource
 func (c *Schemas) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2056,13 +2051,14 @@ func (c *Schemas) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
 //
-//   * BadRequestException
+//   - NotFoundException
 //
-//   * InternalServerErrorException
+//   - BadRequestException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListTagsForResource
 func (c *Schemas) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2102,14 +2098,13 @@ const opPutCodeBinding = "PutCodeBinding"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutCodeBindingRequest method.
+//	req, resp := client.PutCodeBindingRequest(params)
 //
-//    // Example sending a request using the PutCodeBindingRequest method.
-//    req, resp := client.PutCodeBindingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/PutCodeBinding
 func (c *Schemas) PutCodeBindingRequest(input *PutCodeBindingInput) (req *request.Request, output *PutCodeBindingOutput) {
@@ -2130,7 +2125,7 @@ func (c *Schemas) PutCodeBindingRequest(input *PutCodeBindingInput) (req *reques
 
 // PutCodeBinding API operation for Schemas.
 //
-// Put code binding URI
+// # Put code binding URI
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2140,19 +2135,20 @@ func (c *Schemas) PutCodeBindingRequest(input *PutCodeBindingInput) (req *reques
 // API operation PutCodeBinding for usage and error information.
 //
 // Returned Error Types:
-//   * GoneException
 //
-//   * BadRequestException
+//   - GoneException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * TooManyRequestsException
+//   - NotFoundException
+//
+//   - TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/PutCodeBinding
 func (c *Schemas) PutCodeBinding(input *PutCodeBindingInput) (*PutCodeBindingOutput, error) {
@@ -2192,14 +2188,13 @@ const opPutResourcePolicy = "PutResourcePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutResourcePolicyRequest method.
+//	req, resp := client.PutResourcePolicyRequest(params)
 //
-//    // Example sending a request using the PutResourcePolicyRequest method.
-//    req, resp := client.PutResourcePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/PutResourcePolicy
 func (c *Schemas) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
@@ -2230,19 +2225,20 @@ func (c *Schemas) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *
 // API operation PutResourcePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * PreconditionFailedException
+//   - UnauthorizedException
 //
-//   * InternalServerErrorException
+//   - PreconditionFailedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/PutResourcePolicy
 func (c *Schemas) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
@@ -2282,14 +2278,13 @@ const opSearchSchemas = "SearchSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchSchemasRequest method.
+//	req, resp := client.SearchSchemasRequest(params)
 //
-//    // Example sending a request using the SearchSchemasRequest method.
-//    req, resp := client.SearchSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/SearchSchemas
 func (c *Schemas) SearchSchemasRequest(input *SearchSchemasInput) (req *request.Request, output *SearchSchemasOutput) {
@@ -2316,7 +2311,7 @@ func (c *Schemas) SearchSchemasRequest(input *SearchSchemasInput) (req *request.
 
 // SearchSchemas API operation for Schemas.
 //
-// Search the schemas
+// # Search the schemas
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2326,15 +2321,16 @@ func (c *Schemas) SearchSchemasRequest(input *SearchSchemasInput) (req *request.
 // API operation SearchSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceUnavailableException
 //
-//   * BadRequestException
+//   - ServiceUnavailableException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/SearchSchemas
 func (c *Schemas) SearchSchemas(input *SearchSchemasInput) (*SearchSchemasOutput, error) {
@@ -2366,15 +2362,14 @@ func (c *Schemas) SearchSchemasWithContext(ctx aws.Context, input *SearchSchemas
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchSchemas operation.
-//    pageNum := 0
-//    err := client.SearchSchemasPages(params,
-//        func(page *schemas.SearchSchemasOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchSchemas operation.
+//	pageNum := 0
+//	err := client.SearchSchemasPages(params,
+//	    func(page *schemas.SearchSchemasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Schemas) SearchSchemasPages(input *SearchSchemasInput, fn func(*SearchSchemasOutput, bool) bool) error {
 	return c.SearchSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2426,14 +2421,13 @@ const opStartDiscoverer = "StartDiscoverer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartDiscovererRequest method.
+//	req, resp := client.StartDiscovererRequest(params)
 //
-//    // Example sending a request using the StartDiscovererRequest method.
-//    req, resp := client.StartDiscovererRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/StartDiscoverer
 func (c *Schemas) StartDiscovererRequest(input *StartDiscovererInput) (req *request.Request, output *StartDiscovererOutput) {
@@ -2454,7 +2448,7 @@ func (c *Schemas) StartDiscovererRequest(input *StartDiscovererInput) (req *requ
 
 // StartDiscoverer API operation for Schemas.
 //
-// Starts the discoverer
+// # Starts the discoverer
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2464,17 +2458,18 @@ func (c *Schemas) StartDiscovererRequest(input *StartDiscovererInput) (req *requ
 // API operation StartDiscoverer for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/StartDiscoverer
 func (c *Schemas) StartDiscoverer(input *StartDiscovererInput) (*StartDiscovererOutput, error) {
@@ -2514,14 +2509,13 @@ const opStopDiscoverer = "StopDiscoverer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopDiscovererRequest method.
+//	req, resp := client.StopDiscovererRequest(params)
 //
-//    // Example sending a request using the StopDiscovererRequest method.
-//    req, resp := client.StopDiscovererRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/StopDiscoverer
 func (c *Schemas) StopDiscovererRequest(input *StopDiscovererInput) (req *request.Request, output *StopDiscovererOutput) {
@@ -2542,7 +2536,7 @@ func (c *Schemas) StopDiscovererRequest(input *StopDiscovererInput) (req *reques
 
 // StopDiscoverer API operation for Schemas.
 //
-// Stops the discoverer
+// # Stops the discoverer
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2552,17 +2546,18 @@ func (c *Schemas) StopDiscovererRequest(input *StopDiscovererInput) (req *reques
 // API operation StopDiscoverer for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/StopDiscoverer
 func (c *Schemas) StopDiscoverer(input *StopDiscovererInput) (*StopDiscovererOutput, error) {
@@ -2602,14 +2597,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/TagResource
 func (c *Schemas) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2641,13 +2635,14 @@ func (c *Schemas) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
 //
-//   * BadRequestException
+//   - NotFoundException
 //
-//   * InternalServerErrorException
+//   - BadRequestException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/TagResource
 func (c *Schemas) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2687,14 +2682,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UntagResource
 func (c *Schemas) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2726,13 +2720,14 @@ func (c *Schemas) UntagResourceRequest(input *UntagResourceInput) (req *request.
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
 //
-//   * BadRequestException
+//   - NotFoundException
 //
-//   * InternalServerErrorException
+//   - BadRequestException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UntagResource
 func (c *Schemas) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2772,14 +2767,13 @@ const opUpdateDiscoverer = "UpdateDiscoverer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDiscovererRequest method.
+//	req, resp := client.UpdateDiscovererRequest(params)
 //
-//    // Example sending a request using the UpdateDiscovererRequest method.
-//    req, resp := client.UpdateDiscovererRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UpdateDiscoverer
 func (c *Schemas) UpdateDiscovererRequest(input *UpdateDiscovererInput) (req *request.Request, output *UpdateDiscovererOutput) {
@@ -2800,7 +2794,7 @@ func (c *Schemas) UpdateDiscovererRequest(input *UpdateDiscovererInput) (req *re
 
 // UpdateDiscoverer API operation for Schemas.
 //
-// Updates the discoverer
+// # Updates the discoverer
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2810,17 +2804,18 @@ func (c *Schemas) UpdateDiscovererRequest(input *UpdateDiscovererInput) (req *re
 // API operation UpdateDiscoverer for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UpdateDiscoverer
 func (c *Schemas) UpdateDiscoverer(input *UpdateDiscovererInput) (*UpdateDiscovererOutput, error) {
@@ -2860,14 +2855,13 @@ const opUpdateRegistry = "UpdateRegistry"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRegistryRequest method.
+//	req, resp := client.UpdateRegistryRequest(params)
 //
-//    // Example sending a request using the UpdateRegistryRequest method.
-//    req, resp := client.UpdateRegistryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UpdateRegistry
 func (c *Schemas) UpdateRegistryRequest(input *UpdateRegistryInput) (req *request.Request, output *UpdateRegistryOutput) {
@@ -2898,17 +2892,18 @@ func (c *Schemas) UpdateRegistryRequest(input *UpdateRegistryInput) (req *reques
 // API operation UpdateRegistry for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * UnauthorizedException
+//   - BadRequestException
 //
-//   * InternalServerErrorException
+//   - UnauthorizedException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UpdateRegistry
 func (c *Schemas) UpdateRegistry(input *UpdateRegistryInput) (*UpdateRegistryOutput, error) {
@@ -2948,14 +2943,13 @@ const opUpdateSchema = "UpdateSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSchemaRequest method.
+//	req, resp := client.UpdateSchemaRequest(params)
 //
-//    // Example sending a request using the UpdateSchemaRequest method.
-//    req, resp := client.UpdateSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UpdateSchema
 func (c *Schemas) UpdateSchemaRequest(input *UpdateSchemaInput) (req *request.Request, output *UpdateSchemaOutput) {
@@ -2976,7 +2970,7 @@ func (c *Schemas) UpdateSchemaRequest(input *UpdateSchemaInput) (req *request.Re
 
 // UpdateSchema API operation for Schemas.
 //
-// Updates the schema definition
+// # Updates the schema definition
 //
 // Inactive schemas will be deleted after two years.
 //
@@ -2988,15 +2982,16 @@ func (c *Schemas) UpdateSchemaRequest(input *UpdateSchemaInput) (req *request.Re
 // API operation UpdateSchema for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
 //
-//   * InternalServerErrorException
+//   - BadRequestException
 //
-//   * ForbiddenException
+//   - InternalServerErrorException
 //
-//   * NotFoundException
+//   - ForbiddenException
 //
-//   * ServiceUnavailableException
+//   - NotFoundException
+//
+//   - ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UpdateSchema
 func (c *Schemas) UpdateSchema(input *UpdateSchemaInput) (*UpdateSchemaOutput, error) {
@@ -3029,12 +3024,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -3086,12 +3089,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -3137,6 +3148,8 @@ func (s *ConflictException) RequestID() string {
 type CreateDiscovererInput struct {
 	_ struct{} `type:"structure"`
 
+	CrossAccount *bool `type:"boolean"`
+
 	Description *string `type:"string"`
 
 	// SourceArn is a required field
@@ -3146,12 +3159,20 @@ type CreateDiscovererInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDiscovererInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDiscovererInput) GoString() string {
 	return s.String()
 }
@@ -3170,6 +3191,12 @@ func (s *CreateDiscovererInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *CreateDiscovererInput) SetCrossAccount(v bool) *CreateDiscovererInput {
+	s.CrossAccount = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -3193,6 +3220,8 @@ func (s *CreateDiscovererInput) SetTags(v map[string]*string) *CreateDiscovererI
 type CreateDiscovererOutput struct {
 	_ struct{} `type:"structure"`
 
+	CrossAccount *bool `type:"boolean"`
+
 	Description *string `type:"string"`
 
 	DiscovererArn *string `type:"string"`
@@ -3207,14 +3236,28 @@ type CreateDiscovererOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDiscovererOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDiscovererOutput) GoString() string {
 	return s.String()
+}
+
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *CreateDiscovererOutput) SetCrossAccount(v bool) *CreateDiscovererOutput {
+	s.CrossAccount = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -3265,12 +3308,20 @@ type CreateRegistryInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegistryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegistryInput) GoString() string {
 	return s.String()
 }
@@ -3322,12 +3373,20 @@ type CreateRegistryOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegistryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegistryOutput) GoString() string {
 	return s.String()
 }
@@ -3377,12 +3436,20 @@ type CreateSchemaInput struct {
 	Type *string `type:"string" required:"true" enum:"Type"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSchemaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSchemaInput) GoString() string {
 	return s.String()
 }
@@ -3475,12 +3542,20 @@ type CreateSchemaOutput struct {
 	VersionCreatedDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSchemaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSchemaOutput) GoString() string {
 	return s.String()
 }
@@ -3534,18 +3609,26 @@ func (s *CreateSchemaOutput) SetVersionCreatedDate(v time.Time) *CreateSchemaOut
 }
 
 type DeleteDiscovererInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DiscovererId is a required field
 	DiscovererId *string `location:"uri" locationName:"discovererId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDiscovererInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDiscovererInput) GoString() string {
 	return s.String()
 }
@@ -3576,29 +3659,45 @@ type DeleteDiscovererOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDiscovererOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDiscovererOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteRegistryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegistryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegistryInput) GoString() string {
 	return s.String()
 }
@@ -3629,28 +3728,44 @@ type DeleteRegistryOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegistryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegistryOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteResourcePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	RegistryName *string `location:"querystring" locationName:"registryName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourcePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourcePolicyInput) GoString() string {
 	return s.String()
 }
@@ -3665,18 +3780,26 @@ type DeleteResourcePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourcePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourcePolicyOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteSchemaInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -3685,12 +3808,20 @@ type DeleteSchemaInput struct {
 	SchemaName *string `location:"uri" locationName:"schemaName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaInput) GoString() string {
 	return s.String()
 }
@@ -3733,18 +3864,26 @@ type DeleteSchemaOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteSchemaVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -3756,12 +3895,20 @@ type DeleteSchemaVersionInput struct {
 	SchemaVersion *string `location:"uri" locationName:"schemaVersion" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaVersionInput) GoString() string {
 	return s.String()
 }
@@ -3816,18 +3963,26 @@ type DeleteSchemaVersionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaVersionOutput) GoString() string {
 	return s.String()
 }
 
 type DescribeCodeBindingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Language is a required field
 	Language *string `location:"uri" locationName:"language" type:"string" required:"true"`
@@ -3841,12 +3996,20 @@ type DescribeCodeBindingInput struct {
 	SchemaVersion *string `location:"querystring" locationName:"schemaVersion" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCodeBindingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCodeBindingInput) GoString() string {
 	return s.String()
 }
@@ -3915,12 +4078,20 @@ type DescribeCodeBindingOutput struct {
 	Status *string `type:"string" enum:"CodeGenerationStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCodeBindingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCodeBindingOutput) GoString() string {
 	return s.String()
 }
@@ -3950,18 +4121,26 @@ func (s *DescribeCodeBindingOutput) SetStatus(v string) *DescribeCodeBindingOutp
 }
 
 type DescribeDiscovererInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DiscovererId is a required field
 	DiscovererId *string `location:"uri" locationName:"discovererId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDiscovererInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDiscovererInput) GoString() string {
 	return s.String()
 }
@@ -3991,6 +4170,8 @@ func (s *DescribeDiscovererInput) SetDiscovererId(v string) *DescribeDiscovererI
 type DescribeDiscovererOutput struct {
 	_ struct{} `type:"structure"`
 
+	CrossAccount *bool `type:"boolean"`
+
 	Description *string `type:"string"`
 
 	DiscovererArn *string `type:"string"`
@@ -4005,14 +4186,28 @@ type DescribeDiscovererOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDiscovererOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDiscovererOutput) GoString() string {
 	return s.String()
+}
+
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *DescribeDiscovererOutput) SetCrossAccount(v bool) *DescribeDiscovererOutput {
+	s.CrossAccount = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -4052,18 +4247,26 @@ func (s *DescribeDiscovererOutput) SetTags(v map[string]*string) *DescribeDiscov
 }
 
 type DescribeRegistryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRegistryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRegistryInput) GoString() string {
 	return s.String()
 }
@@ -4103,12 +4306,20 @@ type DescribeRegistryOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRegistryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRegistryOutput) GoString() string {
 	return s.String()
 }
@@ -4138,7 +4349,7 @@ func (s *DescribeRegistryOutput) SetTags(v map[string]*string) *DescribeRegistry
 }
 
 type DescribeSchemaInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -4149,12 +4360,20 @@ type DescribeSchemaInput struct {
 	SchemaVersion *string `location:"querystring" locationName:"schemaVersion" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemaInput) GoString() string {
 	return s.String()
 }
@@ -4222,12 +4441,20 @@ type DescribeSchemaOutput struct {
 	VersionCreatedDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemaOutput) GoString() string {
 	return s.String()
 }
@@ -4289,6 +4516,10 @@ func (s *DescribeSchemaOutput) SetVersionCreatedDate(v time.Time) *DescribeSchem
 type DiscovererSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Status if the discoverer will discover schemas from events sent from
+	// another account.
+	CrossAccount *bool `type:"boolean"`
+
 	// The ARN of the discoverer.
 	DiscovererArn *string `type:"string"`
 
@@ -4305,14 +4536,28 @@ type DiscovererSummary struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DiscovererSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DiscovererSummary) GoString() string {
 	return s.String()
+}
+
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *DiscovererSummary) SetCrossAccount(v bool) *DiscovererSummary {
+	s.CrossAccount = &v
+	return s
 }
 
 // SetDiscovererArn sets the DiscovererArn field's value.
@@ -4346,7 +4591,7 @@ func (s *DiscovererSummary) SetTags(v map[string]*string) *DiscovererSummary {
 }
 
 type ExportSchemaInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -4360,12 +4605,20 @@ type ExportSchemaInput struct {
 	Type *string `location:"querystring" locationName:"type" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportSchemaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportSchemaInput) GoString() string {
 	return s.String()
 }
@@ -4433,12 +4686,20 @@ type ExportSchemaOutput struct {
 	Type *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportSchemaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportSchemaOutput) GoString() string {
 	return s.String()
 }
@@ -4482,12 +4743,20 @@ type ForbiddenException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) GoString() string {
 	return s.String()
 }
@@ -4531,7 +4800,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetCodeBindingSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Language is a required field
 	Language *string `location:"uri" locationName:"language" type:"string" required:"true"`
@@ -4545,12 +4814,20 @@ type GetCodeBindingSourceInput struct {
 	SchemaVersion *string `location:"querystring" locationName:"schemaVersion" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCodeBindingSourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCodeBindingSourceInput) GoString() string {
 	return s.String()
 }
@@ -4613,12 +4890,20 @@ type GetCodeBindingSourceOutput struct {
 	Body []byte `type:"blob"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCodeBindingSourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCodeBindingSourceOutput) GoString() string {
 	return s.String()
 }
@@ -4639,12 +4924,20 @@ type GetDiscoveredSchemaInput struct {
 	Type *string `type:"string" required:"true" enum:"Type"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDiscoveredSchemaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDiscoveredSchemaInput) GoString() string {
 	return s.String()
 }
@@ -4686,12 +4979,20 @@ type GetDiscoveredSchemaOutput struct {
 	Content *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDiscoveredSchemaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDiscoveredSchemaOutput) GoString() string {
 	return s.String()
 }
@@ -4703,17 +5004,25 @@ func (s *GetDiscoveredSchemaOutput) SetContent(v string) *GetDiscoveredSchemaOut
 }
 
 type GetResourcePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	RegistryName *string `location:"querystring" locationName:"registryName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourcePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourcePolicyInput) GoString() string {
 	return s.String()
 }
@@ -4732,12 +5041,20 @@ type GetResourcePolicyOutput struct {
 	RevisionId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourcePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourcePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -4763,12 +5080,20 @@ type GoneException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GoneException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GoneException) GoString() string {
 	return s.String()
 }
@@ -4820,12 +5145,20 @@ type InternalServerErrorException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) GoString() string {
 	return s.String()
 }
@@ -4869,7 +5202,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListDiscoverersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	DiscovererIdPrefix *string `location:"querystring" locationName:"discovererIdPrefix" type:"string"`
 
@@ -4880,12 +5213,20 @@ type ListDiscoverersInput struct {
 	SourceArnPrefix *string `location:"querystring" locationName:"sourceArnPrefix" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDiscoverersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDiscoverersInput) GoString() string {
 	return s.String()
 }
@@ -4922,12 +5263,20 @@ type ListDiscoverersOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDiscoverersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDiscoverersOutput) GoString() string {
 	return s.String()
 }
@@ -4945,7 +5294,7 @@ func (s *ListDiscoverersOutput) SetNextToken(v string) *ListDiscoverersOutput {
 }
 
 type ListRegistriesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
 
@@ -4956,12 +5305,20 @@ type ListRegistriesInput struct {
 	Scope *string `location:"querystring" locationName:"scope" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegistriesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegistriesInput) GoString() string {
 	return s.String()
 }
@@ -4998,12 +5355,20 @@ type ListRegistriesOutput struct {
 	Registries []*RegistrySummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegistriesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegistriesOutput) GoString() string {
 	return s.String()
 }
@@ -5021,7 +5386,7 @@ func (s *ListRegistriesOutput) SetRegistries(v []*RegistrySummary) *ListRegistri
 }
 
 type ListSchemaVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
 
@@ -5034,12 +5399,20 @@ type ListSchemaVersionsInput struct {
 	SchemaName *string `location:"uri" locationName:"schemaName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemaVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemaVersionsInput) GoString() string {
 	return s.String()
 }
@@ -5098,12 +5471,20 @@ type ListSchemaVersionsOutput struct {
 	SchemaVersions []*SchemaVersionSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemaVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemaVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -5121,7 +5502,7 @@ func (s *ListSchemaVersionsOutput) SetSchemaVersions(v []*SchemaVersionSummary) 
 }
 
 type ListSchemasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
 
@@ -5133,12 +5514,20 @@ type ListSchemasInput struct {
 	SchemaNamePrefix *string `location:"querystring" locationName:"schemaNamePrefix" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasInput) GoString() string {
 	return s.String()
 }
@@ -5191,12 +5580,20 @@ type ListSchemasOutput struct {
 	Schemas []*SchemaSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasOutput) GoString() string {
 	return s.String()
 }
@@ -5214,18 +5611,26 @@ func (s *ListSchemasOutput) SetSchemas(v []*SchemaSummary) *ListSchemasOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -5259,12 +5664,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5284,12 +5697,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -5341,12 +5762,20 @@ type PreconditionFailedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PreconditionFailedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PreconditionFailedException) GoString() string {
 	return s.String()
 }
@@ -5390,7 +5819,7 @@ func (s *PreconditionFailedException) RequestID() string {
 }
 
 type PutCodeBindingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Language is a required field
 	Language *string `location:"uri" locationName:"language" type:"string" required:"true"`
@@ -5404,12 +5833,20 @@ type PutCodeBindingInput struct {
 	SchemaVersion *string `location:"querystring" locationName:"schemaVersion" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCodeBindingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCodeBindingInput) GoString() string {
 	return s.String()
 }
@@ -5478,12 +5915,20 @@ type PutCodeBindingOutput struct {
 	Status *string `type:"string" enum:"CodeGenerationStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCodeBindingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCodeBindingOutput) GoString() string {
 	return s.String()
 }
@@ -5523,12 +5968,20 @@ type PutResourcePolicyInput struct {
 	RevisionId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourcePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourcePolicyInput) GoString() string {
 	return s.String()
 }
@@ -5572,12 +6025,20 @@ type PutResourcePolicyOutput struct {
 	RevisionId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourcePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourcePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -5607,12 +6068,20 @@ type RegistrySummary struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegistrySummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegistrySummary) GoString() string {
 	return s.String()
 }
@@ -5655,12 +6124,20 @@ type SchemaSummary struct {
 	VersionCount *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SchemaSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SchemaSummary) GoString() string {
 	return s.String()
 }
@@ -5710,12 +6187,20 @@ type SchemaVersionSummary struct {
 	Type *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SchemaVersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SchemaVersionSummary) GoString() string {
 	return s.String()
 }
@@ -5760,12 +6245,20 @@ type SearchSchemaSummary struct {
 	SchemaVersions []*SearchSchemaVersionSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchSchemaSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchSchemaSummary) GoString() string {
 	return s.String()
 }
@@ -5806,12 +6299,20 @@ type SearchSchemaVersionSummary struct {
 	Type *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchSchemaVersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchSchemaVersionSummary) GoString() string {
 	return s.String()
 }
@@ -5835,7 +6336,7 @@ func (s *SearchSchemaVersionSummary) SetType(v string) *SearchSchemaVersionSumma
 }
 
 type SearchSchemasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Keywords is a required field
 	Keywords *string `location:"querystring" locationName:"keywords" type:"string" required:"true"`
@@ -5848,12 +6349,20 @@ type SearchSchemasInput struct {
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchSchemasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchSchemasInput) GoString() string {
 	return s.String()
 }
@@ -5909,12 +6418,20 @@ type SearchSchemasOutput struct {
 	Schemas []*SearchSchemaSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchSchemasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchSchemasOutput) GoString() string {
 	return s.String()
 }
@@ -5940,12 +6457,20 @@ type ServiceUnavailableException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -5989,18 +6514,26 @@ func (s *ServiceUnavailableException) RequestID() string {
 }
 
 type StartDiscovererInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DiscovererId is a required field
 	DiscovererId *string `location:"uri" locationName:"discovererId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDiscovererInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDiscovererInput) GoString() string {
 	return s.String()
 }
@@ -6035,12 +6568,20 @@ type StartDiscovererOutput struct {
 	State *string `type:"string" enum:"DiscovererState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDiscovererOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDiscovererOutput) GoString() string {
 	return s.String()
 }
@@ -6058,18 +6599,26 @@ func (s *StartDiscovererOutput) SetState(v string) *StartDiscovererOutput {
 }
 
 type StopDiscovererInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DiscovererId is a required field
 	DiscovererId *string `location:"uri" locationName:"discovererId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopDiscovererInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopDiscovererInput) GoString() string {
 	return s.String()
 }
@@ -6104,12 +6653,20 @@ type StopDiscovererOutput struct {
 	State *string `type:"string" enum:"DiscovererState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopDiscovererOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopDiscovererOutput) GoString() string {
 	return s.String()
 }
@@ -6138,12 +6695,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6183,12 +6748,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6202,12 +6775,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -6259,12 +6840,20 @@ type UnauthorizedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) GoString() string {
 	return s.String()
 }
@@ -6308,7 +6897,7 @@ func (s *UnauthorizedException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -6317,12 +6906,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6362,12 +6959,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6375,18 +6980,28 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDiscovererInput struct {
 	_ struct{} `type:"structure"`
 
+	CrossAccount *bool `type:"boolean"`
+
 	Description *string `type:"string"`
 
 	// DiscovererId is a required field
 	DiscovererId *string `location:"uri" locationName:"discovererId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDiscovererInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDiscovererInput) GoString() string {
 	return s.String()
 }
@@ -6407,6 +7022,12 @@ func (s *UpdateDiscovererInput) Validate() error {
 	return nil
 }
 
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *UpdateDiscovererInput) SetCrossAccount(v bool) *UpdateDiscovererInput {
+	s.CrossAccount = &v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *UpdateDiscovererInput) SetDescription(v string) *UpdateDiscovererInput {
 	s.Description = &v
@@ -6422,6 +7043,8 @@ func (s *UpdateDiscovererInput) SetDiscovererId(v string) *UpdateDiscovererInput
 type UpdateDiscovererOutput struct {
 	_ struct{} `type:"structure"`
 
+	CrossAccount *bool `type:"boolean"`
+
 	Description *string `type:"string"`
 
 	DiscovererArn *string `type:"string"`
@@ -6436,14 +7059,28 @@ type UpdateDiscovererOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDiscovererOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDiscovererOutput) GoString() string {
 	return s.String()
+}
+
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *UpdateDiscovererOutput) SetCrossAccount(v bool) *UpdateDiscovererOutput {
+	s.CrossAccount = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -6491,12 +7128,20 @@ type UpdateRegistryInput struct {
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegistryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegistryInput) GoString() string {
 	return s.String()
 }
@@ -6542,12 +7187,20 @@ type UpdateRegistryOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegistryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegistryOutput) GoString() string {
 	return s.String()
 }
@@ -6594,12 +7247,20 @@ type UpdateSchemaInput struct {
 	Type *string `type:"string" enum:"Type"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSchemaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSchemaInput) GoString() string {
 	return s.String()
 }
@@ -6686,12 +7347,20 @@ type UpdateSchemaOutput struct {
 	VersionCreatedDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSchemaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSchemaOutput) GoString() string {
 	return s.String()
 }

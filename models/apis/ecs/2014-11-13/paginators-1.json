@@ -30,6 +30,12 @@
       "output_token": "nextToken",
       "result_key": "serviceArns"
     },
+    "ListServicesByNamespace": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "serviceArns"
+    },
     "ListTaskDefinitionFamilies": {
       "input_token": "nextToken",
       "limit_key": "maxResults",

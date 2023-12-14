@@ -40,36 +40,38 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a QLDBSession client from just a session.
-//     svc := qldbsession.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a QLDBSession client with additional configuration
-//     svc := qldbsession.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a QLDBSession client from just a session.
+//	svc := qldbsession.New(mySession)
+//
+//	// Create a QLDBSession client with additional configuration
+//	svc := qldbsession.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *QLDBSession {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "qldb"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *QLDBSession {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *QLDBSession {
 	svc := &QLDBSession{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2019-07-11",
-				JSONVersion:   "1.0",
-				TargetPrefix:  "QLDBSession",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2019-07-11",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.0",
+				TargetPrefix:   "QLDBSession",
 			},
 			handlers,
 		),

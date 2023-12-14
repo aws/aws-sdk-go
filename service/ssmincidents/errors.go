@@ -11,7 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You don't have sufficient access to perform this action.
+	// You don't have sufficient access to perform this operation.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConflictException for service response error code
@@ -30,7 +30,7 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// Request references a resource which does not exist.
+	// Request references a resource which doesn't exist.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceQuotaExceededException for service response error code
@@ -48,7 +48,8 @@ const (
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// The input fails to satisfy the constraints specified by an AWS service.
+	// The input fails to satisfy the constraints specified by an Amazon Web Services
+	// service.
 	ErrCodeValidationException = "ValidationException"
 )
 

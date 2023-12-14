@@ -1,5 +1,10 @@
 {
   "pagination": {
+    "ListDatasourcePackages": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListGraphs": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -11,6 +16,11 @@
       "limit_key": "MaxResults"
     },
     "ListMembers": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListOrganizationAdminAccounts": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"

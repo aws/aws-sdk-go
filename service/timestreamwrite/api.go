@@ -16,6 +16,141 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opCreateBatchLoadTask = "CreateBatchLoadTask"
+
+// CreateBatchLoadTaskRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBatchLoadTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBatchLoadTask for more information on using the CreateBatchLoadTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateBatchLoadTaskRequest method.
+//	req, resp := client.CreateBatchLoadTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/CreateBatchLoadTask
+func (c *TimestreamWrite) CreateBatchLoadTaskRequest(input *CreateBatchLoadTaskInput) (req *request.Request, output *CreateBatchLoadTaskOutput) {
+	op := &request.Operation{
+		Name:       opCreateBatchLoadTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateBatchLoadTaskInput{}
+	}
+
+	output = &CreateBatchLoadTaskOutput{}
+	req = c.newRequest(op, input, output)
+	// if custom endpoint for the request is set to a non empty string,
+	// we skip the endpoint discovery workflow.
+	if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
+		de := discovererDescribeEndpoints{
+			Required:      true,
+			EndpointCache: c.endpointCache,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
+			},
+			Client: c,
+		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
+	return
+}
+
+// CreateBatchLoadTask API operation for Amazon Timestream Write.
+//
+// Creates a new Timestream batch load task. A batch load task processes data
+// from a CSV source in an S3 location and writes to a Timestream table. A mapping
+// from source to target is defined in a batch load task. Errors and events
+// are written to a report at an S3 location. For the report, if the KMS key
+// is not specified, the report will be encrypted with an S3 managed key when
+// SSE_S3 is the option. Otherwise an error is thrown. For more information,
+// see Amazon Web Services managed keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk).
+// Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// For details, see code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-batch-load.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Timestream Write's
+// API operation CreateBatchLoadTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
+//
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - ValidationException
+//     An invalid or malformed request.
+//
+//   - ConflictException
+//     Timestream was unable to process this request because it contains resource
+//     that already exists.
+//
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
+//
+//   - ServiceQuotaExceededException
+//     The instance quota of resource exceeded for this account.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/CreateBatchLoadTask
+func (c *TimestreamWrite) CreateBatchLoadTask(input *CreateBatchLoadTaskInput) (*CreateBatchLoadTaskOutput, error) {
+	req, out := c.CreateBatchLoadTaskRequest(input)
+	return out, req.Send()
+}
+
+// CreateBatchLoadTaskWithContext is the same as CreateBatchLoadTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBatchLoadTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TimestreamWrite) CreateBatchLoadTaskWithContext(ctx aws.Context, input *CreateBatchLoadTaskInput, opts ...request.Option) (*CreateBatchLoadTaskOutput, error) {
+	req, out := c.CreateBatchLoadTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDatabase = "CreateDatabase"
 
 // CreateDatabaseRequest generates a "aws/request.Request" representing the
@@ -32,14 +167,13 @@ const opCreateDatabase = "CreateDatabase"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDatabaseRequest method.
+//	req, resp := client.CreateDatabaseRequest(params)
 //
-//    // Example sending a request using the CreateDatabaseRequest method.
-//    req, resp := client.CreateDatabaseRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/CreateDatabase
 func (c *TimestreamWrite) CreateDatabaseRequest(input *CreateDatabaseInput) (req *request.Request, output *CreateDatabaseOutput) {
@@ -85,10 +219,9 @@ func (c *TimestreamWrite) CreateDatabaseRequest(input *CreateDatabaseInput) (req
 //
 // Creates a new Timestream database. If the KMS key is not specified, the database
 // will be encrypted with a Timestream managed KMS key located in your account.
-// Refer to AWS managed KMS keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)
-// for more info. Service quotas apply. For more information, see Access Management
-// (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// For more information, see Amazon Web Services managed keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk).
+// Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// For details, see code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-db.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -98,29 +231,33 @@ func (c *TimestreamWrite) CreateDatabaseRequest(input *CreateDatabaseInput) (req
 // API operation CreateDatabase for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   Timestream was unable to process this request because it contains resource
-//   that already exists.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ConflictException
+//     Timestream was unable to process this request because it contains resource
+//     that already exists.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * ServiceQuotaExceededException
-//   Instance quota of resource exceeded for this account.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - ServiceQuotaExceededException
+//     The instance quota of resource exceeded for this account.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
+//
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/CreateDatabase
 func (c *TimestreamWrite) CreateDatabase(input *CreateDatabaseInput) (*CreateDatabaseOutput, error) {
@@ -160,14 +297,13 @@ const opCreateTable = "CreateTable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTableRequest method.
+//	req, resp := client.CreateTableRequest(params)
 //
-//    // Example sending a request using the CreateTableRequest method.
-//    req, resp := client.CreateTableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/CreateTable
 func (c *TimestreamWrite) CreateTableRequest(input *CreateTableInput) (req *request.Request, output *CreateTableOutput) {
@@ -211,14 +347,14 @@ func (c *TimestreamWrite) CreateTableRequest(input *CreateTableInput) (req *requ
 
 // CreateTable API operation for Amazon Timestream Write.
 //
-// The CreateTable operation adds a new table to an existing database in your
-// account. In an AWS account, table names must be at least unique within each
-// Region if they are in the same database. You may have identical table names
-// in the same Region if the tables are in seperate databases. While creating
-// the table, you must specify the table name, database name, and the retention
-// properties. Service quotas apply. For more information, see Access Management
-// (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// Adds a new table to an existing database in your account. In an Amazon Web
+// Services account, table names must be at least unique within each Region
+// if they are in the same database. You might have identical table names in
+// the same Region if the tables are in separate databases. While creating the
+// table, you must specify the table name, database name, and the retention
+// properties. Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-table.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -228,33 +364,37 @@ func (c *TimestreamWrite) CreateTableRequest(input *CreateTableInput) (req *requ
 // API operation CreateTable for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   Timestream was unable to process this request because it contains resource
-//   that already exists.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ConflictException
+//     Timestream was unable to process this request because it contains resource
+//     that already exists.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
 //
-//   * ServiceQuotaExceededException
-//   Instance quota of resource exceeded for this account.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - ServiceQuotaExceededException
+//     The instance quota of resource exceeded for this account.
 //
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
+//
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/CreateTable
 func (c *TimestreamWrite) CreateTable(input *CreateTableInput) (*CreateTableOutput, error) {
@@ -294,14 +434,13 @@ const opDeleteDatabase = "DeleteDatabase"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDatabaseRequest method.
+//	req, resp := client.DeleteDatabaseRequest(params)
 //
-//    // Example sending a request using the DeleteDatabaseRequest method.
-//    req, resp := client.DeleteDatabaseRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DeleteDatabase
 func (c *TimestreamWrite) DeleteDatabaseRequest(input *DeleteDatabaseInput) (req *request.Request, output *DeleteDatabaseOutput) {
@@ -347,13 +486,16 @@ func (c *TimestreamWrite) DeleteDatabaseRequest(input *DeleteDatabaseInput) (req
 // DeleteDatabase API operation for Amazon Timestream Write.
 //
 // Deletes a given Timestream database. This is an irreversible operation. After
-// a database is deleted, the time series data from its tables cannot be recovered.
+// a database is deleted, the time-series data from its tables cannot be recovered.
 //
 // All tables in the database must be deleted first, or a ValidationException
 // error will be thrown.
 //
 // Due to the nature of distributed retries, the operation can return either
 // success or a ResourceNotFoundException. Clients should consider them equivalent.
+//
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.delete-db.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -363,26 +505,27 @@ func (c *TimestreamWrite) DeleteDatabaseRequest(input *DeleteDatabaseInput) (req
 // API operation DeleteDatabase for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
 //
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DeleteDatabase
 func (c *TimestreamWrite) DeleteDatabase(input *DeleteDatabaseInput) (*DeleteDatabaseOutput, error) {
@@ -422,14 +565,13 @@ const opDeleteTable = "DeleteTable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTableRequest method.
+//	req, resp := client.DeleteTableRequest(params)
 //
-//    // Example sending a request using the DeleteTableRequest method.
-//    req, resp := client.DeleteTableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DeleteTable
 func (c *TimestreamWrite) DeleteTableRequest(input *DeleteTableInput) (req *request.Request, output *DeleteTableOutput) {
@@ -475,11 +617,14 @@ func (c *TimestreamWrite) DeleteTableRequest(input *DeleteTableInput) (req *requ
 // DeleteTable API operation for Amazon Timestream Write.
 //
 // Deletes a given Timestream table. This is an irreversible operation. After
-// a Timestream database table is deleted, the time series data stored in the
+// a Timestream database table is deleted, the time-series data stored in the
 // table cannot be recovered.
 //
 // Due to the nature of distributed retries, the operation can return either
 // success or a ResourceNotFoundException. Clients should consider them equivalent.
+//
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.delete-table.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -489,26 +634,27 @@ func (c *TimestreamWrite) DeleteTableRequest(input *DeleteTableInput) (req *requ
 // API operation DeleteTable for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DeleteTable
 func (c *TimestreamWrite) DeleteTable(input *DeleteTableInput) (*DeleteTableOutput, error) {
@@ -532,6 +678,126 @@ func (c *TimestreamWrite) DeleteTableWithContext(ctx aws.Context, input *DeleteT
 	return out, req.Send()
 }
 
+const opDescribeBatchLoadTask = "DescribeBatchLoadTask"
+
+// DescribeBatchLoadTaskRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBatchLoadTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeBatchLoadTask for more information on using the DescribeBatchLoadTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeBatchLoadTaskRequest method.
+//	req, resp := client.DescribeBatchLoadTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DescribeBatchLoadTask
+func (c *TimestreamWrite) DescribeBatchLoadTaskRequest(input *DescribeBatchLoadTaskInput) (req *request.Request, output *DescribeBatchLoadTaskOutput) {
+	op := &request.Operation{
+		Name:       opDescribeBatchLoadTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeBatchLoadTaskInput{}
+	}
+
+	output = &DescribeBatchLoadTaskOutput{}
+	req = c.newRequest(op, input, output)
+	// if custom endpoint for the request is set to a non empty string,
+	// we skip the endpoint discovery workflow.
+	if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
+		de := discovererDescribeEndpoints{
+			Required:      true,
+			EndpointCache: c.endpointCache,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
+			},
+			Client: c,
+		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
+	return
+}
+
+// DescribeBatchLoadTask API operation for Amazon Timestream Write.
+//
+// Returns information about the batch load task, including configurations,
+// mappings, progress, and other details. Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.describe-batch-load.html)
+// for details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Timestream Write's
+// API operation DescribeBatchLoadTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
+//
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DescribeBatchLoadTask
+func (c *TimestreamWrite) DescribeBatchLoadTask(input *DescribeBatchLoadTaskInput) (*DescribeBatchLoadTaskOutput, error) {
+	req, out := c.DescribeBatchLoadTaskRequest(input)
+	return out, req.Send()
+}
+
+// DescribeBatchLoadTaskWithContext is the same as DescribeBatchLoadTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeBatchLoadTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TimestreamWrite) DescribeBatchLoadTaskWithContext(ctx aws.Context, input *DescribeBatchLoadTaskInput, opts ...request.Option) (*DescribeBatchLoadTaskOutput, error) {
+	req, out := c.DescribeBatchLoadTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDatabase = "DescribeDatabase"
 
 // DescribeDatabaseRequest generates a "aws/request.Request" representing the
@@ -548,14 +814,13 @@ const opDescribeDatabase = "DescribeDatabase"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDatabaseRequest method.
+//	req, resp := client.DescribeDatabaseRequest(params)
 //
-//    // Example sending a request using the DescribeDatabaseRequest method.
-//    req, resp := client.DescribeDatabaseRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DescribeDatabase
 func (c *TimestreamWrite) DescribeDatabaseRequest(input *DescribeDatabaseInput) (req *request.Request, output *DescribeDatabaseOutput) {
@@ -601,9 +866,9 @@ func (c *TimestreamWrite) DescribeDatabaseRequest(input *DescribeDatabaseInput) 
 //
 // Returns information about the database, including the database name, time
 // that the database was created, and the total number of tables found within
-// the database. Service quotas apply. For more information, see Access Management
-// (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// the database. Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.describe-db.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -613,26 +878,27 @@ func (c *TimestreamWrite) DescribeDatabaseRequest(input *DescribeDatabaseInput) 
 // API operation DescribeDatabase for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
 //
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DescribeDatabase
 func (c *TimestreamWrite) DescribeDatabase(input *DescribeDatabaseInput) (*DescribeDatabaseOutput, error) {
@@ -672,14 +938,13 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEndpointsRequest method.
+//	req, resp := client.DescribeEndpointsRequest(params)
 //
-//    // Example sending a request using the DescribeEndpointsRequest method.
-//    req, resp := client.DescribeEndpointsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DescribeEndpoints
 func (c *TimestreamWrite) DescribeEndpointsRequest(input *DescribeEndpointsInput) (req *request.Request, output *DescribeEndpointsOutput) {
@@ -700,20 +965,23 @@ func (c *TimestreamWrite) DescribeEndpointsRequest(input *DescribeEndpointsInput
 
 // DescribeEndpoints API operation for Amazon Timestream Write.
 //
-// DescribeEndpoints returns a list of available endpoints to make Timestream
-// API calls against. This API is available through both Write and Query.
+// Returns a list of available endpoints to make Timestream API calls against.
+// This API operation is available through both the Write and Query APIs.
 //
-// Because Timestream’s SDKs are designed to transparently work with the service’s
+// Because the Timestream SDKs are designed to transparently work with the service’s
 // architecture, including the management and mapping of the service endpoints,
-// it is not recommended that you use this API unless:
+// we don't recommend that you use this API operation unless:
 //
-//    * Your application uses a programming language that does not yet have
-//    SDK support
+//   - You are using VPC endpoints (Amazon Web Services PrivateLink) with Timestream
+//     (https://docs.aws.amazon.com/timestream/latest/developerguide/VPCEndpoints)
 //
-//    * You require better control over the client-side implementation
+//   - Your application uses a programming language that does not yet have
+//     SDK support
 //
-// For detailed information on how to use DescribeEndpoints, see The Endpoint
-// Discovery Pattern and REST APIs (https://docs.aws.amazon.com/timestream/latest/developerguide/Using-API.endpoint-discovery.html).
+//   - You require better control over the client-side implementation
+//
+// For detailed information on how and when to use and implement DescribeEndpoints,
+// see The Endpoint Discovery Pattern (https://docs.aws.amazon.com/timestream/latest/developerguide/Using.API.html#Using-API.endpoint-discovery).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -723,16 +991,17 @@ func (c *TimestreamWrite) DescribeEndpointsRequest(input *DescribeEndpointsInput
 // API operation DescribeEndpoints for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - ValidationException
+//     An invalid or malformed request.
+//
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DescribeEndpoints
 func (c *TimestreamWrite) DescribeEndpoints(input *DescribeEndpointsInput) (*DescribeEndpointsOutput, error) {
@@ -844,14 +1113,13 @@ const opDescribeTable = "DescribeTable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTableRequest method.
+//	req, resp := client.DescribeTableRequest(params)
 //
-//    // Example sending a request using the DescribeTableRequest method.
-//    req, resp := client.DescribeTableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DescribeTable
 func (c *TimestreamWrite) DescribeTableRequest(input *DescribeTableInput) (req *request.Request, output *DescribeTableOutput) {
@@ -897,8 +1165,9 @@ func (c *TimestreamWrite) DescribeTableRequest(input *DescribeTableInput) (req *
 //
 // Returns information about the table, including the table name, database name,
 // retention duration of the memory store and the magnetic store. Service quotas
-// apply. For more information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.describe-table.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -908,26 +1177,27 @@ func (c *TimestreamWrite) DescribeTableRequest(input *DescribeTableInput) (req *
 // API operation DescribeTable for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
 //
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/DescribeTable
 func (c *TimestreamWrite) DescribeTable(input *DescribeTableInput) (*DescribeTableOutput, error) {
@@ -951,6 +1221,181 @@ func (c *TimestreamWrite) DescribeTableWithContext(ctx aws.Context, input *Descr
 	return out, req.Send()
 }
 
+const opListBatchLoadTasks = "ListBatchLoadTasks"
+
+// ListBatchLoadTasksRequest generates a "aws/request.Request" representing the
+// client's request for the ListBatchLoadTasks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBatchLoadTasks for more information on using the ListBatchLoadTasks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListBatchLoadTasksRequest method.
+//	req, resp := client.ListBatchLoadTasksRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ListBatchLoadTasks
+func (c *TimestreamWrite) ListBatchLoadTasksRequest(input *ListBatchLoadTasksInput) (req *request.Request, output *ListBatchLoadTasksOutput) {
+	op := &request.Operation{
+		Name:       opListBatchLoadTasks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListBatchLoadTasksInput{}
+	}
+
+	output = &ListBatchLoadTasksOutput{}
+	req = c.newRequest(op, input, output)
+	// if custom endpoint for the request is set to a non empty string,
+	// we skip the endpoint discovery workflow.
+	if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
+		de := discovererDescribeEndpoints{
+			Required:      true,
+			EndpointCache: c.endpointCache,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
+			},
+			Client: c,
+		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
+	return
+}
+
+// ListBatchLoadTasks API operation for Amazon Timestream Write.
+//
+// Provides a list of batch load tasks, along with the name, status, when the
+// task is resumable until, and other details. See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.list-batch-load-tasks.html)
+// for details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Timestream Write's
+// API operation ListBatchLoadTasks for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
+//
+//   - ValidationException
+//     An invalid or malformed request.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ListBatchLoadTasks
+func (c *TimestreamWrite) ListBatchLoadTasks(input *ListBatchLoadTasksInput) (*ListBatchLoadTasksOutput, error) {
+	req, out := c.ListBatchLoadTasksRequest(input)
+	return out, req.Send()
+}
+
+// ListBatchLoadTasksWithContext is the same as ListBatchLoadTasks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBatchLoadTasks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TimestreamWrite) ListBatchLoadTasksWithContext(ctx aws.Context, input *ListBatchLoadTasksInput, opts ...request.Option) (*ListBatchLoadTasksOutput, error) {
+	req, out := c.ListBatchLoadTasksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListBatchLoadTasksPages iterates over the pages of a ListBatchLoadTasks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBatchLoadTasks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListBatchLoadTasks operation.
+//	pageNum := 0
+//	err := client.ListBatchLoadTasksPages(params,
+//	    func(page *timestreamwrite.ListBatchLoadTasksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *TimestreamWrite) ListBatchLoadTasksPages(input *ListBatchLoadTasksInput, fn func(*ListBatchLoadTasksOutput, bool) bool) error {
+	return c.ListBatchLoadTasksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListBatchLoadTasksPagesWithContext same as ListBatchLoadTasksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TimestreamWrite) ListBatchLoadTasksPagesWithContext(ctx aws.Context, input *ListBatchLoadTasksInput, fn func(*ListBatchLoadTasksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListBatchLoadTasksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListBatchLoadTasksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListBatchLoadTasksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDatabases = "ListDatabases"
 
 // ListDatabasesRequest generates a "aws/request.Request" representing the
@@ -967,14 +1412,13 @@ const opListDatabases = "ListDatabases"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatabasesRequest method.
+//	req, resp := client.ListDatabasesRequest(params)
 //
-//    // Example sending a request using the ListDatabasesRequest method.
-//    req, resp := client.ListDatabasesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ListDatabases
 func (c *TimestreamWrite) ListDatabasesRequest(input *ListDatabasesInput) (req *request.Request, output *ListDatabasesOutput) {
@@ -1024,9 +1468,9 @@ func (c *TimestreamWrite) ListDatabasesRequest(input *ListDatabasesInput) (req *
 
 // ListDatabases API operation for Amazon Timestream Write.
 //
-// Returns a list of your Timestream databases. Service quotas apply. For more
-// information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// Returns a list of your Timestream databases. Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.list-db.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1036,22 +1480,23 @@ func (c *TimestreamWrite) ListDatabasesRequest(input *ListDatabasesInput) (req *
 // API operation ListDatabases for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ListDatabases
 func (c *TimestreamWrite) ListDatabases(input *ListDatabasesInput) (*ListDatabasesOutput, error) {
@@ -1083,15 +1528,14 @@ func (c *TimestreamWrite) ListDatabasesWithContext(ctx aws.Context, input *ListD
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatabases operation.
-//    pageNum := 0
-//    err := client.ListDatabasesPages(params,
-//        func(page *timestreamwrite.ListDatabasesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatabases operation.
+//	pageNum := 0
+//	err := client.ListDatabasesPages(params,
+//	    func(page *timestreamwrite.ListDatabasesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *TimestreamWrite) ListDatabasesPages(input *ListDatabasesInput, fn func(*ListDatabasesOutput, bool) bool) error {
 	return c.ListDatabasesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1143,14 +1587,13 @@ const opListTables = "ListTables"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTablesRequest method.
+//	req, resp := client.ListTablesRequest(params)
 //
-//    // Example sending a request using the ListTablesRequest method.
-//    req, resp := client.ListTablesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ListTables
 func (c *TimestreamWrite) ListTablesRequest(input *ListTablesInput) (req *request.Request, output *ListTablesOutput) {
@@ -1200,8 +1643,9 @@ func (c *TimestreamWrite) ListTablesRequest(input *ListTablesInput) (req *reques
 
 // ListTables API operation for Amazon Timestream Write.
 //
-// A list of tables, along with the name, status and retention properties of
-// each table.
+// Provides a list of tables, along with the name, status, and retention properties
+// of each table. See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.list-table.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1211,26 +1655,27 @@ func (c *TimestreamWrite) ListTablesRequest(input *ListTablesInput) (req *reques
 // API operation ListTables for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ListTables
 func (c *TimestreamWrite) ListTables(input *ListTablesInput) (*ListTablesOutput, error) {
@@ -1262,15 +1707,14 @@ func (c *TimestreamWrite) ListTablesWithContext(ctx aws.Context, input *ListTabl
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTables operation.
-//    pageNum := 0
-//    err := client.ListTablesPages(params,
-//        func(page *timestreamwrite.ListTablesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTables operation.
+//	pageNum := 0
+//	err := client.ListTablesPages(params,
+//	    func(page *timestreamwrite.ListTablesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *TimestreamWrite) ListTablesPages(input *ListTablesInput, fn func(*ListTablesOutput, bool) bool) error {
 	return c.ListTablesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1322,14 +1766,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ListTagsForResource
 func (c *TimestreamWrite) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1373,7 +1816,7 @@ func (c *TimestreamWrite) ListTagsForResourceRequest(input *ListTagsForResourceI
 
 // ListTagsForResource API operation for Amazon Timestream Write.
 //
-// List all tags on a Timestream resource.
+// Lists all tags on a Timestream resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1383,19 +1826,20 @@ func (c *TimestreamWrite) ListTagsForResourceRequest(input *ListTagsForResourceI
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - ValidationException
+//     An invalid or malformed request.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ListTagsForResource
 func (c *TimestreamWrite) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1419,6 +1863,125 @@ func (c *TimestreamWrite) ListTagsForResourceWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opResumeBatchLoadTask = "ResumeBatchLoadTask"
+
+// ResumeBatchLoadTaskRequest generates a "aws/request.Request" representing the
+// client's request for the ResumeBatchLoadTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResumeBatchLoadTask for more information on using the ResumeBatchLoadTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ResumeBatchLoadTaskRequest method.
+//	req, resp := client.ResumeBatchLoadTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ResumeBatchLoadTask
+func (c *TimestreamWrite) ResumeBatchLoadTaskRequest(input *ResumeBatchLoadTaskInput) (req *request.Request, output *ResumeBatchLoadTaskOutput) {
+	op := &request.Operation{
+		Name:       opResumeBatchLoadTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ResumeBatchLoadTaskInput{}
+	}
+
+	output = &ResumeBatchLoadTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	// if custom endpoint for the request is set to a non empty string,
+	// we skip the endpoint discovery workflow.
+	if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
+		de := discovererDescribeEndpoints{
+			Required:      true,
+			EndpointCache: c.endpointCache,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
+			},
+			Client: c,
+		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
+	return
+}
+
+// ResumeBatchLoadTask API operation for Amazon Timestream Write.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Timestream Write's
+// API operation ResumeBatchLoadTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
+//
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - ValidationException
+//     An invalid or malformed request.
+//
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/ResumeBatchLoadTask
+func (c *TimestreamWrite) ResumeBatchLoadTask(input *ResumeBatchLoadTaskInput) (*ResumeBatchLoadTaskOutput, error) {
+	req, out := c.ResumeBatchLoadTaskRequest(input)
+	return out, req.Send()
+}
+
+// ResumeBatchLoadTaskWithContext is the same as ResumeBatchLoadTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResumeBatchLoadTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TimestreamWrite) ResumeBatchLoadTaskWithContext(ctx aws.Context, input *ResumeBatchLoadTaskInput, opts ...request.Option) (*ResumeBatchLoadTaskOutput, error) {
+	req, out := c.ResumeBatchLoadTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -1435,14 +1998,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/TagResource
 func (c *TimestreamWrite) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1487,7 +2049,7 @@ func (c *TimestreamWrite) TagResourceRequest(input *TagResourceInput) (req *requ
 
 // TagResource API operation for Amazon Timestream Write.
 //
-// Associate a set of tags with a Timestream resource. You can then activate
+// Associates a set of tags with a Timestream resource. You can then activate
 // these user-defined tags so that they appear on the Billing and Cost Management
 // console for cost allocation tracking.
 //
@@ -1499,22 +2061,23 @@ func (c *TimestreamWrite) TagResourceRequest(input *TagResourceInput) (req *requ
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
 //
-//   * ServiceQuotaExceededException
-//   Instance quota of resource exceeded for this account.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - ServiceQuotaExceededException
+//     The instance quota of resource exceeded for this account.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - ValidationException
+//     An invalid or malformed request.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/TagResource
 func (c *TimestreamWrite) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1554,14 +2117,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/UntagResource
 func (c *TimestreamWrite) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1616,22 +2178,23 @@ func (c *TimestreamWrite) UntagResourceRequest(input *UntagResourceInput) (req *
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Invalid or malformed request.
 //
-//   * ServiceQuotaExceededException
-//   Instance quota of resource exceeded for this account.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - ServiceQuotaExceededException
+//     The instance quota of resource exceeded for this account.
 //
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/UntagResource
 func (c *TimestreamWrite) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1671,14 +2234,13 @@ const opUpdateDatabase = "UpdateDatabase"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDatabaseRequest method.
+//	req, resp := client.UpdateDatabaseRequest(params)
 //
-//    // Example sending a request using the UpdateDatabaseRequest method.
-//    req, resp := client.UpdateDatabaseRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/UpdateDatabase
 func (c *TimestreamWrite) UpdateDatabaseRequest(input *UpdateDatabaseInput) (req *request.Request, output *UpdateDatabaseOutput) {
@@ -1727,6 +2289,9 @@ func (c *TimestreamWrite) UpdateDatabaseRequest(input *UpdateDatabaseInput) (req
 // to be used (KmsKeyId). If there are any concurrent UpdateDatabase requests,
 // first writer wins.
 //
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.update-db.html)
+// for details.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1735,29 +2300,30 @@ func (c *TimestreamWrite) UpdateDatabaseRequest(input *UpdateDatabaseInput) (req
 // API operation UpdateDatabase for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Invalid or malformed request.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
 //
-//   * ServiceQuotaExceededException
-//   Instance quota of resource exceeded for this account.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - ServiceQuotaExceededException
+//     The instance quota of resource exceeded for this account.
 //
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/UpdateDatabase
 func (c *TimestreamWrite) UpdateDatabase(input *UpdateDatabaseInput) (*UpdateDatabaseOutput, error) {
@@ -1797,14 +2363,13 @@ const opUpdateTable = "UpdateTable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTableRequest method.
+//	req, resp := client.UpdateTableRequest(params)
 //
-//    // Example sending a request using the UpdateTableRequest method.
-//    req, resp := client.UpdateTableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/UpdateTable
 func (c *TimestreamWrite) UpdateTableRequest(input *UpdateTableInput) (req *request.Request, output *UpdateTableOutput) {
@@ -1856,8 +2421,8 @@ func (c *TimestreamWrite) UpdateTableRequest(input *UpdateTableInput) (req *requ
 // of data 22 hours after this change was made. Timestream does not retrieve
 // data from the magnetic store to populate the memory store.
 //
-// Service quotas apply. For more information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.update-table.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1867,26 +2432,27 @@ func (c *TimestreamWrite) UpdateTableRequest(input *UpdateTableInput) (req *requ
 // API operation UpdateTable for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/UpdateTable
 func (c *TimestreamWrite) UpdateTable(input *UpdateTableInput) (*UpdateTableOutput, error) {
@@ -1926,14 +2492,13 @@ const opWriteRecords = "WriteRecords"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the WriteRecordsRequest method.
+//	req, resp := client.WriteRecordsRequest(params)
 //
-//    // Example sending a request using the WriteRecordsRequest method.
-//    req, resp := client.WriteRecordsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/WriteRecords
 func (c *TimestreamWrite) WriteRecordsRequest(input *WriteRecordsInput) (req *request.Request, output *WriteRecordsOutput) {
@@ -1949,7 +2514,6 @@ func (c *TimestreamWrite) WriteRecordsRequest(input *WriteRecordsInput) (req *re
 
 	output = &WriteRecordsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	// if custom endpoint for the request is set to a non empty string,
 	// we skip the endpoint discovery workflow.
 	if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
@@ -1978,19 +2542,49 @@ func (c *TimestreamWrite) WriteRecordsRequest(input *WriteRecordsInput) (req *re
 
 // WriteRecords API operation for Amazon Timestream Write.
 //
-// The WriteRecords operation enables you to write your time series data into
-// Timestream. You can specify a single data point or a batch of data points
-// to be inserted into the system. Timestream offers you with a flexible schema
-// that auto detects the column names and data types for your Timestream tables
-// based on the dimension names and data types of the data points you specify
-// when invoking writes into the database. Timestream support eventual consistency
-// read semantics. This means that when you query data immediately after writing
-// a batch of data into Timestream, the query results might not reflect the
-// results of a recently completed write operation. The results may also include
-// some stale data. If you repeat the query request after a short time, the
-// results should return the latest data. Service quotas apply. For more information,
-// see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// Enables you to write your time-series data into Timestream. You can specify
+// a single data point or a batch of data points to be inserted into the system.
+// Timestream offers you a flexible schema that auto detects the column names
+// and data types for your Timestream tables based on the dimension names and
+// data types of the data points you specify when invoking writes into the database.
+//
+// Timestream supports eventual consistency read semantics. This means that
+// when you query data immediately after writing a batch of data into Timestream,
+// the query results might not reflect the results of a recently completed write
+// operation. The results may also include some stale data. If you repeat the
+// query request after a short time, the results should return the latest data.
+// Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+//
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.write.html)
+// for details.
+//
+// # Upserts
+//
+// You can use the Version parameter in a WriteRecords request to update data
+// points. Timestream tracks a version number with each record. Version defaults
+// to 1 when it's not specified for the record in the request. Timestream updates
+// an existing record’s measure value along with its Version when it receives
+// a write request with a higher Version number for that record. When it receives
+// an update request where the measure value is the same as that of the existing
+// record, Timestream still updates Version, if it is greater than the existing
+// value of Version. You can update a data point as many times as desired, as
+// long as the value of Version continuously increases.
+//
+// For example, suppose you write a new record without indicating Version in
+// the request. Timestream stores this record, and set Version to 1. Now, suppose
+// you try to update this record with a WriteRecords request of the same record
+// with a different measure value but, like before, do not provide Version.
+// In this case, Timestream will reject this update with a RejectedRecordsException
+// since the updated record’s version is not greater than the existing value
+// of Version.
+//
+// However, if you were to resend the update request with Version set to 2,
+// Timestream would then succeed in updating the record’s value, and the Version
+// would be set to 2. Next, suppose you sent a WriteRecords request with this
+// same record and an identical measure value, but with Version set to 3. In
+// this case, Timestream would only update Version to 3. Any further updates
+// would need to send a version number greater than 3, or the update requests
+// would receive a RejectedRecordsException.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2000,41 +2594,48 @@ func (c *TimestreamWrite) WriteRecordsRequest(input *WriteRecordsInput) (req *re
 // API operation WriteRecords for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Timestream was unable to fully process this request because of an internal
-//   server error.
 //
-//   * ThrottlingException
-//   Too many requests were made by a user exceeding service quotas. The request
-//   was throttled.
+//   - InternalServerException
+//     Timestream was unable to fully process this request because of an internal
+//     server error.
 //
-//   * ValidationException
-//   Invalid or malformed request.
+//   - ThrottlingException
+//     Too many requests were made by a user and they exceeded the service quotas.
+//     The request was throttled.
 //
-//   * ResourceNotFoundException
-//   The operation tried to access a nonexistent resource. The resource might
-//   not be specified correctly, or its status might not be ACTIVE.
+//   - ValidationException
+//     An invalid or malformed request.
 //
-//   * AccessDeniedException
-//   You are not authorized to perform this action.
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent resource. The resource might
+//     not be specified correctly, or its status might not be ACTIVE.
 //
-//   * RejectedRecordsException
-//   WriteRecords would throw this exception in the following cases:
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
 //
-//      * Records with duplicate data where there are multiple records with the
-//      same dimensions, timestamps, and measure names but different measure values.
+//   - RejectedRecordsException
+//     WriteRecords would throw this exception in the following cases:
 //
-//      * Records with timestamps that lie outside the retention duration of the
-//      memory store
+//   - Records with duplicate data where there are multiple records with the
+//     same dimensions, timestamps, and measure names but: Measure values are
+//     different Version is not present in the request or the value of version
+//     in the new record is equal to or lower than the existing value In this
+//     case, if Timestream rejects data, the ExistingVersion field in the RejectedRecords
+//     response will indicate the current record’s version. To force an update,
+//     you can resend the request with a version for the record set to a value
+//     greater than the ExistingVersion.
 //
-//      * Records with dimensions or measures that exceed the Timestream defined
-//      limits.
+//   - Records with timestamps that lie outside the retention duration of the
+//     memory store.
 //
-//   For more information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-//   in the Timestream Developer Guide.
+//   - Records with dimensions or measures that exceed the Timestream defined
+//     limits.
 //
-//   * InvalidEndpointException
-//   The requested endpoint was invalid.
+//     For more information, see Quotas (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
+//     in the Amazon Timestream Developer Guide.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/WriteRecords
 func (c *TimestreamWrite) WriteRecords(input *WriteRecordsInput) (*WriteRecordsOutput, error) {
@@ -2066,12 +2667,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -2114,6 +2723,299 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Details about the progress of a batch load task.
+type BatchLoadProgressReport struct {
+	_ struct{} `type:"structure"`
+
+	BytesMetered *int64 `type:"long"`
+
+	FileFailures *int64 `type:"long"`
+
+	ParseFailures *int64 `type:"long"`
+
+	RecordIngestionFailures *int64 `type:"long"`
+
+	RecordsIngested *int64 `type:"long"`
+
+	RecordsProcessed *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchLoadProgressReport) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchLoadProgressReport) GoString() string {
+	return s.String()
+}
+
+// SetBytesMetered sets the BytesMetered field's value.
+func (s *BatchLoadProgressReport) SetBytesMetered(v int64) *BatchLoadProgressReport {
+	s.BytesMetered = &v
+	return s
+}
+
+// SetFileFailures sets the FileFailures field's value.
+func (s *BatchLoadProgressReport) SetFileFailures(v int64) *BatchLoadProgressReport {
+	s.FileFailures = &v
+	return s
+}
+
+// SetParseFailures sets the ParseFailures field's value.
+func (s *BatchLoadProgressReport) SetParseFailures(v int64) *BatchLoadProgressReport {
+	s.ParseFailures = &v
+	return s
+}
+
+// SetRecordIngestionFailures sets the RecordIngestionFailures field's value.
+func (s *BatchLoadProgressReport) SetRecordIngestionFailures(v int64) *BatchLoadProgressReport {
+	s.RecordIngestionFailures = &v
+	return s
+}
+
+// SetRecordsIngested sets the RecordsIngested field's value.
+func (s *BatchLoadProgressReport) SetRecordsIngested(v int64) *BatchLoadProgressReport {
+	s.RecordsIngested = &v
+	return s
+}
+
+// SetRecordsProcessed sets the RecordsProcessed field's value.
+func (s *BatchLoadProgressReport) SetRecordsProcessed(v int64) *BatchLoadProgressReport {
+	s.RecordsProcessed = &v
+	return s
+}
+
+// Details about a batch load task.
+type BatchLoadTask struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the Timestream batch load task was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// Database name for the database into which a batch load task loads data.
+	DatabaseName *string `type:"string"`
+
+	// The time when the Timestream batch load task was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	ResumableUntil *time.Time `type:"timestamp"`
+
+	// Table name for the table into which a batch load task loads data.
+	TableName *string `type:"string"`
+
+	// The ID of the batch load task.
+	TaskId *string `min:"3" type:"string"`
+
+	// Status of the batch load task.
+	TaskStatus *string `type:"string" enum:"BatchLoadStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchLoadTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchLoadTask) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *BatchLoadTask) SetCreationTime(v time.Time) *BatchLoadTask {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *BatchLoadTask) SetDatabaseName(v string) *BatchLoadTask {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *BatchLoadTask) SetLastUpdatedTime(v time.Time) *BatchLoadTask {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetResumableUntil sets the ResumableUntil field's value.
+func (s *BatchLoadTask) SetResumableUntil(v time.Time) *BatchLoadTask {
+	s.ResumableUntil = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *BatchLoadTask) SetTableName(v string) *BatchLoadTask {
+	s.TableName = &v
+	return s
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *BatchLoadTask) SetTaskId(v string) *BatchLoadTask {
+	s.TaskId = &v
+	return s
+}
+
+// SetTaskStatus sets the TaskStatus field's value.
+func (s *BatchLoadTask) SetTaskStatus(v string) *BatchLoadTask {
+	s.TaskStatus = &v
+	return s
+}
+
+// Details about a batch load task.
+type BatchLoadTaskDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the Timestream batch load task was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// Data model configuration for a batch load task. This contains details about
+	// where a data model for a batch load task is stored.
+	DataModelConfiguration *DataModelConfiguration `type:"structure"`
+
+	// Configuration details about the data source for a batch load task.
+	DataSourceConfiguration *DataSourceConfiguration `type:"structure"`
+
+	ErrorMessage *string `min:"1" type:"string"`
+
+	// The time when the Timestream batch load task was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// Details about the progress of a batch load task.
+	ProgressReport *BatchLoadProgressReport `type:"structure"`
+
+	RecordVersion *int64 `type:"long"`
+
+	// Report configuration for a batch load task. This contains details about where
+	// error reports are stored.
+	ReportConfiguration *ReportConfiguration `type:"structure"`
+
+	ResumableUntil *time.Time `type:"timestamp"`
+
+	TargetDatabaseName *string `type:"string"`
+
+	TargetTableName *string `type:"string"`
+
+	// The ID of the batch load task.
+	TaskId *string `min:"3" type:"string"`
+
+	// Status of the batch load task.
+	TaskStatus *string `type:"string" enum:"BatchLoadStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchLoadTaskDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchLoadTaskDescription) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *BatchLoadTaskDescription) SetCreationTime(v time.Time) *BatchLoadTaskDescription {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDataModelConfiguration sets the DataModelConfiguration field's value.
+func (s *BatchLoadTaskDescription) SetDataModelConfiguration(v *DataModelConfiguration) *BatchLoadTaskDescription {
+	s.DataModelConfiguration = v
+	return s
+}
+
+// SetDataSourceConfiguration sets the DataSourceConfiguration field's value.
+func (s *BatchLoadTaskDescription) SetDataSourceConfiguration(v *DataSourceConfiguration) *BatchLoadTaskDescription {
+	s.DataSourceConfiguration = v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchLoadTaskDescription) SetErrorMessage(v string) *BatchLoadTaskDescription {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *BatchLoadTaskDescription) SetLastUpdatedTime(v time.Time) *BatchLoadTaskDescription {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetProgressReport sets the ProgressReport field's value.
+func (s *BatchLoadTaskDescription) SetProgressReport(v *BatchLoadProgressReport) *BatchLoadTaskDescription {
+	s.ProgressReport = v
+	return s
+}
+
+// SetRecordVersion sets the RecordVersion field's value.
+func (s *BatchLoadTaskDescription) SetRecordVersion(v int64) *BatchLoadTaskDescription {
+	s.RecordVersion = &v
+	return s
+}
+
+// SetReportConfiguration sets the ReportConfiguration field's value.
+func (s *BatchLoadTaskDescription) SetReportConfiguration(v *ReportConfiguration) *BatchLoadTaskDescription {
+	s.ReportConfiguration = v
+	return s
+}
+
+// SetResumableUntil sets the ResumableUntil field's value.
+func (s *BatchLoadTaskDescription) SetResumableUntil(v time.Time) *BatchLoadTaskDescription {
+	s.ResumableUntil = &v
+	return s
+}
+
+// SetTargetDatabaseName sets the TargetDatabaseName field's value.
+func (s *BatchLoadTaskDescription) SetTargetDatabaseName(v string) *BatchLoadTaskDescription {
+	s.TargetDatabaseName = &v
+	return s
+}
+
+// SetTargetTableName sets the TargetTableName field's value.
+func (s *BatchLoadTaskDescription) SetTargetTableName(v string) *BatchLoadTaskDescription {
+	s.TargetTableName = &v
+	return s
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *BatchLoadTaskDescription) SetTaskId(v string) *BatchLoadTaskDescription {
+	s.TaskId = &v
+	return s
+}
+
+// SetTaskStatus sets the TaskStatus field's value.
+func (s *BatchLoadTaskDescription) SetTaskStatus(v string) *BatchLoadTaskDescription {
+	s.TaskStatus = &v
+	return s
+}
+
 // Timestream was unable to process this request because it contains resource
 // that already exists.
 type ConflictException struct {
@@ -2123,12 +3025,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -2171,30 +3081,204 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateBatchLoadTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// ClientToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBatchLoadTaskInput's
+	// String and GoString methods.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	DataModelConfiguration *DataModelConfiguration `type:"structure"`
+
+	// Defines configuration details about the data source for a batch load task.
+	//
+	// DataSourceConfiguration is a required field
+	DataSourceConfiguration *DataSourceConfiguration `type:"structure" required:"true"`
+
+	RecordVersion *int64 `type:"long"`
+
+	// Report configuration for a batch load task. This contains details about where
+	// error reports are stored.
+	//
+	// ReportConfiguration is a required field
+	ReportConfiguration *ReportConfiguration `type:"structure" required:"true"`
+
+	// Target Timestream database for a batch load task.
+	//
+	// TargetDatabaseName is a required field
+	TargetDatabaseName *string `type:"string" required:"true"`
+
+	// Target Timestream table for a batch load task.
+	//
+	// TargetTableName is a required field
+	TargetTableName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchLoadTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchLoadTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBatchLoadTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBatchLoadTaskInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DataSourceConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceConfiguration"))
+	}
+	if s.ReportConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportConfiguration"))
+	}
+	if s.TargetDatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetDatabaseName"))
+	}
+	if s.TargetTableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetTableName"))
+	}
+	if s.DataModelConfiguration != nil {
+		if err := s.DataModelConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DataModelConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataSourceConfiguration != nil {
+		if err := s.DataSourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DataSourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ReportConfiguration != nil {
+		if err := s.ReportConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ReportConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateBatchLoadTaskInput) SetClientToken(v string) *CreateBatchLoadTaskInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDataModelConfiguration sets the DataModelConfiguration field's value.
+func (s *CreateBatchLoadTaskInput) SetDataModelConfiguration(v *DataModelConfiguration) *CreateBatchLoadTaskInput {
+	s.DataModelConfiguration = v
+	return s
+}
+
+// SetDataSourceConfiguration sets the DataSourceConfiguration field's value.
+func (s *CreateBatchLoadTaskInput) SetDataSourceConfiguration(v *DataSourceConfiguration) *CreateBatchLoadTaskInput {
+	s.DataSourceConfiguration = v
+	return s
+}
+
+// SetRecordVersion sets the RecordVersion field's value.
+func (s *CreateBatchLoadTaskInput) SetRecordVersion(v int64) *CreateBatchLoadTaskInput {
+	s.RecordVersion = &v
+	return s
+}
+
+// SetReportConfiguration sets the ReportConfiguration field's value.
+func (s *CreateBatchLoadTaskInput) SetReportConfiguration(v *ReportConfiguration) *CreateBatchLoadTaskInput {
+	s.ReportConfiguration = v
+	return s
+}
+
+// SetTargetDatabaseName sets the TargetDatabaseName field's value.
+func (s *CreateBatchLoadTaskInput) SetTargetDatabaseName(v string) *CreateBatchLoadTaskInput {
+	s.TargetDatabaseName = &v
+	return s
+}
+
+// SetTargetTableName sets the TargetTableName field's value.
+func (s *CreateBatchLoadTaskInput) SetTargetTableName(v string) *CreateBatchLoadTaskInput {
+	s.TargetTableName = &v
+	return s
+}
+
+type CreateBatchLoadTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the batch load task.
+	//
+	// TaskId is a required field
+	TaskId *string `min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchLoadTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchLoadTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *CreateBatchLoadTaskOutput) SetTaskId(v string) *CreateBatchLoadTaskOutput {
+	s.TaskId = &v
+	return s
+}
+
 type CreateDatabaseInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
 	// The KMS key for the database. If the KMS key is not specified, the database
 	// will be encrypted with a Timestream managed KMS key located in your account.
-	// Refer to AWS managed KMS keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)
-	// for more info.
+	// For more information, see Amazon Web Services managed keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk).
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// A list of key-value pairs to label the table.
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatabaseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatabaseInput) GoString() string {
 	return s.String()
 }
@@ -2204,9 +3288,6 @@ func (s *CreateDatabaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDatabaseInput"}
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
 	}
 	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
@@ -2253,12 +3334,20 @@ type CreateDatabaseOutput struct {
 	Database *Database `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatabaseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatabaseOutput) GoString() string {
 	return s.String()
 }
@@ -2275,27 +3364,41 @@ type CreateTableInput struct {
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
-	// The duration for which your time series data must be stored in the memory
+	// Contains properties to set on the table when enabling magnetic store writes.
+	MagneticStoreWriteProperties *MagneticStoreWriteProperties `type:"structure"`
+
+	// The duration for which your time-series data must be stored in the memory
 	// store and the magnetic store.
 	RetentionProperties *RetentionProperties `type:"structure"`
+
+	// The schema of the table.
+	Schema *Schema `type:"structure"`
 
 	// The name of the Timestream table.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 
 	// A list of key-value pairs to label the table.
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTableInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTableInput) GoString() string {
 	return s.String()
 }
@@ -2306,18 +3409,22 @@ func (s *CreateTableInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
 	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
+	if s.MagneticStoreWriteProperties != nil {
+		if err := s.MagneticStoreWriteProperties.Validate(); err != nil {
+			invalidParams.AddNested("MagneticStoreWriteProperties", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RetentionProperties != nil {
 		if err := s.RetentionProperties.Validate(); err != nil {
 			invalidParams.AddNested("RetentionProperties", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Schema != nil {
+		if err := s.Schema.Validate(); err != nil {
+			invalidParams.AddNested("Schema", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -2343,9 +3450,21 @@ func (s *CreateTableInput) SetDatabaseName(v string) *CreateTableInput {
 	return s
 }
 
+// SetMagneticStoreWriteProperties sets the MagneticStoreWriteProperties field's value.
+func (s *CreateTableInput) SetMagneticStoreWriteProperties(v *MagneticStoreWriteProperties) *CreateTableInput {
+	s.MagneticStoreWriteProperties = v
+	return s
+}
+
 // SetRetentionProperties sets the RetentionProperties field's value.
 func (s *CreateTableInput) SetRetentionProperties(v *RetentionProperties) *CreateTableInput {
 	s.RetentionProperties = v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *CreateTableInput) SetSchema(v *Schema) *CreateTableInput {
+	s.Schema = v
 	return s
 }
 
@@ -2368,12 +3487,20 @@ type CreateTableOutput struct {
 	Table *Table `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTableOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTableOutput) GoString() string {
 	return s.String()
 }
@@ -2384,7 +3511,483 @@ func (s *CreateTableOutput) SetTable(v *Table) *CreateTableOutput {
 	return s
 }
 
-// A top level container for a table. Databases and tables are the fundamental
+// A delimited data format where the column separator can be a comma and the
+// record separator is a newline character.
+type CsvConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Column separator can be one of comma (','), pipe ('|), semicolon (';'), tab('/t'),
+	// or blank space (' ').
+	ColumnSeparator *string `min:"1" type:"string"`
+
+	// Escape character can be one of
+	EscapeChar *string `min:"1" type:"string"`
+
+	// Can be blank space (' ').
+	NullValue *string `min:"1" type:"string"`
+
+	// Can be single quote (') or double quote (").
+	QuoteChar *string `min:"1" type:"string"`
+
+	// Specifies to trim leading and trailing white space.
+	TrimWhiteSpace *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CsvConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CsvConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CsvConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CsvConfiguration"}
+	if s.ColumnSeparator != nil && len(*s.ColumnSeparator) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ColumnSeparator", 1))
+	}
+	if s.EscapeChar != nil && len(*s.EscapeChar) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EscapeChar", 1))
+	}
+	if s.NullValue != nil && len(*s.NullValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NullValue", 1))
+	}
+	if s.QuoteChar != nil && len(*s.QuoteChar) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuoteChar", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumnSeparator sets the ColumnSeparator field's value.
+func (s *CsvConfiguration) SetColumnSeparator(v string) *CsvConfiguration {
+	s.ColumnSeparator = &v
+	return s
+}
+
+// SetEscapeChar sets the EscapeChar field's value.
+func (s *CsvConfiguration) SetEscapeChar(v string) *CsvConfiguration {
+	s.EscapeChar = &v
+	return s
+}
+
+// SetNullValue sets the NullValue field's value.
+func (s *CsvConfiguration) SetNullValue(v string) *CsvConfiguration {
+	s.NullValue = &v
+	return s
+}
+
+// SetQuoteChar sets the QuoteChar field's value.
+func (s *CsvConfiguration) SetQuoteChar(v string) *CsvConfiguration {
+	s.QuoteChar = &v
+	return s
+}
+
+// SetTrimWhiteSpace sets the TrimWhiteSpace field's value.
+func (s *CsvConfiguration) SetTrimWhiteSpace(v bool) *CsvConfiguration {
+	s.TrimWhiteSpace = &v
+	return s
+}
+
+// Data model for a batch load task.
+type DataModel struct {
+	_ struct{} `type:"structure"`
+
+	// Source to target mappings for dimensions.
+	//
+	// DimensionMappings is a required field
+	DimensionMappings []*DimensionMapping `min:"1" type:"list" required:"true"`
+
+	MeasureNameColumn *string `min:"1" type:"string"`
+
+	// Source to target mappings for measures.
+	MixedMeasureMappings []*MixedMeasureMapping `min:"1" type:"list"`
+
+	// Source to target mappings for multi-measure records.
+	MultiMeasureMappings *MultiMeasureMappings `type:"structure"`
+
+	// Source column to be mapped to time.
+	TimeColumn *string `min:"1" type:"string"`
+
+	// The granularity of the timestamp unit. It indicates if the time value is
+	// in seconds, milliseconds, nanoseconds, or other supported values. Default
+	// is MILLISECONDS.
+	TimeUnit *string `type:"string" enum:"TimeUnit"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataModel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataModel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataModel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataModel"}
+	if s.DimensionMappings == nil {
+		invalidParams.Add(request.NewErrParamRequired("DimensionMappings"))
+	}
+	if s.DimensionMappings != nil && len(s.DimensionMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionMappings", 1))
+	}
+	if s.MeasureNameColumn != nil && len(*s.MeasureNameColumn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeasureNameColumn", 1))
+	}
+	if s.MixedMeasureMappings != nil && len(s.MixedMeasureMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MixedMeasureMappings", 1))
+	}
+	if s.TimeColumn != nil && len(*s.TimeColumn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TimeColumn", 1))
+	}
+	if s.DimensionMappings != nil {
+		for i, v := range s.DimensionMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DimensionMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MixedMeasureMappings != nil {
+		for i, v := range s.MixedMeasureMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MixedMeasureMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MultiMeasureMappings != nil {
+		if err := s.MultiMeasureMappings.Validate(); err != nil {
+			invalidParams.AddNested("MultiMeasureMappings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensionMappings sets the DimensionMappings field's value.
+func (s *DataModel) SetDimensionMappings(v []*DimensionMapping) *DataModel {
+	s.DimensionMappings = v
+	return s
+}
+
+// SetMeasureNameColumn sets the MeasureNameColumn field's value.
+func (s *DataModel) SetMeasureNameColumn(v string) *DataModel {
+	s.MeasureNameColumn = &v
+	return s
+}
+
+// SetMixedMeasureMappings sets the MixedMeasureMappings field's value.
+func (s *DataModel) SetMixedMeasureMappings(v []*MixedMeasureMapping) *DataModel {
+	s.MixedMeasureMappings = v
+	return s
+}
+
+// SetMultiMeasureMappings sets the MultiMeasureMappings field's value.
+func (s *DataModel) SetMultiMeasureMappings(v *MultiMeasureMappings) *DataModel {
+	s.MultiMeasureMappings = v
+	return s
+}
+
+// SetTimeColumn sets the TimeColumn field's value.
+func (s *DataModel) SetTimeColumn(v string) *DataModel {
+	s.TimeColumn = &v
+	return s
+}
+
+// SetTimeUnit sets the TimeUnit field's value.
+func (s *DataModel) SetTimeUnit(v string) *DataModel {
+	s.TimeUnit = &v
+	return s
+}
+
+type DataModelConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Data model for a batch load task.
+	DataModel *DataModel `type:"structure"`
+
+	DataModelS3Configuration *DataModelS3Configuration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataModelConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataModelConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataModelConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataModelConfiguration"}
+	if s.DataModel != nil {
+		if err := s.DataModel.Validate(); err != nil {
+			invalidParams.AddNested("DataModel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataModelS3Configuration != nil {
+		if err := s.DataModelS3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("DataModelS3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataModel sets the DataModel field's value.
+func (s *DataModelConfiguration) SetDataModel(v *DataModel) *DataModelConfiguration {
+	s.DataModel = v
+	return s
+}
+
+// SetDataModelS3Configuration sets the DataModelS3Configuration field's value.
+func (s *DataModelConfiguration) SetDataModelS3Configuration(v *DataModelS3Configuration) *DataModelConfiguration {
+	s.DataModelS3Configuration = v
+	return s
+}
+
+type DataModelS3Configuration struct {
+	_ struct{} `type:"structure"`
+
+	BucketName *string `min:"3" type:"string"`
+
+	ObjectKey *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataModelS3Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataModelS3Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataModelS3Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataModelS3Configuration"}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.ObjectKey != nil && len(*s.ObjectKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ObjectKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *DataModelS3Configuration) SetBucketName(v string) *DataModelS3Configuration {
+	s.BucketName = &v
+	return s
+}
+
+// SetObjectKey sets the ObjectKey field's value.
+func (s *DataModelS3Configuration) SetObjectKey(v string) *DataModelS3Configuration {
+	s.ObjectKey = &v
+	return s
+}
+
+// Defines configuration details about the data source.
+type DataSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A delimited data format where the column separator can be a comma and the
+	// record separator is a newline character.
+	CsvConfiguration *CsvConfiguration `type:"structure"`
+
+	// This is currently CSV.
+	//
+	// DataFormat is a required field
+	DataFormat *string `type:"string" required:"true" enum:"BatchLoadDataFormat"`
+
+	// Configuration of an S3 location for a file which contains data to load.
+	//
+	// DataSourceS3Configuration is a required field
+	DataSourceS3Configuration *DataSourceS3Configuration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSourceConfiguration"}
+	if s.DataFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataFormat"))
+	}
+	if s.DataSourceS3Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceS3Configuration"))
+	}
+	if s.CsvConfiguration != nil {
+		if err := s.CsvConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CsvConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataSourceS3Configuration != nil {
+		if err := s.DataSourceS3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("DataSourceS3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCsvConfiguration sets the CsvConfiguration field's value.
+func (s *DataSourceConfiguration) SetCsvConfiguration(v *CsvConfiguration) *DataSourceConfiguration {
+	s.CsvConfiguration = v
+	return s
+}
+
+// SetDataFormat sets the DataFormat field's value.
+func (s *DataSourceConfiguration) SetDataFormat(v string) *DataSourceConfiguration {
+	s.DataFormat = &v
+	return s
+}
+
+// SetDataSourceS3Configuration sets the DataSourceS3Configuration field's value.
+func (s *DataSourceConfiguration) SetDataSourceS3Configuration(v *DataSourceS3Configuration) *DataSourceConfiguration {
+	s.DataSourceS3Configuration = v
+	return s
+}
+
+type DataSourceS3Configuration struct {
+	_ struct{} `type:"structure"`
+
+	// The bucket name of the customer S3 bucket.
+	//
+	// BucketName is a required field
+	BucketName *string `min:"3" type:"string" required:"true"`
+
+	ObjectKeyPrefix *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceS3Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceS3Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSourceS3Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSourceS3Configuration"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.ObjectKeyPrefix != nil && len(*s.ObjectKeyPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ObjectKeyPrefix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *DataSourceS3Configuration) SetBucketName(v string) *DataSourceS3Configuration {
+	s.BucketName = &v
+	return s
+}
+
+// SetObjectKeyPrefix sets the ObjectKeyPrefix field's value.
+func (s *DataSourceS3Configuration) SetObjectKeyPrefix(v string) *DataSourceS3Configuration {
+	s.ObjectKeyPrefix = &v
+	return s
+}
+
+// A top-level container for a table. Databases and tables are the fundamental
 // management concepts in Amazon Timestream. All tables in a database are encrypted
 // with the same KMS key.
 type Database struct {
@@ -2397,7 +4000,7 @@ type Database struct {
 	CreationTime *time.Time `type:"timestamp"`
 
 	// The name of the Timestream database.
-	DatabaseName *string `min:"3" type:"string"`
+	DatabaseName *string `type:"string"`
 
 	// The identifier of the KMS key used to encrypt the data stored in the database.
 	KmsKeyId *string `min:"1" type:"string"`
@@ -2409,12 +4012,20 @@ type Database struct {
 	TableCount *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Database) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Database) GoString() string {
 	return s.String()
 }
@@ -2461,15 +4072,23 @@ type DeleteDatabaseInput struct {
 	// The name of the Timestream database to be deleted.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatabaseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatabaseInput) GoString() string {
 	return s.String()
 }
@@ -2479,9 +4098,6 @@ func (s *DeleteDatabaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteDatabaseInput"}
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2500,12 +4116,20 @@ type DeleteDatabaseOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatabaseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatabaseOutput) GoString() string {
 	return s.String()
 }
@@ -2516,20 +4140,28 @@ type DeleteTableInput struct {
 	// The name of the database where the Timestream database is to be deleted.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
 	// The name of the Timestream table to be deleted.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTableInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTableInput) GoString() string {
 	return s.String()
 }
@@ -2540,14 +4172,8 @@ func (s *DeleteTableInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
-	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2572,14 +4198,104 @@ type DeleteTableOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTableOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTableOutput) GoString() string {
 	return s.String()
+}
+
+type DescribeBatchLoadTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the batch load task.
+	//
+	// TaskId is a required field
+	TaskId *string `min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchLoadTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchLoadTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBatchLoadTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBatchLoadTaskInput"}
+	if s.TaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskId"))
+	}
+	if s.TaskId != nil && len(*s.TaskId) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskId", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *DescribeBatchLoadTaskInput) SetTaskId(v string) *DescribeBatchLoadTaskInput {
+	s.TaskId = &v
+	return s
+}
+
+type DescribeBatchLoadTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Description of the batch load task.
+	//
+	// BatchLoadTaskDescription is a required field
+	BatchLoadTaskDescription *BatchLoadTaskDescription `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchLoadTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchLoadTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchLoadTaskDescription sets the BatchLoadTaskDescription field's value.
+func (s *DescribeBatchLoadTaskOutput) SetBatchLoadTaskDescription(v *BatchLoadTaskDescription) *DescribeBatchLoadTaskOutput {
+	s.BatchLoadTaskDescription = v
+	return s
 }
 
 type DescribeDatabaseInput struct {
@@ -2588,15 +4304,23 @@ type DescribeDatabaseInput struct {
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatabaseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatabaseInput) GoString() string {
 	return s.String()
 }
@@ -2606,9 +4330,6 @@ func (s *DescribeDatabaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeDatabaseInput"}
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2630,12 +4351,20 @@ type DescribeDatabaseOutput struct {
 	Database *Database `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatabaseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatabaseOutput) GoString() string {
 	return s.String()
 }
@@ -2650,12 +4379,20 @@ type DescribeEndpointsInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsInput) GoString() string {
 	return s.String()
 }
@@ -2669,12 +4406,20 @@ type DescribeEndpointsOutput struct {
 	Endpoints []*Endpoint `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsOutput) GoString() string {
 	return s.String()
 }
@@ -2691,20 +4436,28 @@ type DescribeTableInput struct {
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
 	// The name of the Timestream table.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableInput) GoString() string {
 	return s.String()
 }
@@ -2715,14 +4468,8 @@ func (s *DescribeTableInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
-	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2750,12 +4497,20 @@ type DescribeTableOutput struct {
 	Table *Table `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableOutput) GoString() string {
 	return s.String()
 }
@@ -2766,20 +4521,20 @@ func (s *DescribeTableOutput) SetTable(v *Table) *DescribeTableOutput {
 	return s
 }
 
-// Dimension represents the meta data attributes of the time series. For example,
-// the name and availability zone of an EC2 instance or the name of the manufacturer
+// Represents the metadata attributes of the time series. For example, the name
+// and Availability Zone of an EC2 instance or the name of the manufacturer
 // of a wind turbine are dimensions.
 type Dimension struct {
 	_ struct{} `type:"structure"`
 
-	// The data type of the dimension for the time series data point.
+	// The data type of the dimension for the time-series data point.
 	DimensionValueType *string `type:"string" enum:"DimensionValueType"`
 
-	// Dimension represents the meta data attributes of the time series. For example,
-	// the name and availability zone of an EC2 instance or the name of the manufacturer
+	// Dimension represents the metadata attributes of the time series. For example,
+	// the name and Availability Zone of an EC2 instance or the name of the manufacturer
 	// of a wind turbine are dimensions.
 	//
-	// For constraints on Dimension names, see Naming Constraints (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html#limits.naming).
+	// For constraints on dimension names, see Naming Constraints (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html#limits.naming).
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -2787,15 +4542,23 @@ type Dimension struct {
 	// The value of the dimension.
 	//
 	// Value is a required field
-	Value *string `min:"1" type:"string" required:"true"`
+	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Dimension) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Dimension) GoString() string {
 	return s.String()
 }
@@ -2811,9 +4574,6 @@ func (s *Dimension) Validate() error {
 	}
 	if s.Value == nil {
 		invalidParams.Add(request.NewErrParamRequired("Value"))
-	}
-	if s.Value != nil && len(*s.Value) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2840,7 +4600,61 @@ func (s *Dimension) SetValue(v string) *Dimension {
 	return s
 }
 
-// Represents an available endpoint against which to make API calls agaisnt,
+type DimensionMapping struct {
+	_ struct{} `type:"structure"`
+
+	DestinationColumn *string `min:"1" type:"string"`
+
+	SourceColumn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DimensionMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DimensionMapping"}
+	if s.DestinationColumn != nil && len(*s.DestinationColumn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationColumn", 1))
+	}
+	if s.SourceColumn != nil && len(*s.SourceColumn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceColumn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationColumn sets the DestinationColumn field's value.
+func (s *DimensionMapping) SetDestinationColumn(v string) *DimensionMapping {
+	s.DestinationColumn = &v
+	return s
+}
+
+// SetSourceColumn sets the SourceColumn field's value.
+func (s *DimensionMapping) SetSourceColumn(v string) *DimensionMapping {
+	s.SourceColumn = &v
+	return s
+}
+
+// Represents an available endpoint against which to make API calls against,
 // as well as the TTL for that endpoint.
 type Endpoint struct {
 	_ struct{} `type:"structure"`
@@ -2856,12 +4670,20 @@ type Endpoint struct {
 	CachePeriodInMinutes *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Endpoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Endpoint) GoString() string {
 	return s.String()
 }
@@ -2887,12 +4709,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -2935,7 +4765,7 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The requested endpoint was invalid.
+// The requested endpoint was not valid.
 type InvalidEndpointException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2943,12 +4773,20 @@ type InvalidEndpointException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidEndpointException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidEndpointException) GoString() string {
 	return s.String()
 }
@@ -2991,6 +4829,112 @@ func (s *InvalidEndpointException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListBatchLoadTasksInput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of items to return in the output. If the total number of
+	// items available is more than the value specified, a NextToken is provided
+	// in the output. To resume pagination, provide the NextToken value as argument
+	// of a subsequent API invocation.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token to specify where to start paginating. This is the NextToken from
+	// a previously truncated response.
+	NextToken *string `type:"string"`
+
+	// Status of the batch load task.
+	TaskStatus *string `type:"string" enum:"BatchLoadStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchLoadTasksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchLoadTasksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBatchLoadTasksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBatchLoadTasksInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBatchLoadTasksInput) SetMaxResults(v int64) *ListBatchLoadTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBatchLoadTasksInput) SetNextToken(v string) *ListBatchLoadTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTaskStatus sets the TaskStatus field's value.
+func (s *ListBatchLoadTasksInput) SetTaskStatus(v string) *ListBatchLoadTasksInput {
+	s.TaskStatus = &v
+	return s
+}
+
+type ListBatchLoadTasksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of batch load task details.
+	BatchLoadTasks []*BatchLoadTask `type:"list"`
+
+	// A token to specify where to start paginating. Provide the next ListBatchLoadTasksRequest.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchLoadTasksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchLoadTasksOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchLoadTasks sets the BatchLoadTasks field's value.
+func (s *ListBatchLoadTasksOutput) SetBatchLoadTasks(v []*BatchLoadTask) *ListBatchLoadTasksOutput {
+	s.BatchLoadTasks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBatchLoadTasksOutput) SetNextToken(v string) *ListBatchLoadTasksOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListDatabasesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3005,12 +4949,20 @@ type ListDatabasesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatabasesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatabasesInput) GoString() string {
 	return s.String()
 }
@@ -3050,12 +5002,20 @@ type ListDatabasesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatabasesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatabasesOutput) GoString() string {
 	return s.String()
 }
@@ -3076,7 +5036,7 @@ type ListTablesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Timestream database.
-	DatabaseName *string `min:"3" type:"string"`
+	DatabaseName *string `type:"string"`
 
 	// The total number of items to return in the output. If the total number of
 	// items available is more than the value specified, a NextToken is provided
@@ -3089,12 +5049,20 @@ type ListTablesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesInput) GoString() string {
 	return s.String()
 }
@@ -3102,9 +5070,6 @@ func (s ListTablesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListTablesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListTablesInput"}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -3144,12 +5109,20 @@ type ListTablesOutput struct {
 	Tables []*Table `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesOutput) GoString() string {
 	return s.String()
 }
@@ -3176,12 +5149,20 @@ type ListTagsForResourceInput struct {
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -3215,12 +5196,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3231,30 +5220,551 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
-// Record represents a time series data point being written into Timestream.
-// Each record contains an array of dimensions. Dimensions represent the meta
-// data attributes of a time series data point such as the instance name or
-// availability zone of an EC2 instance. A record also contains the measure
-// name which is the name of the measure being collected for example the CPU
-// utilization of an EC2 instance. A record also contains the measure value
-// and the value type which is the data type of the measure value. In addition,
-// the record contains the timestamp when the measure was collected that the
-// timestamp unit which represents the granularity of the timestamp.
+// The location to write error reports for records rejected, asynchronously,
+// during magnetic store writes.
+type MagneticStoreRejectedDataLocation struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration of an S3 location to write error reports for records rejected,
+	// asynchronously, during magnetic store writes.
+	S3Configuration *S3Configuration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MagneticStoreRejectedDataLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MagneticStoreRejectedDataLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MagneticStoreRejectedDataLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MagneticStoreRejectedDataLocation"}
+	if s.S3Configuration != nil {
+		if err := s.S3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Configuration sets the S3Configuration field's value.
+func (s *MagneticStoreRejectedDataLocation) SetS3Configuration(v *S3Configuration) *MagneticStoreRejectedDataLocation {
+	s.S3Configuration = v
+	return s
+}
+
+// The set of properties on a table for configuring magnetic store writes.
+type MagneticStoreWriteProperties struct {
+	_ struct{} `type:"structure"`
+
+	// A flag to enable magnetic store writes.
+	//
+	// EnableMagneticStoreWrites is a required field
+	EnableMagneticStoreWrites *bool `type:"boolean" required:"true"`
+
+	// The location to write error reports for records rejected asynchronously during
+	// magnetic store writes.
+	MagneticStoreRejectedDataLocation *MagneticStoreRejectedDataLocation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MagneticStoreWriteProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MagneticStoreWriteProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MagneticStoreWriteProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MagneticStoreWriteProperties"}
+	if s.EnableMagneticStoreWrites == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnableMagneticStoreWrites"))
+	}
+	if s.MagneticStoreRejectedDataLocation != nil {
+		if err := s.MagneticStoreRejectedDataLocation.Validate(); err != nil {
+			invalidParams.AddNested("MagneticStoreRejectedDataLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableMagneticStoreWrites sets the EnableMagneticStoreWrites field's value.
+func (s *MagneticStoreWriteProperties) SetEnableMagneticStoreWrites(v bool) *MagneticStoreWriteProperties {
+	s.EnableMagneticStoreWrites = &v
+	return s
+}
+
+// SetMagneticStoreRejectedDataLocation sets the MagneticStoreRejectedDataLocation field's value.
+func (s *MagneticStoreWriteProperties) SetMagneticStoreRejectedDataLocation(v *MagneticStoreRejectedDataLocation) *MagneticStoreWriteProperties {
+	s.MagneticStoreRejectedDataLocation = v
+	return s
+}
+
+// Represents the data attribute of the time series. For example, the CPU utilization
+// of an EC2 instance or the RPM of a wind turbine are measures. MeasureValue
+// has both name and value.
+//
+// MeasureValue is only allowed for type MULTI. Using MULTI type, you can pass
+// multiple data attributes associated with the same time series in a single
+// record
+type MeasureValue struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the MeasureValue.
+	//
+	// For constraints on MeasureValue names, see Naming Constraints (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html#limits.naming)
+	// in the Amazon Timestream Developer Guide.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Contains the data type of the MeasureValue for the time-series data point.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"MeasureValueType"`
+
+	// The value for the MeasureValue. For information, see Data types (https://docs.aws.amazon.com/timestream/latest/developerguide/writes.html#writes.data-types).
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeasureValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeasureValue) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MeasureValue) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MeasureValue"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *MeasureValue) SetName(v string) *MeasureValue {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MeasureValue) SetType(v string) *MeasureValue {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MeasureValue) SetValue(v string) *MeasureValue {
+	s.Value = &v
+	return s
+}
+
+type MixedMeasureMapping struct {
+	_ struct{} `type:"structure"`
+
+	MeasureName *string `min:"1" type:"string"`
+
+	// MeasureValueType is a required field
+	MeasureValueType *string `type:"string" required:"true" enum:"MeasureValueType"`
+
+	MultiMeasureAttributeMappings []*MultiMeasureAttributeMapping `min:"1" type:"list"`
+
+	SourceColumn *string `min:"1" type:"string"`
+
+	TargetMeasureName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MixedMeasureMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MixedMeasureMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MixedMeasureMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MixedMeasureMapping"}
+	if s.MeasureName != nil && len(*s.MeasureName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeasureName", 1))
+	}
+	if s.MeasureValueType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeasureValueType"))
+	}
+	if s.MultiMeasureAttributeMappings != nil && len(s.MultiMeasureAttributeMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MultiMeasureAttributeMappings", 1))
+	}
+	if s.SourceColumn != nil && len(*s.SourceColumn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceColumn", 1))
+	}
+	if s.TargetMeasureName != nil && len(*s.TargetMeasureName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetMeasureName", 1))
+	}
+	if s.MultiMeasureAttributeMappings != nil {
+		for i, v := range s.MultiMeasureAttributeMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MultiMeasureAttributeMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeasureName sets the MeasureName field's value.
+func (s *MixedMeasureMapping) SetMeasureName(v string) *MixedMeasureMapping {
+	s.MeasureName = &v
+	return s
+}
+
+// SetMeasureValueType sets the MeasureValueType field's value.
+func (s *MixedMeasureMapping) SetMeasureValueType(v string) *MixedMeasureMapping {
+	s.MeasureValueType = &v
+	return s
+}
+
+// SetMultiMeasureAttributeMappings sets the MultiMeasureAttributeMappings field's value.
+func (s *MixedMeasureMapping) SetMultiMeasureAttributeMappings(v []*MultiMeasureAttributeMapping) *MixedMeasureMapping {
+	s.MultiMeasureAttributeMappings = v
+	return s
+}
+
+// SetSourceColumn sets the SourceColumn field's value.
+func (s *MixedMeasureMapping) SetSourceColumn(v string) *MixedMeasureMapping {
+	s.SourceColumn = &v
+	return s
+}
+
+// SetTargetMeasureName sets the TargetMeasureName field's value.
+func (s *MixedMeasureMapping) SetTargetMeasureName(v string) *MixedMeasureMapping {
+	s.TargetMeasureName = &v
+	return s
+}
+
+type MultiMeasureAttributeMapping struct {
+	_ struct{} `type:"structure"`
+
+	MeasureValueType *string `type:"string" enum:"ScalarMeasureValueType"`
+
+	// SourceColumn is a required field
+	SourceColumn *string `min:"1" type:"string" required:"true"`
+
+	TargetMultiMeasureAttributeName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiMeasureAttributeMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiMeasureAttributeMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MultiMeasureAttributeMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MultiMeasureAttributeMapping"}
+	if s.SourceColumn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceColumn"))
+	}
+	if s.SourceColumn != nil && len(*s.SourceColumn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceColumn", 1))
+	}
+	if s.TargetMultiMeasureAttributeName != nil && len(*s.TargetMultiMeasureAttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetMultiMeasureAttributeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeasureValueType sets the MeasureValueType field's value.
+func (s *MultiMeasureAttributeMapping) SetMeasureValueType(v string) *MultiMeasureAttributeMapping {
+	s.MeasureValueType = &v
+	return s
+}
+
+// SetSourceColumn sets the SourceColumn field's value.
+func (s *MultiMeasureAttributeMapping) SetSourceColumn(v string) *MultiMeasureAttributeMapping {
+	s.SourceColumn = &v
+	return s
+}
+
+// SetTargetMultiMeasureAttributeName sets the TargetMultiMeasureAttributeName field's value.
+func (s *MultiMeasureAttributeMapping) SetTargetMultiMeasureAttributeName(v string) *MultiMeasureAttributeMapping {
+	s.TargetMultiMeasureAttributeName = &v
+	return s
+}
+
+type MultiMeasureMappings struct {
+	_ struct{} `type:"structure"`
+
+	// MultiMeasureAttributeMappings is a required field
+	MultiMeasureAttributeMappings []*MultiMeasureAttributeMapping `min:"1" type:"list" required:"true"`
+
+	TargetMultiMeasureName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiMeasureMappings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiMeasureMappings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MultiMeasureMappings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MultiMeasureMappings"}
+	if s.MultiMeasureAttributeMappings == nil {
+		invalidParams.Add(request.NewErrParamRequired("MultiMeasureAttributeMappings"))
+	}
+	if s.MultiMeasureAttributeMappings != nil && len(s.MultiMeasureAttributeMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MultiMeasureAttributeMappings", 1))
+	}
+	if s.TargetMultiMeasureName != nil && len(*s.TargetMultiMeasureName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetMultiMeasureName", 1))
+	}
+	if s.MultiMeasureAttributeMappings != nil {
+		for i, v := range s.MultiMeasureAttributeMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MultiMeasureAttributeMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMultiMeasureAttributeMappings sets the MultiMeasureAttributeMappings field's value.
+func (s *MultiMeasureMappings) SetMultiMeasureAttributeMappings(v []*MultiMeasureAttributeMapping) *MultiMeasureMappings {
+	s.MultiMeasureAttributeMappings = v
+	return s
+}
+
+// SetTargetMultiMeasureName sets the TargetMultiMeasureName field's value.
+func (s *MultiMeasureMappings) SetTargetMultiMeasureName(v string) *MultiMeasureMappings {
+	s.TargetMultiMeasureName = &v
+	return s
+}
+
+// An attribute used in partitioning data in a table. A dimension key partitions
+// data using the values of the dimension specified by the dimension-name as
+// partition key, while a measure key partitions data using measure names (values
+// of the 'measure_name' column).
+type PartitionKey struct {
+	_ struct{} `type:"structure"`
+
+	// The level of enforcement for the specification of a dimension key in ingested
+	// records. Options are REQUIRED (dimension key must be specified) and OPTIONAL
+	// (dimension key does not have to be specified).
+	EnforcementInRecord *string `type:"string" enum:"PartitionKeyEnforcementLevel"`
+
+	// The name of the attribute used for a dimension key.
+	Name *string `min:"1" type:"string"`
+
+	// The type of the partition key. Options are DIMENSION (dimension key) and
+	// MEASURE (measure key).
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"PartitionKeyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PartitionKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PartitionKey) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PartitionKey) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PartitionKey"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnforcementInRecord sets the EnforcementInRecord field's value.
+func (s *PartitionKey) SetEnforcementInRecord(v string) *PartitionKey {
+	s.EnforcementInRecord = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PartitionKey) SetName(v string) *PartitionKey {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PartitionKey) SetType(v string) *PartitionKey {
+	s.Type = &v
+	return s
+}
+
+// Represents a time-series data point being written into Timestream. Each record
+// contains an array of dimensions. Dimensions represent the metadata attributes
+// of a time-series data point, such as the instance name or Availability Zone
+// of an EC2 instance. A record also contains the measure name, which is the
+// name of the measure being collected (for example, the CPU utilization of
+// an EC2 instance). Additionally, a record contains the measure value and the
+// value type, which is the data type of the measure value. Also, the record
+// contains the timestamp of when the measure was collected and the timestamp
+// unit, which represents the granularity of the timestamp.
+//
+// Records have a Version field, which is a 64-bit long that you can use for
+// updating data points. Writes of a duplicate record with the same dimension,
+// timestamp, and measure name but different measure value will only succeed
+// if the Version attribute of the record in the write request is higher than
+// that of the existing record. Timestream defaults to a Version of 1 for records
+// without the Version field.
 type Record struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the list of dimensions for time series data points.
+	// Contains the list of dimensions for time-series data points.
 	Dimensions []*Dimension `type:"list"`
 
 	// Measure represents the data attribute of the time series. For example, the
 	// CPU utilization of an EC2 instance or the RPM of a wind turbine are measures.
 	MeasureName *string `min:"1" type:"string"`
 
-	// Contains the measure value for the time series data point.
+	// Contains the measure value for the time-series data point.
 	MeasureValue *string `min:"1" type:"string"`
 
-	// Contains the data type of the measure value for the time series data point.
+	// Contains the data type of the measure value for the time-series data point.
+	// Default type is DOUBLE. For more information, see Data types (https://docs.aws.amazon.com/timestream/latest/developerguide/writes.html#writes.data-types).
 	MeasureValueType *string `type:"string" enum:"MeasureValueType"`
+
+	// Contains the list of MeasureValue for time-series data points.
+	//
+	// This is only allowed for type MULTI. For scalar values, use MeasureValue
+	// attribute of the record directly.
+	MeasureValues []*MeasureValue `type:"list"`
 
 	// Contains the time at which the measure value for the data point was collected.
 	// The time value plus the unit provides the time elapsed since the epoch. For
@@ -3263,22 +5773,33 @@ type Record struct {
 	Time *string `min:"1" type:"string"`
 
 	// The granularity of the timestamp unit. It indicates if the time value is
-	// in seconds, milliseconds, nanoseconds or other supported values.
+	// in seconds, milliseconds, nanoseconds, or other supported values. Default
+	// is MILLISECONDS.
 	TimeUnit *string `type:"string" enum:"TimeUnit"`
 
 	// 64-bit attribute used for record updates. Write requests for duplicate data
 	// with a higher version number will update the existing measure value and version.
-	// In cases where the measure value is the same, Version will still be updated
-	// . Default value is to 1.
+	// In cases where the measure value is the same, Version will still be updated.
+	// Default value is 1.
+	//
+	// Version must be 1 or greater, or you will receive a ValidationException error.
 	Version *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Record) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Record) GoString() string {
 	return s.String()
 }
@@ -3302,6 +5823,16 @@ func (s *Record) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dimensions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MeasureValues != nil {
+		for i, v := range s.MeasureValues {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MeasureValues", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -3336,6 +5867,12 @@ func (s *Record) SetMeasureValueType(v string) *Record {
 	return s
 }
 
+// SetMeasureValues sets the MeasureValues field's value.
+func (s *Record) SetMeasureValues(v []*MeasureValue) *Record {
+	s.MeasureValues = v
+	return s
+}
+
 // SetTime sets the Time field's value.
 func (s *Record) SetTime(v string) *Record {
 	s.Time = &v
@@ -3354,9 +5891,59 @@ func (s *Record) SetVersion(v int64) *Record {
 	return s
 }
 
-// Records that were not successfully inserted into Timestream due to data validation
-// issues that must be resolved prior to reinserting time series data into the
-// system.
+// Information on the records ingested by this request.
+type RecordsIngested struct {
+	_ struct{} `type:"structure"`
+
+	// Count of records ingested into the magnetic store.
+	MagneticStore *int64 `type:"integer"`
+
+	// Count of records ingested into the memory store.
+	MemoryStore *int64 `type:"integer"`
+
+	// Total count of successfully ingested records.
+	Total *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecordsIngested) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecordsIngested) GoString() string {
+	return s.String()
+}
+
+// SetMagneticStore sets the MagneticStore field's value.
+func (s *RecordsIngested) SetMagneticStore(v int64) *RecordsIngested {
+	s.MagneticStore = &v
+	return s
+}
+
+// SetMemoryStore sets the MemoryStore field's value.
+func (s *RecordsIngested) SetMemoryStore(v int64) *RecordsIngested {
+	s.MemoryStore = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *RecordsIngested) SetTotal(v int64) *RecordsIngested {
+	s.Total = &v
+	return s
+}
+
+// Represents records that were not successfully inserted into Timestream due
+// to data validation issues that must be resolved before reinserting time-series
+// data into the system.
 type RejectedRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -3369,10 +5956,16 @@ type RejectedRecord struct {
 	// causes of failure include:
 	//
 	//    * Records with duplicate data where there are multiple records with the
-	//    same dimensions, timestamps, and measure names but different measure values.
+	//    same dimensions, timestamps, and measure names but: Measure values are
+	//    different Version is not present in the request, or the value of version
+	//    in the new record is equal to or lower than the existing value If Timestream
+	//    rejects data for this case, the ExistingVersion field in the RejectedRecords
+	//    response will indicate the current record’s version. To force an update,
+	//    you can resend the request with a version for the record set to a value
+	//    greater than the ExistingVersion.
 	//
 	//    * Records with timestamps that lie outside the retention duration of the
-	//    memory store When the retention window is updated, you will receive a
+	//    memory store. When the retention window is updated, you will receive a
 	//    RejectedRecords exception if you immediately try to ingest data within
 	//    the new window. To avoid a RejectedRecords exception, wait until the duration
 	//    of the new window to ingest new data. For further information, see Best
@@ -3391,12 +5984,20 @@ type RejectedRecord struct {
 	RecordIndex *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectedRecord) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectedRecord) GoString() string {
 	return s.String()
 }
@@ -3421,17 +6022,23 @@ func (s *RejectedRecord) SetRecordIndex(v int64) *RejectedRecord {
 
 // WriteRecords would throw this exception in the following cases:
 //
-//    * Records with duplicate data where there are multiple records with the
-//    same dimensions, timestamps, and measure names but different measure values.
+//   - Records with duplicate data where there are multiple records with the
+//     same dimensions, timestamps, and measure names but: Measure values are
+//     different Version is not present in the request or the value of version
+//     in the new record is equal to or lower than the existing value In this
+//     case, if Timestream rejects data, the ExistingVersion field in the RejectedRecords
+//     response will indicate the current record’s version. To force an update,
+//     you can resend the request with a version for the record set to a value
+//     greater than the ExistingVersion.
 //
-//    * Records with timestamps that lie outside the retention duration of the
-//    memory store
+//   - Records with timestamps that lie outside the retention duration of the
+//     memory store.
 //
-//    * Records with dimensions or measures that exceed the Timestream defined
-//    limits.
+//   - Records with dimensions or measures that exceed the Timestream defined
+//     limits.
 //
-// For more information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// For more information, see Quotas (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
+// in the Amazon Timestream Developer Guide.
 type RejectedRecordsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3441,12 +6048,20 @@ type RejectedRecordsException struct {
 	RejectedRecords []*RejectedRecord `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectedRecordsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectedRecordsException) GoString() string {
 	return s.String()
 }
@@ -3489,6 +6104,132 @@ func (s *RejectedRecordsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Report configuration for a batch load task. This contains details about where
+// error reports are stored.
+type ReportConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration of an S3 location to write error reports and events for a batch
+	// load.
+	ReportS3Configuration *ReportS3Configuration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReportConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReportConfiguration"}
+	if s.ReportS3Configuration != nil {
+		if err := s.ReportS3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("ReportS3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReportS3Configuration sets the ReportS3Configuration field's value.
+func (s *ReportConfiguration) SetReportS3Configuration(v *ReportS3Configuration) *ReportConfiguration {
+	s.ReportS3Configuration = v
+	return s
+}
+
+type ReportS3Configuration struct {
+	_ struct{} `type:"structure"`
+
+	// BucketName is a required field
+	BucketName *string `min:"3" type:"string" required:"true"`
+
+	EncryptionOption *string `type:"string" enum:"S3EncryptionOption"`
+
+	KmsKeyId *string `min:"1" type:"string"`
+
+	ObjectKeyPrefix *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportS3Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportS3Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReportS3Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReportS3Configuration"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.ObjectKeyPrefix != nil && len(*s.ObjectKeyPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ObjectKeyPrefix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *ReportS3Configuration) SetBucketName(v string) *ReportS3Configuration {
+	s.BucketName = &v
+	return s
+}
+
+// SetEncryptionOption sets the EncryptionOption field's value.
+func (s *ReportS3Configuration) SetEncryptionOption(v string) *ReportS3Configuration {
+	s.EncryptionOption = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ReportS3Configuration) SetKmsKeyId(v string) *ReportS3Configuration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetObjectKeyPrefix sets the ObjectKeyPrefix field's value.
+func (s *ReportS3Configuration) SetObjectKeyPrefix(v string) *ReportS3Configuration {
+	s.ObjectKeyPrefix = &v
+	return s
+}
+
 // The operation tried to access a nonexistent resource. The resource might
 // not be specified correctly, or its status might not be ACTIVE.
 type ResourceNotFoundException struct {
@@ -3498,12 +6239,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -3546,7 +6295,78 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Retention properties contain the duration for which your time series data
+type ResumeBatchLoadTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the batch load task to resume.
+	//
+	// TaskId is a required field
+	TaskId *string `min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeBatchLoadTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeBatchLoadTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResumeBatchLoadTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResumeBatchLoadTaskInput"}
+	if s.TaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskId"))
+	}
+	if s.TaskId != nil && len(*s.TaskId) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskId", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *ResumeBatchLoadTaskInput) SetTaskId(v string) *ResumeBatchLoadTaskInput {
+	s.TaskId = &v
+	return s
+}
+
+type ResumeBatchLoadTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeBatchLoadTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeBatchLoadTaskOutput) GoString() string {
+	return s.String()
+}
+
+// Retention properties contain the duration for which your time-series data
 // must be stored in the magnetic store and the memory store.
 type RetentionProperties struct {
 	_ struct{} `type:"structure"`
@@ -3562,12 +6382,20 @@ type RetentionProperties struct {
 	MemoryStoreRetentionPeriodInHours *int64 `min:"1" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetentionProperties) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetentionProperties) GoString() string {
 	return s.String()
 }
@@ -3606,7 +6434,146 @@ func (s *RetentionProperties) SetMemoryStoreRetentionPeriodInHours(v int64) *Ret
 	return s
 }
 
-// Instance quota of resource exceeded for this account.
+// The configuration that specifies an S3 location.
+type S3Configuration struct {
+	_ struct{} `type:"structure"`
+
+	// The bucket name of the customer S3 bucket.
+	BucketName *string `min:"3" type:"string"`
+
+	// The encryption option for the customer S3 location. Options are S3 server-side
+	// encryption with an S3 managed key or Amazon Web Services managed key.
+	EncryptionOption *string `type:"string" enum:"S3EncryptionOption"`
+
+	// The KMS key ID for the customer S3 location when encrypting with an Amazon
+	// Web Services managed key.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// The object key preview for the customer S3 location.
+	ObjectKeyPrefix *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Configuration"}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.ObjectKeyPrefix != nil && len(*s.ObjectKeyPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ObjectKeyPrefix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3Configuration) SetBucketName(v string) *S3Configuration {
+	s.BucketName = &v
+	return s
+}
+
+// SetEncryptionOption sets the EncryptionOption field's value.
+func (s *S3Configuration) SetEncryptionOption(v string) *S3Configuration {
+	s.EncryptionOption = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *S3Configuration) SetKmsKeyId(v string) *S3Configuration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetObjectKeyPrefix sets the ObjectKeyPrefix field's value.
+func (s *S3Configuration) SetObjectKeyPrefix(v string) *S3Configuration {
+	s.ObjectKeyPrefix = &v
+	return s
+}
+
+// A Schema specifies the expected data model of the table.
+type Schema struct {
+	_ struct{} `type:"structure"`
+
+	// A non-empty list of partition keys defining the attributes used to partition
+	// the table data. The order of the list determines the partition hierarchy.
+	// The name and type of each partition key as well as the partition key order
+	// cannot be changed after the table is created. However, the enforcement level
+	// of each partition key can be changed.
+	CompositePartitionKey []*PartitionKey `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Schema) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Schema) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Schema) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Schema"}
+	if s.CompositePartitionKey != nil && len(s.CompositePartitionKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CompositePartitionKey", 1))
+	}
+	if s.CompositePartitionKey != nil {
+		for i, v := range s.CompositePartitionKey {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CompositePartitionKey", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCompositePartitionKey sets the CompositePartitionKey field's value.
+func (s *Schema) SetCompositePartitionKey(v []*PartitionKey) *Schema {
+	s.CompositePartitionKey = v
+	return s
+}
+
+// The instance quota of resource exceeded for this account.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3614,12 +6581,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -3662,9 +6637,9 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Table represents a database table in Timestream. Tables contain one or more
-// related time series. You can modify the retention duration of the memory
-// store and the magnetic store for a table.
+// Represents a database table in Timestream. Tables contain one or more related
+// time series. You can modify the retention duration of the memory store and
+// the magnetic store for a table.
 type Table struct {
 	_ struct{} `type:"structure"`
 
@@ -3675,16 +6650,22 @@ type Table struct {
 	CreationTime *time.Time `type:"timestamp"`
 
 	// The name of the Timestream database that contains this table.
-	DatabaseName *string `min:"3" type:"string"`
+	DatabaseName *string `type:"string"`
 
 	// The time when the Timestream table was last updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
 
+	// Contains properties to set on the table when enabling magnetic store writes.
+	MagneticStoreWriteProperties *MagneticStoreWriteProperties `type:"structure"`
+
 	// The retention duration for the memory store and magnetic store.
 	RetentionProperties *RetentionProperties `type:"structure"`
 
+	// The schema of the table.
+	Schema *Schema `type:"structure"`
+
 	// The name of the Timestream table.
-	TableName *string `min:"3" type:"string"`
+	TableName *string `type:"string"`
 
 	// The current state of the table:
 	//
@@ -3694,12 +6675,20 @@ type Table struct {
 	TableStatus *string `type:"string" enum:"TableStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Table) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Table) GoString() string {
 	return s.String()
 }
@@ -3728,9 +6717,21 @@ func (s *Table) SetLastUpdatedTime(v time.Time) *Table {
 	return s
 }
 
+// SetMagneticStoreWriteProperties sets the MagneticStoreWriteProperties field's value.
+func (s *Table) SetMagneticStoreWriteProperties(v *MagneticStoreWriteProperties) *Table {
+	s.MagneticStoreWriteProperties = v
+	return s
+}
+
 // SetRetentionProperties sets the RetentionProperties field's value.
 func (s *Table) SetRetentionProperties(v *RetentionProperties) *Table {
 	s.RetentionProperties = v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *Table) SetSchema(v *Schema) *Table {
+	s.Schema = v
 	return s
 }
 
@@ -3747,8 +6748,8 @@ func (s *Table) SetTableStatus(v string) *Table {
 }
 
 // A tag is a label that you assign to a Timestream database and/or table. Each
-// tag consists of a key and an optional value, both of which you define. Tags
-// enable you to categorize databases and/or tables, for example, by purpose,
+// tag consists of a key and an optional value, both of which you define. With
+// tags, you can categorize databases and/or tables, for example, by purpose,
 // owner, or environment.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -3764,12 +6765,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -3820,12 +6829,20 @@ type TagResourceInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -3875,18 +6892,26 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Too many requests were made by a user exceeding service quotas. The request
-// was throttled.
+// Too many requests were made by a user and they exceeded the service quotas.
+// The request was throttled.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3894,12 +6919,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -3958,12 +6991,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -4003,12 +7044,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -4019,7 +7068,7 @@ type UpdateDatabaseInput struct {
 	// The name of the database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
 	// The identifier of the new KMS key (KmsKeyId) to be used to encrypt the data
 	// stored in the database. If the KmsKeyId currently registered with the database
@@ -4039,12 +7088,20 @@ type UpdateDatabaseInput struct {
 	KmsKeyId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDatabaseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDatabaseInput) GoString() string {
 	return s.String()
 }
@@ -4054,9 +7111,6 @@ func (s *UpdateDatabaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateDatabaseInput"}
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
 	}
 	if s.KmsKeyId == nil {
 		invalidParams.Add(request.NewErrParamRequired("KmsKeyId"))
@@ -4086,18 +7140,26 @@ func (s *UpdateDatabaseInput) SetKmsKeyId(v string) *UpdateDatabaseInput {
 type UpdateDatabaseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A top level container for a table. Databases and tables are the fundamental
+	// A top-level container for a table. Databases and tables are the fundamental
 	// management concepts in Amazon Timestream. All tables in a database are encrypted
 	// with the same KMS key.
 	Database *Database `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDatabaseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDatabaseOutput) GoString() string {
 	return s.String()
 }
@@ -4114,25 +7176,37 @@ type UpdateTableInput struct {
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
+
+	// Contains properties to set on the table when enabling magnetic store writes.
+	MagneticStoreWriteProperties *MagneticStoreWriteProperties `type:"structure"`
 
 	// The retention duration of the memory store and the magnetic store.
-	//
-	// RetentionProperties is a required field
-	RetentionProperties *RetentionProperties `type:"structure" required:"true"`
+	RetentionProperties *RetentionProperties `type:"structure"`
 
-	// The name of the Timesream table.
+	// The schema of the table.
+	Schema *Schema `type:"structure"`
+
+	// The name of the Timestream table.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTableInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTableInput) GoString() string {
 	return s.String()
 }
@@ -4143,21 +7217,22 @@ func (s *UpdateTableInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
-	if s.RetentionProperties == nil {
-		invalidParams.Add(request.NewErrParamRequired("RetentionProperties"))
-	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
 	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
+	if s.MagneticStoreWriteProperties != nil {
+		if err := s.MagneticStoreWriteProperties.Validate(); err != nil {
+			invalidParams.AddNested("MagneticStoreWriteProperties", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RetentionProperties != nil {
 		if err := s.RetentionProperties.Validate(); err != nil {
 			invalidParams.AddNested("RetentionProperties", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Schema != nil {
+		if err := s.Schema.Validate(); err != nil {
+			invalidParams.AddNested("Schema", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4173,9 +7248,21 @@ func (s *UpdateTableInput) SetDatabaseName(v string) *UpdateTableInput {
 	return s
 }
 
+// SetMagneticStoreWriteProperties sets the MagneticStoreWriteProperties field's value.
+func (s *UpdateTableInput) SetMagneticStoreWriteProperties(v *MagneticStoreWriteProperties) *UpdateTableInput {
+	s.MagneticStoreWriteProperties = v
+	return s
+}
+
 // SetRetentionProperties sets the RetentionProperties field's value.
 func (s *UpdateTableInput) SetRetentionProperties(v *RetentionProperties) *UpdateTableInput {
 	s.RetentionProperties = v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *UpdateTableInput) SetSchema(v *Schema) *UpdateTableInput {
+	s.Schema = v
 	return s
 }
 
@@ -4192,12 +7279,20 @@ type UpdateTableOutput struct {
 	Table *Table `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTableOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTableOutput) GoString() string {
 	return s.String()
 }
@@ -4208,7 +7303,7 @@ func (s *UpdateTableOutput) SetTable(v *Table) *UpdateTableOutput {
 	return s
 }
 
-// Invalid or malformed request.
+// An invalid or malformed request.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4216,12 +7311,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -4267,35 +7370,45 @@ func (s *ValidationException) RequestID() string {
 type WriteRecordsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A record containing the common measure and dimension attributes shared across
-	// all the records in the request. The measure and dimension attributes specified
-	// in here will be merged with the measure and dimension attributes in the records
-	// object when the data is written into Timestream.
+	// A record that contains the common measure, dimension, time, and version attributes
+	// shared across all the records in the request. The measure and dimension attributes
+	// specified will be merged with the measure and dimension attributes in the
+	// records object when the data is written into Timestream. Dimensions may not
+	// overlap, or a ValidationException will be thrown. In other words, a record
+	// must contain dimensions with unique names.
 	CommonAttributes *Record `type:"structure"`
 
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
-	// An array of records containing the unique dimension and measure attributes
-	// for each time series data point.
+	// An array of records that contain the unique measure, dimension, time, and
+	// version attributes for each time-series data point.
 	//
 	// Records is a required field
 	Records []*Record `min:"1" type:"list" required:"true"`
 
-	// The name of the Timesream table.
+	// The name of the Timestream table.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WriteRecordsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WriteRecordsInput) GoString() string {
 	return s.String()
 }
@@ -4306,9 +7419,6 @@ func (s *WriteRecordsInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.Records == nil {
 		invalidParams.Add(request.NewErrParamRequired("Records"))
 	}
@@ -4317,9 +7427,6 @@ func (s *WriteRecordsInput) Validate() error {
 	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
-	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
 	}
 	if s.CommonAttributes != nil {
 		if err := s.CommonAttributes.Validate(); err != nil {
@@ -4369,16 +7476,77 @@ func (s *WriteRecordsInput) SetTableName(v string) *WriteRecordsInput {
 
 type WriteRecordsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Information on the records ingested by this request.
+	RecordsIngested *RecordsIngested `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WriteRecordsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WriteRecordsOutput) GoString() string {
 	return s.String()
+}
+
+// SetRecordsIngested sets the RecordsIngested field's value.
+func (s *WriteRecordsOutput) SetRecordsIngested(v *RecordsIngested) *WriteRecordsOutput {
+	s.RecordsIngested = v
+	return s
+}
+
+const (
+	// BatchLoadDataFormatCsv is a BatchLoadDataFormat enum value
+	BatchLoadDataFormatCsv = "CSV"
+)
+
+// BatchLoadDataFormat_Values returns all elements of the BatchLoadDataFormat enum
+func BatchLoadDataFormat_Values() []string {
+	return []string{
+		BatchLoadDataFormatCsv,
+	}
+}
+
+const (
+	// BatchLoadStatusCreated is a BatchLoadStatus enum value
+	BatchLoadStatusCreated = "CREATED"
+
+	// BatchLoadStatusInProgress is a BatchLoadStatus enum value
+	BatchLoadStatusInProgress = "IN_PROGRESS"
+
+	// BatchLoadStatusFailed is a BatchLoadStatus enum value
+	BatchLoadStatusFailed = "FAILED"
+
+	// BatchLoadStatusSucceeded is a BatchLoadStatus enum value
+	BatchLoadStatusSucceeded = "SUCCEEDED"
+
+	// BatchLoadStatusProgressStopped is a BatchLoadStatus enum value
+	BatchLoadStatusProgressStopped = "PROGRESS_STOPPED"
+
+	// BatchLoadStatusPendingResume is a BatchLoadStatus enum value
+	BatchLoadStatusPendingResume = "PENDING_RESUME"
+)
+
+// BatchLoadStatus_Values returns all elements of the BatchLoadStatus enum
+func BatchLoadStatus_Values() []string {
+	return []string{
+		BatchLoadStatusCreated,
+		BatchLoadStatusInProgress,
+		BatchLoadStatusFailed,
+		BatchLoadStatusSucceeded,
+		BatchLoadStatusProgressStopped,
+		BatchLoadStatusPendingResume,
+	}
 }
 
 const (
@@ -4405,6 +7573,12 @@ const (
 
 	// MeasureValueTypeBoolean is a MeasureValueType enum value
 	MeasureValueTypeBoolean = "BOOLEAN"
+
+	// MeasureValueTypeTimestamp is a MeasureValueType enum value
+	MeasureValueTypeTimestamp = "TIMESTAMP"
+
+	// MeasureValueTypeMulti is a MeasureValueType enum value
+	MeasureValueTypeMulti = "MULTI"
 )
 
 // MeasureValueType_Values returns all elements of the MeasureValueType enum
@@ -4414,6 +7588,84 @@ func MeasureValueType_Values() []string {
 		MeasureValueTypeBigint,
 		MeasureValueTypeVarchar,
 		MeasureValueTypeBoolean,
+		MeasureValueTypeTimestamp,
+		MeasureValueTypeMulti,
+	}
+}
+
+const (
+	// PartitionKeyEnforcementLevelRequired is a PartitionKeyEnforcementLevel enum value
+	PartitionKeyEnforcementLevelRequired = "REQUIRED"
+
+	// PartitionKeyEnforcementLevelOptional is a PartitionKeyEnforcementLevel enum value
+	PartitionKeyEnforcementLevelOptional = "OPTIONAL"
+)
+
+// PartitionKeyEnforcementLevel_Values returns all elements of the PartitionKeyEnforcementLevel enum
+func PartitionKeyEnforcementLevel_Values() []string {
+	return []string{
+		PartitionKeyEnforcementLevelRequired,
+		PartitionKeyEnforcementLevelOptional,
+	}
+}
+
+const (
+	// PartitionKeyTypeDimension is a PartitionKeyType enum value
+	PartitionKeyTypeDimension = "DIMENSION"
+
+	// PartitionKeyTypeMeasure is a PartitionKeyType enum value
+	PartitionKeyTypeMeasure = "MEASURE"
+)
+
+// PartitionKeyType_Values returns all elements of the PartitionKeyType enum
+func PartitionKeyType_Values() []string {
+	return []string{
+		PartitionKeyTypeDimension,
+		PartitionKeyTypeMeasure,
+	}
+}
+
+const (
+	// S3EncryptionOptionSseS3 is a S3EncryptionOption enum value
+	S3EncryptionOptionSseS3 = "SSE_S3"
+
+	// S3EncryptionOptionSseKms is a S3EncryptionOption enum value
+	S3EncryptionOptionSseKms = "SSE_KMS"
+)
+
+// S3EncryptionOption_Values returns all elements of the S3EncryptionOption enum
+func S3EncryptionOption_Values() []string {
+	return []string{
+		S3EncryptionOptionSseS3,
+		S3EncryptionOptionSseKms,
+	}
+}
+
+const (
+	// ScalarMeasureValueTypeDouble is a ScalarMeasureValueType enum value
+	ScalarMeasureValueTypeDouble = "DOUBLE"
+
+	// ScalarMeasureValueTypeBigint is a ScalarMeasureValueType enum value
+	ScalarMeasureValueTypeBigint = "BIGINT"
+
+	// ScalarMeasureValueTypeBoolean is a ScalarMeasureValueType enum value
+	ScalarMeasureValueTypeBoolean = "BOOLEAN"
+
+	// ScalarMeasureValueTypeVarchar is a ScalarMeasureValueType enum value
+	ScalarMeasureValueTypeVarchar = "VARCHAR"
+
+	// ScalarMeasureValueTypeTimestamp is a ScalarMeasureValueType enum value
+	ScalarMeasureValueTypeTimestamp = "TIMESTAMP"
+)
+
+// ScalarMeasureValueType_Values returns all elements of the ScalarMeasureValueType enum
+func ScalarMeasureValueType_Values() []string {
+	return []string{
+		ScalarMeasureValueTypeDouble,
+		ScalarMeasureValueTypeBigint,
+		ScalarMeasureValueTypeBoolean,
+		ScalarMeasureValueTypeVarchar,
+		ScalarMeasureValueTypeTimestamp,
 	}
 }
 
@@ -4423,6 +7675,9 @@ const (
 
 	// TableStatusDeleting is a TableStatus enum value
 	TableStatusDeleting = "DELETING"
+
+	// TableStatusRestoring is a TableStatus enum value
+	TableStatusRestoring = "RESTORING"
 )
 
 // TableStatus_Values returns all elements of the TableStatus enum
@@ -4430,6 +7685,7 @@ func TableStatus_Values() []string {
 	return []string{
 		TableStatusActive,
 		TableStatusDeleting,
+		TableStatusRestoring,
 	}
 }
 

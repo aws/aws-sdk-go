@@ -29,14 +29,13 @@ const opAcknowledgeJob = "AcknowledgeJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AcknowledgeJobRequest method.
+//	req, resp := client.AcknowledgeJobRequest(params)
 //
-//    // Example sending a request using the AcknowledgeJobRequest method.
-//    req, resp := client.AcknowledgeJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/AcknowledgeJob
 func (c *CodePipeline) AcknowledgeJobRequest(input *AcknowledgeJobInput) (req *request.Request, output *AcknowledgeJobOutput) {
@@ -68,14 +67,15 @@ func (c *CodePipeline) AcknowledgeJobRequest(input *AcknowledgeJobInput) (req *r
 // API operation AcknowledgeJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * InvalidNonceException
-//   The nonce was specified in an invalid format.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * JobNotFoundException
-//   The job was specified in an invalid format or cannot be found.
+//   - InvalidNonceException
+//     The nonce was specified in an invalid format.
+//
+//   - JobNotFoundException
+//     The job was specified in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/AcknowledgeJob
 func (c *CodePipeline) AcknowledgeJob(input *AcknowledgeJobInput) (*AcknowledgeJobOutput, error) {
@@ -115,14 +115,13 @@ const opAcknowledgeThirdPartyJob = "AcknowledgeThirdPartyJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AcknowledgeThirdPartyJobRequest method.
+//	req, resp := client.AcknowledgeThirdPartyJobRequest(params)
 //
-//    // Example sending a request using the AcknowledgeThirdPartyJobRequest method.
-//    req, resp := client.AcknowledgeThirdPartyJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/AcknowledgeThirdPartyJob
 func (c *CodePipeline) AcknowledgeThirdPartyJobRequest(input *AcknowledgeThirdPartyJobInput) (req *request.Request, output *AcknowledgeThirdPartyJobOutput) {
@@ -154,17 +153,18 @@ func (c *CodePipeline) AcknowledgeThirdPartyJobRequest(input *AcknowledgeThirdPa
 // API operation AcknowledgeThirdPartyJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * InvalidNonceException
-//   The nonce was specified in an invalid format.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * JobNotFoundException
-//   The job was specified in an invalid format or cannot be found.
+//   - InvalidNonceException
+//     The nonce was specified in an invalid format.
 //
-//   * InvalidClientTokenException
-//   The client token was specified in an invalid format
+//   - JobNotFoundException
+//     The job was specified in an invalid format or cannot be found.
+//
+//   - InvalidClientTokenException
+//     The client token was specified in an invalid format
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/AcknowledgeThirdPartyJob
 func (c *CodePipeline) AcknowledgeThirdPartyJob(input *AcknowledgeThirdPartyJobInput) (*AcknowledgeThirdPartyJobOutput, error) {
@@ -204,14 +204,13 @@ const opCreateCustomActionType = "CreateCustomActionType"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCustomActionTypeRequest method.
+//	req, resp := client.CreateCustomActionTypeRequest(params)
 //
-//    // Example sending a request using the CreateCustomActionTypeRequest method.
-//    req, resp := client.CreateCustomActionTypeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/CreateCustomActionType
 func (c *CodePipeline) CreateCustomActionTypeRequest(input *CreateCustomActionTypeInput) (req *request.Request, output *CreateCustomActionTypeOutput) {
@@ -233,7 +232,7 @@ func (c *CodePipeline) CreateCustomActionTypeRequest(input *CreateCustomActionTy
 // CreateCustomActionType API operation for AWS CodePipeline.
 //
 // Creates a new custom action that can be used in all pipelines associated
-// with the AWS account. Only used for custom actions.
+// with the Amazon Web Services account. Only used for custom actions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -243,21 +242,22 @@ func (c *CodePipeline) CreateCustomActionTypeRequest(input *CreateCustomActionTy
 // API operation CreateCustomActionType for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * LimitExceededException
-//   The number of pipelines associated with the AWS account has exceeded the
-//   limit allowed for the account.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * TooManyTagsException
-//   The tags limit for a resource has been exceeded.
+//   - LimitExceededException
+//     The number of pipelines associated with the Amazon Web Services account has
+//     exceeded the limit allowed for the account.
 //
-//   * InvalidTagsException
-//   The specified resource tags are invalid.
+//   - TooManyTagsException
+//     The tags limit for a resource has been exceeded.
 //
-//   * ConcurrentModificationException
-//   Unable to modify the tag due to a simultaneous update request.
+//   - InvalidTagsException
+//     The specified resource tags are invalid.
+//
+//   - ConcurrentModificationException
+//     Unable to modify the tag due to a simultaneous update request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/CreateCustomActionType
 func (c *CodePipeline) CreateCustomActionType(input *CreateCustomActionTypeInput) (*CreateCustomActionTypeOutput, error) {
@@ -297,14 +297,13 @@ const opCreatePipeline = "CreatePipeline"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePipelineRequest method.
+//	req, resp := client.CreatePipelineRequest(params)
 //
-//    // Example sending a request using the CreatePipelineRequest method.
-//    req, resp := client.CreatePipelineRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/CreatePipeline
 func (c *CodePipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *request.Request, output *CreatePipelineOutput) {
@@ -339,36 +338,37 @@ func (c *CodePipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *r
 // API operation CreatePipeline for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * PipelineNameInUseException
-//   The specified pipeline name is already in use.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidStageDeclarationException
-//   The stage declaration was specified in an invalid format.
+//   - PipelineNameInUseException
+//     The specified pipeline name is already in use.
 //
-//   * InvalidActionDeclarationException
-//   The action declaration was specified in an invalid format.
+//   - InvalidStageDeclarationException
+//     The stage declaration was specified in an invalid format.
 //
-//   * InvalidBlockerDeclarationException
-//   Reserved for future use.
+//   - InvalidActionDeclarationException
+//     The action declaration was specified in an invalid format.
 //
-//   * InvalidStructureException
-//   The structure was specified in an invalid format.
+//   - InvalidBlockerDeclarationException
+//     Reserved for future use.
 //
-//   * LimitExceededException
-//   The number of pipelines associated with the AWS account has exceeded the
-//   limit allowed for the account.
+//   - InvalidStructureException
+//     The structure was specified in an invalid format.
 //
-//   * TooManyTagsException
-//   The tags limit for a resource has been exceeded.
+//   - LimitExceededException
+//     The number of pipelines associated with the Amazon Web Services account has
+//     exceeded the limit allowed for the account.
 //
-//   * InvalidTagsException
-//   The specified resource tags are invalid.
+//   - TooManyTagsException
+//     The tags limit for a resource has been exceeded.
 //
-//   * ConcurrentModificationException
-//   Unable to modify the tag due to a simultaneous update request.
+//   - InvalidTagsException
+//     The specified resource tags are invalid.
+//
+//   - ConcurrentModificationException
+//     Unable to modify the tag due to a simultaneous update request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/CreatePipeline
 func (c *CodePipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
@@ -408,14 +408,13 @@ const opDeleteCustomActionType = "DeleteCustomActionType"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCustomActionTypeRequest method.
+//	req, resp := client.DeleteCustomActionTypeRequest(params)
 //
-//    // Example sending a request using the DeleteCustomActionTypeRequest method.
-//    req, resp := client.DeleteCustomActionTypeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DeleteCustomActionType
 func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTypeInput) (req *request.Request, output *DeleteCustomActionTypeOutput) {
@@ -454,11 +453,12 @@ func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTy
 // API operation DeleteCustomActionType for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ConcurrentModificationException
-//   Unable to modify the tag due to a simultaneous update request.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - ConcurrentModificationException
+//     Unable to modify the tag due to a simultaneous update request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DeleteCustomActionType
 func (c *CodePipeline) DeleteCustomActionType(input *DeleteCustomActionTypeInput) (*DeleteCustomActionTypeOutput, error) {
@@ -498,14 +498,13 @@ const opDeletePipeline = "DeletePipeline"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePipelineRequest method.
+//	req, resp := client.DeletePipelineRequest(params)
 //
-//    // Example sending a request using the DeletePipelineRequest method.
-//    req, resp := client.DeletePipelineRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DeletePipeline
 func (c *CodePipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *request.Request, output *DeletePipelineOutput) {
@@ -537,11 +536,12 @@ func (c *CodePipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *r
 // API operation DeletePipeline for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ConcurrentModificationException
-//   Unable to modify the tag due to a simultaneous update request.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - ConcurrentModificationException
+//     Unable to modify the tag due to a simultaneous update request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DeletePipeline
 func (c *CodePipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, error) {
@@ -581,14 +581,13 @@ const opDeleteWebhook = "DeleteWebhook"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteWebhookRequest method.
+//	req, resp := client.DeleteWebhookRequest(params)
 //
-//    // Example sending a request using the DeleteWebhookRequest method.
-//    req, resp := client.DeleteWebhookRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DeleteWebhook
 func (c *CodePipeline) DeleteWebhookRequest(input *DeleteWebhookInput) (req *request.Request, output *DeleteWebhookOutput) {
@@ -611,7 +610,7 @@ func (c *CodePipeline) DeleteWebhookRequest(input *DeleteWebhookInput) (req *req
 // DeleteWebhook API operation for AWS CodePipeline.
 //
 // Deletes a previously created webhook by name. Deleting the webhook stops
-// AWS CodePipeline from starting a pipeline every time an external event occurs.
+// CodePipeline from starting a pipeline every time an external event occurs.
 // The API returns successfully when trying to delete a webhook that is already
 // deleted. If a deleted webhook is re-created by calling PutWebhook with the
 // same name, it will have a different URL.
@@ -624,11 +623,12 @@ func (c *CodePipeline) DeleteWebhookRequest(input *DeleteWebhookInput) (req *req
 // API operation DeleteWebhook for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ConcurrentModificationException
-//   Unable to modify the tag due to a simultaneous update request.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - ConcurrentModificationException
+//     Unable to modify the tag due to a simultaneous update request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DeleteWebhook
 func (c *CodePipeline) DeleteWebhook(input *DeleteWebhookInput) (*DeleteWebhookOutput, error) {
@@ -668,14 +668,13 @@ const opDeregisterWebhookWithThirdParty = "DeregisterWebhookWithThirdParty"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeregisterWebhookWithThirdPartyRequest method.
+//	req, resp := client.DeregisterWebhookWithThirdPartyRequest(params)
 //
-//    // Example sending a request using the DeregisterWebhookWithThirdPartyRequest method.
-//    req, resp := client.DeregisterWebhookWithThirdPartyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DeregisterWebhookWithThirdParty
 func (c *CodePipeline) DeregisterWebhookWithThirdPartyRequest(input *DeregisterWebhookWithThirdPartyInput) (req *request.Request, output *DeregisterWebhookWithThirdPartyOutput) {
@@ -709,11 +708,12 @@ func (c *CodePipeline) DeregisterWebhookWithThirdPartyRequest(input *DeregisterW
 // API operation DeregisterWebhookWithThirdParty for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * WebhookNotFoundException
-//   The specified webhook was entered in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - WebhookNotFoundException
+//     The specified webhook was entered in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DeregisterWebhookWithThirdParty
 func (c *CodePipeline) DeregisterWebhookWithThirdParty(input *DeregisterWebhookWithThirdPartyInput) (*DeregisterWebhookWithThirdPartyOutput, error) {
@@ -753,14 +753,13 @@ const opDisableStageTransition = "DisableStageTransition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableStageTransitionRequest method.
+//	req, resp := client.DisableStageTransitionRequest(params)
 //
-//    // Example sending a request using the DisableStageTransitionRequest method.
-//    req, resp := client.DisableStageTransitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DisableStageTransition
 func (c *CodePipeline) DisableStageTransitionRequest(input *DisableStageTransitionInput) (req *request.Request, output *DisableStageTransitionOutput) {
@@ -793,14 +792,15 @@ func (c *CodePipeline) DisableStageTransitionRequest(input *DisableStageTransiti
 // API operation DisableStageTransition for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * StageNotFoundException
-//   The stage was specified in an invalid format or cannot be found.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
+//
+//   - StageNotFoundException
+//     The stage was specified in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/DisableStageTransition
 func (c *CodePipeline) DisableStageTransition(input *DisableStageTransitionInput) (*DisableStageTransitionOutput, error) {
@@ -840,14 +840,13 @@ const opEnableStageTransition = "EnableStageTransition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableStageTransitionRequest method.
+//	req, resp := client.EnableStageTransitionRequest(params)
 //
-//    // Example sending a request using the EnableStageTransitionRequest method.
-//    req, resp := client.EnableStageTransitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/EnableStageTransition
 func (c *CodePipeline) EnableStageTransitionRequest(input *EnableStageTransitionInput) (req *request.Request, output *EnableStageTransitionOutput) {
@@ -879,14 +878,15 @@ func (c *CodePipeline) EnableStageTransitionRequest(input *EnableStageTransition
 // API operation EnableStageTransition for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * StageNotFoundException
-//   The stage was specified in an invalid format or cannot be found.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
+//
+//   - StageNotFoundException
+//     The stage was specified in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/EnableStageTransition
 func (c *CodePipeline) EnableStageTransition(input *EnableStageTransitionInput) (*EnableStageTransitionOutput, error) {
@@ -926,14 +926,13 @@ const opGetActionType = "GetActionType"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetActionTypeRequest method.
+//	req, resp := client.GetActionTypeRequest(params)
 //
-//    // Example sending a request using the GetActionTypeRequest method.
-//    req, resp := client.GetActionTypeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetActionType
 func (c *CodePipeline) GetActionTypeRequest(input *GetActionTypeInput) (req *request.Request, output *GetActionTypeOutput) {
@@ -966,11 +965,12 @@ func (c *CodePipeline) GetActionTypeRequest(input *GetActionTypeInput) (req *req
 // API operation GetActionType for usage and error information.
 //
 // Returned Error Types:
-//   * ActionTypeNotFoundException
-//   The specified action type cannot be found.
 //
-//   * ValidationException
-//   The validation was specified in an invalid format.
+//   - ActionTypeNotFoundException
+//     The specified action type cannot be found.
+//
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetActionType
 func (c *CodePipeline) GetActionType(input *GetActionTypeInput) (*GetActionTypeOutput, error) {
@@ -1010,14 +1010,13 @@ const opGetJobDetails = "GetJobDetails"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetJobDetailsRequest method.
+//	req, resp := client.GetJobDetailsRequest(params)
 //
-//    // Example sending a request using the GetJobDetailsRequest method.
-//    req, resp := client.GetJobDetailsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetJobDetails
 func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *request.Request, output *GetJobDetailsOutput) {
@@ -1040,8 +1039,8 @@ func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *req
 //
 // Returns information about a job. Used for custom actions only.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials for
-// the S3 bucket used to store artifacts for the pipeline, if the action requires
+// When this API is called, CodePipeline returns temporary credentials for the
+// S3 bucket used to store artifacts for the pipeline, if the action requires
 // access to that S3 bucket for input or output artifacts. This API also returns
 // any secret values defined for the action.
 //
@@ -1053,11 +1052,12 @@ func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *req
 // API operation GetJobDetails for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * JobNotFoundException
-//   The job was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - JobNotFoundException
+//     The job was specified in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetJobDetails
 func (c *CodePipeline) GetJobDetails(input *GetJobDetailsInput) (*GetJobDetailsOutput, error) {
@@ -1097,14 +1097,13 @@ const opGetPipeline = "GetPipeline"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPipelineRequest method.
+//	req, resp := client.GetPipelineRequest(params)
 //
-//    // Example sending a request using the GetPipelineRequest method.
-//    req, resp := client.GetPipelineRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetPipeline
 func (c *CodePipeline) GetPipelineRequest(input *GetPipelineInput) (req *request.Request, output *GetPipelineOutput) {
@@ -1137,14 +1136,15 @@ func (c *CodePipeline) GetPipelineRequest(input *GetPipelineInput) (req *request
 // API operation GetPipeline for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * PipelineVersionNotFoundException
-//   The pipeline version was specified in an invalid format or cannot be found.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
+//
+//   - PipelineVersionNotFoundException
+//     The pipeline version was specified in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetPipeline
 func (c *CodePipeline) GetPipeline(input *GetPipelineInput) (*GetPipelineOutput, error) {
@@ -1184,14 +1184,13 @@ const opGetPipelineExecution = "GetPipelineExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPipelineExecutionRequest method.
+//	req, resp := client.GetPipelineExecutionRequest(params)
 //
-//    // Example sending a request using the GetPipelineExecutionRequest method.
-//    req, resp := client.GetPipelineExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetPipelineExecution
 func (c *CodePipeline) GetPipelineExecutionRequest(input *GetPipelineExecutionInput) (req *request.Request, output *GetPipelineExecutionOutput) {
@@ -1224,15 +1223,16 @@ func (c *CodePipeline) GetPipelineExecutionRequest(input *GetPipelineExecutionIn
 // API operation GetPipelineExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * PipelineExecutionNotFoundException
-//   The pipeline execution was specified in an invalid format or cannot be found,
-//   or an execution ID does not belong to the specified pipeline.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
+//
+//   - PipelineExecutionNotFoundException
+//     The pipeline execution was specified in an invalid format or cannot be found,
+//     or an execution ID does not belong to the specified pipeline.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetPipelineExecution
 func (c *CodePipeline) GetPipelineExecution(input *GetPipelineExecutionInput) (*GetPipelineExecutionOutput, error) {
@@ -1272,14 +1272,13 @@ const opGetPipelineState = "GetPipelineState"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPipelineStateRequest method.
+//	req, resp := client.GetPipelineStateRequest(params)
 //
-//    // Example sending a request using the GetPipelineStateRequest method.
-//    req, resp := client.GetPipelineStateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetPipelineState
 func (c *CodePipeline) GetPipelineStateRequest(input *GetPipelineStateInput) (req *request.Request, output *GetPipelineStateOutput) {
@@ -1314,11 +1313,12 @@ func (c *CodePipeline) GetPipelineStateRequest(input *GetPipelineStateInput) (re
 // API operation GetPipelineState for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetPipelineState
 func (c *CodePipeline) GetPipelineState(input *GetPipelineStateInput) (*GetPipelineStateOutput, error) {
@@ -1358,14 +1358,13 @@ const opGetThirdPartyJobDetails = "GetThirdPartyJobDetails"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetThirdPartyJobDetailsRequest method.
+//	req, resp := client.GetThirdPartyJobDetailsRequest(params)
 //
-//    // Example sending a request using the GetThirdPartyJobDetailsRequest method.
-//    req, resp := client.GetThirdPartyJobDetailsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetThirdPartyJobDetails
 func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDetailsInput) (req *request.Request, output *GetThirdPartyJobDetailsOutput) {
@@ -1389,8 +1388,8 @@ func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDet
 // Requests the details of a job for a third party action. Used for partner
 // actions only.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials for
-// the S3 bucket used to store artifacts for the pipeline, if the action requires
+// When this API is called, CodePipeline returns temporary credentials for the
+// S3 bucket used to store artifacts for the pipeline, if the action requires
 // access to that S3 bucket for input or output artifacts. This API also returns
 // any secret values defined for the action.
 //
@@ -1402,17 +1401,18 @@ func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDet
 // API operation GetThirdPartyJobDetails for usage and error information.
 //
 // Returned Error Types:
-//   * JobNotFoundException
-//   The job was specified in an invalid format or cannot be found.
 //
-//   * ValidationException
-//   The validation was specified in an invalid format.
+//   - JobNotFoundException
+//     The job was specified in an invalid format or cannot be found.
 //
-//   * InvalidClientTokenException
-//   The client token was specified in an invalid format
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidJobException
-//   The job was specified in an invalid format or cannot be found.
+//   - InvalidClientTokenException
+//     The client token was specified in an invalid format
+//
+//   - InvalidJobException
+//     The job was specified in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetThirdPartyJobDetails
 func (c *CodePipeline) GetThirdPartyJobDetails(input *GetThirdPartyJobDetailsInput) (*GetThirdPartyJobDetailsOutput, error) {
@@ -1452,14 +1452,13 @@ const opListActionExecutions = "ListActionExecutions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListActionExecutionsRequest method.
+//	req, resp := client.ListActionExecutionsRequest(params)
 //
-//    // Example sending a request using the ListActionExecutionsRequest method.
-//    req, resp := client.ListActionExecutionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListActionExecutions
 func (c *CodePipeline) ListActionExecutionsRequest(input *ListActionExecutionsInput) (req *request.Request, output *ListActionExecutionsOutput) {
@@ -1496,19 +1495,20 @@ func (c *CodePipeline) ListActionExecutionsRequest(input *ListActionExecutionsIn
 // API operation ListActionExecutions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidNextTokenException
-//   The next token was specified in an invalid format. Make sure that the next
-//   token you provide is the token returned by a previous call.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
 //
-//   * PipelineExecutionNotFoundException
-//   The pipeline execution was specified in an invalid format or cannot be found,
-//   or an execution ID does not belong to the specified pipeline.
+//   - InvalidNextTokenException
+//     The next token was specified in an invalid format. Make sure that the next
+//     token you provide is the token returned by a previous call.
+//
+//   - PipelineExecutionNotFoundException
+//     The pipeline execution was specified in an invalid format or cannot be found,
+//     or an execution ID does not belong to the specified pipeline.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListActionExecutions
 func (c *CodePipeline) ListActionExecutions(input *ListActionExecutionsInput) (*ListActionExecutionsOutput, error) {
@@ -1540,15 +1540,14 @@ func (c *CodePipeline) ListActionExecutionsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListActionExecutions operation.
-//    pageNum := 0
-//    err := client.ListActionExecutionsPages(params,
-//        func(page *codepipeline.ListActionExecutionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListActionExecutions operation.
+//	pageNum := 0
+//	err := client.ListActionExecutionsPages(params,
+//	    func(page *codepipeline.ListActionExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodePipeline) ListActionExecutionsPages(input *ListActionExecutionsInput, fn func(*ListActionExecutionsOutput, bool) bool) error {
 	return c.ListActionExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1600,14 +1599,13 @@ const opListActionTypes = "ListActionTypes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListActionTypesRequest method.
+//	req, resp := client.ListActionTypesRequest(params)
 //
-//    // Example sending a request using the ListActionTypesRequest method.
-//    req, resp := client.ListActionTypesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListActionTypes
 func (c *CodePipeline) ListActionTypesRequest(input *ListActionTypesInput) (req *request.Request, output *ListActionTypesOutput) {
@@ -1634,8 +1632,7 @@ func (c *CodePipeline) ListActionTypesRequest(input *ListActionTypesInput) (req 
 
 // ListActionTypes API operation for AWS CodePipeline.
 //
-// Gets a summary of all AWS CodePipeline action types associated with your
-// account.
+// Gets a summary of all CodePipeline action types associated with your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1645,12 +1642,13 @@ func (c *CodePipeline) ListActionTypesRequest(input *ListActionTypesInput) (req 
 // API operation ListActionTypes for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * InvalidNextTokenException
-//   The next token was specified in an invalid format. Make sure that the next
-//   token you provide is the token returned by a previous call.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - InvalidNextTokenException
+//     The next token was specified in an invalid format. Make sure that the next
+//     token you provide is the token returned by a previous call.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListActionTypes
 func (c *CodePipeline) ListActionTypes(input *ListActionTypesInput) (*ListActionTypesOutput, error) {
@@ -1682,15 +1680,14 @@ func (c *CodePipeline) ListActionTypesWithContext(ctx aws.Context, input *ListAc
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListActionTypes operation.
-//    pageNum := 0
-//    err := client.ListActionTypesPages(params,
-//        func(page *codepipeline.ListActionTypesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListActionTypes operation.
+//	pageNum := 0
+//	err := client.ListActionTypesPages(params,
+//	    func(page *codepipeline.ListActionTypesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodePipeline) ListActionTypesPages(input *ListActionTypesInput, fn func(*ListActionTypesOutput, bool) bool) error {
 	return c.ListActionTypesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1742,14 +1739,13 @@ const opListPipelineExecutions = "ListPipelineExecutions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPipelineExecutionsRequest method.
+//	req, resp := client.ListPipelineExecutionsRequest(params)
 //
-//    // Example sending a request using the ListPipelineExecutionsRequest method.
-//    req, resp := client.ListPipelineExecutionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListPipelineExecutions
 func (c *CodePipeline) ListPipelineExecutionsRequest(input *ListPipelineExecutionsInput) (req *request.Request, output *ListPipelineExecutionsOutput) {
@@ -1786,15 +1782,16 @@ func (c *CodePipeline) ListPipelineExecutionsRequest(input *ListPipelineExecutio
 // API operation ListPipelineExecutions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidNextTokenException
-//   The next token was specified in an invalid format. Make sure that the next
-//   token you provide is the token returned by a previous call.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
+//
+//   - InvalidNextTokenException
+//     The next token was specified in an invalid format. Make sure that the next
+//     token you provide is the token returned by a previous call.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListPipelineExecutions
 func (c *CodePipeline) ListPipelineExecutions(input *ListPipelineExecutionsInput) (*ListPipelineExecutionsOutput, error) {
@@ -1826,15 +1823,14 @@ func (c *CodePipeline) ListPipelineExecutionsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPipelineExecutions operation.
-//    pageNum := 0
-//    err := client.ListPipelineExecutionsPages(params,
-//        func(page *codepipeline.ListPipelineExecutionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPipelineExecutions operation.
+//	pageNum := 0
+//	err := client.ListPipelineExecutionsPages(params,
+//	    func(page *codepipeline.ListPipelineExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodePipeline) ListPipelineExecutionsPages(input *ListPipelineExecutionsInput, fn func(*ListPipelineExecutionsOutput, bool) bool) error {
 	return c.ListPipelineExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1886,14 +1882,13 @@ const opListPipelines = "ListPipelines"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPipelinesRequest method.
+//	req, resp := client.ListPipelinesRequest(params)
 //
-//    // Example sending a request using the ListPipelinesRequest method.
-//    req, resp := client.ListPipelinesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListPipelines
 func (c *CodePipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Request, output *ListPipelinesOutput) {
@@ -1930,12 +1925,13 @@ func (c *CodePipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *req
 // API operation ListPipelines for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * InvalidNextTokenException
-//   The next token was specified in an invalid format. Make sure that the next
-//   token you provide is the token returned by a previous call.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - InvalidNextTokenException
+//     The next token was specified in an invalid format. Make sure that the next
+//     token you provide is the token returned by a previous call.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListPipelines
 func (c *CodePipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesOutput, error) {
@@ -1967,15 +1963,14 @@ func (c *CodePipeline) ListPipelinesWithContext(ctx aws.Context, input *ListPipe
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPipelines operation.
-//    pageNum := 0
-//    err := client.ListPipelinesPages(params,
-//        func(page *codepipeline.ListPipelinesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPipelines operation.
+//	pageNum := 0
+//	err := client.ListPipelinesPages(params,
+//	    func(page *codepipeline.ListPipelinesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodePipeline) ListPipelinesPages(input *ListPipelinesInput, fn func(*ListPipelinesOutput, bool) bool) error {
 	return c.ListPipelinesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2027,14 +2022,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListTagsForResource
 func (c *CodePipeline) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2071,18 +2065,19 @@ func (c *CodePipeline) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ResourceNotFoundException
-//   The resource was specified in an invalid format.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidNextTokenException
-//   The next token was specified in an invalid format. Make sure that the next
-//   token you provide is the token returned by a previous call.
+//   - ResourceNotFoundException
+//     The resource was specified in an invalid format.
 //
-//   * InvalidArnException
-//   The specified resource ARN is invalid.
+//   - InvalidNextTokenException
+//     The next token was specified in an invalid format. Make sure that the next
+//     token you provide is the token returned by a previous call.
+//
+//   - InvalidArnException
+//     The specified resource ARN is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListTagsForResource
 func (c *CodePipeline) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2114,15 +2109,14 @@ func (c *CodePipeline) ListTagsForResourceWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
-//    pageNum := 0
-//    err := client.ListTagsForResourcePages(params,
-//        func(page *codepipeline.ListTagsForResourceOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTagsForResource operation.
+//	pageNum := 0
+//	err := client.ListTagsForResourcePages(params,
+//	    func(page *codepipeline.ListTagsForResourceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodePipeline) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
 	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2174,14 +2168,13 @@ const opListWebhooks = "ListWebhooks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWebhooksRequest method.
+//	req, resp := client.ListWebhooksRequest(params)
 //
-//    // Example sending a request using the ListWebhooksRequest method.
-//    req, resp := client.ListWebhooksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListWebhooks
 func (c *CodePipeline) ListWebhooksRequest(input *ListWebhooksInput) (req *request.Request, output *ListWebhooksOutput) {
@@ -2208,9 +2201,9 @@ func (c *CodePipeline) ListWebhooksRequest(input *ListWebhooksInput) (req *reque
 
 // ListWebhooks API operation for AWS CodePipeline.
 //
-// Gets a listing of all the webhooks in this AWS Region for this account. The
-// output lists all webhooks and includes the webhook URL and ARN and the configuration
-// for each webhook.
+// Gets a listing of all the webhooks in this Amazon Web Services Region for
+// this account. The output lists all webhooks and includes the webhook URL
+// and ARN and the configuration for each webhook.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2220,12 +2213,13 @@ func (c *CodePipeline) ListWebhooksRequest(input *ListWebhooksInput) (req *reque
 // API operation ListWebhooks for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * InvalidNextTokenException
-//   The next token was specified in an invalid format. Make sure that the next
-//   token you provide is the token returned by a previous call.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - InvalidNextTokenException
+//     The next token was specified in an invalid format. Make sure that the next
+//     token you provide is the token returned by a previous call.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListWebhooks
 func (c *CodePipeline) ListWebhooks(input *ListWebhooksInput) (*ListWebhooksOutput, error) {
@@ -2257,15 +2251,14 @@ func (c *CodePipeline) ListWebhooksWithContext(ctx aws.Context, input *ListWebho
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListWebhooks operation.
-//    pageNum := 0
-//    err := client.ListWebhooksPages(params,
-//        func(page *codepipeline.ListWebhooksOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListWebhooks operation.
+//	pageNum := 0
+//	err := client.ListWebhooksPages(params,
+//	    func(page *codepipeline.ListWebhooksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodePipeline) ListWebhooksPages(input *ListWebhooksInput, fn func(*ListWebhooksOutput, bool) bool) error {
 	return c.ListWebhooksPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2317,14 +2310,13 @@ const opPollForJobs = "PollForJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PollForJobsRequest method.
+//	req, resp := client.PollForJobsRequest(params)
 //
-//    // Example sending a request using the PollForJobsRequest method.
-//    req, resp := client.PollForJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PollForJobs
 func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *request.Request, output *PollForJobsOutput) {
@@ -2345,13 +2337,13 @@ func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *request
 
 // PollForJobs API operation for AWS CodePipeline.
 //
-// Returns information about any jobs for AWS CodePipeline to act on. PollForJobs
+// Returns information about any jobs for CodePipeline to act on. PollForJobs
 // is valid only for action types with "Custom" in the owner field. If the action
-// type contains "AWS" or "ThirdParty" in the owner field, the PollForJobs action
+// type contains AWS or ThirdParty in the owner field, the PollForJobs action
 // returns an error.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials for
-// the S3 bucket used to store artifacts for the pipeline, if the action requires
+// When this API is called, CodePipeline returns temporary credentials for the
+// S3 bucket used to store artifacts for the pipeline, if the action requires
 // access to that S3 bucket for input or output artifacts. This API also returns
 // any secret values defined for the action.
 //
@@ -2363,11 +2355,12 @@ func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *request
 // API operation PollForJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ActionTypeNotFoundException
-//   The specified action type cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - ActionTypeNotFoundException
+//     The specified action type cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PollForJobs
 func (c *CodePipeline) PollForJobs(input *PollForJobsInput) (*PollForJobsOutput, error) {
@@ -2407,14 +2400,13 @@ const opPollForThirdPartyJobs = "PollForThirdPartyJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PollForThirdPartyJobsRequest method.
+//	req, resp := client.PollForThirdPartyJobsRequest(params)
 //
-//    // Example sending a request using the PollForThirdPartyJobsRequest method.
-//    req, resp := client.PollForThirdPartyJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PollForThirdPartyJobs
 func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobsInput) (req *request.Request, output *PollForThirdPartyJobsOutput) {
@@ -2438,8 +2430,8 @@ func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobs
 // Determines whether there are any third party jobs for a job worker to act
 // on. Used for partner actions only.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials for
-// the S3 bucket used to store artifacts for the pipeline, if the action requires
+// When this API is called, CodePipeline returns temporary credentials for the
+// S3 bucket used to store artifacts for the pipeline, if the action requires
 // access to that S3 bucket for input or output artifacts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2450,11 +2442,12 @@ func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobs
 // API operation PollForThirdPartyJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ActionTypeNotFoundException
-//   The specified action type cannot be found.
 //
-//   * ValidationException
-//   The validation was specified in an invalid format.
+//   - ActionTypeNotFoundException
+//     The specified action type cannot be found.
+//
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PollForThirdPartyJobs
 func (c *CodePipeline) PollForThirdPartyJobs(input *PollForThirdPartyJobsInput) (*PollForThirdPartyJobsOutput, error) {
@@ -2494,14 +2487,13 @@ const opPutActionRevision = "PutActionRevision"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutActionRevisionRequest method.
+//	req, resp := client.PutActionRevisionRequest(params)
 //
-//    // Example sending a request using the PutActionRevisionRequest method.
-//    req, resp := client.PutActionRevisionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutActionRevision
 func (c *CodePipeline) PutActionRevisionRequest(input *PutActionRevisionInput) (req *request.Request, output *PutActionRevisionOutput) {
@@ -2522,7 +2514,7 @@ func (c *CodePipeline) PutActionRevisionRequest(input *PutActionRevisionInput) (
 
 // PutActionRevision API operation for AWS CodePipeline.
 //
-// Provides information to AWS CodePipeline about new revisions to a source.
+// Provides information to CodePipeline about new revisions to a source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2532,17 +2524,18 @@ func (c *CodePipeline) PutActionRevisionRequest(input *PutActionRevisionInput) (
 // API operation PutActionRevision for usage and error information.
 //
 // Returned Error Types:
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
 //
-//   * StageNotFoundException
-//   The stage was specified in an invalid format or cannot be found.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
 //
-//   * ActionNotFoundException
-//   The specified action cannot be found.
+//   - StageNotFoundException
+//     The stage was specified in an invalid format or cannot be found.
 //
-//   * ValidationException
-//   The validation was specified in an invalid format.
+//   - ActionNotFoundException
+//     The specified action cannot be found.
+//
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutActionRevision
 func (c *CodePipeline) PutActionRevision(input *PutActionRevisionInput) (*PutActionRevisionOutput, error) {
@@ -2582,14 +2575,13 @@ const opPutApprovalResult = "PutApprovalResult"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutApprovalResultRequest method.
+//	req, resp := client.PutApprovalResultRequest(params)
 //
-//    // Example sending a request using the PutApprovalResultRequest method.
-//    req, resp := client.PutApprovalResultRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutApprovalResult
 func (c *CodePipeline) PutApprovalResultRequest(input *PutApprovalResultInput) (req *request.Request, output *PutApprovalResultOutput) {
@@ -2610,7 +2602,7 @@ func (c *CodePipeline) PutApprovalResultRequest(input *PutApprovalResultInput) (
 
 // PutApprovalResult API operation for AWS CodePipeline.
 //
-// Provides the response to a manual approval request to AWS CodePipeline. Valid
+// Provides the response to a manual approval request to CodePipeline. Valid
 // responses include Approved and Rejected.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2621,23 +2613,24 @@ func (c *CodePipeline) PutApprovalResultRequest(input *PutApprovalResultInput) (
 // API operation PutApprovalResult for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidApprovalTokenException
-//   The approval request already received a response or has expired.
 //
-//   * ApprovalAlreadyCompletedException
-//   The approval action has already been approved or rejected.
+//   - InvalidApprovalTokenException
+//     The approval request already received a response or has expired.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ApprovalAlreadyCompletedException
+//     The approval action has already been approved or rejected.
 //
-//   * StageNotFoundException
-//   The stage was specified in an invalid format or cannot be found.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
 //
-//   * ActionNotFoundException
-//   The specified action cannot be found.
+//   - StageNotFoundException
+//     The stage was specified in an invalid format or cannot be found.
 //
-//   * ValidationException
-//   The validation was specified in an invalid format.
+//   - ActionNotFoundException
+//     The specified action cannot be found.
+//
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutApprovalResult
 func (c *CodePipeline) PutApprovalResult(input *PutApprovalResultInput) (*PutApprovalResultOutput, error) {
@@ -2677,14 +2670,13 @@ const opPutJobFailureResult = "PutJobFailureResult"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutJobFailureResultRequest method.
+//	req, resp := client.PutJobFailureResultRequest(params)
 //
-//    // Example sending a request using the PutJobFailureResultRequest method.
-//    req, resp := client.PutJobFailureResultRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutJobFailureResult
 func (c *CodePipeline) PutJobFailureResultRequest(input *PutJobFailureResultInput) (req *request.Request, output *PutJobFailureResultOutput) {
@@ -2717,14 +2709,15 @@ func (c *CodePipeline) PutJobFailureResultRequest(input *PutJobFailureResultInpu
 // API operation PutJobFailureResult for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * JobNotFoundException
-//   The job was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidJobStateException
-//   The job state was specified in an invalid format.
+//   - JobNotFoundException
+//     The job was specified in an invalid format or cannot be found.
+//
+//   - InvalidJobStateException
+//     The job state was specified in an invalid format.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutJobFailureResult
 func (c *CodePipeline) PutJobFailureResult(input *PutJobFailureResultInput) (*PutJobFailureResultOutput, error) {
@@ -2764,14 +2757,13 @@ const opPutJobSuccessResult = "PutJobSuccessResult"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutJobSuccessResultRequest method.
+//	req, resp := client.PutJobSuccessResultRequest(params)
 //
-//    // Example sending a request using the PutJobSuccessResultRequest method.
-//    req, resp := client.PutJobSuccessResultRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutJobSuccessResult
 func (c *CodePipeline) PutJobSuccessResultRequest(input *PutJobSuccessResultInput) (req *request.Request, output *PutJobSuccessResultOutput) {
@@ -2804,17 +2796,18 @@ func (c *CodePipeline) PutJobSuccessResultRequest(input *PutJobSuccessResultInpu
 // API operation PutJobSuccessResult for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * JobNotFoundException
-//   The job was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidJobStateException
-//   The job state was specified in an invalid format.
+//   - JobNotFoundException
+//     The job was specified in an invalid format or cannot be found.
 //
-//   * OutputVariablesSizeExceededException
-//   Exceeded the total size limit for all variables in the pipeline.
+//   - InvalidJobStateException
+//     The job state was specified in an invalid format.
+//
+//   - OutputVariablesSizeExceededException
+//     Exceeded the total size limit for all variables in the pipeline.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutJobSuccessResult
 func (c *CodePipeline) PutJobSuccessResult(input *PutJobSuccessResultInput) (*PutJobSuccessResultOutput, error) {
@@ -2854,14 +2847,13 @@ const opPutThirdPartyJobFailureResult = "PutThirdPartyJobFailureResult"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutThirdPartyJobFailureResultRequest method.
+//	req, resp := client.PutThirdPartyJobFailureResultRequest(params)
 //
-//    // Example sending a request using the PutThirdPartyJobFailureResultRequest method.
-//    req, resp := client.PutThirdPartyJobFailureResultRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutThirdPartyJobFailureResult
 func (c *CodePipeline) PutThirdPartyJobFailureResultRequest(input *PutThirdPartyJobFailureResultInput) (req *request.Request, output *PutThirdPartyJobFailureResultOutput) {
@@ -2894,17 +2886,18 @@ func (c *CodePipeline) PutThirdPartyJobFailureResultRequest(input *PutThirdParty
 // API operation PutThirdPartyJobFailureResult for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * JobNotFoundException
-//   The job was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidJobStateException
-//   The job state was specified in an invalid format.
+//   - JobNotFoundException
+//     The job was specified in an invalid format or cannot be found.
 //
-//   * InvalidClientTokenException
-//   The client token was specified in an invalid format
+//   - InvalidJobStateException
+//     The job state was specified in an invalid format.
+//
+//   - InvalidClientTokenException
+//     The client token was specified in an invalid format
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutThirdPartyJobFailureResult
 func (c *CodePipeline) PutThirdPartyJobFailureResult(input *PutThirdPartyJobFailureResultInput) (*PutThirdPartyJobFailureResultOutput, error) {
@@ -2944,14 +2937,13 @@ const opPutThirdPartyJobSuccessResult = "PutThirdPartyJobSuccessResult"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutThirdPartyJobSuccessResultRequest method.
+//	req, resp := client.PutThirdPartyJobSuccessResultRequest(params)
 //
-//    // Example sending a request using the PutThirdPartyJobSuccessResultRequest method.
-//    req, resp := client.PutThirdPartyJobSuccessResultRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutThirdPartyJobSuccessResult
 func (c *CodePipeline) PutThirdPartyJobSuccessResultRequest(input *PutThirdPartyJobSuccessResultInput) (req *request.Request, output *PutThirdPartyJobSuccessResultOutput) {
@@ -2984,17 +2976,18 @@ func (c *CodePipeline) PutThirdPartyJobSuccessResultRequest(input *PutThirdParty
 // API operation PutThirdPartyJobSuccessResult for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * JobNotFoundException
-//   The job was specified in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidJobStateException
-//   The job state was specified in an invalid format.
+//   - JobNotFoundException
+//     The job was specified in an invalid format or cannot be found.
 //
-//   * InvalidClientTokenException
-//   The client token was specified in an invalid format
+//   - InvalidJobStateException
+//     The job state was specified in an invalid format.
+//
+//   - InvalidClientTokenException
+//     The client token was specified in an invalid format
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutThirdPartyJobSuccessResult
 func (c *CodePipeline) PutThirdPartyJobSuccessResult(input *PutThirdPartyJobSuccessResultInput) (*PutThirdPartyJobSuccessResultOutput, error) {
@@ -3034,14 +3027,13 @@ const opPutWebhook = "PutWebhook"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutWebhookRequest method.
+//	req, resp := client.PutWebhookRequest(params)
 //
-//    // Example sending a request using the PutWebhookRequest method.
-//    req, resp := client.PutWebhookRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutWebhook
 func (c *CodePipeline) PutWebhookRequest(input *PutWebhookInput) (req *request.Request, output *PutWebhookOutput) {
@@ -3079,30 +3071,31 @@ func (c *CodePipeline) PutWebhookRequest(input *PutWebhookInput) (req *request.R
 // API operation PutWebhook for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * LimitExceededException
-//   The number of pipelines associated with the AWS account has exceeded the
-//   limit allowed for the account.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidWebhookFilterPatternException
-//   The specified event filter rule is in an invalid format.
+//   - LimitExceededException
+//     The number of pipelines associated with the Amazon Web Services account has
+//     exceeded the limit allowed for the account.
 //
-//   * InvalidWebhookAuthenticationParametersException
-//   The specified authentication type is in an invalid format.
+//   - InvalidWebhookFilterPatternException
+//     The specified event filter rule is in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - InvalidWebhookAuthenticationParametersException
+//     The specified authentication type is in an invalid format.
 //
-//   * TooManyTagsException
-//   The tags limit for a resource has been exceeded.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
 //
-//   * InvalidTagsException
-//   The specified resource tags are invalid.
+//   - TooManyTagsException
+//     The tags limit for a resource has been exceeded.
 //
-//   * ConcurrentModificationException
-//   Unable to modify the tag due to a simultaneous update request.
+//   - InvalidTagsException
+//     The specified resource tags are invalid.
+//
+//   - ConcurrentModificationException
+//     Unable to modify the tag due to a simultaneous update request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutWebhook
 func (c *CodePipeline) PutWebhook(input *PutWebhookInput) (*PutWebhookOutput, error) {
@@ -3142,14 +3135,13 @@ const opRegisterWebhookWithThirdParty = "RegisterWebhookWithThirdParty"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RegisterWebhookWithThirdPartyRequest method.
+//	req, resp := client.RegisterWebhookWithThirdPartyRequest(params)
 //
-//    // Example sending a request using the RegisterWebhookWithThirdPartyRequest method.
-//    req, resp := client.RegisterWebhookWithThirdPartyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/RegisterWebhookWithThirdParty
 func (c *CodePipeline) RegisterWebhookWithThirdPartyRequest(input *RegisterWebhookWithThirdPartyInput) (req *request.Request, output *RegisterWebhookWithThirdPartyOutput) {
@@ -3182,11 +3174,12 @@ func (c *CodePipeline) RegisterWebhookWithThirdPartyRequest(input *RegisterWebho
 // API operation RegisterWebhookWithThirdParty for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * WebhookNotFoundException
-//   The specified webhook was entered in an invalid format or cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - WebhookNotFoundException
+//     The specified webhook was entered in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/RegisterWebhookWithThirdParty
 func (c *CodePipeline) RegisterWebhookWithThirdParty(input *RegisterWebhookWithThirdPartyInput) (*RegisterWebhookWithThirdPartyOutput, error) {
@@ -3226,14 +3219,13 @@ const opRetryStageExecution = "RetryStageExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RetryStageExecutionRequest method.
+//	req, resp := client.RetryStageExecutionRequest(params)
 //
-//    // Example sending a request using the RetryStageExecutionRequest method.
-//    req, resp := client.RetryStageExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/RetryStageExecution
 func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInput) (req *request.Request, output *RetryStageExecutionOutput) {
@@ -3254,10 +3246,14 @@ func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInpu
 
 // RetryStageExecution API operation for AWS CodePipeline.
 //
-// Resumes the pipeline execution by retrying the last failed actions in a stage.
-// You can retry a stage immediately if any of the actions in the stage fail.
-// When you retry, all actions that are still in progress continue working,
-// and failed actions are triggered again.
+// You can retry a stage that has failed without having to run a pipeline again
+// from the beginning. You do this by either retrying the failed actions in
+// a stage or by retrying all actions in the stage starting from the first action
+// in the stage. When you retry the failed actions in a stage, all actions that
+// are still in progress continue working, and failed actions are triggered
+// again. When you retry a failed stage from the first action in the stage,
+// the stage cannot have any actions in progress. Before a stage can be retried,
+// it must either have all actions failed or some actions failed and some succeeded.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3267,26 +3263,27 @@ func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInpu
 // API operation RetryStageExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ConflictException
-//   Your request cannot be handled because the pipeline is busy handling ongoing
-//   activities. Try again later.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ConflictException
+//     Your request cannot be handled because the pipeline is busy handling ongoing
+//     activities. Try again later.
 //
-//   * StageNotFoundException
-//   The stage was specified in an invalid format or cannot be found.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
 //
-//   * StageNotRetryableException
-//   Unable to retry. The pipeline structure or stage state might have changed
-//   while actions awaited retry, or the stage contains no failed actions.
+//   - StageNotFoundException
+//     The stage was specified in an invalid format or cannot be found.
 //
-//   * NotLatestPipelineExecutionException
-//   The stage has failed in a later run of the pipeline and the pipelineExecutionId
-//   associated with the request is out of date.
+//   - StageNotRetryableException
+//     Unable to retry. The pipeline structure or stage state might have changed
+//     while actions awaited retry, or the stage contains no failed actions.
+//
+//   - NotLatestPipelineExecutionException
+//     The stage has failed in a later run of the pipeline and the pipelineExecutionId
+//     associated with the request is out of date.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/RetryStageExecution
 func (c *CodePipeline) RetryStageExecution(input *RetryStageExecutionInput) (*RetryStageExecutionOutput, error) {
@@ -3326,14 +3323,13 @@ const opStartPipelineExecution = "StartPipelineExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartPipelineExecutionRequest method.
+//	req, resp := client.StartPipelineExecutionRequest(params)
 //
-//    // Example sending a request using the StartPipelineExecutionRequest method.
-//    req, resp := client.StartPipelineExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/StartPipelineExecution
 func (c *CodePipeline) StartPipelineExecutionRequest(input *StartPipelineExecutionInput) (req *request.Request, output *StartPipelineExecutionOutput) {
@@ -3365,15 +3361,16 @@ func (c *CodePipeline) StartPipelineExecutionRequest(input *StartPipelineExecuti
 // API operation StartPipelineExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ConflictException
-//   Your request cannot be handled because the pipeline is busy handling ongoing
-//   activities. Try again later.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ConflictException
+//     Your request cannot be handled because the pipeline is busy handling ongoing
+//     activities. Try again later.
+//
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/StartPipelineExecution
 func (c *CodePipeline) StartPipelineExecution(input *StartPipelineExecutionInput) (*StartPipelineExecutionOutput, error) {
@@ -3413,14 +3410,13 @@ const opStopPipelineExecution = "StopPipelineExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopPipelineExecutionRequest method.
+//	req, resp := client.StopPipelineExecutionRequest(params)
 //
-//    // Example sending a request using the StopPipelineExecutionRequest method.
-//    req, resp := client.StopPipelineExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/StopPipelineExecution
 func (c *CodePipeline) StopPipelineExecutionRequest(input *StopPipelineExecutionInput) (req *request.Request, output *StopPipelineExecutionOutput) {
@@ -3456,26 +3452,27 @@ func (c *CodePipeline) StopPipelineExecutionRequest(input *StopPipelineExecution
 // API operation StopPipelineExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ConflictException
-//   Your request cannot be handled because the pipeline is busy handling ongoing
-//   activities. Try again later.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * PipelineNotFoundException
-//   The pipeline was specified in an invalid format or cannot be found.
+//   - ConflictException
+//     Your request cannot be handled because the pipeline is busy handling ongoing
+//     activities. Try again later.
 //
-//   * PipelineExecutionNotStoppableException
-//   Unable to stop the pipeline execution. The execution might already be in
-//   a Stopped state, or it might no longer be in progress.
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
 //
-//   * DuplicatedStopRequestException
-//   The pipeline execution is already in a Stopping state. If you already chose
-//   to stop and wait, you cannot make that request again. You can choose to stop
-//   and abandon now, but be aware that this option can lead to failed tasks or
-//   out of sequence tasks. If you already chose to stop and abandon, you cannot
-//   make that request again.
+//   - PipelineExecutionNotStoppableException
+//     Unable to stop the pipeline execution. The execution might already be in
+//     a Stopped state, or it might no longer be in progress.
+//
+//   - DuplicatedStopRequestException
+//     The pipeline execution is already in a Stopping state. If you already chose
+//     to stop and wait, you cannot make that request again. You can choose to stop
+//     and abandon now, but be aware that this option can lead to failed tasks or
+//     out of sequence tasks. If you already chose to stop and abandon, you cannot
+//     make that request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/StopPipelineExecution
 func (c *CodePipeline) StopPipelineExecution(input *StopPipelineExecutionInput) (*StopPipelineExecutionOutput, error) {
@@ -3515,14 +3512,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/TagResource
 func (c *CodePipeline) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -3555,23 +3551,24 @@ func (c *CodePipeline) TagResourceRequest(input *TagResourceInput) (req *request
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ResourceNotFoundException
-//   The resource was specified in an invalid format.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidArnException
-//   The specified resource ARN is invalid.
+//   - ResourceNotFoundException
+//     The resource was specified in an invalid format.
 //
-//   * TooManyTagsException
-//   The tags limit for a resource has been exceeded.
+//   - InvalidArnException
+//     The specified resource ARN is invalid.
 //
-//   * InvalidTagsException
-//   The specified resource tags are invalid.
+//   - TooManyTagsException
+//     The tags limit for a resource has been exceeded.
 //
-//   * ConcurrentModificationException
-//   Unable to modify the tag due to a simultaneous update request.
+//   - InvalidTagsException
+//     The specified resource tags are invalid.
+//
+//   - ConcurrentModificationException
+//     Unable to modify the tag due to a simultaneous update request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/TagResource
 func (c *CodePipeline) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3611,14 +3608,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/UntagResource
 func (c *CodePipeline) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -3640,7 +3636,7 @@ func (c *CodePipeline) UntagResourceRequest(input *UntagResourceInput) (req *req
 
 // UntagResource API operation for AWS CodePipeline.
 //
-// Removes tags from an AWS resource.
+// Removes tags from an Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3650,20 +3646,21 @@ func (c *CodePipeline) UntagResourceRequest(input *UntagResourceInput) (req *req
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * ResourceNotFoundException
-//   The resource was specified in an invalid format.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidArnException
-//   The specified resource ARN is invalid.
+//   - ResourceNotFoundException
+//     The resource was specified in an invalid format.
 //
-//   * InvalidTagsException
-//   The specified resource tags are invalid.
+//   - InvalidArnException
+//     The specified resource ARN is invalid.
 //
-//   * ConcurrentModificationException
-//   Unable to modify the tag due to a simultaneous update request.
+//   - InvalidTagsException
+//     The specified resource tags are invalid.
+//
+//   - ConcurrentModificationException
+//     Unable to modify the tag due to a simultaneous update request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/UntagResource
 func (c *CodePipeline) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3703,14 +3700,13 @@ const opUpdateActionType = "UpdateActionType"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateActionTypeRequest method.
+//	req, resp := client.UpdateActionTypeRequest(params)
 //
-//    // Example sending a request using the UpdateActionTypeRequest method.
-//    req, resp := client.UpdateActionTypeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/UpdateActionType
 func (c *CodePipeline) UpdateActionTypeRequest(input *UpdateActionTypeInput) (req *request.Request, output *UpdateActionTypeOutput) {
@@ -3745,14 +3741,15 @@ func (c *CodePipeline) UpdateActionTypeRequest(input *UpdateActionTypeInput) (re
 // API operation UpdateActionType for usage and error information.
 //
 // Returned Error Types:
-//   * RequestFailedException
-//   The request failed because of an unknown error, exception, or failure.
 //
-//   * ValidationException
-//   The validation was specified in an invalid format.
+//   - RequestFailedException
+//     The request failed because of an unknown error, exception, or failure.
 //
-//   * ActionTypeNotFoundException
-//   The specified action type cannot be found.
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - ActionTypeNotFoundException
+//     The specified action type cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/UpdateActionType
 func (c *CodePipeline) UpdateActionType(input *UpdateActionTypeInput) (*UpdateActionTypeOutput, error) {
@@ -3792,14 +3789,13 @@ const opUpdatePipeline = "UpdatePipeline"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePipelineRequest method.
+//	req, resp := client.UpdatePipelineRequest(params)
 //
-//    // Example sending a request using the UpdatePipelineRequest method.
-//    req, resp := client.UpdatePipelineRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/UpdatePipeline
 func (c *CodePipeline) UpdatePipelineRequest(input *UpdatePipelineInput) (req *request.Request, output *UpdatePipelineOutput) {
@@ -3833,24 +3829,25 @@ func (c *CodePipeline) UpdatePipelineRequest(input *UpdatePipelineInput) (req *r
 // API operation UpdatePipeline for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The validation was specified in an invalid format.
 //
-//   * InvalidStageDeclarationException
-//   The stage declaration was specified in an invalid format.
+//   - ValidationException
+//     The validation was specified in an invalid format.
 //
-//   * InvalidActionDeclarationException
-//   The action declaration was specified in an invalid format.
+//   - InvalidStageDeclarationException
+//     The stage declaration was specified in an invalid format.
 //
-//   * InvalidBlockerDeclarationException
-//   Reserved for future use.
+//   - InvalidActionDeclarationException
+//     The action declaration was specified in an invalid format.
 //
-//   * InvalidStructureException
-//   The structure was specified in an invalid format.
+//   - InvalidBlockerDeclarationException
+//     Reserved for future use.
 //
-//   * LimitExceededException
-//   The number of pipelines associated with the AWS account has exceeded the
-//   limit allowed for the account.
+//   - InvalidStructureException
+//     The structure was specified in an invalid format.
+//
+//   - LimitExceededException
+//     The number of pipelines associated with the Amazon Web Services account has
+//     exceeded the limit allowed for the account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/UpdatePipeline
 func (c *CodePipeline) UpdatePipeline(input *UpdatePipelineInput) (*UpdatePipelineOutput, error) {
@@ -3874,35 +3871,55 @@ func (c *CodePipeline) UpdatePipelineWithContext(ctx aws.Context, input *UpdateP
 	return out, req.Send()
 }
 
-// Represents an AWS session credentials object. These credentials are temporary
-// credentials that are issued by AWS Secure Token Service (STS). They can be
-// used to access input and output artifacts in the S3 bucket used to store
-// artifact for the pipeline in AWS CodePipeline.
+// Represents an Amazon Web Services session credentials object. These credentials
+// are temporary credentials that are issued by Amazon Web Services Secure Token
+// Service (STS). They can be used to access input and output artifacts in the
+// S3 bucket used to store artifact for the pipeline in CodePipeline.
 type AWSSessionCredentials struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The access key for the session.
+	//
+	// AccessKeyId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AWSSessionCredentials's
+	// String and GoString methods.
 	//
 	// AccessKeyId is a required field
 	AccessKeyId *string `locationName:"accessKeyId" type:"string" required:"true" sensitive:"true"`
 
 	// The secret access key for the session.
 	//
+	// SecretAccessKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AWSSessionCredentials's
+	// String and GoString methods.
+	//
 	// SecretAccessKey is a required field
 	SecretAccessKey *string `locationName:"secretAccessKey" type:"string" required:"true" sensitive:"true"`
 
 	// The token for the session.
 	//
+	// SessionToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AWSSessionCredentials's
+	// String and GoString methods.
+	//
 	// SessionToken is a required field
 	SessionToken *string `locationName:"sessionToken" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AWSSessionCredentials) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AWSSessionCredentials) GoString() string {
 	return s.String()
 }
@@ -3934,20 +3951,28 @@ type AcknowledgeJobInput struct {
 	// JobId is a required field
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
-	// A system-generated random number that AWS CodePipeline uses to ensure that
-	// the job is being worked on by only one job worker. Get this number from the
-	// response of the PollForJobs request that returned this job.
+	// A system-generated random number that CodePipeline uses to ensure that the
+	// job is being worked on by only one job worker. Get this number from the response
+	// of the PollForJobs request that returned this job.
 	//
 	// Nonce is a required field
 	Nonce *string `locationName:"nonce" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeJobInput) GoString() string {
 	return s.String()
 }
@@ -3991,12 +4016,20 @@ type AcknowledgeJobOutput struct {
 	Status *string `locationName:"status" type:"string" enum:"JobStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeJobOutput) GoString() string {
 	return s.String()
 }
@@ -4022,20 +4055,28 @@ type AcknowledgeThirdPartyJobInput struct {
 	// JobId is a required field
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
-	// A system-generated random number that AWS CodePipeline uses to ensure that
-	// the job is being worked on by only one job worker. Get this number from the
-	// response to a GetThirdPartyJobDetails request.
+	// A system-generated random number that CodePipeline uses to ensure that the
+	// job is being worked on by only one job worker. Get this number from the response
+	// to a GetThirdPartyJobDetails request.
 	//
 	// Nonce is a required field
 	Nonce *string `locationName:"nonce" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeThirdPartyJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeThirdPartyJobInput) GoString() string {
 	return s.String()
 }
@@ -4094,12 +4135,20 @@ type AcknowledgeThirdPartyJobOutput struct {
 	Status *string `locationName:"status" type:"string" enum:"JobStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeThirdPartyJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeThirdPartyJobOutput) GoString() string {
 	return s.String()
 }
@@ -4118,12 +4167,20 @@ type ActionConfiguration struct {
 	Configuration map[string]*string `locationName:"configuration" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionConfiguration) GoString() string {
 	return s.String()
 }
@@ -4182,12 +4239,20 @@ type ActionConfigurationProperty struct {
 	Type *string `locationName:"type" type:"string" enum:"ActionConfigurationPropertyType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionConfigurationProperty) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionConfigurationProperty) GoString() string {
 	return s.String()
 }
@@ -4273,12 +4338,20 @@ type ActionContext struct {
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionContext) GoString() string {
 	return s.String()
 }
@@ -4307,11 +4380,11 @@ type ActionDeclaration struct {
 	// The action's configuration. These are key-value pairs that specify input
 	// values for an action. For more information, see Action Structure Requirements
 	// in CodePipeline (https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#action-requirements).
-	// For the list of configuration properties for the AWS CloudFormation action
-	// type in CodePipeline, see Configuration Properties Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-action-reference.html)
-	// in the AWS CloudFormation User Guide. For template snippets with examples,
-	// see Using Parameter Override Functions with CodePipeline Pipelines (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-parameter-override-functions.html)
-	// in the AWS CloudFormation User Guide.
+	// For the list of configuration properties for the CloudFormation action type
+	// in CodePipeline, see Configuration Properties Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-action-reference.html)
+	// in the CloudFormation User Guide. For template snippets with examples, see
+	// Using Parameter Override Functions with CodePipeline Pipelines (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-parameter-override-functions.html)
+	// in the CloudFormation User Guide.
 	//
 	// The values can be represented in either JSON or YAML format. For example,
 	// the JSON configuration item format is as follows:
@@ -4338,7 +4411,7 @@ type ActionDeclaration struct {
 	// build artifact.
 	OutputArtifacts []*OutputArtifact `locationName:"outputArtifacts" type:"list"`
 
-	// The action declaration's AWS Region, such as us-east-1.
+	// The action declaration's Amazon Web Services Region, such as us-east-1.
 	Region *string `locationName:"region" min:"4" type:"string"`
 
 	// The ARN of the IAM service role that performs the declared action. This is
@@ -4349,12 +4422,20 @@ type ActionDeclaration struct {
 	RunOrder *int64 `locationName:"runOrder" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionDeclaration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionDeclaration) GoString() string {
 	return s.String()
 }
@@ -4477,14 +4558,14 @@ type ActionExecution struct {
 	// is available for executions run on or after March 2020.
 	ActionExecutionId *string `locationName:"actionExecutionId" type:"string"`
 
-	// The details of an error returned by a URL external to AWS.
+	// The details of an error returned by a URL external to Amazon Web Services.
 	ErrorDetails *ErrorDetails `locationName:"errorDetails" type:"structure"`
 
 	// The external ID of the run of the action.
 	ExternalExecutionId *string `locationName:"externalExecutionId" min:"1" type:"string"`
 
-	// The URL of a resource external to AWS that is used when running the action
-	// (for example, an external repository URL).
+	// The URL of a resource external to Amazon Web Services that is used when running
+	// the action (for example, an external repository URL).
 	ExternalExecutionUrl *string `locationName:"externalExecutionUrl" min:"1" type:"string"`
 
 	// The last status change of the action.
@@ -4510,12 +4591,20 @@ type ActionExecution struct {
 	Token *string `locationName:"token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecution) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecution) GoString() string {
 	return s.String()
 }
@@ -4618,12 +4707,20 @@ type ActionExecutionDetail struct {
 	Status *string `locationName:"status" type:"string" enum:"ActionExecutionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionDetail) GoString() string {
 	return s.String()
 }
@@ -4696,12 +4793,20 @@ type ActionExecutionFilter struct {
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionFilter) GoString() string {
 	return s.String()
 }
@@ -4729,7 +4834,7 @@ type ActionExecutionInput struct {
 	// as output by this action fall under this namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
-	// The AWS Region for the action, such as us-east-1.
+	// The Amazon Web Services Region for the action, such as us-east-1.
 	Region *string `locationName:"region" min:"4" type:"string"`
 
 	// Configuration data for an action execution with all variable references replaced
@@ -4741,12 +4846,20 @@ type ActionExecutionInput struct {
 	RoleArn *string `locationName:"roleArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionInput) GoString() string {
 	return s.String()
 }
@@ -4809,12 +4922,20 @@ type ActionExecutionOutput struct {
 	OutputVariables map[string]*string `locationName:"outputVariables" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -4852,12 +4973,20 @@ type ActionExecutionResult struct {
 	ExternalExecutionUrl *string `locationName:"externalExecutionUrl" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionExecutionResult) GoString() string {
 	return s.String()
 }
@@ -4888,12 +5017,20 @@ type ActionNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionNotFoundException) GoString() string {
 	return s.String()
 }
@@ -4959,12 +5096,20 @@ type ActionRevision struct {
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionRevision) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionRevision) GoString() string {
 	return s.String()
 }
@@ -5034,12 +5179,20 @@ type ActionState struct {
 	RevisionUrl *string `locationName:"revisionUrl" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionState) GoString() string {
 	return s.String()
 }
@@ -5100,12 +5253,20 @@ type ActionType struct {
 	Settings *ActionTypeSettings `locationName:"settings" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionType) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionType) GoString() string {
 	return s.String()
 }
@@ -5160,12 +5321,20 @@ type ActionTypeArtifactDetails struct {
 	MinimumCount *int64 `locationName:"minimumCount" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeArtifactDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeArtifactDetails) GoString() string {
 	return s.String()
 }
@@ -5242,12 +5411,20 @@ type ActionTypeDeclaration struct {
 	Urls *ActionTypeUrls `locationName:"urls" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeDeclaration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeDeclaration) GoString() string {
 	return s.String()
 }
@@ -5382,7 +5559,7 @@ type ActionTypeExecutor struct {
 	// jobs. This is the timeout for a single job, not the entire action execution.
 	JobTimeout *int64 `locationName:"jobTimeout" min:"60" type:"integer"`
 
-	// The policy statement that specifies the permissions in the CodePipeline customer’s
+	// The policy statement that specifies the permissions in the CodePipeline customer
 	// account that are needed to successfully run an action.
 	//
 	// To grant permission to another account, specify the account ID as the Principal,
@@ -5398,12 +5575,20 @@ type ActionTypeExecutor struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ExecutorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeExecutor) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeExecutor) GoString() string {
 	return s.String()
 }
@@ -5492,9 +5677,9 @@ type ActionTypeId struct {
 
 	// The provider of the service being called by the action. Valid providers are
 	// determined by the action category. For example, an action in the Deploy category
-	// type might have a provider of AWS CodeDeploy, which would be specified as
-	// CodeDeploy. For more information, see Valid Action Types and Providers in
-	// CodePipeline (https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers).
+	// type might have a provider of CodeDeploy, which would be specified as CodeDeploy.
+	// For more information, see Valid Action Types and Providers in CodePipeline
+	// (https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers).
 	//
 	// Provider is a required field
 	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
@@ -5505,12 +5690,20 @@ type ActionTypeId struct {
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeId) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeId) GoString() string {
 	return s.String()
 }
@@ -5605,12 +5798,20 @@ type ActionTypeIdentifier struct {
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeIdentifier) GoString() string {
 	return s.String()
 }
@@ -5675,12 +5876,20 @@ type ActionTypeNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeNotFoundException) GoString() string {
 	return s.String()
 }
@@ -5727,18 +5936,27 @@ func (s *ActionTypeNotFoundException) RequestID() string {
 type ActionTypePermissions struct {
 	_ struct{} `type:"structure"`
 
-	// A list of AWS account IDs with access to use the action type in their pipelines.
+	// A list of Amazon Web Services account IDs with access to use the action type
+	// in their pipelines.
 	//
 	// AllowedAccounts is a required field
 	AllowedAccounts []*string `locationName:"allowedAccounts" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypePermissions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypePermissions) GoString() string {
 	return s.String()
 }
@@ -5801,12 +6019,20 @@ type ActionTypeProperty struct {
 	Queryable *bool `locationName:"queryable" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeProperty) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeProperty) GoString() string {
 	return s.String()
 }
@@ -5879,21 +6105,20 @@ func (s *ActionTypeProperty) SetQueryable(v bool) *ActionTypeProperty {
 type ActionTypeSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The URL returned to the AWS CodePipeline console that provides a deep link
-	// to the resources of the external system, such as the configuration page for
-	// an AWS CodeDeploy deployment group. This link is provided as part of the
-	// action display in the pipeline.
+	// The URL returned to the CodePipeline console that provides a deep link to
+	// the resources of the external system, such as the configuration page for
+	// a CodeDeploy deployment group. This link is provided as part of the action
+	// display in the pipeline.
 	EntityUrlTemplate *string `locationName:"entityUrlTemplate" min:"1" type:"string"`
 
-	// The URL returned to the AWS CodePipeline console that contains a link to
-	// the top-level landing page for the external system, such as the console page
-	// for AWS CodeDeploy. This link is shown on the pipeline view page in the AWS
-	// CodePipeline console and provides a link to the execution entity of the external
-	// action.
+	// The URL returned to the CodePipeline console that contains a link to the
+	// top-level landing page for the external system, such as the console page
+	// for CodeDeploy. This link is shown on the pipeline view page in the CodePipeline
+	// console and provides a link to the execution entity of the external action.
 	ExecutionUrlTemplate *string `locationName:"executionUrlTemplate" min:"1" type:"string"`
 
-	// The URL returned to the AWS CodePipeline console that contains a link to
-	// the page where customers can update or change the configuration of the external
+	// The URL returned to the CodePipeline console that contains a link to the
+	// page where customers can update or change the configuration of the external
 	// action.
 	RevisionUrlTemplate *string `locationName:"revisionUrlTemplate" min:"1" type:"string"`
 
@@ -5902,12 +6127,20 @@ type ActionTypeSettings struct {
 	ThirdPartyConfigurationUrl *string `locationName:"thirdPartyConfigurationUrl" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeSettings) GoString() string {
 	return s.String()
 }
@@ -5984,12 +6217,20 @@ type ActionTypeUrls struct {
 	RevisionUrlTemplate *string `locationName:"revisionUrlTemplate" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeUrls) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTypeUrls) GoString() string {
 	return s.String()
 }
@@ -6048,12 +6289,20 @@ type ApprovalAlreadyCompletedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalAlreadyCompletedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalAlreadyCompletedException) GoString() string {
 	return s.String()
 }
@@ -6111,12 +6360,20 @@ type ApprovalResult struct {
 	Summary *string `locationName:"summary" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalResult) GoString() string {
 	return s.String()
 }
@@ -6149,8 +6406,11 @@ func (s *ApprovalResult) SetSummary(v string) *ApprovalResult {
 	return s
 }
 
-// Represents information about an artifact that is worked on by actions in
-// the pipeline.
+// Artifacts are the files that are worked on by actions in the pipeline. See
+// the action configuration for each action for details about artifact parameters.
+// For example, the S3 source action artifact is a file name (or file path),
+// and the files are generally provided as a ZIP file. Example artifact name:
+// SampleApp_Windows.zip
 type Artifact struct {
 	_ struct{} `type:"structure"`
 
@@ -6165,12 +6425,20 @@ type Artifact struct {
 	Revision *string `locationName:"revision" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Artifact) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Artifact) GoString() string {
 	return s.String()
 }
@@ -6204,12 +6472,20 @@ type ArtifactDetail struct {
 	S3location *S3Location `locationName:"s3location" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactDetail) GoString() string {
 	return s.String()
 }
@@ -6241,12 +6517,20 @@ type ArtifactDetails struct {
 	MinimumCount *int64 `locationName:"minimumCount" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactDetails) GoString() string {
 	return s.String()
 }
@@ -6290,12 +6574,20 @@ type ArtifactLocation struct {
 	Type *string `locationName:"type" type:"string" enum:"ArtifactLocationType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactLocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactLocation) GoString() string {
 	return s.String()
 }
@@ -6332,23 +6624,30 @@ type ArtifactRevision struct {
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
 	// Summary information about the most recent revision of the artifact. For GitHub
-	// and AWS CodeCommit repositories, the commit message. For Amazon S3 buckets
-	// or actions, the user-provided content of a codepipeline-artifact-revision-summary
+	// and CodeCommit repositories, the commit message. For Amazon S3 buckets or
+	// actions, the user-provided content of a codepipeline-artifact-revision-summary
 	// key specified in the object metadata.
 	RevisionSummary *string `locationName:"revisionSummary" min:"1" type:"string"`
 
 	// The commit ID for the artifact revision. For artifacts stored in GitHub or
-	// AWS CodeCommit repositories, the commit ID is linked to a commit details
-	// page.
+	// CodeCommit repositories, the commit ID is linked to a commit details page.
 	RevisionUrl *string `locationName:"revisionUrl" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactRevision) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactRevision) GoString() string {
 	return s.String()
 }
@@ -6398,15 +6697,15 @@ type ArtifactStore struct {
 	_ struct{} `type:"structure"`
 
 	// The encryption key used to encrypt the data in the artifact store, such as
-	// an AWS Key Management Service (AWS KMS) key. If this is undefined, the default
-	// key for Amazon S3 is used.
+	// an Amazon Web Services Key Management Service key. If this is undefined,
+	// the default key for Amazon S3 is used.
 	EncryptionKey *EncryptionKey `locationName:"encryptionKey" type:"structure"`
 
 	// The S3 bucket used for storing the artifacts for a pipeline. You can specify
 	// the name of an S3 bucket but not a folder in the bucket. A folder to contain
 	// the pipeline artifacts is created for you based on the name of the pipeline.
-	// You can use any S3 bucket in the same AWS Region as the pipeline to store
-	// your pipeline artifacts.
+	// You can use any S3 bucket in the same Amazon Web Services Region as the pipeline
+	// to store your pipeline artifacts.
 	//
 	// Location is a required field
 	Location *string `locationName:"location" min:"3" type:"string" required:"true"`
@@ -6417,12 +6716,20 @@ type ArtifactStore struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ArtifactStoreType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactStore) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArtifactStore) GoString() string {
 	return s.String()
 }
@@ -6484,12 +6791,20 @@ type BlockerDeclaration struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"BlockerType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockerDeclaration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockerDeclaration) GoString() string {
 	return s.String()
 }
@@ -6533,12 +6848,20 @@ type ConcurrentModificationException struct {
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentModificationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentModificationException) GoString() string {
 	return s.String()
 }
@@ -6590,12 +6913,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -6665,7 +6996,7 @@ type CreateCustomActionTypeInput struct {
 	// OutputArtifactDetails is a required field
 	OutputArtifactDetails *ArtifactDetails `locationName:"outputArtifactDetails" type:"structure" required:"true"`
 
-	// The provider of the service used in the custom action, such as AWS CodeDeploy.
+	// The provider of the service used in the custom action, such as CodeDeploy.
 	//
 	// Provider is a required field
 	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
@@ -6682,12 +7013,20 @@ type CreateCustomActionTypeInput struct {
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCustomActionTypeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCustomActionTypeInput) GoString() string {
 	return s.String()
 }
@@ -6819,12 +7158,20 @@ type CreateCustomActionTypeOutput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCustomActionTypeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCustomActionTypeOutput) GoString() string {
 	return s.String()
 }
@@ -6854,12 +7201,20 @@ type CreatePipelineInput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePipelineInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePipelineInput) GoString() string {
 	return s.String()
 }
@@ -6915,12 +7270,20 @@ type CreatePipelineOutput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePipelineOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePipelineOutput) GoString() string {
 	return s.String()
 }
@@ -6959,12 +7322,20 @@ type CurrentRevision struct {
 	RevisionSummary *string `locationName:"revisionSummary" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CurrentRevision) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CurrentRevision) GoString() string {
 	return s.String()
 }
@@ -7029,7 +7400,7 @@ type DeleteCustomActionTypeInput struct {
 	// Category is a required field
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
-	// The provider of the service used in the custom action, such as AWS CodeDeploy.
+	// The provider of the service used in the custom action, such as CodeDeploy.
 	//
 	// Provider is a required field
 	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
@@ -7040,12 +7411,20 @@ type DeleteCustomActionTypeInput struct {
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCustomActionTypeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCustomActionTypeInput) GoString() string {
 	return s.String()
 }
@@ -7097,12 +7476,20 @@ type DeleteCustomActionTypeOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCustomActionTypeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCustomActionTypeOutput) GoString() string {
 	return s.String()
 }
@@ -7117,12 +7504,20 @@ type DeletePipelineInput struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePipelineInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePipelineInput) GoString() string {
 	return s.String()
 }
@@ -7153,12 +7548,20 @@ type DeletePipelineOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePipelineOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePipelineOutput) GoString() string {
 	return s.String()
 }
@@ -7172,12 +7575,20 @@ type DeleteWebhookInput struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebhookInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebhookInput) GoString() string {
 	return s.String()
 }
@@ -7208,12 +7619,20 @@ type DeleteWebhookOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebhookOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebhookOutput) GoString() string {
 	return s.String()
 }
@@ -7225,12 +7644,20 @@ type DeregisterWebhookWithThirdPartyInput struct {
 	WebhookName *string `locationName:"webhookName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterWebhookWithThirdPartyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterWebhookWithThirdPartyInput) GoString() string {
 	return s.String()
 }
@@ -7258,12 +7685,20 @@ type DeregisterWebhookWithThirdPartyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterWebhookWithThirdPartyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeregisterWebhookWithThirdPartyOutput) GoString() string {
 	return s.String()
 }
@@ -7300,12 +7735,20 @@ type DisableStageTransitionInput struct {
 	TransitionType *string `locationName:"transitionType" type:"string" required:"true" enum:"StageTransitionType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableStageTransitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableStageTransitionInput) GoString() string {
 	return s.String()
 }
@@ -7369,12 +7812,20 @@ type DisableStageTransitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableStageTransitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableStageTransitionOutput) GoString() string {
 	return s.String()
 }
@@ -7391,12 +7842,20 @@ type DuplicatedStopRequestException struct {
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicatedStopRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicatedStopRequestException) GoString() string {
 	return s.String()
 }
@@ -7463,12 +7922,20 @@ type EnableStageTransitionInput struct {
 	TransitionType *string `locationName:"transitionType" type:"string" required:"true" enum:"StageTransitionType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableStageTransitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableStageTransitionInput) GoString() string {
 	return s.String()
 }
@@ -7520,44 +7987,63 @@ type EnableStageTransitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableStageTransitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableStageTransitionOutput) GoString() string {
 	return s.String()
 }
 
 // Represents information about the key used to encrypt data in the artifact
-// store, such as an AWS Key Management Service (AWS KMS) key.
+// store, such as an Amazon Web Services Key Management Service (Key Management
+// Service) key.
 type EncryptionKey struct {
 	_ struct{} `type:"structure"`
 
-	// The ID used to identify the key. For an AWS KMS key, you can use the key
-	// ID, the key ARN, or the alias ARN.
+	// The ID used to identify the key. For an Amazon Web Services KMS key, you
+	// can use the key ID, the key ARN, or the alias ARN.
 	//
-	// Aliases are recognized only in the account that created the customer master
-	// key (CMK). For cross-account actions, you can only use the key ID or key
-	// ARN to identify the key.
+	// Aliases are recognized only in the account that created the KMS key. For
+	// cross-account actions, you can only use the key ID or key ARN to identify
+	// the key. Cross-account actions involve using the role from the other account
+	// (AccountB), so specifying the key ID will use the key from the other account
+	// (AccountB).
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
-	// The type of encryption key, such as an AWS Key Management Service (AWS KMS)
-	// key. When creating or updating a pipeline, the value must be set to 'KMS'.
+	// The type of encryption key, such as an Amazon Web Services KMS key. When
+	// creating or updating a pipeline, the value must be set to 'KMS'.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EncryptionKeyType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKey) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKey) GoString() string {
 	return s.String()
 }
@@ -7593,7 +8079,7 @@ func (s *EncryptionKey) SetType(v string) *EncryptionKey {
 	return s
 }
 
-// Represents information about an error in AWS CodePipeline.
+// Represents information about an error in CodePipeline.
 type ErrorDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -7604,12 +8090,20 @@ type ErrorDetails struct {
 	Message *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorDetails) GoString() string {
 	return s.String()
 }
@@ -7632,7 +8126,7 @@ type ExecutionDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The system-generated unique ID of this action used to identify this job worker
-	// in any external systems, such as AWS CodeDeploy.
+	// in any external systems, such as CodeDeploy.
 	ExternalExecutionId *string `locationName:"externalExecutionId" min:"1" type:"string"`
 
 	// The percentage of work completed on the action, represented on a scale of
@@ -7643,12 +8137,20 @@ type ExecutionDetails struct {
 	Summary *string `locationName:"summary" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionDetails) GoString() string {
 	return s.String()
 }
@@ -7701,12 +8203,20 @@ type ExecutionTrigger struct {
 	TriggerType *string `locationName:"triggerType" type:"string" enum:"TriggerType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionTrigger) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionTrigger) GoString() string {
 	return s.String()
 }
@@ -7736,12 +8246,20 @@ type ExecutorConfiguration struct {
 	LambdaExecutorConfiguration *LambdaExecutorConfiguration `locationName:"lambdaExecutorConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutorConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutorConfiguration) GoString() string {
 	return s.String()
 }
@@ -7796,12 +8314,20 @@ type FailureDetails struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"FailureType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailureDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailureDetails) GoString() string {
 	return s.String()
 }
@@ -7885,12 +8411,20 @@ type GetActionTypeInput struct {
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetActionTypeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetActionTypeInput) GoString() string {
 	return s.String()
 }
@@ -7955,12 +8489,20 @@ type GetActionTypeOutput struct {
 	ActionType *ActionTypeDeclaration `locationName:"actionType" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetActionTypeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetActionTypeOutput) GoString() string {
 	return s.String()
 }
@@ -7981,12 +8523,20 @@ type GetJobDetailsInput struct {
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobDetailsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobDetailsInput) GoString() string {
 	return s.String()
 }
@@ -8021,12 +8571,20 @@ type GetJobDetailsOutput struct {
 	JobDetails *JobDetails `locationName:"jobDetails" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobDetailsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobDetailsOutput) GoString() string {
 	return s.String()
 }
@@ -8052,12 +8610,20 @@ type GetPipelineExecutionInput struct {
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineExecutionInput) GoString() string {
 	return s.String()
 }
@@ -8101,12 +8667,20 @@ type GetPipelineExecutionOutput struct {
 	PipelineExecution *PipelineExecution `locationName:"pipelineExecution" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -8122,7 +8696,7 @@ type GetPipelineInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the pipeline for which you want to get information. Pipeline
-	// names must be unique under an AWS user account.
+	// names must be unique in an Amazon Web Services account.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -8132,12 +8706,20 @@ type GetPipelineInput struct {
 	Version *int64 `locationName:"version" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineInput) GoString() string {
 	return s.String()
 }
@@ -8185,12 +8767,20 @@ type GetPipelineOutput struct {
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineOutput) GoString() string {
 	return s.String()
 }
@@ -8217,12 +8807,20 @@ type GetPipelineStateInput struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineStateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineStateInput) GoString() string {
 	return s.String()
 }
@@ -8272,12 +8870,20 @@ type GetPipelineStateOutput struct {
 	Updated *time.Time `locationName:"updated" type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineStateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPipelineStateOutput) GoString() string {
 	return s.String()
 }
@@ -8328,12 +8934,20 @@ type GetThirdPartyJobDetailsInput struct {
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetThirdPartyJobDetailsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetThirdPartyJobDetailsInput) GoString() string {
 	return s.String()
 }
@@ -8380,12 +8994,20 @@ type GetThirdPartyJobDetailsOutput struct {
 	JobDetails *ThirdPartyJobDetails `locationName:"jobDetails" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetThirdPartyJobDetailsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetThirdPartyJobDetailsOutput) GoString() string {
 	return s.String()
 }
@@ -8396,12 +9018,215 @@ func (s *GetThirdPartyJobDetailsOutput) SetJobDetails(v *ThirdPartyJobDetails) *
 	return s
 }
 
+// A type of trigger configuration for Git-based source actions.
+//
+// You can specify the Git configuration trigger type for all third-party Git-based
+// source actions that are supported by the CodeStarSourceConnection action
+// type.
+//
+// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+// in the CodePipeline User Guide.
+type GitConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The field where the repository event that will start the pipeline, such as
+	// pushing Git tags, is specified with details.
+	//
+	// Git tags is the only supported event type.
+	Push []*GitPushFilter `locationName:"push" min:"1" type:"list"`
+
+	// The name of the pipeline source action where the trigger configuration, such
+	// as Git tags, is specified. The trigger configuration will start the pipeline
+	// upon the specified change only.
+	//
+	// You can only specify one trigger configuration per source action.
+	//
+	// SourceActionName is a required field
+	SourceActionName *string `locationName:"sourceActionName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitConfiguration"}
+	if s.Push != nil && len(s.Push) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Push", 1))
+	}
+	if s.SourceActionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceActionName"))
+	}
+	if s.SourceActionName != nil && len(*s.SourceActionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceActionName", 1))
+	}
+	if s.Push != nil {
+		for i, v := range s.Push {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Push", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPush sets the Push field's value.
+func (s *GitConfiguration) SetPush(v []*GitPushFilter) *GitConfiguration {
+	s.Push = v
+	return s
+}
+
+// SetSourceActionName sets the SourceActionName field's value.
+func (s *GitConfiguration) SetSourceActionName(v string) *GitConfiguration {
+	s.SourceActionName = &v
+	return s
+}
+
+// The event criteria that specify when a specified repository event will start
+// the pipeline for the specified trigger configuration, such as the lists of
+// Git tags to include and exclude.
+type GitPushFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The field that contains the details for the Git tags trigger configuration.
+	Tags *GitTagFilterCriteria `locationName:"tags" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitPushFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitPushFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitPushFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitPushFilter"}
+	if s.Tags != nil {
+		if err := s.Tags.Validate(); err != nil {
+			invalidParams.AddNested("Tags", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTags sets the Tags field's value.
+func (s *GitPushFilter) SetTags(v *GitTagFilterCriteria) *GitPushFilter {
+	s.Tags = v
+	return s
+}
+
+// The Git tags specified as filter criteria for whether a Git tag repository
+// event will start the pipeline.
+type GitTagFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The list of patterns of Git tags that, when pushed, are to be excluded from
+	// starting the pipeline.
+	Excludes []*string `locationName:"excludes" min:"1" type:"list"`
+
+	// The list of patterns of Git tags that, when pushed, are to be included as
+	// criteria that starts the pipeline.
+	Includes []*string `locationName:"includes" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitTagFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitTagFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitTagFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitTagFilterCriteria"}
+	if s.Excludes != nil && len(s.Excludes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Excludes", 1))
+	}
+	if s.Includes != nil && len(s.Includes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Includes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *GitTagFilterCriteria) SetExcludes(v []*string) *GitTagFilterCriteria {
+	s.Excludes = v
+	return s
+}
+
+// SetIncludes sets the Includes field's value.
+func (s *GitTagFilterCriteria) SetIncludes(v []*string) *GitTagFilterCriteria {
+	s.Includes = v
+	return s
+}
+
 // Represents information about an artifact to be worked on, such as a test
 // or build artifact.
 type InputArtifact struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the artifact to be worked on (for example, "My App").
+	//
+	// Artifacts are the files that are worked on by actions in the pipeline. See
+	// the action configuration for each action for details about artifact parameters.
+	// For example, the S3 source action input artifact is a file name (or file
+	// path), and the files are generally provided as a ZIP file. Example artifact
+	// name: SampleApp_Windows.zip
 	//
 	// The input artifact of an action must exactly match the output artifact declared
 	// in a preceding action, but the input artifact does not have to be the next
@@ -8413,12 +9238,20 @@ type InputArtifact struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputArtifact) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputArtifact) GoString() string {
 	return s.String()
 }
@@ -8453,12 +9286,20 @@ type InvalidActionDeclarationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidActionDeclarationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidActionDeclarationException) GoString() string {
 	return s.String()
 }
@@ -8509,12 +9350,20 @@ type InvalidApprovalTokenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalTokenException) GoString() string {
 	return s.String()
 }
@@ -8565,12 +9414,20 @@ type InvalidArnException struct {
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidArnException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidArnException) GoString() string {
 	return s.String()
 }
@@ -8621,12 +9478,20 @@ type InvalidBlockerDeclarationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidBlockerDeclarationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidBlockerDeclarationException) GoString() string {
 	return s.String()
 }
@@ -8677,12 +9542,20 @@ type InvalidClientTokenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidClientTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidClientTokenException) GoString() string {
 	return s.String()
 }
@@ -8733,12 +9606,20 @@ type InvalidJobException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidJobException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidJobException) GoString() string {
 	return s.String()
 }
@@ -8789,12 +9670,20 @@ type InvalidJobStateException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidJobStateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidJobStateException) GoString() string {
 	return s.String()
 }
@@ -8846,12 +9735,20 @@ type InvalidNextTokenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) GoString() string {
 	return s.String()
 }
@@ -8902,12 +9799,20 @@ type InvalidNonceException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNonceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNonceException) GoString() string {
 	return s.String()
 }
@@ -8958,12 +9863,20 @@ type InvalidStageDeclarationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStageDeclarationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStageDeclarationException) GoString() string {
 	return s.String()
 }
@@ -9014,12 +9927,20 @@ type InvalidStructureException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStructureException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStructureException) GoString() string {
 	return s.String()
 }
@@ -9070,12 +9991,20 @@ type InvalidTagsException struct {
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTagsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTagsException) GoString() string {
 	return s.String()
 }
@@ -9126,12 +10055,20 @@ type InvalidWebhookAuthenticationParametersException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidWebhookAuthenticationParametersException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidWebhookAuthenticationParametersException) GoString() string {
 	return s.String()
 }
@@ -9182,12 +10119,20 @@ type InvalidWebhookFilterPatternException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidWebhookFilterPatternException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidWebhookFilterPatternException) GoString() string {
 	return s.String()
 }
@@ -9234,7 +10179,7 @@ func (s *InvalidWebhookFilterPatternException) RequestID() string {
 type Job struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account to use when performing the job.
+	// The ID of the Amazon Web Services account to use when performing the job.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// Other data about a job.
@@ -9243,18 +10188,26 @@ type Job struct {
 	// The unique system-generated ID of the job.
 	Id *string `locationName:"id" type:"string"`
 
-	// A system-generated random number that AWS CodePipeline uses to ensure that
-	// the job is being worked on by only one job worker. Use this number in an
-	// AcknowledgeJob request.
+	// A system-generated random number that CodePipeline uses to ensure that the
+	// job is being worked on by only one job worker. Use this number in an AcknowledgeJob
+	// request.
 	Nonce *string `locationName:"nonce" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Job) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Job) GoString() string {
 	return s.String()
 }
@@ -9294,18 +10247,22 @@ type JobData struct {
 	// Represents information about an action type.
 	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure"`
 
-	// Represents an AWS session credentials object. These credentials are temporary
-	// credentials that are issued by AWS Secure Token Service (STS). They can be
-	// used to access input and output artifacts in the S3 bucket used to store
-	// artifacts for the pipeline in AWS CodePipeline.
+	// Represents an Amazon Web Services session credentials object. These credentials
+	// are temporary credentials that are issued by Amazon Web Services Secure Token
+	// Service (STS). They can be used to access input and output artifacts in the
+	// S3 bucket used to store artifacts for the pipeline in CodePipeline.
+	//
+	// ArtifactCredentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by JobData's
+	// String and GoString methods.
 	ArtifactCredentials *AWSSessionCredentials `locationName:"artifactCredentials" type:"structure" sensitive:"true"`
 
-	// A system-generated token, such as a AWS CodeDeploy deployment ID, required
-	// by a job to continue the job asynchronously.
+	// A system-generated token, such as a deployment ID, required by a job to continue
+	// the job asynchronously.
 	ContinuationToken *string `locationName:"continuationToken" min:"1" type:"string"`
 
 	// Represents information about the key used to encrypt data in the artifact
-	// store, such as an AWS Key Management Service (AWS KMS) key.
+	// store, such as an KMS key.
 	EncryptionKey *EncryptionKey `locationName:"encryptionKey" type:"structure"`
 
 	// The artifact supplied to the job.
@@ -9320,12 +10277,20 @@ type JobData struct {
 	PipelineContext *PipelineContext `locationName:"pipelineContext" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobData) GoString() string {
 	return s.String()
 }
@@ -9382,7 +10347,7 @@ func (s *JobData) SetPipelineContext(v *PipelineContext) *JobData {
 type JobDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID associated with the job.
+	// The Amazon Web Services account ID associated with the job.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// Represents other information about a job required for a job worker to complete
@@ -9393,12 +10358,20 @@ type JobDetails struct {
 	Id *string `locationName:"id" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobDetails) GoString() string {
 	return s.String()
 }
@@ -9429,12 +10402,20 @@ type JobNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobNotFoundException) GoString() string {
 	return s.String()
 }
@@ -9491,12 +10472,20 @@ type JobWorkerExecutorConfiguration struct {
 	PollingServicePrincipals []*string `locationName:"pollingServicePrincipals" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobWorkerExecutorConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobWorkerExecutorConfiguration) GoString() string {
 	return s.String()
 }
@@ -9539,12 +10528,20 @@ type LambdaExecutorConfiguration struct {
 	LambdaFunctionArn *string `locationName:"lambdaFunctionArn" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LambdaExecutorConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LambdaExecutorConfiguration) GoString() string {
 	return s.String()
 }
@@ -9571,8 +10568,8 @@ func (s *LambdaExecutorConfiguration) SetLambdaFunctionArn(v string) *LambdaExec
 	return s
 }
 
-// The number of pipelines associated with the AWS account has exceeded the
-// limit allowed for the account.
+// The number of pipelines associated with the Amazon Web Services account has
+// exceeded the limit allowed for the account.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9580,12 +10577,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -9653,12 +10658,20 @@ type ListActionExecutionsInput struct {
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionExecutionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionExecutionsInput) GoString() string {
 	return s.String()
 }
@@ -9721,12 +10734,20 @@ type ListActionExecutionsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionExecutionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionExecutionsOutput) GoString() string {
 	return s.String()
 }
@@ -9758,12 +10779,20 @@ type ListActionTypesInput struct {
 	RegionFilter *string `locationName:"regionFilter" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionTypesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionTypesInput) GoString() string {
 	return s.String()
 }
@@ -9817,12 +10846,20 @@ type ListActionTypesOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionTypesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionTypesOutput) GoString() string {
 	return s.String()
 }
@@ -9859,12 +10896,20 @@ type ListPipelineExecutionsInput struct {
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPipelineExecutionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPipelineExecutionsInput) GoString() string {
 	return s.String()
 }
@@ -9922,12 +10967,20 @@ type ListPipelineExecutionsOutput struct {
 	PipelineExecutionSummaries []*PipelineExecutionSummary `locationName:"pipelineExecutionSummaries" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPipelineExecutionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPipelineExecutionsOutput) GoString() string {
 	return s.String()
 }
@@ -9958,12 +11011,20 @@ type ListPipelinesInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPipelinesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPipelinesInput) GoString() string {
 	return s.String()
 }
@@ -10009,12 +11070,20 @@ type ListPipelinesOutput struct {
 	Pipelines []*PipelineSummary `locationName:"pipelines" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPipelinesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPipelinesOutput) GoString() string {
 	return s.String()
 }
@@ -10048,12 +11117,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -10108,12 +11185,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -10166,12 +11251,20 @@ type ListWebhookItem struct {
 	Url *string `locationName:"url" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhookItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhookItem) GoString() string {
 	return s.String()
 }
@@ -10230,12 +11323,20 @@ type ListWebhooksInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhooksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhooksInput) GoString() string {
 	return s.String()
 }
@@ -10281,12 +11382,20 @@ type ListWebhooksOutput struct {
 	Webhooks []*ListWebhookItem `locationName:"webhooks" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhooksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhooksOutput) GoString() string {
 	return s.String()
 }
@@ -10312,12 +11421,20 @@ type NotLatestPipelineExecutionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotLatestPipelineExecutionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotLatestPipelineExecutionException) GoString() string {
 	return s.String()
 }
@@ -10378,12 +11495,20 @@ type OutputArtifact struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputArtifact) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputArtifact) GoString() string {
 	return s.String()
 }
@@ -10418,12 +11543,20 @@ type OutputVariablesSizeExceededException struct {
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputVariablesSizeExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputVariablesSizeExceededException) GoString() string {
 	return s.String()
 }
@@ -10491,12 +11624,20 @@ type PipelineContext struct {
 	Stage *StageContext `locationName:"stage" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineContext) GoString() string {
 	return s.String()
 }
@@ -10543,9 +11684,9 @@ type PipelineDeclaration struct {
 	// you must use artifactStores.
 	ArtifactStore *ArtifactStore `locationName:"artifactStore" type:"structure"`
 
-	// A mapping of artifactStore objects and their corresponding AWS Regions. There
-	// must be an artifact store for the pipeline Region and for each cross-region
-	// action in the pipeline.
+	// A mapping of artifactStore objects and their corresponding Amazon Web Services
+	// Regions. There must be an artifact store for the pipeline Region and for
+	// each cross-region action in the pipeline.
 	//
 	// You must include either artifactStore or artifactStores in your pipeline,
 	// but you cannot use both. If you create a cross-region action in your pipeline,
@@ -10557,7 +11698,32 @@ type PipelineDeclaration struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) for AWS CodePipeline to use to either perform
+	// CodePipeline provides the following pipeline types, which differ in characteristics
+	// and price, so that you can tailor your pipeline features and cost to the
+	// needs of your applications.
+	//
+	//    * V1 type pipelines have a JSON structure that contains standard pipeline,
+	//    stage, and action-level parameters.
+	//
+	//    * V2 type pipelines have the same structure as a V1 type, along with additional
+	//    parameters for release safety and trigger configuration.
+	//
+	// Including V2 parameters, such as triggers on Git tags, in the pipeline JSON
+	// when creating or updating a pipeline will result in the pipeline having the
+	// V2 type of pipeline and the associated costs.
+	//
+	// For information about pricing for CodePipeline, see Pricing (https://aws.amazon.com/codepipeline/pricing/).
+	//
+	// For information about which type of pipeline to choose, see What type of
+	// pipeline is right for me? (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html).
+	//
+	// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+	// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+	// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+	// in the CodePipeline User Guide.
+	PipelineType *string `locationName:"pipelineType" type:"string" enum:"PipelineType"`
+
+	// The Amazon Resource Name (ARN) for CodePipeline to use to either perform
 	// actions with no actionRoleArn, or to use to assume roles for actions with
 	// an actionRoleArn.
 	//
@@ -10569,17 +11735,37 @@ type PipelineDeclaration struct {
 	// Stages is a required field
 	Stages []*StageDeclaration `locationName:"stages" type:"list" required:"true"`
 
+	// The trigger configuration specifying a type of event, such as Git tags, that
+	// starts the pipeline.
+	//
+	// When a trigger configuration is specified, default change detection for repository
+	// and branch commits is disabled.
+	Triggers []*PipelineTriggerDeclaration `locationName:"triggers" type:"list"`
+
+	// A list that defines the pipeline variables for a pipeline resource. Variable
+	// names can have alphanumeric and underscore characters, and the values must
+	// match [A-Za-z0-9@\-_]+.
+	Variables []*PipelineVariableDeclaration `locationName:"variables" type:"list"`
+
 	// The version number of the pipeline. A new pipeline always has a version number
 	// of 1. This number is incremented when a pipeline is updated.
 	Version *int64 `locationName:"version" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineDeclaration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineDeclaration) GoString() string {
 	return s.String()
 }
@@ -10627,6 +11813,26 @@ func (s *PipelineDeclaration) Validate() error {
 			}
 		}
 	}
+	if s.Triggers != nil {
+		for i, v := range s.Triggers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Triggers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Variables != nil {
+		for i, v := range s.Variables {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Variables", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10652,6 +11858,12 @@ func (s *PipelineDeclaration) SetName(v string) *PipelineDeclaration {
 	return s
 }
 
+// SetPipelineType sets the PipelineType field's value.
+func (s *PipelineDeclaration) SetPipelineType(v string) *PipelineDeclaration {
+	s.PipelineType = &v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *PipelineDeclaration) SetRoleArn(v string) *PipelineDeclaration {
 	s.RoleArn = &v
@@ -10661,6 +11873,18 @@ func (s *PipelineDeclaration) SetRoleArn(v string) *PipelineDeclaration {
 // SetStages sets the Stages field's value.
 func (s *PipelineDeclaration) SetStages(v []*StageDeclaration) *PipelineDeclaration {
 	s.Stages = v
+	return s
+}
+
+// SetTriggers sets the Triggers field's value.
+func (s *PipelineDeclaration) SetTriggers(v []*PipelineTriggerDeclaration) *PipelineDeclaration {
+	s.Triggers = v
+	return s
+}
+
+// SetVariables sets the Variables field's value.
+func (s *PipelineDeclaration) SetVariables(v []*PipelineVariableDeclaration) *PipelineDeclaration {
+	s.Variables = v
 	return s
 }
 
@@ -10713,14 +11937,28 @@ type PipelineExecution struct {
 
 	// A summary that contains a description of the pipeline execution status.
 	StatusSummary *string `locationName:"statusSummary" type:"string"`
+
+	// The interaction or event that started a pipeline execution.
+	Trigger *ExecutionTrigger `locationName:"trigger" type:"structure"`
+
+	// A list of pipeline variables used for the pipeline execution.
+	Variables []*ResolvedPipelineVariable `locationName:"variables" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineExecution) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineExecution) GoString() string {
 	return s.String()
 }
@@ -10761,6 +11999,18 @@ func (s *PipelineExecution) SetStatusSummary(v string) *PipelineExecution {
 	return s
 }
 
+// SetTrigger sets the Trigger field's value.
+func (s *PipelineExecution) SetTrigger(v *ExecutionTrigger) *PipelineExecution {
+	s.Trigger = v
+	return s
+}
+
+// SetVariables sets the Variables field's value.
+func (s *PipelineExecution) SetVariables(v []*ResolvedPipelineVariable) *PipelineExecution {
+	s.Variables = v
+	return s
+}
+
 // The pipeline execution was specified in an invalid format or cannot be found,
 // or an execution ID does not belong to the specified pipeline.
 type PipelineExecutionNotFoundException struct {
@@ -10770,12 +12020,20 @@ type PipelineExecutionNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineExecutionNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineExecutionNotFoundException) GoString() string {
 	return s.String()
 }
@@ -10827,12 +12085,20 @@ type PipelineExecutionNotStoppableException struct {
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineExecutionNotStoppableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineExecutionNotStoppableException) GoString() string {
 	return s.String()
 }
@@ -10922,12 +12188,20 @@ type PipelineExecutionSummary struct {
 	Trigger *ExecutionTrigger `locationName:"trigger" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineExecutionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineExecutionSummary) GoString() string {
 	return s.String()
 }
@@ -10984,16 +12258,33 @@ type PipelineMetadata struct {
 	// The Amazon Resource Name (ARN) of the pipeline.
 	PipelineArn *string `locationName:"pipelineArn" type:"string"`
 
+	// The date and time that polling for source changes (periodic checks) was stopped
+	// for the pipeline, in timestamp format. You can migrate (update) a polling
+	// pipeline to use event-based change detection. For example, for a pipeline
+	// with a CodeCommit source, we recommend you migrate (update) your pipeline
+	// to use CloudWatch Events. To learn more, see Migrate polling pipelines to
+	// use event-based change detection (https://docs.aws.amazon.com/codepipeline/latest/userguide/update-change-detection.html)
+	// in the CodePipeline User Guide.
+	PollingDisabledAt *time.Time `locationName:"pollingDisabledAt" type:"timestamp"`
+
 	// The date and time the pipeline was last updated, in timestamp format.
 	Updated *time.Time `locationName:"updated" type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineMetadata) GoString() string {
 	return s.String()
 }
@@ -11007,6 +12298,12 @@ func (s *PipelineMetadata) SetCreated(v time.Time) *PipelineMetadata {
 // SetPipelineArn sets the PipelineArn field's value.
 func (s *PipelineMetadata) SetPipelineArn(v string) *PipelineMetadata {
 	s.PipelineArn = &v
+	return s
+}
+
+// SetPollingDisabledAt sets the PollingDisabledAt field's value.
+func (s *PipelineMetadata) SetPollingDisabledAt(v time.Time) *PipelineMetadata {
+	s.PollingDisabledAt = &v
 	return s
 }
 
@@ -11024,12 +12321,20 @@ type PipelineNameInUseException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineNameInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineNameInUseException) GoString() string {
 	return s.String()
 }
@@ -11080,12 +12385,20 @@ type PipelineNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineNotFoundException) GoString() string {
 	return s.String()
 }
@@ -11138,6 +12451,31 @@ type PipelineSummary struct {
 	// The name of the pipeline.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// CodePipeline provides the following pipeline types, which differ in characteristics
+	// and price, so that you can tailor your pipeline features and cost to the
+	// needs of your applications.
+	//
+	//    * V1 type pipelines have a JSON structure that contains standard pipeline,
+	//    stage, and action-level parameters.
+	//
+	//    * V2 type pipelines have the same structure as a V1 type, along with additional
+	//    parameters for release safety and trigger configuration.
+	//
+	// Including V2 parameters, such as triggers on Git tags, in the pipeline JSON
+	// when creating or updating a pipeline will result in the pipeline having the
+	// V2 type of pipeline and the associated costs.
+	//
+	// For information about pricing for CodePipeline, see Pricing (https://aws.amazon.com/codepipeline/pricing/).
+	//
+	// For information about which type of pipeline to choose, see What type of
+	// pipeline is right for me? (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html).
+	//
+	// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+	// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+	// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+	// in the CodePipeline User Guide.
+	PipelineType *string `locationName:"pipelineType" type:"string" enum:"PipelineType"`
+
 	// The date and time of the last update to the pipeline, in timestamp format.
 	Updated *time.Time `locationName:"updated" type:"timestamp"`
 
@@ -11145,12 +12483,20 @@ type PipelineSummary struct {
 	Version *int64 `locationName:"version" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineSummary) GoString() string {
 	return s.String()
 }
@@ -11167,6 +12513,12 @@ func (s *PipelineSummary) SetName(v string) *PipelineSummary {
 	return s
 }
 
+// SetPipelineType sets the PipelineType field's value.
+func (s *PipelineSummary) SetPipelineType(v string) *PipelineSummary {
+	s.PipelineType = &v
+	return s
+}
+
 // SetUpdated sets the Updated field's value.
 func (s *PipelineSummary) SetUpdated(v time.Time) *PipelineSummary {
 	s.Updated = &v
@@ -11179,6 +12531,235 @@ func (s *PipelineSummary) SetVersion(v int64) *PipelineSummary {
 	return s
 }
 
+// Represents information about the specified trigger configuration, such as
+// the filter criteria and the source stage for the action that contains the
+// trigger.
+//
+// This is only supported for the CodeStarSourceConnection action type.
+//
+// When a trigger configuration is specified, default change detection for repository
+// and branch commits is disabled.
+//
+// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+// in the CodePipeline User Guide.
+type PipelineTriggerDeclaration struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the filter criteria and the source stage for the repository event
+	// that starts the pipeline, such as Git tags.
+	//
+	// GitConfiguration is a required field
+	GitConfiguration *GitConfiguration `locationName:"gitConfiguration" type:"structure" required:"true"`
+
+	// The source provider for the event, such as connections configured for a repository
+	// with Git tags, for the specified trigger configuration.
+	//
+	// ProviderType is a required field
+	ProviderType *string `locationName:"providerType" type:"string" required:"true" enum:"PipelineTriggerProviderType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineTriggerDeclaration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineTriggerDeclaration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineTriggerDeclaration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineTriggerDeclaration"}
+	if s.GitConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("GitConfiguration"))
+	}
+	if s.ProviderType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProviderType"))
+	}
+	if s.GitConfiguration != nil {
+		if err := s.GitConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GitConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGitConfiguration sets the GitConfiguration field's value.
+func (s *PipelineTriggerDeclaration) SetGitConfiguration(v *GitConfiguration) *PipelineTriggerDeclaration {
+	s.GitConfiguration = v
+	return s
+}
+
+// SetProviderType sets the ProviderType field's value.
+func (s *PipelineTriggerDeclaration) SetProviderType(v string) *PipelineTriggerDeclaration {
+	s.ProviderType = &v
+	return s
+}
+
+// A pipeline-level variable used for a pipeline execution.
+//
+// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+// in the CodePipeline User Guide.
+type PipelineVariable struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a pipeline-level variable.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The value of a pipeline-level variable.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineVariable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineVariable) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineVariable) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineVariable"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *PipelineVariable) SetName(v string) *PipelineVariable {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *PipelineVariable) SetValue(v string) *PipelineVariable {
+	s.Value = &v
+	return s
+}
+
+// A variable declared at the pipeline level.
+//
+// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+// in the CodePipeline User Guide.
+type PipelineVariableDeclaration struct {
+	_ struct{} `type:"structure"`
+
+	// The value of a pipeline-level variable.
+	DefaultValue *string `locationName:"defaultValue" min:"1" type:"string"`
+
+	// The description of a pipeline-level variable. It's used to add additional
+	// context about the variable, and not being used at time when pipeline executes.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of a pipeline-level variable.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineVariableDeclaration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineVariableDeclaration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineVariableDeclaration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineVariableDeclaration"}
+	if s.DefaultValue != nil && len(*s.DefaultValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DefaultValue", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *PipelineVariableDeclaration) SetDefaultValue(v string) *PipelineVariableDeclaration {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PipelineVariableDeclaration) SetDescription(v string) *PipelineVariableDeclaration {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PipelineVariableDeclaration) SetName(v string) *PipelineVariableDeclaration {
+	s.Name = &v
+	return s
+}
+
 // The pipeline version was specified in an invalid format or cannot be found.
 type PipelineVersionNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -11187,12 +12768,20 @@ type PipelineVersionNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineVersionNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PipelineVersionNotFoundException) GoString() string {
 	return s.String()
 }
@@ -11254,12 +12843,20 @@ type PollForJobsInput struct {
 	QueryParam map[string]*string `locationName:"queryParam" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PollForJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PollForJobsInput) GoString() string {
 	return s.String()
 }
@@ -11311,12 +12908,20 @@ type PollForJobsOutput struct {
 	Jobs []*Job `locationName:"jobs" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PollForJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PollForJobsOutput) GoString() string {
 	return s.String()
 }
@@ -11340,12 +12945,20 @@ type PollForThirdPartyJobsInput struct {
 	MaxBatchSize *int64 `locationName:"maxBatchSize" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PollForThirdPartyJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PollForThirdPartyJobsInput) GoString() string {
 	return s.String()
 }
@@ -11391,12 +13004,20 @@ type PollForThirdPartyJobsOutput struct {
 	Jobs []*ThirdPartyJob `locationName:"jobs" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PollForThirdPartyJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PollForThirdPartyJobsOutput) GoString() string {
 	return s.String()
 }
@@ -11432,12 +13053,20 @@ type PutActionRevisionInput struct {
 	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutActionRevisionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutActionRevisionInput) GoString() string {
 	return s.String()
 }
@@ -11514,12 +13143,20 @@ type PutActionRevisionOutput struct {
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutActionRevisionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutActionRevisionOutput) GoString() string {
 	return s.String()
 }
@@ -11569,12 +13206,20 @@ type PutApprovalResultInput struct {
 	Token *string `locationName:"token" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutApprovalResultInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutApprovalResultInput) GoString() string {
 	return s.String()
 }
@@ -11656,12 +13301,20 @@ type PutApprovalResultOutput struct {
 	ApprovedAt *time.Time `locationName:"approvedAt" type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutApprovalResultOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutApprovalResultOutput) GoString() string {
 	return s.String()
 }
@@ -11688,12 +13341,20 @@ type PutJobFailureResultInput struct {
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobFailureResultInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobFailureResultInput) GoString() string {
 	return s.String()
 }
@@ -11735,12 +13396,20 @@ type PutJobFailureResultOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobFailureResultOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobFailureResultOutput) GoString() string {
 	return s.String()
 }
@@ -11749,8 +13418,8 @@ func (s PutJobFailureResultOutput) GoString() string {
 type PutJobSuccessResultInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token generated by a job worker, such as an AWS CodeDeploy deployment ID,
-	// that a successful job provides to identify a custom action in progress. Future
+	// A token generated by a job worker, such as a CodeDeploy deployment ID, that
+	// a successful job provides to identify a custom action in progress. Future
 	// jobs use this token to identify the running instance of the action. It can
 	// be reused to return more information about the progress of the custom action.
 	// When the action is complete, no continuation token should be supplied.
@@ -11776,12 +13445,20 @@ type PutJobSuccessResultInput struct {
 	OutputVariables map[string]*string `locationName:"outputVariables" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobSuccessResultInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobSuccessResultInput) GoString() string {
 	return s.String()
 }
@@ -11846,12 +13523,20 @@ type PutJobSuccessResultOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobSuccessResultOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobSuccessResultOutput) GoString() string {
 	return s.String()
 }
@@ -11877,12 +13562,20 @@ type PutThirdPartyJobFailureResultInput struct {
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutThirdPartyJobFailureResultInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutThirdPartyJobFailureResultInput) GoString() string {
 	return s.String()
 }
@@ -11939,12 +13632,20 @@ type PutThirdPartyJobFailureResultOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutThirdPartyJobFailureResultOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutThirdPartyJobFailureResultOutput) GoString() string {
 	return s.String()
 }
@@ -11959,11 +13660,11 @@ type PutThirdPartyJobSuccessResultInput struct {
 	// ClientToken is a required field
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" required:"true"`
 
-	// A token generated by a job worker, such as an AWS CodeDeploy deployment ID,
-	// that a successful job provides to identify a partner action in progress.
-	// Future jobs use this token to identify the running instance of the action.
-	// It can be reused to return more information about the progress of the partner
-	// action. When the action is complete, no continuation token should be supplied.
+	// A token generated by a job worker, such as a CodeDeploy deployment ID, that
+	// a successful job provides to identify a partner action in progress. Future
+	// jobs use this token to identify the running instance of the action. It can
+	// be reused to return more information about the progress of the partner action.
+	// When the action is complete, no continuation token should be supplied.
 	ContinuationToken *string `locationName:"continuationToken" min:"1" type:"string"`
 
 	// Represents information about a current revision.
@@ -11980,12 +13681,20 @@ type PutThirdPartyJobSuccessResultInput struct {
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutThirdPartyJobSuccessResultInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutThirdPartyJobSuccessResultInput) GoString() string {
 	return s.String()
 }
@@ -12059,12 +13768,20 @@ type PutThirdPartyJobSuccessResultOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutThirdPartyJobSuccessResultOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutThirdPartyJobSuccessResultOutput) GoString() string {
 	return s.String()
 }
@@ -12085,12 +13802,20 @@ type PutWebhookInput struct {
 	Webhook *WebhookDefinition `locationName:"webhook" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutWebhookInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutWebhookInput) GoString() string {
 	return s.String()
 }
@@ -12143,12 +13868,20 @@ type PutWebhookOutput struct {
 	Webhook *ListWebhookItem `locationName:"webhook" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutWebhookOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutWebhookOutput) GoString() string {
 	return s.String()
 }
@@ -12167,12 +13900,20 @@ type RegisterWebhookWithThirdPartyInput struct {
 	WebhookName *string `locationName:"webhookName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterWebhookWithThirdPartyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterWebhookWithThirdPartyInput) GoString() string {
 	return s.String()
 }
@@ -12200,12 +13941,20 @@ type RegisterWebhookWithThirdPartyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterWebhookWithThirdPartyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterWebhookWithThirdPartyOutput) GoString() string {
 	return s.String()
 }
@@ -12218,12 +13967,20 @@ type RequestFailedException struct {
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestFailedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestFailedException) GoString() string {
 	return s.String()
 }
@@ -12266,6 +14023,47 @@ func (s *RequestFailedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A pipeline-level variable used for a pipeline execution.
+type ResolvedPipelineVariable struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a pipeline-level variable.
+	Name *string `locationName:"name" type:"string"`
+
+	// The resolved value of a pipeline-level variable.
+	ResolvedValue *string `locationName:"resolvedValue" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolvedPipelineVariable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolvedPipelineVariable) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ResolvedPipelineVariable) SetName(v string) *ResolvedPipelineVariable {
+	s.Name = &v
+	return s
+}
+
+// SetResolvedValue sets the ResolvedValue field's value.
+func (s *ResolvedPipelineVariable) SetResolvedValue(v string) *ResolvedPipelineVariable {
+	s.ResolvedValue = &v
+	return s
+}
+
 // The resource was specified in an invalid format.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -12274,12 +14072,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -12338,7 +14144,7 @@ type RetryStageExecutionInput struct {
 	// PipelineName is a required field
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
-	// The scope of the retry attempt. Currently, the only supported value is FAILED_ACTIONS.
+	// The scope of the retry attempt.
 	//
 	// RetryMode is a required field
 	RetryMode *string `locationName:"retryMode" type:"string" required:"true" enum:"StageRetryMode"`
@@ -12349,12 +14155,20 @@ type RetryStageExecutionInput struct {
 	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetryStageExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetryStageExecutionInput) GoString() string {
 	return s.String()
 }
@@ -12419,12 +14233,20 @@ type RetryStageExecutionOutput struct {
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetryStageExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetryStageExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -12451,12 +14273,20 @@ type S3ArtifactLocation struct {
 	ObjectKey *string `locationName:"objectKey" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ArtifactLocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ArtifactLocation) GoString() string {
 	return s.String()
 }
@@ -12484,12 +14314,20 @@ type S3Location struct {
 	Key *string `locationName:"key" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) GoString() string {
 	return s.String()
 }
@@ -12521,23 +14359,30 @@ type SourceRevision struct {
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
 	// Summary information about the most recent revision of the artifact. For GitHub
-	// and AWS CodeCommit repositories, the commit message. For Amazon S3 buckets
-	// or actions, the user-provided content of a codepipeline-artifact-revision-summary
+	// and CodeCommit repositories, the commit message. For Amazon S3 buckets or
+	// actions, the user-provided content of a codepipeline-artifact-revision-summary
 	// key specified in the object metadata.
 	RevisionSummary *string `locationName:"revisionSummary" min:"1" type:"string"`
 
 	// The commit ID for the artifact revision. For artifacts stored in GitHub or
-	// AWS CodeCommit repositories, the commit ID is linked to a commit details
-	// page.
+	// CodeCommit repositories, the commit ID is linked to a commit details page.
 	RevisionUrl *string `locationName:"revisionUrl" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceRevision) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceRevision) GoString() string {
 	return s.String()
 }
@@ -12566,6 +14411,92 @@ func (s *SourceRevision) SetRevisionUrl(v string) *SourceRevision {
 	return s
 }
 
+// A list that allows you to specify, or override, the source revision for a
+// pipeline execution that's being started. A source revision is the version
+// with all the changes to your application code, or source artifact, for the
+// pipeline execution.
+type SourceRevisionOverride struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the action where the override will be applied.
+	//
+	// ActionName is a required field
+	ActionName *string `locationName:"actionName" min:"1" type:"string" required:"true"`
+
+	// The type of source revision, based on the source provider. For example, the
+	// revision type for the CodeCommit action provider is the commit ID.
+	//
+	// RevisionType is a required field
+	RevisionType *string `locationName:"revisionType" type:"string" required:"true" enum:"SourceRevisionType"`
+
+	// The source revision, or version of your source artifact, with the changes
+	// that you want to run in the pipeline execution.
+	//
+	// RevisionValue is a required field
+	RevisionValue *string `locationName:"revisionValue" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceRevisionOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceRevisionOverride) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceRevisionOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceRevisionOverride"}
+	if s.ActionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionName"))
+	}
+	if s.ActionName != nil && len(*s.ActionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionName", 1))
+	}
+	if s.RevisionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionType"))
+	}
+	if s.RevisionValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionValue"))
+	}
+	if s.RevisionValue != nil && len(*s.RevisionValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevisionValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionName sets the ActionName field's value.
+func (s *SourceRevisionOverride) SetActionName(v string) *SourceRevisionOverride {
+	s.ActionName = &v
+	return s
+}
+
+// SetRevisionType sets the RevisionType field's value.
+func (s *SourceRevisionOverride) SetRevisionType(v string) *SourceRevisionOverride {
+	s.RevisionType = &v
+	return s
+}
+
+// SetRevisionValue sets the RevisionValue field's value.
+func (s *SourceRevisionOverride) SetRevisionValue(v string) *SourceRevisionOverride {
+	s.RevisionValue = &v
+	return s
+}
+
 // Represents information about a stage to a job worker.
 type StageContext struct {
 	_ struct{} `type:"structure"`
@@ -12574,12 +14505,20 @@ type StageContext struct {
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageContext) GoString() string {
 	return s.String()
 }
@@ -12608,12 +14547,20 @@ type StageDeclaration struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageDeclaration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageDeclaration) GoString() string {
 	return s.String()
 }
@@ -12694,12 +14641,20 @@ type StageExecution struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"StageExecutionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageExecution) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageExecution) GoString() string {
 	return s.String()
 }
@@ -12724,12 +14679,20 @@ type StageNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageNotFoundException) GoString() string {
 	return s.String()
 }
@@ -12781,12 +14744,20 @@ type StageNotRetryableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageNotRetryableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageNotRetryableException) GoString() string {
 	return s.String()
 }
@@ -12850,12 +14821,20 @@ type StageState struct {
 	StageName *string `locationName:"stageName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StageState) GoString() string {
 	return s.String()
 }
@@ -12901,14 +14880,33 @@ type StartPipelineExecutionInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A list that allows you to specify, or override, the source revision for a
+	// pipeline execution that's being started. A source revision is the version
+	// with all the changes to your application code, or source artifact, for the
+	// pipeline execution.
+	SourceRevisions []*SourceRevisionOverride `locationName:"sourceRevisions" type:"list"`
+
+	// A list that overrides pipeline variables for a pipeline execution that's
+	// being started. Variable names must match [A-Za-z0-9@\-_]+, and the values
+	// can be anything except an empty string.
+	Variables []*PipelineVariable `locationName:"variables" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartPipelineExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartPipelineExecutionInput) GoString() string {
 	return s.String()
 }
@@ -12924,6 +14922,29 @@ func (s *StartPipelineExecutionInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Variables != nil && len(s.Variables) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Variables", 1))
+	}
+	if s.SourceRevisions != nil {
+		for i, v := range s.SourceRevisions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SourceRevisions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Variables != nil {
+		for i, v := range s.Variables {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Variables", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -12944,6 +14965,18 @@ func (s *StartPipelineExecutionInput) SetName(v string) *StartPipelineExecutionI
 	return s
 }
 
+// SetSourceRevisions sets the SourceRevisions field's value.
+func (s *StartPipelineExecutionInput) SetSourceRevisions(v []*SourceRevisionOverride) *StartPipelineExecutionInput {
+	s.SourceRevisions = v
+	return s
+}
+
+// SetVariables sets the Variables field's value.
+func (s *StartPipelineExecutionInput) SetVariables(v []*PipelineVariable) *StartPipelineExecutionInput {
+	s.Variables = v
+	return s
+}
+
 // Represents the output of a StartPipelineExecution action.
 type StartPipelineExecutionOutput struct {
 	_ struct{} `type:"structure"`
@@ -12952,12 +14985,20 @@ type StartPipelineExecutionOutput struct {
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartPipelineExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartPipelineExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -12976,12 +15017,20 @@ type StopExecutionTrigger struct {
 	Reason *string `locationName:"reason" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopExecutionTrigger) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopExecutionTrigger) GoString() string {
 	return s.String()
 }
@@ -13016,12 +15065,20 @@ type StopPipelineExecutionInput struct {
 	Reason *string `locationName:"reason" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopPipelineExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopPipelineExecutionInput) GoString() string {
 	return s.String()
 }
@@ -13076,12 +15133,20 @@ type StopPipelineExecutionOutput struct {
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopPipelineExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopPipelineExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -13107,12 +15172,20 @@ type Tag struct {
 	Value *string `locationName:"value" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -13162,12 +15235,20 @@ type TagResourceInput struct {
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -13214,18 +15295,26 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// A response to a PollForThirdPartyJobs request returned by AWS CodePipeline
-// when there is a job to be worked on by a partner action.
+// A response to a PollForThirdPartyJobs request returned by CodePipeline when
+// there is a job to be worked on by a partner action.
 type ThirdPartyJob struct {
 	_ struct{} `type:"structure"`
 
@@ -13233,16 +15322,24 @@ type ThirdPartyJob struct {
 	// that the calling entity is allowed access to the job and its details.
 	ClientId *string `locationName:"clientId" type:"string"`
 
-	// The identifier used to identify the job in AWS CodePipeline.
+	// The identifier used to identify the job in CodePipeline.
 	JobId *string `locationName:"jobId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThirdPartyJob) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThirdPartyJob) GoString() string {
 	return s.String()
 }
@@ -13269,19 +15366,23 @@ type ThirdPartyJobData struct {
 	// Represents information about an action type.
 	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure"`
 
-	// Represents an AWS session credentials object. These credentials are temporary
-	// credentials that are issued by AWS Secure Token Service (STS). They can be
-	// used to access input and output artifacts in the S3 bucket used to store
-	// artifact for the pipeline in AWS CodePipeline.
+	// Represents an Amazon Web Services session credentials object. These credentials
+	// are temporary credentials that are issued by Amazon Web Services Secure Token
+	// Service (STS). They can be used to access input and output artifacts in the
+	// S3 bucket used to store artifact for the pipeline in CodePipeline.
+	//
+	// ArtifactCredentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ThirdPartyJobData's
+	// String and GoString methods.
 	ArtifactCredentials *AWSSessionCredentials `locationName:"artifactCredentials" type:"structure" sensitive:"true"`
 
-	// A system-generated token, such as a AWS CodeDeploy deployment ID, that a
-	// job requires to continue the job asynchronously.
+	// A system-generated token, such as a CodeDeploy deployment ID, that a job
+	// requires to continue the job asynchronously.
 	ContinuationToken *string `locationName:"continuationToken" min:"1" type:"string"`
 
 	// The encryption key used to encrypt and decrypt data in the artifact store
-	// for the pipeline, such as an AWS Key Management Service (AWS KMS) key. This
-	// is optional and might not be present.
+	// for the pipeline, such as an Amazon Web Services Key Management Service (Amazon
+	// Web Services KMS) key. This is optional and might not be present.
 	EncryptionKey *EncryptionKey `locationName:"encryptionKey" type:"structure"`
 
 	// The name of the artifact that is worked on by the action, if any. This name
@@ -13302,12 +15403,20 @@ type ThirdPartyJobData struct {
 	PipelineContext *PipelineContext `locationName:"pipelineContext" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThirdPartyJobData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThirdPartyJobData) GoString() string {
 	return s.String()
 }
@@ -13367,21 +15476,29 @@ type ThirdPartyJobDetails struct {
 	// The data to be returned by the third party job worker.
 	Data *ThirdPartyJobData `locationName:"data" type:"structure"`
 
-	// The identifier used to identify the job details in AWS CodePipeline.
+	// The identifier used to identify the job details in CodePipeline.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
-	// A system-generated random number that AWS CodePipeline uses to ensure that
-	// the job is being worked on by only one job worker. Use this number in an
-	// AcknowledgeThirdPartyJob request.
+	// A system-generated random number that CodePipeline uses to ensure that the
+	// job is being worked on by only one job worker. Use this number in an AcknowledgeThirdPartyJob
+	// request.
 	Nonce *string `locationName:"nonce" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThirdPartyJobDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThirdPartyJobDetails) GoString() string {
 	return s.String()
 }
@@ -13412,12 +15529,20 @@ type TooManyTagsException struct {
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) GoString() string {
 	return s.String()
 }
@@ -13479,12 +15604,20 @@ type TransitionState struct {
 	LastChangedBy *string `locationName:"lastChangedBy" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TransitionState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TransitionState) GoString() string {
 	return s.String()
 }
@@ -13527,12 +15660,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -13569,12 +15710,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -13588,12 +15737,20 @@ type UpdateActionTypeInput struct {
 	ActionType *ActionTypeDeclaration `locationName:"actionType" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateActionTypeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateActionTypeInput) GoString() string {
 	return s.String()
 }
@@ -13626,12 +15783,20 @@ type UpdateActionTypeOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateActionTypeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateActionTypeOutput) GoString() string {
 	return s.String()
 }
@@ -13646,12 +15811,20 @@ type UpdatePipelineInput struct {
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePipelineInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePipelineInput) GoString() string {
 	return s.String()
 }
@@ -13688,12 +15861,20 @@ type UpdatePipelineOutput struct {
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePipelineOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePipelineOutput) GoString() string {
 	return s.String()
 }
@@ -13712,12 +15893,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -13774,12 +15963,20 @@ type WebhookAuthConfiguration struct {
 	SecretToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebhookAuthConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebhookAuthConfiguration) GoString() string {
 	return s.String()
 }
@@ -13863,12 +16060,20 @@ type WebhookDefinition struct {
 	TargetPipeline *string `locationName:"targetPipeline" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebhookDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebhookDefinition) GoString() string {
 	return s.String()
 }
@@ -13980,19 +16185,27 @@ type WebhookFilterRule struct {
 	// the target action configuration can be included as placeholders in this value
 	// by surrounding the action configuration key with curly brackets. For example,
 	// if the value supplied here is "refs/heads/{Branch}" and the target action
-	// has an action configuration property called "Branch" with a value of "master",
-	// the MatchEquals value is evaluated as "refs/heads/master". For a list of
-	// action configuration properties for built-in action types, see Pipeline Structure
+	// has an action configuration property called "Branch" with a value of "main",
+	// the MatchEquals value is evaluated as "refs/heads/main". For a list of action
+	// configuration properties for built-in action types, see Pipeline Structure
 	// Reference Action Requirements (https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#action-requirements).
 	MatchEquals *string `locationName:"matchEquals" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebhookFilterRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebhookFilterRule) GoString() string {
 	return s.String()
 }
@@ -14036,12 +16249,20 @@ type WebhookNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebhookNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebhookNotFoundException) GoString() string {
 	return s.String()
 }
@@ -14365,6 +16586,54 @@ func PipelineExecutionStatus_Values() []string {
 }
 
 const (
+	// PipelineTriggerProviderTypeCodeStarSourceConnection is a PipelineTriggerProviderType enum value
+	PipelineTriggerProviderTypeCodeStarSourceConnection = "CodeStarSourceConnection"
+)
+
+// PipelineTriggerProviderType_Values returns all elements of the PipelineTriggerProviderType enum
+func PipelineTriggerProviderType_Values() []string {
+	return []string{
+		PipelineTriggerProviderTypeCodeStarSourceConnection,
+	}
+}
+
+const (
+	// PipelineTypeV1 is a PipelineType enum value
+	PipelineTypeV1 = "V1"
+
+	// PipelineTypeV2 is a PipelineType enum value
+	PipelineTypeV2 = "V2"
+)
+
+// PipelineType_Values returns all elements of the PipelineType enum
+func PipelineType_Values() []string {
+	return []string{
+		PipelineTypeV1,
+		PipelineTypeV2,
+	}
+}
+
+const (
+	// SourceRevisionTypeCommitId is a SourceRevisionType enum value
+	SourceRevisionTypeCommitId = "COMMIT_ID"
+
+	// SourceRevisionTypeImageDigest is a SourceRevisionType enum value
+	SourceRevisionTypeImageDigest = "IMAGE_DIGEST"
+
+	// SourceRevisionTypeS3ObjectVersionId is a SourceRevisionType enum value
+	SourceRevisionTypeS3ObjectVersionId = "S3_OBJECT_VERSION_ID"
+)
+
+// SourceRevisionType_Values returns all elements of the SourceRevisionType enum
+func SourceRevisionType_Values() []string {
+	return []string{
+		SourceRevisionTypeCommitId,
+		SourceRevisionTypeImageDigest,
+		SourceRevisionTypeS3ObjectVersionId,
+	}
+}
+
+const (
 	// StageExecutionStatusCancelled is a StageExecutionStatus enum value
 	StageExecutionStatusCancelled = "Cancelled"
 
@@ -14399,12 +16668,16 @@ func StageExecutionStatus_Values() []string {
 const (
 	// StageRetryModeFailedActions is a StageRetryMode enum value
 	StageRetryModeFailedActions = "FAILED_ACTIONS"
+
+	// StageRetryModeAllActions is a StageRetryMode enum value
+	StageRetryModeAllActions = "ALL_ACTIONS"
 )
 
 // StageRetryMode_Values returns all elements of the StageRetryMode enum
 func StageRetryMode_Values() []string {
 	return []string{
 		StageRetryModeFailedActions,
+		StageRetryModeAllActions,
 	}
 }
 
@@ -14442,6 +16715,9 @@ const (
 
 	// TriggerTypePutActionRevision is a TriggerType enum value
 	TriggerTypePutActionRevision = "PutActionRevision"
+
+	// TriggerTypeWebhookV2 is a TriggerType enum value
+	TriggerTypeWebhookV2 = "WebhookV2"
 )
 
 // TriggerType_Values returns all elements of the TriggerType enum
@@ -14453,6 +16729,7 @@ func TriggerType_Values() []string {
 		TriggerTypeWebhook,
 		TriggerTypeCloudWatchEvent,
 		TriggerTypePutActionRevision,
+		TriggerTypeWebhookV2,
 	}
 }
 

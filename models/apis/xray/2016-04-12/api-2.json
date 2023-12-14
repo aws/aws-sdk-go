@@ -63,6 +63,20 @@
         {"shape":"ThrottledException"}
       ]
     },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteResourcePolicy"
+      },
+      "input":{"shape":"DeleteResourcePolicyRequest"},
+      "output":{"shape":"DeleteResourcePolicyResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPolicyRevisionIdException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
     "DeleteSamplingRule":{
       "name":"DeleteSamplingRule",
       "http":{
@@ -258,6 +272,19 @@
         {"shape":"ThrottledException"}
       ]
     },
+    "ListResourcePolicies":{
+      "name":"ListResourcePolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListResourcePolicies"
+      },
+      "input":{"shape":"ListResourcePoliciesRequest"},
+      "output":{"shape":"ListResourcePoliciesResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -282,6 +309,23 @@
       "output":{"shape":"PutEncryptionConfigResult"},
       "errors":[
         {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/PutResourcePolicy"
+      },
+      "input":{"shape":"PutResourcePolicyRequest"},
+      "output":{"shape":"PutResourcePolicyResult"},
+      "errors":[
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"LockoutPreventionException"},
+        {"shape":"InvalidPolicyRevisionIdException"},
+        {"shape":"PolicySizeLimitExceededException"},
+        {"shape":"PolicyCountLimitExceededException"},
         {"shape":"ThrottledException"}
       ]
     },
@@ -514,6 +558,19 @@
       "members":{
       }
     },
+    "DeleteResourcePolicyRequest":{
+      "type":"structure",
+      "required":["PolicyName"],
+      "members":{
+        "PolicyName":{"shape":"PolicyName"},
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"}
+      }
+    },
+    "DeleteResourcePolicyResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteSamplingRuleRequest":{
       "type":"structure",
       "members":{
@@ -540,7 +597,9 @@
         "EndTime":{"shape":"Timestamp"},
         "SummaryStatistics":{"shape":"EdgeStatistics"},
         "ResponseTimeHistogram":{"shape":"Histogram"},
-        "Aliases":{"shape":"AliasList"}
+        "Aliases":{"shape":"AliasList"},
+        "EdgeType":{"shape":"String"},
+        "ReceivedEventAgeHistogram":{"shape":"Histogram"}
       }
     },
     "EdgeList":{
@@ -1138,12 +1197,33 @@
       }
     },
     "Integer":{"type":"integer"},
+    "InvalidPolicyRevisionIdException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "InvalidRequestException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ListResourcePoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"ResourcePolicyNextToken"}
+      }
+    },
+    "ListResourcePoliciesResult":{
+      "type":"structure",
+      "members":{
+        "ResourcePolicies":{"shape":"ResourcePolicyList"},
+        "NextToken":{"shape":"ResourcePolicyNextToken"}
+      }
     },
     "ListTagsForResourceRequest":{
       "type":"structure",
@@ -1160,10 +1240,50 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "LockoutPreventionException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "MalformedPolicyDocumentException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "NullableBoolean":{"type":"boolean"},
     "NullableDouble":{"type":"double"},
     "NullableInteger":{"type":"integer"},
     "NullableLong":{"type":"long"},
+    "PolicyCountLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "PolicyDocument":{"type":"string"},
+    "PolicyName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w+=,.@-]+"
+    },
+    "PolicyRevisionId":{"type":"string"},
+    "PolicySizeLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "Priority":{
       "type":"integer",
       "max":9999,
@@ -1181,6 +1301,25 @@
       "type":"structure",
       "members":{
         "EncryptionConfig":{"shape":"EncryptionConfig"}
+      }
+    },
+    "PutResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "PolicyName",
+        "PolicyDocument"
+      ],
+      "members":{
+        "PolicyName":{"shape":"PolicyName"},
+        "PolicyDocument":{"shape":"PolicyDocument"},
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"},
+        "BypassPolicyLockoutCheck":{"shape":"Boolean"}
+      }
+    },
+    "PutResourcePolicyResult":{
+      "type":"structure",
+      "members":{
+        "ResourcePolicy":{"shape":"ResourcePolicy"}
       }
     },
     "PutTelemetryRecordsRequest":{
@@ -1245,6 +1384,24 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "ResourcePolicy":{
+      "type":"structure",
+      "members":{
+        "PolicyName":{"shape":"PolicyName"},
+        "PolicyDocument":{"shape":"PolicyDocument"},
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"},
+        "LastUpdatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "ResourcePolicyList":{
+      "type":"list",
+      "member":{"shape":"ResourcePolicy"}
+    },
+    "ResourcePolicyNextToken":{
+      "type":"string",
+      "max":100,
+      "min":1
     },
     "ResponseTimeRootCause":{
       "type":"structure",
@@ -1586,7 +1743,8 @@
       "type":"string",
       "enum":[
         "TraceId",
-        "Event"
+        "Event",
+        "Service"
       ]
     },
     "TimeSeriesServiceStatistics":{
@@ -1661,6 +1819,7 @@
       "type":"structure",
       "members":{
         "Id":{"shape":"TraceId"},
+        "StartTime":{"shape":"Timestamp"},
         "Duration":{"shape":"NullableDouble"},
         "ResponseTime":{"shape":"NullableDouble"},
         "HasFault":{"shape":"NullableBoolean"},

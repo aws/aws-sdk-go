@@ -40,34 +40,36 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a ApplicationCostProfiler client from just a session.
-//     svc := applicationcostprofiler.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a ApplicationCostProfiler client with additional configuration
-//     svc := applicationcostprofiler.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a ApplicationCostProfiler client from just a session.
+//	svc := applicationcostprofiler.New(mySession)
+//
+//	// Create a ApplicationCostProfiler client with additional configuration
+//	svc := applicationcostprofiler.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ApplicationCostProfiler {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "application-cost-profiler"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *ApplicationCostProfiler {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *ApplicationCostProfiler {
 	svc := &ApplicationCostProfiler{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2020-09-10",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2020-09-10",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),

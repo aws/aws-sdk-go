@@ -5,6 +5,18 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "Endpoints"
+    },
+    "ListOutpostsWithS3": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Outposts"
+    },
+    "ListSharedEndpoints": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Endpoints"
     }
   }
 }

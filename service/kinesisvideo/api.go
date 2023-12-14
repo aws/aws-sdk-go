@@ -29,14 +29,13 @@ const opCreateSignalingChannel = "CreateSignalingChannel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSignalingChannelRequest method.
+//	req, resp := client.CreateSignalingChannelRequest(params)
 //
-//    // Example sending a request using the CreateSignalingChannelRequest method.
-//    req, resp := client.CreateSignalingChannelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/CreateSignalingChannel
 func (c *KinesisVideo) CreateSignalingChannelRequest(input *CreateSignalingChannelInput) (req *request.Request, output *CreateSignalingChannelOutput) {
@@ -69,26 +68,38 @@ func (c *KinesisVideo) CreateSignalingChannelRequest(input *CreateSignalingChann
 // API operation CreateSignalingChannel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * AccountChannelLimitExceededException
-//   You have reached the maximum limit of active signaling channels for this
-//   AWS account in this region.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * ResourceInUseException
-//   The signaling channel is currently not available for this operation.
+//   - AccountChannelLimitExceededException
+//     You have reached the maximum limit of active signaling channels for this
+//     Amazon Web Services account in this region.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to perform this operation.
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//   * TagsPerResourceExceededLimitException
-//   You have exceeded the limit of tags that you can associate with the resource.
-//   Kinesis video streams support up to 50 tags.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - TagsPerResourceExceededLimitException
+//     You have exceeded the limit of tags that you can associate with the resource.
+//     A Kinesis video stream can support up to 50 tags.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/CreateSignalingChannel
 func (c *KinesisVideo) CreateSignalingChannel(input *CreateSignalingChannelInput) (*CreateSignalingChannelOutput, error) {
@@ -128,14 +139,13 @@ const opCreateStream = "CreateStream"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateStreamRequest method.
+//	req, resp := client.CreateStreamRequest(params)
 //
-//    // Example sending a request using the CreateStreamRequest method.
-//    req, resp := client.CreateStreamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/CreateStream
 func (c *KinesisVideo) CreateStreamRequest(input *CreateStreamInput) (req *request.Request, output *CreateStreamOutput) {
@@ -176,28 +186,40 @@ func (c *KinesisVideo) CreateStreamRequest(input *CreateStreamInput) (req *reque
 // API operation CreateStream for usage and error information.
 //
 // Returned Error Types:
-//   * AccountStreamLimitExceededException
-//   The number of streams created for the account is too high.
 //
-//   * DeviceStreamLimitExceededException
-//   Not implemented.
+//   - AccountStreamLimitExceededException
+//     The number of streams created for the account is too high.
 //
-//   * ResourceInUseException
-//   The signaling channel is currently not available for this operation.
+//   - DeviceStreamLimitExceededException
+//     Not implemented.
 //
-//   * InvalidDeviceException
-//   Not implemented.
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
 //
-//   * TagsPerResourceExceededLimitException
-//   You have exceeded the limit of tags that you can associate with the resource.
-//   Kinesis video streams support up to 50 tags.
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - InvalidDeviceException
+//     Not implemented.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - TagsPerResourceExceededLimitException
+//     You have exceeded the limit of tags that you can associate with the resource.
+//     A Kinesis video stream can support up to 50 tags.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/CreateStream
 func (c *KinesisVideo) CreateStream(input *CreateStreamInput) (*CreateStreamOutput, error) {
@@ -221,6 +243,110 @@ func (c *KinesisVideo) CreateStreamWithContext(ctx aws.Context, input *CreateStr
 	return out, req.Send()
 }
 
+const opDeleteEdgeConfiguration = "DeleteEdgeConfiguration"
+
+// DeleteEdgeConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEdgeConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEdgeConfiguration for more information on using the DeleteEdgeConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteEdgeConfigurationRequest method.
+//	req, resp := client.DeleteEdgeConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteEdgeConfiguration
+func (c *KinesisVideo) DeleteEdgeConfigurationRequest(input *DeleteEdgeConfigurationInput) (req *request.Request, output *DeleteEdgeConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEdgeConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/deleteEdgeConfiguration",
+	}
+
+	if input == nil {
+		input = &DeleteEdgeConfigurationInput{}
+	}
+
+	output = &DeleteEdgeConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEdgeConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// An asynchronous API that deletes a stream’s existing edge configuration,
+// as well as the corresponding media from the Edge Agent.
+//
+// When you invoke this API, the sync status is set to DELETING. A deletion
+// process starts, in which active edge jobs are stopped and all media is deleted
+// from the edge device. The time to delete varies, depending on the total amount
+// of stored media. If the deletion process fails, the sync status changes to
+// DELETE_FAILED. You will need to re-try the deletion.
+//
+// When the deletion process has completed successfully, the edge configuration
+// is no longer accessible.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation DeleteEdgeConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - StreamEdgeConfigurationNotFoundException
+//     The Exception rendered when the Amazon Kinesis Video Stream can't find a
+//     stream's edge configuration that you specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteEdgeConfiguration
+func (c *KinesisVideo) DeleteEdgeConfiguration(input *DeleteEdgeConfigurationInput) (*DeleteEdgeConfigurationOutput, error) {
+	req, out := c.DeleteEdgeConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEdgeConfigurationWithContext is the same as DeleteEdgeConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEdgeConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DeleteEdgeConfigurationWithContext(ctx aws.Context, input *DeleteEdgeConfigurationInput, opts ...request.Option) (*DeleteEdgeConfigurationOutput, error) {
+	req, out := c.DeleteEdgeConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteSignalingChannel = "DeleteSignalingChannel"
 
 // DeleteSignalingChannelRequest generates a "aws/request.Request" representing the
@@ -237,14 +363,13 @@ const opDeleteSignalingChannel = "DeleteSignalingChannel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSignalingChannelRequest method.
+//	req, resp := client.DeleteSignalingChannelRequest(params)
 //
-//    // Example sending a request using the DeleteSignalingChannelRequest method.
-//    req, resp := client.DeleteSignalingChannelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteSignalingChannel
 func (c *KinesisVideo) DeleteSignalingChannelRequest(input *DeleteSignalingChannelInput) (req *request.Request, output *DeleteSignalingChannelOutput) {
@@ -278,26 +403,38 @@ func (c *KinesisVideo) DeleteSignalingChannelRequest(input *DeleteSignalingChann
 // API operation DeleteSignalingChannel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to perform this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * VersionMismatchException
-//   The stream version that you specified is not the latest version. To get the
-//   latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
-//   API.
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
 //
-//   * ResourceInUseException
-//   The signaling channel is currently not available for this operation.
+//   - VersionMismatchException
+//     The stream version that you specified is not the latest version. To get the
+//     latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
+//     API.
+//
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
+//
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteSignalingChannel
 func (c *KinesisVideo) DeleteSignalingChannel(input *DeleteSignalingChannelInput) (*DeleteSignalingChannelOutput, error) {
@@ -337,14 +474,13 @@ const opDeleteStream = "DeleteStream"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteStreamRequest method.
+//	req, resp := client.DeleteStreamRequest(params)
 //
-//    // Example sending a request using the DeleteStreamRequest method.
-//    req, resp := client.DeleteStreamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteStream
 func (c *KinesisVideo) DeleteStreamRequest(input *DeleteStreamInput) (req *request.Request, output *DeleteStreamOutput) {
@@ -387,26 +523,38 @@ func (c *KinesisVideo) DeleteStreamRequest(input *DeleteStreamInput) (req *reque
 // API operation DeleteStream for usage and error information.
 //
 // Returned Error Types:
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * VersionMismatchException
-//   The stream version that you specified is not the latest version. To get the
-//   latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
-//   API.
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
 //
-//   * ResourceInUseException
-//   The signaling channel is currently not available for this operation.
+//   - VersionMismatchException
+//     The stream version that you specified is not the latest version. To get the
+//     latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
+//     API.
+//
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
+//
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteStream
 func (c *KinesisVideo) DeleteStream(input *DeleteStreamInput) (*DeleteStreamOutput, error) {
@@ -430,6 +578,518 @@ func (c *KinesisVideo) DeleteStreamWithContext(ctx aws.Context, input *DeleteStr
 	return out, req.Send()
 }
 
+const opDescribeEdgeConfiguration = "DescribeEdgeConfiguration"
+
+// DescribeEdgeConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEdgeConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEdgeConfiguration for more information on using the DescribeEdgeConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeEdgeConfigurationRequest method.
+//	req, resp := client.DescribeEdgeConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeEdgeConfiguration
+func (c *KinesisVideo) DescribeEdgeConfigurationRequest(input *DescribeEdgeConfigurationInput) (req *request.Request, output *DescribeEdgeConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEdgeConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/describeEdgeConfiguration",
+	}
+
+	if input == nil {
+		input = &DescribeEdgeConfigurationInput{}
+	}
+
+	output = &DescribeEdgeConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEdgeConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Describes a stream’s edge configuration that was set using the StartEdgeConfigurationUpdate
+// API and the latest status of the edge agent's recorder and uploader jobs.
+// Use this API to get the status of the configuration to determine if the configuration
+// is in sync with the Edge Agent. Use this API to evaluate the health of the
+// Edge Agent.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation DescribeEdgeConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - StreamEdgeConfigurationNotFoundException
+//     The Exception rendered when the Amazon Kinesis Video Stream can't find a
+//     stream's edge configuration that you specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeEdgeConfiguration
+func (c *KinesisVideo) DescribeEdgeConfiguration(input *DescribeEdgeConfigurationInput) (*DescribeEdgeConfigurationOutput, error) {
+	req, out := c.DescribeEdgeConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEdgeConfigurationWithContext is the same as DescribeEdgeConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEdgeConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DescribeEdgeConfigurationWithContext(ctx aws.Context, input *DescribeEdgeConfigurationInput, opts ...request.Option) (*DescribeEdgeConfigurationOutput, error) {
+	req, out := c.DescribeEdgeConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeImageGenerationConfiguration = "DescribeImageGenerationConfiguration"
+
+// DescribeImageGenerationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeImageGenerationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeImageGenerationConfiguration for more information on using the DescribeImageGenerationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeImageGenerationConfigurationRequest method.
+//	req, resp := client.DescribeImageGenerationConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeImageGenerationConfiguration
+func (c *KinesisVideo) DescribeImageGenerationConfigurationRequest(input *DescribeImageGenerationConfigurationInput) (req *request.Request, output *DescribeImageGenerationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeImageGenerationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/describeImageGenerationConfiguration",
+	}
+
+	if input == nil {
+		input = &DescribeImageGenerationConfigurationInput{}
+	}
+
+	output = &DescribeImageGenerationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeImageGenerationConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Gets the ImageGenerationConfiguration for a given Kinesis video stream.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation DescribeImageGenerationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeImageGenerationConfiguration
+func (c *KinesisVideo) DescribeImageGenerationConfiguration(input *DescribeImageGenerationConfigurationInput) (*DescribeImageGenerationConfigurationOutput, error) {
+	req, out := c.DescribeImageGenerationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeImageGenerationConfigurationWithContext is the same as DescribeImageGenerationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeImageGenerationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DescribeImageGenerationConfigurationWithContext(ctx aws.Context, input *DescribeImageGenerationConfigurationInput, opts ...request.Option) (*DescribeImageGenerationConfigurationOutput, error) {
+	req, out := c.DescribeImageGenerationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeMappedResourceConfiguration = "DescribeMappedResourceConfiguration"
+
+// DescribeMappedResourceConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMappedResourceConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMappedResourceConfiguration for more information on using the DescribeMappedResourceConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeMappedResourceConfigurationRequest method.
+//	req, resp := client.DescribeMappedResourceConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeMappedResourceConfiguration
+func (c *KinesisVideo) DescribeMappedResourceConfigurationRequest(input *DescribeMappedResourceConfigurationInput) (req *request.Request, output *DescribeMappedResourceConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMappedResourceConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/describeMappedResourceConfiguration",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeMappedResourceConfigurationInput{}
+	}
+
+	output = &DescribeMappedResourceConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeMappedResourceConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Returns the most current information about the stream. The streamName or
+// streamARN should be provided in the input.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation DescribeMappedResourceConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeMappedResourceConfiguration
+func (c *KinesisVideo) DescribeMappedResourceConfiguration(input *DescribeMappedResourceConfigurationInput) (*DescribeMappedResourceConfigurationOutput, error) {
+	req, out := c.DescribeMappedResourceConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMappedResourceConfigurationWithContext is the same as DescribeMappedResourceConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMappedResourceConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DescribeMappedResourceConfigurationWithContext(ctx aws.Context, input *DescribeMappedResourceConfigurationInput, opts ...request.Option) (*DescribeMappedResourceConfigurationOutput, error) {
+	req, out := c.DescribeMappedResourceConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeMappedResourceConfigurationPages iterates over the pages of a DescribeMappedResourceConfiguration operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeMappedResourceConfiguration method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeMappedResourceConfiguration operation.
+//	pageNum := 0
+//	err := client.DescribeMappedResourceConfigurationPages(params,
+//	    func(page *kinesisvideo.DescribeMappedResourceConfigurationOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *KinesisVideo) DescribeMappedResourceConfigurationPages(input *DescribeMappedResourceConfigurationInput, fn func(*DescribeMappedResourceConfigurationOutput, bool) bool) error {
+	return c.DescribeMappedResourceConfigurationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeMappedResourceConfigurationPagesWithContext same as DescribeMappedResourceConfigurationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DescribeMappedResourceConfigurationPagesWithContext(ctx aws.Context, input *DescribeMappedResourceConfigurationInput, fn func(*DescribeMappedResourceConfigurationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeMappedResourceConfigurationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeMappedResourceConfigurationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeMappedResourceConfigurationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeMediaStorageConfiguration = "DescribeMediaStorageConfiguration"
+
+// DescribeMediaStorageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMediaStorageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMediaStorageConfiguration for more information on using the DescribeMediaStorageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeMediaStorageConfigurationRequest method.
+//	req, resp := client.DescribeMediaStorageConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeMediaStorageConfiguration
+func (c *KinesisVideo) DescribeMediaStorageConfigurationRequest(input *DescribeMediaStorageConfigurationInput) (req *request.Request, output *DescribeMediaStorageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMediaStorageConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/describeMediaStorageConfiguration",
+	}
+
+	if input == nil {
+		input = &DescribeMediaStorageConfigurationInput{}
+	}
+
+	output = &DescribeMediaStorageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeMediaStorageConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Returns the most current information about the channel. Specify the ChannelName
+// or ChannelARN in the input.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation DescribeMediaStorageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeMediaStorageConfiguration
+func (c *KinesisVideo) DescribeMediaStorageConfiguration(input *DescribeMediaStorageConfigurationInput) (*DescribeMediaStorageConfigurationOutput, error) {
+	req, out := c.DescribeMediaStorageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMediaStorageConfigurationWithContext is the same as DescribeMediaStorageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMediaStorageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DescribeMediaStorageConfigurationWithContext(ctx aws.Context, input *DescribeMediaStorageConfigurationInput, opts ...request.Option) (*DescribeMediaStorageConfigurationOutput, error) {
+	req, out := c.DescribeMediaStorageConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeNotificationConfiguration = "DescribeNotificationConfiguration"
+
+// DescribeNotificationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeNotificationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeNotificationConfiguration for more information on using the DescribeNotificationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeNotificationConfigurationRequest method.
+//	req, resp := client.DescribeNotificationConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeNotificationConfiguration
+func (c *KinesisVideo) DescribeNotificationConfigurationRequest(input *DescribeNotificationConfigurationInput) (req *request.Request, output *DescribeNotificationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeNotificationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/describeNotificationConfiguration",
+	}
+
+	if input == nil {
+		input = &DescribeNotificationConfigurationInput{}
+	}
+
+	output = &DescribeNotificationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeNotificationConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Gets the NotificationConfiguration for a given Kinesis video stream.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation DescribeNotificationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeNotificationConfiguration
+func (c *KinesisVideo) DescribeNotificationConfiguration(input *DescribeNotificationConfigurationInput) (*DescribeNotificationConfigurationOutput, error) {
+	req, out := c.DescribeNotificationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeNotificationConfigurationWithContext is the same as DescribeNotificationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeNotificationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DescribeNotificationConfigurationWithContext(ctx aws.Context, input *DescribeNotificationConfigurationInput, opts ...request.Option) (*DescribeNotificationConfigurationOutput, error) {
+	req, out := c.DescribeNotificationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeSignalingChannel = "DescribeSignalingChannel"
 
 // DescribeSignalingChannelRequest generates a "aws/request.Request" representing the
@@ -446,14 +1106,13 @@ const opDescribeSignalingChannel = "DescribeSignalingChannel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSignalingChannelRequest method.
+//	req, resp := client.DescribeSignalingChannelRequest(params)
 //
-//    // Example sending a request using the DescribeSignalingChannelRequest method.
-//    req, resp := client.DescribeSignalingChannelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeSignalingChannel
 func (c *KinesisVideo) DescribeSignalingChannelRequest(input *DescribeSignalingChannelInput) (req *request.Request, output *DescribeSignalingChannelOutput) {
@@ -486,18 +1145,19 @@ func (c *KinesisVideo) DescribeSignalingChannelRequest(input *DescribeSignalingC
 // API operation DescribeSignalingChannel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to perform this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeSignalingChannel
 func (c *KinesisVideo) DescribeSignalingChannel(input *DescribeSignalingChannelInput) (*DescribeSignalingChannelOutput, error) {
@@ -537,14 +1197,13 @@ const opDescribeStream = "DescribeStream"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeStreamRequest method.
+//	req, resp := client.DescribeStreamRequest(params)
 //
-//    // Example sending a request using the DescribeStreamRequest method.
-//    req, resp := client.DescribeStreamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeStream
 func (c *KinesisVideo) DescribeStreamRequest(input *DescribeStreamInput) (req *request.Request, output *DescribeStreamOutput) {
@@ -576,18 +1235,19 @@ func (c *KinesisVideo) DescribeStreamRequest(input *DescribeStreamInput) (req *r
 // API operation DescribeStream for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeStream
 func (c *KinesisVideo) DescribeStream(input *DescribeStreamInput) (*DescribeStreamOutput, error) {
@@ -627,14 +1287,13 @@ const opGetDataEndpoint = "GetDataEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDataEndpointRequest method.
+//	req, resp := client.GetDataEndpointRequest(params)
 //
-//    // Example sending a request using the GetDataEndpointRequest method.
-//    req, resp := client.GetDataEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/GetDataEndpoint
 func (c *KinesisVideo) GetDataEndpointRequest(input *GetDataEndpointInput) (req *request.Request, output *GetDataEndpointOutput) {
@@ -673,18 +1332,19 @@ func (c *KinesisVideo) GetDataEndpointRequest(input *GetDataEndpointInput) (req 
 // API operation GetDataEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/GetDataEndpoint
 func (c *KinesisVideo) GetDataEndpoint(input *GetDataEndpointInput) (*GetDataEndpointOutput, error) {
@@ -724,14 +1384,13 @@ const opGetSignalingChannelEndpoint = "GetSignalingChannelEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSignalingChannelEndpointRequest method.
+//	req, resp := client.GetSignalingChannelEndpointRequest(params)
 //
-//    // Example sending a request using the GetSignalingChannelEndpointRequest method.
-//    req, resp := client.GetSignalingChannelEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/GetSignalingChannelEndpoint
 func (c *KinesisVideo) GetSignalingChannelEndpointRequest(input *GetSignalingChannelEndpointInput) (req *request.Request, output *GetSignalingChannelEndpointOutput) {
@@ -774,21 +1433,33 @@ func (c *KinesisVideo) GetSignalingChannelEndpointRequest(input *GetSignalingCha
 // API operation GetSignalingChannelEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * ResourceInUseException
-//   The signaling channel is currently not available for this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to perform this operation.
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
+//
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/GetSignalingChannelEndpoint
 func (c *KinesisVideo) GetSignalingChannelEndpoint(input *GetSignalingChannelEndpointInput) (*GetSignalingChannelEndpointOutput, error) {
@@ -812,6 +1483,152 @@ func (c *KinesisVideo) GetSignalingChannelEndpointWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opListEdgeAgentConfigurations = "ListEdgeAgentConfigurations"
+
+// ListEdgeAgentConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEdgeAgentConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEdgeAgentConfigurations for more information on using the ListEdgeAgentConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEdgeAgentConfigurationsRequest method.
+//	req, resp := client.ListEdgeAgentConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListEdgeAgentConfigurations
+func (c *KinesisVideo) ListEdgeAgentConfigurationsRequest(input *ListEdgeAgentConfigurationsInput) (req *request.Request, output *ListEdgeAgentConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListEdgeAgentConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/listEdgeAgentConfigurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEdgeAgentConfigurationsInput{}
+	}
+
+	output = &ListEdgeAgentConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEdgeAgentConfigurations API operation for Amazon Kinesis Video Streams.
+//
+// Returns an array of edge configurations associated with the specified Edge
+// Agent.
+//
+// In the request, you must specify the Edge Agent HubDeviceArn.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation ListEdgeAgentConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListEdgeAgentConfigurations
+func (c *KinesisVideo) ListEdgeAgentConfigurations(input *ListEdgeAgentConfigurationsInput) (*ListEdgeAgentConfigurationsOutput, error) {
+	req, out := c.ListEdgeAgentConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListEdgeAgentConfigurationsWithContext is the same as ListEdgeAgentConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEdgeAgentConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) ListEdgeAgentConfigurationsWithContext(ctx aws.Context, input *ListEdgeAgentConfigurationsInput, opts ...request.Option) (*ListEdgeAgentConfigurationsOutput, error) {
+	req, out := c.ListEdgeAgentConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEdgeAgentConfigurationsPages iterates over the pages of a ListEdgeAgentConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEdgeAgentConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEdgeAgentConfigurations operation.
+//	pageNum := 0
+//	err := client.ListEdgeAgentConfigurationsPages(params,
+//	    func(page *kinesisvideo.ListEdgeAgentConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *KinesisVideo) ListEdgeAgentConfigurationsPages(input *ListEdgeAgentConfigurationsInput, fn func(*ListEdgeAgentConfigurationsOutput, bool) bool) error {
+	return c.ListEdgeAgentConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEdgeAgentConfigurationsPagesWithContext same as ListEdgeAgentConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) ListEdgeAgentConfigurationsPagesWithContext(ctx aws.Context, input *ListEdgeAgentConfigurationsInput, fn func(*ListEdgeAgentConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEdgeAgentConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEdgeAgentConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEdgeAgentConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSignalingChannels = "ListSignalingChannels"
 
 // ListSignalingChannelsRequest generates a "aws/request.Request" representing the
@@ -828,14 +1645,13 @@ const opListSignalingChannels = "ListSignalingChannels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSignalingChannelsRequest method.
+//	req, resp := client.ListSignalingChannelsRequest(params)
 //
-//    // Example sending a request using the ListSignalingChannelsRequest method.
-//    req, resp := client.ListSignalingChannelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListSignalingChannels
 func (c *KinesisVideo) ListSignalingChannelsRequest(input *ListSignalingChannelsInput) (req *request.Request, output *ListSignalingChannelsOutput) {
@@ -874,15 +1690,16 @@ func (c *KinesisVideo) ListSignalingChannelsRequest(input *ListSignalingChannels
 // API operation ListSignalingChannels for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to perform this operation.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListSignalingChannels
 func (c *KinesisVideo) ListSignalingChannels(input *ListSignalingChannelsInput) (*ListSignalingChannelsOutput, error) {
@@ -914,15 +1731,14 @@ func (c *KinesisVideo) ListSignalingChannelsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSignalingChannels operation.
-//    pageNum := 0
-//    err := client.ListSignalingChannelsPages(params,
-//        func(page *kinesisvideo.ListSignalingChannelsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSignalingChannels operation.
+//	pageNum := 0
+//	err := client.ListSignalingChannelsPages(params,
+//	    func(page *kinesisvideo.ListSignalingChannelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *KinesisVideo) ListSignalingChannelsPages(input *ListSignalingChannelsInput, fn func(*ListSignalingChannelsOutput, bool) bool) error {
 	return c.ListSignalingChannelsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -974,14 +1790,13 @@ const opListStreams = "ListStreams"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListStreamsRequest method.
+//	req, resp := client.ListStreamsRequest(params)
 //
-//    // Example sending a request using the ListStreamsRequest method.
-//    req, resp := client.ListStreamsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListStreams
 func (c *KinesisVideo) ListStreamsRequest(input *ListStreamsInput) (req *request.Request, output *ListStreamsOutput) {
@@ -1020,12 +1835,13 @@ func (c *KinesisVideo) ListStreamsRequest(input *ListStreamsInput) (req *request
 // API operation ListStreams for usage and error information.
 //
 // Returned Error Types:
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListStreams
 func (c *KinesisVideo) ListStreams(input *ListStreamsInput) (*ListStreamsOutput, error) {
@@ -1057,15 +1873,14 @@ func (c *KinesisVideo) ListStreamsWithContext(ctx aws.Context, input *ListStream
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListStreams operation.
-//    pageNum := 0
-//    err := client.ListStreamsPages(params,
-//        func(page *kinesisvideo.ListStreamsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListStreams operation.
+//	pageNum := 0
+//	err := client.ListStreamsPages(params,
+//	    func(page *kinesisvideo.ListStreamsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *KinesisVideo) ListStreamsPages(input *ListStreamsInput, fn func(*ListStreamsOutput, bool) bool) error {
 	return c.ListStreamsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1117,14 +1932,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListTagsForResource
 func (c *KinesisVideo) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1155,18 +1969,19 @@ func (c *KinesisVideo) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to perform this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListTagsForResource
 func (c *KinesisVideo) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1206,14 +2021,13 @@ const opListTagsForStream = "ListTagsForStream"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForStreamRequest method.
+//	req, resp := client.ListTagsForStreamRequest(params)
 //
-//    // Example sending a request using the ListTagsForStreamRequest method.
-//    req, resp := client.ListTagsForStreamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListTagsForStream
 func (c *KinesisVideo) ListTagsForStreamRequest(input *ListTagsForStreamInput) (req *request.Request, output *ListTagsForStreamOutput) {
@@ -1246,21 +2060,22 @@ func (c *KinesisVideo) ListTagsForStreamRequest(input *ListTagsForStreamInput) (
 // API operation ListTagsForStream for usage and error information.
 //
 // Returned Error Types:
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * InvalidResourceFormatException
-//   The format of the StreamARN is invalid.
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
+//
+//   - InvalidResourceFormatException
+//     The format of the StreamARN is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/ListTagsForStream
 func (c *KinesisVideo) ListTagsForStream(input *ListTagsForStreamInput) (*ListTagsForStreamOutput, error) {
@@ -1284,6 +2099,130 @@ func (c *KinesisVideo) ListTagsForStreamWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
+const opStartEdgeConfigurationUpdate = "StartEdgeConfigurationUpdate"
+
+// StartEdgeConfigurationUpdateRequest generates a "aws/request.Request" representing the
+// client's request for the StartEdgeConfigurationUpdate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartEdgeConfigurationUpdate for more information on using the StartEdgeConfigurationUpdate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartEdgeConfigurationUpdateRequest method.
+//	req, resp := client.StartEdgeConfigurationUpdateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/StartEdgeConfigurationUpdate
+func (c *KinesisVideo) StartEdgeConfigurationUpdateRequest(input *StartEdgeConfigurationUpdateInput) (req *request.Request, output *StartEdgeConfigurationUpdateOutput) {
+	op := &request.Operation{
+		Name:       opStartEdgeConfigurationUpdate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/startEdgeConfigurationUpdate",
+	}
+
+	if input == nil {
+		input = &StartEdgeConfigurationUpdateInput{}
+	}
+
+	output = &StartEdgeConfigurationUpdateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartEdgeConfigurationUpdate API operation for Amazon Kinesis Video Streams.
+//
+// An asynchronous API that updates a stream’s existing edge configuration.
+// The Kinesis Video Stream will sync the stream’s edge configuration with
+// the Edge Agent IoT Greengrass component that runs on an IoT Hub Device, setup
+// at your premise. The time to sync can vary and depends on the connectivity
+// of the Hub Device. The SyncStatus will be updated as the edge configuration
+// is acknowledged, and synced with the Edge Agent.
+//
+// If this API is invoked for the first time, a new edge configuration will
+// be created for the stream, and the sync status will be set to SYNCING. You
+// will have to wait for the sync status to reach a terminal state such as:
+// IN_SYNC, or SYNC_FAILED, before using this API again. If you invoke this
+// API during the syncing process, a ResourceInUseException will be thrown.
+// The connectivity of the stream’s edge configuration and the Edge Agent
+// will be retried for 15 minutes. After 15 minutes, the status will transition
+// into the SYNC_FAILED state.
+//
+// To move an edge configuration from one device to another, use DeleteEdgeConfiguration
+// to delete the current edge configuration. You can then invoke StartEdgeConfigurationUpdate
+// with an updated Hub Device ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation StartEdgeConfigurationUpdate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - NoDataRetentionException
+//     The Stream data retention in hours is equal to zero.
+//
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
+//
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/StartEdgeConfigurationUpdate
+func (c *KinesisVideo) StartEdgeConfigurationUpdate(input *StartEdgeConfigurationUpdateInput) (*StartEdgeConfigurationUpdateOutput, error) {
+	req, out := c.StartEdgeConfigurationUpdateRequest(input)
+	return out, req.Send()
+}
+
+// StartEdgeConfigurationUpdateWithContext is the same as StartEdgeConfigurationUpdate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartEdgeConfigurationUpdate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) StartEdgeConfigurationUpdateWithContext(ctx aws.Context, input *StartEdgeConfigurationUpdateInput, opts ...request.Option) (*StartEdgeConfigurationUpdateOutput, error) {
+	req, out := c.StartEdgeConfigurationUpdateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -1300,14 +2239,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/TagResource
 func (c *KinesisVideo) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1330,11 +2268,11 @@ func (c *KinesisVideo) TagResourceRequest(input *TagResourceInput) (req *request
 // TagResource API operation for Amazon Kinesis Video Streams.
 //
 // Adds one or more tags to a signaling channel. A tag is a key-value pair (the
-// value is optional) that you can define and assign to AWS resources. If you
-// specify a tag that already exists, the tag value is replaced with the value
-// that you specify in the request. For more information, see Using Cost Allocation
-// Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
-// in the AWS Billing and Cost Management User Guide.
+// value is optional) that you can define and assign to Amazon Web Services
+// resources. If you specify a tag that already exists, the tag value is replaced
+// with the value that you specify in the request. For more information, see
+// Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
+// in the Billing and Cost Management and Cost Management User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1344,22 +2282,23 @@ func (c *KinesisVideo) TagResourceRequest(input *TagResourceInput) (req *request
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to perform this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * TagsPerResourceExceededLimitException
-//   You have exceeded the limit of tags that you can associate with the resource.
-//   Kinesis video streams support up to 50 tags.
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - TagsPerResourceExceededLimitException
+//     You have exceeded the limit of tags that you can associate with the resource.
+//     A Kinesis video stream can support up to 50 tags.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/TagResource
 func (c *KinesisVideo) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1399,14 +2338,13 @@ const opTagStream = "TagStream"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagStreamRequest method.
+//	req, resp := client.TagStreamRequest(params)
 //
-//    // Example sending a request using the TagStreamRequest method.
-//    req, resp := client.TagStreamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/TagStream
 func (c *KinesisVideo) TagStreamRequest(input *TagStreamInput) (req *request.Request, output *TagStreamOutput) {
@@ -1429,17 +2367,17 @@ func (c *KinesisVideo) TagStreamRequest(input *TagStreamInput) (req *request.Req
 // TagStream API operation for Amazon Kinesis Video Streams.
 //
 // Adds one or more tags to a stream. A tag is a key-value pair (the value is
-// optional) that you can define and assign to AWS resources. If you specify
-// a tag that already exists, the tag value is replaced with the value that
-// you specify in the request. For more information, see Using Cost Allocation
-// Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
-// in the AWS Billing and Cost Management User Guide.
+// optional) that you can define and assign to Amazon Web Services resources.
+// If you specify a tag that already exists, the tag value is replaced with
+// the value that you specify in the request. For more information, see Using
+// Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
+// in the Billing and Cost Management and Cost Management User Guide.
 //
 // You must provide either the StreamName or the StreamARN.
 //
 // This operation requires permission for the KinesisVideo:TagStream action.
 //
-// Kinesis video streams support up to 50 tags.
+// A Kinesis video stream can support up to 50 tags.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1449,25 +2387,26 @@ func (c *KinesisVideo) TagStreamRequest(input *TagStreamInput) (req *request.Req
 // API operation TagStream for usage and error information.
 //
 // Returned Error Types:
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * InvalidResourceFormatException
-//   The format of the StreamARN is invalid.
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
 //
-//   * TagsPerResourceExceededLimitException
-//   You have exceeded the limit of tags that you can associate with the resource.
-//   Kinesis video streams support up to 50 tags.
+//   - InvalidResourceFormatException
+//     The format of the StreamARN is invalid.
+//
+//   - TagsPerResourceExceededLimitException
+//     You have exceeded the limit of tags that you can associate with the resource.
+//     A Kinesis video stream can support up to 50 tags.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/TagStream
 func (c *KinesisVideo) TagStream(input *TagStreamInput) (*TagStreamOutput, error) {
@@ -1507,14 +2446,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UntagResource
 func (c *KinesisVideo) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1548,18 +2486,19 @@ func (c *KinesisVideo) UntagResourceRequest(input *UntagResourceInput) (req *req
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to perform this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UntagResource
 func (c *KinesisVideo) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1599,14 +2538,13 @@ const opUntagStream = "UntagStream"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagStreamRequest method.
+//	req, resp := client.UntagStreamRequest(params)
 //
-//    // Example sending a request using the UntagStreamRequest method.
-//    req, resp := client.UntagStreamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UntagStream
 func (c *KinesisVideo) UntagStreamRequest(input *UntagStreamInput) (req *request.Request, output *UntagStreamOutput) {
@@ -1642,21 +2580,22 @@ func (c *KinesisVideo) UntagStreamRequest(input *UntagStreamInput) (req *request
 // API operation UntagStream for usage and error information.
 //
 // Returned Error Types:
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * InvalidResourceFormatException
-//   The format of the StreamARN is invalid.
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
+//
+//   - InvalidResourceFormatException
+//     The format of the StreamARN is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UntagStream
 func (c *KinesisVideo) UntagStream(input *UntagStreamInput) (*UntagStreamOutput, error) {
@@ -1696,14 +2635,13 @@ const opUpdateDataRetention = "UpdateDataRetention"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDataRetentionRequest method.
+//	req, resp := client.UpdateDataRetentionRequest(params)
 //
-//    // Example sending a request using the UpdateDataRetentionRequest method.
-//    req, resp := client.UpdateDataRetentionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateDataRetention
 func (c *KinesisVideo) UpdateDataRetentionRequest(input *UpdateDataRetentionInput) (req *request.Request, output *UpdateDataRetentionOutput) {
@@ -1730,22 +2668,20 @@ func (c *KinesisVideo) UpdateDataRetentionRequest(input *UpdateDataRetentionInpu
 // retention period, specify the Operation parameter in the request body. In
 // the request, you must specify either the StreamName or the StreamARN.
 //
-// The retention period that you specify replaces the current value.
-//
 // This operation requires permission for the KinesisVideo:UpdateDataRetention
 // action.
 //
 // Changing the data retention period affects the data in the stream as follows:
 //
-//    * If the data retention period is increased, existing data is retained
-//    for the new retention period. For example, if the data retention period
-//    is increased from one hour to seven hours, all existing data is retained
-//    for seven hours.
+//   - If the data retention period is increased, existing data is retained
+//     for the new retention period. For example, if the data retention period
+//     is increased from one hour to seven hours, all existing data is retained
+//     for seven hours.
 //
-//    * If the data retention period is decreased, existing data is retained
-//    for the new retention period. For example, if the data retention period
-//    is decreased from seven hours to one hour, all existing data is retained
-//    for one hour, and any data older than one hour is deleted immediately.
+//   - If the data retention period is decreased, existing data is retained
+//     for the new retention period. For example, if the data retention period
+//     is decreased from seven hours to one hour, all existing data is retained
+//     for one hour, and any data older than one hour is deleted immediately.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1755,26 +2691,38 @@ func (c *KinesisVideo) UpdateDataRetentionRequest(input *UpdateDataRetentionInpu
 // API operation UpdateDataRetention for usage and error information.
 //
 // Returned Error Types:
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ResourceInUseException
-//   The signaling channel is currently not available for this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//   * VersionMismatchException
-//   The stream version that you specified is not the latest version. To get the
-//   latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
-//   API.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
+//
+//   - VersionMismatchException
+//     The stream version that you specified is not the latest version. To get the
+//     latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
+//     API.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateDataRetention
 func (c *KinesisVideo) UpdateDataRetention(input *UpdateDataRetentionInput) (*UpdateDataRetentionOutput, error) {
@@ -1798,6 +2746,340 @@ func (c *KinesisVideo) UpdateDataRetentionWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
+const opUpdateImageGenerationConfiguration = "UpdateImageGenerationConfiguration"
+
+// UpdateImageGenerationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateImageGenerationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateImageGenerationConfiguration for more information on using the UpdateImageGenerationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateImageGenerationConfigurationRequest method.
+//	req, resp := client.UpdateImageGenerationConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateImageGenerationConfiguration
+func (c *KinesisVideo) UpdateImageGenerationConfigurationRequest(input *UpdateImageGenerationConfigurationInput) (req *request.Request, output *UpdateImageGenerationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateImageGenerationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/updateImageGenerationConfiguration",
+	}
+
+	if input == nil {
+		input = &UpdateImageGenerationConfigurationInput{}
+	}
+
+	output = &UpdateImageGenerationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateImageGenerationConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Updates the StreamInfo and ImageProcessingConfiguration fields.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation UpdateImageGenerationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
+//
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - NoDataRetentionException
+//     The Stream data retention in hours is equal to zero.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateImageGenerationConfiguration
+func (c *KinesisVideo) UpdateImageGenerationConfiguration(input *UpdateImageGenerationConfigurationInput) (*UpdateImageGenerationConfigurationOutput, error) {
+	req, out := c.UpdateImageGenerationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateImageGenerationConfigurationWithContext is the same as UpdateImageGenerationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateImageGenerationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) UpdateImageGenerationConfigurationWithContext(ctx aws.Context, input *UpdateImageGenerationConfigurationInput, opts ...request.Option) (*UpdateImageGenerationConfigurationOutput, error) {
+	req, out := c.UpdateImageGenerationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateMediaStorageConfiguration = "UpdateMediaStorageConfiguration"
+
+// UpdateMediaStorageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMediaStorageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMediaStorageConfiguration for more information on using the UpdateMediaStorageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateMediaStorageConfigurationRequest method.
+//	req, resp := client.UpdateMediaStorageConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateMediaStorageConfiguration
+func (c *KinesisVideo) UpdateMediaStorageConfigurationRequest(input *UpdateMediaStorageConfigurationInput) (req *request.Request, output *UpdateMediaStorageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMediaStorageConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/updateMediaStorageConfiguration",
+	}
+
+	if input == nil {
+		input = &UpdateMediaStorageConfigurationInput{}
+	}
+
+	output = &UpdateMediaStorageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateMediaStorageConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Associates a SignalingChannel to a stream to store the media. There are two
+// signaling modes that you can specify :
+//
+//   - If StorageStatus is enabled, the data will be stored in the StreamARN
+//     provided. In order for WebRTC Ingestion to work, the stream must have
+//     data retention enabled.
+//
+//   - If StorageStatus is disabled, no data will be stored, and the StreamARN
+//     parameter will not be needed.
+//
+// If StorageStatus is enabled, direct peer-to-peer (master-viewer) connections
+// no longer occur. Peers connect directly to the storage session. You must
+// call the JoinStorageSession API to trigger an SDP offer send and establish
+// a connection between a peer and the storage session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation UpdateMediaStorageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
+//
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - NoDataRetentionException
+//     The Stream data retention in hours is equal to zero.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateMediaStorageConfiguration
+func (c *KinesisVideo) UpdateMediaStorageConfiguration(input *UpdateMediaStorageConfigurationInput) (*UpdateMediaStorageConfigurationOutput, error) {
+	req, out := c.UpdateMediaStorageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMediaStorageConfigurationWithContext is the same as UpdateMediaStorageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMediaStorageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) UpdateMediaStorageConfigurationWithContext(ctx aws.Context, input *UpdateMediaStorageConfigurationInput, opts ...request.Option) (*UpdateMediaStorageConfigurationOutput, error) {
+	req, out := c.UpdateMediaStorageConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateNotificationConfiguration = "UpdateNotificationConfiguration"
+
+// UpdateNotificationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateNotificationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateNotificationConfiguration for more information on using the UpdateNotificationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateNotificationConfigurationRequest method.
+//	req, resp := client.UpdateNotificationConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateNotificationConfiguration
+func (c *KinesisVideo) UpdateNotificationConfigurationRequest(input *UpdateNotificationConfigurationInput) (req *request.Request, output *UpdateNotificationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateNotificationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/updateNotificationConfiguration",
+	}
+
+	if input == nil {
+		input = &UpdateNotificationConfigurationInput{}
+	}
+
+	output = &UpdateNotificationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateNotificationConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Updates the notification information for a stream.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation UpdateNotificationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
+//
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - NoDataRetentionException
+//     The Stream data retention in hours is equal to zero.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateNotificationConfiguration
+func (c *KinesisVideo) UpdateNotificationConfiguration(input *UpdateNotificationConfigurationInput) (*UpdateNotificationConfigurationOutput, error) {
+	req, out := c.UpdateNotificationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateNotificationConfigurationWithContext is the same as UpdateNotificationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateNotificationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) UpdateNotificationConfigurationWithContext(ctx aws.Context, input *UpdateNotificationConfigurationInput, opts ...request.Option) (*UpdateNotificationConfigurationOutput, error) {
+	req, out := c.UpdateNotificationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSignalingChannel = "UpdateSignalingChannel"
 
 // UpdateSignalingChannelRequest generates a "aws/request.Request" representing the
@@ -1814,14 +3096,13 @@ const opUpdateSignalingChannel = "UpdateSignalingChannel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSignalingChannelRequest method.
+//	req, resp := client.UpdateSignalingChannelRequest(params)
 //
-//    // Example sending a request using the UpdateSignalingChannelRequest method.
-//    req, resp := client.UpdateSignalingChannelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateSignalingChannel
 func (c *KinesisVideo) UpdateSignalingChannelRequest(input *UpdateSignalingChannelInput) (req *request.Request, output *UpdateSignalingChannelOutput) {
@@ -1859,26 +3140,38 @@ func (c *KinesisVideo) UpdateSignalingChannelRequest(input *UpdateSignalingChann
 // API operation UpdateSignalingChannel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
 //
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * ResourceInUseException
-//   The signaling channel is currently not available for this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to perform this operation.
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//   * VersionMismatchException
-//   The stream version that you specified is not the latest version. To get the
-//   latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
-//   API.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - VersionMismatchException
+//     The stream version that you specified is not the latest version. To get the
+//     latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
+//     API.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateSignalingChannel
 func (c *KinesisVideo) UpdateSignalingChannel(input *UpdateSignalingChannelInput) (*UpdateSignalingChannelOutput, error) {
@@ -1918,14 +3211,13 @@ const opUpdateStream = "UpdateStream"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateStreamRequest method.
+//	req, resp := client.UpdateStreamRequest(params)
 //
-//    // Example sending a request using the UpdateStreamRequest method.
-//    req, resp := client.UpdateStreamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateStream
 func (c *KinesisVideo) UpdateStreamRequest(input *UpdateStreamInput) (req *request.Request, output *UpdateStreamOutput) {
@@ -1968,26 +3260,38 @@ func (c *KinesisVideo) UpdateStreamRequest(input *UpdateStreamInput) (req *reque
 // API operation UpdateStream for usage and error information.
 //
 // Returned Error Types:
-//   * ClientLimitExceededException
-//   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
 //
-//   * InvalidArgumentException
-//   The value for this input parameter is invalid.
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
 //
-//   * ResourceNotFoundException
-//   Amazon Kinesis Video Streams can't find the stream that you specified.
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
 //
-//   * ResourceInUseException
-//   The signaling channel is currently not available for this operation.
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
-//   * NotAuthorizedException
-//   The caller is not authorized to perform this operation.
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//   * VersionMismatchException
-//   The stream version that you specified is not the latest version. To get the
-//   latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
-//   API.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - NotAuthorizedException
+//     The caller is not authorized to perform this operation.
+//
+//   - VersionMismatchException
+//     The stream version that you specified is not the latest version. To get the
+//     latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
+//     API.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateStream
 func (c *KinesisVideo) UpdateStream(input *UpdateStreamInput) (*UpdateStreamOutput, error) {
@@ -2019,12 +3323,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -2068,7 +3380,7 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 // You have reached the maximum limit of active signaling channels for this
-// AWS account in this region.
+// Amazon Web Services account in this region.
 type AccountChannelLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2076,12 +3388,20 @@ type AccountChannelLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountChannelLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountChannelLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -2132,12 +3452,20 @@ type AccountStreamLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountStreamLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountStreamLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -2207,12 +3535,20 @@ type ChannelInfo struct {
 	Version *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChannelInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChannelInfo) GoString() string {
 	return s.String()
 }
@@ -2273,12 +3609,20 @@ type ChannelNameCondition struct {
 	ComparisonValue *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChannelNameCondition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChannelNameCondition) GoString() string {
 	return s.String()
 }
@@ -2317,12 +3661,20 @@ type ClientLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -2369,7 +3721,7 @@ type CreateSignalingChannelInput struct {
 	_ struct{} `type:"structure"`
 
 	// A name for the signaling channel that you are creating. It must be unique
-	// for each AWS account and AWS Region.
+	// for each Amazon Web Services account and Amazon Web Services Region.
 	//
 	// ChannelName is a required field
 	ChannelName *string `min:"1" type:"string" required:"true"`
@@ -2385,12 +3737,20 @@ type CreateSignalingChannelInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSignalingChannelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSignalingChannelInput) GoString() string {
 	return s.String()
 }
@@ -2457,12 +3817,20 @@ type CreateSignalingChannelOutput struct {
 	ChannelARN *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSignalingChannelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSignalingChannelOutput) GoString() string {
 	return s.String()
 }
@@ -2493,11 +3861,11 @@ type CreateStreamInput struct {
 	// In the current implementation, Kinesis Video Streams does not use this name.
 	DeviceName *string `min:"1" type:"string"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key that you want Kinesis
-	// Video Streams to use to encrypt stream data.
+	// The ID of the Key Management Service (KMS) key that you want Kinesis Video
+	// Streams to use to encrypt stream data.
 	//
-	// If no key ID is specified, the default, Kinesis Video-managed key (aws/kinesisvideo)
-	// is used.
+	// If no key ID is specified, the default, Kinesis Video-managed key (Amazon
+	// Web Services/kinesisvideo) is used.
 	//
 	// For more information, see DescribeKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters).
 	KmsKeyId *string `min:"1" type:"string"`
@@ -2526,12 +3894,20 @@ type CreateStreamInput struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStreamInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStreamInput) GoString() string {
 	return s.String()
 }
@@ -2607,12 +3983,20 @@ type CreateStreamOutput struct {
 	StreamARN *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStreamOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStreamOutput) GoString() string {
 	return s.String()
 }
@@ -2621,6 +4005,86 @@ func (s CreateStreamOutput) GoString() string {
 func (s *CreateStreamOutput) SetStreamARN(v string) *CreateStreamOutput {
 	s.StreamARN = &v
 	return s
+}
+
+type DeleteEdgeConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the stream. Specify either the StreamName
+	// or the StreamARN.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which to delete the edge configuration. Specify
+	// either the StreamName or the StreamARN.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEdgeConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEdgeConfigurationInput"}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *DeleteEdgeConfigurationInput) SetStreamARN(v string) *DeleteEdgeConfigurationInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DeleteEdgeConfigurationInput) SetStreamName(v string) *DeleteEdgeConfigurationInput {
+	s.StreamName = &v
+	return s
+}
+
+type DeleteEdgeConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSignalingChannelInput struct {
@@ -2638,12 +4102,20 @@ type DeleteSignalingChannelInput struct {
 	CurrentVersion *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSignalingChannelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSignalingChannelInput) GoString() string {
 	return s.String()
 }
@@ -2683,12 +4155,20 @@ type DeleteSignalingChannelOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSignalingChannelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSignalingChannelOutput) GoString() string {
 	return s.String()
 }
@@ -2710,12 +4190,20 @@ type DeleteStreamInput struct {
 	StreamARN *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStreamInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStreamInput) GoString() string {
 	return s.String()
 }
@@ -2755,14 +4243,647 @@ type DeleteStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStreamOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStreamOutput) GoString() string {
 	return s.String()
+}
+
+// The configuration details required to delete the connection of the stream
+// from the Edge Agent.
+type DeletionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The boolean value used to indicate whether or not you want to mark the media
+	// for deletion, once it has been uploaded to the Kinesis Video Stream cloud.
+	// The media files can be deleted if any of the deletion configuration values
+	// are set to true, such as when the limit for the EdgeRetentionInHours, or
+	// the MaxLocalMediaSizeInMB, has been reached.
+	//
+	// Since the default value is set to true, configure the uploader schedule such
+	// that the media files are not being deleted before they are initially uploaded
+	// to the Amazon Web Services cloud.
+	DeleteAfterUpload *bool `type:"boolean"`
+
+	// The number of hours that you want to retain the data in the stream on the
+	// Edge Agent. The default value of the retention time is 720 hours, which translates
+	// to 30 days.
+	EdgeRetentionInHours *int64 `min:"1" type:"integer"`
+
+	// The value of the local size required in order to delete the edge configuration.
+	LocalSizeConfig *LocalSizeConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletionConfig"}
+	if s.EdgeRetentionInHours != nil && *s.EdgeRetentionInHours < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EdgeRetentionInHours", 1))
+	}
+	if s.LocalSizeConfig != nil {
+		if err := s.LocalSizeConfig.Validate(); err != nil {
+			invalidParams.AddNested("LocalSizeConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeleteAfterUpload sets the DeleteAfterUpload field's value.
+func (s *DeletionConfig) SetDeleteAfterUpload(v bool) *DeletionConfig {
+	s.DeleteAfterUpload = &v
+	return s
+}
+
+// SetEdgeRetentionInHours sets the EdgeRetentionInHours field's value.
+func (s *DeletionConfig) SetEdgeRetentionInHours(v int64) *DeletionConfig {
+	s.EdgeRetentionInHours = &v
+	return s
+}
+
+// SetLocalSizeConfig sets the LocalSizeConfig field's value.
+func (s *DeletionConfig) SetLocalSizeConfig(v *LocalSizeConfig) *DeletionConfig {
+	s.LocalSizeConfig = v
+	return s
+}
+
+type DescribeEdgeConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the stream. Specify either the StreamNameor
+	// the StreamARN.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream whose edge configuration you want to update. Specify
+	// either the StreamName or the StreamARN.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEdgeConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEdgeConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEdgeConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEdgeConfigurationInput"}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *DescribeEdgeConfigurationInput) SetStreamARN(v string) *DescribeEdgeConfigurationInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DescribeEdgeConfigurationInput) SetStreamName(v string) *DescribeEdgeConfigurationInput {
+	s.StreamName = &v
+	return s
+}
+
+type DescribeEdgeConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp at which a stream’s edge configuration was first created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// An object that contains the latest status details for an edge agent's recorder
+	// and uploader jobs. Use this information to determine the current health of
+	// an edge agent.
+	EdgeAgentStatus *EdgeAgentStatus `type:"structure"`
+
+	// A description of the stream's edge configuration that will be used to sync
+	// with the Edge Agent IoT Greengrass component. The Edge Agent component will
+	// run on an IoT Hub Device setup at your premise.
+	EdgeConfig *EdgeConfig `type:"structure"`
+
+	// A description of the generated failure status.
+	FailedStatusDetails *string `type:"string"`
+
+	// The timestamp at which a stream’s edge configuration was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the stream.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which the edge configuration was updated.
+	StreamName *string `min:"1" type:"string"`
+
+	// The latest status of the edge configuration update.
+	SyncStatus *string `type:"string" enum:"SyncStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEdgeConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEdgeConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeEdgeConfigurationOutput) SetCreationTime(v time.Time) *DescribeEdgeConfigurationOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEdgeAgentStatus sets the EdgeAgentStatus field's value.
+func (s *DescribeEdgeConfigurationOutput) SetEdgeAgentStatus(v *EdgeAgentStatus) *DescribeEdgeConfigurationOutput {
+	s.EdgeAgentStatus = v
+	return s
+}
+
+// SetEdgeConfig sets the EdgeConfig field's value.
+func (s *DescribeEdgeConfigurationOutput) SetEdgeConfig(v *EdgeConfig) *DescribeEdgeConfigurationOutput {
+	s.EdgeConfig = v
+	return s
+}
+
+// SetFailedStatusDetails sets the FailedStatusDetails field's value.
+func (s *DescribeEdgeConfigurationOutput) SetFailedStatusDetails(v string) *DescribeEdgeConfigurationOutput {
+	s.FailedStatusDetails = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *DescribeEdgeConfigurationOutput) SetLastUpdatedTime(v time.Time) *DescribeEdgeConfigurationOutput {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *DescribeEdgeConfigurationOutput) SetStreamARN(v string) *DescribeEdgeConfigurationOutput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DescribeEdgeConfigurationOutput) SetStreamName(v string) *DescribeEdgeConfigurationOutput {
+	s.StreamName = &v
+	return s
+}
+
+// SetSyncStatus sets the SyncStatus field's value.
+func (s *DescribeEdgeConfigurationOutput) SetSyncStatus(v string) *DescribeEdgeConfigurationOutput {
+	s.SyncStatus = &v
+	return s
+}
+
+type DescribeImageGenerationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Kinesis video stream from which to
+	// retrieve the image generation configuration. You must specify either the
+	// StreamName or the StreamARN.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which to retrieve the image generation configuration.
+	// You must specify either the StreamName or the StreamARN.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeImageGenerationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeImageGenerationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeImageGenerationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeImageGenerationConfigurationInput"}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *DescribeImageGenerationConfigurationInput) SetStreamARN(v string) *DescribeImageGenerationConfigurationInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DescribeImageGenerationConfigurationInput) SetStreamName(v string) *DescribeImageGenerationConfigurationInput {
+	s.StreamName = &v
+	return s
+}
+
+type DescribeImageGenerationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The structure that contains the information required for the Kinesis video
+	// stream (KVS) images delivery. If this structure is null, the configuration
+	// will be deleted from the stream.
+	ImageGenerationConfiguration *ImageGenerationConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeImageGenerationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeImageGenerationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetImageGenerationConfiguration sets the ImageGenerationConfiguration field's value.
+func (s *DescribeImageGenerationConfigurationOutput) SetImageGenerationConfiguration(v *ImageGenerationConfiguration) *DescribeImageGenerationConfigurationOutput {
+	s.ImageGenerationConfiguration = v
+	return s
+}
+
+type DescribeMappedResourceConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to provide in your next request, to get another batch of results.
+	NextToken *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the stream.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMappedResourceConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMappedResourceConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMappedResourceConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMappedResourceConfigurationInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeMappedResourceConfigurationInput) SetMaxResults(v int64) *DescribeMappedResourceConfigurationInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMappedResourceConfigurationInput) SetNextToken(v string) *DescribeMappedResourceConfigurationInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *DescribeMappedResourceConfigurationInput) SetStreamARN(v string) *DescribeMappedResourceConfigurationInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DescribeMappedResourceConfigurationInput) SetStreamName(v string) *DescribeMappedResourceConfigurationInput {
+	s.StreamName = &v
+	return s
+}
+
+type DescribeMappedResourceConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that encapsulates, or contains, the media storage configuration
+	// properties.
+	MappedResourceConfigurationList []*MappedResourceConfigurationListItem `type:"list"`
+
+	// The token that was used in the NextTokenrequest to fetch the next set of
+	// results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMappedResourceConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMappedResourceConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetMappedResourceConfigurationList sets the MappedResourceConfigurationList field's value.
+func (s *DescribeMappedResourceConfigurationOutput) SetMappedResourceConfigurationList(v []*MappedResourceConfigurationListItem) *DescribeMappedResourceConfigurationOutput {
+	s.MappedResourceConfigurationList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMappedResourceConfigurationOutput) SetNextToken(v string) *DescribeMappedResourceConfigurationOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeMediaStorageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the channel.
+	ChannelARN *string `min:"1" type:"string"`
+
+	// The name of the channel.
+	ChannelName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMediaStorageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMediaStorageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMediaStorageConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMediaStorageConfigurationInput"}
+	if s.ChannelARN != nil && len(*s.ChannelARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelARN", 1))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelARN sets the ChannelARN field's value.
+func (s *DescribeMediaStorageConfigurationInput) SetChannelARN(v string) *DescribeMediaStorageConfigurationInput {
+	s.ChannelARN = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *DescribeMediaStorageConfigurationInput) SetChannelName(v string) *DescribeMediaStorageConfigurationInput {
+	s.ChannelName = &v
+	return s
+}
+
+type DescribeMediaStorageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that encapsulates, or contains, the media storage configuration
+	// properties.
+	MediaStorageConfiguration *MediaStorageConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMediaStorageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMediaStorageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaStorageConfiguration sets the MediaStorageConfiguration field's value.
+func (s *DescribeMediaStorageConfigurationOutput) SetMediaStorageConfiguration(v *MediaStorageConfiguration) *DescribeMediaStorageConfigurationOutput {
+	s.MediaStorageConfiguration = v
+	return s
+}
+
+type DescribeNotificationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Kinesis video stream from where you
+	// want to retrieve the notification configuration. You must specify either
+	// the StreamName or the StreamARN.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which to retrieve the notification configuration.
+	// You must specify either the StreamName or the StreamARN.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeNotificationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeNotificationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeNotificationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeNotificationConfigurationInput"}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *DescribeNotificationConfigurationInput) SetStreamARN(v string) *DescribeNotificationConfigurationInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DescribeNotificationConfigurationInput) SetStreamName(v string) *DescribeNotificationConfigurationInput {
+	s.StreamName = &v
+	return s
+}
+
+type DescribeNotificationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The structure that contains the information required for notifications. If
+	// the structure is null, the configuration will be deleted from the stream.
+	NotificationConfiguration *NotificationConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeNotificationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeNotificationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotificationConfiguration sets the NotificationConfiguration field's value.
+func (s *DescribeNotificationConfigurationOutput) SetNotificationConfiguration(v *NotificationConfiguration) *DescribeNotificationConfigurationOutput {
+	s.NotificationConfiguration = v
+	return s
 }
 
 type DescribeSignalingChannelInput struct {
@@ -2775,12 +4896,20 @@ type DescribeSignalingChannelInput struct {
 	ChannelName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSignalingChannelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSignalingChannelInput) GoString() string {
 	return s.String()
 }
@@ -2821,12 +4950,20 @@ type DescribeSignalingChannelOutput struct {
 	ChannelInfo *ChannelInfo `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSignalingChannelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSignalingChannelOutput) GoString() string {
 	return s.String()
 }
@@ -2847,12 +4984,20 @@ type DescribeStreamInput struct {
 	StreamName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStreamInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStreamInput) GoString() string {
 	return s.String()
 }
@@ -2892,12 +5037,20 @@ type DescribeStreamOutput struct {
 	StreamInfo *StreamInfo `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStreamOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStreamOutput) GoString() string {
 	return s.String()
 }
@@ -2916,12 +5069,20 @@ type DeviceStreamLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceStreamLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceStreamLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -2964,6 +5125,154 @@ func (s *DeviceStreamLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object that contains the latest status details for an edge agent's recorder
+// and uploader jobs. Use this information to determine the current health of
+// an edge agent.
+type EdgeAgentStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The latest status of a stream’s edge recording job.
+	LastRecorderStatus *LastRecorderStatus `type:"structure"`
+
+	// The latest status of a stream’s edge to cloud uploader job.
+	LastUploaderStatus *LastUploaderStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeAgentStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeAgentStatus) GoString() string {
+	return s.String()
+}
+
+// SetLastRecorderStatus sets the LastRecorderStatus field's value.
+func (s *EdgeAgentStatus) SetLastRecorderStatus(v *LastRecorderStatus) *EdgeAgentStatus {
+	s.LastRecorderStatus = v
+	return s
+}
+
+// SetLastUploaderStatus sets the LastUploaderStatus field's value.
+func (s *EdgeAgentStatus) SetLastUploaderStatus(v *LastUploaderStatus) *EdgeAgentStatus {
+	s.LastUploaderStatus = v
+	return s
+}
+
+// A description of the stream's edge configuration that will be used to sync
+// with the Edge Agent IoT Greengrass component. The Edge Agent component will
+// run on an IoT Hub Device setup at your premise.
+type EdgeConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The deletion configuration is made up of the retention time (EdgeRetentionInHours)
+	// and local size configuration (LocalSizeConfig) details that are used to make
+	// the deletion.
+	DeletionConfig *DeletionConfig `type:"structure"`
+
+	// The "Internet of Things (IoT) Thing" Arn of the stream.
+	//
+	// HubDeviceArn is a required field
+	HubDeviceArn *string `min:"1" type:"string" required:"true"`
+
+	// The recorder configuration consists of the local MediaSourceConfig details,
+	// that are used as credentials to access the local media files streamed on
+	// the camera.
+	//
+	// RecorderConfig is a required field
+	RecorderConfig *RecorderConfig `type:"structure" required:"true"`
+
+	// The uploader configuration contains the ScheduleExpression details that are
+	// used to schedule upload jobs for the recorded media files from the Edge Agent
+	// to a Kinesis Video Stream.
+	UploaderConfig *UploaderConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EdgeConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EdgeConfig"}
+	if s.HubDeviceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HubDeviceArn"))
+	}
+	if s.HubDeviceArn != nil && len(*s.HubDeviceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HubDeviceArn", 1))
+	}
+	if s.RecorderConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecorderConfig"))
+	}
+	if s.DeletionConfig != nil {
+		if err := s.DeletionConfig.Validate(); err != nil {
+			invalidParams.AddNested("DeletionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RecorderConfig != nil {
+		if err := s.RecorderConfig.Validate(); err != nil {
+			invalidParams.AddNested("RecorderConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UploaderConfig != nil {
+		if err := s.UploaderConfig.Validate(); err != nil {
+			invalidParams.AddNested("UploaderConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeletionConfig sets the DeletionConfig field's value.
+func (s *EdgeConfig) SetDeletionConfig(v *DeletionConfig) *EdgeConfig {
+	s.DeletionConfig = v
+	return s
+}
+
+// SetHubDeviceArn sets the HubDeviceArn field's value.
+func (s *EdgeConfig) SetHubDeviceArn(v string) *EdgeConfig {
+	s.HubDeviceArn = &v
+	return s
+}
+
+// SetRecorderConfig sets the RecorderConfig field's value.
+func (s *EdgeConfig) SetRecorderConfig(v *RecorderConfig) *EdgeConfig {
+	s.RecorderConfig = v
+	return s
+}
+
+// SetUploaderConfig sets the UploaderConfig field's value.
+func (s *EdgeConfig) SetUploaderConfig(v *UploaderConfig) *EdgeConfig {
+	s.UploaderConfig = v
+	return s
+}
+
 type GetDataEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2981,12 +5290,20 @@ type GetDataEndpointInput struct {
 	StreamName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDataEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDataEndpointInput) GoString() string {
 	return s.String()
 }
@@ -3036,12 +5353,20 @@ type GetDataEndpointOutput struct {
 	DataEndpoint *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDataEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDataEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -3066,12 +5391,20 @@ type GetSignalingChannelEndpointInput struct {
 	SingleMasterChannelEndpointConfiguration *SingleMasterChannelEndpointConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSignalingChannelEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSignalingChannelEndpointInput) GoString() string {
 	return s.String()
 }
@@ -3116,12 +5449,20 @@ type GetSignalingChannelEndpointOutput struct {
 	ResourceEndpointList []*ResourceEndpointListItem `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSignalingChannelEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSignalingChannelEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -3129,6 +5470,243 @@ func (s GetSignalingChannelEndpointOutput) GoString() string {
 // SetResourceEndpointList sets the ResourceEndpointList field's value.
 func (s *GetSignalingChannelEndpointOutput) SetResourceEndpointList(v []*ResourceEndpointListItem) *GetSignalingChannelEndpointOutput {
 	s.ResourceEndpointList = v
+	return s
+}
+
+// The structure that contains the information required for the KVS images delivery.
+// If null, the configuration will be deleted from the stream.
+type ImageGenerationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The structure that contains the information required to deliver images to
+	// a customer.
+	//
+	// DestinationConfig is a required field
+	DestinationConfig *ImageGenerationDestinationConfig `type:"structure" required:"true"`
+
+	// The accepted image format.
+	//
+	// Format is a required field
+	Format *string `type:"string" required:"true" enum:"Format"`
+
+	// The list of a key-value pair structure that contains extra parameters that
+	// can be applied when the image is generated. The FormatConfig key is the JPEGQuality,
+	// which indicates the JPEG quality key to be used to generate the image. The
+	// FormatConfig value accepts ints from 1 to 100. If the value is 1, the image
+	// will be generated with less quality and the best compression. If the value
+	// is 100, the image will be generated with the best quality and less compression.
+	// If no value is provided, the default value of the JPEGQuality key will be
+	// set to 80.
+	FormatConfig map[string]*string `min:"1" type:"map"`
+
+	// The height of the output image that is used in conjunction with the WidthPixels
+	// parameter. When both HeightPixels and WidthPixels parameters are provided,
+	// the image will be stretched to fit the specified aspect ratio. If only the
+	// HeightPixels parameter is provided, its original aspect ratio will be used
+	// to calculate the WidthPixels ratio. If neither parameter is provided, the
+	// original image size will be returned.
+	HeightPixels *int64 `min:"1" type:"integer"`
+
+	// The origin of the Server or Producer timestamps to use to generate the images.
+	//
+	// ImageSelectorType is a required field
+	ImageSelectorType *string `type:"string" required:"true" enum:"ImageSelectorType"`
+
+	// The time interval in milliseconds (ms) at which the images need to be generated
+	// from the stream. The minimum value that can be provided is 200 ms. If the
+	// timestamp range is less than the sampling interval, the Image from the StartTimestamp
+	// will be returned if available.
+	//
+	// SamplingInterval is a required field
+	SamplingInterval *int64 `type:"integer" required:"true"`
+
+	// Indicates whether the ContinuousImageGenerationConfigurations API is enabled
+	// or disabled.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ConfigurationStatus"`
+
+	// The width of the output image that is used in conjunction with the HeightPixels
+	// parameter. When both WidthPixels and HeightPixels parameters are provided,
+	// the image will be stretched to fit the specified aspect ratio. If only the
+	// WidthPixels parameter is provided, its original aspect ratio will be used
+	// to calculate the HeightPixels ratio. If neither parameter is provided, the
+	// original image size will be returned.
+	WidthPixels *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageGenerationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageGenerationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImageGenerationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImageGenerationConfiguration"}
+	if s.DestinationConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationConfig"))
+	}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.FormatConfig != nil && len(s.FormatConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FormatConfig", 1))
+	}
+	if s.HeightPixels != nil && *s.HeightPixels < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("HeightPixels", 1))
+	}
+	if s.ImageSelectorType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageSelectorType"))
+	}
+	if s.SamplingInterval == nil {
+		invalidParams.Add(request.NewErrParamRequired("SamplingInterval"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.WidthPixels != nil && *s.WidthPixels < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("WidthPixels", 1))
+	}
+	if s.DestinationConfig != nil {
+		if err := s.DestinationConfig.Validate(); err != nil {
+			invalidParams.AddNested("DestinationConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationConfig sets the DestinationConfig field's value.
+func (s *ImageGenerationConfiguration) SetDestinationConfig(v *ImageGenerationDestinationConfig) *ImageGenerationConfiguration {
+	s.DestinationConfig = v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *ImageGenerationConfiguration) SetFormat(v string) *ImageGenerationConfiguration {
+	s.Format = &v
+	return s
+}
+
+// SetFormatConfig sets the FormatConfig field's value.
+func (s *ImageGenerationConfiguration) SetFormatConfig(v map[string]*string) *ImageGenerationConfiguration {
+	s.FormatConfig = v
+	return s
+}
+
+// SetHeightPixels sets the HeightPixels field's value.
+func (s *ImageGenerationConfiguration) SetHeightPixels(v int64) *ImageGenerationConfiguration {
+	s.HeightPixels = &v
+	return s
+}
+
+// SetImageSelectorType sets the ImageSelectorType field's value.
+func (s *ImageGenerationConfiguration) SetImageSelectorType(v string) *ImageGenerationConfiguration {
+	s.ImageSelectorType = &v
+	return s
+}
+
+// SetSamplingInterval sets the SamplingInterval field's value.
+func (s *ImageGenerationConfiguration) SetSamplingInterval(v int64) *ImageGenerationConfiguration {
+	s.SamplingInterval = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImageGenerationConfiguration) SetStatus(v string) *ImageGenerationConfiguration {
+	s.Status = &v
+	return s
+}
+
+// SetWidthPixels sets the WidthPixels field's value.
+func (s *ImageGenerationConfiguration) SetWidthPixels(v int64) *ImageGenerationConfiguration {
+	s.WidthPixels = &v
+	return s
+}
+
+// The structure that contains the information required to deliver images to
+// a customer.
+type ImageGenerationDestinationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services Region of the S3 bucket where images will be delivered.
+	// This DestinationRegion must match the Region where the stream is located.
+	//
+	// DestinationRegion is a required field
+	DestinationRegion *string `min:"9" type:"string" required:"true"`
+
+	// The Uniform Resource Identifier (URI) that identifies where the images will
+	// be delivered.
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageGenerationDestinationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageGenerationDestinationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImageGenerationDestinationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImageGenerationDestinationConfig"}
+	if s.DestinationRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationRegion"))
+	}
+	if s.DestinationRegion != nil && len(*s.DestinationRegion) < 9 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationRegion", 9))
+	}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *ImageGenerationDestinationConfig) SetDestinationRegion(v string) *ImageGenerationDestinationConfig {
+	s.DestinationRegion = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *ImageGenerationDestinationConfig) SetUri(v string) *ImageGenerationDestinationConfig {
+	s.Uri = &v
 	return s
 }
 
@@ -3140,12 +5718,20 @@ type InvalidArgumentException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidArgumentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidArgumentException) GoString() string {
 	return s.String()
 }
@@ -3196,12 +5782,20 @@ type InvalidDeviceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDeviceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDeviceException) GoString() string {
 	return s.String()
 }
@@ -3252,12 +5846,20 @@ type InvalidResourceFormatException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResourceFormatException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResourceFormatException) GoString() string {
 	return s.String()
 }
@@ -3300,6 +5902,330 @@ func (s *InvalidResourceFormatException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The latest status of a stream's edge recording job.
+type LastRecorderStatus struct {
+	_ struct{} `type:"structure"`
+
+	// A description of a recorder job’s latest status.
+	JobStatusDetails *string `type:"string"`
+
+	// The timestamp at which the recorder job was last executed and media stored
+	// to local disk.
+	LastCollectedTime *time.Time `type:"timestamp"`
+
+	// The timestamp at which the recorder status was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The status of the latest recorder job.
+	RecorderStatus *string `type:"string" enum:"RecorderStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastRecorderStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastRecorderStatus) GoString() string {
+	return s.String()
+}
+
+// SetJobStatusDetails sets the JobStatusDetails field's value.
+func (s *LastRecorderStatus) SetJobStatusDetails(v string) *LastRecorderStatus {
+	s.JobStatusDetails = &v
+	return s
+}
+
+// SetLastCollectedTime sets the LastCollectedTime field's value.
+func (s *LastRecorderStatus) SetLastCollectedTime(v time.Time) *LastRecorderStatus {
+	s.LastCollectedTime = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *LastRecorderStatus) SetLastUpdatedTime(v time.Time) *LastRecorderStatus {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetRecorderStatus sets the RecorderStatus field's value.
+func (s *LastRecorderStatus) SetRecorderStatus(v string) *LastRecorderStatus {
+	s.RecorderStatus = &v
+	return s
+}
+
+// The latest status of a stream’s edge to cloud uploader job.
+type LastUploaderStatus struct {
+	_ struct{} `type:"structure"`
+
+	// A description of an uploader job’s latest status.
+	JobStatusDetails *string `type:"string"`
+
+	// The timestamp at which the uploader job was last executed and media collected
+	// to the cloud.
+	LastCollectedTime *time.Time `type:"timestamp"`
+
+	// The timestamp at which the uploader status was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The status of the latest uploader job.
+	UploaderStatus *string `type:"string" enum:"UploaderStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastUploaderStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastUploaderStatus) GoString() string {
+	return s.String()
+}
+
+// SetJobStatusDetails sets the JobStatusDetails field's value.
+func (s *LastUploaderStatus) SetJobStatusDetails(v string) *LastUploaderStatus {
+	s.JobStatusDetails = &v
+	return s
+}
+
+// SetLastCollectedTime sets the LastCollectedTime field's value.
+func (s *LastUploaderStatus) SetLastCollectedTime(v time.Time) *LastUploaderStatus {
+	s.LastCollectedTime = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *LastUploaderStatus) SetLastUpdatedTime(v time.Time) *LastUploaderStatus {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetUploaderStatus sets the UploaderStatus field's value.
+func (s *LastUploaderStatus) SetUploaderStatus(v string) *LastUploaderStatus {
+	s.UploaderStatus = &v
+	return s
+}
+
+// A description of a single stream's edge configuration.
+type ListEdgeAgentConfigurationsEdgeConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when the stream first created the edge config.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// A description of the stream's edge configuration that will be used to sync
+	// with the Edge Agent IoT Greengrass component. The Edge Agent component will
+	// run on an IoT Hub Device setup at your premise.
+	EdgeConfig *EdgeConfig `type:"structure"`
+
+	// A description of the generated failure status.
+	FailedStatusDetails *string `type:"string"`
+
+	// The timestamp when the stream last updated the edge config.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the stream.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream.
+	StreamName *string `min:"1" type:"string"`
+
+	// The current sync status of the stream's edge configuration.
+	SyncStatus *string `type:"string" enum:"SyncStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsEdgeConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsEdgeConfig) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetCreationTime(v time.Time) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEdgeConfig sets the EdgeConfig field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetEdgeConfig(v *EdgeConfig) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.EdgeConfig = v
+	return s
+}
+
+// SetFailedStatusDetails sets the FailedStatusDetails field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetFailedStatusDetails(v string) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.FailedStatusDetails = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetLastUpdatedTime(v time.Time) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetStreamARN(v string) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetStreamName(v string) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.StreamName = &v
+	return s
+}
+
+// SetSyncStatus sets the SyncStatus field's value.
+func (s *ListEdgeAgentConfigurationsEdgeConfig) SetSyncStatus(v string) *ListEdgeAgentConfigurationsEdgeConfig {
+	s.SyncStatus = &v
+	return s
+}
+
+type ListEdgeAgentConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The "Internet of Things (IoT) Thing" Arn of the edge agent.
+	//
+	// HubDeviceArn is a required field
+	HubDeviceArn *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of edge configurations to return in the response. The
+	// default is 5.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If you specify this parameter, when the result of a ListEdgeAgentConfigurations
+	// operation is truncated, the call returns the NextToken in the response. To
+	// get another batch of edge configurations, provide this token in your next
+	// request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEdgeAgentConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEdgeAgentConfigurationsInput"}
+	if s.HubDeviceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HubDeviceArn"))
+	}
+	if s.HubDeviceArn != nil && len(*s.HubDeviceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HubDeviceArn", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHubDeviceArn sets the HubDeviceArn field's value.
+func (s *ListEdgeAgentConfigurationsInput) SetHubDeviceArn(v string) *ListEdgeAgentConfigurationsInput {
+	s.HubDeviceArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEdgeAgentConfigurationsInput) SetMaxResults(v int64) *ListEdgeAgentConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEdgeAgentConfigurationsInput) SetNextToken(v string) *ListEdgeAgentConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEdgeAgentConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of a single stream's edge configuration.
+	EdgeConfigs []*ListEdgeAgentConfigurationsEdgeConfig `type:"list"`
+
+	// If the response is truncated, the call returns this element with a given
+	// token. To get the next batch of edge configurations, use this token in your
+	// next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeAgentConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEdgeConfigs sets the EdgeConfigs field's value.
+func (s *ListEdgeAgentConfigurationsOutput) SetEdgeConfigs(v []*ListEdgeAgentConfigurationsEdgeConfig) *ListEdgeAgentConfigurationsOutput {
+	s.EdgeConfigs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEdgeAgentConfigurationsOutput) SetNextToken(v string) *ListEdgeAgentConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListSignalingChannelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3316,12 +6242,20 @@ type ListSignalingChannelsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSignalingChannelsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSignalingChannelsInput) GoString() string {
 	return s.String()
 }
@@ -3373,12 +6307,20 @@ type ListSignalingChannelsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSignalingChannelsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSignalingChannelsOutput) GoString() string {
 	return s.String()
 }
@@ -3411,12 +6353,20 @@ type ListStreamsInput struct {
 	StreamNameCondition *StreamNameCondition `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStreamsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStreamsInput) GoString() string {
 	return s.String()
 }
@@ -3468,12 +6418,20 @@ type ListStreamsOutput struct {
 	StreamInfoList []*StreamInfo `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStreamsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStreamsOutput) GoString() string {
 	return s.String()
 }
@@ -3505,12 +6463,20 @@ type ListTagsForResourceInput struct {
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -3555,12 +6521,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3592,12 +6566,20 @@ type ListTagsForStreamInput struct {
 	StreamName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForStreamInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForStreamInput) GoString() string {
 	return s.String()
 }
@@ -3648,12 +6630,20 @@ type ListTagsForStreamOutput struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForStreamOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForStreamOutput) GoString() string {
 	return s.String()
 }
@@ -3670,6 +6660,312 @@ func (s *ListTagsForStreamOutput) SetTags(v map[string]*string) *ListTagsForStre
 	return s
 }
 
+// The configuration details that include the maximum size of the media (MaxLocalMediaSizeInMB)
+// that you want to store for a stream on the Edge Agent, as well as the strategy
+// that should be used (StrategyOnFullSize) when a stream's maximum size has
+// been reached.
+type LocalSizeConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The overall maximum size of the media that you want to store for a stream
+	// on the Edge Agent.
+	MaxLocalMediaSizeInMB *int64 `min:"64" type:"integer"`
+
+	// The strategy to perform when a stream’s MaxLocalMediaSizeInMB limit is
+	// reached.
+	StrategyOnFullSize *string `type:"string" enum:"StrategyOnFullSize"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocalSizeConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocalSizeConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LocalSizeConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LocalSizeConfig"}
+	if s.MaxLocalMediaSizeInMB != nil && *s.MaxLocalMediaSizeInMB < 64 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxLocalMediaSizeInMB", 64))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxLocalMediaSizeInMB sets the MaxLocalMediaSizeInMB field's value.
+func (s *LocalSizeConfig) SetMaxLocalMediaSizeInMB(v int64) *LocalSizeConfig {
+	s.MaxLocalMediaSizeInMB = &v
+	return s
+}
+
+// SetStrategyOnFullSize sets the StrategyOnFullSize field's value.
+func (s *LocalSizeConfig) SetStrategyOnFullSize(v string) *LocalSizeConfig {
+	s.StrategyOnFullSize = &v
+	return s
+}
+
+// A structure that encapsulates, or contains, the media storage configuration
+// properties.
+type MappedResourceConfigurationListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Kinesis Video Stream resource, associated
+	// with the stream.
+	ARN *string `min:"1" type:"string"`
+
+	// The type of the associated resource for the kinesis video stream.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MappedResourceConfigurationListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MappedResourceConfigurationListItem) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *MappedResourceConfigurationListItem) SetARN(v string) *MappedResourceConfigurationListItem {
+	s.ARN = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MappedResourceConfigurationListItem) SetType(v string) *MappedResourceConfigurationListItem {
+	s.Type = &v
+	return s
+}
+
+// The configuration details that consist of the credentials required (MediaUriSecretArn
+// and MediaUriType) to access the media files that are streamed to the camera.
+type MediaSourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services Secrets Manager ARN for the username and password
+	// of the camera, or a local media file location.
+	//
+	// MediaUriSecretArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MediaSourceConfig's
+	// String and GoString methods.
+	//
+	// MediaUriSecretArn is a required field
+	MediaUriSecretArn *string `min:"20" type:"string" required:"true" sensitive:"true"`
+
+	// The Uniform Resource Identifier (URI) type. The FILE_URI value can be used
+	// to stream local media files.
+	//
+	// Preview only supports the RTSP_URI media source URI format .
+	//
+	// MediaUriType is a required field
+	MediaUriType *string `type:"string" required:"true" enum:"MediaUriType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaSourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaSourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaSourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaSourceConfig"}
+	if s.MediaUriSecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaUriSecretArn"))
+	}
+	if s.MediaUriSecretArn != nil && len(*s.MediaUriSecretArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaUriSecretArn", 20))
+	}
+	if s.MediaUriType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaUriType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMediaUriSecretArn sets the MediaUriSecretArn field's value.
+func (s *MediaSourceConfig) SetMediaUriSecretArn(v string) *MediaSourceConfig {
+	s.MediaUriSecretArn = &v
+	return s
+}
+
+// SetMediaUriType sets the MediaUriType field's value.
+func (s *MediaSourceConfig) SetMediaUriType(v string) *MediaSourceConfig {
+	s.MediaUriType = &v
+	return s
+}
+
+// A structure that encapsulates, or contains, the media storage configuration
+// properties.
+//
+//   - If StorageStatus is enabled, the data will be stored in the StreamARN
+//     provided. In order for WebRTC Ingestion to work, the stream must have
+//     data retention enabled.
+//
+//   - If StorageStatus is disabled, no data will be stored, and the StreamARN
+//     parameter will not be needed.
+type MediaStorageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the media storage configuration.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"MediaStorageConfigurationStatus"`
+
+	// The Amazon Resource Name (ARN) of the stream.
+	StreamARN *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStorageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStorageConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaStorageConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaStorageConfiguration"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatus sets the Status field's value.
+func (s *MediaStorageConfiguration) SetStatus(v string) *MediaStorageConfiguration {
+	s.Status = &v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *MediaStorageConfiguration) SetStreamARN(v string) *MediaStorageConfiguration {
+	s.StreamARN = &v
+	return s
+}
+
+// The Stream data retention in hours is equal to zero.
+type NoDataRetentionException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NoDataRetentionException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NoDataRetentionException) GoString() string {
+	return s.String()
+}
+
+func newErrorNoDataRetentionException(v protocol.ResponseMetadata) error {
+	return &NoDataRetentionException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *NoDataRetentionException) Code() string {
+	return "NoDataRetentionException"
+}
+
+// Message returns the exception's message.
+func (s *NoDataRetentionException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *NoDataRetentionException) OrigErr() error {
+	return nil
+}
+
+func (s *NoDataRetentionException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *NoDataRetentionException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *NoDataRetentionException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The caller is not authorized to perform this operation.
 type NotAuthorizedException struct {
 	_            struct{}                  `type:"structure"`
@@ -3678,12 +6974,20 @@ type NotAuthorizedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotAuthorizedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotAuthorizedException) GoString() string {
 	return s.String()
 }
@@ -3726,8 +7030,202 @@ func (s *NotAuthorizedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The structure that contains the notification information for the KVS images
+// delivery. If this parameter is null, the configuration will be deleted from
+// the stream.
+type NotificationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The destination information required to deliver a notification to a customer.
+	//
+	// DestinationConfig is a required field
+	DestinationConfig *NotificationDestinationConfig `type:"structure" required:"true"`
+
+	// Indicates if a notification configuration is enabled or disabled.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ConfigurationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotificationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotificationConfiguration"}
+	if s.DestinationConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationConfig"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.DestinationConfig != nil {
+		if err := s.DestinationConfig.Validate(); err != nil {
+			invalidParams.AddNested("DestinationConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationConfig sets the DestinationConfig field's value.
+func (s *NotificationConfiguration) SetDestinationConfig(v *NotificationDestinationConfig) *NotificationConfiguration {
+	s.DestinationConfig = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotificationConfiguration) SetStatus(v string) *NotificationConfiguration {
+	s.Status = &v
+	return s
+}
+
+// The structure that contains the information required to deliver a notification
+// to a customer.
+type NotificationDestinationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Uniform Resource Identifier (URI) that identifies where the images will
+	// be delivered.
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationDestinationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationDestinationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotificationDestinationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotificationDestinationConfig"}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUri sets the Uri field's value.
+func (s *NotificationDestinationConfig) SetUri(v string) *NotificationDestinationConfig {
+	s.Uri = &v
+	return s
+}
+
+// The recorder configuration consists of the local MediaSourceConfig details
+// that are used as credentials to accesss the local media files streamed on
+// the camera.
+type RecorderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration details that consist of the credentials required (MediaUriSecretArn
+	// and MediaUriType) to access the media files streamed to the camera.
+	//
+	// MediaSourceConfig is a required field
+	MediaSourceConfig *MediaSourceConfig `type:"structure" required:"true"`
+
+	// The configuration that consists of the ScheduleExpression and the DurationInMinutes
+	// details that specify the scheduling to record from a camera, or local media
+	// file, onto the Edge Agent. If the ScheduleExpression attribute is not provided,
+	// then the Edge Agent will always be set to recording mode.
+	ScheduleConfig *ScheduleConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecorderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecorderConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecorderConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecorderConfig"}
+	if s.MediaSourceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaSourceConfig"))
+	}
+	if s.MediaSourceConfig != nil {
+		if err := s.MediaSourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("MediaSourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ScheduleConfig != nil {
+		if err := s.ScheduleConfig.Validate(); err != nil {
+			invalidParams.AddNested("ScheduleConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMediaSourceConfig sets the MediaSourceConfig field's value.
+func (s *RecorderConfig) SetMediaSourceConfig(v *MediaSourceConfig) *RecorderConfig {
+	s.MediaSourceConfig = v
+	return s
+}
+
+// SetScheduleConfig sets the ScheduleConfig field's value.
+func (s *RecorderConfig) SetScheduleConfig(v *ScheduleConfig) *RecorderConfig {
+	s.ScheduleConfig = v
+	return s
+}
+
 // An object that describes the endpoint of the signaling channel returned by
 // the GetSignalingChannelEndpoint API.
+//
+// The media server endpoint will correspond to the WEBRTC Protocol.
 type ResourceEndpointListItem struct {
 	_ struct{} `type:"structure"`
 
@@ -3740,12 +7238,20 @@ type ResourceEndpointListItem struct {
 	ResourceEndpoint *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceEndpointListItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceEndpointListItem) GoString() string {
 	return s.String()
 }
@@ -3762,7 +7268,18 @@ func (s *ResourceEndpointListItem) SetResourceEndpoint(v string) *ResourceEndpoi
 	return s
 }
 
-// The signaling channel is currently not available for this operation.
+// When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+// to a different Kinesis Video Stream resource, or if the provided input StreamARN
+// or ChannelARN is not in Active status, try one of the following :
+//
+// The DescribeMediaStorageConfiguration API to determine what the stream given
+// channel is mapped to.
+//
+// The DescribeMappedResourceConfiguration API to determine the channel that
+// the given stream is mapped to.
+//
+// The DescribeStream or DescribeSignalingChannel API to determine the status
+// of the resource.
 type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3770,12 +7287,20 @@ type ResourceInUseException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -3826,12 +7351,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -3874,6 +7407,88 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This API enables you to specify the duration that the camera, or local media
+// file, should record onto the Edge Agent. The ScheduleConfig consists of the
+// ScheduleExpression and the DurationInMinutes attributes.
+//
+// If the ScheduleConfig is not provided in the RecorderConfig, then the Edge
+// Agent will always be set to recording mode.
+//
+// If the ScheduleConfig is not provided in the UploaderConfig, then the Edge
+// Agent will upload at regular intervals (every 1 hour).
+type ScheduleConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The total duration to record the media. If the ScheduleExpression attribute
+	// is provided, then the DurationInSeconds attribute should also be specified.
+	//
+	// DurationInSeconds is a required field
+	DurationInSeconds *int64 `min:"60" type:"integer" required:"true"`
+
+	// The Quartz cron expression that takes care of scheduling jobs to record from
+	// the camera, or local media file, onto the Edge Agent. If the ScheduleExpression
+	// is not provided for the RecorderConfig, then the Edge Agent will always be
+	// set to recording mode.
+	//
+	// For more information about Quartz, refer to the Cron Trigger Tutorial (http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html)
+	// page to understand the valid expressions and its use.
+	//
+	// ScheduleExpression is a required field
+	ScheduleExpression *string `min:"11" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduleConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduleConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScheduleConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScheduleConfig"}
+	if s.DurationInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DurationInSeconds"))
+	}
+	if s.DurationInSeconds != nil && *s.DurationInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationInSeconds", 60))
+	}
+	if s.ScheduleExpression == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleExpression"))
+	}
+	if s.ScheduleExpression != nil && len(*s.ScheduleExpression) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("ScheduleExpression", 11))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDurationInSeconds sets the DurationInSeconds field's value.
+func (s *ScheduleConfig) SetDurationInSeconds(v int64) *ScheduleConfig {
+	s.DurationInSeconds = &v
+	return s
+}
+
+// SetScheduleExpression sets the ScheduleExpression field's value.
+func (s *ScheduleConfig) SetScheduleExpression(v string) *ScheduleConfig {
+	s.ScheduleExpression = &v
+	return s
+}
+
 // An object that contains the endpoint configuration for the SINGLE_MASTER
 // channel type.
 type SingleMasterChannelEndpointConfiguration struct {
@@ -3882,7 +7497,7 @@ type SingleMasterChannelEndpointConfiguration struct {
 	// This property is used to determine the nature of communication over this
 	// SINGLE_MASTER signaling channel. If WSS is specified, this API returns a
 	// websocket endpoint. If HTTPS is specified, this API returns an HTTPS endpoint.
-	Protocols []*string `min:"1" type:"list"`
+	Protocols []*string `min:"1" type:"list" enum:"ChannelProtocol"`
 
 	// This property is used to determine messaging permissions in this SINGLE_MASTER
 	// signaling channel. If MASTER is specified, this API returns an endpoint that
@@ -3893,12 +7508,20 @@ type SingleMasterChannelEndpointConfiguration struct {
 	Role *string `type:"string" enum:"ChannelRole"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleMasterChannelEndpointConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleMasterChannelEndpointConfiguration) GoString() string {
 	return s.String()
 }
@@ -3933,17 +7556,25 @@ func (s *SingleMasterChannelEndpointConfiguration) SetRole(v string) *SingleMast
 type SingleMasterConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The period of time a signaling channel retains underlivered messages before
+	// The period of time a signaling channel retains undelivered messages before
 	// they are discarded.
 	MessageTtlSeconds *int64 `min:"5" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleMasterConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleMasterConfiguration) GoString() string {
 	return s.String()
 }
@@ -3967,6 +7598,237 @@ func (s *SingleMasterConfiguration) SetMessageTtlSeconds(v int64) *SingleMasterC
 	return s
 }
 
+type StartEdgeConfigurationUpdateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The edge configuration details required to invoke the update process.
+	//
+	// EdgeConfig is a required field
+	EdgeConfig *EdgeConfig `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the stream. Specify either the StreamName
+	// or the StreamARN.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream whose edge configuration you want to update. Specify
+	// either the StreamName or the StreamARN.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartEdgeConfigurationUpdateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartEdgeConfigurationUpdateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartEdgeConfigurationUpdateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartEdgeConfigurationUpdateInput"}
+	if s.EdgeConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgeConfig"))
+	}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+	if s.EdgeConfig != nil {
+		if err := s.EdgeConfig.Validate(); err != nil {
+			invalidParams.AddNested("EdgeConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgeConfig sets the EdgeConfig field's value.
+func (s *StartEdgeConfigurationUpdateInput) SetEdgeConfig(v *EdgeConfig) *StartEdgeConfigurationUpdateInput {
+	s.EdgeConfig = v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *StartEdgeConfigurationUpdateInput) SetStreamARN(v string) *StartEdgeConfigurationUpdateInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *StartEdgeConfigurationUpdateInput) SetStreamName(v string) *StartEdgeConfigurationUpdateInput {
+	s.StreamName = &v
+	return s
+}
+
+type StartEdgeConfigurationUpdateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp at which a stream’s edge configuration was first created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// A description of the stream's edge configuration that will be used to sync
+	// with the Edge Agent IoT Greengrass component. The Edge Agent component will
+	// run on an IoT Hub Device setup at your premise.
+	EdgeConfig *EdgeConfig `type:"structure"`
+
+	// A description of the generated failure status.
+	FailedStatusDetails *string `type:"string"`
+
+	// The timestamp at which a stream’s edge configuration was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the stream.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which the edge configuration was updated.
+	StreamName *string `min:"1" type:"string"`
+
+	// The current sync status of the stream's edge configuration. When you invoke
+	// this API, the sync status will be set to the SYNCING state. Use the DescribeEdgeConfiguration
+	// API to get the latest status of the edge configuration.
+	SyncStatus *string `type:"string" enum:"SyncStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartEdgeConfigurationUpdateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartEdgeConfigurationUpdateOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *StartEdgeConfigurationUpdateOutput) SetCreationTime(v time.Time) *StartEdgeConfigurationUpdateOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEdgeConfig sets the EdgeConfig field's value.
+func (s *StartEdgeConfigurationUpdateOutput) SetEdgeConfig(v *EdgeConfig) *StartEdgeConfigurationUpdateOutput {
+	s.EdgeConfig = v
+	return s
+}
+
+// SetFailedStatusDetails sets the FailedStatusDetails field's value.
+func (s *StartEdgeConfigurationUpdateOutput) SetFailedStatusDetails(v string) *StartEdgeConfigurationUpdateOutput {
+	s.FailedStatusDetails = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *StartEdgeConfigurationUpdateOutput) SetLastUpdatedTime(v time.Time) *StartEdgeConfigurationUpdateOutput {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *StartEdgeConfigurationUpdateOutput) SetStreamARN(v string) *StartEdgeConfigurationUpdateOutput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *StartEdgeConfigurationUpdateOutput) SetStreamName(v string) *StartEdgeConfigurationUpdateOutput {
+	s.StreamName = &v
+	return s
+}
+
+// SetSyncStatus sets the SyncStatus field's value.
+func (s *StartEdgeConfigurationUpdateOutput) SetSyncStatus(v string) *StartEdgeConfigurationUpdateOutput {
+	s.SyncStatus = &v
+	return s
+}
+
+// The Exception rendered when the Amazon Kinesis Video Stream can't find a
+// stream's edge configuration that you specified.
+type StreamEdgeConfigurationNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamEdgeConfigurationNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamEdgeConfigurationNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorStreamEdgeConfigurationNotFoundException(v protocol.ResponseMetadata) error {
+	return &StreamEdgeConfigurationNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *StreamEdgeConfigurationNotFoundException) Code() string {
+	return "StreamEdgeConfigurationNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *StreamEdgeConfigurationNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *StreamEdgeConfigurationNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *StreamEdgeConfigurationNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *StreamEdgeConfigurationNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *StreamEdgeConfigurationNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // An object describing a Kinesis video stream.
 type StreamInfo struct {
 	_ struct{} `type:"structure"`
@@ -3980,8 +7842,8 @@ type StreamInfo struct {
 	// The name of the device that is associated with the stream.
 	DeviceName *string `min:"1" type:"string"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key that Kinesis Video
-	// Streams uses to encrypt data on the stream.
+	// The ID of the Key Management Service (KMS) key that Kinesis Video Streams
+	// uses to encrypt data on the stream.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The MediaType of the stream.
@@ -4000,12 +7862,20 @@ type StreamInfo struct {
 	Version *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StreamInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StreamInfo) GoString() string {
 	return s.String()
 }
@@ -4079,12 +7949,20 @@ type StreamNameCondition struct {
 	ComparisonValue *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StreamNameCondition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StreamNameCondition) GoString() string {
 	return s.String()
 }
@@ -4129,12 +8007,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -4186,12 +8072,20 @@ type TagResourceInput struct {
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -4244,12 +8138,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -4271,12 +8173,20 @@ type TagStreamInput struct {
 	Tags map[string]*string `min:"1" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagStreamInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagStreamInput) GoString() string {
 	return s.String()
 }
@@ -4325,18 +8235,26 @@ type TagStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagStreamOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagStreamOutput) GoString() string {
 	return s.String()
 }
 
 // You have exceeded the limit of tags that you can associate with the resource.
-// Kinesis video streams support up to 50 tags.
+// A Kinesis video stream can support up to 50 tags.
 type TagsPerResourceExceededLimitException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4344,12 +8262,20 @@ type TagsPerResourceExceededLimitException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagsPerResourceExceededLimitException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagsPerResourceExceededLimitException) GoString() string {
 	return s.String()
 }
@@ -4407,12 +8333,20 @@ type UntagResourceInput struct {
 	TagKeyList []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -4455,12 +8389,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -4481,12 +8423,20 @@ type UntagStreamInput struct {
 	TagKeyList []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagStreamInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagStreamInput) GoString() string {
 	return s.String()
 }
@@ -4535,12 +8485,20 @@ type UntagStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagStreamOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagStreamOutput) GoString() string {
 	return s.String()
 }
@@ -4554,8 +8512,11 @@ type UpdateDataRetentionInput struct {
 	// CurrentVersion is a required field
 	CurrentVersion *string `min:"1" type:"string" required:"true"`
 
-	// The retention period, in hours. The value you specify replaces the current
-	// value. The maximum value for this parameter is 87600 (ten years).
+	// The number of hours to adjust the current retention by. The value you specify
+	// is added to or subtracted from the current value, depending on the operation.
+	//
+	// The minimum value for data retention is 0 and the maximum value is 87600
+	// (ten years).
 	//
 	// DataRetentionChangeInHours is a required field
 	DataRetentionChangeInHours *int64 `min:"1" type:"integer" required:"true"`
@@ -4573,12 +8534,20 @@ type UpdateDataRetentionInput struct {
 	StreamName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataRetentionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataRetentionInput) GoString() string {
 	return s.String()
 }
@@ -4648,13 +8617,304 @@ type UpdateDataRetentionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataRetentionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataRetentionOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateImageGenerationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The structure that contains the information required for the KVS images delivery.
+	// If the structure is null, the configuration will be deleted from the stream.
+	ImageGenerationConfiguration *ImageGenerationConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Kinesis video stream from where you
+	// want to update the image generation configuration. You must specify either
+	// the StreamName or the StreamARN.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which to update the image generation configuration.
+	// You must specify either the StreamName or the StreamARN.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateImageGenerationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateImageGenerationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateImageGenerationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateImageGenerationConfigurationInput"}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+	if s.ImageGenerationConfiguration != nil {
+		if err := s.ImageGenerationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ImageGenerationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImageGenerationConfiguration sets the ImageGenerationConfiguration field's value.
+func (s *UpdateImageGenerationConfigurationInput) SetImageGenerationConfiguration(v *ImageGenerationConfiguration) *UpdateImageGenerationConfigurationInput {
+	s.ImageGenerationConfiguration = v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *UpdateImageGenerationConfigurationInput) SetStreamARN(v string) *UpdateImageGenerationConfigurationInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *UpdateImageGenerationConfigurationInput) SetStreamName(v string) *UpdateImageGenerationConfigurationInput {
+	s.StreamName = &v
+	return s
+}
+
+type UpdateImageGenerationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateImageGenerationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateImageGenerationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateMediaStorageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the channel.
+	//
+	// ChannelARN is a required field
+	ChannelARN *string `min:"1" type:"string" required:"true"`
+
+	// A structure that encapsulates, or contains, the media storage configuration
+	// properties.
+	//
+	// MediaStorageConfiguration is a required field
+	MediaStorageConfiguration *MediaStorageConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaStorageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaStorageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMediaStorageConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMediaStorageConfigurationInput"}
+	if s.ChannelARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelARN"))
+	}
+	if s.ChannelARN != nil && len(*s.ChannelARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelARN", 1))
+	}
+	if s.MediaStorageConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStorageConfiguration"))
+	}
+	if s.MediaStorageConfiguration != nil {
+		if err := s.MediaStorageConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MediaStorageConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelARN sets the ChannelARN field's value.
+func (s *UpdateMediaStorageConfigurationInput) SetChannelARN(v string) *UpdateMediaStorageConfigurationInput {
+	s.ChannelARN = &v
+	return s
+}
+
+// SetMediaStorageConfiguration sets the MediaStorageConfiguration field's value.
+func (s *UpdateMediaStorageConfigurationInput) SetMediaStorageConfiguration(v *MediaStorageConfiguration) *UpdateMediaStorageConfigurationInput {
+	s.MediaStorageConfiguration = v
+	return s
+}
+
+type UpdateMediaStorageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaStorageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaStorageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateNotificationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The structure containing the information required for notifications. If the
+	// structure is null, the configuration will be deleted from the stream.
+	NotificationConfiguration *NotificationConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Kinesis video stream from where you
+	// want to update the notification configuration. You must specify either the
+	// StreamName or the StreamARN.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which to update the notification configuration.
+	// You must specify either the StreamName or the StreamARN.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotificationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotificationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateNotificationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateNotificationConfigurationInput"}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+	if s.NotificationConfiguration != nil {
+		if err := s.NotificationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("NotificationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNotificationConfiguration sets the NotificationConfiguration field's value.
+func (s *UpdateNotificationConfigurationInput) SetNotificationConfiguration(v *NotificationConfiguration) *UpdateNotificationConfigurationInput {
+	s.NotificationConfiguration = v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *UpdateNotificationConfigurationInput) SetStreamARN(v string) *UpdateNotificationConfigurationInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *UpdateNotificationConfigurationInput) SetStreamName(v string) *UpdateNotificationConfigurationInput {
+	s.StreamName = &v
+	return s
+}
+
+type UpdateNotificationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotificationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotificationConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -4677,12 +8937,20 @@ type UpdateSignalingChannelInput struct {
 	SingleMasterConfiguration *SingleMasterConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSignalingChannelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSignalingChannelInput) GoString() string {
 	return s.String()
 }
@@ -4736,12 +9004,20 @@ type UpdateSignalingChannelOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSignalingChannelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSignalingChannelOutput) GoString() string {
 	return s.String()
 }
@@ -4778,12 +9054,20 @@ type UpdateStreamInput struct {
 	StreamName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateStreamInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateStreamInput) GoString() string {
 	return s.String()
 }
@@ -4850,14 +9134,81 @@ type UpdateStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateStreamOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateStreamOutput) GoString() string {
 	return s.String()
+}
+
+// The configuration that consists of the ScheduleExpression and the DurationInMinutes
+// details that specify the scheduling to record from a camera, or local media
+// file, onto the Edge Agent. If the ScheduleConfig is not provided in the UploaderConfig,
+// then the Edge Agent will upload at regular intervals (every 1 hour).
+type UploaderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration that consists of the ScheduleExpression and the DurationInMinutes
+	// details that specify the scheduling to record from a camera, or local media
+	// file, onto the Edge Agent. If the ScheduleConfig is not provided in this
+	// UploaderConfig, then the Edge Agent will upload at regular intervals (every
+	// 1 hour).
+	//
+	// ScheduleConfig is a required field
+	ScheduleConfig *ScheduleConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UploaderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UploaderConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UploaderConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UploaderConfig"}
+	if s.ScheduleConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleConfig"))
+	}
+	if s.ScheduleConfig != nil {
+		if err := s.ScheduleConfig.Validate(); err != nil {
+			invalidParams.AddNested("ScheduleConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScheduleConfig sets the ScheduleConfig field's value.
+func (s *UploaderConfig) SetScheduleConfig(v *ScheduleConfig) *UploaderConfig {
+	s.ScheduleConfig = v
+	return s
 }
 
 // The stream version that you specified is not the latest version. To get the
@@ -4870,12 +9221,20 @@ type VersionMismatchException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VersionMismatchException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VersionMismatchException) GoString() string {
 	return s.String()
 }
@@ -4939,6 +9298,9 @@ const (
 
 	// APINameGetClip is a APIName enum value
 	APINameGetClip = "GET_CLIP"
+
+	// APINameGetImages is a APIName enum value
+	APINameGetImages = "GET_IMAGES"
 )
 
 // APIName_Values returns all elements of the APIName enum
@@ -4951,6 +9313,7 @@ func APIName_Values() []string {
 		APINameGetHlsStreamingSessionUrl,
 		APINameGetDashStreamingSessionUrl,
 		APINameGetClip,
+		APINameGetImages,
 	}
 }
 
@@ -4960,6 +9323,9 @@ const (
 
 	// ChannelProtocolHttps is a ChannelProtocol enum value
 	ChannelProtocolHttps = "HTTPS"
+
+	// ChannelProtocolWebrtc is a ChannelProtocol enum value
+	ChannelProtocolWebrtc = "WEBRTC"
 )
 
 // ChannelProtocol_Values returns all elements of the ChannelProtocol enum
@@ -4967,6 +9333,7 @@ func ChannelProtocol_Values() []string {
 	return []string{
 		ChannelProtocolWss,
 		ChannelProtocolHttps,
+		ChannelProtocolWebrtc,
 	}
 }
 
@@ -4989,12 +9356,16 @@ func ChannelRole_Values() []string {
 const (
 	// ChannelTypeSingleMaster is a ChannelType enum value
 	ChannelTypeSingleMaster = "SINGLE_MASTER"
+
+	// ChannelTypeFullMesh is a ChannelType enum value
+	ChannelTypeFullMesh = "FULL_MESH"
 )
 
 // ChannelType_Values returns all elements of the ChannelType enum
 func ChannelType_Values() []string {
 	return []string{
 		ChannelTypeSingleMaster,
+		ChannelTypeFullMesh,
 	}
 }
 
@@ -5007,6 +9378,118 @@ const (
 func ComparisonOperator_Values() []string {
 	return []string{
 		ComparisonOperatorBeginsWith,
+	}
+}
+
+const (
+	// ConfigurationStatusEnabled is a ConfigurationStatus enum value
+	ConfigurationStatusEnabled = "ENABLED"
+
+	// ConfigurationStatusDisabled is a ConfigurationStatus enum value
+	ConfigurationStatusDisabled = "DISABLED"
+)
+
+// ConfigurationStatus_Values returns all elements of the ConfigurationStatus enum
+func ConfigurationStatus_Values() []string {
+	return []string{
+		ConfigurationStatusEnabled,
+		ConfigurationStatusDisabled,
+	}
+}
+
+const (
+	// FormatJpeg is a Format enum value
+	FormatJpeg = "JPEG"
+
+	// FormatPng is a Format enum value
+	FormatPng = "PNG"
+)
+
+// Format_Values returns all elements of the Format enum
+func Format_Values() []string {
+	return []string{
+		FormatJpeg,
+		FormatPng,
+	}
+}
+
+const (
+	// FormatConfigKeyJpegquality is a FormatConfigKey enum value
+	FormatConfigKeyJpegquality = "JPEGQuality"
+)
+
+// FormatConfigKey_Values returns all elements of the FormatConfigKey enum
+func FormatConfigKey_Values() []string {
+	return []string{
+		FormatConfigKeyJpegquality,
+	}
+}
+
+const (
+	// ImageSelectorTypeServerTimestamp is a ImageSelectorType enum value
+	ImageSelectorTypeServerTimestamp = "SERVER_TIMESTAMP"
+
+	// ImageSelectorTypeProducerTimestamp is a ImageSelectorType enum value
+	ImageSelectorTypeProducerTimestamp = "PRODUCER_TIMESTAMP"
+)
+
+// ImageSelectorType_Values returns all elements of the ImageSelectorType enum
+func ImageSelectorType_Values() []string {
+	return []string{
+		ImageSelectorTypeServerTimestamp,
+		ImageSelectorTypeProducerTimestamp,
+	}
+}
+
+const (
+	// MediaStorageConfigurationStatusEnabled is a MediaStorageConfigurationStatus enum value
+	MediaStorageConfigurationStatusEnabled = "ENABLED"
+
+	// MediaStorageConfigurationStatusDisabled is a MediaStorageConfigurationStatus enum value
+	MediaStorageConfigurationStatusDisabled = "DISABLED"
+)
+
+// MediaStorageConfigurationStatus_Values returns all elements of the MediaStorageConfigurationStatus enum
+func MediaStorageConfigurationStatus_Values() []string {
+	return []string{
+		MediaStorageConfigurationStatusEnabled,
+		MediaStorageConfigurationStatusDisabled,
+	}
+}
+
+const (
+	// MediaUriTypeRtspUri is a MediaUriType enum value
+	MediaUriTypeRtspUri = "RTSP_URI"
+
+	// MediaUriTypeFileUri is a MediaUriType enum value
+	MediaUriTypeFileUri = "FILE_URI"
+)
+
+// MediaUriType_Values returns all elements of the MediaUriType enum
+func MediaUriType_Values() []string {
+	return []string{
+		MediaUriTypeRtspUri,
+		MediaUriTypeFileUri,
+	}
+}
+
+const (
+	// RecorderStatusSuccess is a RecorderStatus enum value
+	RecorderStatusSuccess = "SUCCESS"
+
+	// RecorderStatusUserError is a RecorderStatus enum value
+	RecorderStatusUserError = "USER_ERROR"
+
+	// RecorderStatusSystemError is a RecorderStatus enum value
+	RecorderStatusSystemError = "SYSTEM_ERROR"
+)
+
+// RecorderStatus_Values returns all elements of the RecorderStatus enum
+func RecorderStatus_Values() []string {
+	return []string{
+		RecorderStatusSuccess,
+		RecorderStatusUserError,
+		RecorderStatusSystemError,
 	}
 }
 
@@ -5035,6 +9518,58 @@ func Status_Values() []string {
 }
 
 const (
+	// StrategyOnFullSizeDeleteOldestMedia is a StrategyOnFullSize enum value
+	StrategyOnFullSizeDeleteOldestMedia = "DELETE_OLDEST_MEDIA"
+
+	// StrategyOnFullSizeDenyNewMedia is a StrategyOnFullSize enum value
+	StrategyOnFullSizeDenyNewMedia = "DENY_NEW_MEDIA"
+)
+
+// StrategyOnFullSize_Values returns all elements of the StrategyOnFullSize enum
+func StrategyOnFullSize_Values() []string {
+	return []string{
+		StrategyOnFullSizeDeleteOldestMedia,
+		StrategyOnFullSizeDenyNewMedia,
+	}
+}
+
+const (
+	// SyncStatusSyncing is a SyncStatus enum value
+	SyncStatusSyncing = "SYNCING"
+
+	// SyncStatusAcknowledged is a SyncStatus enum value
+	SyncStatusAcknowledged = "ACKNOWLEDGED"
+
+	// SyncStatusInSync is a SyncStatus enum value
+	SyncStatusInSync = "IN_SYNC"
+
+	// SyncStatusSyncFailed is a SyncStatus enum value
+	SyncStatusSyncFailed = "SYNC_FAILED"
+
+	// SyncStatusDeleting is a SyncStatus enum value
+	SyncStatusDeleting = "DELETING"
+
+	// SyncStatusDeleteFailed is a SyncStatus enum value
+	SyncStatusDeleteFailed = "DELETE_FAILED"
+
+	// SyncStatusDeletingAcknowledged is a SyncStatus enum value
+	SyncStatusDeletingAcknowledged = "DELETING_ACKNOWLEDGED"
+)
+
+// SyncStatus_Values returns all elements of the SyncStatus enum
+func SyncStatus_Values() []string {
+	return []string{
+		SyncStatusSyncing,
+		SyncStatusAcknowledged,
+		SyncStatusInSync,
+		SyncStatusSyncFailed,
+		SyncStatusDeleting,
+		SyncStatusDeleteFailed,
+		SyncStatusDeletingAcknowledged,
+	}
+}
+
+const (
 	// UpdateDataRetentionOperationIncreaseDataRetention is a UpdateDataRetentionOperation enum value
 	UpdateDataRetentionOperationIncreaseDataRetention = "INCREASE_DATA_RETENTION"
 
@@ -5047,5 +9582,25 @@ func UpdateDataRetentionOperation_Values() []string {
 	return []string{
 		UpdateDataRetentionOperationIncreaseDataRetention,
 		UpdateDataRetentionOperationDecreaseDataRetention,
+	}
+}
+
+const (
+	// UploaderStatusSuccess is a UploaderStatus enum value
+	UploaderStatusSuccess = "SUCCESS"
+
+	// UploaderStatusUserError is a UploaderStatus enum value
+	UploaderStatusUserError = "USER_ERROR"
+
+	// UploaderStatusSystemError is a UploaderStatus enum value
+	UploaderStatusSystemError = "SYSTEM_ERROR"
+)
+
+// UploaderStatus_Values returns all elements of the UploaderStatus enum
+func UploaderStatus_Values() []string {
+	return []string{
+		UploaderStatusSuccess,
+		UploaderStatusUserError,
+		UploaderStatusSystemError,
 	}
 }

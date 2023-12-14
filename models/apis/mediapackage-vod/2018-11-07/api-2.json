@@ -756,6 +756,10 @@
           "locationName": "authorization",
           "shape": "Authorization"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DomainName": {
           "locationName": "domainName",
           "shape": "__string"
@@ -898,6 +902,10 @@
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DashPackage": {
           "locationName": "dashPackage",
           "shape": "DashPackage"
@@ -959,6 +967,10 @@
           "locationName": "authorization",
           "shape": "Authorization"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DomainName": {
           "locationName": "domainName",
           "shape": "__string"
@@ -1008,6 +1020,10 @@
           "locationName": "profile",
           "shape": "Profile"
         },
+        "ScteMarkersSource": {
+          "locationName": "scteMarkersSource",
+          "shape": "ScteMarkersSource"
+        },
         "StreamSelection": {
           "locationName": "streamSelection",
           "shape": "StreamSelection"
@@ -1027,6 +1043,10 @@
         },
         "IncludeEncoderConfigurationInSegments": {
           "locationName": "includeEncoderConfigurationInSegments",
+          "shape": "__boolean"
+        },
+        "IncludeIframeOnlyStream": {
+          "locationName": "includeIframeOnlyStream",
           "shape": "__boolean"
         },
         "PeriodTriggers": {
@@ -1175,6 +1195,10 @@
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DashPackage": {
           "locationName": "dashPackage",
           "shape": "DashPackage"
@@ -1217,6 +1241,10 @@
     },
     "DescribePackagingGroupResponse": {
       "members": {
+        "ApproximateAssetCount": {
+          "locationName": "approximateAssetCount",
+          "shape": "__integer"
+        },
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
@@ -1224,6 +1252,10 @@
         "Authorization": {
           "locationName": "authorization",
           "shape": "Authorization"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
         },
         "DomainName": {
           "locationName": "domainName",
@@ -1259,11 +1291,32 @@
           "locationName": "packagingConfigurationId",
           "shape": "__string"
         },
+        "Status": {
+          "locationName": "status",
+          "shape": "__string"
+        },
         "Url": {
           "locationName": "url",
           "shape": "__string"
         }
       },
+      "type": "structure"
+    },
+    "EncryptionContractConfiguration": {
+      "members": {
+        "PresetSpeke20Audio": {
+          "locationName": "presetSpeke20Audio",
+          "shape": "PresetSpeke20Audio"
+        },
+        "PresetSpeke20Video": {
+          "locationName": "presetSpeke20Video",
+          "shape": "PresetSpeke20Video"
+        }
+      },
+      "required": [
+        "PresetSpeke20Audio",
+        "PresetSpeke20Video"
+      ],
       "type": "structure"
     },
     "EncryptionMethod": {
@@ -1344,6 +1397,10 @@
         "HlsManifests": {
           "locationName": "hlsManifests",
           "shape": "__listOfHlsManifest"
+        },
+        "IncludeDvbSubtitles": {
+          "locationName": "includeDvbSubtitles",
+          "shape": "__boolean"
         },
         "SegmentDurationSeconds": {
           "locationName": "segmentDurationSeconds",
@@ -1568,6 +1625,10 @@
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DashPackage": {
           "locationName": "dashPackage",
           "shape": "DashPackage"
@@ -1647,6 +1708,10 @@
     },
     "PackagingGroup": {
       "members": {
+        "ApproximateAssetCount": {
+          "locationName": "approximateAssetCount",
+          "shape": "__integer"
+        },
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
@@ -1654,6 +1719,10 @@
         "Authorization": {
           "locationName": "authorization",
           "shape": "Authorization"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
         },
         "DomainName": {
           "locationName": "domainName",
@@ -1720,10 +1789,42 @@
       },
       "type": "structure"
     },
+    "PresetSpeke20Audio": {
+      "enum": [
+        "PRESET-AUDIO-1",
+        "PRESET-AUDIO-2",
+        "PRESET-AUDIO-3",
+        "SHARED",
+        "UNENCRYPTED"
+      ],
+      "type": "string"
+    },
+    "PresetSpeke20Video": {
+      "enum": [
+        "PRESET-VIDEO-1",
+        "PRESET-VIDEO-2",
+        "PRESET-VIDEO-3",
+        "PRESET-VIDEO-4",
+        "PRESET-VIDEO-5",
+        "PRESET-VIDEO-6",
+        "PRESET-VIDEO-7",
+        "PRESET-VIDEO-8",
+        "SHARED",
+        "UNENCRYPTED"
+      ],
+      "type": "string"
+    },
     "Profile": {
       "enum": [
         "NONE",
         "HBBTV_1_5"
+      ],
+      "type": "string"
+    },
+    "ScteMarkersSource": {
+      "enum": [
+        "SEGMENTS",
+        "MANIFEST"
       ],
       "type": "string"
     },
@@ -1750,6 +1851,10 @@
     },
     "SpekeKeyProvider": {
       "members": {
+        "EncryptionContractConfiguration": {
+          "locationName": "encryptionContractConfiguration",
+          "shape": "EncryptionContractConfiguration"
+        },
         "RoleArn": {
           "locationName": "roleArn",
           "shape": "__string"
@@ -1898,6 +2003,10 @@
     },
     "UpdatePackagingGroupResponse": {
       "members": {
+        "ApproximateAssetCount": {
+          "locationName": "approximateAssetCount",
+          "shape": "__integer"
+        },
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
@@ -1905,6 +2014,10 @@
         "Authorization": {
           "locationName": "authorization",
           "shape": "Authorization"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
         },
         "DomainName": {
           "locationName": "domainName",

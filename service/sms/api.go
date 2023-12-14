@@ -29,14 +29,13 @@ const opCreateApp = "CreateApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAppRequest method.
+//	req, resp := client.CreateAppRequest(params)
 //
-//    // Example sending a request using the CreateAppRequest method.
-//    req, resp := client.CreateAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/CreateApp
 func (c *SMS) CreateAppRequest(input *CreateAppInput) (req *request.Request, output *CreateAppOutput) {
@@ -68,21 +67,22 @@ func (c *SMS) CreateAppRequest(input *CreateAppInput) (req *request.Request, out
 // API operation CreateApp for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/CreateApp
 func (c *SMS) CreateApp(input *CreateAppInput) (*CreateAppOutput, error) {
@@ -122,14 +122,13 @@ const opCreateReplicationJob = "CreateReplicationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReplicationJobRequest method.
+//	req, resp := client.CreateReplicationJobRequest(params)
 //
-//    // Example sending a request using the CreateReplicationJobRequest method.
-//    req, resp := client.CreateReplicationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/CreateReplicationJob
 func (c *SMS) CreateReplicationJobRequest(input *CreateReplicationJobInput) (req *request.Request, output *CreateReplicationJobOutput) {
@@ -151,8 +150,8 @@ func (c *SMS) CreateReplicationJobRequest(input *CreateReplicationJobInput) (req
 // CreateReplicationJob API operation for AWS Server Migration Service.
 //
 // Creates a replication job. The replication job schedules periodic replication
-// runs to replicate your server to AWS. Each replication run creates an Amazon
-// Machine Image (AMI).
+// runs to replicate your server to Amazon Web Services. Each replication run
+// creates an Amazon Machine Image (AMI).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -162,33 +161,34 @@ func (c *SMS) CreateReplicationJobRequest(input *CreateReplicationJobInput) (req
 // API operation CreateReplicationJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A specified parameter is not valid.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * ServerCannotBeReplicatedException
-//   The specified server cannot be replicated.
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
-//   * ReplicationJobAlreadyExistsException
-//   The specified replication job already exists.
+//   - ServerCannotBeReplicatedException
+//     The specified server cannot be replicated.
 //
-//   * NoConnectorsAvailableException
-//   There are no connectors available.
+//   - ReplicationJobAlreadyExistsException
+//     The specified replication job already exists.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - NoConnectorsAvailableException
+//     There are no connectors available.
 //
-//   * TemporarilyUnavailableException
-//   The service is temporarily unavailable.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - TemporarilyUnavailableException
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/CreateReplicationJob
 func (c *SMS) CreateReplicationJob(input *CreateReplicationJobInput) (*CreateReplicationJobOutput, error) {
@@ -228,14 +228,13 @@ const opDeleteApp = "DeleteApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAppRequest method.
+//	req, resp := client.DeleteAppRequest(params)
 //
-//    // Example sending a request using the DeleteAppRequest method.
-//    req, resp := client.DeleteAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteApp
 func (c *SMS) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, output *DeleteAppOutput) {
@@ -258,8 +257,8 @@ func (c *SMS) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, out
 // DeleteApp API operation for AWS Server Migration Service.
 //
 // Deletes the specified application. Optionally deletes the launched stack
-// associated with the application and all AWS SMS replication jobs for servers
-// in the application.
+// associated with the application and all Server Migration Service replication
+// jobs for servers in the application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -269,21 +268,22 @@ func (c *SMS) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, out
 // API operation DeleteApp for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteApp
 func (c *SMS) DeleteApp(input *DeleteAppInput) (*DeleteAppOutput, error) {
@@ -323,14 +323,13 @@ const opDeleteAppLaunchConfiguration = "DeleteAppLaunchConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAppLaunchConfigurationRequest method.
+//	req, resp := client.DeleteAppLaunchConfigurationRequest(params)
 //
-//    // Example sending a request using the DeleteAppLaunchConfigurationRequest method.
-//    req, resp := client.DeleteAppLaunchConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteAppLaunchConfiguration
 func (c *SMS) DeleteAppLaunchConfigurationRequest(input *DeleteAppLaunchConfigurationInput) (req *request.Request, output *DeleteAppLaunchConfigurationOutput) {
@@ -362,21 +361,22 @@ func (c *SMS) DeleteAppLaunchConfigurationRequest(input *DeleteAppLaunchConfigur
 // API operation DeleteAppLaunchConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteAppLaunchConfiguration
 func (c *SMS) DeleteAppLaunchConfiguration(input *DeleteAppLaunchConfigurationInput) (*DeleteAppLaunchConfigurationOutput, error) {
@@ -416,14 +416,13 @@ const opDeleteAppReplicationConfiguration = "DeleteAppReplicationConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAppReplicationConfigurationRequest method.
+//	req, resp := client.DeleteAppReplicationConfigurationRequest(params)
 //
-//    // Example sending a request using the DeleteAppReplicationConfigurationRequest method.
-//    req, resp := client.DeleteAppReplicationConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteAppReplicationConfiguration
 func (c *SMS) DeleteAppReplicationConfigurationRequest(input *DeleteAppReplicationConfigurationInput) (req *request.Request, output *DeleteAppReplicationConfigurationOutput) {
@@ -455,21 +454,22 @@ func (c *SMS) DeleteAppReplicationConfigurationRequest(input *DeleteAppReplicati
 // API operation DeleteAppReplicationConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteAppReplicationConfiguration
 func (c *SMS) DeleteAppReplicationConfiguration(input *DeleteAppReplicationConfigurationInput) (*DeleteAppReplicationConfigurationOutput, error) {
@@ -509,14 +509,13 @@ const opDeleteAppValidationConfiguration = "DeleteAppValidationConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAppValidationConfigurationRequest method.
+//	req, resp := client.DeleteAppValidationConfigurationRequest(params)
 //
-//    // Example sending a request using the DeleteAppValidationConfigurationRequest method.
-//    req, resp := client.DeleteAppValidationConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteAppValidationConfiguration
 func (c *SMS) DeleteAppValidationConfigurationRequest(input *DeleteAppValidationConfigurationInput) (req *request.Request, output *DeleteAppValidationConfigurationOutput) {
@@ -548,21 +547,22 @@ func (c *SMS) DeleteAppValidationConfigurationRequest(input *DeleteAppValidation
 // API operation DeleteAppValidationConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteAppValidationConfiguration
 func (c *SMS) DeleteAppValidationConfiguration(input *DeleteAppValidationConfigurationInput) (*DeleteAppValidationConfigurationOutput, error) {
@@ -602,14 +602,13 @@ const opDeleteReplicationJob = "DeleteReplicationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReplicationJobRequest method.
+//	req, resp := client.DeleteReplicationJobRequest(params)
 //
-//    // Example sending a request using the DeleteReplicationJobRequest method.
-//    req, resp := client.DeleteReplicationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteReplicationJob
 func (c *SMS) DeleteReplicationJobRequest(input *DeleteReplicationJobInput) (req *request.Request, output *DeleteReplicationJobOutput) {
@@ -634,8 +633,9 @@ func (c *SMS) DeleteReplicationJobRequest(input *DeleteReplicationJobInput) (req
 // Deletes the specified replication job.
 //
 // After you delete a replication job, there are no further replication runs.
-// AWS deletes the contents of the Amazon S3 bucket used to store AWS SMS artifacts.
-// The AMIs created by the replication runs are not deleted.
+// Amazon Web Services deletes the contents of the Amazon S3 bucket used to
+// store Server Migration Service artifacts. The AMIs created by the replication
+// runs are not deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -645,21 +645,22 @@ func (c *SMS) DeleteReplicationJobRequest(input *DeleteReplicationJobInput) (req
 // API operation DeleteReplicationJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A specified parameter is not valid.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * ReplicationJobNotFoundException
-//   The specified replication job does not exist.
+//   - OperationNotPermittedException
+//     This operation is not allowed.
+//
+//   - ReplicationJobNotFoundException
+//     The specified replication job does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteReplicationJob
 func (c *SMS) DeleteReplicationJob(input *DeleteReplicationJobInput) (*DeleteReplicationJobOutput, error) {
@@ -699,14 +700,13 @@ const opDeleteServerCatalog = "DeleteServerCatalog"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteServerCatalogRequest method.
+//	req, resp := client.DeleteServerCatalogRequest(params)
 //
-//    // Example sending a request using the DeleteServerCatalogRequest method.
-//    req, resp := client.DeleteServerCatalogRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteServerCatalog
 func (c *SMS) DeleteServerCatalogRequest(input *DeleteServerCatalogInput) (req *request.Request, output *DeleteServerCatalogOutput) {
@@ -738,18 +738,19 @@ func (c *SMS) DeleteServerCatalogRequest(input *DeleteServerCatalogInput) (req *
 // API operation DeleteServerCatalog for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
+//
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteServerCatalog
 func (c *SMS) DeleteServerCatalog(input *DeleteServerCatalogInput) (*DeleteServerCatalogOutput, error) {
@@ -789,14 +790,13 @@ const opDisassociateConnector = "DisassociateConnector"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateConnectorRequest method.
+//	req, resp := client.DisassociateConnectorRequest(params)
 //
-//    // Example sending a request using the DisassociateConnectorRequest method.
-//    req, resp := client.DisassociateConnectorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DisassociateConnector
 func (c *SMS) DisassociateConnectorRequest(input *DisassociateConnectorInput) (req *request.Request, output *DisassociateConnectorOutput) {
@@ -818,7 +818,7 @@ func (c *SMS) DisassociateConnectorRequest(input *DisassociateConnectorInput) (r
 
 // DisassociateConnector API operation for AWS Server Migration Service.
 //
-// Disassociates the specified connector from AWS SMS.
+// Disassociates the specified connector from Server Migration Service.
 //
 // After you disassociate a connector, it is no longer available to support
 // replication jobs.
@@ -831,18 +831,19 @@ func (c *SMS) DisassociateConnectorRequest(input *DisassociateConnectorInput) (r
 // API operation DisassociateConnector for usage and error information.
 //
 // Returned Error Types:
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
 //
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - OperationNotPermittedException
+//     This operation is not allowed.
+//
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DisassociateConnector
 func (c *SMS) DisassociateConnector(input *DisassociateConnectorInput) (*DisassociateConnectorOutput, error) {
@@ -882,14 +883,13 @@ const opGenerateChangeSet = "GenerateChangeSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GenerateChangeSetRequest method.
+//	req, resp := client.GenerateChangeSetRequest(params)
 //
-//    // Example sending a request using the GenerateChangeSetRequest method.
-//    req, resp := client.GenerateChangeSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GenerateChangeSet
 func (c *SMS) GenerateChangeSetRequest(input *GenerateChangeSetInput) (req *request.Request, output *GenerateChangeSetOutput) {
@@ -921,21 +921,22 @@ func (c *SMS) GenerateChangeSetRequest(input *GenerateChangeSetInput) (req *requ
 // API operation GenerateChangeSet for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GenerateChangeSet
 func (c *SMS) GenerateChangeSet(input *GenerateChangeSetInput) (*GenerateChangeSetOutput, error) {
@@ -975,14 +976,13 @@ const opGenerateTemplate = "GenerateTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GenerateTemplateRequest method.
+//	req, resp := client.GenerateTemplateRequest(params)
 //
-//    // Example sending a request using the GenerateTemplateRequest method.
-//    req, resp := client.GenerateTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GenerateTemplate
 func (c *SMS) GenerateTemplateRequest(input *GenerateTemplateInput) (req *request.Request, output *GenerateTemplateOutput) {
@@ -1003,7 +1003,7 @@ func (c *SMS) GenerateTemplateRequest(input *GenerateTemplateInput) (req *reques
 
 // GenerateTemplate API operation for AWS Server Migration Service.
 //
-// Generates an AWS CloudFormation template based on the current launch configuration
+// Generates an CloudFormation template based on the current launch configuration
 // and writes it to an Amazon S3 object in the customer’s Amazon S3 bucket.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1014,21 +1014,22 @@ func (c *SMS) GenerateTemplateRequest(input *GenerateTemplateInput) (req *reques
 // API operation GenerateTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GenerateTemplate
 func (c *SMS) GenerateTemplate(input *GenerateTemplateInput) (*GenerateTemplateOutput, error) {
@@ -1068,14 +1069,13 @@ const opGetApp = "GetApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAppRequest method.
+//	req, resp := client.GetAppRequest(params)
 //
-//    // Example sending a request using the GetAppRequest method.
-//    req, resp := client.GetAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetApp
 func (c *SMS) GetAppRequest(input *GetAppInput) (req *request.Request, output *GetAppOutput) {
@@ -1106,21 +1106,22 @@ func (c *SMS) GetAppRequest(input *GetAppInput) (req *request.Request, output *G
 // API operation GetApp for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetApp
 func (c *SMS) GetApp(input *GetAppInput) (*GetAppOutput, error) {
@@ -1160,14 +1161,13 @@ const opGetAppLaunchConfiguration = "GetAppLaunchConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAppLaunchConfigurationRequest method.
+//	req, resp := client.GetAppLaunchConfigurationRequest(params)
 //
-//    // Example sending a request using the GetAppLaunchConfigurationRequest method.
-//    req, resp := client.GetAppLaunchConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetAppLaunchConfiguration
 func (c *SMS) GetAppLaunchConfigurationRequest(input *GetAppLaunchConfigurationInput) (req *request.Request, output *GetAppLaunchConfigurationOutput) {
@@ -1199,21 +1199,22 @@ func (c *SMS) GetAppLaunchConfigurationRequest(input *GetAppLaunchConfigurationI
 // API operation GetAppLaunchConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetAppLaunchConfiguration
 func (c *SMS) GetAppLaunchConfiguration(input *GetAppLaunchConfigurationInput) (*GetAppLaunchConfigurationOutput, error) {
@@ -1253,14 +1254,13 @@ const opGetAppReplicationConfiguration = "GetAppReplicationConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAppReplicationConfigurationRequest method.
+//	req, resp := client.GetAppReplicationConfigurationRequest(params)
 //
-//    // Example sending a request using the GetAppReplicationConfigurationRequest method.
-//    req, resp := client.GetAppReplicationConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetAppReplicationConfiguration
 func (c *SMS) GetAppReplicationConfigurationRequest(input *GetAppReplicationConfigurationInput) (req *request.Request, output *GetAppReplicationConfigurationOutput) {
@@ -1292,21 +1292,22 @@ func (c *SMS) GetAppReplicationConfigurationRequest(input *GetAppReplicationConf
 // API operation GetAppReplicationConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetAppReplicationConfiguration
 func (c *SMS) GetAppReplicationConfiguration(input *GetAppReplicationConfigurationInput) (*GetAppReplicationConfigurationOutput, error) {
@@ -1346,14 +1347,13 @@ const opGetAppValidationConfiguration = "GetAppValidationConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAppValidationConfigurationRequest method.
+//	req, resp := client.GetAppValidationConfigurationRequest(params)
 //
-//    // Example sending a request using the GetAppValidationConfigurationRequest method.
-//    req, resp := client.GetAppValidationConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetAppValidationConfiguration
 func (c *SMS) GetAppValidationConfigurationRequest(input *GetAppValidationConfigurationInput) (req *request.Request, output *GetAppValidationConfigurationOutput) {
@@ -1384,21 +1384,22 @@ func (c *SMS) GetAppValidationConfigurationRequest(input *GetAppValidationConfig
 // API operation GetAppValidationConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetAppValidationConfiguration
 func (c *SMS) GetAppValidationConfiguration(input *GetAppValidationConfigurationInput) (*GetAppValidationConfigurationOutput, error) {
@@ -1438,14 +1439,13 @@ const opGetAppValidationOutput = "GetAppValidationOutput"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAppValidationOutputRequest method.
+//	req, resp := client.GetAppValidationOutputRequest(params)
 //
-//    // Example sending a request using the GetAppValidationOutputRequest method.
-//    req, resp := client.GetAppValidationOutputRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetAppValidationOutput
 func (c *SMS) GetAppValidationOutputRequest(input *GetAppValidationOutputInput) (req *request.Request, output *GetAppValidationOutputOutput) {
@@ -1476,21 +1476,22 @@ func (c *SMS) GetAppValidationOutputRequest(input *GetAppValidationOutputInput) 
 // API operation GetAppValidationOutput for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetAppValidationOutput
 func (c *SMS) GetAppValidationOutput(input *GetAppValidationOutputInput) (*GetAppValidationOutputOutput, error) {
@@ -1530,14 +1531,13 @@ const opGetConnectors = "GetConnectors"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConnectorsRequest method.
+//	req, resp := client.GetConnectorsRequest(params)
 //
-//    // Example sending a request using the GetConnectorsRequest method.
-//    req, resp := client.GetConnectorsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetConnectors
 func (c *SMS) GetConnectorsRequest(input *GetConnectorsInput) (req *request.Request, output *GetConnectorsOutput) {
@@ -1564,7 +1564,7 @@ func (c *SMS) GetConnectorsRequest(input *GetConnectorsInput) (req *request.Requ
 
 // GetConnectors API operation for AWS Server Migration Service.
 //
-// Describes the connectors registered with the AWS SMS.
+// Describes the connectors registered with the Server Migration Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1574,9 +1574,9 @@ func (c *SMS) GetConnectorsRequest(input *GetConnectorsInput) (req *request.Requ
 // API operation GetConnectors for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetConnectors
 func (c *SMS) GetConnectors(input *GetConnectorsInput) (*GetConnectorsOutput, error) {
@@ -1608,15 +1608,14 @@ func (c *SMS) GetConnectorsWithContext(ctx aws.Context, input *GetConnectorsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetConnectors operation.
-//    pageNum := 0
-//    err := client.GetConnectorsPages(params,
-//        func(page *sms.GetConnectorsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetConnectors operation.
+//	pageNum := 0
+//	err := client.GetConnectorsPages(params,
+//	    func(page *sms.GetConnectorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SMS) GetConnectorsPages(input *GetConnectorsInput, fn func(*GetConnectorsOutput, bool) bool) error {
 	return c.GetConnectorsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1668,14 +1667,13 @@ const opGetReplicationJobs = "GetReplicationJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetReplicationJobsRequest method.
+//	req, resp := client.GetReplicationJobsRequest(params)
 //
-//    // Example sending a request using the GetReplicationJobsRequest method.
-//    req, resp := client.GetReplicationJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetReplicationJobs
 func (c *SMS) GetReplicationJobsRequest(input *GetReplicationJobsInput) (req *request.Request, output *GetReplicationJobsOutput) {
@@ -1712,15 +1710,16 @@ func (c *SMS) GetReplicationJobsRequest(input *GetReplicationJobsInput) (req *re
 // API operation GetReplicationJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A specified parameter is not valid.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
+//
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetReplicationJobs
 func (c *SMS) GetReplicationJobs(input *GetReplicationJobsInput) (*GetReplicationJobsOutput, error) {
@@ -1752,15 +1751,14 @@ func (c *SMS) GetReplicationJobsWithContext(ctx aws.Context, input *GetReplicati
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetReplicationJobs operation.
-//    pageNum := 0
-//    err := client.GetReplicationJobsPages(params,
-//        func(page *sms.GetReplicationJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetReplicationJobs operation.
+//	pageNum := 0
+//	err := client.GetReplicationJobsPages(params,
+//	    func(page *sms.GetReplicationJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SMS) GetReplicationJobsPages(input *GetReplicationJobsInput, fn func(*GetReplicationJobsOutput, bool) bool) error {
 	return c.GetReplicationJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1812,14 +1810,13 @@ const opGetReplicationRuns = "GetReplicationRuns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetReplicationRunsRequest method.
+//	req, resp := client.GetReplicationRunsRequest(params)
 //
-//    // Example sending a request using the GetReplicationRunsRequest method.
-//    req, resp := client.GetReplicationRunsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetReplicationRuns
 func (c *SMS) GetReplicationRunsRequest(input *GetReplicationRunsInput) (req *request.Request, output *GetReplicationRunsOutput) {
@@ -1856,15 +1853,16 @@ func (c *SMS) GetReplicationRunsRequest(input *GetReplicationRunsInput) (req *re
 // API operation GetReplicationRuns for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A specified parameter is not valid.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
+//
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetReplicationRuns
 func (c *SMS) GetReplicationRuns(input *GetReplicationRunsInput) (*GetReplicationRunsOutput, error) {
@@ -1896,15 +1894,14 @@ func (c *SMS) GetReplicationRunsWithContext(ctx aws.Context, input *GetReplicati
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetReplicationRuns operation.
-//    pageNum := 0
-//    err := client.GetReplicationRunsPages(params,
-//        func(page *sms.GetReplicationRunsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetReplicationRuns operation.
+//	pageNum := 0
+//	err := client.GetReplicationRunsPages(params,
+//	    func(page *sms.GetReplicationRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SMS) GetReplicationRunsPages(input *GetReplicationRunsInput, fn func(*GetReplicationRunsOutput, bool) bool) error {
 	return c.GetReplicationRunsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1956,14 +1953,13 @@ const opGetServers = "GetServers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetServersRequest method.
+//	req, resp := client.GetServersRequest(params)
 //
-//    // Example sending a request using the GetServersRequest method.
-//    req, resp := client.GetServersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetServers
 func (c *SMS) GetServersRequest(input *GetServersInput) (req *request.Request, output *GetServersOutput) {
@@ -2002,18 +1998,19 @@ func (c *SMS) GetServersRequest(input *GetServersInput) (req *request.Request, o
 // API operation GetServers for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
+//
+//   - InternalError
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetServers
 func (c *SMS) GetServers(input *GetServersInput) (*GetServersOutput, error) {
@@ -2045,15 +2042,14 @@ func (c *SMS) GetServersWithContext(ctx aws.Context, input *GetServersInput, opt
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetServers operation.
-//    pageNum := 0
-//    err := client.GetServersPages(params,
-//        func(page *sms.GetServersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetServers operation.
+//	pageNum := 0
+//	err := client.GetServersPages(params,
+//	    func(page *sms.GetServersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SMS) GetServersPages(input *GetServersInput, fn func(*GetServersOutput, bool) bool) error {
 	return c.GetServersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2105,14 +2101,13 @@ const opImportAppCatalog = "ImportAppCatalog"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ImportAppCatalogRequest method.
+//	req, resp := client.ImportAppCatalogRequest(params)
 //
-//    // Example sending a request using the ImportAppCatalogRequest method.
-//    req, resp := client.ImportAppCatalogRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/ImportAppCatalog
 func (c *SMS) ImportAppCatalogRequest(input *ImportAppCatalogInput) (req *request.Request, output *ImportAppCatalogOutput) {
@@ -2134,7 +2129,7 @@ func (c *SMS) ImportAppCatalogRequest(input *ImportAppCatalogInput) (req *reques
 
 // ImportAppCatalog API operation for AWS Server Migration Service.
 //
-// Allows application import from AWS Migration Hub.
+// Allows application import from Migration Hub.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2144,21 +2139,22 @@ func (c *SMS) ImportAppCatalogRequest(input *ImportAppCatalogInput) (req *reques
 // API operation ImportAppCatalog for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/ImportAppCatalog
 func (c *SMS) ImportAppCatalog(input *ImportAppCatalogInput) (*ImportAppCatalogOutput, error) {
@@ -2198,14 +2194,13 @@ const opImportServerCatalog = "ImportServerCatalog"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ImportServerCatalogRequest method.
+//	req, resp := client.ImportServerCatalogRequest(params)
 //
-//    // Example sending a request using the ImportServerCatalogRequest method.
-//    req, resp := client.ImportServerCatalogRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/ImportServerCatalog
 func (c *SMS) ImportServerCatalogRequest(input *ImportServerCatalogInput) (req *request.Request, output *ImportServerCatalogOutput) {
@@ -2241,21 +2236,22 @@ func (c *SMS) ImportServerCatalogRequest(input *ImportServerCatalogInput) (req *
 // API operation ImportServerCatalog for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * NoConnectorsAvailableException
-//   There are no connectors available.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
+//
+//   - NoConnectorsAvailableException
+//     There are no connectors available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/ImportServerCatalog
 func (c *SMS) ImportServerCatalog(input *ImportServerCatalogInput) (*ImportServerCatalogOutput, error) {
@@ -2295,14 +2291,13 @@ const opLaunchApp = "LaunchApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the LaunchAppRequest method.
+//	req, resp := client.LaunchAppRequest(params)
 //
-//    // Example sending a request using the LaunchAppRequest method.
-//    req, resp := client.LaunchAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/LaunchApp
 func (c *SMS) LaunchAppRequest(input *LaunchAppInput) (req *request.Request, output *LaunchAppOutput) {
@@ -2324,7 +2319,7 @@ func (c *SMS) LaunchAppRequest(input *LaunchAppInput) (req *request.Request, out
 
 // LaunchApp API operation for AWS Server Migration Service.
 //
-// Launches the specified application as a stack in AWS CloudFormation.
+// Launches the specified application as a stack in CloudFormation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2334,21 +2329,22 @@ func (c *SMS) LaunchAppRequest(input *LaunchAppInput) (req *request.Request, out
 // API operation LaunchApp for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/LaunchApp
 func (c *SMS) LaunchApp(input *LaunchAppInput) (*LaunchAppOutput, error) {
@@ -2388,14 +2384,13 @@ const opListApps = "ListApps"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAppsRequest method.
+//	req, resp := client.ListAppsRequest(params)
 //
-//    // Example sending a request using the ListAppsRequest method.
-//    req, resp := client.ListAppsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/ListApps
 func (c *SMS) ListAppsRequest(input *ListAppsInput) (req *request.Request, output *ListAppsOutput) {
@@ -2426,21 +2421,22 @@ func (c *SMS) ListAppsRequest(input *ListAppsInput) (req *request.Request, outpu
 // API operation ListApps for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/ListApps
 func (c *SMS) ListApps(input *ListAppsInput) (*ListAppsOutput, error) {
@@ -2480,14 +2476,13 @@ const opNotifyAppValidationOutput = "NotifyAppValidationOutput"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the NotifyAppValidationOutputRequest method.
+//	req, resp := client.NotifyAppValidationOutputRequest(params)
 //
-//    // Example sending a request using the NotifyAppValidationOutputRequest method.
-//    req, resp := client.NotifyAppValidationOutputRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/NotifyAppValidationOutput
 func (c *SMS) NotifyAppValidationOutputRequest(input *NotifyAppValidationOutputInput) (req *request.Request, output *NotifyAppValidationOutputOutput) {
@@ -2509,7 +2504,8 @@ func (c *SMS) NotifyAppValidationOutputRequest(input *NotifyAppValidationOutputI
 
 // NotifyAppValidationOutput API operation for AWS Server Migration Service.
 //
-// Provides information to AWS SMS about whether application validation is successful.
+// Provides information to Server Migration Service about whether application
+// validation is successful.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2519,21 +2515,22 @@ func (c *SMS) NotifyAppValidationOutputRequest(input *NotifyAppValidationOutputI
 // API operation NotifyAppValidationOutput for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/NotifyAppValidationOutput
 func (c *SMS) NotifyAppValidationOutput(input *NotifyAppValidationOutputInput) (*NotifyAppValidationOutputOutput, error) {
@@ -2573,14 +2570,13 @@ const opPutAppLaunchConfiguration = "PutAppLaunchConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutAppLaunchConfigurationRequest method.
+//	req, resp := client.PutAppLaunchConfigurationRequest(params)
 //
-//    // Example sending a request using the PutAppLaunchConfigurationRequest method.
-//    req, resp := client.PutAppLaunchConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/PutAppLaunchConfiguration
 func (c *SMS) PutAppLaunchConfigurationRequest(input *PutAppLaunchConfigurationInput) (req *request.Request, output *PutAppLaunchConfigurationOutput) {
@@ -2612,21 +2608,22 @@ func (c *SMS) PutAppLaunchConfigurationRequest(input *PutAppLaunchConfigurationI
 // API operation PutAppLaunchConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/PutAppLaunchConfiguration
 func (c *SMS) PutAppLaunchConfiguration(input *PutAppLaunchConfigurationInput) (*PutAppLaunchConfigurationOutput, error) {
@@ -2666,14 +2663,13 @@ const opPutAppReplicationConfiguration = "PutAppReplicationConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutAppReplicationConfigurationRequest method.
+//	req, resp := client.PutAppReplicationConfigurationRequest(params)
 //
-//    // Example sending a request using the PutAppReplicationConfigurationRequest method.
-//    req, resp := client.PutAppReplicationConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/PutAppReplicationConfiguration
 func (c *SMS) PutAppReplicationConfigurationRequest(input *PutAppReplicationConfigurationInput) (req *request.Request, output *PutAppReplicationConfigurationOutput) {
@@ -2705,21 +2701,22 @@ func (c *SMS) PutAppReplicationConfigurationRequest(input *PutAppReplicationConf
 // API operation PutAppReplicationConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/PutAppReplicationConfiguration
 func (c *SMS) PutAppReplicationConfiguration(input *PutAppReplicationConfigurationInput) (*PutAppReplicationConfigurationOutput, error) {
@@ -2759,14 +2756,13 @@ const opPutAppValidationConfiguration = "PutAppValidationConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutAppValidationConfigurationRequest method.
+//	req, resp := client.PutAppValidationConfigurationRequest(params)
 //
-//    // Example sending a request using the PutAppValidationConfigurationRequest method.
-//    req, resp := client.PutAppValidationConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/PutAppValidationConfiguration
 func (c *SMS) PutAppValidationConfigurationRequest(input *PutAppValidationConfigurationInput) (req *request.Request, output *PutAppValidationConfigurationOutput) {
@@ -2798,21 +2794,22 @@ func (c *SMS) PutAppValidationConfigurationRequest(input *PutAppValidationConfig
 // API operation PutAppValidationConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/PutAppValidationConfiguration
 func (c *SMS) PutAppValidationConfiguration(input *PutAppValidationConfigurationInput) (*PutAppValidationConfigurationOutput, error) {
@@ -2852,14 +2849,13 @@ const opStartAppReplication = "StartAppReplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartAppReplicationRequest method.
+//	req, resp := client.StartAppReplicationRequest(params)
 //
-//    // Example sending a request using the StartAppReplicationRequest method.
-//    req, resp := client.StartAppReplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/StartAppReplication
 func (c *SMS) StartAppReplicationRequest(input *StartAppReplicationInput) (req *request.Request, output *StartAppReplicationOutput) {
@@ -2892,21 +2888,22 @@ func (c *SMS) StartAppReplicationRequest(input *StartAppReplicationInput) (req *
 // API operation StartAppReplication for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/StartAppReplication
 func (c *SMS) StartAppReplication(input *StartAppReplicationInput) (*StartAppReplicationOutput, error) {
@@ -2946,14 +2943,13 @@ const opStartOnDemandAppReplication = "StartOnDemandAppReplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartOnDemandAppReplicationRequest method.
+//	req, resp := client.StartOnDemandAppReplicationRequest(params)
 //
-//    // Example sending a request using the StartOnDemandAppReplicationRequest method.
-//    req, resp := client.StartOnDemandAppReplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/StartOnDemandAppReplication
 func (c *SMS) StartOnDemandAppReplicationRequest(input *StartOnDemandAppReplicationInput) (req *request.Request, output *StartOnDemandAppReplicationOutput) {
@@ -2985,21 +2981,22 @@ func (c *SMS) StartOnDemandAppReplicationRequest(input *StartOnDemandAppReplicat
 // API operation StartOnDemandAppReplication for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/StartOnDemandAppReplication
 func (c *SMS) StartOnDemandAppReplication(input *StartOnDemandAppReplicationInput) (*StartOnDemandAppReplicationOutput, error) {
@@ -3039,14 +3036,13 @@ const opStartOnDemandReplicationRun = "StartOnDemandReplicationRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartOnDemandReplicationRunRequest method.
+//	req, resp := client.StartOnDemandReplicationRunRequest(params)
 //
-//    // Example sending a request using the StartOnDemandReplicationRunRequest method.
-//    req, resp := client.StartOnDemandReplicationRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/StartOnDemandReplicationRun
 func (c *SMS) StartOnDemandReplicationRunRequest(input *StartOnDemandReplicationRunInput) (req *request.Request, output *StartOnDemandReplicationRunOutput) {
@@ -3082,26 +3078,27 @@ func (c *SMS) StartOnDemandReplicationRunRequest(input *StartOnDemandReplication
 // API operation StartOnDemandReplicationRun for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A specified parameter is not valid.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * ReplicationRunLimitExceededException
-//   You have exceeded the number of on-demand replication runs you can request
-//   in a 24-hour period.
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
-//   * DryRunOperationException
-//   The user has the required permissions, so the request would have succeeded,
-//   but a dry run was performed.
+//   - ReplicationRunLimitExceededException
+//     You have exceeded the number of on-demand replication runs you can request
+//     in a 24-hour period.
+//
+//   - DryRunOperationException
+//     The user has the required permissions, so the request would have succeeded,
+//     but a dry run was performed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/StartOnDemandReplicationRun
 func (c *SMS) StartOnDemandReplicationRun(input *StartOnDemandReplicationRunInput) (*StartOnDemandReplicationRunOutput, error) {
@@ -3141,14 +3138,13 @@ const opStopAppReplication = "StopAppReplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopAppReplicationRequest method.
+//	req, resp := client.StopAppReplicationRequest(params)
 //
-//    // Example sending a request using the StopAppReplicationRequest method.
-//    req, resp := client.StopAppReplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/StopAppReplication
 func (c *SMS) StopAppReplicationRequest(input *StopAppReplicationInput) (req *request.Request, output *StopAppReplicationOutput) {
@@ -3181,21 +3177,22 @@ func (c *SMS) StopAppReplicationRequest(input *StopAppReplicationInput) (req *re
 // API operation StopAppReplication for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/StopAppReplication
 func (c *SMS) StopAppReplication(input *StopAppReplicationInput) (*StopAppReplicationOutput, error) {
@@ -3235,14 +3232,13 @@ const opTerminateApp = "TerminateApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TerminateAppRequest method.
+//	req, resp := client.TerminateAppRequest(params)
 //
-//    // Example sending a request using the TerminateAppRequest method.
-//    req, resp := client.TerminateAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/TerminateApp
 func (c *SMS) TerminateAppRequest(input *TerminateAppInput) (req *request.Request, output *TerminateAppOutput) {
@@ -3274,21 +3270,22 @@ func (c *SMS) TerminateAppRequest(input *TerminateAppInput) (req *request.Reques
 // API operation TerminateApp for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/TerminateApp
 func (c *SMS) TerminateApp(input *TerminateAppInput) (*TerminateAppOutput, error) {
@@ -3328,14 +3325,13 @@ const opUpdateApp = "UpdateApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateAppRequest method.
+//	req, resp := client.UpdateAppRequest(params)
 //
-//    // Example sending a request using the UpdateAppRequest method.
-//    req, resp := client.UpdateAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/UpdateApp
 func (c *SMS) UpdateAppRequest(input *UpdateAppInput) (req *request.Request, output *UpdateAppOutput) {
@@ -3366,21 +3362,22 @@ func (c *SMS) UpdateAppRequest(input *UpdateAppInput) (req *request.Request, out
 // API operation UpdateApp for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
 //
-//   * InvalidParameterException
-//   A specified parameter is not valid.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/UpdateApp
 func (c *SMS) UpdateApp(input *UpdateAppInput) (*UpdateAppOutput, error) {
@@ -3420,14 +3417,13 @@ const opUpdateReplicationJob = "UpdateReplicationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateReplicationJobRequest method.
+//	req, resp := client.UpdateReplicationJobRequest(params)
 //
-//    // Example sending a request using the UpdateReplicationJobRequest method.
-//    req, resp := client.UpdateReplicationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/UpdateReplicationJob
 func (c *SMS) UpdateReplicationJobRequest(input *UpdateReplicationJobInput) (req *request.Request, output *UpdateReplicationJobOutput) {
@@ -3459,30 +3455,31 @@ func (c *SMS) UpdateReplicationJobRequest(input *UpdateReplicationJobInput) (req
 // API operation UpdateReplicationJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   A specified parameter is not valid.
 //
-//   * MissingRequiredParameterException
-//   A required parameter is missing.
+//   - InvalidParameterException
+//     A specified parameter is not valid.
 //
-//   * OperationNotPermittedException
-//   This operation is not allowed.
+//   - MissingRequiredParameterException
+//     A required parameter is missing.
 //
-//   * UnauthorizedOperationException
-//   You lack permissions needed to perform this operation. Check your IAM policies,
-//   and ensure that you are using the correct access keys.
+//   - OperationNotPermittedException
+//     This operation is not allowed.
 //
-//   * ServerCannotBeReplicatedException
-//   The specified server cannot be replicated.
+//   - UnauthorizedOperationException
+//     You lack permissions needed to perform this operation. Check your IAM policies,
+//     and ensure that you are using the correct access keys.
 //
-//   * ReplicationJobNotFoundException
-//   The specified replication job does not exist.
+//   - ServerCannotBeReplicatedException
+//     The specified server cannot be replicated.
 //
-//   * InternalError
-//   An internal error occurred.
+//   - ReplicationJobNotFoundException
+//     The specified replication job does not exist.
 //
-//   * TemporarilyUnavailableException
-//   The service is temporarily unavailable.
+//   - InternalError
+//     An internal error occurred.
+//
+//   - TemporarilyUnavailableException
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/UpdateReplicationJob
 func (c *SMS) UpdateReplicationJob(input *UpdateReplicationJobInput) (*UpdateReplicationJobOutput, error) {
@@ -3552,7 +3549,8 @@ type AppSummary struct {
 	// A message related to the replication status of the application.
 	ReplicationStatusMessage *string `locationName:"replicationStatusMessage" type:"string"`
 
-	// The name of the service role in the customer's account used by AWS SMS.
+	// The name of the service role in the customer's account used by Server Migration
+	// Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// Status of the application.
@@ -3568,12 +3566,20 @@ type AppSummary struct {
 	TotalServers *int64 `locationName:"totalServers" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AppSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AppSummary) GoString() string {
 	return s.String()
 }
@@ -3709,12 +3715,20 @@ type AppValidationConfiguration struct {
 	ValidationId *string `locationName:"validationId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AppValidationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AppValidationConfiguration) GoString() string {
 	return s.String()
 }
@@ -3769,12 +3783,20 @@ type AppValidationOutput struct {
 	SsmOutput *SSMOutput `locationName:"ssmOutput" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AppValidationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AppValidationOutput) GoString() string {
 	return s.String()
 }
@@ -3793,7 +3815,7 @@ type Connector struct {
 	AssociatedOn *time.Time `locationName:"associatedOn" type:"timestamp"`
 
 	// The capabilities of the connector.
-	CapabilityList []*string `locationName:"capabilityList" type:"list"`
+	CapabilityList []*string `locationName:"capabilityList" type:"list" enum:"ConnectorCapability"`
 
 	// The ID of the connector.
 	ConnectorId *string `locationName:"connectorId" type:"string"`
@@ -3820,12 +3842,20 @@ type Connector struct {
 	VmManagerType *string `locationName:"vmManagerType" type:"string" enum:"VmManagerType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connector) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connector) GoString() string {
 	return s.String()
 }
@@ -3903,8 +3933,8 @@ type CreateAppInput struct {
 	// The name of the new application.
 	Name *string `locationName:"name" type:"string"`
 
-	// The name of the service role in the customer's account to be used by AWS
-	// SMS.
+	// The name of the service role in the customer's account to be used by Server
+	// Migration Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// The server groups to include in the application.
@@ -3914,12 +3944,20 @@ type CreateAppInput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAppInput) GoString() string {
 	return s.String()
 }
@@ -3973,12 +4011,20 @@ type CreateAppOutput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAppOutput) GoString() string {
 	return s.String()
 }
@@ -4036,7 +4082,7 @@ type CreateReplicationJobInput struct {
 	// the maximum number is reached and a new AMI is created.
 	NumberOfRecentAmisToKeep *int64 `locationName:"numberOfRecentAmisToKeep" type:"integer"`
 
-	// The name of the IAM role to be used by the AWS SMS.
+	// The name of the IAM role to be used by the Server Migration Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// Indicates whether to run the replication job one time.
@@ -4053,12 +4099,20 @@ type CreateReplicationJobInput struct {
 	ServerId *string `locationName:"serverId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationJobInput) GoString() string {
 	return s.String()
 }
@@ -4146,12 +4200,20 @@ type CreateReplicationJobOutput struct {
 	ReplicationJobId *string `locationName:"replicationJobId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationJobOutput) GoString() string {
 	return s.String()
 }
@@ -4177,12 +4239,20 @@ type DeleteAppInput struct {
 	ForceTerminateApp *bool `locationName:"forceTerminateApp" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppInput) GoString() string {
 	return s.String()
 }
@@ -4212,12 +4282,20 @@ type DeleteAppLaunchConfigurationInput struct {
 	AppId *string `locationName:"appId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppLaunchConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppLaunchConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -4232,12 +4310,20 @@ type DeleteAppLaunchConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppLaunchConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppLaunchConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -4246,12 +4332,20 @@ type DeleteAppOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppOutput) GoString() string {
 	return s.String()
 }
@@ -4263,12 +4357,20 @@ type DeleteAppReplicationConfigurationInput struct {
 	AppId *string `locationName:"appId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppReplicationConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppReplicationConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -4283,12 +4385,20 @@ type DeleteAppReplicationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppReplicationConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppReplicationConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -4302,12 +4412,20 @@ type DeleteAppValidationConfigurationInput struct {
 	AppId *string `locationName:"appId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppValidationConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppValidationConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -4335,12 +4453,20 @@ type DeleteAppValidationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppValidationConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppValidationConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -4354,12 +4480,20 @@ type DeleteReplicationJobInput struct {
 	ReplicationJobId *string `locationName:"replicationJobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationJobInput) GoString() string {
 	return s.String()
 }
@@ -4387,12 +4521,20 @@ type DeleteReplicationJobOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationJobOutput) GoString() string {
 	return s.String()
 }
@@ -4401,12 +4543,20 @@ type DeleteServerCatalogInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServerCatalogInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServerCatalogInput) GoString() string {
 	return s.String()
 }
@@ -4415,12 +4565,20 @@ type DeleteServerCatalogOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServerCatalogOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServerCatalogOutput) GoString() string {
 	return s.String()
 }
@@ -4434,12 +4592,20 @@ type DisassociateConnectorInput struct {
 	ConnectorId *string `locationName:"connectorId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateConnectorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateConnectorInput) GoString() string {
 	return s.String()
 }
@@ -4467,12 +4633,20 @@ type DisassociateConnectorOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateConnectorOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateConnectorOutput) GoString() string {
 	return s.String()
 }
@@ -4486,12 +4660,20 @@ type DryRunOperationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DryRunOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DryRunOperationException) GoString() string {
 	return s.String()
 }
@@ -4544,12 +4726,20 @@ type GenerateChangeSetInput struct {
 	ChangesetFormat *string `locationName:"changesetFormat" type:"string" enum:"OutputFormat"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateChangeSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateChangeSetInput) GoString() string {
 	return s.String()
 }
@@ -4573,12 +4763,20 @@ type GenerateChangeSetOutput struct {
 	S3Location *S3Location `locationName:"s3Location" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateChangeSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateChangeSetOutput) GoString() string {
 	return s.String()
 }
@@ -4592,19 +4790,27 @@ func (s *GenerateChangeSetOutput) SetS3Location(v *S3Location) *GenerateChangeSe
 type GenerateTemplateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the application associated with the AWS CloudFormation template.
+	// The ID of the application associated with the CloudFormation template.
 	AppId *string `locationName:"appId" type:"string"`
 
-	// The format for generating the AWS CloudFormation template.
+	// The format for generating the CloudFormation template.
 	TemplateFormat *string `locationName:"templateFormat" type:"string" enum:"OutputFormat"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateTemplateInput) GoString() string {
 	return s.String()
 }
@@ -4628,12 +4834,20 @@ type GenerateTemplateOutput struct {
 	S3Location *S3Location `locationName:"s3Location" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -4651,12 +4865,20 @@ type GetAppInput struct {
 	AppId *string `locationName:"appId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppInput) GoString() string {
 	return s.String()
 }
@@ -4674,12 +4896,20 @@ type GetAppLaunchConfigurationInput struct {
 	AppId *string `locationName:"appId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppLaunchConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppLaunchConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -4700,7 +4930,7 @@ type GetAppLaunchConfigurationOutput struct {
 	// replication is complete.
 	AutoLaunch *bool `locationName:"autoLaunch" type:"boolean"`
 
-	// The name of the service role in the customer's account that AWS CloudFormation
+	// The name of the service role in the customer's account that CloudFormation
 	// uses to launch the application.
 	RoleName *string `locationName:"roleName" type:"string"`
 
@@ -4708,12 +4938,20 @@ type GetAppLaunchConfigurationOutput struct {
 	ServerGroupLaunchConfigurations []*ServerGroupLaunchConfiguration `locationName:"serverGroupLaunchConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppLaunchConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppLaunchConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -4755,12 +4993,20 @@ type GetAppOutput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppOutput) GoString() string {
 	return s.String()
 }
@@ -4790,12 +5036,20 @@ type GetAppReplicationConfigurationInput struct {
 	AppId *string `locationName:"appId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppReplicationConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppReplicationConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -4813,12 +5067,20 @@ type GetAppReplicationConfigurationOutput struct {
 	ServerGroupReplicationConfigurations []*ServerGroupReplicationConfiguration `locationName:"serverGroupReplicationConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppReplicationConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppReplicationConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -4838,12 +5100,20 @@ type GetAppValidationConfigurationInput struct {
 	AppId *string `locationName:"appId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppValidationConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppValidationConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -4877,12 +5147,20 @@ type GetAppValidationConfigurationOutput struct {
 	ServerGroupValidationConfigurations []*ServerGroupValidationConfiguration `locationName:"serverGroupValidationConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppValidationConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppValidationConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -4908,12 +5186,20 @@ type GetAppValidationOutputInput struct {
 	AppId *string `locationName:"appId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppValidationOutputInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppValidationOutputInput) GoString() string {
 	return s.String()
 }
@@ -4944,12 +5230,20 @@ type GetAppValidationOutputOutput struct {
 	ValidationOutputList []*ValidationOutput `locationName:"validationOutputList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppValidationOutputOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppValidationOutputOutput) GoString() string {
 	return s.String()
 }
@@ -4972,12 +5266,20 @@ type GetConnectorsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorsInput) GoString() string {
 	return s.String()
 }
@@ -5005,12 +5307,20 @@ type GetConnectorsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorsOutput) GoString() string {
 	return s.String()
 }
@@ -5042,12 +5352,20 @@ type GetReplicationJobsInput struct {
 	ReplicationJobId *string `locationName:"replicationJobId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationJobsInput) GoString() string {
 	return s.String()
 }
@@ -5081,12 +5399,20 @@ type GetReplicationJobsOutput struct {
 	ReplicationJobList []*ReplicationJob `locationName:"replicationJobList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationJobsOutput) GoString() string {
 	return s.String()
 }
@@ -5120,12 +5446,20 @@ type GetReplicationRunsInput struct {
 	ReplicationJobId *string `locationName:"replicationJobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationRunsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationRunsInput) GoString() string {
 	return s.String()
 }
@@ -5175,12 +5509,20 @@ type GetReplicationRunsOutput struct {
 	ReplicationRunList []*ReplicationRun `locationName:"replicationRunList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationRunsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationRunsOutput) GoString() string {
 	return s.String()
 }
@@ -5218,12 +5560,20 @@ type GetServersInput struct {
 	VmServerAddressList []*VmServerAddress `locationName:"vmServerAddressList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServersInput) GoString() string {
 	return s.String()
 }
@@ -5263,12 +5613,20 @@ type GetServersOutput struct {
 	ServerList []*Server `locationName:"serverList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServersOutput) GoString() string {
 	return s.String()
 }
@@ -5301,18 +5659,26 @@ type ImportAppCatalogInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the service role. If you omit this parameter, we create a service-linked
-	// role for AWS Migration Hub in your account. Otherwise, the role that you
-	// provide must have the policy and trust policy (https://docs.aws.amazon.com/migrationhub/latest/ug/new-customer-setup.html#sms-managed)
-	// described in the AWS Migration Hub User Guide.
+	// role for Migration Hub in your account. Otherwise, the role that you provide
+	// must have the policy and trust policy (https://docs.aws.amazon.com/migrationhub/latest/ug/new-customer-setup.html#sms-managed)
+	// described in the Migration Hub User Guide.
 	RoleName *string `locationName:"roleName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAppCatalogInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAppCatalogInput) GoString() string {
 	return s.String()
 }
@@ -5327,12 +5693,20 @@ type ImportAppCatalogOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAppCatalogOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAppCatalogOutput) GoString() string {
 	return s.String()
 }
@@ -5341,12 +5715,20 @@ type ImportServerCatalogInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportServerCatalogInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportServerCatalogInput) GoString() string {
 	return s.String()
 }
@@ -5355,12 +5737,20 @@ type ImportServerCatalogOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportServerCatalogOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportServerCatalogOutput) GoString() string {
 	return s.String()
 }
@@ -5373,12 +5763,20 @@ type InternalError struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalError) GoString() string {
 	return s.String()
 }
@@ -5429,12 +5827,20 @@ type InvalidParameterException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) GoString() string {
 	return s.String()
 }
@@ -5484,12 +5890,20 @@ type LaunchAppInput struct {
 	AppId *string `locationName:"appId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchAppInput) GoString() string {
 	return s.String()
 }
@@ -5504,12 +5918,20 @@ type LaunchAppOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchAppOutput) GoString() string {
 	return s.String()
 }
@@ -5528,12 +5950,20 @@ type LaunchDetails struct {
 	StackName *string `locationName:"stackName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchDetails) GoString() string {
 	return s.String()
 }
@@ -5571,12 +6001,20 @@ type ListAppsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAppsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAppsInput) GoString() string {
 	return s.String()
 }
@@ -5610,12 +6048,20 @@ type ListAppsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAppsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAppsOutput) GoString() string {
 	return s.String()
 }
@@ -5640,12 +6086,20 @@ type MissingRequiredParameterException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MissingRequiredParameterException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MissingRequiredParameterException) GoString() string {
 	return s.String()
 }
@@ -5696,12 +6150,20 @@ type NoConnectorsAvailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoConnectorsAvailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoConnectorsAvailableException) GoString() string {
 	return s.String()
 }
@@ -5758,12 +6220,20 @@ type NotificationContext struct {
 	ValidationId *string `locationName:"validationId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationContext) GoString() string {
 	return s.String()
 }
@@ -5798,12 +6268,20 @@ type NotifyAppValidationOutputInput struct {
 	NotificationContext *NotificationContext `locationName:"notificationContext" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotifyAppValidationOutputInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotifyAppValidationOutputInput) GoString() string {
 	return s.String()
 }
@@ -5837,12 +6315,20 @@ type NotifyAppValidationOutputOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotifyAppValidationOutputOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotifyAppValidationOutputOutput) GoString() string {
 	return s.String()
 }
@@ -5855,12 +6341,20 @@ type OperationNotPermittedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OperationNotPermittedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OperationNotPermittedException) GoString() string {
 	return s.String()
 }
@@ -5913,20 +6407,28 @@ type PutAppLaunchConfigurationInput struct {
 	// replication is complete.
 	AutoLaunch *bool `locationName:"autoLaunch" type:"boolean"`
 
-	// The name of service role in the customer's account that AWS CloudFormation
-	// uses to launch the application.
+	// The name of service role in the customer's account that CloudFormation uses
+	// to launch the application.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// Information about the launch configurations for server groups in the application.
 	ServerGroupLaunchConfigurations []*ServerGroupLaunchConfiguration `locationName:"serverGroupLaunchConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppLaunchConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppLaunchConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -5979,12 +6481,20 @@ type PutAppLaunchConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppLaunchConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppLaunchConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -6000,12 +6510,20 @@ type PutAppReplicationConfigurationInput struct {
 	ServerGroupReplicationConfigurations []*ServerGroupReplicationConfiguration `locationName:"serverGroupReplicationConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppReplicationConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppReplicationConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -6026,12 +6544,20 @@ type PutAppReplicationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppReplicationConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppReplicationConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -6051,12 +6577,20 @@ type PutAppValidationConfigurationInput struct {
 	ServerGroupValidationConfigurations []*ServerGroupValidationConfiguration `locationName:"serverGroupValidationConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppValidationConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppValidationConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -6116,12 +6650,20 @@ type PutAppValidationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppValidationConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAppValidationConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -6174,7 +6716,7 @@ type ReplicationJob struct {
 	// Information about the replication runs.
 	ReplicationRunList []*ReplicationRun `locationName:"replicationRunList" type:"list"`
 
-	// The name of the IAM role to be used by AWS SMS.
+	// The name of the IAM role to be used by Server Migration Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// Indicates whether to run the replication job one time.
@@ -6199,12 +6741,20 @@ type ReplicationJob struct {
 	VmServer *VmServer `locationName:"vmServer" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationJob) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationJob) GoString() string {
 	return s.String()
 }
@@ -6325,12 +6875,20 @@ type ReplicationJobAlreadyExistsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationJobAlreadyExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationJobAlreadyExistsException) GoString() string {
 	return s.String()
 }
@@ -6381,12 +6939,20 @@ type ReplicationJobNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationJobNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationJobNotFoundException) GoString() string {
 	return s.String()
 }
@@ -6479,12 +7045,20 @@ type ReplicationRun struct {
 	Type *string `locationName:"type" type:"string" enum:"ReplicationRunType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationRun) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationRun) GoString() string {
 	return s.String()
 }
@@ -6564,12 +7138,20 @@ type ReplicationRunLimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationRunLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationRunLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -6623,12 +7205,20 @@ type ReplicationRunStageDetails struct {
 	StageProgress *string `locationName:"stageProgress" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationRunStageDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationRunStageDetails) GoString() string {
 	return s.String()
 }
@@ -6656,12 +7246,20 @@ type S3Location struct {
 	Key *string `locationName:"key" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) GoString() string {
 	return s.String()
 }
@@ -6699,12 +7297,20 @@ type SSMOutput struct {
 	S3Location *S3Location `locationName:"s3Location" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSMOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSMOutput) GoString() string {
 	return s.String()
 }
@@ -6719,7 +7325,7 @@ func (s *SSMOutput) SetS3Location(v *S3Location) *SSMOutput {
 type SSMValidationParameters struct {
 	_ struct{} `type:"structure"`
 
-	// The command to run the validation script
+	// The command to run the validation script.
 	Command *string `locationName:"command" min:"1" type:"string"`
 
 	// The timeout interval, in seconds.
@@ -6738,12 +7344,20 @@ type SSMValidationParameters struct {
 	Source *Source `locationName:"source" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSMValidationParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSMValidationParameters) GoString() string {
 	return s.String()
 }
@@ -6825,12 +7439,20 @@ type Server struct {
 	VmServer *VmServer `locationName:"vmServer" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Server) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Server) GoString() string {
 	return s.String()
 }
@@ -6873,12 +7495,20 @@ type ServerCannotBeReplicatedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerCannotBeReplicatedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerCannotBeReplicatedException) GoString() string {
 	return s.String()
 }
@@ -6935,12 +7565,20 @@ type ServerGroup struct {
 	ServerList []*Server `locationName:"serverList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerGroup) GoString() string {
 	return s.String()
 }
@@ -6977,12 +7615,20 @@ type ServerGroupLaunchConfiguration struct {
 	ServerLaunchConfigurations []*ServerLaunchConfiguration `locationName:"serverLaunchConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerGroupLaunchConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerGroupLaunchConfiguration) GoString() string {
 	return s.String()
 }
@@ -7036,12 +7682,20 @@ type ServerGroupReplicationConfiguration struct {
 	ServerReplicationConfigurations []*ServerReplicationConfiguration `locationName:"serverReplicationConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerGroupReplicationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerGroupReplicationConfiguration) GoString() string {
 	return s.String()
 }
@@ -7069,12 +7723,20 @@ type ServerGroupValidationConfiguration struct {
 	ServerValidationConfigurations []*ServerValidationConfiguration `locationName:"serverValidationConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerGroupValidationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerGroupValidationConfiguration) GoString() string {
 	return s.String()
 }
@@ -7135,7 +7797,7 @@ type ServerLaunchConfiguration struct {
 	// The instance type to use when launching the server.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
-	// The logical ID of the server in the AWS CloudFormation template.
+	// The logical ID of the server in the CloudFormation template.
 	LogicalId *string `locationName:"logicalId" type:"string"`
 
 	// The ID of the security group that applies to the launched server.
@@ -7154,12 +7816,20 @@ type ServerLaunchConfiguration struct {
 	Vpc *string `locationName:"vpc" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerLaunchConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerLaunchConfiguration) GoString() string {
 	return s.String()
 }
@@ -7267,12 +7937,20 @@ type ServerReplicationConfiguration struct {
 	ServerReplicationParameters *ServerReplicationParameters `locationName:"serverReplicationParameters" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerReplicationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerReplicationConfiguration) GoString() string {
 	return s.String()
 }
@@ -7328,12 +8006,20 @@ type ServerReplicationParameters struct {
 	SeedTime *time.Time `locationName:"seedTime" type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerReplicationParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerReplicationParameters) GoString() string {
 	return s.String()
 }
@@ -7400,12 +8086,20 @@ type ServerValidationConfiguration struct {
 	ValidationId *string `locationName:"validationId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerValidationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerValidationConfiguration) GoString() string {
 	return s.String()
 }
@@ -7466,12 +8160,20 @@ type ServerValidationOutput struct {
 	Server *Server `locationName:"server" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerValidationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerValidationOutput) GoString() string {
 	return s.String()
 }
@@ -7490,12 +8192,20 @@ type Source struct {
 	S3Location *S3Location `locationName:"s3Location" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Source) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Source) GoString() string {
 	return s.String()
 }
@@ -7528,12 +8238,20 @@ type StartAppReplicationInput struct {
 	AppId *string `locationName:"appId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartAppReplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartAppReplicationInput) GoString() string {
 	return s.String()
 }
@@ -7548,12 +8266,20 @@ type StartAppReplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartAppReplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartAppReplicationOutput) GoString() string {
 	return s.String()
 }
@@ -7570,12 +8296,20 @@ type StartOnDemandAppReplicationInput struct {
 	Description *string `locationName:"description" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOnDemandAppReplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOnDemandAppReplicationInput) GoString() string {
 	return s.String()
 }
@@ -7609,12 +8343,20 @@ type StartOnDemandAppReplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOnDemandAppReplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOnDemandAppReplicationOutput) GoString() string {
 	return s.String()
 }
@@ -7631,12 +8373,20 @@ type StartOnDemandReplicationRunInput struct {
 	ReplicationJobId *string `locationName:"replicationJobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOnDemandReplicationRunInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOnDemandReplicationRunInput) GoString() string {
 	return s.String()
 }
@@ -7673,12 +8423,20 @@ type StartOnDemandReplicationRunOutput struct {
 	ReplicationRunId *string `locationName:"replicationRunId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOnDemandReplicationRunOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOnDemandReplicationRunOutput) GoString() string {
 	return s.String()
 }
@@ -7696,12 +8454,20 @@ type StopAppReplicationInput struct {
 	AppId *string `locationName:"appId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAppReplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAppReplicationInput) GoString() string {
 	return s.String()
 }
@@ -7716,12 +8482,20 @@ type StopAppReplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAppReplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAppReplicationOutput) GoString() string {
 	return s.String()
 }
@@ -7737,12 +8511,20 @@ type Tag struct {
 	Value *string `locationName:"value" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -7767,12 +8549,20 @@ type TemporarilyUnavailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemporarilyUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemporarilyUnavailableException) GoString() string {
 	return s.String()
 }
@@ -7822,12 +8612,20 @@ type TerminateAppInput struct {
 	AppId *string `locationName:"appId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateAppInput) GoString() string {
 	return s.String()
 }
@@ -7842,12 +8640,20 @@ type TerminateAppOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateAppOutput) GoString() string {
 	return s.String()
 }
@@ -7861,12 +8667,20 @@ type UnauthorizedOperationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedOperationException) GoString() string {
 	return s.String()
 }
@@ -7921,7 +8735,8 @@ type UpdateAppInput struct {
 	// The new name of the application.
 	Name *string `locationName:"name" type:"string"`
 
-	// The name of the service role in the customer's account used by AWS SMS.
+	// The name of the service role in the customer's account used by Server Migration
+	// Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// The server groups in the application to update.
@@ -7931,12 +8746,20 @@ type UpdateAppInput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAppInput) GoString() string {
 	return s.String()
 }
@@ -7990,12 +8813,20 @@ type UpdateAppOutput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAppOutput) GoString() string {
 	return s.String()
 }
@@ -8062,16 +8893,24 @@ type UpdateReplicationJobInput struct {
 	// ReplicationJobId is a required field
 	ReplicationJobId *string `locationName:"replicationJobId" type:"string" required:"true"`
 
-	// The name of the IAM role to be used by AWS SMS.
+	// The name of the IAM role to be used by Server Migration Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationJobInput) GoString() string {
 	return s.String()
 }
@@ -8147,12 +8986,20 @@ type UpdateReplicationJobOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationJobOutput) GoString() string {
 	return s.String()
 }
@@ -8166,12 +9013,20 @@ type UserData struct {
 	S3Location *S3Location `locationName:"s3Location" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserData) GoString() string {
 	return s.String()
 }
@@ -8208,12 +9063,20 @@ type UserDataValidationParameters struct {
 	Source *Source `locationName:"source" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserDataValidationParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserDataValidationParameters) GoString() string {
 	return s.String()
 }
@@ -8271,12 +9134,20 @@ type ValidationOutput struct {
 	ValidationId *string `locationName:"validationId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationOutput) GoString() string {
 	return s.String()
 }
@@ -8343,12 +9214,20 @@ type VmServer struct {
 	VmServerAddress *VmServerAddress `locationName:"vmServerAddress" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VmServer) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VmServer) GoString() string {
 	return s.String()
 }
@@ -8394,12 +9273,20 @@ type VmServerAddress struct {
 	VmManagerId *string `locationName:"vmManagerId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VmServerAddress) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VmServerAddress) GoString() string {
 	return s.String()
 }

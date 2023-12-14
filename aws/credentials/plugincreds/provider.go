@@ -1,3 +1,4 @@
+//go:build go1.8
 // +build go1.8
 
 // Package plugincreds implements a credentials provider sourced from a Go

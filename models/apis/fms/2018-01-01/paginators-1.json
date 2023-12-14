@@ -1,5 +1,17 @@
 {
   "pagination": {
+    "ListAdminAccountsForOrganization": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "AdminAccounts"
+    },
+    "ListAdminsManagingAccount": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "AdminAccounts"
+    },
     "ListAppsLists": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -29,6 +41,12 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "ProtocolsLists"
+    },
+    "ListThirdPartyFirewallFirewallPolicies": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ThirdPartyFirewallFirewallPolicies"
     }
   }
 }

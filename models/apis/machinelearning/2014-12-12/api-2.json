@@ -1305,7 +1305,8 @@
     "RDSDatabasePassword":{
       "type":"string",
       "max":128,
-      "min":8
+      "min":8,
+      "sensitive":true
     },
     "RDSDatabaseUsername":{
       "type":"string",
@@ -1416,7 +1417,8 @@
     "RedshiftDatabasePassword":{
       "type":"string",
       "max":64,
-      "min":8
+      "min":8,
+      "sensitive":true
     },
     "RedshiftDatabaseUsername":{
       "type":"string",

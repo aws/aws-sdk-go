@@ -3,8 +3,10 @@ package glacier_test
 import (
 	"bytes"
 	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
 	"io"
+	"testing"
 
 	"github.com/aws/aws-sdk-go/service/glacier"
 )
@@ -60,4 +62,58 @@ func ExampleComputeTreeHash() {
 
 	// Output:
 	// TreeHash: 154e26c78fd74d0c2c9b3cc4644191619dc4f2cd539ae2a74d5fd07957a3ee6a
+}
+
+func TestComputeHashes(t *testing.T) {
+
+	t.Run("no hash", func(t *testing.T) {
+		var hashes [][]byte
+		treeHash := glacier.ComputeTreeHash(hashes)
+		if treeHash != nil {
+			t.Fatalf("expected []byte(nil), got %v", treeHash)
+		}
+	})
+
+	t.Run("one hash", func(t *testing.T) {
+		hash := sha256.Sum256([]byte("hash"))
+		treeHash := glacier.ComputeTreeHash([][]byte{hash[:]})
+
+		expected, actual := hex.EncodeToString(hash[:]), hex.EncodeToString(treeHash)
+		if expected != actual {
+			t.Fatalf("expected %v, got %v", expected, actual)
+		}
+	})
+
+	t.Run("even hashes", func(t *testing.T) {
+		h1 := sha256.Sum256([]byte("h1"))
+		h2 := sha256.Sum256([]byte("h2"))
+
+		hash := sha256.Sum256(append(h1[:], h2[:]...))
+		expected := hex.EncodeToString(hash[:])
+
+		treeHash := glacier.ComputeTreeHash([][]byte{h1[:], h2[:]})
+		actual := hex.EncodeToString(treeHash)
+
+		if expected != actual {
+			t.Fatalf("expected %v, got %v", expected, actual)
+		}
+	})
+
+	t.Run("odd hashes", func(t *testing.T) {
+		h1 := sha256.Sum256([]byte("h1"))
+		h2 := sha256.Sum256([]byte("h2"))
+		h3 := sha256.Sum256([]byte("h3"))
+
+		h12 := sha256.Sum256(append(h1[:], h2[:]...))
+		hash := sha256.Sum256(append(h12[:], h3[:]...))
+		expected := hex.EncodeToString(hash[:])
+
+		treeHash := glacier.ComputeTreeHash([][]byte{h1[:], h2[:], h3[:]})
+		actual := hex.EncodeToString(treeHash)
+
+		if expected != actual {
+			t.Fatalf("expected %v, got %v", expected, actual)
+		}
+	})
+
 }

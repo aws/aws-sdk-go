@@ -40,34 +40,36 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a AccessAnalyzer client from just a session.
-//     svc := accessanalyzer.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a AccessAnalyzer client with additional configuration
-//     svc := accessanalyzer.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a AccessAnalyzer client from just a session.
+//	svc := accessanalyzer.New(mySession)
+//
+//	// Create a AccessAnalyzer client with additional configuration
+//	svc := accessanalyzer.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *AccessAnalyzer {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "access-analyzer"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *AccessAnalyzer {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *AccessAnalyzer {
 	svc := &AccessAnalyzer{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2019-11-01",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2019-11-01",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),

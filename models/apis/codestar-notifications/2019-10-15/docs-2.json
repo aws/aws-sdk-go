@@ -1,18 +1,18 @@
 {
   "version": "2.0",
-  "service": "<p>This AWS CodeStar Notifications API Reference provides descriptions and usage examples of the operations and data types for the AWS CodeStar Notifications API. You can use the AWS CodeStar Notifications API to work with the following objects:</p> <p>Notification rules, by calling the following: </p> <ul> <li> <p> <a>CreateNotificationRule</a>, which creates a notification rule for a resource in your account. </p> </li> <li> <p> <a>DeleteNotificationRule</a>, which deletes a notification rule. </p> </li> <li> <p> <a>DescribeNotificationRule</a>, which provides information about a notification rule. </p> </li> <li> <p> <a>ListNotificationRules</a>, which lists the notification rules associated with your account. </p> </li> <li> <p> <a>UpdateNotificationRule</a>, which changes the name, events, or targets associated with a notification rule. </p> </li> <li> <p> <a>Subscribe</a>, which subscribes a target to a notification rule. </p> </li> <li> <p> <a>Unsubscribe</a>, which removes a target from a notification rule. </p> </li> </ul> <p>Targets, by calling the following: </p> <ul> <li> <p> <a>DeleteTarget</a>, which removes a notification rule target (SNS topic) from a notification rule. </p> </li> <li> <p> <a>ListTargets</a>, which lists the targets associated with a notification rule. </p> </li> </ul> <p>Events, by calling the following: </p> <ul> <li> <p> <a>ListEventTypes</a>, which lists the event types you can include in a notification rule. </p> </li> </ul> <p>Tags, by calling the following: </p> <ul> <li> <p> <a>ListTagsForResource</a>, which lists the tags already associated with a notification rule in your account. </p> </li> <li> <p> <a>TagResource</a>, which associates a tag you provide with a notification rule in your account. </p> </li> <li> <p> <a>UntagResource</a>, which removes a tag from a notification rule in your account. </p> </li> </ul> <p> For information about how to use AWS CodeStar Notifications, see link in the CodeStarNotifications User Guide. </p>",
+  "service": "<p>This AWS CodeStar Notifications API Reference provides descriptions and usage examples of the operations and data types for the AWS CodeStar Notifications API. You can use the AWS CodeStar Notifications API to work with the following objects:</p> <p>Notification rules, by calling the following: </p> <ul> <li> <p> <a>CreateNotificationRule</a>, which creates a notification rule for a resource in your account. </p> </li> <li> <p> <a>DeleteNotificationRule</a>, which deletes a notification rule. </p> </li> <li> <p> <a>DescribeNotificationRule</a>, which provides information about a notification rule. </p> </li> <li> <p> <a>ListNotificationRules</a>, which lists the notification rules associated with your account. </p> </li> <li> <p> <a>UpdateNotificationRule</a>, which changes the name, events, or targets associated with a notification rule. </p> </li> <li> <p> <a>Subscribe</a>, which subscribes a target to a notification rule. </p> </li> <li> <p> <a>Unsubscribe</a>, which removes a target from a notification rule. </p> </li> </ul> <p>Targets, by calling the following: </p> <ul> <li> <p> <a>DeleteTarget</a>, which removes a notification rule target from a notification rule. </p> </li> <li> <p> <a>ListTargets</a>, which lists the targets associated with a notification rule. </p> </li> </ul> <p>Events, by calling the following: </p> <ul> <li> <p> <a>ListEventTypes</a>, which lists the event types you can include in a notification rule. </p> </li> </ul> <p>Tags, by calling the following: </p> <ul> <li> <p> <a>ListTagsForResource</a>, which lists the tags already associated with a notification rule in your account. </p> </li> <li> <p> <a>TagResource</a>, which associates a tag you provide with a notification rule in your account. </p> </li> <li> <p> <a>UntagResource</a>, which removes a tag from a notification rule in your account. </p> </li> </ul> <p> For information about how to use AWS CodeStar Notifications, see the <a href=\"https://docs.aws.amazon.com/dtconsole/latest/userguide/what-is-dtconsole.html\">Amazon Web Services Developer Tools Console User Guide</a>. </p>",
   "operations": {
-    "CreateNotificationRule": "<p>Creates a notification rule for a resource. The rule specifies the events you want notifications about and the targets (such as SNS topics) where you want to receive them.</p>",
+    "CreateNotificationRule": "<p>Creates a notification rule for a resource. The rule specifies the events you want notifications about and the targets (such as Chatbot topics or Chatbot clients configured for Slack) where you want to receive them.</p>",
     "DeleteNotificationRule": "<p>Deletes a notification rule for a resource.</p>",
     "DeleteTarget": "<p>Deletes a specified target for notifications.</p>",
     "DescribeNotificationRule": "<p>Returns information about a specified notification rule.</p>",
     "ListEventTypes": "<p>Returns information about the event types available for configuring notifications.</p>",
-    "ListNotificationRules": "<p>Returns a list of the notification rules for an AWS account.</p>",
+    "ListNotificationRules": "<p>Returns a list of the notification rules for an Amazon Web Services account.</p>",
     "ListTagsForResource": "<p>Returns a list of the tags associated with a notification rule.</p>",
-    "ListTargets": "<p>Returns a list of the notification rule targets for an AWS account.</p>",
-    "Subscribe": "<p>Creates an association between a notification rule and an SNS topic so that the associated target can receive notifications when the events described in the rule are triggered.</p>",
+    "ListTargets": "<p>Returns a list of the notification rule targets for an Amazon Web Services account.</p>",
+    "Subscribe": "<p>Creates an association between a notification rule and an Chatbot topic or Chatbot client so that the associated target can receive notifications when the events described in the rule are triggered.</p>",
     "TagResource": "<p>Associates a set of provided tags with a notification rule.</p>",
-    "Unsubscribe": "<p>Removes an association between a notification rule and an Amazon SNS topic so that subscribers to that topic stop receiving notifications when the events described in the rule are triggered.</p>",
+    "Unsubscribe": "<p>Removes an association between a notification rule and an Chatbot topic so that subscribers to that topic stop receiving notifications when the events described in the rule are triggered.</p>",
     "UntagResource": "<p>Removes the association between one or more provided tags and a notification rule.</p>",
     "UpdateNotificationRule": "<p>Updates a notification rule for a resource. You can change the events that trigger the notification rule, the status of the rule, and the targets that receive the notifications.</p> <note> <p>To add or remove tags for a notification rule, you must use <a>TagResource</a> and <a>UntagResource</a>.</p> </note>"
   },
@@ -25,7 +25,7 @@
     "ClientRequestToken": {
       "base": null,
       "refs": {
-        "CreateNotificationRuleRequest$ClientRequestToken": "<p>A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request with the same parameters is received and a token is included, the request returns information about the initial request that used that token.</p> <note> <p>The AWS SDKs prepopulate client request tokens. If you are using an AWS SDK, an idempotency token is created for you.</p> </note>",
+        "CreateNotificationRuleRequest$ClientRequestToken": "<p>A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request with the same parameters is received and a token is included, the request returns information about the initial request that used that token.</p> <note> <p>The Amazon Web Services SDKs prepopulate client request tokens. If you are using an Amazon Web Services SDK, an idempotency token is created for you.</p> </note>",
         "SubscribeRequest$ClientRequestToken": "<p>An enumeration token that, when provided in a request, returns the next batch of the results.</p>"
       }
     },
@@ -88,9 +88,9 @@
     "DetailType": {
       "base": null,
       "refs": {
-        "CreateNotificationRuleRequest$DetailType": "<p>The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.</p>",
-        "DescribeNotificationRuleResult$DetailType": "<p>The level of detail included in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.</p>",
-        "UpdateNotificationRuleRequest$DetailType": "<p>The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.</p>"
+        "CreateNotificationRuleRequest$DetailType": "<p>The level of detail to include in the notifications for this resource. <code>BASIC</code> will include only the contents of the event as it would appear in Amazon CloudWatch. <code>FULL</code> will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.</p>",
+        "DescribeNotificationRuleResult$DetailType": "<p>The level of detail included in the notifications for this resource. BASIC will include only the contents of the event as it would appear in Amazon CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.</p>",
+        "UpdateNotificationRuleRequest$DetailType": "<p>The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in Amazon CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.</p>"
       }
     },
     "EventTypeBatch": {
@@ -104,14 +104,14 @@
       "base": null,
       "refs": {
         "EventTypeIds$member": null,
-        "EventTypeSummary$EventTypeId": "<p>The system-generated ID of the event.</p>"
+        "EventTypeSummary$EventTypeId": "<p>The system-generated ID of the event. For a complete list of event types and IDs, see <a href=\"https://docs.aws.amazon.com/codestar-notifications/latest/userguide/concepts.html#concepts-api\">Notification concepts</a> in the <i>Developer Tools Console User Guide</i>.</p>"
       }
     },
     "EventTypeIds": {
       "base": null,
       "refs": {
         "CreateNotificationRuleRequest$EventTypeIds": "<p>A list of event types associated with this notification rule. For a list of allowed events, see <a>EventTypeSummary</a>.</p>",
-        "UpdateNotificationRuleRequest$EventTypeIds": "<p>A list of event types associated with this notification rule.</p>"
+        "UpdateNotificationRuleRequest$EventTypeIds": "<p>A list of event types associated with this notification rule. For a complete list of event types and IDs, see <a href=\"https://docs.aws.amazon.com/codestar-notifications/latest/userguide/concepts.html#concepts-api\">Notification concepts</a> in the <i>Developer Tools Console User Guide</i>.</p>"
       }
     },
     "EventTypeName": {
@@ -129,7 +129,7 @@
     "ForceUnsubscribeAll": {
       "base": null,
       "refs": {
-        "DeleteTargetRequest$ForceUnsubscribeAll": "<p>A Boolean value that can be used to delete all associations with this SNS topic. The default value is FALSE. If set to TRUE, all associations between that target and every notification rule in your AWS account are deleted.</p>"
+        "DeleteTargetRequest$ForceUnsubscribeAll": "<p>A Boolean value that can be used to delete all associations with this Chatbot topic. The default value is FALSE. If set to TRUE, all associations between that target and every notification rule in your Amazon Web Services account are deleted.</p>"
       }
     },
     "InvalidNextTokenException": {
@@ -197,7 +197,7 @@
     "ListNotificationRulesFilterValue": {
       "base": null,
       "refs": {
-        "ListNotificationRulesFilter$Value": "<p>The value of the attribute you want to use to filter the returned notification rules. For example, if you specify filtering by <i>RESOURCE</i> in Name, you might specify the ARN of a pipeline in AWS CodePipeline for the value.</p>"
+        "ListNotificationRulesFilter$Value": "<p>The value of the attribute you want to use to filter the returned notification rules. For example, if you specify filtering by <i>RESOURCE</i> in Name, you might specify the ARN of a pipeline in CodePipeline for the value.</p>"
       }
     },
     "ListNotificationRulesFilters": {
@@ -227,7 +227,7 @@
       }
     },
     "ListTargetsFilter": {
-      "base": "<p>Information about a filter to apply to the list of returned targets. You can filter by target type, address, or status. For example, to filter results to notification rules that have active Amazon SNS topics as targets, you could specify a ListTargetsFilter Name as TargetType and a Value of SNS, and a Name of TARGET_STATUS and a Value of ACTIVE.</p>",
+      "base": "<p>Information about a filter to apply to the list of returned targets. You can filter by target type, address, or status. For example, to filter results to notification rules that have active Chatbot topics as targets, you could specify a ListTargetsFilter Name as <code>TargetType</code> and a Value of <code>SNS</code>, and a Name of <code>TARGET_STATUS</code> and a Value of <code>ACTIVE</code>.</p>",
       "refs": {
         "ListTargetsFilters$member": null
       }
@@ -241,7 +241,7 @@
     "ListTargetsFilterValue": {
       "base": null,
       "refs": {
-        "ListTargetsFilter$Value": "<p>The value of the attribute you want to use to filter the returned targets. For example, if you specify <i>SNS</i> for the Target type, you could specify an Amazon Resource Name (ARN) for a topic as the value.</p>"
+        "ListTargetsFilter$Value": "<p>The value of the attribute you want to use to filter the returned targets. For example, if you specify <code>SNS</code> for the Target type, you could specify an Amazon Resource Name (ARN) for a topic as the value.</p>"
       }
     },
     "ListTargetsFilters": {
@@ -314,7 +314,7 @@
     "NotificationRuleBatch": {
       "base": null,
       "refs": {
-        "ListNotificationRulesResult$NotificationRules": "<p>The list of notification rules for the AWS account, by Amazon Resource Name (ARN) and ID. </p>"
+        "ListNotificationRulesResult$NotificationRules": "<p>The list of notification rules for the Amazon Web Services account, by Amazon Resource Name (ARN) and ID. </p>"
       }
     },
     "NotificationRuleCreatedBy": {
@@ -332,7 +332,7 @@
     "NotificationRuleName": {
       "base": null,
       "refs": {
-        "CreateNotificationRuleRequest$Name": "<p>The name for the notification rule. Notifictaion rule names must be unique in your AWS account.</p>",
+        "CreateNotificationRuleRequest$Name": "<p>The name for the notification rule. Notification rule names must be unique in your Amazon Web Services account.</p>",
         "DescribeNotificationRuleResult$Name": "<p>The name of the notification rule.</p>",
         "UpdateNotificationRuleRequest$Name": "<p>The name of the notification rule.</p>"
       }
@@ -340,14 +340,14 @@
     "NotificationRuleResource": {
       "base": null,
       "refs": {
-        "CreateNotificationRuleRequest$Resource": "<p>The Amazon Resource Name (ARN) of the resource to associate with the notification rule. Supported resources include pipelines in AWS CodePipeline, repositories in AWS CodeCommit, and build projects in AWS CodeBuild.</p>",
+        "CreateNotificationRuleRequest$Resource": "<p>The Amazon Resource Name (ARN) of the resource to associate with the notification rule. Supported resources include pipelines in CodePipeline, repositories in CodeCommit, and build projects in CodeBuild.</p>",
         "DescribeNotificationRuleResult$Resource": "<p>The Amazon Resource Name (ARN) of the resource associated with the notification rule.</p>"
       }
     },
     "NotificationRuleStatus": {
       "base": null,
       "refs": {
-        "CreateNotificationRuleRequest$Status": "<p>The status of the notification rule. The default value is ENABLED. If the status is set to DISABLED, notifications aren't sent for the notification rule.</p>",
+        "CreateNotificationRuleRequest$Status": "<p>The status of the notification rule. The default value is <code>ENABLED</code>. If the status is set to <code>DISABLED</code>, notifications aren't sent for the notification rule.</p>",
         "DescribeNotificationRuleResult$Status": "<p>The status of the notification rule. Valid statuses are on (sending notifications) or off (not sending notifications).</p>",
         "UpdateNotificationRuleRequest$Status": "<p>The status of the notification rule. Valid statuses include enabled (sending notifications) or disabled (not sending notifications).</p>"
       }
@@ -359,7 +359,7 @@
       }
     },
     "ResourceAlreadyExistsException": {
-      "base": "<p>A resource with the same name or ID already exists. Notification rule names must be unique in your AWS account.</p>",
+      "base": "<p>A resource with the same name or ID already exists. Notification rule names must be unique in your Amazon Web Services account.</p>",
       "refs": {
       }
     },
@@ -422,15 +422,15 @@
     "Tags": {
       "base": null,
       "refs": {
-        "CreateNotificationRuleRequest$Tags": "<p>A list of tags to apply to this notification rule. Key names cannot start with \"aws\". </p>",
+        "CreateNotificationRuleRequest$Tags": "<p>A list of tags to apply to this notification rule. Key names cannot start with \"<code>aws</code>\". </p>",
         "DescribeNotificationRuleResult$Tags": "<p>The tags associated with the notification rule.</p>",
         "ListTagsForResourceResult$Tags": "<p>The tags associated with the notification rule.</p>",
-        "TagResourceRequest$Tags": "<p>The list of tags to associate with the resource. Tag key names cannot start with \"aws\".</p>",
+        "TagResourceRequest$Tags": "<p>The list of tags to associate with the resource. Tag key names cannot start with \"<code>aws</code>\".</p>",
         "TagResourceResult$Tags": "<p>The list of tags associated with the resource.</p>"
       }
     },
     "Target": {
-      "base": "<p>Information about the SNS topics associated with a notification rule.</p>",
+      "base": "<p>Information about the Chatbot topics or Chatbot clients associated with a notification rule.</p>",
       "refs": {
         "SubscribeRequest$Target": null,
         "Targets$member": null
@@ -439,10 +439,10 @@
     "TargetAddress": {
       "base": null,
       "refs": {
-        "DeleteTargetRequest$TargetAddress": "<p>The Amazon Resource Name (ARN) of the SNS topic to delete.</p>",
-        "Target$TargetAddress": "<p>The Amazon Resource Name (ARN) of the SNS topic.</p>",
-        "TargetSummary$TargetAddress": "<p>The Amazon Resource Name (ARN) of the SNS topic.</p>",
-        "UnsubscribeRequest$TargetAddress": "<p>The ARN of the SNS topic to unsubscribe from the notification rule.</p>"
+        "DeleteTargetRequest$TargetAddress": "<p>The Amazon Resource Name (ARN) of the Chatbot topic or Chatbot client to delete.</p>",
+        "Target$TargetAddress": "<p>The Amazon Resource Name (ARN) of the Chatbot topic or Chatbot client.</p>",
+        "TargetSummary$TargetAddress": "<p>The Amazon Resource Name (ARN) of the Chatbot topic or Chatbot client.</p>",
+        "UnsubscribeRequest$TargetAddress": "<p>The ARN of the Chatbot topic to unsubscribe from the notification rule.</p>"
       }
     },
     "TargetStatus": {
@@ -460,21 +460,21 @@
     "TargetType": {
       "base": null,
       "refs": {
-        "Target$TargetType": "<p>The target type. Can be an Amazon SNS topic.</p>",
-        "TargetSummary$TargetType": "<p>The type of the target (for example, SNS).</p>"
+        "Target$TargetType": "<p>The target type. Can be an Chatbot topic or Chatbot client.</p> <ul> <li> <p>Chatbot topics are specified as <code>SNS</code>.</p> </li> <li> <p>Chatbot clients are specified as <code>AWSChatbotSlack</code>.</p> </li> </ul>",
+        "TargetSummary$TargetType": "<p>The type of the target (for example, <code>SNS</code>).</p> <ul> <li> <p>Chatbot topics are specified as <code>SNS</code>.</p> </li> <li> <p>Chatbot clients are specified as <code>AWSChatbotSlack</code>.</p> </li> </ul>"
       }
     },
     "Targets": {
       "base": null,
       "refs": {
-        "CreateNotificationRuleRequest$Targets": "<p>A list of Amazon Resource Names (ARNs) of SNS topics to associate with the notification rule.</p>",
+        "CreateNotificationRuleRequest$Targets": "<p>A list of Amazon Resource Names (ARNs) of Amazon Simple Notification Service topics and Chatbot clients to associate with the notification rule.</p>",
         "UpdateNotificationRuleRequest$Targets": "<p>The address and type of the targets to receive notifications from this notification rule.</p>"
       }
     },
     "TargetsBatch": {
       "base": null,
       "refs": {
-        "DescribeNotificationRuleResult$Targets": "<p>A list of the SNS topics associated with the notification rule.</p>",
+        "DescribeNotificationRuleResult$Targets": "<p>A list of the Chatbot topics and Chatbot clients associated with the notification rule.</p>",
         "ListTargetsResult$Targets": "<p>The list of notification rule targets. </p>"
       }
     },

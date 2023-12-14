@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To copy a backup
-//
 // This operation copies an Amazon FSx backup.
 func ExampleFSx_CopyBackup_shared00() {
 	svc := fsx.New(session.New())
@@ -76,7 +75,6 @@ func ExampleFSx_CopyBackup_shared00() {
 }
 
 // To create a new backup
-//
 // This operation creates a new backup.
 func ExampleFSx_CreateBackup_shared00() {
 	svc := fsx.New(session.New())
@@ -100,6 +98,8 @@ func ExampleFSx_CreateBackup_shared00() {
 				fmt.Println(fsx.ErrCodeUnsupportedOperation, aerr.Error())
 			case fsx.ErrCodeFileSystemNotFound:
 				fmt.Println(fsx.ErrCodeFileSystemNotFound, aerr.Error())
+			case fsx.ErrCodeVolumeNotFound:
+				fmt.Println(fsx.ErrCodeVolumeNotFound, aerr.Error())
 			case fsx.ErrCodeBackupInProgress:
 				fmt.Println(fsx.ErrCodeBackupInProgress, aerr.Error())
 			case fsx.ErrCodeIncompatibleParameterError:
@@ -123,7 +123,6 @@ func ExampleFSx_CreateBackup_shared00() {
 }
 
 // To create a new file system
-//
 // This operation creates a new Amazon FSx for Windows File Server file system.
 func ExampleFSx_CreateFileSystem_shared00() {
 	svc := fsx.New(session.New())
@@ -196,7 +195,6 @@ func ExampleFSx_CreateFileSystem_shared00() {
 }
 
 // To create a new file system from backup
-//
 // This operation creates a new file system from backup.
 func ExampleFSx_CreateFileSystemFromBackup_shared00() {
 	svc := fsx.New(session.New())
@@ -257,7 +255,6 @@ func ExampleFSx_CreateFileSystemFromBackup_shared00() {
 }
 
 // To delete a backup
-//
 // This operation deletes an Amazon FSx file system backup.
 func ExampleFSx_DeleteBackup_shared00() {
 	svc := fsx.New(session.New())
@@ -298,7 +295,6 @@ func ExampleFSx_DeleteBackup_shared00() {
 }
 
 // To delete a file system
-//
 // This operation deletes an Amazon FSx file system.
 func ExampleFSx_DeleteFileSystem_shared00() {
 	svc := fsx.New(session.New())
@@ -335,7 +331,6 @@ func ExampleFSx_DeleteFileSystem_shared00() {
 }
 
 // To describe Amazon FSx backups
-//
 // This operation describes all of the Amazon FSx backups in an account.
 func ExampleFSx_DescribeBackups_shared00() {
 	svc := fsx.New(session.New())
@@ -349,6 +344,8 @@ func ExampleFSx_DescribeBackups_shared00() {
 				fmt.Println(fsx.ErrCodeBadRequest, aerr.Error())
 			case fsx.ErrCodeFileSystemNotFound:
 				fmt.Println(fsx.ErrCodeFileSystemNotFound, aerr.Error())
+			case fsx.ErrCodeVolumeNotFound:
+				fmt.Println(fsx.ErrCodeVolumeNotFound, aerr.Error())
 			case fsx.ErrCodeBackupNotFound:
 				fmt.Println(fsx.ErrCodeBackupNotFound, aerr.Error())
 			case fsx.ErrCodeInternalServerError:
@@ -368,7 +365,6 @@ func ExampleFSx_DescribeBackups_shared00() {
 }
 
 // To describe an Amazon FSx file system
-//
 // This operation describes all of the Amazon FSx file systems in an account.
 func ExampleFSx_DescribeFileSystems_shared00() {
 	svc := fsx.New(session.New())
@@ -399,7 +395,6 @@ func ExampleFSx_DescribeFileSystems_shared00() {
 }
 
 // To list tags for a resource
-//
 // This operation lists tags for an Amazon FSx resource.
 func ExampleFSx_ListTagsForResource_shared00() {
 	svc := fsx.New(session.New())
@@ -436,7 +431,6 @@ func ExampleFSx_ListTagsForResource_shared00() {
 }
 
 // To tag a resource
-//
 // This operation tags an Amazon FSx resource.
 func ExampleFSx_TagResource_shared00() {
 	svc := fsx.New(session.New())
@@ -479,7 +473,6 @@ func ExampleFSx_TagResource_shared00() {
 }
 
 // To untag a resource
-//
 // This operation untags an Amazon FSx resource.
 func ExampleFSx_UntagResource_shared00() {
 	svc := fsx.New(session.New())
@@ -519,7 +512,6 @@ func ExampleFSx_UntagResource_shared00() {
 }
 
 // To update an existing file system
-//
 // This operation updates an existing file system.
 func ExampleFSx_UpdateFileSystem_shared00() {
 	svc := fsx.New(session.New())
@@ -542,6 +534,8 @@ func ExampleFSx_UpdateFileSystem_shared00() {
 				fmt.Println(fsx.ErrCodeUnsupportedOperation, aerr.Error())
 			case fsx.ErrCodeIncompatibleParameterError:
 				fmt.Println(fsx.ErrCodeIncompatibleParameterError, aerr.Error())
+			case fsx.ErrCodeInvalidNetworkSettings:
+				fmt.Println(fsx.ErrCodeInvalidNetworkSettings, aerr.Error())
 			case fsx.ErrCodeInternalServerError:
 				fmt.Println(fsx.ErrCodeInternalServerError, aerr.Error())
 			case fsx.ErrCodeFileSystemNotFound:

@@ -1,3 +1,4 @@
+//go:build go1.7 && integration
 // +build go1.7,integration
 
 package lookoutmetrics

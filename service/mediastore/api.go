@@ -29,14 +29,13 @@ const opCreateContainer = "CreateContainer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateContainerRequest method.
+//	req, resp := client.CreateContainerRequest(params)
 //
-//    // Example sending a request using the CreateContainerRequest method.
-//    req, resp := client.CreateContainerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/CreateContainer
 func (c *MediaStore) CreateContainerRequest(input *CreateContainerInput) (req *request.Request, output *CreateContainerOutput) {
@@ -68,15 +67,16 @@ func (c *MediaStore) CreateContainerRequest(input *CreateContainerInput) (req *r
 // API operation CreateContainer for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * LimitExceededException
-//   A service limit has been exceeded.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - LimitExceededException
+//     A service limit has been exceeded.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/CreateContainer
 func (c *MediaStore) CreateContainer(input *CreateContainerInput) (*CreateContainerOutput, error) {
@@ -116,14 +116,13 @@ const opDeleteContainer = "DeleteContainer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteContainerRequest method.
+//	req, resp := client.DeleteContainerRequest(params)
 //
-//    // Example sending a request using the DeleteContainerRequest method.
-//    req, resp := client.DeleteContainerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteContainer
 func (c *MediaStore) DeleteContainerRequest(input *DeleteContainerInput) (req *request.Request, output *DeleteContainerOutput) {
@@ -157,15 +156,16 @@ func (c *MediaStore) DeleteContainerRequest(input *DeleteContainerInput) (req *r
 // API operation DeleteContainer for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteContainer
 func (c *MediaStore) DeleteContainer(input *DeleteContainerInput) (*DeleteContainerOutput, error) {
@@ -205,14 +205,13 @@ const opDeleteContainerPolicy = "DeleteContainerPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteContainerPolicyRequest method.
+//	req, resp := client.DeleteContainerPolicyRequest(params)
 //
-//    // Example sending a request using the DeleteContainerPolicyRequest method.
-//    req, resp := client.DeleteContainerPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteContainerPolicy
 func (c *MediaStore) DeleteContainerPolicyRequest(input *DeleteContainerPolicyInput) (req *request.Request, output *DeleteContainerPolicyOutput) {
@@ -244,18 +243,19 @@ func (c *MediaStore) DeleteContainerPolicyRequest(input *DeleteContainerPolicyIn
 // API operation DeleteContainerPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * PolicyNotFoundException
-//   The policy that you specified in the request does not exist.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - PolicyNotFoundException
+//     The policy that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteContainerPolicy
 func (c *MediaStore) DeleteContainerPolicy(input *DeleteContainerPolicyInput) (*DeleteContainerPolicyOutput, error) {
@@ -295,14 +295,13 @@ const opDeleteCorsPolicy = "DeleteCorsPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCorsPolicyRequest method.
+//	req, resp := client.DeleteCorsPolicyRequest(params)
 //
-//    // Example sending a request using the DeleteCorsPolicyRequest method.
-//    req, resp := client.DeleteCorsPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteCorsPolicy
 func (c *MediaStore) DeleteCorsPolicyRequest(input *DeleteCorsPolicyInput) (req *request.Request, output *DeleteCorsPolicyOutput) {
@@ -339,18 +338,19 @@ func (c *MediaStore) DeleteCorsPolicyRequest(input *DeleteCorsPolicyInput) (req 
 // API operation DeleteCorsPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * CorsPolicyNotFoundException
-//   The CORS policy that you specified in the request does not exist.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - CorsPolicyNotFoundException
+//     The CORS policy that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteCorsPolicy
 func (c *MediaStore) DeleteCorsPolicy(input *DeleteCorsPolicyInput) (*DeleteCorsPolicyOutput, error) {
@@ -390,14 +390,13 @@ const opDeleteLifecyclePolicy = "DeleteLifecyclePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteLifecyclePolicyRequest method.
+//	req, resp := client.DeleteLifecyclePolicyRequest(params)
 //
-//    // Example sending a request using the DeleteLifecyclePolicyRequest method.
-//    req, resp := client.DeleteLifecyclePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteLifecyclePolicy
 func (c *MediaStore) DeleteLifecyclePolicyRequest(input *DeleteLifecyclePolicyInput) (req *request.Request, output *DeleteLifecyclePolicyOutput) {
@@ -430,18 +429,19 @@ func (c *MediaStore) DeleteLifecyclePolicyRequest(input *DeleteLifecyclePolicyIn
 // API operation DeleteLifecyclePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * PolicyNotFoundException
-//   The policy that you specified in the request does not exist.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - PolicyNotFoundException
+//     The policy that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteLifecyclePolicy
 func (c *MediaStore) DeleteLifecyclePolicy(input *DeleteLifecyclePolicyInput) (*DeleteLifecyclePolicyOutput, error) {
@@ -481,14 +481,13 @@ const opDeleteMetricPolicy = "DeleteMetricPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteMetricPolicyRequest method.
+//	req, resp := client.DeleteMetricPolicyRequest(params)
 //
-//    // Example sending a request using the DeleteMetricPolicyRequest method.
-//    req, resp := client.DeleteMetricPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteMetricPolicy
 func (c *MediaStore) DeleteMetricPolicyRequest(input *DeleteMetricPolicyInput) (req *request.Request, output *DeleteMetricPolicyOutput) {
@@ -522,18 +521,19 @@ func (c *MediaStore) DeleteMetricPolicyRequest(input *DeleteMetricPolicyInput) (
 // API operation DeleteMetricPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * PolicyNotFoundException
-//   The policy that you specified in the request does not exist.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - PolicyNotFoundException
+//     The policy that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DeleteMetricPolicy
 func (c *MediaStore) DeleteMetricPolicy(input *DeleteMetricPolicyInput) (*DeleteMetricPolicyOutput, error) {
@@ -573,14 +573,13 @@ const opDescribeContainer = "DescribeContainer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeContainerRequest method.
+//	req, resp := client.DescribeContainerRequest(params)
 //
-//    // Example sending a request using the DescribeContainerRequest method.
-//    req, resp := client.DescribeContainerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DescribeContainer
 func (c *MediaStore) DescribeContainerRequest(input *DescribeContainerInput) (req *request.Request, output *DescribeContainerOutput) {
@@ -616,11 +615,12 @@ func (c *MediaStore) DescribeContainerRequest(input *DescribeContainerInput) (re
 // API operation DescribeContainer for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/DescribeContainer
 func (c *MediaStore) DescribeContainer(input *DescribeContainerInput) (*DescribeContainerOutput, error) {
@@ -660,14 +660,13 @@ const opGetContainerPolicy = "GetContainerPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetContainerPolicyRequest method.
+//	req, resp := client.GetContainerPolicyRequest(params)
 //
-//    // Example sending a request using the GetContainerPolicyRequest method.
-//    req, resp := client.GetContainerPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/GetContainerPolicy
 func (c *MediaStore) GetContainerPolicyRequest(input *GetContainerPolicyInput) (req *request.Request, output *GetContainerPolicyOutput) {
@@ -700,18 +699,19 @@ func (c *MediaStore) GetContainerPolicyRequest(input *GetContainerPolicyInput) (
 // API operation GetContainerPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * PolicyNotFoundException
-//   The policy that you specified in the request does not exist.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - PolicyNotFoundException
+//     The policy that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/GetContainerPolicy
 func (c *MediaStore) GetContainerPolicy(input *GetContainerPolicyInput) (*GetContainerPolicyOutput, error) {
@@ -751,14 +751,13 @@ const opGetCorsPolicy = "GetCorsPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCorsPolicyRequest method.
+//	req, resp := client.GetCorsPolicyRequest(params)
 //
-//    // Example sending a request using the GetCorsPolicyRequest method.
-//    req, resp := client.GetCorsPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/GetCorsPolicy
 func (c *MediaStore) GetCorsPolicyRequest(input *GetCorsPolicyInput) (req *request.Request, output *GetCorsPolicyOutput) {
@@ -794,18 +793,19 @@ func (c *MediaStore) GetCorsPolicyRequest(input *GetCorsPolicyInput) (req *reque
 // API operation GetCorsPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * CorsPolicyNotFoundException
-//   The CORS policy that you specified in the request does not exist.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - CorsPolicyNotFoundException
+//     The CORS policy that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/GetCorsPolicy
 func (c *MediaStore) GetCorsPolicy(input *GetCorsPolicyInput) (*GetCorsPolicyOutput, error) {
@@ -845,14 +845,13 @@ const opGetLifecyclePolicy = "GetLifecyclePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetLifecyclePolicyRequest method.
+//	req, resp := client.GetLifecyclePolicyRequest(params)
 //
-//    // Example sending a request using the GetLifecyclePolicyRequest method.
-//    req, resp := client.GetLifecyclePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/GetLifecyclePolicy
 func (c *MediaStore) GetLifecyclePolicyRequest(input *GetLifecyclePolicyInput) (req *request.Request, output *GetLifecyclePolicyOutput) {
@@ -883,18 +882,19 @@ func (c *MediaStore) GetLifecyclePolicyRequest(input *GetLifecyclePolicyInput) (
 // API operation GetLifecyclePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * PolicyNotFoundException
-//   The policy that you specified in the request does not exist.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - PolicyNotFoundException
+//     The policy that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/GetLifecyclePolicy
 func (c *MediaStore) GetLifecyclePolicy(input *GetLifecyclePolicyInput) (*GetLifecyclePolicyOutput, error) {
@@ -934,14 +934,13 @@ const opGetMetricPolicy = "GetMetricPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetMetricPolicyRequest method.
+//	req, resp := client.GetMetricPolicyRequest(params)
 //
-//    // Example sending a request using the GetMetricPolicyRequest method.
-//    req, resp := client.GetMetricPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/GetMetricPolicy
 func (c *MediaStore) GetMetricPolicyRequest(input *GetMetricPolicyInput) (req *request.Request, output *GetMetricPolicyOutput) {
@@ -972,18 +971,19 @@ func (c *MediaStore) GetMetricPolicyRequest(input *GetMetricPolicyInput) (req *r
 // API operation GetMetricPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
 //
-//   * PolicyNotFoundException
-//   The policy that you specified in the request does not exist.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
+//   - PolicyNotFoundException
+//     The policy that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/GetMetricPolicy
 func (c *MediaStore) GetMetricPolicy(input *GetMetricPolicyInput) (*GetMetricPolicyOutput, error) {
@@ -1023,14 +1023,13 @@ const opListContainers = "ListContainers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListContainersRequest method.
+//	req, resp := client.ListContainersRequest(params)
 //
-//    // Example sending a request using the ListContainersRequest method.
-//    req, resp := client.ListContainersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/ListContainers
 func (c *MediaStore) ListContainersRequest(input *ListContainersInput) (req *request.Request, output *ListContainersOutput) {
@@ -1076,8 +1075,8 @@ func (c *MediaStore) ListContainersRequest(input *ListContainersInput) (req *req
 // API operation ListContainers for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/ListContainers
 func (c *MediaStore) ListContainers(input *ListContainersInput) (*ListContainersOutput, error) {
@@ -1109,15 +1108,14 @@ func (c *MediaStore) ListContainersWithContext(ctx aws.Context, input *ListConta
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListContainers operation.
-//    pageNum := 0
-//    err := client.ListContainersPages(params,
-//        func(page *mediastore.ListContainersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListContainers operation.
+//	pageNum := 0
+//	err := client.ListContainersPages(params,
+//	    func(page *mediastore.ListContainersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *MediaStore) ListContainersPages(input *ListContainersInput, fn func(*ListContainersOutput, bool) bool) error {
 	return c.ListContainersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1169,14 +1167,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/ListTagsForResource
 func (c *MediaStore) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1207,15 +1204,16 @@ func (c *MediaStore) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/ListTagsForResource
 func (c *MediaStore) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1255,14 +1253,13 @@ const opPutContainerPolicy = "PutContainerPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutContainerPolicyRequest method.
+//	req, resp := client.PutContainerPolicyRequest(params)
 //
-//    // Example sending a request using the PutContainerPolicyRequest method.
-//    req, resp := client.PutContainerPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/PutContainerPolicy
 func (c *MediaStore) PutContainerPolicyRequest(input *PutContainerPolicyInput) (req *request.Request, output *PutContainerPolicyOutput) {
@@ -1301,15 +1298,16 @@ func (c *MediaStore) PutContainerPolicyRequest(input *PutContainerPolicyInput) (
 // API operation PutContainerPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
 //
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/PutContainerPolicy
 func (c *MediaStore) PutContainerPolicy(input *PutContainerPolicyInput) (*PutContainerPolicyOutput, error) {
@@ -1349,14 +1347,13 @@ const opPutCorsPolicy = "PutCorsPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutCorsPolicyRequest method.
+//	req, resp := client.PutCorsPolicyRequest(params)
 //
-//    // Example sending a request using the PutCorsPolicyRequest method.
-//    req, resp := client.PutCorsPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/PutCorsPolicy
 func (c *MediaStore) PutCorsPolicyRequest(input *PutCorsPolicyInput) (req *request.Request, output *PutCorsPolicyOutput) {
@@ -1401,15 +1398,16 @@ func (c *MediaStore) PutCorsPolicyRequest(input *PutCorsPolicyInput) (req *reque
 // API operation PutCorsPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
 //
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/PutCorsPolicy
 func (c *MediaStore) PutCorsPolicy(input *PutCorsPolicyInput) (*PutCorsPolicyOutput, error) {
@@ -1449,14 +1447,13 @@ const opPutLifecyclePolicy = "PutLifecyclePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutLifecyclePolicyRequest method.
+//	req, resp := client.PutLifecyclePolicyRequest(params)
 //
-//    // Example sending a request using the PutLifecyclePolicyRequest method.
-//    req, resp := client.PutLifecyclePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/PutLifecyclePolicy
 func (c *MediaStore) PutLifecyclePolicyRequest(input *PutLifecyclePolicyInput) (req *request.Request, output *PutLifecyclePolicyOutput) {
@@ -1493,15 +1490,16 @@ func (c *MediaStore) PutLifecyclePolicyRequest(input *PutLifecyclePolicyInput) (
 // API operation PutLifecyclePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/PutLifecyclePolicy
 func (c *MediaStore) PutLifecyclePolicy(input *PutLifecyclePolicyInput) (*PutLifecyclePolicyOutput, error) {
@@ -1541,14 +1539,13 @@ const opPutMetricPolicy = "PutMetricPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutMetricPolicyRequest method.
+//	req, resp := client.PutMetricPolicyRequest(params)
 //
-//    // Example sending a request using the PutMetricPolicyRequest method.
-//    req, resp := client.PutMetricPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/PutMetricPolicy
 func (c *MediaStore) PutMetricPolicyRequest(input *PutMetricPolicyInput) (req *request.Request, output *PutMetricPolicyOutput) {
@@ -1582,15 +1579,16 @@ func (c *MediaStore) PutMetricPolicyRequest(input *PutMetricPolicyInput) (req *r
 // API operation PutMetricPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/PutMetricPolicy
 func (c *MediaStore) PutMetricPolicy(input *PutMetricPolicyInput) (*PutMetricPolicyOutput, error) {
@@ -1630,14 +1628,13 @@ const opStartAccessLogging = "StartAccessLogging"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartAccessLoggingRequest method.
+//	req, resp := client.StartAccessLoggingRequest(params)
 //
-//    // Example sending a request using the StartAccessLoggingRequest method.
-//    req, resp := client.StartAccessLoggingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/StartAccessLogging
 func (c *MediaStore) StartAccessLoggingRequest(input *StartAccessLoggingInput) (req *request.Request, output *StartAccessLoggingOutput) {
@@ -1671,15 +1668,16 @@ func (c *MediaStore) StartAccessLoggingRequest(input *StartAccessLoggingInput) (
 // API operation StartAccessLogging for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/StartAccessLogging
 func (c *MediaStore) StartAccessLogging(input *StartAccessLoggingInput) (*StartAccessLoggingOutput, error) {
@@ -1719,14 +1717,13 @@ const opStopAccessLogging = "StopAccessLogging"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopAccessLoggingRequest method.
+//	req, resp := client.StopAccessLoggingRequest(params)
 //
-//    // Example sending a request using the StopAccessLoggingRequest method.
-//    req, resp := client.StopAccessLoggingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/StopAccessLogging
 func (c *MediaStore) StopAccessLoggingRequest(input *StopAccessLoggingInput) (req *request.Request, output *StopAccessLoggingOutput) {
@@ -1760,15 +1757,16 @@ func (c *MediaStore) StopAccessLoggingRequest(input *StopAccessLoggingInput) (re
 // API operation StopAccessLogging for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/StopAccessLogging
 func (c *MediaStore) StopAccessLogging(input *StopAccessLoggingInput) (*StopAccessLoggingOutput, error) {
@@ -1808,14 +1806,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/TagResource
 func (c *MediaStore) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1852,15 +1849,16 @@ func (c *MediaStore) TagResourceRequest(input *TagResourceInput) (req *request.R
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/TagResource
 func (c *MediaStore) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1900,14 +1898,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/UntagResource
 func (c *MediaStore) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1940,15 +1937,16 @@ func (c *MediaStore) UntagResourceRequest(input *UntagResourceInput) (req *reque
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ContainerInUseException
-//   The container that you specified in the request already exists or is being
-//   updated.
 //
-//   * ContainerNotFoundException
-//   The container that you specified in the request does not exist.
+//   - ContainerInUseException
+//     The container that you specified in the request already exists or is being
+//     updated.
 //
-//   * InternalServerError
-//   The service is temporarily unavailable.
+//   - ContainerNotFoundException
+//     The container that you specified in the request does not exist.
+//
+//   - InternalServerError
+//     The service is temporarily unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediastore-2017-09-01/UntagResource
 func (c *MediaStore) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2011,12 +2009,20 @@ type Container struct {
 	Status *string `min:"1" type:"string" enum:"ContainerStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Container) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Container) GoString() string {
 	return s.String()
 }
@@ -2066,12 +2072,20 @@ type ContainerInUseException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContainerInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContainerInUseException) GoString() string {
 	return s.String()
 }
@@ -2122,12 +2136,20 @@ type ContainerNotFoundException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContainerNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContainerNotFoundException) GoString() string {
 	return s.String()
 }
@@ -2178,12 +2200,20 @@ type CorsPolicyNotFoundException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CorsPolicyNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CorsPolicyNotFoundException) GoString() string {
 	return s.String()
 }
@@ -2246,7 +2276,7 @@ type CorsRule struct {
 	//
 	// Each CORS rule must contain at least one AllowedMethods and one AllowedOrigins
 	// element.
-	AllowedMethods []*string `min:"1" type:"list"`
+	AllowedMethods []*string `min:"1" type:"list" enum:"MethodName"`
 
 	// One or more response headers that you want users to be able to access from
 	// their applications (for example, from a JavaScript XMLHttpRequest object).
@@ -2272,12 +2302,20 @@ type CorsRule struct {
 	MaxAgeSeconds *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CorsRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CorsRule) GoString() string {
 	return s.String()
 }
@@ -2354,12 +2392,20 @@ type CreateContainerInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateContainerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateContainerInput) GoString() string {
 	return s.String()
 }
@@ -2428,12 +2474,20 @@ type CreateContainerOutput struct {
 	Container *Container `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateContainerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateContainerOutput) GoString() string {
 	return s.String()
 }
@@ -2453,12 +2507,20 @@ type DeleteContainerInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteContainerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteContainerInput) GoString() string {
 	return s.String()
 }
@@ -2489,12 +2551,20 @@ type DeleteContainerOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteContainerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteContainerOutput) GoString() string {
 	return s.String()
 }
@@ -2508,12 +2578,20 @@ type DeleteContainerPolicyInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteContainerPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteContainerPolicyInput) GoString() string {
 	return s.String()
 }
@@ -2544,12 +2622,20 @@ type DeleteContainerPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteContainerPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteContainerPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -2563,12 +2649,20 @@ type DeleteCorsPolicyInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCorsPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCorsPolicyInput) GoString() string {
 	return s.String()
 }
@@ -2599,12 +2693,20 @@ type DeleteCorsPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCorsPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCorsPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -2618,12 +2720,20 @@ type DeleteLifecyclePolicyInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLifecyclePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLifecyclePolicyInput) GoString() string {
 	return s.String()
 }
@@ -2654,12 +2764,20 @@ type DeleteLifecyclePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLifecyclePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLifecyclePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -2674,12 +2792,20 @@ type DeleteMetricPolicyInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMetricPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMetricPolicyInput) GoString() string {
 	return s.String()
 }
@@ -2710,12 +2836,20 @@ type DeleteMetricPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMetricPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMetricPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -2727,12 +2861,20 @@ type DescribeContainerInput struct {
 	ContainerName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeContainerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeContainerInput) GoString() string {
 	return s.String()
 }
@@ -2763,12 +2905,20 @@ type DescribeContainerOutput struct {
 	Container *Container `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeContainerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeContainerOutput) GoString() string {
 	return s.String()
 }
@@ -2788,12 +2938,20 @@ type GetContainerPolicyInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetContainerPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetContainerPolicyInput) GoString() string {
 	return s.String()
 }
@@ -2829,12 +2987,20 @@ type GetContainerPolicyOutput struct {
 	Policy *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetContainerPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetContainerPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -2854,12 +3020,20 @@ type GetCorsPolicyInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCorsPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCorsPolicyInput) GoString() string {
 	return s.String()
 }
@@ -2895,12 +3069,20 @@ type GetCorsPolicyOutput struct {
 	CorsPolicy []*CorsRule `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCorsPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCorsPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -2920,12 +3102,20 @@ type GetLifecyclePolicyInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePolicyInput) GoString() string {
 	return s.String()
 }
@@ -2961,12 +3151,20 @@ type GetLifecyclePolicyOutput struct {
 	LifecyclePolicy *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -2986,12 +3184,20 @@ type GetMetricPolicyInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMetricPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMetricPolicyInput) GoString() string {
 	return s.String()
 }
@@ -3027,12 +3233,20 @@ type GetMetricPolicyOutput struct {
 	MetricPolicy *MetricPolicy `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMetricPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMetricPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -3051,12 +3265,20 @@ type InternalServerError struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerError) GoString() string {
 	return s.String()
 }
@@ -3107,12 +3329,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -3169,12 +3399,20 @@ type ListContainersInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListContainersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListContainersInput) GoString() string {
 	return s.String()
 }
@@ -3221,12 +3459,20 @@ type ListContainersOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListContainersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListContainersOutput) GoString() string {
 	return s.String()
 }
@@ -3252,12 +3498,20 @@ type ListTagsForResourceInput struct {
 	Resource *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -3291,12 +3545,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3331,12 +3593,20 @@ type MetricPolicy struct {
 	MetricPolicyRules []*MetricPolicyRule `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricPolicy) GoString() string {
 	return s.String()
 }
@@ -3399,12 +3669,20 @@ type MetricPolicyRule struct {
 	ObjectGroupName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricPolicyRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricPolicyRule) GoString() string {
 	return s.String()
 }
@@ -3451,12 +3729,20 @@ type PolicyNotFoundException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PolicyNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PolicyNotFoundException) GoString() string {
 	return s.String()
 }
@@ -3517,12 +3803,20 @@ type PutContainerPolicyInput struct {
 	Policy *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutContainerPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutContainerPolicyInput) GoString() string {
 	return s.String()
 }
@@ -3565,12 +3859,20 @@ type PutContainerPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutContainerPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutContainerPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -3589,12 +3891,20 @@ type PutCorsPolicyInput struct {
 	CorsPolicy []*CorsRule `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCorsPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCorsPolicyInput) GoString() string {
 	return s.String()
 }
@@ -3647,12 +3957,20 @@ type PutCorsPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCorsPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCorsPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -3672,12 +3990,20 @@ type PutLifecyclePolicyInput struct {
 	LifecyclePolicy *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLifecyclePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLifecyclePolicyInput) GoString() string {
 	return s.String()
 }
@@ -3717,12 +4043,20 @@ type PutLifecyclePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLifecyclePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLifecyclePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -3755,12 +4089,20 @@ type PutMetricPolicyInput struct {
 	MetricPolicy *MetricPolicy `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutMetricPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutMetricPolicyInput) GoString() string {
 	return s.String()
 }
@@ -3805,12 +4147,20 @@ type PutMetricPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutMetricPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutMetricPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -3824,12 +4174,20 @@ type StartAccessLoggingInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartAccessLoggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartAccessLoggingInput) GoString() string {
 	return s.String()
 }
@@ -3860,12 +4218,20 @@ type StartAccessLoggingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartAccessLoggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartAccessLoggingOutput) GoString() string {
 	return s.String()
 }
@@ -3879,12 +4245,20 @@ type StopAccessLoggingInput struct {
 	ContainerName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAccessLoggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAccessLoggingInput) GoString() string {
 	return s.String()
 }
@@ -3915,12 +4289,20 @@ type StopAccessLoggingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAccessLoggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAccessLoggingOutput) GoString() string {
 	return s.String()
 }
@@ -3947,12 +4329,20 @@ type Tag struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -4005,12 +4395,20 @@ type TagResourceInput struct {
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -4063,12 +4461,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -4090,12 +4496,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -4135,12 +4549,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }

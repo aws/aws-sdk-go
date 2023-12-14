@@ -1,5 +1,23 @@
 {
   "pagination": {
+    "DescribeDeliveries": {
+      "input_token": "nextToken",
+      "limit_key": "limit",
+      "output_token": "nextToken",
+      "result_key": "deliveries"
+    },
+    "DescribeDeliveryDestinations": {
+      "input_token": "nextToken",
+      "limit_key": "limit",
+      "output_token": "nextToken",
+      "result_key": "deliveryDestinations"
+    },
+    "DescribeDeliverySources": {
+      "input_token": "nextToken",
+      "limit_key": "limit",
+      "output_token": "nextToken",
+      "result_key": "deliverySources"
+    },
     "DescribeDestinations": {
       "input_token": "nextToken",
       "limit_key": "limit",
@@ -44,6 +62,18 @@
       "limit_key": "limit",
       "output_token": "nextForwardToken",
       "result_key": "events"
+    },
+    "ListAnomalies": {
+      "input_token": "nextToken",
+      "limit_key": "limit",
+      "output_token": "nextToken",
+      "result_key": "anomalies"
+    },
+    "ListLogAnomalyDetectors": {
+      "input_token": "nextToken",
+      "limit_key": "limit",
+      "output_token": "nextToken",
+      "result_key": "anomalyDetectors"
     }
   }
 }

@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS Config.
-//    func myFunc(svc configserviceiface.ConfigServiceAPI) bool {
-//        // Make svc.BatchGetAggregateResourceConfig request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS Config.
+//	func myFunc(svc configserviceiface.ConfigServiceAPI) bool {
+//	    // Make svc.BatchGetAggregateResourceConfig request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := configservice.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := configservice.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockConfigServiceClient struct {
-//        configserviceiface.ConfigServiceAPI
-//    }
-//    func (m *mockConfigServiceClient) BatchGetAggregateResourceConfig(input *configservice.BatchGetAggregateResourceConfigInput) (*configservice.BatchGetAggregateResourceConfigOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockConfigServiceClient struct {
+//	    configserviceiface.ConfigServiceAPI
+//	}
+//	func (m *mockConfigServiceClient) BatchGetAggregateResourceConfig(input *configservice.BatchGetAggregateResourceConfigInput) (*configservice.BatchGetAggregateResourceConfigOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockConfigServiceClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockConfigServiceClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -360,6 +360,10 @@ type ConfigServiceAPI interface {
 	GetConformancePackComplianceSummaryPages(*configservice.GetConformancePackComplianceSummaryInput, func(*configservice.GetConformancePackComplianceSummaryOutput, bool) bool) error
 	GetConformancePackComplianceSummaryPagesWithContext(aws.Context, *configservice.GetConformancePackComplianceSummaryInput, func(*configservice.GetConformancePackComplianceSummaryOutput, bool) bool, ...request.Option) error
 
+	GetCustomRulePolicy(*configservice.GetCustomRulePolicyInput) (*configservice.GetCustomRulePolicyOutput, error)
+	GetCustomRulePolicyWithContext(aws.Context, *configservice.GetCustomRulePolicyInput, ...request.Option) (*configservice.GetCustomRulePolicyOutput, error)
+	GetCustomRulePolicyRequest(*configservice.GetCustomRulePolicyInput) (*request.Request, *configservice.GetCustomRulePolicyOutput)
+
 	GetDiscoveredResourceCounts(*configservice.GetDiscoveredResourceCountsInput) (*configservice.GetDiscoveredResourceCountsOutput, error)
 	GetDiscoveredResourceCountsWithContext(aws.Context, *configservice.GetDiscoveredResourceCountsInput, ...request.Option) (*configservice.GetDiscoveredResourceCountsOutput, error)
 	GetDiscoveredResourceCountsRequest(*configservice.GetDiscoveredResourceCountsInput) (*request.Request, *configservice.GetDiscoveredResourceCountsOutput)
@@ -381,12 +385,20 @@ type ConfigServiceAPI interface {
 	GetOrganizationConformancePackDetailedStatusPages(*configservice.GetOrganizationConformancePackDetailedStatusInput, func(*configservice.GetOrganizationConformancePackDetailedStatusOutput, bool) bool) error
 	GetOrganizationConformancePackDetailedStatusPagesWithContext(aws.Context, *configservice.GetOrganizationConformancePackDetailedStatusInput, func(*configservice.GetOrganizationConformancePackDetailedStatusOutput, bool) bool, ...request.Option) error
 
+	GetOrganizationCustomRulePolicy(*configservice.GetOrganizationCustomRulePolicyInput) (*configservice.GetOrganizationCustomRulePolicyOutput, error)
+	GetOrganizationCustomRulePolicyWithContext(aws.Context, *configservice.GetOrganizationCustomRulePolicyInput, ...request.Option) (*configservice.GetOrganizationCustomRulePolicyOutput, error)
+	GetOrganizationCustomRulePolicyRequest(*configservice.GetOrganizationCustomRulePolicyInput) (*request.Request, *configservice.GetOrganizationCustomRulePolicyOutput)
+
 	GetResourceConfigHistory(*configservice.GetResourceConfigHistoryInput) (*configservice.GetResourceConfigHistoryOutput, error)
 	GetResourceConfigHistoryWithContext(aws.Context, *configservice.GetResourceConfigHistoryInput, ...request.Option) (*configservice.GetResourceConfigHistoryOutput, error)
 	GetResourceConfigHistoryRequest(*configservice.GetResourceConfigHistoryInput) (*request.Request, *configservice.GetResourceConfigHistoryOutput)
 
 	GetResourceConfigHistoryPages(*configservice.GetResourceConfigHistoryInput, func(*configservice.GetResourceConfigHistoryOutput, bool) bool) error
 	GetResourceConfigHistoryPagesWithContext(aws.Context, *configservice.GetResourceConfigHistoryInput, func(*configservice.GetResourceConfigHistoryOutput, bool) bool, ...request.Option) error
+
+	GetResourceEvaluationSummary(*configservice.GetResourceEvaluationSummaryInput) (*configservice.GetResourceEvaluationSummaryOutput, error)
+	GetResourceEvaluationSummaryWithContext(aws.Context, *configservice.GetResourceEvaluationSummaryInput, ...request.Option) (*configservice.GetResourceEvaluationSummaryOutput, error)
+	GetResourceEvaluationSummaryRequest(*configservice.GetResourceEvaluationSummaryInput) (*request.Request, *configservice.GetResourceEvaluationSummaryOutput)
 
 	GetStoredQuery(*configservice.GetStoredQueryInput) (*configservice.GetStoredQueryOutput, error)
 	GetStoredQueryWithContext(aws.Context, *configservice.GetStoredQueryInput, ...request.Option) (*configservice.GetStoredQueryOutput, error)
@@ -399,12 +411,26 @@ type ConfigServiceAPI interface {
 	ListAggregateDiscoveredResourcesPages(*configservice.ListAggregateDiscoveredResourcesInput, func(*configservice.ListAggregateDiscoveredResourcesOutput, bool) bool) error
 	ListAggregateDiscoveredResourcesPagesWithContext(aws.Context, *configservice.ListAggregateDiscoveredResourcesInput, func(*configservice.ListAggregateDiscoveredResourcesOutput, bool) bool, ...request.Option) error
 
+	ListConformancePackComplianceScores(*configservice.ListConformancePackComplianceScoresInput) (*configservice.ListConformancePackComplianceScoresOutput, error)
+	ListConformancePackComplianceScoresWithContext(aws.Context, *configservice.ListConformancePackComplianceScoresInput, ...request.Option) (*configservice.ListConformancePackComplianceScoresOutput, error)
+	ListConformancePackComplianceScoresRequest(*configservice.ListConformancePackComplianceScoresInput) (*request.Request, *configservice.ListConformancePackComplianceScoresOutput)
+
+	ListConformancePackComplianceScoresPages(*configservice.ListConformancePackComplianceScoresInput, func(*configservice.ListConformancePackComplianceScoresOutput, bool) bool) error
+	ListConformancePackComplianceScoresPagesWithContext(aws.Context, *configservice.ListConformancePackComplianceScoresInput, func(*configservice.ListConformancePackComplianceScoresOutput, bool) bool, ...request.Option) error
+
 	ListDiscoveredResources(*configservice.ListDiscoveredResourcesInput) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesWithContext(aws.Context, *configservice.ListDiscoveredResourcesInput, ...request.Option) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesRequest(*configservice.ListDiscoveredResourcesInput) (*request.Request, *configservice.ListDiscoveredResourcesOutput)
 
 	ListDiscoveredResourcesPages(*configservice.ListDiscoveredResourcesInput, func(*configservice.ListDiscoveredResourcesOutput, bool) bool) error
 	ListDiscoveredResourcesPagesWithContext(aws.Context, *configservice.ListDiscoveredResourcesInput, func(*configservice.ListDiscoveredResourcesOutput, bool) bool, ...request.Option) error
+
+	ListResourceEvaluations(*configservice.ListResourceEvaluationsInput) (*configservice.ListResourceEvaluationsOutput, error)
+	ListResourceEvaluationsWithContext(aws.Context, *configservice.ListResourceEvaluationsInput, ...request.Option) (*configservice.ListResourceEvaluationsOutput, error)
+	ListResourceEvaluationsRequest(*configservice.ListResourceEvaluationsInput) (*request.Request, *configservice.ListResourceEvaluationsOutput)
+
+	ListResourceEvaluationsPages(*configservice.ListResourceEvaluationsInput, func(*configservice.ListResourceEvaluationsOutput, bool) bool) error
+	ListResourceEvaluationsPagesWithContext(aws.Context, *configservice.ListResourceEvaluationsInput, func(*configservice.ListResourceEvaluationsOutput, bool) bool, ...request.Option) error
 
 	ListStoredQueries(*configservice.ListStoredQueriesInput) (*configservice.ListStoredQueriesOutput, error)
 	ListStoredQueriesWithContext(aws.Context, *configservice.ListStoredQueriesInput, ...request.Option) (*configservice.ListStoredQueriesOutput, error)
@@ -505,6 +531,10 @@ type ConfigServiceAPI interface {
 	StartRemediationExecution(*configservice.StartRemediationExecutionInput) (*configservice.StartRemediationExecutionOutput, error)
 	StartRemediationExecutionWithContext(aws.Context, *configservice.StartRemediationExecutionInput, ...request.Option) (*configservice.StartRemediationExecutionOutput, error)
 	StartRemediationExecutionRequest(*configservice.StartRemediationExecutionInput) (*request.Request, *configservice.StartRemediationExecutionOutput)
+
+	StartResourceEvaluation(*configservice.StartResourceEvaluationInput) (*configservice.StartResourceEvaluationOutput, error)
+	StartResourceEvaluationWithContext(aws.Context, *configservice.StartResourceEvaluationInput, ...request.Option) (*configservice.StartResourceEvaluationOutput, error)
+	StartResourceEvaluationRequest(*configservice.StartResourceEvaluationInput) (*request.Request, *configservice.StartResourceEvaluationOutput)
 
 	StopConfigurationRecorder(*configservice.StopConfigurationRecorderInput) (*configservice.StopConfigurationRecorderOutput, error)
 	StopConfigurationRecorderWithContext(aws.Context, *configservice.StopConfigurationRecorderInput, ...request.Option) (*configservice.StopConfigurationRecorderOutput, error)

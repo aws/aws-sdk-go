@@ -3,10 +3,10 @@
 // Package wellarchitected provides the client and types for making API
 // requests to AWS Well-Architected Tool.
 //
-// This is the AWS Well-Architected Tool API Reference. The AWS Well-Architected
-// Tool API provides programmatic access to the AWS Well-Architected Tool (http://aws.amazon.com/well-architected-tool)
-// in the AWS Management Console (https://console.aws.amazon.com/wellarchitected).
-// For information about the AWS Well-Architected Tool, see the AWS Well-Architected
+// This is the Well-Architected Tool API Reference. The WA Tool API provides
+// programmatic access to the Well-Architected Tool (http://aws.amazon.com/well-architected-tool)
+// in the Amazon Web Services Management Console (https://console.aws.amazon.com/wellarchitected).
+// For information about the Well-Architected Tool, see the Well-Architected
 // Tool User Guide (https://docs.aws.amazon.com/wellarchitected/latest/userguide/intro.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31 for more information on this service.
@@ -14,7 +14,7 @@
 // See wellarchitected package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/wellarchitected/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS Well-Architected Tool with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

@@ -3,6 +3,7 @@
   "metadata":{
     "apiVersion":"2009-04-15",
     "endpointPrefix":"sdb",
+    "serviceId": "SimpleDB",
     "serviceFullName":"Amazon SimpleDB",
     "signatureVersion":"v2",
     "xmlNamespace":"http://sdb.amazonaws.com/doc/2009-04-15/",

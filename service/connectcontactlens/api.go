@@ -27,14 +27,13 @@ const opListRealtimeContactAnalysisSegments = "ListRealtimeContactAnalysisSegmen
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRealtimeContactAnalysisSegmentsRequest method.
+//	req, resp := client.ListRealtimeContactAnalysisSegmentsRequest(params)
 //
-//    // Example sending a request using the ListRealtimeContactAnalysisSegmentsRequest method.
-//    req, resp := client.ListRealtimeContactAnalysisSegmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-contact-lens-2020-08-21/ListRealtimeContactAnalysisSegments
 func (c *ConnectContactLens) ListRealtimeContactAnalysisSegmentsRequest(input *ListRealtimeContactAnalysisSegmentsInput) (req *request.Request, output *ListRealtimeContactAnalysisSegmentsOutput) {
@@ -71,20 +70,21 @@ func (c *ConnectContactLens) ListRealtimeContactAnalysisSegmentsRequest(input *L
 // API operation ListRealtimeContactAnalysisSegments for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed due to an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-contact-lens-2020-08-21/ListRealtimeContactAnalysisSegments
 func (c *ConnectContactLens) ListRealtimeContactAnalysisSegments(input *ListRealtimeContactAnalysisSegmentsInput) (*ListRealtimeContactAnalysisSegmentsOutput, error) {
@@ -116,15 +116,14 @@ func (c *ConnectContactLens) ListRealtimeContactAnalysisSegmentsWithContext(ctx 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRealtimeContactAnalysisSegments operation.
-//    pageNum := 0
-//    err := client.ListRealtimeContactAnalysisSegmentsPages(params,
-//        func(page *connectcontactlens.ListRealtimeContactAnalysisSegmentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRealtimeContactAnalysisSegments operation.
+//	pageNum := 0
+//	err := client.ListRealtimeContactAnalysisSegmentsPages(params,
+//	    func(page *connectcontactlens.ListRealtimeContactAnalysisSegmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ConnectContactLens) ListRealtimeContactAnalysisSegmentsPages(input *ListRealtimeContactAnalysisSegmentsInput, fn func(*ListRealtimeContactAnalysisSegmentsOutput, bool) bool) error {
 	return c.ListRealtimeContactAnalysisSegmentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -168,12 +167,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -232,12 +239,20 @@ type Categories struct {
 	MatchedDetails map[string]*CategoryDetails `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Categories) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Categories) GoString() string {
 	return s.String()
 }
@@ -264,12 +279,20 @@ type CategoryDetails struct {
 	PointsOfInterest []*PointOfInterest `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CategoryDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CategoryDetails) GoString() string {
 	return s.String()
 }
@@ -295,12 +318,20 @@ type CharacterOffsets struct {
 	EndOffsetChar *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CharacterOffsets) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CharacterOffsets) GoString() string {
 	return s.String()
 }
@@ -325,12 +356,20 @@ type InternalServiceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) GoString() string {
 	return s.String()
 }
@@ -381,12 +420,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -440,12 +487,20 @@ type IssueDetected struct {
 	CharacterOffsets *CharacterOffsets `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IssueDetected) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IssueDetected) GoString() string {
 	return s.String()
 }
@@ -477,12 +532,20 @@ type ListRealtimeContactAnalysisSegmentsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRealtimeContactAnalysisSegmentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRealtimeContactAnalysisSegmentsInput) GoString() string {
 	return s.String()
 }
@@ -561,12 +624,20 @@ type ListRealtimeContactAnalysisSegmentsOutput struct {
 	Segments []*RealtimeContactAnalysisSegment `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRealtimeContactAnalysisSegmentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRealtimeContactAnalysisSegmentsOutput) GoString() string {
 	return s.String()
 }
@@ -598,12 +669,20 @@ type PointOfInterest struct {
 	EndOffsetMillis *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PointOfInterest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PointOfInterest) GoString() string {
 	return s.String()
 }
@@ -631,12 +710,20 @@ type RealtimeContactAnalysisSegment struct {
 	Transcript *Transcript `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RealtimeContactAnalysisSegment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RealtimeContactAnalysisSegment) GoString() string {
 	return s.String()
 }
@@ -661,12 +748,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -717,12 +812,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -808,12 +911,20 @@ type Transcript struct {
 	Sentiment *string `type:"string" required:"true" enum:"SentimentValue"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Transcript) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Transcript) GoString() string {
 	return s.String()
 }

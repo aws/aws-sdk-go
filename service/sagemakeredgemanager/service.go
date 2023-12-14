@@ -40,34 +40,36 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a SagemakerEdgeManager client from just a session.
-//     svc := sagemakeredgemanager.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a SagemakerEdgeManager client with additional configuration
-//     svc := sagemakeredgemanager.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a SagemakerEdgeManager client from just a session.
+//	svc := sagemakeredgemanager.New(mySession)
+//
+//	// Create a SagemakerEdgeManager client with additional configuration
+//	svc := sagemakeredgemanager.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *SagemakerEdgeManager {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "sagemaker"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *SagemakerEdgeManager {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *SagemakerEdgeManager {
 	svc := &SagemakerEdgeManager{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2020-09-23",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2020-09-23",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),

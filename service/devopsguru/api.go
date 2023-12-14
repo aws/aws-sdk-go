@@ -29,14 +29,13 @@ const opAddNotificationChannel = "AddNotificationChannel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddNotificationChannelRequest method.
+//	req, resp := client.AddNotificationChannelRequest(params)
 //
-//    // Example sending a request using the AddNotificationChannelRequest method.
-//    req, resp := client.AddNotificationChannelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/AddNotificationChannel
 func (c *DevOpsGuru) AddNotificationChannelRequest(input *AddNotificationChannelInput) (req *request.Request, output *AddNotificationChannelOutput) {
@@ -62,15 +61,15 @@ func (c *DevOpsGuru) AddNotificationChannelRequest(input *AddNotificationChannel
 // is generated.
 //
 // If you use an Amazon SNS topic in another account, you must attach a policy
-// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-// adds the required policy on your behalf to send notifications using Amazon
-// SNS in your account. For more information, see Permissions for cross account
-// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+// to it that grants DevOps Guru permission to send it notifications. DevOps
+// Guru adds the required policy on your behalf to send notifications using
+// Amazon SNS in your account. DevOps Guru only supports standard SNS topics.
+// For more information, see Permissions for Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 //
-// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
-// Service customer-managed key (CMK), then you must add permissions to the
-// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
-// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
+// Key Management Service customer-managed key (CMK), then you must add permissions
+// to the CMK. For more information, see Permissions for Amazon Web Services
+// KMS–encrypted Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -80,31 +79,32 @@ func (c *DevOpsGuru) AddNotificationChannelRequest(input *AddNotificationChannel
 // API operation AddNotificationChannel for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * ConflictException
-//   An exception that is thrown when a conflict occurs.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - ConflictException
+//     An exception that is thrown when a conflict occurs.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ServiceQuotaExceededException
-//   The request contains a value that exceeds a maximum quota.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ServiceQuotaExceededException
+//     The request contains a value that exceeds a maximum quota.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/AddNotificationChannel
 func (c *DevOpsGuru) AddNotificationChannel(input *AddNotificationChannelInput) (*AddNotificationChannelOutput, error) {
@@ -128,6 +128,106 @@ func (c *DevOpsGuru) AddNotificationChannelWithContext(ctx aws.Context, input *A
 	return out, req.Send()
 }
 
+const opDeleteInsight = "DeleteInsight"
+
+// DeleteInsightRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteInsight operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteInsight for more information on using the DeleteInsight
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteInsightRequest method.
+//	req, resp := client.DeleteInsightRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DeleteInsight
+func (c *DevOpsGuru) DeleteInsightRequest(input *DeleteInsightInput) (req *request.Request, output *DeleteInsightOutput) {
+	op := &request.Operation{
+		Name:       opDeleteInsight,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/insights/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteInsightInput{}
+	}
+
+	output = &DeleteInsightOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteInsight API operation for Amazon DevOps Guru.
+//
+// Deletes the insight along with the associated anomalies, events and recommendations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DeleteInsight for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ResourceNotFoundException
+//     A requested resource could not be found
+//
+//   - ConflictException
+//     An exception that is thrown when a conflict occurs.
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DeleteInsight
+func (c *DevOpsGuru) DeleteInsight(input *DeleteInsightInput) (*DeleteInsightOutput, error) {
+	req, out := c.DeleteInsightRequest(input)
+	return out, req.Send()
+}
+
+// DeleteInsightWithContext is the same as DeleteInsight with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteInsight for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DeleteInsightWithContext(ctx aws.Context, input *DeleteInsightInput, opts ...request.Option) (*DeleteInsightOutput, error) {
+	req, out := c.DeleteInsightRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAccountHealth = "DescribeAccountHealth"
 
 // DescribeAccountHealthRequest generates a "aws/request.Request" representing the
@@ -144,14 +244,13 @@ const opDescribeAccountHealth = "DescribeAccountHealth"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAccountHealthRequest method.
+//	req, resp := client.DescribeAccountHealthRequest(params)
 //
-//    // Example sending a request using the DescribeAccountHealthRequest method.
-//    req, resp := client.DescribeAccountHealthRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeAccountHealth
 func (c *DevOpsGuru) DescribeAccountHealthRequest(input *DescribeAccountHealthInput) (req *request.Request, output *DescribeAccountHealthOutput) {
@@ -173,8 +272,9 @@ func (c *DevOpsGuru) DescribeAccountHealthRequest(input *DescribeAccountHealthIn
 // DescribeAccountHealth API operation for Amazon DevOps Guru.
 //
 // Returns the number of open reactive insights, the number of open proactive
-// insights, and the number of metrics analyzed in your AWS account. Use these
-// numbers to gauge the health of operations in your AWS account.
+// insights, and the number of metrics analyzed in your Amazon Web Services
+// account. Use these numbers to gauge the health of operations in your Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -184,22 +284,23 @@ func (c *DevOpsGuru) DescribeAccountHealthRequest(input *DescribeAccountHealthIn
 // API operation DescribeAccountHealth for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeAccountHealth
 func (c *DevOpsGuru) DescribeAccountHealth(input *DescribeAccountHealthInput) (*DescribeAccountHealthOutput, error) {
@@ -239,14 +340,13 @@ const opDescribeAccountOverview = "DescribeAccountOverview"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAccountOverviewRequest method.
+//	req, resp := client.DescribeAccountOverviewRequest(params)
 //
-//    // Example sending a request using the DescribeAccountOverviewRequest method.
-//    req, resp := client.DescribeAccountOverviewRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeAccountOverview
 func (c *DevOpsGuru) DescribeAccountOverviewRequest(input *DescribeAccountOverviewInput) (req *request.Request, output *DescribeAccountOverviewOutput) {
@@ -279,22 +379,23 @@ func (c *DevOpsGuru) DescribeAccountOverviewRequest(input *DescribeAccountOvervi
 // API operation DescribeAccountOverview for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeAccountOverview
 func (c *DevOpsGuru) DescribeAccountOverview(input *DescribeAccountOverviewInput) (*DescribeAccountOverviewOutput, error) {
@@ -334,14 +435,13 @@ const opDescribeAnomaly = "DescribeAnomaly"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAnomalyRequest method.
+//	req, resp := client.DescribeAnomalyRequest(params)
 //
-//    // Example sending a request using the DescribeAnomalyRequest method.
-//    req, resp := client.DescribeAnomalyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeAnomaly
 func (c *DevOpsGuru) DescribeAnomalyRequest(input *DescribeAnomalyInput) (req *request.Request, output *DescribeAnomalyOutput) {
@@ -372,25 +472,26 @@ func (c *DevOpsGuru) DescribeAnomalyRequest(input *DescribeAnomalyInput) (req *r
 // API operation DescribeAnomaly for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeAnomaly
 func (c *DevOpsGuru) DescribeAnomaly(input *DescribeAnomalyInput) (*DescribeAnomalyOutput, error) {
@@ -414,6 +515,102 @@ func (c *DevOpsGuru) DescribeAnomalyWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+const opDescribeEventSourcesConfig = "DescribeEventSourcesConfig"
+
+// DescribeEventSourcesConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEventSourcesConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEventSourcesConfig for more information on using the DescribeEventSourcesConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeEventSourcesConfigRequest method.
+//	req, resp := client.DescribeEventSourcesConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeEventSourcesConfig
+func (c *DevOpsGuru) DescribeEventSourcesConfigRequest(input *DescribeEventSourcesConfigInput) (req *request.Request, output *DescribeEventSourcesConfigOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEventSourcesConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/event-sources",
+	}
+
+	if input == nil {
+		input = &DescribeEventSourcesConfigInput{}
+	}
+
+	output = &DescribeEventSourcesConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEventSourcesConfig API operation for Amazon DevOps Guru.
+//
+// Returns the integration status of services that are integrated with DevOps
+// Guru as Consumer via EventBridge. The one service that can be integrated
+// with DevOps Guru is Amazon CodeGuru Profiler, which can produce proactive
+// recommendations which can be stored and viewed in DevOps Guru.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DescribeEventSourcesConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeEventSourcesConfig
+func (c *DevOpsGuru) DescribeEventSourcesConfig(input *DescribeEventSourcesConfigInput) (*DescribeEventSourcesConfigOutput, error) {
+	req, out := c.DescribeEventSourcesConfigRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEventSourcesConfigWithContext is the same as DescribeEventSourcesConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEventSourcesConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeEventSourcesConfigWithContext(ctx aws.Context, input *DescribeEventSourcesConfigInput, opts ...request.Option) (*DescribeEventSourcesConfigOutput, error) {
+	req, out := c.DescribeEventSourcesConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeFeedback = "DescribeFeedback"
 
 // DescribeFeedbackRequest generates a "aws/request.Request" representing the
@@ -430,14 +627,13 @@ const opDescribeFeedback = "DescribeFeedback"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFeedbackRequest method.
+//	req, resp := client.DescribeFeedbackRequest(params)
 //
-//    // Example sending a request using the DescribeFeedbackRequest method.
-//    req, resp := client.DescribeFeedbackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeFeedback
 func (c *DevOpsGuru) DescribeFeedbackRequest(input *DescribeFeedbackInput) (req *request.Request, output *DescribeFeedbackOutput) {
@@ -458,8 +654,8 @@ func (c *DevOpsGuru) DescribeFeedbackRequest(input *DescribeFeedbackInput) (req 
 
 // DescribeFeedback API operation for Amazon DevOps Guru.
 //
-// Returns the most recent feedback submitted in the current AWS account and
-// Region.
+// Returns the most recent feedback submitted in the current Amazon Web Services
+// account and Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -469,25 +665,26 @@ func (c *DevOpsGuru) DescribeFeedbackRequest(input *DescribeFeedbackInput) (req 
 // API operation DescribeFeedback for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeFeedback
 func (c *DevOpsGuru) DescribeFeedback(input *DescribeFeedbackInput) (*DescribeFeedbackOutput, error) {
@@ -527,14 +724,13 @@ const opDescribeInsight = "DescribeInsight"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeInsightRequest method.
+//	req, resp := client.DescribeInsightRequest(params)
 //
-//    // Example sending a request using the DescribeInsightRequest method.
-//    req, resp := client.DescribeInsightRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeInsight
 func (c *DevOpsGuru) DescribeInsightRequest(input *DescribeInsightInput) (req *request.Request, output *DescribeInsightOutput) {
@@ -565,25 +761,26 @@ func (c *DevOpsGuru) DescribeInsightRequest(input *DescribeInsightInput) (req *r
 // API operation DescribeInsight for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeInsight
 func (c *DevOpsGuru) DescribeInsight(input *DescribeInsightInput) (*DescribeInsightOutput, error) {
@@ -607,6 +804,346 @@ func (c *DevOpsGuru) DescribeInsightWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+const opDescribeOrganizationHealth = "DescribeOrganizationHealth"
+
+// DescribeOrganizationHealthRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOrganizationHealth operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeOrganizationHealth for more information on using the DescribeOrganizationHealth
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeOrganizationHealthRequest method.
+//	req, resp := client.DescribeOrganizationHealthRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationHealth
+func (c *DevOpsGuru) DescribeOrganizationHealthRequest(input *DescribeOrganizationHealthInput) (req *request.Request, output *DescribeOrganizationHealthOutput) {
+	op := &request.Operation{
+		Name:       opDescribeOrganizationHealth,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/health",
+	}
+
+	if input == nil {
+		input = &DescribeOrganizationHealthInput{}
+	}
+
+	output = &DescribeOrganizationHealthOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeOrganizationHealth API operation for Amazon DevOps Guru.
+//
+// Returns active insights, predictive insights, and resource hours analyzed
+// in last hour.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DescribeOrganizationHealth for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationHealth
+func (c *DevOpsGuru) DescribeOrganizationHealth(input *DescribeOrganizationHealthInput) (*DescribeOrganizationHealthOutput, error) {
+	req, out := c.DescribeOrganizationHealthRequest(input)
+	return out, req.Send()
+}
+
+// DescribeOrganizationHealthWithContext is the same as DescribeOrganizationHealth with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeOrganizationHealth for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeOrganizationHealthWithContext(ctx aws.Context, input *DescribeOrganizationHealthInput, opts ...request.Option) (*DescribeOrganizationHealthOutput, error) {
+	req, out := c.DescribeOrganizationHealthRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeOrganizationOverview = "DescribeOrganizationOverview"
+
+// DescribeOrganizationOverviewRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOrganizationOverview operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeOrganizationOverview for more information on using the DescribeOrganizationOverview
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeOrganizationOverviewRequest method.
+//	req, resp := client.DescribeOrganizationOverviewRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationOverview
+func (c *DevOpsGuru) DescribeOrganizationOverviewRequest(input *DescribeOrganizationOverviewInput) (req *request.Request, output *DescribeOrganizationOverviewOutput) {
+	op := &request.Operation{
+		Name:       opDescribeOrganizationOverview,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/overview",
+	}
+
+	if input == nil {
+		input = &DescribeOrganizationOverviewInput{}
+	}
+
+	output = &DescribeOrganizationOverviewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeOrganizationOverview API operation for Amazon DevOps Guru.
+//
+// Returns an overview of your organization's history based on the specified
+// time range. The overview includes the total reactive and proactive insights.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DescribeOrganizationOverview for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationOverview
+func (c *DevOpsGuru) DescribeOrganizationOverview(input *DescribeOrganizationOverviewInput) (*DescribeOrganizationOverviewOutput, error) {
+	req, out := c.DescribeOrganizationOverviewRequest(input)
+	return out, req.Send()
+}
+
+// DescribeOrganizationOverviewWithContext is the same as DescribeOrganizationOverview with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeOrganizationOverview for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeOrganizationOverviewWithContext(ctx aws.Context, input *DescribeOrganizationOverviewInput, opts ...request.Option) (*DescribeOrganizationOverviewOutput, error) {
+	req, out := c.DescribeOrganizationOverviewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeOrganizationResourceCollectionHealth = "DescribeOrganizationResourceCollectionHealth"
+
+// DescribeOrganizationResourceCollectionHealthRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOrganizationResourceCollectionHealth operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeOrganizationResourceCollectionHealth for more information on using the DescribeOrganizationResourceCollectionHealth
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeOrganizationResourceCollectionHealthRequest method.
+//	req, resp := client.DescribeOrganizationResourceCollectionHealthRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationResourceCollectionHealth
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealthRequest(input *DescribeOrganizationResourceCollectionHealthInput) (req *request.Request, output *DescribeOrganizationResourceCollectionHealthOutput) {
+	op := &request.Operation{
+		Name:       opDescribeOrganizationResourceCollectionHealth,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/health/resource-collection",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeOrganizationResourceCollectionHealthInput{}
+	}
+
+	output = &DescribeOrganizationResourceCollectionHealthOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeOrganizationResourceCollectionHealth API operation for Amazon DevOps Guru.
+//
+// Provides an overview of your system's health. If additional member accounts
+// are part of your organization, you can filter those accounts using the AccountIds
+// field.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DescribeOrganizationResourceCollectionHealth for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationResourceCollectionHealth
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealth(input *DescribeOrganizationResourceCollectionHealthInput) (*DescribeOrganizationResourceCollectionHealthOutput, error) {
+	req, out := c.DescribeOrganizationResourceCollectionHealthRequest(input)
+	return out, req.Send()
+}
+
+// DescribeOrganizationResourceCollectionHealthWithContext is the same as DescribeOrganizationResourceCollectionHealth with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeOrganizationResourceCollectionHealth for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealthWithContext(ctx aws.Context, input *DescribeOrganizationResourceCollectionHealthInput, opts ...request.Option) (*DescribeOrganizationResourceCollectionHealthOutput, error) {
+	req, out := c.DescribeOrganizationResourceCollectionHealthRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeOrganizationResourceCollectionHealthPages iterates over the pages of a DescribeOrganizationResourceCollectionHealth operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeOrganizationResourceCollectionHealth method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeOrganizationResourceCollectionHealth operation.
+//	pageNum := 0
+//	err := client.DescribeOrganizationResourceCollectionHealthPages(params,
+//	    func(page *devopsguru.DescribeOrganizationResourceCollectionHealthOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealthPages(input *DescribeOrganizationResourceCollectionHealthInput, fn func(*DescribeOrganizationResourceCollectionHealthOutput, bool) bool) error {
+	return c.DescribeOrganizationResourceCollectionHealthPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeOrganizationResourceCollectionHealthPagesWithContext same as DescribeOrganizationResourceCollectionHealthPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealthPagesWithContext(ctx aws.Context, input *DescribeOrganizationResourceCollectionHealthInput, fn func(*DescribeOrganizationResourceCollectionHealthOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeOrganizationResourceCollectionHealthInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeOrganizationResourceCollectionHealthRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeOrganizationResourceCollectionHealthOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeResourceCollectionHealth = "DescribeResourceCollectionHealth"
 
 // DescribeResourceCollectionHealthRequest generates a "aws/request.Request" representing the
@@ -623,14 +1160,13 @@ const opDescribeResourceCollectionHealth = "DescribeResourceCollectionHealth"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeResourceCollectionHealthRequest method.
+//	req, resp := client.DescribeResourceCollectionHealthRequest(params)
 //
-//    // Example sending a request using the DescribeResourceCollectionHealthRequest method.
-//    req, resp := client.DescribeResourceCollectionHealthRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeResourceCollectionHealth
 func (c *DevOpsGuru) DescribeResourceCollectionHealthRequest(input *DescribeResourceCollectionHealthInput) (req *request.Request, output *DescribeResourceCollectionHealthOutput) {
@@ -659,10 +1195,13 @@ func (c *DevOpsGuru) DescribeResourceCollectionHealthRequest(input *DescribeReso
 //
 // Returns the number of open proactive insights, open reactive insights, and
 // the Mean Time to Recover (MTTR) for all closed insights in resource collections
-// in your account. You specify the type of AWS resources collection. The one
-// type of AWS resource collection supported is AWS CloudFormation stacks. DevOps
-// Guru can be configured to analyze only the AWS resources that are defined
-// in the stacks. You can specify up to 500 AWS CloudFormation stacks.
+// in your account. You specify the type of Amazon Web Services resources collection.
+// The two types of Amazon Web Services resource collections supported are Amazon
+// Web Services CloudFormation stacks and Amazon Web Services resources that
+// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+// analyze the Amazon Web Services resources that are defined in the stacks
+// or that are tagged using the same tag key. You can specify up to 500 Amazon
+// Web Services CloudFormation stacks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -672,22 +1211,23 @@ func (c *DevOpsGuru) DescribeResourceCollectionHealthRequest(input *DescribeReso
 // API operation DescribeResourceCollectionHealth for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeResourceCollectionHealth
 func (c *DevOpsGuru) DescribeResourceCollectionHealth(input *DescribeResourceCollectionHealthInput) (*DescribeResourceCollectionHealthOutput, error) {
@@ -719,15 +1259,14 @@ func (c *DevOpsGuru) DescribeResourceCollectionHealthWithContext(ctx aws.Context
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeResourceCollectionHealth operation.
-//    pageNum := 0
-//    err := client.DescribeResourceCollectionHealthPages(params,
-//        func(page *devopsguru.DescribeResourceCollectionHealthOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeResourceCollectionHealth operation.
+//	pageNum := 0
+//	err := client.DescribeResourceCollectionHealthPages(params,
+//	    func(page *devopsguru.DescribeResourceCollectionHealthOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DevOpsGuru) DescribeResourceCollectionHealthPages(input *DescribeResourceCollectionHealthInput, fn func(*DescribeResourceCollectionHealthOutput, bool) bool) error {
 	return c.DescribeResourceCollectionHealthPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -779,14 +1318,13 @@ const opDescribeServiceIntegration = "DescribeServiceIntegration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeServiceIntegrationRequest method.
+//	req, resp := client.DescribeServiceIntegrationRequest(params)
 //
-//    // Example sending a request using the DescribeServiceIntegrationRequest method.
-//    req, resp := client.DescribeServiceIntegrationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeServiceIntegration
 func (c *DevOpsGuru) DescribeServiceIntegrationRequest(input *DescribeServiceIntegrationInput) (req *request.Request, output *DescribeServiceIntegrationOutput) {
@@ -808,8 +1346,9 @@ func (c *DevOpsGuru) DescribeServiceIntegrationRequest(input *DescribeServiceInt
 // DescribeServiceIntegration API operation for Amazon DevOps Guru.
 //
 // Returns the integration status of services that are integrated with DevOps
-// Guru. The one service that can be integrated with DevOps Guru is AWS Systems
-// Manager, which can be used to create an OpsItem for each generated insight.
+// Guru. The one service that can be integrated with DevOps Guru is Amazon Web
+// Services Systems Manager, which can be used to create an OpsItem for each
+// generated insight.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -819,22 +1358,26 @@ func (c *DevOpsGuru) DescribeServiceIntegrationRequest(input *DescribeServiceInt
 // API operation DescribeServiceIntegration for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeServiceIntegration
 func (c *DevOpsGuru) DescribeServiceIntegration(input *DescribeServiceIntegrationInput) (*DescribeServiceIntegrationOutput, error) {
@@ -874,14 +1417,13 @@ const opGetCostEstimation = "GetCostEstimation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCostEstimationRequest method.
+//	req, resp := client.GetCostEstimationRequest(params)
 //
-//    // Example sending a request using the GetCostEstimationRequest method.
-//    req, resp := client.GetCostEstimationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/GetCostEstimation
 func (c *DevOpsGuru) GetCostEstimationRequest(input *GetCostEstimationInput) (req *request.Request, output *GetCostEstimationOutput) {
@@ -908,9 +1450,9 @@ func (c *DevOpsGuru) GetCostEstimationRequest(input *GetCostEstimationInput) (re
 
 // GetCostEstimation API operation for Amazon DevOps Guru.
 //
-// Returns an estimate of the monthly cost for DevOps Guru to analyze your AWS
-// resources. For more information, see Estimate your Amazon DevOps Guru costs
-// (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+// Returns an estimate of the monthly cost for DevOps Guru to analyze your Amazon
+// Web Services resources. For more information, see Estimate your Amazon DevOps
+// Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
 // and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -921,25 +1463,26 @@ func (c *DevOpsGuru) GetCostEstimationRequest(input *GetCostEstimationInput) (re
 // API operation GetCostEstimation for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/GetCostEstimation
 func (c *DevOpsGuru) GetCostEstimation(input *GetCostEstimationInput) (*GetCostEstimationOutput, error) {
@@ -971,15 +1514,14 @@ func (c *DevOpsGuru) GetCostEstimationWithContext(ctx aws.Context, input *GetCos
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetCostEstimation operation.
-//    pageNum := 0
-//    err := client.GetCostEstimationPages(params,
-//        func(page *devopsguru.GetCostEstimationOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetCostEstimation operation.
+//	pageNum := 0
+//	err := client.GetCostEstimationPages(params,
+//	    func(page *devopsguru.GetCostEstimationOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DevOpsGuru) GetCostEstimationPages(input *GetCostEstimationInput, fn func(*GetCostEstimationOutput, bool) bool) error {
 	return c.GetCostEstimationPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1031,14 +1573,13 @@ const opGetResourceCollection = "GetResourceCollection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResourceCollectionRequest method.
+//	req, resp := client.GetResourceCollectionRequest(params)
 //
-//    // Example sending a request using the GetResourceCollectionRequest method.
-//    req, resp := client.GetResourceCollectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/GetResourceCollection
 func (c *DevOpsGuru) GetResourceCollectionRequest(input *GetResourceCollectionInput) (req *request.Request, output *GetResourceCollectionOutput) {
@@ -1065,10 +1606,13 @@ func (c *DevOpsGuru) GetResourceCollectionRequest(input *GetResourceCollectionIn
 
 // GetResourceCollection API operation for Amazon DevOps Guru.
 //
-// Returns lists AWS resources that are of the specified resource collection
-// type. The one type of AWS resource collection supported is AWS CloudFormation
-// stacks. DevOps Guru can be configured to analyze only the AWS resources that
-// are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks.
+// Returns lists Amazon Web Services resources that are of the specified resource
+// collection type. The two types of Amazon Web Services resource collections
+// supported are Amazon Web Services CloudFormation stacks and Amazon Web Services
+// resources that contain the same Amazon Web Services tag. DevOps Guru can
+// be configured to analyze the Amazon Web Services resources that are defined
+// in the stacks or that are tagged using the same tag key. You can specify
+// up to 500 Amazon Web Services CloudFormation stacks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1078,25 +1622,26 @@ func (c *DevOpsGuru) GetResourceCollectionRequest(input *GetResourceCollectionIn
 // API operation GetResourceCollection for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/GetResourceCollection
 func (c *DevOpsGuru) GetResourceCollection(input *GetResourceCollectionInput) (*GetResourceCollectionOutput, error) {
@@ -1128,15 +1673,14 @@ func (c *DevOpsGuru) GetResourceCollectionWithContext(ctx aws.Context, input *Ge
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetResourceCollection operation.
-//    pageNum := 0
-//    err := client.GetResourceCollectionPages(params,
-//        func(page *devopsguru.GetResourceCollectionOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetResourceCollection operation.
+//	pageNum := 0
+//	err := client.GetResourceCollectionPages(params,
+//	    func(page *devopsguru.GetResourceCollectionOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DevOpsGuru) GetResourceCollectionPages(input *GetResourceCollectionInput, fn func(*GetResourceCollectionOutput, bool) bool) error {
 	return c.GetResourceCollectionPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1188,14 +1732,13 @@ const opListAnomaliesForInsight = "ListAnomaliesForInsight"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAnomaliesForInsightRequest method.
+//	req, resp := client.ListAnomaliesForInsightRequest(params)
 //
-//    // Example sending a request using the ListAnomaliesForInsightRequest method.
-//    req, resp := client.ListAnomaliesForInsightRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListAnomaliesForInsight
 func (c *DevOpsGuru) ListAnomaliesForInsightRequest(input *ListAnomaliesForInsightInput) (req *request.Request, output *ListAnomaliesForInsightOutput) {
@@ -1233,25 +1776,26 @@ func (c *DevOpsGuru) ListAnomaliesForInsightRequest(input *ListAnomaliesForInsig
 // API operation ListAnomaliesForInsight for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListAnomaliesForInsight
 func (c *DevOpsGuru) ListAnomaliesForInsight(input *ListAnomaliesForInsightInput) (*ListAnomaliesForInsightOutput, error) {
@@ -1283,15 +1827,14 @@ func (c *DevOpsGuru) ListAnomaliesForInsightWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAnomaliesForInsight operation.
-//    pageNum := 0
-//    err := client.ListAnomaliesForInsightPages(params,
-//        func(page *devopsguru.ListAnomaliesForInsightOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAnomaliesForInsight operation.
+//	pageNum := 0
+//	err := client.ListAnomaliesForInsightPages(params,
+//	    func(page *devopsguru.ListAnomaliesForInsightOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DevOpsGuru) ListAnomaliesForInsightPages(input *ListAnomaliesForInsightInput, fn func(*ListAnomaliesForInsightOutput, bool) bool) error {
 	return c.ListAnomaliesForInsightPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1327,6 +1870,159 @@ func (c *DevOpsGuru) ListAnomaliesForInsightPagesWithContext(ctx aws.Context, in
 	return p.Err()
 }
 
+const opListAnomalousLogGroups = "ListAnomalousLogGroups"
+
+// ListAnomalousLogGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAnomalousLogGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAnomalousLogGroups for more information on using the ListAnomalousLogGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAnomalousLogGroupsRequest method.
+//	req, resp := client.ListAnomalousLogGroupsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListAnomalousLogGroups
+func (c *DevOpsGuru) ListAnomalousLogGroupsRequest(input *ListAnomalousLogGroupsInput) (req *request.Request, output *ListAnomalousLogGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListAnomalousLogGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-log-anomalies",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAnomalousLogGroupsInput{}
+	}
+
+	output = &ListAnomalousLogGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAnomalousLogGroups API operation for Amazon DevOps Guru.
+//
+// Returns the list of log groups that contain log anomalies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation ListAnomalousLogGroups for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ResourceNotFoundException
+//     A requested resource could not be found
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListAnomalousLogGroups
+func (c *DevOpsGuru) ListAnomalousLogGroups(input *ListAnomalousLogGroupsInput) (*ListAnomalousLogGroupsOutput, error) {
+	req, out := c.ListAnomalousLogGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListAnomalousLogGroupsWithContext is the same as ListAnomalousLogGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAnomalousLogGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListAnomalousLogGroupsWithContext(ctx aws.Context, input *ListAnomalousLogGroupsInput, opts ...request.Option) (*ListAnomalousLogGroupsOutput, error) {
+	req, out := c.ListAnomalousLogGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAnomalousLogGroupsPages iterates over the pages of a ListAnomalousLogGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAnomalousLogGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAnomalousLogGroups operation.
+//	pageNum := 0
+//	err := client.ListAnomalousLogGroupsPages(params,
+//	    func(page *devopsguru.ListAnomalousLogGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DevOpsGuru) ListAnomalousLogGroupsPages(input *ListAnomalousLogGroupsInput, fn func(*ListAnomalousLogGroupsOutput, bool) bool) error {
+	return c.ListAnomalousLogGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAnomalousLogGroupsPagesWithContext same as ListAnomalousLogGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListAnomalousLogGroupsPagesWithContext(ctx aws.Context, input *ListAnomalousLogGroupsInput, fn func(*ListAnomalousLogGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAnomalousLogGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAnomalousLogGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAnomalousLogGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListEvents = "ListEvents"
 
 // ListEventsRequest generates a "aws/request.Request" representing the
@@ -1343,14 +2039,13 @@ const opListEvents = "ListEvents"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEventsRequest method.
+//	req, resp := client.ListEventsRequest(params)
 //
-//    // Example sending a request using the ListEventsRequest method.
-//    req, resp := client.ListEventsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListEvents
 func (c *DevOpsGuru) ListEventsRequest(input *ListEventsInput) (req *request.Request, output *ListEventsOutput) {
@@ -1388,25 +2083,26 @@ func (c *DevOpsGuru) ListEventsRequest(input *ListEventsInput) (req *request.Req
 // API operation ListEvents for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListEvents
 func (c *DevOpsGuru) ListEvents(input *ListEventsInput) (*ListEventsOutput, error) {
@@ -1438,15 +2134,14 @@ func (c *DevOpsGuru) ListEventsWithContext(ctx aws.Context, input *ListEventsInp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEvents operation.
-//    pageNum := 0
-//    err := client.ListEventsPages(params,
-//        func(page *devopsguru.ListEventsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEvents operation.
+//	pageNum := 0
+//	err := client.ListEventsPages(params,
+//	    func(page *devopsguru.ListEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DevOpsGuru) ListEventsPages(input *ListEventsInput, fn func(*ListEventsOutput, bool) bool) error {
 	return c.ListEventsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1498,14 +2193,13 @@ const opListInsights = "ListInsights"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInsightsRequest method.
+//	req, resp := client.ListInsightsRequest(params)
 //
-//    // Example sending a request using the ListInsightsRequest method.
-//    req, resp := client.ListInsightsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListInsights
 func (c *DevOpsGuru) ListInsightsRequest(input *ListInsightsInput) (req *request.Request, output *ListInsightsOutput) {
@@ -1532,8 +2226,9 @@ func (c *DevOpsGuru) ListInsightsRequest(input *ListInsightsInput) (req *request
 
 // ListInsights API operation for Amazon DevOps Guru.
 //
-// Returns a list of insights in your AWS account. You can specify which insights
-// are returned by their start time and status (ONGOING, CLOSED, or ANY).
+// Returns a list of insights in your Amazon Web Services account. You can specify
+// which insights are returned by their start time and status (ONGOING, CLOSED,
+// or ANY).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1543,22 +2238,23 @@ func (c *DevOpsGuru) ListInsightsRequest(input *ListInsightsInput) (req *request
 // API operation ListInsights for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListInsights
 func (c *DevOpsGuru) ListInsights(input *ListInsightsInput) (*ListInsightsOutput, error) {
@@ -1590,15 +2286,14 @@ func (c *DevOpsGuru) ListInsightsWithContext(ctx aws.Context, input *ListInsight
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInsights operation.
-//    pageNum := 0
-//    err := client.ListInsightsPages(params,
-//        func(page *devopsguru.ListInsightsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInsights operation.
+//	pageNum := 0
+//	err := client.ListInsightsPages(params,
+//	    func(page *devopsguru.ListInsightsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DevOpsGuru) ListInsightsPages(input *ListInsightsInput, fn func(*ListInsightsOutput, bool) bool) error {
 	return c.ListInsightsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1634,6 +2329,153 @@ func (c *DevOpsGuru) ListInsightsPagesWithContext(ctx aws.Context, input *ListIn
 	return p.Err()
 }
 
+const opListMonitoredResources = "ListMonitoredResources"
+
+// ListMonitoredResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMonitoredResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMonitoredResources for more information on using the ListMonitoredResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMonitoredResourcesRequest method.
+//	req, resp := client.ListMonitoredResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListMonitoredResources
+func (c *DevOpsGuru) ListMonitoredResourcesRequest(input *ListMonitoredResourcesInput) (req *request.Request, output *ListMonitoredResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListMonitoredResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/monitoredResources",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMonitoredResourcesInput{}
+	}
+
+	output = &ListMonitoredResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMonitoredResources API operation for Amazon DevOps Guru.
+//
+// Returns the list of all log groups that are being monitored and tagged by
+// DevOps Guru.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation ListMonitoredResources for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     A requested resource could not be found
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListMonitoredResources
+func (c *DevOpsGuru) ListMonitoredResources(input *ListMonitoredResourcesInput) (*ListMonitoredResourcesOutput, error) {
+	req, out := c.ListMonitoredResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListMonitoredResourcesWithContext is the same as ListMonitoredResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMonitoredResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListMonitoredResourcesWithContext(ctx aws.Context, input *ListMonitoredResourcesInput, opts ...request.Option) (*ListMonitoredResourcesOutput, error) {
+	req, out := c.ListMonitoredResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMonitoredResourcesPages iterates over the pages of a ListMonitoredResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMonitoredResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListMonitoredResources operation.
+//	pageNum := 0
+//	err := client.ListMonitoredResourcesPages(params,
+//	    func(page *devopsguru.ListMonitoredResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DevOpsGuru) ListMonitoredResourcesPages(input *ListMonitoredResourcesInput, fn func(*ListMonitoredResourcesOutput, bool) bool) error {
+	return c.ListMonitoredResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMonitoredResourcesPagesWithContext same as ListMonitoredResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListMonitoredResourcesPagesWithContext(ctx aws.Context, input *ListMonitoredResourcesInput, fn func(*ListMonitoredResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMonitoredResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMonitoredResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMonitoredResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListNotificationChannels = "ListNotificationChannels"
 
 // ListNotificationChannelsRequest generates a "aws/request.Request" representing the
@@ -1650,14 +2492,13 @@ const opListNotificationChannels = "ListNotificationChannels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListNotificationChannelsRequest method.
+//	req, resp := client.ListNotificationChannelsRequest(params)
 //
-//    // Example sending a request using the ListNotificationChannelsRequest method.
-//    req, resp := client.ListNotificationChannelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListNotificationChannels
 func (c *DevOpsGuru) ListNotificationChannelsRequest(input *ListNotificationChannelsInput) (req *request.Request, output *ListNotificationChannelsOutput) {
@@ -1698,22 +2539,23 @@ func (c *DevOpsGuru) ListNotificationChannelsRequest(input *ListNotificationChan
 // API operation ListNotificationChannels for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListNotificationChannels
 func (c *DevOpsGuru) ListNotificationChannels(input *ListNotificationChannelsInput) (*ListNotificationChannelsOutput, error) {
@@ -1745,15 +2587,14 @@ func (c *DevOpsGuru) ListNotificationChannelsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListNotificationChannels operation.
-//    pageNum := 0
-//    err := client.ListNotificationChannelsPages(params,
-//        func(page *devopsguru.ListNotificationChannelsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListNotificationChannels operation.
+//	pageNum := 0
+//	err := client.ListNotificationChannelsPages(params,
+//	    func(page *devopsguru.ListNotificationChannelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DevOpsGuru) ListNotificationChannelsPages(input *ListNotificationChannelsInput, fn func(*ListNotificationChannelsOutput, bool) bool) error {
 	return c.ListNotificationChannelsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1789,6 +2630,156 @@ func (c *DevOpsGuru) ListNotificationChannelsPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opListOrganizationInsights = "ListOrganizationInsights"
+
+// ListOrganizationInsightsRequest generates a "aws/request.Request" representing the
+// client's request for the ListOrganizationInsights operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOrganizationInsights for more information on using the ListOrganizationInsights
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListOrganizationInsightsRequest method.
+//	req, resp := client.ListOrganizationInsightsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListOrganizationInsights
+func (c *DevOpsGuru) ListOrganizationInsightsRequest(input *ListOrganizationInsightsInput) (req *request.Request, output *ListOrganizationInsightsOutput) {
+	op := &request.Operation{
+		Name:       opListOrganizationInsights,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/insights",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOrganizationInsightsInput{}
+	}
+
+	output = &ListOrganizationInsightsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOrganizationInsights API operation for Amazon DevOps Guru.
+//
+// Returns a list of insights associated with the account or OU Id.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation ListOrganizationInsights for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListOrganizationInsights
+func (c *DevOpsGuru) ListOrganizationInsights(input *ListOrganizationInsightsInput) (*ListOrganizationInsightsOutput, error) {
+	req, out := c.ListOrganizationInsightsRequest(input)
+	return out, req.Send()
+}
+
+// ListOrganizationInsightsWithContext is the same as ListOrganizationInsights with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOrganizationInsights for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListOrganizationInsightsWithContext(ctx aws.Context, input *ListOrganizationInsightsInput, opts ...request.Option) (*ListOrganizationInsightsOutput, error) {
+	req, out := c.ListOrganizationInsightsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOrganizationInsightsPages iterates over the pages of a ListOrganizationInsights operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOrganizationInsights method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListOrganizationInsights operation.
+//	pageNum := 0
+//	err := client.ListOrganizationInsightsPages(params,
+//	    func(page *devopsguru.ListOrganizationInsightsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DevOpsGuru) ListOrganizationInsightsPages(input *ListOrganizationInsightsInput, fn func(*ListOrganizationInsightsOutput, bool) bool) error {
+	return c.ListOrganizationInsightsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOrganizationInsightsPagesWithContext same as ListOrganizationInsightsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListOrganizationInsightsPagesWithContext(ctx aws.Context, input *ListOrganizationInsightsInput, fn func(*ListOrganizationInsightsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOrganizationInsightsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOrganizationInsightsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOrganizationInsightsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListRecommendations = "ListRecommendations"
 
 // ListRecommendationsRequest generates a "aws/request.Request" representing the
@@ -1805,14 +2796,13 @@ const opListRecommendations = "ListRecommendations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRecommendationsRequest method.
+//	req, resp := client.ListRecommendationsRequest(params)
 //
-//    // Example sending a request using the ListRecommendationsRequest method.
-//    req, resp := client.ListRecommendationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListRecommendations
 func (c *DevOpsGuru) ListRecommendationsRequest(input *ListRecommendationsInput) (req *request.Request, output *ListRecommendationsOutput) {
@@ -1850,25 +2840,26 @@ func (c *DevOpsGuru) ListRecommendationsRequest(input *ListRecommendationsInput)
 // API operation ListRecommendations for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListRecommendations
 func (c *DevOpsGuru) ListRecommendations(input *ListRecommendationsInput) (*ListRecommendationsOutput, error) {
@@ -1900,15 +2891,14 @@ func (c *DevOpsGuru) ListRecommendationsWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRecommendations operation.
-//    pageNum := 0
-//    err := client.ListRecommendationsPages(params,
-//        func(page *devopsguru.ListRecommendationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRecommendations operation.
+//	pageNum := 0
+//	err := client.ListRecommendationsPages(params,
+//	    func(page *devopsguru.ListRecommendationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DevOpsGuru) ListRecommendationsPages(input *ListRecommendationsInput, fn func(*ListRecommendationsOutput, bool) bool) error {
 	return c.ListRecommendationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1960,14 +2950,13 @@ const opPutFeedback = "PutFeedback"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutFeedbackRequest method.
+//	req, resp := client.PutFeedbackRequest(params)
 //
-//    // Example sending a request using the PutFeedbackRequest method.
-//    req, resp := client.PutFeedbackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/PutFeedback
 func (c *DevOpsGuru) PutFeedbackRequest(input *PutFeedbackInput) (req *request.Request, output *PutFeedbackOutput) {
@@ -1999,28 +2988,29 @@ func (c *DevOpsGuru) PutFeedbackRequest(input *PutFeedbackInput) (req *request.R
 // API operation PutFeedback for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * ConflictException
-//   An exception that is thrown when a conflict occurs.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - ConflictException
+//     An exception that is thrown when a conflict occurs.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/PutFeedback
 func (c *DevOpsGuru) PutFeedback(input *PutFeedbackInput) (*PutFeedbackOutput, error) {
@@ -2060,14 +3050,13 @@ const opRemoveNotificationChannel = "RemoveNotificationChannel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveNotificationChannelRequest method.
+//	req, resp := client.RemoveNotificationChannelRequest(params)
 //
-//    // Example sending a request using the RemoveNotificationChannelRequest method.
-//    req, resp := client.RemoveNotificationChannelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/RemoveNotificationChannel
 func (c *DevOpsGuru) RemoveNotificationChannelRequest(input *RemoveNotificationChannelInput) (req *request.Request, output *RemoveNotificationChannelOutput) {
@@ -2101,28 +3090,29 @@ func (c *DevOpsGuru) RemoveNotificationChannelRequest(input *RemoveNotificationC
 // API operation RemoveNotificationChannel for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * ConflictException
-//   An exception that is thrown when a conflict occurs.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - ConflictException
+//     An exception that is thrown when a conflict occurs.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/RemoveNotificationChannel
 func (c *DevOpsGuru) RemoveNotificationChannel(input *RemoveNotificationChannelInput) (*RemoveNotificationChannelOutput, error) {
@@ -2162,14 +3152,13 @@ const opSearchInsights = "SearchInsights"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchInsightsRequest method.
+//	req, resp := client.SearchInsightsRequest(params)
 //
-//    // Example sending a request using the SearchInsightsRequest method.
-//    req, resp := client.SearchInsightsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/SearchInsights
 func (c *DevOpsGuru) SearchInsightsRequest(input *SearchInsightsInput) (req *request.Request, output *SearchInsightsOutput) {
@@ -2196,9 +3185,9 @@ func (c *DevOpsGuru) SearchInsightsRequest(input *SearchInsightsInput) (req *req
 
 // SearchInsights API operation for Amazon DevOps Guru.
 //
-// Returns a list of insights in your AWS account. You can specify which insights
-// are returned by their start time, one or more statuses (ONGOING, CLOSED,
-// and CLOSED), one or more severities (LOW, MEDIUM, and HIGH), and type (REACTIVE
+// Returns a list of insights in your Amazon Web Services account. You can specify
+// which insights are returned by their start time, one or more statuses (ONGOING
+// or CLOSED), one or more severities (LOW, MEDIUM, and HIGH), and type (REACTIVE
 // or PROACTIVE).
 //
 // Use the Filters parameter to specify status and severity search parameters.
@@ -2212,22 +3201,23 @@ func (c *DevOpsGuru) SearchInsightsRequest(input *SearchInsightsInput) (req *req
 // API operation SearchInsights for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/SearchInsights
 func (c *DevOpsGuru) SearchInsights(input *SearchInsightsInput) (*SearchInsightsOutput, error) {
@@ -2259,15 +3249,14 @@ func (c *DevOpsGuru) SearchInsightsWithContext(ctx aws.Context, input *SearchIns
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchInsights operation.
-//    pageNum := 0
-//    err := client.SearchInsightsPages(params,
-//        func(page *devopsguru.SearchInsightsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchInsights operation.
+//	pageNum := 0
+//	err := client.SearchInsightsPages(params,
+//	    func(page *devopsguru.SearchInsightsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DevOpsGuru) SearchInsightsPages(input *SearchInsightsInput, fn func(*SearchInsightsOutput, bool) bool) error {
 	return c.SearchInsightsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2303,6 +3292,162 @@ func (c *DevOpsGuru) SearchInsightsPagesWithContext(ctx aws.Context, input *Sear
 	return p.Err()
 }
 
+const opSearchOrganizationInsights = "SearchOrganizationInsights"
+
+// SearchOrganizationInsightsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchOrganizationInsights operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchOrganizationInsights for more information on using the SearchOrganizationInsights
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchOrganizationInsightsRequest method.
+//	req, resp := client.SearchOrganizationInsightsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/SearchOrganizationInsights
+func (c *DevOpsGuru) SearchOrganizationInsightsRequest(input *SearchOrganizationInsightsInput) (req *request.Request, output *SearchOrganizationInsightsOutput) {
+	op := &request.Operation{
+		Name:       opSearchOrganizationInsights,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/insights/search",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchOrganizationInsightsInput{}
+	}
+
+	output = &SearchOrganizationInsightsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchOrganizationInsights API operation for Amazon DevOps Guru.
+//
+// Returns a list of insights in your organization. You can specify which insights
+// are returned by their start time, one or more statuses (ONGOING, CLOSED,
+// and CLOSED), one or more severities (LOW, MEDIUM, and HIGH), and type (REACTIVE
+// or PROACTIVE).
+//
+// Use the Filters parameter to specify status and severity search parameters.
+// Use the Type parameter to specify REACTIVE or PROACTIVE in your search.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation SearchOrganizationInsights for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/SearchOrganizationInsights
+func (c *DevOpsGuru) SearchOrganizationInsights(input *SearchOrganizationInsightsInput) (*SearchOrganizationInsightsOutput, error) {
+	req, out := c.SearchOrganizationInsightsRequest(input)
+	return out, req.Send()
+}
+
+// SearchOrganizationInsightsWithContext is the same as SearchOrganizationInsights with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchOrganizationInsights for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) SearchOrganizationInsightsWithContext(ctx aws.Context, input *SearchOrganizationInsightsInput, opts ...request.Option) (*SearchOrganizationInsightsOutput, error) {
+	req, out := c.SearchOrganizationInsightsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchOrganizationInsightsPages iterates over the pages of a SearchOrganizationInsights operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchOrganizationInsights method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchOrganizationInsights operation.
+//	pageNum := 0
+//	err := client.SearchOrganizationInsightsPages(params,
+//	    func(page *devopsguru.SearchOrganizationInsightsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DevOpsGuru) SearchOrganizationInsightsPages(input *SearchOrganizationInsightsInput, fn func(*SearchOrganizationInsightsOutput, bool) bool) error {
+	return c.SearchOrganizationInsightsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchOrganizationInsightsPagesWithContext same as SearchOrganizationInsightsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) SearchOrganizationInsightsPagesWithContext(ctx aws.Context, input *SearchOrganizationInsightsInput, fn func(*SearchOrganizationInsightsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchOrganizationInsightsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchOrganizationInsightsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchOrganizationInsightsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opStartCostEstimation = "StartCostEstimation"
 
 // StartCostEstimationRequest generates a "aws/request.Request" representing the
@@ -2319,14 +3464,13 @@ const opStartCostEstimation = "StartCostEstimation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartCostEstimationRequest method.
+//	req, resp := client.StartCostEstimationRequest(params)
 //
-//    // Example sending a request using the StartCostEstimationRequest method.
-//    req, resp := client.StartCostEstimationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/StartCostEstimation
 func (c *DevOpsGuru) StartCostEstimationRequest(input *StartCostEstimationInput) (req *request.Request, output *StartCostEstimationOutput) {
@@ -2348,8 +3492,8 @@ func (c *DevOpsGuru) StartCostEstimationRequest(input *StartCostEstimationInput)
 
 // StartCostEstimation API operation for Amazon DevOps Guru.
 //
-// Starts the creation of an estimate of the monthly cost to analyze your AWS
-// resources.
+// Starts the creation of an estimate of the monthly cost to analyze your Amazon
+// Web Services resources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2359,28 +3503,29 @@ func (c *DevOpsGuru) StartCostEstimationRequest(input *StartCostEstimationInput)
 // API operation StartCostEstimation for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * ConflictException
-//   An exception that is thrown when a conflict occurs.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - ConflictException
+//     An exception that is thrown when a conflict occurs.
 //
-//   * ResourceNotFoundException
-//   A requested resource could not be found
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - ResourceNotFoundException
+//     A requested resource could not be found
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/StartCostEstimation
 func (c *DevOpsGuru) StartCostEstimation(input *StartCostEstimationInput) (*StartCostEstimationOutput, error) {
@@ -2404,6 +3549,103 @@ func (c *DevOpsGuru) StartCostEstimationWithContext(ctx aws.Context, input *Star
 	return out, req.Send()
 }
 
+const opUpdateEventSourcesConfig = "UpdateEventSourcesConfig"
+
+// UpdateEventSourcesConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEventSourcesConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEventSourcesConfig for more information on using the UpdateEventSourcesConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateEventSourcesConfigRequest method.
+//	req, resp := client.UpdateEventSourcesConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateEventSourcesConfig
+func (c *DevOpsGuru) UpdateEventSourcesConfigRequest(input *UpdateEventSourcesConfigInput) (req *request.Request, output *UpdateEventSourcesConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEventSourcesConfig,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/event-sources",
+	}
+
+	if input == nil {
+		input = &UpdateEventSourcesConfigInput{}
+	}
+
+	output = &UpdateEventSourcesConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateEventSourcesConfig API operation for Amazon DevOps Guru.
+//
+// Enables or disables integration with a service that can be integrated with
+// DevOps Guru. The one service that can be integrated with DevOps Guru is Amazon
+// CodeGuru Profiler, which can produce proactive recommendations which can
+// be stored and viewed in DevOps Guru.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation UpdateEventSourcesConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
+//
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateEventSourcesConfig
+func (c *DevOpsGuru) UpdateEventSourcesConfig(input *UpdateEventSourcesConfigInput) (*UpdateEventSourcesConfigOutput, error) {
+	req, out := c.UpdateEventSourcesConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEventSourcesConfigWithContext is the same as UpdateEventSourcesConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEventSourcesConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) UpdateEventSourcesConfigWithContext(ctx aws.Context, input *UpdateEventSourcesConfigInput, opts ...request.Option) (*UpdateEventSourcesConfigOutput, error) {
+	req, out := c.UpdateEventSourcesConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateResourceCollection = "UpdateResourceCollection"
 
 // UpdateResourceCollectionRequest generates a "aws/request.Request" representing the
@@ -2420,14 +3662,13 @@ const opUpdateResourceCollection = "UpdateResourceCollection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateResourceCollectionRequest method.
+//	req, resp := client.UpdateResourceCollectionRequest(params)
 //
-//    // Example sending a request using the UpdateResourceCollectionRequest method.
-//    req, resp := client.UpdateResourceCollectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateResourceCollection
 func (c *DevOpsGuru) UpdateResourceCollectionRequest(input *UpdateResourceCollectionInput) (req *request.Request, output *UpdateResourceCollectionOutput) {
@@ -2449,11 +3690,14 @@ func (c *DevOpsGuru) UpdateResourceCollectionRequest(input *UpdateResourceCollec
 
 // UpdateResourceCollection API operation for Amazon DevOps Guru.
 //
-// Updates the collection of resources that DevOps Guru analyzes. The one type
-// of AWS resource collection supported is AWS CloudFormation stacks. DevOps
-// Guru can be configured to analyze only the AWS resources that are defined
-// in the stacks. You can specify up to 500 AWS CloudFormation stacks. This
-// method also creates the IAM role required for you to use DevOps Guru.
+// Updates the collection of resources that DevOps Guru analyzes. The two types
+// of Amazon Web Services resource collections supported are Amazon Web Services
+// CloudFormation stacks and Amazon Web Services resources that contain the
+// same Amazon Web Services tag. DevOps Guru can be configured to analyze the
+// Amazon Web Services resources that are defined in the stacks or that are
+// tagged using the same tag key. You can specify up to 500 Amazon Web Services
+// CloudFormation stacks. This method also creates the IAM role required for
+// you to use DevOps Guru.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2463,25 +3707,26 @@ func (c *DevOpsGuru) UpdateResourceCollectionRequest(input *UpdateResourceCollec
 // API operation UpdateResourceCollection for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * ConflictException
-//   An exception that is thrown when a conflict occurs.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - ConflictException
+//     An exception that is thrown when a conflict occurs.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateResourceCollection
 func (c *DevOpsGuru) UpdateResourceCollection(input *UpdateResourceCollectionInput) (*UpdateResourceCollectionOutput, error) {
@@ -2521,14 +3766,13 @@ const opUpdateServiceIntegration = "UpdateServiceIntegration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateServiceIntegrationRequest method.
+//	req, resp := client.UpdateServiceIntegrationRequest(params)
 //
-//    // Example sending a request using the UpdateServiceIntegrationRequest method.
-//    req, resp := client.UpdateServiceIntegrationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateServiceIntegration
 func (c *DevOpsGuru) UpdateServiceIntegrationRequest(input *UpdateServiceIntegrationInput) (req *request.Request, output *UpdateServiceIntegrationOutput) {
@@ -2551,9 +3795,9 @@ func (c *DevOpsGuru) UpdateServiceIntegrationRequest(input *UpdateServiceIntegra
 // UpdateServiceIntegration API operation for Amazon DevOps Guru.
 //
 // Enables or disables integration with a service that can be integrated with
-// DevOps Guru. The one service that can be integrated with DevOps Guru is AWS
-// Systems Manager, which can be used to create an OpsItem for each generated
-// insight.
+// DevOps Guru. The one service that can be integrated with DevOps Guru is Amazon
+// Web Services Systems Manager, which can be used to create an OpsItem for
+// each generated insight.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2563,25 +3807,26 @@ func (c *DevOpsGuru) UpdateServiceIntegrationRequest(input *UpdateServiceIntegra
 // API operation UpdateServiceIntegration for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You don't have permissions to perform the requested operation. The user or
-//   role that is making the request must have at least one IAM permissions policy
-//   attached that grants the required permissions. For more information, see
-//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-//   in the IAM User Guide.
 //
-//   * ConflictException
-//   An exception that is thrown when a conflict occurs.
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
 //
-//   * InternalServerException
-//   An internal failure in an Amazon service occurred.
+//   - ConflictException
+//     An exception that is thrown when a conflict occurs.
 //
-//   * ThrottlingException
-//   The request was denied due to a request throttling.
+//   - InternalServerException
+//     An internal failure in an Amazon service occurred.
 //
-//   * ValidationException
-//   Contains information about data passed in to a field during a request that
-//   is not valid.
+//   - ThrottlingException
+//     The request was denied due to a request throttling.
+//
+//   - ValidationException
+//     Contains information about data passed in to a field during a request that
+//     is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateServiceIntegration
 func (c *DevOpsGuru) UpdateServiceIntegration(input *UpdateServiceIntegrationInput) (*UpdateServiceIntegrationOutput, error) {
@@ -2617,12 +3862,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -2665,6 +3918,96 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Returns the number of open reactive insights, the number of open proactive
+// insights, and the number of metrics analyzed in your Amazon Web Services
+// account. Use these numbers to gauge the health of operations in your Amazon
+// Web Services account.
+type AccountHealth struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
+	// Information about the health of the Amazon Web Services resources in your
+	// account, including the number of open proactive, open reactive insights,
+	// and the Mean Time to Recover (MTTR) of closed insights.
+	Insight *AccountInsightHealth `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountHealth) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AccountHealth) SetAccountId(v string) *AccountHealth {
+	s.AccountId = &v
+	return s
+}
+
+// SetInsight sets the Insight field's value.
+func (s *AccountHealth) SetInsight(v *AccountInsightHealth) *AccountHealth {
+	s.Insight = v
+	return s
+}
+
+// Information about the number of open reactive and proactive insights that
+// can be used to gauge the health of your system.
+type AccountInsightHealth struct {
+	_ struct{} `type:"structure"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	OpenProactiveInsights *int64 `type:"integer"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	OpenReactiveInsights *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountInsightHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountInsightHealth) GoString() string {
+	return s.String()
+}
+
+// SetOpenProactiveInsights sets the OpenProactiveInsights field's value.
+func (s *AccountInsightHealth) SetOpenProactiveInsights(v int64) *AccountInsightHealth {
+	s.OpenProactiveInsights = &v
+	return s
+}
+
+// SetOpenReactiveInsights sets the OpenReactiveInsights field's value.
+func (s *AccountInsightHealth) SetOpenReactiveInsights(v int64) *AccountInsightHealth {
+	s.OpenReactiveInsights = &v
+	return s
+}
+
 type AddNotificationChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2676,12 +4019,20 @@ type AddNotificationChannelInput struct {
 	Config *NotificationChannelConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddNotificationChannelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddNotificationChannelInput) GoString() string {
 	return s.String()
 }
@@ -2719,12 +4070,20 @@ type AddNotificationChannelOutput struct {
 	Id *string `min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddNotificationChannelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddNotificationChannelOutput) GoString() string {
 	return s.String()
 }
@@ -2732,6 +4091,113 @@ func (s AddNotificationChannelOutput) GoString() string {
 // SetId sets the Id field's value.
 func (s *AddNotificationChannelOutput) SetId(v string) *AddNotificationChannelOutput {
 	s.Id = &v
+	return s
+}
+
+// Information about your account's integration with Amazon CodeGuru Profiler.
+// This returns whether DevOps Guru is configured to consume recommendations
+// generated from Amazon CodeGuru Profiler.
+type AmazonCodeGuruProfilerIntegration struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the CodeGuru Profiler integration. Specifies if DevOps Guru
+	// is enabled to consume recommendations that are generated from Amazon CodeGuru
+	// Profiler.
+	Status *string `type:"string" enum:"EventSourceOptInStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonCodeGuruProfilerIntegration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonCodeGuruProfilerIntegration) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *AmazonCodeGuruProfilerIntegration) SetStatus(v string) *AmazonCodeGuruProfilerIntegration {
+	s.Status = &v
+	return s
+}
+
+// An Amazon CloudWatch log group that contains log anomalies and is used to
+// generate an insight.
+type AnomalousLogGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The time the anomalous log events stopped.
+	ImpactEndTime *time.Time `type:"timestamp"`
+
+	// The time the anomalous log events began. The impact start time indicates
+	// the time of the first log anomaly event that occurs.
+	ImpactStartTime *time.Time `type:"timestamp"`
+
+	// The log anomalies in the log group. Each log anomaly displayed represents
+	// a cluster of similar anomalous log events.
+	LogAnomalyShowcases []*LogAnomalyShowcase `type:"list"`
+
+	// The name of the CloudWatch log group.
+	LogGroupName *string `min:"1" type:"string"`
+
+	// The number of log lines that were scanned for anomalous log events.
+	NumberOfLogLinesScanned *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalousLogGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalousLogGroup) GoString() string {
+	return s.String()
+}
+
+// SetImpactEndTime sets the ImpactEndTime field's value.
+func (s *AnomalousLogGroup) SetImpactEndTime(v time.Time) *AnomalousLogGroup {
+	s.ImpactEndTime = &v
+	return s
+}
+
+// SetImpactStartTime sets the ImpactStartTime field's value.
+func (s *AnomalousLogGroup) SetImpactStartTime(v time.Time) *AnomalousLogGroup {
+	s.ImpactStartTime = &v
+	return s
+}
+
+// SetLogAnomalyShowcases sets the LogAnomalyShowcases field's value.
+func (s *AnomalousLogGroup) SetLogAnomalyShowcases(v []*LogAnomalyShowcase) *AnomalousLogGroup {
+	s.LogAnomalyShowcases = v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *AnomalousLogGroup) SetLogGroupName(v string) *AnomalousLogGroup {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetNumberOfLogLinesScanned sets the NumberOfLogLinesScanned field's value.
+func (s *AnomalousLogGroup) SetNumberOfLogLinesScanned(v int64) *AnomalousLogGroup {
+	s.NumberOfLogLinesScanned = &v
 	return s
 }
 
@@ -2750,12 +4216,20 @@ type AnomalyReportedTimeRange struct {
 	OpenTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnomalyReportedTimeRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnomalyReportedTimeRange) GoString() string {
 	return s.String()
 }
@@ -2772,22 +4246,78 @@ func (s *AnomalyReportedTimeRange) SetOpenTime(v time.Time) *AnomalyReportedTime
 	return s
 }
 
+// The Amazon Web Services resources in which DevOps Guru detected unusual behavior
+// that resulted in the generation of an anomaly. When DevOps Guru detects multiple
+// related anomalies, it creates and insight with details about the anomalous
+// behavior and suggestions about how to correct the problem.
+type AnomalyResource struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon Web Services resource.
+	Name *string `type:"string"`
+
+	// The type of the Amazon Web Services resource.
+	Type *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyResource) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnomalyResource) SetName(v string) *AnomalyResource {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AnomalyResource) SetType(v string) *AnomalyResource {
+	s.Type = &v
+	return s
+}
+
 // Details about the source of the anomalous operational data that triggered
-// the anomaly. The one supported source is Amazon CloudWatch metrics.
+// the anomaly.
 type AnomalySourceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// An array of CloudWatchMetricsDetail object that contains information about
-	// the analyzed metrics that displayed anomalous behavior.
+	// An array of CloudWatchMetricsDetail objects that contain information about
+	// analyzed CloudWatch metrics that show anomalous behavior.
 	CloudWatchMetrics []*CloudWatchMetricsDetail `type:"list"`
+
+	// An array of PerformanceInsightsMetricsDetail objects that contain information
+	// about analyzed Performance Insights metrics that show anomalous behavior.
+	PerformanceInsightsMetrics []*PerformanceInsightsMetricsDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnomalySourceDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnomalySourceDetails) GoString() string {
 	return s.String()
 }
@@ -2795,6 +4325,63 @@ func (s AnomalySourceDetails) GoString() string {
 // SetCloudWatchMetrics sets the CloudWatchMetrics field's value.
 func (s *AnomalySourceDetails) SetCloudWatchMetrics(v []*CloudWatchMetricsDetail) *AnomalySourceDetails {
 	s.CloudWatchMetrics = v
+	return s
+}
+
+// SetPerformanceInsightsMetrics sets the PerformanceInsightsMetrics field's value.
+func (s *AnomalySourceDetails) SetPerformanceInsightsMetrics(v []*PerformanceInsightsMetricsDetail) *AnomalySourceDetails {
+	s.PerformanceInsightsMetrics = v
+	return s
+}
+
+// Metadata about the detection source that generates proactive anomalies. The
+// anomaly is detected using analysis of the metric data over a period of time
+type AnomalySourceMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The source of the anomaly.
+	Source *string `type:"string"`
+
+	// The name of the anomaly's resource.
+	SourceResourceName *string `type:"string"`
+
+	// The anomaly's resource type.
+	SourceResourceType *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalySourceMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalySourceMetadata) GoString() string {
+	return s.String()
+}
+
+// SetSource sets the Source field's value.
+func (s *AnomalySourceMetadata) SetSource(v string) *AnomalySourceMetadata {
+	s.Source = &v
+	return s
+}
+
+// SetSourceResourceName sets the SourceResourceName field's value.
+func (s *AnomalySourceMetadata) SetSourceResourceName(v string) *AnomalySourceMetadata {
+	s.SourceResourceName = &v
+	return s
+}
+
+// SetSourceResourceType sets the SourceResourceType field's value.
+func (s *AnomalySourceMetadata) SetSourceResourceType(v string) *AnomalySourceMetadata {
+	s.SourceResourceType = &v
 	return s
 }
 
@@ -2813,12 +4400,20 @@ type AnomalyTimeRange struct {
 	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnomalyTimeRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnomalyTimeRange) GoString() string {
 	return s.String()
 }
@@ -2835,10 +4430,10 @@ func (s *AnomalyTimeRange) SetStartTime(v time.Time) *AnomalyTimeRange {
 	return s
 }
 
-// Information about AWS CloudFormation stacks. You can use up to 500 stacks
-// to specify which AWS resources in your account to analyze. For more information,
-// see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-// in the AWS CloudFormation User Guide.
+// Information about Amazon Web Services CloudFormation stacks. You can use
+// up to 500 stacks to specify which Amazon Web Services resources in your account
+// to analyze. For more information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the Amazon Web Services CloudFormation User Guide.
 type CloudFormationCollection struct {
 	_ struct{} `type:"structure"`
 
@@ -2846,12 +4441,20 @@ type CloudFormationCollection struct {
 	StackNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudFormationCollection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudFormationCollection) GoString() string {
 	return s.String()
 }
@@ -2862,10 +4465,10 @@ func (s *CloudFormationCollection) SetStackNames(v []*string) *CloudFormationCol
 	return s
 }
 
-// Information about AWS CloudFormation stacks. You can use up to 500 stacks
-// to specify which AWS resources in your account to analyze. For more information,
-// see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-// in the AWS CloudFormation User Guide.
+// Information about Amazon Web Services CloudFormation stacks. You can use
+// up to 500 stacks to specify which Amazon Web Services resources in your account
+// to analyze. For more information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the Amazon Web Services CloudFormation User Guide.
 type CloudFormationCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -2873,12 +4476,20 @@ type CloudFormationCollectionFilter struct {
 	StackNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudFormationCollectionFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudFormationCollectionFilter) GoString() string {
 	return s.String()
 }
@@ -2889,12 +4500,12 @@ func (s *CloudFormationCollectionFilter) SetStackNames(v []*string) *CloudFormat
 	return s
 }
 
-// Information about an AWS CloudFormation stack used to create a monthly cost
-// estimate for DevOps Guru to analyze AWS resources. The maximum number of
-// stacks you can specify for a cost estimate is one. The estimate created is
-// for the cost to analyze the AWS resources defined by the stack. For more
-// information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-// in the AWS CloudFormation User Guide.
+// Information about an Amazon Web Services CloudFormation stack used to create
+// a monthly cost estimate for DevOps Guru to analyze Amazon Web Services resources.
+// The maximum number of stacks you can specify for a cost estimate is one.
+// The estimate created is for the cost to analyze the Amazon Web Services resources
+// defined by the stack. For more information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the Amazon Web Services CloudFormation User Guide.
 type CloudFormationCostEstimationResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -2902,12 +4513,20 @@ type CloudFormationCostEstimationResourceCollectionFilter struct {
 	StackNames []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudFormationCostEstimationResourceCollectionFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudFormationCostEstimationResourceCollectionFilter) GoString() string {
 	return s.String()
 }
@@ -2931,28 +4550,47 @@ func (s *CloudFormationCostEstimationResourceCollectionFilter) SetStackNames(v [
 	return s
 }
 
-// Information about the health of AWS resources in your account that are specified
-// by an AWS CloudFormation stack.
+// Information about the health of Amazon Web Services resources in your account
+// that are specified by an Amazon Web Services CloudFormation stack.
 type CloudFormationHealth struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the health of the AWS resources in your account that are
-	// specified by an AWS CloudFormation stack, including the number of open proactive,
-	// open reactive insights, and the Mean Time to Recover (MTTR) of closed insights.
+	// Number of resources that DevOps Guru is monitoring in your account that are
+	// specified by an Amazon Web Services CloudFormation stack.
+	AnalyzedResourceCount *int64 `type:"long"`
+
+	// Information about the health of the Amazon Web Services resources in your
+	// account that are specified by an Amazon Web Services CloudFormation stack,
+	// including the number of open proactive, open reactive insights, and the Mean
+	// Time to Recover (MTTR) of closed insights.
 	Insight *InsightHealth `type:"structure"`
 
 	// The name of the CloudFormation stack.
 	StackName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudFormationHealth) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudFormationHealth) GoString() string {
 	return s.String()
+}
+
+// SetAnalyzedResourceCount sets the AnalyzedResourceCount field's value.
+func (s *CloudFormationHealth) SetAnalyzedResourceCount(v int64) *CloudFormationHealth {
+	s.AnalyzedResourceCount = &v
+	return s
 }
 
 // SetInsight sets the Insight field's value.
@@ -2967,12 +4605,58 @@ func (s *CloudFormationHealth) SetStackName(v string) *CloudFormationHealth {
 	return s
 }
 
+// Contains information about the analyzed metrics that displayed anomalous
+// behavior.
+type CloudWatchMetricsDataSummary struct {
+	_ struct{} `type:"structure"`
+
+	// This is an enum of the status showing whether the metric value pair list
+	// has partial or complete data, or if there was an error.
+	StatusCode *string `type:"string" enum:"CloudWatchMetricDataStatusCode"`
+
+	// This is a list of Amazon CloudWatch metric values at given timestamp.
+	TimestampMetricValuePairList []*TimestampMetricValuePair `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchMetricsDataSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchMetricsDataSummary) GoString() string {
+	return s.String()
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *CloudWatchMetricsDataSummary) SetStatusCode(v string) *CloudWatchMetricsDataSummary {
+	s.StatusCode = &v
+	return s
+}
+
+// SetTimestampMetricValuePairList sets the TimestampMetricValuePairList field's value.
+func (s *CloudWatchMetricsDataSummary) SetTimestampMetricValuePairList(v []*TimestampMetricValuePair) *CloudWatchMetricsDataSummary {
+	s.TimestampMetricValuePairList = v
+	return s
+}
+
 // Information about an Amazon CloudWatch metric.
 type CloudWatchMetricsDetail struct {
 	_ struct{} `type:"structure"`
 
 	// An array of CloudWatch dimensions associated with
 	Dimensions []*CloudWatchMetricsDimension `type:"list"`
+
+	// This object returns anomaly metric data.
+	MetricDataSummary *CloudWatchMetricsDataSummary `type:"structure"`
 
 	// The name of the CloudWatch metric.
 	MetricName *string `type:"string"`
@@ -2994,12 +4678,20 @@ type CloudWatchMetricsDetail struct {
 	Unit *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchMetricsDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchMetricsDetail) GoString() string {
 	return s.String()
 }
@@ -3007,6 +4699,12 @@ func (s CloudWatchMetricsDetail) GoString() string {
 // SetDimensions sets the Dimensions field's value.
 func (s *CloudWatchMetricsDetail) SetDimensions(v []*CloudWatchMetricsDimension) *CloudWatchMetricsDetail {
 	s.Dimensions = v
+	return s
+}
+
+// SetMetricDataSummary sets the MetricDataSummary field's value.
+func (s *CloudWatchMetricsDetail) SetMetricDataSummary(v *CloudWatchMetricsDataSummary) *CloudWatchMetricsDetail {
+	s.MetricDataSummary = v
 	return s
 }
 
@@ -3040,7 +4738,7 @@ func (s *CloudWatchMetricsDetail) SetUnit(v string) *CloudWatchMetricsDetail {
 	return s
 }
 
-// The dimension of a Amazon CloudWatch metric that is used when DevOps Guru
+// The dimension of an Amazon CloudWatch metric that is used when DevOps Guru
 // analyzes the resources in your account for operational problems and anomalous
 // behavior. A dimension is a name/value pair that is part of the identity of
 // a metric. A metric can have up to 10 dimensions. For more information, see
@@ -3056,12 +4754,20 @@ type CloudWatchMetricsDimension struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchMetricsDimension) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchMetricsDimension) GoString() string {
 	return s.String()
 }
@@ -3085,23 +4791,31 @@ type ConflictException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The ID of the AWS resource in which a conflict occurred.
+	// The ID of the Amazon Web Services resource in which a conflict occurred.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// The type of the AWS resource in which a conflict occurred.
+	// The type of the Amazon Web Services resource in which a conflict occurred.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -3144,24 +4858,64 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about a filter used to specify which AWS resources are analyzed
-// to create a monthly DevOps Guru cost estimate. For more information, see
-// Estimate your Amazon DevOps Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+// Information about a filter used to specify which Amazon Web Services resources
+// are analyzed to create a monthly DevOps Guru cost estimate. For more information,
+// see Estimate your Amazon DevOps Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
 // and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
 type CostEstimationResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// An object that specifies the CloudFormation stack that defines the AWS resources
-	// used to create a monthly estimate for DevOps Guru.
+	// An object that specifies the CloudFormation stack that defines the Amazon
+	// Web Services resources used to create a monthly estimate for DevOps Guru.
 	CloudFormation *CloudFormationCostEstimationResourceCollectionFilter `type:"structure"`
+
+	// The Amazon Web Services tags used to filter the resource collection that
+	// is used for a cost estimate.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*TagCostEstimationResourceCollectionFilter `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CostEstimationResourceCollectionFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CostEstimationResourceCollectionFilter) GoString() string {
 	return s.String()
 }
@@ -3172,6 +4926,16 @@ func (s *CostEstimationResourceCollectionFilter) Validate() error {
 	if s.CloudFormation != nil {
 		if err := s.CloudFormation.Validate(); err != nil {
 			invalidParams.AddNested("CloudFormation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -3187,6 +4951,12 @@ func (s *CostEstimationResourceCollectionFilter) SetCloudFormation(v *CloudForma
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CostEstimationResourceCollectionFilter) SetTags(v []*TagCostEstimationResourceCollectionFilter) *CostEstimationResourceCollectionFilter {
+	s.Tags = v
+	return s
+}
+
 // The time range of a cost estimation.
 type CostEstimationTimeRange struct {
 	_ struct{} `type:"structure"`
@@ -3198,12 +4968,20 @@ type CostEstimationTimeRange struct {
 	StartTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CostEstimationTimeRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CostEstimationTimeRange) GoString() string {
 	return s.String()
 }
@@ -3220,16 +4998,95 @@ func (s *CostEstimationTimeRange) SetStartTime(v time.Time) *CostEstimationTimeR
 	return s
 }
 
-type DescribeAccountHealthInput struct {
+type DeleteInsightInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the insight.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInsightInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInsightInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteInsightInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteInsightInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteInsightInput) SetId(v string) *DeleteInsightInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteInsightOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInsightOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInsightOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeAccountHealthInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountHealthInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountHealthInput) GoString() string {
 	return s.String()
 }
@@ -3237,39 +5094,57 @@ func (s DescribeAccountHealthInput) GoString() string {
 type DescribeAccountHealthOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Number of resources that DevOps Guru is monitoring in your Amazon Web Services
+	// account.
+	AnalyzedResourceCount *int64 `type:"long"`
+
 	// An integer that specifies the number of metrics that have been analyzed in
-	// your AWS account.
+	// your Amazon Web Services account.
 	//
 	// MetricsAnalyzed is a required field
 	MetricsAnalyzed *int64 `type:"integer" required:"true"`
 
-	// An integer that specifies the number of open proactive insights in your AWS
-	// account.
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
 	//
 	// OpenProactiveInsights is a required field
 	OpenProactiveInsights *int64 `type:"integer" required:"true"`
 
-	// An integer that specifies the number of open reactive insights in your AWS
-	// account.
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
 	//
 	// OpenReactiveInsights is a required field
 	OpenReactiveInsights *int64 `type:"integer" required:"true"`
 
 	// The number of Amazon DevOps Guru resource analysis hours billed to the current
-	// AWS account in the last hour.
+	// Amazon Web Services account in the last hour.
 	//
 	// ResourceHours is a required field
 	ResourceHours *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountHealthOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountHealthOutput) GoString() string {
 	return s.String()
+}
+
+// SetAnalyzedResourceCount sets the AnalyzedResourceCount field's value.
+func (s *DescribeAccountHealthOutput) SetAnalyzedResourceCount(v int64) *DescribeAccountHealthOutput {
+	s.AnalyzedResourceCount = &v
+	return s
 }
 
 // SetMetricsAnalyzed sets the MetricsAnalyzed field's value.
@@ -3312,12 +5187,20 @@ type DescribeAccountOverviewInput struct {
 	ToTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountOverviewInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountOverviewInput) GoString() string {
 	return s.String()
 }
@@ -3356,25 +5239,33 @@ type DescribeAccountOverviewOutput struct {
 	// MeanTimeToRecoverInMilliseconds is a required field
 	MeanTimeToRecoverInMilliseconds *int64 `type:"long" required:"true"`
 
-	// An integer that specifies the number of open proactive insights in your AWS
-	// account that were created during the time range passed in.
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account that were created during the time range passed in.
 	//
 	// ProactiveInsights is a required field
 	ProactiveInsights *int64 `type:"integer" required:"true"`
 
-	// An integer that specifies the number of open reactive insights in your AWS
-	// account that were created during the time range passed in.
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account that were created during the time range passed in.
 	//
 	// ReactiveInsights is a required field
 	ReactiveInsights *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountOverviewOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountOverviewOutput) GoString() string {
 	return s.String()
 }
@@ -3398,7 +5289,10 @@ func (s *DescribeAccountOverviewOutput) SetReactiveInsights(v int64) *DescribeAc
 }
 
 type DescribeAnomalyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the member account.
+	AccountId *string `location:"querystring" locationName:"AccountId" min:"12" type:"string"`
 
 	// The ID of the anomaly.
 	//
@@ -3406,12 +5300,20 @@ type DescribeAnomalyInput struct {
 	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnomalyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnomalyInput) GoString() string {
 	return s.String()
 }
@@ -3419,6 +5321,9 @@ func (s DescribeAnomalyInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeAnomalyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeAnomalyInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
@@ -3432,6 +5337,12 @@ func (s *DescribeAnomalyInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeAnomalyInput) SetAccountId(v string) *DescribeAnomalyInput {
+	s.AccountId = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *DescribeAnomalyInput) SetId(v string) *DescribeAnomalyInput {
 	s.Id = &v
@@ -3441,19 +5352,27 @@ func (s *DescribeAnomalyInput) SetId(v string) *DescribeAnomalyInput {
 type DescribeAnomalyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A ReactiveAnomaly object that represents the requested anomaly.
+	// A ProactiveAnomaly object that represents the requested anomaly.
 	ProactiveAnomaly *ProactiveAnomaly `type:"structure"`
 
-	// A ProactiveAnomaly object that represents the requested anomaly.
+	// A ReactiveAnomaly object that represents the requested anomaly.
 	ReactiveAnomaly *ReactiveAnomaly `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnomalyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnomalyOutput) GoString() string {
 	return s.String()
 }
@@ -3470,6 +5389,59 @@ func (s *DescribeAnomalyOutput) SetReactiveAnomaly(v *ReactiveAnomaly) *Describe
 	return s
 }
 
+type DescribeEventSourcesConfigInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEventSourcesConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEventSourcesConfigInput) GoString() string {
+	return s.String()
+}
+
+type DescribeEventSourcesConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the event sources in the configuration.
+	EventSources *EventSourcesConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEventSourcesConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEventSourcesConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventSources sets the EventSources field's value.
+func (s *DescribeEventSourcesConfigOutput) SetEventSources(v *EventSourcesConfig) *DescribeEventSourcesConfigOutput {
+	s.EventSources = v
+	return s
+}
+
 type DescribeFeedbackInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3477,12 +5449,20 @@ type DescribeFeedbackInput struct {
 	InsightId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFeedbackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFeedbackInput) GoString() string {
 	return s.String()
 }
@@ -3513,12 +5493,20 @@ type DescribeFeedbackOutput struct {
 	InsightFeedback *InsightFeedback `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFeedbackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFeedbackOutput) GoString() string {
 	return s.String()
 }
@@ -3530,7 +5518,10 @@ func (s *DescribeFeedbackOutput) SetInsightFeedback(v *InsightFeedback) *Describ
 }
 
 type DescribeInsightInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the member account in the organization.
+	AccountId *string `location:"querystring" locationName:"AccountId" min:"12" type:"string"`
 
 	// The ID of the insight.
 	//
@@ -3538,12 +5529,20 @@ type DescribeInsightInput struct {
 	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInsightInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInsightInput) GoString() string {
 	return s.String()
 }
@@ -3551,6 +5550,9 @@ func (s DescribeInsightInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeInsightInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeInsightInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
@@ -3562,6 +5564,12 @@ func (s *DescribeInsightInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeInsightInput) SetAccountId(v string) *DescribeInsightInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -3580,12 +5588,20 @@ type DescribeInsightOutput struct {
 	ReactiveInsight *ReactiveInsight `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInsightOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInsightOutput) GoString() string {
 	return s.String()
 }
@@ -3602,28 +5618,464 @@ func (s *DescribeInsightOutput) SetReactiveInsight(v *ReactiveInsight) *Describe
 	return s
 }
 
-type DescribeResourceCollectionHealthInput struct {
+type DescribeOrganizationHealthInput struct {
 	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountIds []*string `type:"list"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationHealthInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationHealthInput) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *DescribeOrganizationHealthInput) SetAccountIds(v []*string) *DescribeOrganizationHealthInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetOrganizationalUnitIds sets the OrganizationalUnitIds field's value.
+func (s *DescribeOrganizationHealthInput) SetOrganizationalUnitIds(v []*string) *DescribeOrganizationHealthInput {
+	s.OrganizationalUnitIds = v
+	return s
+}
+
+type DescribeOrganizationHealthOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An integer that specifies the number of metrics that have been analyzed in
+	// your organization.
+	//
+	// MetricsAnalyzed is a required field
+	MetricsAnalyzed *int64 `type:"integer" required:"true"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	//
+	// OpenProactiveInsights is a required field
+	OpenProactiveInsights *int64 `type:"integer" required:"true"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	//
+	// OpenReactiveInsights is a required field
+	OpenReactiveInsights *int64 `type:"integer" required:"true"`
+
+	// The number of Amazon DevOps Guru resource analysis hours billed to the current
+	// Amazon Web Services account in the last hour.
+	//
+	// ResourceHours is a required field
+	ResourceHours *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationHealthOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationHealthOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricsAnalyzed sets the MetricsAnalyzed field's value.
+func (s *DescribeOrganizationHealthOutput) SetMetricsAnalyzed(v int64) *DescribeOrganizationHealthOutput {
+	s.MetricsAnalyzed = &v
+	return s
+}
+
+// SetOpenProactiveInsights sets the OpenProactiveInsights field's value.
+func (s *DescribeOrganizationHealthOutput) SetOpenProactiveInsights(v int64) *DescribeOrganizationHealthOutput {
+	s.OpenProactiveInsights = &v
+	return s
+}
+
+// SetOpenReactiveInsights sets the OpenReactiveInsights field's value.
+func (s *DescribeOrganizationHealthOutput) SetOpenReactiveInsights(v int64) *DescribeOrganizationHealthOutput {
+	s.OpenReactiveInsights = &v
+	return s
+}
+
+// SetResourceHours sets the ResourceHours field's value.
+func (s *DescribeOrganizationHealthOutput) SetResourceHours(v int64) *DescribeOrganizationHealthOutput {
+	s.ResourceHours = &v
+	return s
+}
+
+type DescribeOrganizationOverviewInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountIds []*string `type:"list"`
+
+	// The start of the time range passed in. The start time granularity is at the
+	// day level. The floor of the start time is used. Returned information occurred
+	// after this day.
+	//
+	// FromTime is a required field
+	FromTime *time.Time `type:"timestamp" required:"true"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitIds []*string `type:"list"`
+
+	// The end of the time range passed in. The start time granularity is at the
+	// day level. The floor of the start time is used. Returned information occurred
+	// before this day. If this is not specified, then the current day is used.
+	ToTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationOverviewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationOverviewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeOrganizationOverviewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeOrganizationOverviewInput"}
+	if s.FromTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *DescribeOrganizationOverviewInput) SetAccountIds(v []*string) *DescribeOrganizationOverviewInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFromTime sets the FromTime field's value.
+func (s *DescribeOrganizationOverviewInput) SetFromTime(v time.Time) *DescribeOrganizationOverviewInput {
+	s.FromTime = &v
+	return s
+}
+
+// SetOrganizationalUnitIds sets the OrganizationalUnitIds field's value.
+func (s *DescribeOrganizationOverviewInput) SetOrganizationalUnitIds(v []*string) *DescribeOrganizationOverviewInput {
+	s.OrganizationalUnitIds = v
+	return s
+}
+
+// SetToTime sets the ToTime field's value.
+func (s *DescribeOrganizationOverviewInput) SetToTime(v time.Time) *DescribeOrganizationOverviewInput {
+	s.ToTime = &v
+	return s
+}
+
+type DescribeOrganizationOverviewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	//
+	// ProactiveInsights is a required field
+	ProactiveInsights *int64 `type:"integer" required:"true"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	//
+	// ReactiveInsights is a required field
+	ReactiveInsights *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationOverviewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationOverviewOutput) GoString() string {
+	return s.String()
+}
+
+// SetProactiveInsights sets the ProactiveInsights field's value.
+func (s *DescribeOrganizationOverviewOutput) SetProactiveInsights(v int64) *DescribeOrganizationOverviewOutput {
+	s.ProactiveInsights = &v
+	return s
+}
+
+// SetReactiveInsights sets the ReactiveInsights field's value.
+func (s *DescribeOrganizationOverviewOutput) SetReactiveInsights(v int64) *DescribeOrganizationOverviewOutput {
+	s.ReactiveInsights = &v
+	return s
+}
+
+type DescribeOrganizationResourceCollectionHealthInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountIds []*string `type:"list"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+
+	// An Amazon Web Services resource collection type. This type specifies how
+	// analyzed Amazon Web Services resources are defined. The two types of Amazon
+	// Web Services resource collections supported are Amazon Web Services CloudFormation
+	// stacks and Amazon Web Services resources that contain the same Amazon Web
+	// Services tag. DevOps Guru can be configured to analyze the Amazon Web Services
+	// resources that are defined in the stacks or that are tagged using the same
+	// tag key. You can specify up to 500 Amazon Web Services CloudFormation stacks.
+	//
+	// OrganizationResourceCollectionType is a required field
+	OrganizationResourceCollectionType *string `type:"string" required:"true" enum:"OrganizationResourceCollectionType"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationResourceCollectionHealthInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationResourceCollectionHealthInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeOrganizationResourceCollectionHealthInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeOrganizationResourceCollectionHealthInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+	if s.OrganizationResourceCollectionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationResourceCollectionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetAccountIds(v []*string) *DescribeOrganizationResourceCollectionHealthInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetMaxResults(v int64) *DescribeOrganizationResourceCollectionHealthInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetNextToken(v string) *DescribeOrganizationResourceCollectionHealthInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrganizationResourceCollectionType sets the OrganizationResourceCollectionType field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetOrganizationResourceCollectionType(v string) *DescribeOrganizationResourceCollectionHealthInput {
+	s.OrganizationResourceCollectionType = &v
+	return s
+}
+
+// SetOrganizationalUnitIds sets the OrganizationalUnitIds field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetOrganizationalUnitIds(v []*string) *DescribeOrganizationResourceCollectionHealthInput {
+	s.OrganizationalUnitIds = v
+	return s
+}
+
+type DescribeOrganizationResourceCollectionHealthOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the organization's account.
+	Account []*AccountHealth `type:"list"`
+
+	// The returned CloudFormationHealthOverview object that contains an InsightHealthOverview
+	// object with the requested system health information.
+	CloudFormation []*CloudFormationHealth `type:"list"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+
+	// An array of ServiceHealth objects that describes the health of the Amazon
+	// Web Services services associated with the resources in the collection.
+	Service []*ServiceHealth `type:"list"`
+
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*TagHealth `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationResourceCollectionHealthOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationResourceCollectionHealthOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccount sets the Account field's value.
+func (s *DescribeOrganizationResourceCollectionHealthOutput) SetAccount(v []*AccountHealth) *DescribeOrganizationResourceCollectionHealthOutput {
+	s.Account = v
+	return s
+}
+
+// SetCloudFormation sets the CloudFormation field's value.
+func (s *DescribeOrganizationResourceCollectionHealthOutput) SetCloudFormation(v []*CloudFormationHealth) *DescribeOrganizationResourceCollectionHealthOutput {
+	s.CloudFormation = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeOrganizationResourceCollectionHealthOutput) SetNextToken(v string) *DescribeOrganizationResourceCollectionHealthOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *DescribeOrganizationResourceCollectionHealthOutput) SetService(v []*ServiceHealth) *DescribeOrganizationResourceCollectionHealthOutput {
+	s.Service = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeOrganizationResourceCollectionHealthOutput) SetTags(v []*TagHealth) *DescribeOrganizationResourceCollectionHealthOutput {
+	s.Tags = v
+	return s
+}
+
+type DescribeResourceCollectionHealthInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"36" type:"string"`
 
-	// An AWS resource collection type. This type specifies how analyzed AWS resources
-	// are defined. The one type of AWS resource collection supported is AWS CloudFormation
-	// stacks. DevOps Guru can be configured to analyze only the AWS resources that
-	// are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks.
+	// An Amazon Web Services resource collection type. This type specifies how
+	// analyzed Amazon Web Services resources are defined. The two types of Amazon
+	// Web Services resource collections supported are Amazon Web Services CloudFormation
+	// stacks and Amazon Web Services resources that contain the same Amazon Web
+	// Services tag. DevOps Guru can be configured to analyze the Amazon Web Services
+	// resources that are defined in the stacks or that are tagged using the same
+	// tag key. You can specify up to 500 Amazon Web Services CloudFormation stacks.
 	//
 	// ResourceCollectionType is a required field
 	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true" enum:"ResourceCollectionType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeResourceCollectionHealthInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeResourceCollectionHealthInput) GoString() string {
 	return s.String()
 }
@@ -3664,25 +6116,62 @@ type DescribeResourceCollectionHealthOutput struct {
 
 	// The returned CloudFormationHealthOverview object that contains an InsightHealthOverview
 	// object with the requested system health information.
-	//
-	// CloudFormation is a required field
-	CloudFormation []*CloudFormationHealth `type:"list" required:"true"`
+	CloudFormation []*CloudFormationHealth `type:"list"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
-	// An array of ServiceHealth objects that describes the health of the AWS services
-	// associated with the resources in the collection.
+	// An array of ServiceHealth objects that describes the health of the Amazon
+	// Web Services services associated with the resources in the collection.
 	Service []*ServiceHealth `type:"list"`
+
+	// The Amazon Web Services tags that are used by resources in the resource collection.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*TagHealth `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeResourceCollectionHealthOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeResourceCollectionHealthOutput) GoString() string {
 	return s.String()
 }
@@ -3705,16 +6194,30 @@ func (s *DescribeResourceCollectionHealthOutput) SetService(v []*ServiceHealth) 
 	return s
 }
 
-type DescribeServiceIntegrationInput struct {
-	_ struct{} `type:"structure"`
+// SetTags sets the Tags field's value.
+func (s *DescribeResourceCollectionHealthOutput) SetTags(v []*TagHealth) *DescribeResourceCollectionHealthOutput {
+	s.Tags = v
+	return s
 }
 
-// String returns the string representation
+type DescribeServiceIntegrationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceIntegrationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceIntegrationInput) GoString() string {
 	return s.String()
 }
@@ -3722,17 +6225,25 @@ func (s DescribeServiceIntegrationInput) GoString() string {
 type DescribeServiceIntegrationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the integration of DevOps Guru with another AWS service,
-	// such as AWS Systems Manager.
+	// Information about the integration of DevOps Guru with another Amazon Web
+	// Services service, such as Amazon Web Services Systems Manager.
 	ServiceIntegration *ServiceIntegrationConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceIntegrationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceIntegrationOutput) GoString() string {
 	return s.String()
 }
@@ -3755,12 +6266,20 @@ type EndTimeRange struct {
 	ToTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EndTimeRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EndTimeRange) GoString() string {
 	return s.String()
 }
@@ -3777,9 +6296,9 @@ func (s *EndTimeRange) SetToTime(v time.Time) *EndTimeRange {
 	return s
 }
 
-// An AWS resource event. AWS resource events and metrics are analyzed by DevOps
-// Guru to find anomalous behavior and provide recommendations to improve your
-// operational solutions.
+// An Amazon Web Services resource event. Amazon Web Services resource events
+// and metrics are analyzed by DevOps Guru to find anomalous behavior and provide
+// recommendations to improve your operational solutions.
 type Event struct {
 	_ struct{} `type:"structure"`
 
@@ -3791,7 +6310,7 @@ type Event struct {
 	// such as an infrastructure change, a deployment, or a schema change.
 	EventClass *string `type:"string" enum:"EventClass"`
 
-	// The AWS source that emitted the event.
+	// The Amazon Web Services source that emitted the event.
 	EventSource *string `min:"10" type:"string"`
 
 	// The ID of the event.
@@ -3800,10 +6319,13 @@ type Event struct {
 	// The name of the event.
 	Name *string `type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// An EventResource object that contains information about the resource that
@@ -3814,12 +6336,20 @@ type Event struct {
 	Time *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Event) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Event) GoString() string {
 	return s.String()
 }
@@ -3872,9 +6402,9 @@ func (s *Event) SetTime(v time.Time) *Event {
 	return s
 }
 
-// The AWS resource that emitted an event. AWS resource events and metrics are
-// analyzed by DevOps Guru to find anomalous behavior and provide recommendations
-// to improve your operational solutions.
+// The Amazon Web Services resource that emitted an event. Amazon Web Services
+// resource events and metrics are analyzed by DevOps Guru to find anomalous
+// behavior and provide recommendations to improve your operational solutions.
 type EventResource struct {
 	_ struct{} `type:"structure"`
 
@@ -3888,12 +6418,20 @@ type EventResource struct {
 	Type *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventResource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventResource) GoString() string {
 	return s.String()
 }
@@ -3916,9 +6454,44 @@ func (s *EventResource) SetType(v string) *EventResource {
 	return s
 }
 
-// The time range during which an AWS event occurred. AWS resource events and
-// metrics are analyzed by DevOps Guru to find anomalous behavior and provide
-// recommendations to improve your operational solutions.
+// Information about the integration of DevOps Guru as consumer with another
+// AWS service, such as AWS CodeGuru Profiler via EventBridge.
+type EventSourcesConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Information about whether DevOps Guru is configured to consume recommendations
+	// which are generated from AWS CodeGuru Profiler.
+	AmazonCodeGuruProfiler *AmazonCodeGuruProfilerIntegration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventSourcesConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventSourcesConfig) GoString() string {
+	return s.String()
+}
+
+// SetAmazonCodeGuruProfiler sets the AmazonCodeGuruProfiler field's value.
+func (s *EventSourcesConfig) SetAmazonCodeGuruProfiler(v *AmazonCodeGuruProfilerIntegration) *EventSourcesConfig {
+	s.AmazonCodeGuruProfiler = v
+	return s
+}
+
+// The time range during which an Amazon Web Services event occurred. Amazon
+// Web Services resource events and metrics are analyzed by DevOps Guru to find
+// anomalous behavior and provide recommendations to improve your operational
+// solutions.
 type EventTimeRange struct {
 	_ struct{} `type:"structure"`
 
@@ -3933,12 +6506,20 @@ type EventTimeRange struct {
 	ToTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventTimeRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventTimeRange) GoString() string {
 	return s.String()
 }
@@ -3972,19 +6553,27 @@ func (s *EventTimeRange) SetToTime(v time.Time) *EventTimeRange {
 }
 
 type GetCostEstimationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"36" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCostEstimationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCostEstimationInput) GoString() string {
 	return s.String()
 }
@@ -4012,15 +6601,15 @@ type GetCostEstimationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of ResourceCost objects that each contains details about the monthly
-	// cost estimate to analyze one of your AWS resources.
+	// cost estimate to analyze one of your Amazon Web Services resources.
 	Costs []*ServiceResourceCost `type:"list"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
-	// The collection of the AWS resources used to create your monthly DevOps Guru
-	// cost estimate.
+	// The collection of the Amazon Web Services resources used to create your monthly
+	// DevOps Guru cost estimate.
 	ResourceCollection *CostEstimationResourceCollectionFilter `type:"structure"`
 
 	// The status of creating this cost estimate. If it's still in progress, the
@@ -4030,18 +6619,26 @@ type GetCostEstimationOutput struct {
 	// The start and end time of the cost estimation.
 	TimeRange *CostEstimationTimeRange `type:"structure"`
 
-	// The estimated monthly cost to analyze the AWS resources. This value is the
-	// sum of the estimated costs to analyze each resource in the Costs object in
-	// this response.
+	// The estimated monthly cost to analyze the Amazon Web Services resources.
+	// This value is the sum of the estimated costs to analyze each resource in
+	// the Costs object in this response.
 	TotalCost *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCostEstimationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCostEstimationOutput) GoString() string {
 	return s.String()
 }
@@ -4083,25 +6680,33 @@ func (s *GetCostEstimationOutput) SetTotalCost(v float64) *GetCostEstimationOutp
 }
 
 type GetResourceCollectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"36" type:"string"`
 
-	// The type of AWS resource collections to return. The one valid value is CLOUD_FORMATION
-	// for AWS CloudFormation stacks.
+	// The type of Amazon Web Services resource collections to return. The one valid
+	// value is CLOUD_FORMATION for Amazon Web Services CloudFormation stacks.
 	//
 	// ResourceCollectionType is a required field
 	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true" enum:"ResourceCollectionType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceCollectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceCollectionInput) GoString() string {
 	return s.String()
 }
@@ -4144,19 +6749,30 @@ type GetResourceCollectionOutput struct {
 	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
-	// The requested list of AWS resource collections. The one type of AWS resource
-	// collection supported is AWS CloudFormation stacks. DevOps Guru can be configured
-	// to analyze only the AWS resources that are defined in the stacks. You can
-	// specify up to 500 AWS CloudFormation stacks.
+	// The requested list of Amazon Web Services resource collections. The two types
+	// of Amazon Web Services resource collections supported are Amazon Web Services
+	// CloudFormation stacks and Amazon Web Services resources that contain the
+	// same Amazon Web Services tag. DevOps Guru can be configured to analyze the
+	// Amazon Web Services resources that are defined in the stacks or that are
+	// tagged using the same tag key. You can specify up to 500 Amazon Web Services
+	// CloudFormation stacks.
 	ResourceCollection *ResourceCollectionFilter `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceCollectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceCollectionOutput) GoString() string {
 	return s.String()
 }
@@ -4184,12 +6800,20 @@ type InsightFeedback struct {
 	Id *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsightFeedback) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsightFeedback) GoString() string {
 	return s.String()
 }
@@ -4234,12 +6858,20 @@ type InsightHealth struct {
 	OpenReactiveInsights *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsightHealth) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsightHealth) GoString() string {
 	return s.String()
 }
@@ -4276,12 +6908,20 @@ type InsightTimeRange struct {
 	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsightTimeRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsightTimeRange) GoString() string {
 	return s.String()
 }
@@ -4310,12 +6950,20 @@ type InternalServerException struct {
 	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -4358,8 +7006,200 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about the KMS encryption used with DevOps Guru.
+type KMSServerSideEncryptionIntegration struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the specified KMS key.
+	//
+	// To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+	// When using an alias name, prefix it with "alias/". If you specify a predefined
+	// Amazon Web Services alias (an Amazon Web Services alias with no key ID),
+	// Amazon Web Services KMS associates the alias with an Amazon Web Services
+	// managed key and returns its KeyId and Arn in the response. To specify a KMS
+	// key in a different Amazon Web Services account, you must use the key ARN
+	// or alias ARN.
+	//
+	// For example:
+	//
+	// Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// Alias name: alias/ExampleAlias
+	//
+	// Alias ARN: arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias
+	KMSKeyId *string `min:"1" type:"string"`
+
+	// Specifies if DevOps Guru is enabled for customer managed keys.
+	OptInStatus *string `type:"string" enum:"OptInStatus"`
+
+	// The type of KMS key used. Customer managed keys are the KMS keys that you
+	// create. Amazon Web Services owned keys are keys that are owned and managed
+	// by DevOps Guru.
+	Type *string `type:"string" enum:"ServerSideEncryptionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSServerSideEncryptionIntegration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSServerSideEncryptionIntegration) GoString() string {
+	return s.String()
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *KMSServerSideEncryptionIntegration) SetKMSKeyId(v string) *KMSServerSideEncryptionIntegration {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *KMSServerSideEncryptionIntegration) SetOptInStatus(v string) *KMSServerSideEncryptionIntegration {
+	s.OptInStatus = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *KMSServerSideEncryptionIntegration) SetType(v string) *KMSServerSideEncryptionIntegration {
+	s.Type = &v
+	return s
+}
+
+// Information about whether DevOps Guru is configured to encrypt server-side
+// data using KMS.
+type KMSServerSideEncryptionIntegrationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the specified KMS key.
+	//
+	// To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+	// When using an alias name, prefix it with "alias/". If you specify a predefined
+	// Amazon Web Services alias (an Amazon Web Services alias with no key ID),
+	// Amazon Web Services KMS associates the alias with an Amazon Web Services
+	// managed key and returns its KeyId and Arn in the response. To specify a KMS
+	// key in a different Amazon Web Services account, you must use the key ARN
+	// or alias ARN.
+	//
+	// For example:
+	//
+	// Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// Alias name: alias/ExampleAlias
+	//
+	// Alias ARN: arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias
+	KMSKeyId *string `min:"1" type:"string"`
+
+	// Specifies if DevOps Guru is enabled for KMS integration.
+	OptInStatus *string `type:"string" enum:"OptInStatus"`
+
+	// The type of KMS key used. Customer managed keys are the KMS keys that you
+	// create. Amazon Web Services owned keys are keys that are owned and managed
+	// by DevOps Guru.
+	Type *string `type:"string" enum:"ServerSideEncryptionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSServerSideEncryptionIntegrationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSServerSideEncryptionIntegrationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KMSServerSideEncryptionIntegrationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KMSServerSideEncryptionIntegrationConfig"}
+	if s.KMSKeyId != nil && len(*s.KMSKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSKeyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *KMSServerSideEncryptionIntegrationConfig) SetKMSKeyId(v string) *KMSServerSideEncryptionIntegrationConfig {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *KMSServerSideEncryptionIntegrationConfig) SetOptInStatus(v string) *KMSServerSideEncryptionIntegrationConfig {
+	s.OptInStatus = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *KMSServerSideEncryptionIntegrationConfig) SetType(v string) *KMSServerSideEncryptionIntegrationConfig {
+	s.Type = &v
+	return s
+}
+
+// Specifies one or more service names that are used to list anomalies.
+type ListAnomaliesForInsightFilters struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of the names of Amazon Web Services services.
+	ServiceCollection *ServiceCollection `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomaliesForInsightFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomaliesForInsightFilters) GoString() string {
+	return s.String()
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *ListAnomaliesForInsightFilters) SetServiceCollection(v *ServiceCollection) *ListAnomaliesForInsightFilters {
+	s.ServiceCollection = v
+	return s
+}
+
 type ListAnomaliesForInsightInput struct {
 	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
+	// Specifies one or more service names that are used to list anomalies.
+	Filters *ListAnomaliesForInsightFilters `type:"structure"`
 
 	// The ID of the insight. The returned anomalies belong to this insight.
 	//
@@ -4379,12 +7219,20 @@ type ListAnomaliesForInsightInput struct {
 	StartTimeRange *StartTimeRange `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAnomaliesForInsightInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAnomaliesForInsightInput) GoString() string {
 	return s.String()
 }
@@ -4392,6 +7240,9 @@ func (s ListAnomaliesForInsightInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListAnomaliesForInsightInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListAnomaliesForInsightInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.InsightId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InsightId"))
 	}
@@ -4409,6 +7260,18 @@ func (s *ListAnomaliesForInsightInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListAnomaliesForInsightInput) SetAccountId(v string) *ListAnomaliesForInsightInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListAnomaliesForInsightInput) SetFilters(v *ListAnomaliesForInsightFilters) *ListAnomaliesForInsightInput {
+	s.Filters = v
+	return s
 }
 
 // SetInsightId sets the InsightId field's value.
@@ -4450,12 +7313,20 @@ type ListAnomaliesForInsightOutput struct {
 	ReactiveAnomalies []*ReactiveAnomalySummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAnomaliesForInsightOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAnomaliesForInsightOutput) GoString() string {
 	return s.String()
 }
@@ -4478,6 +7349,135 @@ func (s *ListAnomaliesForInsightOutput) SetReactiveAnomalies(v []*ReactiveAnomal
 	return s
 }
 
+type ListAnomalousLogGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the insight containing the log groups.
+	//
+	// InsightId is a required field
+	InsightId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalousLogGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalousLogGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAnomalousLogGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAnomalousLogGroupsInput"}
+	if s.InsightId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InsightId"))
+	}
+	if s.InsightId != nil && len(*s.InsightId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InsightId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *ListAnomalousLogGroupsInput) SetInsightId(v string) *ListAnomalousLogGroupsInput {
+	s.InsightId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAnomalousLogGroupsInput) SetMaxResults(v int64) *ListAnomalousLogGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnomalousLogGroupsInput) SetNextToken(v string) *ListAnomalousLogGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAnomalousLogGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of Amazon CloudWatch log groups that are related to an insight.
+	//
+	// AnomalousLogGroups is a required field
+	AnomalousLogGroups []*AnomalousLogGroup `type:"list" required:"true"`
+
+	// The ID of the insight containing the log groups.
+	//
+	// InsightId is a required field
+	InsightId *string `min:"1" type:"string" required:"true"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalousLogGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalousLogGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnomalousLogGroups sets the AnomalousLogGroups field's value.
+func (s *ListAnomalousLogGroupsOutput) SetAnomalousLogGroups(v []*AnomalousLogGroup) *ListAnomalousLogGroupsOutput {
+	s.AnomalousLogGroups = v
+	return s
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *ListAnomalousLogGroupsOutput) SetInsightId(v string) *ListAnomalousLogGroupsOutput {
+	s.InsightId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnomalousLogGroupsOutput) SetNextToken(v string) *ListAnomalousLogGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Filters you can use to specify which events are returned when ListEvents
 // is called.
 type ListEventsFilters struct {
@@ -4490,7 +7490,8 @@ type ListEventsFilters struct {
 	// change, a deployment, or a schema change.
 	EventClass *string `type:"string" enum:"EventClass"`
 
-	// The AWS source that emitted the events you want to filter for.
+	// The Amazon Web Services source that emitted the events you want to filter
+	// for.
 	EventSource *string `min:"10" type:"string"`
 
 	// A time range during which you want the filtered events to have occurred.
@@ -4499,19 +7500,30 @@ type ListEventsFilters struct {
 	// An ID of an insight that is related to the events you want to filter for.
 	InsightId *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventsFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventsFilters) GoString() string {
 	return s.String()
 }
@@ -4528,6 +7540,11 @@ func (s *ListEventsFilters) Validate() error {
 	if s.EventTimeRange != nil {
 		if err := s.EventTimeRange.Validate(); err != nil {
 			invalidParams.AddNested("EventTimeRange", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ResourceCollection != nil {
+		if err := s.ResourceCollection.Validate(); err != nil {
+			invalidParams.AddNested("ResourceCollection", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4576,6 +7593,9 @@ func (s *ListEventsFilters) SetResourceCollection(v *ResourceCollection) *ListEv
 type ListEventsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
 	// A ListEventsFilters object used to specify which events to return.
 	//
 	// Filters is a required field
@@ -4590,12 +7610,20 @@ type ListEventsInput struct {
 	NextToken *string `min:"36" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventsInput) GoString() string {
 	return s.String()
 }
@@ -4603,6 +7631,9 @@ func (s ListEventsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListEventsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListEventsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.Filters == nil {
 		invalidParams.Add(request.NewErrParamRequired("Filters"))
 	}
@@ -4622,6 +7653,12 @@ func (s *ListEventsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListEventsInput) SetAccountId(v string) *ListEventsInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetFilters sets the Filters field's value.
@@ -4655,12 +7692,20 @@ type ListEventsOutput struct {
 	NextToken *string `min:"36" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventsOutput) GoString() string {
 	return s.String()
 }
@@ -4692,12 +7737,20 @@ type ListInsightsAnyStatusFilter struct {
 	Type *string `type:"string" required:"true" enum:"InsightType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsAnyStatusFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsAnyStatusFilter) GoString() string {
 	return s.String()
 }
@@ -4745,12 +7798,20 @@ type ListInsightsClosedStatusFilter struct {
 	Type *string `type:"string" required:"true" enum:"InsightType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsClosedStatusFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsClosedStatusFilter) GoString() string {
 	return s.String()
 }
@@ -4801,12 +7862,20 @@ type ListInsightsInput struct {
 	StatusFilter *ListInsightsStatusFilter `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsInput) GoString() string {
 	return s.String()
 }
@@ -4863,12 +7932,20 @@ type ListInsightsOngoingStatusFilter struct {
 	Type *string `type:"string" required:"true" enum:"InsightType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsOngoingStatusFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsOngoingStatusFilter) GoString() string {
 	return s.String()
 }
@@ -4906,12 +7983,20 @@ type ListInsightsOutput struct {
 	ReactiveInsights []*ReactiveInsightSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsOutput) GoString() string {
 	return s.String()
 }
@@ -4951,12 +8036,20 @@ type ListInsightsStatusFilter struct {
 	Ongoing *ListInsightsOngoingStatusFilter `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsStatusFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInsightsStatusFilter) GoString() string {
 	return s.String()
 }
@@ -5004,6 +8097,186 @@ func (s *ListInsightsStatusFilter) SetOngoing(v *ListInsightsOngoingStatusFilter
 	return s
 }
 
+// Filters to determine which monitored resources you want to retrieve. You
+// can filter by resource type or resource permission status.
+type ListMonitoredResourcesFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The permission status of a resource.
+	//
+	// ResourcePermission is a required field
+	ResourcePermission *string `type:"string" required:"true" enum:"ResourcePermission"`
+
+	// The type of resource that you wish to retrieve, such as log groups.
+	//
+	// ResourceTypeFilters is a required field
+	ResourceTypeFilters []*string `type:"list" required:"true" enum:"ResourceTypeFilter"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMonitoredResourcesFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMonitoredResourcesFilters"}
+	if s.ResourcePermission == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourcePermission"))
+	}
+	if s.ResourceTypeFilters == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceTypeFilters"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourcePermission sets the ResourcePermission field's value.
+func (s *ListMonitoredResourcesFilters) SetResourcePermission(v string) *ListMonitoredResourcesFilters {
+	s.ResourcePermission = &v
+	return s
+}
+
+// SetResourceTypeFilters sets the ResourceTypeFilters field's value.
+func (s *ListMonitoredResourcesFilters) SetResourceTypeFilters(v []*string) *ListMonitoredResourcesFilters {
+	s.ResourceTypeFilters = v
+	return s
+}
+
+type ListMonitoredResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters to determine which monitored resources you want to retrieve. You
+	// can filter by resource type or resource permission status.
+	Filters *ListMonitoredResourcesFilters `type:"structure"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMonitoredResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMonitoredResourcesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListMonitoredResourcesInput) SetFilters(v *ListMonitoredResourcesFilters) *ListMonitoredResourcesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMonitoredResourcesInput) SetMaxResults(v int64) *ListMonitoredResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMonitoredResourcesInput) SetNextToken(v string) *ListMonitoredResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMonitoredResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the resource that is being monitored, including the name
+	// of the resource, the type of resource, and whether or not permission is given
+	// to DevOps Guru to access that resource.
+	//
+	// MonitoredResourceIdentifiers is a required field
+	MonitoredResourceIdentifiers []*MonitoredResourceIdentifier `type:"list" required:"true"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMonitoredResourceIdentifiers sets the MonitoredResourceIdentifiers field's value.
+func (s *ListMonitoredResourcesOutput) SetMonitoredResourceIdentifiers(v []*MonitoredResourceIdentifier) *ListMonitoredResourcesOutput {
+	s.MonitoredResourceIdentifiers = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMonitoredResourcesOutput) SetNextToken(v string) *ListMonitoredResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListNotificationChannelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5012,12 +8285,20 @@ type ListNotificationChannelsInput struct {
 	NextToken *string `min:"36" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNotificationChannelsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNotificationChannelsInput) GoString() string {
 	return s.String()
 }
@@ -5052,12 +8333,20 @@ type ListNotificationChannelsOutput struct {
 	NextToken *string `min:"36" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNotificationChannelsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNotificationChannelsOutput) GoString() string {
 	return s.String()
 }
@@ -5074,8 +8363,158 @@ func (s *ListNotificationChannelsOutput) SetNextToken(v string) *ListNotificatio
 	return s
 }
 
+type ListOrganizationInsightsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountIds []*string `type:"list"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitIds []*string `type:"list"`
+
+	// A filter used by ListInsights to specify which insights to return.
+	//
+	// StatusFilter is a required field
+	StatusFilter *ListInsightsStatusFilter `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationInsightsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationInsightsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOrganizationInsightsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOrganizationInsightsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+	if s.StatusFilter == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatusFilter"))
+	}
+	if s.StatusFilter != nil {
+		if err := s.StatusFilter.Validate(); err != nil {
+			invalidParams.AddNested("StatusFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *ListOrganizationInsightsInput) SetAccountIds(v []*string) *ListOrganizationInsightsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOrganizationInsightsInput) SetMaxResults(v int64) *ListOrganizationInsightsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOrganizationInsightsInput) SetNextToken(v string) *ListOrganizationInsightsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrganizationalUnitIds sets the OrganizationalUnitIds field's value.
+func (s *ListOrganizationInsightsInput) SetOrganizationalUnitIds(v []*string) *ListOrganizationInsightsInput {
+	s.OrganizationalUnitIds = v
+	return s
+}
+
+// SetStatusFilter sets the StatusFilter field's value.
+func (s *ListOrganizationInsightsInput) SetStatusFilter(v *ListInsightsStatusFilter) *ListOrganizationInsightsInput {
+	s.StatusFilter = v
+	return s
+}
+
+type ListOrganizationInsightsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	ProactiveInsights []*ProactiveOrganizationInsightSummary `type:"list"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	ReactiveInsights []*ReactiveOrganizationInsightSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationInsightsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationInsightsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOrganizationInsightsOutput) SetNextToken(v string) *ListOrganizationInsightsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProactiveInsights sets the ProactiveInsights field's value.
+func (s *ListOrganizationInsightsOutput) SetProactiveInsights(v []*ProactiveOrganizationInsightSummary) *ListOrganizationInsightsOutput {
+	s.ProactiveInsights = v
+	return s
+}
+
+// SetReactiveInsights sets the ReactiveInsights field's value.
+func (s *ListOrganizationInsightsOutput) SetReactiveInsights(v []*ReactiveOrganizationInsightSummary) *ListOrganizationInsightsOutput {
+	s.ReactiveInsights = v
+	return s
+}
+
 type ListRecommendationsInput struct {
 	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
 
 	// The ID of the requested insight.
 	//
@@ -5090,12 +8529,20 @@ type ListRecommendationsInput struct {
 	NextToken *string `min:"36" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecommendationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecommendationsInput) GoString() string {
 	return s.String()
 }
@@ -5103,6 +8550,9 @@ func (s ListRecommendationsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListRecommendationsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListRecommendationsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.InsightId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InsightId"))
 	}
@@ -5117,6 +8567,12 @@ func (s *ListRecommendationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListRecommendationsInput) SetAccountId(v string) *ListRecommendationsInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetInsightId sets the InsightId field's value.
@@ -5148,12 +8604,20 @@ type ListRecommendationsOutput struct {
 	Recommendations []*Recommendation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecommendationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecommendationsOutput) GoString() string {
 	return s.String()
 }
@@ -5170,20 +8634,286 @@ func (s *ListRecommendationsOutput) SetRecommendations(v []*Recommendation) *Lis
 	return s
 }
 
+// Information about an anomalous log event found within a log group.
+type LogAnomalyClass struct {
+	_ struct{} `type:"structure"`
+
+	// The explanation for why the log event is considered an anomaly.
+	Explanation *string `min:"1" type:"string"`
+
+	// The token where the anomaly was detected. This may refer to an exception
+	// or another location, or it may be blank for log anomalies such as format
+	// anomalies.
+	LogAnomalyToken *string `min:"1" type:"string"`
+
+	// The type of log anomaly that has been detected.
+	LogAnomalyType *string `type:"string" enum:"LogAnomalyType"`
+
+	// The ID of the log event.
+	LogEventId *string `min:"1" type:"string"`
+
+	// The time of the first occurrence of the anomalous log event.
+	LogEventTimestamp *time.Time `type:"timestamp"`
+
+	// The name of the Amazon CloudWatch log stream that the anomalous log event
+	// belongs to. A log stream is a sequence of log events that share the same
+	// source.
+	LogStreamName *string `min:"1" type:"string"`
+
+	// The number of log lines where this anomalous log event occurs.
+	NumberOfLogLinesOccurrences *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogAnomalyClass) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogAnomalyClass) GoString() string {
+	return s.String()
+}
+
+// SetExplanation sets the Explanation field's value.
+func (s *LogAnomalyClass) SetExplanation(v string) *LogAnomalyClass {
+	s.Explanation = &v
+	return s
+}
+
+// SetLogAnomalyToken sets the LogAnomalyToken field's value.
+func (s *LogAnomalyClass) SetLogAnomalyToken(v string) *LogAnomalyClass {
+	s.LogAnomalyToken = &v
+	return s
+}
+
+// SetLogAnomalyType sets the LogAnomalyType field's value.
+func (s *LogAnomalyClass) SetLogAnomalyType(v string) *LogAnomalyClass {
+	s.LogAnomalyType = &v
+	return s
+}
+
+// SetLogEventId sets the LogEventId field's value.
+func (s *LogAnomalyClass) SetLogEventId(v string) *LogAnomalyClass {
+	s.LogEventId = &v
+	return s
+}
+
+// SetLogEventTimestamp sets the LogEventTimestamp field's value.
+func (s *LogAnomalyClass) SetLogEventTimestamp(v time.Time) *LogAnomalyClass {
+	s.LogEventTimestamp = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *LogAnomalyClass) SetLogStreamName(v string) *LogAnomalyClass {
+	s.LogStreamName = &v
+	return s
+}
+
+// SetNumberOfLogLinesOccurrences sets the NumberOfLogLinesOccurrences field's value.
+func (s *LogAnomalyClass) SetNumberOfLogLinesOccurrences(v int64) *LogAnomalyClass {
+	s.NumberOfLogLinesOccurrences = &v
+	return s
+}
+
+// A cluster of similar anomalous log events found within a log group.
+type LogAnomalyShowcase struct {
+	_ struct{} `type:"structure"`
+
+	// A list of anomalous log events that may be related.
+	LogAnomalyClasses []*LogAnomalyClass `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogAnomalyShowcase) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogAnomalyShowcase) GoString() string {
+	return s.String()
+}
+
+// SetLogAnomalyClasses sets the LogAnomalyClasses field's value.
+func (s *LogAnomalyShowcase) SetLogAnomalyClasses(v []*LogAnomalyClass) *LogAnomalyShowcase {
+	s.LogAnomalyClasses = v
+	return s
+}
+
+// Information about the integration of DevOps Guru with CloudWatch log groups
+// for log anomaly detection.
+type LogsAnomalyDetectionIntegration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if DevOps Guru is configured to perform log anomaly detection on
+	// CloudWatch log groups.
+	OptInStatus *string `type:"string" enum:"OptInStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogsAnomalyDetectionIntegration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogsAnomalyDetectionIntegration) GoString() string {
+	return s.String()
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *LogsAnomalyDetectionIntegration) SetOptInStatus(v string) *LogsAnomalyDetectionIntegration {
+	s.OptInStatus = &v
+	return s
+}
+
+// Information about the integration of DevOps Guru with CloudWatch log groups
+// for log anomaly detection. You can use this to update the configuration.
+type LogsAnomalyDetectionIntegrationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if DevOps Guru is configured to perform log anomaly detection on
+	// CloudWatch log groups.
+	OptInStatus *string `type:"string" enum:"OptInStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogsAnomalyDetectionIntegrationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogsAnomalyDetectionIntegrationConfig) GoString() string {
+	return s.String()
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *LogsAnomalyDetectionIntegrationConfig) SetOptInStatus(v string) *LogsAnomalyDetectionIntegrationConfig {
+	s.OptInStatus = &v
+	return s
+}
+
+// Information about the resource that is being monitored, including the name
+// of the resource, the type of resource, and whether or not permission is given
+// to DevOps Guru to access that resource.
+type MonitoredResourceIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which DevOps Guru last updated this resource.
+	LastUpdated *time.Time `type:"timestamp"`
+
+	// The name of the resource being monitored.
+	MonitoredResourceName *string `min:"1" type:"string"`
+
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
+	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// The permission status of a resource.
+	ResourcePermission *string `type:"string" enum:"ResourcePermission"`
+
+	// The type of resource being monitored.
+	Type *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoredResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoredResourceIdentifier) GoString() string {
+	return s.String()
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *MonitoredResourceIdentifier) SetLastUpdated(v time.Time) *MonitoredResourceIdentifier {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetMonitoredResourceName sets the MonitoredResourceName field's value.
+func (s *MonitoredResourceIdentifier) SetMonitoredResourceName(v string) *MonitoredResourceIdentifier {
+	s.MonitoredResourceName = &v
+	return s
+}
+
+// SetResourceCollection sets the ResourceCollection field's value.
+func (s *MonitoredResourceIdentifier) SetResourceCollection(v *ResourceCollection) *MonitoredResourceIdentifier {
+	s.ResourceCollection = v
+	return s
+}
+
+// SetResourcePermission sets the ResourcePermission field's value.
+func (s *MonitoredResourceIdentifier) SetResourcePermission(v string) *MonitoredResourceIdentifier {
+	s.ResourcePermission = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MonitoredResourceIdentifier) SetType(v string) *MonitoredResourceIdentifier {
+	s.Type = &v
+	return s
+}
+
 // Information about a notification channel. A notification channel is used
 // to notify you when DevOps Guru creates an insight. The one supported notification
 // channel is Amazon Simple Notification Service (Amazon SNS).
 //
 // If you use an Amazon SNS topic in another account, you must attach a policy
-// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-// adds the required policy on your behalf to send notifications using Amazon
-// SNS in your account. For more information, see Permissions for cross account
-// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+// to it that grants DevOps Guru permission to send it notifications. DevOps
+// Guru adds the required policy on your behalf to send notifications using
+// Amazon SNS in your account. DevOps Guru only supports standard SNS topics.
+// For more information, see Permissions for Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 //
-// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
-// Service customer-managed key (CMK), then you must add permissions to the
-// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
-// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
+// Key Management Service customer-managed key (CMK), then you must add permissions
+// to the CMK. For more information, see Permissions for Amazon Web Services
+// KMS–encrypted Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 type NotificationChannel struct {
 	_ struct{} `type:"structure"`
 
@@ -5195,12 +8925,20 @@ type NotificationChannel struct {
 	Id *string `min:"36" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationChannel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationChannel) GoString() string {
 	return s.String()
 }
@@ -5223,30 +8961,43 @@ func (s *NotificationChannel) SetId(v string) *NotificationChannel {
 type NotificationChannelConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The filter configurations for the Amazon SNS notification topic you use with
+	// DevOps Guru. If you do not provide filter configurations, the default configurations
+	// are to receive notifications for all message types of High or Medium severity.
+	Filters *NotificationFilterConfig `type:"structure"`
+
 	// Information about a notification channel configured in DevOps Guru to send
 	// notifications when insights are created.
 	//
 	// If you use an Amazon SNS topic in another account, you must attach a policy
-	// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-	// adds the required policy on your behalf to send notifications using Amazon
-	// SNS in your account. For more information, see Permissions for cross account
-	// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+	// to it that grants DevOps Guru permission to send it notifications. DevOps
+	// Guru adds the required policy on your behalf to send notifications using
+	// Amazon SNS in your account. DevOps Guru only supports standard SNS topics.
+	// For more information, see Permissions for Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 	//
-	// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
-	// Service customer-managed key (CMK), then you must add permissions to the
-	// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
-	// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+	// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
+	// Key Management Service customer-managed key (CMK), then you must add permissions
+	// to the CMK. For more information, see Permissions for Amazon Web Services
+	// KMS–encrypted Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 	//
 	// Sns is a required field
 	Sns *SnsChannelConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationChannelConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationChannelConfig) GoString() string {
 	return s.String()
 }
@@ -5269,28 +9020,91 @@ func (s *NotificationChannelConfig) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *NotificationChannelConfig) SetFilters(v *NotificationFilterConfig) *NotificationChannelConfig {
+	s.Filters = v
+	return s
+}
+
 // SetSns sets the Sns field's value.
 func (s *NotificationChannelConfig) SetSns(v *SnsChannelConfig) *NotificationChannelConfig {
 	s.Sns = v
 	return s
 }
 
+// The filter configurations for the Amazon SNS notification topic you use with
+// DevOps Guru. You can choose to specify which events or message types to receive
+// notifications for. You can also choose to specify which severity levels to
+// receive notifications for.
+type NotificationFilterConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The events that you want to receive notifications for. For example, you can
+	// choose to receive notifications only when the severity level is upgraded
+	// or a new insight is created.
+	MessageTypes []*string `type:"list" enum:"NotificationMessageType"`
+
+	// The severity levels that you want to receive notifications for. For example,
+	// you can choose to receive notifications only for insights with HIGH and MEDIUM
+	// severity levels. For more information, see Understanding insight severities
+	// (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities).
+	Severities []*string `type:"list" enum:"InsightSeverity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationFilterConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationFilterConfig) GoString() string {
+	return s.String()
+}
+
+// SetMessageTypes sets the MessageTypes field's value.
+func (s *NotificationFilterConfig) SetMessageTypes(v []*string) *NotificationFilterConfig {
+	s.MessageTypes = v
+	return s
+}
+
+// SetSeverities sets the Severities field's value.
+func (s *NotificationFilterConfig) SetSeverities(v []*string) *NotificationFilterConfig {
+	s.Severities = v
+	return s
+}
+
 // Information about whether DevOps Guru is configured to create an OpsItem
-// in AWS Systems Manager OpsCenter for each created insight.
+// in Amazon Web Services Systems Manager OpsCenter for each created insight.
 type OpsCenterIntegration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
-	// for each created insight.
+	// Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems
+	// Manager OpsItem for each created insight.
 	OptInStatus *string `type:"string" enum:"OptInStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OpsCenterIntegration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OpsCenterIntegration) GoString() string {
 	return s.String()
 }
@@ -5302,21 +9116,30 @@ func (s *OpsCenterIntegration) SetOptInStatus(v string) *OpsCenterIntegration {
 }
 
 // Information about whether DevOps Guru is configured to create an OpsItem
-// in AWS Systems Manager OpsCenter for each created insight.
+// in Amazon Web Services Systems Manager OpsCenter for each created insight.
+// You can use this to update the configuration.
 type OpsCenterIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
-	// for each created insight.
+	// Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems
+	// Manager OpsItem for each created insight.
 	OptInStatus *string `type:"string" enum:"OptInStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OpsCenterIntegrationConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OpsCenterIntegrationConfig) GoString() string {
 	return s.String()
 }
@@ -5324,6 +9147,532 @@ func (s OpsCenterIntegrationConfig) GoString() string {
 // SetOptInStatus sets the OptInStatus field's value.
 func (s *OpsCenterIntegrationConfig) SetOptInStatus(v string) *OpsCenterIntegrationConfig {
 	s.OptInStatus = &v
+	return s
+}
+
+// A logical grouping of Performance Insights metrics for a related subject
+// area. For example, the db.sql dimension group consists of the following dimensions:
+// db.sql.id, db.sql.db_id, db.sql.statement, and db.sql.tokenized_id.
+//
+// Each response element returns a maximum of 500 bytes. For larger elements,
+// such as SQL statements, only the first 500 bytes are returned.
+//
+// Amazon RDS Performance Insights enables you to monitor and explore different
+// dimensions of database load based on data captured from a running DB instance.
+// DB load is measured as average active sessions. Performance Insights provides
+// the data to API consumers as a two-dimensional time-series dataset. The time
+// dimension provides DB load data for each time point in the queried time range.
+// Each time point decomposes overall load in relation to the requested dimensions,
+// measured at that time point. Examples include SQL, Wait event, User, and
+// Host.
+//
+//   - To learn more about Performance Insights and Amazon Aurora DB instances,
+//     go to the Amazon Aurora User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html).
+//
+//   - To learn more about Performance Insights and Amazon RDS DB instances,
+//     go to the Amazon RDS User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html).
+type PerformanceInsightsMetricDimensionGroup struct {
+	_ struct{} `type:"structure"`
+
+	// A list of specific dimensions from a dimension group. If this parameter is
+	// not present, then it signifies that all of the dimensions in the group were
+	// requested or are present in the response.
+	//
+	// Valid values for elements in the Dimensions array are:
+	//
+	//    * db.application.name - The name of the application that is connected
+	//    to the database (only Aurora PostgreSQL and RDS PostgreSQL)
+	//
+	//    * db.host.id - The host ID of the connected client (all engines)
+	//
+	//    * db.host.name - The host name of the connected client (all engines)
+	//
+	//    * db.name - The name of the database to which the client is connected
+	//    (only Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS
+	//    MySQL, and MariaDB)
+	//
+	//    * db.session_type.name - The type of the current session (only Aurora
+	//    PostgreSQL and RDS PostgreSQL)
+	//
+	//    * db.sql.id - The SQL ID generated by Performance Insights (all engines)
+	//
+	//    * db.sql.db_id - The SQL ID generated by the database (all engines)
+	//
+	//    * db.sql.statement - The SQL text that is being executed (all engines)
+	//
+	//    * db.sql.tokenized_id
+	//
+	//    * db.sql_tokenized.id - The SQL digest ID generated by Performance Insights
+	//    (all engines)
+	//
+	//    * db.sql_tokenized.db_id - SQL digest ID generated by the database (all
+	//    engines)
+	//
+	//    * db.sql_tokenized.statement - The SQL digest text (all engines)
+	//
+	//    * db.user.id - The ID of the user logged in to the database (all engines)
+	//
+	//    * db.user.name - The name of the user logged in to the database (all engines)
+	//
+	//    * db.wait_event.name - The event for which the backend is waiting (all
+	//    engines)
+	//
+	//    * db.wait_event.type - The type of event for which the backend is waiting
+	//    (all engines)
+	//
+	//    * db.wait_event_type.name - The name of the event type for which the backend
+	//    is waiting (all engines)
+	Dimensions []*string `type:"list"`
+
+	// The name of the dimension group. Its valid values are:
+	//
+	//    * db - The name of the database to which the client is connected (only
+	//    Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS MySQL,
+	//    and MariaDB)
+	//
+	//    * db.application - The name of the application that is connected to the
+	//    database (only Aurora PostgreSQL and RDS PostgreSQL)
+	//
+	//    * db.host - The host name of the connected client (all engines)
+	//
+	//    * db.session_type - The type of the current session (only Aurora PostgreSQL
+	//    and RDS PostgreSQL)
+	//
+	//    * db.sql - The SQL that is currently executing (all engines)
+	//
+	//    * db.sql_tokenized - The SQL digest (all engines)
+	//
+	//    * db.wait_event - The event for which the database backend is waiting
+	//    (all engines)
+	//
+	//    * db.wait_event_type - The type of event for which the database backend
+	//    is waiting (all engines)
+	//
+	//    * db.user - The user logged in to the database (all engines)
+	Group *string `type:"string"`
+
+	// The maximum number of items to fetch for this dimension group.
+	Limit *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricDimensionGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricDimensionGroup) GoString() string {
+	return s.String()
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *PerformanceInsightsMetricDimensionGroup) SetDimensions(v []*string) *PerformanceInsightsMetricDimensionGroup {
+	s.Dimensions = v
+	return s
+}
+
+// SetGroup sets the Group field's value.
+func (s *PerformanceInsightsMetricDimensionGroup) SetGroup(v string) *PerformanceInsightsMetricDimensionGroup {
+	s.Group = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *PerformanceInsightsMetricDimensionGroup) SetLimit(v int64) *PerformanceInsightsMetricDimensionGroup {
+	s.Limit = &v
+	return s
+}
+
+// A single query to be processed. Use these parameters to query the Performance
+// Insights GetResourceMetrics API to retrieve the metrics for an anomaly. For
+// more information, see GetResourceMetrics (https://docs.aws.amazon.com/performance-insights/latest/APIReference/API_GetResourceMetrics.html)
+// in the Amazon RDS Performance Insights API Reference.
+//
+// Amazon RDS Performance Insights enables you to monitor and explore different
+// dimensions of database load based on data captured from a running DB instance.
+// DB load is measured as average active sessions. Performance Insights provides
+// the data to API consumers as a two-dimensional time-series dataset. The time
+// dimension provides DB load data for each time point in the queried time range.
+// Each time point decomposes overall load in relation to the requested dimensions,
+// measured at that time point. Examples include SQL, Wait event, User, and
+// Host.
+//
+//   - To learn more about Performance Insights and Amazon Aurora DB instances,
+//     go to the Amazon Aurora User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html).
+//
+//   - To learn more about Performance Insights and Amazon RDS DB instances,
+//     go to the Amazon RDS User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html).
+type PerformanceInsightsMetricQuery struct {
+	_ struct{} `type:"structure"`
+
+	// One or more filters to apply to a Performance Insights GetResourceMetrics
+	// API query. Restrictions:
+	//
+	//    * Any number of filters by the same dimension, as specified in the GroupBy
+	//    parameter.
+	//
+	//    * A single filter for any other dimension in this dimension group.
+	Filter map[string]*string `type:"map"`
+
+	// The specification for how to aggregate the data points from a Performance
+	// Insights GetResourceMetrics API query. The Performance Insights query returns
+	// all of the dimensions within that group, unless you provide the names of
+	// specific dimensions within that group. You can also request that Performance
+	// Insights return a limited number of values for a dimension.
+	GroupBy *PerformanceInsightsMetricDimensionGroup `type:"structure"`
+
+	// The name of the meteric used used when querying an Performance Insights GetResourceMetrics
+	// API for anomaly metrics.
+	//
+	// Valid values for Metric are:
+	//
+	//    * db.load.avg - a scaled representation of the number of active sessions
+	//    for the database engine.
+	//
+	//    * db.sampledload.avg - the raw number of active sessions for the database
+	//    engine.
+	//
+	// If the number of active sessions is less than an internal Performance Insights
+	// threshold, db.load.avg and db.sampledload.avg are the same value. If the
+	// number of active sessions is greater than the internal threshold, Performance
+	// Insights samples the active sessions, with db.load.avg showing the scaled
+	// values, db.sampledload.avg showing the raw values, and db.sampledload.avg
+	// less than db.load.avg. For most use cases, you can query db.load.avg only.
+	Metric *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricQuery) GoString() string {
+	return s.String()
+}
+
+// SetFilter sets the Filter field's value.
+func (s *PerformanceInsightsMetricQuery) SetFilter(v map[string]*string) *PerformanceInsightsMetricQuery {
+	s.Filter = v
+	return s
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *PerformanceInsightsMetricQuery) SetGroupBy(v *PerformanceInsightsMetricDimensionGroup) *PerformanceInsightsMetricQuery {
+	s.GroupBy = v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *PerformanceInsightsMetricQuery) SetMetric(v string) *PerformanceInsightsMetricQuery {
+	s.Metric = &v
+	return s
+}
+
+// Details about Performance Insights metrics.
+//
+// Amazon RDS Performance Insights enables you to monitor and explore different
+// dimensions of database load based on data captured from a running DB instance.
+// DB load is measured as average active sessions. Performance Insights provides
+// the data to API consumers as a two-dimensional time-series dataset. The time
+// dimension provides DB load data for each time point in the queried time range.
+// Each time point decomposes overall load in relation to the requested dimensions,
+// measured at that time point. Examples include SQL, Wait event, User, and
+// Host.
+//
+//   - To learn more about Performance Insights and Amazon Aurora DB instances,
+//     go to the Amazon Aurora User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html).
+//
+//   - To learn more about Performance Insights and Amazon RDS DB instances,
+//     go to the Amazon RDS User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html).
+type PerformanceInsightsMetricsDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The name used for a specific Performance Insights metric.
+	MetricDisplayName *string `type:"string"`
+
+	// A single query to be processed for the metric. For more information, see
+	// PerformanceInsightsMetricQuery (https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsMetricQuery.html) .
+	MetricQuery *PerformanceInsightsMetricQuery `type:"structure"`
+
+	// For more information, see PerformanceInsightsReferenceData (https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceData.html) .
+	ReferenceData []*PerformanceInsightsReferenceData `type:"list"`
+
+	// The metric statistics during the anomalous period detected by DevOps Guru;
+	StatsAtAnomaly []*PerformanceInsightsStat `type:"list"`
+
+	// Typical metric statistics that are not considered anomalous. When DevOps
+	// Guru analyzes metrics, it compares them to StatsAtBaseline to help determine
+	// if they are anomalous.
+	StatsAtBaseline []*PerformanceInsightsStat `type:"list"`
+
+	// The unit of measure for a metric. For example, a session or a process.
+	Unit *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricsDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricsDetail) GoString() string {
+	return s.String()
+}
+
+// SetMetricDisplayName sets the MetricDisplayName field's value.
+func (s *PerformanceInsightsMetricsDetail) SetMetricDisplayName(v string) *PerformanceInsightsMetricsDetail {
+	s.MetricDisplayName = &v
+	return s
+}
+
+// SetMetricQuery sets the MetricQuery field's value.
+func (s *PerformanceInsightsMetricsDetail) SetMetricQuery(v *PerformanceInsightsMetricQuery) *PerformanceInsightsMetricsDetail {
+	s.MetricQuery = v
+	return s
+}
+
+// SetReferenceData sets the ReferenceData field's value.
+func (s *PerformanceInsightsMetricsDetail) SetReferenceData(v []*PerformanceInsightsReferenceData) *PerformanceInsightsMetricsDetail {
+	s.ReferenceData = v
+	return s
+}
+
+// SetStatsAtAnomaly sets the StatsAtAnomaly field's value.
+func (s *PerformanceInsightsMetricsDetail) SetStatsAtAnomaly(v []*PerformanceInsightsStat) *PerformanceInsightsMetricsDetail {
+	s.StatsAtAnomaly = v
+	return s
+}
+
+// SetStatsAtBaseline sets the StatsAtBaseline field's value.
+func (s *PerformanceInsightsMetricsDetail) SetStatsAtBaseline(v []*PerformanceInsightsStat) *PerformanceInsightsMetricsDetail {
+	s.StatsAtBaseline = v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *PerformanceInsightsMetricsDetail) SetUnit(v string) *PerformanceInsightsMetricsDetail {
+	s.Unit = &v
+	return s
+}
+
+// Reference scalar values and other metrics that DevOps Guru displays on a
+// graph in its console along with the actual metrics it analyzed. Compare these
+// reference values to your actual metrics to help you understand anomalous
+// behavior that DevOps Guru detected.
+type PerformanceInsightsReferenceComparisonValues struct {
+	_ struct{} `type:"structure"`
+
+	// A metric that DevOps Guru compares to actual metric values. This reference
+	// metric is used to determine if an actual metric should be considered anomalous.
+	ReferenceMetric *PerformanceInsightsReferenceMetric `type:"structure"`
+
+	// A scalar value DevOps Guru for a metric that DevOps Guru compares to actual
+	// metric values. This reference value is used to determine if an actual metric
+	// value should be considered anomalous.
+	ReferenceScalar *PerformanceInsightsReferenceScalar `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceComparisonValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceComparisonValues) GoString() string {
+	return s.String()
+}
+
+// SetReferenceMetric sets the ReferenceMetric field's value.
+func (s *PerformanceInsightsReferenceComparisonValues) SetReferenceMetric(v *PerformanceInsightsReferenceMetric) *PerformanceInsightsReferenceComparisonValues {
+	s.ReferenceMetric = v
+	return s
+}
+
+// SetReferenceScalar sets the ReferenceScalar field's value.
+func (s *PerformanceInsightsReferenceComparisonValues) SetReferenceScalar(v *PerformanceInsightsReferenceScalar) *PerformanceInsightsReferenceComparisonValues {
+	s.ReferenceScalar = v
+	return s
+}
+
+// Reference data used to evaluate Performance Insights to determine if its
+// performance is anomalous or not.
+type PerformanceInsightsReferenceData struct {
+	_ struct{} `type:"structure"`
+
+	// The specific reference values used to evaluate the Performance Insights.
+	// For more information, see PerformanceInsightsReferenceComparisonValues (https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceComparisonValues.html) .
+	ComparisonValues *PerformanceInsightsReferenceComparisonValues `type:"structure"`
+
+	// The name of the reference data.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceData) GoString() string {
+	return s.String()
+}
+
+// SetComparisonValues sets the ComparisonValues field's value.
+func (s *PerformanceInsightsReferenceData) SetComparisonValues(v *PerformanceInsightsReferenceComparisonValues) *PerformanceInsightsReferenceData {
+	s.ComparisonValues = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PerformanceInsightsReferenceData) SetName(v string) *PerformanceInsightsReferenceData {
+	s.Name = &v
+	return s
+}
+
+// Information about a reference metric used to evaluate Performance Insights.
+type PerformanceInsightsReferenceMetric struct {
+	_ struct{} `type:"structure"`
+
+	// A query to be processed on the metric.
+	MetricQuery *PerformanceInsightsMetricQuery `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceMetric) GoString() string {
+	return s.String()
+}
+
+// SetMetricQuery sets the MetricQuery field's value.
+func (s *PerformanceInsightsReferenceMetric) SetMetricQuery(v *PerformanceInsightsMetricQuery) *PerformanceInsightsReferenceMetric {
+	s.MetricQuery = v
+	return s
+}
+
+// A reference value to compare Performance Insights metrics against to determine
+// if the metrics demonstrate anomalous behavior.
+type PerformanceInsightsReferenceScalar struct {
+	_ struct{} `type:"structure"`
+
+	// The reference value.
+	Value *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceScalar) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceScalar) GoString() string {
+	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *PerformanceInsightsReferenceScalar) SetValue(v float64) *PerformanceInsightsReferenceScalar {
+	s.Value = &v
+	return s
+}
+
+// A statistic in a Performance Insights collection.
+type PerformanceInsightsStat struct {
+	_ struct{} `type:"structure"`
+
+	// The statistic type.
+	Type *string `type:"string"`
+
+	// The value of the statistic.
+	Value *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsStat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsStat) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *PerformanceInsightsStat) SetType(v string) *PerformanceInsightsStat {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *PerformanceInsightsStat) SetValue(v float64) *PerformanceInsightsStat {
+	s.Value = &v
 	return s
 }
 
@@ -5342,12 +9691,20 @@ type PredictionTimeRange struct {
 	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PredictionTimeRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PredictionTimeRange) GoString() string {
 	return s.String()
 }
@@ -5368,9 +9725,12 @@ func (s *PredictionTimeRange) SetStartTime(v time.Time) *PredictionTimeRange {
 type ProactiveAnomaly struct {
 	_ struct{} `type:"structure"`
 
-	// A AnomalyReportedTimeRange object that specifies the time range between when
-	// the anomaly is opened and the time when it is closed.
+	// An AnomalyReportedTimeRange object that specifies the time range between
+	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
+	// Information about a resource in which DevOps Guru detected anomalous behavior.
+	AnomalyResources []*AnomalyResource `type:"list"`
 
 	// A time range that specifies when the observed unusual behavior in an anomaly
 	// started and ended. This is different from AnomalyReportedTimeRange, which
@@ -5380,6 +9740,9 @@ type ProactiveAnomaly struct {
 	// The ID of the insight that contains this anomaly. An insight is composed
 	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
+
+	// A description of the proactive anomaly.
+	Description *string `type:"string"`
 
 	// The ID of a proactive anomaly.
 	Id *string `min:"1" type:"string"`
@@ -5392,18 +9755,27 @@ type ProactiveAnomaly struct {
 	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of a proactive anomaly.
+	// The severity of the anomaly. The severity of anomalies that generate an insight
+	// determine that insight's severity. For more information, see Understanding
+	// insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
 	// Details about the source of the analyzed operational data that triggered
 	// the anomaly. The one supported source is Amazon CloudWatch metrics.
 	SourceDetails *AnomalySourceDetails `type:"structure"`
+
+	// The metadata for the anomaly.
+	SourceMetadata *AnomalySourceMetadata `type:"structure"`
 
 	// The status of a proactive anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
@@ -5412,12 +9784,20 @@ type ProactiveAnomaly struct {
 	UpdateTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProactiveAnomaly) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProactiveAnomaly) GoString() string {
 	return s.String()
 }
@@ -5425,6 +9805,12 @@ func (s ProactiveAnomaly) GoString() string {
 // SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
 func (s *ProactiveAnomaly) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ProactiveAnomaly {
 	s.AnomalyReportedTimeRange = v
+	return s
+}
+
+// SetAnomalyResources sets the AnomalyResources field's value.
+func (s *ProactiveAnomaly) SetAnomalyResources(v []*AnomalyResource) *ProactiveAnomaly {
+	s.AnomalyResources = v
 	return s
 }
 
@@ -5437,6 +9823,12 @@ func (s *ProactiveAnomaly) SetAnomalyTimeRange(v *AnomalyTimeRange) *ProactiveAn
 // SetAssociatedInsightId sets the AssociatedInsightId field's value.
 func (s *ProactiveAnomaly) SetAssociatedInsightId(v string) *ProactiveAnomaly {
 	s.AssociatedInsightId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ProactiveAnomaly) SetDescription(v string) *ProactiveAnomaly {
+	s.Description = &v
 	return s
 }
 
@@ -5476,6 +9868,12 @@ func (s *ProactiveAnomaly) SetSourceDetails(v *AnomalySourceDetails) *ProactiveA
 	return s
 }
 
+// SetSourceMetadata sets the SourceMetadata field's value.
+func (s *ProactiveAnomaly) SetSourceMetadata(v *AnomalySourceMetadata) *ProactiveAnomaly {
+	s.SourceMetadata = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *ProactiveAnomaly) SetStatus(v string) *ProactiveAnomaly {
 	s.Status = &v
@@ -5492,9 +9890,12 @@ func (s *ProactiveAnomaly) SetUpdateTime(v time.Time) *ProactiveAnomaly {
 type ProactiveAnomalySummary struct {
 	_ struct{} `type:"structure"`
 
-	// A AnomalyReportedTimeRange object that specifies the time range between when
-	// the anomaly is opened and the time when it is closed.
+	// An AnomalyReportedTimeRange object that specifies the time range between
+	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
+	// Information about a resource in which DevOps Guru detected anomalous behavior.
+	AnomalyResources []*AnomalyResource `type:"list"`
 
 	// A time range that specifies when the observed unusual behavior in an anomaly
 	// started and ended. This is different from AnomalyReportedTimeRange, which
@@ -5504,6 +9905,9 @@ type ProactiveAnomalySummary struct {
 	// The ID of the insight that contains this anomaly. An insight is composed
 	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
+
+	// A description of the proactive anomaly.
+	Description *string `type:"string"`
 
 	// The ID of the anomaly.
 	Id *string `min:"1" type:"string"`
@@ -5516,18 +9920,27 @@ type ProactiveAnomalySummary struct {
 	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of the anomaly.
+	// The severity of the anomaly. The severity of anomalies that generate an insight
+	// determine that insight's severity. For more information, see Understanding
+	// insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
 	// Details about the source of the analyzed operational data that triggered
 	// the anomaly. The one supported source is Amazon CloudWatch metrics.
 	SourceDetails *AnomalySourceDetails `type:"structure"`
+
+	// The metadata of the source which detects proactive anomalies.
+	SourceMetadata *AnomalySourceMetadata `type:"structure"`
 
 	// The status of the anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
@@ -5536,12 +9949,20 @@ type ProactiveAnomalySummary struct {
 	UpdateTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProactiveAnomalySummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProactiveAnomalySummary) GoString() string {
 	return s.String()
 }
@@ -5549,6 +9970,12 @@ func (s ProactiveAnomalySummary) GoString() string {
 // SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
 func (s *ProactiveAnomalySummary) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ProactiveAnomalySummary {
 	s.AnomalyReportedTimeRange = v
+	return s
+}
+
+// SetAnomalyResources sets the AnomalyResources field's value.
+func (s *ProactiveAnomalySummary) SetAnomalyResources(v []*AnomalyResource) *ProactiveAnomalySummary {
+	s.AnomalyResources = v
 	return s
 }
 
@@ -5561,6 +9988,12 @@ func (s *ProactiveAnomalySummary) SetAnomalyTimeRange(v *AnomalyTimeRange) *Proa
 // SetAssociatedInsightId sets the AssociatedInsightId field's value.
 func (s *ProactiveAnomalySummary) SetAssociatedInsightId(v string) *ProactiveAnomalySummary {
 	s.AssociatedInsightId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ProactiveAnomalySummary) SetDescription(v string) *ProactiveAnomalySummary {
+	s.Description = &v
 	return s
 }
 
@@ -5600,6 +10033,12 @@ func (s *ProactiveAnomalySummary) SetSourceDetails(v *AnomalySourceDetails) *Pro
 	return s
 }
 
+// SetSourceMetadata sets the SourceMetadata field's value.
+func (s *ProactiveAnomalySummary) SetSourceMetadata(v *AnomalySourceMetadata) *ProactiveAnomalySummary {
+	s.SourceMetadata = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *ProactiveAnomalySummary) SetStatus(v string) *ProactiveAnomalySummary {
 	s.Status = &v
@@ -5616,6 +10055,9 @@ func (s *ProactiveAnomalySummary) SetUpdateTime(v time.Time) *ProactiveAnomalySu
 type ProactiveInsight struct {
 	_ struct{} `type:"structure"`
 
+	// Describes the proactive insight.
+	Description *string `type:"string"`
+
 	// The ID of the proactive insight.
 	Id *string `min:"1" type:"string"`
 
@@ -5630,32 +10072,51 @@ type ProactiveInsight struct {
 	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of the proactive insight.
+	// The severity of the insight. For more information, see Understanding insight
+	// severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
-	// The ID of the AWS System Manager OpsItem created for this insight. You must
-	// enable the creation of OpstItems insights before they are created for each
-	// insight.
+	// The ID of the Amazon Web Services System Manager OpsItem created for this
+	// insight. You must enable the creation of OpstItems insights before they are
+	// created for each insight.
 	SsmOpsItemId *string `min:"1" type:"string"`
 
 	// The status of the proactive insight.
 	Status *string `type:"string" enum:"InsightStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProactiveInsight) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProactiveInsight) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ProactiveInsight) SetDescription(v string) *ProactiveInsight {
+	s.Description = &v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -5710,6 +10171,10 @@ func (s *ProactiveInsight) SetStatus(v string) *ProactiveInsight {
 type ProactiveInsightSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Names (ARNs) of the Amazon Web Services resources that
+	// generated this insight.
+	AssociatedResourceArns []*string `type:"list"`
+
 	// The ID of the proactive insight.
 	Id *string `min:"1" type:"string"`
 
@@ -5724,30 +10189,49 @@ type ProactiveInsightSummary struct {
 	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// A collection of the names of AWS services.
+	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
-	// The severity of the proactive insight.
+	// The severity of the insight. For more information, see Understanding insight
+	// severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
 	// The status of the proactive insight.
 	Status *string `type:"string" enum:"InsightStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProactiveInsightSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProactiveInsightSummary) GoString() string {
 	return s.String()
+}
+
+// SetAssociatedResourceArns sets the AssociatedResourceArns field's value.
+func (s *ProactiveInsightSummary) SetAssociatedResourceArns(v []*string) *ProactiveInsightSummary {
+	s.AssociatedResourceArns = v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -5798,6 +10282,129 @@ func (s *ProactiveInsightSummary) SetStatus(v string) *ProactiveInsightSummary {
 	return s
 }
 
+// Details about a proactive insight. This object is returned by DescribeInsight.
+type ProactiveOrganizationInsightSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
+	// The ID of the insight summary.
+	Id *string `min:"1" type:"string"`
+
+	// A time ranged that specifies when the observed behavior in an insight started
+	// and ended.
+	InsightTimeRange *InsightTimeRange `type:"structure"`
+
+	// The name of the insight summary.
+	Name *string `min:"1" type:"string"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitId *string `type:"string"`
+
+	// The time range during which anomalous behavior in a proactive anomaly or
+	// an insight is expected to occur.
+	PredictionTimeRange *PredictionTimeRange `type:"structure"`
+
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
+	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// A collection of the names of Amazon Web Services services.
+	ServiceCollection *ServiceCollection `type:"structure"`
+
+	// An array of severity values used to search for insights. For more information,
+	// see Understanding insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
+	Severity *string `type:"string" enum:"InsightSeverity"`
+
+	// An array of status values used to search for insights.
+	Status *string `type:"string" enum:"InsightStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProactiveOrganizationInsightSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProactiveOrganizationInsightSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ProactiveOrganizationInsightSummary) SetAccountId(v string) *ProactiveOrganizationInsightSummary {
+	s.AccountId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ProactiveOrganizationInsightSummary) SetId(v string) *ProactiveOrganizationInsightSummary {
+	s.Id = &v
+	return s
+}
+
+// SetInsightTimeRange sets the InsightTimeRange field's value.
+func (s *ProactiveOrganizationInsightSummary) SetInsightTimeRange(v *InsightTimeRange) *ProactiveOrganizationInsightSummary {
+	s.InsightTimeRange = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ProactiveOrganizationInsightSummary) SetName(v string) *ProactiveOrganizationInsightSummary {
+	s.Name = &v
+	return s
+}
+
+// SetOrganizationalUnitId sets the OrganizationalUnitId field's value.
+func (s *ProactiveOrganizationInsightSummary) SetOrganizationalUnitId(v string) *ProactiveOrganizationInsightSummary {
+	s.OrganizationalUnitId = &v
+	return s
+}
+
+// SetPredictionTimeRange sets the PredictionTimeRange field's value.
+func (s *ProactiveOrganizationInsightSummary) SetPredictionTimeRange(v *PredictionTimeRange) *ProactiveOrganizationInsightSummary {
+	s.PredictionTimeRange = v
+	return s
+}
+
+// SetResourceCollection sets the ResourceCollection field's value.
+func (s *ProactiveOrganizationInsightSummary) SetResourceCollection(v *ResourceCollection) *ProactiveOrganizationInsightSummary {
+	s.ResourceCollection = v
+	return s
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *ProactiveOrganizationInsightSummary) SetServiceCollection(v *ServiceCollection) *ProactiveOrganizationInsightSummary {
+	s.ServiceCollection = v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *ProactiveOrganizationInsightSummary) SetSeverity(v string) *ProactiveOrganizationInsightSummary {
+	s.Severity = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ProactiveOrganizationInsightSummary) SetStatus(v string) *ProactiveOrganizationInsightSummary {
+	s.Status = &v
+	return s
+}
+
 type PutFeedbackInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5805,12 +10412,20 @@ type PutFeedbackInput struct {
 	InsightFeedback *InsightFeedback `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFeedbackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFeedbackInput) GoString() string {
 	return s.String()
 }
@@ -5840,12 +10455,20 @@ type PutFeedbackOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFeedbackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFeedbackOutput) GoString() string {
 	return s.String()
 }
@@ -5854,9 +10477,13 @@ func (s PutFeedbackOutput) GoString() string {
 type ReactiveAnomaly struct {
 	_ struct{} `type:"structure"`
 
-	// A AnomalyReportedTimeRange object that specifies the time range between when
-	// the anomaly is opened and the time when it is closed.
+	// An AnomalyReportedTimeRange object that specifies the time range between
+	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
+	// The Amazon Web Services resources in which anomalous behavior was detected
+	// by DevOps Guru.
+	AnomalyResources []*AnomalyResource `type:"list"`
 
 	// A time range that specifies when the observed unusual behavior in an anomaly
 	// started and ended. This is different from AnomalyReportedTimeRange, which
@@ -5867,16 +10494,32 @@ type ReactiveAnomaly struct {
 	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
 
+	// The ID of the causal anomaly that is associated with this reactive anomaly.
+	// The ID of a `CAUSAL` anomaly is always `NULL`.
+	CausalAnomalyId *string `min:"1" type:"string"`
+
+	// A description of the reactive anomaly.
+	Description *string `type:"string"`
+
 	// The ID of the reactive anomaly.
 	Id *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// The name of the reactive anomaly.
+	Name *string `type:"string"`
+
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of the anomaly.
+	// The severity of the anomaly. The severity of anomalies that generate an insight
+	// determine that insight's severity. For more information, see Understanding
+	// insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
 	// Details about the source of the analyzed operational data that triggered
@@ -5885,14 +10528,30 @@ type ReactiveAnomaly struct {
 
 	// The status of the anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
+
+	// The type of the reactive anomaly. It can be one of the following types.
+	//
+	//    * CAUSAL - the anomaly can cause a new insight.
+	//
+	//    * CONTEXTUAL - the anomaly contains additional information about an insight
+	//    or its causal anomaly.
+	Type *string `type:"string" enum:"AnomalyType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactiveAnomaly) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactiveAnomaly) GoString() string {
 	return s.String()
 }
@@ -5900,6 +10559,12 @@ func (s ReactiveAnomaly) GoString() string {
 // SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
 func (s *ReactiveAnomaly) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ReactiveAnomaly {
 	s.AnomalyReportedTimeRange = v
+	return s
+}
+
+// SetAnomalyResources sets the AnomalyResources field's value.
+func (s *ReactiveAnomaly) SetAnomalyResources(v []*AnomalyResource) *ReactiveAnomaly {
+	s.AnomalyResources = v
 	return s
 }
 
@@ -5915,9 +10580,27 @@ func (s *ReactiveAnomaly) SetAssociatedInsightId(v string) *ReactiveAnomaly {
 	return s
 }
 
+// SetCausalAnomalyId sets the CausalAnomalyId field's value.
+func (s *ReactiveAnomaly) SetCausalAnomalyId(v string) *ReactiveAnomaly {
+	s.CausalAnomalyId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ReactiveAnomaly) SetDescription(v string) *ReactiveAnomaly {
+	s.Description = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *ReactiveAnomaly) SetId(v string) *ReactiveAnomaly {
 	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ReactiveAnomaly) SetName(v string) *ReactiveAnomaly {
+	s.Name = &v
 	return s
 }
 
@@ -5945,13 +10628,23 @@ func (s *ReactiveAnomaly) SetStatus(v string) *ReactiveAnomaly {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *ReactiveAnomaly) SetType(v string) *ReactiveAnomaly {
+	s.Type = &v
+	return s
+}
+
 // Details about a reactive anomaly. This object is returned by DescribeAnomaly.
 type ReactiveAnomalySummary struct {
 	_ struct{} `type:"structure"`
 
-	// A AnomalyReportedTimeRange object that specifies the time range between when
-	// the anomaly is opened and the time when it is closed.
+	// An AnomalyReportedTimeRange object that specifies the time range between
+	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
+	// The Amazon Web Services resources in which anomalous behavior was detected
+	// by DevOps Guru.
+	AnomalyResources []*AnomalyResource `type:"list"`
 
 	// A time range that specifies when the observed unusual behavior in an anomaly
 	// started and ended. This is different from AnomalyReportedTimeRange, which
@@ -5962,16 +10655,32 @@ type ReactiveAnomalySummary struct {
 	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
 
+	// The ID of the causal anomaly that is associated with this reactive anomaly.
+	// The ID of a `CAUSAL` anomaly is always `NULL`.
+	CausalAnomalyId *string `min:"1" type:"string"`
+
+	// A description of the reactive anomaly.
+	Description *string `type:"string"`
+
 	// The ID of the reactive anomaly.
 	Id *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// The name of the reactive anomaly.
+	Name *string `type:"string"`
+
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of the reactive anomaly.
+	// The severity of the anomaly. The severity of anomalies that generate an insight
+	// determine that insight's severity. For more information, see Understanding
+	// insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
 	// Details about the source of the analyzed operational data that triggered
@@ -5980,14 +10689,30 @@ type ReactiveAnomalySummary struct {
 
 	// The status of the reactive anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
+
+	// The type of the reactive anomaly. It can be one of the following types.
+	//
+	//    * CAUSAL - the anomaly can cause a new insight.
+	//
+	//    * CONTEXTUAL - the anomaly contains additional information about an insight
+	//    or its causal anomaly.
+	Type *string `type:"string" enum:"AnomalyType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactiveAnomalySummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactiveAnomalySummary) GoString() string {
 	return s.String()
 }
@@ -5995,6 +10720,12 @@ func (s ReactiveAnomalySummary) GoString() string {
 // SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
 func (s *ReactiveAnomalySummary) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ReactiveAnomalySummary {
 	s.AnomalyReportedTimeRange = v
+	return s
+}
+
+// SetAnomalyResources sets the AnomalyResources field's value.
+func (s *ReactiveAnomalySummary) SetAnomalyResources(v []*AnomalyResource) *ReactiveAnomalySummary {
+	s.AnomalyResources = v
 	return s
 }
 
@@ -6010,9 +10741,27 @@ func (s *ReactiveAnomalySummary) SetAssociatedInsightId(v string) *ReactiveAnoma
 	return s
 }
 
+// SetCausalAnomalyId sets the CausalAnomalyId field's value.
+func (s *ReactiveAnomalySummary) SetCausalAnomalyId(v string) *ReactiveAnomalySummary {
+	s.CausalAnomalyId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ReactiveAnomalySummary) SetDescription(v string) *ReactiveAnomalySummary {
+	s.Description = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *ReactiveAnomalySummary) SetId(v string) *ReactiveAnomalySummary {
 	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ReactiveAnomalySummary) SetName(v string) *ReactiveAnomalySummary {
+	s.Name = &v
 	return s
 }
 
@@ -6040,9 +10789,18 @@ func (s *ReactiveAnomalySummary) SetStatus(v string) *ReactiveAnomalySummary {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *ReactiveAnomalySummary) SetType(v string) *ReactiveAnomalySummary {
+	s.Type = &v
+	return s
+}
+
 // Information about a reactive insight. This object is returned by ListInsights.
 type ReactiveInsight struct {
 	_ struct{} `type:"structure"`
+
+	// Describes the reactive insight.
+	Description *string `type:"string"`
 
 	// The ID of a reactive insight.
 	Id *string `min:"1" type:"string"`
@@ -6054,32 +10812,51 @@ type ReactiveInsight struct {
 	// The name of a reactive insight.
 	Name *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of a reactive insight.
+	// The severity of the insight. For more information, see Understanding insight
+	// severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
-	// The ID of the AWS System Manager OpsItem created for this insight. You must
-	// enable the creation of OpstItems insights before they are created for each
-	// insight.
+	// The ID of the Amazon Web Services System Manager OpsItem created for this
+	// insight. You must enable the creation of OpstItems insights before they are
+	// created for each insight.
 	SsmOpsItemId *string `min:"1" type:"string"`
 
 	// The status of a reactive insight.
 	Status *string `type:"string" enum:"InsightStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactiveInsight) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactiveInsight) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ReactiveInsight) SetDescription(v string) *ReactiveInsight {
+	s.Description = &v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -6128,6 +10905,10 @@ func (s *ReactiveInsight) SetStatus(v string) *ReactiveInsight {
 type ReactiveInsightSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Names (ARNs) of the Amazon Web Services resources that
+	// generated this insight.
+	AssociatedResourceArns []*string `type:"list"`
+
 	// The ID of a reactive summary.
 	Id *string `min:"1" type:"string"`
 
@@ -6138,30 +10919,49 @@ type ReactiveInsightSummary struct {
 	// The name of a reactive insight.
 	Name *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// A collection of the names of AWS services.
+	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
-	// The severity of a reactive insight.
+	// The severity of the insight. For more information, see Understanding insight
+	// severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
 	// The status of a reactive insight.
 	Status *string `type:"string" enum:"InsightStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactiveInsightSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactiveInsightSummary) GoString() string {
 	return s.String()
+}
+
+// SetAssociatedResourceArns sets the AssociatedResourceArns field's value.
+func (s *ReactiveInsightSummary) SetAssociatedResourceArns(v []*string) *ReactiveInsightSummary {
+	s.AssociatedResourceArns = v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -6206,10 +11006,126 @@ func (s *ReactiveInsightSummary) SetStatus(v string) *ReactiveInsightSummary {
 	return s
 }
 
+// Information about a reactive insight. This object is returned by DescribeInsight.
+type ReactiveOrganizationInsightSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
+	// The ID of the insight summary.
+	Id *string `min:"1" type:"string"`
+
+	// A time ranged that specifies when the observed behavior in an insight started
+	// and ended.
+	InsightTimeRange *InsightTimeRange `type:"structure"`
+
+	// The name of the insight summary.
+	Name *string `min:"1" type:"string"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitId *string `type:"string"`
+
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
+	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// A collection of the names of Amazon Web Services services.
+	ServiceCollection *ServiceCollection `type:"structure"`
+
+	// An array of severity values used to search for insights. For more information,
+	// see Understanding insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
+	Severity *string `type:"string" enum:"InsightSeverity"`
+
+	// An array of status values used to search for insights.
+	Status *string `type:"string" enum:"InsightStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReactiveOrganizationInsightSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReactiveOrganizationInsightSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ReactiveOrganizationInsightSummary) SetAccountId(v string) *ReactiveOrganizationInsightSummary {
+	s.AccountId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ReactiveOrganizationInsightSummary) SetId(v string) *ReactiveOrganizationInsightSummary {
+	s.Id = &v
+	return s
+}
+
+// SetInsightTimeRange sets the InsightTimeRange field's value.
+func (s *ReactiveOrganizationInsightSummary) SetInsightTimeRange(v *InsightTimeRange) *ReactiveOrganizationInsightSummary {
+	s.InsightTimeRange = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ReactiveOrganizationInsightSummary) SetName(v string) *ReactiveOrganizationInsightSummary {
+	s.Name = &v
+	return s
+}
+
+// SetOrganizationalUnitId sets the OrganizationalUnitId field's value.
+func (s *ReactiveOrganizationInsightSummary) SetOrganizationalUnitId(v string) *ReactiveOrganizationInsightSummary {
+	s.OrganizationalUnitId = &v
+	return s
+}
+
+// SetResourceCollection sets the ResourceCollection field's value.
+func (s *ReactiveOrganizationInsightSummary) SetResourceCollection(v *ResourceCollection) *ReactiveOrganizationInsightSummary {
+	s.ResourceCollection = v
+	return s
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *ReactiveOrganizationInsightSummary) SetServiceCollection(v *ServiceCollection) *ReactiveOrganizationInsightSummary {
+	s.ServiceCollection = v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *ReactiveOrganizationInsightSummary) SetSeverity(v string) *ReactiveOrganizationInsightSummary {
+	s.Severity = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReactiveOrganizationInsightSummary) SetStatus(v string) *ReactiveOrganizationInsightSummary {
+	s.Status = &v
+	return s
+}
+
 // Recommendation information to help you remediate detected anomalous behavior
 // that generated an insight.
 type Recommendation struct {
 	_ struct{} `type:"structure"`
+
+	// The category type of the recommendation.
+	Category *string `type:"string"`
 
 	// A description of the problem.
 	Description *string `type:"string"`
@@ -6232,14 +11148,28 @@ type Recommendation struct {
 	RelatedEvents []*RecommendationRelatedEvent `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Recommendation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Recommendation) GoString() string {
 	return s.String()
+}
+
+// SetCategory sets the Category field's value.
+func (s *Recommendation) SetCategory(v string) *Recommendation {
+	s.Category = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -6282,6 +11212,9 @@ func (s *Recommendation) SetRelatedEvents(v []*RecommendationRelatedEvent) *Reco
 type RecommendationRelatedAnomaly struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of an anomaly that generated the insight with this recommendation.
+	AnomalyId *string `min:"1" type:"string"`
+
 	// An array of objects that represent resources in which DevOps Guru detected
 	// anomalous behavior. Each object contains the name and type of the resource.
 	Resources []*RecommendationRelatedAnomalyResource `type:"list"`
@@ -6291,14 +11224,28 @@ type RecommendationRelatedAnomaly struct {
 	SourceDetails []*RecommendationRelatedAnomalySourceDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedAnomaly) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedAnomaly) GoString() string {
 	return s.String()
+}
+
+// SetAnomalyId sets the AnomalyId field's value.
+func (s *RecommendationRelatedAnomaly) SetAnomalyId(v string) *RecommendationRelatedAnomaly {
+	s.AnomalyId = &v
+	return s
 }
 
 // SetResources sets the Resources field's value.
@@ -6320,16 +11267,28 @@ type RecommendationRelatedAnomalyResource struct {
 	// The name of the resource.
 	Name *string `type:"string"`
 
-	// The type of the resource.
+	// The type of the resource. Resource types take the same form that is used
+	// by Amazon Web Services CloudFormation resource type identifiers, service-provider::service-name::data-type-name.
+	// For example, AWS::RDS::DBCluster. For more information, see Amazon Web Services
+	// resource and property types reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// in the Amazon Web Services CloudFormation User Guide.
 	Type *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedAnomalyResource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedAnomalyResource) GoString() string {
 	return s.String()
 }
@@ -6356,12 +11315,20 @@ type RecommendationRelatedAnomalySourceDetail struct {
 	CloudWatchMetrics []*RecommendationRelatedCloudWatchMetricsSourceDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedAnomalySourceDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedAnomalySourceDetail) GoString() string {
 	return s.String()
 }
@@ -6385,12 +11352,20 @@ type RecommendationRelatedCloudWatchMetricsSourceDetail struct {
 	Namespace *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedCloudWatchMetricsSourceDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedCloudWatchMetricsSourceDetail) GoString() string {
 	return s.String()
 }
@@ -6414,17 +11389,26 @@ type RecommendationRelatedEvent struct {
 	// The name of the event. This corresponds to the Name field in an Event object.
 	Name *string `type:"string"`
 
-	// A ResourceCollection object that contains arrays of the names of AWS CloudFormation
-	// stacks. You can specify up to 500 AWS CloudFormation stacks.
+	// A ResourceCollection object that contains arrays of the names of Amazon Web
+	// Services CloudFormation stacks. You can specify up to 500 Amazon Web Services
+	// CloudFormation stacks.
 	Resources []*RecommendationRelatedEventResource `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedEvent) GoString() string {
 	return s.String()
 }
@@ -6441,8 +11425,8 @@ func (s *RecommendationRelatedEvent) SetResources(v []*RecommendationRelatedEven
 	return s
 }
 
-// Information about an AWS resource that emitted and event that is related
-// to a recommendation in an insight.
+// Information about an Amazon Web Services resource that emitted and event
+// that is related to a recommendation in an insight.
 type RecommendationRelatedEventResource struct {
 	_ struct{} `type:"structure"`
 
@@ -6455,12 +11439,20 @@ type RecommendationRelatedEventResource struct {
 	Type *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedEventResource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecommendationRelatedEventResource) GoString() string {
 	return s.String()
 }
@@ -6478,7 +11470,7 @@ func (s *RecommendationRelatedEventResource) SetType(v string) *RecommendationRe
 }
 
 type RemoveNotificationChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the notification channel to be removed.
 	//
@@ -6486,12 +11478,20 @@ type RemoveNotificationChannelInput struct {
 	Id *string `location:"uri" locationName:"Id" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveNotificationChannelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveNotificationChannelInput) GoString() string {
 	return s.String()
 }
@@ -6522,37 +11522,107 @@ type RemoveNotificationChannelOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveNotificationChannelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveNotificationChannelOutput) GoString() string {
 	return s.String()
 }
 
-// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-// be configured to analyze only the AWS resources that are defined in the stacks.
-// You can specify up to 500 AWS CloudFormation stacks.
+// A collection of Amazon Web Services resources supported by DevOps Guru. The
+// two types of Amazon Web Services resource collections supported are Amazon
+// Web Services CloudFormation stacks and Amazon Web Services resources that
+// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+// analyze the Amazon Web Services resources that are defined in the stacks
+// or that are tagged using the same tag key. You can specify up to 500 Amazon
+// Web Services CloudFormation stacks.
 type ResourceCollection struct {
 	_ struct{} `type:"structure"`
 
-	// An array of the names of AWS CloudFormation stacks. The stacks define AWS
-	// resources that DevOps Guru analyzes. You can specify up to 500 AWS CloudFormation
-	// stacks.
+	// An array of the names of Amazon Web Services CloudFormation stacks. The stacks
+	// define Amazon Web Services resources that DevOps Guru analyzes. You can specify
+	// up to 500 Amazon Web Services CloudFormation stacks.
 	CloudFormation *CloudFormationCollection `type:"structure"`
+
+	// The Amazon Web Services tags that are used by resources in the resource collection.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*TagCollection `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceCollection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceCollection) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceCollection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceCollection"}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetCloudFormation sets the CloudFormation field's value.
@@ -6561,24 +11631,70 @@ func (s *ResourceCollection) SetCloudFormation(v *CloudFormationCollection) *Res
 	return s
 }
 
-// Information about a filter used to specify which AWS resources are analyzed
-// for anomalous behavior by DevOps Guru.
+// SetTags sets the Tags field's value.
+func (s *ResourceCollection) SetTags(v []*TagCollection) *ResourceCollection {
+	s.Tags = v
+	return s
+}
+
+// Information about a filter used to specify which Amazon Web Services resources
+// are analyzed for anomalous behavior by DevOps Guru.
 type ResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// Information about AWS CloudFormation stacks. You can use up to 500 stacks
-	// to specify which AWS resources in your account to analyze. For more information,
-	// see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-	// in the AWS CloudFormation User Guide.
+	// Information about Amazon Web Services CloudFormation stacks. You can use
+	// up to 500 stacks to specify which Amazon Web Services resources in your account
+	// to analyze. For more information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+	// in the Amazon Web Services CloudFormation User Guide.
 	CloudFormation *CloudFormationCollectionFilter `type:"structure"`
+
+	// The Amazon Web Services tags used to filter the resources in the resource
+	// collection.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*TagCollectionFilter `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceCollectionFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceCollectionFilter) GoString() string {
 	return s.String()
 }
@@ -6589,6 +11705,12 @@ func (s *ResourceCollectionFilter) SetCloudFormation(v *CloudFormationCollection
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *ResourceCollectionFilter) SetTags(v []*TagCollectionFilter) *ResourceCollectionFilter {
+	s.Tags = v
+	return s
+}
+
 // A requested resource could not be found
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -6596,23 +11718,31 @@ type ResourceNotFoundException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The ID of the AWS resource that could not be found.
+	// The ID of the Amazon Web Services resource that could not be found.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// The type of the AWS resource that could not be found.
+	// The type of the Amazon Web Services resource that could not be found.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -6655,35 +11785,65 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies one or more severity values and one or more status values that
-// are used to search for insights.
+// Specifies values used to filter responses when searching for insights. You
+// can use a ResourceCollection, ServiceCollection, array of severities, and
+// an array of status values. Each filter type contains one or more values to
+// search for. If you specify multiple filter types, the filter types are joined
+// with an AND, and the request returns only results that match all of the specified
+// filters.
 type SearchInsightsFilters struct {
 	_ struct{} `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// A collection of the names of AWS services.
+	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
 	// An array of severity values used to search for insights.
-	Severities []*string `type:"list"`
+	Severities []*string `type:"list" enum:"InsightSeverity"`
 
 	// An array of status values used to search for insights.
-	Statuses []*string `type:"list"`
+	Statuses []*string `type:"list" enum:"InsightStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchInsightsFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchInsightsFilters) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchInsightsFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchInsightsFilters"}
+	if s.ResourceCollection != nil {
+		if err := s.ResourceCollection.Validate(); err != nil {
+			invalidParams.AddNested("ResourceCollection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetResourceCollection sets the ResourceCollection field's value.
@@ -6737,12 +11897,20 @@ type SearchInsightsInput struct {
 	Type *string `type:"string" required:"true" enum:"InsightType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchInsightsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchInsightsInput) GoString() string {
 	return s.String()
 }
@@ -6761,6 +11929,11 @@ func (s *SearchInsightsInput) Validate() error {
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6813,12 +11986,20 @@ type SearchInsightsOutput struct {
 	ReactiveInsights []*ReactiveInsightSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchInsightsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchInsightsOutput) GoString() string {
 	return s.String()
 }
@@ -6841,20 +12022,280 @@ func (s *SearchInsightsOutput) SetReactiveInsights(v []*ReactiveInsightSummary) 
 	return s
 }
 
-// A collection of the names of AWS services.
+// Filters you can use to specify which events are returned when ListEvents
+// is called.
+type SearchOrganizationInsightsFilters struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
+	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// A collection of the names of Amazon Web Services services.
+	ServiceCollection *ServiceCollection `type:"structure"`
+
+	// An array of severity values used to search for insights.
+	Severities []*string `type:"list" enum:"InsightSeverity"`
+
+	// An array of status values used to search for insights.
+	Statuses []*string `type:"list" enum:"InsightStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchOrganizationInsightsFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchOrganizationInsightsFilters"}
+	if s.ResourceCollection != nil {
+		if err := s.ResourceCollection.Validate(); err != nil {
+			invalidParams.AddNested("ResourceCollection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceCollection sets the ResourceCollection field's value.
+func (s *SearchOrganizationInsightsFilters) SetResourceCollection(v *ResourceCollection) *SearchOrganizationInsightsFilters {
+	s.ResourceCollection = v
+	return s
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *SearchOrganizationInsightsFilters) SetServiceCollection(v *ServiceCollection) *SearchOrganizationInsightsFilters {
+	s.ServiceCollection = v
+	return s
+}
+
+// SetSeverities sets the Severities field's value.
+func (s *SearchOrganizationInsightsFilters) SetSeverities(v []*string) *SearchOrganizationInsightsFilters {
+	s.Severities = v
+	return s
+}
+
+// SetStatuses sets the Statuses field's value.
+func (s *SearchOrganizationInsightsFilters) SetStatuses(v []*string) *SearchOrganizationInsightsFilters {
+	s.Statuses = v
+	return s
+}
+
+type SearchOrganizationInsightsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	//
+	// AccountIds is a required field
+	AccountIds []*string `min:"1" type:"list" required:"true"`
+
+	// A SearchOrganizationInsightsFilters object that is used to set the severity
+	// and status filters on your insight search.
+	Filters *SearchOrganizationInsightsFilters `type:"structure"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+
+	// A time range used to specify when the behavior of an insight or anomaly started.
+	//
+	// StartTimeRange is a required field
+	StartTimeRange *StartTimeRange `type:"structure" required:"true"`
+
+	// The type of insights you are searching for (REACTIVE or PROACTIVE).
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"InsightType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchOrganizationInsightsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchOrganizationInsightsInput"}
+	if s.AccountIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountIds"))
+	}
+	if s.AccountIds != nil && len(s.AccountIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIds", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+	if s.StartTimeRange == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTimeRange"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *SearchOrganizationInsightsInput) SetAccountIds(v []*string) *SearchOrganizationInsightsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *SearchOrganizationInsightsInput) SetFilters(v *SearchOrganizationInsightsFilters) *SearchOrganizationInsightsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchOrganizationInsightsInput) SetMaxResults(v int64) *SearchOrganizationInsightsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchOrganizationInsightsInput) SetNextToken(v string) *SearchOrganizationInsightsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTimeRange sets the StartTimeRange field's value.
+func (s *SearchOrganizationInsightsInput) SetStartTimeRange(v *StartTimeRange) *SearchOrganizationInsightsInput {
+	s.StartTimeRange = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SearchOrganizationInsightsInput) SetType(v string) *SearchOrganizationInsightsInput {
+	s.Type = &v
+	return s
+}
+
+type SearchOrganizationInsightsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	ProactiveInsights []*ProactiveInsightSummary `type:"list"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	ReactiveInsights []*ReactiveInsightSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchOrganizationInsightsOutput) SetNextToken(v string) *SearchOrganizationInsightsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProactiveInsights sets the ProactiveInsights field's value.
+func (s *SearchOrganizationInsightsOutput) SetProactiveInsights(v []*ProactiveInsightSummary) *SearchOrganizationInsightsOutput {
+	s.ProactiveInsights = v
+	return s
+}
+
+// SetReactiveInsights sets the ReactiveInsights field's value.
+func (s *SearchOrganizationInsightsOutput) SetReactiveInsights(v []*ReactiveInsightSummary) *SearchOrganizationInsightsOutput {
+	s.ReactiveInsights = v
+	return s
+}
+
+// A collection of the names of Amazon Web Services services.
 type ServiceCollection struct {
 	_ struct{} `type:"structure"`
 
-	// An array of strings that each specifies the name of an AWS service.
-	ServiceNames []*string `type:"list"`
+	// An array of strings that each specifies the name of an Amazon Web Services
+	// service.
+	ServiceNames []*string `type:"list" enum:"ServiceName"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceCollection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceCollection) GoString() string {
 	return s.String()
 }
@@ -6865,26 +12306,45 @@ func (s *ServiceCollection) SetServiceNames(v []*string) *ServiceCollection {
 	return s
 }
 
-// Represents the health of an AWS service.
+// Represents the health of an Amazon Web Services service.
 type ServiceHealth struct {
 	_ struct{} `type:"structure"`
 
-	// Represents the health of an AWS service. This is a ServiceInsightHealth that
-	// contains the number of open proactive and reactive insights for this service.
+	// Number of resources that DevOps Guru is monitoring in an analyzed Amazon
+	// Web Services service.
+	AnalyzedResourceCount *int64 `type:"long"`
+
+	// Represents the health of an Amazon Web Services service. This is a ServiceInsightHealth
+	// that contains the number of open proactive and reactive insights for this
+	// service.
 	Insight *ServiceInsightHealth `type:"structure"`
 
-	// The name of the AWS service.
+	// The name of the Amazon Web Services service.
 	ServiceName *string `type:"string" enum:"ServiceName"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceHealth) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceHealth) GoString() string {
 	return s.String()
+}
+
+// SetAnalyzedResourceCount sets the AnalyzedResourceCount field's value.
+func (s *ServiceHealth) SetAnalyzedResourceCount(v int64) *ServiceHealth {
+	s.AnalyzedResourceCount = &v
+	return s
 }
 
 // SetInsight sets the Insight field's value.
@@ -6900,23 +12360,31 @@ func (s *ServiceHealth) SetServiceName(v string) *ServiceHealth {
 }
 
 // Contains the number of open proactive and reactive insights in an analyzed
-// AWS service.
+// Amazon Web Services service.
 type ServiceInsightHealth struct {
 	_ struct{} `type:"structure"`
 
-	// The number of open proactive insights in the AWS service
+	// The number of open proactive insights in the Amazon Web Services service
 	OpenProactiveInsights *int64 `type:"integer"`
 
-	// The number of open reactive insights in the AWS service
+	// The number of open reactive insights in the Amazon Web Services service
 	OpenReactiveInsights *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceInsightHealth) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceInsightHealth) GoString() string {
 	return s.String()
 }
@@ -6933,24 +12401,52 @@ func (s *ServiceInsightHealth) SetOpenReactiveInsights(v int64) *ServiceInsightH
 	return s
 }
 
-// Information about the integration of DevOps Guru with another AWS service,
-// such as AWS Systems Manager.
+// Information about the integration of DevOps Guru with another Amazon Web
+// Services service, such as Amazon Web Services Systems Manager.
 type ServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Information about whether DevOps Guru is configured to encrypt server-side
+	// data using KMS.
+	KMSServerSideEncryption *KMSServerSideEncryptionIntegration `type:"structure"`
+
+	// Information about whether DevOps Guru is configured to perform log anomaly
+	// detection on Amazon CloudWatch log groups.
+	LogsAnomalyDetection *LogsAnomalyDetectionIntegration `type:"structure"`
+
 	// Information about whether DevOps Guru is configured to create an OpsItem
-	// in AWS Systems Manager OpsCenter for each created insight.
+	// in Amazon Web Services Systems Manager OpsCenter for each created insight.
 	OpsCenter *OpsCenterIntegration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceIntegrationConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceIntegrationConfig) GoString() string {
 	return s.String()
+}
+
+// SetKMSServerSideEncryption sets the KMSServerSideEncryption field's value.
+func (s *ServiceIntegrationConfig) SetKMSServerSideEncryption(v *KMSServerSideEncryptionIntegration) *ServiceIntegrationConfig {
+	s.KMSServerSideEncryption = v
+	return s
+}
+
+// SetLogsAnomalyDetection sets the LogsAnomalyDetection field's value.
+func (s *ServiceIntegrationConfig) SetLogsAnomalyDetection(v *LogsAnomalyDetectionIntegration) *ServiceIntegrationConfig {
+	s.LogsAnomalyDetection = v
+	return s
 }
 
 // SetOpsCenter sets the OpsCenter field's value.
@@ -6967,12 +12463,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -7016,8 +12520,8 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 }
 
 // An object that contains information about the estimated monthly cost to analyze
-// an AWS resource. For more information, see Estimate your Amazon DevOps Guru
-// costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+// an Amazon Web Services resource. For more information, see Estimate your
+// Amazon DevOps Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
 // and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
 type ServiceResourceCost struct {
 	_ struct{} `type:"structure"`
@@ -7032,11 +12536,11 @@ type ServiceResourceCost struct {
 
 	// The state of the resource. The resource is ACTIVE if it produces metrics,
 	// events, or logs within an hour, otherwise it is INACTIVE. You pay for the
-	// number of active AWS resource hours analyzed for each resource. Inactive
-	// resources are not charged.
+	// number of active Amazon Web Services resource hours analyzed for each resource.
+	// Inactive resources are not charged.
 	State *string `type:"string" enum:"CostEstimationServiceResourceState"`
 
-	// The type of the AWS resource.
+	// The type of the Amazon Web Services resource.
 	Type *string `min:"1" type:"string"`
 
 	// The price per hour to analyze the resources in the service. For more information,
@@ -7045,12 +12549,20 @@ type ServiceResourceCost struct {
 	UnitCost *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceResourceCost) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceResourceCost) GoString() string {
 	return s.String()
 }
@@ -7089,15 +12601,15 @@ func (s *ServiceResourceCost) SetUnitCost(v float64) *ServiceResourceCost {
 // Service topic.
 //
 // If you use an Amazon SNS topic in another account, you must attach a policy
-// to it that grants DevOps Guru permission to it notifications. DevOps Guru
-// adds the required policy on your behalf to send notifications using Amazon
-// SNS in your account. For more information, see Permissions for cross account
-// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+// to it that grants DevOps Guru permission to send it notifications. DevOps
+// Guru adds the required policy on your behalf to send notifications using
+// Amazon SNS in your account. DevOps Guru only supports standard SNS topics.
+// For more information, see Permissions for Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 //
-// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
-// Service customer-managed key (CMK), then you must add permissions to the
-// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
-// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
+// Key Management Service customer-managed key (CMK), then you must add permissions
+// to the CMK. For more information, see Permissions for Amazon Web Services
+// KMS–encrypted Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 type SnsChannelConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7105,12 +12617,20 @@ type SnsChannelConfig struct {
 	TopicArn *string `min:"36" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnsChannelConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnsChannelConfig) GoString() string {
 	return s.String()
 }
@@ -7140,19 +12660,27 @@ type StartCostEstimationInput struct {
 	// The idempotency token used to identify each cost estimate request.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The collection of AWS resources used to create a monthly DevOps Guru cost
-	// estimate.
+	// The collection of Amazon Web Services resources used to create a monthly
+	// DevOps Guru cost estimate.
 	//
 	// ResourceCollection is a required field
 	ResourceCollection *CostEstimationResourceCollectionFilter `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartCostEstimationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartCostEstimationInput) GoString() string {
 	return s.String()
 }
@@ -7194,12 +12722,20 @@ type StartCostEstimationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartCostEstimationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartCostEstimationOutput) GoString() string {
 	return s.String()
 }
@@ -7215,12 +12751,20 @@ type StartTimeRange struct {
 	ToTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTimeRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTimeRange) GoString() string {
 	return s.String()
 }
@@ -7234,6 +12778,355 @@ func (s *StartTimeRange) SetFromTime(v time.Time) *StartTimeRange {
 // SetToTime sets the ToTime field's value.
 func (s *StartTimeRange) SetToTime(v time.Time) *StartTimeRange {
 	s.ToTime = &v
+	return s
+}
+
+// A collection of Amazon Web Services tags.
+//
+// Tags help you identify and organize your Amazon Web Services resources. Many
+// Amazon Web Services services support tagging, so you can assign the same
+// tag to resources from different services to indicate that the resources are
+// related. For example, you can assign the same tag to an Amazon DynamoDB table
+// resource that you assign to an Lambda function. For more information about
+// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
+// whitepaper.
+//
+// Each Amazon Web Services tag has two parts.
+//
+//   - A tag key (for example, CostCenter, Environment, Project, or Secret).
+//     Tag keys are case-sensitive.
+//
+//   - An optional field known as a tag value (for example, 111122223333, Production,
+//     or a team name). Omitting the tag value is the same as using an empty
+//     string. Like tag keys, tag values are case-sensitive.
+//
+// Together these are known as key-value pairs.
+//
+// The string used for a key in a tag that you use to define your resource coverage
+// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+// or devops-guru-rds-application. When you create a key, the case of characters
+// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+// For example, DevOps Guru works with a key named devops-guru-rds and a key
+// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+// pairs in your application might be Devops-Guru-production-application/RDS
+// or Devops-Guru-production-application/containers.
+type TagCollection struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	//
+	// AppBoundaryKey is a required field
+	AppBoundaryKey *string `min:"1" type:"string" required:"true"`
+
+	// The values in an Amazon Web Services tag collection.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	//
+	// TagValues is a required field
+	TagValues []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCollection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCollection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagCollection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagCollection"}
+	if s.AppBoundaryKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppBoundaryKey"))
+	}
+	if s.AppBoundaryKey != nil && len(*s.AppBoundaryKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppBoundaryKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *TagCollection) SetAppBoundaryKey(v string) *TagCollection {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *TagCollection) SetTagValues(v []*string) *TagCollection {
+	s.TagValues = v
+	return s
+}
+
+// A collection of Amazon Web Services tags used to filter insights. This is
+// used to return insights generated from only resources that contain the tags
+// in the tag collection.
+type TagCollectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	//
+	// AppBoundaryKey is a required field
+	AppBoundaryKey *string `min:"1" type:"string" required:"true"`
+
+	// The values in an Amazon Web Services tag collection.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	//
+	// TagValues is a required field
+	TagValues []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCollectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCollectionFilter) GoString() string {
+	return s.String()
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *TagCollectionFilter) SetAppBoundaryKey(v string) *TagCollectionFilter {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *TagCollectionFilter) SetTagValues(v []*string) *TagCollectionFilter {
+	s.TagValues = v
+	return s
+}
+
+// Information about a collection of Amazon Web Services resources that are
+// identified by an Amazon Web Services tag. This collection of resources is
+// used to create a monthly cost estimate for DevOps Guru to analyze Amazon
+// Web Services resources. The maximum number of tags you can specify for a
+// cost estimate is one. The estimate created is for the cost to analyze the
+// Amazon Web Services resources defined by the tag. For more information, see
+// Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the Amazon Web Services CloudFormation User Guide.
+type TagCostEstimationResourceCollectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	//
+	// AppBoundaryKey is a required field
+	AppBoundaryKey *string `min:"1" type:"string" required:"true"`
+
+	// The values in an Amazon Web Services tag collection.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	//
+	// TagValues is a required field
+	TagValues []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCostEstimationResourceCollectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCostEstimationResourceCollectionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagCostEstimationResourceCollectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagCostEstimationResourceCollectionFilter"}
+	if s.AppBoundaryKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppBoundaryKey"))
+	}
+	if s.AppBoundaryKey != nil && len(*s.AppBoundaryKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppBoundaryKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+	if s.TagValues != nil && len(s.TagValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *TagCostEstimationResourceCollectionFilter) SetAppBoundaryKey(v string) *TagCostEstimationResourceCollectionFilter {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *TagCostEstimationResourceCollectionFilter) SetTagValues(v []*string) *TagCostEstimationResourceCollectionFilter {
+	s.TagValues = v
+	return s
+}
+
+// Information about the health of Amazon Web Services resources in your account
+// that are specified by an Amazon Web Services tag key.
+type TagHealth struct {
+	_ struct{} `type:"structure"`
+
+	// Number of resources that DevOps Guru is monitoring in your account that are
+	// specified by an Amazon Web Services tag.
+	AnalyzedResourceCount *int64 `type:"long"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	AppBoundaryKey *string `min:"1" type:"string"`
+
+	// Information about the health of the Amazon Web Services resources in your
+	// account that are specified by an Amazon Web Services tag, including the number
+	// of open proactive, open reactive insights, and the Mean Time to Recover (MTTR)
+	// of closed insights.
+	Insight *InsightHealth `type:"structure"`
+
+	// The value in an Amazon Web Services tag.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	TagValue *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagHealth) GoString() string {
+	return s.String()
+}
+
+// SetAnalyzedResourceCount sets the AnalyzedResourceCount field's value.
+func (s *TagHealth) SetAnalyzedResourceCount(v int64) *TagHealth {
+	s.AnalyzedResourceCount = &v
+	return s
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *TagHealth) SetAppBoundaryKey(v string) *TagHealth {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetInsight sets the Insight field's value.
+func (s *TagHealth) SetInsight(v *InsightHealth) *TagHealth {
+	s.Insight = v
+	return s
+}
+
+// SetTagValue sets the TagValue field's value.
+func (s *TagHealth) SetTagValue(v string) *TagHealth {
+	s.TagValue = &v
 	return s
 }
 
@@ -7255,12 +13148,20 @@ type ThrottlingException struct {
 	ServiceCode *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -7303,22 +13204,72 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains the names of AWS CloudFormation stacks used to update a collection
-// of stacks. You can specify up to 500 AWS CloudFormation stacks.
+// A pair that contains metric values at the respective timestamp.
+type TimestampMetricValuePair struct {
+	_ struct{} `type:"structure"`
+
+	// Value of the anomalous metric data point at respective Timestamp.
+	MetricValue *float64 `type:"double"`
+
+	// A Timestamp that specifies the time the event occurred.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimestampMetricValuePair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimestampMetricValuePair) GoString() string {
+	return s.String()
+}
+
+// SetMetricValue sets the MetricValue field's value.
+func (s *TimestampMetricValuePair) SetMetricValue(v float64) *TimestampMetricValuePair {
+	s.MetricValue = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *TimestampMetricValuePair) SetTimestamp(v time.Time) *TimestampMetricValuePair {
+	s.Timestamp = &v
+	return s
+}
+
+// Contains the names of Amazon Web Services CloudFormation stacks used to update
+// a collection of stacks. You can specify up to 500 Amazon Web Services CloudFormation
+// stacks.
 type UpdateCloudFormationCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// An array of the names of the AWS CloudFormation stacks to update. You can
-	// specify up to 500 AWS CloudFormation stacks.
+	// An array of the names of the Amazon Web Services CloudFormation stacks to
+	// update. You can specify up to 500 Amazon Web Services CloudFormation stacks.
 	StackNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCloudFormationCollectionFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCloudFormationCollectionFilter) GoString() string {
 	return s.String()
 }
@@ -7329,28 +13280,148 @@ func (s *UpdateCloudFormationCollectionFilter) SetStackNames(v []*string) *Updat
 	return s
 }
 
-// Contains information used to update a collection of AWS resources.
+type UpdateEventSourcesConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information about the integration of DevOps Guru as the Consumer
+	// via EventBridge with another AWS Service.
+	EventSources *EventSourcesConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventSourcesConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventSourcesConfigInput) GoString() string {
+	return s.String()
+}
+
+// SetEventSources sets the EventSources field's value.
+func (s *UpdateEventSourcesConfigInput) SetEventSources(v *EventSourcesConfig) *UpdateEventSourcesConfigInput {
+	s.EventSources = v
+	return s
+}
+
+type UpdateEventSourcesConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventSourcesConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventSourcesConfigOutput) GoString() string {
+	return s.String()
+}
+
+// Contains information used to update a collection of Amazon Web Services resources.
 type UpdateResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// An collection of AWS CloudFormation stacks. You can specify up to 500 AWS
-	// CloudFormation stacks.
+	// A collection of Amazon Web Services CloudFormation stacks. You can specify
+	// up to 500 Amazon Web Services CloudFormation stacks.
 	CloudFormation *UpdateCloudFormationCollectionFilter `type:"structure"`
+
+	// The updated Amazon Web Services tags used to filter the resources in the
+	// resource collection.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*UpdateTagCollectionFilter `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceCollectionFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceCollectionFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResourceCollectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResourceCollectionFilter"}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetCloudFormation sets the CloudFormation field's value.
 func (s *UpdateResourceCollectionFilter) SetCloudFormation(v *UpdateCloudFormationCollectionFilter) *UpdateResourceCollectionFilter {
 	s.CloudFormation = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateResourceCollectionFilter) SetTags(v []*UpdateTagCollectionFilter) *UpdateResourceCollectionFilter {
+	s.Tags = v
 	return s
 }
 
@@ -7363,18 +13434,26 @@ type UpdateResourceCollectionInput struct {
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"UpdateResourceCollectionAction"`
 
-	// Contains information used to update a collection of AWS resources.
+	// Contains information used to update a collection of Amazon Web Services resources.
 	//
 	// ResourceCollection is a required field
 	ResourceCollection *UpdateResourceCollectionFilter `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceCollectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceCollectionInput) GoString() string {
 	return s.String()
 }
@@ -7387,6 +13466,11 @@ func (s *UpdateResourceCollectionInput) Validate() error {
 	}
 	if s.ResourceCollection == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceCollection"))
+	}
+	if s.ResourceCollection != nil {
+		if err := s.ResourceCollection.Validate(); err != nil {
+			invalidParams.AddNested("ResourceCollection", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7411,34 +13495,86 @@ type UpdateResourceCollectionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceCollectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceCollectionOutput) GoString() string {
 	return s.String()
 }
 
-// Information about updating the integration status of an AWS service, such
-// as AWS Systems Manager, with DevOps Guru.
+// Information about updating the integration status of an Amazon Web Services
+// service, such as Amazon Web Services Systems Manager, with DevOps Guru.
 type UpdateServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Information about whether DevOps Guru is configured to encrypt server-side
+	// data using KMS.
+	KMSServerSideEncryption *KMSServerSideEncryptionIntegrationConfig `type:"structure"`
+
+	// Information about whether DevOps Guru is configured to perform log anomaly
+	// detection on Amazon CloudWatch log groups.
+	LogsAnomalyDetection *LogsAnomalyDetectionIntegrationConfig `type:"structure"`
+
 	// Information about whether DevOps Guru is configured to create an OpsItem
-	// in AWS Systems Manager OpsCenter for each created insight.
+	// in Amazon Web Services Systems Manager OpsCenter for each created insight.
+	// You can use this to update the configuration.
 	OpsCenter *OpsCenterIntegrationConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceIntegrationConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceIntegrationConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateServiceIntegrationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateServiceIntegrationConfig"}
+	if s.KMSServerSideEncryption != nil {
+		if err := s.KMSServerSideEncryption.Validate(); err != nil {
+			invalidParams.AddNested("KMSServerSideEncryption", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKMSServerSideEncryption sets the KMSServerSideEncryption field's value.
+func (s *UpdateServiceIntegrationConfig) SetKMSServerSideEncryption(v *KMSServerSideEncryptionIntegrationConfig) *UpdateServiceIntegrationConfig {
+	s.KMSServerSideEncryption = v
+	return s
+}
+
+// SetLogsAnomalyDetection sets the LogsAnomalyDetection field's value.
+func (s *UpdateServiceIntegrationConfig) SetLogsAnomalyDetection(v *LogsAnomalyDetectionIntegrationConfig) *UpdateServiceIntegrationConfig {
+	s.LogsAnomalyDetection = v
+	return s
 }
 
 // SetOpsCenter sets the OpsCenter field's value.
@@ -7457,12 +13593,20 @@ type UpdateServiceIntegrationInput struct {
 	ServiceIntegration *UpdateServiceIntegrationConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceIntegrationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceIntegrationInput) GoString() string {
 	return s.String()
 }
@@ -7472,6 +13616,11 @@ func (s *UpdateServiceIntegrationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateServiceIntegrationInput"}
 	if s.ServiceIntegration == nil {
 		invalidParams.Add(request.NewErrParamRequired("ServiceIntegration"))
+	}
+	if s.ServiceIntegration != nil {
+		if err := s.ServiceIntegration.Validate(); err != nil {
+			invalidParams.AddNested("ServiceIntegration", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7490,14 +13639,105 @@ type UpdateServiceIntegrationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceIntegrationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceIntegrationOutput) GoString() string {
 	return s.String()
+}
+
+// A new collection of Amazon Web Services resources that are defined by an
+// Amazon Web Services tag or tag key/value pair.
+type UpdateTagCollectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	//
+	// AppBoundaryKey is a required field
+	AppBoundaryKey *string `min:"1" type:"string" required:"true"`
+
+	// The values in an Amazon Web Services tag collection.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	//
+	// TagValues is a required field
+	TagValues []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTagCollectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTagCollectionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTagCollectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTagCollectionFilter"}
+	if s.AppBoundaryKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppBoundaryKey"))
+	}
+	if s.AppBoundaryKey != nil && len(*s.AppBoundaryKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppBoundaryKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *UpdateTagCollectionFilter) SetAppBoundaryKey(v string) *UpdateTagCollectionFilter {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *UpdateTagCollectionFilter) SetTagValues(v []*string) *UpdateTagCollectionFilter {
+	s.TagValues = v
+	return s
 }
 
 // Contains information about data passed in to a field during a request that
@@ -7516,12 +13756,20 @@ type ValidationException struct {
 	Reason *string `type:"string" enum:"ValidationExceptionReason"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -7580,12 +13828,20 @@ type ValidationExceptionField struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationExceptionField) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationExceptionField) GoString() string {
 	return s.String()
 }
@@ -7635,6 +13891,42 @@ func AnomalyStatus_Values() []string {
 	return []string{
 		AnomalyStatusOngoing,
 		AnomalyStatusClosed,
+	}
+}
+
+const (
+	// AnomalyTypeCausal is a AnomalyType enum value
+	AnomalyTypeCausal = "CAUSAL"
+
+	// AnomalyTypeContextual is a AnomalyType enum value
+	AnomalyTypeContextual = "CONTEXTUAL"
+)
+
+// AnomalyType_Values returns all elements of the AnomalyType enum
+func AnomalyType_Values() []string {
+	return []string{
+		AnomalyTypeCausal,
+		AnomalyTypeContextual,
+	}
+}
+
+const (
+	// CloudWatchMetricDataStatusCodeComplete is a CloudWatchMetricDataStatusCode enum value
+	CloudWatchMetricDataStatusCodeComplete = "Complete"
+
+	// CloudWatchMetricDataStatusCodeInternalError is a CloudWatchMetricDataStatusCode enum value
+	CloudWatchMetricDataStatusCodeInternalError = "InternalError"
+
+	// CloudWatchMetricDataStatusCodePartialData is a CloudWatchMetricDataStatusCode enum value
+	CloudWatchMetricDataStatusCodePartialData = "PartialData"
+)
+
+// CloudWatchMetricDataStatusCode_Values returns all elements of the CloudWatchMetricDataStatusCode enum
+func CloudWatchMetricDataStatusCode_Values() []string {
+	return []string{
+		CloudWatchMetricDataStatusCodeComplete,
+		CloudWatchMetricDataStatusCodeInternalError,
+		CloudWatchMetricDataStatusCodePartialData,
 	}
 }
 
@@ -7751,6 +14043,22 @@ func EventDataSource_Values() []string {
 	return []string{
 		EventDataSourceAwsCloudTrail,
 		EventDataSourceAwsCodeDeploy,
+	}
+}
+
+const (
+	// EventSourceOptInStatusEnabled is a EventSourceOptInStatus enum value
+	EventSourceOptInStatusEnabled = "ENABLED"
+
+	// EventSourceOptInStatusDisabled is a EventSourceOptInStatus enum value
+	EventSourceOptInStatusDisabled = "DISABLED"
+)
+
+// EventSourceOptInStatus_Values returns all elements of the EventSourceOptInStatus enum
+func EventSourceOptInStatus_Values() []string {
+	return []string{
+		EventSourceOptInStatusEnabled,
+		EventSourceOptInStatusDisabled,
 	}
 }
 
@@ -7886,8 +14194,76 @@ func Locale_Values() []string {
 	}
 }
 
-// Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
-// for each created insight.
+const (
+	// LogAnomalyTypeKeyword is a LogAnomalyType enum value
+	LogAnomalyTypeKeyword = "KEYWORD"
+
+	// LogAnomalyTypeKeywordToken is a LogAnomalyType enum value
+	LogAnomalyTypeKeywordToken = "KEYWORD_TOKEN"
+
+	// LogAnomalyTypeFormat is a LogAnomalyType enum value
+	LogAnomalyTypeFormat = "FORMAT"
+
+	// LogAnomalyTypeHttpCode is a LogAnomalyType enum value
+	LogAnomalyTypeHttpCode = "HTTP_CODE"
+
+	// LogAnomalyTypeBlockFormat is a LogAnomalyType enum value
+	LogAnomalyTypeBlockFormat = "BLOCK_FORMAT"
+
+	// LogAnomalyTypeNumericalPoint is a LogAnomalyType enum value
+	LogAnomalyTypeNumericalPoint = "NUMERICAL_POINT"
+
+	// LogAnomalyTypeNumericalNan is a LogAnomalyType enum value
+	LogAnomalyTypeNumericalNan = "NUMERICAL_NAN"
+
+	// LogAnomalyTypeNewFieldName is a LogAnomalyType enum value
+	LogAnomalyTypeNewFieldName = "NEW_FIELD_NAME"
+)
+
+// LogAnomalyType_Values returns all elements of the LogAnomalyType enum
+func LogAnomalyType_Values() []string {
+	return []string{
+		LogAnomalyTypeKeyword,
+		LogAnomalyTypeKeywordToken,
+		LogAnomalyTypeFormat,
+		LogAnomalyTypeHttpCode,
+		LogAnomalyTypeBlockFormat,
+		LogAnomalyTypeNumericalPoint,
+		LogAnomalyTypeNumericalNan,
+		LogAnomalyTypeNewFieldName,
+	}
+}
+
+const (
+	// NotificationMessageTypeNewInsight is a NotificationMessageType enum value
+	NotificationMessageTypeNewInsight = "NEW_INSIGHT"
+
+	// NotificationMessageTypeClosedInsight is a NotificationMessageType enum value
+	NotificationMessageTypeClosedInsight = "CLOSED_INSIGHT"
+
+	// NotificationMessageTypeNewAssociation is a NotificationMessageType enum value
+	NotificationMessageTypeNewAssociation = "NEW_ASSOCIATION"
+
+	// NotificationMessageTypeSeverityUpgraded is a NotificationMessageType enum value
+	NotificationMessageTypeSeverityUpgraded = "SEVERITY_UPGRADED"
+
+	// NotificationMessageTypeNewRecommendation is a NotificationMessageType enum value
+	NotificationMessageTypeNewRecommendation = "NEW_RECOMMENDATION"
+)
+
+// NotificationMessageType_Values returns all elements of the NotificationMessageType enum
+func NotificationMessageType_Values() []string {
+	return []string{
+		NotificationMessageTypeNewInsight,
+		NotificationMessageTypeClosedInsight,
+		NotificationMessageTypeNewAssociation,
+		NotificationMessageTypeSeverityUpgraded,
+		NotificationMessageTypeNewRecommendation,
+	}
+}
+
+// Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems
+// Manager OpsItem for each created insight.
 const (
 	// OptInStatusEnabled is a OptInStatus enum value
 	OptInStatusEnabled = "ENABLED"
@@ -7905,11 +14281,38 @@ func OptInStatus_Values() []string {
 }
 
 const (
+	// OrganizationResourceCollectionTypeAwsCloudFormation is a OrganizationResourceCollectionType enum value
+	OrganizationResourceCollectionTypeAwsCloudFormation = "AWS_CLOUD_FORMATION"
+
+	// OrganizationResourceCollectionTypeAwsService is a OrganizationResourceCollectionType enum value
+	OrganizationResourceCollectionTypeAwsService = "AWS_SERVICE"
+
+	// OrganizationResourceCollectionTypeAwsAccount is a OrganizationResourceCollectionType enum value
+	OrganizationResourceCollectionTypeAwsAccount = "AWS_ACCOUNT"
+
+	// OrganizationResourceCollectionTypeAwsTags is a OrganizationResourceCollectionType enum value
+	OrganizationResourceCollectionTypeAwsTags = "AWS_TAGS"
+)
+
+// OrganizationResourceCollectionType_Values returns all elements of the OrganizationResourceCollectionType enum
+func OrganizationResourceCollectionType_Values() []string {
+	return []string{
+		OrganizationResourceCollectionTypeAwsCloudFormation,
+		OrganizationResourceCollectionTypeAwsService,
+		OrganizationResourceCollectionTypeAwsAccount,
+		OrganizationResourceCollectionTypeAwsTags,
+	}
+}
+
+const (
 	// ResourceCollectionTypeAwsCloudFormation is a ResourceCollectionType enum value
 	ResourceCollectionTypeAwsCloudFormation = "AWS_CLOUD_FORMATION"
 
 	// ResourceCollectionTypeAwsService is a ResourceCollectionType enum value
 	ResourceCollectionTypeAwsService = "AWS_SERVICE"
+
+	// ResourceCollectionTypeAwsTags is a ResourceCollectionType enum value
+	ResourceCollectionTypeAwsTags = "AWS_TAGS"
 )
 
 // ResourceCollectionType_Values returns all elements of the ResourceCollectionType enum
@@ -7917,6 +14320,155 @@ func ResourceCollectionType_Values() []string {
 	return []string{
 		ResourceCollectionTypeAwsCloudFormation,
 		ResourceCollectionTypeAwsService,
+		ResourceCollectionTypeAwsTags,
+	}
+}
+
+const (
+	// ResourcePermissionFullPermission is a ResourcePermission enum value
+	ResourcePermissionFullPermission = "FULL_PERMISSION"
+
+	// ResourcePermissionMissingPermission is a ResourcePermission enum value
+	ResourcePermissionMissingPermission = "MISSING_PERMISSION"
+)
+
+// ResourcePermission_Values returns all elements of the ResourcePermission enum
+func ResourcePermission_Values() []string {
+	return []string{
+		ResourcePermissionFullPermission,
+		ResourcePermissionMissingPermission,
+	}
+}
+
+const (
+	// ResourceTypeFilterLogGroups is a ResourceTypeFilter enum value
+	ResourceTypeFilterLogGroups = "LOG_GROUPS"
+
+	// ResourceTypeFilterCloudfrontDistribution is a ResourceTypeFilter enum value
+	ResourceTypeFilterCloudfrontDistribution = "CLOUDFRONT_DISTRIBUTION"
+
+	// ResourceTypeFilterDynamodbTable is a ResourceTypeFilter enum value
+	ResourceTypeFilterDynamodbTable = "DYNAMODB_TABLE"
+
+	// ResourceTypeFilterEc2NatGateway is a ResourceTypeFilter enum value
+	ResourceTypeFilterEc2NatGateway = "EC2_NAT_GATEWAY"
+
+	// ResourceTypeFilterEcsCluster is a ResourceTypeFilter enum value
+	ResourceTypeFilterEcsCluster = "ECS_CLUSTER"
+
+	// ResourceTypeFilterEcsService is a ResourceTypeFilter enum value
+	ResourceTypeFilterEcsService = "ECS_SERVICE"
+
+	// ResourceTypeFilterEksCluster is a ResourceTypeFilter enum value
+	ResourceTypeFilterEksCluster = "EKS_CLUSTER"
+
+	// ResourceTypeFilterElasticBeanstalkEnvironment is a ResourceTypeFilter enum value
+	ResourceTypeFilterElasticBeanstalkEnvironment = "ELASTIC_BEANSTALK_ENVIRONMENT"
+
+	// ResourceTypeFilterElasticLoadBalancerLoadBalancer is a ResourceTypeFilter enum value
+	ResourceTypeFilterElasticLoadBalancerLoadBalancer = "ELASTIC_LOAD_BALANCER_LOAD_BALANCER"
+
+	// ResourceTypeFilterElasticLoadBalancingV2LoadBalancer is a ResourceTypeFilter enum value
+	ResourceTypeFilterElasticLoadBalancingV2LoadBalancer = "ELASTIC_LOAD_BALANCING_V2_LOAD_BALANCER"
+
+	// ResourceTypeFilterElasticLoadBalancingV2TargetGroup is a ResourceTypeFilter enum value
+	ResourceTypeFilterElasticLoadBalancingV2TargetGroup = "ELASTIC_LOAD_BALANCING_V2_TARGET_GROUP"
+
+	// ResourceTypeFilterElasticacheCacheCluster is a ResourceTypeFilter enum value
+	ResourceTypeFilterElasticacheCacheCluster = "ELASTICACHE_CACHE_CLUSTER"
+
+	// ResourceTypeFilterElasticsearchDomain is a ResourceTypeFilter enum value
+	ResourceTypeFilterElasticsearchDomain = "ELASTICSEARCH_DOMAIN"
+
+	// ResourceTypeFilterKinesisStream is a ResourceTypeFilter enum value
+	ResourceTypeFilterKinesisStream = "KINESIS_STREAM"
+
+	// ResourceTypeFilterLambdaFunction is a ResourceTypeFilter enum value
+	ResourceTypeFilterLambdaFunction = "LAMBDA_FUNCTION"
+
+	// ResourceTypeFilterOpenSearchServiceDomain is a ResourceTypeFilter enum value
+	ResourceTypeFilterOpenSearchServiceDomain = "OPEN_SEARCH_SERVICE_DOMAIN"
+
+	// ResourceTypeFilterRdsDbInstance is a ResourceTypeFilter enum value
+	ResourceTypeFilterRdsDbInstance = "RDS_DB_INSTANCE"
+
+	// ResourceTypeFilterRdsDbCluster is a ResourceTypeFilter enum value
+	ResourceTypeFilterRdsDbCluster = "RDS_DB_CLUSTER"
+
+	// ResourceTypeFilterRedshiftCluster is a ResourceTypeFilter enum value
+	ResourceTypeFilterRedshiftCluster = "REDSHIFT_CLUSTER"
+
+	// ResourceTypeFilterRoute53HostedZone is a ResourceTypeFilter enum value
+	ResourceTypeFilterRoute53HostedZone = "ROUTE53_HOSTED_ZONE"
+
+	// ResourceTypeFilterRoute53HealthCheck is a ResourceTypeFilter enum value
+	ResourceTypeFilterRoute53HealthCheck = "ROUTE53_HEALTH_CHECK"
+
+	// ResourceTypeFilterS3Bucket is a ResourceTypeFilter enum value
+	ResourceTypeFilterS3Bucket = "S3_BUCKET"
+
+	// ResourceTypeFilterSagemakerEndpoint is a ResourceTypeFilter enum value
+	ResourceTypeFilterSagemakerEndpoint = "SAGEMAKER_ENDPOINT"
+
+	// ResourceTypeFilterSnsTopic is a ResourceTypeFilter enum value
+	ResourceTypeFilterSnsTopic = "SNS_TOPIC"
+
+	// ResourceTypeFilterSqsQueue is a ResourceTypeFilter enum value
+	ResourceTypeFilterSqsQueue = "SQS_QUEUE"
+
+	// ResourceTypeFilterStepFunctionsActivity is a ResourceTypeFilter enum value
+	ResourceTypeFilterStepFunctionsActivity = "STEP_FUNCTIONS_ACTIVITY"
+
+	// ResourceTypeFilterStepFunctionsStateMachine is a ResourceTypeFilter enum value
+	ResourceTypeFilterStepFunctionsStateMachine = "STEP_FUNCTIONS_STATE_MACHINE"
+)
+
+// ResourceTypeFilter_Values returns all elements of the ResourceTypeFilter enum
+func ResourceTypeFilter_Values() []string {
+	return []string{
+		ResourceTypeFilterLogGroups,
+		ResourceTypeFilterCloudfrontDistribution,
+		ResourceTypeFilterDynamodbTable,
+		ResourceTypeFilterEc2NatGateway,
+		ResourceTypeFilterEcsCluster,
+		ResourceTypeFilterEcsService,
+		ResourceTypeFilterEksCluster,
+		ResourceTypeFilterElasticBeanstalkEnvironment,
+		ResourceTypeFilterElasticLoadBalancerLoadBalancer,
+		ResourceTypeFilterElasticLoadBalancingV2LoadBalancer,
+		ResourceTypeFilterElasticLoadBalancingV2TargetGroup,
+		ResourceTypeFilterElasticacheCacheCluster,
+		ResourceTypeFilterElasticsearchDomain,
+		ResourceTypeFilterKinesisStream,
+		ResourceTypeFilterLambdaFunction,
+		ResourceTypeFilterOpenSearchServiceDomain,
+		ResourceTypeFilterRdsDbInstance,
+		ResourceTypeFilterRdsDbCluster,
+		ResourceTypeFilterRedshiftCluster,
+		ResourceTypeFilterRoute53HostedZone,
+		ResourceTypeFilterRoute53HealthCheck,
+		ResourceTypeFilterS3Bucket,
+		ResourceTypeFilterSagemakerEndpoint,
+		ResourceTypeFilterSnsTopic,
+		ResourceTypeFilterSqsQueue,
+		ResourceTypeFilterStepFunctionsActivity,
+		ResourceTypeFilterStepFunctionsStateMachine,
+	}
+}
+
+const (
+	// ServerSideEncryptionTypeCustomerManagedKey is a ServerSideEncryptionType enum value
+	ServerSideEncryptionTypeCustomerManagedKey = "CUSTOMER_MANAGED_KEY"
+
+	// ServerSideEncryptionTypeAwsOwnedKmsKey is a ServerSideEncryptionType enum value
+	ServerSideEncryptionTypeAwsOwnedKmsKey = "AWS_OWNED_KMS_KEY"
+)
+
+// ServerSideEncryptionType_Values returns all elements of the ServerSideEncryptionType enum
+func ServerSideEncryptionType_Values() []string {
+	return []string{
+		ServerSideEncryptionTypeCustomerManagedKey,
+		ServerSideEncryptionTypeAwsOwnedKmsKey,
 	}
 }
 
@@ -8056,6 +14608,12 @@ const (
 
 	// ValidationExceptionReasonOther is a ValidationExceptionReason enum value
 	ValidationExceptionReasonOther = "OTHER"
+
+	// ValidationExceptionReasonInvalidParameterCombination is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidParameterCombination = "INVALID_PARAMETER_COMBINATION"
+
+	// ValidationExceptionReasonParameterInconsistentWithServiceState is a ValidationExceptionReason enum value
+	ValidationExceptionReasonParameterInconsistentWithServiceState = "PARAMETER_INCONSISTENT_WITH_SERVICE_STATE"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -8065,5 +14623,7 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonCannotParse,
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonOther,
+		ValidationExceptionReasonInvalidParameterCombination,
+		ValidationExceptionReasonParameterInconsistentWithServiceState,
 	}
 }

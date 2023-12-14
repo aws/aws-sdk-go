@@ -40,34 +40,36 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a LexRuntimeV2 client from just a session.
-//     svc := lexruntimev2.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a LexRuntimeV2 client with additional configuration
-//     svc := lexruntimev2.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a LexRuntimeV2 client from just a session.
+//	svc := lexruntimev2.New(mySession)
+//
+//	// Create a LexRuntimeV2 client with additional configuration
+//	svc := lexruntimev2.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *LexRuntimeV2 {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "lex"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *LexRuntimeV2 {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *LexRuntimeV2 {
 	svc := &LexRuntimeV2{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2020-08-07",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2020-08-07",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),

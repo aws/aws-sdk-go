@@ -25,7 +25,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ServiceQuotaExceededException"}
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"}
       ]
     },
     "AssociateResource":{
@@ -40,7 +41,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateApplication":{
@@ -55,7 +58,9 @@
       "errors":[
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateAttributeGroup":{
@@ -126,7 +131,9 @@
       "output":{"shape":"DisassociateResourceResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetApplication":{
@@ -140,8 +147,24 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"}
       ]
+    },
+    "GetAssociatedResource":{
+      "name":"GetAssociatedResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{application}/resources/{resourceType}/{resource}"
+      },
+      "input":{"shape":"GetAssociatedResourceRequest"},
+      "output":{"shape":"GetAssociatedResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "GetAttributeGroup":{
       "name":"GetAttributeGroup",
@@ -154,6 +177,18 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "GetConfiguration":{
+      "name":"GetConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/configuration"
+      },
+      "output":{"shape":"GetConfigurationResponse"},
+      "errors":[
         {"shape":"InternalServerException"}
       ]
     },
@@ -215,6 +250,21 @@
       ],
       "idempotent":true
     },
+    "ListAttributeGroupsForApplication":{
+      "name":"ListAttributeGroupsForApplication",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{application}/attribute-group-details"
+      },
+      "input":{"shape":"ListAttributeGroupsForApplicationRequest"},
+      "output":{"shape":"ListAttributeGroupsForApplicationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -229,6 +279,19 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "PutConfiguration":{
+      "name":"PutConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/configuration"
+      },
+      "input":{"shape":"PutConfigurationRequest"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "SyncResource":{
       "name":"SyncResource",
       "http":{
@@ -240,7 +303,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
       ]
     },
     "TagResource":{
@@ -282,7 +347,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
-        {"shape":"InternalServerException"}
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateAttributeGroup":{
@@ -302,6 +369,12 @@
     }
   },
   "shapes":{
+    "AppRegistryConfiguration":{
+      "type":"structure",
+      "members":{
+        "tagQueryConfiguration":{"shape":"TagQueryConfiguration"}
+      }
+    },
     "Application":{
       "type":"structure",
       "members":{
@@ -311,7 +384,8 @@
         "description":{"shape":"Description"},
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "applicationTag":{"shape":"ApplicationTagDefinition"}
       }
     },
     "ApplicationArn":{
@@ -320,13 +394,15 @@
     },
     "ApplicationId":{
       "type":"string",
-      "pattern":"[a-z0-9]{12}"
+      "max":26,
+      "min":26,
+      "pattern":"[a-z0-9]+"
     },
     "ApplicationSpecifier":{
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"\\w+"
+      "pattern":"([-.\\w]+)|(arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/applications/[-.\\w]+)"
     },
     "ApplicationSummaries":{
       "type":"list",
@@ -342,6 +418,28 @@
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"}
       }
+    },
+    "ApplicationTagDefinition":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"}
+    },
+    "ApplicationTagResult":{
+      "type":"structure",
+      "members":{
+        "applicationTagStatus":{"shape":"ApplicationTagStatus"},
+        "errorMessage":{"shape":"String"},
+        "resources":{"shape":"ResourcesList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ApplicationTagStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILURE"
+      ]
     },
     "Arn":{
       "type":"string",
@@ -397,19 +495,28 @@
           "shape":"ResourceSpecifier",
           "location":"uri",
           "locationName":"resource"
-        }
+        },
+        "options":{"shape":"Options"}
       }
     },
     "AssociateResourceResponse":{
       "type":"structure",
       "members":{
         "applicationArn":{"shape":"ApplicationArn"},
-        "resourceArn":{"shape":"Arn"}
+        "resourceArn":{"shape":"Arn"},
+        "options":{"shape":"Options"}
       }
     },
     "AssociationCount":{
       "type":"integer",
       "min":0
+    },
+    "AssociationOption":{
+      "type":"string",
+      "enum":[
+        "APPLY_APPLICATION_TAG",
+        "SKIP_APPLICATION_TAG"
+      ]
     },
     "AttributeGroup":{
       "type":"structure",
@@ -425,13 +532,26 @@
     },
     "AttributeGroupArn":{
       "type":"string",
-      "pattern":"arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/attribute-groups/[a-z0-9]+"
+      "pattern":"arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/attribute-groups/[-.\\w]+"
+    },
+    "AttributeGroupDetails":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"AttributeGroupId"},
+        "arn":{"shape":"AttributeGroupArn"},
+        "name":{"shape":"Name"},
+        "createdBy":{"shape":"CreatedBy"}
+      }
+    },
+    "AttributeGroupDetailsList":{
+      "type":"list",
+      "member":{"shape":"AttributeGroupDetails"}
     },
     "AttributeGroupId":{
       "type":"string",
-      "max":100,
+      "max":256,
       "min":1,
-      "pattern":"[a-z0-9]{12}"
+      "pattern":"[-.\\w]+"
     },
     "AttributeGroupIds":{
       "type":"list",
@@ -439,9 +559,9 @@
     },
     "AttributeGroupSpecifier":{
       "type":"string",
-      "max":256,
+      "max":512,
       "min":1,
-      "pattern":"\\w+"
+      "pattern":"([-.\\w]+)|(arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/attribute-groups/[-.\\w]+)"
     },
     "AttributeGroupSummaries":{
       "type":"list",
@@ -455,7 +575,8 @@
         "name":{"shape":"Name"},
         "description":{"shape":"Description"},
         "creationTime":{"shape":"Timestamp"},
-        "lastUpdateTime":{"shape":"Timestamp"}
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "createdBy":{"shape":"CreatedBy"}
       }
     },
     "Attributes":{
@@ -523,6 +644,12 @@
       "members":{
         "attributeGroup":{"shape":"AttributeGroup"}
       }
+    },
+    "CreatedBy":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!-)([a-z0-9-]+\\.)+(aws\\.internal|amazonaws\\.com(\\.cn)?)$"
     },
     "DeleteApplicationRequest":{
       "type":"structure",
@@ -641,7 +768,64 @@
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
         "associatedResourceCount":{"shape":"AssociationCount"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "integrations":{"shape":"Integrations"},
+        "applicationTag":{"shape":"ApplicationTagDefinition"}
+      }
+    },
+    "GetAssociatedResourceFilter":{
+      "type":"list",
+      "member":{"shape":"ResourceItemStatus"},
+      "max":4,
+      "min":1
+    },
+    "GetAssociatedResourceRequest":{
+      "type":"structure",
+      "required":[
+        "application",
+        "resourceType",
+        "resource"
+      ],
+      "members":{
+        "application":{
+          "shape":"ApplicationSpecifier",
+          "location":"uri",
+          "locationName":"application"
+        },
+        "resourceType":{
+          "shape":"ResourceType",
+          "location":"uri",
+          "locationName":"resourceType"
+        },
+        "resource":{
+          "shape":"ResourceSpecifier",
+          "location":"uri",
+          "locationName":"resource"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "resourceTagStatus":{
+          "shape":"GetAssociatedResourceFilter",
+          "location":"querystring",
+          "locationName":"resourceTagStatus"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "GetAssociatedResourceResponse":{
+      "type":"structure",
+      "members":{
+        "resource":{"shape":"Resource"},
+        "options":{"shape":"Options"},
+        "applicationTagResult":{"shape":"ApplicationTagResult"}
       }
     },
     "GetAttributeGroupRequest":{
@@ -665,7 +849,21 @@
         "attributes":{"shape":"Attributes"},
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "createdBy":{"shape":"CreatedBy"}
+      }
+    },
+    "GetConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "configuration":{"shape":"AppRegistryConfiguration"}
+      }
+    },
+    "Integrations":{
+      "type":"structure",
+      "members":{
+        "resourceGroup":{"shape":"ResourceGroup"},
+        "applicationTagResourceGroup":{"shape":"ResourceGroup"}
       }
     },
     "InternalServerException":{
@@ -758,6 +956,35 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListAttributeGroupsForApplicationRequest":{
+      "type":"structure",
+      "required":["application"],
+      "members":{
+        "application":{
+          "shape":"ApplicationSpecifier",
+          "location":"uri",
+          "locationName":"application"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAttributeGroupsForApplicationResponse":{
+      "type":"structure",
+      "members":{
+        "attributeGroupsDetails":{"shape":"AttributeGroupDetailsList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListAttributeGroupsRequest":{
       "type":"structure",
       "members":{
@@ -800,14 +1027,14 @@
     },
     "MaxResults":{
       "type":"integer",
-      "max":25,
+      "max":100,
       "min":1
     },
     "Name":{
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"\\w+"
+      "pattern":"[-.\\w]+"
     },
     "NextToken":{
       "type":"string",
@@ -815,12 +1042,79 @@
       "min":1,
       "pattern":"[A-Za-z0-9+/=]+"
     },
+    "Options":{
+      "type":"list",
+      "member":{"shape":"AssociationOption"}
+    },
+    "PutConfigurationRequest":{
+      "type":"structure",
+      "required":["configuration"],
+      "members":{
+        "configuration":{"shape":"AppRegistryConfiguration"}
+      }
+    },
+    "Resource":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceSpecifier"},
+        "arn":{"shape":"Arn"},
+        "associationTime":{"shape":"Timestamp"},
+        "integrations":{"shape":"ResourceIntegrations"}
+      }
+    },
+    "ResourceDetails":{
+      "type":"structure",
+      "members":{
+        "tagValue":{"shape":"TagValue"}
+      }
+    },
+    "ResourceGroup":{
+      "type":"structure",
+      "members":{
+        "state":{"shape":"ResourceGroupState"},
+        "arn":{"shape":"Arn"},
+        "errorMessage":{"shape":"String"}
+      }
+    },
+    "ResourceGroupState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATE_COMPLETE",
+        "CREATE_FAILED",
+        "UPDATING",
+        "UPDATE_COMPLETE",
+        "UPDATE_FAILED"
+      ]
+    },
     "ResourceInfo":{
       "type":"structure",
       "members":{
         "name":{"shape":"ResourceSpecifier"},
-        "arn":{"shape":"StackArn"}
+        "arn":{"shape":"Arn"},
+        "resourceType":{"shape":"ResourceType"},
+        "resourceDetails":{"shape":"ResourceDetails"},
+        "options":{"shape":"Options"}
       }
+    },
+    "ResourceIntegrations":{
+      "type":"structure",
+      "members":{
+        "resourceGroup":{"shape":"ResourceGroup"}
+      }
+    },
+    "ResourceItemStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "FAILED",
+        "IN_PROGRESS",
+        "SKIPPED"
+      ]
+    },
+    "ResourceItemType":{
+      "type":"string",
+      "pattern":"AWS::[a-zA-Z0-9]+::\\w+"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -838,11 +1132,32 @@
     },
     "ResourceType":{
       "type":"string",
-      "enum":["CFN_STACK"]
+      "enum":[
+        "CFN_STACK",
+        "RESOURCE_TAG_VALUE"
+      ]
     },
     "Resources":{
       "type":"list",
       "member":{"shape":"ResourceInfo"}
+    },
+    "ResourcesList":{
+      "type":"list",
+      "member":{"shape":"ResourcesListItem"}
+    },
+    "ResourcesListItem":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"Arn"},
+        "errorMessage":{"shape":"ResourcesListItemErrorMessage"},
+        "status":{"shape":"String"},
+        "resourceType":{"shape":"ResourceItemType"}
+      }
+    },
+    "ResourcesListItemErrorMessage":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -851,10 +1166,6 @@
       },
       "error":{"httpStatusCode":402},
       "exception":true
-    },
-    "StackArn":{
-      "type":"string",
-      "pattern":"arn:aws[-a-z]*:cloudformation:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:stack/[a-zA-Z][-A-Za-z0-9]{0,127}/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}"
     },
     "String":{"type":"string"},
     "SyncAction":{
@@ -895,13 +1206,25 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"(?!aws:)[a-zA-Z+-=._:/]+"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]*)$"
+    },
+    "TagKeyConfig":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^(?!\\s+$)[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*"
     },
     "TagKeys":{
       "type":"list",
       "member":{"shape":"TagKey"},
       "max":50,
       "min":0
+    },
+    "TagQueryConfiguration":{
+      "type":"structure",
+      "members":{
+        "tagKey":{"shape":"TagKeyConfig"}
+      }
     },
     "TagResourceRequest":{
       "type":"structure",
@@ -934,6 +1257,16 @@
       "value":{"shape":"TagValue"},
       "max":50,
       "min":0
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"},
+        "serviceCode":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true
     },
     "Timestamp":{
       "type":"timestamp",
@@ -972,7 +1305,11 @@
           "location":"uri",
           "locationName":"application"
         },
-        "name":{"shape":"Name"},
+        "name":{
+          "shape":"Name",
+          "deprecated":true,
+          "deprecatedMessage":"Name update for application is deprecated."
+        },
         "description":{"shape":"Description"}
       }
     },
@@ -991,7 +1328,11 @@
           "location":"uri",
           "locationName":"attributeGroup"
         },
-        "name":{"shape":"Name"},
+        "name":{
+          "shape":"Name",
+          "deprecated":true,
+          "deprecatedMessage":"Name update for attribute group is deprecated."
+        },
         "description":{"shape":"Description"},
         "attributes":{"shape":"Attributes"}
       }

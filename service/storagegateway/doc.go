@@ -7,30 +7,31 @@
 // with cloud-based storage to provide seamless and secure integration between
 // an organization's on-premises IT environment and the Amazon Web Services
 // storage infrastructure. The service enables you to securely upload data to
-// the Cloud for cost effective backup and rapid disaster recovery.
+// the Amazon Web Services Cloud for cost effective backup and rapid disaster
+// recovery.
 //
 // Use the following links to get started using the Storage Gateway Service
 // API Reference:
 //
-//    * Storage Gateway required request headers (https://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPI.html#AWSStorageGatewayHTTPRequestsHeaders):
-//    Describes the required headers that you must send with every POST request
-//    to Storage Gateway.
+//   - Storage Gateway required request headers (https://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPI.html#AWSStorageGatewayHTTPRequestsHeaders):
+//     Describes the required headers that you must send with every POST request
+//     to Storage Gateway.
 //
-//    * Signing requests (https://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPI.html#AWSStorageGatewaySigningRequests):
-//    Storage Gateway requires that you authenticate every request you send;
-//    this topic describes how sign such a request.
+//   - Signing requests (https://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPI.html#AWSStorageGatewaySigningRequests):
+//     Storage Gateway requires that you authenticate every request you send;
+//     this topic describes how sign such a request.
 //
-//    * Error responses (https://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPI.html#APIErrorResponses):
-//    Provides reference information about Storage Gateway errors.
+//   - Error responses (https://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPI.html#APIErrorResponses):
+//     Provides reference information about Storage Gateway errors.
 //
-//    * Operations in Storage Gateway (https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_Operations.html):
-//    Contains detailed descriptions of all Storage Gateway operations, their
-//    request parameters, response elements, possible errors, and examples of
-//    requests and responses.
+//   - Operations in Storage Gateway (https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_Operations.html):
+//     Contains detailed descriptions of all Storage Gateway operations, their
+//     request parameters, response elements, possible errors, and examples of
+//     requests and responses.
 //
-//    * Storage Gateway endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/sg.html):
-//    Provides a list of each Region and the endpoints available for use with
-//    Storage Gateway.
+//   - Storage Gateway endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/sg.html):
+//     Provides a list of each Amazon Web Services Region and the endpoints available
+//     for use with Storage Gateway.
 //
 // Storage Gateway resource IDs are in uppercase. When you use these resource
 // IDs with the Amazon EC2 API, EC2 expects resource IDs in lowercase. You must
@@ -61,7 +62,7 @@
 // See storagegateway package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/storagegateway/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS Storage Gateway with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

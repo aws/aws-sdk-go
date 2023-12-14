@@ -3,15 +3,14 @@
 // Package finspace provides the client and types for making API
 // requests to FinSpace User Environment Management service.
 //
-// The FinSpace management service provides the APIs for managing the FinSpace
-// environments.
+// The FinSpace management service provides the APIs for managing FinSpace environments.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12 for more information on this service.
 //
 // See finspace package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/finspace/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact FinSpace User Environment Management service with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

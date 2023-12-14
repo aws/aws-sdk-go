@@ -1,3 +1,4 @@
+//go:build go1.7
 // +build go1.7
 
 package expression
@@ -24,7 +25,7 @@ const (
 	invalidConditionOperand = "BuildOperand error"
 )
 
-//Compare
+// Compare
 func TestCompare(t *testing.T) {
 	cases := []struct {
 		name         string

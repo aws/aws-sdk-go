@@ -27,14 +27,13 @@ const opDescribeJobExecution = "DescribeJobExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeJobExecutionRequest method.
+//	req, resp := client.DescribeJobExecutionRequest(params)
 //
-//    // Example sending a request using the DescribeJobExecutionRequest method.
-//    req, resp := client.DescribeJobExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecution
 func (c *IoTJobsDataPlane) DescribeJobExecutionRequest(input *DescribeJobExecutionInput) (req *request.Request, output *DescribeJobExecutionOutput) {
@@ -65,25 +64,26 @@ func (c *IoTJobsDataPlane) DescribeJobExecutionRequest(input *DescribeJobExecuti
 // API operation DescribeJobExecution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The contents of the request were invalid. For example, this code is returned
-//   when an UpdateJobExecution request contains invalid status details. The message
-//   contains details about the error.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidRequestException
+//     The contents of the request were invalid. For example, this code is returned
+//     when an UpdateJobExecution request contains invalid status details. The message
+//     contains details about the error.
 //
-//   * ThrottlingException
-//   The rate exceeds the limit.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable.
+//   - ThrottlingException
+//     The rate exceeds the limit.
 //
-//   * CertificateValidationException
-//   The certificate is invalid.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable.
 //
-//   * TerminalStateException
-//   The job is in a terminal state.
+//   - CertificateValidationException
+//     The certificate is invalid.
+//
+//   - TerminalStateException
+//     The job is in a terminal state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecution
 func (c *IoTJobsDataPlane) DescribeJobExecution(input *DescribeJobExecutionInput) (*DescribeJobExecutionOutput, error) {
@@ -123,14 +123,13 @@ const opGetPendingJobExecutions = "GetPendingJobExecutions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPendingJobExecutionsRequest method.
+//	req, resp := client.GetPendingJobExecutionsRequest(params)
 //
-//    // Example sending a request using the GetPendingJobExecutionsRequest method.
-//    req, resp := client.GetPendingJobExecutionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutions
 func (c *IoTJobsDataPlane) GetPendingJobExecutionsRequest(input *GetPendingJobExecutionsInput) (req *request.Request, output *GetPendingJobExecutionsOutput) {
@@ -161,22 +160,23 @@ func (c *IoTJobsDataPlane) GetPendingJobExecutionsRequest(input *GetPendingJobEx
 // API operation GetPendingJobExecutions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The contents of the request were invalid. For example, this code is returned
-//   when an UpdateJobExecution request contains invalid status details. The message
-//   contains details about the error.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidRequestException
+//     The contents of the request were invalid. For example, this code is returned
+//     when an UpdateJobExecution request contains invalid status details. The message
+//     contains details about the error.
 //
-//   * ThrottlingException
-//   The rate exceeds the limit.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable.
+//   - ThrottlingException
+//     The rate exceeds the limit.
 //
-//   * CertificateValidationException
-//   The certificate is invalid.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable.
+//
+//   - CertificateValidationException
+//     The certificate is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutions
 func (c *IoTJobsDataPlane) GetPendingJobExecutions(input *GetPendingJobExecutionsInput) (*GetPendingJobExecutionsOutput, error) {
@@ -216,14 +216,13 @@ const opStartNextPendingJobExecution = "StartNextPendingJobExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartNextPendingJobExecutionRequest method.
+//	req, resp := client.StartNextPendingJobExecutionRequest(params)
 //
-//    // Example sending a request using the StartNextPendingJobExecutionRequest method.
-//    req, resp := client.StartNextPendingJobExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecution
 func (c *IoTJobsDataPlane) StartNextPendingJobExecutionRequest(input *StartNextPendingJobExecutionInput) (req *request.Request, output *StartNextPendingJobExecutionOutput) {
@@ -255,22 +254,23 @@ func (c *IoTJobsDataPlane) StartNextPendingJobExecutionRequest(input *StartNextP
 // API operation StartNextPendingJobExecution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The contents of the request were invalid. For example, this code is returned
-//   when an UpdateJobExecution request contains invalid status details. The message
-//   contains details about the error.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidRequestException
+//     The contents of the request were invalid. For example, this code is returned
+//     when an UpdateJobExecution request contains invalid status details. The message
+//     contains details about the error.
 //
-//   * ThrottlingException
-//   The rate exceeds the limit.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable.
+//   - ThrottlingException
+//     The rate exceeds the limit.
 //
-//   * CertificateValidationException
-//   The certificate is invalid.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable.
+//
+//   - CertificateValidationException
+//     The certificate is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecution
 func (c *IoTJobsDataPlane) StartNextPendingJobExecution(input *StartNextPendingJobExecutionInput) (*StartNextPendingJobExecutionOutput, error) {
@@ -310,14 +310,13 @@ const opUpdateJobExecution = "UpdateJobExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateJobExecutionRequest method.
+//	req, resp := client.UpdateJobExecutionRequest(params)
 //
-//    // Example sending a request using the UpdateJobExecutionRequest method.
-//    req, resp := client.UpdateJobExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecution
 func (c *IoTJobsDataPlane) UpdateJobExecutionRequest(input *UpdateJobExecutionInput) (req *request.Request, output *UpdateJobExecutionOutput) {
@@ -348,28 +347,29 @@ func (c *IoTJobsDataPlane) UpdateJobExecutionRequest(input *UpdateJobExecutionIn
 // API operation UpdateJobExecution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The contents of the request were invalid. For example, this code is returned
-//   when an UpdateJobExecution request contains invalid status details. The message
-//   contains details about the error.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - InvalidRequestException
+//     The contents of the request were invalid. For example, this code is returned
+//     when an UpdateJobExecution request contains invalid status details. The message
+//     contains details about the error.
 //
-//   * ThrottlingException
-//   The rate exceeds the limit.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ServiceUnavailableException
-//   The service is temporarily unavailable.
+//   - ThrottlingException
+//     The rate exceeds the limit.
 //
-//   * CertificateValidationException
-//   The certificate is invalid.
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable.
 //
-//   * InvalidStateTransitionException
-//   An update attempted to change the job execution to a state that is invalid
-//   because of the job execution's current state (for example, an attempt to
-//   change a request in state SUCCESS to state IN_PROGRESS). In this case, the
-//   body of the error message also contains the executionState field.
+//   - CertificateValidationException
+//     The certificate is invalid.
+//
+//   - InvalidStateTransitionException
+//     An update attempted to change the job execution to a state that is invalid
+//     because of the job execution's current state (for example, an attempt to
+//     change a request in state SUCCESS to state IN_PROGRESS). In this case, the
+//     body of the error message also contains the executionState field.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecution
 func (c *IoTJobsDataPlane) UpdateJobExecution(input *UpdateJobExecutionInput) (*UpdateJobExecutionOutput, error) {
@@ -402,12 +402,20 @@ type CertificateValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CertificateValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CertificateValidationException) GoString() string {
 	return s.String()
 }
@@ -451,7 +459,7 @@ func (s *CertificateValidationException) RequestID() string {
 }
 
 type DescribeJobExecutionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional. A number that identifies a particular job execution on a particular
 	// device. If not specified, the latest job execution is returned.
@@ -472,12 +480,20 @@ type DescribeJobExecutionInput struct {
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobExecutionInput) GoString() string {
 	return s.String()
 }
@@ -535,12 +551,20 @@ type DescribeJobExecutionOutput struct {
 	Execution *JobExecution `locationName:"execution" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -552,7 +576,7 @@ func (s *DescribeJobExecutionOutput) SetExecution(v *JobExecution) *DescribeJobE
 }
 
 type GetPendingJobExecutionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the thing that is executing the job.
 	//
@@ -560,12 +584,20 @@ type GetPendingJobExecutionsInput struct {
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPendingJobExecutionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPendingJobExecutionsInput) GoString() string {
 	return s.String()
 }
@@ -602,12 +634,20 @@ type GetPendingJobExecutionsOutput struct {
 	QueuedJobs []*JobExecutionSummary `locationName:"queuedJobs" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPendingJobExecutionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPendingJobExecutionsOutput) GoString() string {
 	return s.String()
 }
@@ -635,12 +675,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -694,12 +742,20 @@ type InvalidStateTransitionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStateTransitionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStateTransitionException) GoString() string {
 	return s.String()
 }
@@ -785,12 +841,20 @@ type JobExecution struct {
 	VersionNumber *int64 `locationName:"versionNumber" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobExecution) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobExecution) GoString() string {
 	return s.String()
 }
@@ -877,12 +941,20 @@ type JobExecutionState struct {
 	VersionNumber *int64 `locationName:"versionNumber" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobExecutionState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobExecutionState) GoString() string {
 	return s.String()
 }
@@ -930,12 +1002,20 @@ type JobExecutionSummary struct {
 	VersionNumber *int64 `locationName:"versionNumber" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobExecutionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobExecutionSummary) GoString() string {
 	return s.String()
 }
@@ -985,12 +1065,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -1042,12 +1130,20 @@ type ServiceUnavailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -1113,12 +1209,20 @@ type StartNextPendingJobExecutionInput struct {
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartNextPendingJobExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartNextPendingJobExecutionInput) GoString() string {
 	return s.String()
 }
@@ -1164,12 +1268,20 @@ type StartNextPendingJobExecutionOutput struct {
 	Execution *JobExecution `locationName:"execution" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartNextPendingJobExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartNextPendingJobExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -1188,12 +1300,20 @@ type TerminalStateException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminalStateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminalStateException) GoString() string {
 	return s.String()
 }
@@ -1245,17 +1365,24 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The payload associated with the exception.
-	//
 	// Payload is automatically base64 encoded/decoded by the SDK.
 	Payload []byte `locationName:"payload" type:"blob"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -1353,12 +1480,20 @@ type UpdateJobExecutionInput struct {
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobExecutionInput) GoString() string {
 	return s.String()
 }
@@ -1452,12 +1587,20 @@ type UpdateJobExecutionOutput struct {
 	JobDocument *string `locationName:"jobDocument" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobExecutionOutput) GoString() string {
 	return s.String()
 }

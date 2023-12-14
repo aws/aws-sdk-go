@@ -28,14 +28,13 @@ const opDeleteReportDefinition = "DeleteReportDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReportDefinitionRequest method.
+//	req, resp := client.DeleteReportDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteReportDefinitionRequest method.
-//    req, resp := client.DeleteReportDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/DeleteReportDefinition
 func (c *ApplicationCostProfiler) DeleteReportDefinitionRequest(input *DeleteReportDefinitionInput) (req *request.Request, output *DeleteReportDefinitionOutput) {
@@ -67,18 +66,19 @@ func (c *ApplicationCostProfiler) DeleteReportDefinitionRequest(input *DeleteRep
 // API operation DeleteReportDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ThrottlingException
-//   The calls to AWS Application Cost Profiler API are throttled. The request
-//   was denied.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints for the API.
+//   - ThrottlingException
+//     The calls to AWS Application Cost Profiler API are throttled. The request
+//     was denied.
 //
-//   * AccessDeniedException
-//   You do not have permission to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints for the API.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/DeleteReportDefinition
 func (c *ApplicationCostProfiler) DeleteReportDefinition(input *DeleteReportDefinitionInput) (*DeleteReportDefinitionOutput, error) {
@@ -118,14 +118,13 @@ const opGetReportDefinition = "GetReportDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetReportDefinitionRequest method.
+//	req, resp := client.GetReportDefinitionRequest(params)
 //
-//    // Example sending a request using the GetReportDefinitionRequest method.
-//    req, resp := client.GetReportDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/GetReportDefinition
 func (c *ApplicationCostProfiler) GetReportDefinitionRequest(input *GetReportDefinitionInput) (req *request.Request, output *GetReportDefinitionOutput) {
@@ -157,18 +156,19 @@ func (c *ApplicationCostProfiler) GetReportDefinitionRequest(input *GetReportDef
 // API operation GetReportDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ThrottlingException
-//   The calls to AWS Application Cost Profiler API are throttled. The request
-//   was denied.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints for the API.
+//   - ThrottlingException
+//     The calls to AWS Application Cost Profiler API are throttled. The request
+//     was denied.
 //
-//   * AccessDeniedException
-//   You do not have permission to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints for the API.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/GetReportDefinition
 func (c *ApplicationCostProfiler) GetReportDefinition(input *GetReportDefinitionInput) (*GetReportDefinitionOutput, error) {
@@ -208,14 +208,13 @@ const opImportApplicationUsage = "ImportApplicationUsage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ImportApplicationUsageRequest method.
+//	req, resp := client.ImportApplicationUsageRequest(params)
 //
-//    // Example sending a request using the ImportApplicationUsageRequest method.
-//    req, resp := client.ImportApplicationUsageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/ImportApplicationUsage
 func (c *ApplicationCostProfiler) ImportApplicationUsageRequest(input *ImportApplicationUsageInput) (req *request.Request, output *ImportApplicationUsageOutput) {
@@ -251,18 +250,19 @@ func (c *ApplicationCostProfiler) ImportApplicationUsageRequest(input *ImportApp
 // API operation ImportApplicationUsage for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ThrottlingException
-//   The calls to AWS Application Cost Profiler API are throttled. The request
-//   was denied.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints for the API.
+//   - ThrottlingException
+//     The calls to AWS Application Cost Profiler API are throttled. The request
+//     was denied.
 //
-//   * AccessDeniedException
-//   You do not have permission to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints for the API.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/ImportApplicationUsage
 func (c *ApplicationCostProfiler) ImportApplicationUsage(input *ImportApplicationUsageInput) (*ImportApplicationUsageOutput, error) {
@@ -302,14 +302,13 @@ const opListReportDefinitions = "ListReportDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListReportDefinitionsRequest method.
+//	req, resp := client.ListReportDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListReportDefinitionsRequest method.
-//    req, resp := client.ListReportDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/ListReportDefinitions
 func (c *ApplicationCostProfiler) ListReportDefinitionsRequest(input *ListReportDefinitionsInput) (req *request.Request, output *ListReportDefinitionsOutput) {
@@ -348,18 +347,19 @@ func (c *ApplicationCostProfiler) ListReportDefinitionsRequest(input *ListReport
 // API operation ListReportDefinitions for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ThrottlingException
-//   The calls to AWS Application Cost Profiler API are throttled. The request
-//   was denied.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints for the API.
+//   - ThrottlingException
+//     The calls to AWS Application Cost Profiler API are throttled. The request
+//     was denied.
 //
-//   * AccessDeniedException
-//   You do not have permission to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints for the API.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/ListReportDefinitions
 func (c *ApplicationCostProfiler) ListReportDefinitions(input *ListReportDefinitionsInput) (*ListReportDefinitionsOutput, error) {
@@ -391,15 +391,14 @@ func (c *ApplicationCostProfiler) ListReportDefinitionsWithContext(ctx aws.Conte
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListReportDefinitions operation.
-//    pageNum := 0
-//    err := client.ListReportDefinitionsPages(params,
-//        func(page *applicationcostprofiler.ListReportDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListReportDefinitions operation.
+//	pageNum := 0
+//	err := client.ListReportDefinitionsPages(params,
+//	    func(page *applicationcostprofiler.ListReportDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ApplicationCostProfiler) ListReportDefinitionsPages(input *ListReportDefinitionsInput, fn func(*ListReportDefinitionsOutput, bool) bool) error {
 	return c.ListReportDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -451,14 +450,13 @@ const opPutReportDefinition = "PutReportDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutReportDefinitionRequest method.
+//	req, resp := client.PutReportDefinitionRequest(params)
 //
-//    // Example sending a request using the PutReportDefinitionRequest method.
-//    req, resp := client.PutReportDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/PutReportDefinition
 func (c *ApplicationCostProfiler) PutReportDefinitionRequest(input *PutReportDefinitionInput) (req *request.Request, output *PutReportDefinitionOutput) {
@@ -489,21 +487,22 @@ func (c *ApplicationCostProfiler) PutReportDefinitionRequest(input *PutReportDef
 // API operation PutReportDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ThrottlingException
-//   The calls to AWS Application Cost Profiler API are throttled. The request
-//   was denied.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints for the API.
+//   - ThrottlingException
+//     The calls to AWS Application Cost Profiler API are throttled. The request
+//     was denied.
 //
-//   * AccessDeniedException
-//   You do not have permission to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints for the API.
 //
-//   * ServiceQuotaExceededException
-//   Your request exceeds one or more of the service quotas.
+//   - AccessDeniedException
+//     You do not have permission to perform this action.
+//
+//   - ServiceQuotaExceededException
+//     Your request exceeds one or more of the service quotas.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/PutReportDefinition
 func (c *ApplicationCostProfiler) PutReportDefinition(input *PutReportDefinitionInput) (*PutReportDefinitionOutput, error) {
@@ -543,14 +542,13 @@ const opUpdateReportDefinition = "UpdateReportDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateReportDefinitionRequest method.
+//	req, resp := client.UpdateReportDefinitionRequest(params)
 //
-//    // Example sending a request using the UpdateReportDefinitionRequest method.
-//    req, resp := client.UpdateReportDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/UpdateReportDefinition
 func (c *ApplicationCostProfiler) UpdateReportDefinitionRequest(input *UpdateReportDefinitionInput) (req *request.Request, output *UpdateReportDefinitionOutput) {
@@ -581,18 +579,19 @@ func (c *ApplicationCostProfiler) UpdateReportDefinitionRequest(input *UpdateRep
 // API operation UpdateReportDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An internal server error occurred. Retry your request.
 //
-//   * ThrottlingException
-//   The calls to AWS Application Cost Profiler API are throttled. The request
-//   was denied.
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints for the API.
+//   - ThrottlingException
+//     The calls to AWS Application Cost Profiler API are throttled. The request
+//     was denied.
 //
-//   * AccessDeniedException
-//   You do not have permission to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints for the API.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSApplicationCostProfiler-2020-09-10/UpdateReportDefinition
 func (c *ApplicationCostProfiler) UpdateReportDefinition(input *UpdateReportDefinitionInput) (*UpdateReportDefinitionOutput, error) {
@@ -624,12 +623,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -673,7 +680,7 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 type DeleteReportDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Required. ID of the report to delete.
 	//
@@ -681,12 +688,20 @@ type DeleteReportDefinitionInput struct {
 	ReportId *string `location:"uri" locationName:"reportId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReportDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReportDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -720,12 +735,20 @@ type DeleteReportDefinitionOutput struct {
 	ReportId *string `locationName:"reportId" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReportDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReportDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -737,7 +760,7 @@ func (s *DeleteReportDefinitionOutput) SetReportId(v string) *DeleteReportDefini
 }
 
 type GetReportDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ID of the report to retrieve.
 	//
@@ -745,12 +768,20 @@ type GetReportDefinitionInput struct {
 	ReportId *string `location:"uri" locationName:"reportId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReportDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReportDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -816,12 +847,20 @@ type GetReportDefinitionOutput struct {
 	ReportId *string `locationName:"reportId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReportDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReportDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -877,12 +916,20 @@ type ImportApplicationUsageInput struct {
 	SourceS3Location *SourceS3Location `locationName:"sourceS3Location" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportApplicationUsageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportApplicationUsageInput) GoString() string {
 	return s.String()
 }
@@ -920,12 +967,20 @@ type ImportApplicationUsageOutput struct {
 	ImportId *string `locationName:"importId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportApplicationUsageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportApplicationUsageOutput) GoString() string {
 	return s.String()
 }
@@ -944,12 +999,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -993,7 +1056,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListReportDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -1002,12 +1065,20 @@ type ListReportDefinitionsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReportDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReportDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -1050,12 +1121,20 @@ type ListReportDefinitionsOutput struct {
 	ReportDefinitions []*ReportDefinition `locationName:"reportDefinitions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReportDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReportDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -1103,12 +1182,20 @@ type PutReportDefinitionInput struct {
 	ReportId *string `locationName:"reportId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutReportDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutReportDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -1186,12 +1273,20 @@ type PutReportDefinitionOutput struct {
 	ReportId *string `locationName:"reportId" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutReportDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutReportDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -1229,12 +1324,20 @@ type ReportDefinition struct {
 	ReportId *string `locationName:"reportId" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportDefinition) GoString() string {
 	return s.String()
 }
@@ -1297,12 +1400,20 @@ type S3Location struct {
 	Prefix *string `locationName:"prefix" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) GoString() string {
 	return s.String()
 }
@@ -1349,12 +1460,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -1419,12 +1538,20 @@ type SourceS3Location struct {
 	Region *string `locationName:"region" type:"string" enum:"S3BucketRegion"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceS3Location) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceS3Location) GoString() string {
 	return s.String()
 }
@@ -1478,12 +1605,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -1556,12 +1691,20 @@ type UpdateReportDefinitionInput struct {
 	ReportId *string `location:"uri" locationName:"reportId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReportDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReportDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -1639,12 +1782,20 @@ type UpdateReportDefinitionOutput struct {
 	ReportId *string `locationName:"reportId" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReportDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReportDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -1663,12 +1814,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }

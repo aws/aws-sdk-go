@@ -40,33 +40,39 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a FraudDetector client from just a session.
-//     svc := frauddetector.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a FraudDetector client with additional configuration
-//     svc := frauddetector.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a FraudDetector client from just a session.
+//	svc := frauddetector.New(mySession)
+//
+//	// Create a FraudDetector client with additional configuration
+//	svc := frauddetector.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *FraudDetector {
 	c := p.ClientConfig(EndpointsID, cfgs...)
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+		c.SigningName = EndpointsID
+		// No Fallback
+	}
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *FraudDetector {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *FraudDetector {
 	svc := &FraudDetector{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2019-11-15",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "AWSHawksNestServiceFacade",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2019-11-15",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "AWSHawksNestServiceFacade",
 			},
 			handlers,
 		),

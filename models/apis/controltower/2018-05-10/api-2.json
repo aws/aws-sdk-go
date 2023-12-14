@@ -1,0 +1,1159 @@
+{
+  "metadata": {
+    "apiVersion": "2018-05-10",
+    "endpointPrefix": "controltower",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceFullName": "AWS Control Tower",
+    "serviceId": "ControlTower",
+    "signatureVersion": "v4",
+    "signingName": "controltower",
+    "uid": "controltower-2018-05-10"
+  },
+  "operations": {
+    "DeleteLandingZone": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/delete-landingzone",
+        "responseCode": 200
+      },
+      "idempotent": true,
+      "input": {
+        "shape": "DeleteLandingZoneInput"
+      },
+      "name": "DeleteLandingZone",
+      "output": {
+        "shape": "DeleteLandingZoneOutput"
+      }
+    },
+    "DisableControl": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/disable-control",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DisableControlInput"
+      },
+      "name": "DisableControl",
+      "output": {
+        "shape": "DisableControlOutput"
+      }
+    },
+    "EnableControl": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/enable-control",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "EnableControlInput"
+      },
+      "name": "EnableControl",
+      "output": {
+        "shape": "EnableControlOutput"
+      }
+    },
+    "GetControlOperation": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/get-control-operation",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetControlOperationInput"
+      },
+      "name": "GetControlOperation",
+      "output": {
+        "shape": "GetControlOperationOutput"
+      }
+    },
+    "GetEnabledControl": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/get-enabled-control",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetEnabledControlInput"
+      },
+      "name": "GetEnabledControl",
+      "output": {
+        "shape": "GetEnabledControlOutput"
+      }
+    },
+    "GetLandingZoneOperation": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/get-landingzone-operation",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetLandingZoneOperationInput"
+      },
+      "name": "GetLandingZoneOperation",
+      "output": {
+        "shape": "GetLandingZoneOperationOutput"
+      }
+    },
+    "ListEnabledControls": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/list-enabled-controls",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListEnabledControlsInput"
+      },
+      "name": "ListEnabledControls",
+      "output": {
+        "shape": "ListEnabledControlsOutput"
+      }
+    },
+    "ListLandingZones": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/list-landingzones",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListLandingZonesInput"
+      },
+      "name": "ListLandingZones",
+      "output": {
+        "shape": "ListLandingZonesOutput"
+      }
+    },
+    "ListTagsForResource": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/tags/{resourceArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListTagsForResourceInput"
+      },
+      "name": "ListTagsForResource",
+      "output": {
+        "shape": "ListTagsForResourceOutput"
+      }
+    },
+    "ResetLandingZone": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/reset-landingzone",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ResetLandingZoneInput"
+      },
+      "name": "ResetLandingZone",
+      "output": {
+        "shape": "ResetLandingZoneOutput"
+      }
+    },
+    "TagResource": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/tags/{resourceArn}",
+        "responseCode": 204
+      },
+      "input": {
+        "shape": "TagResourceInput"
+      },
+      "name": "TagResource",
+      "output": {
+        "shape": "TagResourceOutput"
+      }
+    },
+    "UntagResource": {
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/tags/{resourceArn}",
+        "responseCode": 204
+      },
+      "input": {
+        "shape": "UntagResourceInput"
+      },
+      "name": "UntagResource",
+      "output": {
+        "shape": "UntagResourceOutput"
+      }
+    }
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "error": {
+        "httpStatusCode": 403,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "type": "structure"
+    },
+    "Arn": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "^arn:aws[0-9a-zA-Z_\\-:\\/]+$",
+      "type": "string"
+    },
+    "ConflictException": {
+      "error": {
+        "httpStatusCode": 409,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "type": "structure"
+    },
+    "ControlIdentifier": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "^arn:aws[0-9a-zA-Z_\\-:\\/]+$",
+      "type": "string"
+    },
+    "ControlOperation": {
+      "members": {
+        "endTime": {
+          "shape": "SyntheticTimestamp_date_time"
+        },
+        "operationType": {
+          "shape": "ControlOperationType"
+        },
+        "startTime": {
+          "shape": "SyntheticTimestamp_date_time"
+        },
+        "status": {
+          "shape": "ControlOperationStatus"
+        },
+        "statusMessage": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ControlOperationStatus": {
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "IN_PROGRESS"
+      ],
+      "type": "string"
+    },
+    "ControlOperationType": {
+      "enum": [
+        "ENABLE_CONTROL",
+        "DISABLE_CONTROL",
+        "UPDATE_ENABLED_CONTROL"
+      ],
+      "type": "string"
+    },
+    "CreateLandingZoneOutput": {
+      "members": {
+        "arn": {
+          "shape": "Arn"
+        },
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "arn",
+        "operationIdentifier"
+      ],
+      "type": "structure"
+    },
+    "DeleteLandingZoneInput": {
+      "members": {
+        "landingZoneIdentifier": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "landingZoneIdentifier"
+      ],
+      "type": "structure"
+    },
+    "DeleteLandingZoneOutput": {
+      "members": {
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "operationIdentifier"
+      ],
+      "type": "structure"
+    },
+    "DisableControlInput": {
+      "members": {
+        "controlIdentifier": {
+          "shape": "ControlIdentifier"
+        },
+        "targetIdentifier": {
+          "shape": "TargetIdentifier"
+        }
+      },
+      "required": [
+        "controlIdentifier",
+        "targetIdentifier"
+      ],
+      "type": "structure"
+    },
+    "DisableControlOutput": {
+      "members": {
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "operationIdentifier"
+      ],
+      "type": "structure"
+    },
+    "DriftStatus": {
+      "enum": [
+        "DRIFTED",
+        "IN_SYNC",
+        "NOT_CHECKING",
+        "UNKNOWN"
+      ],
+      "type": "string"
+    },
+    "DriftStatusSummary": {
+      "members": {
+        "driftStatus": {
+          "shape": "DriftStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "EnableControlInput": {
+      "members": {
+        "controlIdentifier": {
+          "shape": "ControlIdentifier"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "targetIdentifier": {
+          "shape": "TargetIdentifier"
+        }
+      },
+      "required": [
+        "controlIdentifier",
+        "targetIdentifier"
+      ],
+      "type": "structure"
+    },
+    "EnableControlOutput": {
+      "members": {
+        "arn": {
+          "shape": "Arn"
+        },
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "operationIdentifier"
+      ],
+      "type": "structure"
+    },
+    "EnabledControlDetails": {
+      "members": {
+        "arn": {
+          "shape": "Arn"
+        },
+        "controlIdentifier": {
+          "shape": "ControlIdentifier"
+        },
+        "driftStatusSummary": {
+          "shape": "DriftStatusSummary"
+        },
+        "statusSummary": {
+          "shape": "EnablementStatusSummary"
+        },
+        "targetIdentifier": {
+          "shape": "TargetIdentifier"
+        },
+        "targetRegions": {
+          "shape": "TargetRegions"
+        }
+      },
+      "type": "structure"
+    },
+    "EnabledControlSummary": {
+      "members": {
+        "arn": {
+          "shape": "Arn"
+        },
+        "controlIdentifier": {
+          "shape": "ControlIdentifier"
+        },
+        "driftStatusSummary": {
+          "shape": "DriftStatusSummary"
+        },
+        "statusSummary": {
+          "shape": "EnablementStatusSummary"
+        },
+        "targetIdentifier": {
+          "shape": "TargetIdentifier"
+        }
+      },
+      "type": "structure"
+    },
+    "EnabledControls": {
+      "member": {
+        "shape": "EnabledControlSummary"
+      },
+      "type": "list"
+    },
+    "EnablementStatus": {
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "UNDER_CHANGE"
+      ],
+      "type": "string"
+    },
+    "EnablementStatusSummary": {
+      "members": {
+        "lastOperationIdentifier": {
+          "shape": "OperationIdentifier"
+        },
+        "status": {
+          "shape": "EnablementStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "GetControlOperationInput": {
+      "members": {
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "operationIdentifier"
+      ],
+      "type": "structure"
+    },
+    "GetControlOperationOutput": {
+      "members": {
+        "controlOperation": {
+          "shape": "ControlOperation"
+        }
+      },
+      "required": [
+        "controlOperation"
+      ],
+      "type": "structure"
+    },
+    "GetEnabledControlInput": {
+      "members": {
+        "enabledControlIdentifier": {
+          "shape": "Arn"
+        }
+      },
+      "required": [
+        "enabledControlIdentifier"
+      ],
+      "type": "structure"
+    },
+    "GetEnabledControlOutput": {
+      "members": {
+        "enabledControlDetails": {
+          "shape": "EnabledControlDetails"
+        }
+      },
+      "required": [
+        "enabledControlDetails"
+      ],
+      "type": "structure"
+    },
+    "GetLandingZoneInput": {
+      "members": {
+        "landingZoneIdentifier": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "landingZoneIdentifier"
+      ],
+      "type": "structure"
+    },
+    "GetLandingZoneOperationInput": {
+      "members": {
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "operationIdentifier"
+      ],
+      "type": "structure"
+    },
+    "GetLandingZoneOperationOutput": {
+      "members": {
+        "operationDetails": {
+          "shape": "LandingZoneOperationDetail"
+        }
+      },
+      "required": [
+        "operationDetails"
+      ],
+      "type": "structure"
+    },
+    "Integer": {
+      "box": true,
+      "type": "integer"
+    },
+    "InternalServerException": {
+      "error": {
+        "httpStatusCode": 500
+      },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "retryable": {
+        "throttling": false
+      },
+      "type": "structure"
+    },
+    "LandingZoneDriftStatus": {
+      "enum": [
+        "DRIFTED",
+        "IN_SYNC"
+      ],
+      "type": "string"
+    },
+    "LandingZoneDriftStatusSummary": {
+      "members": {
+        "status": {
+          "shape": "LandingZoneDriftStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "LandingZoneOperationDetail": {
+      "members": {
+        "endTime": {
+          "shape": "Timestamp"
+        },
+        "operationType": {
+          "shape": "LandingZoneOperationType"
+        },
+        "startTime": {
+          "shape": "Timestamp"
+        },
+        "status": {
+          "shape": "LandingZoneOperationStatus"
+        },
+        "statusMessage": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "LandingZoneOperationStatus": {
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "IN_PROGRESS"
+      ],
+      "type": "string"
+    },
+    "LandingZoneOperationType": {
+      "enum": [
+        "DELETE",
+        "CREATE",
+        "UPDATE",
+        "RESET"
+      ],
+      "type": "string"
+    },
+    "LandingZoneStatus": {
+      "enum": [
+        "ACTIVE",
+        "PROCESSING",
+        "FAILED"
+      ],
+      "type": "string"
+    },
+    "LandingZoneSummary": {
+      "members": {
+        "arn": {
+          "shape": "Arn"
+        }
+      },
+      "type": "structure"
+    },
+    "LandingZoneVersion": {
+      "max": 10,
+      "min": 3,
+      "pattern": "^\\d+.\\d+$",
+      "type": "string"
+    },
+    "ListEnabledControlsInput": {
+      "members": {
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "String"
+        },
+        "targetIdentifier": {
+          "shape": "TargetIdentifier"
+        }
+      },
+      "required": [
+        "targetIdentifier"
+      ],
+      "type": "structure"
+    },
+    "ListEnabledControlsOutput": {
+      "members": {
+        "enabledControls": {
+          "shape": "EnabledControls"
+        },
+        "nextToken": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "enabledControls"
+      ],
+      "type": "structure"
+    },
+    "ListLandingZonesInput": {
+      "members": {
+        "maxResults": {
+          "shape": "ListLandingZonesMaxResults"
+        },
+        "nextToken": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ListLandingZonesMaxResults": {
+      "box": true,
+      "max": 1,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListLandingZonesOutput": {
+      "members": {
+        "landingZones": {
+          "shape": "ListLandingZonesOutputLandingZonesList"
+        },
+        "nextToken": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "landingZones"
+      ],
+      "type": "structure"
+    },
+    "ListLandingZonesOutputLandingZonesList": {
+      "max": 1,
+      "member": {
+        "shape": "LandingZoneSummary"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "ListTagsForResourceInput": {
+      "members": {
+        "resourceArn": {
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "Arn"
+        }
+      },
+      "required": [
+        "resourceArn"
+      ],
+      "type": "structure"
+    },
+    "ListTagsForResourceOutput": {
+      "members": {
+        "tags": {
+          "shape": "TagMap"
+        }
+      },
+      "required": [
+        "tags"
+      ],
+      "type": "structure"
+    },
+    "MaxResults": {
+      "box": true,
+      "max": 200,
+      "min": 1,
+      "type": "integer"
+    },
+    "OperationIdentifier": {
+      "max": 36,
+      "min": 36,
+      "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+      "type": "string"
+    },
+    "Region": {
+      "members": {
+        "name": {
+          "shape": "RegionName"
+        }
+      },
+      "type": "structure"
+    },
+    "RegionName": {
+      "max": 50,
+      "min": 1,
+      "type": "string"
+    },
+    "ResetLandingZoneInput": {
+      "members": {
+        "landingZoneIdentifier": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "landingZoneIdentifier"
+      ],
+      "type": "structure"
+    },
+    "ResetLandingZoneOutput": {
+      "members": {
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "operationIdentifier"
+      ],
+      "type": "structure"
+    },
+    "ResourceNotFoundException": {
+      "error": {
+        "httpStatusCode": 404,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "type": "structure"
+    },
+    "ServiceQuotaExceededException": {
+      "error": {
+        "httpStatusCode": 402,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "type": "structure"
+    },
+    "String": {
+      "type": "string"
+    },
+    "SyntheticTimestamp_date_time": {
+      "timestampFormat": "iso8601",
+      "type": "timestamp"
+    },
+    "TagKey": {
+      "max": 128,
+      "min": 1,
+      "type": "string"
+    },
+    "TagKeys": {
+      "max": 200,
+      "member": {
+        "shape": "TagKey"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "TagMap": {
+      "key": {
+        "shape": "TagKey"
+      },
+      "max": 200,
+      "min": 0,
+      "type": "map",
+      "value": {
+        "shape": "TagValue"
+      }
+    },
+    "TagResourceInput": {
+      "members": {
+        "resourceArn": {
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "Arn"
+        },
+        "tags": {
+          "shape": "TagMap"
+        }
+      },
+      "required": [
+        "resourceArn",
+        "tags"
+      ],
+      "type": "structure"
+    },
+    "TagResourceOutput": {
+      "members": {},
+      "type": "structure"
+    },
+    "TagValue": {
+      "max": 256,
+      "min": 0,
+      "type": "string"
+    },
+    "TargetIdentifier": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "^arn:aws[0-9a-zA-Z_\\-:\\/]+$",
+      "type": "string"
+    },
+    "TargetRegions": {
+      "member": {
+        "shape": "Region"
+      },
+      "type": "list"
+    },
+    "ThrottlingException": {
+      "error": {
+        "httpStatusCode": 429,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        },
+        "quotaCode": {
+          "shape": "String"
+        },
+        "retryAfterSeconds": {
+          "location": "header",
+          "locationName": "Retry-After",
+          "shape": "Integer"
+        },
+        "serviceCode": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "retryable": {
+        "throttling": true
+      },
+      "type": "structure"
+    },
+    "Timestamp": {
+      "timestampFormat": "iso8601",
+      "type": "timestamp"
+    },
+    "UntagResourceInput": {
+      "members": {
+        "resourceArn": {
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "Arn"
+        },
+        "tagKeys": {
+          "location": "querystring",
+          "locationName": "tagKeys",
+          "shape": "TagKeys"
+        }
+      },
+      "required": [
+        "resourceArn",
+        "tagKeys"
+      ],
+      "type": "structure"
+    },
+    "UntagResourceOutput": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateEnabledControlOutput": {
+      "members": {
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "operationIdentifier"
+      ],
+      "type": "structure"
+    },
+    "UpdateLandingZoneOutput": {
+      "members": {
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "operationIdentifier"
+      ],
+      "type": "structure"
+    },
+    "ValidationException": {
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "type": "structure"
+    }
+  },
+  "version": "2.0"
+}

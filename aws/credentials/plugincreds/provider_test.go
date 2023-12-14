@@ -1,3 +1,4 @@
+//go:build go1.8 && awsinclude
 // +build go1.8,awsinclude
 
 package plugincreds

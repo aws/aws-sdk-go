@@ -3,10 +3,10 @@
 // Package ssmincidents provides the client and types for making API
 // requests to AWS Systems Manager Incident Manager.
 //
-// AWS Systems Manager Incident Manager is an incident management console designed
-// to help users mitigate and recover from incidents affecting their AWS-hosted
-// applications. An incident is any unplanned interruption or reduction in quality
-// of services.
+// Systems Manager Incident Manager is an incident management console designed
+// to help users mitigate and recover from incidents affecting their Amazon
+// Web Services-hosted applications. An incident is any unplanned interruption
+// or reduction in quality of services.
 //
 // Incident Manager increases incident resolution by notifying responders of
 // impact, highlighting relevant troubleshooting data, and providing collaboration
@@ -19,7 +19,7 @@
 // See ssmincidents package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/ssmincidents/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS Systems Manager Incident Manager with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

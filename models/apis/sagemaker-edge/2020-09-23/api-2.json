@@ -12,6 +12,18 @@
     "uid":"sagemaker-edge-2020-09-23"
   },
   "operations":{
+    "GetDeployments":{
+      "name":"GetDeployments",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetDeployments"
+      },
+      "input":{"shape":"GetDeploymentsRequest"},
+      "output":{"shape":"GetDeploymentsResult"},
+      "errors":[
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "GetDeviceRegistration":{
       "name":"GetDeviceRegistration",
       "http":{
@@ -42,6 +54,75 @@
       "max":1000,
       "min":1
     },
+    "Checksum":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ChecksumType"},
+        "Sum":{"shape":"ChecksumString"}
+      }
+    },
+    "ChecksumString":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-z0-9](-*[a-z0-9])*$"
+    },
+    "ChecksumType":{
+      "type":"string",
+      "enum":["SHA1"]
+    },
+    "Definition":{
+      "type":"structure",
+      "members":{
+        "ModelHandle":{"shape":"EntityName"},
+        "S3Url":{"shape":"S3Uri"},
+        "Checksum":{"shape":"Checksum"},
+        "State":{"shape":"ModelState"}
+      }
+    },
+    "Definitions":{
+      "type":"list",
+      "member":{"shape":"Definition"}
+    },
+    "DeploymentModel":{
+      "type":"structure",
+      "members":{
+        "ModelHandle":{"shape":"EntityName"},
+        "ModelName":{"shape":"ModelName"},
+        "ModelVersion":{"shape":"Version"},
+        "DesiredState":{"shape":"ModelState"},
+        "State":{"shape":"ModelState"},
+        "Status":{"shape":"DeploymentStatus"},
+        "StatusReason":{"shape":"String"},
+        "RollbackFailureReason":{"shape":"String"}
+      }
+    },
+    "DeploymentModels":{
+      "type":"list",
+      "member":{"shape":"DeploymentModel"}
+    },
+    "DeploymentResult":{
+      "type":"structure",
+      "members":{
+        "DeploymentName":{"shape":"EntityName"},
+        "DeploymentStatus":{"shape":"EntityName"},
+        "DeploymentStatusMessage":{"shape":"String"},
+        "DeploymentStartTime":{"shape":"Timestamp"},
+        "DeploymentEndTime":{"shape":"Timestamp"},
+        "DeploymentModels":{"shape":"DeploymentModels"}
+      }
+    },
+    "DeploymentStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "FAIL"
+      ]
+    },
+    "DeploymentType":{
+      "type":"string",
+      "enum":["Model"]
+    },
     "DeviceFleetName":{
       "type":"string",
       "max":63,
@@ -65,6 +146,19 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9\\/])*$"
     },
+    "EdgeDeployment":{
+      "type":"structure",
+      "members":{
+        "DeploymentName":{"shape":"EntityName"},
+        "Type":{"shape":"DeploymentType"},
+        "FailureHandlingPolicy":{"shape":"FailureHandlingPolicy"},
+        "Definitions":{"shape":"Definitions"}
+      }
+    },
+    "EdgeDeployments":{
+      "type":"list",
+      "member":{"shape":"EdgeDeployment"}
+    },
     "EdgeMetric":{
       "type":"structure",
       "members":{
@@ -78,7 +172,37 @@
       "type":"list",
       "member":{"shape":"EdgeMetric"}
     },
+    "EntityName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
+    },
     "ErrorMessage":{"type":"string"},
+    "FailureHandlingPolicy":{
+      "type":"string",
+      "enum":[
+        "ROLLBACK_ON_FAILURE",
+        "DO_NOTHING"
+      ]
+    },
+    "GetDeploymentsRequest":{
+      "type":"structure",
+      "required":[
+        "DeviceName",
+        "DeviceFleetName"
+      ],
+      "members":{
+        "DeviceName":{"shape":"DeviceName"},
+        "DeviceFleetName":{"shape":"DeviceFleetName"}
+      }
+    },
+    "GetDeploymentsResult":{
+      "type":"structure",
+      "members":{
+        "Deployments":{"shape":"EdgeDeployments"}
+      }
+    },
     "GetDeviceRegistrationRequest":{
       "type":"structure",
       "required":[
@@ -126,9 +250,21 @@
       "min":4,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
     },
+    "ModelState":{
+      "type":"string",
+      "enum":[
+        "DEPLOY",
+        "UNDEPLOY"
+      ]
+    },
     "Models":{
       "type":"list",
       "member":{"shape":"Model"}
+    },
+    "S3Uri":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^s3://([^/]+)/?(.*)$"
     },
     "SendHeartbeatRequest":{
       "type":"structure",
@@ -142,9 +278,11 @@
         "Models":{"shape":"Models"},
         "AgentVersion":{"shape":"Version"},
         "DeviceName":{"shape":"DeviceName"},
-        "DeviceFleetName":{"shape":"DeviceFleetName"}
+        "DeviceFleetName":{"shape":"DeviceFleetName"},
+        "DeploymentResult":{"shape":"DeploymentResult"}
       }
     },
+    "String":{"type":"string"},
     "Timestamp":{"type":"timestamp"},
     "Value":{"type":"double"},
     "Version":{

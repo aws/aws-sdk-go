@@ -25,7 +25,8 @@
         {"shape":"NoSuchKeySigningKey"},
         {"shape":"InvalidKeySigningKeyStatus"},
         {"shape":"InvalidSigningStatus"},
-        {"shape":"InvalidKMSArn"}
+        {"shape":"InvalidKMSArn"},
+        {"shape":"InvalidInput"}
       ]
     },
     "AssociateVPCWithHostedZone":{
@@ -49,6 +50,27 @@
         {"shape":"ConflictingDomainExists"},
         {"shape":"LimitsExceeded"},
         {"shape":"PriorRequestNotComplete"}
+      ]
+    },
+    "ChangeCidrCollection":{
+      "name":"ChangeCidrCollection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/cidrcollection/{CidrCollectionId}"
+      },
+      "input":{
+        "shape":"ChangeCidrCollectionRequest",
+        "locationName":"ChangeCidrCollectionRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
+      },
+      "output":{"shape":"ChangeCidrCollectionResponse"},
+      "errors":[
+        {"shape":"NoSuchCidrCollectionException"},
+        {"shape":"CidrCollectionVersionMismatchException"},
+        {"shape":"InvalidInput"},
+        {"shape":"CidrBlockInUseException"},
+        {"shape":"LimitsExceeded"},
+        {"shape":"ConcurrentModification"}
       ]
     },
     "ChangeResourceRecordSets":{
@@ -89,6 +111,26 @@
         {"shape":"NoSuchHostedZone"},
         {"shape":"PriorRequestNotComplete"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "CreateCidrCollection":{
+      "name":"CreateCidrCollection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/cidrcollection",
+        "responseCode":201
+      },
+      "input":{
+        "shape":"CreateCidrCollectionRequest",
+        "locationName":"CreateCidrCollectionRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
+      },
+      "output":{"shape":"CreateCidrCollectionResponse"},
+      "errors":[
+        {"shape":"LimitsExceeded"},
+        {"shape":"InvalidInput"},
+        {"shape":"CidrCollectionAlreadyExistsException"},
+        {"shape":"ConcurrentModification"}
       ]
     },
     "CreateHealthCheck":{
@@ -302,7 +344,23 @@
         {"shape":"InvalidKeySigningKeyStatus"},
         {"shape":"InvalidSigningStatus"},
         {"shape":"KeySigningKeyInUse"},
-        {"shape":"KeySigningKeyInParentDSRecord"}
+        {"shape":"KeySigningKeyInParentDSRecord"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "DeleteCidrCollection":{
+      "name":"DeleteCidrCollection",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2013-04-01/cidrcollection/{CidrCollectionId}"
+      },
+      "input":{"shape":"DeleteCidrCollectionRequest"},
+      "output":{"shape":"DeleteCidrCollectionResponse"},
+      "errors":[
+        {"shape":"NoSuchCidrCollectionException"},
+        {"shape":"CidrCollectionInUseException"},
+        {"shape":"InvalidInput"},
+        {"shape":"ConcurrentModification"}
       ]
     },
     "DeleteHealthCheck":{
@@ -348,7 +406,8 @@
         {"shape":"NoSuchKeySigningKey"},
         {"shape":"InvalidKeySigningKeyStatus"},
         {"shape":"InvalidSigningStatus"},
-        {"shape":"InvalidKMSArn"}
+        {"shape":"InvalidKMSArn"},
+        {"shape":"InvalidInput"}
       ]
     },
     "DeleteQueryLoggingConfig":{
@@ -444,7 +503,8 @@
         {"shape":"KeySigningKeyInParentDSRecord"},
         {"shape":"DNSSECNotFound"},
         {"shape":"InvalidKeySigningKeyStatus"},
-        {"shape":"InvalidKMSArn"}
+        {"shape":"InvalidKMSArn"},
+        {"shape":"InvalidInput"}
       ]
     },
     "DisassociateVPCFromHostedZone":{
@@ -483,7 +543,8 @@
         {"shape":"InvalidKMSArn"},
         {"shape":"HostedZonePartiallyDelegated"},
         {"shape":"DNSSECNotFound"},
-        {"shape":"InvalidKeySigningKeyStatus"}
+        {"shape":"InvalidKeySigningKeyStatus"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetAccountLimit":{
@@ -530,7 +591,8 @@
       "output":{"shape":"GetDNSSECResponse"},
       "errors":[
         {"shape":"NoSuchHostedZone"},
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetGeoLocation":{
@@ -708,6 +770,45 @@
       },
       "input":{"shape":"GetTrafficPolicyInstanceCountRequest"},
       "output":{"shape":"GetTrafficPolicyInstanceCountResponse"}
+    },
+    "ListCidrBlocks":{
+      "name":"ListCidrBlocks",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/cidrcollection/{CidrCollectionId}/cidrblocks"
+      },
+      "input":{"shape":"ListCidrBlocksRequest"},
+      "output":{"shape":"ListCidrBlocksResponse"},
+      "errors":[
+        {"shape":"NoSuchCidrCollectionException"},
+        {"shape":"NoSuchCidrLocationException"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "ListCidrCollections":{
+      "name":"ListCidrCollections",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/cidrcollection"
+      },
+      "input":{"shape":"ListCidrCollectionsRequest"},
+      "output":{"shape":"ListCidrCollectionsResponse"},
+      "errors":[
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "ListCidrLocations":{
+      "name":"ListCidrLocations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/cidrcollection/{CidrCollectionId}"
+      },
+      "input":{"shape":"ListCidrLocationsRequest"},
+      "output":{"shape":"ListCidrLocationsResponse"},
+      "errors":[
+        {"shape":"NoSuchCidrCollectionException"},
+        {"shape":"InvalidInput"}
+      ]
     },
     "ListGeoLocations":{
       "name":"ListGeoLocations",
@@ -974,7 +1075,8 @@
       "output":{"shape":"UpdateHostedZoneCommentResponse"},
       "errors":[
         {"shape":"NoSuchHostedZone"},
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"PriorRequestNotComplete"}
       ]
     },
     "UpdateTrafficPolicyComment":{
@@ -1017,6 +1119,12 @@
     }
   },
   "shapes":{
+    "ARN":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":".*\\S.*"
+    },
     "AWSAccountID":{"type":"string"},
     "AccountLimit":{
       "type":"structure",
@@ -1146,6 +1254,34 @@
         "Changes":{"shape":"Changes"}
       }
     },
+    "ChangeCidrCollectionRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Changes"
+      ],
+      "members":{
+        "Id":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"CidrCollectionId"
+        },
+        "CollectionVersion":{"shape":"CollectionVersion"},
+        "Changes":{"shape":"CidrCollectionChanges"}
+      }
+    },
+    "ChangeCidrCollectionResponse":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"ChangeId"}
+      }
+    },
+    "ChangeId":{
+      "type":"string",
+      "max":6500,
+      "min":1
+    },
     "ChangeInfo":{
       "type":"structure",
       "required":[
@@ -1235,6 +1371,127 @@
       },
       "max":256
     },
+    "Cidr":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "CidrBlockInUseException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "CidrBlockSummaries":{
+      "type":"list",
+      "member":{"shape":"CidrBlockSummary"}
+    },
+    "CidrBlockSummary":{
+      "type":"structure",
+      "members":{
+        "CidrBlock":{"shape":"Cidr"},
+        "LocationName":{"shape":"CidrLocationNameDefaultNotAllowed"}
+      }
+    },
+    "CidrCollection":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"ARN"},
+        "Id":{"shape":"UUID"},
+        "Name":{"shape":"CollectionName"},
+        "Version":{"shape":"CollectionVersion"}
+      }
+    },
+    "CidrCollectionAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "CidrCollectionChange":{
+      "type":"structure",
+      "required":[
+        "LocationName",
+        "Action",
+        "CidrList"
+      ],
+      "members":{
+        "LocationName":{"shape":"CidrLocationNameDefaultNotAllowed"},
+        "Action":{"shape":"CidrCollectionChangeAction"},
+        "CidrList":{"shape":"CidrList"}
+      }
+    },
+    "CidrCollectionChangeAction":{
+      "type":"string",
+      "enum":[
+        "PUT",
+        "DELETE_IF_EXISTS"
+      ]
+    },
+    "CidrCollectionChanges":{
+      "type":"list",
+      "member":{"shape":"CidrCollectionChange"},
+      "max":1000,
+      "min":1
+    },
+    "CidrCollectionInUseException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "CidrCollectionVersionMismatchException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "CidrList":{
+      "type":"list",
+      "member":{
+        "shape":"Cidr",
+        "locationName":"Cidr"
+      },
+      "max":1000,
+      "min":1
+    },
+    "CidrLocationNameDefaultAllowed":{
+      "type":"string",
+      "max":16,
+      "min":1,
+      "pattern":"[0-9A-Za-z_\\-\\*]+"
+    },
+    "CidrLocationNameDefaultNotAllowed":{
+      "type":"string",
+      "max":16,
+      "min":1,
+      "pattern":"[0-9A-Za-z_\\-]+"
+    },
+    "CidrNonce":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"\\p{ASCII}+"
+    },
+    "CidrRoutingConfig":{
+      "type":"structure",
+      "required":[
+        "CollectionId",
+        "LocationName"
+      ],
+      "members":{
+        "CollectionId":{"shape":"UUID"},
+        "LocationName":{"shape":"CidrLocationNameDefaultAllowed"}
+      }
+    },
     "CloudWatchAlarmConfiguration":{
       "type":"structure",
       "required":[
@@ -1267,14 +1524,18 @@
         "us-west-2",
         "ca-central-1",
         "eu-central-1",
+        "eu-central-2",
         "eu-west-1",
         "eu-west-2",
         "eu-west-3",
         "ap-east-1",
         "me-south-1",
+        "me-central-1",
         "ap-south-1",
+        "ap-south-2",
         "ap-southeast-1",
         "ap-southeast-2",
+        "ap-southeast-3",
         "ap-northeast-1",
         "ap-northeast-2",
         "ap-northeast-3",
@@ -1284,12 +1545,39 @@
         "cn-north-1",
         "af-south-1",
         "eu-south-1",
+        "eu-south-2",
         "us-gov-west-1",
         "us-gov-east-1",
         "us-iso-east-1",
-        "us-isob-east-1"
+        "us-iso-west-1",
+        "us-isob-east-1",
+        "ap-southeast-4",
+        "il-central-1"
       ],
       "max":64,
+      "min":1
+    },
+    "CollectionName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[0-9A-Za-z_\\-]+"
+    },
+    "CollectionSummaries":{
+      "type":"list",
+      "member":{"shape":"CollectionSummary"}
+    },
+    "CollectionSummary":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"ARN"},
+        "Id":{"shape":"UUID"},
+        "Name":{"shape":"CollectionName"},
+        "Version":{"shape":"CollectionVersion"}
+      }
+    },
+    "CollectionVersion":{
+      "type":"long",
       "min":1
     },
     "ComparisonOperator":{
@@ -1323,6 +1611,28 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "CreateCidrCollectionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "CallerReference"
+      ],
+      "members":{
+        "Name":{"shape":"CollectionName"},
+        "CallerReference":{"shape":"CidrNonce"}
+      }
+    },
+    "CreateCidrCollectionResponse":{
+      "type":"structure",
+      "members":{
+        "Collection":{"shape":"CidrCollection"},
+        "Location":{
+          "shape":"ResourceURI",
+          "location":"header",
+          "locationName":"Location"
+        }
+      }
     },
     "CreateHealthCheckRequest":{
       "type":"structure",
@@ -1688,6 +1998,22 @@
         "locationName":"DelegationSet"
       }
     },
+    "DeleteCidrCollectionRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"CidrCollectionId"
+        }
+      }
+    },
+    "DeleteCidrCollectionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteHealthCheckRequest":{
       "type":"structure",
       "required":["HealthCheckId"],
@@ -2030,7 +2356,7 @@
       "required":["Id"],
       "members":{
         "Id":{
-          "shape":"ResourceId",
+          "shape":"ChangeId",
           "location":"uri",
           "locationName":"Id"
         }
@@ -2399,7 +2725,8 @@
         "EnableSNI":{"shape":"EnableSNI"},
         "Regions":{"shape":"HealthCheckRegionList"},
         "AlarmIdentifier":{"shape":"AlarmIdentifier"},
-        "InsufficientDataHealthStatus":{"shape":"InsufficientDataHealthStatus"}
+        "InsufficientDataHealthStatus":{"shape":"InsufficientDataHealthStatus"},
+        "RoutingControlArn":{"shape":"RoutingControlArn"}
       }
     },
     "HealthCheckCount":{"type":"long"},
@@ -2469,7 +2796,8 @@
         "HTTPS_STR_MATCH",
         "TCP",
         "CALCULATED",
-        "CLOUDWATCH_METRIC"
+        "CLOUDWATCH_METRIC",
+        "RECOVERY_CONTROL"
       ]
     },
     "HealthCheckVersion":{
@@ -2606,6 +2934,10 @@
         "Name":{"shape":"DNSName"},
         "Owner":{"shape":"HostedZoneOwner"}
       }
+    },
+    "HostedZoneType":{
+      "type":"string",
+      "enum":["PrivateHostedZone"]
     },
     "HostedZones":{
       "type":"list",
@@ -2812,6 +3144,89 @@
         "Description":{"shape":"ResourceDescription"}
       }
     },
+    "ListCidrBlocksRequest":{
+      "type":"structure",
+      "required":["CollectionId"],
+      "members":{
+        "CollectionId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"CidrCollectionId"
+        },
+        "LocationName":{
+          "shape":"CidrLocationNameDefaultNotAllowed",
+          "location":"querystring",
+          "locationName":"location"
+        },
+        "NextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nexttoken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxresults"
+        }
+      }
+    },
+    "ListCidrBlocksResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "CidrBlocks":{"shape":"CidrBlockSummaries"}
+      }
+    },
+    "ListCidrCollectionsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nexttoken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxresults"
+        }
+      }
+    },
+    "ListCidrCollectionsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "CidrCollections":{"shape":"CollectionSummaries"}
+      }
+    },
+    "ListCidrLocationsRequest":{
+      "type":"structure",
+      "required":["CollectionId"],
+      "members":{
+        "CollectionId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"CidrCollectionId"
+        },
+        "NextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nexttoken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxresults"
+        }
+      }
+    },
+    "ListCidrLocationsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "CidrLocations":{"shape":"LocationSummaries"}
+      }
+    },
     "ListGeoLocationsRequest":{
       "type":"structure",
       "members":{
@@ -2979,6 +3394,11 @@
           "shape":"ResourceId",
           "location":"querystring",
           "locationName":"delegationsetid"
+        },
+        "HostedZoneType":{
+          "shape":"HostedZoneType",
+          "location":"querystring",
+          "locationName":"hostedzonetype"
         }
       }
     },
@@ -3388,6 +3808,16 @@
         "VPCs":{"shape":"VPCs"}
       }
     },
+    "LocationSummaries":{
+      "type":"list",
+      "member":{"shape":"LocationSummary"}
+    },
+    "LocationSummary":{
+      "type":"structure",
+      "members":{
+        "LocationName":{"shape":"CidrLocationNameDefaultAllowed"}
+      }
+    },
     "MaxResults":{"type":"string"},
     "MeasureLatency":{"type":"boolean"},
     "Message":{
@@ -3413,6 +3843,22 @@
       "type":"structure",
       "members":{
         "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "NoSuchCidrCollectionException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "NoSuchCidrLocationException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
       },
       "error":{"httpStatusCode":404},
       "exception":true
@@ -3665,7 +4111,8 @@
         "ResourceRecords":{"shape":"ResourceRecords"},
         "AliasTarget":{"shape":"AliasTarget"},
         "HealthCheckId":{"shape":"HealthCheckId"},
-        "TrafficPolicyInstanceId":{"shape":"TrafficPolicyInstanceId"}
+        "TrafficPolicyInstanceId":{"shape":"TrafficPolicyInstanceId"},
+        "CidrRoutingConfig":{"shape":"CidrRoutingConfig"}
       }
     },
     "ResourceRecordSetFailover":{
@@ -3693,8 +4140,10 @@
         "eu-west-2",
         "eu-west-3",
         "eu-central-1",
+        "eu-central-2",
         "ap-southeast-1",
         "ap-southeast-2",
+        "ap-southeast-3",
         "ap-northeast-1",
         "ap-northeast-2",
         "ap-northeast-3",
@@ -3704,9 +4153,14 @@
         "cn-northwest-1",
         "ap-east-1",
         "me-south-1",
+        "me-central-1",
         "ap-south-1",
+        "ap-south-2",
         "af-south-1",
-        "eu-south-1"
+        "eu-south-1",
+        "eu-south-2",
+        "ap-southeast-4",
+        "il-central-1"
       ],
       "max":64,
       "min":1
@@ -3764,6 +4218,11 @@
     "ReusableDelegationSetLimitType":{
       "type":"string",
       "enum":["MAX_ZONES_BY_REUSABLE_DELEGATION_SET"]
+    },
+    "RoutingControlArn":{
+      "type":"string",
+      "max":255,
+      "min":1
     },
     "SearchString":{
       "type":"string",
@@ -4143,6 +4602,10 @@
       "max":4
     },
     "TransportProtocol":{"type":"string"},
+    "UUID":{
+      "type":"string",
+      "pattern":"[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}"
+    },
     "UpdateHealthCheckRequest":{
       "type":"structure",
       "required":["HealthCheckId"],
@@ -4292,15 +4755,20 @@
         "eu-west-2",
         "eu-west-3",
         "eu-central-1",
+        "eu-central-2",
         "ap-east-1",
         "me-south-1",
         "us-gov-west-1",
         "us-gov-east-1",
         "us-iso-east-1",
+        "us-iso-west-1",
         "us-isob-east-1",
+        "me-central-1",
         "ap-southeast-1",
         "ap-southeast-2",
+        "ap-southeast-3",
         "ap-south-1",
+        "ap-south-2",
         "ap-northeast-1",
         "ap-northeast-2",
         "ap-northeast-3",
@@ -4309,7 +4777,10 @@
         "ca-central-1",
         "cn-north-1",
         "af-south-1",
-        "eu-south-1"
+        "eu-south-1",
+        "eu-south-2",
+        "ap-southeast-4",
+        "il-central-1"
       ],
       "max":64,
       "min":1

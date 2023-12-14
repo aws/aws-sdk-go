@@ -3,18 +3,18 @@
 // Package iotsecuretunneling provides the client and types for making API
 // requests to AWS IoT Secure Tunneling.
 //
-// AWS IoT Secure Tunnling enables you to create remote connections to devices
-// deployed in the field.
+// IoT Secure Tunneling creates remote connections to devices deployed in the
+// field.
 //
-// For more information about how AWS IoT Secure Tunneling works, see AWS IoT
-// Secure Tunneling (https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html).
+// For more information about how IoT Secure Tunneling works, see IoT Secure
+// Tunneling (https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/iotsecuretunneling-2018-10-05 for more information on this service.
 //
 // See iotsecuretunneling package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/iotsecuretunneling/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS IoT Secure Tunneling with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

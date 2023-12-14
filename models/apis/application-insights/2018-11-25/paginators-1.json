@@ -29,6 +29,11 @@
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"
+    },
+    "ListWorkloads": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
     }
   }
 }

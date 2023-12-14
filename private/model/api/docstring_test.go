@@ -1,3 +1,4 @@
+//go:build go1.8 && codegen
 // +build go1.8,codegen
 
 package api
@@ -67,15 +68,67 @@ func TestDocstring(t *testing.T) {
 			In:     "<p> Deletes the replication configuration from the bucket. For information about replication configuration, see <a href=\" https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html\">Cross-Region Replication (CRR)</a> in the <i>Amazon S3 Developer Guide</i>. </p>",
 			Expect: "// Deletes the replication configuration from the bucket. For information about\n// replication configuration, see Cross-Region Replication (CRR) (https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html)\n// in the Amazon S3 Developer Guide.",
 		},
+		"unexpected closing tag": {
+			In:     "<p>Some cool text</p></p>",
+			Expect: "// Some cool text",
+		},
 	}
 
 	for name, c := range cases {
 		t.Run(name, func(t *testing.T) {
-			t.Log("Input", c.In)
 			actual := docstring(c.In)
 			if e, a := c.Expect, actual; e != a {
 				t.Errorf("expect %q, got %q", e, a)
 			}
 		})
+	}
+}
+
+func TestApiDocumentation_missingShapes(t *testing.T) {
+	docs := apiDocumentation{
+		Service: "some service documentation",
+		Operations: map[string]string{
+			"OperationOne": "some operation documentation",
+			"OperationTwo": "some more operation documentation",
+		},
+		Shapes: map[string]shapeDocumentation{
+			"ShapeOne": {
+				Base: "some shape documentation",
+			},
+			"ShapeTwo": {
+				Base: "some more shape documentation",
+				Refs: map[string]string{
+					"ShapeOne$shapeTwo": "shape ref document",
+				},
+			},
+		},
+	}
+
+	api := API{
+		Operations: map[string]*Operation{
+			"OperationOne": {},
+		},
+		Shapes: map[string]*Shape{
+			"ShapeOne": {
+				Type:       "structure",
+				MemberRefs: map[string]*ShapeRef{},
+			},
+		},
+	}
+
+	if err := docs.setup(&api); err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	if _, ok := api.Operations["OperationTwo"]; ok {
+		t.Errorf("expect operation shape to not be added from document model")
+	}
+
+	if _, ok := api.Shapes["ShapeTwo"]; ok {
+		t.Errorf("expect shape to not be added from document model")
+	}
+
+	if _, ok := api.Shapes["ShapeOne"].MemberRefs["shapeTwo"]; ok {
+		t.Errorf("expect shape to not be added from document model")
 	}
 }

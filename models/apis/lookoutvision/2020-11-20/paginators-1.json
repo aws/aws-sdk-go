@@ -6,6 +6,12 @@
       "limit_key": "MaxResults",
       "result_key": "DatasetEntries"
     },
+    "ListModelPackagingJobs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ModelPackagingJobs"
+    },
     "ListModels": {
       "input_token": "NextToken",
       "output_token": "NextToken",

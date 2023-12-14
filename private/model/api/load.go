@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 package api
@@ -23,6 +24,9 @@ type Loader struct {
 	// Allows ignoring API models that are unsupported by the SDK without
 	// failing the load of other supported APIs.
 	IgnoreUnsupportedAPIs bool
+
+	// Set to true to strictly enforce usage of the serviceId for the package naming
+	StrictServiceId bool
 }
 
 // Load loads the API model files from disk returning the map of API package.
@@ -32,6 +36,7 @@ func (l Loader) Load(modelPaths []string) (APIs, error) {
 	for _, modelPath := range modelPaths {
 		a, err := loadAPI(modelPath, l.BaseImport, func(a *API) {
 			a.IgnoreUnsupportedAPIs = l.IgnoreUnsupportedAPIs
+			a.StrictServiceId = l.StrictServiceId
 		})
 		if err != nil {
 			return nil, fmt.Errorf("failed to load API, %v, %v", modelPath, err)
@@ -65,6 +70,10 @@ func loadAPI(modelPath, baseImport string, opts ...func(*API)) (*API, error) {
 		BaseCrosslinkURL: "https://docs.aws.amazon.com",
 	}
 
+	for _, opt := range opts {
+		opt(a)
+	}
+
 	modelFile := filepath.Base(modelPath)
 	modelDir := filepath.Dir(modelPath)
 	err := attachModelFiles(modelDir,
@@ -77,10 +86,6 @@ func loadAPI(modelPath, baseImport string, opts ...func(*API)) (*API, error) {
 	)
 	if err != nil {
 		return nil, err
-	}
-
-	for _, opt := range opts {
-		opt(a)
 	}
 
 	if err = a.Setup(); err != nil {
@@ -199,11 +204,20 @@ func (a *API) AttachString(str string) error {
 
 // Setup initializes the API.
 func (a *API) Setup() error {
+	if err := a.validateNoDocumentShapes(); err != nil {
+		return err
+	}
+	if !a.NoRemoveUnsupportedJSONValue {
+		if err := removeUnsupportedJSONValue(a); err != nil {
+			return fmt.Errorf("failed to remove unsupported JSONValue from API, %v", err)
+		}
+	}
 	a.setServiceAliaseName()
 	a.setMetadataEndpointsKey()
 	a.writeShapeNames()
 	a.resolveReferences()
 	a.backfillErrorMembers()
+	a.backfillSigningName()
 
 	if !a.NoRemoveUnusedShapes {
 		a.removeUnusedShapes()

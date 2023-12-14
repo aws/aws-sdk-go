@@ -5,16 +5,20 @@
     "AcceptInboundCrossClusterSearchConnection": "<p>Allows the destination domain owner to accept an inbound cross-cluster search connection request.</p>",
     "AddTags": "<p>Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may have up to 10 tags. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging\" target=\"_blank\"> Tagging Amazon Elasticsearch Service Domains for more information.</a></p>",
     "AssociatePackage": "<p>Associates a package with an Amazon ES domain.</p>",
+    "AuthorizeVpcEndpointAccess": "<p>Provides access to an Amazon OpenSearch Service domain through the use of an interface VPC endpoint.</p>",
     "CancelElasticsearchServiceSoftwareUpdate": "<p>Cancels a scheduled service software update for an Amazon ES domain. You can only perform this operation before the <code>AutomatedUpdateDate</code> and when the <code>UpdateStatus</code> is in the <code>PENDING_UPDATE</code> state.</p>",
     "CreateElasticsearchDomain": "<p>Creates a new Elasticsearch domain. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains\" target=\"_blank\">Creating Elasticsearch Domains</a> in the <i>Amazon Elasticsearch Service Developer Guide</i>.</p>",
     "CreateOutboundCrossClusterSearchConnection": "<p>Creates a new cross-cluster search connection from a source domain to a destination domain.</p>",
     "CreatePackage": "<p>Create a package for use with Amazon ES domains.</p>",
+    "CreateVpcEndpoint": "<p>Creates an Amazon OpenSearch Service-managed VPC endpoint.</p>",
     "DeleteElasticsearchDomain": "<p>Permanently deletes the specified Elasticsearch domain and all of its data. Once a domain is deleted, it cannot be recovered.</p>",
     "DeleteElasticsearchServiceRole": "<p>Deletes the service-linked role that Elasticsearch Service uses to manage and maintain VPC domains. Role deletion will fail if any existing VPC domains use the role. You must delete any such Elasticsearch domains before deleting the role. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-enabling-slr\" target=\"_blank\">Deleting Elasticsearch Service Role</a> in <i>VPC Endpoints for Amazon Elasticsearch Service Domains</i>.</p>",
     "DeleteInboundCrossClusterSearchConnection": "<p>Allows the destination domain owner to delete an existing inbound cross-cluster search connection.</p>",
     "DeleteOutboundCrossClusterSearchConnection": "<p>Allows the source domain owner to delete an existing outbound cross-cluster search connection.</p>",
     "DeletePackage": "<p>Delete the package.</p>",
+    "DeleteVpcEndpoint": "<p>Deletes an Amazon OpenSearch Service-managed interface VPC endpoint.</p>",
     "DescribeDomainAutoTunes": "<p>Provides scheduled Auto-Tune action details for the Elasticsearch domain, such as Auto-Tune action type, description, severity, and scheduled date.</p>",
+    "DescribeDomainChangeProgress": "<p>Returns information about the current blue/green deployment happening on a domain, including a change ID, status, and progress stages.</p>",
     "DescribeElasticsearchDomain": "<p>Returns domain configuration information about the specified Elasticsearch domain, including the domain ID, domain endpoint, and domain ARN.</p>",
     "DescribeElasticsearchDomainConfig": "<p>Provides cluster configuration information about the specified Elasticsearch domain, such as the state, creation date, update version, and update date for cluster options.</p>",
     "DescribeElasticsearchDomains": "<p>Returns domain configuration information about the specified Elasticsearch domains, including the domain ID, domain endpoint, and domain ARN.</p>",
@@ -24,6 +28,7 @@
     "DescribePackages": "<p>Describes all packages available to Amazon ES. Includes options for filtering, limiting the number of results, and pagination.</p>",
     "DescribeReservedElasticsearchInstanceOfferings": "<p>Lists available reserved Elasticsearch instance offerings.</p>",
     "DescribeReservedElasticsearchInstances": "<p>Returns information about reserved Elasticsearch instances for this account.</p>",
+    "DescribeVpcEndpoints": "<p>Describes one or more Amazon OpenSearch Service-managed VPC endpoints.</p>",
     "DissociatePackage": "<p>Dissociates a package from the Amazon ES domain.</p>",
     "GetCompatibleElasticsearchVersions": "<p> Returns a list of upgrade compatible Elastisearch versions. You can optionally pass a <code> <a>DomainName</a> </code> to get all upgrade compatible Elasticsearch versions for that specific domain. </p>",
     "GetPackageVersionHistory": "<p>Returns a list of versions of the package, along with their creation time and commit message.</p>",
@@ -35,12 +40,17 @@
     "ListElasticsearchVersions": "<p>List all supported Elasticsearch versions</p>",
     "ListPackagesForDomain": "<p>Lists all packages associated with the Amazon ES domain.</p>",
     "ListTags": "<p>Returns all tags for the given Elasticsearch domain.</p>",
+    "ListVpcEndpointAccess": "<p>Retrieves information about each principal that is allowed to access a given Amazon OpenSearch Service domain through the use of an interface VPC endpoint.</p>",
+    "ListVpcEndpoints": "<p>Retrieves all Amazon OpenSearch Service-managed VPC endpoints in the current account and Region.</p>",
+    "ListVpcEndpointsForDomain": "<p>Retrieves all Amazon OpenSearch Service-managed VPC endpoints associated with a particular domain.</p>",
     "PurchaseReservedElasticsearchInstanceOffering": "<p>Allows you to purchase reserved Elasticsearch instances.</p>",
     "RejectInboundCrossClusterSearchConnection": "<p>Allows the destination domain owner to reject an inbound cross-cluster search connection request.</p>",
     "RemoveTags": "<p>Removes the specified set of tags from the specified Elasticsearch domain.</p>",
+    "RevokeVpcEndpointAccess": "<p>Revokes access to an Amazon OpenSearch Service domain that was provided through an interface VPC endpoint.</p>",
     "StartElasticsearchServiceSoftwareUpdate": "<p>Schedules a service software update for an Amazon ES domain.</p>",
     "UpdateElasticsearchDomainConfig": "<p>Modifies the cluster configuration of the specified Elasticsearch domain, setting as setting the instance type and the number of instances. </p>",
     "UpdatePackage": "<p>Updates a package for use with Amazon ES domains.</p>",
+    "UpdateVpcEndpoint": "<p>Modifies an Amazon OpenSearch Service-managed interface VPC endpoint.</p>",
     "UpgradeElasticsearchDomain": "<p>Allows you to either upgrade your domain or perform an Upgrade eligibility check to a compatible Elasticsearch version.</p>"
   },
   "shapes": {
@@ -53,6 +63,14 @@
         "ListTagsRequest$ARN": "<p> Specify the <code>ARN</code> for the Elasticsearch domain to which the tags are attached that you want to view.</p>",
         "MasterUserOptions$MasterUserARN": "<p>ARN for the master user (if IAM is enabled).</p>",
         "RemoveTagsRequest$ARN": "<p>Specifies the <code>ARN</code> for the Elasticsearch domain from which you want to delete the specified tags.</p>"
+      }
+    },
+    "AWSAccount": {
+      "base": null,
+      "refs": {
+        "AuthorizeVpcEndpointAccessRequest$Account": "<p>The account ID to grant access to.</p>",
+        "RevokeVpcEndpointAccessRequest$Account": "<p>The account ID to revoke access from.</p>",
+        "VpcEndpoint$VpcEndpointOwner": "<p>The creator of the endpoint.</p>"
       }
     },
     "AcceptInboundCrossClusterSearchConnectionRequest": {
@@ -136,6 +154,29 @@
     "AssociatePackageResponse": {
       "base": "<p> Container for response returned by <code> <a>AssociatePackage</a> </code> operation. </p>",
       "refs": {
+      }
+    },
+    "AuthorizeVpcEndpointAccessRequest": {
+      "base": "<p>Container for request parameters to the <code><a>AuthorizeVpcEndpointAccess</a></code> operation. Specifies the account to be permitted to manage VPC endpoints against the domain.</p>",
+      "refs": {
+      }
+    },
+    "AuthorizeVpcEndpointAccessResponse": {
+      "base": "<p>Container for response parameters to the <code><a>AuthorizeVpcEndpointAccess</a></code> operation. Contains the account ID and the type of the account being authorized to access the VPC endpoint.</p>",
+      "refs": {
+      }
+    },
+    "AuthorizedPrincipal": {
+      "base": "<p>Information about an account or service that has access to an Amazon OpenSearch Service domain through the use of an interface VPC endpoint.</p>",
+      "refs": {
+        "AuthorizeVpcEndpointAccessResponse$AuthorizedPrincipal": "<p>Information about the account or service that was provided access to the domain.</p>",
+        "AuthorizedPrincipalList$member": null
+      }
+    },
+    "AuthorizedPrincipalList": {
+      "base": null,
+      "refs": {
+        "ListVpcEndpointAccessResponse$AuthorizedPrincipalList": "<p>List of <code>AuthorizedPrincipal</code> describing the details of the permissions to manage VPC endpoints against the specified domain.</p>"
       }
     },
     "AutoTune": {
@@ -242,11 +283,13 @@
       "refs": {
         "AdvancedSecurityOptions$Enabled": "<p>True if advanced security is enabled.</p>",
         "AdvancedSecurityOptions$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
+        "AdvancedSecurityOptions$AnonymousAuthEnabled": "<p>True if Anonymous auth is enabled. Anonymous auth can be enabled only when AdvancedSecurity is enabled on existing domains.</p>",
         "AdvancedSecurityOptionsInput$Enabled": "<p>True if advanced security is enabled.</p>",
         "AdvancedSecurityOptionsInput$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
+        "AdvancedSecurityOptionsInput$AnonymousAuthEnabled": "<p>True if Anonymous auth is enabled. Anonymous auth can be enabled only when AdvancedSecurity is enabled on existing domains.</p>",
         "AutoTuneStatus$PendingDeletion": "<p>Indicates whether the Elasticsearch domain is being deleted.</p>",
         "CognitoOptions$Enabled": "<p>Specifies the option to enable Cognito for Kibana authentication.</p>",
-        "ColdStorageOptions$Enabled": "<p>True to enable cold storage for an Elasticsearch domain.</p>",
+        "ColdStorageOptions$Enabled": "<p>Enable cold storage option. Accepted values true or false</p>",
         "DomainEndpointOptions$EnforceHTTPS": "<p>Specify if only HTTPS endpoint should be enabled for the Elasticsearch domain.</p>",
         "DomainEndpointOptions$CustomEndpointEnabled": "<p>Specify if custom endpoint should be enabled for the Elasticsearch domain.</p>",
         "EBSOptions$EBSEnabled": "<p>Specifies whether EBS-based storage is enabled.</p>",
@@ -280,6 +323,50 @@
       "refs": {
       }
     },
+    "ChangeProgressDetails": {
+      "base": "<p>Specifies change details of the domain configuration change.</p>",
+      "refs": {
+        "ElasticsearchDomainConfig$ChangeProgressDetails": "<p>Specifies change details of the domain configuration change.</p>",
+        "ElasticsearchDomainStatus$ChangeProgressDetails": "<p>Specifies change details of the domain configuration change.</p>",
+        "UpgradeElasticsearchDomainResponse$ChangeProgressDetails": null
+      }
+    },
+    "ChangeProgressStage": {
+      "base": "<p>A progress stage details of a specific domain configuration change.</p>",
+      "refs": {
+        "ChangeProgressStageList$member": null
+      }
+    },
+    "ChangeProgressStageList": {
+      "base": "<p>The list of progress stages of a specific domain configuration change.</p>",
+      "refs": {
+        "ChangeProgressStatusDetails$ChangeProgressStages": "<p>The specific stages that the domain is going through to perform the configuration change.</p>"
+      }
+    },
+    "ChangeProgressStageName": {
+      "base": null,
+      "refs": {
+        "ChangeProgressStage$Name": "<p>The name of the specific progress stage.</p>"
+      }
+    },
+    "ChangeProgressStageStatus": {
+      "base": null,
+      "refs": {
+        "ChangeProgressStage$Status": "<p>The overall status of a specific progress stage.</p>"
+      }
+    },
+    "ChangeProgressStatusDetails": {
+      "base": "<p>The progress details of a specific domain configuration change.</p>",
+      "refs": {
+        "DescribeDomainChangeProgressResponse$ChangeProgressStatus": "<p>Progress information for the configuration change that is requested in the <code>DescribeDomainChangeProgress</code> request. </p>"
+      }
+    },
+    "ClientToken": {
+      "base": null,
+      "refs": {
+        "CreateVpcEndpointRequest$ClientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>"
+      }
+    },
     "CloudWatchLogsLogGroupArn": {
       "base": "<p>ARN of the Cloudwatch log group to which log needs to be published.</p>",
       "refs": {
@@ -302,9 +389,9 @@
       }
     },
     "ColdStorageOptions": {
-      "base": "<p>Specifies settings for cold storage.</p>",
+      "base": "<p>Specifies the configuration for cold storage options such as enabled</p>",
       "refs": {
-        "ElasticsearchClusterConfig$ColdStorageOptions": "<p>Specifies the <code>ColdStorageOptions</code> configuration for an Elasticsearch domain.</p>"
+        "ElasticsearchClusterConfig$ColdStorageOptions": "<p>Specifies the <code>ColdStorageOptions</code> config for Elasticsearch Domain</p>"
       }
     },
     "CommitMessage": {
@@ -366,6 +453,16 @@
     },
     "CreatePackageResponse": {
       "base": "<p> Container for response returned by <code> <a>CreatePackage</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "CreateVpcEndpointRequest": {
+      "base": "<p>Container for the parameters to the <code><a>CreateVpcEndpointRequest</a></code> operation.</p>",
+      "refs": {
+      }
+    },
+    "CreateVpcEndpointResponse": {
+      "base": "<p>Container for response parameters to the <code><a>CreateVpcEndpoint</a></code> operation. Contains the configuration and status of the VPC Endpoint being created.</p>",
       "refs": {
       }
     },
@@ -435,6 +532,16 @@
       "refs": {
       }
     },
+    "DeleteVpcEndpointRequest": {
+      "base": "<p>Deletes an Amazon OpenSearch Service-managed interface VPC endpoint.</p>",
+      "refs": {
+      }
+    },
+    "DeleteVpcEndpointResponse": {
+      "base": "<p>Container for response parameters to the <code><a>DeleteVpcEndpoint</a></code> operation. Contains the summarized detail of the VPC Endpoint being deleted.</p>",
+      "refs": {
+      }
+    },
     "DeploymentCloseDateTimeStamp": {
       "base": null,
       "refs": {
@@ -447,6 +554,12 @@
         "ServiceSoftwareOptions$UpdateStatus": "<p>The status of your service software update. This field can take the following values: <code>ELIGIBLE</code>, <code>PENDING_UPDATE</code>, <code>IN_PROGRESS</code>, <code>COMPLETED</code>, and <code>NOT_ELIGIBLE</code>.</p>"
       }
     },
+    "DeploymentType": {
+      "base": null,
+      "refs": {
+        "DryRunResults$DeploymentType": "<p> Specifies the deployment mechanism through which the update shall be applied on the domain. Possible responses are <code>Blue/Green</code> (The update will require a blue/green deployment.) <code>DynamicUpdate</code> (The update can be applied in-place without a Blue/Green deployment required.) <code>Undetermined</code> (The domain is undergoing an update which needs to complete before the deployment type can be predicted.) <code>None</code> (The configuration change matches the current configuration and will not result in any update.) </p>"
+      }
+    },
     "DescribeDomainAutoTunesRequest": {
       "base": "<p>Container for the parameters to the <code>DescribeDomainAutoTunes</code> operation.</p>",
       "refs": {
@@ -454,6 +567,16 @@
     },
     "DescribeDomainAutoTunesResponse": {
       "base": "<p>The result of <code>DescribeDomainAutoTunes</code> request. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information. </p>",
+      "refs": {
+      }
+    },
+    "DescribeDomainChangeProgressRequest": {
+      "base": "<p>Container for the parameters to the <code>DescribeDomainChangeProgress</code> operation. Specifies the domain name and optional change specific identity for which you want progress information. </p>",
+      "refs": {
+      }
+    },
+    "DescribeDomainChangeProgressResponse": {
+      "base": "<p>The result of a <code>DescribeDomainChangeProgress</code> request. Contains the progress information of the requested domain change. </p>",
       "refs": {
       }
     },
@@ -544,7 +667,7 @@
     "DescribePackagesFilterValues": {
       "base": null,
       "refs": {
-        "DescribePackagesFilter$Value": "<p>A list of values for the specified field.</p>"
+        "DescribePackagesFilter$Value": "<p>A non-empty list of values for the specified field.</p>"
       }
     },
     "DescribePackagesRequest": {
@@ -577,6 +700,28 @@
       "refs": {
       }
     },
+    "DescribeVpcEndpointsRequest": {
+      "base": "<p>Container for request parameters to the <code><a>DescribeVpcEndpoints</a></code> operation. Specifies the list of VPC endpoints to be described.</p>",
+      "refs": {
+      }
+    },
+    "DescribeVpcEndpointsResponse": {
+      "base": "<p>Container for response parameters to the <code><a>DescribeVpcEndpoints</a></code> operation. Returns a list containing configuration details and status of the VPC Endpoints as well as a list containing error responses of the endpoints that could not be described</p>",
+      "refs": {
+      }
+    },
+    "Description": {
+      "base": null,
+      "refs": {
+        "ChangeProgressStage$Description": "<p>The description of the progress stage.</p>"
+      }
+    },
+    "DisableTimestamp": {
+      "base": null,
+      "refs": {
+        "AdvancedSecurityOptions$AnonymousAuthDisableDate": "<p>Specifies the Anonymous Auth Disable Date when Anonymous Auth is enabled.</p>"
+      }
+    },
     "DisabledOperationException": {
       "base": "<p>An error occured because the client wanted to access a not supported operation. Gives http status code of 409.</p>",
       "refs": {
@@ -590,6 +735,14 @@
     "DissociatePackageResponse": {
       "base": "<p> Container for response returned by <code> <a>DissociatePackage</a> </code> operation. </p>",
       "refs": {
+      }
+    },
+    "DomainArn": {
+      "base": null,
+      "refs": {
+        "CreateVpcEndpointRequest$DomainArn": "<p>The Amazon Resource Name (ARN) of the domain to grant access to.</p>",
+        "VpcEndpoint$DomainArn": "<p>The Amazon Resource Name (ARN) of the domain associated with the endpoint.</p>",
+        "VpcEndpointSummary$DomainArn": "<p>The Amazon Resource Name (ARN) of the domain associated with the endpoint.</p>"
       }
     },
     "DomainEndpointOptions": {
@@ -622,7 +775,7 @@
     "DomainInfoList": {
       "base": "<p> Contains the list of Elasticsearch domain information.</p>",
       "refs": {
-        "ListDomainNamesResponse$DomainNames": "<p>List of Elasticsearch domain names.</p>"
+        "ListDomainNamesResponse$DomainNames": "<p>List of domain names and respective engine types.</p>"
       }
     },
     "DomainInformation": {
@@ -642,10 +795,12 @@
       "base": "<p>The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
       "refs": {
         "AssociatePackageRequest$DomainName": "<p>Name of the domain that you want to associate the package with.</p>",
+        "AuthorizeVpcEndpointAccessRequest$DomainName": "<p>The name of the OpenSearch Service domain to provide access to.</p>",
         "CancelElasticsearchServiceSoftwareUpdateRequest$DomainName": "<p>The name of the domain that you want to stop the latest service software update on.</p>",
         "CreateElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you are creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
         "DeleteElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you want to permanently delete.</p>",
         "DescribeDomainAutoTunesRequest$DomainName": "<p>Specifies the domain name for which you want Auto-Tune action details.</p>",
+        "DescribeDomainChangeProgressRequest$DomainName": "<p>The domain you want to get the progress information about.</p>",
         "DescribeElasticsearchDomainConfigRequest$DomainName": "<p>The Elasticsearch domain that you want to get information about.</p>",
         "DescribeElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain for which you want information.</p>",
         "DescribeElasticsearchInstanceTypeLimitsRequest$DomainName": "<p> DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for Elasticsearch <code> <a>Limits</a> </code> for existing domain. </p>",
@@ -660,6 +815,9 @@
         "GetUpgradeStatusRequest$DomainName": null,
         "ListElasticsearchInstanceTypesRequest$DomainName": "<p>DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for list of available Elasticsearch instance types when modifying existing domain. </p>",
         "ListPackagesForDomainRequest$DomainName": "<p>The name of the domain for which you want to list associated packages.</p>",
+        "ListVpcEndpointAccessRequest$DomainName": "<p>The name of the OpenSearch Service domain to retrieve access information for.</p>",
+        "ListVpcEndpointsForDomainRequest$DomainName": "<p>Name of the ElasticSearch domain whose VPC endpoints are to be listed.</p>",
+        "RevokeVpcEndpointAccessRequest$DomainName": "<p>The name of the OpenSearch Service domain.</p>",
         "StartElasticsearchServiceSoftwareUpdateRequest$DomainName": "<p>The name of the domain that you want to update to the latest service software.</p>",
         "UpdateElasticsearchDomainConfigRequest$DomainName": "<p>The name of the Elasticsearch domain that you are updating. </p>",
         "UpgradeElasticsearchDomainRequest$DomainName": null,
@@ -708,6 +866,18 @@
         "ReservedElasticsearchInstanceOffering$FixedPrice": "<p>The upfront fixed charge you will pay to purchase the specific reserved Elasticsearch instance offering. </p>",
         "ReservedElasticsearchInstanceOffering$UsagePrice": "<p>The rate you are charged for each hour the domain that is using the offering is running.</p>",
         "UpgradeStepItem$ProgressPercent": "<p>The Floating point value representing progress percentage of a particular step.</p>"
+      }
+    },
+    "DryRun": {
+      "base": null,
+      "refs": {
+        "UpdateElasticsearchDomainConfigRequest$DryRun": "<p> This flag, when set to True, specifies whether the <code>UpdateElasticsearchDomain</code> request should return the results of validation checks without actually applying the change. This flag, when set to True, specifies the deployment mechanism through which the update shall be applied on the domain. This will not actually perform the Update. </p>"
+      }
+    },
+    "DryRunResults": {
+      "base": null,
+      "refs": {
+        "UpdateElasticsearchDomainConfigResponse$DryRunResults": "<p>Contains result of DryRun. </p>"
       }
     },
     "Duration": {
@@ -839,10 +1009,23 @@
         "ElasticsearchDomainConfig$EncryptionAtRestOptions": "<p>Specifies the <code>EncryptionAtRestOptions</code> for the Elasticsearch domain.</p>"
       }
     },
+    "Endpoint": {
+      "base": null,
+      "refs": {
+        "VpcEndpoint$Endpoint": "<p>The connection endpoint ID for connecting to the domain.</p>"
+      }
+    },
     "EndpointsMap": {
       "base": null,
       "refs": {
         "ElasticsearchDomainStatus$Endpoints": "<p>Map containing the Elasticsearch domain endpoints used to submit index and search requests. Example <code>key, value</code>: <code>'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'</code>.</p>"
+      }
+    },
+    "EngineType": {
+      "base": null,
+      "refs": {
+        "DomainInfo$EngineType": "<p> Specifies the <code>EngineType</code> of the domain.</p>",
+        "ListDomainNamesRequest$EngineType": "<p> Optional parameter to filter the output by domain engine type. Acceptable values are 'Elasticsearch' and 'OpenSearch'. </p>"
       }
     },
     "ErrorDetails": {
@@ -881,6 +1064,9 @@
     "GUID": {
       "base": null,
       "refs": {
+        "ChangeProgressDetails$ChangeId": "<p>The unique change identifier associated with a specific domain configuration change.</p>",
+        "ChangeProgressStatusDetails$ChangeId": "<p>The unique change identifier associated with a specific domain configuration change.</p>",
+        "DescribeDomainChangeProgressRequest$ChangeId": "<p>The specific change ID for which you want to get progress information. This is an optional parameter. If omitted, the service returns information about the most recent configuration change. </p>",
         "DescribeReservedElasticsearchInstanceOfferingsRequest$ReservedElasticsearchInstanceOfferingId": "<p>The offering identifier filter value. Use this parameter to show only the available offering that matches the specified reservation identifier.</p>",
         "DescribeReservedElasticsearchInstancesRequest$ReservedElasticsearchInstanceId": "<p>The reserved instance identifier filter value. Use this parameter to show only the reservation that matches the specified reserved Elasticsearch instance ID.</p>",
         "PurchaseReservedElasticsearchInstanceOfferingRequest$ReservedElasticsearchInstanceOfferingId": "<p>The ID of the reserved Elasticsearch instance offering to purchase.</p>",
@@ -998,7 +1184,8 @@
       "base": null,
       "refs": {
         "EBSOptions$VolumeSize": "<p> Integer to specify the size of an EBS volume.</p>",
-        "EBSOptions$Iops": "<p>Specifies the IOPD for a Provisioned IOPS EBS volume (SSD).</p>",
+        "EBSOptions$Iops": "<p>Specifies the IOPS for Provisioned IOPS And GP3 EBS volume (SSD).</p>",
+        "EBSOptions$Throughput": "<p>Specifies the Throughput for GP3 EBS volume (SSD).</p>",
         "ElasticsearchClusterConfig$InstanceCount": "<p>The number of instances in the specified domain cluster.</p>",
         "ElasticsearchClusterConfig$DedicatedMasterCount": "<p>Total number of dedicated master nodes, active and on standby, for the cluster.</p>",
         "ElasticsearchClusterConfig$WarmCount": "<p>The number of warm nodes in the cluster.</p>",
@@ -1044,6 +1231,7 @@
     "LastUpdated": {
       "base": null,
       "refs": {
+        "ChangeProgressStage$LastUpdated": "<p>The last updated timestamp of the progress stage.</p>",
         "DomainPackageDetails$LastUpdated": "<p>Timestamp of the most-recent update to the association status.</p>",
         "PackageDetails$LastUpdatedAt": null
       }
@@ -1057,7 +1245,7 @@
       "base": null,
       "refs": {
         "AdditionalLimit$LimitName": "<p> Name of Additional Limit is specific to a given InstanceType and for each of it's <code> <a>InstanceRole</a> </code> etc. <br/> Attributes and their details: <br/> <ul> <li>MaximumNumberOfDataNodesSupported</li> This attribute will be present in Master node only to specify how much data nodes upto which given <code> <a>ESPartitionInstanceType</a> </code> can support as master node. <li>MaximumNumberOfDataNodesWithoutMasterNode</li> This attribute will be present in Data node only to specify how much data nodes of given <code> <a>ESPartitionInstanceType</a> </code> upto which you don't need any master nodes to govern them. </ul> </p>",
-        "StorageTypeLimit$LimitName": "<p> Name of storage limits that are applicable for given storage type. If <code> <a>StorageType</a> </code> is ebs, following storage options are applicable <ol> <li>MinimumVolumeSize</li> Minimum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumVolumeSize</li> Maximum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumIops</li> Maximum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. <li>MinimumIops</li> Minimum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. </ol> </p>"
+        "StorageTypeLimit$LimitName": "<p> Name of storage limits that are applicable for given storage type. If <code> <a>StorageType</a> </code> is ebs, following storage options are applicable <ol> <li>MinimumVolumeSize</li> Minimum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumVolumeSize</li> Maximum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumIops</li> Maximum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. <li>MinimumIops</li> Minimum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumThroughput</li> Maximum amount of Throughput that is applicable for given storage type.It can be empty if it is not applicable. <li>MinimumThroughput</li> Minimum amount of Throughput that is applicable for given storage type.It can be empty if it is not applicable. </ol> </p>"
       }
     },
     "LimitValue": {
@@ -1085,8 +1273,13 @@
         "DescribeElasticsearchInstanceTypeLimitsResponse$LimitsByRole": null
       }
     },
+    "ListDomainNamesRequest": {
+      "base": "<p> Container for the parameters to the <code><a>ListDomainNames</a></code> operation.</p>",
+      "refs": {
+      }
+    },
     "ListDomainNamesResponse": {
-      "base": "<p>The result of a <code>ListDomainNames</code> operation. Contains the names of all Elasticsearch domains owned by this account.</p>",
+      "base": "<p>The result of a <code>ListDomainNames</code> operation. Contains the names of all domains owned by this account and their respective engine types.</p>",
       "refs": {
       }
     },
@@ -1137,6 +1330,36 @@
     },
     "ListTagsResponse": {
       "base": "<p>The result of a <code>ListTags</code> operation. Contains tags for all requested Elasticsearch domains.</p>",
+      "refs": {
+      }
+    },
+    "ListVpcEndpointAccessRequest": {
+      "base": "<p>Retrieves information about each principal that is allowed to access a given Amazon OpenSearch Service domain through the use of an interface VPC endpoint</p>",
+      "refs": {
+      }
+    },
+    "ListVpcEndpointAccessResponse": {
+      "base": "<p>Container for response parameters to the <code><a>ListVpcEndpointAccess</a></code> operation. Returns a list of accounts id and account type authorized to manage VPC endpoints.</p>",
+      "refs": {
+      }
+    },
+    "ListVpcEndpointsForDomainRequest": {
+      "base": "<p>Container for request parameters to the <code><a>ListVpcEndpointsForDomain</a></code> operation. Specifies the domain whose VPC endpoints will be listed.</p>",
+      "refs": {
+      }
+    },
+    "ListVpcEndpointsForDomainResponse": {
+      "base": "<p>Container for response parameters to the <code><a>ListVpcEndpointsForDomain</a></code> operation. Returns a list containing summarized details of the VPC endpoints.</p>",
+      "refs": {
+      }
+    },
+    "ListVpcEndpointsRequest": {
+      "base": "<p>Container for request parameters to the <code><a>ListVpcEndpoints</a></code> operation.</p>",
+      "refs": {
+      }
+    },
+    "ListVpcEndpointsResponse": {
+      "base": "<p>Container for response parameters to the <code><a>ListVpcEndpoints</a></code> operation. Returns a list containing summarized details of the VPC endpoints.</p>",
       "refs": {
       }
     },
@@ -1196,6 +1419,13 @@
         "InstanceCountLimits$MaximumInstanceCount": null
       }
     },
+    "Message": {
+      "base": null,
+      "refs": {
+        "ChangeProgressDetails$Message": "<p>Contains an optional message associated with the domain configuration change.</p>",
+        "DryRunResults$Message": "<p>Contains an optional message associated with the DryRunResults.</p>"
+      }
+    },
     "MinimumInstanceCount": {
       "base": "<p> Minimum number of Instances that can be instantiated for given InstanceType. </p>",
       "refs": {
@@ -1222,7 +1452,13 @@
         "ListElasticsearchInstanceTypesResponse$NextToken": "<p>In case if there are more results available NextToken would be present, make further request to the same API with received NextToken to paginate remaining results. </p>",
         "ListElasticsearchVersionsRequest$NextToken": null,
         "ListElasticsearchVersionsResponse$NextToken": null,
-        "ListPackagesForDomainRequest$NextToken": "<p>Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.</p>"
+        "ListPackagesForDomainRequest$NextToken": "<p>Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.</p>",
+        "ListVpcEndpointAccessRequest$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
+        "ListVpcEndpointAccessResponse$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
+        "ListVpcEndpointsForDomainRequest$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
+        "ListVpcEndpointsForDomainResponse$NextToken": "<p>Information about each endpoint associated with the domain.</p>",
+        "ListVpcEndpointsRequest$NextToken": "<p>Identifier to allow retrieval of paginated results.</p>",
+        "ListVpcEndpointsResponse$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>"
       }
     },
     "NodeToNodeEncryptionOptions": {
@@ -1295,6 +1531,12 @@
       "base": null,
       "refs": {
         "DescribeOutboundCrossClusterSearchConnectionsResponse$CrossClusterSearchConnections": "<p>Consists of list of <code><a>OutboundCrossClusterSearchConnection</a></code> matching the specified filter criteria.</p>"
+      }
+    },
+    "OverallChangeStatus": {
+      "base": "<p>The overall status value of the domain configuration change.</p>",
+      "refs": {
+        "ChangeProgressStatusDetails$Status": "<p>The overall status of the domain configuration change. This field can take the following values: <code>PENDING</code>, <code>PROCESSING</code>, <code>COMPLETED</code> and <code>FAILED</code></p>"
       }
     },
     "OwnerId": {
@@ -1404,6 +1646,12 @@
         "UpdateElasticsearchDomainConfigRequest$AccessPolicies": "<p>IAM access policy as a JSON-formatted string.</p>"
       }
     },
+    "PrincipalType": {
+      "base": "<p>Specifies the type of AWS account permitted to manage VPC endpoints.: <ul> <li>AWS_ACCOUNT: Indicates that the account is owned by an AWS user.</li> <li>AWS_SERVICE: Indicates the the account is owned by an AWS service.</li> </ul> </p>",
+      "refs": {
+        "AuthorizedPrincipal$PrincipalType": "<p>The type of principal.</p>"
+      }
+    },
     "PurchaseReservedElasticsearchInstanceOfferingRequest": {
       "base": "<p>Container for parameters to <code>PurchaseReservedElasticsearchInstanceOffering</code></p>",
       "refs": {
@@ -1500,6 +1748,16 @@
     },
     "ResourceNotFoundException": {
       "base": "<p>An exception for accessing or deleting a resource that does not exist. Gives http status code of 400.</p>",
+      "refs": {
+      }
+    },
+    "RevokeVpcEndpointAccessRequest": {
+      "base": "<p>Revokes access to an Amazon OpenSearch Service domain that was provided through an interface VPC endpoint.</p>",
+      "refs": {
+      }
+    },
+    "RevokeVpcEndpointAccessResponse": {
+      "base": "<p>Container for response parameters to the <code><a>RevokeVpcEndpointAccess</a></code> operation. The response body for this operation is empty.</p>",
       "refs": {
       }
     },
@@ -1635,7 +1893,7 @@
       }
     },
     "StorageSubTypeName": {
-      "base": "<p> SubType of the given storage type. List of available sub-storage options: For \"instance\" storageType we wont have any storageSubType, in case of \"ebs\" storageType we will have following valid storageSubTypes <ol> <li>standard</li> <li>gp2</li> <li>io1</li> </ol> Refer <code><a>VolumeType</a></code> for more information regarding above EBS storage options. </p>",
+      "base": "<p> SubType of the given storage type. List of available sub-storage options: For \"instance\" storageType we wont have any storageSubType, in case of \"ebs\" storageType we will have following valid storageSubTypes <ol> <li>standard</li> <li>gp2</li> <li>gp3</li> <li>io1</li> </ol> Refer <code><a>VolumeType</a></code> for more information regarding above EBS storage options. </p>",
       "refs": {
         "StorageType$StorageSubTypeName": null
       }
@@ -1675,6 +1933,7 @@
       "refs": {
         "AdvancedOptions$key": null,
         "AdvancedOptions$value": null,
+        "AuthorizedPrincipal$Principal": "<p>The IAM principal that is allowed access to the domain.</p>",
         "AutoTuneMaintenanceSchedule$CronExpressionForRecurrence": "<p>Specifies cron expression for a recurring maintenance schedule. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>",
         "AutoTuneOptionsOutput$ErrorMessage": "<p>Specifies the error message while enabling or disabling the Auto-Tune.</p>",
         "AutoTuneStatus$ErrorMessage": "<p>Specifies the error message while enabling or disabling the Auto-Tune options.</p>",
@@ -1698,12 +1957,16 @@
         "ServiceSoftwareOptions$NewVersion": "<p>The new service software version if one is available.</p>",
         "ServiceSoftwareOptions$Description": "<p>The description of the <code>UpdateStatus</code>.</p>",
         "StringList$member": null,
-        "VPCDerivedInfo$VPCId": "<p>The VPC Id for the Elasticsearch domain. Exists only if the domain was created with VPCOptions.</p>"
+        "VPCDerivedInfo$VPCId": "<p>The VPC Id for the Elasticsearch domain. Exists only if the domain was created with VPCOptions.</p>",
+        "VpcEndpointError$ErrorMessage": "<p>A message describing the error.</p>",
+        "VpcEndpointSummary$VpcEndpointOwner": "<p>The creator of the endpoint.</p>"
       }
     },
     "StringList": {
       "base": null,
       "refs": {
+        "ChangeProgressStatusDetails$PendingProperties": "<p>The list of properties involved in the domain configuration change that are still in pending.</p>",
+        "ChangeProgressStatusDetails$CompletedProperties": "<p>The list of properties involved in the domain configuration change that are completed.</p>",
         "RemoveTagsRequest$TagKeys": "<p>Specifies the <code>TagKey</code> list which you want to remove from the Elasticsearch domain.</p>",
         "VPCDerivedInfo$SubnetIds": "<p>Specifies the subnets for VPC endpoint.</p>",
         "VPCDerivedInfo$AvailabilityZones": "<p>The availability zones for the Elasticsearch domain. Exists only if the domain was created with VPCOptions.</p>",
@@ -1750,6 +2013,12 @@
         "Duration$Unit": "<p>Specifies the unit of a maintenance schedule duration. Valid value is HOURS. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>"
       }
     },
+    "TotalNumberOfStages": {
+      "base": null,
+      "refs": {
+        "ChangeProgressStatusDetails$TotalNumberOfStages": "<p>The total number of stages required for the configuration change.</p>"
+      }
+    },
     "UIntValue": {
       "base": null,
       "refs": {
@@ -1782,9 +2051,20 @@
       "refs": {
         "AutoTuneStatus$CreationDate": "<p>Timestamp which tells Auto-Tune options creation date .</p>",
         "AutoTuneStatus$UpdateDate": "<p>Timestamp which tells Auto-Tune options last updated time.</p>",
+        "ChangeProgressStatusDetails$StartTime": "<p>The time at which the configuration change is made on the domain.</p>",
         "OptionStatus$CreationDate": "<p>Timestamp which tells the creation date for the entity.</p>",
         "OptionStatus$UpdateDate": "<p>Timestamp which tells the last updated time for the entity.</p>",
         "ReservedElasticsearchInstance$StartTime": "<p>The time the reservation started.</p>"
+      }
+    },
+    "UpdateVpcEndpointRequest": {
+      "base": "<p>Modifies an Amazon OpenSearch Service-managed interface VPC endpoint.</p>",
+      "refs": {
+      }
+    },
+    "UpdateVpcEndpointResponse": {
+      "base": "<p>Contains the configuration and status of the VPC endpoint being updated.</p>",
+      "refs": {
       }
     },
     "UpgradeElasticsearchDomainRequest": {
@@ -1860,7 +2140,8 @@
       "base": "<p>Options to specify the subnets and security groups for VPC endpoint. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html\" target=\"_blank\"> VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>",
       "refs": {
         "ElasticsearchDomainStatus$VPCOptions": "<p>The <code>VPCOptions</code> for the specified domain. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html\" target=\"_blank\">VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>",
-        "VPCDerivedInfoStatus$Options": "<p> Specifies the VPC options for the specified Elasticsearch domain.</p>"
+        "VPCDerivedInfoStatus$Options": "<p> Specifies the VPC options for the specified Elasticsearch domain.</p>",
+        "VpcEndpoint$VpcOptions": "<p>Options to specify the subnets and security groups for an Amazon OpenSearch Service VPC endpoint.</p>"
       }
     },
     "VPCDerivedInfoStatus": {
@@ -1873,7 +2154,9 @@
       "base": "<p>Options to specify the subnets and security groups for VPC endpoint. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html\" target=\"_blank\"> VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>",
       "refs": {
         "CreateElasticsearchDomainRequest$VPCOptions": "<p>Options to specify the subnets and security groups for VPC endpoint. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-creating-vpc\" target=\"_blank\">Creating a VPC</a> in <i>VPC Endpoints for Amazon Elasticsearch Service Domains</i></p>",
-        "UpdateElasticsearchDomainConfigRequest$VPCOptions": "<p>Options to specify the subnets and security groups for VPC endpoint. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-creating-vpc\" target=\"_blank\">Creating a VPC</a> in <i>VPC Endpoints for Amazon Elasticsearch Service Domains</i></p>"
+        "CreateVpcEndpointRequest$VpcOptions": "<p>Options to specify the subnets and security groups for the endpoint.</p>",
+        "UpdateElasticsearchDomainConfigRequest$VPCOptions": "<p>Options to specify the subnets and security groups for VPC endpoint. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-creating-vpc\" target=\"_blank\">Creating a VPC</a> in <i>VPC Endpoints for Amazon Elasticsearch Service Domains</i></p>",
+        "UpdateVpcEndpointRequest$VpcOptions": "<p>The security groups and/or subnets to add, remove, or modify.</p>"
       }
     },
     "ValidationException": {
@@ -1888,9 +2171,79 @@
       }
     },
     "VolumeType": {
-      "base": "<p> The type of EBS volume, standard, gp2, or io1. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs\" target=\"_blank\">Configuring EBS-based Storage</a>for more information.</p>",
+      "base": "<p> The type of EBS volume, standard, gp2, gp3 or io1. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs\" target=\"_blank\">Configuring EBS-based Storage</a>for more information.</p>",
       "refs": {
         "EBSOptions$VolumeType": "<p> Specifies the volume type for EBS-based storage.</p>"
+      }
+    },
+    "VpcEndpoint": {
+      "base": "<p>The connection endpoint for connecting to an Amazon OpenSearch Service domain through a proxy.</p>",
+      "refs": {
+        "CreateVpcEndpointResponse$VpcEndpoint": "<p>Information about the newly created VPC endpoint.</p>",
+        "UpdateVpcEndpointResponse$VpcEndpoint": "<p>The endpoint to be updated.</p>",
+        "VpcEndpoints$member": null
+      }
+    },
+    "VpcEndpointError": {
+      "base": "<p>Error information when attempting to describe an Amazon OpenSearch Service-managed VPC endpoint.</p>",
+      "refs": {
+        "VpcEndpointErrorList$member": null
+      }
+    },
+    "VpcEndpointErrorCode": {
+      "base": "<p>Specifies the error code of the failure encountered while describing the VPC endpoint: <ul> <li>ENDPOINT_NOT_FOUND: Indicates that the requested VPC endpoint does not exist.</li> <li>SERVER_ERROR: Indicates the describe endpoint operation failed due to an internal server error.</li> </ul> </p>",
+      "refs": {
+        "VpcEndpointError$ErrorCode": "<p>The code associated with the error.</p>"
+      }
+    },
+    "VpcEndpointErrorList": {
+      "base": null,
+      "refs": {
+        "DescribeVpcEndpointsResponse$VpcEndpointErrors": "<p>Any errors associated with the request.</p>"
+      }
+    },
+    "VpcEndpointId": {
+      "base": null,
+      "refs": {
+        "DeleteVpcEndpointRequest$VpcEndpointId": "<p>The unique identifier of the endpoint to be deleted.</p>",
+        "UpdateVpcEndpointRequest$VpcEndpointId": "<p>Unique identifier of the VPC endpoint to be updated.</p>",
+        "VpcEndpoint$VpcEndpointId": "<p>The unique identifier of the endpoint.</p>",
+        "VpcEndpointError$VpcEndpointId": "<p>The unique identifier of the endpoint. </p>",
+        "VpcEndpointIdList$member": null,
+        "VpcEndpointSummary$VpcEndpointId": "<p>The unique identifier of the endpoint.</p>"
+      }
+    },
+    "VpcEndpointIdList": {
+      "base": null,
+      "refs": {
+        "DescribeVpcEndpointsRequest$VpcEndpointIds": "<p>The unique identifiers of the endpoints to get information about.</p>"
+      }
+    },
+    "VpcEndpointStatus": {
+      "base": "<p>Specifies the current status of the VPC endpoint: <ul> <li>CREATING: Indicates that the VPC endpoint is currently being created.</li> <li>CREATE_FAILED: Indicates that the VPC endpoint creation failed.</li> <li>ACTIVE: Indicates that the VPC endpoint is currently active.</li> <li>UPDATING: Indicates that the VPC endpoint is currently being updated.</li> <li>UPDATE_FAILED: Indicates that the VPC endpoint update failed.</li> <li>DELETING: Indicates that the VPC endpoint is currently being deleted.</li> <li>DELETE_FAILED: Indicates that the VPC endpoint deletion failed.</li> </ul> </p>",
+      "refs": {
+        "VpcEndpoint$Status": "<p>The current status of the endpoint.</p>",
+        "VpcEndpointSummary$Status": "<p>The current status of the endpoint.</p>"
+      }
+    },
+    "VpcEndpointSummary": {
+      "base": "<p>Summary information for an Amazon OpenSearch Service-managed VPC endpoint.</p>",
+      "refs": {
+        "DeleteVpcEndpointResponse$VpcEndpointSummary": "<p>Information about the deleted endpoint, including its current status (<code>DELETING</code> or <code>DELETE_FAILED</code>).</p>",
+        "VpcEndpointSummaryList$member": null
+      }
+    },
+    "VpcEndpointSummaryList": {
+      "base": null,
+      "refs": {
+        "ListVpcEndpointsForDomainResponse$VpcEndpointSummaryList": "<p>Provides list of <code>VpcEndpointSummary</code> summarizing details of the VPC endpoints.</p>",
+        "ListVpcEndpointsResponse$VpcEndpointSummaryList": "<p>Information about each endpoint.</p>"
+      }
+    },
+    "VpcEndpoints": {
+      "base": null,
+      "refs": {
+        "DescribeVpcEndpointsResponse$VpcEndpoints": "<p>Information about each requested VPC endpoint.</p>"
       }
     },
     "ZoneAwarenessConfig": {

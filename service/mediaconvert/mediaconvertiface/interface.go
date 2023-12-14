@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS Elemental MediaConvert.
-//    func myFunc(svc mediaconvertiface.MediaConvertAPI) bool {
-//        // Make svc.AssociateCertificate request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS Elemental MediaConvert.
+//	func myFunc(svc mediaconvertiface.MediaConvertAPI) bool {
+//	    // Make svc.AssociateCertificate request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := mediaconvert.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := mediaconvert.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockMediaConvertClient struct {
-//        mediaconvertiface.MediaConvertAPI
-//    }
-//    func (m *mockMediaConvertClient) AssociateCertificate(input *mediaconvert.AssociateCertificateInput) (*mediaconvert.AssociateCertificateOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockMediaConvertClient struct {
+//	    mediaconvertiface.MediaConvertAPI
+//	}
+//	func (m *mockMediaConvertClient) AssociateCertificate(input *mediaconvert.AssociateCertificateInput) (*mediaconvert.AssociateCertificateOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockMediaConvertClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockMediaConvertClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -88,6 +88,10 @@ type MediaConvertAPI interface {
 	DeleteJobTemplateWithContext(aws.Context, *mediaconvert.DeleteJobTemplateInput, ...request.Option) (*mediaconvert.DeleteJobTemplateOutput, error)
 	DeleteJobTemplateRequest(*mediaconvert.DeleteJobTemplateInput) (*request.Request, *mediaconvert.DeleteJobTemplateOutput)
 
+	DeletePolicy(*mediaconvert.DeletePolicyInput) (*mediaconvert.DeletePolicyOutput, error)
+	DeletePolicyWithContext(aws.Context, *mediaconvert.DeletePolicyInput, ...request.Option) (*mediaconvert.DeletePolicyOutput, error)
+	DeletePolicyRequest(*mediaconvert.DeletePolicyInput) (*request.Request, *mediaconvert.DeletePolicyOutput)
+
 	DeletePreset(*mediaconvert.DeletePresetInput) (*mediaconvert.DeletePresetOutput, error)
 	DeletePresetWithContext(aws.Context, *mediaconvert.DeletePresetInput, ...request.Option) (*mediaconvert.DeletePresetOutput, error)
 	DeletePresetRequest(*mediaconvert.DeletePresetInput) (*request.Request, *mediaconvert.DeletePresetOutput)
@@ -114,6 +118,10 @@ type MediaConvertAPI interface {
 	GetJobTemplate(*mediaconvert.GetJobTemplateInput) (*mediaconvert.GetJobTemplateOutput, error)
 	GetJobTemplateWithContext(aws.Context, *mediaconvert.GetJobTemplateInput, ...request.Option) (*mediaconvert.GetJobTemplateOutput, error)
 	GetJobTemplateRequest(*mediaconvert.GetJobTemplateInput) (*request.Request, *mediaconvert.GetJobTemplateOutput)
+
+	GetPolicy(*mediaconvert.GetPolicyInput) (*mediaconvert.GetPolicyOutput, error)
+	GetPolicyWithContext(aws.Context, *mediaconvert.GetPolicyInput, ...request.Option) (*mediaconvert.GetPolicyOutput, error)
+	GetPolicyRequest(*mediaconvert.GetPolicyInput) (*request.Request, *mediaconvert.GetPolicyOutput)
 
 	GetPreset(*mediaconvert.GetPresetInput) (*mediaconvert.GetPresetOutput, error)
 	GetPresetWithContext(aws.Context, *mediaconvert.GetPresetInput, ...request.Option) (*mediaconvert.GetPresetOutput, error)
@@ -154,6 +162,10 @@ type MediaConvertAPI interface {
 	ListTagsForResource(*mediaconvert.ListTagsForResourceInput) (*mediaconvert.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *mediaconvert.ListTagsForResourceInput, ...request.Option) (*mediaconvert.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*mediaconvert.ListTagsForResourceInput) (*request.Request, *mediaconvert.ListTagsForResourceOutput)
+
+	PutPolicy(*mediaconvert.PutPolicyInput) (*mediaconvert.PutPolicyOutput, error)
+	PutPolicyWithContext(aws.Context, *mediaconvert.PutPolicyInput, ...request.Option) (*mediaconvert.PutPolicyOutput, error)
+	PutPolicyRequest(*mediaconvert.PutPolicyInput) (*request.Request, *mediaconvert.PutPolicyOutput)
 
 	TagResource(*mediaconvert.TagResourceInput) (*mediaconvert.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *mediaconvert.TagResourceInput, ...request.Option) (*mediaconvert.TagResourceOutput, error)

@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // Amazon Pinpoint.
-//    func myFunc(svc pinpointiface.PinpointAPI) bool {
-//        // Make svc.CreateApp request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// Amazon Pinpoint.
+//	func myFunc(svc pinpointiface.PinpointAPI) bool {
+//	    // Make svc.CreateApp request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := pinpoint.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := pinpoint.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockPinpointClient struct {
-//        pinpointiface.PinpointAPI
-//    }
-//    func (m *mockPinpointClient) CreateApp(input *pinpoint.CreateAppInput) (*pinpoint.CreateAppOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockPinpointClient struct {
+//	    pinpointiface.PinpointAPI
+//	}
+//	func (m *mockPinpointClient) CreateApp(input *pinpoint.CreateAppInput) (*pinpoint.CreateAppOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockPinpointClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockPinpointClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -79,6 +79,10 @@ type PinpointAPI interface {
 	CreateImportJob(*pinpoint.CreateImportJobInput) (*pinpoint.CreateImportJobOutput, error)
 	CreateImportJobWithContext(aws.Context, *pinpoint.CreateImportJobInput, ...request.Option) (*pinpoint.CreateImportJobOutput, error)
 	CreateImportJobRequest(*pinpoint.CreateImportJobInput) (*request.Request, *pinpoint.CreateImportJobOutput)
+
+	CreateInAppTemplate(*pinpoint.CreateInAppTemplateInput) (*pinpoint.CreateInAppTemplateOutput, error)
+	CreateInAppTemplateWithContext(aws.Context, *pinpoint.CreateInAppTemplateInput, ...request.Option) (*pinpoint.CreateInAppTemplateOutput, error)
+	CreateInAppTemplateRequest(*pinpoint.CreateInAppTemplateInput) (*request.Request, *pinpoint.CreateInAppTemplateOutput)
 
 	CreateJourney(*pinpoint.CreateJourneyInput) (*pinpoint.CreateJourneyOutput, error)
 	CreateJourneyWithContext(aws.Context, *pinpoint.CreateJourneyInput, ...request.Option) (*pinpoint.CreateJourneyOutput, error)
@@ -155,6 +159,10 @@ type PinpointAPI interface {
 	DeleteGcmChannel(*pinpoint.DeleteGcmChannelInput) (*pinpoint.DeleteGcmChannelOutput, error)
 	DeleteGcmChannelWithContext(aws.Context, *pinpoint.DeleteGcmChannelInput, ...request.Option) (*pinpoint.DeleteGcmChannelOutput, error)
 	DeleteGcmChannelRequest(*pinpoint.DeleteGcmChannelInput) (*request.Request, *pinpoint.DeleteGcmChannelOutput)
+
+	DeleteInAppTemplate(*pinpoint.DeleteInAppTemplateInput) (*pinpoint.DeleteInAppTemplateOutput, error)
+	DeleteInAppTemplateWithContext(aws.Context, *pinpoint.DeleteInAppTemplateInput, ...request.Option) (*pinpoint.DeleteInAppTemplateOutput, error)
+	DeleteInAppTemplateRequest(*pinpoint.DeleteInAppTemplateInput) (*request.Request, *pinpoint.DeleteInAppTemplateOutput)
 
 	DeleteJourney(*pinpoint.DeleteJourneyInput) (*pinpoint.DeleteJourneyOutput, error)
 	DeleteJourneyWithContext(aws.Context, *pinpoint.DeleteJourneyInput, ...request.Option) (*pinpoint.DeleteJourneyOutput, error)
@@ -296,6 +304,14 @@ type PinpointAPI interface {
 	GetImportJobsWithContext(aws.Context, *pinpoint.GetImportJobsInput, ...request.Option) (*pinpoint.GetImportJobsOutput, error)
 	GetImportJobsRequest(*pinpoint.GetImportJobsInput) (*request.Request, *pinpoint.GetImportJobsOutput)
 
+	GetInAppMessages(*pinpoint.GetInAppMessagesInput) (*pinpoint.GetInAppMessagesOutput, error)
+	GetInAppMessagesWithContext(aws.Context, *pinpoint.GetInAppMessagesInput, ...request.Option) (*pinpoint.GetInAppMessagesOutput, error)
+	GetInAppMessagesRequest(*pinpoint.GetInAppMessagesInput) (*request.Request, *pinpoint.GetInAppMessagesOutput)
+
+	GetInAppTemplate(*pinpoint.GetInAppTemplateInput) (*pinpoint.GetInAppTemplateOutput, error)
+	GetInAppTemplateWithContext(aws.Context, *pinpoint.GetInAppTemplateInput, ...request.Option) (*pinpoint.GetInAppTemplateOutput, error)
+	GetInAppTemplateRequest(*pinpoint.GetInAppTemplateInput) (*request.Request, *pinpoint.GetInAppTemplateOutput)
+
 	GetJourney(*pinpoint.GetJourneyInput) (*pinpoint.GetJourneyOutput, error)
 	GetJourneyWithContext(aws.Context, *pinpoint.GetJourneyInput, ...request.Option) (*pinpoint.GetJourneyOutput, error)
 	GetJourneyRequest(*pinpoint.GetJourneyInput) (*request.Request, *pinpoint.GetJourneyOutput)
@@ -311,6 +327,18 @@ type PinpointAPI interface {
 	GetJourneyExecutionMetrics(*pinpoint.GetJourneyExecutionMetricsInput) (*pinpoint.GetJourneyExecutionMetricsOutput, error)
 	GetJourneyExecutionMetricsWithContext(aws.Context, *pinpoint.GetJourneyExecutionMetricsInput, ...request.Option) (*pinpoint.GetJourneyExecutionMetricsOutput, error)
 	GetJourneyExecutionMetricsRequest(*pinpoint.GetJourneyExecutionMetricsInput) (*request.Request, *pinpoint.GetJourneyExecutionMetricsOutput)
+
+	GetJourneyRunExecutionActivityMetrics(*pinpoint.GetJourneyRunExecutionActivityMetricsInput) (*pinpoint.GetJourneyRunExecutionActivityMetricsOutput, error)
+	GetJourneyRunExecutionActivityMetricsWithContext(aws.Context, *pinpoint.GetJourneyRunExecutionActivityMetricsInput, ...request.Option) (*pinpoint.GetJourneyRunExecutionActivityMetricsOutput, error)
+	GetJourneyRunExecutionActivityMetricsRequest(*pinpoint.GetJourneyRunExecutionActivityMetricsInput) (*request.Request, *pinpoint.GetJourneyRunExecutionActivityMetricsOutput)
+
+	GetJourneyRunExecutionMetrics(*pinpoint.GetJourneyRunExecutionMetricsInput) (*pinpoint.GetJourneyRunExecutionMetricsOutput, error)
+	GetJourneyRunExecutionMetricsWithContext(aws.Context, *pinpoint.GetJourneyRunExecutionMetricsInput, ...request.Option) (*pinpoint.GetJourneyRunExecutionMetricsOutput, error)
+	GetJourneyRunExecutionMetricsRequest(*pinpoint.GetJourneyRunExecutionMetricsInput) (*request.Request, *pinpoint.GetJourneyRunExecutionMetricsOutput)
+
+	GetJourneyRuns(*pinpoint.GetJourneyRunsInput) (*pinpoint.GetJourneyRunsOutput, error)
+	GetJourneyRunsWithContext(aws.Context, *pinpoint.GetJourneyRunsInput, ...request.Option) (*pinpoint.GetJourneyRunsOutput, error)
+	GetJourneyRunsRequest(*pinpoint.GetJourneyRunsInput) (*request.Request, *pinpoint.GetJourneyRunsOutput)
 
 	GetPushTemplate(*pinpoint.GetPushTemplateInput) (*pinpoint.GetPushTemplateOutput, error)
 	GetPushTemplateWithContext(aws.Context, *pinpoint.GetPushTemplateInput, ...request.Option) (*pinpoint.GetPushTemplateOutput, error)
@@ -404,6 +432,10 @@ type PinpointAPI interface {
 	SendMessagesWithContext(aws.Context, *pinpoint.SendMessagesInput, ...request.Option) (*pinpoint.SendMessagesOutput, error)
 	SendMessagesRequest(*pinpoint.SendMessagesInput) (*request.Request, *pinpoint.SendMessagesOutput)
 
+	SendOTPMessage(*pinpoint.SendOTPMessageInput) (*pinpoint.SendOTPMessageOutput, error)
+	SendOTPMessageWithContext(aws.Context, *pinpoint.SendOTPMessageInput, ...request.Option) (*pinpoint.SendOTPMessageOutput, error)
+	SendOTPMessageRequest(*pinpoint.SendOTPMessageInput) (*request.Request, *pinpoint.SendOTPMessageOutput)
+
 	SendUsersMessages(*pinpoint.SendUsersMessagesInput) (*pinpoint.SendUsersMessagesOutput, error)
 	SendUsersMessagesWithContext(aws.Context, *pinpoint.SendUsersMessagesInput, ...request.Option) (*pinpoint.SendUsersMessagesOutput, error)
 	SendUsersMessagesRequest(*pinpoint.SendUsersMessagesInput) (*request.Request, *pinpoint.SendUsersMessagesOutput)
@@ -468,6 +500,10 @@ type PinpointAPI interface {
 	UpdateGcmChannelWithContext(aws.Context, *pinpoint.UpdateGcmChannelInput, ...request.Option) (*pinpoint.UpdateGcmChannelOutput, error)
 	UpdateGcmChannelRequest(*pinpoint.UpdateGcmChannelInput) (*request.Request, *pinpoint.UpdateGcmChannelOutput)
 
+	UpdateInAppTemplate(*pinpoint.UpdateInAppTemplateInput) (*pinpoint.UpdateInAppTemplateOutput, error)
+	UpdateInAppTemplateWithContext(aws.Context, *pinpoint.UpdateInAppTemplateInput, ...request.Option) (*pinpoint.UpdateInAppTemplateOutput, error)
+	UpdateInAppTemplateRequest(*pinpoint.UpdateInAppTemplateInput) (*request.Request, *pinpoint.UpdateInAppTemplateOutput)
+
 	UpdateJourney(*pinpoint.UpdateJourneyInput) (*pinpoint.UpdateJourneyOutput, error)
 	UpdateJourneyWithContext(aws.Context, *pinpoint.UpdateJourneyInput, ...request.Option) (*pinpoint.UpdateJourneyOutput, error)
 	UpdateJourneyRequest(*pinpoint.UpdateJourneyInput) (*request.Request, *pinpoint.UpdateJourneyOutput)
@@ -507,6 +543,10 @@ type PinpointAPI interface {
 	UpdateVoiceTemplate(*pinpoint.UpdateVoiceTemplateInput) (*pinpoint.UpdateVoiceTemplateOutput, error)
 	UpdateVoiceTemplateWithContext(aws.Context, *pinpoint.UpdateVoiceTemplateInput, ...request.Option) (*pinpoint.UpdateVoiceTemplateOutput, error)
 	UpdateVoiceTemplateRequest(*pinpoint.UpdateVoiceTemplateInput) (*request.Request, *pinpoint.UpdateVoiceTemplateOutput)
+
+	VerifyOTPMessage(*pinpoint.VerifyOTPMessageInput) (*pinpoint.VerifyOTPMessageOutput, error)
+	VerifyOTPMessageWithContext(aws.Context, *pinpoint.VerifyOTPMessageInput, ...request.Option) (*pinpoint.VerifyOTPMessageOutput, error)
+	VerifyOTPMessageRequest(*pinpoint.VerifyOTPMessageInput) (*request.Request, *pinpoint.VerifyOTPMessageOutput)
 }
 
 var _ PinpointAPI = (*pinpoint.Pinpoint)(nil)

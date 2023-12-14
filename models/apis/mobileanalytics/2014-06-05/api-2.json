@@ -3,6 +3,7 @@
   "metadata":{
     "apiVersion":"2014-06-05",
     "endpointPrefix":"mobileanalytics",
+    "serviceId": "Mobile Analytics",
     "serviceFullName":"Amazon Mobile Analytics",
     "signatureVersion":"v4",
     "protocol":"rest-json"

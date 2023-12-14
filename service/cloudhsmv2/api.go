@@ -29,14 +29,13 @@ const opCopyBackupToRegion = "CopyBackupToRegion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CopyBackupToRegionRequest method.
+//	req, resp := client.CopyBackupToRegionRequest(params)
 //
-//    // Example sending a request using the CopyBackupToRegionRequest method.
-//    req, resp := client.CopyBackupToRegionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/CopyBackupToRegion
 func (c *CloudHSMV2) CopyBackupToRegionRequest(input *CopyBackupToRegionInput) (req *request.Request, output *CopyBackupToRegionOutput) {
@@ -67,26 +66,27 @@ func (c *CloudHSMV2) CopyBackupToRegionRequest(input *CopyBackupToRegionInput) (
 // API operation CopyBackupToRegion for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
 //
-//   * CloudHsmTagException
-//   The request was rejected because of a tagging failure. Verify the tag conditions
-//   in all applicable policies, and then retry the request.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmTagException
+//     The request was rejected because of a tagging failure. Verify the tag conditions
+//     in all applicable policies, and then retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/CopyBackupToRegion
 func (c *CloudHSMV2) CopyBackupToRegion(input *CopyBackupToRegionInput) (*CopyBackupToRegionOutput, error) {
@@ -126,14 +126,13 @@ const opCreateCluster = "CreateCluster"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateClusterRequest method.
+//	req, resp := client.CreateClusterRequest(params)
 //
-//    // Example sending a request using the CreateClusterRequest method.
-//    req, resp := client.CreateClusterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/CreateCluster
 func (c *CloudHSMV2) CreateClusterRequest(input *CreateClusterInput) (req *request.Request, output *CreateClusterOutput) {
@@ -164,26 +163,27 @@ func (c *CloudHSMV2) CreateClusterRequest(input *CreateClusterInput) (req *reque
 // API operation CreateCluster for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
 //
-//   * CloudHsmTagException
-//   The request was rejected because of a tagging failure. Verify the tag conditions
-//   in all applicable policies, and then retry the request.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmTagException
+//     The request was rejected because of a tagging failure. Verify the tag conditions
+//     in all applicable policies, and then retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/CreateCluster
 func (c *CloudHSMV2) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
@@ -223,14 +223,13 @@ const opCreateHsm = "CreateHsm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateHsmRequest method.
+//	req, resp := client.CreateHsmRequest(params)
 //
-//    // Example sending a request using the CreateHsmRequest method.
-//    req, resp := client.CreateHsmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/CreateHsm
 func (c *CloudHSMV2) CreateHsmRequest(input *CreateHsmInput) (req *request.Request, output *CreateHsmOutput) {
@@ -262,22 +261,23 @@ func (c *CloudHSMV2) CreateHsmRequest(input *CreateHsmInput) (req *request.Reque
 // API operation CreateHsm for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
+//
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/CreateHsm
 func (c *CloudHSMV2) CreateHsm(input *CreateHsmInput) (*CreateHsmOutput, error) {
@@ -317,14 +317,13 @@ const opDeleteBackup = "DeleteBackup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBackupRequest method.
+//	req, resp := client.DeleteBackupRequest(params)
 //
-//    // Example sending a request using the DeleteBackupRequest method.
-//    req, resp := client.DeleteBackupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DeleteBackup
 func (c *CloudHSMV2) DeleteBackupRequest(input *DeleteBackupInput) (req *request.Request, output *DeleteBackupOutput) {
@@ -357,22 +356,23 @@ func (c *CloudHSMV2) DeleteBackupRequest(input *DeleteBackupInput) (req *request
 // API operation DeleteBackup for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
+//
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DeleteBackup
 func (c *CloudHSMV2) DeleteBackup(input *DeleteBackupInput) (*DeleteBackupOutput, error) {
@@ -412,14 +412,13 @@ const opDeleteCluster = "DeleteCluster"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteClusterRequest method.
+//	req, resp := client.DeleteClusterRequest(params)
 //
-//    // Example sending a request using the DeleteClusterRequest method.
-//    req, resp := client.DeleteClusterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DeleteCluster
 func (c *CloudHSMV2) DeleteClusterRequest(input *DeleteClusterInput) (req *request.Request, output *DeleteClusterOutput) {
@@ -452,26 +451,27 @@ func (c *CloudHSMV2) DeleteClusterRequest(input *DeleteClusterInput) (req *reque
 // API operation DeleteCluster for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
 //
-//   * CloudHsmTagException
-//   The request was rejected because of a tagging failure. Verify the tag conditions
-//   in all applicable policies, and then retry the request.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmTagException
+//     The request was rejected because of a tagging failure. Verify the tag conditions
+//     in all applicable policies, and then retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DeleteCluster
 func (c *CloudHSMV2) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, error) {
@@ -511,14 +511,13 @@ const opDeleteHsm = "DeleteHsm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteHsmRequest method.
+//	req, resp := client.DeleteHsmRequest(params)
 //
-//    // Example sending a request using the DeleteHsmRequest method.
-//    req, resp := client.DeleteHsmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DeleteHsm
 func (c *CloudHSMV2) DeleteHsmRequest(input *DeleteHsmInput) (req *request.Request, output *DeleteHsmOutput) {
@@ -552,22 +551,23 @@ func (c *CloudHSMV2) DeleteHsmRequest(input *DeleteHsmInput) (req *request.Reque
 // API operation DeleteHsm for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
 //
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
+//
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DeleteHsm
 func (c *CloudHSMV2) DeleteHsm(input *DeleteHsmInput) (*DeleteHsmOutput, error) {
@@ -607,14 +607,13 @@ const opDescribeBackups = "DescribeBackups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBackupsRequest method.
+//	req, resp := client.DescribeBackupsRequest(params)
 //
-//    // Example sending a request using the DescribeBackupsRequest method.
-//    req, resp := client.DescribeBackupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DescribeBackups
 func (c *CloudHSMV2) DescribeBackupsRequest(input *DescribeBackupsInput) (req *request.Request, output *DescribeBackupsOutput) {
@@ -658,26 +657,27 @@ func (c *CloudHSMV2) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 // API operation DescribeBackups for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
 //
-//   * CloudHsmTagException
-//   The request was rejected because of a tagging failure. Verify the tag conditions
-//   in all applicable policies, and then retry the request.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmTagException
+//     The request was rejected because of a tagging failure. Verify the tag conditions
+//     in all applicable policies, and then retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DescribeBackups
 func (c *CloudHSMV2) DescribeBackups(input *DescribeBackupsInput) (*DescribeBackupsOutput, error) {
@@ -709,15 +709,14 @@ func (c *CloudHSMV2) DescribeBackupsWithContext(ctx aws.Context, input *Describe
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeBackups operation.
-//    pageNum := 0
-//    err := client.DescribeBackupsPages(params,
-//        func(page *cloudhsmv2.DescribeBackupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeBackups operation.
+//	pageNum := 0
+//	err := client.DescribeBackupsPages(params,
+//	    func(page *cloudhsmv2.DescribeBackupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CloudHSMV2) DescribeBackupsPages(input *DescribeBackupsInput, fn func(*DescribeBackupsOutput, bool) bool) error {
 	return c.DescribeBackupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -769,14 +768,13 @@ const opDescribeClusters = "DescribeClusters"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeClustersRequest method.
+//	req, resp := client.DescribeClustersRequest(params)
 //
-//    // Example sending a request using the DescribeClustersRequest method.
-//    req, resp := client.DescribeClustersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DescribeClusters
 func (c *CloudHSMV2) DescribeClustersRequest(input *DescribeClustersInput) (req *request.Request, output *DescribeClustersOutput) {
@@ -820,23 +818,24 @@ func (c *CloudHSMV2) DescribeClustersRequest(input *DescribeClustersInput) (req 
 // API operation DescribeClusters for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmTagException
-//   The request was rejected because of a tagging failure. Verify the tag conditions
-//   in all applicable policies, and then retry the request.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmTagException
+//     The request was rejected because of a tagging failure. Verify the tag conditions
+//     in all applicable policies, and then retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DescribeClusters
 func (c *CloudHSMV2) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersOutput, error) {
@@ -868,15 +867,14 @@ func (c *CloudHSMV2) DescribeClustersWithContext(ctx aws.Context, input *Describ
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeClusters operation.
-//    pageNum := 0
-//    err := client.DescribeClustersPages(params,
-//        func(page *cloudhsmv2.DescribeClustersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeClusters operation.
+//	pageNum := 0
+//	err := client.DescribeClustersPages(params,
+//	    func(page *cloudhsmv2.DescribeClustersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CloudHSMV2) DescribeClustersPages(input *DescribeClustersInput, fn func(*DescribeClustersOutput, bool) bool) error {
 	return c.DescribeClustersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -928,14 +926,13 @@ const opInitializeCluster = "InitializeCluster"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InitializeClusterRequest method.
+//	req, resp := client.InitializeClusterRequest(params)
 //
-//    // Example sending a request using the InitializeClusterRequest method.
-//    req, resp := client.InitializeClusterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/InitializeCluster
 func (c *CloudHSMV2) InitializeClusterRequest(input *InitializeClusterInput) (req *request.Request, output *InitializeClusterOutput) {
@@ -969,22 +966,23 @@ func (c *CloudHSMV2) InitializeClusterRequest(input *InitializeClusterInput) (re
 // API operation InitializeCluster for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
+//
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/InitializeCluster
 func (c *CloudHSMV2) InitializeCluster(input *InitializeClusterInput) (*InitializeClusterOutput, error) {
@@ -1024,14 +1022,13 @@ const opListTags = "ListTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsRequest method.
+//	req, resp := client.ListTagsRequest(params)
 //
-//    // Example sending a request using the ListTagsRequest method.
-//    req, resp := client.ListTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/ListTags
 func (c *CloudHSMV2) ListTagsRequest(input *ListTagsInput) (req *request.Request, output *ListTagsOutput) {
@@ -1074,26 +1071,27 @@ func (c *CloudHSMV2) ListTagsRequest(input *ListTagsInput) (req *request.Request
 // API operation ListTags for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
 //
-//   * CloudHsmTagException
-//   The request was rejected because of a tagging failure. Verify the tag conditions
-//   in all applicable policies, and then retry the request.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmTagException
+//     The request was rejected because of a tagging failure. Verify the tag conditions
+//     in all applicable policies, and then retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/ListTags
 func (c *CloudHSMV2) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
@@ -1125,15 +1123,14 @@ func (c *CloudHSMV2) ListTagsWithContext(ctx aws.Context, input *ListTagsInput, 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTags operation.
-//    pageNum := 0
-//    err := client.ListTagsPages(params,
-//        func(page *cloudhsmv2.ListTagsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTags operation.
+//	pageNum := 0
+//	err := client.ListTagsPages(params,
+//	    func(page *cloudhsmv2.ListTagsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CloudHSMV2) ListTagsPages(input *ListTagsInput, fn func(*ListTagsOutput, bool) bool) error {
 	return c.ListTagsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1185,14 +1182,13 @@ const opModifyBackupAttributes = "ModifyBackupAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyBackupAttributesRequest method.
+//	req, resp := client.ModifyBackupAttributesRequest(params)
 //
-//    // Example sending a request using the ModifyBackupAttributesRequest method.
-//    req, resp := client.ModifyBackupAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/ModifyBackupAttributes
 func (c *CloudHSMV2) ModifyBackupAttributesRequest(input *ModifyBackupAttributesInput) (req *request.Request, output *ModifyBackupAttributesOutput) {
@@ -1223,22 +1219,23 @@ func (c *CloudHSMV2) ModifyBackupAttributesRequest(input *ModifyBackupAttributes
 // API operation ModifyBackupAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
+//
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/ModifyBackupAttributes
 func (c *CloudHSMV2) ModifyBackupAttributes(input *ModifyBackupAttributesInput) (*ModifyBackupAttributesOutput, error) {
@@ -1278,14 +1275,13 @@ const opModifyCluster = "ModifyCluster"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyClusterRequest method.
+//	req, resp := client.ModifyClusterRequest(params)
 //
-//    // Example sending a request using the ModifyClusterRequest method.
-//    req, resp := client.ModifyClusterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/ModifyCluster
 func (c *CloudHSMV2) ModifyClusterRequest(input *ModifyClusterInput) (req *request.Request, output *ModifyClusterOutput) {
@@ -1316,22 +1312,23 @@ func (c *CloudHSMV2) ModifyClusterRequest(input *ModifyClusterInput) (req *reque
 // API operation ModifyCluster for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
+//
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/ModifyCluster
 func (c *CloudHSMV2) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutput, error) {
@@ -1371,14 +1368,13 @@ const opRestoreBackup = "RestoreBackup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RestoreBackupRequest method.
+//	req, resp := client.RestoreBackupRequest(params)
 //
-//    // Example sending a request using the RestoreBackupRequest method.
-//    req, resp := client.RestoreBackupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/RestoreBackup
 func (c *CloudHSMV2) RestoreBackupRequest(input *RestoreBackupInput) (req *request.Request, output *RestoreBackupOutput) {
@@ -1410,22 +1406,23 @@ func (c *CloudHSMV2) RestoreBackupRequest(input *RestoreBackupInput) (req *reque
 // API operation RestoreBackup for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
+//
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/RestoreBackup
 func (c *CloudHSMV2) RestoreBackup(input *RestoreBackupInput) (*RestoreBackupOutput, error) {
@@ -1465,14 +1462,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/TagResource
 func (c *CloudHSMV2) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1504,26 +1500,27 @@ func (c *CloudHSMV2) TagResourceRequest(input *TagResourceInput) (req *request.R
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
 //
-//   * CloudHsmTagException
-//   The request was rejected because of a tagging failure. Verify the tag conditions
-//   in all applicable policies, and then retry the request.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmTagException
+//     The request was rejected because of a tagging failure. Verify the tag conditions
+//     in all applicable policies, and then retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/TagResource
 func (c *CloudHSMV2) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1563,14 +1560,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/UntagResource
 func (c *CloudHSMV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1602,26 +1598,27 @@ func (c *CloudHSMV2) UntagResourceRequest(input *UntagResourceInput) (req *reque
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * CloudHsmAccessDeniedException
-//   The request was rejected because the requester does not have permission to
-//   perform the requested operation.
 //
-//   * CloudHsmInternalFailureException
-//   The request was rejected because of an AWS CloudHSM internal failure. The
-//   request can be retried.
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
 //
-//   * CloudHsmInvalidRequestException
-//   The request was rejected because it is not a valid request.
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an AWS CloudHSM internal failure. The
+//     request can be retried.
 //
-//   * CloudHsmResourceNotFoundException
-//   The request was rejected because it refers to a resource that cannot be found.
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
 //
-//   * CloudHsmServiceException
-//   The request was rejected because an error occurred.
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
 //
-//   * CloudHsmTagException
-//   The request was rejected because of a tagging failure. Verify the tag conditions
-//   in all applicable policies, and then retry the request.
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmTagException
+//     The request was rejected because of a tagging failure. Verify the tag conditions
+//     in all applicable policies, and then retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/UntagResource
 func (c *CloudHSMV2) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1694,12 +1691,20 @@ type Backup struct {
 	TagList []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Backup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Backup) GoString() string {
 	return s.String()
 }
@@ -1782,12 +1787,20 @@ type BackupRetentionPolicy struct {
 	Value *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupRetentionPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupRetentionPolicy) GoString() string {
 	return s.String()
 }
@@ -1839,12 +1852,20 @@ type Certificates struct {
 	ManufacturerHardwareCertificate *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Certificates) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Certificates) GoString() string {
 	return s.String()
 }
@@ -1888,12 +1909,20 @@ type CloudHsmAccessDeniedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmAccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmAccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -1945,12 +1974,20 @@ type CloudHsmInternalFailureException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmInternalFailureException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmInternalFailureException) GoString() string {
 	return s.String()
 }
@@ -2001,12 +2038,20 @@ type CloudHsmInvalidRequestException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmInvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmInvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -2057,12 +2102,20 @@ type CloudHsmResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -2113,12 +2166,20 @@ type CloudHsmServiceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmServiceException) GoString() string {
 	return s.String()
 }
@@ -2170,12 +2231,20 @@ type CloudHsmTagException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmTagException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudHsmTagException) GoString() string {
 	return s.String()
 }
@@ -2271,12 +2340,20 @@ type Cluster struct {
 	VpcId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Cluster) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Cluster) GoString() string {
 	return s.String()
 }
@@ -2391,12 +2468,20 @@ type CopyBackupToRegionInput struct {
 	TagList []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyBackupToRegionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyBackupToRegionInput) GoString() string {
 	return s.String()
 }
@@ -2462,12 +2547,20 @@ type CopyBackupToRegionOutput struct {
 	DestinationBackup *DestinationBackup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyBackupToRegionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyBackupToRegionOutput) GoString() string {
 	return s.String()
 }
@@ -2510,12 +2603,20 @@ type CreateClusterInput struct {
 	TagList []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateClusterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateClusterInput) GoString() string {
 	return s.String()
 }
@@ -2594,12 +2695,20 @@ type CreateClusterOutput struct {
 	Cluster *Cluster `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateClusterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateClusterOutput) GoString() string {
 	return s.String()
 }
@@ -2631,12 +2740,20 @@ type CreateHsmInput struct {
 	IpAddress *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHsmInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHsmInput) GoString() string {
 	return s.String()
 }
@@ -2682,12 +2799,20 @@ type CreateHsmOutput struct {
 	Hsm *Hsm `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHsmOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHsmOutput) GoString() string {
 	return s.String()
 }
@@ -2708,12 +2833,20 @@ type DeleteBackupInput struct {
 	BackupId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackupInput) GoString() string {
 	return s.String()
 }
@@ -2744,12 +2877,20 @@ type DeleteBackupOutput struct {
 	Backup *Backup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackupOutput) GoString() string {
 	return s.String()
 }
@@ -2770,12 +2911,20 @@ type DeleteClusterInput struct {
 	ClusterId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteClusterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteClusterInput) GoString() string {
 	return s.String()
 }
@@ -2806,12 +2955,20 @@ type DeleteClusterOutput struct {
 	Cluster *Cluster `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteClusterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteClusterOutput) GoString() string {
 	return s.String()
 }
@@ -2842,12 +2999,20 @@ type DeleteHsmInput struct {
 	HsmId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHsmInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHsmInput) GoString() string {
 	return s.String()
 }
@@ -2896,12 +3061,20 @@ type DeleteHsmOutput struct {
 	HsmId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHsmOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHsmOutput) GoString() string {
 	return s.String()
 }
@@ -2948,12 +3121,20 @@ type DescribeBackupsInput struct {
 	SortAscending *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupsInput) GoString() string {
 	return s.String()
 }
@@ -3007,12 +3188,20 @@ type DescribeBackupsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupsOutput) GoString() string {
 	return s.String()
 }
@@ -3053,12 +3242,20 @@ type DescribeClustersInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeClustersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeClustersInput) GoString() string {
 	return s.String()
 }
@@ -3106,12 +3303,20 @@ type DescribeClustersOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeClustersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeClustersOutput) GoString() string {
 	return s.String()
 }
@@ -3148,12 +3353,20 @@ type DestinationBackup struct {
 	SourceRegion *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DestinationBackup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DestinationBackup) GoString() string {
 	return s.String()
 }
@@ -3214,12 +3427,20 @@ type Hsm struct {
 	SubnetId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Hsm) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Hsm) GoString() string {
 	return s.String()
 }
@@ -3298,12 +3519,20 @@ type InitializeClusterInput struct {
 	TrustAnchor *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InitializeClusterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InitializeClusterInput) GoString() string {
 	return s.String()
 }
@@ -3355,12 +3584,20 @@ type InitializeClusterOutput struct {
 	StateMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InitializeClusterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InitializeClusterOutput) GoString() string {
 	return s.String()
 }
@@ -3395,12 +3632,20 @@ type ListTagsInput struct {
 	ResourceId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsInput) GoString() string {
 	return s.String()
 }
@@ -3452,12 +3697,20 @@ type ListTagsOutput struct {
 	TagList []*Tag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsOutput) GoString() string {
 	return s.String()
 }
@@ -3491,12 +3744,20 @@ type ModifyBackupAttributesInput struct {
 	NeverExpires *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyBackupAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyBackupAttributesInput) GoString() string {
 	return s.String()
 }
@@ -3541,12 +3802,20 @@ type ModifyBackupAttributesOutput struct {
 	Backup *Backup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyBackupAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyBackupAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -3572,12 +3841,20 @@ type ModifyClusterInput struct {
 	ClusterId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyClusterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyClusterInput) GoString() string {
 	return s.String()
 }
@@ -3622,12 +3899,20 @@ type ModifyClusterOutput struct {
 	Cluster *Cluster `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyClusterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyClusterOutput) GoString() string {
 	return s.String()
 }
@@ -3648,12 +3933,20 @@ type RestoreBackupInput struct {
 	BackupId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestoreBackupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestoreBackupInput) GoString() string {
 	return s.String()
 }
@@ -3684,12 +3977,20 @@ type RestoreBackupOutput struct {
 	Backup *Backup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestoreBackupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestoreBackupOutput) GoString() string {
 	return s.String()
 }
@@ -3715,12 +4016,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -3771,12 +4080,20 @@ type TagResourceInput struct {
 	TagList []*Tag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -3826,12 +4143,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3852,12 +4177,20 @@ type UntagResourceInput struct {
 	TagKeyList []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -3897,12 +4230,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }

@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // Amazon Location Service.
-//    func myFunc(svc locationserviceiface.LocationServiceAPI) bool {
-//        // Make svc.AssociateTrackerConsumer request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// Amazon Location Service.
+//	func myFunc(svc locationserviceiface.LocationServiceAPI) bool {
+//	    // Make svc.AssociateTrackerConsumer request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := locationservice.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := locationservice.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockLocationServiceClient struct {
-//        locationserviceiface.LocationServiceAPI
-//    }
-//    func (m *mockLocationServiceClient) AssociateTrackerConsumer(input *locationservice.AssociateTrackerConsumerInput) (*locationservice.AssociateTrackerConsumerOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockLocationServiceClient struct {
+//	    locationserviceiface.LocationServiceAPI
+//	}
+//	func (m *mockLocationServiceClient) AssociateTrackerConsumer(input *locationservice.AssociateTrackerConsumerInput) (*locationservice.AssociateTrackerConsumerOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockLocationServiceClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockLocationServiceClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -92,9 +92,17 @@ type LocationServiceAPI interface {
 	CalculateRouteWithContext(aws.Context, *locationservice.CalculateRouteInput, ...request.Option) (*locationservice.CalculateRouteOutput, error)
 	CalculateRouteRequest(*locationservice.CalculateRouteInput) (*request.Request, *locationservice.CalculateRouteOutput)
 
+	CalculateRouteMatrix(*locationservice.CalculateRouteMatrixInput) (*locationservice.CalculateRouteMatrixOutput, error)
+	CalculateRouteMatrixWithContext(aws.Context, *locationservice.CalculateRouteMatrixInput, ...request.Option) (*locationservice.CalculateRouteMatrixOutput, error)
+	CalculateRouteMatrixRequest(*locationservice.CalculateRouteMatrixInput) (*request.Request, *locationservice.CalculateRouteMatrixOutput)
+
 	CreateGeofenceCollection(*locationservice.CreateGeofenceCollectionInput) (*locationservice.CreateGeofenceCollectionOutput, error)
 	CreateGeofenceCollectionWithContext(aws.Context, *locationservice.CreateGeofenceCollectionInput, ...request.Option) (*locationservice.CreateGeofenceCollectionOutput, error)
 	CreateGeofenceCollectionRequest(*locationservice.CreateGeofenceCollectionInput) (*request.Request, *locationservice.CreateGeofenceCollectionOutput)
+
+	CreateKey(*locationservice.CreateKeyInput) (*locationservice.CreateKeyOutput, error)
+	CreateKeyWithContext(aws.Context, *locationservice.CreateKeyInput, ...request.Option) (*locationservice.CreateKeyOutput, error)
+	CreateKeyRequest(*locationservice.CreateKeyInput) (*request.Request, *locationservice.CreateKeyOutput)
 
 	CreateMap(*locationservice.CreateMapInput) (*locationservice.CreateMapOutput, error)
 	CreateMapWithContext(aws.Context, *locationservice.CreateMapInput, ...request.Option) (*locationservice.CreateMapOutput, error)
@@ -116,6 +124,10 @@ type LocationServiceAPI interface {
 	DeleteGeofenceCollectionWithContext(aws.Context, *locationservice.DeleteGeofenceCollectionInput, ...request.Option) (*locationservice.DeleteGeofenceCollectionOutput, error)
 	DeleteGeofenceCollectionRequest(*locationservice.DeleteGeofenceCollectionInput) (*request.Request, *locationservice.DeleteGeofenceCollectionOutput)
 
+	DeleteKey(*locationservice.DeleteKeyInput) (*locationservice.DeleteKeyOutput, error)
+	DeleteKeyWithContext(aws.Context, *locationservice.DeleteKeyInput, ...request.Option) (*locationservice.DeleteKeyOutput, error)
+	DeleteKeyRequest(*locationservice.DeleteKeyInput) (*request.Request, *locationservice.DeleteKeyOutput)
+
 	DeleteMap(*locationservice.DeleteMapInput) (*locationservice.DeleteMapOutput, error)
 	DeleteMapWithContext(aws.Context, *locationservice.DeleteMapInput, ...request.Option) (*locationservice.DeleteMapOutput, error)
 	DeleteMapRequest(*locationservice.DeleteMapInput) (*request.Request, *locationservice.DeleteMapOutput)
@@ -135,6 +147,10 @@ type LocationServiceAPI interface {
 	DescribeGeofenceCollection(*locationservice.DescribeGeofenceCollectionInput) (*locationservice.DescribeGeofenceCollectionOutput, error)
 	DescribeGeofenceCollectionWithContext(aws.Context, *locationservice.DescribeGeofenceCollectionInput, ...request.Option) (*locationservice.DescribeGeofenceCollectionOutput, error)
 	DescribeGeofenceCollectionRequest(*locationservice.DescribeGeofenceCollectionInput) (*request.Request, *locationservice.DescribeGeofenceCollectionOutput)
+
+	DescribeKey(*locationservice.DescribeKeyInput) (*locationservice.DescribeKeyOutput, error)
+	DescribeKeyWithContext(aws.Context, *locationservice.DescribeKeyInput, ...request.Option) (*locationservice.DescribeKeyOutput, error)
+	DescribeKeyRequest(*locationservice.DescribeKeyInput) (*request.Request, *locationservice.DescribeKeyOutput)
 
 	DescribeMap(*locationservice.DescribeMapInput) (*locationservice.DescribeMapOutput, error)
 	DescribeMapWithContext(aws.Context, *locationservice.DescribeMapInput, ...request.Option) (*locationservice.DescribeMapOutput, error)
@@ -187,6 +203,10 @@ type LocationServiceAPI interface {
 	GetMapTileWithContext(aws.Context, *locationservice.GetMapTileInput, ...request.Option) (*locationservice.GetMapTileOutput, error)
 	GetMapTileRequest(*locationservice.GetMapTileInput) (*request.Request, *locationservice.GetMapTileOutput)
 
+	GetPlace(*locationservice.GetPlaceInput) (*locationservice.GetPlaceOutput, error)
+	GetPlaceWithContext(aws.Context, *locationservice.GetPlaceInput, ...request.Option) (*locationservice.GetPlaceOutput, error)
+	GetPlaceRequest(*locationservice.GetPlaceInput) (*request.Request, *locationservice.GetPlaceOutput)
+
 	ListDevicePositions(*locationservice.ListDevicePositionsInput) (*locationservice.ListDevicePositionsOutput, error)
 	ListDevicePositionsWithContext(aws.Context, *locationservice.ListDevicePositionsInput, ...request.Option) (*locationservice.ListDevicePositionsOutput, error)
 	ListDevicePositionsRequest(*locationservice.ListDevicePositionsInput) (*request.Request, *locationservice.ListDevicePositionsOutput)
@@ -207,6 +227,13 @@ type LocationServiceAPI interface {
 
 	ListGeofencesPages(*locationservice.ListGeofencesInput, func(*locationservice.ListGeofencesOutput, bool) bool) error
 	ListGeofencesPagesWithContext(aws.Context, *locationservice.ListGeofencesInput, func(*locationservice.ListGeofencesOutput, bool) bool, ...request.Option) error
+
+	ListKeys(*locationservice.ListKeysInput) (*locationservice.ListKeysOutput, error)
+	ListKeysWithContext(aws.Context, *locationservice.ListKeysInput, ...request.Option) (*locationservice.ListKeysOutput, error)
+	ListKeysRequest(*locationservice.ListKeysInput) (*request.Request, *locationservice.ListKeysOutput)
+
+	ListKeysPages(*locationservice.ListKeysInput, func(*locationservice.ListKeysOutput, bool) bool) error
+	ListKeysPagesWithContext(aws.Context, *locationservice.ListKeysInput, func(*locationservice.ListKeysOutput, bool) bool, ...request.Option) error
 
 	ListMaps(*locationservice.ListMapsInput) (*locationservice.ListMapsOutput, error)
 	ListMapsWithContext(aws.Context, *locationservice.ListMapsInput, ...request.Option) (*locationservice.ListMapsOutput, error)
@@ -255,6 +282,10 @@ type LocationServiceAPI interface {
 	SearchPlaceIndexForPositionWithContext(aws.Context, *locationservice.SearchPlaceIndexForPositionInput, ...request.Option) (*locationservice.SearchPlaceIndexForPositionOutput, error)
 	SearchPlaceIndexForPositionRequest(*locationservice.SearchPlaceIndexForPositionInput) (*request.Request, *locationservice.SearchPlaceIndexForPositionOutput)
 
+	SearchPlaceIndexForSuggestions(*locationservice.SearchPlaceIndexForSuggestionsInput) (*locationservice.SearchPlaceIndexForSuggestionsOutput, error)
+	SearchPlaceIndexForSuggestionsWithContext(aws.Context, *locationservice.SearchPlaceIndexForSuggestionsInput, ...request.Option) (*locationservice.SearchPlaceIndexForSuggestionsOutput, error)
+	SearchPlaceIndexForSuggestionsRequest(*locationservice.SearchPlaceIndexForSuggestionsInput) (*request.Request, *locationservice.SearchPlaceIndexForSuggestionsOutput)
+
 	SearchPlaceIndexForText(*locationservice.SearchPlaceIndexForTextInput) (*locationservice.SearchPlaceIndexForTextOutput, error)
 	SearchPlaceIndexForTextWithContext(aws.Context, *locationservice.SearchPlaceIndexForTextInput, ...request.Option) (*locationservice.SearchPlaceIndexForTextOutput, error)
 	SearchPlaceIndexForTextRequest(*locationservice.SearchPlaceIndexForTextInput) (*request.Request, *locationservice.SearchPlaceIndexForTextOutput)
@@ -266,6 +297,30 @@ type LocationServiceAPI interface {
 	UntagResource(*locationservice.UntagResourceInput) (*locationservice.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *locationservice.UntagResourceInput, ...request.Option) (*locationservice.UntagResourceOutput, error)
 	UntagResourceRequest(*locationservice.UntagResourceInput) (*request.Request, *locationservice.UntagResourceOutput)
+
+	UpdateGeofenceCollection(*locationservice.UpdateGeofenceCollectionInput) (*locationservice.UpdateGeofenceCollectionOutput, error)
+	UpdateGeofenceCollectionWithContext(aws.Context, *locationservice.UpdateGeofenceCollectionInput, ...request.Option) (*locationservice.UpdateGeofenceCollectionOutput, error)
+	UpdateGeofenceCollectionRequest(*locationservice.UpdateGeofenceCollectionInput) (*request.Request, *locationservice.UpdateGeofenceCollectionOutput)
+
+	UpdateKey(*locationservice.UpdateKeyInput) (*locationservice.UpdateKeyOutput, error)
+	UpdateKeyWithContext(aws.Context, *locationservice.UpdateKeyInput, ...request.Option) (*locationservice.UpdateKeyOutput, error)
+	UpdateKeyRequest(*locationservice.UpdateKeyInput) (*request.Request, *locationservice.UpdateKeyOutput)
+
+	UpdateMap(*locationservice.UpdateMapInput) (*locationservice.UpdateMapOutput, error)
+	UpdateMapWithContext(aws.Context, *locationservice.UpdateMapInput, ...request.Option) (*locationservice.UpdateMapOutput, error)
+	UpdateMapRequest(*locationservice.UpdateMapInput) (*request.Request, *locationservice.UpdateMapOutput)
+
+	UpdatePlaceIndex(*locationservice.UpdatePlaceIndexInput) (*locationservice.UpdatePlaceIndexOutput, error)
+	UpdatePlaceIndexWithContext(aws.Context, *locationservice.UpdatePlaceIndexInput, ...request.Option) (*locationservice.UpdatePlaceIndexOutput, error)
+	UpdatePlaceIndexRequest(*locationservice.UpdatePlaceIndexInput) (*request.Request, *locationservice.UpdatePlaceIndexOutput)
+
+	UpdateRouteCalculator(*locationservice.UpdateRouteCalculatorInput) (*locationservice.UpdateRouteCalculatorOutput, error)
+	UpdateRouteCalculatorWithContext(aws.Context, *locationservice.UpdateRouteCalculatorInput, ...request.Option) (*locationservice.UpdateRouteCalculatorOutput, error)
+	UpdateRouteCalculatorRequest(*locationservice.UpdateRouteCalculatorInput) (*request.Request, *locationservice.UpdateRouteCalculatorOutput)
+
+	UpdateTracker(*locationservice.UpdateTrackerInput) (*locationservice.UpdateTrackerOutput, error)
+	UpdateTrackerWithContext(aws.Context, *locationservice.UpdateTrackerInput, ...request.Option) (*locationservice.UpdateTrackerOutput, error)
+	UpdateTrackerRequest(*locationservice.UpdateTrackerInput) (*request.Request, *locationservice.UpdateTrackerOutput)
 }
 
 var _ LocationServiceAPI = (*locationservice.LocationService)(nil)

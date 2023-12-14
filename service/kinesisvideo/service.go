@@ -40,31 +40,36 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a KinesisVideo client from just a session.
-//     svc := kinesisvideo.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a KinesisVideo client with additional configuration
-//     svc := kinesisvideo.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a KinesisVideo client from just a session.
+//	svc := kinesisvideo.New(mySession)
+//
+//	// Create a KinesisVideo client with additional configuration
+//	svc := kinesisvideo.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *KinesisVideo {
 	c := p.ClientConfig(EndpointsID, cfgs...)
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+		c.SigningName = "kinesisvideo"
+	}
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *KinesisVideo {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *KinesisVideo {
 	svc := &KinesisVideo{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2017-09-30",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2017-09-30",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),

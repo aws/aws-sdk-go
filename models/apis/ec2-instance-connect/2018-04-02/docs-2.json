@@ -22,8 +22,18 @@
       "refs": {
       }
     },
+    "EC2InstanceStateInvalidException": {
+      "base": "<p>Unable to connect because the instance is not in a valid state. Connecting to a stopped or terminated instance is not supported. If the instance is stopped, start your instance, and try to connect again.</p>",
+      "refs": {
+      }
+    },
     "EC2InstanceTypeInvalidException": {
       "base": "<p>The instance type is not supported for connecting via the serial console. Only Nitro instance types are currently supported.</p>",
+      "refs": {
+      }
+    },
+    "EC2InstanceUnavailableException": {
+      "base": "<p>The instance is currently unavailable. Wait a few minutes and try again.</p>",
       "refs": {
       }
     },
@@ -110,7 +120,9 @@
       "refs": {
         "AuthException$Message": null,
         "EC2InstanceNotFoundException$Message": null,
+        "EC2InstanceStateInvalidException$Message": null,
         "EC2InstanceTypeInvalidException$Message": null,
+        "EC2InstanceUnavailableException$Message": null,
         "InvalidArgsException$Message": null,
         "SerialConsoleAccessDisabledException$Message": null,
         "SerialConsoleSessionLimitExceededException$Message": null,

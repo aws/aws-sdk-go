@@ -29,14 +29,13 @@ const opCreateDevicePool = "CreateDevicePool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDevicePoolRequest method.
+//	req, resp := client.CreateDevicePoolRequest(params)
 //
-//    // Example sending a request using the CreateDevicePoolRequest method.
-//    req, resp := client.CreateDevicePoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateDevicePool
 func (c *DeviceFarm) CreateDevicePoolRequest(input *CreateDevicePoolInput) (req *request.Request, output *CreateDevicePoolOutput) {
@@ -67,17 +66,18 @@ func (c *DeviceFarm) CreateDevicePoolRequest(input *CreateDevicePoolInput) (req 
 // API operation CreateDevicePool for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateDevicePool
 func (c *DeviceFarm) CreateDevicePool(input *CreateDevicePoolInput) (*CreateDevicePoolOutput, error) {
@@ -117,14 +117,13 @@ const opCreateInstanceProfile = "CreateInstanceProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateInstanceProfileRequest method.
+//	req, resp := client.CreateInstanceProfileRequest(params)
 //
-//    // Example sending a request using the CreateInstanceProfileRequest method.
-//    req, resp := client.CreateInstanceProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateInstanceProfile
 func (c *DeviceFarm) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (req *request.Request, output *CreateInstanceProfileOutput) {
@@ -156,17 +155,18 @@ func (c *DeviceFarm) CreateInstanceProfileRequest(input *CreateInstanceProfileIn
 // API operation CreateInstanceProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateInstanceProfile
 func (c *DeviceFarm) CreateInstanceProfile(input *CreateInstanceProfileInput) (*CreateInstanceProfileOutput, error) {
@@ -206,14 +206,13 @@ const opCreateNetworkProfile = "CreateNetworkProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateNetworkProfileRequest method.
+//	req, resp := client.CreateNetworkProfileRequest(params)
 //
-//    // Example sending a request using the CreateNetworkProfileRequest method.
-//    req, resp := client.CreateNetworkProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateNetworkProfile
 func (c *DeviceFarm) CreateNetworkProfileRequest(input *CreateNetworkProfileInput) (req *request.Request, output *CreateNetworkProfileOutput) {
@@ -244,17 +243,18 @@ func (c *DeviceFarm) CreateNetworkProfileRequest(input *CreateNetworkProfileInpu
 // API operation CreateNetworkProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateNetworkProfile
 func (c *DeviceFarm) CreateNetworkProfile(input *CreateNetworkProfileInput) (*CreateNetworkProfileOutput, error) {
@@ -294,14 +294,13 @@ const opCreateProject = "CreateProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProjectRequest method.
+//	req, resp := client.CreateProjectRequest(params)
 //
-//    // Example sending a request using the CreateProjectRequest method.
-//    req, resp := client.CreateProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateProject
 func (c *DeviceFarm) CreateProjectRequest(input *CreateProjectInput) (req *request.Request, output *CreateProjectOutput) {
@@ -332,20 +331,21 @@ func (c *DeviceFarm) CreateProjectRequest(input *CreateProjectInput) (req *reque
 // API operation CreateProject for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
 //
-//   * TagOperationException
-//   The operation was not successful. Try again.
+//   - ServiceAccountException
+//     There was a problem with the service account.
+//
+//   - TagOperationException
+//     The operation was not successful. Try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateProject
 func (c *DeviceFarm) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
@@ -385,14 +385,13 @@ const opCreateRemoteAccessSession = "CreateRemoteAccessSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRemoteAccessSessionRequest method.
+//	req, resp := client.CreateRemoteAccessSessionRequest(params)
 //
-//    // Example sending a request using the CreateRemoteAccessSessionRequest method.
-//    req, resp := client.CreateRemoteAccessSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateRemoteAccessSession
 func (c *DeviceFarm) CreateRemoteAccessSessionRequest(input *CreateRemoteAccessSessionInput) (req *request.Request, output *CreateRemoteAccessSessionOutput) {
@@ -423,17 +422,18 @@ func (c *DeviceFarm) CreateRemoteAccessSessionRequest(input *CreateRemoteAccessS
 // API operation CreateRemoteAccessSession for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateRemoteAccessSession
 func (c *DeviceFarm) CreateRemoteAccessSession(input *CreateRemoteAccessSessionInput) (*CreateRemoteAccessSessionOutput, error) {
@@ -473,14 +473,13 @@ const opCreateTestGridProject = "CreateTestGridProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTestGridProjectRequest method.
+//	req, resp := client.CreateTestGridProjectRequest(params)
 //
-//    // Example sending a request using the CreateTestGridProjectRequest method.
-//    req, resp := client.CreateTestGridProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateTestGridProject
 func (c *DeviceFarm) CreateTestGridProjectRequest(input *CreateTestGridProjectInput) (req *request.Request, output *CreateTestGridProjectOutput) {
@@ -512,15 +511,16 @@ func (c *DeviceFarm) CreateTestGridProjectRequest(input *CreateTestGridProjectIn
 // API operation CreateTestGridProject for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateTestGridProject
 func (c *DeviceFarm) CreateTestGridProject(input *CreateTestGridProjectInput) (*CreateTestGridProjectOutput, error) {
@@ -560,14 +560,13 @@ const opCreateTestGridUrl = "CreateTestGridUrl"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTestGridUrlRequest method.
+//	req, resp := client.CreateTestGridUrlRequest(params)
 //
-//    // Example sending a request using the CreateTestGridUrlRequest method.
-//    req, resp := client.CreateTestGridUrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateTestGridUrl
 func (c *DeviceFarm) CreateTestGridUrlRequest(input *CreateTestGridUrlInput) (req *request.Request, output *CreateTestGridUrlOutput) {
@@ -599,15 +598,16 @@ func (c *DeviceFarm) CreateTestGridUrlRequest(input *CreateTestGridUrlInput) (re
 // API operation CreateTestGridUrl for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified entity was not found.
 //
-//   * ArgumentException
-//   An invalid argument was specified.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - ArgumentException
+//     An invalid argument was specified.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateTestGridUrl
 func (c *DeviceFarm) CreateTestGridUrl(input *CreateTestGridUrlInput) (*CreateTestGridUrlOutput, error) {
@@ -647,14 +647,13 @@ const opCreateUpload = "CreateUpload"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUploadRequest method.
+//	req, resp := client.CreateUploadRequest(params)
 //
-//    // Example sending a request using the CreateUploadRequest method.
-//    req, resp := client.CreateUploadRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateUpload
 func (c *DeviceFarm) CreateUploadRequest(input *CreateUploadInput) (req *request.Request, output *CreateUploadOutput) {
@@ -685,17 +684,18 @@ func (c *DeviceFarm) CreateUploadRequest(input *CreateUploadInput) (req *request
 // API operation CreateUpload for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateUpload
 func (c *DeviceFarm) CreateUpload(input *CreateUploadInput) (*CreateUploadOutput, error) {
@@ -735,14 +735,13 @@ const opCreateVPCEConfiguration = "CreateVPCEConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateVPCEConfigurationRequest method.
+//	req, resp := client.CreateVPCEConfigurationRequest(params)
 //
-//    // Example sending a request using the CreateVPCEConfigurationRequest method.
-//    req, resp := client.CreateVPCEConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateVPCEConfiguration
 func (c *DeviceFarm) CreateVPCEConfigurationRequest(input *CreateVPCEConfigurationInput) (req *request.Request, output *CreateVPCEConfigurationOutput) {
@@ -774,14 +773,15 @@ func (c *DeviceFarm) CreateVPCEConfigurationRequest(input *CreateVPCEConfigurati
 // API operation CreateVPCEConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateVPCEConfiguration
 func (c *DeviceFarm) CreateVPCEConfiguration(input *CreateVPCEConfigurationInput) (*CreateVPCEConfigurationOutput, error) {
@@ -821,14 +821,13 @@ const opDeleteDevicePool = "DeleteDevicePool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDevicePoolRequest method.
+//	req, resp := client.DeleteDevicePoolRequest(params)
 //
-//    // Example sending a request using the DeleteDevicePoolRequest method.
-//    req, resp := client.DeleteDevicePoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteDevicePool
 func (c *DeviceFarm) DeleteDevicePoolRequest(input *DeleteDevicePoolInput) (req *request.Request, output *DeleteDevicePoolOutput) {
@@ -861,17 +860,18 @@ func (c *DeviceFarm) DeleteDevicePoolRequest(input *DeleteDevicePoolInput) (req 
 // API operation DeleteDevicePool for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteDevicePool
 func (c *DeviceFarm) DeleteDevicePool(input *DeleteDevicePoolInput) (*DeleteDevicePoolOutput, error) {
@@ -911,14 +911,13 @@ const opDeleteInstanceProfile = "DeleteInstanceProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteInstanceProfileRequest method.
+//	req, resp := client.DeleteInstanceProfileRequest(params)
 //
-//    // Example sending a request using the DeleteInstanceProfileRequest method.
-//    req, resp := client.DeleteInstanceProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteInstanceProfile
 func (c *DeviceFarm) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (req *request.Request, output *DeleteInstanceProfileOutput) {
@@ -950,17 +949,18 @@ func (c *DeviceFarm) DeleteInstanceProfileRequest(input *DeleteInstanceProfileIn
 // API operation DeleteInstanceProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteInstanceProfile
 func (c *DeviceFarm) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (*DeleteInstanceProfileOutput, error) {
@@ -1000,14 +1000,13 @@ const opDeleteNetworkProfile = "DeleteNetworkProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteNetworkProfileRequest method.
+//	req, resp := client.DeleteNetworkProfileRequest(params)
 //
-//    // Example sending a request using the DeleteNetworkProfileRequest method.
-//    req, resp := client.DeleteNetworkProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteNetworkProfile
 func (c *DeviceFarm) DeleteNetworkProfileRequest(input *DeleteNetworkProfileInput) (req *request.Request, output *DeleteNetworkProfileOutput) {
@@ -1039,17 +1038,18 @@ func (c *DeviceFarm) DeleteNetworkProfileRequest(input *DeleteNetworkProfileInpu
 // API operation DeleteNetworkProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteNetworkProfile
 func (c *DeviceFarm) DeleteNetworkProfile(input *DeleteNetworkProfileInput) (*DeleteNetworkProfileOutput, error) {
@@ -1089,14 +1089,13 @@ const opDeleteProject = "DeleteProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProjectRequest method.
+//	req, resp := client.DeleteProjectRequest(params)
 //
-//    // Example sending a request using the DeleteProjectRequest method.
-//    req, resp := client.DeleteProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteProject
 func (c *DeviceFarm) DeleteProjectRequest(input *DeleteProjectInput) (req *request.Request, output *DeleteProjectOutput) {
@@ -1130,17 +1129,18 @@ func (c *DeviceFarm) DeleteProjectRequest(input *DeleteProjectInput) (req *reque
 // API operation DeleteProject for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteProject
 func (c *DeviceFarm) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
@@ -1180,14 +1180,13 @@ const opDeleteRemoteAccessSession = "DeleteRemoteAccessSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRemoteAccessSessionRequest method.
+//	req, resp := client.DeleteRemoteAccessSessionRequest(params)
 //
-//    // Example sending a request using the DeleteRemoteAccessSessionRequest method.
-//    req, resp := client.DeleteRemoteAccessSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteRemoteAccessSession
 func (c *DeviceFarm) DeleteRemoteAccessSessionRequest(input *DeleteRemoteAccessSessionInput) (req *request.Request, output *DeleteRemoteAccessSessionOutput) {
@@ -1219,17 +1218,18 @@ func (c *DeviceFarm) DeleteRemoteAccessSessionRequest(input *DeleteRemoteAccessS
 // API operation DeleteRemoteAccessSession for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteRemoteAccessSession
 func (c *DeviceFarm) DeleteRemoteAccessSession(input *DeleteRemoteAccessSessionInput) (*DeleteRemoteAccessSessionOutput, error) {
@@ -1269,14 +1269,13 @@ const opDeleteRun = "DeleteRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRunRequest method.
+//	req, resp := client.DeleteRunRequest(params)
 //
-//    // Example sending a request using the DeleteRunRequest method.
-//    req, resp := client.DeleteRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteRun
 func (c *DeviceFarm) DeleteRunRequest(input *DeleteRunInput) (req *request.Request, output *DeleteRunOutput) {
@@ -1310,17 +1309,18 @@ func (c *DeviceFarm) DeleteRunRequest(input *DeleteRunInput) (req *request.Reque
 // API operation DeleteRun for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteRun
 func (c *DeviceFarm) DeleteRun(input *DeleteRunInput) (*DeleteRunOutput, error) {
@@ -1360,14 +1360,13 @@ const opDeleteTestGridProject = "DeleteTestGridProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTestGridProjectRequest method.
+//	req, resp := client.DeleteTestGridProjectRequest(params)
 //
-//    // Example sending a request using the DeleteTestGridProjectRequest method.
-//    req, resp := client.DeleteTestGridProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteTestGridProject
 func (c *DeviceFarm) DeleteTestGridProjectRequest(input *DeleteTestGridProjectInput) (req *request.Request, output *DeleteTestGridProjectOutput) {
@@ -1403,18 +1402,19 @@ func (c *DeviceFarm) DeleteTestGridProjectRequest(input *DeleteTestGridProjectIn
 // API operation DeleteTestGridProject for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified entity was not found.
 //
-//   * ArgumentException
-//   An invalid argument was specified.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * CannotDeleteException
-//   The requested object could not be deleted.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - CannotDeleteException
+//     The requested object could not be deleted.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteTestGridProject
 func (c *DeviceFarm) DeleteTestGridProject(input *DeleteTestGridProjectInput) (*DeleteTestGridProjectOutput, error) {
@@ -1454,14 +1454,13 @@ const opDeleteUpload = "DeleteUpload"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteUploadRequest method.
+//	req, resp := client.DeleteUploadRequest(params)
 //
-//    // Example sending a request using the DeleteUploadRequest method.
-//    req, resp := client.DeleteUploadRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteUpload
 func (c *DeviceFarm) DeleteUploadRequest(input *DeleteUploadInput) (req *request.Request, output *DeleteUploadOutput) {
@@ -1493,17 +1492,18 @@ func (c *DeviceFarm) DeleteUploadRequest(input *DeleteUploadInput) (req *request
 // API operation DeleteUpload for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteUpload
 func (c *DeviceFarm) DeleteUpload(input *DeleteUploadInput) (*DeleteUploadOutput, error) {
@@ -1543,14 +1543,13 @@ const opDeleteVPCEConfiguration = "DeleteVPCEConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteVPCEConfigurationRequest method.
+//	req, resp := client.DeleteVPCEConfigurationRequest(params)
 //
-//    // Example sending a request using the DeleteVPCEConfigurationRequest method.
-//    req, resp := client.DeleteVPCEConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteVPCEConfiguration
 func (c *DeviceFarm) DeleteVPCEConfigurationRequest(input *DeleteVPCEConfigurationInput) (req *request.Request, output *DeleteVPCEConfigurationOutput) {
@@ -1582,18 +1581,19 @@ func (c *DeviceFarm) DeleteVPCEConfigurationRequest(input *DeleteVPCEConfigurati
 // API operation DeleteVPCEConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * InvalidOperationException
-//   There was an error with the update request, or you do not have sufficient
-//   permissions to update this VPC endpoint configuration.
+//   - ServiceAccountException
+//     There was a problem with the service account.
+//
+//   - InvalidOperationException
+//     There was an error with the update request, or you do not have sufficient
+//     permissions to update this VPC endpoint configuration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteVPCEConfiguration
 func (c *DeviceFarm) DeleteVPCEConfiguration(input *DeleteVPCEConfigurationInput) (*DeleteVPCEConfigurationOutput, error) {
@@ -1633,14 +1633,13 @@ const opGetAccountSettings = "GetAccountSettings"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAccountSettingsRequest method.
+//	req, resp := client.GetAccountSettingsRequest(params)
 //
-//    // Example sending a request using the GetAccountSettingsRequest method.
-//    req, resp := client.GetAccountSettingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetAccountSettings
 func (c *DeviceFarm) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req *request.Request, output *GetAccountSettingsOutput) {
@@ -1672,17 +1671,18 @@ func (c *DeviceFarm) GetAccountSettingsRequest(input *GetAccountSettingsInput) (
 // API operation GetAccountSettings for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetAccountSettings
 func (c *DeviceFarm) GetAccountSettings(input *GetAccountSettingsInput) (*GetAccountSettingsOutput, error) {
@@ -1722,14 +1722,13 @@ const opGetDevice = "GetDevice"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeviceRequest method.
+//	req, resp := client.GetDeviceRequest(params)
 //
-//    // Example sending a request using the GetDeviceRequest method.
-//    req, resp := client.GetDeviceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevice
 func (c *DeviceFarm) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, output *GetDeviceOutput) {
@@ -1760,17 +1759,18 @@ func (c *DeviceFarm) GetDeviceRequest(input *GetDeviceInput) (req *request.Reque
 // API operation GetDevice for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevice
 func (c *DeviceFarm) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) {
@@ -1810,14 +1810,13 @@ const opGetDeviceInstance = "GetDeviceInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeviceInstanceRequest method.
+//	req, resp := client.GetDeviceInstanceRequest(params)
 //
-//    // Example sending a request using the GetDeviceInstanceRequest method.
-//    req, resp := client.GetDeviceInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDeviceInstance
 func (c *DeviceFarm) GetDeviceInstanceRequest(input *GetDeviceInstanceInput) (req *request.Request, output *GetDeviceInstanceOutput) {
@@ -1849,17 +1848,18 @@ func (c *DeviceFarm) GetDeviceInstanceRequest(input *GetDeviceInstanceInput) (re
 // API operation GetDeviceInstance for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDeviceInstance
 func (c *DeviceFarm) GetDeviceInstance(input *GetDeviceInstanceInput) (*GetDeviceInstanceOutput, error) {
@@ -1899,14 +1899,13 @@ const opGetDevicePool = "GetDevicePool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDevicePoolRequest method.
+//	req, resp := client.GetDevicePoolRequest(params)
 //
-//    // Example sending a request using the GetDevicePoolRequest method.
-//    req, resp := client.GetDevicePoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevicePool
 func (c *DeviceFarm) GetDevicePoolRequest(input *GetDevicePoolInput) (req *request.Request, output *GetDevicePoolOutput) {
@@ -1937,17 +1936,18 @@ func (c *DeviceFarm) GetDevicePoolRequest(input *GetDevicePoolInput) (req *reque
 // API operation GetDevicePool for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevicePool
 func (c *DeviceFarm) GetDevicePool(input *GetDevicePoolInput) (*GetDevicePoolOutput, error) {
@@ -1987,14 +1987,13 @@ const opGetDevicePoolCompatibility = "GetDevicePoolCompatibility"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDevicePoolCompatibilityRequest method.
+//	req, resp := client.GetDevicePoolCompatibilityRequest(params)
 //
-//    // Example sending a request using the GetDevicePoolCompatibilityRequest method.
-//    req, resp := client.GetDevicePoolCompatibilityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevicePoolCompatibility
 func (c *DeviceFarm) GetDevicePoolCompatibilityRequest(input *GetDevicePoolCompatibilityInput) (req *request.Request, output *GetDevicePoolCompatibilityOutput) {
@@ -2025,17 +2024,18 @@ func (c *DeviceFarm) GetDevicePoolCompatibilityRequest(input *GetDevicePoolCompa
 // API operation GetDevicePoolCompatibility for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevicePoolCompatibility
 func (c *DeviceFarm) GetDevicePoolCompatibility(input *GetDevicePoolCompatibilityInput) (*GetDevicePoolCompatibilityOutput, error) {
@@ -2075,14 +2075,13 @@ const opGetInstanceProfile = "GetInstanceProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetInstanceProfileRequest method.
+//	req, resp := client.GetInstanceProfileRequest(params)
 //
-//    // Example sending a request using the GetInstanceProfileRequest method.
-//    req, resp := client.GetInstanceProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetInstanceProfile
 func (c *DeviceFarm) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *request.Request, output *GetInstanceProfileOutput) {
@@ -2113,17 +2112,18 @@ func (c *DeviceFarm) GetInstanceProfileRequest(input *GetInstanceProfileInput) (
 // API operation GetInstanceProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetInstanceProfile
 func (c *DeviceFarm) GetInstanceProfile(input *GetInstanceProfileInput) (*GetInstanceProfileOutput, error) {
@@ -2163,14 +2163,13 @@ const opGetJob = "GetJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetJobRequest method.
+//	req, resp := client.GetJobRequest(params)
 //
-//    // Example sending a request using the GetJobRequest method.
-//    req, resp := client.GetJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetJob
 func (c *DeviceFarm) GetJobRequest(input *GetJobInput) (req *request.Request, output *GetJobOutput) {
@@ -2201,17 +2200,18 @@ func (c *DeviceFarm) GetJobRequest(input *GetJobInput) (req *request.Request, ou
 // API operation GetJob for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetJob
 func (c *DeviceFarm) GetJob(input *GetJobInput) (*GetJobOutput, error) {
@@ -2251,14 +2251,13 @@ const opGetNetworkProfile = "GetNetworkProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetNetworkProfileRequest method.
+//	req, resp := client.GetNetworkProfileRequest(params)
 //
-//    // Example sending a request using the GetNetworkProfileRequest method.
-//    req, resp := client.GetNetworkProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetNetworkProfile
 func (c *DeviceFarm) GetNetworkProfileRequest(input *GetNetworkProfileInput) (req *request.Request, output *GetNetworkProfileOutput) {
@@ -2289,17 +2288,18 @@ func (c *DeviceFarm) GetNetworkProfileRequest(input *GetNetworkProfileInput) (re
 // API operation GetNetworkProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetNetworkProfile
 func (c *DeviceFarm) GetNetworkProfile(input *GetNetworkProfileInput) (*GetNetworkProfileOutput, error) {
@@ -2339,14 +2339,13 @@ const opGetOfferingStatus = "GetOfferingStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetOfferingStatusRequest method.
+//	req, resp := client.GetOfferingStatusRequest(params)
 //
-//    // Example sending a request using the GetOfferingStatusRequest method.
-//    req, resp := client.GetOfferingStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetOfferingStatus
 func (c *DeviceFarm) GetOfferingStatusRequest(input *GetOfferingStatusInput) (req *request.Request, output *GetOfferingStatusOutput) {
@@ -2388,21 +2387,22 @@ func (c *DeviceFarm) GetOfferingStatusRequest(input *GetOfferingStatusInput) (re
 // API operation GetOfferingStatus for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * NotEligibleException
-//   Exception gets thrown when a user is not eligible to perform the specified
-//   transaction.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotEligibleException
+//     Exception gets thrown when a user is not eligible to perform the specified
+//     transaction.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetOfferingStatus
 func (c *DeviceFarm) GetOfferingStatus(input *GetOfferingStatusInput) (*GetOfferingStatusOutput, error) {
@@ -2434,15 +2434,14 @@ func (c *DeviceFarm) GetOfferingStatusWithContext(ctx aws.Context, input *GetOff
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetOfferingStatus operation.
-//    pageNum := 0
-//    err := client.GetOfferingStatusPages(params,
-//        func(page *devicefarm.GetOfferingStatusOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetOfferingStatus operation.
+//	pageNum := 0
+//	err := client.GetOfferingStatusPages(params,
+//	    func(page *devicefarm.GetOfferingStatusOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) GetOfferingStatusPages(input *GetOfferingStatusInput, fn func(*GetOfferingStatusOutput, bool) bool) error {
 	return c.GetOfferingStatusPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2494,14 +2493,13 @@ const opGetProject = "GetProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetProjectRequest method.
+//	req, resp := client.GetProjectRequest(params)
 //
-//    // Example sending a request using the GetProjectRequest method.
-//    req, resp := client.GetProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetProject
 func (c *DeviceFarm) GetProjectRequest(input *GetProjectInput) (req *request.Request, output *GetProjectOutput) {
@@ -2532,17 +2530,18 @@ func (c *DeviceFarm) GetProjectRequest(input *GetProjectInput) (req *request.Req
 // API operation GetProject for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetProject
 func (c *DeviceFarm) GetProject(input *GetProjectInput) (*GetProjectOutput, error) {
@@ -2582,14 +2581,13 @@ const opGetRemoteAccessSession = "GetRemoteAccessSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRemoteAccessSessionRequest method.
+//	req, resp := client.GetRemoteAccessSessionRequest(params)
 //
-//    // Example sending a request using the GetRemoteAccessSessionRequest method.
-//    req, resp := client.GetRemoteAccessSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetRemoteAccessSession
 func (c *DeviceFarm) GetRemoteAccessSessionRequest(input *GetRemoteAccessSessionInput) (req *request.Request, output *GetRemoteAccessSessionOutput) {
@@ -2620,17 +2618,18 @@ func (c *DeviceFarm) GetRemoteAccessSessionRequest(input *GetRemoteAccessSession
 // API operation GetRemoteAccessSession for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetRemoteAccessSession
 func (c *DeviceFarm) GetRemoteAccessSession(input *GetRemoteAccessSessionInput) (*GetRemoteAccessSessionOutput, error) {
@@ -2670,14 +2669,13 @@ const opGetRun = "GetRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRunRequest method.
+//	req, resp := client.GetRunRequest(params)
 //
-//    // Example sending a request using the GetRunRequest method.
-//    req, resp := client.GetRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetRun
 func (c *DeviceFarm) GetRunRequest(input *GetRunInput) (req *request.Request, output *GetRunOutput) {
@@ -2708,17 +2706,18 @@ func (c *DeviceFarm) GetRunRequest(input *GetRunInput) (req *request.Request, ou
 // API operation GetRun for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetRun
 func (c *DeviceFarm) GetRun(input *GetRunInput) (*GetRunOutput, error) {
@@ -2758,14 +2757,13 @@ const opGetSuite = "GetSuite"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSuiteRequest method.
+//	req, resp := client.GetSuiteRequest(params)
 //
-//    // Example sending a request using the GetSuiteRequest method.
-//    req, resp := client.GetSuiteRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetSuite
 func (c *DeviceFarm) GetSuiteRequest(input *GetSuiteInput) (req *request.Request, output *GetSuiteOutput) {
@@ -2796,17 +2794,18 @@ func (c *DeviceFarm) GetSuiteRequest(input *GetSuiteInput) (req *request.Request
 // API operation GetSuite for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetSuite
 func (c *DeviceFarm) GetSuite(input *GetSuiteInput) (*GetSuiteOutput, error) {
@@ -2846,14 +2845,13 @@ const opGetTest = "GetTest"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetTestRequest method.
+//	req, resp := client.GetTestRequest(params)
 //
-//    // Example sending a request using the GetTestRequest method.
-//    req, resp := client.GetTestRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetTest
 func (c *DeviceFarm) GetTestRequest(input *GetTestInput) (req *request.Request, output *GetTestOutput) {
@@ -2884,17 +2882,18 @@ func (c *DeviceFarm) GetTestRequest(input *GetTestInput) (req *request.Request, 
 // API operation GetTest for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetTest
 func (c *DeviceFarm) GetTest(input *GetTestInput) (*GetTestOutput, error) {
@@ -2934,14 +2933,13 @@ const opGetTestGridProject = "GetTestGridProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetTestGridProjectRequest method.
+//	req, resp := client.GetTestGridProjectRequest(params)
 //
-//    // Example sending a request using the GetTestGridProjectRequest method.
-//    req, resp := client.GetTestGridProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetTestGridProject
 func (c *DeviceFarm) GetTestGridProjectRequest(input *GetTestGridProjectInput) (req *request.Request, output *GetTestGridProjectOutput) {
@@ -2972,15 +2970,16 @@ func (c *DeviceFarm) GetTestGridProjectRequest(input *GetTestGridProjectInput) (
 // API operation GetTestGridProject for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified entity was not found.
 //
-//   * ArgumentException
-//   An invalid argument was specified.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - ArgumentException
+//     An invalid argument was specified.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetTestGridProject
 func (c *DeviceFarm) GetTestGridProject(input *GetTestGridProjectInput) (*GetTestGridProjectOutput, error) {
@@ -3020,14 +3019,13 @@ const opGetTestGridSession = "GetTestGridSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetTestGridSessionRequest method.
+//	req, resp := client.GetTestGridSessionRequest(params)
 //
-//    // Example sending a request using the GetTestGridSessionRequest method.
-//    req, resp := client.GetTestGridSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetTestGridSession
 func (c *DeviceFarm) GetTestGridSessionRequest(input *GetTestGridSessionInput) (req *request.Request, output *GetTestGridSessionOutput) {
@@ -3052,10 +3050,10 @@ func (c *DeviceFarm) GetTestGridSessionRequest(input *GetTestGridSessionInput) (
 // the URL from CreateTestGridUrlResult$url. You can use the following to look
 // up sessions:
 //
-//    * The session ARN (GetTestGridSessionRequest$sessionArn).
+//   - The session ARN (GetTestGridSessionRequest$sessionArn).
 //
-//    * The project ARN and a session ID (GetTestGridSessionRequest$projectArn
-//    and GetTestGridSessionRequest$sessionId).
+//   - The project ARN and a session ID (GetTestGridSessionRequest$projectArn
+//     and GetTestGridSessionRequest$sessionId).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3065,15 +3063,16 @@ func (c *DeviceFarm) GetTestGridSessionRequest(input *GetTestGridSessionInput) (
 // API operation GetTestGridSession for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified entity was not found.
 //
-//   * ArgumentException
-//   An invalid argument was specified.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - ArgumentException
+//     An invalid argument was specified.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetTestGridSession
 func (c *DeviceFarm) GetTestGridSession(input *GetTestGridSessionInput) (*GetTestGridSessionOutput, error) {
@@ -3113,14 +3112,13 @@ const opGetUpload = "GetUpload"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetUploadRequest method.
+//	req, resp := client.GetUploadRequest(params)
 //
-//    // Example sending a request using the GetUploadRequest method.
-//    req, resp := client.GetUploadRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetUpload
 func (c *DeviceFarm) GetUploadRequest(input *GetUploadInput) (req *request.Request, output *GetUploadOutput) {
@@ -3151,17 +3149,18 @@ func (c *DeviceFarm) GetUploadRequest(input *GetUploadInput) (req *request.Reque
 // API operation GetUpload for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetUpload
 func (c *DeviceFarm) GetUpload(input *GetUploadInput) (*GetUploadOutput, error) {
@@ -3201,14 +3200,13 @@ const opGetVPCEConfiguration = "GetVPCEConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetVPCEConfigurationRequest method.
+//	req, resp := client.GetVPCEConfigurationRequest(params)
 //
-//    // Example sending a request using the GetVPCEConfigurationRequest method.
-//    req, resp := client.GetVPCEConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetVPCEConfiguration
 func (c *DeviceFarm) GetVPCEConfigurationRequest(input *GetVPCEConfigurationInput) (req *request.Request, output *GetVPCEConfigurationOutput) {
@@ -3240,14 +3238,15 @@ func (c *DeviceFarm) GetVPCEConfigurationRequest(input *GetVPCEConfigurationInpu
 // API operation GetVPCEConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - NotFoundException
+//     The specified entity was not found.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetVPCEConfiguration
 func (c *DeviceFarm) GetVPCEConfiguration(input *GetVPCEConfigurationInput) (*GetVPCEConfigurationOutput, error) {
@@ -3287,14 +3286,13 @@ const opInstallToRemoteAccessSession = "InstallToRemoteAccessSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InstallToRemoteAccessSessionRequest method.
+//	req, resp := client.InstallToRemoteAccessSessionRequest(params)
 //
-//    // Example sending a request using the InstallToRemoteAccessSessionRequest method.
-//    req, resp := client.InstallToRemoteAccessSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/InstallToRemoteAccessSession
 func (c *DeviceFarm) InstallToRemoteAccessSessionRequest(input *InstallToRemoteAccessSessionInput) (req *request.Request, output *InstallToRemoteAccessSessionOutput) {
@@ -3327,17 +3325,18 @@ func (c *DeviceFarm) InstallToRemoteAccessSessionRequest(input *InstallToRemoteA
 // API operation InstallToRemoteAccessSession for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/InstallToRemoteAccessSession
 func (c *DeviceFarm) InstallToRemoteAccessSession(input *InstallToRemoteAccessSessionInput) (*InstallToRemoteAccessSessionOutput, error) {
@@ -3377,14 +3376,13 @@ const opListArtifacts = "ListArtifacts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListArtifactsRequest method.
+//	req, resp := client.ListArtifactsRequest(params)
 //
-//    // Example sending a request using the ListArtifactsRequest method.
-//    req, resp := client.ListArtifactsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListArtifacts
 func (c *DeviceFarm) ListArtifactsRequest(input *ListArtifactsInput) (req *request.Request, output *ListArtifactsOutput) {
@@ -3421,17 +3419,18 @@ func (c *DeviceFarm) ListArtifactsRequest(input *ListArtifactsInput) (req *reque
 // API operation ListArtifacts for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListArtifacts
 func (c *DeviceFarm) ListArtifacts(input *ListArtifactsInput) (*ListArtifactsOutput, error) {
@@ -3463,15 +3462,14 @@ func (c *DeviceFarm) ListArtifactsWithContext(ctx aws.Context, input *ListArtifa
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListArtifacts operation.
-//    pageNum := 0
-//    err := client.ListArtifactsPages(params,
-//        func(page *devicefarm.ListArtifactsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListArtifacts operation.
+//	pageNum := 0
+//	err := client.ListArtifactsPages(params,
+//	    func(page *devicefarm.ListArtifactsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListArtifactsPages(input *ListArtifactsInput, fn func(*ListArtifactsOutput, bool) bool) error {
 	return c.ListArtifactsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3523,14 +3521,13 @@ const opListDeviceInstances = "ListDeviceInstances"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeviceInstancesRequest method.
+//	req, resp := client.ListDeviceInstancesRequest(params)
 //
-//    // Example sending a request using the ListDeviceInstancesRequest method.
-//    req, resp := client.ListDeviceInstancesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDeviceInstances
 func (c *DeviceFarm) ListDeviceInstancesRequest(input *ListDeviceInstancesInput) (req *request.Request, output *ListDeviceInstancesOutput) {
@@ -3562,17 +3559,18 @@ func (c *DeviceFarm) ListDeviceInstancesRequest(input *ListDeviceInstancesInput)
 // API operation ListDeviceInstances for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDeviceInstances
 func (c *DeviceFarm) ListDeviceInstances(input *ListDeviceInstancesInput) (*ListDeviceInstancesOutput, error) {
@@ -3612,14 +3610,13 @@ const opListDevicePools = "ListDevicePools"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDevicePoolsRequest method.
+//	req, resp := client.ListDevicePoolsRequest(params)
 //
-//    // Example sending a request using the ListDevicePoolsRequest method.
-//    req, resp := client.ListDevicePoolsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDevicePools
 func (c *DeviceFarm) ListDevicePoolsRequest(input *ListDevicePoolsInput) (req *request.Request, output *ListDevicePoolsOutput) {
@@ -3656,17 +3653,18 @@ func (c *DeviceFarm) ListDevicePoolsRequest(input *ListDevicePoolsInput) (req *r
 // API operation ListDevicePools for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDevicePools
 func (c *DeviceFarm) ListDevicePools(input *ListDevicePoolsInput) (*ListDevicePoolsOutput, error) {
@@ -3698,15 +3696,14 @@ func (c *DeviceFarm) ListDevicePoolsWithContext(ctx aws.Context, input *ListDevi
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDevicePools operation.
-//    pageNum := 0
-//    err := client.ListDevicePoolsPages(params,
-//        func(page *devicefarm.ListDevicePoolsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDevicePools operation.
+//	pageNum := 0
+//	err := client.ListDevicePoolsPages(params,
+//	    func(page *devicefarm.ListDevicePoolsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListDevicePoolsPages(input *ListDevicePoolsInput, fn func(*ListDevicePoolsOutput, bool) bool) error {
 	return c.ListDevicePoolsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3758,14 +3755,13 @@ const opListDevices = "ListDevices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDevicesRequest method.
+//	req, resp := client.ListDevicesRequest(params)
 //
-//    // Example sending a request using the ListDevicesRequest method.
-//    req, resp := client.ListDevicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDevices
 func (c *DeviceFarm) ListDevicesRequest(input *ListDevicesInput) (req *request.Request, output *ListDevicesOutput) {
@@ -3802,17 +3798,18 @@ func (c *DeviceFarm) ListDevicesRequest(input *ListDevicesInput) (req *request.R
 // API operation ListDevices for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDevices
 func (c *DeviceFarm) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
@@ -3844,15 +3841,14 @@ func (c *DeviceFarm) ListDevicesWithContext(ctx aws.Context, input *ListDevicesI
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDevices operation.
-//    pageNum := 0
-//    err := client.ListDevicesPages(params,
-//        func(page *devicefarm.ListDevicesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDevices operation.
+//	pageNum := 0
+//	err := client.ListDevicesPages(params,
+//	    func(page *devicefarm.ListDevicesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListDevicesPages(input *ListDevicesInput, fn func(*ListDevicesOutput, bool) bool) error {
 	return c.ListDevicesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3904,14 +3900,13 @@ const opListInstanceProfiles = "ListInstanceProfiles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInstanceProfilesRequest method.
+//	req, resp := client.ListInstanceProfilesRequest(params)
 //
-//    // Example sending a request using the ListInstanceProfilesRequest method.
-//    req, resp := client.ListInstanceProfilesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListInstanceProfiles
 func (c *DeviceFarm) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req *request.Request, output *ListInstanceProfilesOutput) {
@@ -3942,17 +3937,18 @@ func (c *DeviceFarm) ListInstanceProfilesRequest(input *ListInstanceProfilesInpu
 // API operation ListInstanceProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListInstanceProfiles
 func (c *DeviceFarm) ListInstanceProfiles(input *ListInstanceProfilesInput) (*ListInstanceProfilesOutput, error) {
@@ -3992,14 +3988,13 @@ const opListJobs = "ListJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListJobsRequest method.
+//	req, resp := client.ListJobsRequest(params)
 //
-//    // Example sending a request using the ListJobsRequest method.
-//    req, resp := client.ListJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListJobs
 func (c *DeviceFarm) ListJobsRequest(input *ListJobsInput) (req *request.Request, output *ListJobsOutput) {
@@ -4036,17 +4031,18 @@ func (c *DeviceFarm) ListJobsRequest(input *ListJobsInput) (req *request.Request
 // API operation ListJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListJobs
 func (c *DeviceFarm) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
@@ -4078,15 +4074,14 @@ func (c *DeviceFarm) ListJobsWithContext(ctx aws.Context, input *ListJobsInput, 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListJobs operation.
-//    pageNum := 0
-//    err := client.ListJobsPages(params,
-//        func(page *devicefarm.ListJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListJobs operation.
+//	pageNum := 0
+//	err := client.ListJobsPages(params,
+//	    func(page *devicefarm.ListJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListJobsPages(input *ListJobsInput, fn func(*ListJobsOutput, bool) bool) error {
 	return c.ListJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4138,14 +4133,13 @@ const opListNetworkProfiles = "ListNetworkProfiles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListNetworkProfilesRequest method.
+//	req, resp := client.ListNetworkProfilesRequest(params)
 //
-//    // Example sending a request using the ListNetworkProfilesRequest method.
-//    req, resp := client.ListNetworkProfilesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListNetworkProfiles
 func (c *DeviceFarm) ListNetworkProfilesRequest(input *ListNetworkProfilesInput) (req *request.Request, output *ListNetworkProfilesOutput) {
@@ -4176,17 +4170,18 @@ func (c *DeviceFarm) ListNetworkProfilesRequest(input *ListNetworkProfilesInput)
 // API operation ListNetworkProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListNetworkProfiles
 func (c *DeviceFarm) ListNetworkProfiles(input *ListNetworkProfilesInput) (*ListNetworkProfilesOutput, error) {
@@ -4226,14 +4221,13 @@ const opListOfferingPromotions = "ListOfferingPromotions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListOfferingPromotionsRequest method.
+//	req, resp := client.ListOfferingPromotionsRequest(params)
 //
-//    // Example sending a request using the ListOfferingPromotionsRequest method.
-//    req, resp := client.ListOfferingPromotionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingPromotions
 func (c *DeviceFarm) ListOfferingPromotionsRequest(input *ListOfferingPromotionsInput) (req *request.Request, output *ListOfferingPromotionsOutput) {
@@ -4268,21 +4262,22 @@ func (c *DeviceFarm) ListOfferingPromotionsRequest(input *ListOfferingPromotions
 // API operation ListOfferingPromotions for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * NotEligibleException
-//   Exception gets thrown when a user is not eligible to perform the specified
-//   transaction.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotEligibleException
+//     Exception gets thrown when a user is not eligible to perform the specified
+//     transaction.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingPromotions
 func (c *DeviceFarm) ListOfferingPromotions(input *ListOfferingPromotionsInput) (*ListOfferingPromotionsOutput, error) {
@@ -4322,14 +4317,13 @@ const opListOfferingTransactions = "ListOfferingTransactions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListOfferingTransactionsRequest method.
+//	req, resp := client.ListOfferingTransactionsRequest(params)
 //
-//    // Example sending a request using the ListOfferingTransactionsRequest method.
-//    req, resp := client.ListOfferingTransactionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingTransactions
 func (c *DeviceFarm) ListOfferingTransactionsRequest(input *ListOfferingTransactionsInput) (req *request.Request, output *ListOfferingTransactionsOutput) {
@@ -4371,21 +4365,22 @@ func (c *DeviceFarm) ListOfferingTransactionsRequest(input *ListOfferingTransact
 // API operation ListOfferingTransactions for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * NotEligibleException
-//   Exception gets thrown when a user is not eligible to perform the specified
-//   transaction.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotEligibleException
+//     Exception gets thrown when a user is not eligible to perform the specified
+//     transaction.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingTransactions
 func (c *DeviceFarm) ListOfferingTransactions(input *ListOfferingTransactionsInput) (*ListOfferingTransactionsOutput, error) {
@@ -4417,15 +4412,14 @@ func (c *DeviceFarm) ListOfferingTransactionsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListOfferingTransactions operation.
-//    pageNum := 0
-//    err := client.ListOfferingTransactionsPages(params,
-//        func(page *devicefarm.ListOfferingTransactionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListOfferingTransactions operation.
+//	pageNum := 0
+//	err := client.ListOfferingTransactionsPages(params,
+//	    func(page *devicefarm.ListOfferingTransactionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListOfferingTransactionsPages(input *ListOfferingTransactionsInput, fn func(*ListOfferingTransactionsOutput, bool) bool) error {
 	return c.ListOfferingTransactionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4477,14 +4471,13 @@ const opListOfferings = "ListOfferings"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListOfferingsRequest method.
+//	req, resp := client.ListOfferingsRequest(params)
 //
-//    // Example sending a request using the ListOfferingsRequest method.
-//    req, resp := client.ListOfferingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferings
 func (c *DeviceFarm) ListOfferingsRequest(input *ListOfferingsInput) (req *request.Request, output *ListOfferingsOutput) {
@@ -4525,21 +4518,22 @@ func (c *DeviceFarm) ListOfferingsRequest(input *ListOfferingsInput) (req *reque
 // API operation ListOfferings for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * NotEligibleException
-//   Exception gets thrown when a user is not eligible to perform the specified
-//   transaction.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotEligibleException
+//     Exception gets thrown when a user is not eligible to perform the specified
+//     transaction.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferings
 func (c *DeviceFarm) ListOfferings(input *ListOfferingsInput) (*ListOfferingsOutput, error) {
@@ -4571,15 +4565,14 @@ func (c *DeviceFarm) ListOfferingsWithContext(ctx aws.Context, input *ListOfferi
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListOfferings operation.
-//    pageNum := 0
-//    err := client.ListOfferingsPages(params,
-//        func(page *devicefarm.ListOfferingsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListOfferings operation.
+//	pageNum := 0
+//	err := client.ListOfferingsPages(params,
+//	    func(page *devicefarm.ListOfferingsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListOfferingsPages(input *ListOfferingsInput, fn func(*ListOfferingsOutput, bool) bool) error {
 	return c.ListOfferingsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4631,14 +4624,13 @@ const opListProjects = "ListProjects"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProjectsRequest method.
+//	req, resp := client.ListProjectsRequest(params)
 //
-//    // Example sending a request using the ListProjectsRequest method.
-//    req, resp := client.ListProjectsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListProjects
 func (c *DeviceFarm) ListProjectsRequest(input *ListProjectsInput) (req *request.Request, output *ListProjectsOutput) {
@@ -4675,17 +4667,18 @@ func (c *DeviceFarm) ListProjectsRequest(input *ListProjectsInput) (req *request
 // API operation ListProjects for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListProjects
 func (c *DeviceFarm) ListProjects(input *ListProjectsInput) (*ListProjectsOutput, error) {
@@ -4717,15 +4710,14 @@ func (c *DeviceFarm) ListProjectsWithContext(ctx aws.Context, input *ListProject
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProjects operation.
-//    pageNum := 0
-//    err := client.ListProjectsPages(params,
-//        func(page *devicefarm.ListProjectsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProjects operation.
+//	pageNum := 0
+//	err := client.ListProjectsPages(params,
+//	    func(page *devicefarm.ListProjectsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListProjectsPages(input *ListProjectsInput, fn func(*ListProjectsOutput, bool) bool) error {
 	return c.ListProjectsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4777,14 +4769,13 @@ const opListRemoteAccessSessions = "ListRemoteAccessSessions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRemoteAccessSessionsRequest method.
+//	req, resp := client.ListRemoteAccessSessionsRequest(params)
 //
-//    // Example sending a request using the ListRemoteAccessSessionsRequest method.
-//    req, resp := client.ListRemoteAccessSessionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListRemoteAccessSessions
 func (c *DeviceFarm) ListRemoteAccessSessionsRequest(input *ListRemoteAccessSessionsInput) (req *request.Request, output *ListRemoteAccessSessionsOutput) {
@@ -4815,17 +4806,18 @@ func (c *DeviceFarm) ListRemoteAccessSessionsRequest(input *ListRemoteAccessSess
 // API operation ListRemoteAccessSessions for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListRemoteAccessSessions
 func (c *DeviceFarm) ListRemoteAccessSessions(input *ListRemoteAccessSessionsInput) (*ListRemoteAccessSessionsOutput, error) {
@@ -4865,14 +4857,13 @@ const opListRuns = "ListRuns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRunsRequest method.
+//	req, resp := client.ListRunsRequest(params)
 //
-//    // Example sending a request using the ListRunsRequest method.
-//    req, resp := client.ListRunsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListRuns
 func (c *DeviceFarm) ListRunsRequest(input *ListRunsInput) (req *request.Request, output *ListRunsOutput) {
@@ -4909,17 +4900,18 @@ func (c *DeviceFarm) ListRunsRequest(input *ListRunsInput) (req *request.Request
 // API operation ListRuns for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListRuns
 func (c *DeviceFarm) ListRuns(input *ListRunsInput) (*ListRunsOutput, error) {
@@ -4951,15 +4943,14 @@ func (c *DeviceFarm) ListRunsWithContext(ctx aws.Context, input *ListRunsInput, 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRuns operation.
-//    pageNum := 0
-//    err := client.ListRunsPages(params,
-//        func(page *devicefarm.ListRunsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRuns operation.
+//	pageNum := 0
+//	err := client.ListRunsPages(params,
+//	    func(page *devicefarm.ListRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListRunsPages(input *ListRunsInput, fn func(*ListRunsOutput, bool) bool) error {
 	return c.ListRunsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5011,14 +5002,13 @@ const opListSamples = "ListSamples"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSamplesRequest method.
+//	req, resp := client.ListSamplesRequest(params)
 //
-//    // Example sending a request using the ListSamplesRequest method.
-//    req, resp := client.ListSamplesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListSamples
 func (c *DeviceFarm) ListSamplesRequest(input *ListSamplesInput) (req *request.Request, output *ListSamplesOutput) {
@@ -5055,17 +5045,18 @@ func (c *DeviceFarm) ListSamplesRequest(input *ListSamplesInput) (req *request.R
 // API operation ListSamples for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListSamples
 func (c *DeviceFarm) ListSamples(input *ListSamplesInput) (*ListSamplesOutput, error) {
@@ -5097,15 +5088,14 @@ func (c *DeviceFarm) ListSamplesWithContext(ctx aws.Context, input *ListSamplesI
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSamples operation.
-//    pageNum := 0
-//    err := client.ListSamplesPages(params,
-//        func(page *devicefarm.ListSamplesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSamples operation.
+//	pageNum := 0
+//	err := client.ListSamplesPages(params,
+//	    func(page *devicefarm.ListSamplesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListSamplesPages(input *ListSamplesInput, fn func(*ListSamplesOutput, bool) bool) error {
 	return c.ListSamplesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5157,14 +5147,13 @@ const opListSuites = "ListSuites"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSuitesRequest method.
+//	req, resp := client.ListSuitesRequest(params)
 //
-//    // Example sending a request using the ListSuitesRequest method.
-//    req, resp := client.ListSuitesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListSuites
 func (c *DeviceFarm) ListSuitesRequest(input *ListSuitesInput) (req *request.Request, output *ListSuitesOutput) {
@@ -5201,17 +5190,18 @@ func (c *DeviceFarm) ListSuitesRequest(input *ListSuitesInput) (req *request.Req
 // API operation ListSuites for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListSuites
 func (c *DeviceFarm) ListSuites(input *ListSuitesInput) (*ListSuitesOutput, error) {
@@ -5243,15 +5233,14 @@ func (c *DeviceFarm) ListSuitesWithContext(ctx aws.Context, input *ListSuitesInp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSuites operation.
-//    pageNum := 0
-//    err := client.ListSuitesPages(params,
-//        func(page *devicefarm.ListSuitesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSuites operation.
+//	pageNum := 0
+//	err := client.ListSuitesPages(params,
+//	    func(page *devicefarm.ListSuitesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListSuitesPages(input *ListSuitesInput, fn func(*ListSuitesOutput, bool) bool) error {
 	return c.ListSuitesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5303,14 +5292,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTagsForResource
 func (c *DeviceFarm) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -5341,14 +5329,15 @@ func (c *DeviceFarm) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * TagOperationException
-//   The operation was not successful. Try again.
+//   - NotFoundException
+//     The specified entity was not found.
+//
+//   - TagOperationException
+//     The operation was not successful. Try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTagsForResource
 func (c *DeviceFarm) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -5388,14 +5377,13 @@ const opListTestGridProjects = "ListTestGridProjects"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTestGridProjectsRequest method.
+//	req, resp := client.ListTestGridProjectsRequest(params)
 //
-//    // Example sending a request using the ListTestGridProjectsRequest method.
-//    req, resp := client.ListTestGridProjectsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTestGridProjects
 func (c *DeviceFarm) ListTestGridProjectsRequest(input *ListTestGridProjectsInput) (req *request.Request, output *ListTestGridProjectsOutput) {
@@ -5432,12 +5420,13 @@ func (c *DeviceFarm) ListTestGridProjectsRequest(input *ListTestGridProjectsInpu
 // API operation ListTestGridProjects for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - ArgumentException
+//     An invalid argument was specified.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTestGridProjects
 func (c *DeviceFarm) ListTestGridProjects(input *ListTestGridProjectsInput) (*ListTestGridProjectsOutput, error) {
@@ -5469,15 +5458,14 @@ func (c *DeviceFarm) ListTestGridProjectsWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTestGridProjects operation.
-//    pageNum := 0
-//    err := client.ListTestGridProjectsPages(params,
-//        func(page *devicefarm.ListTestGridProjectsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTestGridProjects operation.
+//	pageNum := 0
+//	err := client.ListTestGridProjectsPages(params,
+//	    func(page *devicefarm.ListTestGridProjectsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListTestGridProjectsPages(input *ListTestGridProjectsInput, fn func(*ListTestGridProjectsOutput, bool) bool) error {
 	return c.ListTestGridProjectsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5529,14 +5517,13 @@ const opListTestGridSessionActions = "ListTestGridSessionActions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTestGridSessionActionsRequest method.
+//	req, resp := client.ListTestGridSessionActionsRequest(params)
 //
-//    // Example sending a request using the ListTestGridSessionActionsRequest method.
-//    req, resp := client.ListTestGridSessionActionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTestGridSessionActions
 func (c *DeviceFarm) ListTestGridSessionActionsRequest(input *ListTestGridSessionActionsInput) (req *request.Request, output *ListTestGridSessionActionsOutput) {
@@ -5573,15 +5560,16 @@ func (c *DeviceFarm) ListTestGridSessionActionsRequest(input *ListTestGridSessio
 // API operation ListTestGridSessionActions for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified entity was not found.
 //
-//   * ArgumentException
-//   An invalid argument was specified.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - ArgumentException
+//     An invalid argument was specified.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTestGridSessionActions
 func (c *DeviceFarm) ListTestGridSessionActions(input *ListTestGridSessionActionsInput) (*ListTestGridSessionActionsOutput, error) {
@@ -5613,15 +5601,14 @@ func (c *DeviceFarm) ListTestGridSessionActionsWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTestGridSessionActions operation.
-//    pageNum := 0
-//    err := client.ListTestGridSessionActionsPages(params,
-//        func(page *devicefarm.ListTestGridSessionActionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTestGridSessionActions operation.
+//	pageNum := 0
+//	err := client.ListTestGridSessionActionsPages(params,
+//	    func(page *devicefarm.ListTestGridSessionActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListTestGridSessionActionsPages(input *ListTestGridSessionActionsInput, fn func(*ListTestGridSessionActionsOutput, bool) bool) error {
 	return c.ListTestGridSessionActionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5673,14 +5660,13 @@ const opListTestGridSessionArtifacts = "ListTestGridSessionArtifacts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTestGridSessionArtifactsRequest method.
+//	req, resp := client.ListTestGridSessionArtifactsRequest(params)
 //
-//    // Example sending a request using the ListTestGridSessionArtifactsRequest method.
-//    req, resp := client.ListTestGridSessionArtifactsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTestGridSessionArtifacts
 func (c *DeviceFarm) ListTestGridSessionArtifactsRequest(input *ListTestGridSessionArtifactsInput) (req *request.Request, output *ListTestGridSessionArtifactsOutput) {
@@ -5717,15 +5703,16 @@ func (c *DeviceFarm) ListTestGridSessionArtifactsRequest(input *ListTestGridSess
 // API operation ListTestGridSessionArtifacts for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified entity was not found.
 //
-//   * ArgumentException
-//   An invalid argument was specified.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - ArgumentException
+//     An invalid argument was specified.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTestGridSessionArtifacts
 func (c *DeviceFarm) ListTestGridSessionArtifacts(input *ListTestGridSessionArtifactsInput) (*ListTestGridSessionArtifactsOutput, error) {
@@ -5757,15 +5744,14 @@ func (c *DeviceFarm) ListTestGridSessionArtifactsWithContext(ctx aws.Context, in
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTestGridSessionArtifacts operation.
-//    pageNum := 0
-//    err := client.ListTestGridSessionArtifactsPages(params,
-//        func(page *devicefarm.ListTestGridSessionArtifactsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTestGridSessionArtifacts operation.
+//	pageNum := 0
+//	err := client.ListTestGridSessionArtifactsPages(params,
+//	    func(page *devicefarm.ListTestGridSessionArtifactsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListTestGridSessionArtifactsPages(input *ListTestGridSessionArtifactsInput, fn func(*ListTestGridSessionArtifactsOutput, bool) bool) error {
 	return c.ListTestGridSessionArtifactsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5817,14 +5803,13 @@ const opListTestGridSessions = "ListTestGridSessions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTestGridSessionsRequest method.
+//	req, resp := client.ListTestGridSessionsRequest(params)
 //
-//    // Example sending a request using the ListTestGridSessionsRequest method.
-//    req, resp := client.ListTestGridSessionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTestGridSessions
 func (c *DeviceFarm) ListTestGridSessionsRequest(input *ListTestGridSessionsInput) (req *request.Request, output *ListTestGridSessionsOutput) {
@@ -5861,15 +5846,16 @@ func (c *DeviceFarm) ListTestGridSessionsRequest(input *ListTestGridSessionsInpu
 // API operation ListTestGridSessions for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified entity was not found.
 //
-//   * ArgumentException
-//   An invalid argument was specified.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - ArgumentException
+//     An invalid argument was specified.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTestGridSessions
 func (c *DeviceFarm) ListTestGridSessions(input *ListTestGridSessionsInput) (*ListTestGridSessionsOutput, error) {
@@ -5901,15 +5887,14 @@ func (c *DeviceFarm) ListTestGridSessionsWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTestGridSessions operation.
-//    pageNum := 0
-//    err := client.ListTestGridSessionsPages(params,
-//        func(page *devicefarm.ListTestGridSessionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTestGridSessions operation.
+//	pageNum := 0
+//	err := client.ListTestGridSessionsPages(params,
+//	    func(page *devicefarm.ListTestGridSessionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListTestGridSessionsPages(input *ListTestGridSessionsInput, fn func(*ListTestGridSessionsOutput, bool) bool) error {
 	return c.ListTestGridSessionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5961,14 +5946,13 @@ const opListTests = "ListTests"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTestsRequest method.
+//	req, resp := client.ListTestsRequest(params)
 //
-//    // Example sending a request using the ListTestsRequest method.
-//    req, resp := client.ListTestsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTests
 func (c *DeviceFarm) ListTestsRequest(input *ListTestsInput) (req *request.Request, output *ListTestsOutput) {
@@ -6005,17 +5989,18 @@ func (c *DeviceFarm) ListTestsRequest(input *ListTestsInput) (req *request.Reque
 // API operation ListTests for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTests
 func (c *DeviceFarm) ListTests(input *ListTestsInput) (*ListTestsOutput, error) {
@@ -6047,15 +6032,14 @@ func (c *DeviceFarm) ListTestsWithContext(ctx aws.Context, input *ListTestsInput
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTests operation.
-//    pageNum := 0
-//    err := client.ListTestsPages(params,
-//        func(page *devicefarm.ListTestsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTests operation.
+//	pageNum := 0
+//	err := client.ListTestsPages(params,
+//	    func(page *devicefarm.ListTestsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListTestsPages(input *ListTestsInput, fn func(*ListTestsOutput, bool) bool) error {
 	return c.ListTestsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6107,14 +6091,13 @@ const opListUniqueProblems = "ListUniqueProblems"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListUniqueProblemsRequest method.
+//	req, resp := client.ListUniqueProblemsRequest(params)
 //
-//    // Example sending a request using the ListUniqueProblemsRequest method.
-//    req, resp := client.ListUniqueProblemsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListUniqueProblems
 func (c *DeviceFarm) ListUniqueProblemsRequest(input *ListUniqueProblemsInput) (req *request.Request, output *ListUniqueProblemsOutput) {
@@ -6156,17 +6139,18 @@ func (c *DeviceFarm) ListUniqueProblemsRequest(input *ListUniqueProblemsInput) (
 // API operation ListUniqueProblems for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListUniqueProblems
 func (c *DeviceFarm) ListUniqueProblems(input *ListUniqueProblemsInput) (*ListUniqueProblemsOutput, error) {
@@ -6198,15 +6182,14 @@ func (c *DeviceFarm) ListUniqueProblemsWithContext(ctx aws.Context, input *ListU
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListUniqueProblems operation.
-//    pageNum := 0
-//    err := client.ListUniqueProblemsPages(params,
-//        func(page *devicefarm.ListUniqueProblemsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListUniqueProblems operation.
+//	pageNum := 0
+//	err := client.ListUniqueProblemsPages(params,
+//	    func(page *devicefarm.ListUniqueProblemsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListUniqueProblemsPages(input *ListUniqueProblemsInput, fn func(*ListUniqueProblemsOutput, bool) bool) error {
 	return c.ListUniqueProblemsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6258,14 +6241,13 @@ const opListUploads = "ListUploads"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListUploadsRequest method.
+//	req, resp := client.ListUploadsRequest(params)
 //
-//    // Example sending a request using the ListUploadsRequest method.
-//    req, resp := client.ListUploadsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListUploads
 func (c *DeviceFarm) ListUploadsRequest(input *ListUploadsInput) (req *request.Request, output *ListUploadsOutput) {
@@ -6302,17 +6284,18 @@ func (c *DeviceFarm) ListUploadsRequest(input *ListUploadsInput) (req *request.R
 // API operation ListUploads for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListUploads
 func (c *DeviceFarm) ListUploads(input *ListUploadsInput) (*ListUploadsOutput, error) {
@@ -6344,15 +6327,14 @@ func (c *DeviceFarm) ListUploadsWithContext(ctx aws.Context, input *ListUploadsI
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListUploads operation.
-//    pageNum := 0
-//    err := client.ListUploadsPages(params,
-//        func(page *devicefarm.ListUploadsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListUploads operation.
+//	pageNum := 0
+//	err := client.ListUploadsPages(params,
+//	    func(page *devicefarm.ListUploadsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DeviceFarm) ListUploadsPages(input *ListUploadsInput, fn func(*ListUploadsOutput, bool) bool) error {
 	return c.ListUploadsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6404,14 +6386,13 @@ const opListVPCEConfigurations = "ListVPCEConfigurations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListVPCEConfigurationsRequest method.
+//	req, resp := client.ListVPCEConfigurationsRequest(params)
 //
-//    // Example sending a request using the ListVPCEConfigurationsRequest method.
-//    req, resp := client.ListVPCEConfigurationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListVPCEConfigurations
 func (c *DeviceFarm) ListVPCEConfigurationsRequest(input *ListVPCEConfigurationsInput) (req *request.Request, output *ListVPCEConfigurationsOutput) {
@@ -6443,11 +6424,12 @@ func (c *DeviceFarm) ListVPCEConfigurationsRequest(input *ListVPCEConfigurations
 // API operation ListVPCEConfigurations for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - ArgumentException
+//     An invalid argument was specified.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListVPCEConfigurations
 func (c *DeviceFarm) ListVPCEConfigurations(input *ListVPCEConfigurationsInput) (*ListVPCEConfigurationsOutput, error) {
@@ -6487,14 +6469,13 @@ const opPurchaseOffering = "PurchaseOffering"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PurchaseOfferingRequest method.
+//	req, resp := client.PurchaseOfferingRequest(params)
 //
-//    // Example sending a request using the PurchaseOfferingRequest method.
-//    req, resp := client.PurchaseOfferingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/PurchaseOffering
 func (c *DeviceFarm) PurchaseOfferingRequest(input *PurchaseOfferingInput) (req *request.Request, output *PurchaseOfferingOutput) {
@@ -6529,21 +6510,22 @@ func (c *DeviceFarm) PurchaseOfferingRequest(input *PurchaseOfferingInput) (req 
 // API operation PurchaseOffering for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * NotEligibleException
-//   Exception gets thrown when a user is not eligible to perform the specified
-//   transaction.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotEligibleException
+//     Exception gets thrown when a user is not eligible to perform the specified
+//     transaction.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/PurchaseOffering
 func (c *DeviceFarm) PurchaseOffering(input *PurchaseOfferingInput) (*PurchaseOfferingOutput, error) {
@@ -6583,14 +6565,13 @@ const opRenewOffering = "RenewOffering"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RenewOfferingRequest method.
+//	req, resp := client.RenewOfferingRequest(params)
 //
-//    // Example sending a request using the RenewOfferingRequest method.
-//    req, resp := client.RenewOfferingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/RenewOffering
 func (c *DeviceFarm) RenewOfferingRequest(input *RenewOfferingInput) (req *request.Request, output *RenewOfferingOutput) {
@@ -6625,21 +6606,22 @@ func (c *DeviceFarm) RenewOfferingRequest(input *RenewOfferingInput) (req *reque
 // API operation RenewOffering for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * NotEligibleException
-//   Exception gets thrown when a user is not eligible to perform the specified
-//   transaction.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotEligibleException
+//     Exception gets thrown when a user is not eligible to perform the specified
+//     transaction.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/RenewOffering
 func (c *DeviceFarm) RenewOffering(input *RenewOfferingInput) (*RenewOfferingOutput, error) {
@@ -6679,14 +6661,13 @@ const opScheduleRun = "ScheduleRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ScheduleRunRequest method.
+//	req, resp := client.ScheduleRunRequest(params)
 //
-//    // Example sending a request using the ScheduleRunRequest method.
-//    req, resp := client.ScheduleRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ScheduleRun
 func (c *DeviceFarm) ScheduleRunRequest(input *ScheduleRunInput) (req *request.Request, output *ScheduleRunOutput) {
@@ -6717,20 +6698,21 @@ func (c *DeviceFarm) ScheduleRunRequest(input *ScheduleRunInput) (req *request.R
 // API operation ScheduleRun for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * IdempotencyException
-//   An entity with the same name already exists.
+//   - LimitExceededException
+//     A limit was exceeded.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - IdempotencyException
+//     An entity with the same name already exists.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ScheduleRun
 func (c *DeviceFarm) ScheduleRun(input *ScheduleRunInput) (*ScheduleRunOutput, error) {
@@ -6770,14 +6752,13 @@ const opStopJob = "StopJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopJobRequest method.
+//	req, resp := client.StopJobRequest(params)
 //
-//    // Example sending a request using the StopJobRequest method.
-//    req, resp := client.StopJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopJob
 func (c *DeviceFarm) StopJobRequest(input *StopJobInput) (req *request.Request, output *StopJobOutput) {
@@ -6812,17 +6793,18 @@ func (c *DeviceFarm) StopJobRequest(input *StopJobInput) (req *request.Request, 
 // API operation StopJob for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopJob
 func (c *DeviceFarm) StopJob(input *StopJobInput) (*StopJobOutput, error) {
@@ -6862,14 +6844,13 @@ const opStopRemoteAccessSession = "StopRemoteAccessSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopRemoteAccessSessionRequest method.
+//	req, resp := client.StopRemoteAccessSessionRequest(params)
 //
-//    // Example sending a request using the StopRemoteAccessSessionRequest method.
-//    req, resp := client.StopRemoteAccessSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopRemoteAccessSession
 func (c *DeviceFarm) StopRemoteAccessSessionRequest(input *StopRemoteAccessSessionInput) (req *request.Request, output *StopRemoteAccessSessionOutput) {
@@ -6900,17 +6881,18 @@ func (c *DeviceFarm) StopRemoteAccessSessionRequest(input *StopRemoteAccessSessi
 // API operation StopRemoteAccessSession for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopRemoteAccessSession
 func (c *DeviceFarm) StopRemoteAccessSession(input *StopRemoteAccessSessionInput) (*StopRemoteAccessSessionOutput, error) {
@@ -6950,14 +6932,13 @@ const opStopRun = "StopRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopRunRequest method.
+//	req, resp := client.StopRunRequest(params)
 //
-//    // Example sending a request using the StopRunRequest method.
-//    req, resp := client.StopRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopRun
 func (c *DeviceFarm) StopRunRequest(input *StopRunInput) (req *request.Request, output *StopRunOutput) {
@@ -6992,17 +6973,18 @@ func (c *DeviceFarm) StopRunRequest(input *StopRunInput) (req *request.Request, 
 // API operation StopRun for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopRun
 func (c *DeviceFarm) StopRun(input *StopRunInput) (*StopRunOutput, error) {
@@ -7042,14 +7024,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/TagResource
 func (c *DeviceFarm) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -7084,22 +7065,23 @@ func (c *DeviceFarm) TagResourceRequest(input *TagResourceInput) (req *request.R
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * TagOperationException
-//   The operation was not successful. Try again.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * TooManyTagsException
-//   The list of tags on the repository is over the limit. The maximum number
-//   of tags that can be applied to a repository is 50.
+//   - TagOperationException
+//     The operation was not successful. Try again.
 //
-//   * TagPolicyException
-//   The request doesn't comply with the AWS Identity and Access Management (IAM)
-//   tag policy. Correct your request and then retry it.
+//   - TooManyTagsException
+//     The list of tags on the repository is over the limit. The maximum number
+//     of tags that can be applied to a repository is 50.
+//
+//   - TagPolicyException
+//     The request doesn't comply with the AWS Identity and Access Management (IAM)
+//     tag policy. Correct your request and then retry it.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/TagResource
 func (c *DeviceFarm) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -7139,14 +7121,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UntagResource
 func (c *DeviceFarm) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -7178,14 +7159,15 @@ func (c *DeviceFarm) UntagResourceRequest(input *UntagResourceInput) (req *reque
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * TagOperationException
-//   The operation was not successful. Try again.
+//   - NotFoundException
+//     The specified entity was not found.
+//
+//   - TagOperationException
+//     The operation was not successful. Try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UntagResource
 func (c *DeviceFarm) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -7225,14 +7207,13 @@ const opUpdateDeviceInstance = "UpdateDeviceInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDeviceInstanceRequest method.
+//	req, resp := client.UpdateDeviceInstanceRequest(params)
 //
-//    // Example sending a request using the UpdateDeviceInstanceRequest method.
-//    req, resp := client.UpdateDeviceInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateDeviceInstance
 func (c *DeviceFarm) UpdateDeviceInstanceRequest(input *UpdateDeviceInstanceInput) (req *request.Request, output *UpdateDeviceInstanceOutput) {
@@ -7263,17 +7244,18 @@ func (c *DeviceFarm) UpdateDeviceInstanceRequest(input *UpdateDeviceInstanceInpu
 // API operation UpdateDeviceInstance for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateDeviceInstance
 func (c *DeviceFarm) UpdateDeviceInstance(input *UpdateDeviceInstanceInput) (*UpdateDeviceInstanceOutput, error) {
@@ -7313,14 +7295,13 @@ const opUpdateDevicePool = "UpdateDevicePool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDevicePoolRequest method.
+//	req, resp := client.UpdateDevicePoolRequest(params)
 //
-//    // Example sending a request using the UpdateDevicePoolRequest method.
-//    req, resp := client.UpdateDevicePoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateDevicePool
 func (c *DeviceFarm) UpdateDevicePoolRequest(input *UpdateDevicePoolInput) (req *request.Request, output *UpdateDevicePoolOutput) {
@@ -7353,17 +7334,18 @@ func (c *DeviceFarm) UpdateDevicePoolRequest(input *UpdateDevicePoolInput) (req 
 // API operation UpdateDevicePool for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateDevicePool
 func (c *DeviceFarm) UpdateDevicePool(input *UpdateDevicePoolInput) (*UpdateDevicePoolOutput, error) {
@@ -7403,14 +7385,13 @@ const opUpdateInstanceProfile = "UpdateInstanceProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateInstanceProfileRequest method.
+//	req, resp := client.UpdateInstanceProfileRequest(params)
 //
-//    // Example sending a request using the UpdateInstanceProfileRequest method.
-//    req, resp := client.UpdateInstanceProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateInstanceProfile
 func (c *DeviceFarm) UpdateInstanceProfileRequest(input *UpdateInstanceProfileInput) (req *request.Request, output *UpdateInstanceProfileOutput) {
@@ -7441,17 +7422,18 @@ func (c *DeviceFarm) UpdateInstanceProfileRequest(input *UpdateInstanceProfileIn
 // API operation UpdateInstanceProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateInstanceProfile
 func (c *DeviceFarm) UpdateInstanceProfile(input *UpdateInstanceProfileInput) (*UpdateInstanceProfileOutput, error) {
@@ -7491,14 +7473,13 @@ const opUpdateNetworkProfile = "UpdateNetworkProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateNetworkProfileRequest method.
+//	req, resp := client.UpdateNetworkProfileRequest(params)
 //
-//    // Example sending a request using the UpdateNetworkProfileRequest method.
-//    req, resp := client.UpdateNetworkProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateNetworkProfile
 func (c *DeviceFarm) UpdateNetworkProfileRequest(input *UpdateNetworkProfileInput) (req *request.Request, output *UpdateNetworkProfileOutput) {
@@ -7529,17 +7510,18 @@ func (c *DeviceFarm) UpdateNetworkProfileRequest(input *UpdateNetworkProfileInpu
 // API operation UpdateNetworkProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateNetworkProfile
 func (c *DeviceFarm) UpdateNetworkProfile(input *UpdateNetworkProfileInput) (*UpdateNetworkProfileOutput, error) {
@@ -7579,14 +7561,13 @@ const opUpdateProject = "UpdateProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProjectRequest method.
+//	req, resp := client.UpdateProjectRequest(params)
 //
-//    // Example sending a request using the UpdateProjectRequest method.
-//    req, resp := client.UpdateProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateProject
 func (c *DeviceFarm) UpdateProjectRequest(input *UpdateProjectInput) (req *request.Request, output *UpdateProjectOutput) {
@@ -7617,17 +7598,18 @@ func (c *DeviceFarm) UpdateProjectRequest(input *UpdateProjectInput) (req *reque
 // API operation UpdateProject for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateProject
 func (c *DeviceFarm) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
@@ -7667,14 +7649,13 @@ const opUpdateTestGridProject = "UpdateTestGridProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTestGridProjectRequest method.
+//	req, resp := client.UpdateTestGridProjectRequest(params)
 //
-//    // Example sending a request using the UpdateTestGridProjectRequest method.
-//    req, resp := client.UpdateTestGridProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateTestGridProject
 func (c *DeviceFarm) UpdateTestGridProjectRequest(input *UpdateTestGridProjectInput) (req *request.Request, output *UpdateTestGridProjectOutput) {
@@ -7705,18 +7686,19 @@ func (c *DeviceFarm) UpdateTestGridProjectRequest(input *UpdateTestGridProjectIn
 // API operation UpdateTestGridProject for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified entity was not found.
 //
-//   * ArgumentException
-//   An invalid argument was specified.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * InternalServiceException
-//   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
-//   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - InternalServiceException
+//     An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
+//     (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateTestGridProject
 func (c *DeviceFarm) UpdateTestGridProject(input *UpdateTestGridProjectInput) (*UpdateTestGridProjectOutput, error) {
@@ -7756,14 +7738,13 @@ const opUpdateUpload = "UpdateUpload"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUploadRequest method.
+//	req, resp := client.UpdateUploadRequest(params)
 //
-//    // Example sending a request using the UpdateUploadRequest method.
-//    req, resp := client.UpdateUploadRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateUpload
 func (c *DeviceFarm) UpdateUploadRequest(input *UpdateUploadInput) (req *request.Request, output *UpdateUploadOutput) {
@@ -7794,17 +7775,18 @@ func (c *DeviceFarm) UpdateUploadRequest(input *UpdateUploadInput) (req *request
 // API operation UpdateUpload for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - ServiceAccountException
+//     There was a problem with the service account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateUpload
 func (c *DeviceFarm) UpdateUpload(input *UpdateUploadInput) (*UpdateUploadOutput, error) {
@@ -7844,14 +7826,13 @@ const opUpdateVPCEConfiguration = "UpdateVPCEConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateVPCEConfigurationRequest method.
+//	req, resp := client.UpdateVPCEConfigurationRequest(params)
 //
-//    // Example sending a request using the UpdateVPCEConfigurationRequest method.
-//    req, resp := client.UpdateVPCEConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateVPCEConfiguration
 func (c *DeviceFarm) UpdateVPCEConfigurationRequest(input *UpdateVPCEConfigurationInput) (req *request.Request, output *UpdateVPCEConfigurationOutput) {
@@ -7883,18 +7864,19 @@ func (c *DeviceFarm) UpdateVPCEConfigurationRequest(input *UpdateVPCEConfigurati
 // API operation UpdateVPCEConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ArgumentException
-//   An invalid argument was specified.
 //
-//   * NotFoundException
-//   The specified entity was not found.
+//   - ArgumentException
+//     An invalid argument was specified.
 //
-//   * ServiceAccountException
-//   There was a problem with the service account.
+//   - NotFoundException
+//     The specified entity was not found.
 //
-//   * InvalidOperationException
-//   There was an error with the update request, or you do not have sufficient
-//   permissions to update this VPC endpoint configuration.
+//   - ServiceAccountException
+//     There was a problem with the service account.
+//
+//   - InvalidOperationException
+//     There was an error with the update request, or you do not have sufficient
+//     permissions to update this VPC endpoint configuration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateVPCEConfiguration
 func (c *DeviceFarm) UpdateVPCEConfiguration(input *UpdateVPCEConfigurationInput) (*UpdateVPCEConfigurationOutput, error) {
@@ -7941,7 +7923,7 @@ type AccountSettings struct {
 	// again. For public devices, Device Farm always signs your apps again.
 	//
 	// For more information about how Device Farm re-signs your apps, see Do you
-	// modify my app? (https://aws.amazon.com/device-farm/faq/) in the AWS Device
+	// modify my app? (http://aws.amazon.com/device-farm/faqs/) in the AWS Device
 	// Farm FAQs.
 	SkipAppResign *bool `locationName:"skipAppResign" type:"boolean"`
 
@@ -7956,12 +7938,20 @@ type AccountSettings struct {
 	UnmeteredRemoteAccessDevices map[string]*int64 `locationName:"unmeteredRemoteAccessDevices" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountSettings) GoString() string {
 	return s.String()
 }
@@ -8023,12 +8013,20 @@ type ArgumentException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArgumentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ArgumentException) GoString() string {
 	return s.String()
 }
@@ -8151,12 +8149,20 @@ type Artifact struct {
 	Url *string `locationName:"url" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Artifact) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Artifact) GoString() string {
 	return s.String()
 }
@@ -8207,12 +8213,20 @@ type CPU struct {
 	Frequency *string `locationName:"frequency" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CPU) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CPU) GoString() string {
 	return s.String()
 }
@@ -8243,12 +8257,20 @@ type CannotDeleteException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CannotDeleteException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CannotDeleteException) GoString() string {
 	return s.String()
 }
@@ -8317,12 +8339,20 @@ type Counters struct {
 	Warned *int64 `locationName:"warned" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Counters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Counters) GoString() string {
 	return s.String()
 }
@@ -8401,12 +8431,20 @@ type CreateDevicePoolInput struct {
 	Rules []*Rule `locationName:"rules" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDevicePoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDevicePoolInput) GoString() string {
 	return s.String()
 }
@@ -8471,12 +8509,20 @@ type CreateDevicePoolOutput struct {
 	DevicePool *DevicePool `locationName:"devicePool" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDevicePoolOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDevicePoolOutput) GoString() string {
 	return s.String()
 }
@@ -8513,12 +8559,20 @@ type CreateInstanceProfileInput struct {
 	RebootAfterUse *bool `locationName:"rebootAfterUse" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInstanceProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInstanceProfileInput) GoString() string {
 	return s.String()
 }
@@ -8573,12 +8627,20 @@ type CreateInstanceProfileOutput struct {
 	InstanceProfile *InstanceProfile `locationName:"instanceProfile" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInstanceProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInstanceProfileOutput) GoString() string {
 	return s.String()
 }
@@ -8638,12 +8700,20 @@ type CreateNetworkProfileInput struct {
 	UplinkLossPercent *int64 `locationName:"uplinkLossPercent" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateNetworkProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateNetworkProfileInput) GoString() string {
 	return s.String()
 }
@@ -8746,12 +8816,20 @@ type CreateNetworkProfileOutput struct {
 	NetworkProfile *NetworkProfile `locationName:"networkProfile" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateNetworkProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateNetworkProfileOutput) GoString() string {
 	return s.String()
 }
@@ -8775,14 +8853,25 @@ type CreateProjectInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The VPC security groups and subnets that are attached to a project.
+	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProjectInput) GoString() string {
 	return s.String()
 }
@@ -8792,6 +8881,11 @@ func (s *CreateProjectInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateProjectInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8812,6 +8906,12 @@ func (s *CreateProjectInput) SetName(v string) *CreateProjectInput {
 	return s
 }
 
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *CreateProjectInput) SetVpcConfig(v *VpcConfig) *CreateProjectInput {
+	s.VpcConfig = v
+	return s
+}
+
 // Represents the result of a create project request.
 type CreateProjectOutput struct {
 	_ struct{} `type:"structure"`
@@ -8820,12 +8920,20 @@ type CreateProjectOutput struct {
 	Project *Project `locationName:"project" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProjectOutput) GoString() string {
 	return s.String()
 }
@@ -8847,12 +8955,20 @@ type CreateRemoteAccessSessionConfiguration struct {
 	VpceConfigurationArns []*string `locationName:"vpceConfigurationArns" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRemoteAccessSessionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRemoteAccessSessionConfiguration) GoString() string {
 	return s.String()
 }
@@ -8934,7 +9050,7 @@ type CreateRemoteAccessSessionInput struct {
 	// again. For public devices, Device Farm always signs your apps again.
 	//
 	// For more information on how Device Farm modifies your uploads during tests,
-	// see Do you modify my app? (https://aws.amazon.com/device-farm/faq/)
+	// see Do you modify my app? (http://aws.amazon.com/device-farm/faqs/)
 	SkipAppResign *bool `locationName:"skipAppResign" type:"boolean"`
 
 	// Ignored. The public key of the ssh key pair you want to use for connecting
@@ -8945,12 +9061,20 @@ type CreateRemoteAccessSessionInput struct {
 	SshPublicKey *string `locationName:"sshPublicKey" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRemoteAccessSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRemoteAccessSessionInput) GoString() string {
 	return s.String()
 }
@@ -9064,12 +9188,20 @@ type CreateRemoteAccessSessionOutput struct {
 	RemoteAccessSession *RemoteAccessSession `locationName:"remoteAccessSession" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRemoteAccessSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRemoteAccessSessionOutput) GoString() string {
 	return s.String()
 }
@@ -9095,12 +9227,20 @@ type CreateTestGridProjectInput struct {
 	VpcConfig *TestGridVpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTestGridProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTestGridProjectInput) GoString() string {
 	return s.String()
 }
@@ -9154,12 +9294,20 @@ type CreateTestGridProjectOutput struct {
 	TestGridProject *TestGridProject `locationName:"testGridProject" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTestGridProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTestGridProjectOutput) GoString() string {
 	return s.String()
 }
@@ -9185,12 +9333,20 @@ type CreateTestGridUrlInput struct {
 	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTestGridUrlInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTestGridUrlInput) GoString() string {
 	return s.String()
 }
@@ -9237,15 +9393,27 @@ type CreateTestGridUrlOutput struct {
 
 	// A signed URL, expiring in CreateTestGridUrlRequest$expiresInSeconds seconds,
 	// to be passed to a RemoteWebDriver.
+	//
+	// Url is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateTestGridUrlOutput's
+	// String and GoString methods.
 	Url *string `locationName:"url" type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTestGridUrlOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTestGridUrlOutput) GoString() string {
 	return s.String()
 }
@@ -9357,12 +9525,20 @@ type CreateUploadInput struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"UploadType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUploadInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUploadInput) GoString() string {
 	return s.String()
 }
@@ -9421,12 +9597,20 @@ type CreateUploadOutput struct {
 	Upload *Upload `locationName:"upload" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUploadOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUploadOutput) GoString() string {
 	return s.String()
 }
@@ -9462,12 +9646,20 @@ type CreateVPCEConfigurationInput struct {
 	VpceServiceName *string `locationName:"vpceServiceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVPCEConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVPCEConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -9522,12 +9714,20 @@ type CreateVPCEConfigurationOutput struct {
 	VpceConfiguration *VPCEConfiguration `locationName:"vpceConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVPCEConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVPCEConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -9560,12 +9760,20 @@ type CustomerArtifactPaths struct {
 	IosPaths []*string `locationName:"iosPaths" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomerArtifactPaths) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomerArtifactPaths) GoString() string {
 	return s.String()
 }
@@ -9599,12 +9807,20 @@ type DeleteDevicePoolInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDevicePoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDevicePoolInput) GoString() string {
 	return s.String()
 }
@@ -9636,12 +9852,20 @@ type DeleteDevicePoolOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDevicePoolOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDevicePoolOutput) GoString() string {
 	return s.String()
 }
@@ -9656,12 +9880,20 @@ type DeleteInstanceProfileInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInstanceProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInstanceProfileInput) GoString() string {
 	return s.String()
 }
@@ -9692,12 +9924,20 @@ type DeleteInstanceProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInstanceProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInstanceProfileOutput) GoString() string {
 	return s.String()
 }
@@ -9711,12 +9951,20 @@ type DeleteNetworkProfileInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteNetworkProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteNetworkProfileInput) GoString() string {
 	return s.String()
 }
@@ -9747,12 +9995,20 @@ type DeleteNetworkProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteNetworkProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteNetworkProfileOutput) GoString() string {
 	return s.String()
 }
@@ -9767,12 +10023,20 @@ type DeleteProjectInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProjectInput) GoString() string {
 	return s.String()
 }
@@ -9804,12 +10068,20 @@ type DeleteProjectOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProjectOutput) GoString() string {
 	return s.String()
 }
@@ -9825,12 +10097,20 @@ type DeleteRemoteAccessSessionInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemoteAccessSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemoteAccessSessionInput) GoString() string {
 	return s.String()
 }
@@ -9863,12 +10143,20 @@ type DeleteRemoteAccessSessionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemoteAccessSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemoteAccessSessionOutput) GoString() string {
 	return s.String()
 }
@@ -9883,12 +10171,20 @@ type DeleteRunInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRunInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRunInput) GoString() string {
 	return s.String()
 }
@@ -9920,12 +10216,20 @@ type DeleteRunOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRunOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRunOutput) GoString() string {
 	return s.String()
 }
@@ -9939,12 +10243,20 @@ type DeleteTestGridProjectInput struct {
 	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTestGridProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTestGridProjectInput) GoString() string {
 	return s.String()
 }
@@ -9975,12 +10287,20 @@ type DeleteTestGridProjectOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTestGridProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTestGridProjectOutput) GoString() string {
 	return s.String()
 }
@@ -9995,12 +10315,20 @@ type DeleteUploadInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUploadInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUploadInput) GoString() string {
 	return s.String()
 }
@@ -10032,12 +10360,20 @@ type DeleteUploadOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUploadOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUploadOutput) GoString() string {
 	return s.String()
 }
@@ -10052,12 +10388,20 @@ type DeleteVPCEConfigurationInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVPCEConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVPCEConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -10088,12 +10432,20 @@ type DeleteVPCEConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVPCEConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVPCEConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -10182,12 +10534,20 @@ type Device struct {
 	Resolution *Resolution `locationName:"resolution" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Device) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Device) GoString() string {
 	return s.String()
 }
@@ -10446,12 +10806,20 @@ type DeviceFilter struct {
 	Values []*string `locationName:"values" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceFilter) GoString() string {
 	return s.String()
 }
@@ -10516,12 +10884,20 @@ type DeviceInstance struct {
 	Udid *string `locationName:"udid" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceInstance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceInstance) GoString() string {
 	return s.String()
 }
@@ -10580,12 +10956,20 @@ type DeviceMinutes struct {
 	Unmetered *float64 `locationName:"unmetered" type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceMinutes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceMinutes) GoString() string {
 	return s.String()
 }
@@ -10644,12 +11028,20 @@ type DevicePool struct {
 	Type *string `locationName:"type" type:"string" enum:"DevicePoolType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DevicePool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DevicePool) GoString() string {
 	return s.String()
 }
@@ -10704,12 +11096,20 @@ type DevicePoolCompatibilityResult struct {
 	IncompatibilityMessages []*IncompatibilityMessage `locationName:"incompatibilityMessages" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DevicePoolCompatibilityResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DevicePoolCompatibilityResult) GoString() string {
 	return s.String()
 }
@@ -10782,12 +11182,20 @@ type DeviceSelectionConfiguration struct {
 	MaxDevices *int64 `locationName:"maxDevices" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceSelectionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceSelectionConfiguration) GoString() string {
 	return s.String()
 }
@@ -10847,12 +11255,20 @@ type DeviceSelectionResult struct {
 	MaxDevices *int64 `locationName:"maxDevices" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceSelectionResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceSelectionResult) GoString() string {
 	return s.String()
 }
@@ -10895,7 +11311,7 @@ type ExecutionConfiguration struct {
 	// again. For public devices, Device Farm always signs your apps again.
 	//
 	// For more information about how Device Farm re-signs your apps, see Do you
-	// modify my app? (https://aws.amazon.com/device-farm/faq/) in the AWS Device
+	// modify my app? (http://aws.amazon.com/device-farm/faqs/) in the AWS Device
 	// Farm FAQs.
 	SkipAppResign *bool `locationName:"skipAppResign" type:"boolean"`
 
@@ -10904,12 +11320,20 @@ type ExecutionConfiguration struct {
 	VideoCapture *bool `locationName:"videoCapture" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionConfiguration) GoString() string {
 	return s.String()
 }
@@ -10949,12 +11373,20 @@ type GetAccountSettingsInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountSettingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountSettingsInput) GoString() string {
 	return s.String()
 }
@@ -10968,12 +11400,20 @@ type GetAccountSettingsOutput struct {
 	AccountSettings *AccountSettings `locationName:"accountSettings" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountSettingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountSettingsOutput) GoString() string {
 	return s.String()
 }
@@ -10994,12 +11434,20 @@ type GetDeviceInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceInput) GoString() string {
 	return s.String()
 }
@@ -11036,12 +11484,20 @@ type GetDeviceInstanceInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceInstanceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceInstanceInput) GoString() string {
 	return s.String()
 }
@@ -11075,12 +11531,20 @@ type GetDeviceInstanceOutput struct {
 	DeviceInstance *DeviceInstance `locationName:"deviceInstance" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceInstanceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceInstanceOutput) GoString() string {
 	return s.String()
 }
@@ -11099,12 +11563,20 @@ type GetDeviceOutput struct {
 	Device *Device `locationName:"device" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceOutput) GoString() string {
 	return s.String()
 }
@@ -11176,12 +11648,20 @@ type GetDevicePoolCompatibilityInput struct {
 	TestType *string `locationName:"testType" type:"string" enum:"TestType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDevicePoolCompatibilityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDevicePoolCompatibilityInput) GoString() string {
 	return s.String()
 }
@@ -11256,12 +11736,20 @@ type GetDevicePoolCompatibilityOutput struct {
 	IncompatibleDevices []*DevicePoolCompatibilityResult `locationName:"incompatibleDevices" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDevicePoolCompatibilityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDevicePoolCompatibilityOutput) GoString() string {
 	return s.String()
 }
@@ -11288,12 +11776,20 @@ type GetDevicePoolInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDevicePoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDevicePoolInput) GoString() string {
 	return s.String()
 }
@@ -11328,12 +11824,20 @@ type GetDevicePoolOutput struct {
 	DevicePool *DevicePool `locationName:"devicePool" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDevicePoolOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDevicePoolOutput) GoString() string {
 	return s.String()
 }
@@ -11353,12 +11857,20 @@ type GetInstanceProfileInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetInstanceProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetInstanceProfileInput) GoString() string {
 	return s.String()
 }
@@ -11392,12 +11904,20 @@ type GetInstanceProfileOutput struct {
 	InstanceProfile *InstanceProfile `locationName:"instanceProfile" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetInstanceProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetInstanceProfileOutput) GoString() string {
 	return s.String()
 }
@@ -11418,12 +11938,20 @@ type GetJobInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobInput) GoString() string {
 	return s.String()
 }
@@ -11458,12 +11986,20 @@ type GetJobOutput struct {
 	Job *Job `locationName:"job" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobOutput) GoString() string {
 	return s.String()
 }
@@ -11483,12 +12019,20 @@ type GetNetworkProfileInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetNetworkProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetNetworkProfileInput) GoString() string {
 	return s.String()
 }
@@ -11522,12 +12066,20 @@ type GetNetworkProfileOutput struct {
 	NetworkProfile *NetworkProfile `locationName:"networkProfile" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetNetworkProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetNetworkProfileOutput) GoString() string {
 	return s.String()
 }
@@ -11548,12 +12100,20 @@ type GetOfferingStatusInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOfferingStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOfferingStatusInput) GoString() string {
 	return s.String()
 }
@@ -11592,12 +12152,20 @@ type GetOfferingStatusOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOfferingStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOfferingStatusOutput) GoString() string {
 	return s.String()
 }
@@ -11630,12 +12198,20 @@ type GetProjectInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProjectInput) GoString() string {
 	return s.String()
 }
@@ -11670,12 +12246,20 @@ type GetProjectOutput struct {
 	Project *Project `locationName:"project" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProjectOutput) GoString() string {
 	return s.String()
 }
@@ -11698,12 +12282,20 @@ type GetRemoteAccessSessionInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRemoteAccessSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRemoteAccessSessionInput) GoString() string {
 	return s.String()
 }
@@ -11739,12 +12331,20 @@ type GetRemoteAccessSessionOutput struct {
 	RemoteAccessSession *RemoteAccessSession `locationName:"remoteAccessSession" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRemoteAccessSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRemoteAccessSessionOutput) GoString() string {
 	return s.String()
 }
@@ -11765,12 +12365,20 @@ type GetRunInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRunInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRunInput) GoString() string {
 	return s.String()
 }
@@ -11805,12 +12413,20 @@ type GetRunOutput struct {
 	Run *Run `locationName:"run" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRunOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRunOutput) GoString() string {
 	return s.String()
 }
@@ -11831,12 +12447,20 @@ type GetSuiteInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteInput) GoString() string {
 	return s.String()
 }
@@ -11871,12 +12495,20 @@ type GetSuiteOutput struct {
 	Suite *Suite `locationName:"suite" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteOutput) GoString() string {
 	return s.String()
 }
@@ -11897,12 +12529,20 @@ type GetTestGridProjectInput struct {
 	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestGridProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestGridProjectInput) GoString() string {
 	return s.String()
 }
@@ -11936,12 +12576,20 @@ type GetTestGridProjectOutput struct {
 	TestGridProject *TestGridProject `locationName:"testGridProject" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestGridProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestGridProjectOutput) GoString() string {
 	return s.String()
 }
@@ -11966,12 +12614,20 @@ type GetTestGridSessionInput struct {
 	SessionId *string `locationName:"sessionId" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestGridSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestGridSessionInput) GoString() string {
 	return s.String()
 }
@@ -12020,12 +12676,20 @@ type GetTestGridSessionOutput struct {
 	TestGridSession *TestGridSession `locationName:"testGridSession" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestGridSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestGridSessionOutput) GoString() string {
 	return s.String()
 }
@@ -12046,12 +12710,20 @@ type GetTestInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestInput) GoString() string {
 	return s.String()
 }
@@ -12086,12 +12758,20 @@ type GetTestOutput struct {
 	Test *Test `locationName:"test" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTestOutput) GoString() string {
 	return s.String()
 }
@@ -12112,12 +12792,20 @@ type GetUploadInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUploadInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUploadInput) GoString() string {
 	return s.String()
 }
@@ -12152,12 +12840,20 @@ type GetUploadOutput struct {
 	Upload *Upload `locationName:"upload" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUploadOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUploadOutput) GoString() string {
 	return s.String()
 }
@@ -12178,12 +12874,20 @@ type GetVPCEConfigurationInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetVPCEConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetVPCEConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -12217,12 +12921,20 @@ type GetVPCEConfigurationOutput struct {
 	VpceConfiguration *VPCEConfiguration `locationName:"vpceConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetVPCEConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetVPCEConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -12242,12 +12954,20 @@ type IdempotencyException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdempotencyException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdempotencyException) GoString() string {
 	return s.String()
 }
@@ -12315,12 +13035,20 @@ type IncompatibilityMessage struct {
 	Type *string `locationName:"type" type:"string" enum:"DeviceAttribute"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncompatibilityMessage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncompatibilityMessage) GoString() string {
 	return s.String()
 }
@@ -12354,12 +13082,20 @@ type InstallToRemoteAccessSessionInput struct {
 	RemoteAccessSessionArn *string `locationName:"remoteAccessSessionArn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstallToRemoteAccessSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstallToRemoteAccessSessionInput) GoString() string {
 	return s.String()
 }
@@ -12407,12 +13143,20 @@ type InstallToRemoteAccessSessionOutput struct {
 	AppUpload *Upload `locationName:"appUpload" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstallToRemoteAccessSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstallToRemoteAccessSessionOutput) GoString() string {
 	return s.String()
 }
@@ -12451,12 +13195,20 @@ type InstanceProfile struct {
 	RebootAfterUse *bool `locationName:"rebootAfterUse" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceProfile) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceProfile) GoString() string {
 	return s.String()
 }
@@ -12506,12 +13258,20 @@ type InternalServiceException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) GoString() string {
 	return s.String()
 }
@@ -12563,12 +13323,20 @@ type InvalidOperationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidOperationException) GoString() string {
 	return s.String()
 }
@@ -12737,12 +13505,20 @@ type Job struct {
 	VideoEndpoint *string `locationName:"videoEndpoint" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Job) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Job) GoString() string {
 	return s.String()
 }
@@ -12846,12 +13622,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -12921,12 +13705,20 @@ type ListArtifactsInput struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ArtifactCategory"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListArtifactsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListArtifactsInput) GoString() string {
 	return s.String()
 }
@@ -12984,12 +13776,20 @@ type ListArtifactsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListArtifactsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListArtifactsOutput) GoString() string {
 	return s.String()
 }
@@ -13018,12 +13818,20 @@ type ListDeviceInstancesInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceInstancesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceInstancesInput) GoString() string {
 	return s.String()
 }
@@ -13064,12 +13872,20 @@ type ListDeviceInstancesOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceInstancesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceInstancesOutput) GoString() string {
 	return s.String()
 }
@@ -13110,12 +13926,20 @@ type ListDevicePoolsInput struct {
 	Type *string `locationName:"type" type:"string" enum:"DevicePoolType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDevicePoolsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDevicePoolsInput) GoString() string {
 	return s.String()
 }
@@ -13170,12 +13994,20 @@ type ListDevicePoolsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDevicePoolsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDevicePoolsOutput) GoString() string {
 	return s.String()
 }
@@ -13238,12 +14070,20 @@ type ListDevicesInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDevicesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDevicesInput) GoString() string {
 	return s.String()
 }
@@ -13305,12 +14145,20 @@ type ListDevicesOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDevicesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDevicesOutput) GoString() string {
 	return s.String()
 }
@@ -13339,12 +14187,20 @@ type ListInstanceProfilesInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceProfilesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceProfilesInput) GoString() string {
 	return s.String()
 }
@@ -13385,12 +14241,20 @@ type ListInstanceProfilesOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceProfilesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceProfilesOutput) GoString() string {
 	return s.String()
 }
@@ -13421,12 +14285,20 @@ type ListJobsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsInput) GoString() string {
 	return s.String()
 }
@@ -13475,12 +14347,20 @@ type ListJobsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsOutput) GoString() string {
 	return s.String()
 }
@@ -13515,12 +14395,20 @@ type ListNetworkProfilesInput struct {
 	Type *string `locationName:"type" type:"string" enum:"NetworkProfileType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNetworkProfilesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNetworkProfilesInput) GoString() string {
 	return s.String()
 }
@@ -13573,12 +14461,20 @@ type ListNetworkProfilesOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNetworkProfilesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNetworkProfilesOutput) GoString() string {
 	return s.String()
 }
@@ -13603,12 +14499,20 @@ type ListOfferingPromotionsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingPromotionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingPromotionsInput) GoString() string {
 	return s.String()
 }
@@ -13643,12 +14547,20 @@ type ListOfferingPromotionsOutput struct {
 	OfferingPromotions []*OfferingPromotion `locationName:"offeringPromotions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingPromotionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingPromotionsOutput) GoString() string {
 	return s.String()
 }
@@ -13674,12 +14586,20 @@ type ListOfferingTransactionsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingTransactionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingTransactionsInput) GoString() string {
 	return s.String()
 }
@@ -13716,12 +14636,20 @@ type ListOfferingTransactionsOutput struct {
 	OfferingTransactions []*OfferingTransaction `locationName:"offeringTransactions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingTransactionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingTransactionsOutput) GoString() string {
 	return s.String()
 }
@@ -13747,12 +14675,20 @@ type ListOfferingsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingsInput) GoString() string {
 	return s.String()
 }
@@ -13788,12 +14724,20 @@ type ListOfferingsOutput struct {
 	Offerings []*Offering `locationName:"offerings" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOfferingsOutput) GoString() string {
 	return s.String()
 }
@@ -13824,12 +14768,20 @@ type ListProjectsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProjectsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProjectsInput) GoString() string {
 	return s.String()
 }
@@ -13875,12 +14827,20 @@ type ListProjectsOutput struct {
 	Projects []*Project `locationName:"projects" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProjectsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProjectsOutput) GoString() string {
 	return s.String()
 }
@@ -13912,12 +14872,20 @@ type ListRemoteAccessSessionsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRemoteAccessSessionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRemoteAccessSessionsInput) GoString() string {
 	return s.String()
 }
@@ -13967,12 +14935,20 @@ type ListRemoteAccessSessionsOutput struct {
 	RemoteAccessSessions []*RemoteAccessSession `locationName:"remoteAccessSessions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRemoteAccessSessionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRemoteAccessSessionsOutput) GoString() string {
 	return s.String()
 }
@@ -14004,12 +14980,20 @@ type ListRunsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRunsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRunsInput) GoString() string {
 	return s.String()
 }
@@ -14058,12 +15042,20 @@ type ListRunsOutput struct {
 	Runs []*Run `locationName:"runs" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRunsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRunsOutput) GoString() string {
 	return s.String()
 }
@@ -14094,12 +15086,20 @@ type ListSamplesInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSamplesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSamplesInput) GoString() string {
 	return s.String()
 }
@@ -14148,12 +15148,20 @@ type ListSamplesOutput struct {
 	Samples []*Sample `locationName:"samples" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSamplesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSamplesOutput) GoString() string {
 	return s.String()
 }
@@ -14184,12 +15192,20 @@ type ListSuitesInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuitesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuitesInput) GoString() string {
 	return s.String()
 }
@@ -14238,12 +15254,20 @@ type ListSuitesOutput struct {
 	Suites []*Suite `locationName:"suites" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuitesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuitesOutput) GoString() string {
 	return s.String()
 }
@@ -14272,12 +15296,20 @@ type ListTagsForResourceInput struct {
 	ResourceARN *string `min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -14313,12 +15345,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -14339,12 +15379,20 @@ type ListTestGridProjectsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridProjectsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridProjectsInput) GoString() string {
 	return s.String()
 }
@@ -14388,12 +15436,20 @@ type ListTestGridProjectsOutput struct {
 	TestGridProjects []*TestGridProject `locationName:"testGridProjects" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridProjectsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridProjectsOutput) GoString() string {
 	return s.String()
 }
@@ -14425,12 +15481,20 @@ type ListTestGridSessionActionsInput struct {
 	SessionArn *string `locationName:"sessionArn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionActionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionActionsInput) GoString() string {
 	return s.String()
 }
@@ -14485,12 +15549,20 @@ type ListTestGridSessionActionsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionActionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionActionsOutput) GoString() string {
 	return s.String()
 }
@@ -14525,12 +15597,20 @@ type ListTestGridSessionArtifactsInput struct {
 	Type *string `locationName:"type" type:"string" enum:"TestGridSessionArtifactCategory"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionArtifactsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionArtifactsInput) GoString() string {
 	return s.String()
 }
@@ -14591,12 +15671,20 @@ type ListTestGridSessionArtifactsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionArtifactsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionArtifactsOutput) GoString() string {
 	return s.String()
 }
@@ -14643,12 +15731,20 @@ type ListTestGridSessionsInput struct {
 	Status *string `locationName:"status" type:"string" enum:"TestGridSessionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionsInput) GoString() string {
 	return s.String()
 }
@@ -14733,12 +15829,20 @@ type ListTestGridSessionsOutput struct {
 	TestGridSessions []*TestGridSession `locationName:"testGridSessions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestGridSessionsOutput) GoString() string {
 	return s.String()
 }
@@ -14769,12 +15873,20 @@ type ListTestsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestsInput) GoString() string {
 	return s.String()
 }
@@ -14823,12 +15935,20 @@ type ListTestsOutput struct {
 	Tests []*Test `locationName:"tests" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTestsOutput) GoString() string {
 	return s.String()
 }
@@ -14859,12 +15979,20 @@ type ListUniqueProblemsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUniqueProblemsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUniqueProblemsInput) GoString() string {
 	return s.String()
 }
@@ -14929,12 +16057,20 @@ type ListUniqueProblemsOutput struct {
 	UniqueProblems map[string][]*UniqueProblem `locationName:"uniqueProblems" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUniqueProblemsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUniqueProblemsOutput) GoString() string {
 	return s.String()
 }
@@ -15035,12 +16171,20 @@ type ListUploadsInput struct {
 	Type *string `locationName:"type" type:"string" enum:"UploadType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUploadsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUploadsInput) GoString() string {
 	return s.String()
 }
@@ -15095,12 +16239,20 @@ type ListUploadsOutput struct {
 	Uploads []*Upload `locationName:"uploads" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUploadsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUploadsOutput) GoString() string {
 	return s.String()
 }
@@ -15129,12 +16281,20 @@ type ListVPCEConfigurationsInput struct {
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVPCEConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVPCEConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -15176,12 +16336,20 @@ type ListVPCEConfigurationsOutput struct {
 	VpceConfigurations []*VPCEConfiguration `locationName:"vpceConfigurations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVPCEConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVPCEConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -15216,12 +16384,20 @@ type Location struct {
 	Longitude *float64 `locationName:"longitude" type:"double" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Location) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Location) GoString() string {
 	return s.String()
 }
@@ -15265,12 +16441,20 @@ type MonetaryAmount struct {
 	CurrencyCode *string `locationName:"currencyCode" type:"string" enum:"CurrencyCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MonetaryAmount) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MonetaryAmount) GoString() string {
 	return s.String()
 }
@@ -15332,12 +16516,20 @@ type NetworkProfile struct {
 	UplinkLossPercent *int64 `locationName:"uplinkLossPercent" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NetworkProfile) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NetworkProfile) GoString() string {
 	return s.String()
 }
@@ -15424,12 +16616,20 @@ type NotEligibleException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotEligibleException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotEligibleException) GoString() string {
 	return s.String()
 }
@@ -15481,12 +16681,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -15549,12 +16757,20 @@ type Offering struct {
 	Type *string `locationName:"type" type:"string" enum:"OfferingType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Offering) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Offering) GoString() string {
 	return s.String()
 }
@@ -15600,12 +16816,20 @@ type OfferingPromotion struct {
 	Id *string `locationName:"id" min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OfferingPromotion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OfferingPromotion) GoString() string {
 	return s.String()
 }
@@ -15639,12 +16863,20 @@ type OfferingStatus struct {
 	Type *string `locationName:"type" type:"string" enum:"OfferingTransactionType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OfferingStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OfferingStatus) GoString() string {
 	return s.String()
 }
@@ -15693,12 +16925,20 @@ type OfferingTransaction struct {
 	TransactionId *string `locationName:"transactionId" min:"32" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OfferingTransaction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OfferingTransaction) GoString() string {
 	return s.String()
 }
@@ -15775,12 +17015,20 @@ type Problem struct {
 	Test *ProblemDetail `locationName:"test" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Problem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Problem) GoString() string {
 	return s.String()
 }
@@ -15838,12 +17086,20 @@ type ProblemDetail struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProblemDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProblemDetail) GoString() string {
 	return s.String()
 }
@@ -15877,14 +17133,25 @@ type Project struct {
 
 	// The project's name.
 	Name *string `locationName:"name" type:"string"`
+
+	// The VPC security groups and subnets that are attached to a project.
+	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Project) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Project) GoString() string {
 	return s.String()
 }
@@ -15913,6 +17180,12 @@ func (s *Project) SetName(v string) *Project {
 	return s
 }
 
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *Project) SetVpcConfig(v *VpcConfig) *Project {
+	s.VpcConfig = v
+	return s
+}
+
 // Represents a request for a purchase offering.
 type PurchaseOfferingInput struct {
 	_ struct{} `type:"structure"`
@@ -15931,12 +17204,20 @@ type PurchaseOfferingInput struct {
 	Quantity *int64 `locationName:"quantity" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PurchaseOfferingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PurchaseOfferingInput) GoString() string {
 	return s.String()
 }
@@ -15989,12 +17270,20 @@ type PurchaseOfferingOutput struct {
 	OfferingTransaction *OfferingTransaction `locationName:"offeringTransaction" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PurchaseOfferingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PurchaseOfferingOutput) GoString() string {
 	return s.String()
 }
@@ -16023,12 +17312,20 @@ type Radios struct {
 	Wifi *bool `locationName:"wifi" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Radios) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Radios) GoString() string {
 	return s.String()
 }
@@ -16068,12 +17365,20 @@ type RecurringCharge struct {
 	Frequency *string `locationName:"frequency" type:"string" enum:"RecurringChargeFrequency"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecurringCharge) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecurringCharge) GoString() string {
 	return s.String()
 }
@@ -16191,7 +17496,7 @@ type RemoteAccessSession struct {
 	// again. For public devices, Device Farm always signs your apps again.
 	//
 	// For more information about how Device Farm re-signs your apps, see Do you
-	// modify my app? (https://aws.amazon.com/device-farm/faq/) in the AWS Device
+	// modify my app? (http://aws.amazon.com/device-farm/faqs/) in the AWS Device
 	// Farm FAQs.
 	SkipAppResign *bool `locationName:"skipAppResign" type:"boolean"`
 
@@ -16221,14 +17526,25 @@ type RemoteAccessSession struct {
 
 	// The date and time the remote access session was stopped.
 	Stopped *time.Time `locationName:"stopped" type:"timestamp"`
+
+	// The VPC security groups and subnets that are attached to a project.
+	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoteAccessSession) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoteAccessSession) GoString() string {
 	return s.String()
 }
@@ -16359,6 +17675,12 @@ func (s *RemoteAccessSession) SetStopped(v time.Time) *RemoteAccessSession {
 	return s
 }
 
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *RemoteAccessSession) SetVpcConfig(v *VpcConfig) *RemoteAccessSession {
+	s.VpcConfig = v
+	return s
+}
+
 // A request that represents an offering renewal.
 type RenewOfferingInput struct {
 	_ struct{} `type:"structure"`
@@ -16374,12 +17696,20 @@ type RenewOfferingInput struct {
 	Quantity *int64 `locationName:"quantity" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RenewOfferingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RenewOfferingInput) GoString() string {
 	return s.String()
 }
@@ -16423,12 +17753,20 @@ type RenewOfferingOutput struct {
 	OfferingTransaction *OfferingTransaction `locationName:"offeringTransaction" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RenewOfferingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RenewOfferingOutput) GoString() string {
 	return s.String()
 }
@@ -16451,12 +17789,20 @@ type Resolution struct {
 	Width *int64 `locationName:"width" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Resolution) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Resolution) GoString() string {
 	return s.String()
 }
@@ -16576,12 +17922,20 @@ type Rule struct {
 	Value *string `locationName:"value" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Rule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Rule) GoString() string {
 	return s.String()
 }
@@ -16713,7 +18067,7 @@ type Run struct {
 	// again. For public devices, Device Farm always signs your apps again.
 	//
 	// For more information about how Device Farm re-signs your apps, see Do you
-	// modify my app? (https://aws.amazon.com/device-farm/faq/) in the AWS Device
+	// modify my app? (http://aws.amazon.com/device-farm/faqs/) in the AWS Device
 	// Farm FAQs.
 	SkipAppResign *bool `locationName:"skipAppResign" type:"boolean"`
 
@@ -16794,16 +18148,27 @@ type Run struct {
 	//    * XCTEST_UI
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 
+	// The VPC security groups and subnets that are attached to a project.
+	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
+
 	// The Device Farm console URL for the recording of the run.
 	WebUrl *string `locationName:"webUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Run) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Run) GoString() string {
 	return s.String()
 }
@@ -16988,6 +18353,12 @@ func (s *Run) SetType(v string) *Run {
 	return s
 }
 
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *Run) SetVpcConfig(v *VpcConfig) *Run {
+	s.VpcConfig = v
+	return s
+}
+
 // SetWebUrl sets the WebUrl field's value.
 func (s *Run) SetWebUrl(v string) *Run {
 	s.WebUrl = &v
@@ -17050,12 +18421,20 @@ type Sample struct {
 	Url *string `locationName:"url" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Sample) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Sample) GoString() string {
 	return s.String()
 }
@@ -17118,12 +18497,20 @@ type ScheduleRunConfiguration struct {
 	VpceConfigurationArns []*string `locationName:"vpceConfigurationArns" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduleRunConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduleRunConfiguration) GoString() string {
 	return s.String()
 }
@@ -17241,12 +18628,20 @@ type ScheduleRunInput struct {
 	Test *ScheduleRunTest `locationName:"test" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduleRunInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduleRunInput) GoString() string {
 	return s.String()
 }
@@ -17347,12 +18742,20 @@ type ScheduleRunOutput struct {
 	Run *Run `locationName:"run" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduleRunOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduleRunOutput) GoString() string {
 	return s.String()
 }
@@ -17484,12 +18887,20 @@ type ScheduleRunTest struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"TestType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduleRunTest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduleRunTest) GoString() string {
 	return s.String()
 }
@@ -17552,12 +18963,20 @@ type ServiceAccountException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceAccountException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceAccountException) GoString() string {
 	return s.String()
 }
@@ -17609,12 +19028,20 @@ type StopJobInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopJobInput) GoString() string {
 	return s.String()
 }
@@ -17648,12 +19075,20 @@ type StopJobOutput struct {
 	Job *Job `locationName:"job" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopJobOutput) GoString() string {
 	return s.String()
 }
@@ -17674,12 +19109,20 @@ type StopRemoteAccessSessionInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRemoteAccessSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRemoteAccessSessionInput) GoString() string {
 	return s.String()
 }
@@ -17716,12 +19159,20 @@ type StopRemoteAccessSessionOutput struct {
 	RemoteAccessSession *RemoteAccessSession `locationName:"remoteAccessSession" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRemoteAccessSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRemoteAccessSessionOutput) GoString() string {
 	return s.String()
 }
@@ -17742,12 +19193,20 @@ type StopRunInput struct {
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRunInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRunInput) GoString() string {
 	return s.String()
 }
@@ -17782,12 +19241,20 @@ type StopRunOutput struct {
 	Run *Run `locationName:"run" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRunOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopRunOutput) GoString() string {
 	return s.String()
 }
@@ -17912,12 +19379,20 @@ type Suite struct {
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Suite) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Suite) GoString() string {
 	return s.String()
 }
@@ -18008,12 +19483,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -18059,12 +19542,20 @@ type TagOperationException struct {
 	ResourceName *string `locationName:"resourceName" min:"32" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOperationException) GoString() string {
 	return s.String()
 }
@@ -18118,12 +19609,20 @@ type TagPolicyException struct {
 	ResourceName *string `locationName:"resourceName" min:"32" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagPolicyException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagPolicyException) GoString() string {
 	return s.String()
 }
@@ -18185,12 +19684,20 @@ type TagResourceInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -18240,12 +19747,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -18363,12 +19878,20 @@ type Test struct {
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Test) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Test) GoString() string {
 	return s.String()
 }
@@ -18459,12 +19982,20 @@ type TestGridProject struct {
 	VpcConfig *TestGridVpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridProject) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridProject) GoString() string {
 	return s.String()
 }
@@ -18523,12 +20054,20 @@ type TestGridSession struct {
 	Status *string `locationName:"status" type:"string" enum:"TestGridSessionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridSession) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridSession) GoString() string {
 	return s.String()
 }
@@ -18589,12 +20128,20 @@ type TestGridSessionAction struct {
 	StatusCode *string `locationName:"statusCode" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridSessionAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridSessionAction) GoString() string {
 	return s.String()
 }
@@ -18644,15 +20191,27 @@ type TestGridSessionArtifact struct {
 	Type *string `locationName:"type" type:"string" enum:"TestGridSessionArtifactType"`
 
 	// A semi-stable URL to the content of the object.
+	//
+	// Url is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestGridSessionArtifact's
+	// String and GoString methods.
 	Url *string `locationName:"url" type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridSessionArtifact) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridSessionArtifact) GoString() string {
 	return s.String()
 }
@@ -18695,12 +20254,20 @@ type TestGridVpcConfig struct {
 	VpcId *string `locationName:"vpcId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridVpcConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestGridVpcConfig) GoString() string {
 	return s.String()
 }
@@ -18762,12 +20329,20 @@ type TooManyTagsException struct {
 	ResourceName *string `locationName:"resourceName" min:"32" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) GoString() string {
 	return s.String()
 }
@@ -18821,12 +20396,20 @@ type TrialMinutes struct {
 	Total *float64 `locationName:"total" type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TrialMinutes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TrialMinutes) GoString() string {
 	return s.String()
 }
@@ -18854,12 +20437,20 @@ type UniqueProblem struct {
 	Problems []*Problem `locationName:"problems" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UniqueProblem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UniqueProblem) GoString() string {
 	return s.String()
 }
@@ -18893,12 +20484,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -18938,12 +20537,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -18963,12 +20570,20 @@ type UpdateDeviceInstanceInput struct {
 	ProfileArn *string `locationName:"profileArn" min:"32" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeviceInstanceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeviceInstanceInput) GoString() string {
 	return s.String()
 }
@@ -19017,12 +20632,20 @@ type UpdateDeviceInstanceOutput struct {
 	DeviceInstance *DeviceInstance `locationName:"deviceInstance" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeviceInstanceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeviceInstanceOutput) GoString() string {
 	return s.String()
 }
@@ -19076,12 +20699,20 @@ type UpdateDevicePoolInput struct {
 	Rules []*Rule `locationName:"rules" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDevicePoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDevicePoolInput) GoString() string {
 	return s.String()
 }
@@ -19146,12 +20777,20 @@ type UpdateDevicePoolOutput struct {
 	DevicePool *DevicePool `locationName:"devicePool" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDevicePoolOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDevicePoolOutput) GoString() string {
 	return s.String()
 }
@@ -19191,12 +20830,20 @@ type UpdateInstanceProfileInput struct {
 	RebootAfterUse *bool `locationName:"rebootAfterUse" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceProfileInput) GoString() string {
 	return s.String()
 }
@@ -19260,12 +20907,20 @@ type UpdateInstanceProfileOutput struct {
 	InstanceProfile *InstanceProfile `locationName:"instanceProfile" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceProfileOutput) GoString() string {
 	return s.String()
 }
@@ -19324,12 +20979,20 @@ type UpdateNetworkProfileInput struct {
 	UplinkLossPercent *int64 `locationName:"uplinkLossPercent" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateNetworkProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateNetworkProfileInput) GoString() string {
 	return s.String()
 }
@@ -19429,12 +21092,20 @@ type UpdateNetworkProfileOutput struct {
 	NetworkProfile *NetworkProfile `locationName:"networkProfile" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateNetworkProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateNetworkProfileOutput) GoString() string {
 	return s.String()
 }
@@ -19460,14 +21131,25 @@ type UpdateProjectInput struct {
 
 	// A string that represents the new name of the project that you are updating.
 	Name *string `locationName:"name" type:"string"`
+
+	// The VPC security groups and subnets that are attached to a project.
+	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProjectInput) GoString() string {
 	return s.String()
 }
@@ -19480,6 +21162,11 @@ func (s *UpdateProjectInput) Validate() error {
 	}
 	if s.Arn != nil && len(*s.Arn) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("Arn", 32))
+	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -19506,6 +21193,12 @@ func (s *UpdateProjectInput) SetName(v string) *UpdateProjectInput {
 	return s
 }
 
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *UpdateProjectInput) SetVpcConfig(v *VpcConfig) *UpdateProjectInput {
+	s.VpcConfig = v
+	return s
+}
+
 // Represents the result of an update project request.
 type UpdateProjectOutput struct {
 	_ struct{} `type:"structure"`
@@ -19514,12 +21207,20 @@ type UpdateProjectOutput struct {
 	Project *Project `locationName:"project" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProjectOutput) GoString() string {
 	return s.String()
 }
@@ -19548,12 +21249,20 @@ type UpdateTestGridProjectInput struct {
 	VpcConfig *TestGridVpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTestGridProjectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTestGridProjectInput) GoString() string {
 	return s.String()
 }
@@ -19616,12 +21325,20 @@ type UpdateTestGridProjectOutput struct {
 	TestGridProject *TestGridProject `locationName:"testGridProject" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTestGridProjectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTestGridProjectOutput) GoString() string {
 	return s.String()
 }
@@ -19652,12 +21369,20 @@ type UpdateUploadInput struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUploadInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUploadInput) GoString() string {
 	return s.String()
 }
@@ -19709,12 +21434,20 @@ type UpdateUploadOutput struct {
 	Upload *Upload `locationName:"upload" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUploadOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUploadOutput) GoString() string {
 	return s.String()
 }
@@ -19750,12 +21483,20 @@ type UpdateVPCEConfigurationInput struct {
 	VpceServiceName *string `locationName:"vpceServiceName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVPCEConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVPCEConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -19813,12 +21554,20 @@ type UpdateVPCEConfigurationOutput struct {
 	VpceConfiguration *VPCEConfiguration `locationName:"vpceConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVPCEConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVPCEConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -19943,15 +21692,27 @@ type Upload struct {
 	Type *string `locationName:"type" type:"string" enum:"UploadType"`
 
 	// The presigned Amazon S3 URL that was used to store a file using a PUT request.
+	//
+	// Url is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Upload's
+	// String and GoString methods.
 	Url *string `locationName:"url" type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Upload) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Upload) GoString() string {
 	return s.String()
 }
@@ -20039,12 +21800,20 @@ type VPCEConfiguration struct {
 	VpceServiceName *string `locationName:"vpceServiceName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCEConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCEConfiguration) GoString() string {
 	return s.String()
 }
@@ -20076,6 +21845,91 @@ func (s *VPCEConfiguration) SetVpceConfigurationName(v string) *VPCEConfiguratio
 // SetVpceServiceName sets the VpceServiceName field's value.
 func (s *VPCEConfiguration) SetVpceServiceName(v string) *VPCEConfiguration {
 	s.VpceServiceName = &v
+	return s
+}
+
+// Contains the VPC configuration data necessary to interface with AWS Device
+// Farm's services.
+type VpcConfig struct {
+	_ struct{} `type:"structure"`
+
+	// An array of one or more security groups IDs in your Amazon VPC.
+	//
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `locationName:"securityGroupIds" min:"1" type:"list" required:"true"`
+
+	// An array of one or more subnet IDs in your Amazon VPC.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `locationName:"subnetIds" min:"1" type:"list" required:"true"`
+
+	// The ID of the Amazon VPC.
+	//
+	// VpcId is a required field
+	VpcId *string `locationName:"vpcId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcConfig"}
+	if s.SecurityGroupIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
+	}
+	if s.SecurityGroupIds != nil && len(s.SecurityGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupIds", 1))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.SubnetIds != nil && len(s.SubnetIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 1))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+	if s.VpcId != nil && len(*s.VpcId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VpcConfig) SetSecurityGroupIds(v []*string) *VpcConfig {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcConfig) SetSubnetIds(v []*string) *VpcConfig {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcConfig) SetVpcId(v string) *VpcConfig {
+	s.VpcId = &v
 	return s
 }
 

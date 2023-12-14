@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opBatchCreateTableRows = "BatchCreateTableRows"
@@ -28,14 +29,13 @@ const opBatchCreateTableRows = "BatchCreateTableRows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchCreateTableRowsRequest method.
+//	req, resp := client.BatchCreateTableRowsRequest(params)
 //
-//    // Example sending a request using the BatchCreateTableRowsRequest method.
-//    req, resp := client.BatchCreateTableRowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/BatchCreateTableRows
 func (c *Honeycode) BatchCreateTableRowsRequest(input *BatchCreateTableRowsInput) (req *request.Request, output *BatchCreateTableRowsOutput) {
@@ -75,33 +75,34 @@ func (c *Honeycode) BatchCreateTableRowsRequest(input *BatchCreateTableRowsInput
 // API operation BatchCreateTableRows for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - RequestTimeoutException
+//     The request timed out.
 //
-//   * ServiceQuotaExceededException
-//   The request caused service quota to be breached.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ServiceQuotaExceededException
+//     The request caused service quota to be breached.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/BatchCreateTableRows
 func (c *Honeycode) BatchCreateTableRows(input *BatchCreateTableRowsInput) (*BatchCreateTableRowsOutput, error) {
@@ -141,14 +142,13 @@ const opBatchDeleteTableRows = "BatchDeleteTableRows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDeleteTableRowsRequest method.
+//	req, resp := client.BatchDeleteTableRowsRequest(params)
 //
-//    // Example sending a request using the BatchDeleteTableRowsRequest method.
-//    req, resp := client.BatchDeleteTableRowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/BatchDeleteTableRows
 func (c *Honeycode) BatchDeleteTableRowsRequest(input *BatchDeleteTableRowsInput) (req *request.Request, output *BatchDeleteTableRowsOutput) {
@@ -181,30 +181,31 @@ func (c *Honeycode) BatchDeleteTableRowsRequest(input *BatchDeleteTableRowsInput
 // API operation BatchDeleteTableRows for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - RequestTimeoutException
+//     The request timed out.
+//
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/BatchDeleteTableRows
 func (c *Honeycode) BatchDeleteTableRows(input *BatchDeleteTableRowsInput) (*BatchDeleteTableRowsOutput, error) {
@@ -244,14 +245,13 @@ const opBatchUpdateTableRows = "BatchUpdateTableRows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchUpdateTableRowsRequest method.
+//	req, resp := client.BatchUpdateTableRowsRequest(params)
 //
-//    // Example sending a request using the BatchUpdateTableRowsRequest method.
-//    req, resp := client.BatchUpdateTableRowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/BatchUpdateTableRows
 func (c *Honeycode) BatchUpdateTableRowsRequest(input *BatchUpdateTableRowsInput) (req *request.Request, output *BatchUpdateTableRowsOutput) {
@@ -288,30 +288,31 @@ func (c *Honeycode) BatchUpdateTableRowsRequest(input *BatchUpdateTableRowsInput
 // API operation BatchUpdateTableRows for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - RequestTimeoutException
+//     The request timed out.
+//
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/BatchUpdateTableRows
 func (c *Honeycode) BatchUpdateTableRows(input *BatchUpdateTableRowsInput) (*BatchUpdateTableRowsOutput, error) {
@@ -351,14 +352,13 @@ const opBatchUpsertTableRows = "BatchUpsertTableRows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchUpsertTableRowsRequest method.
+//	req, resp := client.BatchUpsertTableRowsRequest(params)
 //
-//    // Example sending a request using the BatchUpsertTableRowsRequest method.
-//    req, resp := client.BatchUpsertTableRowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/BatchUpsertTableRows
 func (c *Honeycode) BatchUpsertTableRowsRequest(input *BatchUpsertTableRowsInput) (req *request.Request, output *BatchUpsertTableRowsOutput) {
@@ -401,33 +401,34 @@ func (c *Honeycode) BatchUpsertTableRowsRequest(input *BatchUpsertTableRowsInput
 // API operation BatchUpsertTableRows for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - RequestTimeoutException
+//     The request timed out.
 //
-//   * ServiceQuotaExceededException
-//   The request caused service quota to be breached.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ServiceQuotaExceededException
+//     The request caused service quota to be breached.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/BatchUpsertTableRows
 func (c *Honeycode) BatchUpsertTableRows(input *BatchUpsertTableRowsInput) (*BatchUpsertTableRowsOutput, error) {
@@ -467,14 +468,13 @@ const opDescribeTableDataImportJob = "DescribeTableDataImportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTableDataImportJobRequest method.
+//	req, resp := client.DescribeTableDataImportJobRequest(params)
 //
-//    // Example sending a request using the DescribeTableDataImportJobRequest method.
-//    req, resp := client.DescribeTableDataImportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/DescribeTableDataImportJob
 func (c *Honeycode) DescribeTableDataImportJobRequest(input *DescribeTableDataImportJobInput) (req *request.Request, output *DescribeTableDataImportJobOutput) {
@@ -506,27 +506,31 @@ func (c *Honeycode) DescribeTableDataImportJobRequest(input *DescribeTableDataIm
 // API operation DescribeTableDataImportJob for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
+//
+//   - RequestTimeoutException
+//     The request timed out.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/DescribeTableDataImportJob
 func (c *Honeycode) DescribeTableDataImportJob(input *DescribeTableDataImportJobInput) (*DescribeTableDataImportJobOutput, error) {
@@ -566,14 +570,13 @@ const opGetScreenData = "GetScreenData"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetScreenDataRequest method.
+//	req, resp := client.GetScreenDataRequest(params)
 //
-//    // Example sending a request using the GetScreenDataRequest method.
-//    req, resp := client.GetScreenDataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/GetScreenData
 func (c *Honeycode) GetScreenDataRequest(input *GetScreenDataInput) (req *request.Request, output *GetScreenDataOutput) {
@@ -606,30 +609,31 @@ func (c *Honeycode) GetScreenDataRequest(input *GetScreenDataInput) (req *reques
 // API operation GetScreenData for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - RequestTimeoutException
+//     The request timed out.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/GetScreenData
 func (c *Honeycode) GetScreenData(input *GetScreenDataInput) (*GetScreenDataOutput, error) {
@@ -669,14 +673,13 @@ const opInvokeScreenAutomation = "InvokeScreenAutomation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the InvokeScreenAutomationRequest method.
+//	req, resp := client.InvokeScreenAutomationRequest(params)
 //
-//    // Example sending a request using the InvokeScreenAutomationRequest method.
-//    req, resp := client.InvokeScreenAutomationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/InvokeScreenAutomation
 func (c *Honeycode) InvokeScreenAutomationRequest(input *InvokeScreenAutomationInput) (req *request.Request, output *InvokeScreenAutomationOutput) {
@@ -710,36 +713,40 @@ func (c *Honeycode) InvokeScreenAutomationRequest(input *InvokeScreenAutomationI
 // API operation InvokeScreenAutomation for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
 //
-//   * AutomationExecutionException
-//   The automation execution did not end successfully.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * AutomationExecutionTimeoutException
-//   The automation execution timed out.
+//   - AutomationExecutionException
+//     The automation execution did not end successfully.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - AutomationExecutionTimeoutException
+//     The automation execution timed out.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+//   - ServiceQuotaExceededException
+//     The request caused service quota to be breached.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/InvokeScreenAutomation
 func (c *Honeycode) InvokeScreenAutomation(input *InvokeScreenAutomationInput) (*InvokeScreenAutomationOutput, error) {
@@ -779,14 +786,13 @@ const opListTableColumns = "ListTableColumns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTableColumnsRequest method.
+//	req, resp := client.ListTableColumnsRequest(params)
 //
-//    // Example sending a request using the ListTableColumnsRequest method.
-//    req, resp := client.ListTableColumnsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/ListTableColumns
 func (c *Honeycode) ListTableColumnsRequest(input *ListTableColumnsInput) (req *request.Request, output *ListTableColumnsOutput) {
@@ -824,30 +830,31 @@ func (c *Honeycode) ListTableColumnsRequest(input *ListTableColumnsInput) (req *
 // API operation ListTableColumns for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - RequestTimeoutException
+//     The request timed out.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/ListTableColumns
 func (c *Honeycode) ListTableColumns(input *ListTableColumnsInput) (*ListTableColumnsOutput, error) {
@@ -879,15 +886,14 @@ func (c *Honeycode) ListTableColumnsWithContext(ctx aws.Context, input *ListTabl
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTableColumns operation.
-//    pageNum := 0
-//    err := client.ListTableColumnsPages(params,
-//        func(page *honeycode.ListTableColumnsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTableColumns operation.
+//	pageNum := 0
+//	err := client.ListTableColumnsPages(params,
+//	    func(page *honeycode.ListTableColumnsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Honeycode) ListTableColumnsPages(input *ListTableColumnsInput, fn func(*ListTableColumnsOutput, bool) bool) error {
 	return c.ListTableColumnsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -939,14 +945,13 @@ const opListTableRows = "ListTableRows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTableRowsRequest method.
+//	req, resp := client.ListTableRowsRequest(params)
 //
-//    // Example sending a request using the ListTableRowsRequest method.
-//    req, resp := client.ListTableRowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/ListTableRows
 func (c *Honeycode) ListTableRowsRequest(input *ListTableRowsInput) (req *request.Request, output *ListTableRowsOutput) {
@@ -984,30 +989,31 @@ func (c *Honeycode) ListTableRowsRequest(input *ListTableRowsInput) (req *reques
 // API operation ListTableRows for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - RequestTimeoutException
+//     The request timed out.
+//
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/ListTableRows
 func (c *Honeycode) ListTableRows(input *ListTableRowsInput) (*ListTableRowsOutput, error) {
@@ -1039,15 +1045,14 @@ func (c *Honeycode) ListTableRowsWithContext(ctx aws.Context, input *ListTableRo
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTableRows operation.
-//    pageNum := 0
-//    err := client.ListTableRowsPages(params,
-//        func(page *honeycode.ListTableRowsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTableRows operation.
+//	pageNum := 0
+//	err := client.ListTableRowsPages(params,
+//	    func(page *honeycode.ListTableRowsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Honeycode) ListTableRowsPages(input *ListTableRowsInput, fn func(*ListTableRowsOutput, bool) bool) error {
 	return c.ListTableRowsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1099,14 +1104,13 @@ const opListTables = "ListTables"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTablesRequest method.
+//	req, resp := client.ListTablesRequest(params)
 //
-//    // Example sending a request using the ListTablesRequest method.
-//    req, resp := client.ListTablesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/ListTables
 func (c *Honeycode) ListTablesRequest(input *ListTablesInput) (req *request.Request, output *ListTablesOutput) {
@@ -1143,30 +1147,31 @@ func (c *Honeycode) ListTablesRequest(input *ListTablesInput) (req *request.Requ
 // API operation ListTables for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - RequestTimeoutException
+//     The request timed out.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/ListTables
 func (c *Honeycode) ListTables(input *ListTablesInput) (*ListTablesOutput, error) {
@@ -1198,15 +1203,14 @@ func (c *Honeycode) ListTablesWithContext(ctx aws.Context, input *ListTablesInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTables operation.
-//    pageNum := 0
-//    err := client.ListTablesPages(params,
-//        func(page *honeycode.ListTablesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTables operation.
+//	pageNum := 0
+//	err := client.ListTablesPages(params,
+//	    func(page *honeycode.ListTablesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Honeycode) ListTablesPages(input *ListTablesInput, fn func(*ListTablesOutput, bool) bool) error {
 	return c.ListTablesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1242,6 +1246,107 @@ func (c *Honeycode) ListTablesPagesWithContext(ctx aws.Context, input *ListTable
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/ListTagsForResource
+func (c *Honeycode) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Honeycode.
+//
+// The ListTagsForResource API allows you to return a resource's tags.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Honeycode's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
+//
+//   - InternalServerException
+//     There were unexpected errors from the server.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
+//
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
+//
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/ListTagsForResource
+func (c *Honeycode) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Honeycode) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opQueryTableRows = "QueryTableRows"
 
 // QueryTableRowsRequest generates a "aws/request.Request" representing the
@@ -1258,14 +1363,13 @@ const opQueryTableRows = "QueryTableRows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the QueryTableRowsRequest method.
+//	req, resp := client.QueryTableRowsRequest(params)
 //
-//    // Example sending a request using the QueryTableRowsRequest method.
-//    req, resp := client.QueryTableRowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/QueryTableRows
 func (c *Honeycode) QueryTableRowsRequest(input *QueryTableRowsInput) (req *request.Request, output *QueryTableRowsOutput) {
@@ -1303,30 +1407,31 @@ func (c *Honeycode) QueryTableRowsRequest(input *QueryTableRowsInput) (req *requ
 // API operation QueryTableRows for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * RequestTimeoutException
-//   The request timed out.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - RequestTimeoutException
+//     The request timed out.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/QueryTableRows
 func (c *Honeycode) QueryTableRows(input *QueryTableRowsInput) (*QueryTableRowsOutput, error) {
@@ -1358,15 +1463,14 @@ func (c *Honeycode) QueryTableRowsWithContext(ctx aws.Context, input *QueryTable
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a QueryTableRows operation.
-//    pageNum := 0
-//    err := client.QueryTableRowsPages(params,
-//        func(page *honeycode.QueryTableRowsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a QueryTableRows operation.
+//	pageNum := 0
+//	err := client.QueryTableRowsPages(params,
+//	    func(page *honeycode.QueryTableRowsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Honeycode) QueryTableRowsPages(input *QueryTableRowsInput, fn func(*QueryTableRowsOutput, bool) bool) error {
 	return c.QueryTableRowsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1418,14 +1522,13 @@ const opStartTableDataImportJob = "StartTableDataImportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartTableDataImportJobRequest method.
+//	req, resp := client.StartTableDataImportJobRequest(params)
 //
-//    // Example sending a request using the StartTableDataImportJobRequest method.
-//    req, resp := client.StartTableDataImportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/StartTableDataImportJob
 func (c *Honeycode) StartTableDataImportJobRequest(input *StartTableDataImportJobInput) (req *request.Request, output *StartTableDataImportJobOutput) {
@@ -1459,27 +1562,34 @@ func (c *Honeycode) StartTableDataImportJobRequest(input *StartTableDataImportJo
 // API operation StartTableDataImportJob for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action. Check that the
-//   workbook is owned by you and your IAM policy allows access to the resource
-//   in the request.
 //
-//   * InternalServerException
-//   There were unexpected errors from the server.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
 //
-//   * ResourceNotFoundException
-//   A Workbook, Table, App, Screen or Screen Automation was not found with the
-//   given ID.
+//   - InternalServerException
+//     There were unexpected errors from the server.
 //
-//   * ServiceUnavailableException
-//   Remote service is unreachable.
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
 //
-//   * ThrottlingException
-//   Tps(transactions per second) rate reached.
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
 //
-//   * ValidationException
-//   Request is invalid. The message in the response contains details on why the
-//   request is invalid.
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+//   - ServiceQuotaExceededException
+//     The request caused service quota to be breached.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/StartTableDataImportJob
 func (c *Honeycode) StartTableDataImportJob(input *StartTableDataImportJobInput) (*StartTableDataImportJobOutput, error) {
@@ -1503,6 +1613,212 @@ func (c *Honeycode) StartTableDataImportJobWithContext(ctx aws.Context, input *S
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/TagResource
+func (c *Honeycode) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Honeycode.
+//
+// The TagResource API allows you to add tags to an ARN-able resource. Resource
+// includes workbook, table, screen and screen-automation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Honeycode's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
+//
+//   - InternalServerException
+//     There were unexpected errors from the server.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
+//
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
+//
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/TagResource
+func (c *Honeycode) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Honeycode) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/UntagResource
+func (c *Honeycode) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Honeycode.
+//
+// The UntagResource API allows you to removes tags from an ARN-able resource.
+// Resource includes workbook, table, screen and screen-automation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Honeycode's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. Check that the
+//     workbook is owned by you and your IAM policy allows access to the resource
+//     in the request.
+//
+//   - InternalServerException
+//     There were unexpected errors from the server.
+//
+//   - RequestTimeoutException
+//     The request timed out.
+//
+//   - ResourceNotFoundException
+//     A Workbook, Table, App, Screen or Screen Automation was not found with the
+//     given ID.
+//
+//   - ServiceUnavailableException
+//     Remote service is unreachable.
+//
+//   - ThrottlingException
+//     Tps(transactions per second) rate reached.
+//
+//   - ValidationException
+//     Request is invalid. The message in the response contains details on why the
+//     request is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/UntagResource
+func (c *Honeycode) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Honeycode) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You do not have sufficient access to perform this action. Check that the
 // workbook is owned by you and your IAM policy allows access to the resource
 // in the request.
@@ -1513,12 +1829,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -1569,12 +1893,20 @@ type AutomationExecutionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutomationExecutionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutomationExecutionException) GoString() string {
 	return s.String()
 }
@@ -1625,12 +1957,20 @@ type AutomationExecutionTimeoutException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutomationExecutionTimeoutException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutomationExecutionTimeoutException) GoString() string {
 	return s.String()
 }
@@ -1714,12 +2054,20 @@ type BatchCreateTableRowsInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchCreateTableRowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchCreateTableRowsInput) GoString() string {
 	return s.String()
 }
@@ -1808,12 +2156,20 @@ type BatchCreateTableRowsOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchCreateTableRowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchCreateTableRowsOutput) GoString() string {
 	return s.String()
 }
@@ -1874,12 +2230,20 @@ type BatchDeleteTableRowsInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDeleteTableRowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDeleteTableRowsInput) GoString() string {
 	return s.String()
 }
@@ -1953,12 +2317,20 @@ type BatchDeleteTableRowsOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDeleteTableRowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDeleteTableRowsOutput) GoString() string {
 	return s.String()
 }
@@ -2016,12 +2388,20 @@ type BatchUpdateTableRowsInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateTableRowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateTableRowsInput) GoString() string {
 	return s.String()
 }
@@ -2106,12 +2486,20 @@ type BatchUpdateTableRowsOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateTableRowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpdateTableRowsOutput) GoString() string {
 	return s.String()
 }
@@ -2171,12 +2559,20 @@ type BatchUpsertTableRowsInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpsertTableRowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpsertTableRowsInput) GoString() string {
 	return s.String()
 }
@@ -2266,12 +2662,20 @@ type BatchUpsertTableRowsOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpsertTableRowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchUpsertTableRowsOutput) GoString() string {
 	return s.String()
 }
@@ -2313,8 +2717,18 @@ type Cell struct {
 	// raw and formatted values.
 	FormattedValue *string `locationName:"formattedValue" type:"string"`
 
+	// A list of formatted values of the cell. This field is only returned when
+	// the cell is ROWSET format (aka multi-select or multi-record picklist). Values
+	// in the list are always represented as strings. The formattedValue field will
+	// be empty if this field is returned.
+	FormattedValues []*string `locationName:"formattedValues" type:"list"`
+
 	// The formula contained in the cell. This field is empty if a cell does not
 	// have a formula.
+	//
+	// Formula is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Cell's
+	// String and GoString methods.
 	Formula *string `locationName:"formula" type:"string" sensitive:"true"`
 
 	// The raw value of the data contained in the cell. The raw value depends on
@@ -2355,6 +2769,20 @@ type Cell struct {
 	// task status might have "Completed" as the formatted value and "row:dfcefaee-5b37-4355-8f28-40c3e4ff5dd4/ca432b2f-b8eb-431d-9fb5-cbe0342f9f03"
 	// as the raw value.
 	//
+	// Cells with format ROWSET (aka multi-select or multi-record picklist) will
+	// by default have the first column of each of the linked rows as the formatted
+	// value in the list, and the rowset id of the linked rows as the raw value.
+	// For example, a cell containing a multi-select picklist to a table that contains
+	// items might have "Item A", "Item B" in the formatted value list and "rows:b742c1f4-6cb0-4650-a845-35eb86fcc2bb/
+	// [fdea123b-8f68-474a-aa8a-5ff87aa333af,6daf41f0-a138-4eee-89da-123086d36ecf]"
+	// as the raw value.
+	//
+	// Cells with format ATTACHMENT will have the name of the attachment as the
+	// formatted value and the attachment id as the raw value. For example, a cell
+	// containing an attachment named "image.jpeg" will have "image.jpeg" as the
+	// formatted value and "attachment:ca432b2f-b8eb-431d-9fb5-cbe0342f9f03" as
+	// the raw value.
+	//
 	// Cells with format AUTO or cells without any format that are auto-detected
 	// as one of the formats above will contain the raw and formatted values as
 	// mentioned above, based on the auto-detected formats. If there is no auto-detected
@@ -2363,12 +2791,20 @@ type Cell struct {
 	RawValue *string `locationName:"rawValue" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Cell) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Cell) GoString() string {
 	return s.String()
 }
@@ -2382,6 +2818,12 @@ func (s *Cell) SetFormat(v string) *Cell {
 // SetFormattedValue sets the FormattedValue field's value.
 func (s *Cell) SetFormattedValue(v string) *Cell {
 	s.FormattedValue = &v
+	return s
+}
+
+// SetFormattedValues sets the FormattedValues field's value.
+func (s *Cell) SetFormattedValues(v []*string) *Cell {
+	s.FormattedValues = v
 	return s
 }
 
@@ -2399,20 +2841,40 @@ func (s *Cell) SetRawValue(v string) *Cell {
 
 // CellInput object contains the data needed to create or update cells in a
 // table.
+//
+// CellInput object has only a facts field or a fact field, but not both. A
+// 400 bad request will be thrown if both fact and facts field are present.
 type CellInput struct {
 	_ struct{} `type:"structure"`
 
 	// Fact represents the data that is entered into a cell. This data can be free
 	// text or a formula. Formulas need to start with the equals (=) sign.
+	//
+	// Fact is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CellInput's
+	// String and GoString methods.
 	Fact *string `locationName:"fact" type:"string" sensitive:"true"`
+
+	// A list representing the values that are entered into a ROWSET cell. Facts
+	// list can have either only values or rowIDs, and rowIDs should from the same
+	// table.
+	Facts []*string `locationName:"facts" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CellInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CellInput) GoString() string {
 	return s.String()
 }
@@ -2420,6 +2882,12 @@ func (s CellInput) GoString() string {
 // SetFact sets the Fact field's value.
 func (s *CellInput) SetFact(v string) *CellInput {
 	s.Fact = &v
+	return s
+}
+
+// SetFacts sets the Facts field's value.
+func (s *CellInput) SetFacts(v []*string) *CellInput {
+	s.Facts = v
 	return s
 }
 
@@ -2434,16 +2902,28 @@ type ColumnMetadata struct {
 
 	// The name of the column.
 	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ColumnMetadata's
+	// String and GoString methods.
+	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnMetadata) GoString() string {
 	return s.String()
 }
@@ -2482,12 +2962,20 @@ type CreateRowData struct {
 	CellsToCreate map[string]*CellInput `locationName:"cellsToCreate" min:"1" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRowData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRowData) GoString() string {
 	return s.String()
 }
@@ -2542,12 +3030,20 @@ type DataItem struct {
 	RawValue *string `locationName:"rawValue" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataItem) GoString() string {
 	return s.String()
 }
@@ -2592,12 +3088,20 @@ type DelimitedTextImportOptions struct {
 	IgnoreEmptyRows *bool `locationName:"ignoreEmptyRows" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DelimitedTextImportOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DelimitedTextImportOptions) GoString() string {
 	return s.String()
 }
@@ -2643,7 +3147,7 @@ func (s *DelimitedTextImportOptions) SetIgnoreEmptyRows(v bool) *DelimitedTextIm
 }
 
 type DescribeTableDataImportJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the job that was returned by the StartTableDataImportJob request.
 	//
@@ -2667,12 +3171,20 @@ type DescribeTableDataImportJobInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableDataImportJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableDataImportJobInput) GoString() string {
 	return s.String()
 }
@@ -2726,6 +3238,9 @@ func (s *DescribeTableDataImportJobInput) SetWorkbookId(v string) *DescribeTable
 type DescribeTableDataImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If job status is failed, error code to understand reason for the failure.
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"ErrorCode"`
+
 	// The metadata about the job that was submitted for import.
 	//
 	// JobMetadata is a required field
@@ -2742,14 +3257,28 @@ type DescribeTableDataImportJobOutput struct {
 	Message *string `locationName:"message" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableDataImportJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableDataImportJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *DescribeTableDataImportJobOutput) SetErrorCode(v string) *DescribeTableDataImportJobOutput {
+	s.ErrorCode = &v
+	return s
 }
 
 // SetJobMetadata sets the JobMetadata field's value.
@@ -2779,12 +3308,20 @@ type DestinationOptions struct {
 	ColumnMap map[string]*SourceDataColumnProperties `locationName:"columnMap" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DestinationOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DestinationOptions) GoString() string {
 	return s.String()
 }
@@ -2833,12 +3370,20 @@ type FailedBatchItem struct {
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedBatchItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedBatchItem) GoString() string {
 	return s.String()
 }
@@ -2872,16 +3417,28 @@ type Filter struct {
 	// zero or more rows is also acceptable. For example, you can use a formula
 	// that points to a cell that contains a filter function.
 	//
+	// Formula is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Filter's
+	// String and GoString methods.
+	//
 	// Formula is a required field
 	Formula *string `locationName:"formula" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -2917,7 +3474,7 @@ func (s *Filter) SetFormula(v string) *Filter {
 type GetScreenDataInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the app that contains the screem.
+	// The ID of the app that contains the screen.
 	//
 	// AppId is a required field
 	AppId *string `locationName:"appId" min:"36" type:"string" required:"true"`
@@ -2946,6 +3503,10 @@ type GetScreenDataInput struct {
 	// of the variable as defined on the screen. The value is an object which currently
 	// has only one property, rawValue, which holds the value of the variable to
 	// be passed to the screen.
+	//
+	// Variables is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetScreenDataInput's
+	// String and GoString methods.
 	Variables map[string]*VariableValue `locationName:"variables" type:"map" sensitive:"true"`
 
 	// The ID of the workbook that contains the screen.
@@ -2954,12 +3515,20 @@ type GetScreenDataInput struct {
 	WorkbookId *string `locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetScreenDataInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetScreenDataInput) GoString() string {
 	return s.String()
 }
@@ -3065,12 +3634,20 @@ type GetScreenDataOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetScreenDataOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetScreenDataOutput) GoString() string {
 	return s.String()
 }
@@ -3104,12 +3681,20 @@ type ImportDataSource struct {
 	DataSourceConfig *ImportDataSourceConfig `locationName:"dataSourceConfig" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportDataSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportDataSource) GoString() string {
 	return s.String()
 }
@@ -3144,15 +3729,27 @@ type ImportDataSourceConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The URL from which source data will be downloaded for the import request.
-	DataSourceUrl *string `locationName:"dataSourceUrl" min:"1" type:"string"`
+	//
+	// DataSourceUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImportDataSourceConfig's
+	// String and GoString methods.
+	DataSourceUrl *string `locationName:"dataSourceUrl" min:"1" type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportDataSourceConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportDataSourceConfig) GoString() string {
 	return s.String()
 }
@@ -3181,18 +3778,30 @@ type ImportJobSubmitter struct {
 	_ struct{} `type:"structure"`
 
 	// The email id of the submitter of the import job, if available.
+	//
+	// Email is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImportJobSubmitter's
+	// String and GoString methods.
 	Email *string `locationName:"email" min:"3" type:"string" sensitive:"true"`
 
 	// The AWS user ARN of the submitter of the import job, if available.
 	UserArn *string `locationName:"userArn" min:"20" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportJobSubmitter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportJobSubmitter) GoString() string {
 	return s.String()
 }
@@ -3221,12 +3830,20 @@ type ImportOptions struct {
 	DestinationOptions *DestinationOptions `locationName:"destinationOptions" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportOptions) GoString() string {
 	return s.String()
 }
@@ -3271,12 +3888,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -3357,6 +3982,10 @@ type InvokeScreenAutomationInput struct {
 	// one property, rawValue, which holds the value of the variable to be passed
 	// to the screen. Any variables defined in a screen are required to be passed
 	// in the call.
+	//
+	// Variables is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InvokeScreenAutomationInput's
+	// String and GoString methods.
 	Variables map[string]*VariableValue `locationName:"variables" type:"map" sensitive:"true"`
 
 	// The ID of the workbook that contains the screen automation.
@@ -3365,12 +3994,20 @@ type InvokeScreenAutomationInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeScreenAutomationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeScreenAutomationInput) GoString() string {
 	return s.String()
 }
@@ -3476,12 +4113,20 @@ type InvokeScreenAutomationOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeScreenAutomationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeScreenAutomationOutput) GoString() string {
 	return s.String()
 }
@@ -3493,7 +4138,7 @@ func (s *InvokeScreenAutomationOutput) SetWorkbookCursor(v int64) *InvokeScreenA
 }
 
 type ListTableColumnsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// This parameter is optional. If a nextToken is not specified, the API returns
 	// the first page of data.
@@ -3517,12 +4162,20 @@ type ListTableColumnsInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTableColumnsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTableColumnsInput) GoString() string {
 	return s.String()
 }
@@ -3589,12 +4242,20 @@ type ListTableColumnsOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTableColumnsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTableColumnsOutput) GoString() string {
 	return s.String()
 }
@@ -3650,12 +4311,20 @@ type ListTableRowsInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTableRowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTableRowsInput) GoString() string {
 	return s.String()
 }
@@ -3751,12 +4420,20 @@ type ListTableRowsOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTableRowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTableRowsOutput) GoString() string {
 	return s.String()
 }
@@ -3792,7 +4469,7 @@ func (s *ListTableRowsOutput) SetWorkbookCursor(v int64) *ListTableRowsOutput {
 }
 
 type ListTablesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of tables to return in each page of the results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -3812,12 +4489,20 @@ type ListTablesInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesInput) GoString() string {
 	return s.String()
 }
@@ -3881,12 +4566,20 @@ type ListTablesOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTablesOutput) GoString() string {
 	return s.String()
 }
@@ -3906,6 +4599,86 @@ func (s *ListTablesOutput) SetTables(v []*Table) *ListTablesOutput {
 // SetWorkbookCursor sets the WorkbookCursor field's value.
 func (s *ListTablesOutput) SetWorkbookCursor(v int64) *ListTablesOutput {
 	s.WorkbookCursor = &v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The resource's Amazon Resource Name (ARN).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's tags.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -3943,12 +4716,20 @@ type QueryTableRowsInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryTableRowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryTableRowsInput) GoString() string {
 	return s.String()
 }
@@ -4045,12 +4826,20 @@ type QueryTableRowsOutput struct {
 	WorkbookCursor *int64 `locationName:"workbookCursor" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryTableRowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryTableRowsOutput) GoString() string {
 	return s.String()
 }
@@ -4087,12 +4876,20 @@ type RequestTimeoutException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestTimeoutException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestTimeoutException) GoString() string {
 	return s.String()
 }
@@ -4144,12 +4941,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -4205,12 +5010,20 @@ type ResultRow struct {
 	RowId *string `locationName:"rowId" min:"77" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResultRow) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResultRow) GoString() string {
 	return s.String()
 }
@@ -4257,12 +5070,20 @@ type ResultSet struct {
 	Rows []*ResultRow `locationName:"rows" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResultSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResultSet) GoString() string {
 	return s.String()
 }
@@ -4287,12 +5108,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -4343,12 +5172,20 @@ type ServiceUnavailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -4400,12 +5237,20 @@ type SourceDataColumnProperties struct {
 	ColumnIndex *int64 `locationName:"columnIndex" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceDataColumnProperties) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceDataColumnProperties) GoString() string {
 	return s.String()
 }
@@ -4478,12 +5323,20 @@ type StartTableDataImportJobInput struct {
 	WorkbookId *string `location:"uri" locationName:"workbookId" min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTableDataImportJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTableDataImportJobInput) GoString() string {
 	return s.String()
 }
@@ -4587,12 +5440,20 @@ type StartTableDataImportJobOutput struct {
 	JobStatus *string `locationName:"jobStatus" type:"string" required:"true" enum:"TableDataImportJobStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTableDataImportJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTableDataImportJobOutput) GoString() string {
 	return s.String()
 }
@@ -4620,12 +5481,20 @@ type Table struct {
 	TableName *string `locationName:"tableName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Table) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Table) GoString() string {
 	return s.String()
 }
@@ -4657,12 +5526,20 @@ type TableColumn struct {
 	TableColumnName *string `locationName:"tableColumnName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableColumn) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableColumn) GoString() string {
 	return s.String()
 }
@@ -4710,12 +5587,20 @@ type TableDataImportJobMetadata struct {
 	Submitter *ImportJobSubmitter `locationName:"submitter" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableDataImportJobMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableDataImportJobMetadata) GoString() string {
 	return s.String()
 }
@@ -4760,12 +5645,20 @@ type TableRow struct {
 	RowId *string `locationName:"rowId" min:"77" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableRow) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableRow) GoString() string {
 	return s.String()
 }
@@ -4782,6 +5675,91 @@ func (s *TableRow) SetRowId(v string) *TableRow {
 	return s
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's Amazon Resource Name (ARN).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// A list of tags to apply to the resource.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Tps(transactions per second) rate reached.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -4790,12 +5768,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -4838,6 +5824,91 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type UntagResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The resource's Amazon Resource Name (ARN).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// A list of tag keys to remove from the resource.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Data needed to create a single row in a table as part of the BatchCreateTableRows
 // request.
 type UpdateRowData struct {
@@ -4856,12 +5927,20 @@ type UpdateRowData struct {
 	RowId *string `locationName:"rowId" min:"77" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRowData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRowData) GoString() string {
 	return s.String()
 }
@@ -4936,12 +6015,20 @@ type UpsertRowData struct {
 	Filter *Filter `locationName:"filter" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpsertRowData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpsertRowData) GoString() string {
 	return s.String()
 }
@@ -5013,12 +6100,20 @@ type UpsertRowsResult struct {
 	UpsertAction *string `locationName:"upsertAction" type:"string" required:"true" enum:"UpsertAction"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpsertRowsResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpsertRowsResult) GoString() string {
 	return s.String()
 }
@@ -5044,12 +6139,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -5103,12 +6206,20 @@ type VariableValue struct {
 	RawValue *string `locationName:"rawValue" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VariableValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VariableValue) GoString() string {
 	return s.String()
 }
@@ -5130,6 +6241,70 @@ func (s *VariableValue) Validate() error {
 func (s *VariableValue) SetRawValue(v string) *VariableValue {
 	s.RawValue = &v
 	return s
+}
+
+const (
+	// ErrorCodeAccessDenied is a ErrorCode enum value
+	ErrorCodeAccessDenied = "ACCESS_DENIED"
+
+	// ErrorCodeInvalidUrlError is a ErrorCode enum value
+	ErrorCodeInvalidUrlError = "INVALID_URL_ERROR"
+
+	// ErrorCodeInvalidImportOptionsError is a ErrorCode enum value
+	ErrorCodeInvalidImportOptionsError = "INVALID_IMPORT_OPTIONS_ERROR"
+
+	// ErrorCodeInvalidTableIdError is a ErrorCode enum value
+	ErrorCodeInvalidTableIdError = "INVALID_TABLE_ID_ERROR"
+
+	// ErrorCodeInvalidTableColumnIdError is a ErrorCode enum value
+	ErrorCodeInvalidTableColumnIdError = "INVALID_TABLE_COLUMN_ID_ERROR"
+
+	// ErrorCodeTableNotFoundError is a ErrorCode enum value
+	ErrorCodeTableNotFoundError = "TABLE_NOT_FOUND_ERROR"
+
+	// ErrorCodeFileEmptyError is a ErrorCode enum value
+	ErrorCodeFileEmptyError = "FILE_EMPTY_ERROR"
+
+	// ErrorCodeInvalidFileTypeError is a ErrorCode enum value
+	ErrorCodeInvalidFileTypeError = "INVALID_FILE_TYPE_ERROR"
+
+	// ErrorCodeFileParsingError is a ErrorCode enum value
+	ErrorCodeFileParsingError = "FILE_PARSING_ERROR"
+
+	// ErrorCodeFileSizeLimitError is a ErrorCode enum value
+	ErrorCodeFileSizeLimitError = "FILE_SIZE_LIMIT_ERROR"
+
+	// ErrorCodeFileNotFoundError is a ErrorCode enum value
+	ErrorCodeFileNotFoundError = "FILE_NOT_FOUND_ERROR"
+
+	// ErrorCodeUnknownError is a ErrorCode enum value
+	ErrorCodeUnknownError = "UNKNOWN_ERROR"
+
+	// ErrorCodeResourceNotFoundError is a ErrorCode enum value
+	ErrorCodeResourceNotFoundError = "RESOURCE_NOT_FOUND_ERROR"
+
+	// ErrorCodeSystemLimitError is a ErrorCode enum value
+	ErrorCodeSystemLimitError = "SYSTEM_LIMIT_ERROR"
+)
+
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeAccessDenied,
+		ErrorCodeInvalidUrlError,
+		ErrorCodeInvalidImportOptionsError,
+		ErrorCodeInvalidTableIdError,
+		ErrorCodeInvalidTableColumnIdError,
+		ErrorCodeTableNotFoundError,
+		ErrorCodeFileEmptyError,
+		ErrorCodeInvalidFileTypeError,
+		ErrorCodeFileParsingError,
+		ErrorCodeFileSizeLimitError,
+		ErrorCodeFileNotFoundError,
+		ErrorCodeUnknownError,
+		ErrorCodeResourceNotFoundError,
+		ErrorCodeSystemLimitError,
+	}
 }
 
 const (
@@ -5165,6 +6340,9 @@ const (
 
 	// FormatRowlink is a Format enum value
 	FormatRowlink = "ROWLINK"
+
+	// FormatRowset is a Format enum value
+	FormatRowset = "ROWSET"
 )
 
 // Format_Values returns all elements of the Format enum
@@ -5181,6 +6359,7 @@ func Format_Values() []string {
 		FormatAccounting,
 		FormatContact,
 		FormatRowlink,
+		FormatRowset,
 	}
 }
 

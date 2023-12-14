@@ -542,6 +542,19 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateProjectVisibility":{
+      "name":"UpdateProjectVisibility",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateProjectVisibilityInput"},
+      "output":{"shape":"UpdateProjectVisibilityOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateReportGroup":{
       "name":"UpdateReportGroup",
       "http":{
@@ -691,6 +704,13 @@
         "reportsNotFound":{"shape":"ReportArns"}
       }
     },
+    "BatchReportModeType":{
+      "type":"string",
+      "enum":[
+        "REPORT_INDIVIDUAL_BUILDS",
+        "REPORT_AGGREGATED_BATCH"
+      ]
+    },
     "BatchRestrictions":{
       "type":"structure",
       "members":{
@@ -699,6 +719,14 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BucketOwnerAccess":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "READ_ONLY",
+        "FULL"
+      ]
+    },
     "Build":{
       "type":"structure",
       "members":{
@@ -744,7 +772,8 @@
         "md5sum":{"shape":"String"},
         "overrideArtifactName":{"shape":"WrapperBoolean"},
         "encryptionDisabled":{"shape":"WrapperBoolean"},
-        "artifactIdentifier":{"shape":"String"}
+        "artifactIdentifier":{"shape":"String"},
+        "bucketOwnerAccess":{"shape":"BucketOwnerAccess"}
       }
     },
     "BuildArtifactsList":{
@@ -985,7 +1014,12 @@
         "BUILD_GENERAL1_SMALL",
         "BUILD_GENERAL1_MEDIUM",
         "BUILD_GENERAL1_LARGE",
-        "BUILD_GENERAL1_2XLARGE"
+        "BUILD_GENERAL1_2XLARGE",
+        "BUILD_LAMBDA_1GB",
+        "BUILD_LAMBDA_2GB",
+        "BUILD_LAMBDA_4GB",
+        "BUILD_LAMBDA_8GB",
+        "BUILD_LAMBDA_10GB"
       ]
     },
     "ComputeTypesAllowed":{
@@ -1245,7 +1279,9 @@
         "LINUX_CONTAINER",
         "LINUX_GPU_CONTAINER",
         "ARM_CONTAINER",
-        "WINDOWS_SERVER_2019_CONTAINER"
+        "WINDOWS_SERVER_2019_CONTAINER",
+        "LINUX_LAMBDA_CONTAINER",
+        "ARM_LAMBDA_CONTAINER"
       ]
     },
     "EnvironmentVariable":{
@@ -1700,7 +1736,10 @@
         "logsConfig":{"shape":"LogsConfig"},
         "fileSystemLocations":{"shape":"ProjectFileSystemLocations"},
         "buildBatchConfig":{"shape":"ProjectBuildBatchConfig"},
-        "concurrentBuildLimit":{"shape":"WrapperInt"}
+        "concurrentBuildLimit":{"shape":"WrapperInt"},
+        "projectVisibility":{"shape":"ProjectVisibilityType"},
+        "publicProjectAlias":{"shape":"NonEmptyString"},
+        "resourceAccessRole":{"shape":"NonEmptyString"}
       }
     },
     "ProjectArns":{
@@ -1721,7 +1760,8 @@
         "packaging":{"shape":"ArtifactPackaging"},
         "overrideArtifactName":{"shape":"WrapperBoolean"},
         "encryptionDisabled":{"shape":"WrapperBoolean"},
-        "artifactIdentifier":{"shape":"String"}
+        "artifactIdentifier":{"shape":"String"},
+        "bucketOwnerAccess":{"shape":"BucketOwnerAccess"}
       }
     },
     "ProjectArtifactsList":{
@@ -1743,7 +1783,8 @@
         "serviceRole":{"shape":"NonEmptyString"},
         "combineArtifacts":{"shape":"WrapperBoolean"},
         "restrictions":{"shape":"BatchRestrictions"},
-        "timeoutInMins":{"shape":"WrapperInt"}
+        "timeoutInMins":{"shape":"WrapperInt"},
+        "batchReportMode":{"shape":"BatchReportModeType"}
       }
     },
     "ProjectCache":{
@@ -1854,6 +1895,13 @@
       "member":{"shape":"ProjectSource"},
       "max":12,
       "min":0
+    },
+    "ProjectVisibilityType":{
+      "type":"string",
+      "enum":[
+        "PUBLIC_READ",
+        "PRIVATE"
+      ]
     },
     "Projects":{
       "type":"list",
@@ -2114,7 +2162,8 @@
       "members":{
         "status":{"shape":"LogsConfigStatusType"},
         "location":{"shape":"String"},
-        "encryptionDisabled":{"shape":"WrapperBoolean"}
+        "encryptionDisabled":{"shape":"WrapperBoolean"},
+        "bucketOwnerAccess":{"shape":"BucketOwnerAccess"}
       }
     },
     "S3ReportExportConfig":{
@@ -2412,6 +2461,26 @@
       "type":"structure",
       "members":{
         "project":{"shape":"Project"}
+      }
+    },
+    "UpdateProjectVisibilityInput":{
+      "type":"structure",
+      "required":[
+        "projectArn",
+        "projectVisibility"
+      ],
+      "members":{
+        "projectArn":{"shape":"NonEmptyString"},
+        "projectVisibility":{"shape":"ProjectVisibilityType"},
+        "resourceAccessRole":{"shape":"NonEmptyString"}
+      }
+    },
+    "UpdateProjectVisibilityOutput":{
+      "type":"structure",
+      "members":{
+        "projectArn":{"shape":"NonEmptyString"},
+        "publicProjectAlias":{"shape":"NonEmptyString"},
+        "projectVisibility":{"shape":"ProjectVisibilityType"}
       }
     },
     "UpdateReportGroupInput":{

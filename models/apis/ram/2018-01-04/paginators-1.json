@@ -25,12 +25,27 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListPermissionAssociations": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListPermissionVersions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListPermissions": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
     "ListPrincipals": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListReplacePermissionAssociationsWork": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"

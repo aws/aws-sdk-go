@@ -13,6 +13,101 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCancelJob = "CancelJob"
+
+// CancelJobRequest generates a "aws/request.Request" representing the
+// client's request for the CancelJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelJob for more information on using the CancelJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelJobRequest method.
+//	req, resp := client.CancelJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/CancelJob
+func (c *Braket) CancelJobRequest(input *CancelJobInput) (req *request.Request, output *CancelJobOutput) {
+	op := &request.Operation{
+		Name:       opCancelJob,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/job/{jobArn}/cancel",
+	}
+
+	if input == nil {
+		input = &CancelJobInput{}
+	}
+
+	output = &CancelJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CancelJob API operation for Braket.
+//
+// Cancels an Amazon Braket job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Braket's
+// API operation CancelJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ConflictException
+//     An error occurred due to a conflict.
+//
+//   - ThrottlingException
+//     The throttling rate limit is met.
+//
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/CancelJob
+func (c *Braket) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
+	req, out := c.CancelJobRequest(input)
+	return out, req.Send()
+}
+
+// CancelJobWithContext is the same as CancelJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Braket) CancelJobWithContext(ctx aws.Context, input *CancelJobInput, opts ...request.Option) (*CancelJobOutput, error) {
+	req, out := c.CancelJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelQuantumTask = "CancelQuantumTask"
 
 // CancelQuantumTaskRequest generates a "aws/request.Request" representing the
@@ -29,14 +124,13 @@ const opCancelQuantumTask = "CancelQuantumTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelQuantumTaskRequest method.
+//	req, resp := client.CancelQuantumTaskRequest(params)
 //
-//    // Example sending a request using the CancelQuantumTaskRequest method.
-//    req, resp := client.CancelQuantumTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/CancelQuantumTask
 func (c *Braket) CancelQuantumTaskRequest(input *CancelQuantumTaskInput) (req *request.Request, output *CancelQuantumTaskOutput) {
@@ -67,24 +161,25 @@ func (c *Braket) CancelQuantumTaskRequest(input *CancelQuantumTaskInput) (req *r
 // API operation CancelQuantumTask for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   An error occurred due to a conflict.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The throttling rate limit is met.
+//   - ConflictException
+//     An error occurred due to a conflict.
 //
-//   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ThrottlingException
+//     The throttling rate limit is met.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/CancelQuantumTask
 func (c *Braket) CancelQuantumTask(input *CancelQuantumTaskInput) (*CancelQuantumTaskOutput, error) {
@@ -108,6 +203,104 @@ func (c *Braket) CancelQuantumTaskWithContext(ctx aws.Context, input *CancelQuan
 	return out, req.Send()
 }
 
+const opCreateJob = "CreateJob"
+
+// CreateJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateJob for more information on using the CreateJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateJobRequest method.
+//	req, resp := client.CreateJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/CreateJob
+func (c *Braket) CreateJobRequest(input *CreateJobInput) (req *request.Request, output *CreateJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/job",
+	}
+
+	if input == nil {
+		input = &CreateJobInput{}
+	}
+
+	output = &CreateJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateJob API operation for Braket.
+//
+// Creates an Amazon Braket job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Braket's
+// API operation CreateJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     An error occurred due to a conflict.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The throttling rate limit is met.
+//
+//   - DeviceRetiredException
+//     The specified device has been retired.
+//
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/CreateJob
+func (c *Braket) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
+	req, out := c.CreateJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateJobWithContext is the same as CreateJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Braket) CreateJobWithContext(ctx aws.Context, input *CreateJobInput, opts ...request.Option) (*CreateJobOutput, error) {
+	req, out := c.CreateJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateQuantumTask = "CreateQuantumTask"
 
 // CreateQuantumTaskRequest generates a "aws/request.Request" representing the
@@ -124,14 +317,13 @@ const opCreateQuantumTask = "CreateQuantumTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateQuantumTaskRequest method.
+//	req, resp := client.CreateQuantumTaskRequest(params)
 //
-//    // Example sending a request using the CreateQuantumTaskRequest method.
-//    req, resp := client.CreateQuantumTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/CreateQuantumTask
 func (c *Braket) CreateQuantumTaskRequest(input *CreateQuantumTaskInput) (req *request.Request, output *CreateQuantumTaskOutput) {
@@ -162,24 +354,28 @@ func (c *Braket) CreateQuantumTaskRequest(input *CreateQuantumTaskInput) (req *r
 // API operation CreateQuantumTask for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The throttling rate limit is met.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * DeviceOfflineException
-//   The specified device is currently offline.
+//   - ThrottlingException
+//     The throttling rate limit is met.
 //
-//   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - DeviceOfflineException
+//     The specified device is currently offline.
 //
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
+//   - DeviceRetiredException
+//     The specified device has been retired.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/CreateQuantumTask
 func (c *Braket) CreateQuantumTask(input *CreateQuantumTaskInput) (*CreateQuantumTaskOutput, error) {
@@ -219,14 +415,13 @@ const opGetDevice = "GetDevice"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeviceRequest method.
+//	req, resp := client.GetDeviceRequest(params)
 //
-//    // Example sending a request using the GetDeviceRequest method.
-//    req, resp := client.GetDeviceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/GetDevice
 func (c *Braket) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, output *GetDeviceOutput) {
@@ -249,6 +444,15 @@ func (c *Braket) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, 
 //
 // Retrieves the devices available in Amazon Braket.
 //
+// For backwards compatibility with older versions of BraketSchemas, OpenQASM
+// information is omitted from GetDevice API calls. To get this information
+// the user-agent needs to present a recent version of the BraketSchemas (1.8.0
+// or later). The Braket SDK automatically reports this for you. If you do not
+// see OpenQASM results in the GetDevice response when using a Braket SDK, you
+// may need to set AWS_EXECUTION_ENV environment variable to configure user-agent.
+// See the code examples provided below for how to do this for the AWS CLI,
+// Boto3, and the Go, Java, and JavaScript/TypeScript SDKs.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -257,27 +461,22 @@ func (c *Braket) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, 
 // API operation GetDevice for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling rate limit is met.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * DeviceOfflineException
-//   The specified device is currently offline.
+//   - ThrottlingException
+//     The throttling rate limit is met.
 //
-//   * DeviceRetiredException
-//   The specified device has been retired.
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
-//   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
-//
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/GetDevice
 func (c *Braket) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) {
@@ -301,6 +500,98 @@ func (c *Braket) GetDeviceWithContext(ctx aws.Context, input *GetDeviceInput, op
 	return out, req.Send()
 }
 
+const opGetJob = "GetJob"
+
+// GetJobRequest generates a "aws/request.Request" representing the
+// client's request for the GetJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetJob for more information on using the GetJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetJobRequest method.
+//	req, resp := client.GetJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/GetJob
+func (c *Braket) GetJobRequest(input *GetJobInput) (req *request.Request, output *GetJobOutput) {
+	op := &request.Operation{
+		Name:       opGetJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/job/{jobArn}",
+	}
+
+	if input == nil {
+		input = &GetJobInput{}
+	}
+
+	output = &GetJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetJob API operation for Braket.
+//
+// Retrieves the specified Amazon Braket job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Braket's
+// API operation GetJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The throttling rate limit is met.
+//
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/GetJob
+func (c *Braket) GetJob(input *GetJobInput) (*GetJobOutput, error) {
+	req, out := c.GetJobRequest(input)
+	return out, req.Send()
+}
+
+// GetJobWithContext is the same as GetJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Braket) GetJobWithContext(ctx aws.Context, input *GetJobInput, opts ...request.Option) (*GetJobOutput, error) {
+	req, out := c.GetJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetQuantumTask = "GetQuantumTask"
 
 // GetQuantumTaskRequest generates a "aws/request.Request" representing the
@@ -317,14 +608,13 @@ const opGetQuantumTask = "GetQuantumTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetQuantumTaskRequest method.
+//	req, resp := client.GetQuantumTaskRequest(params)
 //
-//    // Example sending a request using the GetQuantumTaskRequest method.
-//    req, resp := client.GetQuantumTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/GetQuantumTask
 func (c *Braket) GetQuantumTaskRequest(input *GetQuantumTaskInput) (req *request.Request, output *GetQuantumTaskOutput) {
@@ -355,21 +645,22 @@ func (c *Braket) GetQuantumTaskRequest(input *GetQuantumTaskInput) (req *request
 // API operation GetQuantumTask for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling rate limit is met.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ThrottlingException
+//     The throttling rate limit is met.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/GetQuantumTask
 func (c *Braket) GetQuantumTask(input *GetQuantumTaskInput) (*GetQuantumTaskOutput, error) {
@@ -409,14 +700,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/ListTagsForResource
 func (c *Braket) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -447,15 +737,16 @@ func (c *Braket) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/ListTagsForResource
 func (c *Braket) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -495,14 +786,13 @@ const opSearchDevices = "SearchDevices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchDevicesRequest method.
+//	req, resp := client.SearchDevicesRequest(params)
 //
-//    // Example sending a request using the SearchDevicesRequest method.
-//    req, resp := client.SearchDevicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/SearchDevices
 func (c *Braket) SearchDevicesRequest(input *SearchDevicesInput) (req *request.Request, output *SearchDevicesOutput) {
@@ -539,18 +829,19 @@ func (c *Braket) SearchDevicesRequest(input *SearchDevicesInput) (req *request.R
 // API operation SearchDevices for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The throttling rate limit is met.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ThrottlingException
+//     The throttling rate limit is met.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/SearchDevices
 func (c *Braket) SearchDevices(input *SearchDevicesInput) (*SearchDevicesOutput, error) {
@@ -582,15 +873,14 @@ func (c *Braket) SearchDevicesWithContext(ctx aws.Context, input *SearchDevicesI
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchDevices operation.
-//    pageNum := 0
-//    err := client.SearchDevicesPages(params,
-//        func(page *braket.SearchDevicesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchDevices operation.
+//	pageNum := 0
+//	err := client.SearchDevicesPages(params,
+//	    func(page *braket.SearchDevicesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Braket) SearchDevicesPages(input *SearchDevicesInput, fn func(*SearchDevicesOutput, bool) bool) error {
 	return c.SearchDevicesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -626,6 +916,152 @@ func (c *Braket) SearchDevicesPagesWithContext(ctx aws.Context, input *SearchDev
 	return p.Err()
 }
 
+const opSearchJobs = "SearchJobs"
+
+// SearchJobsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchJobs for more information on using the SearchJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchJobsRequest method.
+//	req, resp := client.SearchJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/SearchJobs
+func (c *Braket) SearchJobsRequest(input *SearchJobsInput) (req *request.Request, output *SearchJobsOutput) {
+	op := &request.Operation{
+		Name:       opSearchJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchJobsInput{}
+	}
+
+	output = &SearchJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchJobs API operation for Braket.
+//
+// Searches for Amazon Braket jobs that match the specified filter values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Braket's
+// API operation SearchJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The throttling rate limit is met.
+//
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/SearchJobs
+func (c *Braket) SearchJobs(input *SearchJobsInput) (*SearchJobsOutput, error) {
+	req, out := c.SearchJobsRequest(input)
+	return out, req.Send()
+}
+
+// SearchJobsWithContext is the same as SearchJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Braket) SearchJobsWithContext(ctx aws.Context, input *SearchJobsInput, opts ...request.Option) (*SearchJobsOutput, error) {
+	req, out := c.SearchJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchJobsPages iterates over the pages of a SearchJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchJobs operation.
+//	pageNum := 0
+//	err := client.SearchJobsPages(params,
+//	    func(page *braket.SearchJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Braket) SearchJobsPages(input *SearchJobsInput, fn func(*SearchJobsOutput, bool) bool) error {
+	return c.SearchJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchJobsPagesWithContext same as SearchJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Braket) SearchJobsPagesWithContext(ctx aws.Context, input *SearchJobsInput, fn func(*SearchJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchQuantumTasks = "SearchQuantumTasks"
 
 // SearchQuantumTasksRequest generates a "aws/request.Request" representing the
@@ -642,14 +1078,13 @@ const opSearchQuantumTasks = "SearchQuantumTasks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchQuantumTasksRequest method.
+//	req, resp := client.SearchQuantumTasksRequest(params)
 //
-//    // Example sending a request using the SearchQuantumTasksRequest method.
-//    req, resp := client.SearchQuantumTasksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/SearchQuantumTasks
 func (c *Braket) SearchQuantumTasksRequest(input *SearchQuantumTasksInput) (req *request.Request, output *SearchQuantumTasksOutput) {
@@ -686,18 +1121,19 @@ func (c *Braket) SearchQuantumTasksRequest(input *SearchQuantumTasksInput) (req 
 // API operation SearchQuantumTasks for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The throttling rate limit is met.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ThrottlingException
+//     The throttling rate limit is met.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/SearchQuantumTasks
 func (c *Braket) SearchQuantumTasks(input *SearchQuantumTasksInput) (*SearchQuantumTasksOutput, error) {
@@ -729,15 +1165,14 @@ func (c *Braket) SearchQuantumTasksWithContext(ctx aws.Context, input *SearchQua
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchQuantumTasks operation.
-//    pageNum := 0
-//    err := client.SearchQuantumTasksPages(params,
-//        func(page *braket.SearchQuantumTasksOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchQuantumTasks operation.
+//	pageNum := 0
+//	err := client.SearchQuantumTasksPages(params,
+//	    func(page *braket.SearchQuantumTasksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Braket) SearchQuantumTasksPages(input *SearchQuantumTasksInput, fn func(*SearchQuantumTasksOutput, bool) bool) error {
 	return c.SearchQuantumTasksPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -789,14 +1224,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/TagResource
 func (c *Braket) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -828,15 +1262,16 @@ func (c *Braket) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/TagResource
 func (c *Braket) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -876,14 +1311,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/UntagResource
 func (c *Braket) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -915,15 +1349,16 @@ func (c *Braket) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServiceException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/UntagResource
 func (c *Braket) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -955,12 +1390,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -1003,6 +1446,222 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Defines the Amazon Braket job to be created. Specifies the container image
+// the job uses and the paths to the Python scripts used for entry and training.
+type AlgorithmSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The container image used to create an Amazon Braket job.
+	ContainerImage *ContainerImage `locationName:"containerImage" type:"structure"`
+
+	// Configures the paths to the Python scripts used for entry and training.
+	ScriptModeConfig *ScriptModeConfig `locationName:"scriptModeConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlgorithmSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlgorithmSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AlgorithmSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AlgorithmSpecification"}
+	if s.ContainerImage != nil {
+		if err := s.ContainerImage.Validate(); err != nil {
+			invalidParams.AddNested("ContainerImage", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ScriptModeConfig != nil {
+		if err := s.ScriptModeConfig.Validate(); err != nil {
+			invalidParams.AddNested("ScriptModeConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerImage sets the ContainerImage field's value.
+func (s *AlgorithmSpecification) SetContainerImage(v *ContainerImage) *AlgorithmSpecification {
+	s.ContainerImage = v
+	return s
+}
+
+// SetScriptModeConfig sets the ScriptModeConfig field's value.
+func (s *AlgorithmSpecification) SetScriptModeConfig(v *ScriptModeConfig) *AlgorithmSpecification {
+	s.ScriptModeConfig = v
+	return s
+}
+
+// The Amazon Braket resource and the association type.
+type Association struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Braket resource arn.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The association type for the specified Amazon Braket resource arn.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"AssociationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Association) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Association) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Association) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Association"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *Association) SetArn(v string) *Association {
+	s.Arn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Association) SetType(v string) *Association {
+	s.Type = &v
+	return s
+}
+
+type CancelJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the Amazon Braket job to cancel.
+	//
+	// JobArn is a required field
+	JobArn *string `location:"uri" locationName:"jobArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelJobInput"}
+	if s.JobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobArn"))
+	}
+	if s.JobArn != nil && len(*s.JobArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *CancelJobInput) SetJobArn(v string) *CancelJobInput {
+	s.JobArn = &v
+	return s
+}
+
+type CancelJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the job cancellation request.
+	//
+	// CancellationStatus is a required field
+	CancellationStatus *string `locationName:"cancellationStatus" type:"string" required:"true" enum:"CancellationStatus"`
+
+	// The ARN of the Amazon Braket job.
+	//
+	// JobArn is a required field
+	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCancellationStatus sets the CancellationStatus field's value.
+func (s *CancelJobOutput) SetCancellationStatus(v string) *CancelJobOutput {
+	s.CancellationStatus = &v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *CancelJobOutput) SetJobArn(v string) *CancelJobOutput {
+	s.JobArn = &v
+	return s
+}
+
 type CancelQuantumTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1012,15 +1671,23 @@ type CancelQuantumTaskInput struct {
 	// The ARN of the task to cancel.
 	//
 	// QuantumTaskArn is a required field
-	QuantumTaskArn *string `location:"uri" locationName:"quantumTaskArn" min:"1" type:"string" required:"true"`
+	QuantumTaskArn *string `location:"uri" locationName:"quantumTaskArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelQuantumTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelQuantumTaskInput) GoString() string {
 	return s.String()
 }
@@ -1067,15 +1734,23 @@ type CancelQuantumTaskOutput struct {
 	// The ARN of the task.
 	//
 	// QuantumTaskArn is a required field
-	QuantumTaskArn *string `locationName:"quantumTaskArn" min:"1" type:"string" required:"true"`
+	QuantumTaskArn *string `locationName:"quantumTaskArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelQuantumTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelQuantumTaskOutput) GoString() string {
 	return s.String()
 }
@@ -1100,12 +1775,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -1148,6 +1831,337 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The container image used to create an Amazon Braket job.
+type ContainerImage struct {
+	_ struct{} `type:"structure"`
+
+	// The URI locating the container image.
+	//
+	// Uri is a required field
+	Uri *string `locationName:"uri" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerImage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerImage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerImage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerImage"}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUri sets the Uri field's value.
+func (s *ContainerImage) SetUri(v string) *ContainerImage {
+	s.Uri = &v
+	return s
+}
+
+type CreateJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Definition of the Amazon Braket job to be created. Specifies the container
+	// image the job uses and information about the Python scripts used for entry
+	// and training.
+	//
+	// AlgorithmSpecification is a required field
+	AlgorithmSpecification *AlgorithmSpecification `locationName:"algorithmSpecification" type:"structure" required:"true"`
+
+	// The list of Amazon Braket resources associated with the hybrid job.
+	Associations []*Association `locationName:"associations" type:"list"`
+
+	// Information about the output locations for job checkpoint data.
+	CheckpointConfig *JobCheckpointConfig `locationName:"checkpointConfig" type:"structure"`
+
+	// A unique token that guarantees that the call to this API is idempotent.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The quantum processing unit (QPU) or simulator used to create an Amazon Braket
+	// job.
+	//
+	// DeviceConfig is a required field
+	DeviceConfig *DeviceConfig `locationName:"deviceConfig" type:"structure" required:"true"`
+
+	// Algorithm-specific parameters used by an Amazon Braket job that influence
+	// the quality of the training job. The values are set with a string of JSON
+	// key:value pairs, where the key is the name of the hyperparameter and the
+	// value is the value of th hyperparameter.
+	HyperParameters map[string]*string `locationName:"hyperParameters" type:"map"`
+
+	// A list of parameters that specify the name and type of input data and where
+	// it is located.
+	InputDataConfig []*InputFileConfig `locationName:"inputDataConfig" type:"list"`
+
+	// Configuration of the resource instances to use while running the hybrid job
+	// on Amazon Braket.
+	//
+	// InstanceConfig is a required field
+	InstanceConfig *InstanceConfig `locationName:"instanceConfig" type:"structure" required:"true"`
+
+	// The name of the Amazon Braket job.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The path to the S3 location where you want to store job artifacts and the
+	// encryption key used to store them.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *JobOutputDataConfig `locationName:"outputDataConfig" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon Braket can assume
+	// to perform tasks on behalf of a user. It can access user resources, run an
+	// Amazon Braket job container on behalf of user, and output resources to the
+	// users' s3 buckets.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The user-defined criteria that specifies when a job stops running.
+	StoppingCondition *JobStoppingCondition `locationName:"stoppingCondition" type:"structure"`
+
+	// A tag object that consists of a key and an optional value, used to manage
+	// metadata for Amazon Braket resources.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateJobInput"}
+	if s.AlgorithmSpecification == nil {
+		invalidParams.Add(request.NewErrParamRequired("AlgorithmSpecification"))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DeviceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceConfig"))
+	}
+	if s.InstanceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceConfig"))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.OutputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.AlgorithmSpecification != nil {
+		if err := s.AlgorithmSpecification.Validate(); err != nil {
+			invalidParams.AddNested("AlgorithmSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Associations != nil {
+		for i, v := range s.Associations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Associations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.CheckpointConfig != nil {
+		if err := s.CheckpointConfig.Validate(); err != nil {
+			invalidParams.AddNested("CheckpointConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeviceConfig != nil {
+		if err := s.DeviceConfig.Validate(); err != nil {
+			invalidParams.AddNested("DeviceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.InputDataConfig != nil {
+		for i, v := range s.InputDataConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InputDataConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.InstanceConfig != nil {
+		if err := s.InstanceConfig.Validate(); err != nil {
+			invalidParams.AddNested("InstanceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputDataConfig != nil {
+		if err := s.OutputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StoppingCondition != nil {
+		if err := s.StoppingCondition.Validate(); err != nil {
+			invalidParams.AddNested("StoppingCondition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlgorithmSpecification sets the AlgorithmSpecification field's value.
+func (s *CreateJobInput) SetAlgorithmSpecification(v *AlgorithmSpecification) *CreateJobInput {
+	s.AlgorithmSpecification = v
+	return s
+}
+
+// SetAssociations sets the Associations field's value.
+func (s *CreateJobInput) SetAssociations(v []*Association) *CreateJobInput {
+	s.Associations = v
+	return s
+}
+
+// SetCheckpointConfig sets the CheckpointConfig field's value.
+func (s *CreateJobInput) SetCheckpointConfig(v *JobCheckpointConfig) *CreateJobInput {
+	s.CheckpointConfig = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateJobInput) SetClientToken(v string) *CreateJobInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDeviceConfig sets the DeviceConfig field's value.
+func (s *CreateJobInput) SetDeviceConfig(v *DeviceConfig) *CreateJobInput {
+	s.DeviceConfig = v
+	return s
+}
+
+// SetHyperParameters sets the HyperParameters field's value.
+func (s *CreateJobInput) SetHyperParameters(v map[string]*string) *CreateJobInput {
+	s.HyperParameters = v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *CreateJobInput) SetInputDataConfig(v []*InputFileConfig) *CreateJobInput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetInstanceConfig sets the InstanceConfig field's value.
+func (s *CreateJobInput) SetInstanceConfig(v *InstanceConfig) *CreateJobInput {
+	s.InstanceConfig = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateJobInput) SetJobName(v string) *CreateJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *CreateJobInput) SetOutputDataConfig(v *JobOutputDataConfig) *CreateJobInput {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateJobInput) SetRoleArn(v string) *CreateJobInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *CreateJobInput) SetStoppingCondition(v *JobStoppingCondition) *CreateJobInput {
+	s.StoppingCondition = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateJobInput) SetTags(v map[string]*string) *CreateJobInput {
+	s.Tags = v
+	return s
+}
+
+type CreateJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Amazon Braket job created.
+	//
+	// JobArn is a required field
+	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *CreateJobOutput) SetJobArn(v string) *CreateJobOutput {
+	s.JobArn = &v
+	return s
+}
+
 type CreateQuantumTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1155,6 +2169,9 @@ type CreateQuantumTaskInput struct {
 	//
 	// Action is a required field
 	Action aws.JSONValue `locationName:"action" type:"jsonvalue" required:"true"`
+
+	// The list of Amazon Braket resources associated with the quantum task.
+	Associations []*Association `locationName:"associations" type:"list"`
 
 	// The client token associated with the request.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
@@ -1166,6 +2183,9 @@ type CreateQuantumTaskInput struct {
 
 	// The parameters for the device to run the task on.
 	DeviceParameters aws.JSONValue `locationName:"deviceParameters" type:"jsonvalue"`
+
+	// The token for an Amazon Braket job that associates it with the quantum task.
+	JobToken *string `locationName:"jobToken" min:"1" type:"string"`
 
 	// The S3 bucket to store task result files in.
 	//
@@ -1186,12 +2206,20 @@ type CreateQuantumTaskInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQuantumTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQuantumTaskInput) GoString() string {
 	return s.String()
 }
@@ -1211,6 +2239,9 @@ func (s *CreateQuantumTaskInput) Validate() error {
 	if s.DeviceArn != nil && len(*s.DeviceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DeviceArn", 1))
 	}
+	if s.JobToken != nil && len(*s.JobToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobToken", 1))
+	}
 	if s.OutputS3Bucket == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputS3Bucket"))
 	}
@@ -1226,6 +2257,16 @@ func (s *CreateQuantumTaskInput) Validate() error {
 	if s.Shots == nil {
 		invalidParams.Add(request.NewErrParamRequired("Shots"))
 	}
+	if s.Associations != nil {
+		for i, v := range s.Associations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Associations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1236,6 +2277,12 @@ func (s *CreateQuantumTaskInput) Validate() error {
 // SetAction sets the Action field's value.
 func (s *CreateQuantumTaskInput) SetAction(v aws.JSONValue) *CreateQuantumTaskInput {
 	s.Action = v
+	return s
+}
+
+// SetAssociations sets the Associations field's value.
+func (s *CreateQuantumTaskInput) SetAssociations(v []*Association) *CreateQuantumTaskInput {
+	s.Associations = v
 	return s
 }
 
@@ -1254,6 +2301,12 @@ func (s *CreateQuantumTaskInput) SetDeviceArn(v string) *CreateQuantumTaskInput 
 // SetDeviceParameters sets the DeviceParameters field's value.
 func (s *CreateQuantumTaskInput) SetDeviceParameters(v aws.JSONValue) *CreateQuantumTaskInput {
 	s.DeviceParameters = v
+	return s
+}
+
+// SetJobToken sets the JobToken field's value.
+func (s *CreateQuantumTaskInput) SetJobToken(v string) *CreateQuantumTaskInput {
+	s.JobToken = &v
 	return s
 }
 
@@ -1287,15 +2340,23 @@ type CreateQuantumTaskOutput struct {
 	// The ARN of the task created by the request.
 	//
 	// QuantumTaskArn is a required field
-	QuantumTaskArn *string `locationName:"quantumTaskArn" min:"1" type:"string" required:"true"`
+	QuantumTaskArn *string `locationName:"quantumTaskArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQuantumTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQuantumTaskOutput) GoString() string {
 	return s.String()
 }
@@ -1303,6 +2364,111 @@ func (s CreateQuantumTaskOutput) GoString() string {
 // SetQuantumTaskArn sets the QuantumTaskArn field's value.
 func (s *CreateQuantumTaskOutput) SetQuantumTaskArn(v string) *CreateQuantumTaskOutput {
 	s.QuantumTaskArn = &v
+	return s
+}
+
+// Information about the source of the data used by the Amazon Braket job.
+type DataSource struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the data stored in Amazon S3 used by the Amazon Braket
+	// job.
+	//
+	// S3DataSource is a required field
+	S3DataSource *S3DataSource `locationName:"s3DataSource" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSource"}
+	if s.S3DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DataSource"))
+	}
+	if s.S3DataSource != nil {
+		if err := s.S3DataSource.Validate(); err != nil {
+			invalidParams.AddNested("S3DataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3DataSource sets the S3DataSource field's value.
+func (s *DataSource) SetS3DataSource(v *S3DataSource) *DataSource {
+	s.S3DataSource = v
+	return s
+}
+
+// Configures the quantum processing units (QPUs) or simulator used to create
+// and run an Amazon Braket job.
+type DeviceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The primary quantum processing unit (QPU) or simulator used to create and
+	// run an Amazon Braket job.
+	//
+	// Device is a required field
+	Device *string `locationName:"device" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeviceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeviceConfig"}
+	if s.Device == nil {
+		invalidParams.Add(request.NewErrParamRequired("Device"))
+	}
+	if s.Device != nil && len(*s.Device) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Device", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDevice sets the Device field's value.
+func (s *DeviceConfig) SetDevice(v string) *DeviceConfig {
+	s.Device = &v
 	return s
 }
 
@@ -1314,12 +2480,20 @@ type DeviceOfflineException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceOfflineException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceOfflineException) GoString() string {
 	return s.String()
 }
@@ -1362,6 +2536,61 @@ func (s *DeviceOfflineException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about tasks and jobs queued on a device.
+type DeviceQueueInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the queue.
+	//
+	// Queue is a required field
+	Queue *string `locationName:"queue" type:"string" required:"true" enum:"QueueName"`
+
+	// Optional. Specifies the priority of the queue. Tasks in a priority queue
+	// are processed before the tasks in a normal queue.
+	QueuePriority *string `locationName:"queuePriority" type:"string" enum:"QueuePriority"`
+
+	// The number of jobs or tasks in the queue for a given device.
+	//
+	// QueueSize is a required field
+	QueueSize *string `locationName:"queueSize" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceQueueInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceQueueInfo) GoString() string {
+	return s.String()
+}
+
+// SetQueue sets the Queue field's value.
+func (s *DeviceQueueInfo) SetQueue(v string) *DeviceQueueInfo {
+	s.Queue = &v
+	return s
+}
+
+// SetQueuePriority sets the QueuePriority field's value.
+func (s *DeviceQueueInfo) SetQueuePriority(v string) *DeviceQueueInfo {
+	s.QueuePriority = &v
+	return s
+}
+
+// SetQueueSize sets the QueueSize field's value.
+func (s *DeviceQueueInfo) SetQueueSize(v string) *DeviceQueueInfo {
+	s.QueueSize = &v
+	return s
+}
+
 // The specified device has been retired.
 type DeviceRetiredException struct {
 	_            struct{}                  `type:"structure"`
@@ -1370,12 +2599,20 @@ type DeviceRetiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceRetiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceRetiredException) GoString() string {
 	return s.String()
 }
@@ -1448,12 +2685,20 @@ type DeviceSummary struct {
 	ProviderName *string `locationName:"providerName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceSummary) GoString() string {
 	return s.String()
 }
@@ -1489,7 +2734,7 @@ func (s *DeviceSummary) SetProviderName(v string) *DeviceSummary {
 }
 
 type GetDeviceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the device to retrieve.
 	//
@@ -1497,12 +2742,20 @@ type GetDeviceInput struct {
 	DeviceArn *string `location:"uri" locationName:"deviceArn" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceInput) GoString() string {
 	return s.String()
 }
@@ -1547,6 +2800,9 @@ type GetDeviceOutput struct {
 	// DeviceName is a required field
 	DeviceName *string `locationName:"deviceName" type:"string" required:"true"`
 
+	// List of information about tasks and jobs queued on a device.
+	DeviceQueueInfo []*DeviceQueueInfo `locationName:"deviceQueueInfo" type:"list"`
+
 	// The status of the device.
 	//
 	// DeviceStatus is a required field
@@ -1563,12 +2819,20 @@ type GetDeviceOutput struct {
 	ProviderName *string `locationName:"providerName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceOutput) GoString() string {
 	return s.String()
 }
@@ -1591,6 +2855,12 @@ func (s *GetDeviceOutput) SetDeviceName(v string) *GetDeviceOutput {
 	return s
 }
 
+// SetDeviceQueueInfo sets the DeviceQueueInfo field's value.
+func (s *GetDeviceOutput) SetDeviceQueueInfo(v []*DeviceQueueInfo) *GetDeviceOutput {
+	s.DeviceQueueInfo = v
+	return s
+}
+
 // SetDeviceStatus sets the DeviceStatus field's value.
 func (s *GetDeviceOutput) SetDeviceStatus(v string) *GetDeviceOutput {
 	s.DeviceStatus = &v
@@ -1609,21 +2879,331 @@ func (s *GetDeviceOutput) SetProviderName(v string) *GetDeviceOutput {
 	return s
 }
 
-type GetQuantumTaskInput struct {
-	_ struct{} `type:"structure"`
+type GetJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// the ARN of the task to retrieve.
+	// A list of attributes to return information for.
+	AdditionalAttributeNames []*string `location:"querystring" locationName:"additionalAttributeNames" type:"list" enum:"HybridJobAdditionalAttributeName"`
+
+	// The ARN of the job to retrieve.
 	//
-	// QuantumTaskArn is a required field
-	QuantumTaskArn *string `location:"uri" locationName:"quantumTaskArn" min:"1" type:"string" required:"true"`
+	// JobArn is a required field
+	JobArn *string `location:"uri" locationName:"jobArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetJobInput"}
+	if s.JobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobArn"))
+	}
+	if s.JobArn != nil && len(*s.JobArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalAttributeNames sets the AdditionalAttributeNames field's value.
+func (s *GetJobInput) SetAdditionalAttributeNames(v []*string) *GetJobInput {
+	s.AdditionalAttributeNames = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *GetJobInput) SetJobArn(v string) *GetJobInput {
+	s.JobArn = &v
+	return s
+}
+
+type GetJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Definition of the Amazon Braket job created. Specifies the container image
+	// the job uses, information about the Python scripts used for entry and training,
+	// and the user-defined metrics used to evaluation the job.
+	//
+	// AlgorithmSpecification is a required field
+	AlgorithmSpecification *AlgorithmSpecification `locationName:"algorithmSpecification" type:"structure" required:"true"`
+
+	// The list of Amazon Braket resources associated with the hybrid job.
+	Associations []*Association `locationName:"associations" type:"list"`
+
+	// The billable time the Amazon Braket job used to complete.
+	BillableDuration *int64 `locationName:"billableDuration" type:"integer"`
+
+	// Information about the output locations for job checkpoint data.
+	CheckpointConfig *JobCheckpointConfig `locationName:"checkpointConfig" type:"structure"`
+
+	// The date and time that the Amazon Braket job was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The quantum processing unit (QPU) or simulator used to run the Amazon Braket
+	// job.
+	DeviceConfig *DeviceConfig `locationName:"deviceConfig" type:"structure"`
+
+	// The date and time that the Amazon Braket job ended.
+	EndedAt *time.Time `locationName:"endedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Details about the type and time events occurred related to the Amazon Braket
+	// job.
+	Events []*JobEventDetails `locationName:"events" type:"list"`
+
+	// A description of the reason why an Amazon Braket job failed, if it failed.
+	FailureReason *string `locationName:"failureReason" min:"1" type:"string"`
+
+	// Algorithm-specific parameters used by an Amazon Braket job that influence
+	// the quality of the traiing job. The values are set with a string of JSON
+	// key:value pairs, where the key is the name of the hyperparameter and the
+	// value is the value of th hyperparameter.
+	HyperParameters map[string]*string `locationName:"hyperParameters" type:"map"`
+
+	// A list of parameters that specify the name and type of input data and where
+	// it is located.
+	InputDataConfig []*InputFileConfig `locationName:"inputDataConfig" type:"list"`
+
+	// The resource instances to use while running the hybrid job on Amazon Braket.
+	//
+	// InstanceConfig is a required field
+	InstanceConfig *InstanceConfig `locationName:"instanceConfig" type:"structure" required:"true"`
+
+	// The ARN of the Amazon Braket job.
+	//
+	// JobArn is a required field
+	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
+
+	// The name of the Amazon Braket job.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The path to the S3 location where job artifacts are stored and the encryption
+	// key used to store them there.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *JobOutputDataConfig `locationName:"outputDataConfig" type:"structure" required:"true"`
+
+	// Queue information for the requested job. Only returned if QueueInfo is specified
+	// in the additionalAttributeNames" field in the GetJob API request.
+	QueueInfo *HybridJobQueueInfo `locationName:"queueInfo" type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon Braket can assume
+	// to perform tasks on behalf of a user. It can access user resources, run an
+	// Amazon Braket job container on behalf of user, and output resources to the
+	// s3 buckets of a user.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The date and time that the Amazon Braket job was started.
+	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The status of the Amazon Braket job.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"JobPrimaryStatus"`
+
+	// The user-defined criteria that specifies when to stop a job running.
+	StoppingCondition *JobStoppingCondition `locationName:"stoppingCondition" type:"structure"`
+
+	// A tag object that consists of a key and an optional value, used to manage
+	// metadata for Amazon Braket resources.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetAlgorithmSpecification sets the AlgorithmSpecification field's value.
+func (s *GetJobOutput) SetAlgorithmSpecification(v *AlgorithmSpecification) *GetJobOutput {
+	s.AlgorithmSpecification = v
+	return s
+}
+
+// SetAssociations sets the Associations field's value.
+func (s *GetJobOutput) SetAssociations(v []*Association) *GetJobOutput {
+	s.Associations = v
+	return s
+}
+
+// SetBillableDuration sets the BillableDuration field's value.
+func (s *GetJobOutput) SetBillableDuration(v int64) *GetJobOutput {
+	s.BillableDuration = &v
+	return s
+}
+
+// SetCheckpointConfig sets the CheckpointConfig field's value.
+func (s *GetJobOutput) SetCheckpointConfig(v *JobCheckpointConfig) *GetJobOutput {
+	s.CheckpointConfig = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetJobOutput) SetCreatedAt(v time.Time) *GetJobOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDeviceConfig sets the DeviceConfig field's value.
+func (s *GetJobOutput) SetDeviceConfig(v *DeviceConfig) *GetJobOutput {
+	s.DeviceConfig = v
+	return s
+}
+
+// SetEndedAt sets the EndedAt field's value.
+func (s *GetJobOutput) SetEndedAt(v time.Time) *GetJobOutput {
+	s.EndedAt = &v
+	return s
+}
+
+// SetEvents sets the Events field's value.
+func (s *GetJobOutput) SetEvents(v []*JobEventDetails) *GetJobOutput {
+	s.Events = v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *GetJobOutput) SetFailureReason(v string) *GetJobOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetHyperParameters sets the HyperParameters field's value.
+func (s *GetJobOutput) SetHyperParameters(v map[string]*string) *GetJobOutput {
+	s.HyperParameters = v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *GetJobOutput) SetInputDataConfig(v []*InputFileConfig) *GetJobOutput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetInstanceConfig sets the InstanceConfig field's value.
+func (s *GetJobOutput) SetInstanceConfig(v *InstanceConfig) *GetJobOutput {
+	s.InstanceConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *GetJobOutput) SetJobArn(v string) *GetJobOutput {
+	s.JobArn = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *GetJobOutput) SetJobName(v string) *GetJobOutput {
+	s.JobName = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *GetJobOutput) SetOutputDataConfig(v *JobOutputDataConfig) *GetJobOutput {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetQueueInfo sets the QueueInfo field's value.
+func (s *GetJobOutput) SetQueueInfo(v *HybridJobQueueInfo) *GetJobOutput {
+	s.QueueInfo = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *GetJobOutput) SetRoleArn(v string) *GetJobOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStartedAt sets the StartedAt field's value.
+func (s *GetJobOutput) SetStartedAt(v time.Time) *GetJobOutput {
+	s.StartedAt = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetJobOutput) SetStatus(v string) *GetJobOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *GetJobOutput) SetStoppingCondition(v *JobStoppingCondition) *GetJobOutput {
+	s.StoppingCondition = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetJobOutput) SetTags(v map[string]*string) *GetJobOutput {
+	s.Tags = v
+	return s
+}
+
+type GetQuantumTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A list of attributes to return information for.
+	AdditionalAttributeNames []*string `location:"querystring" locationName:"additionalAttributeNames" type:"list" enum:"QuantumTaskAdditionalAttributeName"`
+
+	// The ARN of the task to retrieve.
+	//
+	// QuantumTaskArn is a required field
+	QuantumTaskArn *string `location:"uri" locationName:"quantumTaskArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetQuantumTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetQuantumTaskInput) GoString() string {
 	return s.String()
 }
@@ -1644,6 +3224,12 @@ func (s *GetQuantumTaskInput) Validate() error {
 	return nil
 }
 
+// SetAdditionalAttributeNames sets the AdditionalAttributeNames field's value.
+func (s *GetQuantumTaskInput) SetAdditionalAttributeNames(v []*string) *GetQuantumTaskInput {
+	s.AdditionalAttributeNames = v
+	return s
+}
+
 // SetQuantumTaskArn sets the QuantumTaskArn field's value.
 func (s *GetQuantumTaskInput) SetQuantumTaskArn(v string) *GetQuantumTaskInput {
 	s.QuantumTaskArn = &v
@@ -1652,6 +3238,9 @@ func (s *GetQuantumTaskInput) SetQuantumTaskArn(v string) *GetQuantumTaskInput {
 
 type GetQuantumTaskOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The list of Amazon Braket resources associated with the quantum task.
+	Associations []*Association `locationName:"associations" type:"list"`
 
 	// The time at which the task was created.
 	//
@@ -1674,6 +3263,9 @@ type GetQuantumTaskOutput struct {
 	// The reason that a task failed.
 	FailureReason *string `locationName:"failureReason" type:"string"`
 
+	// The ARN of the Amazon Braket job associated with the quantum task.
+	JobArn *string `locationName:"jobArn" type:"string"`
+
 	// The S3 bucket where task results are stored.
 	//
 	// OutputS3Bucket is a required field
@@ -1687,7 +3279,12 @@ type GetQuantumTaskOutput struct {
 	// The ARN of the task.
 	//
 	// QuantumTaskArn is a required field
-	QuantumTaskArn *string `locationName:"quantumTaskArn" min:"1" type:"string" required:"true"`
+	QuantumTaskArn *string `locationName:"quantumTaskArn" type:"string" required:"true"`
+
+	// Queue information for the requested quantum task. Only returned if QueueInfo
+	// is specified in the additionalAttributeNames" field in the GetQuantumTask
+	// API request.
+	QueueInfo *QuantumTaskQueueInfo `locationName:"queueInfo" type:"structure"`
 
 	// The number of shots used in the task.
 	//
@@ -1703,14 +3300,28 @@ type GetQuantumTaskOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetQuantumTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetQuantumTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetAssociations sets the Associations field's value.
+func (s *GetQuantumTaskOutput) SetAssociations(v []*Association) *GetQuantumTaskOutput {
+	s.Associations = v
+	return s
 }
 
 // SetCreatedAt sets the CreatedAt field's value.
@@ -1743,6 +3354,12 @@ func (s *GetQuantumTaskOutput) SetFailureReason(v string) *GetQuantumTaskOutput 
 	return s
 }
 
+// SetJobArn sets the JobArn field's value.
+func (s *GetQuantumTaskOutput) SetJobArn(v string) *GetQuantumTaskOutput {
+	s.JobArn = &v
+	return s
+}
+
 // SetOutputS3Bucket sets the OutputS3Bucket field's value.
 func (s *GetQuantumTaskOutput) SetOutputS3Bucket(v string) *GetQuantumTaskOutput {
 	s.OutputS3Bucket = &v
@@ -1758,6 +3375,12 @@ func (s *GetQuantumTaskOutput) SetOutputS3Directory(v string) *GetQuantumTaskOut
 // SetQuantumTaskArn sets the QuantumTaskArn field's value.
 func (s *GetQuantumTaskOutput) SetQuantumTaskArn(v string) *GetQuantumTaskOutput {
 	s.QuantumTaskArn = &v
+	return s
+}
+
+// SetQueueInfo sets the QueueInfo field's value.
+func (s *GetQuantumTaskOutput) SetQueueInfo(v *QuantumTaskQueueInfo) *GetQuantumTaskOutput {
+	s.QueueInfo = v
 	return s
 }
 
@@ -1779,6 +3402,223 @@ func (s *GetQuantumTaskOutput) SetTags(v map[string]*string) *GetQuantumTaskOutp
 	return s
 }
 
+// Information about the queue for a specified job.
+type HybridJobQueueInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Optional. Provides more information about the queue position. For example,
+	// if the job is complete and no longer in the queue, the message field contains
+	// that information.
+	Message *string `locationName:"message" type:"string"`
+
+	// Current position of the job in the jobs queue.
+	//
+	// Position is a required field
+	Position *string `locationName:"position" type:"string" required:"true"`
+
+	// The name of the queue.
+	//
+	// Queue is a required field
+	Queue *string `locationName:"queue" type:"string" required:"true" enum:"QueueName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HybridJobQueueInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HybridJobQueueInfo) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *HybridJobQueueInfo) SetMessage(v string) *HybridJobQueueInfo {
+	s.Message = &v
+	return s
+}
+
+// SetPosition sets the Position field's value.
+func (s *HybridJobQueueInfo) SetPosition(v string) *HybridJobQueueInfo {
+	s.Position = &v
+	return s
+}
+
+// SetQueue sets the Queue field's value.
+func (s *HybridJobQueueInfo) SetQueue(v string) *HybridJobQueueInfo {
+	s.Queue = &v
+	return s
+}
+
+// A list of parameters that specify the input channels, type of input data,
+// and where it is located.
+type InputFileConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A named input source that an Amazon Braket job can consume.
+	//
+	// ChannelName is a required field
+	ChannelName *string `locationName:"channelName" min:"1" type:"string" required:"true"`
+
+	// The MIME type of the data.
+	ContentType *string `locationName:"contentType" min:"1" type:"string"`
+
+	// The location of the channel data.
+	//
+	// DataSource is a required field
+	DataSource *DataSource `locationName:"dataSource" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputFileConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputFileConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputFileConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputFileConfig"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.ContentType != nil && len(*s.ContentType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentType", 1))
+	}
+	if s.DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSource"))
+	}
+	if s.DataSource != nil {
+		if err := s.DataSource.Validate(); err != nil {
+			invalidParams.AddNested("DataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *InputFileConfig) SetChannelName(v string) *InputFileConfig {
+	s.ChannelName = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *InputFileConfig) SetContentType(v string) *InputFileConfig {
+	s.ContentType = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *InputFileConfig) SetDataSource(v *DataSource) *InputFileConfig {
+	s.DataSource = v
+	return s
+}
+
+// Configures the resource instances to use while running the Amazon Braket
+// hybrid job on Amazon Braket.
+type InstanceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configures the number of resource instances to use while running an Amazon
+	// Braket job on Amazon Braket. The default value is 1.
+	InstanceCount *int64 `locationName:"instanceCount" min:"1" type:"integer"`
+
+	// Configures the type resource instances to use while running an Amazon Braket
+	// hybrid job.
+	//
+	// InstanceType is a required field
+	InstanceType *string `locationName:"instanceType" type:"string" required:"true" enum:"InstanceType"`
+
+	// The size of the storage volume, in GB, that user wants to provision.
+	//
+	// VolumeSizeInGb is a required field
+	VolumeSizeInGb *int64 `locationName:"volumeSizeInGb" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstanceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstanceConfig"}
+	if s.InstanceCount != nil && *s.InstanceCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("InstanceCount", 1))
+	}
+	if s.InstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
+	}
+	if s.VolumeSizeInGb == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeSizeInGb"))
+	}
+	if s.VolumeSizeInGb != nil && *s.VolumeSizeInGb < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("VolumeSizeInGb", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *InstanceConfig) SetInstanceCount(v int64) *InstanceConfig {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceConfig) SetInstanceType(v string) *InstanceConfig {
+	s.InstanceType = &v
+	return s
+}
+
+// SetVolumeSizeInGb sets the VolumeSizeInGb field's value.
+func (s *InstanceConfig) SetVolumeSizeInGb(v int64) *InstanceConfig {
+	s.VolumeSizeInGb = &v
+	return s
+}
+
 // The request processing has failed because of an unknown error, exception,
 // or failure.
 type InternalServiceException struct {
@@ -1788,12 +3628,20 @@ type InternalServiceException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) GoString() string {
 	return s.String()
 }
@@ -1836,8 +3684,335 @@ func (s *InternalServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-type ListTagsForResourceInput struct {
+// Contains information about the output locations for job checkpoint data.
+type JobCheckpointConfig struct {
 	_ struct{} `type:"structure"`
+
+	// (Optional) The local directory where checkpoints are written. The default
+	// directory is /opt/braket/checkpoints/.
+	LocalPath *string `locationName:"localPath" min:"1" type:"string"`
+
+	// Identifies the S3 path where you want Amazon Braket to store checkpoints.
+	// For example, s3://bucket-name/key-name-prefix.
+	//
+	// S3Uri is a required field
+	S3Uri *string `locationName:"s3Uri" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobCheckpointConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobCheckpointConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobCheckpointConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobCheckpointConfig"}
+	if s.LocalPath != nil && len(*s.LocalPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocalPath", 1))
+	}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocalPath sets the LocalPath field's value.
+func (s *JobCheckpointConfig) SetLocalPath(v string) *JobCheckpointConfig {
+	s.LocalPath = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *JobCheckpointConfig) SetS3Uri(v string) *JobCheckpointConfig {
+	s.S3Uri = &v
+	return s
+}
+
+// Details about the type and time events occurred related to the Amazon Braket
+// job.
+type JobEventDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The type of event that occurred related to the Amazon Braket job.
+	EventType *string `locationName:"eventType" type:"string" enum:"JobEventType"`
+
+	// A message describing the event that occurred related to the Amazon Braket
+	// job.
+	Message *string `locationName:"message" type:"string"`
+
+	// The type of event that occurred related to the Amazon Braket job.
+	TimeOfEvent *time.Time `locationName:"timeOfEvent" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobEventDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobEventDetails) GoString() string {
+	return s.String()
+}
+
+// SetEventType sets the EventType field's value.
+func (s *JobEventDetails) SetEventType(v string) *JobEventDetails {
+	s.EventType = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *JobEventDetails) SetMessage(v string) *JobEventDetails {
+	s.Message = &v
+	return s
+}
+
+// SetTimeOfEvent sets the TimeOfEvent field's value.
+func (s *JobEventDetails) SetTimeOfEvent(v time.Time) *JobEventDetails {
+	s.TimeOfEvent = &v
+	return s
+}
+
+// Specifies the path to the S3 location where you want to store job artifacts
+// and the encryption key used to store them.
+type JobOutputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Key Management Service (AWS KMS) key that Amazon Braket uses to encrypt
+	// the job training artifacts at rest using Amazon S3 server-side encryption.
+	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
+
+	// Identifies the S3 path where you want Amazon Braket to store the job training
+	// artifacts. For example, s3://bucket-name/key-name-prefix.
+	//
+	// S3Path is a required field
+	S3Path *string `locationName:"s3Path" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobOutputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobOutputDataConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobOutputDataConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobOutputDataConfig"}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.S3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Path"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *JobOutputDataConfig) SetKmsKeyId(v string) *JobOutputDataConfig {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetS3Path sets the S3Path field's value.
+func (s *JobOutputDataConfig) SetS3Path(v string) *JobOutputDataConfig {
+	s.S3Path = &v
+	return s
+}
+
+// Specifies limits for how long an Amazon Braket job can run.
+type JobStoppingCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum length of time, in seconds, that an Amazon Braket job can run.
+	MaxRuntimeInSeconds *int64 `locationName:"maxRuntimeInSeconds" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobStoppingCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobStoppingCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobStoppingCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobStoppingCondition"}
+	if s.MaxRuntimeInSeconds != nil && *s.MaxRuntimeInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxRuntimeInSeconds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxRuntimeInSeconds sets the MaxRuntimeInSeconds field's value.
+func (s *JobStoppingCondition) SetMaxRuntimeInSeconds(v int64) *JobStoppingCondition {
+	s.MaxRuntimeInSeconds = &v
+	return s
+}
+
+// Provides summary information about an Amazon Braket job.
+type JobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the Amazon Braket job was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// Provides summary information about the primary device used by an Amazon Braket
+	// job.
+	//
+	// Device is a required field
+	Device *string `locationName:"device" min:"1" type:"string" required:"true"`
+
+	// The date and time that the Amazon Braket job ended.
+	EndedAt *time.Time `locationName:"endedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ARN of the Amazon Braket job.
+	//
+	// JobArn is a required field
+	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
+
+	// The name of the Amazon Braket job.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" type:"string" required:"true"`
+
+	// The date and time that the Amazon Braket job was started.
+	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The status of the Amazon Braket job.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"JobPrimaryStatus"`
+
+	// A tag object that consists of a key and an optional value, used to manage
+	// metadata for Amazon Braket resources.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *JobSummary) SetCreatedAt(v time.Time) *JobSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDevice sets the Device field's value.
+func (s *JobSummary) SetDevice(v string) *JobSummary {
+	s.Device = &v
+	return s
+}
+
+// SetEndedAt sets the EndedAt field's value.
+func (s *JobSummary) SetEndedAt(v time.Time) *JobSummary {
+	s.EndedAt = &v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *JobSummary) SetJobArn(v string) *JobSummary {
+	s.JobArn = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *JobSummary) SetJobName(v string) *JobSummary {
+	s.JobName = &v
+	return s
+}
+
+// SetStartedAt sets the StartedAt field's value.
+func (s *JobSummary) SetStartedAt(v time.Time) *JobSummary {
+	s.StartedAt = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *JobSummary) SetStatus(v string) *JobSummary {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *JobSummary) SetTags(v map[string]*string) *JobSummary {
+	s.Tags = v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specify the resourceArn for the resource whose tags to display.
 	//
@@ -1845,12 +4020,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -1884,12 +4067,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -1897,6 +4088,72 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+// Information about the queue for the specified quantum task.
+type QuantumTaskQueueInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Optional. Provides more information about the queue position. For example,
+	// if the task is complete and no longer in the queue, the message field contains
+	// that information.
+	Message *string `locationName:"message" type:"string"`
+
+	// Current position of the task in the quantum tasks queue.
+	//
+	// Position is a required field
+	Position *string `locationName:"position" type:"string" required:"true"`
+
+	// The name of the queue.
+	//
+	// Queue is a required field
+	Queue *string `locationName:"queue" type:"string" required:"true" enum:"QueueName"`
+
+	// Optional. Specifies the priority of the queue. Quantum tasks in a priority
+	// queue are processed before the tasks in a normal queue.
+	QueuePriority *string `locationName:"queuePriority" type:"string" enum:"QueuePriority"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuantumTaskQueueInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuantumTaskQueueInfo) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *QuantumTaskQueueInfo) SetMessage(v string) *QuantumTaskQueueInfo {
+	s.Message = &v
+	return s
+}
+
+// SetPosition sets the Position field's value.
+func (s *QuantumTaskQueueInfo) SetPosition(v string) *QuantumTaskQueueInfo {
+	s.Position = &v
+	return s
+}
+
+// SetQueue sets the Queue field's value.
+func (s *QuantumTaskQueueInfo) SetQueue(v string) *QuantumTaskQueueInfo {
+	s.Queue = &v
+	return s
+}
+
+// SetQueuePriority sets the QueuePriority field's value.
+func (s *QuantumTaskQueueInfo) SetQueuePriority(v string) *QuantumTaskQueueInfo {
+	s.QueuePriority = &v
 	return s
 }
 
@@ -1930,7 +4187,7 @@ type QuantumTaskSummary struct {
 	// The ARN of the task.
 	//
 	// QuantumTaskArn is a required field
-	QuantumTaskArn *string `locationName:"quantumTaskArn" min:"1" type:"string" required:"true"`
+	QuantumTaskArn *string `locationName:"quantumTaskArn" type:"string" required:"true"`
 
 	// The shots used for the task.
 	//
@@ -1946,12 +4203,20 @@ type QuantumTaskSummary struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QuantumTaskSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QuantumTaskSummary) GoString() string {
 	return s.String()
 }
@@ -2018,12 +4283,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -2066,6 +4339,128 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about the data stored in Amazon S3 used by the Amazon Braket
+// job.
+type S3DataSource struct {
+	_ struct{} `type:"structure"`
+
+	// Depending on the value specified for the S3DataType, identifies either a
+	// key name prefix or a manifest that locates the S3 data source.
+	//
+	// S3Uri is a required field
+	S3Uri *string `locationName:"s3Uri" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3DataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3DataSource"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *S3DataSource) SetS3Uri(v string) *S3DataSource {
+	s.S3Uri = &v
+	return s
+}
+
+// Contains information about the Python scripts used for entry and by an Amazon
+// Braket job.
+type ScriptModeConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The type of compression used by the Python scripts for an Amazon Braket job.
+	CompressionType *string `locationName:"compressionType" type:"string" enum:"CompressionType"`
+
+	// The path to the Python script that serves as the entry point for an Amazon
+	// Braket job.
+	//
+	// EntryPoint is a required field
+	EntryPoint *string `locationName:"entryPoint" type:"string" required:"true"`
+
+	// The URI that specifies the S3 path to the Python script module that contains
+	// the training script used by an Amazon Braket job.
+	//
+	// S3Uri is a required field
+	S3Uri *string `locationName:"s3Uri" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScriptModeConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScriptModeConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScriptModeConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScriptModeConfig"}
+	if s.EntryPoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntryPoint"))
+	}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCompressionType sets the CompressionType field's value.
+func (s *ScriptModeConfig) SetCompressionType(v string) *ScriptModeConfig {
+	s.CompressionType = &v
+	return s
+}
+
+// SetEntryPoint sets the EntryPoint field's value.
+func (s *ScriptModeConfig) SetEntryPoint(v string) *ScriptModeConfig {
+	s.EntryPoint = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *ScriptModeConfig) SetS3Uri(v string) *ScriptModeConfig {
+	s.S3Uri = &v
+	return s
+}
+
 // The filter to use for searching devices.
 type SearchDevicesFilter struct {
 	_ struct{} `type:"structure"`
@@ -2081,12 +4476,20 @@ type SearchDevicesFilter struct {
 	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDevicesFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDevicesFilter) GoString() string {
 	return s.String()
 }
@@ -2142,12 +4545,20 @@ type SearchDevicesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDevicesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDevicesInput) GoString() string {
 	return s.String()
 }
@@ -2211,12 +4622,20 @@ type SearchDevicesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDevicesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDevicesOutput) GoString() string {
 	return s.String()
 }
@@ -2229,6 +4648,211 @@ func (s *SearchDevicesOutput) SetDevices(v []*DeviceSummary) *SearchDevicesOutpu
 
 // SetNextToken sets the NextToken field's value.
 func (s *SearchDevicesOutput) SetNextToken(v string) *SearchDevicesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// A filter used to search for Amazon Braket jobs.
+type SearchJobsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name to use for the jobs filter.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// An operator to use for the jobs filter.
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"SearchJobsFilterOperator"`
+
+	// The values to use for the jobs filter.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchJobsFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchJobsFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *SearchJobsFilter) SetName(v string) *SearchJobsFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *SearchJobsFilter) SetOperator(v string) *SearchJobsFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *SearchJobsFilter) SetValues(v []*string) *SearchJobsFilter {
+	s.Values = v
+	return s
+}
+
+type SearchJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter values to use when searching for a job.
+	//
+	// Filters is a required field
+	Filters []*SearchJobsFilter `locationName:"filters" type:"list" required:"true"`
+
+	// The maximum number of results to return in the response.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token used for pagination of results returned in the response. Use the
+	// token returned from the previous request to continue results where the previous
+	// request ended.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchJobsInput"}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *SearchJobsInput) SetFilters(v []*SearchJobsFilter) *SearchJobsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchJobsInput) SetMaxResults(v int64) *SearchJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchJobsInput) SetNextToken(v string) *SearchJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of JobSummary objects for devices that match the specified filter
+	// values.
+	//
+	// Jobs is a required field
+	Jobs []*JobSummary `locationName:"jobs" type:"list" required:"true"`
+
+	// A token used for pagination of results, or null if there are no additional
+	// results. Use the token value in a subsequent request to continue results
+	// where the previous request ended.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobs sets the Jobs field's value.
+func (s *SearchJobsOutput) SetJobs(v []*JobSummary) *SearchJobsOutput {
+	s.Jobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchJobsOutput) SetNextToken(v string) *SearchJobsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -2253,12 +4877,20 @@ type SearchQuantumTasksFilter struct {
 	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchQuantumTasksFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchQuantumTasksFilter) GoString() string {
 	return s.String()
 }
@@ -2323,12 +4955,20 @@ type SearchQuantumTasksInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchQuantumTasksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchQuantumTasksInput) GoString() string {
 	return s.String()
 }
@@ -2392,12 +5032,20 @@ type SearchQuantumTasksOutput struct {
 	QuantumTasks []*QuantumTaskSummary `locationName:"quantumTasks" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchQuantumTasksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchQuantumTasksOutput) GoString() string {
 	return s.String()
 }
@@ -2422,12 +5070,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -2484,12 +5140,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -2529,12 +5193,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -2547,12 +5219,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -2596,7 +5276,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specify the resourceArn for the resource from which to remove the tags.
 	//
@@ -2609,12 +5289,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -2654,12 +5342,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -2672,12 +5368,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -2721,6 +5425,18 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AssociationTypeReservationTimeWindowArn is a AssociationType enum value
+	AssociationTypeReservationTimeWindowArn = "RESERVATION_TIME_WINDOW_ARN"
+)
+
+// AssociationType_Values returns all elements of the AssociationType enum
+func AssociationType_Values() []string {
+	return []string{
+		AssociationTypeReservationTimeWindowArn,
+	}
+}
+
+const (
 	// CancellationStatusCancelling is a CancellationStatus enum value
 	CancellationStatusCancelling = "CANCELLING"
 
@@ -2733,6 +5449,22 @@ func CancellationStatus_Values() []string {
 	return []string{
 		CancellationStatusCancelling,
 		CancellationStatusCancelled,
+	}
+}
+
+const (
+	// CompressionTypeNone is a CompressionType enum value
+	CompressionTypeNone = "NONE"
+
+	// CompressionTypeGzip is a CompressionType enum value
+	CompressionTypeGzip = "GZIP"
+)
+
+// CompressionType_Values returns all elements of the CompressionType enum
+func CompressionType_Values() []string {
+	return []string{
+		CompressionTypeNone,
+		CompressionTypeGzip,
 	}
 }
 
@@ -2773,6 +5505,278 @@ func DeviceType_Values() []string {
 }
 
 const (
+	// HybridJobAdditionalAttributeNameQueueInfo is a HybridJobAdditionalAttributeName enum value
+	HybridJobAdditionalAttributeNameQueueInfo = "QueueInfo"
+)
+
+// HybridJobAdditionalAttributeName_Values returns all elements of the HybridJobAdditionalAttributeName enum
+func HybridJobAdditionalAttributeName_Values() []string {
+	return []string{
+		HybridJobAdditionalAttributeNameQueueInfo,
+	}
+}
+
+const (
+	// InstanceTypeMlM4Xlarge is a InstanceType enum value
+	InstanceTypeMlM4Xlarge = "ml.m4.xlarge"
+
+	// InstanceTypeMlM42xlarge is a InstanceType enum value
+	InstanceTypeMlM42xlarge = "ml.m4.2xlarge"
+
+	// InstanceTypeMlM44xlarge is a InstanceType enum value
+	InstanceTypeMlM44xlarge = "ml.m4.4xlarge"
+
+	// InstanceTypeMlM410xlarge is a InstanceType enum value
+	InstanceTypeMlM410xlarge = "ml.m4.10xlarge"
+
+	// InstanceTypeMlM416xlarge is a InstanceType enum value
+	InstanceTypeMlM416xlarge = "ml.m4.16xlarge"
+
+	// InstanceTypeMlG4dnXlarge is a InstanceType enum value
+	InstanceTypeMlG4dnXlarge = "ml.g4dn.xlarge"
+
+	// InstanceTypeMlG4dn2xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn2xlarge = "ml.g4dn.2xlarge"
+
+	// InstanceTypeMlG4dn4xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn4xlarge = "ml.g4dn.4xlarge"
+
+	// InstanceTypeMlG4dn8xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn8xlarge = "ml.g4dn.8xlarge"
+
+	// InstanceTypeMlG4dn12xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn12xlarge = "ml.g4dn.12xlarge"
+
+	// InstanceTypeMlG4dn16xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn16xlarge = "ml.g4dn.16xlarge"
+
+	// InstanceTypeMlM5Large is a InstanceType enum value
+	InstanceTypeMlM5Large = "ml.m5.large"
+
+	// InstanceTypeMlM5Xlarge is a InstanceType enum value
+	InstanceTypeMlM5Xlarge = "ml.m5.xlarge"
+
+	// InstanceTypeMlM52xlarge is a InstanceType enum value
+	InstanceTypeMlM52xlarge = "ml.m5.2xlarge"
+
+	// InstanceTypeMlM54xlarge is a InstanceType enum value
+	InstanceTypeMlM54xlarge = "ml.m5.4xlarge"
+
+	// InstanceTypeMlM512xlarge is a InstanceType enum value
+	InstanceTypeMlM512xlarge = "ml.m5.12xlarge"
+
+	// InstanceTypeMlM524xlarge is a InstanceType enum value
+	InstanceTypeMlM524xlarge = "ml.m5.24xlarge"
+
+	// InstanceTypeMlC4Xlarge is a InstanceType enum value
+	InstanceTypeMlC4Xlarge = "ml.c4.xlarge"
+
+	// InstanceTypeMlC42xlarge is a InstanceType enum value
+	InstanceTypeMlC42xlarge = "ml.c4.2xlarge"
+
+	// InstanceTypeMlC44xlarge is a InstanceType enum value
+	InstanceTypeMlC44xlarge = "ml.c4.4xlarge"
+
+	// InstanceTypeMlC48xlarge is a InstanceType enum value
+	InstanceTypeMlC48xlarge = "ml.c4.8xlarge"
+
+	// InstanceTypeMlP2Xlarge is a InstanceType enum value
+	InstanceTypeMlP2Xlarge = "ml.p2.xlarge"
+
+	// InstanceTypeMlP28xlarge is a InstanceType enum value
+	InstanceTypeMlP28xlarge = "ml.p2.8xlarge"
+
+	// InstanceTypeMlP216xlarge is a InstanceType enum value
+	InstanceTypeMlP216xlarge = "ml.p2.16xlarge"
+
+	// InstanceTypeMlP32xlarge is a InstanceType enum value
+	InstanceTypeMlP32xlarge = "ml.p3.2xlarge"
+
+	// InstanceTypeMlP38xlarge is a InstanceType enum value
+	InstanceTypeMlP38xlarge = "ml.p3.8xlarge"
+
+	// InstanceTypeMlP316xlarge is a InstanceType enum value
+	InstanceTypeMlP316xlarge = "ml.p3.16xlarge"
+
+	// InstanceTypeMlP3dn24xlarge is a InstanceType enum value
+	InstanceTypeMlP3dn24xlarge = "ml.p3dn.24xlarge"
+
+	// InstanceTypeMlP4d24xlarge is a InstanceType enum value
+	InstanceTypeMlP4d24xlarge = "ml.p4d.24xlarge"
+
+	// InstanceTypeMlC5Xlarge is a InstanceType enum value
+	InstanceTypeMlC5Xlarge = "ml.c5.xlarge"
+
+	// InstanceTypeMlC52xlarge is a InstanceType enum value
+	InstanceTypeMlC52xlarge = "ml.c5.2xlarge"
+
+	// InstanceTypeMlC54xlarge is a InstanceType enum value
+	InstanceTypeMlC54xlarge = "ml.c5.4xlarge"
+
+	// InstanceTypeMlC59xlarge is a InstanceType enum value
+	InstanceTypeMlC59xlarge = "ml.c5.9xlarge"
+
+	// InstanceTypeMlC518xlarge is a InstanceType enum value
+	InstanceTypeMlC518xlarge = "ml.c5.18xlarge"
+
+	// InstanceTypeMlC5nXlarge is a InstanceType enum value
+	InstanceTypeMlC5nXlarge = "ml.c5n.xlarge"
+
+	// InstanceTypeMlC5n2xlarge is a InstanceType enum value
+	InstanceTypeMlC5n2xlarge = "ml.c5n.2xlarge"
+
+	// InstanceTypeMlC5n4xlarge is a InstanceType enum value
+	InstanceTypeMlC5n4xlarge = "ml.c5n.4xlarge"
+
+	// InstanceTypeMlC5n9xlarge is a InstanceType enum value
+	InstanceTypeMlC5n9xlarge = "ml.c5n.9xlarge"
+
+	// InstanceTypeMlC5n18xlarge is a InstanceType enum value
+	InstanceTypeMlC5n18xlarge = "ml.c5n.18xlarge"
+)
+
+// InstanceType_Values returns all elements of the InstanceType enum
+func InstanceType_Values() []string {
+	return []string{
+		InstanceTypeMlM4Xlarge,
+		InstanceTypeMlM42xlarge,
+		InstanceTypeMlM44xlarge,
+		InstanceTypeMlM410xlarge,
+		InstanceTypeMlM416xlarge,
+		InstanceTypeMlG4dnXlarge,
+		InstanceTypeMlG4dn2xlarge,
+		InstanceTypeMlG4dn4xlarge,
+		InstanceTypeMlG4dn8xlarge,
+		InstanceTypeMlG4dn12xlarge,
+		InstanceTypeMlG4dn16xlarge,
+		InstanceTypeMlM5Large,
+		InstanceTypeMlM5Xlarge,
+		InstanceTypeMlM52xlarge,
+		InstanceTypeMlM54xlarge,
+		InstanceTypeMlM512xlarge,
+		InstanceTypeMlM524xlarge,
+		InstanceTypeMlC4Xlarge,
+		InstanceTypeMlC42xlarge,
+		InstanceTypeMlC44xlarge,
+		InstanceTypeMlC48xlarge,
+		InstanceTypeMlP2Xlarge,
+		InstanceTypeMlP28xlarge,
+		InstanceTypeMlP216xlarge,
+		InstanceTypeMlP32xlarge,
+		InstanceTypeMlP38xlarge,
+		InstanceTypeMlP316xlarge,
+		InstanceTypeMlP3dn24xlarge,
+		InstanceTypeMlP4d24xlarge,
+		InstanceTypeMlC5Xlarge,
+		InstanceTypeMlC52xlarge,
+		InstanceTypeMlC54xlarge,
+		InstanceTypeMlC59xlarge,
+		InstanceTypeMlC518xlarge,
+		InstanceTypeMlC5nXlarge,
+		InstanceTypeMlC5n2xlarge,
+		InstanceTypeMlC5n4xlarge,
+		InstanceTypeMlC5n9xlarge,
+		InstanceTypeMlC5n18xlarge,
+	}
+}
+
+const (
+	// JobEventTypeWaitingForPriority is a JobEventType enum value
+	JobEventTypeWaitingForPriority = "WAITING_FOR_PRIORITY"
+
+	// JobEventTypeQueuedForExecution is a JobEventType enum value
+	JobEventTypeQueuedForExecution = "QUEUED_FOR_EXECUTION"
+
+	// JobEventTypeStartingInstance is a JobEventType enum value
+	JobEventTypeStartingInstance = "STARTING_INSTANCE"
+
+	// JobEventTypeDownloadingData is a JobEventType enum value
+	JobEventTypeDownloadingData = "DOWNLOADING_DATA"
+
+	// JobEventTypeRunning is a JobEventType enum value
+	JobEventTypeRunning = "RUNNING"
+
+	// JobEventTypeDeprioritizedDueToInactivity is a JobEventType enum value
+	JobEventTypeDeprioritizedDueToInactivity = "DEPRIORITIZED_DUE_TO_INACTIVITY"
+
+	// JobEventTypeUploadingResults is a JobEventType enum value
+	JobEventTypeUploadingResults = "UPLOADING_RESULTS"
+
+	// JobEventTypeCompleted is a JobEventType enum value
+	JobEventTypeCompleted = "COMPLETED"
+
+	// JobEventTypeFailed is a JobEventType enum value
+	JobEventTypeFailed = "FAILED"
+
+	// JobEventTypeMaxRuntimeExceeded is a JobEventType enum value
+	JobEventTypeMaxRuntimeExceeded = "MAX_RUNTIME_EXCEEDED"
+
+	// JobEventTypeCancelled is a JobEventType enum value
+	JobEventTypeCancelled = "CANCELLED"
+)
+
+// JobEventType_Values returns all elements of the JobEventType enum
+func JobEventType_Values() []string {
+	return []string{
+		JobEventTypeWaitingForPriority,
+		JobEventTypeQueuedForExecution,
+		JobEventTypeStartingInstance,
+		JobEventTypeDownloadingData,
+		JobEventTypeRunning,
+		JobEventTypeDeprioritizedDueToInactivity,
+		JobEventTypeUploadingResults,
+		JobEventTypeCompleted,
+		JobEventTypeFailed,
+		JobEventTypeMaxRuntimeExceeded,
+		JobEventTypeCancelled,
+	}
+}
+
+const (
+	// JobPrimaryStatusQueued is a JobPrimaryStatus enum value
+	JobPrimaryStatusQueued = "QUEUED"
+
+	// JobPrimaryStatusRunning is a JobPrimaryStatus enum value
+	JobPrimaryStatusRunning = "RUNNING"
+
+	// JobPrimaryStatusCompleted is a JobPrimaryStatus enum value
+	JobPrimaryStatusCompleted = "COMPLETED"
+
+	// JobPrimaryStatusFailed is a JobPrimaryStatus enum value
+	JobPrimaryStatusFailed = "FAILED"
+
+	// JobPrimaryStatusCancelling is a JobPrimaryStatus enum value
+	JobPrimaryStatusCancelling = "CANCELLING"
+
+	// JobPrimaryStatusCancelled is a JobPrimaryStatus enum value
+	JobPrimaryStatusCancelled = "CANCELLED"
+)
+
+// JobPrimaryStatus_Values returns all elements of the JobPrimaryStatus enum
+func JobPrimaryStatus_Values() []string {
+	return []string{
+		JobPrimaryStatusQueued,
+		JobPrimaryStatusRunning,
+		JobPrimaryStatusCompleted,
+		JobPrimaryStatusFailed,
+		JobPrimaryStatusCancelling,
+		JobPrimaryStatusCancelled,
+	}
+}
+
+const (
+	// QuantumTaskAdditionalAttributeNameQueueInfo is a QuantumTaskAdditionalAttributeName enum value
+	QuantumTaskAdditionalAttributeNameQueueInfo = "QueueInfo"
+)
+
+// QuantumTaskAdditionalAttributeName_Values returns all elements of the QuantumTaskAdditionalAttributeName enum
+func QuantumTaskAdditionalAttributeName_Values() []string {
+	return []string{
+		QuantumTaskAdditionalAttributeNameQueueInfo,
+	}
+}
+
+const (
 	// QuantumTaskStatusCreated is a QuantumTaskStatus enum value
 	QuantumTaskStatusCreated = "CREATED"
 
@@ -2805,6 +5809,74 @@ func QuantumTaskStatus_Values() []string {
 		QuantumTaskStatusFailed,
 		QuantumTaskStatusCancelling,
 		QuantumTaskStatusCancelled,
+	}
+}
+
+const (
+	// QueueNameQuantumTasksQueue is a QueueName enum value
+	QueueNameQuantumTasksQueue = "QUANTUM_TASKS_QUEUE"
+
+	// QueueNameJobsQueue is a QueueName enum value
+	QueueNameJobsQueue = "JOBS_QUEUE"
+)
+
+// QueueName_Values returns all elements of the QueueName enum
+func QueueName_Values() []string {
+	return []string{
+		QueueNameQuantumTasksQueue,
+		QueueNameJobsQueue,
+	}
+}
+
+const (
+	// QueuePriorityNormal is a QueuePriority enum value
+	QueuePriorityNormal = "Normal"
+
+	// QueuePriorityPriority is a QueuePriority enum value
+	QueuePriorityPriority = "Priority"
+)
+
+// QueuePriority_Values returns all elements of the QueuePriority enum
+func QueuePriority_Values() []string {
+	return []string{
+		QueuePriorityNormal,
+		QueuePriorityPriority,
+	}
+}
+
+const (
+	// SearchJobsFilterOperatorLt is a SearchJobsFilterOperator enum value
+	SearchJobsFilterOperatorLt = "LT"
+
+	// SearchJobsFilterOperatorLte is a SearchJobsFilterOperator enum value
+	SearchJobsFilterOperatorLte = "LTE"
+
+	// SearchJobsFilterOperatorEqual is a SearchJobsFilterOperator enum value
+	SearchJobsFilterOperatorEqual = "EQUAL"
+
+	// SearchJobsFilterOperatorGt is a SearchJobsFilterOperator enum value
+	SearchJobsFilterOperatorGt = "GT"
+
+	// SearchJobsFilterOperatorGte is a SearchJobsFilterOperator enum value
+	SearchJobsFilterOperatorGte = "GTE"
+
+	// SearchJobsFilterOperatorBetween is a SearchJobsFilterOperator enum value
+	SearchJobsFilterOperatorBetween = "BETWEEN"
+
+	// SearchJobsFilterOperatorContains is a SearchJobsFilterOperator enum value
+	SearchJobsFilterOperatorContains = "CONTAINS"
+)
+
+// SearchJobsFilterOperator_Values returns all elements of the SearchJobsFilterOperator enum
+func SearchJobsFilterOperator_Values() []string {
+	return []string{
+		SearchJobsFilterOperatorLt,
+		SearchJobsFilterOperatorLte,
+		SearchJobsFilterOperatorEqual,
+		SearchJobsFilterOperatorGt,
+		SearchJobsFilterOperatorGte,
+		SearchJobsFilterOperatorBetween,
+		SearchJobsFilterOperatorContains,
 	}
 }
 

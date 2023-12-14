@@ -23,43 +23,55 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS AppSync.
-//    func myFunc(svc appsynciface.AppSyncAPI) bool {
-//        // Make svc.CreateApiCache request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS AppSync.
+//	func myFunc(svc appsynciface.AppSyncAPI) bool {
+//	    // Make svc.AssociateApi request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := appsync.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := appsync.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockAppSyncClient struct {
-//        appsynciface.AppSyncAPI
-//    }
-//    func (m *mockAppSyncClient) CreateApiCache(input *appsync.CreateApiCacheInput) (*appsync.CreateApiCacheOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockAppSyncClient struct {
+//	    appsynciface.AppSyncAPI
+//	}
+//	func (m *mockAppSyncClient) AssociateApi(input *appsync.AssociateApiInput) (*appsync.AssociateApiOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockAppSyncClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockAppSyncClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type AppSyncAPI interface {
+	AssociateApi(*appsync.AssociateApiInput) (*appsync.AssociateApiOutput, error)
+	AssociateApiWithContext(aws.Context, *appsync.AssociateApiInput, ...request.Option) (*appsync.AssociateApiOutput, error)
+	AssociateApiRequest(*appsync.AssociateApiInput) (*request.Request, *appsync.AssociateApiOutput)
+
+	AssociateMergedGraphqlApi(*appsync.AssociateMergedGraphqlApiInput) (*appsync.AssociateMergedGraphqlApiOutput, error)
+	AssociateMergedGraphqlApiWithContext(aws.Context, *appsync.AssociateMergedGraphqlApiInput, ...request.Option) (*appsync.AssociateMergedGraphqlApiOutput, error)
+	AssociateMergedGraphqlApiRequest(*appsync.AssociateMergedGraphqlApiInput) (*request.Request, *appsync.AssociateMergedGraphqlApiOutput)
+
+	AssociateSourceGraphqlApi(*appsync.AssociateSourceGraphqlApiInput) (*appsync.AssociateSourceGraphqlApiOutput, error)
+	AssociateSourceGraphqlApiWithContext(aws.Context, *appsync.AssociateSourceGraphqlApiInput, ...request.Option) (*appsync.AssociateSourceGraphqlApiOutput, error)
+	AssociateSourceGraphqlApiRequest(*appsync.AssociateSourceGraphqlApiInput) (*request.Request, *appsync.AssociateSourceGraphqlApiOutput)
+
 	CreateApiCache(*appsync.CreateApiCacheInput) (*appsync.CreateApiCacheOutput, error)
 	CreateApiCacheWithContext(aws.Context, *appsync.CreateApiCacheInput, ...request.Option) (*appsync.CreateApiCacheOutput, error)
 	CreateApiCacheRequest(*appsync.CreateApiCacheInput) (*request.Request, *appsync.CreateApiCacheOutput)
@@ -71,6 +83,10 @@ type AppSyncAPI interface {
 	CreateDataSource(*appsync.CreateDataSourceInput) (*appsync.CreateDataSourceOutput, error)
 	CreateDataSourceWithContext(aws.Context, *appsync.CreateDataSourceInput, ...request.Option) (*appsync.CreateDataSourceOutput, error)
 	CreateDataSourceRequest(*appsync.CreateDataSourceInput) (*request.Request, *appsync.CreateDataSourceOutput)
+
+	CreateDomainName(*appsync.CreateDomainNameInput) (*appsync.CreateDomainNameOutput, error)
+	CreateDomainNameWithContext(aws.Context, *appsync.CreateDomainNameInput, ...request.Option) (*appsync.CreateDomainNameOutput, error)
+	CreateDomainNameRequest(*appsync.CreateDomainNameInput) (*request.Request, *appsync.CreateDomainNameOutput)
 
 	CreateFunction(*appsync.CreateFunctionInput) (*appsync.CreateFunctionOutput, error)
 	CreateFunctionWithContext(aws.Context, *appsync.CreateFunctionInput, ...request.Option) (*appsync.CreateFunctionOutput, error)
@@ -100,6 +116,10 @@ type AppSyncAPI interface {
 	DeleteDataSourceWithContext(aws.Context, *appsync.DeleteDataSourceInput, ...request.Option) (*appsync.DeleteDataSourceOutput, error)
 	DeleteDataSourceRequest(*appsync.DeleteDataSourceInput) (*request.Request, *appsync.DeleteDataSourceOutput)
 
+	DeleteDomainName(*appsync.DeleteDomainNameInput) (*appsync.DeleteDomainNameOutput, error)
+	DeleteDomainNameWithContext(aws.Context, *appsync.DeleteDomainNameInput, ...request.Option) (*appsync.DeleteDomainNameOutput, error)
+	DeleteDomainNameRequest(*appsync.DeleteDomainNameInput) (*request.Request, *appsync.DeleteDomainNameOutput)
+
 	DeleteFunction(*appsync.DeleteFunctionInput) (*appsync.DeleteFunctionOutput, error)
 	DeleteFunctionWithContext(aws.Context, *appsync.DeleteFunctionInput, ...request.Option) (*appsync.DeleteFunctionOutput, error)
 	DeleteFunctionRequest(*appsync.DeleteFunctionInput) (*request.Request, *appsync.DeleteFunctionOutput)
@@ -116,9 +136,33 @@ type AppSyncAPI interface {
 	DeleteTypeWithContext(aws.Context, *appsync.DeleteTypeInput, ...request.Option) (*appsync.DeleteTypeOutput, error)
 	DeleteTypeRequest(*appsync.DeleteTypeInput) (*request.Request, *appsync.DeleteTypeOutput)
 
+	DisassociateApi(*appsync.DisassociateApiInput) (*appsync.DisassociateApiOutput, error)
+	DisassociateApiWithContext(aws.Context, *appsync.DisassociateApiInput, ...request.Option) (*appsync.DisassociateApiOutput, error)
+	DisassociateApiRequest(*appsync.DisassociateApiInput) (*request.Request, *appsync.DisassociateApiOutput)
+
+	DisassociateMergedGraphqlApi(*appsync.DisassociateMergedGraphqlApiInput) (*appsync.DisassociateMergedGraphqlApiOutput, error)
+	DisassociateMergedGraphqlApiWithContext(aws.Context, *appsync.DisassociateMergedGraphqlApiInput, ...request.Option) (*appsync.DisassociateMergedGraphqlApiOutput, error)
+	DisassociateMergedGraphqlApiRequest(*appsync.DisassociateMergedGraphqlApiInput) (*request.Request, *appsync.DisassociateMergedGraphqlApiOutput)
+
+	DisassociateSourceGraphqlApi(*appsync.DisassociateSourceGraphqlApiInput) (*appsync.DisassociateSourceGraphqlApiOutput, error)
+	DisassociateSourceGraphqlApiWithContext(aws.Context, *appsync.DisassociateSourceGraphqlApiInput, ...request.Option) (*appsync.DisassociateSourceGraphqlApiOutput, error)
+	DisassociateSourceGraphqlApiRequest(*appsync.DisassociateSourceGraphqlApiInput) (*request.Request, *appsync.DisassociateSourceGraphqlApiOutput)
+
+	EvaluateCode(*appsync.EvaluateCodeInput) (*appsync.EvaluateCodeOutput, error)
+	EvaluateCodeWithContext(aws.Context, *appsync.EvaluateCodeInput, ...request.Option) (*appsync.EvaluateCodeOutput, error)
+	EvaluateCodeRequest(*appsync.EvaluateCodeInput) (*request.Request, *appsync.EvaluateCodeOutput)
+
+	EvaluateMappingTemplate(*appsync.EvaluateMappingTemplateInput) (*appsync.EvaluateMappingTemplateOutput, error)
+	EvaluateMappingTemplateWithContext(aws.Context, *appsync.EvaluateMappingTemplateInput, ...request.Option) (*appsync.EvaluateMappingTemplateOutput, error)
+	EvaluateMappingTemplateRequest(*appsync.EvaluateMappingTemplateInput) (*request.Request, *appsync.EvaluateMappingTemplateOutput)
+
 	FlushApiCache(*appsync.FlushApiCacheInput) (*appsync.FlushApiCacheOutput, error)
 	FlushApiCacheWithContext(aws.Context, *appsync.FlushApiCacheInput, ...request.Option) (*appsync.FlushApiCacheOutput, error)
 	FlushApiCacheRequest(*appsync.FlushApiCacheInput) (*request.Request, *appsync.FlushApiCacheOutput)
+
+	GetApiAssociation(*appsync.GetApiAssociationInput) (*appsync.GetApiAssociationOutput, error)
+	GetApiAssociationWithContext(aws.Context, *appsync.GetApiAssociationInput, ...request.Option) (*appsync.GetApiAssociationOutput, error)
+	GetApiAssociationRequest(*appsync.GetApiAssociationInput) (*request.Request, *appsync.GetApiAssociationOutput)
 
 	GetApiCache(*appsync.GetApiCacheInput) (*appsync.GetApiCacheOutput, error)
 	GetApiCacheWithContext(aws.Context, *appsync.GetApiCacheInput, ...request.Option) (*appsync.GetApiCacheOutput, error)
@@ -127,6 +171,14 @@ type AppSyncAPI interface {
 	GetDataSource(*appsync.GetDataSourceInput) (*appsync.GetDataSourceOutput, error)
 	GetDataSourceWithContext(aws.Context, *appsync.GetDataSourceInput, ...request.Option) (*appsync.GetDataSourceOutput, error)
 	GetDataSourceRequest(*appsync.GetDataSourceInput) (*request.Request, *appsync.GetDataSourceOutput)
+
+	GetDataSourceIntrospection(*appsync.GetDataSourceIntrospectionInput) (*appsync.GetDataSourceIntrospectionOutput, error)
+	GetDataSourceIntrospectionWithContext(aws.Context, *appsync.GetDataSourceIntrospectionInput, ...request.Option) (*appsync.GetDataSourceIntrospectionOutput, error)
+	GetDataSourceIntrospectionRequest(*appsync.GetDataSourceIntrospectionInput) (*request.Request, *appsync.GetDataSourceIntrospectionOutput)
+
+	GetDomainName(*appsync.GetDomainNameInput) (*appsync.GetDomainNameOutput, error)
+	GetDomainNameWithContext(aws.Context, *appsync.GetDomainNameInput, ...request.Option) (*appsync.GetDomainNameOutput, error)
+	GetDomainNameRequest(*appsync.GetDomainNameInput) (*request.Request, *appsync.GetDomainNameOutput)
 
 	GetFunction(*appsync.GetFunctionInput) (*appsync.GetFunctionOutput, error)
 	GetFunctionWithContext(aws.Context, *appsync.GetFunctionInput, ...request.Option) (*appsync.GetFunctionOutput, error)
@@ -148,6 +200,10 @@ type AppSyncAPI interface {
 	GetSchemaCreationStatusWithContext(aws.Context, *appsync.GetSchemaCreationStatusInput, ...request.Option) (*appsync.GetSchemaCreationStatusOutput, error)
 	GetSchemaCreationStatusRequest(*appsync.GetSchemaCreationStatusInput) (*request.Request, *appsync.GetSchemaCreationStatusOutput)
 
+	GetSourceApiAssociation(*appsync.GetSourceApiAssociationInput) (*appsync.GetSourceApiAssociationOutput, error)
+	GetSourceApiAssociationWithContext(aws.Context, *appsync.GetSourceApiAssociationInput, ...request.Option) (*appsync.GetSourceApiAssociationOutput, error)
+	GetSourceApiAssociationRequest(*appsync.GetSourceApiAssociationInput) (*request.Request, *appsync.GetSourceApiAssociationOutput)
+
 	GetType(*appsync.GetTypeInput) (*appsync.GetTypeOutput, error)
 	GetTypeWithContext(aws.Context, *appsync.GetTypeInput, ...request.Option) (*appsync.GetTypeOutput, error)
 	GetTypeRequest(*appsync.GetTypeInput) (*request.Request, *appsync.GetTypeOutput)
@@ -159,6 +215,10 @@ type AppSyncAPI interface {
 	ListDataSources(*appsync.ListDataSourcesInput) (*appsync.ListDataSourcesOutput, error)
 	ListDataSourcesWithContext(aws.Context, *appsync.ListDataSourcesInput, ...request.Option) (*appsync.ListDataSourcesOutput, error)
 	ListDataSourcesRequest(*appsync.ListDataSourcesInput) (*request.Request, *appsync.ListDataSourcesOutput)
+
+	ListDomainNames(*appsync.ListDomainNamesInput) (*appsync.ListDomainNamesOutput, error)
+	ListDomainNamesWithContext(aws.Context, *appsync.ListDomainNamesInput, ...request.Option) (*appsync.ListDomainNamesOutput, error)
+	ListDomainNamesRequest(*appsync.ListDomainNamesInput) (*request.Request, *appsync.ListDomainNamesOutput)
 
 	ListFunctions(*appsync.ListFunctionsInput) (*appsync.ListFunctionsOutput, error)
 	ListFunctionsWithContext(aws.Context, *appsync.ListFunctionsInput, ...request.Option) (*appsync.ListFunctionsOutput, error)
@@ -176,6 +236,10 @@ type AppSyncAPI interface {
 	ListResolversByFunctionWithContext(aws.Context, *appsync.ListResolversByFunctionInput, ...request.Option) (*appsync.ListResolversByFunctionOutput, error)
 	ListResolversByFunctionRequest(*appsync.ListResolversByFunctionInput) (*request.Request, *appsync.ListResolversByFunctionOutput)
 
+	ListSourceApiAssociations(*appsync.ListSourceApiAssociationsInput) (*appsync.ListSourceApiAssociationsOutput, error)
+	ListSourceApiAssociationsWithContext(aws.Context, *appsync.ListSourceApiAssociationsInput, ...request.Option) (*appsync.ListSourceApiAssociationsOutput, error)
+	ListSourceApiAssociationsRequest(*appsync.ListSourceApiAssociationsInput) (*request.Request, *appsync.ListSourceApiAssociationsOutput)
+
 	ListTagsForResource(*appsync.ListTagsForResourceInput) (*appsync.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *appsync.ListTagsForResourceInput, ...request.Option) (*appsync.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*appsync.ListTagsForResourceInput) (*request.Request, *appsync.ListTagsForResourceOutput)
@@ -184,9 +248,21 @@ type AppSyncAPI interface {
 	ListTypesWithContext(aws.Context, *appsync.ListTypesInput, ...request.Option) (*appsync.ListTypesOutput, error)
 	ListTypesRequest(*appsync.ListTypesInput) (*request.Request, *appsync.ListTypesOutput)
 
+	ListTypesByAssociation(*appsync.ListTypesByAssociationInput) (*appsync.ListTypesByAssociationOutput, error)
+	ListTypesByAssociationWithContext(aws.Context, *appsync.ListTypesByAssociationInput, ...request.Option) (*appsync.ListTypesByAssociationOutput, error)
+	ListTypesByAssociationRequest(*appsync.ListTypesByAssociationInput) (*request.Request, *appsync.ListTypesByAssociationOutput)
+
+	StartDataSourceIntrospection(*appsync.StartDataSourceIntrospectionInput) (*appsync.StartDataSourceIntrospectionOutput, error)
+	StartDataSourceIntrospectionWithContext(aws.Context, *appsync.StartDataSourceIntrospectionInput, ...request.Option) (*appsync.StartDataSourceIntrospectionOutput, error)
+	StartDataSourceIntrospectionRequest(*appsync.StartDataSourceIntrospectionInput) (*request.Request, *appsync.StartDataSourceIntrospectionOutput)
+
 	StartSchemaCreation(*appsync.StartSchemaCreationInput) (*appsync.StartSchemaCreationOutput, error)
 	StartSchemaCreationWithContext(aws.Context, *appsync.StartSchemaCreationInput, ...request.Option) (*appsync.StartSchemaCreationOutput, error)
 	StartSchemaCreationRequest(*appsync.StartSchemaCreationInput) (*request.Request, *appsync.StartSchemaCreationOutput)
+
+	StartSchemaMerge(*appsync.StartSchemaMergeInput) (*appsync.StartSchemaMergeOutput, error)
+	StartSchemaMergeWithContext(aws.Context, *appsync.StartSchemaMergeInput, ...request.Option) (*appsync.StartSchemaMergeOutput, error)
+	StartSchemaMergeRequest(*appsync.StartSchemaMergeInput) (*request.Request, *appsync.StartSchemaMergeOutput)
 
 	TagResource(*appsync.TagResourceInput) (*appsync.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *appsync.TagResourceInput, ...request.Option) (*appsync.TagResourceOutput, error)
@@ -208,6 +284,10 @@ type AppSyncAPI interface {
 	UpdateDataSourceWithContext(aws.Context, *appsync.UpdateDataSourceInput, ...request.Option) (*appsync.UpdateDataSourceOutput, error)
 	UpdateDataSourceRequest(*appsync.UpdateDataSourceInput) (*request.Request, *appsync.UpdateDataSourceOutput)
 
+	UpdateDomainName(*appsync.UpdateDomainNameInput) (*appsync.UpdateDomainNameOutput, error)
+	UpdateDomainNameWithContext(aws.Context, *appsync.UpdateDomainNameInput, ...request.Option) (*appsync.UpdateDomainNameOutput, error)
+	UpdateDomainNameRequest(*appsync.UpdateDomainNameInput) (*request.Request, *appsync.UpdateDomainNameOutput)
+
 	UpdateFunction(*appsync.UpdateFunctionInput) (*appsync.UpdateFunctionOutput, error)
 	UpdateFunctionWithContext(aws.Context, *appsync.UpdateFunctionInput, ...request.Option) (*appsync.UpdateFunctionOutput, error)
 	UpdateFunctionRequest(*appsync.UpdateFunctionInput) (*request.Request, *appsync.UpdateFunctionOutput)
@@ -219,6 +299,10 @@ type AppSyncAPI interface {
 	UpdateResolver(*appsync.UpdateResolverInput) (*appsync.UpdateResolverOutput, error)
 	UpdateResolverWithContext(aws.Context, *appsync.UpdateResolverInput, ...request.Option) (*appsync.UpdateResolverOutput, error)
 	UpdateResolverRequest(*appsync.UpdateResolverInput) (*request.Request, *appsync.UpdateResolverOutput)
+
+	UpdateSourceApiAssociation(*appsync.UpdateSourceApiAssociationInput) (*appsync.UpdateSourceApiAssociationOutput, error)
+	UpdateSourceApiAssociationWithContext(aws.Context, *appsync.UpdateSourceApiAssociationInput, ...request.Option) (*appsync.UpdateSourceApiAssociationOutput, error)
+	UpdateSourceApiAssociationRequest(*appsync.UpdateSourceApiAssociationInput) (*request.Request, *appsync.UpdateSourceApiAssociationOutput)
 
 	UpdateType(*appsync.UpdateTypeInput) (*appsync.UpdateTypeOutput, error)
 	UpdateTypeWithContext(aws.Context, *appsync.UpdateTypeInput, ...request.Option) (*appsync.UpdateTypeOutput, error)

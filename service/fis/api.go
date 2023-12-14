@@ -29,14 +29,13 @@ const opCreateExperimentTemplate = "CreateExperimentTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateExperimentTemplateRequest method.
+//	req, resp := client.CreateExperimentTemplateRequest(params)
 //
-//    // Example sending a request using the CreateExperimentTemplateRequest method.
-//    req, resp := client.CreateExperimentTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/CreateExperimentTemplate
 func (c *FIS) CreateExperimentTemplateRequest(input *CreateExperimentTemplateInput) (req *request.Request, output *CreateExperimentTemplateOutput) {
@@ -59,21 +58,22 @@ func (c *FIS) CreateExperimentTemplateRequest(input *CreateExperimentTemplateInp
 //
 // Creates an experiment template.
 //
-// To create a template, specify the following information:
+// An experiment template includes the following components:
 //
-//    * Targets: A target can be a specific resource in your AWS environment,
-//    or one or more resources that match criteria that you specify, for example,
-//    resources that have specific tags.
+//   - Targets: A target can be a specific resource in your Amazon Web Services
+//     environment, or one or more resources that match criteria that you specify,
+//     for example, resources that have specific tags.
 //
-//    * Actions: The actions to carry out on the target. You can specify multiple
-//    actions, the duration of each action, and when to start each action during
-//    an experiment.
+//   - Actions: The actions to carry out on the target. You can specify multiple
+//     actions, the duration of each action, and when to start each action during
+//     an experiment.
 //
-//    * Stop conditions: If a stop condition is triggered while an experiment
-//    is running, the experiment is automatically stopped. You can define a
-//    stop condition as a CloudWatch alarm.
+//   - Stop conditions: If a stop condition is triggered while an experiment
+//     is running, the experiment is automatically stopped. You can define a
+//     stop condition as a CloudWatch alarm.
 //
-// For more information, see the AWS Fault Injection Simulator User Guide (https://docs.aws.amazon.com/fis/latest/userguide/).
+// For more information, see experiment templates (https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html)
+// in the Fault Injection Simulator User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -83,18 +83,19 @@ func (c *FIS) CreateExperimentTemplateRequest(input *CreateExperimentTemplateInp
 // API operation CreateExperimentTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
 //
-//   * ConflictException
-//   The request could not be processed because of a conflict.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found.
+//   - ConflictException
+//     The request could not be processed because of a conflict.
 //
-//   * ServiceQuotaExceededException
-//   You have exceeded your service quota.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - ServiceQuotaExceededException
+//     You have exceeded your service quota.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/CreateExperimentTemplate
 func (c *FIS) CreateExperimentTemplate(input *CreateExperimentTemplateInput) (*CreateExperimentTemplateOutput, error) {
@@ -118,6 +119,98 @@ func (c *FIS) CreateExperimentTemplateWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateTargetAccountConfiguration = "CreateTargetAccountConfiguration"
+
+// CreateTargetAccountConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTargetAccountConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTargetAccountConfiguration for more information on using the CreateTargetAccountConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateTargetAccountConfigurationRequest method.
+//	req, resp := client.CreateTargetAccountConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/CreateTargetAccountConfiguration
+func (c *FIS) CreateTargetAccountConfigurationRequest(input *CreateTargetAccountConfigurationInput) (req *request.Request, output *CreateTargetAccountConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateTargetAccountConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/experimentTemplates/{id}/targetAccountConfigurations/{accountId}",
+	}
+
+	if input == nil {
+		input = &CreateTargetAccountConfigurationInput{}
+	}
+
+	output = &CreateTargetAccountConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateTargetAccountConfiguration API operation for AWS Fault Injection Simulator.
+//
+// Creates a target account configuration for the experiment template. A target
+// account configuration is required when accountTargeting of experimentOptions
+// is set to multi-account. For more information, see experiment options (https://docs.aws.amazon.com/fis/latest/userguide/experiment-options.html)
+// in the Fault Injection Simulator User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation CreateTargetAccountConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ConflictException
+//     The request could not be processed because of a conflict.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - ServiceQuotaExceededException
+//     You have exceeded your service quota.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/CreateTargetAccountConfiguration
+func (c *FIS) CreateTargetAccountConfiguration(input *CreateTargetAccountConfigurationInput) (*CreateTargetAccountConfigurationOutput, error) {
+	req, out := c.CreateTargetAccountConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateTargetAccountConfigurationWithContext is the same as CreateTargetAccountConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTargetAccountConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) CreateTargetAccountConfigurationWithContext(ctx aws.Context, input *CreateTargetAccountConfigurationInput, opts ...request.Option) (*CreateTargetAccountConfigurationOutput, error) {
+	req, out := c.CreateTargetAccountConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteExperimentTemplate = "DeleteExperimentTemplate"
 
 // DeleteExperimentTemplateRequest generates a "aws/request.Request" representing the
@@ -134,14 +227,13 @@ const opDeleteExperimentTemplate = "DeleteExperimentTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteExperimentTemplateRequest method.
+//	req, resp := client.DeleteExperimentTemplateRequest(params)
 //
-//    // Example sending a request using the DeleteExperimentTemplateRequest method.
-//    req, resp := client.DeleteExperimentTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/DeleteExperimentTemplate
 func (c *FIS) DeleteExperimentTemplateRequest(input *DeleteExperimentTemplateInput) (req *request.Request, output *DeleteExperimentTemplateOutput) {
@@ -172,12 +264,13 @@ func (c *FIS) DeleteExperimentTemplateRequest(input *DeleteExperimentTemplateInp
 // API operation DeleteExperimentTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/DeleteExperimentTemplate
 func (c *FIS) DeleteExperimentTemplate(input *DeleteExperimentTemplateInput) (*DeleteExperimentTemplateOutput, error) {
@@ -201,6 +294,89 @@ func (c *FIS) DeleteExperimentTemplateWithContext(ctx aws.Context, input *Delete
 	return out, req.Send()
 }
 
+const opDeleteTargetAccountConfiguration = "DeleteTargetAccountConfiguration"
+
+// DeleteTargetAccountConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTargetAccountConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTargetAccountConfiguration for more information on using the DeleteTargetAccountConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTargetAccountConfigurationRequest method.
+//	req, resp := client.DeleteTargetAccountConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/DeleteTargetAccountConfiguration
+func (c *FIS) DeleteTargetAccountConfigurationRequest(input *DeleteTargetAccountConfigurationInput) (req *request.Request, output *DeleteTargetAccountConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTargetAccountConfiguration,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/experimentTemplates/{id}/targetAccountConfigurations/{accountId}",
+	}
+
+	if input == nil {
+		input = &DeleteTargetAccountConfigurationInput{}
+	}
+
+	output = &DeleteTargetAccountConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteTargetAccountConfiguration API operation for AWS Fault Injection Simulator.
+//
+// Deletes the specified target account configuration of the experiment template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation DeleteTargetAccountConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/DeleteTargetAccountConfiguration
+func (c *FIS) DeleteTargetAccountConfiguration(input *DeleteTargetAccountConfigurationInput) (*DeleteTargetAccountConfigurationOutput, error) {
+	req, out := c.DeleteTargetAccountConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTargetAccountConfigurationWithContext is the same as DeleteTargetAccountConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTargetAccountConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) DeleteTargetAccountConfigurationWithContext(ctx aws.Context, input *DeleteTargetAccountConfigurationInput, opts ...request.Option) (*DeleteTargetAccountConfigurationOutput, error) {
+	req, out := c.DeleteTargetAccountConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAction = "GetAction"
 
 // GetActionRequest generates a "aws/request.Request" representing the
@@ -217,14 +393,13 @@ const opGetAction = "GetAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetActionRequest method.
+//	req, resp := client.GetActionRequest(params)
 //
-//    // Example sending a request using the GetActionRequest method.
-//    req, resp := client.GetActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetAction
 func (c *FIS) GetActionRequest(input *GetActionInput) (req *request.Request, output *GetActionOutput) {
@@ -245,7 +420,7 @@ func (c *FIS) GetActionRequest(input *GetActionInput) (req *request.Request, out
 
 // GetAction API operation for AWS Fault Injection Simulator.
 //
-// Gets information about the specified AWS FIS action.
+// Gets information about the specified FIS action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -255,12 +430,13 @@ func (c *FIS) GetActionRequest(input *GetActionInput) (req *request.Request, out
 // API operation GetAction for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetAction
 func (c *FIS) GetAction(input *GetActionInput) (*GetActionOutput, error) {
@@ -300,14 +476,13 @@ const opGetExperiment = "GetExperiment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetExperimentRequest method.
+//	req, resp := client.GetExperimentRequest(params)
 //
-//    // Example sending a request using the GetExperimentRequest method.
-//    req, resp := client.GetExperimentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperiment
 func (c *FIS) GetExperimentRequest(input *GetExperimentInput) (req *request.Request, output *GetExperimentOutput) {
@@ -338,12 +513,13 @@ func (c *FIS) GetExperimentRequest(input *GetExperimentInput) (req *request.Requ
 // API operation GetExperiment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperiment
 func (c *FIS) GetExperiment(input *GetExperimentInput) (*GetExperimentOutput, error) {
@@ -367,6 +543,90 @@ func (c *FIS) GetExperimentWithContext(ctx aws.Context, input *GetExperimentInpu
 	return out, req.Send()
 }
 
+const opGetExperimentTargetAccountConfiguration = "GetExperimentTargetAccountConfiguration"
+
+// GetExperimentTargetAccountConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetExperimentTargetAccountConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetExperimentTargetAccountConfiguration for more information on using the GetExperimentTargetAccountConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetExperimentTargetAccountConfigurationRequest method.
+//	req, resp := client.GetExperimentTargetAccountConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperimentTargetAccountConfiguration
+func (c *FIS) GetExperimentTargetAccountConfigurationRequest(input *GetExperimentTargetAccountConfigurationInput) (req *request.Request, output *GetExperimentTargetAccountConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetExperimentTargetAccountConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/experiments/{id}/targetAccountConfigurations/{accountId}",
+	}
+
+	if input == nil {
+		input = &GetExperimentTargetAccountConfigurationInput{}
+	}
+
+	output = &GetExperimentTargetAccountConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetExperimentTargetAccountConfiguration API operation for AWS Fault Injection Simulator.
+//
+// Gets information about the specified target account configuration of the
+// experiment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation GetExperimentTargetAccountConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperimentTargetAccountConfiguration
+func (c *FIS) GetExperimentTargetAccountConfiguration(input *GetExperimentTargetAccountConfigurationInput) (*GetExperimentTargetAccountConfigurationOutput, error) {
+	req, out := c.GetExperimentTargetAccountConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetExperimentTargetAccountConfigurationWithContext is the same as GetExperimentTargetAccountConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetExperimentTargetAccountConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) GetExperimentTargetAccountConfigurationWithContext(ctx aws.Context, input *GetExperimentTargetAccountConfigurationInput, opts ...request.Option) (*GetExperimentTargetAccountConfigurationOutput, error) {
+	req, out := c.GetExperimentTargetAccountConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetExperimentTemplate = "GetExperimentTemplate"
 
 // GetExperimentTemplateRequest generates a "aws/request.Request" representing the
@@ -383,14 +643,13 @@ const opGetExperimentTemplate = "GetExperimentTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetExperimentTemplateRequest method.
+//	req, resp := client.GetExperimentTemplateRequest(params)
 //
-//    // Example sending a request using the GetExperimentTemplateRequest method.
-//    req, resp := client.GetExperimentTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperimentTemplate
 func (c *FIS) GetExperimentTemplateRequest(input *GetExperimentTemplateInput) (req *request.Request, output *GetExperimentTemplateOutput) {
@@ -421,12 +680,13 @@ func (c *FIS) GetExperimentTemplateRequest(input *GetExperimentTemplateInput) (r
 // API operation GetExperimentTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperimentTemplate
 func (c *FIS) GetExperimentTemplate(input *GetExperimentTemplateInput) (*GetExperimentTemplateOutput, error) {
@@ -450,6 +710,173 @@ func (c *FIS) GetExperimentTemplateWithContext(ctx aws.Context, input *GetExperi
 	return out, req.Send()
 }
 
+const opGetTargetAccountConfiguration = "GetTargetAccountConfiguration"
+
+// GetTargetAccountConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetTargetAccountConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTargetAccountConfiguration for more information on using the GetTargetAccountConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetTargetAccountConfigurationRequest method.
+//	req, resp := client.GetTargetAccountConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetTargetAccountConfiguration
+func (c *FIS) GetTargetAccountConfigurationRequest(input *GetTargetAccountConfigurationInput) (req *request.Request, output *GetTargetAccountConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetTargetAccountConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/experimentTemplates/{id}/targetAccountConfigurations/{accountId}",
+	}
+
+	if input == nil {
+		input = &GetTargetAccountConfigurationInput{}
+	}
+
+	output = &GetTargetAccountConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTargetAccountConfiguration API operation for AWS Fault Injection Simulator.
+//
+// Gets information about the specified target account configuration of the
+// experiment template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation GetTargetAccountConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetTargetAccountConfiguration
+func (c *FIS) GetTargetAccountConfiguration(input *GetTargetAccountConfigurationInput) (*GetTargetAccountConfigurationOutput, error) {
+	req, out := c.GetTargetAccountConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetTargetAccountConfigurationWithContext is the same as GetTargetAccountConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTargetAccountConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) GetTargetAccountConfigurationWithContext(ctx aws.Context, input *GetTargetAccountConfigurationInput, opts ...request.Option) (*GetTargetAccountConfigurationOutput, error) {
+	req, out := c.GetTargetAccountConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetTargetResourceType = "GetTargetResourceType"
+
+// GetTargetResourceTypeRequest generates a "aws/request.Request" representing the
+// client's request for the GetTargetResourceType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTargetResourceType for more information on using the GetTargetResourceType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetTargetResourceTypeRequest method.
+//	req, resp := client.GetTargetResourceTypeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetTargetResourceType
+func (c *FIS) GetTargetResourceTypeRequest(input *GetTargetResourceTypeInput) (req *request.Request, output *GetTargetResourceTypeOutput) {
+	op := &request.Operation{
+		Name:       opGetTargetResourceType,
+		HTTPMethod: "GET",
+		HTTPPath:   "/targetResourceTypes/{resourceType}",
+	}
+
+	if input == nil {
+		input = &GetTargetResourceTypeInput{}
+	}
+
+	output = &GetTargetResourceTypeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTargetResourceType API operation for AWS Fault Injection Simulator.
+//
+// Gets information about the specified resource type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation GetTargetResourceType for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetTargetResourceType
+func (c *FIS) GetTargetResourceType(input *GetTargetResourceTypeInput) (*GetTargetResourceTypeOutput, error) {
+	req, out := c.GetTargetResourceTypeRequest(input)
+	return out, req.Send()
+}
+
+// GetTargetResourceTypeWithContext is the same as GetTargetResourceType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTargetResourceType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) GetTargetResourceTypeWithContext(ctx aws.Context, input *GetTargetResourceTypeInput, opts ...request.Option) (*GetTargetResourceTypeOutput, error) {
+	req, out := c.GetTargetResourceTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListActions = "ListActions"
 
 // ListActionsRequest generates a "aws/request.Request" representing the
@@ -466,14 +893,13 @@ const opListActions = "ListActions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListActionsRequest method.
+//	req, resp := client.ListActionsRequest(params)
 //
-//    // Example sending a request using the ListActionsRequest method.
-//    req, resp := client.ListActionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListActions
 func (c *FIS) ListActionsRequest(input *ListActionsInput) (req *request.Request, output *ListActionsOutput) {
@@ -500,7 +926,7 @@ func (c *FIS) ListActionsRequest(input *ListActionsInput) (req *request.Request,
 
 // ListActions API operation for AWS Fault Injection Simulator.
 //
-// Lists the available AWS FIS actions.
+// Lists the available FIS actions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -510,9 +936,9 @@ func (c *FIS) ListActionsRequest(input *ListActionsInput) (req *request.Request,
 // API operation ListActions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListActions
 func (c *FIS) ListActions(input *ListActionsInput) (*ListActionsOutput, error) {
@@ -544,15 +970,14 @@ func (c *FIS) ListActionsWithContext(ctx aws.Context, input *ListActionsInput, o
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListActions operation.
-//    pageNum := 0
-//    err := client.ListActionsPages(params,
-//        func(page *fis.ListActionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListActions operation.
+//	pageNum := 0
+//	err := client.ListActionsPages(params,
+//	    func(page *fis.ListActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FIS) ListActionsPages(input *ListActionsInput, fn func(*ListActionsOutput, bool) bool) error {
 	return c.ListActionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -588,6 +1013,229 @@ func (c *FIS) ListActionsPagesWithContext(ctx aws.Context, input *ListActionsInp
 	return p.Err()
 }
 
+const opListExperimentResolvedTargets = "ListExperimentResolvedTargets"
+
+// ListExperimentResolvedTargetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExperimentResolvedTargets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExperimentResolvedTargets for more information on using the ListExperimentResolvedTargets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListExperimentResolvedTargetsRequest method.
+//	req, resp := client.ListExperimentResolvedTargetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentResolvedTargets
+func (c *FIS) ListExperimentResolvedTargetsRequest(input *ListExperimentResolvedTargetsInput) (req *request.Request, output *ListExperimentResolvedTargetsOutput) {
+	op := &request.Operation{
+		Name:       opListExperimentResolvedTargets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/experiments/{id}/resolvedTargets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExperimentResolvedTargetsInput{}
+	}
+
+	output = &ListExperimentResolvedTargetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExperimentResolvedTargets API operation for AWS Fault Injection Simulator.
+//
+// Lists the resolved targets information of the specified experiment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation ListExperimentResolvedTargets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentResolvedTargets
+func (c *FIS) ListExperimentResolvedTargets(input *ListExperimentResolvedTargetsInput) (*ListExperimentResolvedTargetsOutput, error) {
+	req, out := c.ListExperimentResolvedTargetsRequest(input)
+	return out, req.Send()
+}
+
+// ListExperimentResolvedTargetsWithContext is the same as ListExperimentResolvedTargets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExperimentResolvedTargets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) ListExperimentResolvedTargetsWithContext(ctx aws.Context, input *ListExperimentResolvedTargetsInput, opts ...request.Option) (*ListExperimentResolvedTargetsOutput, error) {
+	req, out := c.ListExperimentResolvedTargetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExperimentResolvedTargetsPages iterates over the pages of a ListExperimentResolvedTargets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExperimentResolvedTargets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListExperimentResolvedTargets operation.
+//	pageNum := 0
+//	err := client.ListExperimentResolvedTargetsPages(params,
+//	    func(page *fis.ListExperimentResolvedTargetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FIS) ListExperimentResolvedTargetsPages(input *ListExperimentResolvedTargetsInput, fn func(*ListExperimentResolvedTargetsOutput, bool) bool) error {
+	return c.ListExperimentResolvedTargetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExperimentResolvedTargetsPagesWithContext same as ListExperimentResolvedTargetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) ListExperimentResolvedTargetsPagesWithContext(ctx aws.Context, input *ListExperimentResolvedTargetsInput, fn func(*ListExperimentResolvedTargetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExperimentResolvedTargetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExperimentResolvedTargetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExperimentResolvedTargetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListExperimentTargetAccountConfigurations = "ListExperimentTargetAccountConfigurations"
+
+// ListExperimentTargetAccountConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExperimentTargetAccountConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExperimentTargetAccountConfigurations for more information on using the ListExperimentTargetAccountConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListExperimentTargetAccountConfigurationsRequest method.
+//	req, resp := client.ListExperimentTargetAccountConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentTargetAccountConfigurations
+func (c *FIS) ListExperimentTargetAccountConfigurationsRequest(input *ListExperimentTargetAccountConfigurationsInput) (req *request.Request, output *ListExperimentTargetAccountConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListExperimentTargetAccountConfigurations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/experiments/{id}/targetAccountConfigurations",
+	}
+
+	if input == nil {
+		input = &ListExperimentTargetAccountConfigurationsInput{}
+	}
+
+	output = &ListExperimentTargetAccountConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExperimentTargetAccountConfigurations API operation for AWS Fault Injection Simulator.
+//
+// Lists the target account configurations of the specified experiment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation ListExperimentTargetAccountConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentTargetAccountConfigurations
+func (c *FIS) ListExperimentTargetAccountConfigurations(input *ListExperimentTargetAccountConfigurationsInput) (*ListExperimentTargetAccountConfigurationsOutput, error) {
+	req, out := c.ListExperimentTargetAccountConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListExperimentTargetAccountConfigurationsWithContext is the same as ListExperimentTargetAccountConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExperimentTargetAccountConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) ListExperimentTargetAccountConfigurationsWithContext(ctx aws.Context, input *ListExperimentTargetAccountConfigurationsInput, opts ...request.Option) (*ListExperimentTargetAccountConfigurationsOutput, error) {
+	req, out := c.ListExperimentTargetAccountConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListExperimentTemplates = "ListExperimentTemplates"
 
 // ListExperimentTemplatesRequest generates a "aws/request.Request" representing the
@@ -604,14 +1252,13 @@ const opListExperimentTemplates = "ListExperimentTemplates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListExperimentTemplatesRequest method.
+//	req, resp := client.ListExperimentTemplatesRequest(params)
 //
-//    // Example sending a request using the ListExperimentTemplatesRequest method.
-//    req, resp := client.ListExperimentTemplatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentTemplates
 func (c *FIS) ListExperimentTemplatesRequest(input *ListExperimentTemplatesInput) (req *request.Request, output *ListExperimentTemplatesOutput) {
@@ -648,9 +1295,9 @@ func (c *FIS) ListExperimentTemplatesRequest(input *ListExperimentTemplatesInput
 // API operation ListExperimentTemplates for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentTemplates
 func (c *FIS) ListExperimentTemplates(input *ListExperimentTemplatesInput) (*ListExperimentTemplatesOutput, error) {
@@ -682,15 +1329,14 @@ func (c *FIS) ListExperimentTemplatesWithContext(ctx aws.Context, input *ListExp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListExperimentTemplates operation.
-//    pageNum := 0
-//    err := client.ListExperimentTemplatesPages(params,
-//        func(page *fis.ListExperimentTemplatesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListExperimentTemplates operation.
+//	pageNum := 0
+//	err := client.ListExperimentTemplatesPages(params,
+//	    func(page *fis.ListExperimentTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FIS) ListExperimentTemplatesPages(input *ListExperimentTemplatesInput, fn func(*ListExperimentTemplatesOutput, bool) bool) error {
 	return c.ListExperimentTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -742,14 +1388,13 @@ const opListExperiments = "ListExperiments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListExperimentsRequest method.
+//	req, resp := client.ListExperimentsRequest(params)
 //
-//    // Example sending a request using the ListExperimentsRequest method.
-//    req, resp := client.ListExperimentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperiments
 func (c *FIS) ListExperimentsRequest(input *ListExperimentsInput) (req *request.Request, output *ListExperimentsOutput) {
@@ -786,9 +1431,9 @@ func (c *FIS) ListExperimentsRequest(input *ListExperimentsInput) (req *request.
 // API operation ListExperiments for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperiments
 func (c *FIS) ListExperiments(input *ListExperimentsInput) (*ListExperimentsOutput, error) {
@@ -820,15 +1465,14 @@ func (c *FIS) ListExperimentsWithContext(ctx aws.Context, input *ListExperiments
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListExperiments operation.
-//    pageNum := 0
-//    err := client.ListExperimentsPages(params,
-//        func(page *fis.ListExperimentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListExperiments operation.
+//	pageNum := 0
+//	err := client.ListExperimentsPages(params,
+//	    func(page *fis.ListExperimentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FIS) ListExperimentsPages(input *ListExperimentsInput, fn func(*ListExperimentsOutput, bool) bool) error {
 	return c.ListExperimentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -880,14 +1524,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTagsForResource
 func (c *FIS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -938,6 +1581,282 @@ func (c *FIS) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsFor
 	return out, req.Send()
 }
 
+const opListTargetAccountConfigurations = "ListTargetAccountConfigurations"
+
+// ListTargetAccountConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTargetAccountConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTargetAccountConfigurations for more information on using the ListTargetAccountConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTargetAccountConfigurationsRequest method.
+//	req, resp := client.ListTargetAccountConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTargetAccountConfigurations
+func (c *FIS) ListTargetAccountConfigurationsRequest(input *ListTargetAccountConfigurationsInput) (req *request.Request, output *ListTargetAccountConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListTargetAccountConfigurations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/experimentTemplates/{id}/targetAccountConfigurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTargetAccountConfigurationsInput{}
+	}
+
+	output = &ListTargetAccountConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTargetAccountConfigurations API operation for AWS Fault Injection Simulator.
+//
+// Lists the target account configurations of the specified experiment template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation ListTargetAccountConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTargetAccountConfigurations
+func (c *FIS) ListTargetAccountConfigurations(input *ListTargetAccountConfigurationsInput) (*ListTargetAccountConfigurationsOutput, error) {
+	req, out := c.ListTargetAccountConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListTargetAccountConfigurationsWithContext is the same as ListTargetAccountConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTargetAccountConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) ListTargetAccountConfigurationsWithContext(ctx aws.Context, input *ListTargetAccountConfigurationsInput, opts ...request.Option) (*ListTargetAccountConfigurationsOutput, error) {
+	req, out := c.ListTargetAccountConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTargetAccountConfigurationsPages iterates over the pages of a ListTargetAccountConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTargetAccountConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTargetAccountConfigurations operation.
+//	pageNum := 0
+//	err := client.ListTargetAccountConfigurationsPages(params,
+//	    func(page *fis.ListTargetAccountConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FIS) ListTargetAccountConfigurationsPages(input *ListTargetAccountConfigurationsInput, fn func(*ListTargetAccountConfigurationsOutput, bool) bool) error {
+	return c.ListTargetAccountConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTargetAccountConfigurationsPagesWithContext same as ListTargetAccountConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) ListTargetAccountConfigurationsPagesWithContext(ctx aws.Context, input *ListTargetAccountConfigurationsInput, fn func(*ListTargetAccountConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTargetAccountConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTargetAccountConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTargetAccountConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTargetResourceTypes = "ListTargetResourceTypes"
+
+// ListTargetResourceTypesRequest generates a "aws/request.Request" representing the
+// client's request for the ListTargetResourceTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTargetResourceTypes for more information on using the ListTargetResourceTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTargetResourceTypesRequest method.
+//	req, resp := client.ListTargetResourceTypesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTargetResourceTypes
+func (c *FIS) ListTargetResourceTypesRequest(input *ListTargetResourceTypesInput) (req *request.Request, output *ListTargetResourceTypesOutput) {
+	op := &request.Operation{
+		Name:       opListTargetResourceTypes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/targetResourceTypes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTargetResourceTypesInput{}
+	}
+
+	output = &ListTargetResourceTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTargetResourceTypes API operation for AWS Fault Injection Simulator.
+//
+// Lists the target resource types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation ListTargetResourceTypes for usage and error information.
+//
+// Returned Error Types:
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTargetResourceTypes
+func (c *FIS) ListTargetResourceTypes(input *ListTargetResourceTypesInput) (*ListTargetResourceTypesOutput, error) {
+	req, out := c.ListTargetResourceTypesRequest(input)
+	return out, req.Send()
+}
+
+// ListTargetResourceTypesWithContext is the same as ListTargetResourceTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTargetResourceTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) ListTargetResourceTypesWithContext(ctx aws.Context, input *ListTargetResourceTypesInput, opts ...request.Option) (*ListTargetResourceTypesOutput, error) {
+	req, out := c.ListTargetResourceTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTargetResourceTypesPages iterates over the pages of a ListTargetResourceTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTargetResourceTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTargetResourceTypes operation.
+//	pageNum := 0
+//	err := client.ListTargetResourceTypesPages(params,
+//	    func(page *fis.ListTargetResourceTypesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FIS) ListTargetResourceTypesPages(input *ListTargetResourceTypesInput, fn func(*ListTargetResourceTypesOutput, bool) bool) error {
+	return c.ListTargetResourceTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTargetResourceTypesPagesWithContext same as ListTargetResourceTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) ListTargetResourceTypesPagesWithContext(ctx aws.Context, input *ListTargetResourceTypesInput, fn func(*ListTargetResourceTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTargetResourceTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTargetResourceTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTargetResourceTypesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opStartExperiment = "StartExperiment"
 
 // StartExperimentRequest generates a "aws/request.Request" representing the
@@ -954,14 +1873,13 @@ const opStartExperiment = "StartExperiment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartExperimentRequest method.
+//	req, resp := client.StartExperimentRequest(params)
 //
-//    // Example sending a request using the StartExperimentRequest method.
-//    req, resp := client.StartExperimentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/StartExperiment
 func (c *FIS) StartExperimentRequest(input *StartExperimentInput) (req *request.Request, output *StartExperimentOutput) {
@@ -992,18 +1910,19 @@ func (c *FIS) StartExperimentRequest(input *StartExperimentInput) (req *request.
 // API operation StartExperiment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
 //
-//   * ConflictException
-//   The request could not be processed because of a conflict.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found.
+//   - ConflictException
+//     The request could not be processed because of a conflict.
 //
-//   * ServiceQuotaExceededException
-//   You have exceeded your service quota.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - ServiceQuotaExceededException
+//     You have exceeded your service quota.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/StartExperiment
 func (c *FIS) StartExperiment(input *StartExperimentInput) (*StartExperimentOutput, error) {
@@ -1043,14 +1962,13 @@ const opStopExperiment = "StopExperiment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopExperimentRequest method.
+//	req, resp := client.StopExperimentRequest(params)
 //
-//    // Example sending a request using the StopExperimentRequest method.
-//    req, resp := client.StopExperimentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/StopExperiment
 func (c *FIS) StopExperimentRequest(input *StopExperimentInput) (req *request.Request, output *StopExperimentOutput) {
@@ -1081,12 +1999,13 @@ func (c *FIS) StopExperimentRequest(input *StopExperimentInput) (req *request.Re
 // API operation StopExperiment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/StopExperiment
 func (c *FIS) StopExperiment(input *StopExperimentInput) (*StopExperimentOutput, error) {
@@ -1126,14 +2045,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/TagResource
 func (c *FIS) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1201,14 +2119,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UntagResource
 func (c *FIS) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1276,14 +2193,13 @@ const opUpdateExperimentTemplate = "UpdateExperimentTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateExperimentTemplateRequest method.
+//	req, resp := client.UpdateExperimentTemplateRequest(params)
 //
-//    // Example sending a request using the UpdateExperimentTemplateRequest method.
-//    req, resp := client.UpdateExperimentTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateExperimentTemplate
 func (c *FIS) UpdateExperimentTemplateRequest(input *UpdateExperimentTemplateInput) (req *request.Request, output *UpdateExperimentTemplateOutput) {
@@ -1314,15 +2230,16 @@ func (c *FIS) UpdateExperimentTemplateRequest(input *UpdateExperimentTemplateInp
 // API operation UpdateExperimentTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The specified input is not valid, or fails to satisfy the constraints for
-//   the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found.
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
 //
-//   * ServiceQuotaExceededException
-//   You have exceeded your service quota.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - ServiceQuotaExceededException
+//     You have exceeded your service quota.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateExperimentTemplate
 func (c *FIS) UpdateExperimentTemplate(input *UpdateExperimentTemplateInput) (*UpdateExperimentTemplateOutput, error) {
@@ -1346,8 +2263,91 @@ func (c *FIS) UpdateExperimentTemplateWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
-// Describes an action. For more information, see AWS FIS actions (https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html)
-// in the AWS Fault Injection Simulator User Guide.
+const opUpdateTargetAccountConfiguration = "UpdateTargetAccountConfiguration"
+
+// UpdateTargetAccountConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTargetAccountConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTargetAccountConfiguration for more information on using the UpdateTargetAccountConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTargetAccountConfigurationRequest method.
+//	req, resp := client.UpdateTargetAccountConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateTargetAccountConfiguration
+func (c *FIS) UpdateTargetAccountConfigurationRequest(input *UpdateTargetAccountConfigurationInput) (req *request.Request, output *UpdateTargetAccountConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTargetAccountConfiguration,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/experimentTemplates/{id}/targetAccountConfigurations/{accountId}",
+	}
+
+	if input == nil {
+		input = &UpdateTargetAccountConfigurationInput{}
+	}
+
+	output = &UpdateTargetAccountConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTargetAccountConfiguration API operation for AWS Fault Injection Simulator.
+//
+// Updates the target account configuration for the specified experiment template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation UpdateTargetAccountConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The specified input is not valid, or fails to satisfy the constraints for
+//     the request.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateTargetAccountConfiguration
+func (c *FIS) UpdateTargetAccountConfiguration(input *UpdateTargetAccountConfigurationInput) (*UpdateTargetAccountConfigurationOutput, error) {
+	req, out := c.UpdateTargetAccountConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTargetAccountConfigurationWithContext is the same as UpdateTargetAccountConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTargetAccountConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) UpdateTargetAccountConfigurationWithContext(ctx aws.Context, input *UpdateTargetAccountConfigurationInput, opts ...request.Option) (*UpdateTargetAccountConfigurationOutput, error) {
+	req, out := c.UpdateTargetAccountConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// Describes an action. For more information, see FIS actions (https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html)
+// in the Fault Injection Simulator User Guide.
 type Action struct {
 	_ struct{} `type:"structure"`
 
@@ -1367,12 +2367,20 @@ type Action struct {
 	Targets map[string]*ActionTarget `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Action) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Action) GoString() string {
 	return s.String()
 }
@@ -1418,12 +2426,20 @@ type ActionParameter struct {
 	Required *bool `locationName:"required" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionParameter) GoString() string {
 	return s.String()
 }
@@ -1457,12 +2473,20 @@ type ActionSummary struct {
 	Targets map[string]*ActionTarget `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionSummary) GoString() string {
 	return s.String()
 }
@@ -1499,12 +2523,20 @@ type ActionTarget struct {
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTarget) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionTarget) GoString() string {
 	return s.String()
 }
@@ -1523,12 +2555,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -1572,10 +2612,13 @@ func (s *ConflictException) RequestID() string {
 }
 
 // Specifies an action for an experiment template.
+//
+// For more information, see Actions (https://docs.aws.amazon.com/fis/latest/userguide/actions.html)
+// in the Fault Injection Simulator User Guide.
 type CreateExperimentTemplateActionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the action.
+	// The ID of the action. The format of the action ID is: aws:service-name:action-type.
 	//
 	// ActionId is a required field
 	ActionId *string `locationName:"actionId" type:"string" required:"true"`
@@ -1594,12 +2637,20 @@ type CreateExperimentTemplateActionInput struct {
 	Targets map[string]*string `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateActionInput) GoString() string {
 	return s.String()
 }
@@ -1647,6 +2698,47 @@ func (s *CreateExperimentTemplateActionInput) SetTargets(v map[string]*string) *
 	return s
 }
 
+// Specifies experiment options for an experiment template.
+type CreateExperimentTemplateExperimentOptionsInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the account targeting setting for experiment options.
+	AccountTargeting *string `locationName:"accountTargeting" type:"string" enum:"AccountTargeting"`
+
+	// Specifies the empty target resolution mode for experiment options.
+	EmptyTargetResolutionMode *string `locationName:"emptyTargetResolutionMode" type:"string" enum:"EmptyTargetResolutionMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExperimentTemplateExperimentOptionsInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExperimentTemplateExperimentOptionsInput_) GoString() string {
+	return s.String()
+}
+
+// SetAccountTargeting sets the AccountTargeting field's value.
+func (s *CreateExperimentTemplateExperimentOptionsInput_) SetAccountTargeting(v string) *CreateExperimentTemplateExperimentOptionsInput_ {
+	s.AccountTargeting = &v
+	return s
+}
+
+// SetEmptyTargetResolutionMode sets the EmptyTargetResolutionMode field's value.
+func (s *CreateExperimentTemplateExperimentOptionsInput_) SetEmptyTargetResolutionMode(v string) *CreateExperimentTemplateExperimentOptionsInput_ {
+	s.EmptyTargetResolutionMode = &v
+	return s
+}
+
 type CreateExperimentTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1659,13 +2751,18 @@ type CreateExperimentTemplateInput struct {
 	// of the request.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// A description for the experiment template. Can contain up to 64 letters (A-Z
-	// and a-z).
+	// A description for the experiment template.
 	//
 	// Description is a required field
 	Description *string `locationName:"description" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that grants the AWS FIS service
+	// The experiment options for the experiment template.
+	ExperimentOptions *CreateExperimentTemplateExperimentOptionsInput_ `locationName:"experimentOptions" type:"structure"`
+
+	// The configuration for experiment logging.
+	LogConfiguration *CreateExperimentTemplateLogConfigurationInput_ `locationName:"logConfiguration" type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that grants the FIS service
 	// permission to perform service actions on your behalf.
 	//
 	// RoleArn is a required field
@@ -1683,12 +2780,20 @@ type CreateExperimentTemplateInput struct {
 	Targets map[string]*CreateExperimentTemplateTargetInput `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateInput) GoString() string {
 	return s.String()
 }
@@ -1722,6 +2827,11 @@ func (s *CreateExperimentTemplateInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.LogConfiguration != nil {
+		if err := s.LogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.StopConditions != nil {
@@ -1769,6 +2879,18 @@ func (s *CreateExperimentTemplateInput) SetDescription(v string) *CreateExperime
 	return s
 }
 
+// SetExperimentOptions sets the ExperimentOptions field's value.
+func (s *CreateExperimentTemplateInput) SetExperimentOptions(v *CreateExperimentTemplateExperimentOptionsInput_) *CreateExperimentTemplateInput {
+	s.ExperimentOptions = v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *CreateExperimentTemplateInput) SetLogConfiguration(v *CreateExperimentTemplateLogConfigurationInput_) *CreateExperimentTemplateInput {
+	s.LogConfiguration = v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *CreateExperimentTemplateInput) SetRoleArn(v string) *CreateExperimentTemplateInput {
 	s.RoleArn = &v
@@ -1793,6 +2915,81 @@ func (s *CreateExperimentTemplateInput) SetTargets(v map[string]*CreateExperimen
 	return s
 }
 
+// Specifies the configuration for experiment logging.
+type CreateExperimentTemplateLogConfigurationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for experiment logging to Amazon CloudWatch Logs.
+	CloudWatchLogsConfiguration *ExperimentTemplateCloudWatchLogsLogConfigurationInput_ `locationName:"cloudWatchLogsConfiguration" type:"structure"`
+
+	// The schema version.
+	//
+	// LogSchemaVersion is a required field
+	LogSchemaVersion *int64 `locationName:"logSchemaVersion" type:"integer" required:"true"`
+
+	// The configuration for experiment logging to Amazon S3.
+	S3Configuration *ExperimentTemplateS3LogConfigurationInput_ `locationName:"s3Configuration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExperimentTemplateLogConfigurationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExperimentTemplateLogConfigurationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateExperimentTemplateLogConfigurationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateExperimentTemplateLogConfigurationInput_"}
+	if s.LogSchemaVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogSchemaVersion"))
+	}
+	if s.CloudWatchLogsConfiguration != nil {
+		if err := s.CloudWatchLogsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CloudWatchLogsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Configuration != nil {
+		if err := s.S3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudWatchLogsConfiguration sets the CloudWatchLogsConfiguration field's value.
+func (s *CreateExperimentTemplateLogConfigurationInput_) SetCloudWatchLogsConfiguration(v *ExperimentTemplateCloudWatchLogsLogConfigurationInput_) *CreateExperimentTemplateLogConfigurationInput_ {
+	s.CloudWatchLogsConfiguration = v
+	return s
+}
+
+// SetLogSchemaVersion sets the LogSchemaVersion field's value.
+func (s *CreateExperimentTemplateLogConfigurationInput_) SetLogSchemaVersion(v int64) *CreateExperimentTemplateLogConfigurationInput_ {
+	s.LogSchemaVersion = &v
+	return s
+}
+
+// SetS3Configuration sets the S3Configuration field's value.
+func (s *CreateExperimentTemplateLogConfigurationInput_) SetS3Configuration(v *ExperimentTemplateS3LogConfigurationInput_) *CreateExperimentTemplateLogConfigurationInput_ {
+	s.S3Configuration = v
+	return s
+}
+
 type CreateExperimentTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1800,12 +2997,20 @@ type CreateExperimentTemplateOutput struct {
 	ExperimentTemplate *ExperimentTemplate `locationName:"experimentTemplate" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -1832,12 +3037,20 @@ type CreateExperimentTemplateStopConditionInput struct {
 	Value *string `locationName:"value" min:"20" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateStopConditionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateStopConditionInput) GoString() string {
 	return s.String()
 }
@@ -1873,11 +3086,17 @@ func (s *CreateExperimentTemplateStopConditionInput) SetValue(v string) *CreateE
 // Specifies a target for an experiment. You must specify at least one Amazon
 // Resource Name (ARN) or at least one resource tag. You cannot specify both
 // ARNs and tags.
+//
+// For more information, see Targets (https://docs.aws.amazon.com/fis/latest/userguide/targets.html)
+// in the Fault Injection Simulator User Guide.
 type CreateExperimentTemplateTargetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The filters to apply to identify target resources using specific attributes.
 	Filters []*ExperimentTemplateTargetInputFilter `locationName:"filters" type:"list"`
+
+	// The resource type parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
 
 	// The Amazon Resource Names (ARNs) of the resources.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
@@ -1885,7 +3104,7 @@ type CreateExperimentTemplateTargetInput struct {
 	// The tags for the target resources.
 	ResourceTags map[string]*string `locationName:"resourceTags" type:"map"`
 
-	// The AWS resource type. The resource type must be supported for the specified
+	// The resource type. The resource type must be supported for the specified
 	// action.
 	//
 	// ResourceType is a required field
@@ -1909,12 +3128,20 @@ type CreateExperimentTemplateTargetInput struct {
 	SelectionMode *string `locationName:"selectionMode" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateTargetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateExperimentTemplateTargetInput) GoString() string {
 	return s.String()
 }
@@ -1951,6 +3178,12 @@ func (s *CreateExperimentTemplateTargetInput) SetFilters(v []*ExperimentTemplate
 	return s
 }
 
+// SetParameters sets the Parameters field's value.
+func (s *CreateExperimentTemplateTargetInput) SetParameters(v map[string]*string) *CreateExperimentTemplateTargetInput {
+	s.Parameters = v
+	return s
+}
+
 // SetResourceArns sets the ResourceArns field's value.
 func (s *CreateExperimentTemplateTargetInput) SetResourceArns(v []*string) *CreateExperimentTemplateTargetInput {
 	s.ResourceArns = v
@@ -1975,8 +3208,144 @@ func (s *CreateExperimentTemplateTargetInput) SetSelectionMode(v string) *Create
 	return s
 }
 
-type DeleteExperimentTemplateInput struct {
+type CreateTargetAccountConfigurationInput struct {
 	_ struct{} `type:"structure"`
+
+	// The AWS account ID of the target account.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The description of the target account.
+	Description *string `locationName:"description" type:"string"`
+
+	// The experiment template ID.
+	//
+	// ExperimentTemplateId is a required field
+	ExperimentTemplateId *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an IAM role for the target account.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTargetAccountConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTargetAccountConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTargetAccountConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTargetAccountConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ExperimentTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExperimentTemplateId"))
+	}
+	if s.ExperimentTemplateId != nil && len(*s.ExperimentTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExperimentTemplateId", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateTargetAccountConfigurationInput) SetAccountId(v string) *CreateTargetAccountConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateTargetAccountConfigurationInput) SetClientToken(v string) *CreateTargetAccountConfigurationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateTargetAccountConfigurationInput) SetDescription(v string) *CreateTargetAccountConfigurationInput {
+	s.Description = &v
+	return s
+}
+
+// SetExperimentTemplateId sets the ExperimentTemplateId field's value.
+func (s *CreateTargetAccountConfigurationInput) SetExperimentTemplateId(v string) *CreateTargetAccountConfigurationInput {
+	s.ExperimentTemplateId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateTargetAccountConfigurationInput) SetRoleArn(v string) *CreateTargetAccountConfigurationInput {
+	s.RoleArn = &v
+	return s
+}
+
+type CreateTargetAccountConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the target account configuration.
+	TargetAccountConfiguration *TargetAccountConfiguration `locationName:"targetAccountConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTargetAccountConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTargetAccountConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTargetAccountConfiguration sets the TargetAccountConfiguration field's value.
+func (s *CreateTargetAccountConfigurationOutput) SetTargetAccountConfiguration(v *TargetAccountConfiguration) *CreateTargetAccountConfigurationOutput {
+	s.TargetAccountConfiguration = v
+	return s
+}
+
+type DeleteExperimentTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the experiment template.
 	//
@@ -1984,12 +3353,20 @@ type DeleteExperimentTemplateInput struct {
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteExperimentTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteExperimentTemplateInput) GoString() string {
 	return s.String()
 }
@@ -2023,12 +3400,20 @@ type DeleteExperimentTemplateOutput struct {
 	ExperimentTemplate *ExperimentTemplate `locationName:"experimentTemplate" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteExperimentTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteExperimentTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -2039,6 +3424,103 @@ func (s *DeleteExperimentTemplateOutput) SetExperimentTemplate(v *ExperimentTemp
 	return s
 }
 
+type DeleteTargetAccountConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The AWS account ID of the target account.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the experiment template.
+	//
+	// ExperimentTemplateId is a required field
+	ExperimentTemplateId *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTargetAccountConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTargetAccountConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTargetAccountConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTargetAccountConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ExperimentTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExperimentTemplateId"))
+	}
+	if s.ExperimentTemplateId != nil && len(*s.ExperimentTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExperimentTemplateId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteTargetAccountConfigurationInput) SetAccountId(v string) *DeleteTargetAccountConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetExperimentTemplateId sets the ExperimentTemplateId field's value.
+func (s *DeleteTargetAccountConfigurationInput) SetExperimentTemplateId(v string) *DeleteTargetAccountConfigurationInput {
+	s.ExperimentTemplateId = &v
+	return s
+}
+
+type DeleteTargetAccountConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the target account configuration.
+	TargetAccountConfiguration *TargetAccountConfiguration `locationName:"targetAccountConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTargetAccountConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTargetAccountConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTargetAccountConfiguration sets the TargetAccountConfiguration field's value.
+func (s *DeleteTargetAccountConfigurationOutput) SetTargetAccountConfiguration(v *TargetAccountConfiguration) *DeleteTargetAccountConfigurationOutput {
+	s.TargetAccountConfiguration = v
+	return s
+}
+
 // Describes an experiment.
 type Experiment struct {
 	_ struct{} `type:"structure"`
@@ -2046,11 +3528,14 @@ type Experiment struct {
 	// The actions for the experiment.
 	Actions map[string]*ExperimentAction `locationName:"actions" type:"map"`
 
-	// The time the experiment was created.
+	// The time that the experiment was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The time that the experiment ended.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
+	// The experiment options for the experiment.
+	ExperimentOptions *ExperimentOptions `locationName:"experimentOptions" type:"structure"`
 
 	// The ID of the experiment template.
 	ExperimentTemplateId *string `locationName:"experimentTemplateId" type:"string"`
@@ -2058,11 +3543,14 @@ type Experiment struct {
 	// The ID of the experiment.
 	Id *string `locationName:"id" type:"string"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that grants the AWS FIS service
+	// The configuration for experiment logging.
+	LogConfiguration *ExperimentLogConfiguration `locationName:"logConfiguration" type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that grants the FIS service
 	// permission to perform service actions on your behalf.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 
-	// The time that the experiment was started.
+	// The time that the experiment started.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// The state of the experiment.
@@ -2074,16 +3562,27 @@ type Experiment struct {
 	// The tags for the experiment.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The count of target account configurations for the experiment.
+	TargetAccountConfigurationsCount *int64 `locationName:"targetAccountConfigurationsCount" type:"long"`
+
 	// The targets for the experiment.
 	Targets map[string]*ExperimentTarget `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Experiment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Experiment) GoString() string {
 	return s.String()
 }
@@ -2106,6 +3605,12 @@ func (s *Experiment) SetEndTime(v time.Time) *Experiment {
 	return s
 }
 
+// SetExperimentOptions sets the ExperimentOptions field's value.
+func (s *Experiment) SetExperimentOptions(v *ExperimentOptions) *Experiment {
+	s.ExperimentOptions = v
+	return s
+}
+
 // SetExperimentTemplateId sets the ExperimentTemplateId field's value.
 func (s *Experiment) SetExperimentTemplateId(v string) *Experiment {
 	s.ExperimentTemplateId = &v
@@ -2115,6 +3620,12 @@ func (s *Experiment) SetExperimentTemplateId(v string) *Experiment {
 // SetId sets the Id field's value.
 func (s *Experiment) SetId(v string) *Experiment {
 	s.Id = &v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *Experiment) SetLogConfiguration(v *ExperimentLogConfiguration) *Experiment {
+	s.LogConfiguration = v
 	return s
 }
 
@@ -2148,6 +3659,12 @@ func (s *Experiment) SetTags(v map[string]*string) *Experiment {
 	return s
 }
 
+// SetTargetAccountConfigurationsCount sets the TargetAccountConfigurationsCount field's value.
+func (s *Experiment) SetTargetAccountConfigurationsCount(v int64) *Experiment {
+	s.TargetAccountConfigurationsCount = &v
+	return s
+}
+
 // SetTargets sets the Targets field's value.
 func (s *Experiment) SetTargets(v map[string]*ExperimentTarget) *Experiment {
 	s.Targets = v
@@ -2164,11 +3681,17 @@ type ExperimentAction struct {
 	// The description for the action.
 	Description *string `locationName:"description" type:"string"`
 
+	// The time that the action ended.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
 	// The parameters for the action.
 	Parameters map[string]*string `locationName:"parameters" type:"map"`
 
 	// The name of the action that must be completed before this action starts.
 	StartAfter []*string `locationName:"startAfter" type:"list"`
+
+	// The time that the action started.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// The state of the action.
 	State *ExperimentActionState `locationName:"state" type:"structure"`
@@ -2177,12 +3700,20 @@ type ExperimentAction struct {
 	Targets map[string]*string `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentAction) GoString() string {
 	return s.String()
 }
@@ -2199,6 +3730,12 @@ func (s *ExperimentAction) SetDescription(v string) *ExperimentAction {
 	return s
 }
 
+// SetEndTime sets the EndTime field's value.
+func (s *ExperimentAction) SetEndTime(v time.Time) *ExperimentAction {
+	s.EndTime = &v
+	return s
+}
+
 // SetParameters sets the Parameters field's value.
 func (s *ExperimentAction) SetParameters(v map[string]*string) *ExperimentAction {
 	s.Parameters = v
@@ -2208,6 +3745,12 @@ func (s *ExperimentAction) SetParameters(v map[string]*string) *ExperimentAction
 // SetStartAfter sets the StartAfter field's value.
 func (s *ExperimentAction) SetStartAfter(v []*string) *ExperimentAction {
 	s.StartAfter = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ExperimentAction) SetStartTime(v time.Time) *ExperimentAction {
+	s.StartTime = &v
 	return s
 }
 
@@ -2234,12 +3777,20 @@ type ExperimentActionState struct {
 	Status *string `locationName:"status" type:"string" enum:"ExperimentActionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentActionState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentActionState) GoString() string {
 	return s.String()
 }
@@ -2256,6 +3807,171 @@ func (s *ExperimentActionState) SetStatus(v string) *ExperimentActionState {
 	return s
 }
 
+// Describes the configuration for experiment logging to Amazon CloudWatch Logs.
+type ExperimentCloudWatchLogsLogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the destination Amazon CloudWatch Logs
+	// log group.
+	LogGroupArn *string `locationName:"logGroupArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentCloudWatchLogsLogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentCloudWatchLogsLogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *ExperimentCloudWatchLogsLogConfiguration) SetLogGroupArn(v string) *ExperimentCloudWatchLogsLogConfiguration {
+	s.LogGroupArn = &v
+	return s
+}
+
+// Describes the configuration for experiment logging.
+type ExperimentLogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for experiment logging to Amazon CloudWatch Logs.
+	CloudWatchLogsConfiguration *ExperimentCloudWatchLogsLogConfiguration `locationName:"cloudWatchLogsConfiguration" type:"structure"`
+
+	// The schema version.
+	LogSchemaVersion *int64 `locationName:"logSchemaVersion" type:"integer"`
+
+	// The configuration for experiment logging to Amazon S3.
+	S3Configuration *ExperimentS3LogConfiguration `locationName:"s3Configuration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentLogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentLogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsConfiguration sets the CloudWatchLogsConfiguration field's value.
+func (s *ExperimentLogConfiguration) SetCloudWatchLogsConfiguration(v *ExperimentCloudWatchLogsLogConfiguration) *ExperimentLogConfiguration {
+	s.CloudWatchLogsConfiguration = v
+	return s
+}
+
+// SetLogSchemaVersion sets the LogSchemaVersion field's value.
+func (s *ExperimentLogConfiguration) SetLogSchemaVersion(v int64) *ExperimentLogConfiguration {
+	s.LogSchemaVersion = &v
+	return s
+}
+
+// SetS3Configuration sets the S3Configuration field's value.
+func (s *ExperimentLogConfiguration) SetS3Configuration(v *ExperimentS3LogConfiguration) *ExperimentLogConfiguration {
+	s.S3Configuration = v
+	return s
+}
+
+// Describes the options for an experiment.
+type ExperimentOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The account targeting setting for an experiment.
+	AccountTargeting *string `locationName:"accountTargeting" type:"string" enum:"AccountTargeting"`
+
+	// The empty target resolution mode for an experiment.
+	EmptyTargetResolutionMode *string `locationName:"emptyTargetResolutionMode" type:"string" enum:"EmptyTargetResolutionMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentOptions) GoString() string {
+	return s.String()
+}
+
+// SetAccountTargeting sets the AccountTargeting field's value.
+func (s *ExperimentOptions) SetAccountTargeting(v string) *ExperimentOptions {
+	s.AccountTargeting = &v
+	return s
+}
+
+// SetEmptyTargetResolutionMode sets the EmptyTargetResolutionMode field's value.
+func (s *ExperimentOptions) SetEmptyTargetResolutionMode(v string) *ExperimentOptions {
+	s.EmptyTargetResolutionMode = &v
+	return s
+}
+
+// Describes the configuration for experiment logging to Amazon S3.
+type ExperimentS3LogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the destination bucket.
+	BucketName *string `locationName:"bucketName" min:"3" type:"string"`
+
+	// The bucket prefix.
+	Prefix *string `locationName:"prefix" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentS3LogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentS3LogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *ExperimentS3LogConfiguration) SetBucketName(v string) *ExperimentS3LogConfiguration {
+	s.BucketName = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *ExperimentS3LogConfiguration) SetPrefix(v string) *ExperimentS3LogConfiguration {
+	s.Prefix = &v
+	return s
+}
+
 // Describes the state of an experiment.
 type ExperimentState struct {
 	_ struct{} `type:"structure"`
@@ -2267,12 +3983,20 @@ type ExperimentState struct {
 	Status *string `locationName:"status" type:"string" enum:"ExperimentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentState) GoString() string {
 	return s.String()
 }
@@ -2300,12 +4024,20 @@ type ExperimentStopCondition struct {
 	Value *string `locationName:"value" min:"20" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentStopCondition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentStopCondition) GoString() string {
 	return s.String()
 }
@@ -2342,12 +4074,20 @@ type ExperimentSummary struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentSummary) GoString() string {
 	return s.String()
 }
@@ -2389,6 +4129,9 @@ type ExperimentTarget struct {
 	// The filters to apply to identify target resources using specific attributes.
 	Filters []*ExperimentTargetFilter `locationName:"filters" type:"list"`
 
+	// The resource type parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
 	// The Amazon Resource Names (ARNs) of the resources.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
@@ -2402,12 +4145,20 @@ type ExperimentTarget struct {
 	SelectionMode *string `locationName:"selectionMode" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTarget) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTarget) GoString() string {
 	return s.String()
 }
@@ -2415,6 +4166,12 @@ func (s ExperimentTarget) GoString() string {
 // SetFilters sets the Filters field's value.
 func (s *ExperimentTarget) SetFilters(v []*ExperimentTargetFilter) *ExperimentTarget {
 	s.Filters = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ExperimentTarget) SetParameters(v map[string]*string) *ExperimentTarget {
+	s.Parameters = v
 	return s
 }
 
@@ -2442,6 +4199,106 @@ func (s *ExperimentTarget) SetSelectionMode(v string) *ExperimentTarget {
 	return s
 }
 
+// Describes a target account configuration for an experiment.
+type ExperimentTargetAccountConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID of the target account.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// The description of the target account.
+	Description *string `locationName:"description" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an IAM role for the target account.
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTargetAccountConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTargetAccountConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ExperimentTargetAccountConfiguration) SetAccountId(v string) *ExperimentTargetAccountConfiguration {
+	s.AccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ExperimentTargetAccountConfiguration) SetDescription(v string) *ExperimentTargetAccountConfiguration {
+	s.Description = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ExperimentTargetAccountConfiguration) SetRoleArn(v string) *ExperimentTargetAccountConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
+// Provides a summary of a target account configuration.
+type ExperimentTargetAccountConfigurationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID of the target account.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// The description of the target account.
+	Description *string `locationName:"description" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an IAM role for the target account.
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTargetAccountConfigurationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTargetAccountConfigurationSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ExperimentTargetAccountConfigurationSummary) SetAccountId(v string) *ExperimentTargetAccountConfigurationSummary {
+	s.AccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ExperimentTargetAccountConfigurationSummary) SetDescription(v string) *ExperimentTargetAccountConfigurationSummary {
+	s.Description = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ExperimentTargetAccountConfigurationSummary) SetRoleArn(v string) *ExperimentTargetAccountConfigurationSummary {
+	s.RoleArn = &v
+	return s
+}
+
 // Describes a filter used for the target resources in an experiment.
 type ExperimentTargetFilter struct {
 	_ struct{} `type:"structure"`
@@ -2453,12 +4310,20 @@ type ExperimentTargetFilter struct {
 	Values []*string `locationName:"values" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTargetFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTargetFilter) GoString() string {
 	return s.String()
 }
@@ -2488,11 +4353,17 @@ type ExperimentTemplate struct {
 	// The description for the experiment template.
 	Description *string `locationName:"description" type:"string"`
 
+	// The experiment options for an experiment template.
+	ExperimentOptions *ExperimentTemplateExperimentOptions `locationName:"experimentOptions" type:"structure"`
+
 	// The ID of the experiment template.
 	Id *string `locationName:"id" type:"string"`
 
 	// The time the experiment template was last updated.
 	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
+
+	// The configuration for experiment logging.
+	LogConfiguration *ExperimentTemplateLogConfiguration `locationName:"logConfiguration" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of an IAM role.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
@@ -2503,16 +4374,27 @@ type ExperimentTemplate struct {
 	// The tags for the experiment template.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The count of target account configurations for the experiment template.
+	TargetAccountConfigurationsCount *int64 `locationName:"targetAccountConfigurationsCount" type:"long"`
+
 	// The targets for the experiment.
 	Targets map[string]*ExperimentTemplateTarget `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplate) GoString() string {
 	return s.String()
 }
@@ -2535,6 +4417,12 @@ func (s *ExperimentTemplate) SetDescription(v string) *ExperimentTemplate {
 	return s
 }
 
+// SetExperimentOptions sets the ExperimentOptions field's value.
+func (s *ExperimentTemplate) SetExperimentOptions(v *ExperimentTemplateExperimentOptions) *ExperimentTemplate {
+	s.ExperimentOptions = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *ExperimentTemplate) SetId(v string) *ExperimentTemplate {
 	s.Id = &v
@@ -2544,6 +4432,12 @@ func (s *ExperimentTemplate) SetId(v string) *ExperimentTemplate {
 // SetLastUpdateTime sets the LastUpdateTime field's value.
 func (s *ExperimentTemplate) SetLastUpdateTime(v time.Time) *ExperimentTemplate {
 	s.LastUpdateTime = &v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *ExperimentTemplate) SetLogConfiguration(v *ExperimentTemplateLogConfiguration) *ExperimentTemplate {
+	s.LogConfiguration = v
 	return s
 }
 
@@ -2562,6 +4456,12 @@ func (s *ExperimentTemplate) SetStopConditions(v []*ExperimentTemplateStopCondit
 // SetTags sets the Tags field's value.
 func (s *ExperimentTemplate) SetTags(v map[string]*string) *ExperimentTemplate {
 	s.Tags = v
+	return s
+}
+
+// SetTargetAccountConfigurationsCount sets the TargetAccountConfigurationsCount field's value.
+func (s *ExperimentTemplate) SetTargetAccountConfigurationsCount(v int64) *ExperimentTemplate {
+	s.TargetAccountConfigurationsCount = &v
 	return s
 }
 
@@ -2591,12 +4491,20 @@ type ExperimentTemplateAction struct {
 	Targets map[string]*string `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateAction) GoString() string {
 	return s.String()
 }
@@ -2631,6 +4539,284 @@ func (s *ExperimentTemplateAction) SetTargets(v map[string]*string) *ExperimentT
 	return s
 }
 
+// Describes the configuration for experiment logging to Amazon CloudWatch Logs.
+type ExperimentTemplateCloudWatchLogsLogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the destination Amazon CloudWatch Logs
+	// log group.
+	LogGroupArn *string `locationName:"logGroupArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateCloudWatchLogsLogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateCloudWatchLogsLogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *ExperimentTemplateCloudWatchLogsLogConfiguration) SetLogGroupArn(v string) *ExperimentTemplateCloudWatchLogsLogConfiguration {
+	s.LogGroupArn = &v
+	return s
+}
+
+// Specifies the configuration for experiment logging to Amazon CloudWatch Logs.
+type ExperimentTemplateCloudWatchLogsLogConfigurationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the destination Amazon CloudWatch Logs
+	// log group.
+	//
+	// LogGroupArn is a required field
+	LogGroupArn *string `locationName:"logGroupArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateCloudWatchLogsLogConfigurationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateCloudWatchLogsLogConfigurationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExperimentTemplateCloudWatchLogsLogConfigurationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExperimentTemplateCloudWatchLogsLogConfigurationInput_"}
+	if s.LogGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogGroupArn"))
+	}
+	if s.LogGroupArn != nil && len(*s.LogGroupArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("LogGroupArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *ExperimentTemplateCloudWatchLogsLogConfigurationInput_) SetLogGroupArn(v string) *ExperimentTemplateCloudWatchLogsLogConfigurationInput_ {
+	s.LogGroupArn = &v
+	return s
+}
+
+// Describes the experiment options for an experiment template.
+type ExperimentTemplateExperimentOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The account targeting setting for an experiment template.
+	AccountTargeting *string `locationName:"accountTargeting" type:"string" enum:"AccountTargeting"`
+
+	// The empty target resolution mode for an experiment template.
+	EmptyTargetResolutionMode *string `locationName:"emptyTargetResolutionMode" type:"string" enum:"EmptyTargetResolutionMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateExperimentOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateExperimentOptions) GoString() string {
+	return s.String()
+}
+
+// SetAccountTargeting sets the AccountTargeting field's value.
+func (s *ExperimentTemplateExperimentOptions) SetAccountTargeting(v string) *ExperimentTemplateExperimentOptions {
+	s.AccountTargeting = &v
+	return s
+}
+
+// SetEmptyTargetResolutionMode sets the EmptyTargetResolutionMode field's value.
+func (s *ExperimentTemplateExperimentOptions) SetEmptyTargetResolutionMode(v string) *ExperimentTemplateExperimentOptions {
+	s.EmptyTargetResolutionMode = &v
+	return s
+}
+
+// Describes the configuration for experiment logging.
+type ExperimentTemplateLogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for experiment logging to Amazon CloudWatch Logs.
+	CloudWatchLogsConfiguration *ExperimentTemplateCloudWatchLogsLogConfiguration `locationName:"cloudWatchLogsConfiguration" type:"structure"`
+
+	// The schema version.
+	LogSchemaVersion *int64 `locationName:"logSchemaVersion" type:"integer"`
+
+	// The configuration for experiment logging to Amazon S3.
+	S3Configuration *ExperimentTemplateS3LogConfiguration `locationName:"s3Configuration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateLogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateLogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsConfiguration sets the CloudWatchLogsConfiguration field's value.
+func (s *ExperimentTemplateLogConfiguration) SetCloudWatchLogsConfiguration(v *ExperimentTemplateCloudWatchLogsLogConfiguration) *ExperimentTemplateLogConfiguration {
+	s.CloudWatchLogsConfiguration = v
+	return s
+}
+
+// SetLogSchemaVersion sets the LogSchemaVersion field's value.
+func (s *ExperimentTemplateLogConfiguration) SetLogSchemaVersion(v int64) *ExperimentTemplateLogConfiguration {
+	s.LogSchemaVersion = &v
+	return s
+}
+
+// SetS3Configuration sets the S3Configuration field's value.
+func (s *ExperimentTemplateLogConfiguration) SetS3Configuration(v *ExperimentTemplateS3LogConfiguration) *ExperimentTemplateLogConfiguration {
+	s.S3Configuration = v
+	return s
+}
+
+// Describes the configuration for experiment logging to Amazon S3.
+type ExperimentTemplateS3LogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the destination bucket.
+	BucketName *string `locationName:"bucketName" min:"3" type:"string"`
+
+	// The bucket prefix.
+	Prefix *string `locationName:"prefix" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateS3LogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateS3LogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *ExperimentTemplateS3LogConfiguration) SetBucketName(v string) *ExperimentTemplateS3LogConfiguration {
+	s.BucketName = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *ExperimentTemplateS3LogConfiguration) SetPrefix(v string) *ExperimentTemplateS3LogConfiguration {
+	s.Prefix = &v
+	return s
+}
+
+// Specifies the configuration for experiment logging to Amazon S3.
+type ExperimentTemplateS3LogConfigurationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the destination bucket.
+	//
+	// BucketName is a required field
+	BucketName *string `locationName:"bucketName" min:"3" type:"string" required:"true"`
+
+	// The bucket prefix.
+	Prefix *string `locationName:"prefix" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateS3LogConfigurationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperimentTemplateS3LogConfigurationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExperimentTemplateS3LogConfigurationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExperimentTemplateS3LogConfigurationInput_"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.Prefix != nil && len(*s.Prefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Prefix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *ExperimentTemplateS3LogConfigurationInput_) SetBucketName(v string) *ExperimentTemplateS3LogConfigurationInput_ {
+	s.BucketName = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *ExperimentTemplateS3LogConfigurationInput_) SetPrefix(v string) *ExperimentTemplateS3LogConfigurationInput_ {
+	s.Prefix = &v
+	return s
+}
+
 // Describes a stop condition for an experiment template.
 type ExperimentTemplateStopCondition struct {
 	_ struct{} `type:"structure"`
@@ -2642,12 +4828,20 @@ type ExperimentTemplateStopCondition struct {
 	Value *string `locationName:"value" min:"20" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateStopCondition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateStopCondition) GoString() string {
 	return s.String()
 }
@@ -2684,12 +4878,20 @@ type ExperimentTemplateSummary struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateSummary) GoString() string {
 	return s.String()
 }
@@ -2731,6 +4933,9 @@ type ExperimentTemplateTarget struct {
 	// The filters to apply to identify target resources using specific attributes.
 	Filters []*ExperimentTemplateTargetFilter `locationName:"filters" type:"list"`
 
+	// The resource type parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
 	// The Amazon Resource Names (ARNs) of the targets.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
@@ -2744,12 +4949,20 @@ type ExperimentTemplateTarget struct {
 	SelectionMode *string `locationName:"selectionMode" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateTarget) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateTarget) GoString() string {
 	return s.String()
 }
@@ -2757,6 +4970,12 @@ func (s ExperimentTemplateTarget) GoString() string {
 // SetFilters sets the Filters field's value.
 func (s *ExperimentTemplateTarget) SetFilters(v []*ExperimentTemplateTargetFilter) *ExperimentTemplateTarget {
 	s.Filters = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ExperimentTemplateTarget) SetParameters(v map[string]*string) *ExperimentTemplateTarget {
+	s.Parameters = v
 	return s
 }
 
@@ -2795,12 +5014,20 @@ type ExperimentTemplateTargetFilter struct {
 	Values []*string `locationName:"values" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateTargetFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateTargetFilter) GoString() string {
 	return s.String()
 }
@@ -2817,7 +5044,10 @@ func (s *ExperimentTemplateTargetFilter) SetValues(v []*string) *ExperimentTempl
 	return s
 }
 
-// Describes a filter used for the target resource input in an experiment template.
+// Specifies a filter used for the target resource input in an experiment template.
+//
+// For more information, see Resource filters (https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-filters)
+// in the Fault Injection Simulator User Guide.
 type ExperimentTemplateTargetInputFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -2832,12 +5062,20 @@ type ExperimentTemplateTargetInputFilter struct {
 	Values []*string `locationName:"values" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateTargetInputFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExperimentTemplateTargetInputFilter) GoString() string {
 	return s.String()
 }
@@ -2871,7 +5109,7 @@ func (s *ExperimentTemplateTargetInputFilter) SetValues(v []*string) *Experiment
 }
 
 type GetActionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the action.
 	//
@@ -2879,12 +5117,20 @@ type GetActionInput struct {
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetActionInput) GoString() string {
 	return s.String()
 }
@@ -2918,12 +5164,20 @@ type GetActionOutput struct {
 	Action *Action `locationName:"action" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetActionOutput) GoString() string {
 	return s.String()
 }
@@ -2935,7 +5189,7 @@ func (s *GetActionOutput) SetAction(v *Action) *GetActionOutput {
 }
 
 type GetExperimentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the experiment.
 	//
@@ -2943,12 +5197,20 @@ type GetExperimentInput struct {
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetExperimentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetExperimentInput) GoString() string {
 	return s.String()
 }
@@ -2982,12 +5244,20 @@ type GetExperimentOutput struct {
 	Experiment *Experiment `locationName:"experiment" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetExperimentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetExperimentOutput) GoString() string {
 	return s.String()
 }
@@ -2998,8 +5268,105 @@ func (s *GetExperimentOutput) SetExperiment(v *Experiment) *GetExperimentOutput 
 	return s
 }
 
-type GetExperimentTemplateInput struct {
+type GetExperimentTargetAccountConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The AWS account ID of the target account.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the experiment.
+	//
+	// ExperimentId is a required field
+	ExperimentId *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExperimentTargetAccountConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExperimentTargetAccountConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetExperimentTargetAccountConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetExperimentTargetAccountConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ExperimentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExperimentId"))
+	}
+	if s.ExperimentId != nil && len(*s.ExperimentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExperimentId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetExperimentTargetAccountConfigurationInput) SetAccountId(v string) *GetExperimentTargetAccountConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetExperimentId sets the ExperimentId field's value.
+func (s *GetExperimentTargetAccountConfigurationInput) SetExperimentId(v string) *GetExperimentTargetAccountConfigurationInput {
+	s.ExperimentId = &v
+	return s
+}
+
+type GetExperimentTargetAccountConfigurationOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Information about the target account configuration.
+	TargetAccountConfiguration *ExperimentTargetAccountConfiguration `locationName:"targetAccountConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExperimentTargetAccountConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExperimentTargetAccountConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTargetAccountConfiguration sets the TargetAccountConfiguration field's value.
+func (s *GetExperimentTargetAccountConfigurationOutput) SetTargetAccountConfiguration(v *ExperimentTargetAccountConfiguration) *GetExperimentTargetAccountConfigurationOutput {
+	s.TargetAccountConfiguration = v
+	return s
+}
+
+type GetExperimentTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the experiment template.
 	//
@@ -3007,12 +5374,20 @@ type GetExperimentTemplateInput struct {
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetExperimentTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetExperimentTemplateInput) GoString() string {
 	return s.String()
 }
@@ -3046,12 +5421,20 @@ type GetExperimentTemplateOutput struct {
 	ExperimentTemplate *ExperimentTemplate `locationName:"experimentTemplate" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetExperimentTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetExperimentTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -3062,8 +5445,185 @@ func (s *GetExperimentTemplateOutput) SetExperimentTemplate(v *ExperimentTemplat
 	return s
 }
 
-type ListActionsInput struct {
+type GetTargetAccountConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The AWS account ID of the target account.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the experiment template.
+	//
+	// ExperimentTemplateId is a required field
+	ExperimentTemplateId *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetAccountConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetAccountConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTargetAccountConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTargetAccountConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ExperimentTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExperimentTemplateId"))
+	}
+	if s.ExperimentTemplateId != nil && len(*s.ExperimentTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExperimentTemplateId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetTargetAccountConfigurationInput) SetAccountId(v string) *GetTargetAccountConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetExperimentTemplateId sets the ExperimentTemplateId field's value.
+func (s *GetTargetAccountConfigurationInput) SetExperimentTemplateId(v string) *GetTargetAccountConfigurationInput {
+	s.ExperimentTemplateId = &v
+	return s
+}
+
+type GetTargetAccountConfigurationOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Information about the target account configuration.
+	TargetAccountConfiguration *TargetAccountConfiguration `locationName:"targetAccountConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetAccountConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetAccountConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTargetAccountConfiguration sets the TargetAccountConfiguration field's value.
+func (s *GetTargetAccountConfigurationOutput) SetTargetAccountConfiguration(v *TargetAccountConfiguration) *GetTargetAccountConfigurationOutput {
+	s.TargetAccountConfiguration = v
+	return s
+}
+
+type GetTargetResourceTypeInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The resource type.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"uri" locationName:"resourceType" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetResourceTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetResourceTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTargetResourceTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTargetResourceTypeInput"}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetTargetResourceTypeInput) SetResourceType(v string) *GetTargetResourceTypeInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetTargetResourceTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the resource type.
+	TargetResourceType *TargetResourceType `locationName:"targetResourceType" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetResourceTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetResourceTypeOutput) GoString() string {
+	return s.String()
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *GetTargetResourceTypeOutput) SetTargetResourceType(v *TargetResourceType) *GetTargetResourceTypeOutput {
+	s.TargetResourceType = v
+	return s
+}
+
+type ListActionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
@@ -3073,12 +5633,20 @@ type ListActionsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionsInput) GoString() string {
 	return s.String()
 }
@@ -3122,12 +5690,20 @@ type ListActionsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListActionsOutput) GoString() string {
 	return s.String()
 }
@@ -3144,8 +5720,234 @@ func (s *ListActionsOutput) SetNextToken(v string) *ListActionsOutput {
 	return s
 }
 
-type ListExperimentTemplatesInput struct {
+type ListExperimentResolvedTargetsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the experiment.
+	//
+	// ExperimentId is a required field
+	ExperimentId *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The name of the target.
+	TargetName *string `location:"querystring" locationName:"targetName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperimentResolvedTargetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperimentResolvedTargetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExperimentResolvedTargetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExperimentResolvedTargetsInput"}
+	if s.ExperimentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExperimentId"))
+	}
+	if s.ExperimentId != nil && len(*s.ExperimentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExperimentId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExperimentId sets the ExperimentId field's value.
+func (s *ListExperimentResolvedTargetsInput) SetExperimentId(v string) *ListExperimentResolvedTargetsInput {
+	s.ExperimentId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExperimentResolvedTargetsInput) SetMaxResults(v int64) *ListExperimentResolvedTargetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExperimentResolvedTargetsInput) SetNextToken(v string) *ListExperimentResolvedTargetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTargetName sets the TargetName field's value.
+func (s *ListExperimentResolvedTargetsInput) SetTargetName(v string) *ListExperimentResolvedTargetsInput {
+	s.TargetName = &v
+	return s
+}
+
+type ListExperimentResolvedTargetsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The resolved targets.
+	ResolvedTargets []*ResolvedTarget `locationName:"resolvedTargets" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperimentResolvedTargetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperimentResolvedTargetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExperimentResolvedTargetsOutput) SetNextToken(v string) *ListExperimentResolvedTargetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResolvedTargets sets the ResolvedTargets field's value.
+func (s *ListExperimentResolvedTargetsOutput) SetResolvedTargets(v []*ResolvedTarget) *ListExperimentResolvedTargetsOutput {
+	s.ResolvedTargets = v
+	return s
+}
+
+type ListExperimentTargetAccountConfigurationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the experiment.
+	//
+	// ExperimentId is a required field
+	ExperimentId *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	// The token for the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperimentTargetAccountConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperimentTargetAccountConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExperimentTargetAccountConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExperimentTargetAccountConfigurationsInput"}
+	if s.ExperimentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExperimentId"))
+	}
+	if s.ExperimentId != nil && len(*s.ExperimentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExperimentId", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExperimentId sets the ExperimentId field's value.
+func (s *ListExperimentTargetAccountConfigurationsInput) SetExperimentId(v string) *ListExperimentTargetAccountConfigurationsInput {
+	s.ExperimentId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExperimentTargetAccountConfigurationsInput) SetNextToken(v string) *ListExperimentTargetAccountConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListExperimentTargetAccountConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The target account configurations.
+	TargetAccountConfigurations []*ExperimentTargetAccountConfigurationSummary `locationName:"targetAccountConfigurations" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperimentTargetAccountConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperimentTargetAccountConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExperimentTargetAccountConfigurationsOutput) SetNextToken(v string) *ListExperimentTargetAccountConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTargetAccountConfigurations sets the TargetAccountConfigurations field's value.
+func (s *ListExperimentTargetAccountConfigurationsOutput) SetTargetAccountConfigurations(v []*ExperimentTargetAccountConfigurationSummary) *ListExperimentTargetAccountConfigurationsOutput {
+	s.TargetAccountConfigurations = v
+	return s
+}
+
+type ListExperimentTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
@@ -3155,12 +5957,20 @@ type ListExperimentTemplatesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListExperimentTemplatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListExperimentTemplatesInput) GoString() string {
 	return s.String()
 }
@@ -3204,12 +6014,20 @@ type ListExperimentTemplatesOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListExperimentTemplatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListExperimentTemplatesOutput) GoString() string {
 	return s.String()
 }
@@ -3227,7 +6045,7 @@ func (s *ListExperimentTemplatesOutput) SetNextToken(v string) *ListExperimentTe
 }
 
 type ListExperimentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
@@ -3237,12 +6055,20 @@ type ListExperimentsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListExperimentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListExperimentsInput) GoString() string {
 	return s.String()
 }
@@ -3286,12 +6112,20 @@ type ListExperimentsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListExperimentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListExperimentsOutput) GoString() string {
 	return s.String()
 }
@@ -3309,7 +6143,7 @@ func (s *ListExperimentsOutput) SetNextToken(v string) *ListExperimentsOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -3317,12 +6151,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -3356,12 +6198,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3369,6 +6219,269 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+type ListTargetAccountConfigurationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the experiment template.
+	//
+	// ExperimentTemplateId is a required field
+	ExperimentTemplateId *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetAccountConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetAccountConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTargetAccountConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTargetAccountConfigurationsInput"}
+	if s.ExperimentTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExperimentTemplateId"))
+	}
+	if s.ExperimentTemplateId != nil && len(*s.ExperimentTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExperimentTemplateId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExperimentTemplateId sets the ExperimentTemplateId field's value.
+func (s *ListTargetAccountConfigurationsInput) SetExperimentTemplateId(v string) *ListTargetAccountConfigurationsInput {
+	s.ExperimentTemplateId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTargetAccountConfigurationsInput) SetMaxResults(v int64) *ListTargetAccountConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTargetAccountConfigurationsInput) SetNextToken(v string) *ListTargetAccountConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListTargetAccountConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The target account configurations.
+	TargetAccountConfigurations []*TargetAccountConfigurationSummary `locationName:"targetAccountConfigurations" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetAccountConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetAccountConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTargetAccountConfigurationsOutput) SetNextToken(v string) *ListTargetAccountConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTargetAccountConfigurations sets the TargetAccountConfigurations field's value.
+func (s *ListTargetAccountConfigurationsOutput) SetTargetAccountConfigurations(v []*TargetAccountConfigurationSummary) *ListTargetAccountConfigurationsOutput {
+	s.TargetAccountConfigurations = v
+	return s
+}
+
+type ListTargetResourceTypesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetResourceTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetResourceTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTargetResourceTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTargetResourceTypesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTargetResourceTypesInput) SetMaxResults(v int64) *ListTargetResourceTypesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTargetResourceTypesInput) SetNextToken(v string) *ListTargetResourceTypesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListTargetResourceTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The target resource types.
+	TargetResourceTypes []*TargetResourceTypeSummary `locationName:"targetResourceTypes" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetResourceTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetResourceTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTargetResourceTypesOutput) SetNextToken(v string) *ListTargetResourceTypesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTargetResourceTypes sets the TargetResourceTypes field's value.
+func (s *ListTargetResourceTypesOutput) SetTargetResourceTypes(v []*TargetResourceTypeSummary) *ListTargetResourceTypesOutput {
+	s.TargetResourceTypes = v
+	return s
+}
+
+// Describes a resolved target.
+type ResolvedTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The resource type of the target.
+	ResourceType *string `locationName:"resourceType" type:"string"`
+
+	// Information about the target.
+	TargetInformation map[string]*string `locationName:"targetInformation" type:"map"`
+
+	// The name of the target.
+	TargetName *string `locationName:"targetName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolvedTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolvedTarget) GoString() string {
+	return s.String()
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResolvedTarget) SetResourceType(v string) *ResolvedTarget {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTargetInformation sets the TargetInformation field's value.
+func (s *ResolvedTarget) SetTargetInformation(v map[string]*string) *ResolvedTarget {
+	s.TargetInformation = v
+	return s
+}
+
+// SetTargetName sets the TargetName field's value.
+func (s *ResolvedTarget) SetTargetName(v string) *ResolvedTarget {
+	s.TargetName = &v
 	return s
 }
 
@@ -3380,12 +6493,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -3436,12 +6557,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -3500,12 +6629,20 @@ type StartExperimentInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartExperimentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartExperimentInput) GoString() string {
 	return s.String()
 }
@@ -3551,12 +6688,20 @@ type StartExperimentOutput struct {
 	Experiment *Experiment `locationName:"experiment" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartExperimentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartExperimentOutput) GoString() string {
 	return s.String()
 }
@@ -3568,7 +6713,7 @@ func (s *StartExperimentOutput) SetExperiment(v *Experiment) *StartExperimentOut
 }
 
 type StopExperimentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the experiment.
 	//
@@ -3576,12 +6721,20 @@ type StopExperimentInput struct {
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopExperimentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopExperimentInput) GoString() string {
 	return s.String()
 }
@@ -3615,12 +6768,20 @@ type StopExperimentOutput struct {
 	Experiment *Experiment `locationName:"experiment" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopExperimentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopExperimentOutput) GoString() string {
 	return s.String()
 }
@@ -3645,12 +6806,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -3690,18 +6859,259 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-type UntagResourceInput struct {
+// Describes a target account configuration.
+type TargetAccountConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// The AWS account ID of the target account.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// The description of the target account.
+	Description *string `locationName:"description" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an IAM role for the target account.
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetAccountConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetAccountConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *TargetAccountConfiguration) SetAccountId(v string) *TargetAccountConfiguration {
+	s.AccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TargetAccountConfiguration) SetDescription(v string) *TargetAccountConfiguration {
+	s.Description = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *TargetAccountConfiguration) SetRoleArn(v string) *TargetAccountConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
+// Provides a summary of a target account configuration.
+type TargetAccountConfigurationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID of the target account.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// The description of the target account.
+	Description *string `locationName:"description" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an IAM role for the target account.
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetAccountConfigurationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetAccountConfigurationSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *TargetAccountConfigurationSummary) SetAccountId(v string) *TargetAccountConfigurationSummary {
+	s.AccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TargetAccountConfigurationSummary) SetDescription(v string) *TargetAccountConfigurationSummary {
+	s.Description = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *TargetAccountConfigurationSummary) SetRoleArn(v string) *TargetAccountConfigurationSummary {
+	s.RoleArn = &v
+	return s
+}
+
+// Describes a resource type.
+type TargetResourceType struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the resource type.
+	Description *string `locationName:"description" type:"string"`
+
+	// The parameters for the resource type.
+	Parameters map[string]*TargetResourceTypeParameter `locationName:"parameters" type:"map"`
+
+	// The resource type.
+	ResourceType *string `locationName:"resourceType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceType) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *TargetResourceType) SetDescription(v string) *TargetResourceType {
+	s.Description = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *TargetResourceType) SetParameters(v map[string]*TargetResourceTypeParameter) *TargetResourceType {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *TargetResourceType) SetResourceType(v string) *TargetResourceType {
+	s.ResourceType = &v
+	return s
+}
+
+// Describes the parameters for a resource type. Use parameters to determine
+// which tasks are identified during target resolution.
+type TargetResourceTypeParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the parameter.
+	Description *string `locationName:"description" type:"string"`
+
+	// Indicates whether the parameter is required.
+	Required *bool `locationName:"required" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceTypeParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceTypeParameter) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *TargetResourceTypeParameter) SetDescription(v string) *TargetResourceTypeParameter {
+	s.Description = &v
+	return s
+}
+
+// SetRequired sets the Required field's value.
+func (s *TargetResourceTypeParameter) SetRequired(v bool) *TargetResourceTypeParameter {
+	s.Required = &v
+	return s
+}
+
+// Describes a resource type.
+type TargetResourceTypeSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the resource type.
+	Description *string `locationName:"description" type:"string"`
+
+	// The resource type.
+	ResourceType *string `locationName:"resourceType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceTypeSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceTypeSummary) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *TargetResourceTypeSummary) SetDescription(v string) *TargetResourceTypeSummary {
+	s.Description = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *TargetResourceTypeSummary) SetResourceType(v string) *TargetResourceTypeSummary {
+	s.ResourceType = &v
+	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -3712,12 +7122,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -3754,12 +7172,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3785,12 +7211,20 @@ type UpdateExperimentTemplateActionInputItem struct {
 	Targets map[string]*string `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateActionInputItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateActionInputItem) GoString() string {
 	return s.String()
 }
@@ -3825,6 +7259,38 @@ func (s *UpdateExperimentTemplateActionInputItem) SetTargets(v map[string]*strin
 	return s
 }
 
+// Specifies an experiment option for an experiment template.
+type UpdateExperimentTemplateExperimentOptionsInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The empty target resolution mode of the experiment template.
+	EmptyTargetResolutionMode *string `locationName:"emptyTargetResolutionMode" type:"string" enum:"EmptyTargetResolutionMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExperimentTemplateExperimentOptionsInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExperimentTemplateExperimentOptionsInput_) GoString() string {
+	return s.String()
+}
+
+// SetEmptyTargetResolutionMode sets the EmptyTargetResolutionMode field's value.
+func (s *UpdateExperimentTemplateExperimentOptionsInput_) SetEmptyTargetResolutionMode(v string) *UpdateExperimentTemplateExperimentOptionsInput_ {
+	s.EmptyTargetResolutionMode = &v
+	return s
+}
+
 type UpdateExperimentTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3834,12 +7300,18 @@ type UpdateExperimentTemplateInput struct {
 	// A description for the template.
 	Description *string `locationName:"description" type:"string"`
 
+	// The experiment options for the experiment template.
+	ExperimentOptions *UpdateExperimentTemplateExperimentOptionsInput_ `locationName:"experimentOptions" type:"structure"`
+
 	// The ID of the experiment template.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that grants the AWS FIS service
+	// The configuration for experiment logging.
+	LogConfiguration *UpdateExperimentTemplateLogConfigurationInput_ `locationName:"logConfiguration" type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that grants the FIS service
 	// permission to perform service actions on your behalf.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 
@@ -3850,12 +7322,20 @@ type UpdateExperimentTemplateInput struct {
 	Targets map[string]*UpdateExperimentTemplateTargetInput `locationName:"targets" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateInput) GoString() string {
 	return s.String()
 }
@@ -3871,6 +7351,11 @@ func (s *UpdateExperimentTemplateInput) Validate() error {
 	}
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.LogConfiguration != nil {
+		if err := s.LogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.StopConditions != nil {
 		for i, v := range s.StopConditions {
@@ -3911,9 +7396,21 @@ func (s *UpdateExperimentTemplateInput) SetDescription(v string) *UpdateExperime
 	return s
 }
 
+// SetExperimentOptions sets the ExperimentOptions field's value.
+func (s *UpdateExperimentTemplateInput) SetExperimentOptions(v *UpdateExperimentTemplateExperimentOptionsInput_) *UpdateExperimentTemplateInput {
+	s.ExperimentOptions = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *UpdateExperimentTemplateInput) SetId(v string) *UpdateExperimentTemplateInput {
 	s.Id = &v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *UpdateExperimentTemplateInput) SetLogConfiguration(v *UpdateExperimentTemplateLogConfigurationInput_) *UpdateExperimentTemplateInput {
+	s.LogConfiguration = v
 	return s
 }
 
@@ -3935,6 +7432,76 @@ func (s *UpdateExperimentTemplateInput) SetTargets(v map[string]*UpdateExperimen
 	return s
 }
 
+// Specifies the configuration for experiment logging.
+type UpdateExperimentTemplateLogConfigurationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for experiment logging to Amazon CloudWatch Logs.
+	CloudWatchLogsConfiguration *ExperimentTemplateCloudWatchLogsLogConfigurationInput_ `locationName:"cloudWatchLogsConfiguration" type:"structure"`
+
+	// The schema version.
+	LogSchemaVersion *int64 `locationName:"logSchemaVersion" type:"integer"`
+
+	// The configuration for experiment logging to Amazon S3.
+	S3Configuration *ExperimentTemplateS3LogConfigurationInput_ `locationName:"s3Configuration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExperimentTemplateLogConfigurationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExperimentTemplateLogConfigurationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateExperimentTemplateLogConfigurationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateExperimentTemplateLogConfigurationInput_"}
+	if s.CloudWatchLogsConfiguration != nil {
+		if err := s.CloudWatchLogsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CloudWatchLogsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Configuration != nil {
+		if err := s.S3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudWatchLogsConfiguration sets the CloudWatchLogsConfiguration field's value.
+func (s *UpdateExperimentTemplateLogConfigurationInput_) SetCloudWatchLogsConfiguration(v *ExperimentTemplateCloudWatchLogsLogConfigurationInput_) *UpdateExperimentTemplateLogConfigurationInput_ {
+	s.CloudWatchLogsConfiguration = v
+	return s
+}
+
+// SetLogSchemaVersion sets the LogSchemaVersion field's value.
+func (s *UpdateExperimentTemplateLogConfigurationInput_) SetLogSchemaVersion(v int64) *UpdateExperimentTemplateLogConfigurationInput_ {
+	s.LogSchemaVersion = &v
+	return s
+}
+
+// SetS3Configuration sets the S3Configuration field's value.
+func (s *UpdateExperimentTemplateLogConfigurationInput_) SetS3Configuration(v *ExperimentTemplateS3LogConfigurationInput_) *UpdateExperimentTemplateLogConfigurationInput_ {
+	s.S3Configuration = v
+	return s
+}
+
 type UpdateExperimentTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3942,12 +7509,20 @@ type UpdateExperimentTemplateOutput struct {
 	ExperimentTemplate *ExperimentTemplate `locationName:"experimentTemplate" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -3974,12 +7549,20 @@ type UpdateExperimentTemplateStopConditionInput struct {
 	Value *string `locationName:"value" min:"20" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateStopConditionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateStopConditionInput) GoString() string {
 	return s.String()
 }
@@ -4020,13 +7603,16 @@ type UpdateExperimentTemplateTargetInput struct {
 	// The filters to apply to identify target resources using specific attributes.
 	Filters []*ExperimentTemplateTargetInputFilter `locationName:"filters" type:"list"`
 
+	// The resource type parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
 	// The Amazon Resource Names (ARNs) of the targets.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
 	// The tags for the target resources.
 	ResourceTags map[string]*string `locationName:"resourceTags" type:"map"`
 
-	// The AWS resource type. The resource type must be supported for the specified
+	// The resource type. The resource type must be supported for the specified
 	// action.
 	//
 	// ResourceType is a required field
@@ -4038,12 +7624,20 @@ type UpdateExperimentTemplateTargetInput struct {
 	SelectionMode *string `locationName:"selectionMode" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateTargetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateExperimentTemplateTargetInput) GoString() string {
 	return s.String()
 }
@@ -4080,6 +7674,12 @@ func (s *UpdateExperimentTemplateTargetInput) SetFilters(v []*ExperimentTemplate
 	return s
 }
 
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExperimentTemplateTargetInput) SetParameters(v map[string]*string) *UpdateExperimentTemplateTargetInput {
+	s.Parameters = v
+	return s
+}
+
 // SetResourceArns sets the ResourceArns field's value.
 func (s *UpdateExperimentTemplateTargetInput) SetResourceArns(v []*string) *UpdateExperimentTemplateTargetInput {
 	s.ResourceArns = v
@@ -4104,6 +7704,124 @@ func (s *UpdateExperimentTemplateTargetInput) SetSelectionMode(v string) *Update
 	return s
 }
 
+type UpdateTargetAccountConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID of the target account.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// The description of the target account.
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID of the experiment template.
+	//
+	// ExperimentTemplateId is a required field
+	ExperimentTemplateId *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an IAM role for the target account.
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTargetAccountConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTargetAccountConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTargetAccountConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTargetAccountConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ExperimentTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExperimentTemplateId"))
+	}
+	if s.ExperimentTemplateId != nil && len(*s.ExperimentTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExperimentTemplateId", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *UpdateTargetAccountConfigurationInput) SetAccountId(v string) *UpdateTargetAccountConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateTargetAccountConfigurationInput) SetDescription(v string) *UpdateTargetAccountConfigurationInput {
+	s.Description = &v
+	return s
+}
+
+// SetExperimentTemplateId sets the ExperimentTemplateId field's value.
+func (s *UpdateTargetAccountConfigurationInput) SetExperimentTemplateId(v string) *UpdateTargetAccountConfigurationInput {
+	s.ExperimentTemplateId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateTargetAccountConfigurationInput) SetRoleArn(v string) *UpdateTargetAccountConfigurationInput {
+	s.RoleArn = &v
+	return s
+}
+
+type UpdateTargetAccountConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the target account configuration.
+	TargetAccountConfiguration *TargetAccountConfiguration `locationName:"targetAccountConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTargetAccountConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTargetAccountConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTargetAccountConfiguration sets the TargetAccountConfiguration field's value.
+func (s *UpdateTargetAccountConfigurationOutput) SetTargetAccountConfiguration(v *TargetAccountConfiguration) *UpdateTargetAccountConfigurationOutput {
+	s.TargetAccountConfiguration = v
+	return s
+}
+
 // The specified input is not valid, or fails to satisfy the constraints for
 // the request.
 type ValidationException struct {
@@ -4113,12 +7831,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -4162,6 +7888,38 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AccountTargetingSingleAccount is a AccountTargeting enum value
+	AccountTargetingSingleAccount = "single-account"
+
+	// AccountTargetingMultiAccount is a AccountTargeting enum value
+	AccountTargetingMultiAccount = "multi-account"
+)
+
+// AccountTargeting_Values returns all elements of the AccountTargeting enum
+func AccountTargeting_Values() []string {
+	return []string{
+		AccountTargetingSingleAccount,
+		AccountTargetingMultiAccount,
+	}
+}
+
+const (
+	// EmptyTargetResolutionModeFail is a EmptyTargetResolutionMode enum value
+	EmptyTargetResolutionModeFail = "fail"
+
+	// EmptyTargetResolutionModeSkip is a EmptyTargetResolutionMode enum value
+	EmptyTargetResolutionModeSkip = "skip"
+)
+
+// EmptyTargetResolutionMode_Values returns all elements of the EmptyTargetResolutionMode enum
+func EmptyTargetResolutionMode_Values() []string {
+	return []string{
+		EmptyTargetResolutionModeFail,
+		EmptyTargetResolutionModeSkip,
+	}
+}
+
+const (
 	// ExperimentActionStatusPending is a ExperimentActionStatus enum value
 	ExperimentActionStatusPending = "pending"
 
@@ -4185,6 +7943,9 @@ const (
 
 	// ExperimentActionStatusFailed is a ExperimentActionStatus enum value
 	ExperimentActionStatusFailed = "failed"
+
+	// ExperimentActionStatusSkipped is a ExperimentActionStatus enum value
+	ExperimentActionStatusSkipped = "skipped"
 )
 
 // ExperimentActionStatus_Values returns all elements of the ExperimentActionStatus enum
@@ -4198,6 +7959,7 @@ func ExperimentActionStatus_Values() []string {
 		ExperimentActionStatusStopping,
 		ExperimentActionStatusStopped,
 		ExperimentActionStatusFailed,
+		ExperimentActionStatusSkipped,
 	}
 }
 

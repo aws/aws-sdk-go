@@ -28,14 +28,13 @@ const opSearch = "Search"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchRequest method.
+//	req, resp := client.SearchRequest(params)
 //
-//    // Example sending a request using the SearchRequest method.
-//    req, resp := client.SearchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Request, output *SearchOutput) {
 	op := &request.Operation{
 		Name:       opSearch,
@@ -58,18 +57,18 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Requ
 // you specify the search criteria depends on which query parser you use. Amazon
 // CloudSearch supports four query parsers:
 //
-//    * simple: search all text and text-array fields for the specified string.
-//    Search for phrases, individual terms, and prefixes.
+//   - simple: search all text and text-array fields for the specified string.
+//     Search for phrases, individual terms, and prefixes.
 //
-//    * structured: search specific fields, construct compound queries using
-//    Boolean operators, and use advanced features such as term boosting and
-//    proximity searching.
+//   - structured: search specific fields, construct compound queries using
+//     Boolean operators, and use advanced features such as term boosting and
+//     proximity searching.
 //
-//    * lucene: specify search criteria using the Apache Lucene query parser
-//    syntax.
+//   - lucene: specify search criteria using the Apache Lucene query parser
+//     syntax.
 //
-//    * dismax: specify search criteria using the simplified subset of the Apache
-//    Lucene query parser syntax defined by the DisMax query parser.
+//   - dismax: specify search criteria using the simplified subset of the Apache
+//     Lucene query parser syntax defined by the DisMax query parser.
 //
 // For more information, see Searching Your Data (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching.html)
 // in the Amazon CloudSearch Developer Guide.
@@ -88,9 +87,8 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Requ
 // API operation Search for usage and error information.
 //
 // Returned Error Types:
-//   * SearchException
-//   Information about any problems encountered while processing a search request.
-//
+//   - SearchException
+//     Information about any problems encountered while processing a search request.
 func (c *CloudSearchDomain) Search(input *SearchInput) (*SearchOutput, error) {
 	req, out := c.SearchRequest(input)
 	return out, req.Send()
@@ -128,14 +126,13 @@ const opSuggest = "Suggest"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SuggestRequest method.
+//	req, resp := client.SuggestRequest(params)
 //
-//    // Example sending a request using the SuggestRequest method.
-//    req, resp := client.SuggestRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *request.Request, output *SuggestOutput) {
 	op := &request.Operation{
 		Name:       opSuggest,
@@ -180,9 +177,8 @@ func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *request.Re
 // API operation Suggest for usage and error information.
 //
 // Returned Error Types:
-//   * SearchException
-//   Information about any problems encountered while processing a search request.
-//
+//   - SearchException
+//     Information about any problems encountered while processing a search request.
 func (c *CloudSearchDomain) Suggest(input *SuggestInput) (*SuggestOutput, error) {
 	req, out := c.SuggestRequest(input)
 	return out, req.Send()
@@ -220,14 +216,13 @@ const opUploadDocuments = "UploadDocuments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UploadDocumentsRequest method.
+//	req, resp := client.UploadDocumentsRequest(params)
 //
-//    // Example sending a request using the UploadDocumentsRequest method.
-//    req, resp := client.UploadDocumentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) (req *request.Request, output *UploadDocumentsOutput) {
 	op := &request.Operation{
 		Name:       opUploadDocuments,
@@ -277,9 +272,8 @@ func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) 
 // API operation UploadDocuments for usage and error information.
 //
 // Returned Error Types:
-//   * DocumentServiceException
-//   Information about any problems encountered while processing an upload request.
-//
+//   - DocumentServiceException
+//     Information about any problems encountered while processing an upload request.
 func (c *CloudSearchDomain) UploadDocuments(input *UploadDocumentsInput) (*UploadDocumentsOutput, error) {
 	req, out := c.UploadDocumentsRequest(input)
 	return out, req.Send()
@@ -312,12 +306,20 @@ type Bucket struct {
 	Value *string `locationName:"value" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Bucket) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Bucket) GoString() string {
 	return s.String()
 }
@@ -342,12 +344,20 @@ type BucketInfo struct {
 	Buckets []*Bucket `locationName:"buckets" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BucketInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BucketInfo) GoString() string {
 	return s.String()
 }
@@ -370,12 +380,20 @@ type DocumentServiceException struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DocumentServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DocumentServiceException) GoString() string {
 	return s.String()
 }
@@ -427,12 +445,20 @@ type DocumentServiceWarning struct {
 	Message *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DocumentServiceWarning) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DocumentServiceWarning) GoString() string {
 	return s.String()
 }
@@ -494,12 +520,20 @@ type FieldStats struct {
 	SumOfSquares *float64 `locationName:"sumOfSquares" type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldStats) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldStats) GoString() string {
 	return s.String()
 }
@@ -569,12 +603,20 @@ type Hit struct {
 	Id *string `locationName:"id" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Hit) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Hit) GoString() string {
 	return s.String()
 }
@@ -621,12 +663,20 @@ type Hits struct {
 	Start *int64 `locationName:"start" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Hits) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Hits) GoString() string {
 	return s.String()
 }
@@ -664,12 +714,20 @@ type SearchException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchException) GoString() string {
 	return s.String()
 }
@@ -714,7 +772,7 @@ func (s *SearchException) RequestID() string {
 
 // Container for the parameters to the Search request.
 type SearchInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Retrieves a cursor value you can use to page through large result sets. Use
 	// the size parameter to control the number of hits to include in each response.
@@ -1027,12 +1085,20 @@ type SearchInput struct {
 	Stats *string `location:"querystring" locationName:"stats" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchInput) GoString() string {
 	return s.String()
 }
@@ -1152,12 +1218,20 @@ type SearchOutput struct {
 	Status *SearchStatus `locationName:"status" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchOutput) GoString() string {
 	return s.String()
 }
@@ -1198,12 +1272,20 @@ type SearchStatus struct {
 	Timems *int64 `locationName:"timems" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchStatus) GoString() string {
 	return s.String()
 }
@@ -1222,7 +1304,7 @@ func (s *SearchStatus) SetTimems(v int64) *SearchStatus {
 
 // Container for the parameters to the Suggest request.
 type SuggestInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies the string for which you want to get suggestions.
 	//
@@ -1238,12 +1320,20 @@ type SuggestInput struct {
 	Suggester *string `location:"querystring" locationName:"suggester" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestInput) GoString() string {
 	return s.String()
 }
@@ -1296,12 +1386,20 @@ type SuggestModel struct {
 	Suggestions []*SuggestionMatch `locationName:"suggestions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestModel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestModel) GoString() string {
 	return s.String()
 }
@@ -1336,12 +1434,20 @@ type SuggestOutput struct {
 	Suggest *SuggestModel `locationName:"suggest" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestOutput) GoString() string {
 	return s.String()
 }
@@ -1370,12 +1476,20 @@ type SuggestStatus struct {
 	Timems *int64 `locationName:"timems" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestStatus) GoString() string {
 	return s.String()
 }
@@ -1406,12 +1520,20 @@ type SuggestionMatch struct {
 	Suggestion *string `locationName:"suggestion" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestionMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuggestionMatch) GoString() string {
 	return s.String()
 }
@@ -1454,12 +1576,20 @@ type UploadDocumentsInput struct {
 	Documents io.ReadSeeker `locationName:"documents" type:"blob" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UploadDocumentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UploadDocumentsInput) GoString() string {
 	return s.String()
 }
@@ -1509,12 +1639,20 @@ type UploadDocumentsOutput struct {
 	Warnings []*DocumentServiceWarning `locationName:"warnings" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UploadDocumentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UploadDocumentsOutput) GoString() string {
 	return s.String()
 }

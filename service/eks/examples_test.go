@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To create a new cluster
-//
 // The following example creates an Amazon EKS cluster called prod.
 func ExampleEKS_CreateCluster_shared00() {
 	svc := eks.New(session.New())
@@ -79,7 +78,6 @@ func ExampleEKS_CreateCluster_shared00() {
 }
 
 // To delete a cluster
-//
 // This example command deletes a cluster named `devel` in your default region.
 func ExampleEKS_DeleteCluster_shared00() {
 	svc := eks.New(session.New())
@@ -116,7 +114,6 @@ func ExampleEKS_DeleteCluster_shared00() {
 }
 
 // To describe a cluster
-//
 // This example command provides a description of the specified cluster in your default
 // region.
 func ExampleEKS_DescribeCluster_shared00() {
@@ -152,7 +149,6 @@ func ExampleEKS_DescribeCluster_shared00() {
 }
 
 // To list your available clusters
-//
 // This example command lists all of your available clusters in your default region.
 func ExampleEKS_ListClusters_shared00() {
 	svc := eks.New(session.New())
@@ -185,7 +181,6 @@ func ExampleEKS_ListClusters_shared00() {
 }
 
 // To list tags for a cluster
-//
 // This example lists all of the tags for the `beta` cluster.
 func ExampleEKS_ListTagsForResource_shared00() {
 	svc := eks.New(session.New())

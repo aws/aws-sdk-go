@@ -29,14 +29,13 @@ const opCreateScalingPlan = "CreateScalingPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateScalingPlanRequest method.
+//	req, resp := client.CreateScalingPlanRequest(params)
 //
-//    // Example sending a request using the CreateScalingPlanRequest method.
-//    req, resp := client.CreateScalingPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/CreateScalingPlan
 func (c *AutoScalingPlans) CreateScalingPlanRequest(input *CreateScalingPlanInput) (req *request.Request, output *CreateScalingPlanOutput) {
@@ -67,19 +66,20 @@ func (c *AutoScalingPlans) CreateScalingPlanRequest(input *CreateScalingPlanInpu
 // API operation CreateScalingPlan for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * LimitExceededException
-//   Your account exceeded a limit. This exception is thrown when a per-account
-//   resource limit is exceeded.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to a scaling plan that already has a pending update.
+//   - LimitExceededException
+//     Your account exceeded a limit. This exception is thrown when a per-account
+//     resource limit is exceeded.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to a scaling plan that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/CreateScalingPlan
 func (c *AutoScalingPlans) CreateScalingPlan(input *CreateScalingPlanInput) (*CreateScalingPlanOutput, error) {
@@ -119,14 +119,13 @@ const opDeleteScalingPlan = "DeleteScalingPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteScalingPlanRequest method.
+//	req, resp := client.DeleteScalingPlanRequest(params)
 //
-//    // Example sending a request using the DeleteScalingPlanRequest method.
-//    req, resp := client.DeleteScalingPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DeleteScalingPlan
 func (c *AutoScalingPlans) DeleteScalingPlanRequest(input *DeleteScalingPlanInput) (req *request.Request, output *DeleteScalingPlanOutput) {
@@ -164,18 +163,19 @@ func (c *AutoScalingPlans) DeleteScalingPlanRequest(input *DeleteScalingPlanInpu
 // API operation DeleteScalingPlan for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * ObjectNotFoundException
-//   The specified object could not be found.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to a scaling plan that already has a pending update.
+//   - ObjectNotFoundException
+//     The specified object could not be found.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to a scaling plan that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DeleteScalingPlan
 func (c *AutoScalingPlans) DeleteScalingPlan(input *DeleteScalingPlanInput) (*DeleteScalingPlanOutput, error) {
@@ -215,14 +215,13 @@ const opDescribeScalingPlanResources = "DescribeScalingPlanResources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeScalingPlanResourcesRequest method.
+//	req, resp := client.DescribeScalingPlanResourcesRequest(params)
 //
-//    // Example sending a request using the DescribeScalingPlanResourcesRequest method.
-//    req, resp := client.DescribeScalingPlanResourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlanResources
 func (c *AutoScalingPlans) DescribeScalingPlanResourcesRequest(input *DescribeScalingPlanResourcesInput) (req *request.Request, output *DescribeScalingPlanResourcesOutput) {
@@ -253,18 +252,19 @@ func (c *AutoScalingPlans) DescribeScalingPlanResourcesRequest(input *DescribeSc
 // API operation DescribeScalingPlanResources for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * InvalidNextTokenException
-//   The token provided is not valid.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to a scaling plan that already has a pending update.
+//   - InvalidNextTokenException
+//     The token provided is not valid.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to a scaling plan that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlanResources
 func (c *AutoScalingPlans) DescribeScalingPlanResources(input *DescribeScalingPlanResourcesInput) (*DescribeScalingPlanResourcesOutput, error) {
@@ -304,14 +304,13 @@ const opDescribeScalingPlans = "DescribeScalingPlans"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeScalingPlansRequest method.
+//	req, resp := client.DescribeScalingPlansRequest(params)
 //
-//    // Example sending a request using the DescribeScalingPlansRequest method.
-//    req, resp := client.DescribeScalingPlansRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlans
 func (c *AutoScalingPlans) DescribeScalingPlansRequest(input *DescribeScalingPlansInput) (req *request.Request, output *DescribeScalingPlansOutput) {
@@ -342,18 +341,19 @@ func (c *AutoScalingPlans) DescribeScalingPlansRequest(input *DescribeScalingPla
 // API operation DescribeScalingPlans for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * InvalidNextTokenException
-//   The token provided is not valid.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to a scaling plan that already has a pending update.
+//   - InvalidNextTokenException
+//     The token provided is not valid.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to a scaling plan that already has a pending update.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlans
 func (c *AutoScalingPlans) DescribeScalingPlans(input *DescribeScalingPlansInput) (*DescribeScalingPlansOutput, error) {
@@ -393,14 +393,13 @@ const opGetScalingPlanResourceForecastData = "GetScalingPlanResourceForecastData
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetScalingPlanResourceForecastDataRequest method.
+//	req, resp := client.GetScalingPlanResourceForecastDataRequest(params)
 //
-//    // Example sending a request using the GetScalingPlanResourceForecastDataRequest method.
-//    req, resp := client.GetScalingPlanResourceForecastDataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/GetScalingPlanResourceForecastData
 func (c *AutoScalingPlans) GetScalingPlanResourceForecastDataRequest(input *GetScalingPlanResourceForecastDataInput) (req *request.Request, output *GetScalingPlanResourceForecastDataOutput) {
@@ -435,11 +434,12 @@ func (c *AutoScalingPlans) GetScalingPlanResourceForecastDataRequest(input *GetS
 // API operation GetScalingPlanResourceForecastData for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the parameters provided.
+//
+//   - InternalServiceException
+//     The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/GetScalingPlanResourceForecastData
 func (c *AutoScalingPlans) GetScalingPlanResourceForecastData(input *GetScalingPlanResourceForecastDataInput) (*GetScalingPlanResourceForecastDataOutput, error) {
@@ -479,14 +479,13 @@ const opUpdateScalingPlan = "UpdateScalingPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateScalingPlanRequest method.
+//	req, resp := client.UpdateScalingPlanRequest(params)
 //
-//    // Example sending a request using the UpdateScalingPlanRequest method.
-//    req, resp := client.UpdateScalingPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/UpdateScalingPlan
 func (c *AutoScalingPlans) UpdateScalingPlanRequest(input *UpdateScalingPlanInput) (req *request.Request, output *UpdateScalingPlanOutput) {
@@ -521,18 +520,19 @@ func (c *AutoScalingPlans) UpdateScalingPlanRequest(input *UpdateScalingPlanInpu
 // API operation UpdateScalingPlan for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * ConcurrentUpdateException
-//   Concurrent updates caused an exception, for example, if you request an update
-//   to a scaling plan that already has a pending update.
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the parameters provided.
 //
-//   * InternalServiceException
-//   The service encountered an internal error.
+//   - ConcurrentUpdateException
+//     Concurrent updates caused an exception, for example, if you request an update
+//     to a scaling plan that already has a pending update.
 //
-//   * ObjectNotFoundException
-//   The specified object could not be found.
+//   - InternalServiceException
+//     The service encountered an internal error.
+//
+//   - ObjectNotFoundException
+//     The specified object could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/UpdateScalingPlan
 func (c *AutoScalingPlans) UpdateScalingPlan(input *UpdateScalingPlanInput) (*UpdateScalingPlanOutput, error) {
@@ -567,12 +567,20 @@ type ApplicationSource struct {
 	TagFilters []*TagFilter `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationSource) GoString() string {
 	return s.String()
 }
@@ -618,12 +626,20 @@ type ConcurrentUpdateException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentUpdateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentUpdateException) GoString() string {
 	return s.String()
 }
@@ -693,12 +709,20 @@ type CreateScalingPlanInput struct {
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateScalingPlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateScalingPlanInput) GoString() string {
 	return s.String()
 }
@@ -768,12 +792,20 @@ type CreateScalingPlanOutput struct {
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateScalingPlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateScalingPlanOutput) GoString() string {
 	return s.String()
 }
@@ -843,12 +875,20 @@ type CustomizedLoadMetricSpecification struct {
 	Unit *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomizedLoadMetricSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomizedLoadMetricSpecification) GoString() string {
 	return s.String()
 }
@@ -917,16 +957,16 @@ func (s *CustomizedLoadMetricSpecification) SetUnit(v string) *CustomizedLoadMet
 //
 // To create your customized scaling metric specification:
 //
-//    * Add values for each required parameter from CloudWatch. You can use
-//    an existing metric, or a new metric that you create. To use your own metric,
-//    you must first publish the metric to CloudWatch. For more information,
-//    see Publish Custom Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
-//    in the Amazon CloudWatch User Guide.
+//   - Add values for each required parameter from CloudWatch. You can use
+//     an existing metric, or a new metric that you create. To use your own metric,
+//     you must first publish the metric to CloudWatch. For more information,
+//     see Publish Custom Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
+//     in the Amazon CloudWatch User Guide.
 //
-//    * Choose a metric that changes proportionally with capacity. The value
-//    of the metric should increase or decrease in inverse proportion to the
-//    number of capacity units. That is, the value of the metric should decrease
-//    when capacity increases.
+//   - Choose a metric that changes proportionally with capacity. The value
+//     of the metric should increase or decrease in inverse proportion to the
+//     number of capacity units. That is, the value of the metric should decrease
+//     when capacity increases.
 //
 // For information about terminology, available metrics, or how to publish new
 // metrics, see Amazon CloudWatch Concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
@@ -959,12 +999,20 @@ type CustomizedScalingMetricSpecification struct {
 	Unit *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomizedScalingMetricSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomizedScalingMetricSpecification) GoString() string {
 	return s.String()
 }
@@ -1039,12 +1087,20 @@ type Datapoint struct {
 	Value *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Datapoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Datapoint) GoString() string {
 	return s.String()
 }
@@ -1076,12 +1132,20 @@ type DeleteScalingPlanInput struct {
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScalingPlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScalingPlanInput) GoString() string {
 	return s.String()
 }
@@ -1121,12 +1185,20 @@ type DeleteScalingPlanOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScalingPlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteScalingPlanOutput) GoString() string {
 	return s.String()
 }
@@ -1153,12 +1225,20 @@ type DescribeScalingPlanResourcesInput struct {
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPlanResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPlanResourcesInput) GoString() string {
 	return s.String()
 }
@@ -1217,12 +1297,20 @@ type DescribeScalingPlanResourcesOutput struct {
 	ScalingPlanResources []*ScalingPlanResource `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPlanResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPlanResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -1265,12 +1353,20 @@ type DescribeScalingPlansInput struct {
 	ScalingPlanVersion *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPlansInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPlansInput) GoString() string {
 	return s.String()
 }
@@ -1336,12 +1432,20 @@ type DescribeScalingPlansOutput struct {
 	ScalingPlans []*ScalingPlan `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPlansOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeScalingPlansOutput) GoString() string {
 	return s.String()
 }
@@ -1423,12 +1527,20 @@ type GetScalingPlanResourceForecastDataInput struct {
 	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetScalingPlanResourceForecastDataInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetScalingPlanResourceForecastDataInput) GoString() string {
 	return s.String()
 }
@@ -1527,12 +1639,20 @@ type GetScalingPlanResourceForecastDataOutput struct {
 	Datapoints []*Datapoint `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetScalingPlanResourceForecastDataOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetScalingPlanResourceForecastDataOutput) GoString() string {
 	return s.String()
 }
@@ -1551,12 +1671,20 @@ type InternalServiceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) GoString() string {
 	return s.String()
 }
@@ -1607,12 +1735,20 @@ type InvalidNextTokenException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) GoString() string {
 	return s.String()
 }
@@ -1664,12 +1800,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -1727,12 +1871,20 @@ type MetricDimension struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricDimension) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricDimension) GoString() string {
 	return s.String()
 }
@@ -1773,12 +1925,20 @@ type ObjectNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectNotFoundException) GoString() string {
 	return s.String()
 }
@@ -1861,12 +2021,20 @@ type PredefinedLoadMetricSpecification struct {
 	ResourceLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PredefinedLoadMetricSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PredefinedLoadMetricSpecification) GoString() string {
 	return s.String()
 }
@@ -1936,12 +2104,20 @@ type PredefinedScalingMetricSpecification struct {
 	ResourceLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PredefinedScalingMetricSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PredefinedScalingMetricSpecification) GoString() string {
 	return s.String()
 }
@@ -2160,12 +2336,20 @@ type ScalingInstruction struct {
 	TargetTrackingConfigurations []*TargetTrackingConfiguration `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingInstruction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingInstruction) GoString() string {
 	return s.String()
 }
@@ -2362,12 +2546,20 @@ type ScalingPlan struct {
 	StatusStartTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingPlan) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingPlan) GoString() string {
 	return s.String()
 }
@@ -2514,12 +2706,20 @@ type ScalingPlanResource struct {
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingPlanResource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingPlanResource) GoString() string {
 	return s.String()
 }
@@ -2591,12 +2791,20 @@ type ScalingPolicy struct {
 	TargetTrackingConfiguration *TargetTrackingConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingPolicy) GoString() string {
 	return s.String()
 }
@@ -2630,12 +2838,20 @@ type TagFilter struct {
 	Values []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagFilter) GoString() string {
 	return s.String()
 }
@@ -2723,12 +2939,20 @@ type TargetTrackingConfiguration struct {
 	TargetValue *float64 `type:"double" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetTrackingConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetTrackingConfiguration) GoString() string {
 	return s.String()
 }
@@ -2825,12 +3049,20 @@ type UpdateScalingPlanInput struct {
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateScalingPlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateScalingPlanInput) GoString() string {
 	return s.String()
 }
@@ -2897,12 +3129,20 @@ type UpdateScalingPlanOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateScalingPlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateScalingPlanOutput) GoString() string {
 	return s.String()
 }
@@ -2915,12 +3155,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }

@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AmazonNimbleStudio.
-//    func myFunc(svc nimblestudioiface.NimbleStudioAPI) bool {
-//        // Make svc.AcceptEulas request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AmazonNimbleStudio.
+//	func myFunc(svc nimblestudioiface.NimbleStudioAPI) bool {
+//	    // Make svc.AcceptEulas request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := nimblestudio.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := nimblestudio.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockNimbleStudioClient struct {
-//        nimblestudioiface.NimbleStudioAPI
-//    }
-//    func (m *mockNimbleStudioClient) AcceptEulas(input *nimblestudio.AcceptEulasInput) (*nimblestudio.AcceptEulasOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockNimbleStudioClient struct {
+//	    nimblestudioiface.NimbleStudioAPI
+//	}
+//	func (m *mockNimbleStudioClient) AcceptEulas(input *nimblestudio.AcceptEulasInput) (*nimblestudio.AcceptEulasOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockNimbleStudioClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockNimbleStudioClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -144,6 +144,10 @@ type NimbleStudioAPI interface {
 	GetStreamingSessionWithContext(aws.Context, *nimblestudio.GetStreamingSessionInput, ...request.Option) (*nimblestudio.GetStreamingSessionOutput, error)
 	GetStreamingSessionRequest(*nimblestudio.GetStreamingSessionInput) (*request.Request, *nimblestudio.GetStreamingSessionOutput)
 
+	GetStreamingSessionBackup(*nimblestudio.GetStreamingSessionBackupInput) (*nimblestudio.GetStreamingSessionBackupOutput, error)
+	GetStreamingSessionBackupWithContext(aws.Context, *nimblestudio.GetStreamingSessionBackupInput, ...request.Option) (*nimblestudio.GetStreamingSessionBackupOutput, error)
+	GetStreamingSessionBackupRequest(*nimblestudio.GetStreamingSessionBackupInput) (*request.Request, *nimblestudio.GetStreamingSessionBackupOutput)
+
 	GetStreamingSessionStream(*nimblestudio.GetStreamingSessionStreamInput) (*nimblestudio.GetStreamingSessionStreamOutput, error)
 	GetStreamingSessionStreamWithContext(aws.Context, *nimblestudio.GetStreamingSessionStreamInput, ...request.Option) (*nimblestudio.GetStreamingSessionStreamOutput, error)
 	GetStreamingSessionStreamRequest(*nimblestudio.GetStreamingSessionStreamInput) (*request.Request, *nimblestudio.GetStreamingSessionStreamOutput)
@@ -195,6 +199,13 @@ type NimbleStudioAPI interface {
 	ListStreamingImagesPages(*nimblestudio.ListStreamingImagesInput, func(*nimblestudio.ListStreamingImagesOutput, bool) bool) error
 	ListStreamingImagesPagesWithContext(aws.Context, *nimblestudio.ListStreamingImagesInput, func(*nimblestudio.ListStreamingImagesOutput, bool) bool, ...request.Option) error
 
+	ListStreamingSessionBackups(*nimblestudio.ListStreamingSessionBackupsInput) (*nimblestudio.ListStreamingSessionBackupsOutput, error)
+	ListStreamingSessionBackupsWithContext(aws.Context, *nimblestudio.ListStreamingSessionBackupsInput, ...request.Option) (*nimblestudio.ListStreamingSessionBackupsOutput, error)
+	ListStreamingSessionBackupsRequest(*nimblestudio.ListStreamingSessionBackupsInput) (*request.Request, *nimblestudio.ListStreamingSessionBackupsOutput)
+
+	ListStreamingSessionBackupsPages(*nimblestudio.ListStreamingSessionBackupsInput, func(*nimblestudio.ListStreamingSessionBackupsOutput, bool) bool) error
+	ListStreamingSessionBackupsPagesWithContext(aws.Context, *nimblestudio.ListStreamingSessionBackupsInput, func(*nimblestudio.ListStreamingSessionBackupsOutput, bool) bool, ...request.Option) error
+
 	ListStreamingSessions(*nimblestudio.ListStreamingSessionsInput) (*nimblestudio.ListStreamingSessionsOutput, error)
 	ListStreamingSessionsWithContext(aws.Context, *nimblestudio.ListStreamingSessionsInput, ...request.Option) (*nimblestudio.ListStreamingSessionsOutput, error)
 	ListStreamingSessionsRequest(*nimblestudio.ListStreamingSessionsInput) (*request.Request, *nimblestudio.ListStreamingSessionsOutput)
@@ -235,9 +246,17 @@ type NimbleStudioAPI interface {
 	PutStudioMembersWithContext(aws.Context, *nimblestudio.PutStudioMembersInput, ...request.Option) (*nimblestudio.PutStudioMembersOutput, error)
 	PutStudioMembersRequest(*nimblestudio.PutStudioMembersInput) (*request.Request, *nimblestudio.PutStudioMembersOutput)
 
+	StartStreamingSession(*nimblestudio.StartStreamingSessionInput) (*nimblestudio.StartStreamingSessionOutput, error)
+	StartStreamingSessionWithContext(aws.Context, *nimblestudio.StartStreamingSessionInput, ...request.Option) (*nimblestudio.StartStreamingSessionOutput, error)
+	StartStreamingSessionRequest(*nimblestudio.StartStreamingSessionInput) (*request.Request, *nimblestudio.StartStreamingSessionOutput)
+
 	StartStudioSSOConfigurationRepair(*nimblestudio.StartStudioSSOConfigurationRepairInput) (*nimblestudio.StartStudioSSOConfigurationRepairOutput, error)
 	StartStudioSSOConfigurationRepairWithContext(aws.Context, *nimblestudio.StartStudioSSOConfigurationRepairInput, ...request.Option) (*nimblestudio.StartStudioSSOConfigurationRepairOutput, error)
 	StartStudioSSOConfigurationRepairRequest(*nimblestudio.StartStudioSSOConfigurationRepairInput) (*request.Request, *nimblestudio.StartStudioSSOConfigurationRepairOutput)
+
+	StopStreamingSession(*nimblestudio.StopStreamingSessionInput) (*nimblestudio.StopStreamingSessionOutput, error)
+	StopStreamingSessionWithContext(aws.Context, *nimblestudio.StopStreamingSessionInput, ...request.Option) (*nimblestudio.StopStreamingSessionOutput, error)
+	StopStreamingSessionRequest(*nimblestudio.StopStreamingSessionInput) (*request.Request, *nimblestudio.StopStreamingSessionOutput)
 
 	TagResource(*nimblestudio.TagResourceInput) (*nimblestudio.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *nimblestudio.TagResourceInput, ...request.Option) (*nimblestudio.TagResourceOutput, error)
@@ -266,6 +285,42 @@ type NimbleStudioAPI interface {
 	UpdateStudioComponent(*nimblestudio.UpdateStudioComponentInput) (*nimblestudio.UpdateStudioComponentOutput, error)
 	UpdateStudioComponentWithContext(aws.Context, *nimblestudio.UpdateStudioComponentInput, ...request.Option) (*nimblestudio.UpdateStudioComponentOutput, error)
 	UpdateStudioComponentRequest(*nimblestudio.UpdateStudioComponentInput) (*request.Request, *nimblestudio.UpdateStudioComponentOutput)
+
+	WaitUntilLaunchProfileDeleted(*nimblestudio.GetLaunchProfileInput) error
+	WaitUntilLaunchProfileDeletedWithContext(aws.Context, *nimblestudio.GetLaunchProfileInput, ...request.WaiterOption) error
+
+	WaitUntilLaunchProfileReady(*nimblestudio.GetLaunchProfileInput) error
+	WaitUntilLaunchProfileReadyWithContext(aws.Context, *nimblestudio.GetLaunchProfileInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingImageDeleted(*nimblestudio.GetStreamingImageInput) error
+	WaitUntilStreamingImageDeletedWithContext(aws.Context, *nimblestudio.GetStreamingImageInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingImageReady(*nimblestudio.GetStreamingImageInput) error
+	WaitUntilStreamingImageReadyWithContext(aws.Context, *nimblestudio.GetStreamingImageInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingSessionDeleted(*nimblestudio.GetStreamingSessionInput) error
+	WaitUntilStreamingSessionDeletedWithContext(aws.Context, *nimblestudio.GetStreamingSessionInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingSessionReady(*nimblestudio.GetStreamingSessionInput) error
+	WaitUntilStreamingSessionReadyWithContext(aws.Context, *nimblestudio.GetStreamingSessionInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingSessionStopped(*nimblestudio.GetStreamingSessionInput) error
+	WaitUntilStreamingSessionStoppedWithContext(aws.Context, *nimblestudio.GetStreamingSessionInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingSessionStreamReady(*nimblestudio.GetStreamingSessionStreamInput) error
+	WaitUntilStreamingSessionStreamReadyWithContext(aws.Context, *nimblestudio.GetStreamingSessionStreamInput, ...request.WaiterOption) error
+
+	WaitUntilStudioComponentDeleted(*nimblestudio.GetStudioComponentInput) error
+	WaitUntilStudioComponentDeletedWithContext(aws.Context, *nimblestudio.GetStudioComponentInput, ...request.WaiterOption) error
+
+	WaitUntilStudioComponentReady(*nimblestudio.GetStudioComponentInput) error
+	WaitUntilStudioComponentReadyWithContext(aws.Context, *nimblestudio.GetStudioComponentInput, ...request.WaiterOption) error
+
+	WaitUntilStudioDeleted(*nimblestudio.GetStudioInput) error
+	WaitUntilStudioDeletedWithContext(aws.Context, *nimblestudio.GetStudioInput, ...request.WaiterOption) error
+
+	WaitUntilStudioReady(*nimblestudio.GetStudioInput) error
+	WaitUntilStudioReadyWithContext(aws.Context, *nimblestudio.GetStudioInput, ...request.WaiterOption) error
 }
 
 var _ NimbleStudioAPI = (*nimblestudio.NimbleStudio)(nil)

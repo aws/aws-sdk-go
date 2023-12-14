@@ -1,3 +1,4 @@
+//go:build go1.7
 // +build go1.7
 
 package ini
@@ -94,7 +95,7 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedRead: 3,
 			expectedToken: newToken(TokenLit,
 				[]rune("123"),
-				IntegerType,
+				StringType,
 			),
 		},
 		{
@@ -103,7 +104,7 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedRead: 7,
 			expectedToken: newToken(TokenLit,
 				[]rune("123.456"),
-				DecimalType,
+				StringType,
 			),
 		},
 		{
@@ -112,7 +113,7 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedRead: 3,
 			expectedToken: newToken(TokenLit,
 				[]rune("123"),
-				IntegerType,
+				StringType,
 			),
 		},
 		{
@@ -121,7 +122,7 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedRead: 3,
 			expectedToken: newToken(TokenLit,
 				[]rune("123"),
-				IntegerType,
+				StringType,
 			),
 		},
 		{
@@ -148,7 +149,7 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedRead: 4,
 			expectedToken: newToken(TokenLit,
 				[]rune("true"),
-				BoolType,
+				StringType,
 			),
 		},
 		{
@@ -157,21 +158,21 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedRead: 5,
 			expectedToken: newToken(TokenLit,
 				[]rune("false"),
-				BoolType,
+				StringType,
 			),
 		},
 		{
-			name: "utf8 whitespace",
-			b: []rune("00"),
-			expectedRead: 1,
+			name:         "utf8 whitespace",
+			b:            []rune("00"),
+			expectedRead: 3,
 			expectedToken: newToken(TokenLit,
 				[]rune("0"),
-				IntegerType,
+				StringType,
 			),
 		},
 		{
-			name: "utf8 whitespace expr",
-			b: []rune("0=00"),
+			name:         "utf8 whitespace expr",
+			b:            []rune("0=00"),
 			expectedRead: 1,
 			expectedToken: newToken(TokenLit,
 				[]rune("0"),

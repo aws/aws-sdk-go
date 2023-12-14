@@ -30,14 +30,13 @@ const opCompleteSnapshot = "CompleteSnapshot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CompleteSnapshotRequest method.
+//	req, resp := client.CompleteSnapshotRequest(params)
 //
-//    // Example sending a request using the CompleteSnapshotRequest method.
-//    req, resp := client.CompleteSnapshotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/CompleteSnapshot
 func (c *EBS) CompleteSnapshotRequest(input *CompleteSnapshotInput) (req *request.Request, output *CompleteSnapshotOutput) {
@@ -62,6 +61,11 @@ func (c *EBS) CompleteSnapshotRequest(input *CompleteSnapshotInput) (req *reques
 // have been written to it. Completing the snapshot changes the status to completed.
 // You cannot write new blocks to a snapshot after it has been completed.
 //
+// You should always retry requests that receive server (5xx) error responses,
+// and ThrottlingException and RequestThrottledException client error responses.
+// For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -70,24 +74,25 @@ func (c *EBS) CompleteSnapshotRequest(input *CompleteSnapshotInput) (req *reques
 // API operation CompleteSnapshot for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints of the EBS direct APIs.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - ValidationException
+//     The input fails to satisfy the constraints of the EBS direct APIs.
 //
-//   * RequestThrottledException
-//   The number of API requests has exceed the maximum allowed API request throttling
-//   limit.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ServiceQuotaExceededException
-//   Your current service quotas do not allow you to perform this action.
+//   - RequestThrottledException
+//     The number of API requests has exceeded the maximum allowed API request throttling
+//     limit for the snapshot. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
-//   * InternalServerException
-//   An internal error has occurred.
+//   - ServiceQuotaExceededException
+//     Your current service quotas do not allow you to perform this action.
+//
+//   - InternalServerException
+//     An internal error has occurred. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/CompleteSnapshot
 func (c *EBS) CompleteSnapshot(input *CompleteSnapshotInput) (*CompleteSnapshotOutput, error) {
@@ -127,14 +132,13 @@ const opGetSnapshotBlock = "GetSnapshotBlock"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSnapshotBlockRequest method.
+//	req, resp := client.GetSnapshotBlockRequest(params)
 //
-//    // Example sending a request using the GetSnapshotBlockRequest method.
-//    req, resp := client.GetSnapshotBlockRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/GetSnapshotBlock
 func (c *EBS) GetSnapshotBlockRequest(input *GetSnapshotBlockInput) (req *request.Request, output *GetSnapshotBlockOutput) {
@@ -157,6 +161,11 @@ func (c *EBS) GetSnapshotBlockRequest(input *GetSnapshotBlockInput) (req *reques
 //
 // Returns the data in a block in an Amazon Elastic Block Store snapshot.
 //
+// You should always retry requests that receive server (5xx) error responses,
+// and ThrottlingException and RequestThrottledException client error responses.
+// For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -165,24 +174,25 @@ func (c *EBS) GetSnapshotBlockRequest(input *GetSnapshotBlockInput) (req *reques
 // API operation GetSnapshotBlock for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints of the EBS direct APIs.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - ValidationException
+//     The input fails to satisfy the constraints of the EBS direct APIs.
 //
-//   * RequestThrottledException
-//   The number of API requests has exceed the maximum allowed API request throttling
-//   limit.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ServiceQuotaExceededException
-//   Your current service quotas do not allow you to perform this action.
+//   - RequestThrottledException
+//     The number of API requests has exceeded the maximum allowed API request throttling
+//     limit for the snapshot. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
-//   * InternalServerException
-//   An internal error has occurred.
+//   - ServiceQuotaExceededException
+//     Your current service quotas do not allow you to perform this action.
+//
+//   - InternalServerException
+//     An internal error has occurred. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/GetSnapshotBlock
 func (c *EBS) GetSnapshotBlock(input *GetSnapshotBlockInput) (*GetSnapshotBlockOutput, error) {
@@ -222,14 +232,13 @@ const opListChangedBlocks = "ListChangedBlocks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListChangedBlocksRequest method.
+//	req, resp := client.ListChangedBlocksRequest(params)
 //
-//    // Example sending a request using the ListChangedBlocksRequest method.
-//    req, resp := client.ListChangedBlocksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/ListChangedBlocks
 func (c *EBS) ListChangedBlocksRequest(input *ListChangedBlocksInput) (req *request.Request, output *ListChangedBlocksOutput) {
@@ -259,6 +268,11 @@ func (c *EBS) ListChangedBlocksRequest(input *ListChangedBlocksInput) (req *requ
 // Returns information about the blocks that are different between two Amazon
 // Elastic Block Store snapshots of the same volume/snapshot lineage.
 //
+// You should always retry requests that receive server (5xx) error responses,
+// and ThrottlingException and RequestThrottledException client error responses.
+// For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -267,24 +281,25 @@ func (c *EBS) ListChangedBlocksRequest(input *ListChangedBlocksInput) (req *requ
 // API operation ListChangedBlocks for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints of the EBS direct APIs.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - ValidationException
+//     The input fails to satisfy the constraints of the EBS direct APIs.
 //
-//   * RequestThrottledException
-//   The number of API requests has exceed the maximum allowed API request throttling
-//   limit.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ServiceQuotaExceededException
-//   Your current service quotas do not allow you to perform this action.
+//   - RequestThrottledException
+//     The number of API requests has exceeded the maximum allowed API request throttling
+//     limit for the snapshot. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
-//   * InternalServerException
-//   An internal error has occurred.
+//   - ServiceQuotaExceededException
+//     Your current service quotas do not allow you to perform this action.
+//
+//   - InternalServerException
+//     An internal error has occurred. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/ListChangedBlocks
 func (c *EBS) ListChangedBlocks(input *ListChangedBlocksInput) (*ListChangedBlocksOutput, error) {
@@ -316,15 +331,14 @@ func (c *EBS) ListChangedBlocksWithContext(ctx aws.Context, input *ListChangedBl
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListChangedBlocks operation.
-//    pageNum := 0
-//    err := client.ListChangedBlocksPages(params,
-//        func(page *ebs.ListChangedBlocksOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListChangedBlocks operation.
+//	pageNum := 0
+//	err := client.ListChangedBlocksPages(params,
+//	    func(page *ebs.ListChangedBlocksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EBS) ListChangedBlocksPages(input *ListChangedBlocksInput, fn func(*ListChangedBlocksOutput, bool) bool) error {
 	return c.ListChangedBlocksPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -376,14 +390,13 @@ const opListSnapshotBlocks = "ListSnapshotBlocks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSnapshotBlocksRequest method.
+//	req, resp := client.ListSnapshotBlocksRequest(params)
 //
-//    // Example sending a request using the ListSnapshotBlocksRequest method.
-//    req, resp := client.ListSnapshotBlocksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/ListSnapshotBlocks
 func (c *EBS) ListSnapshotBlocksRequest(input *ListSnapshotBlocksInput) (req *request.Request, output *ListSnapshotBlocksOutput) {
@@ -412,6 +425,11 @@ func (c *EBS) ListSnapshotBlocksRequest(input *ListSnapshotBlocksInput) (req *re
 //
 // Returns information about the blocks in an Amazon Elastic Block Store snapshot.
 //
+// You should always retry requests that receive server (5xx) error responses,
+// and ThrottlingException and RequestThrottledException client error responses.
+// For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -420,24 +438,25 @@ func (c *EBS) ListSnapshotBlocksRequest(input *ListSnapshotBlocksInput) (req *re
 // API operation ListSnapshotBlocks for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints of the EBS direct APIs.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - ValidationException
+//     The input fails to satisfy the constraints of the EBS direct APIs.
 //
-//   * RequestThrottledException
-//   The number of API requests has exceed the maximum allowed API request throttling
-//   limit.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ServiceQuotaExceededException
-//   Your current service quotas do not allow you to perform this action.
+//   - RequestThrottledException
+//     The number of API requests has exceeded the maximum allowed API request throttling
+//     limit for the snapshot. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
-//   * InternalServerException
-//   An internal error has occurred.
+//   - ServiceQuotaExceededException
+//     Your current service quotas do not allow you to perform this action.
+//
+//   - InternalServerException
+//     An internal error has occurred. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/ListSnapshotBlocks
 func (c *EBS) ListSnapshotBlocks(input *ListSnapshotBlocksInput) (*ListSnapshotBlocksOutput, error) {
@@ -469,15 +488,14 @@ func (c *EBS) ListSnapshotBlocksWithContext(ctx aws.Context, input *ListSnapshot
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSnapshotBlocks operation.
-//    pageNum := 0
-//    err := client.ListSnapshotBlocksPages(params,
-//        func(page *ebs.ListSnapshotBlocksOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSnapshotBlocks operation.
+//	pageNum := 0
+//	err := client.ListSnapshotBlocksPages(params,
+//	    func(page *ebs.ListSnapshotBlocksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EBS) ListSnapshotBlocksPages(input *ListSnapshotBlocksInput, fn func(*ListSnapshotBlocksOutput, bool) bool) error {
 	return c.ListSnapshotBlocksPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -529,14 +547,13 @@ const opPutSnapshotBlock = "PutSnapshotBlock"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutSnapshotBlockRequest method.
+//	req, resp := client.PutSnapshotBlockRequest(params)
 //
-//    // Example sending a request using the PutSnapshotBlockRequest method.
-//    req, resp := client.PutSnapshotBlockRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/PutSnapshotBlock
 func (c *EBS) PutSnapshotBlockRequest(input *PutSnapshotBlockInput) (req *request.Request, output *PutSnapshotBlockOutput) {
@@ -564,7 +581,12 @@ func (c *EBS) PutSnapshotBlockRequest(input *PutSnapshotBlockInput) (req *reques
 // the existing data is overwritten. The target snapshot must be in the pending
 // state.
 //
-// Data written to a snapshot must be aligned with 512-byte sectors.
+// Data written to a snapshot must be aligned with 512-KiB sectors.
+//
+// You should always retry requests that receive server (5xx) error responses,
+// and ThrottlingException and RequestThrottledException client error responses.
+// For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -574,24 +596,25 @@ func (c *EBS) PutSnapshotBlockRequest(input *PutSnapshotBlockInput) (req *reques
 // API operation PutSnapshotBlock for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints of the EBS direct APIs.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - ValidationException
+//     The input fails to satisfy the constraints of the EBS direct APIs.
 //
-//   * RequestThrottledException
-//   The number of API requests has exceed the maximum allowed API request throttling
-//   limit.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * ServiceQuotaExceededException
-//   Your current service quotas do not allow you to perform this action.
+//   - RequestThrottledException
+//     The number of API requests has exceeded the maximum allowed API request throttling
+//     limit for the snapshot. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
-//   * InternalServerException
-//   An internal error has occurred.
+//   - ServiceQuotaExceededException
+//     Your current service quotas do not allow you to perform this action.
+//
+//   - InternalServerException
+//     An internal error has occurred. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/PutSnapshotBlock
 func (c *EBS) PutSnapshotBlock(input *PutSnapshotBlockInput) (*PutSnapshotBlockOutput, error) {
@@ -631,14 +654,13 @@ const opStartSnapshot = "StartSnapshot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartSnapshotRequest method.
+//	req, resp := client.StartSnapshotRequest(params)
 //
-//    // Example sending a request using the StartSnapshotRequest method.
-//    req, resp := client.StartSnapshotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/StartSnapshot
 func (c *EBS) StartSnapshotRequest(input *StartSnapshotInput) (req *request.Request, output *StartSnapshotOutput) {
@@ -665,6 +687,11 @@ func (c *EBS) StartSnapshotRequest(input *StartSnapshotInput) (req *request.Requ
 // After creating the snapshot, use PutSnapshotBlock (https://docs.aws.amazon.com/ebs/latest/APIReference/API_PutSnapshotBlock.html)
 // to write blocks of data to the snapshot.
 //
+// You should always retry requests that receive server (5xx) error responses,
+// and ThrottlingException and RequestThrottledException client error responses.
+// For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -673,32 +700,33 @@ func (c *EBS) StartSnapshotRequest(input *StartSnapshotInput) (req *request.Requ
 // API operation StartSnapshot for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints of the EBS direct APIs.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * RequestThrottledException
-//   The number of API requests has exceed the maximum allowed API request throttling
-//   limit.
+//   - ValidationException
+//     The input fails to satisfy the constraints of the EBS direct APIs.
 //
-//   * ResourceNotFoundException
-//   The specified resource does not exist.
+//   - RequestThrottledException
+//     The number of API requests has exceeded the maximum allowed API request throttling
+//     limit for the snapshot. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
-//   * ServiceQuotaExceededException
-//   Your current service quotas do not allow you to perform this action.
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
 //
-//   * InternalServerException
-//   An internal error has occurred.
+//   - ServiceQuotaExceededException
+//     Your current service quotas do not allow you to perform this action.
 //
-//   * ConcurrentLimitExceededException
-//   You have reached the limit for concurrent API requests. For more information,
-//   see Optimizing performance of the EBS direct APIs (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-accessing-snapshot.html#ebsapi-performance)
-//   in the Amazon Elastic Compute Cloud User Guide.
+//   - InternalServerException
+//     An internal error has occurred. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 //
-//   * ConflictException
-//   The request uses the same client token as a previous, but non-identical request.
+//   - ConcurrentLimitExceededException
+//     You have reached the limit for concurrent API requests. For more information,
+//     see Optimizing performance of the EBS direct APIs (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-accessing-snapshot.html#ebsapi-performance)
+//     in the Amazon Elastic Compute Cloud User Guide.
+//
+//   - ConflictException
+//     The request uses the same client token as a previous, but non-identical request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/StartSnapshot
 func (c *EBS) StartSnapshot(input *StartSnapshotInput) (*StartSnapshotOutput, error) {
@@ -735,12 +763,20 @@ type AccessDeniedException struct {
 	Reason *string `type:"string" required:"true" enum:"AccessDeniedExceptionReason"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -794,12 +830,20 @@ type Block struct {
 	BlockToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Block) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Block) GoString() string {
 	return s.String()
 }
@@ -834,12 +878,20 @@ type ChangedBlock struct {
 	SecondBlockToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChangedBlock) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChangedBlock) GoString() string {
 	return s.String()
 }
@@ -863,7 +915,7 @@ func (s *ChangedBlock) SetSecondBlockToken(v string) *ChangedBlock {
 }
 
 type CompleteSnapshotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The number of blocks that were written to the snapshot.
 	//
@@ -893,12 +945,20 @@ type CompleteSnapshotInput struct {
 	SnapshotId *string `location:"uri" locationName:"snapshotId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CompleteSnapshotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CompleteSnapshotInput) GoString() string {
 	return s.String()
 }
@@ -959,12 +1019,20 @@ type CompleteSnapshotOutput struct {
 	Status *string `type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CompleteSnapshotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CompleteSnapshotOutput) GoString() string {
 	return s.String()
 }
@@ -985,12 +1053,20 @@ type ConcurrentLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -1041,12 +1117,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -1090,36 +1174,48 @@ func (s *ConflictException) RequestID() string {
 }
 
 type GetSnapshotBlockInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The block index of the block from which to get data.
-	//
-	// Obtain the BlockIndex by running the ListChangedBlocks or ListSnapshotBlocks
-	// operations.
+	// The block index of the block in which to read the data. A block index is
+	// a logical index in units of 512 KiB blocks. To identify the block index,
+	// divide the logical offset of the data in the logical volume by the block
+	// size (logical offset of data/524288). The logical offset of the data must
+	// be 512 KiB aligned.
 	//
 	// BlockIndex is a required field
 	BlockIndex *int64 `location:"uri" locationName:"blockIndex" type:"integer" required:"true"`
 
-	// The block token of the block from which to get data.
-	//
-	// Obtain the BlockToken by running the ListChangedBlocks or ListSnapshotBlocks
-	// operations.
+	// The block token of the block from which to get data. You can obtain the BlockToken
+	// by running the ListChangedBlocks or ListSnapshotBlocks operations.
 	//
 	// BlockToken is a required field
 	BlockToken *string `location:"querystring" locationName:"blockToken" type:"string" required:"true"`
 
 	// The ID of the snapshot containing the block from which to get data.
 	//
+	// If the specified snapshot is encrypted, you must have permission to use the
+	// KMS key that was used to encrypt the snapshot. For more information, see
+	// Using encryption (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebsapis-using-encryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
 	// SnapshotId is a required field
 	SnapshotId *string `location:"uri" locationName:"snapshotId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSnapshotBlockInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSnapshotBlockInput) GoString() string {
 	return s.String()
 }
@@ -1168,6 +1264,10 @@ type GetSnapshotBlockOutput struct {
 	_ struct{} `type:"structure" payload:"BlockData"`
 
 	// The data content of the block.
+	//
+	// BlockData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetSnapshotBlockOutput's
+	// String and GoString methods.
 	BlockData io.ReadCloser `type:"blob" sensitive:"true"`
 
 	// The checksum generated for the block, which is Base64 encoded.
@@ -1180,12 +1280,20 @@ type GetSnapshotBlockOutput struct {
 	DataLength *int64 `location:"header" locationName:"x-amz-Data-Length" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSnapshotBlockOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSnapshotBlockOutput) GoString() string {
 	return s.String()
 }
@@ -1214,7 +1322,7 @@ func (s *GetSnapshotBlockOutput) SetDataLength(v int64) *GetSnapshotBlockOutput 
 	return s
 }
 
-// An internal error has occurred.
+// An internal error has occurred. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1222,12 +1330,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -1271,7 +1387,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListChangedBlocksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the first snapshot to use for the comparison.
 	//
@@ -1279,10 +1395,19 @@ type ListChangedBlocksInput struct {
 	// otherwise, an error occurs.
 	FirstSnapshotId *string `location:"querystring" locationName:"firstSnapshotId" min:"1" type:"string"`
 
-	// The number of results to return.
+	// The maximum number of blocks to be returned by the request.
+	//
+	// Even if additional blocks can be retrieved from the snapshot, the request
+	// can return less blocks than MaxResults or an empty array of blocks.
+	//
+	// To retrieve the next set of blocks from the snapshot, make another request
+	// with the returned NextToken value. The value of NextToken is null when there
+	// are no more blocks to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"100" type:"integer"`
 
 	// The token to request the next page of results.
+	//
+	// If you specify NextToken, then StartingBlockIndex is ignored.
 	NextToken *string `location:"querystring" locationName:"pageToken" type:"string"`
 
 	// The ID of the second snapshot to use for the comparison.
@@ -1297,15 +1422,25 @@ type ListChangedBlocksInput struct {
 	//
 	// The list in the response will start from this block index or the next valid
 	// block index in the snapshots.
+	//
+	// If you specify NextToken, then StartingBlockIndex is ignored.
 	StartingBlockIndex *int64 `location:"querystring" locationName:"startingBlockIndex" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListChangedBlocksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListChangedBlocksInput) GoString() string {
 	return s.String()
 }
@@ -1365,7 +1500,7 @@ func (s *ListChangedBlocksInput) SetStartingBlockIndex(v int64) *ListChangedBloc
 type ListChangedBlocksOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The size of the block.
+	// The size of the blocks in the snapshot, in bytes.
 	BlockSize *int64 `type:"integer"`
 
 	// An array of objects containing information about the changed blocks.
@@ -1382,12 +1517,20 @@ type ListChangedBlocksOutput struct {
 	VolumeSize *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListChangedBlocksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListChangedBlocksOutput) GoString() string {
 	return s.String()
 }
@@ -1423,12 +1566,21 @@ func (s *ListChangedBlocksOutput) SetVolumeSize(v int64) *ListChangedBlocksOutpu
 }
 
 type ListSnapshotBlocksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The number of results to return.
+	// The maximum number of blocks to be returned by the request.
+	//
+	// Even if additional blocks can be retrieved from the snapshot, the request
+	// can return less blocks than MaxResults or an empty array of blocks.
+	//
+	// To retrieve the next set of blocks from the snapshot, make another request
+	// with the returned NextToken value. The value of NextToken is null when there
+	// are no more blocks to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"100" type:"integer"`
 
 	// The token to request the next page of results.
+	//
+	// If you specify NextToken, then StartingBlockIndex is ignored.
 	NextToken *string `location:"querystring" locationName:"pageToken" type:"string"`
 
 	// The ID of the snapshot from which to get block indexes and block tokens.
@@ -1438,15 +1590,25 @@ type ListSnapshotBlocksInput struct {
 
 	// The block index from which the list should start. The list in the response
 	// will start from this block index or the next valid block index in the snapshot.
+	//
+	// If you specify NextToken, then StartingBlockIndex is ignored.
 	StartingBlockIndex *int64 `location:"querystring" locationName:"startingBlockIndex" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSnapshotBlocksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSnapshotBlocksInput) GoString() string {
 	return s.String()
 }
@@ -1497,10 +1659,14 @@ func (s *ListSnapshotBlocksInput) SetStartingBlockIndex(v int64) *ListSnapshotBl
 type ListSnapshotBlocksOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The size of the block.
+	// The size of the blocks in the snapshot, in bytes.
 	BlockSize *int64 `type:"integer"`
 
 	// An array of objects containing information about the blocks.
+	//
+	// Blocks is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListSnapshotBlocksOutput's
+	// String and GoString methods.
 	Blocks []*Block `type:"list" sensitive:"true"`
 
 	// The time when the BlockToken expires.
@@ -1514,12 +1680,20 @@ type ListSnapshotBlocksOutput struct {
 	VolumeSize *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSnapshotBlocksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSnapshotBlocksOutput) GoString() string {
 	return s.String()
 }
@@ -1575,6 +1749,10 @@ type PutSnapshotBlockInput struct {
 	// readers. This will allow the SDK to send the reader's payload as chunked
 	// transfer encoding.
 	//
+	// BlockData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutSnapshotBlockInput's
+	// String and GoString methods.
+	//
 	// BlockData is a required field
 	BlockData io.ReadSeeker `type:"blob" required:"true" sensitive:"true"`
 
@@ -1599,7 +1777,7 @@ type PutSnapshotBlockInput struct {
 	ChecksumAlgorithm *string `location:"header" locationName:"x-amz-Checksum-Algorithm" type:"string" required:"true" enum:"ChecksumAlgorithm"`
 
 	// The size of the data to write to the block, in bytes. Currently, the only
-	// supported size is 524288.
+	// supported size is 524288 bytes.
 	//
 	// Valid values: 524288
 	//
@@ -1611,16 +1789,29 @@ type PutSnapshotBlockInput struct {
 
 	// The ID of the snapshot.
 	//
+	// If the specified snapshot is encrypted, you must have permission to use the
+	// KMS key that was used to encrypt the snapshot. For more information, see
+	// Using encryption (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebsapis-using-encryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide..
+	//
 	// SnapshotId is a required field
 	SnapshotId *string `location:"uri" locationName:"snapshotId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSnapshotBlockInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSnapshotBlockInput) GoString() string {
 	return s.String()
 }
@@ -1708,12 +1899,20 @@ type PutSnapshotBlockOutput struct {
 	ChecksumAlgorithm *string `location:"header" locationName:"x-amz-Checksum-Algorithm" type:"string" enum:"ChecksumAlgorithm"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSnapshotBlockOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSnapshotBlockOutput) GoString() string {
 	return s.String()
 }
@@ -1730,8 +1929,8 @@ func (s *PutSnapshotBlockOutput) SetChecksumAlgorithm(v string) *PutSnapshotBloc
 	return s
 }
 
-// The number of API requests has exceed the maximum allowed API request throttling
-// limit.
+// The number of API requests has exceeded the maximum allowed API request throttling
+// limit for the snapshot. For more information see Error retries (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html).
 type RequestThrottledException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1742,12 +1941,20 @@ type RequestThrottledException struct {
 	Reason *string `type:"string" enum:"RequestThrottledExceptionReason"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestThrottledException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestThrottledException) GoString() string {
 	return s.String()
 }
@@ -1801,12 +2008,20 @@ type ResourceNotFoundException struct {
 	Reason *string `type:"string" enum:"ResourceNotFoundExceptionReason"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -1860,12 +2075,20 @@ type ServiceQuotaExceededException struct {
 	Reason *string `type:"string" enum:"ServiceQuotaExceededExceptionReason"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -1918,7 +2141,7 @@ type StartSnapshotInput struct {
 	// the original successful request and they have no additional effect.
 	//
 	// If you do not specify a client token, one is automatically generated by the
-	// AWS SDK.
+	// Amazon Web Services SDK.
 	//
 	// For more information, see Idempotency for StartSnapshot API (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-direct-api-idempotency.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
@@ -1927,40 +2150,58 @@ type StartSnapshotInput struct {
 	// A description for the snapshot.
 	Description *string `type:"string"`
 
-	// Indicates whether to encrypt the snapshot. To create an encrypted snapshot,
-	// specify true. To create an unencrypted snapshot, omit this parameter.
+	// Indicates whether to encrypt the snapshot.
 	//
-	// If you specify a value for ParentSnapshotId, omit this parameter.
+	// You can't specify Encrypted and ParentSnapshotId in the same request. If
+	// you specify both parameters, the request fails with ValidationException.
 	//
-	// If you specify true, the snapshot is encrypted using the CMK specified using
-	// the KmsKeyArn parameter. If no value is specified for KmsKeyArn, the default
-	// CMK for your account is used. If no default CMK has been specified for your
-	// account, the AWS managed CMK is used. To set a default CMK for your account,
-	// use ModifyEbsDefaultKmsKeyId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyEbsDefaultKmsKeyId.html).
+	// The encryption status of the snapshot depends on the values that you specify
+	// for Encrypted, KmsKeyArn, and ParentSnapshotId, and whether your Amazon Web
+	// Services account is enabled for encryption by default (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default).
+	// For more information, see Using encryption (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebsapis-using-encryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	// If your account is enabled for encryption by default, you cannot set this
-	// parameter to false. In this case, you can omit this parameter.
-	//
-	// For more information, see Using encryption (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-accessing-snapshot.html#ebsapis-using-encryption)
+	// To create an encrypted snapshot, you must have permission to use the KMS
+	// key. For more information, see Permissions to use Key Management Service
+	// keys (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebsapi-permissions.html#ebsapi-kms-permissions)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	Encrypted *bool `type:"boolean"`
 
-	// The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS)
-	// customer master key (CMK) to be used to encrypt the snapshot. If you do not
-	// specify a CMK, the default AWS managed CMK is used.
+	// The Amazon Resource Name (ARN) of the Key Management Service (KMS) key to
+	// be used to encrypt the snapshot.
 	//
-	// If you specify a ParentSnapshotId, omit this parameter; the snapshot will
-	// be encrypted using the same CMK that was used to encrypt the parent snapshot.
+	// The encryption status of the snapshot depends on the values that you specify
+	// for Encrypted, KmsKeyArn, and ParentSnapshotId, and whether your Amazon Web
+	// Services account is enabled for encryption by default (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default).
+	// For more information, see Using encryption (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebsapis-using-encryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	// If Encrypted is set to true, you must specify a CMK ARN.
+	// To create an encrypted snapshot, you must have permission to use the KMS
+	// key. For more information, see Permissions to use Key Management Service
+	// keys (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebsapi-permissions.html#ebsapi-kms-permissions)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
+	// KmsKeyArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartSnapshotInput's
+	// String and GoString methods.
 	KmsKeyArn *string `min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the parent snapshot. If there is no parent snapshot, or if you
 	// are creating the first snapshot for an on-premises volume, omit this parameter.
 	//
-	// If your account is enabled for encryption by default, you cannot use an unencrypted
-	// snapshot as a parent snapshot. You must first create an encrypted copy of
-	// the parent snapshot using CopySnapshot (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CopySnapshot.html).
+	// You can't specify ParentSnapshotId and Encrypted in the same request. If
+	// you specify both parameters, the request fails with ValidationException.
+	//
+	// The encryption status of the snapshot depends on the values that you specify
+	// for Encrypted, KmsKeyArn, and ParentSnapshotId, and whether your Amazon Web
+	// Services account is enabled for encryption by default (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default).
+	// For more information, see Using encryption (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebsapis-using-encryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
+	// If you specify an encrypted parent snapshot, you must have permission to
+	// use the KMS key that was used to encrypt the parent snapshot. For more information,
+	// see Permissions to use Key Management Service keys (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebsapi-permissions.html#ebsapi-kms-permissions)
+	// in the Amazon Elastic Compute Cloud User Guide.
 	ParentSnapshotId *string `min:"1" type:"string"`
 
 	// The tags to apply to the snapshot.
@@ -1976,18 +2217,26 @@ type StartSnapshotInput struct {
 	// If no value is specified, the timeout defaults to 60 minutes.
 	Timeout *int64 `min:"10" type:"integer"`
 
-	// The size of the volume, in GiB. The maximum size is 16384 GiB (16 TiB).
+	// The size of the volume, in GiB. The maximum size is 65536 GiB (64 TiB).
 	//
 	// VolumeSize is a required field
 	VolumeSize *int64 `min:"1" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSnapshotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSnapshotInput) GoString() string {
 	return s.String()
 }
@@ -2074,11 +2323,15 @@ type StartSnapshotOutput struct {
 	// The description of the snapshot.
 	Description *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS)
-	// customer master key (CMK) used to encrypt the snapshot.
+	// The Amazon Resource Name (ARN) of the Key Management Service (KMS) key used
+	// to encrypt the snapshot.
+	//
+	// KmsKeyArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartSnapshotOutput's
+	// String and GoString methods.
 	KmsKeyArn *string `min:"1" type:"string" sensitive:"true"`
 
-	// The AWS account ID of the snapshot owner.
+	// The Amazon Web Services account ID of the snapshot owner.
 	OwnerId *string `min:"1" type:"string"`
 
 	// The ID of the parent snapshot.
@@ -2086,6 +2339,9 @@ type StartSnapshotOutput struct {
 
 	// The ID of the snapshot.
 	SnapshotId *string `min:"1" type:"string"`
+
+	// Reserved for future use.
+	SseType *string `type:"string" enum:"SSEType"`
 
 	// The timestamp when the snapshot was created.
 	StartTime *time.Time `type:"timestamp"`
@@ -2102,12 +2358,20 @@ type StartSnapshotOutput struct {
 	VolumeSize *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSnapshotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSnapshotOutput) GoString() string {
 	return s.String()
 }
@@ -2148,6 +2412,12 @@ func (s *StartSnapshotOutput) SetSnapshotId(v string) *StartSnapshotOutput {
 	return s
 }
 
+// SetSseType sets the SseType field's value.
+func (s *StartSnapshotOutput) SetSseType(v string) *StartSnapshotOutput {
+	s.SseType = &v
+	return s
+}
+
 // SetStartTime sets the StartTime field's value.
 func (s *StartSnapshotOutput) SetStartTime(v time.Time) *StartSnapshotOutput {
 	s.StartTime = &v
@@ -2183,12 +2453,20 @@ type Tag struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -2216,12 +2494,20 @@ type ValidationException struct {
 	Reason *string `type:"string" enum:"ValidationExceptionReason"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -2310,6 +2596,9 @@ const (
 
 	// RequestThrottledExceptionReasonDependencyRequestThrottled is a RequestThrottledExceptionReason enum value
 	RequestThrottledExceptionReasonDependencyRequestThrottled = "DEPENDENCY_REQUEST_THROTTLED"
+
+	// RequestThrottledExceptionReasonResourceLevelThrottle is a RequestThrottledExceptionReason enum value
+	RequestThrottledExceptionReasonResourceLevelThrottle = "RESOURCE_LEVEL_THROTTLE"
 )
 
 // RequestThrottledExceptionReason_Values returns all elements of the RequestThrottledExceptionReason enum
@@ -2317,6 +2606,7 @@ func RequestThrottledExceptionReason_Values() []string {
 	return []string{
 		RequestThrottledExceptionReasonAccountThrottled,
 		RequestThrottledExceptionReasonDependencyRequestThrottled,
+		RequestThrottledExceptionReasonResourceLevelThrottle,
 	}
 }
 
@@ -2324,15 +2614,43 @@ const (
 	// ResourceNotFoundExceptionReasonSnapshotNotFound is a ResourceNotFoundExceptionReason enum value
 	ResourceNotFoundExceptionReasonSnapshotNotFound = "SNAPSHOT_NOT_FOUND"
 
+	// ResourceNotFoundExceptionReasonGrantNotFound is a ResourceNotFoundExceptionReason enum value
+	ResourceNotFoundExceptionReasonGrantNotFound = "GRANT_NOT_FOUND"
+
 	// ResourceNotFoundExceptionReasonDependencyResourceNotFound is a ResourceNotFoundExceptionReason enum value
 	ResourceNotFoundExceptionReasonDependencyResourceNotFound = "DEPENDENCY_RESOURCE_NOT_FOUND"
+
+	// ResourceNotFoundExceptionReasonImageNotFound is a ResourceNotFoundExceptionReason enum value
+	ResourceNotFoundExceptionReasonImageNotFound = "IMAGE_NOT_FOUND"
 )
 
 // ResourceNotFoundExceptionReason_Values returns all elements of the ResourceNotFoundExceptionReason enum
 func ResourceNotFoundExceptionReason_Values() []string {
 	return []string{
 		ResourceNotFoundExceptionReasonSnapshotNotFound,
+		ResourceNotFoundExceptionReasonGrantNotFound,
 		ResourceNotFoundExceptionReasonDependencyResourceNotFound,
+		ResourceNotFoundExceptionReasonImageNotFound,
+	}
+}
+
+const (
+	// SSETypeSseEbs is a SSEType enum value
+	SSETypeSseEbs = "sse-ebs"
+
+	// SSETypeSseKms is a SSEType enum value
+	SSETypeSseKms = "sse-kms"
+
+	// SSETypeNone is a SSEType enum value
+	SSETypeNone = "none"
+)
+
+// SSEType_Values returns all elements of the SSEType enum
+func SSEType_Values() []string {
+	return []string{
+		SSETypeSseEbs,
+		SSETypeSseKms,
+		SSETypeNone,
 	}
 }
 
@@ -2378,6 +2696,9 @@ const (
 	// ValidationExceptionReasonInvalidBlockToken is a ValidationExceptionReason enum value
 	ValidationExceptionReasonInvalidBlockToken = "INVALID_BLOCK_TOKEN"
 
+	// ValidationExceptionReasonInvalidGrantToken is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidGrantToken = "INVALID_GRANT_TOKEN"
+
 	// ValidationExceptionReasonInvalidSnapshotId is a ValidationExceptionReason enum value
 	ValidationExceptionReasonInvalidSnapshotId = "INVALID_SNAPSHOT_ID"
 
@@ -2401,6 +2722,15 @@ const (
 
 	// ValidationExceptionReasonInvalidVolumeSize is a ValidationExceptionReason enum value
 	ValidationExceptionReasonInvalidVolumeSize = "INVALID_VOLUME_SIZE"
+
+	// ValidationExceptionReasonConflictingBlockUpdate is a ValidationExceptionReason enum value
+	ValidationExceptionReasonConflictingBlockUpdate = "CONFLICTING_BLOCK_UPDATE"
+
+	// ValidationExceptionReasonInvalidImageId is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidImageId = "INVALID_IMAGE_ID"
+
+	// ValidationExceptionReasonWriteRequestTimeout is a ValidationExceptionReason enum value
+	ValidationExceptionReasonWriteRequestTimeout = "WRITE_REQUEST_TIMEOUT"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -2409,6 +2739,7 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonInvalidCustomerKey,
 		ValidationExceptionReasonInvalidPageToken,
 		ValidationExceptionReasonInvalidBlockToken,
+		ValidationExceptionReasonInvalidGrantToken,
 		ValidationExceptionReasonInvalidSnapshotId,
 		ValidationExceptionReasonUnrelatedSnapshots,
 		ValidationExceptionReasonInvalidBlock,
@@ -2417,5 +2748,8 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonInvalidDependencyRequest,
 		ValidationExceptionReasonInvalidParameterValue,
 		ValidationExceptionReasonInvalidVolumeSize,
+		ValidationExceptionReasonConflictingBlockUpdate,
+		ValidationExceptionReasonInvalidImageId,
+		ValidationExceptionReasonWriteRequestTimeout,
 	}
 }

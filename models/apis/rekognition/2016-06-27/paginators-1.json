@@ -58,16 +58,45 @@
       "output_token": "NextToken",
       "result_key": "CollectionIds"
     },
+    "ListDatasetEntries": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "DatasetEntries"
+    },
+    "ListDatasetLabels": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "DatasetLabelDescriptions"
+    },
     "ListFaces": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "Faces"
     },
+    "ListMediaAnalysisJobs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListProjectPolicies": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ProjectPolicies"
+    },
     "ListStreamProcessors": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken"
+    },
+    "ListUsers": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Users"
     }
   }
 }

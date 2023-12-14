@@ -331,7 +331,8 @@
       "output":{"shape":"DescribeConfigRulesResponse"},
       "errors":[
         {"shape":"NoSuchConfigRuleException"},
-        {"shape":"InvalidNextTokenException"}
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "DescribeConfigurationAggregatorSourcesStatus":{
@@ -732,6 +733,18 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "GetCustomRulePolicy":{
+      "name":"GetCustomRulePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCustomRulePolicyRequest"},
+      "output":{"shape":"GetCustomRulePolicyResponse"},
+      "errors":[
+        {"shape":"NoSuchConfigRuleException"}
+      ]
+    },
     "GetDiscoveredResourceCounts":{
       "name":"GetDiscoveredResourceCounts",
       "http":{
@@ -776,6 +789,19 @@
         {"shape":"OrganizationAccessDeniedException"}
       ]
     },
+    "GetOrganizationCustomRulePolicy":{
+      "name":"GetOrganizationCustomRulePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetOrganizationCustomRulePolicyRequest"},
+      "output":{"shape":"GetOrganizationCustomRulePolicyResponse"},
+      "errors":[
+        {"shape":"NoSuchOrganizationConfigRuleException"},
+        {"shape":"OrganizationAccessDeniedException"}
+      ]
+    },
     "GetResourceConfigHistory":{
       "name":"GetResourceConfigHistory",
       "http":{
@@ -791,6 +817,18 @@
         {"shape":"InvalidNextTokenException"},
         {"shape":"NoAvailableConfigurationRecorderException"},
         {"shape":"ResourceNotDiscoveredException"}
+      ]
+    },
+    "GetResourceEvaluationSummary":{
+      "name":"GetResourceEvaluationSummary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourceEvaluationSummaryRequest"},
+      "output":{"shape":"GetResourceEvaluationSummaryResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetStoredQuery":{
@@ -821,6 +859,20 @@
         {"shape":"NoSuchConfigurationAggregatorException"}
       ]
     },
+    "ListConformancePackComplianceScores":{
+      "name":"ListConformancePackComplianceScores",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListConformancePackComplianceScoresRequest"},
+      "output":{"shape":"ListConformancePackComplianceScoresResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "ListDiscoveredResources":{
       "name":"ListDiscoveredResources",
       "http":{
@@ -834,6 +886,20 @@
         {"shape":"InvalidLimitException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"NoAvailableConfigurationRecorderException"}
+      ]
+    },
+    "ListResourceEvaluations":{
+      "name":"ListResourceEvaluations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourceEvaluationsRequest"},
+      "output":{"shape":"ListResourceEvaluationsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidTimeRangeException"}
       ]
     },
     "ListStoredQueries":{
@@ -917,6 +983,7 @@
       "input":{"shape":"PutConfigurationRecorderRequest"},
       "errors":[
         {"shape":"MaxNumberOfConfigurationRecordersExceededException"},
+        {"shape":"ValidationException"},
         {"shape":"InvalidConfigurationRecorderNameException"},
         {"shape":"InvalidRoleException"},
         {"shape":"InvalidRecordingGroupException"}
@@ -1156,6 +1223,19 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"InsufficientPermissionsException"},
         {"shape":"NoSuchRemediationConfigurationException"}
+      ]
+    },
+    "StartResourceEvaluation":{
+      "name":"StartResourceEvaluation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartResourceEvaluationRequest"},
+      "output":{"shape":"StartResourceEvaluationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"IdempotentParameterMismatch"}
       ]
     },
     "StopConfigurationRecorder":{
@@ -1439,7 +1519,9 @@
         "availabilityZone":{"shape":"AvailabilityZone"},
         "resourceCreationTime":{"shape":"ResourceCreationTime"},
         "configuration":{"shape":"Configuration"},
-        "supplementaryConfiguration":{"shape":"SupplementaryConfiguration"}
+        "supplementaryConfiguration":{"shape":"SupplementaryConfiguration"},
+        "recordingFrequency":{"shape":"RecordingFrequency"},
+        "configurationItemDeliveryTime":{"shape":"ConfigurationItemDeliveryTime"}
       }
     },
     "BaseConfigurationItems":{
@@ -1496,6 +1578,11 @@
         "Forward"
       ]
     },
+    "ClientToken":{
+      "type":"string",
+      "max":256,
+      "min":64
+    },
     "Compliance":{
       "type":"structure",
       "members":{
@@ -1539,6 +1626,7 @@
       "max":100,
       "min":0
     },
+    "ComplianceScore":{"type":"string"},
     "ComplianceSummariesByResourceType":{
       "type":"list",
       "member":{"shape":"ComplianceSummaryByResourceType"}
@@ -1597,7 +1685,8 @@
         "InputParameters":{"shape":"StringWithCharLimit1024"},
         "MaximumExecutionFrequency":{"shape":"MaximumExecutionFrequency"},
         "ConfigRuleState":{"shape":"ConfigRuleState"},
-        "CreatedBy":{"shape":"StringWithCharLimit256"}
+        "CreatedBy":{"shape":"StringWithCharLimit256"},
+        "EvaluationModes":{"shape":"EvaluationModes"}
       }
     },
     "ConfigRuleComplianceFilters":{
@@ -1637,7 +1726,10 @@
         "LastDeactivatedTime":{"shape":"Date"},
         "LastErrorCode":{"shape":"String"},
         "LastErrorMessage":{"shape":"String"},
-        "FirstEvaluationStarted":{"shape":"Boolean"}
+        "FirstEvaluationStarted":{"shape":"Boolean"},
+        "LastDebugLogDeliveryStatus":{"shape":"String"},
+        "LastDebugLogDeliveryStatusReason":{"shape":"String"},
+        "LastDebugLogDeliveryTime":{"shape":"Date"}
       }
     },
     "ConfigRuleEvaluationStatusList":{
@@ -1737,10 +1829,13 @@
         "relatedEvents":{"shape":"RelatedEventList"},
         "relationships":{"shape":"RelationshipList"},
         "configuration":{"shape":"Configuration"},
-        "supplementaryConfiguration":{"shape":"SupplementaryConfiguration"}
+        "supplementaryConfiguration":{"shape":"SupplementaryConfiguration"},
+        "recordingFrequency":{"shape":"RecordingFrequency"},
+        "configurationItemDeliveryTime":{"shape":"ConfigurationItemDeliveryTime"}
       }
     },
     "ConfigurationItemCaptureTime":{"type":"timestamp"},
+    "ConfigurationItemDeliveryTime":{"type":"timestamp"},
     "ConfigurationItemList":{
       "type":"list",
       "member":{"shape":"ConfigurationItem"}
@@ -1761,7 +1856,8 @@
       "members":{
         "name":{"shape":"RecorderName"},
         "roleARN":{"shape":"String"},
-        "recordingGroup":{"shape":"RecordingGroup"}
+        "recordingGroup":{"shape":"RecordingGroup"},
+        "recordingMode":{"shape":"RecordingMode"}
       }
     },
     "ConfigurationRecorderList":{
@@ -1807,6 +1903,25 @@
       "member":{"shape":"StringWithCharLimit256"},
       "max":5,
       "min":0
+    },
+    "ConformancePackComplianceScore":{
+      "type":"structure",
+      "members":{
+        "Score":{"shape":"ComplianceScore"},
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "LastUpdatedTime":{"shape":"LastUpdatedTime"}
+      }
+    },
+    "ConformancePackComplianceScores":{
+      "type":"list",
+      "member":{"shape":"ConformancePackComplianceScore"}
+    },
+    "ConformancePackComplianceScoresFilters":{
+      "type":"structure",
+      "required":["ConformancePackNames"],
+      "members":{
+        "ConformancePackNames":{"shape":"ConformancePackNameFilter"}
+      }
     },
     "ConformancePackComplianceSummary":{
       "type":"structure",
@@ -1854,7 +1969,8 @@
         "DeliveryS3KeyPrefix":{"shape":"DeliveryS3KeyPrefix"},
         "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"},
         "LastUpdateRequestedTime":{"shape":"Date"},
-        "CreatedBy":{"shape":"StringWithCharLimit256"}
+        "CreatedBy":{"shape":"StringWithCharLimit256"},
+        "TemplateSSMDocumentDetails":{"shape":"TemplateSSMDocumentDetails"}
       }
     },
     "ConformancePackDetailList":{
@@ -1915,6 +2031,12 @@
       "max":256,
       "min":1,
       "pattern":"[a-zA-Z][-a-zA-Z0-9]*"
+    },
+    "ConformancePackNameFilter":{
+      "type":"list",
+      "member":{"shape":"ConformancePackName"},
+      "max":25,
+      "min":1
     },
     "ConformancePackNamesList":{
       "type":"list",
@@ -2007,7 +2129,25 @@
       "max":100,
       "min":0
     },
+    "CustomPolicyDetails":{
+      "type":"structure",
+      "required":[
+        "PolicyRuntime",
+        "PolicyText"
+      ],
+      "members":{
+        "PolicyRuntime":{"shape":"PolicyRuntime"},
+        "PolicyText":{"shape":"PolicyText"},
+        "EnableDebugLogDelivery":{"shape":"Boolean"}
+      }
+    },
     "Date":{"type":"timestamp"},
+    "DebugLogDeliveryAccounts":{
+      "type":"list",
+      "member":{"shape":"AccountId"},
+      "max":1000,
+      "min":0
+    },
     "DeleteAggregationAuthorizationRequest":{
       "type":"structure",
       "required":[
@@ -2309,11 +2449,18 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "DescribeConfigRulesFilters":{
+      "type":"structure",
+      "members":{
+        "EvaluationMode":{"shape":"EvaluationMode"}
+      }
+    },
     "DescribeConfigRulesRequest":{
       "type":"structure",
       "members":{
         "ConfigRuleNames":{"shape":"ConfigRuleNames"},
-        "NextToken":{"shape":"String"}
+        "NextToken":{"shape":"String"},
+        "Filters":{"shape":"DescribeConfigRulesFilters"}
       }
     },
     "DescribeConfigRulesResponse":{
@@ -2600,6 +2747,11 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "Description":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "DiscoveredResourceIdentifierList":{
       "type":"list",
       "member":{"shape":"AggregateResourceIdentifier"}
@@ -2627,6 +2779,34 @@
         "OrderingTimestamp":{"shape":"OrderingTimestamp"}
       }
     },
+    "EvaluationContext":{
+      "type":"structure",
+      "members":{
+        "EvaluationContextIdentifier":{"shape":"EvaluationContextIdentifier"}
+      }
+    },
+    "EvaluationContextIdentifier":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "EvaluationMode":{
+      "type":"string",
+      "enum":[
+        "DETECTIVE",
+        "PROACTIVE"
+      ]
+    },
+    "EvaluationModeConfiguration":{
+      "type":"structure",
+      "members":{
+        "Mode":{"shape":"EvaluationMode"}
+      }
+    },
+    "EvaluationModes":{
+      "type":"list",
+      "member":{"shape":"EvaluationModeConfiguration"}
+    },
     "EvaluationResult":{
       "type":"structure",
       "members":{
@@ -2642,7 +2822,8 @@
       "type":"structure",
       "members":{
         "EvaluationResultQualifier":{"shape":"EvaluationResultQualifier"},
-        "OrderingTimestamp":{"shape":"Date"}
+        "OrderingTimestamp":{"shape":"Date"},
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"}
       }
     },
     "EvaluationResultQualifier":{
@@ -2650,12 +2831,26 @@
       "members":{
         "ConfigRuleName":{"shape":"ConfigRuleName"},
         "ResourceType":{"shape":"StringWithCharLimit256"},
-        "ResourceId":{"shape":"BaseResourceId"}
+        "ResourceId":{"shape":"BaseResourceId"},
+        "EvaluationMode":{"shape":"EvaluationMode"}
       }
     },
     "EvaluationResults":{
       "type":"list",
       "member":{"shape":"EvaluationResult"}
+    },
+    "EvaluationStatus":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"ResourceEvaluationStatus"},
+        "FailureReason":{"shape":"StringWithCharLimit1024"}
+      }
+    },
+    "EvaluationTimeout":{
+      "type":"integer",
+      "max":3600,
+      "min":0
     },
     "Evaluations":{
       "type":"list",
@@ -2672,6 +2867,12 @@
       "member":{"shape":"AccountId"},
       "max":1000,
       "min":0
+    },
+    "ExclusionByResourceTypes":{
+      "type":"structure",
+      "members":{
+        "resourceTypes":{"shape":"ResourceTypeList"}
+      }
     },
     "ExecutionControls":{
       "type":"structure",
@@ -2864,15 +3065,12 @@
     },
     "GetComplianceDetailsByResourceRequest":{
       "type":"structure",
-      "required":[
-        "ResourceType",
-        "ResourceId"
-      ],
       "members":{
         "ResourceType":{"shape":"StringWithCharLimit256"},
         "ResourceId":{"shape":"BaseResourceId"},
         "ComplianceTypes":{"shape":"ComplianceTypes"},
-        "NextToken":{"shape":"String"}
+        "NextToken":{"shape":"String"},
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"}
       }
     },
     "GetComplianceDetailsByResourceResponse":{
@@ -2940,6 +3138,18 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "GetCustomRulePolicyRequest":{
+      "type":"structure",
+      "members":{
+        "ConfigRuleName":{"shape":"ConfigRuleName"}
+      }
+    },
+    "GetCustomRulePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "PolicyText":{"shape":"PolicyText"}
+      }
+    },
     "GetDiscoveredResourceCountsRequest":{
       "type":"structure",
       "members":{
@@ -2990,6 +3200,19 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "GetOrganizationCustomRulePolicyRequest":{
+      "type":"structure",
+      "required":["OrganizationConfigRuleName"],
+      "members":{
+        "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"}
+      }
+    },
+    "GetOrganizationCustomRulePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "PolicyText":{"shape":"PolicyText"}
+      }
+    },
     "GetResourceConfigHistoryRequest":{
       "type":"structure",
       "required":[
@@ -3011,6 +3234,25 @@
       "members":{
         "configurationItems":{"shape":"ConfigurationItemList"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetResourceEvaluationSummaryRequest":{
+      "type":"structure",
+      "required":["ResourceEvaluationId"],
+      "members":{
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"}
+      }
+    },
+    "GetResourceEvaluationSummaryResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"},
+        "EvaluationMode":{"shape":"EvaluationMode"},
+        "EvaluationStatus":{"shape":"EvaluationStatus"},
+        "EvaluationStartTimestamp":{"shape":"Date"},
+        "Compliance":{"shape":"ComplianceType"},
+        "EvaluationContext":{"shape":"EvaluationContext"},
+        "ResourceDetails":{"shape":"ResourceDetails"}
       }
     },
     "GetStoredQueryRequest":{
@@ -3045,6 +3287,13 @@
     "GroupedResourceCountList":{
       "type":"list",
       "member":{"shape":"GroupedResourceCount"}
+    },
+    "IdempotentParameterMismatch":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
     },
     "IncludeGlobalResourceTypes":{"type":"boolean"},
     "InsufficientDeliveryPolicyException":{
@@ -3144,6 +3393,7 @@
       },
       "exception":true
     },
+    "LastUpdatedTime":{"type":"timestamp"},
     "LaterTime":{"type":"timestamp"},
     "Limit":{
       "type":"integer",
@@ -3177,6 +3427,24 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListConformancePackComplianceScoresRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"ConformancePackComplianceScoresFilters"},
+        "SortOrder":{"shape":"SortOrder"},
+        "SortBy":{"shape":"SortBy"},
+        "Limit":{"shape":"PageSizeLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListConformancePackComplianceScoresResponse":{
+      "type":"structure",
+      "required":["ConformancePackComplianceScores"],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "ConformancePackComplianceScores":{"shape":"ConformancePackComplianceScores"}
+      }
+    },
     "ListDiscoveredResourcesRequest":{
       "type":"structure",
       "required":["resourceType"],
@@ -3194,6 +3462,26 @@
       "members":{
         "resourceIdentifiers":{"shape":"ResourceIdentifierList"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListResourceEvaluationsPageItemLimit":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
+    "ListResourceEvaluationsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"ResourceEvaluationFilters"},
+        "Limit":{"shape":"ListResourceEvaluationsPageItemLimit"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListResourceEvaluationsResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceEvaluations":{"shape":"ResourceEvaluations"},
+        "NextToken":{"shape":"String"}
       }
     },
     "ListStoredQueriesRequest":{
@@ -3462,7 +3750,8 @@
         "OrganizationManagedRuleMetadata":{"shape":"OrganizationManagedRuleMetadata"},
         "OrganizationCustomRuleMetadata":{"shape":"OrganizationCustomRuleMetadata"},
         "ExcludedAccounts":{"shape":"ExcludedAccounts"},
-        "LastUpdateTime":{"shape":"Date"}
+        "LastUpdateTime":{"shape":"Date"},
+        "OrganizationCustomPolicyRuleMetadata":{"shape":"OrganizationCustomPolicyRuleMetadataNoPolicy"}
       }
     },
     "OrganizationConfigRuleDetailedStatus":{
@@ -3506,6 +3795,17 @@
         "OversizedConfigurationItemChangeNotification",
         "ScheduledNotification"
       ]
+    },
+    "OrganizationConfigRuleTriggerTypeNoSN":{
+      "type":"string",
+      "enum":[
+        "ConfigurationItemChangeNotification",
+        "OversizedConfigurationItemChangeNotification"
+      ]
+    },
+    "OrganizationConfigRuleTriggerTypeNoSNs":{
+      "type":"list",
+      "member":{"shape":"OrganizationConfigRuleTriggerTypeNoSN"}
     },
     "OrganizationConfigRuleTriggerTypes":{
       "type":"list",
@@ -3591,6 +3891,41 @@
     "OrganizationConformancePacks":{
       "type":"list",
       "member":{"shape":"OrganizationConformancePack"}
+    },
+    "OrganizationCustomPolicyRuleMetadata":{
+      "type":"structure",
+      "required":[
+        "PolicyRuntime",
+        "PolicyText"
+      ],
+      "members":{
+        "Description":{"shape":"StringWithCharLimit256Min0"},
+        "OrganizationConfigRuleTriggerTypes":{"shape":"OrganizationConfigRuleTriggerTypeNoSNs"},
+        "InputParameters":{"shape":"StringWithCharLimit2048"},
+        "MaximumExecutionFrequency":{"shape":"MaximumExecutionFrequency"},
+        "ResourceTypesScope":{"shape":"ResourceTypesScope"},
+        "ResourceIdScope":{"shape":"StringWithCharLimit768"},
+        "TagKeyScope":{"shape":"StringWithCharLimit128"},
+        "TagValueScope":{"shape":"StringWithCharLimit256"},
+        "PolicyRuntime":{"shape":"PolicyRuntime"},
+        "PolicyText":{"shape":"PolicyText"},
+        "DebugLogDeliveryAccounts":{"shape":"DebugLogDeliveryAccounts"}
+      }
+    },
+    "OrganizationCustomPolicyRuleMetadataNoPolicy":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"StringWithCharLimit256Min0"},
+        "OrganizationConfigRuleTriggerTypes":{"shape":"OrganizationConfigRuleTriggerTypeNoSNs"},
+        "InputParameters":{"shape":"StringWithCharLimit2048"},
+        "MaximumExecutionFrequency":{"shape":"MaximumExecutionFrequency"},
+        "ResourceTypesScope":{"shape":"ResourceTypesScope"},
+        "ResourceIdScope":{"shape":"StringWithCharLimit768"},
+        "TagKeyScope":{"shape":"StringWithCharLimit128"},
+        "TagValueScope":{"shape":"StringWithCharLimit256"},
+        "PolicyRuntime":{"shape":"PolicyRuntime"},
+        "DebugLogDeliveryAccounts":{"shape":"DebugLogDeliveryAccounts"}
+      }
     },
     "OrganizationCustomRuleMetadata":{
       "type":"structure",
@@ -3683,7 +4018,8 @@
       "type":"string",
       "enum":[
         "CUSTOM_LAMBDA",
-        "AWS"
+        "AWS",
+        "CUSTOM_POLICY"
       ]
     },
     "PageSizeLimit":{
@@ -3717,6 +4053,17 @@
       "box":true,
       "max":100,
       "min":1
+    },
+    "PolicyRuntime":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"guard\\-2\\.x\\.x"
+    },
+    "PolicyText":{
+      "type":"string",
+      "max":10000,
+      "min":0
     },
     "PutAggregationAuthorizationRequest":{
       "type":"structure",
@@ -3776,7 +4123,8 @@
         "TemplateBody":{"shape":"TemplateBody"},
         "DeliveryS3Bucket":{"shape":"DeliveryS3Bucket"},
         "DeliveryS3KeyPrefix":{"shape":"DeliveryS3KeyPrefix"},
-        "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"}
+        "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"},
+        "TemplateSSMDocumentDetails":{"shape":"TemplateSSMDocumentDetails"}
       }
     },
     "PutConformancePackResponse":{
@@ -3830,7 +4178,8 @@
         "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"},
         "OrganizationManagedRuleMetadata":{"shape":"OrganizationManagedRuleMetadata"},
         "OrganizationCustomRuleMetadata":{"shape":"OrganizationCustomRuleMetadata"},
-        "ExcludedAccounts":{"shape":"ExcludedAccounts"}
+        "ExcludedAccounts":{"shape":"ExcludedAccounts"},
+        "OrganizationCustomPolicyRuleMetadata":{"shape":"OrganizationCustomPolicyRuleMetadata"}
       }
     },
     "PutOrganizationConfigRuleResponse":{
@@ -3983,13 +4332,66 @@
         "Failure"
       ]
     },
+    "RecordingFrequency":{
+      "type":"string",
+      "enum":[
+        "CONTINUOUS",
+        "DAILY"
+      ]
+    },
     "RecordingGroup":{
       "type":"structure",
       "members":{
         "allSupported":{"shape":"AllSupported"},
         "includeGlobalResourceTypes":{"shape":"IncludeGlobalResourceTypes"},
-        "resourceTypes":{"shape":"ResourceTypeList"}
+        "resourceTypes":{"shape":"ResourceTypeList"},
+        "exclusionByResourceTypes":{"shape":"ExclusionByResourceTypes"},
+        "recordingStrategy":{"shape":"RecordingStrategy"}
       }
+    },
+    "RecordingMode":{
+      "type":"structure",
+      "required":["recordingFrequency"],
+      "members":{
+        "recordingFrequency":{"shape":"RecordingFrequency"},
+        "recordingModeOverrides":{"shape":"RecordingModeOverrides"}
+      }
+    },
+    "RecordingModeOverride":{
+      "type":"structure",
+      "required":[
+        "resourceTypes",
+        "recordingFrequency"
+      ],
+      "members":{
+        "description":{"shape":"Description"},
+        "resourceTypes":{"shape":"RecordingModeResourceTypesList"},
+        "recordingFrequency":{"shape":"RecordingFrequency"}
+      }
+    },
+    "RecordingModeOverrides":{
+      "type":"list",
+      "member":{"shape":"RecordingModeOverride"},
+      "max":1,
+      "min":0
+    },
+    "RecordingModeResourceTypesList":{
+      "type":"list",
+      "member":{"shape":"ResourceType"}
+    },
+    "RecordingStrategy":{
+      "type":"structure",
+      "members":{
+        "useOnly":{"shape":"RecordingStrategyType"}
+      }
+    },
+    "RecordingStrategyType":{
+      "type":"string",
+      "enum":[
+        "ALL_SUPPORTED_RESOURCE_TYPES",
+        "INCLUSION_BY_RESOURCE_TYPES",
+        "EXCLUSION_BY_RESOURCE_TYPES"
+      ]
     },
     "ReevaluateConfigRuleNames":{
       "type":"list",
@@ -4154,6 +4556,15 @@
       },
       "exception":true
     },
+    "ResourceConfiguration":{
+      "type":"string",
+      "max":51200,
+      "min":1
+    },
+    "ResourceConfigurationSchemaType":{
+      "type":"string",
+      "enum":["CFN_RESOURCE_SCHEMA"]
+    },
     "ResourceCount":{
       "type":"structure",
       "members":{
@@ -4183,6 +4594,53 @@
     },
     "ResourceCreationTime":{"type":"timestamp"},
     "ResourceDeletionTime":{"type":"timestamp"},
+    "ResourceDetails":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "ResourceType",
+        "ResourceConfiguration"
+      ],
+      "members":{
+        "ResourceId":{"shape":"BaseResourceId"},
+        "ResourceType":{"shape":"StringWithCharLimit256"},
+        "ResourceConfiguration":{"shape":"ResourceConfiguration"},
+        "ResourceConfigurationSchemaType":{"shape":"ResourceConfigurationSchemaType"}
+      }
+    },
+    "ResourceEvaluation":{
+      "type":"structure",
+      "members":{
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"},
+        "EvaluationMode":{"shape":"EvaluationMode"},
+        "EvaluationStartTimestamp":{"shape":"Date"}
+      }
+    },
+    "ResourceEvaluationFilters":{
+      "type":"structure",
+      "members":{
+        "EvaluationMode":{"shape":"EvaluationMode"},
+        "TimeWindow":{"shape":"TimeWindow"},
+        "EvaluationContextIdentifier":{"shape":"EvaluationContextIdentifier"}
+      }
+    },
+    "ResourceEvaluationId":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "ResourceEvaluationStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "FAILED",
+        "SUCCEEDED"
+      ]
+    },
+    "ResourceEvaluations":{
+      "type":"list",
+      "member":{"shape":"ResourceEvaluation"}
+    },
     "ResourceFilters":{
       "type":"structure",
       "members":{
@@ -4355,7 +4813,299 @@
         "AWS::QLDB::Ledger",
         "AWS::SecretsManager::Secret",
         "AWS::SNS::Topic",
-        "AWS::SSM::FileData"
+        "AWS::SSM::FileData",
+        "AWS::Backup::BackupPlan",
+        "AWS::Backup::BackupSelection",
+        "AWS::Backup::BackupVault",
+        "AWS::Backup::RecoveryPoint",
+        "AWS::ECR::Repository",
+        "AWS::ECS::Cluster",
+        "AWS::ECS::Service",
+        "AWS::ECS::TaskDefinition",
+        "AWS::EFS::AccessPoint",
+        "AWS::EFS::FileSystem",
+        "AWS::EKS::Cluster",
+        "AWS::OpenSearch::Domain",
+        "AWS::EC2::TransitGateway",
+        "AWS::Kinesis::Stream",
+        "AWS::Kinesis::StreamConsumer",
+        "AWS::CodeDeploy::Application",
+        "AWS::CodeDeploy::DeploymentConfig",
+        "AWS::CodeDeploy::DeploymentGroup",
+        "AWS::EC2::LaunchTemplate",
+        "AWS::ECR::PublicRepository",
+        "AWS::GuardDuty::Detector",
+        "AWS::EMR::SecurityConfiguration",
+        "AWS::SageMaker::CodeRepository",
+        "AWS::Route53Resolver::ResolverEndpoint",
+        "AWS::Route53Resolver::ResolverRule",
+        "AWS::Route53Resolver::ResolverRuleAssociation",
+        "AWS::DMS::ReplicationSubnetGroup",
+        "AWS::DMS::EventSubscription",
+        "AWS::MSK::Cluster",
+        "AWS::StepFunctions::Activity",
+        "AWS::WorkSpaces::Workspace",
+        "AWS::WorkSpaces::ConnectionAlias",
+        "AWS::SageMaker::Model",
+        "AWS::ElasticLoadBalancingV2::Listener",
+        "AWS::StepFunctions::StateMachine",
+        "AWS::Batch::JobQueue",
+        "AWS::Batch::ComputeEnvironment",
+        "AWS::AccessAnalyzer::Analyzer",
+        "AWS::Athena::WorkGroup",
+        "AWS::Athena::DataCatalog",
+        "AWS::Detective::Graph",
+        "AWS::GlobalAccelerator::Accelerator",
+        "AWS::GlobalAccelerator::EndpointGroup",
+        "AWS::GlobalAccelerator::Listener",
+        "AWS::EC2::TransitGatewayAttachment",
+        "AWS::EC2::TransitGatewayRouteTable",
+        "AWS::DMS::Certificate",
+        "AWS::AppConfig::Application",
+        "AWS::AppSync::GraphQLApi",
+        "AWS::DataSync::LocationSMB",
+        "AWS::DataSync::LocationFSxLustre",
+        "AWS::DataSync::LocationS3",
+        "AWS::DataSync::LocationEFS",
+        "AWS::DataSync::Task",
+        "AWS::DataSync::LocationNFS",
+        "AWS::EC2::NetworkInsightsAccessScopeAnalysis",
+        "AWS::EKS::FargateProfile",
+        "AWS::Glue::Job",
+        "AWS::GuardDuty::ThreatIntelSet",
+        "AWS::GuardDuty::IPSet",
+        "AWS::SageMaker::Workteam",
+        "AWS::SageMaker::NotebookInstanceLifecycleConfig",
+        "AWS::ServiceDiscovery::Service",
+        "AWS::ServiceDiscovery::PublicDnsNamespace",
+        "AWS::SES::ContactList",
+        "AWS::SES::ConfigurationSet",
+        "AWS::Route53::HostedZone",
+        "AWS::IoTEvents::Input",
+        "AWS::IoTEvents::DetectorModel",
+        "AWS::IoTEvents::AlarmModel",
+        "AWS::ServiceDiscovery::HttpNamespace",
+        "AWS::Events::EventBus",
+        "AWS::ImageBuilder::ContainerRecipe",
+        "AWS::ImageBuilder::DistributionConfiguration",
+        "AWS::ImageBuilder::InfrastructureConfiguration",
+        "AWS::DataSync::LocationObjectStorage",
+        "AWS::DataSync::LocationHDFS",
+        "AWS::Glue::Classifier",
+        "AWS::Route53RecoveryReadiness::Cell",
+        "AWS::Route53RecoveryReadiness::ReadinessCheck",
+        "AWS::ECR::RegistryPolicy",
+        "AWS::Backup::ReportPlan",
+        "AWS::Lightsail::Certificate",
+        "AWS::RUM::AppMonitor",
+        "AWS::Events::Endpoint",
+        "AWS::SES::ReceiptRuleSet",
+        "AWS::Events::Archive",
+        "AWS::Events::ApiDestination",
+        "AWS::Lightsail::Disk",
+        "AWS::FIS::ExperimentTemplate",
+        "AWS::DataSync::LocationFSxWindows",
+        "AWS::SES::ReceiptFilter",
+        "AWS::GuardDuty::Filter",
+        "AWS::SES::Template",
+        "AWS::AmazonMQ::Broker",
+        "AWS::AppConfig::Environment",
+        "AWS::AppConfig::ConfigurationProfile",
+        "AWS::Cloud9::EnvironmentEC2",
+        "AWS::EventSchemas::Registry",
+        "AWS::EventSchemas::RegistryPolicy",
+        "AWS::EventSchemas::Discoverer",
+        "AWS::FraudDetector::Label",
+        "AWS::FraudDetector::EntityType",
+        "AWS::FraudDetector::Variable",
+        "AWS::FraudDetector::Outcome",
+        "AWS::IoT::Authorizer",
+        "AWS::IoT::SecurityProfile",
+        "AWS::IoT::RoleAlias",
+        "AWS::IoT::Dimension",
+        "AWS::IoTAnalytics::Datastore",
+        "AWS::Lightsail::Bucket",
+        "AWS::Lightsail::StaticIp",
+        "AWS::MediaPackage::PackagingGroup",
+        "AWS::Route53RecoveryReadiness::RecoveryGroup",
+        "AWS::ResilienceHub::ResiliencyPolicy",
+        "AWS::Transfer::Workflow",
+        "AWS::EKS::IdentityProviderConfig",
+        "AWS::EKS::Addon",
+        "AWS::Glue::MLTransform",
+        "AWS::IoT::Policy",
+        "AWS::IoT::MitigationAction",
+        "AWS::IoTTwinMaker::Workspace",
+        "AWS::IoTTwinMaker::Entity",
+        "AWS::IoTAnalytics::Dataset",
+        "AWS::IoTAnalytics::Pipeline",
+        "AWS::IoTAnalytics::Channel",
+        "AWS::IoTSiteWise::Dashboard",
+        "AWS::IoTSiteWise::Project",
+        "AWS::IoTSiteWise::Portal",
+        "AWS::IoTSiteWise::AssetModel",
+        "AWS::IVS::Channel",
+        "AWS::IVS::RecordingConfiguration",
+        "AWS::IVS::PlaybackKeyPair",
+        "AWS::KinesisAnalyticsV2::Application",
+        "AWS::RDS::GlobalCluster",
+        "AWS::S3::MultiRegionAccessPoint",
+        "AWS::DeviceFarm::TestGridProject",
+        "AWS::Budgets::BudgetsAction",
+        "AWS::Lex::Bot",
+        "AWS::CodeGuruReviewer::RepositoryAssociation",
+        "AWS::IoT::CustomMetric",
+        "AWS::Route53Resolver::FirewallDomainList",
+        "AWS::RoboMaker::RobotApplicationVersion",
+        "AWS::EC2::TrafficMirrorSession",
+        "AWS::IoTSiteWise::Gateway",
+        "AWS::Lex::BotAlias",
+        "AWS::LookoutMetrics::Alert",
+        "AWS::IoT::AccountAuditConfiguration",
+        "AWS::EC2::TrafficMirrorTarget",
+        "AWS::S3::StorageLens",
+        "AWS::IoT::ScheduledAudit",
+        "AWS::Events::Connection",
+        "AWS::EventSchemas::Schema",
+        "AWS::MediaPackage::PackagingConfiguration",
+        "AWS::KinesisVideo::SignalingChannel",
+        "AWS::AppStream::DirectoryConfig",
+        "AWS::LookoutVision::Project",
+        "AWS::Route53RecoveryControl::Cluster",
+        "AWS::Route53RecoveryControl::SafetyRule",
+        "AWS::Route53RecoveryControl::ControlPanel",
+        "AWS::Route53RecoveryControl::RoutingControl",
+        "AWS::Route53RecoveryReadiness::ResourceSet",
+        "AWS::RoboMaker::SimulationApplication",
+        "AWS::RoboMaker::RobotApplication",
+        "AWS::HealthLake::FHIRDatastore",
+        "AWS::Pinpoint::Segment",
+        "AWS::Pinpoint::ApplicationSettings",
+        "AWS::Events::Rule",
+        "AWS::EC2::DHCPOptions",
+        "AWS::EC2::NetworkInsightsPath",
+        "AWS::EC2::TrafficMirrorFilter",
+        "AWS::EC2::IPAM",
+        "AWS::IoTTwinMaker::Scene",
+        "AWS::NetworkManager::TransitGatewayRegistration",
+        "AWS::CustomerProfiles::Domain",
+        "AWS::AutoScaling::WarmPool",
+        "AWS::Connect::PhoneNumber",
+        "AWS::AppConfig::DeploymentStrategy",
+        "AWS::AppFlow::Flow",
+        "AWS::AuditManager::Assessment",
+        "AWS::CloudWatch::MetricStream",
+        "AWS::DeviceFarm::InstanceProfile",
+        "AWS::DeviceFarm::Project",
+        "AWS::EC2::EC2Fleet",
+        "AWS::EC2::SubnetRouteTableAssociation",
+        "AWS::ECR::PullThroughCacheRule",
+        "AWS::GroundStation::Config",
+        "AWS::ImageBuilder::ImagePipeline",
+        "AWS::IoT::FleetMetric",
+        "AWS::IoTWireless::ServiceProfile",
+        "AWS::NetworkManager::Device",
+        "AWS::NetworkManager::GlobalNetwork",
+        "AWS::NetworkManager::Link",
+        "AWS::NetworkManager::Site",
+        "AWS::Panorama::Package",
+        "AWS::Pinpoint::App",
+        "AWS::Redshift::ScheduledAction",
+        "AWS::Route53Resolver::FirewallRuleGroupAssociation",
+        "AWS::SageMaker::AppImageConfig",
+        "AWS::SageMaker::Image",
+        "AWS::ECS::TaskSet",
+        "AWS::Cassandra::Keyspace",
+        "AWS::Signer::SigningProfile",
+        "AWS::Amplify::App",
+        "AWS::AppMesh::VirtualNode",
+        "AWS::AppMesh::VirtualService",
+        "AWS::AppRunner::VpcConnector",
+        "AWS::AppStream::Application",
+        "AWS::CodeArtifact::Repository",
+        "AWS::EC2::PrefixList",
+        "AWS::EC2::SpotFleet",
+        "AWS::Evidently::Project",
+        "AWS::Forecast::Dataset",
+        "AWS::IAM::SAMLProvider",
+        "AWS::IAM::ServerCertificate",
+        "AWS::Pinpoint::Campaign",
+        "AWS::Pinpoint::InAppTemplate",
+        "AWS::SageMaker::Domain",
+        "AWS::Transfer::Agreement",
+        "AWS::Transfer::Connector",
+        "AWS::KinesisFirehose::DeliveryStream",
+        "AWS::Amplify::Branch",
+        "AWS::AppIntegrations::EventIntegration",
+        "AWS::AppMesh::Route",
+        "AWS::Athena::PreparedStatement",
+        "AWS::EC2::IPAMScope",
+        "AWS::Evidently::Launch",
+        "AWS::Forecast::DatasetGroup",
+        "AWS::GreengrassV2::ComponentVersion",
+        "AWS::GroundStation::MissionProfile",
+        "AWS::MediaConnect::FlowEntitlement",
+        "AWS::MediaConnect::FlowVpcInterface",
+        "AWS::MediaTailor::PlaybackConfiguration",
+        "AWS::MSK::Configuration",
+        "AWS::Personalize::Dataset",
+        "AWS::Personalize::Schema",
+        "AWS::Personalize::Solution",
+        "AWS::Pinpoint::EmailTemplate",
+        "AWS::Pinpoint::EventStream",
+        "AWS::ResilienceHub::App",
+        "AWS::ACMPCA::CertificateAuthority",
+        "AWS::AppConfig::HostedConfigurationVersion",
+        "AWS::AppMesh::VirtualGateway",
+        "AWS::AppMesh::VirtualRouter",
+        "AWS::AppRunner::Service",
+        "AWS::CustomerProfiles::ObjectType",
+        "AWS::DMS::Endpoint",
+        "AWS::EC2::CapacityReservation",
+        "AWS::EC2::ClientVpnEndpoint",
+        "AWS::Kendra::Index",
+        "AWS::KinesisVideo::Stream",
+        "AWS::Logs::Destination",
+        "AWS::Pinpoint::EmailChannel",
+        "AWS::S3::AccessPoint",
+        "AWS::NetworkManager::CustomerGatewayAssociation",
+        "AWS::NetworkManager::LinkAssociation",
+        "AWS::IoTWireless::MulticastGroup",
+        "AWS::Personalize::DatasetGroup",
+        "AWS::IoTTwinMaker::ComponentType",
+        "AWS::CodeBuild::ReportGroup",
+        "AWS::SageMaker::FeatureGroup",
+        "AWS::MSK::BatchScramSecret",
+        "AWS::AppStream::Stack",
+        "AWS::IoT::JobTemplate",
+        "AWS::IoTWireless::FuotaTask",
+        "AWS::IoT::ProvisioningTemplate",
+        "AWS::InspectorV2::Filter",
+        "AWS::Route53Resolver::ResolverQueryLoggingConfigAssociation",
+        "AWS::ServiceDiscovery::Instance",
+        "AWS::Transfer::Certificate",
+        "AWS::MediaConnect::FlowSource",
+        "AWS::APS::RuleGroupsNamespace",
+        "AWS::CodeGuruProfiler::ProfilingGroup",
+        "AWS::Route53Resolver::ResolverQueryLoggingConfig",
+        "AWS::Batch::SchedulingPolicy",
+        "AWS::ACMPCA::CertificateAuthorityActivation",
+        "AWS::AppMesh::GatewayRoute",
+        "AWS::AppMesh::Mesh",
+        "AWS::Connect::Instance",
+        "AWS::Connect::QuickConnect",
+        "AWS::EC2::CarrierGateway",
+        "AWS::EC2::IPAMPool",
+        "AWS::EC2::TransitGatewayConnect",
+        "AWS::EC2::TransitGatewayMulticastDomain",
+        "AWS::ECS::CapacityProvider",
+        "AWS::IAM::InstanceProfile",
+        "AWS::IoT::CACertificate",
+        "AWS::IoTTwinMaker::SyncJob",
+        "AWS::KafkaConnect::Connector",
+        "AWS::Lambda::CodeSigningConfig",
+        "AWS::NetworkManager::ConnectPeer",
+        "AWS::ResourceExplorer2::Index"
       ]
     },
     "ResourceTypeList":{
@@ -4431,6 +5181,14 @@
       "max":50,
       "min":0
     },
+    "SSMDocumentName":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_\\-.:/]{3,200}$"
+    },
+    "SSMDocumentVersion":{
+      "type":"string",
+      "pattern":"([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)"
+    },
     "SchemaVersionId":{
       "type":"string",
       "max":128,
@@ -4485,16 +5243,25 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "SortBy":{
+      "type":"string",
+      "enum":["SCORE"]
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
     "Source":{
       "type":"structure",
-      "required":[
-        "Owner",
-        "SourceIdentifier"
-      ],
+      "required":["Owner"],
       "members":{
         "Owner":{"shape":"Owner"},
         "SourceIdentifier":{"shape":"StringWithCharLimit256"},
-        "SourceDetails":{"shape":"SourceDetails"}
+        "SourceDetails":{"shape":"SourceDetails"},
+        "CustomPolicyDetails":{"shape":"CustomPolicyDetails"}
       }
     },
     "SourceDetail":{
@@ -4557,6 +5324,26 @@
       "members":{
         "FailureMessage":{"shape":"String"},
         "FailedItems":{"shape":"ResourceKeys"}
+      }
+    },
+    "StartResourceEvaluationRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceDetails",
+        "EvaluationMode"
+      ],
+      "members":{
+        "ResourceDetails":{"shape":"ResourceDetails"},
+        "EvaluationContext":{"shape":"EvaluationContext"},
+        "EvaluationMode":{"shape":"EvaluationMode"},
+        "EvaluationTimeout":{"shape":"EvaluationTimeout"},
+        "ClientToken":{"shape":"ClientToken"}
+      }
+    },
+    "StartResourceEvaluationResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"}
       }
     },
     "StaticParameterValues":{
@@ -4731,6 +5518,21 @@
       "max":1024,
       "min":1,
       "pattern":"s3://.*"
+    },
+    "TemplateSSMDocumentDetails":{
+      "type":"structure",
+      "required":["DocumentName"],
+      "members":{
+        "DocumentName":{"shape":"SSMDocumentName"},
+        "DocumentVersion":{"shape":"SSMDocumentVersion"}
+      }
+    },
+    "TimeWindow":{
+      "type":"structure",
+      "members":{
+        "StartTime":{"shape":"Date"},
+        "EndTime":{"shape":"Date"}
+      }
     },
     "TooManyTagsException":{
       "type":"structure",

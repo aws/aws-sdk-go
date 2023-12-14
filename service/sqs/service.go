@@ -8,7 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
-	"github.com/aws/aws-sdk-go/private/protocol/query"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 // SQS provides the API operation methods for making requests to
@@ -39,31 +40,39 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a SQS client from just a session.
-//     svc := sqs.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a SQS client with additional configuration
-//     svc := sqs.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a SQS client from just a session.
+//	svc := sqs.New(mySession)
+//
+//	// Create a SQS client with additional configuration
+//	svc := sqs.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *SQS {
 	c := p.ClientConfig(EndpointsID, cfgs...)
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+		c.SigningName = EndpointsID
+		// No Fallback
+	}
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *SQS {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *SQS {
 	svc := &SQS{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2012-11-05",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2012-11-05",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.0",
+				TargetPrefix:   "AmazonSQS",
 			},
 			handlers,
 		),
@@ -71,10 +80,12 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 
 	// Handlers
 	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
-	svc.Handlers.Build.PushBackNamed(query.BuildHandler)
-	svc.Handlers.Unmarshal.PushBackNamed(query.UnmarshalHandler)
-	svc.Handlers.UnmarshalMeta.PushBackNamed(query.UnmarshalMetaHandler)
-	svc.Handlers.UnmarshalError.PushBackNamed(query.UnmarshalErrorHandler)
+	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(
+		protocol.NewUnmarshalErrorHandler(jsonrpc.NewUnmarshalTypedErrorWithOptions(exceptionFromCode, jsonrpc.WithQueryCompatibility(queryExceptionFromCode))).NamedHandler(),
+	)
 
 	// Run custom client initialization if present
 	if initClient != nil {

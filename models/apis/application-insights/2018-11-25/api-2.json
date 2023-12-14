@@ -14,6 +14,21 @@
     "uid":"application-insights-2018-11-25"
   },
   "operations":{
+    "AddWorkload":{
+      "name":"AddWorkload",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddWorkloadRequest"},
+      "output":{"shape":"AddWorkloadResponse"},
+      "errors":[
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateApplication":{
       "name":"CreateApplication",
       "http":{
@@ -217,6 +232,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeWorkload":{
+      "name":"DescribeWorkload",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeWorkloadRequest"},
+      "output":{"shape":"DescribeWorkloadResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListApplications":{
       "name":"ListApplications",
       "http":{
@@ -313,6 +342,34 @@
         {"shape":"ValidationException"}
       ]
     },
+    "ListWorkloads":{
+      "name":"ListWorkloads",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListWorkloadsRequest"},
+      "output":{"shape":"ListWorkloadsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "RemoveWorkload":{
+      "name":"RemoveWorkload",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveWorkloadRequest"},
+      "output":{"shape":"RemoveWorkloadResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -380,7 +437,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "UpdateLogPattern":{
@@ -397,6 +455,34 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "UpdateProblem":{
+      "name":"UpdateProblem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateProblemRequest"},
+      "output":{"shape":"UpdateProblemResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UpdateWorkload":{
+      "name":"UpdateWorkload",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateWorkloadRequest"},
+      "output":{"shape":"UpdateWorkloadResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
@@ -406,6 +492,32 @@
         "Message":{"shape":"ErrorMsg"}
       },
       "exception":true
+    },
+    "AccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^\\d{12}$"
+    },
+    "AddWorkloadRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceGroupName",
+        "ComponentName",
+        "WorkloadConfiguration"
+      ],
+      "members":{
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "ComponentName":{"shape":"ComponentName"},
+        "WorkloadConfiguration":{"shape":"WorkloadConfiguration"}
+      }
+    },
+    "AddWorkloadResponse":{
+      "type":"structure",
+      "members":{
+        "WorkloadId":{"shape":"WorkloadId"},
+        "WorkloadConfiguration":{"shape":"WorkloadConfiguration"}
+      }
     },
     "AffectedResource":{"type":"string"},
     "AmazonResourceName":{
@@ -433,18 +545,25 @@
     "ApplicationInfo":{
       "type":"structure",
       "members":{
+        "AccountId":{"shape":"AccountId"},
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "LifeCycle":{"shape":"LifeCycle"},
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
         "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
         "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
-        "Remarks":{"shape":"Remarks"}
+        "Remarks":{"shape":"Remarks"},
+        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"},
+        "DiscoveryType":{"shape":"DiscoveryType"},
+        "AttachMissingPermission":{"shape":"AttachMissingPermission"}
       }
     },
     "ApplicationInfoList":{
       "type":"list",
       "member":{"shape":"ApplicationInfo"}
     },
+    "AttachMissingPermission":{"type":"boolean"},
+    "AutoConfigEnabled":{"type":"boolean"},
+    "AutoCreate":{"type":"boolean"},
     "BadRequestException":{
       "type":"structure",
       "members":{
@@ -484,6 +603,8 @@
     "ConfigurationEvent":{
       "type":"structure",
       "members":{
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "AccountId":{"shape":"AccountId"},
         "MonitoredResourceARN":{"shape":"ConfigurationEventMonitoredResourceARN"},
         "EventStatus":{"shape":"ConfigurationEventStatus"},
         "EventResourceType":{"shape":"ConfigurationEventResourceType"},
@@ -519,13 +640,16 @@
     "ConfigurationEventTime":{"type":"timestamp"},
     "CreateApplicationRequest":{
       "type":"structure",
-      "required":["ResourceGroupName"],
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
         "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"},
+        "AutoCreate":{"shape":"AutoCreate"},
+        "GroupingType":{"shape":"GroupingType"},
+        "AttachMissingPermission":{"shape":"AttachMissingPermission"}
       }
     },
     "CreateApplicationResponse":{
@@ -632,7 +756,8 @@
       "type":"structure",
       "required":["ResourceGroupName"],
       "members":{
-        "ResourceGroupName":{"shape":"ResourceGroupName"}
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "DescribeApplicationResponse":{
@@ -651,7 +776,9 @@
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "ComponentName":{"shape":"ComponentName"},
-        "Tier":{"shape":"Tier"}
+        "Tier":{"shape":"Tier"},
+        "WorkloadName":{"shape":"WorkloadName"},
+        "RecommendationType":{"shape":"RecommendationType"}
       }
     },
     "DescribeComponentConfigurationRecommendationResponse":{
@@ -668,7 +795,8 @@
       ],
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
-        "ComponentName":{"shape":"ComponentName"}
+        "ComponentName":{"shape":"ComponentName"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "DescribeComponentConfigurationResponse":{
@@ -687,7 +815,8 @@
       ],
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
-        "ComponentName":{"shape":"ComponentName"}
+        "ComponentName":{"shape":"ComponentName"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "DescribeComponentResponse":{
@@ -707,13 +836,15 @@
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "PatternSetName":{"shape":"LogPatternSetName"},
-        "PatternName":{"shape":"LogPatternName"}
+        "PatternName":{"shape":"LogPatternName"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "DescribeLogPatternResponse":{
       "type":"structure",
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "AccountId":{"shape":"AccountId"},
         "LogPattern":{"shape":"LogPattern"}
       }
     },
@@ -721,7 +852,8 @@
       "type":"structure",
       "required":["ObservationId"],
       "members":{
-        "ObservationId":{"shape":"ObservationId"}
+        "ObservationId":{"shape":"ObservationId"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "DescribeObservationResponse":{
@@ -734,7 +866,8 @@
       "type":"structure",
       "required":["ProblemId"],
       "members":{
-        "ProblemId":{"shape":"ProblemId"}
+        "ProblemId":{"shape":"ProblemId"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "DescribeProblemObservationsResponse":{
@@ -747,7 +880,8 @@
       "type":"structure",
       "required":["ProblemId"],
       "members":{
-        "ProblemId":{"shape":"ProblemId"}
+        "ProblemId":{"shape":"ProblemId"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "DescribeProblemResponse":{
@@ -756,10 +890,39 @@
         "Problem":{"shape":"Problem"}
       }
     },
+    "DescribeWorkloadRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceGroupName",
+        "ComponentName",
+        "WorkloadId"
+      ],
+      "members":{
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "ComponentName":{"shape":"ComponentName"},
+        "WorkloadId":{"shape":"WorkloadId"},
+        "AccountId":{"shape":"AccountId"}
+      }
+    },
+    "DescribeWorkloadResponse":{
+      "type":"structure",
+      "members":{
+        "WorkloadId":{"shape":"WorkloadId"},
+        "WorkloadRemarks":{"shape":"Remarks"},
+        "WorkloadConfiguration":{"shape":"WorkloadConfiguration"}
+      }
+    },
     "DetectedWorkload":{
       "type":"map",
       "key":{"shape":"Tier"},
       "value":{"shape":"WorkloadMetaData"}
+    },
+    "DiscoveryType":{
+      "type":"string",
+      "enum":[
+        "RESOURCE_GROUP_BASED",
+        "ACCOUNT_BASED"
+      ]
     },
     "EbsCause":{"type":"string"},
     "EbsEvent":{"type":"string"},
@@ -787,6 +950,10 @@
         "NOT_USEFUL"
       ]
     },
+    "GroupingType":{
+      "type":"string",
+      "enum":["ACCOUNT_BASED"]
+    },
     "HealthEventArn":{"type":"string"},
     "HealthEventDescription":{"type":"string"},
     "HealthEventTypeCategory":{"type":"string"},
@@ -800,13 +967,15 @@
       },
       "exception":true
     },
+    "LastRecurrenceTime":{"type":"timestamp"},
     "LifeCycle":{"type":"string"},
     "LineTime":{"type":"timestamp"},
     "ListApplicationsRequest":{
       "type":"structure",
       "members":{
         "MaxResults":{"shape":"MaxEntities"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "ListApplicationsResponse":{
@@ -822,7 +991,8 @@
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "MaxResults":{"shape":"MaxEntities"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "ListComponentsResponse":{
@@ -840,7 +1010,8 @@
         "EndTime":{"shape":"EndTime"},
         "EventStatus":{"shape":"ConfigurationEventStatus"},
         "MaxResults":{"shape":"MaxEntities"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "ListConfigurationHistoryResponse":{
@@ -856,13 +1027,15 @@
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "MaxResults":{"shape":"MaxEntities"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "ListLogPatternSetsResponse":{
       "type":"structure",
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "AccountId":{"shape":"AccountId"},
         "LogPatternSets":{"shape":"LogPatternSetList"},
         "NextToken":{"shape":"PaginationToken"}
       }
@@ -874,13 +1047,15 @@
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "PatternSetName":{"shape":"LogPatternSetName"},
         "MaxResults":{"shape":"MaxEntities"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "ListLogPatternsResponse":{
       "type":"structure",
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "AccountId":{"shape":"AccountId"},
         "LogPatterns":{"shape":"LogPatternList"},
         "NextToken":{"shape":"PaginationToken"}
       }
@@ -888,18 +1063,23 @@
     "ListProblemsRequest":{
       "type":"structure",
       "members":{
+        "AccountId":{"shape":"AccountId"},
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "StartTime":{"shape":"StartTime"},
         "EndTime":{"shape":"EndTime"},
         "MaxResults":{"shape":"MaxEntities"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "ComponentName":{"shape":"ComponentName"},
+        "Visibility":{"shape":"Visibility"}
       }
     },
     "ListProblemsResponse":{
       "type":"structure",
       "members":{
         "ProblemList":{"shape":"ProblemList"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -913,6 +1093,27 @@
       "type":"structure",
       "members":{
         "Tags":{"shape":"TagList"}
+      }
+    },
+    "ListWorkloadsRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceGroupName",
+        "ComponentName"
+      ],
+      "members":{
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "ComponentName":{"shape":"ComponentName"},
+        "MaxResults":{"shape":"MaxEntities"},
+        "NextToken":{"shape":"PaginationToken"},
+        "AccountId":{"shape":"AccountId"}
+      }
+    },
+    "ListWorkloadsResponse":{
+      "type":"structure",
+      "members":{
+        "WorkloadList":{"shape":"WorkloadList"},
+        "NextToken":{"shape":"PaginationToken"}
       }
     },
     "LogFilter":{
@@ -1062,8 +1263,13 @@
         "StartTime":{"shape":"StartTime"},
         "EndTime":{"shape":"EndTime"},
         "SeverityLevel":{"shape":"SeverityLevel"},
+        "AccountId":{"shape":"AccountId"},
         "ResourceGroupName":{"shape":"ResourceGroupName"},
-        "Feedback":{"shape":"Feedback"}
+        "Feedback":{"shape":"Feedback"},
+        "RecurringCount":{"shape":"RecurringCount"},
+        "LastRecurrenceTime":{"shape":"LastRecurrenceTime"},
+        "Visibility":{"shape":"Visibility"},
+        "ResolutionMethod":{"shape":"ResolutionMethod"}
       }
     },
     "ProblemId":{
@@ -1078,6 +1284,15 @@
     },
     "RdsEventCategories":{"type":"string"},
     "RdsEventMessage":{"type":"string"},
+    "RecommendationType":{
+      "type":"string",
+      "enum":[
+        "INFRA_ONLY",
+        "WORKLOAD_ONLY",
+        "ALL"
+      ]
+    },
+    "RecurringCount":{"type":"long"},
     "RelatedObservations":{
       "type":"structure",
       "members":{
@@ -1086,6 +1301,32 @@
     },
     "Remarks":{"type":"string"},
     "RemoveSNSTopic":{"type":"boolean"},
+    "RemoveWorkloadRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceGroupName",
+        "ComponentName",
+        "WorkloadId"
+      ],
+      "members":{
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "ComponentName":{"shape":"ComponentName"},
+        "WorkloadId":{"shape":"WorkloadId"}
+      }
+    },
+    "RemoveWorkloadResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ResolutionMethod":{
+      "type":"string",
+      "enum":[
+        "MANUAL",
+        "AUTOMATIC",
+        "UNRESOLVED"
+      ]
+    },
     "ResourceARN":{
       "type":"string",
       "max":1011,
@@ -1126,6 +1367,7 @@
     "SeverityLevel":{
       "type":"string",
       "enum":[
+        "Informative",
         "Low",
         "Medium",
         "High"
@@ -1143,7 +1385,9 @@
       "enum":[
         "IGNORE",
         "RESOLVED",
-        "PENDING"
+        "PENDING",
+        "RECURRING",
+        "RECOVERING"
       ]
     },
     "Tag":{
@@ -1218,7 +1462,16 @@
         "MYSQL",
         "POSTGRESQL",
         "JAVA_JMX",
-        "ORACLE"
+        "ORACLE",
+        "SAP_HANA_MULTI_NODE",
+        "SAP_HANA_SINGLE_NODE",
+        "SAP_HANA_HIGH_AVAILABILITY",
+        "SQL_SERVER_FAILOVER_CLUSTER_INSTANCE",
+        "SHAREPOINT",
+        "ACTIVE_DIRECTORY",
+        "SAP_NETWEAVER_STANDARD",
+        "SAP_NETWEAVER_DISTRIBUTED",
+        "SAP_NETWEAVER_HIGH_AVAILABILITY"
       ],
       "max":50,
       "min":1
@@ -1257,7 +1510,9 @@
         "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
         "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
-        "RemoveSNSTopic":{"shape":"RemoveSNSTopic"}
+        "RemoveSNSTopic":{"shape":"RemoveSNSTopic"},
+        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"},
+        "AttachMissingPermission":{"shape":"AttachMissingPermission"}
       }
     },
     "UpdateApplicationResponse":{
@@ -1277,7 +1532,8 @@
         "ComponentName":{"shape":"ComponentName"},
         "Monitor":{"shape":"Monitor"},
         "Tier":{"shape":"Tier"},
-        "ComponentConfiguration":{"shape":"ComponentConfiguration"}
+        "ComponentConfiguration":{"shape":"ComponentConfiguration"},
+        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"}
       }
     },
     "UpdateComponentConfigurationResponse":{
@@ -1325,6 +1581,45 @@
         "LogPattern":{"shape":"LogPattern"}
       }
     },
+    "UpdateProblemRequest":{
+      "type":"structure",
+      "required":["ProblemId"],
+      "members":{
+        "ProblemId":{"shape":"ProblemId"},
+        "UpdateStatus":{"shape":"UpdateStatus"},
+        "Visibility":{"shape":"Visibility"}
+      }
+    },
+    "UpdateProblemResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateStatus":{
+      "type":"string",
+      "enum":["RESOLVED"]
+    },
+    "UpdateWorkloadRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceGroupName",
+        "ComponentName",
+        "WorkloadConfiguration"
+      ],
+      "members":{
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "ComponentName":{"shape":"ComponentName"},
+        "WorkloadId":{"shape":"WorkloadId"},
+        "WorkloadConfiguration":{"shape":"WorkloadConfiguration"}
+      }
+    },
+    "UpdateWorkloadResponse":{
+      "type":"structure",
+      "members":{
+        "WorkloadId":{"shape":"WorkloadId"},
+        "WorkloadConfiguration":{"shape":"WorkloadConfiguration"}
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "members":{
@@ -1333,10 +1628,51 @@
       "exception":true
     },
     "Value":{"type":"double"},
+    "Visibility":{
+      "type":"string",
+      "enum":[
+        "IGNORED",
+        "VISIBLE"
+      ]
+    },
+    "Workload":{
+      "type":"structure",
+      "members":{
+        "WorkloadId":{"shape":"WorkloadId"},
+        "ComponentName":{"shape":"ComponentName"},
+        "WorkloadName":{"shape":"WorkloadName"},
+        "Tier":{"shape":"Tier"},
+        "WorkloadRemarks":{"shape":"Remarks"}
+      }
+    },
+    "WorkloadConfiguration":{
+      "type":"structure",
+      "members":{
+        "WorkloadName":{"shape":"WorkloadName"},
+        "Tier":{"shape":"Tier"},
+        "Configuration":{"shape":"ComponentConfiguration"}
+      }
+    },
+    "WorkloadId":{
+      "type":"string",
+      "max":38,
+      "min":38,
+      "pattern":"w-[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+    },
+    "WorkloadList":{
+      "type":"list",
+      "member":{"shape":"Workload"}
+    },
     "WorkloadMetaData":{
       "type":"map",
       "key":{"shape":"MetaDataKey"},
       "value":{"shape":"MetaDataValue"}
+    },
+    "WorkloadName":{
+      "type":"string",
+      "max":8,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\.\\-_]*"
     },
     "XRayErrorPercent":{"type":"integer"},
     "XRayFaultPercent":{"type":"integer"},

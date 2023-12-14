@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 package api
@@ -221,11 +222,16 @@ func (p *ExamplesDefinition) setup() error {
 		builder = NewExamplesBuilder()
 	}
 
-	keys := p.Examples.Names()
-	for _, n := range keys {
+	filteredExamples := make(Examples)
+
+	for _, n := range p.Examples.Names() {
 		examples := p.Examples[n]
+		n = p.ExportableName(n)
+		if _, ok := p.API.Operations[n]; !ok {
+			continue
+		}
+		filteredExamples[n] = make([]Example, 0, len(examples))
 		for i, e := range examples {
-			n = p.ExportableName(n)
 			e.OperationName = n
 			e.API = p.API
 			e.Index = fmt.Sprintf("shared%02d", i)
@@ -234,12 +240,13 @@ func (p *ExamplesDefinition) setup() error {
 
 			e.VisitedErrors = map[string]struct{}{}
 			op := p.API.Operations[e.OperationName]
-			e.OperationName = p.ExportableName(e.OperationName)
 			e.Operation = op
-			p.Examples[n][i] = e
+
+			filteredExamples[n] = append(filteredExamples[n], e)
 		}
 	}
 
+	p.Examples = filteredExamples
 	p.API.Examples = p.Examples
 
 	return nil

@@ -40,33 +40,39 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a ResourceGroupsTaggingAPI client from just a session.
-//     svc := resourcegroupstaggingapi.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a ResourceGroupsTaggingAPI client with additional configuration
-//     svc := resourcegroupstaggingapi.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a ResourceGroupsTaggingAPI client from just a session.
+//	svc := resourcegroupstaggingapi.New(mySession)
+//
+//	// Create a ResourceGroupsTaggingAPI client with additional configuration
+//	svc := resourcegroupstaggingapi.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ResourceGroupsTaggingAPI {
 	c := p.ClientConfig(EndpointsID, cfgs...)
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+		c.SigningName = EndpointsID
+		// No Fallback
+	}
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *ResourceGroupsTaggingAPI {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *ResourceGroupsTaggingAPI {
 	svc := &ResourceGroupsTaggingAPI{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2017-01-26",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "ResourceGroupsTaggingAPI_20170126",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2017-01-26",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "ResourceGroupsTaggingAPI_20170126",
 			},
 			handlers,
 		),

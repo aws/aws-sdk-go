@@ -17,13 +17,13 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// The resource already exists.
+	// The resource has already been processed, was deleted, or is too large.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// There is a problem with the AWS Well-Architected Tool API service.
+	// There is a problem with the Well-Architected Tool API service.
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeResourceNotFoundException for service response error code

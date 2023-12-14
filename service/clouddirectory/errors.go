@@ -11,7 +11,9 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// Access denied. Check your permissions.
+	// Access denied or directory not found. Either you don't have permissions for
+	// this directory or the directory does not exist. Try calling ListDirectories
+	// and check your permissions.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeBatchWriteException for service response error code

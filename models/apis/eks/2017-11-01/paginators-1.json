@@ -18,6 +18,12 @@
       "output_token": "nextToken",
       "result_key": "clusters"
     },
+    "ListEksAnywhereSubscriptions": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "subscriptions"
+    },
     "ListFargateProfiles": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
@@ -35,6 +41,12 @@
       "limit_key": "maxResults",
       "output_token": "nextToken",
       "result_key": "nodegroups"
+    },
+    "ListPodIdentityAssociations": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "associations"
     },
     "ListUpdates": {
       "input_token": "nextToken",

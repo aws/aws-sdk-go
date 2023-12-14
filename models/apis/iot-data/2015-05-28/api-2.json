@@ -2,7 +2,7 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2015-05-28",
-    "endpointPrefix":"data.iot",
+    "endpointPrefix":"data-ats.iot",
     "protocol":"rest-json",
     "serviceFullName":"AWS IoT Data Plane",
     "serviceId":"IoT Data Plane",
@@ -28,6 +28,24 @@
         {"shape":"InternalFailureException"},
         {"shape":"MethodNotAllowedException"},
         {"shape":"UnsupportedDocumentEncodingException"}
+      ]
+    },
+    "GetRetainedMessage":{
+      "name":"GetRetainedMessage",
+      "http":{
+        "method":"GET",
+        "requestUri":"/retainedMessage/{topic}"
+      },
+      "input":{"shape":"GetRetainedMessageRequest"},
+      "output":{"shape":"GetRetainedMessageResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"MethodNotAllowedException"}
       ]
     },
     "GetThingShadow":{
@@ -67,6 +85,23 @@
         {"shape":"MethodNotAllowedException"}
       ]
     },
+    "ListRetainedMessages":{
+      "name":"ListRetainedMessages",
+      "http":{
+        "method":"GET",
+        "requestUri":"/retainedMessage"
+      },
+      "input":{"shape":"ListRetainedMessagesRequest"},
+      "output":{"shape":"ListRetainedMessagesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"MethodNotAllowedException"}
+      ]
+    },
     "Publish":{
       "name":"Publish",
       "http":{
@@ -78,7 +113,8 @@
         {"shape":"InternalFailureException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"MethodNotAllowedException"}
+        {"shape":"MethodNotAllowedException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateThingShadow":{
@@ -111,6 +147,8 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ContentType":{"type":"string"},
+    "CorrelationData":{"type":"string"},
     "DeleteThingShadowRequest":{
       "type":"structure",
       "required":["thingName"],
@@ -134,6 +172,27 @@
         "payload":{"shape":"JsonDocument"}
       },
       "payload":"payload"
+    },
+    "GetRetainedMessageRequest":{
+      "type":"structure",
+      "required":["topic"],
+      "members":{
+        "topic":{
+          "shape":"Topic",
+          "location":"uri",
+          "locationName":"topic"
+        }
+      }
+    },
+    "GetRetainedMessageResponse":{
+      "type":"structure",
+      "members":{
+        "topic":{"shape":"Topic"},
+        "payload":{"shape":"Payload"},
+        "qos":{"shape":"Qos"},
+        "lastModifiedTime":{"shape":"Timestamp"},
+        "userProperties":{"shape":"UserPropertiesBlob"}
+      }
     },
     "GetThingShadowRequest":{
       "type":"structure",
@@ -205,6 +264,34 @@
         "timestamp":{"shape":"Timestamp"}
       }
     },
+    "ListRetainedMessagesRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListRetainedMessagesResponse":{
+      "type":"structure",
+      "members":{
+        "retainedTopics":{"shape":"RetainedMessageList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "MaxResults":{
+      "type":"integer",
+      "max":200,
+      "min":1
+    },
+    "MessageExpiry":{"type":"long"},
     "MethodNotAllowedException":{
       "type":"structure",
       "members":{
@@ -224,6 +311,14 @@
       "min":1
     },
     "Payload":{"type":"blob"},
+    "PayloadFormatIndicator":{
+      "type":"string",
+      "enum":[
+        "UNSPECIFIED_BYTES",
+        "UTF8_DATA"
+      ]
+    },
+    "PayloadSize":{"type":"long"},
     "PublishRequest":{
       "type":"structure",
       "required":["topic"],
@@ -238,7 +333,43 @@
           "location":"querystring",
           "locationName":"qos"
         },
-        "payload":{"shape":"Payload"}
+        "retain":{
+          "shape":"Retain",
+          "location":"querystring",
+          "locationName":"retain"
+        },
+        "payload":{"shape":"Payload"},
+        "userProperties":{
+          "shape":"UserProperties",
+          "jsonvalue":true,
+          "location":"header",
+          "locationName":"x-amz-mqtt5-user-properties"
+        },
+        "payloadFormatIndicator":{
+          "shape":"PayloadFormatIndicator",
+          "location":"header",
+          "locationName":"x-amz-mqtt5-payload-format-indicator"
+        },
+        "contentType":{
+          "shape":"ContentType",
+          "location":"querystring",
+          "locationName":"contentType"
+        },
+        "responseTopic":{
+          "shape":"ResponseTopic",
+          "location":"querystring",
+          "locationName":"responseTopic"
+        },
+        "correlationData":{
+          "shape":"CorrelationData",
+          "location":"header",
+          "locationName":"x-amz-mqtt5-correlation-data"
+        },
+        "messageExpiry":{
+          "shape":"MessageExpiry",
+          "location":"querystring",
+          "locationName":"messageExpiry"
+        }
       },
       "payload":"payload"
     },
@@ -263,6 +394,21 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "ResponseTopic":{"type":"string"},
+    "Retain":{"type":"boolean"},
+    "RetainedMessageList":{
+      "type":"list",
+      "member":{"shape":"RetainedMessageSummary"}
+    },
+    "RetainedMessageSummary":{
+      "type":"structure",
+      "members":{
+        "topic":{"shape":"Topic"},
+        "payloadSize":{"shape":"PayloadSize"},
+        "qos":{"shape":"Qos"},
+        "lastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -276,7 +422,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"[a-zA-Z0-9:_-]+"
+      "pattern":"[$a-zA-Z0-9:_-]+"
     },
     "ThingName":{
       "type":"string",
@@ -338,6 +484,8 @@
       },
       "payload":"payload"
     },
+    "UserProperties":{"type":"string"},
+    "UserPropertiesBlob":{"type":"blob"},
     "errorMessage":{"type":"string"}
   }
 }

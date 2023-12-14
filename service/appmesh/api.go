@@ -29,14 +29,13 @@ const opCreateGatewayRoute = "CreateGatewayRoute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateGatewayRouteRequest method.
+//	req, resp := client.CreateGatewayRouteRequest(params)
 //
-//    // Example sending a request using the CreateGatewayRouteRequest method.
-//    req, resp := client.CreateGatewayRouteRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateGatewayRoute
 func (c *AppMesh) CreateGatewayRouteRequest(input *CreateGatewayRouteInput) (req *request.Request, output *CreateGatewayRouteOutput) {
@@ -73,36 +72,37 @@ func (c *AppMesh) CreateGatewayRouteRequest(input *CreateGatewayRouteInput) (req
 // API operation CreateGatewayRoute for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateGatewayRoute
 func (c *AppMesh) CreateGatewayRoute(input *CreateGatewayRouteInput) (*CreateGatewayRouteOutput, error) {
@@ -142,14 +142,13 @@ const opCreateMesh = "CreateMesh"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateMeshRequest method.
+//	req, resp := client.CreateMeshRequest(params)
 //
-//    // Example sending a request using the CreateMeshRequest method.
-//    req, resp := client.CreateMeshRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateMesh
 func (c *AppMesh) CreateMeshRequest(input *CreateMeshInput) (req *request.Request, output *CreateMeshOutput) {
@@ -187,36 +186,37 @@ func (c *AppMesh) CreateMeshRequest(input *CreateMeshInput) (req *request.Reques
 // API operation CreateMesh for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateMesh
 func (c *AppMesh) CreateMesh(input *CreateMeshInput) (*CreateMeshOutput, error) {
@@ -256,14 +256,13 @@ const opCreateRoute = "CreateRoute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRouteRequest method.
+//	req, resp := client.CreateRouteRequest(params)
 //
-//    // Example sending a request using the CreateRouteRequest method.
-//    req, resp := client.CreateRouteRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateRoute
 func (c *AppMesh) CreateRouteRequest(input *CreateRouteInput) (req *request.Request, output *CreateRouteOutput) {
@@ -299,36 +298,37 @@ func (c *AppMesh) CreateRouteRequest(input *CreateRouteInput) (req *request.Requ
 // API operation CreateRoute for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateRoute
 func (c *AppMesh) CreateRoute(input *CreateRouteInput) (*CreateRouteOutput, error) {
@@ -368,14 +368,13 @@ const opCreateVirtualGateway = "CreateVirtualGateway"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateVirtualGatewayRequest method.
+//	req, resp := client.CreateVirtualGatewayRequest(params)
 //
-//    // Example sending a request using the CreateVirtualGatewayRequest method.
-//    req, resp := client.CreateVirtualGatewayRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualGateway
 func (c *AppMesh) CreateVirtualGatewayRequest(input *CreateVirtualGatewayInput) (req *request.Request, output *CreateVirtualGatewayOutput) {
@@ -414,36 +413,37 @@ func (c *AppMesh) CreateVirtualGatewayRequest(input *CreateVirtualGatewayInput) 
 // API operation CreateVirtualGateway for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualGateway
 func (c *AppMesh) CreateVirtualGateway(input *CreateVirtualGatewayInput) (*CreateVirtualGatewayOutput, error) {
@@ -483,14 +483,13 @@ const opCreateVirtualNode = "CreateVirtualNode"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateVirtualNodeRequest method.
+//	req, resp := client.CreateVirtualNodeRequest(params)
 //
-//    // Example sending a request using the CreateVirtualNodeRequest method.
-//    req, resp := client.CreateVirtualNodeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualNode
 func (c *AppMesh) CreateVirtualNodeRequest(input *CreateVirtualNodeInput) (req *request.Request, output *CreateVirtualNodeOutput) {
@@ -538,7 +537,7 @@ func (c *AppMesh) CreateVirtualNodeRequest(input *CreateVirtualNodeInput) (req *
 // For more information about virtual nodes, see Virtual nodes (https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html).
 // You must be using 1.15.0 or later of the Envoy image when setting these variables.
 // For more information aboutApp Mesh Envoy variables, see Envoy image (https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html)
-// in the AWS App Mesh User Guide.
+// in the App Mesh User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -548,36 +547,37 @@ func (c *AppMesh) CreateVirtualNodeRequest(input *CreateVirtualNodeInput) (req *
 // API operation CreateVirtualNode for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualNode
 func (c *AppMesh) CreateVirtualNode(input *CreateVirtualNodeInput) (*CreateVirtualNodeOutput, error) {
@@ -617,14 +617,13 @@ const opCreateVirtualRouter = "CreateVirtualRouter"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateVirtualRouterRequest method.
+//	req, resp := client.CreateVirtualRouterRequest(params)
 //
-//    // Example sending a request using the CreateVirtualRouterRequest method.
-//    req, resp := client.CreateVirtualRouterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualRouter
 func (c *AppMesh) CreateVirtualRouterRequest(input *CreateVirtualRouterInput) (req *request.Request, output *CreateVirtualRouterOutput) {
@@ -663,36 +662,37 @@ func (c *AppMesh) CreateVirtualRouterRequest(input *CreateVirtualRouterInput) (r
 // API operation CreateVirtualRouter for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualRouter
 func (c *AppMesh) CreateVirtualRouter(input *CreateVirtualRouterInput) (*CreateVirtualRouterOutput, error) {
@@ -732,14 +732,13 @@ const opCreateVirtualService = "CreateVirtualService"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateVirtualServiceRequest method.
+//	req, resp := client.CreateVirtualServiceRequest(params)
 //
-//    // Example sending a request using the CreateVirtualServiceRequest method.
-//    req, resp := client.CreateVirtualServiceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualService
 func (c *AppMesh) CreateVirtualServiceRequest(input *CreateVirtualServiceInput) (req *request.Request, output *CreateVirtualServiceOutput) {
@@ -778,36 +777,37 @@ func (c *AppMesh) CreateVirtualServiceRequest(input *CreateVirtualServiceInput) 
 // API operation CreateVirtualService for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualService
 func (c *AppMesh) CreateVirtualService(input *CreateVirtualServiceInput) (*CreateVirtualServiceOutput, error) {
@@ -847,14 +847,13 @@ const opDeleteGatewayRoute = "DeleteGatewayRoute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteGatewayRouteRequest method.
+//	req, resp := client.DeleteGatewayRouteRequest(params)
 //
-//    // Example sending a request using the DeleteGatewayRouteRequest method.
-//    req, resp := client.DeleteGatewayRouteRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteGatewayRoute
 func (c *AppMesh) DeleteGatewayRouteRequest(input *DeleteGatewayRouteInput) (req *request.Request, output *DeleteGatewayRouteOutput) {
@@ -885,30 +884,31 @@ func (c *AppMesh) DeleteGatewayRouteRequest(input *DeleteGatewayRouteInput) (req
 // API operation DeleteGatewayRoute for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ResourceInUseException
-//   You can't delete the specified resource because it's in use or required by
-//   another resource.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ResourceInUseException
+//     You can't delete the specified resource because it's in use or required by
+//     another resource.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteGatewayRoute
 func (c *AppMesh) DeleteGatewayRoute(input *DeleteGatewayRouteInput) (*DeleteGatewayRouteOutput, error) {
@@ -948,14 +948,13 @@ const opDeleteMesh = "DeleteMesh"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteMeshRequest method.
+//	req, resp := client.DeleteMeshRequest(params)
 //
-//    // Example sending a request using the DeleteMeshRequest method.
-//    req, resp := client.DeleteMeshRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteMesh
 func (c *AppMesh) DeleteMeshRequest(input *DeleteMeshInput) (req *request.Request, output *DeleteMeshOutput) {
@@ -989,30 +988,31 @@ func (c *AppMesh) DeleteMeshRequest(input *DeleteMeshInput) (req *request.Reques
 // API operation DeleteMesh for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ResourceInUseException
-//   You can't delete the specified resource because it's in use or required by
-//   another resource.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ResourceInUseException
+//     You can't delete the specified resource because it's in use or required by
+//     another resource.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteMesh
 func (c *AppMesh) DeleteMesh(input *DeleteMeshInput) (*DeleteMeshOutput, error) {
@@ -1052,14 +1052,13 @@ const opDeleteRoute = "DeleteRoute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRouteRequest method.
+//	req, resp := client.DeleteRouteRequest(params)
 //
-//    // Example sending a request using the DeleteRouteRequest method.
-//    req, resp := client.DeleteRouteRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteRoute
 func (c *AppMesh) DeleteRouteRequest(input *DeleteRouteInput) (req *request.Request, output *DeleteRouteOutput) {
@@ -1090,30 +1089,31 @@ func (c *AppMesh) DeleteRouteRequest(input *DeleteRouteInput) (req *request.Requ
 // API operation DeleteRoute for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ResourceInUseException
-//   You can't delete the specified resource because it's in use or required by
-//   another resource.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ResourceInUseException
+//     You can't delete the specified resource because it's in use or required by
+//     another resource.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteRoute
 func (c *AppMesh) DeleteRoute(input *DeleteRouteInput) (*DeleteRouteOutput, error) {
@@ -1153,14 +1153,13 @@ const opDeleteVirtualGateway = "DeleteVirtualGateway"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteVirtualGatewayRequest method.
+//	req, resp := client.DeleteVirtualGatewayRequest(params)
 //
-//    // Example sending a request using the DeleteVirtualGatewayRequest method.
-//    req, resp := client.DeleteVirtualGatewayRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteVirtualGateway
 func (c *AppMesh) DeleteVirtualGatewayRequest(input *DeleteVirtualGatewayInput) (req *request.Request, output *DeleteVirtualGatewayOutput) {
@@ -1192,30 +1191,31 @@ func (c *AppMesh) DeleteVirtualGatewayRequest(input *DeleteVirtualGatewayInput) 
 // API operation DeleteVirtualGateway for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ResourceInUseException
-//   You can't delete the specified resource because it's in use or required by
-//   another resource.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ResourceInUseException
+//     You can't delete the specified resource because it's in use or required by
+//     another resource.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteVirtualGateway
 func (c *AppMesh) DeleteVirtualGateway(input *DeleteVirtualGatewayInput) (*DeleteVirtualGatewayOutput, error) {
@@ -1255,14 +1255,13 @@ const opDeleteVirtualNode = "DeleteVirtualNode"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteVirtualNodeRequest method.
+//	req, resp := client.DeleteVirtualNodeRequest(params)
 //
-//    // Example sending a request using the DeleteVirtualNodeRequest method.
-//    req, resp := client.DeleteVirtualNodeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteVirtualNode
 func (c *AppMesh) DeleteVirtualNodeRequest(input *DeleteVirtualNodeInput) (req *request.Request, output *DeleteVirtualNodeOutput) {
@@ -1296,30 +1295,31 @@ func (c *AppMesh) DeleteVirtualNodeRequest(input *DeleteVirtualNodeInput) (req *
 // API operation DeleteVirtualNode for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ResourceInUseException
-//   You can't delete the specified resource because it's in use or required by
-//   another resource.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ResourceInUseException
+//     You can't delete the specified resource because it's in use or required by
+//     another resource.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteVirtualNode
 func (c *AppMesh) DeleteVirtualNode(input *DeleteVirtualNodeInput) (*DeleteVirtualNodeOutput, error) {
@@ -1359,14 +1359,13 @@ const opDeleteVirtualRouter = "DeleteVirtualRouter"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteVirtualRouterRequest method.
+//	req, resp := client.DeleteVirtualRouterRequest(params)
 //
-//    // Example sending a request using the DeleteVirtualRouterRequest method.
-//    req, resp := client.DeleteVirtualRouterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteVirtualRouter
 func (c *AppMesh) DeleteVirtualRouterRequest(input *DeleteVirtualRouterInput) (req *request.Request, output *DeleteVirtualRouterOutput) {
@@ -1400,30 +1399,31 @@ func (c *AppMesh) DeleteVirtualRouterRequest(input *DeleteVirtualRouterInput) (r
 // API operation DeleteVirtualRouter for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ResourceInUseException
-//   You can't delete the specified resource because it's in use or required by
-//   another resource.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ResourceInUseException
+//     You can't delete the specified resource because it's in use or required by
+//     another resource.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteVirtualRouter
 func (c *AppMesh) DeleteVirtualRouter(input *DeleteVirtualRouterInput) (*DeleteVirtualRouterOutput, error) {
@@ -1463,14 +1463,13 @@ const opDeleteVirtualService = "DeleteVirtualService"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteVirtualServiceRequest method.
+//	req, resp := client.DeleteVirtualServiceRequest(params)
 //
-//    // Example sending a request using the DeleteVirtualServiceRequest method.
-//    req, resp := client.DeleteVirtualServiceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteVirtualService
 func (c *AppMesh) DeleteVirtualServiceRequest(input *DeleteVirtualServiceInput) (req *request.Request, output *DeleteVirtualServiceOutput) {
@@ -1501,30 +1500,31 @@ func (c *AppMesh) DeleteVirtualServiceRequest(input *DeleteVirtualServiceInput) 
 // API operation DeleteVirtualService for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ResourceInUseException
-//   You can't delete the specified resource because it's in use or required by
-//   another resource.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ResourceInUseException
+//     You can't delete the specified resource because it's in use or required by
+//     another resource.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DeleteVirtualService
 func (c *AppMesh) DeleteVirtualService(input *DeleteVirtualServiceInput) (*DeleteVirtualServiceOutput, error) {
@@ -1564,14 +1564,13 @@ const opDescribeGatewayRoute = "DescribeGatewayRoute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeGatewayRouteRequest method.
+//	req, resp := client.DescribeGatewayRouteRequest(params)
 //
-//    // Example sending a request using the DescribeGatewayRouteRequest method.
-//    req, resp := client.DescribeGatewayRouteRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeGatewayRoute
 func (c *AppMesh) DescribeGatewayRouteRequest(input *DescribeGatewayRouteInput) (req *request.Request, output *DescribeGatewayRouteOutput) {
@@ -1602,26 +1601,27 @@ func (c *AppMesh) DescribeGatewayRouteRequest(input *DescribeGatewayRouteInput) 
 // API operation DescribeGatewayRoute for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeGatewayRoute
 func (c *AppMesh) DescribeGatewayRoute(input *DescribeGatewayRouteInput) (*DescribeGatewayRouteOutput, error) {
@@ -1661,14 +1661,13 @@ const opDescribeMesh = "DescribeMesh"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeMeshRequest method.
+//	req, resp := client.DescribeMeshRequest(params)
 //
-//    // Example sending a request using the DescribeMeshRequest method.
-//    req, resp := client.DescribeMeshRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeMesh
 func (c *AppMesh) DescribeMeshRequest(input *DescribeMeshInput) (req *request.Request, output *DescribeMeshOutput) {
@@ -1699,26 +1698,27 @@ func (c *AppMesh) DescribeMeshRequest(input *DescribeMeshInput) (req *request.Re
 // API operation DescribeMesh for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeMesh
 func (c *AppMesh) DescribeMesh(input *DescribeMeshInput) (*DescribeMeshOutput, error) {
@@ -1758,14 +1758,13 @@ const opDescribeRoute = "DescribeRoute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRouteRequest method.
+//	req, resp := client.DescribeRouteRequest(params)
 //
-//    // Example sending a request using the DescribeRouteRequest method.
-//    req, resp := client.DescribeRouteRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeRoute
 func (c *AppMesh) DescribeRouteRequest(input *DescribeRouteInput) (req *request.Request, output *DescribeRouteOutput) {
@@ -1796,26 +1795,27 @@ func (c *AppMesh) DescribeRouteRequest(input *DescribeRouteInput) (req *request.
 // API operation DescribeRoute for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeRoute
 func (c *AppMesh) DescribeRoute(input *DescribeRouteInput) (*DescribeRouteOutput, error) {
@@ -1855,14 +1855,13 @@ const opDescribeVirtualGateway = "DescribeVirtualGateway"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeVirtualGatewayRequest method.
+//	req, resp := client.DescribeVirtualGatewayRequest(params)
 //
-//    // Example sending a request using the DescribeVirtualGatewayRequest method.
-//    req, resp := client.DescribeVirtualGatewayRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeVirtualGateway
 func (c *AppMesh) DescribeVirtualGatewayRequest(input *DescribeVirtualGatewayInput) (req *request.Request, output *DescribeVirtualGatewayOutput) {
@@ -1893,26 +1892,27 @@ func (c *AppMesh) DescribeVirtualGatewayRequest(input *DescribeVirtualGatewayInp
 // API operation DescribeVirtualGateway for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeVirtualGateway
 func (c *AppMesh) DescribeVirtualGateway(input *DescribeVirtualGatewayInput) (*DescribeVirtualGatewayOutput, error) {
@@ -1952,14 +1952,13 @@ const opDescribeVirtualNode = "DescribeVirtualNode"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeVirtualNodeRequest method.
+//	req, resp := client.DescribeVirtualNodeRequest(params)
 //
-//    // Example sending a request using the DescribeVirtualNodeRequest method.
-//    req, resp := client.DescribeVirtualNodeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeVirtualNode
 func (c *AppMesh) DescribeVirtualNodeRequest(input *DescribeVirtualNodeInput) (req *request.Request, output *DescribeVirtualNodeOutput) {
@@ -1990,26 +1989,27 @@ func (c *AppMesh) DescribeVirtualNodeRequest(input *DescribeVirtualNodeInput) (r
 // API operation DescribeVirtualNode for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeVirtualNode
 func (c *AppMesh) DescribeVirtualNode(input *DescribeVirtualNodeInput) (*DescribeVirtualNodeOutput, error) {
@@ -2049,14 +2049,13 @@ const opDescribeVirtualRouter = "DescribeVirtualRouter"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeVirtualRouterRequest method.
+//	req, resp := client.DescribeVirtualRouterRequest(params)
 //
-//    // Example sending a request using the DescribeVirtualRouterRequest method.
-//    req, resp := client.DescribeVirtualRouterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeVirtualRouter
 func (c *AppMesh) DescribeVirtualRouterRequest(input *DescribeVirtualRouterInput) (req *request.Request, output *DescribeVirtualRouterOutput) {
@@ -2087,26 +2086,27 @@ func (c *AppMesh) DescribeVirtualRouterRequest(input *DescribeVirtualRouterInput
 // API operation DescribeVirtualRouter for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeVirtualRouter
 func (c *AppMesh) DescribeVirtualRouter(input *DescribeVirtualRouterInput) (*DescribeVirtualRouterOutput, error) {
@@ -2146,14 +2146,13 @@ const opDescribeVirtualService = "DescribeVirtualService"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeVirtualServiceRequest method.
+//	req, resp := client.DescribeVirtualServiceRequest(params)
 //
-//    // Example sending a request using the DescribeVirtualServiceRequest method.
-//    req, resp := client.DescribeVirtualServiceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeVirtualService
 func (c *AppMesh) DescribeVirtualServiceRequest(input *DescribeVirtualServiceInput) (req *request.Request, output *DescribeVirtualServiceOutput) {
@@ -2184,26 +2183,27 @@ func (c *AppMesh) DescribeVirtualServiceRequest(input *DescribeVirtualServiceInp
 // API operation DescribeVirtualService for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/DescribeVirtualService
 func (c *AppMesh) DescribeVirtualService(input *DescribeVirtualServiceInput) (*DescribeVirtualServiceOutput, error) {
@@ -2243,14 +2243,13 @@ const opListGatewayRoutes = "ListGatewayRoutes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGatewayRoutesRequest method.
+//	req, resp := client.ListGatewayRoutesRequest(params)
 //
-//    // Example sending a request using the ListGatewayRoutesRequest method.
-//    req, resp := client.ListGatewayRoutesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListGatewayRoutes
 func (c *AppMesh) ListGatewayRoutesRequest(input *ListGatewayRoutesInput) (req *request.Request, output *ListGatewayRoutesOutput) {
@@ -2288,26 +2287,27 @@ func (c *AppMesh) ListGatewayRoutesRequest(input *ListGatewayRoutesInput) (req *
 // API operation ListGatewayRoutes for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListGatewayRoutes
 func (c *AppMesh) ListGatewayRoutes(input *ListGatewayRoutesInput) (*ListGatewayRoutesOutput, error) {
@@ -2339,15 +2339,14 @@ func (c *AppMesh) ListGatewayRoutesWithContext(ctx aws.Context, input *ListGatew
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListGatewayRoutes operation.
-//    pageNum := 0
-//    err := client.ListGatewayRoutesPages(params,
-//        func(page *appmesh.ListGatewayRoutesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListGatewayRoutes operation.
+//	pageNum := 0
+//	err := client.ListGatewayRoutesPages(params,
+//	    func(page *appmesh.ListGatewayRoutesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppMesh) ListGatewayRoutesPages(input *ListGatewayRoutesInput, fn func(*ListGatewayRoutesOutput, bool) bool) error {
 	return c.ListGatewayRoutesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2399,14 +2398,13 @@ const opListMeshes = "ListMeshes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListMeshesRequest method.
+//	req, resp := client.ListMeshesRequest(params)
 //
-//    // Example sending a request using the ListMeshesRequest method.
-//    req, resp := client.ListMeshesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListMeshes
 func (c *AppMesh) ListMeshesRequest(input *ListMeshesInput) (req *request.Request, output *ListMeshesOutput) {
@@ -2443,26 +2441,27 @@ func (c *AppMesh) ListMeshesRequest(input *ListMeshesInput) (req *request.Reques
 // API operation ListMeshes for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListMeshes
 func (c *AppMesh) ListMeshes(input *ListMeshesInput) (*ListMeshesOutput, error) {
@@ -2494,15 +2493,14 @@ func (c *AppMesh) ListMeshesWithContext(ctx aws.Context, input *ListMeshesInput,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListMeshes operation.
-//    pageNum := 0
-//    err := client.ListMeshesPages(params,
-//        func(page *appmesh.ListMeshesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListMeshes operation.
+//	pageNum := 0
+//	err := client.ListMeshesPages(params,
+//	    func(page *appmesh.ListMeshesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppMesh) ListMeshesPages(input *ListMeshesInput, fn func(*ListMeshesOutput, bool) bool) error {
 	return c.ListMeshesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2554,14 +2552,13 @@ const opListRoutes = "ListRoutes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRoutesRequest method.
+//	req, resp := client.ListRoutesRequest(params)
 //
-//    // Example sending a request using the ListRoutesRequest method.
-//    req, resp := client.ListRoutesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListRoutes
 func (c *AppMesh) ListRoutesRequest(input *ListRoutesInput) (req *request.Request, output *ListRoutesOutput) {
@@ -2598,26 +2595,27 @@ func (c *AppMesh) ListRoutesRequest(input *ListRoutesInput) (req *request.Reques
 // API operation ListRoutes for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListRoutes
 func (c *AppMesh) ListRoutes(input *ListRoutesInput) (*ListRoutesOutput, error) {
@@ -2649,15 +2647,14 @@ func (c *AppMesh) ListRoutesWithContext(ctx aws.Context, input *ListRoutesInput,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRoutes operation.
-//    pageNum := 0
-//    err := client.ListRoutesPages(params,
-//        func(page *appmesh.ListRoutesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRoutes operation.
+//	pageNum := 0
+//	err := client.ListRoutesPages(params,
+//	    func(page *appmesh.ListRoutesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppMesh) ListRoutesPages(input *ListRoutesInput, fn func(*ListRoutesOutput, bool) bool) error {
 	return c.ListRoutesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2709,14 +2706,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListTagsForResource
 func (c *AppMesh) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2753,26 +2749,27 @@ func (c *AppMesh) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListTagsForResource
 func (c *AppMesh) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2804,15 +2801,14 @@ func (c *AppMesh) ListTagsForResourceWithContext(ctx aws.Context, input *ListTag
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
-//    pageNum := 0
-//    err := client.ListTagsForResourcePages(params,
-//        func(page *appmesh.ListTagsForResourceOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTagsForResource operation.
+//	pageNum := 0
+//	err := client.ListTagsForResourcePages(params,
+//	    func(page *appmesh.ListTagsForResourceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppMesh) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
 	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2864,14 +2860,13 @@ const opListVirtualGateways = "ListVirtualGateways"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListVirtualGatewaysRequest method.
+//	req, resp := client.ListVirtualGatewaysRequest(params)
 //
-//    // Example sending a request using the ListVirtualGatewaysRequest method.
-//    req, resp := client.ListVirtualGatewaysRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListVirtualGateways
 func (c *AppMesh) ListVirtualGatewaysRequest(input *ListVirtualGatewaysInput) (req *request.Request, output *ListVirtualGatewaysOutput) {
@@ -2908,26 +2903,27 @@ func (c *AppMesh) ListVirtualGatewaysRequest(input *ListVirtualGatewaysInput) (r
 // API operation ListVirtualGateways for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListVirtualGateways
 func (c *AppMesh) ListVirtualGateways(input *ListVirtualGatewaysInput) (*ListVirtualGatewaysOutput, error) {
@@ -2959,15 +2955,14 @@ func (c *AppMesh) ListVirtualGatewaysWithContext(ctx aws.Context, input *ListVir
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListVirtualGateways operation.
-//    pageNum := 0
-//    err := client.ListVirtualGatewaysPages(params,
-//        func(page *appmesh.ListVirtualGatewaysOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListVirtualGateways operation.
+//	pageNum := 0
+//	err := client.ListVirtualGatewaysPages(params,
+//	    func(page *appmesh.ListVirtualGatewaysOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppMesh) ListVirtualGatewaysPages(input *ListVirtualGatewaysInput, fn func(*ListVirtualGatewaysOutput, bool) bool) error {
 	return c.ListVirtualGatewaysPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3019,14 +3014,13 @@ const opListVirtualNodes = "ListVirtualNodes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListVirtualNodesRequest method.
+//	req, resp := client.ListVirtualNodesRequest(params)
 //
-//    // Example sending a request using the ListVirtualNodesRequest method.
-//    req, resp := client.ListVirtualNodesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListVirtualNodes
 func (c *AppMesh) ListVirtualNodesRequest(input *ListVirtualNodesInput) (req *request.Request, output *ListVirtualNodesOutput) {
@@ -3063,26 +3057,27 @@ func (c *AppMesh) ListVirtualNodesRequest(input *ListVirtualNodesInput) (req *re
 // API operation ListVirtualNodes for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListVirtualNodes
 func (c *AppMesh) ListVirtualNodes(input *ListVirtualNodesInput) (*ListVirtualNodesOutput, error) {
@@ -3114,15 +3109,14 @@ func (c *AppMesh) ListVirtualNodesWithContext(ctx aws.Context, input *ListVirtua
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListVirtualNodes operation.
-//    pageNum := 0
-//    err := client.ListVirtualNodesPages(params,
-//        func(page *appmesh.ListVirtualNodesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListVirtualNodes operation.
+//	pageNum := 0
+//	err := client.ListVirtualNodesPages(params,
+//	    func(page *appmesh.ListVirtualNodesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppMesh) ListVirtualNodesPages(input *ListVirtualNodesInput, fn func(*ListVirtualNodesOutput, bool) bool) error {
 	return c.ListVirtualNodesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3174,14 +3168,13 @@ const opListVirtualRouters = "ListVirtualRouters"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListVirtualRoutersRequest method.
+//	req, resp := client.ListVirtualRoutersRequest(params)
 //
-//    // Example sending a request using the ListVirtualRoutersRequest method.
-//    req, resp := client.ListVirtualRoutersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListVirtualRouters
 func (c *AppMesh) ListVirtualRoutersRequest(input *ListVirtualRoutersInput) (req *request.Request, output *ListVirtualRoutersOutput) {
@@ -3218,26 +3211,27 @@ func (c *AppMesh) ListVirtualRoutersRequest(input *ListVirtualRoutersInput) (req
 // API operation ListVirtualRouters for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListVirtualRouters
 func (c *AppMesh) ListVirtualRouters(input *ListVirtualRoutersInput) (*ListVirtualRoutersOutput, error) {
@@ -3269,15 +3263,14 @@ func (c *AppMesh) ListVirtualRoutersWithContext(ctx aws.Context, input *ListVirt
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListVirtualRouters operation.
-//    pageNum := 0
-//    err := client.ListVirtualRoutersPages(params,
-//        func(page *appmesh.ListVirtualRoutersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListVirtualRouters operation.
+//	pageNum := 0
+//	err := client.ListVirtualRoutersPages(params,
+//	    func(page *appmesh.ListVirtualRoutersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppMesh) ListVirtualRoutersPages(input *ListVirtualRoutersInput, fn func(*ListVirtualRoutersOutput, bool) bool) error {
 	return c.ListVirtualRoutersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3329,14 +3322,13 @@ const opListVirtualServices = "ListVirtualServices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListVirtualServicesRequest method.
+//	req, resp := client.ListVirtualServicesRequest(params)
 //
-//    // Example sending a request using the ListVirtualServicesRequest method.
-//    req, resp := client.ListVirtualServicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListVirtualServices
 func (c *AppMesh) ListVirtualServicesRequest(input *ListVirtualServicesInput) (req *request.Request, output *ListVirtualServicesOutput) {
@@ -3373,26 +3365,27 @@ func (c *AppMesh) ListVirtualServicesRequest(input *ListVirtualServicesInput) (r
 // API operation ListVirtualServices for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/ListVirtualServices
 func (c *AppMesh) ListVirtualServices(input *ListVirtualServicesInput) (*ListVirtualServicesOutput, error) {
@@ -3424,15 +3417,14 @@ func (c *AppMesh) ListVirtualServicesWithContext(ctx aws.Context, input *ListVir
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListVirtualServices operation.
-//    pageNum := 0
-//    err := client.ListVirtualServicesPages(params,
-//        func(page *appmesh.ListVirtualServicesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListVirtualServices operation.
+//	pageNum := 0
+//	err := client.ListVirtualServicesPages(params,
+//	    func(page *appmesh.ListVirtualServicesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppMesh) ListVirtualServicesPages(input *ListVirtualServicesInput, fn func(*ListVirtualServicesOutput, bool) bool) error {
 	return c.ListVirtualServicesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3484,14 +3476,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/TagResource
 func (c *AppMesh) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -3526,31 +3517,32 @@ func (c *AppMesh) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyTagsException
-//   The request exceeds the maximum allowed number of tags allowed per resource.
-//   The current limit is 50 user tags per resource. You must reduce the number
-//   of tags in the request. None of the tags in this request were applied.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - TooManyTagsException
+//     The request exceeds the maximum allowed number of tags allowed per resource.
+//     The current limit is 50 user tags per resource. You must reduce the number
+//     of tags in the request. None of the tags in this request were applied.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/TagResource
 func (c *AppMesh) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3590,14 +3582,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UntagResource
 func (c *AppMesh) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -3629,26 +3620,27 @@ func (c *AppMesh) UntagResourceRequest(input *UntagResourceInput) (req *request.
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UntagResource
 func (c *AppMesh) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3688,14 +3680,13 @@ const opUpdateGatewayRoute = "UpdateGatewayRoute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateGatewayRouteRequest method.
+//	req, resp := client.UpdateGatewayRouteRequest(params)
 //
-//    // Example sending a request using the UpdateGatewayRouteRequest method.
-//    req, resp := client.UpdateGatewayRouteRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateGatewayRoute
 func (c *AppMesh) UpdateGatewayRouteRequest(input *UpdateGatewayRouteInput) (req *request.Request, output *UpdateGatewayRouteOutput) {
@@ -3727,36 +3718,37 @@ func (c *AppMesh) UpdateGatewayRouteRequest(input *UpdateGatewayRouteInput) (req
 // API operation UpdateGatewayRoute for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateGatewayRoute
 func (c *AppMesh) UpdateGatewayRoute(input *UpdateGatewayRouteInput) (*UpdateGatewayRouteOutput, error) {
@@ -3796,14 +3788,13 @@ const opUpdateMesh = "UpdateMesh"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateMeshRequest method.
+//	req, resp := client.UpdateMeshRequest(params)
 //
-//    // Example sending a request using the UpdateMeshRequest method.
-//    req, resp := client.UpdateMeshRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateMesh
 func (c *AppMesh) UpdateMeshRequest(input *UpdateMeshInput) (req *request.Request, output *UpdateMeshOutput) {
@@ -3834,31 +3825,32 @@ func (c *AppMesh) UpdateMeshRequest(input *UpdateMeshInput) (req *request.Reques
 // API operation UpdateMesh for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
+//
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateMesh
 func (c *AppMesh) UpdateMesh(input *UpdateMeshInput) (*UpdateMeshOutput, error) {
@@ -3898,14 +3890,13 @@ const opUpdateRoute = "UpdateRoute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRouteRequest method.
+//	req, resp := client.UpdateRouteRequest(params)
 //
-//    // Example sending a request using the UpdateRouteRequest method.
-//    req, resp := client.UpdateRouteRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateRoute
 func (c *AppMesh) UpdateRouteRequest(input *UpdateRouteInput) (req *request.Request, output *UpdateRouteOutput) {
@@ -3936,36 +3927,37 @@ func (c *AppMesh) UpdateRouteRequest(input *UpdateRouteInput) (req *request.Requ
 // API operation UpdateRoute for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateRoute
 func (c *AppMesh) UpdateRoute(input *UpdateRouteInput) (*UpdateRouteOutput, error) {
@@ -4005,14 +3997,13 @@ const opUpdateVirtualGateway = "UpdateVirtualGateway"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateVirtualGatewayRequest method.
+//	req, resp := client.UpdateVirtualGatewayRequest(params)
 //
-//    // Example sending a request using the UpdateVirtualGatewayRequest method.
-//    req, resp := client.UpdateVirtualGatewayRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualGateway
 func (c *AppMesh) UpdateVirtualGatewayRequest(input *UpdateVirtualGatewayInput) (req *request.Request, output *UpdateVirtualGatewayOutput) {
@@ -4043,36 +4034,37 @@ func (c *AppMesh) UpdateVirtualGatewayRequest(input *UpdateVirtualGatewayInput) 
 // API operation UpdateVirtualGateway for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualGateway
 func (c *AppMesh) UpdateVirtualGateway(input *UpdateVirtualGatewayInput) (*UpdateVirtualGatewayOutput, error) {
@@ -4112,14 +4104,13 @@ const opUpdateVirtualNode = "UpdateVirtualNode"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateVirtualNodeRequest method.
+//	req, resp := client.UpdateVirtualNodeRequest(params)
 //
-//    // Example sending a request using the UpdateVirtualNodeRequest method.
-//    req, resp := client.UpdateVirtualNodeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualNode
 func (c *AppMesh) UpdateVirtualNodeRequest(input *UpdateVirtualNodeInput) (req *request.Request, output *UpdateVirtualNodeOutput) {
@@ -4150,36 +4141,37 @@ func (c *AppMesh) UpdateVirtualNodeRequest(input *UpdateVirtualNodeInput) (req *
 // API operation UpdateVirtualNode for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualNode
 func (c *AppMesh) UpdateVirtualNode(input *UpdateVirtualNodeInput) (*UpdateVirtualNodeOutput, error) {
@@ -4219,14 +4211,13 @@ const opUpdateVirtualRouter = "UpdateVirtualRouter"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateVirtualRouterRequest method.
+//	req, resp := client.UpdateVirtualRouterRequest(params)
 //
-//    // Example sending a request using the UpdateVirtualRouterRequest method.
-//    req, resp := client.UpdateVirtualRouterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualRouter
 func (c *AppMesh) UpdateVirtualRouterRequest(input *UpdateVirtualRouterInput) (req *request.Request, output *UpdateVirtualRouterOutput) {
@@ -4257,36 +4248,37 @@ func (c *AppMesh) UpdateVirtualRouterRequest(input *UpdateVirtualRouterInput) (r
 // API operation UpdateVirtualRouter for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualRouter
 func (c *AppMesh) UpdateVirtualRouter(input *UpdateVirtualRouterInput) (*UpdateVirtualRouterOutput, error) {
@@ -4326,14 +4318,13 @@ const opUpdateVirtualService = "UpdateVirtualService"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateVirtualServiceRequest method.
+//	req, resp := client.UpdateVirtualServiceRequest(params)
 //
-//    // Example sending a request using the UpdateVirtualServiceRequest method.
-//    req, resp := client.UpdateVirtualServiceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualService
 func (c *AppMesh) UpdateVirtualServiceRequest(input *UpdateVirtualServiceInput) (req *request.Request, output *UpdateVirtualServiceOutput) {
@@ -4364,36 +4355,37 @@ func (c *AppMesh) UpdateVirtualServiceRequest(input *UpdateVirtualServiceInput) 
 // API operation UpdateVirtualService for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * BadRequestException
-//   The request syntax was malformed. Check your request syntax and try again.
+//   - NotFoundException
+//     The specified resource doesn't exist. Check your request syntax and try again.
 //
-//   * ConflictException
-//   The request contains a client token that was used for a previous update resource
-//   call with different specifications. Try the request again with a new client
-//   token.
+//   - BadRequestException
+//     The request syntax was malformed. Check your request syntax and try again.
 //
-//   * TooManyRequestsException
-//   The maximum request rate permitted by the App Mesh APIs has been exceeded
-//   for your account. For best results, use an increasing or variable sleep interval
-//   between requests.
+//   - ConflictException
+//     The request contains a client token that was used for a previous update resource
+//     call with different specifications. Try the request again with a new client
+//     token.
 //
-//   * ForbiddenException
-//   You don't have permissions to perform this action.
+//   - TooManyRequestsException
+//     The maximum request rate permitted by the App Mesh APIs has been exceeded
+//     for your account. For best results, use an increasing or variable sleep interval
+//     between requests.
 //
-//   * ServiceUnavailableException
-//   The request has failed due to a temporary failure of the service.
+//   - ForbiddenException
+//     You don't have permissions to perform this action.
 //
-//   * InternalServerErrorException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the service.
 //
-//   * LimitExceededException
-//   You have exceeded a service limit for your account. For more information,
-//   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   - InternalServerErrorException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+//   - LimitExceededException
+//     You have exceeded a service limit for your account. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+//     in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualService
 func (c *AppMesh) UpdateVirtualService(input *UpdateVirtualServiceInput) (*UpdateVirtualServiceOutput, error) {
@@ -4425,12 +4417,20 @@ type AccessLog struct {
 	File *FileAccessLog `locationName:"file" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessLog) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessLog) GoString() string {
 	return s.String()
 }
@@ -4459,7 +4459,7 @@ func (s *AccessLog) SetFile(v *FileAccessLog) *AccessLog {
 // An object that represents the Cloud Map attribute information for your virtual
 // node.
 //
-// AWS Cloud Map is not available in the eu-south-1 Region.
+// Cloud Map is not available in the eu-south-1 Region.
 type AwsCloudMapInstanceAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -4476,12 +4476,20 @@ type AwsCloudMapInstanceAttribute struct {
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AwsCloudMapInstanceAttribute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AwsCloudMapInstanceAttribute) GoString() string {
 	return s.String()
 }
@@ -4533,6 +4541,11 @@ type AwsCloudMapServiceDiscovery struct {
 	// will be returned.
 	Attributes []*AwsCloudMapInstanceAttribute `locationName:"attributes" type:"list"`
 
+	// The preferred IP version that this virtual node uses. Setting the IP preference
+	// on the virtual node only overrides the IP preference set for the mesh on
+	// this specific node.
+	IpPreference *string `locationName:"ipPreference" type:"string" enum:"IpPreference"`
+
 	// The name of the Cloud Map namespace to use.
 	//
 	// NamespaceName is a required field
@@ -4544,12 +4557,20 @@ type AwsCloudMapServiceDiscovery struct {
 	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AwsCloudMapServiceDiscovery) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AwsCloudMapServiceDiscovery) GoString() string {
 	return s.String()
 }
@@ -4592,6 +4613,12 @@ func (s *AwsCloudMapServiceDiscovery) SetAttributes(v []*AwsCloudMapInstanceAttr
 	return s
 }
 
+// SetIpPreference sets the IpPreference field's value.
+func (s *AwsCloudMapServiceDiscovery) SetIpPreference(v string) *AwsCloudMapServiceDiscovery {
+	s.IpPreference = &v
+	return s
+}
+
 // SetNamespaceName sets the NamespaceName field's value.
 func (s *AwsCloudMapServiceDiscovery) SetNamespaceName(v string) *AwsCloudMapServiceDiscovery {
 	s.NamespaceName = &v
@@ -4613,12 +4640,20 @@ type Backend struct {
 	VirtualService *VirtualServiceBackend `locationName:"virtualService" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Backend) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Backend) GoString() string {
 	return s.String()
 }
@@ -4652,12 +4687,20 @@ type BackendDefaults struct {
 	ClientPolicy *ClientPolicy `locationName:"clientPolicy" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendDefaults) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendDefaults) GoString() string {
 	return s.String()
 }
@@ -4691,12 +4734,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -4748,12 +4799,20 @@ type ClientPolicy struct {
 	Tls *ClientPolicyTls `locationName:"tls" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientPolicy) GoString() string {
 	return s.String()
 }
@@ -4799,12 +4858,20 @@ type ClientPolicyTls struct {
 	Validation *TlsValidationContext `locationName:"validation" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientPolicyTls) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientPolicyTls) GoString() string {
 	return s.String()
 }
@@ -4870,12 +4937,20 @@ type ClientTlsCertificate struct {
 	Sds *ListenerTlsSdsCertificate `locationName:"sds" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientTlsCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientTlsCertificate) GoString() string {
 	return s.String()
 }
@@ -4922,12 +4997,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -4987,10 +5070,11 @@ type CreateGatewayRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The gateway route specification to apply.
@@ -5012,12 +5096,20 @@ type CreateGatewayRouteInput struct {
 	VirtualGatewayName *string `location:"uri" locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGatewayRouteInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGatewayRouteInput) GoString() string {
 	return s.String()
 }
@@ -5122,12 +5214,20 @@ type CreateGatewayRouteOutput struct {
 	GatewayRoute *GatewayRouteData `locationName:"gatewayRoute" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGatewayRouteOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGatewayRouteOutput) GoString() string {
 	return s.String()
 }
@@ -5160,12 +5260,20 @@ type CreateMeshInput struct {
 	Tags []*TagRef `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateMeshInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateMeshInput) GoString() string {
 	return s.String()
 }
@@ -5234,12 +5342,20 @@ type CreateMeshOutput struct {
 	Mesh *MeshData `locationName:"mesh" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateMeshOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateMeshOutput) GoString() string {
 	return s.String()
 }
@@ -5262,10 +5378,11 @@ type CreateRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name to use for the route.
@@ -5292,12 +5409,20 @@ type CreateRouteInput struct {
 	VirtualRouterName *string `location:"uri" locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRouteInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRouteInput) GoString() string {
 	return s.String()
 }
@@ -5402,12 +5527,20 @@ type CreateRouteOutput struct {
 	Route *RouteData `locationName:"route" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRouteOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRouteOutput) GoString() string {
 	return s.String()
 }
@@ -5430,10 +5563,11 @@ type CreateVirtualGatewayInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The virtual gateway specification to apply.
@@ -5453,12 +5587,20 @@ type CreateVirtualGatewayInput struct {
 	VirtualGatewayName *string `locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualGatewayInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualGatewayInput) GoString() string {
 	return s.String()
 }
@@ -5551,12 +5693,20 @@ type CreateVirtualGatewayOutput struct {
 	VirtualGateway *VirtualGatewayData `locationName:"virtualGateway" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualGatewayOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualGatewayOutput) GoString() string {
 	return s.String()
 }
@@ -5579,10 +5729,11 @@ type CreateVirtualNodeInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The virtual node specification to apply.
@@ -5602,12 +5753,20 @@ type CreateVirtualNodeInput struct {
 	VirtualNodeName *string `locationName:"virtualNodeName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualNodeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualNodeInput) GoString() string {
 	return s.String()
 }
@@ -5700,12 +5859,20 @@ type CreateVirtualNodeOutput struct {
 	VirtualNode *VirtualNodeData `locationName:"virtualNode" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualNodeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualNodeOutput) GoString() string {
 	return s.String()
 }
@@ -5728,10 +5895,11 @@ type CreateVirtualRouterInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The virtual router specification to apply.
@@ -5751,12 +5919,20 @@ type CreateVirtualRouterInput struct {
 	VirtualRouterName *string `locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualRouterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualRouterInput) GoString() string {
 	return s.String()
 }
@@ -5849,12 +6025,20 @@ type CreateVirtualRouterOutput struct {
 	VirtualRouter *VirtualRouterData `locationName:"virtualRouter" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualRouterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualRouterOutput) GoString() string {
 	return s.String()
 }
@@ -5877,10 +6061,11 @@ type CreateVirtualServiceInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The virtual service specification to apply.
@@ -5900,12 +6085,20 @@ type CreateVirtualServiceInput struct {
 	VirtualServiceName *string `locationName:"virtualServiceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualServiceInput) GoString() string {
 	return s.String()
 }
@@ -5995,12 +6188,20 @@ type CreateVirtualServiceOutput struct {
 	VirtualService *VirtualServiceData `locationName:"virtualService" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateVirtualServiceOutput) GoString() string {
 	return s.String()
 }
@@ -6012,7 +6213,7 @@ func (s *CreateVirtualServiceOutput) SetVirtualService(v *VirtualServiceData) *C
 }
 
 type DeleteGatewayRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the gateway route to delete.
 	//
@@ -6024,10 +6225,10 @@ type DeleteGatewayRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual gateway to delete the route from.
@@ -6036,12 +6237,20 @@ type DeleteGatewayRouteInput struct {
 	VirtualGatewayName *string `location:"uri" locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGatewayRouteInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGatewayRouteInput) GoString() string {
 	return s.String()
 }
@@ -6110,12 +6319,20 @@ type DeleteGatewayRouteOutput struct {
 	GatewayRoute *GatewayRouteData `locationName:"gatewayRoute" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGatewayRouteOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGatewayRouteOutput) GoString() string {
 	return s.String()
 }
@@ -6127,7 +6344,7 @@ func (s *DeleteGatewayRouteOutput) SetGatewayRoute(v *GatewayRouteData) *DeleteG
 }
 
 type DeleteMeshInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete.
 	//
@@ -6135,12 +6352,20 @@ type DeleteMeshInput struct {
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMeshInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMeshInput) GoString() string {
 	return s.String()
 }
@@ -6176,12 +6401,20 @@ type DeleteMeshOutput struct {
 	Mesh *MeshData `locationName:"mesh" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMeshOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteMeshOutput) GoString() string {
 	return s.String()
 }
@@ -6193,17 +6426,17 @@ func (s *DeleteMeshOutput) SetMesh(v *MeshData) *DeleteMeshOutput {
 }
 
 type DeleteRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the route in.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the route to delete.
@@ -6217,12 +6450,20 @@ type DeleteRouteInput struct {
 	VirtualRouterName *string `location:"uri" locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRouteInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRouteInput) GoString() string {
 	return s.String()
 }
@@ -6291,12 +6532,20 @@ type DeleteRouteOutput struct {
 	Route *RouteData `locationName:"route" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRouteOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRouteOutput) GoString() string {
 	return s.String()
 }
@@ -6308,17 +6557,17 @@ func (s *DeleteRouteOutput) SetRoute(v *RouteData) *DeleteRouteOutput {
 }
 
 type DeleteVirtualGatewayInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the virtual gateway from.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual gateway to delete.
@@ -6327,12 +6576,20 @@ type DeleteVirtualGatewayInput struct {
 	VirtualGatewayName *string `location:"uri" locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualGatewayInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualGatewayInput) GoString() string {
 	return s.String()
 }
@@ -6389,12 +6646,20 @@ type DeleteVirtualGatewayOutput struct {
 	VirtualGateway *VirtualGatewayData `locationName:"virtualGateway" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualGatewayOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualGatewayOutput) GoString() string {
 	return s.String()
 }
@@ -6407,17 +6672,17 @@ func (s *DeleteVirtualGatewayOutput) SetVirtualGateway(v *VirtualGatewayData) *D
 
 // Deletes a virtual node input.
 type DeleteVirtualNodeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the virtual node in.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual node to delete.
@@ -6426,12 +6691,20 @@ type DeleteVirtualNodeInput struct {
 	VirtualNodeName *string `location:"uri" locationName:"virtualNodeName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualNodeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualNodeInput) GoString() string {
 	return s.String()
 }
@@ -6488,12 +6761,20 @@ type DeleteVirtualNodeOutput struct {
 	VirtualNode *VirtualNodeData `locationName:"virtualNode" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualNodeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualNodeOutput) GoString() string {
 	return s.String()
 }
@@ -6505,17 +6786,17 @@ func (s *DeleteVirtualNodeOutput) SetVirtualNode(v *VirtualNodeData) *DeleteVirt
 }
 
 type DeleteVirtualRouterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the virtual router in.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual router to delete.
@@ -6524,12 +6805,20 @@ type DeleteVirtualRouterInput struct {
 	VirtualRouterName *string `location:"uri" locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualRouterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualRouterInput) GoString() string {
 	return s.String()
 }
@@ -6586,12 +6875,20 @@ type DeleteVirtualRouterOutput struct {
 	VirtualRouter *VirtualRouterData `locationName:"virtualRouter" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualRouterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualRouterOutput) GoString() string {
 	return s.String()
 }
@@ -6603,17 +6900,17 @@ func (s *DeleteVirtualRouterOutput) SetVirtualRouter(v *VirtualRouterData) *Dele
 }
 
 type DeleteVirtualServiceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the virtual service in.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual service to delete.
@@ -6622,12 +6919,20 @@ type DeleteVirtualServiceInput struct {
 	VirtualServiceName *string `location:"uri" locationName:"virtualServiceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualServiceInput) GoString() string {
 	return s.String()
 }
@@ -6684,12 +6989,20 @@ type DeleteVirtualServiceOutput struct {
 	VirtualService *VirtualServiceData `locationName:"virtualService" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualServiceOutput) GoString() string {
 	return s.String()
 }
@@ -6701,7 +7014,7 @@ func (s *DeleteVirtualServiceOutput) SetVirtualService(v *VirtualServiceData) *D
 }
 
 type DescribeGatewayRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the gateway route to describe.
 	//
@@ -6713,10 +7026,10 @@ type DescribeGatewayRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual gateway that the gateway route is associated with.
@@ -6725,12 +7038,20 @@ type DescribeGatewayRouteInput struct {
 	VirtualGatewayName *string `location:"uri" locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeGatewayRouteInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeGatewayRouteInput) GoString() string {
 	return s.String()
 }
@@ -6799,12 +7120,20 @@ type DescribeGatewayRouteOutput struct {
 	GatewayRoute *GatewayRouteData `locationName:"gatewayRoute" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeGatewayRouteOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeGatewayRouteOutput) GoString() string {
 	return s.String()
 }
@@ -6816,26 +7145,34 @@ func (s *DescribeGatewayRouteOutput) SetGatewayRoute(v *GatewayRouteData) *Descr
 }
 
 type DescribeMeshInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to describe.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMeshInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMeshInput) GoString() string {
 	return s.String()
 }
@@ -6880,12 +7217,20 @@ type DescribeMeshOutput struct {
 	Mesh *MeshData `locationName:"mesh" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMeshOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMeshOutput) GoString() string {
 	return s.String()
 }
@@ -6897,17 +7242,17 @@ func (s *DescribeMeshOutput) SetMesh(v *MeshData) *DescribeMeshOutput {
 }
 
 type DescribeRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the route resides in.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the route to describe.
@@ -6921,12 +7266,20 @@ type DescribeRouteInput struct {
 	VirtualRouterName *string `location:"uri" locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRouteInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRouteInput) GoString() string {
 	return s.String()
 }
@@ -6995,12 +7348,20 @@ type DescribeRouteOutput struct {
 	Route *RouteData `locationName:"route" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRouteOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRouteOutput) GoString() string {
 	return s.String()
 }
@@ -7012,17 +7373,17 @@ func (s *DescribeRouteOutput) SetRoute(v *RouteData) *DescribeRouteOutput {
 }
 
 type DescribeVirtualGatewayInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the gateway route resides in.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual gateway to describe.
@@ -7031,12 +7392,20 @@ type DescribeVirtualGatewayInput struct {
 	VirtualGatewayName *string `location:"uri" locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualGatewayInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualGatewayInput) GoString() string {
 	return s.String()
 }
@@ -7093,12 +7462,20 @@ type DescribeVirtualGatewayOutput struct {
 	VirtualGateway *VirtualGatewayData `locationName:"virtualGateway" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualGatewayOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualGatewayOutput) GoString() string {
 	return s.String()
 }
@@ -7110,17 +7487,17 @@ func (s *DescribeVirtualGatewayOutput) SetVirtualGateway(v *VirtualGatewayData) 
 }
 
 type DescribeVirtualNodeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the virtual node resides in.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual node to describe.
@@ -7129,12 +7506,20 @@ type DescribeVirtualNodeInput struct {
 	VirtualNodeName *string `location:"uri" locationName:"virtualNodeName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualNodeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualNodeInput) GoString() string {
 	return s.String()
 }
@@ -7191,12 +7576,20 @@ type DescribeVirtualNodeOutput struct {
 	VirtualNode *VirtualNodeData `locationName:"virtualNode" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualNodeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualNodeOutput) GoString() string {
 	return s.String()
 }
@@ -7208,17 +7601,17 @@ func (s *DescribeVirtualNodeOutput) SetVirtualNode(v *VirtualNodeData) *Describe
 }
 
 type DescribeVirtualRouterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the virtual router resides in.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual router to describe.
@@ -7227,12 +7620,20 @@ type DescribeVirtualRouterInput struct {
 	VirtualRouterName *string `location:"uri" locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualRouterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualRouterInput) GoString() string {
 	return s.String()
 }
@@ -7289,12 +7690,20 @@ type DescribeVirtualRouterOutput struct {
 	VirtualRouter *VirtualRouterData `locationName:"virtualRouter" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualRouterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualRouterOutput) GoString() string {
 	return s.String()
 }
@@ -7306,17 +7715,17 @@ func (s *DescribeVirtualRouterOutput) SetVirtualRouter(v *VirtualRouterData) *De
 }
 
 type DescribeVirtualServiceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the virtual service resides in.
 	//
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual service to describe.
@@ -7325,12 +7734,20 @@ type DescribeVirtualServiceInput struct {
 	VirtualServiceName *string `location:"uri" locationName:"virtualServiceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualServiceInput) GoString() string {
 	return s.String()
 }
@@ -7387,12 +7804,20 @@ type DescribeVirtualServiceOutput struct {
 	VirtualService *VirtualServiceData `locationName:"virtualService" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualServiceOutput) GoString() string {
 	return s.String()
 }
@@ -7413,16 +7838,29 @@ type DnsServiceDiscovery struct {
 	// Hostname is a required field
 	Hostname *string `locationName:"hostname" type:"string" required:"true"`
 
+	// The preferred IP version that this virtual node uses. Setting the IP preference
+	// on the virtual node only overrides the IP preference set for the mesh on
+	// this specific node.
+	IpPreference *string `locationName:"ipPreference" type:"string" enum:"IpPreference"`
+
 	// Specifies the DNS response type for the virtual node.
 	ResponseType *string `locationName:"responseType" type:"string" enum:"DnsResponseType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DnsServiceDiscovery) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DnsServiceDiscovery) GoString() string {
 	return s.String()
 }
@@ -7446,6 +7884,12 @@ func (s *DnsServiceDiscovery) SetHostname(v string) *DnsServiceDiscovery {
 	return s
 }
 
+// SetIpPreference sets the IpPreference field's value.
+func (s *DnsServiceDiscovery) SetIpPreference(v string) *DnsServiceDiscovery {
+	s.IpPreference = &v
+	return s
+}
+
 // SetResponseType sets the ResponseType field's value.
 func (s *DnsServiceDiscovery) SetResponseType(v string) *DnsServiceDiscovery {
 	s.ResponseType = &v
@@ -7463,12 +7907,20 @@ type Duration struct {
 	Value *int64 `locationName:"value" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Duration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Duration) GoString() string {
 	return s.String()
 }
@@ -7499,12 +7951,20 @@ type EgressFilter struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EgressFilterType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EgressFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EgressFilter) GoString() string {
 	return s.String()
 }
@@ -7532,6 +7992,9 @@ func (s *EgressFilter) SetType(v string) *EgressFilter {
 type FileAccessLog struct {
 	_ struct{} `type:"structure"`
 
+	// The specified format for the logs. The format is either json_format or text_format.
+	Format *LoggingFormat `locationName:"format" type:"structure"`
+
 	// The file path to write access logs to. You can use /dev/stdout to send access
 	// logs to standard out and configure your Envoy container to use a log driver,
 	// such as awslogs, to export the access logs to a log storage service such
@@ -7545,12 +8008,20 @@ type FileAccessLog struct {
 	Path *string `locationName:"path" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileAccessLog) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileAccessLog) GoString() string {
 	return s.String()
 }
@@ -7564,11 +8035,22 @@ func (s *FileAccessLog) Validate() error {
 	if s.Path != nil && len(*s.Path) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
 	}
+	if s.Format != nil {
+		if err := s.Format.Validate(); err != nil {
+			invalidParams.AddNested("Format", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *FileAccessLog) SetFormat(v *LoggingFormat) *FileAccessLog {
+	s.Format = v
+	return s
 }
 
 // SetPath sets the Path field's value.
@@ -7585,12 +8067,20 @@ type ForbiddenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) GoString() string {
 	return s.String()
 }
@@ -7668,12 +8158,20 @@ type GatewayRouteData struct {
 	VirtualGatewayName *string `locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteData) GoString() string {
 	return s.String()
 }
@@ -7725,12 +8223,20 @@ type GatewayRouteHostnameMatch struct {
 	Suffix *string `locationName:"suffix" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteHostnameMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteHostnameMatch) GoString() string {
 	return s.String()
 }
@@ -7771,12 +8277,20 @@ type GatewayRouteHostnameRewrite struct {
 	DefaultTargetHostname *string `locationName:"defaultTargetHostname" type:"string" enum:"DefaultGatewayRouteRewrite"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteHostnameRewrite) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteHostnameRewrite) GoString() string {
 	return s.String()
 }
@@ -7816,18 +8330,18 @@ type GatewayRouteRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -7844,12 +8358,20 @@ type GatewayRouteRef struct {
 	VirtualGatewayName *string `locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteRef) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteRef) GoString() string {
 	return s.String()
 }
@@ -7926,12 +8448,20 @@ type GatewayRouteSpec struct {
 	Priority *int64 `locationName:"priority" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteSpec) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteSpec) GoString() string {
 	return s.String()
 }
@@ -7995,12 +8525,20 @@ type GatewayRouteStatus struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"GatewayRouteStatusCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteStatus) GoString() string {
 	return s.String()
 }
@@ -8015,18 +8553,29 @@ func (s *GatewayRouteStatus) SetStatus(v string) *GatewayRouteStatus {
 type GatewayRouteTarget struct {
 	_ struct{} `type:"structure"`
 
+	// The port number of the gateway route target.
+	Port *int64 `locationName:"port" min:"1" type:"integer"`
+
 	// An object that represents a virtual service gateway route target.
 	//
 	// VirtualService is a required field
 	VirtualService *GatewayRouteVirtualService `locationName:"virtualService" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteTarget) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteTarget) GoString() string {
 	return s.String()
 }
@@ -8034,6 +8583,9 @@ func (s GatewayRouteTarget) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GatewayRouteTarget) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GatewayRouteTarget"}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
 	if s.VirtualService == nil {
 		invalidParams.Add(request.NewErrParamRequired("VirtualService"))
 	}
@@ -8047,6 +8599,12 @@ func (s *GatewayRouteTarget) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetPort sets the Port field's value.
+func (s *GatewayRouteTarget) SetPort(v int64) *GatewayRouteTarget {
+	s.Port = &v
+	return s
 }
 
 // SetVirtualService sets the VirtualService field's value.
@@ -8065,12 +8623,20 @@ type GatewayRouteVirtualService struct {
 	VirtualServiceName *string `locationName:"virtualServiceName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteVirtualService) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayRouteVirtualService) GoString() string {
 	return s.String()
 }
@@ -8112,12 +8678,20 @@ type GrpcGatewayRoute struct {
 	Match *GrpcGatewayRouteMatch `locationName:"match" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRoute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRoute) GoString() string {
 	return s.String()
 }
@@ -8174,12 +8748,20 @@ type GrpcGatewayRouteAction struct {
 	Target *GatewayRouteTarget `locationName:"target" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRouteAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRouteAction) GoString() string {
 	return s.String()
 }
@@ -8224,16 +8806,27 @@ type GrpcGatewayRouteMatch struct {
 	// The gateway route metadata to be matched on.
 	Metadata []*GrpcGatewayRouteMetadata `locationName:"metadata" min:"1" type:"list"`
 
+	// The gateway route port to be matched on.
+	Port *int64 `locationName:"port" min:"1" type:"integer"`
+
 	// The fully qualified domain name for the service to match from the request.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRouteMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRouteMatch) GoString() string {
 	return s.String()
 }
@@ -8243,6 +8836,9 @@ func (s *GrpcGatewayRouteMatch) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GrpcGatewayRouteMatch"}
 	if s.Metadata != nil && len(s.Metadata) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Metadata", 1))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
 	}
 	if s.Hostname != nil {
 		if err := s.Hostname.Validate(); err != nil {
@@ -8278,6 +8874,12 @@ func (s *GrpcGatewayRouteMatch) SetMetadata(v []*GrpcGatewayRouteMetadata) *Grpc
 	return s
 }
 
+// SetPort sets the Port field's value.
+func (s *GrpcGatewayRouteMatch) SetPort(v int64) *GrpcGatewayRouteMatch {
+	s.Port = &v
+	return s
+}
+
 // SetServiceName sets the ServiceName field's value.
 func (s *GrpcGatewayRouteMatch) SetServiceName(v string) *GrpcGatewayRouteMatch {
 	s.ServiceName = &v
@@ -8301,12 +8903,20 @@ type GrpcGatewayRouteMetadata struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRouteMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRouteMetadata) GoString() string {
 	return s.String()
 }
@@ -8358,12 +8968,20 @@ type GrpcGatewayRouteRewrite struct {
 	Hostname *GatewayRouteHostnameRewrite `locationName:"hostname" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRouteRewrite) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcGatewayRouteRewrite) GoString() string {
 	return s.String()
 }
@@ -8397,12 +9015,20 @@ type GrpcMetadataMatchMethod struct {
 	Suffix *string `locationName:"suffix" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcMetadataMatchMethod) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcMetadataMatchMethod) GoString() string {
 	return s.String()
 }
@@ -8473,7 +9099,7 @@ type GrpcRetryPolicy struct {
 	_ struct{} `type:"structure"`
 
 	// Specify at least one of the valid values.
-	GrpcRetryEvents []*string `locationName:"grpcRetryEvents" min:"1" type:"list"`
+	GrpcRetryEvents []*string `locationName:"grpcRetryEvents" min:"1" type:"list" enum:"GrpcRetryPolicyEvent"`
 
 	// Specify at least one of the following values.
 	//
@@ -8500,15 +9126,23 @@ type GrpcRetryPolicy struct {
 	// Specify a valid value. The event occurs before any processing of a request
 	// has started and is encountered when the upstream is temporarily or permanently
 	// unavailable.
-	TcpRetryEvents []*string `locationName:"tcpRetryEvents" min:"1" type:"list"`
+	TcpRetryEvents []*string `locationName:"tcpRetryEvents" min:"1" type:"list" enum:"TcpRetryPolicyEvent"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRetryPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRetryPolicy) GoString() string {
 	return s.String()
 }
@@ -8589,12 +9223,20 @@ type GrpcRoute struct {
 	Timeout *GrpcTimeout `locationName:"timeout" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRoute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRoute) GoString() string {
 	return s.String()
 }
@@ -8665,12 +9307,20 @@ type GrpcRouteAction struct {
 	WeightedTargets []*WeightedTarget `locationName:"weightedTargets" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRouteAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRouteAction) GoString() string {
 	return s.String()
 }
@@ -8718,16 +9368,27 @@ type GrpcRouteMatch struct {
 	// also specify a serviceName.
 	MethodName *string `locationName:"methodName" min:"1" type:"string"`
 
+	// The port number to match on.
+	Port *int64 `locationName:"port" min:"1" type:"integer"`
+
 	// The fully qualified domain name for the service to match from the request.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRouteMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRouteMatch) GoString() string {
 	return s.String()
 }
@@ -8740,6 +9401,9 @@ func (s *GrpcRouteMatch) Validate() error {
 	}
 	if s.MethodName != nil && len(*s.MethodName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MethodName", 1))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
 	}
 	if s.Metadata != nil {
 		for i, v := range s.Metadata {
@@ -8770,6 +9434,12 @@ func (s *GrpcRouteMatch) SetMethodName(v string) *GrpcRouteMatch {
 	return s
 }
 
+// SetPort sets the Port field's value.
+func (s *GrpcRouteMatch) SetPort(v int64) *GrpcRouteMatch {
+	s.Port = &v
+	return s
+}
+
 // SetServiceName sets the ServiceName field's value.
 func (s *GrpcRouteMatch) SetServiceName(v string) *GrpcRouteMatch {
 	s.ServiceName = &v
@@ -8793,12 +9463,20 @@ type GrpcRouteMetadata struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRouteMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRouteMetadata) GoString() string {
 	return s.String()
 }
@@ -8862,12 +9540,20 @@ type GrpcRouteMetadataMatchMethod struct {
 	Suffix *string `locationName:"suffix" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRouteMetadataMatchMethod) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcRouteMetadataMatchMethod) GoString() string {
 	return s.String()
 }
@@ -8946,12 +9632,20 @@ type GrpcTimeout struct {
 	PerRequest *Duration `locationName:"perRequest" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcTimeout) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrpcTimeout) GoString() string {
 	return s.String()
 }
@@ -8989,12 +9683,20 @@ type HeaderMatchMethod struct {
 	Suffix *string `locationName:"suffix" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HeaderMatchMethod) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HeaderMatchMethod) GoString() string {
 	return s.String()
 }
@@ -9099,12 +9801,20 @@ type HealthCheckPolicy struct {
 	UnhealthyThreshold *int64 `locationName:"unhealthyThreshold" min:"2" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HealthCheckPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HealthCheckPolicy) GoString() string {
 	return s.String()
 }
@@ -9206,12 +9916,20 @@ type HttpGatewayRoute struct {
 	Match *HttpGatewayRouteMatch `locationName:"match" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRoute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRoute) GoString() string {
 	return s.String()
 }
@@ -9268,12 +9986,20 @@ type HttpGatewayRouteAction struct {
 	Target *GatewayRouteTarget `locationName:"target" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRouteAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRouteAction) GoString() string {
 	return s.String()
 }
@@ -9331,12 +10057,20 @@ type HttpGatewayRouteHeader struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRouteHeader) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRouteHeader) GoString() string {
 	return s.String()
 }
@@ -9396,6 +10130,9 @@ type HttpGatewayRouteMatch struct {
 	// The path to match on.
 	Path *HttpPathMatch `locationName:"path" type:"structure"`
 
+	// The port number to match on.
+	Port *int64 `locationName:"port" min:"1" type:"integer"`
+
 	// Specifies the path to match requests with. This parameter must always start
 	// with /, which by itself matches all requests to the virtual service name.
 	// You can also match for path-based routing of requests. For example, if your
@@ -9407,12 +10144,20 @@ type HttpGatewayRouteMatch struct {
 	QueryParameters []*HttpQueryParameter `locationName:"queryParameters" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRouteMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRouteMatch) GoString() string {
 	return s.String()
 }
@@ -9422,6 +10167,9 @@ func (s *HttpGatewayRouteMatch) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "HttpGatewayRouteMatch"}
 	if s.Headers != nil && len(s.Headers) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Headers", 1))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
 	}
 	if s.QueryParameters != nil && len(s.QueryParameters) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("QueryParameters", 1))
@@ -9487,6 +10235,12 @@ func (s *HttpGatewayRouteMatch) SetPath(v *HttpPathMatch) *HttpGatewayRouteMatch
 	return s
 }
 
+// SetPort sets the Port field's value.
+func (s *HttpGatewayRouteMatch) SetPort(v int64) *HttpGatewayRouteMatch {
+	s.Port = &v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *HttpGatewayRouteMatch) SetPrefix(v string) *HttpGatewayRouteMatch {
 	s.Prefix = &v
@@ -9507,12 +10261,20 @@ type HttpGatewayRoutePathRewrite struct {
 	Exact *string `locationName:"exact" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRoutePathRewrite) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRoutePathRewrite) GoString() string {
 	return s.String()
 }
@@ -9547,12 +10309,20 @@ type HttpGatewayRoutePrefixRewrite struct {
 	Value *string `locationName:"value" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRoutePrefixRewrite) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRoutePrefixRewrite) GoString() string {
 	return s.String()
 }
@@ -9596,12 +10366,20 @@ type HttpGatewayRouteRewrite struct {
 	Prefix *HttpGatewayRoutePrefixRewrite `locationName:"prefix" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRouteRewrite) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpGatewayRouteRewrite) GoString() string {
 	return s.String()
 }
@@ -9655,12 +10433,20 @@ type HttpPathMatch struct {
 	Regex *string `locationName:"regex" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpPathMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpPathMatch) GoString() string {
 	return s.String()
 }
@@ -9706,12 +10492,20 @@ type HttpQueryParameter struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpQueryParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpQueryParameter) GoString() string {
 	return s.String()
 }
@@ -9774,15 +10568,23 @@ type HttpRetryPolicy struct {
 	// Specify a valid value. The event occurs before any processing of a request
 	// has started and is encountered when the upstream is temporarily or permanently
 	// unavailable.
-	TcpRetryEvents []*string `locationName:"tcpRetryEvents" min:"1" type:"list"`
+	TcpRetryEvents []*string `locationName:"tcpRetryEvents" min:"1" type:"list" enum:"TcpRetryPolicyEvent"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRetryPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRetryPolicy) GoString() string {
 	return s.String()
 }
@@ -9854,12 +10656,20 @@ type HttpRoute struct {
 	Timeout *HttpTimeout `locationName:"timeout" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRoute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRoute) GoString() string {
 	return s.String()
 }
@@ -9930,12 +10740,20 @@ type HttpRouteAction struct {
 	WeightedTargets []*WeightedTarget `locationName:"weightedTargets" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRouteAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRouteAction) GoString() string {
 	return s.String()
 }
@@ -9989,12 +10807,20 @@ type HttpRouteHeader struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRouteHeader) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRouteHeader) GoString() string {
 	return s.String()
 }
@@ -10052,6 +10878,9 @@ type HttpRouteMatch struct {
 	// The client request path to match on.
 	Path *HttpPathMatch `locationName:"path" type:"structure"`
 
+	// The port number to match on.
+	Port *int64 `locationName:"port" min:"1" type:"integer"`
+
 	// Specifies the path to match requests with. This parameter must always start
 	// with /, which by itself matches all requests to the virtual service name.
 	// You can also match for path-based routing of requests. For example, if your
@@ -10067,12 +10896,20 @@ type HttpRouteMatch struct {
 	Scheme *string `locationName:"scheme" type:"string" enum:"HttpScheme"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRouteMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpRouteMatch) GoString() string {
 	return s.String()
 }
@@ -10082,6 +10919,9 @@ func (s *HttpRouteMatch) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "HttpRouteMatch"}
 	if s.Headers != nil && len(s.Headers) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Headers", 1))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
 	}
 	if s.QueryParameters != nil && len(s.QueryParameters) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("QueryParameters", 1))
@@ -10136,6 +10976,12 @@ func (s *HttpRouteMatch) SetPath(v *HttpPathMatch) *HttpRouteMatch {
 	return s
 }
 
+// SetPort sets the Port field's value.
+func (s *HttpRouteMatch) SetPort(v int64) *HttpRouteMatch {
+	s.Port = &v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *HttpRouteMatch) SetPrefix(v string) *HttpRouteMatch {
 	s.Prefix = &v
@@ -10171,12 +11017,20 @@ type HttpTimeout struct {
 	PerRequest *Duration `locationName:"perRequest" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpTimeout) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HttpTimeout) GoString() string {
 	return s.String()
 }
@@ -10202,12 +11056,20 @@ type InternalServerErrorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) GoString() string {
 	return s.String()
 }
@@ -10250,9 +11112,76 @@ func (s *InternalServerErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object that represents the key value pairs for the JSON.
+type JsonFormatRef struct {
+	_ struct{} `type:"structure"`
+
+	// The specified key for the JSON.
+	//
+	// Key is a required field
+	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
+
+	// The specified value for the JSON.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JsonFormatRef) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JsonFormatRef) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JsonFormatRef) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JsonFormatRef"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *JsonFormatRef) SetKey(v string) *JsonFormatRef {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *JsonFormatRef) SetValue(v string) *JsonFormatRef {
+	s.Value = &v
+	return s
+}
+
 // You have exceeded a service limit for your account. For more information,
 // see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-// in the AWS App Mesh User Guide.
+// in the App Mesh User Guide.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10260,12 +11189,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -10309,7 +11246,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListGatewayRoutesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListGatewayRoutes in paginated
 	// output. When you use this parameter, ListGatewayRoutes returns only limit
@@ -10325,10 +11262,10 @@ type ListGatewayRoutesInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListGatewayRoutes
@@ -10343,12 +11280,20 @@ type ListGatewayRoutesInput struct {
 	VirtualGatewayName *string `location:"uri" locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGatewayRoutesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGatewayRoutesInput) GoString() string {
 	return s.String()
 }
@@ -10427,12 +11372,20 @@ type ListGatewayRoutesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGatewayRoutesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGatewayRoutesOutput) GoString() string {
 	return s.String()
 }
@@ -10450,7 +11403,7 @@ func (s *ListGatewayRoutesOutput) SetNextToken(v string) *ListGatewayRoutesOutpu
 }
 
 type ListMeshesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListMeshes in paginated output.
 	// When you use this parameter, ListMeshes returns only limit results in a single
@@ -10471,12 +11424,20 @@ type ListMeshesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListMeshesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListMeshesInput) GoString() string {
 	return s.String()
 }
@@ -10521,12 +11482,20 @@ type ListMeshesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListMeshesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListMeshesOutput) GoString() string {
 	return s.String()
 }
@@ -10544,7 +11513,7 @@ func (s *ListMeshesOutput) SetNextToken(v string) *ListMeshesOutput {
 }
 
 type ListRoutesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListRoutes in paginated output.
 	// When you use this parameter, ListRoutes returns only limit results in a single
@@ -10560,10 +11529,10 @@ type ListRoutesInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListRoutes request
@@ -10578,12 +11547,20 @@ type ListRoutesInput struct {
 	VirtualRouterName *string `location:"uri" locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutesInput) GoString() string {
 	return s.String()
 }
@@ -10661,12 +11638,20 @@ type ListRoutesOutput struct {
 	Routes []*RouteRef `locationName:"routes" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutesOutput) GoString() string {
 	return s.String()
 }
@@ -10684,7 +11669,7 @@ func (s *ListRoutesOutput) SetRoutes(v []*RouteRef) *ListRoutesOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of tag results returned by ListTagsForResource in paginated
 	// output. When this parameter is used, ListTagsForResource returns only limit
@@ -10708,12 +11693,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -10767,12 +11760,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*TagRef `locationName:"tags" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -10790,7 +11791,7 @@ func (s *ListTagsForResourceOutput) SetTags(v []*TagRef) *ListTagsForResourceOut
 }
 
 type ListVirtualGatewaysInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListVirtualGateways in paginated
 	// output. When you use this parameter, ListVirtualGateways returns only limit
@@ -10806,10 +11807,10 @@ type ListVirtualGatewaysInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListVirtualGateways
@@ -10819,12 +11820,20 @@ type ListVirtualGatewaysInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualGatewaysInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualGatewaysInput) GoString() string {
 	return s.String()
 }
@@ -10890,12 +11899,20 @@ type ListVirtualGatewaysOutput struct {
 	VirtualGateways []*VirtualGatewayRef `locationName:"virtualGateways" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualGatewaysOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualGatewaysOutput) GoString() string {
 	return s.String()
 }
@@ -10913,7 +11930,7 @@ func (s *ListVirtualGatewaysOutput) SetVirtualGateways(v []*VirtualGatewayRef) *
 }
 
 type ListVirtualNodesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListVirtualNodes in paginated output.
 	// When you use this parameter, ListVirtualNodes returns only limit results
@@ -10929,10 +11946,10 @@ type ListVirtualNodesInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListVirtualNodes request
@@ -10942,12 +11959,20 @@ type ListVirtualNodesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualNodesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualNodesInput) GoString() string {
 	return s.String()
 }
@@ -11013,12 +12038,20 @@ type ListVirtualNodesOutput struct {
 	VirtualNodes []*VirtualNodeRef `locationName:"virtualNodes" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualNodesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualNodesOutput) GoString() string {
 	return s.String()
 }
@@ -11036,7 +12069,7 @@ func (s *ListVirtualNodesOutput) SetVirtualNodes(v []*VirtualNodeRef) *ListVirtu
 }
 
 type ListVirtualRoutersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListVirtualRouters in paginated
 	// output. When you use this parameter, ListVirtualRouters returns only limit
@@ -11052,10 +12085,10 @@ type ListVirtualRoutersInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListVirtualRouters
@@ -11065,12 +12098,20 @@ type ListVirtualRoutersInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualRoutersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualRoutersInput) GoString() string {
 	return s.String()
 }
@@ -11136,12 +12177,20 @@ type ListVirtualRoutersOutput struct {
 	VirtualRouters []*VirtualRouterRef `locationName:"virtualRouters" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualRoutersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualRoutersOutput) GoString() string {
 	return s.String()
 }
@@ -11159,7 +12208,7 @@ func (s *ListVirtualRoutersOutput) SetVirtualRouters(v []*VirtualRouterRef) *Lis
 }
 
 type ListVirtualServicesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListVirtualServices in paginated
 	// output. When you use this parameter, ListVirtualServices returns only limit
@@ -11175,10 +12224,10 @@ type ListVirtualServicesInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListVirtualServices
@@ -11188,12 +12237,20 @@ type ListVirtualServicesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualServicesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualServicesInput) GoString() string {
 	return s.String()
 }
@@ -11259,12 +12316,20 @@ type ListVirtualServicesOutput struct {
 	VirtualServices []*VirtualServiceRef `locationName:"virtualServices" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualServicesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualServicesOutput) GoString() string {
 	return s.String()
 }
@@ -11307,12 +12372,20 @@ type Listener struct {
 	Tls *ListenerTls `locationName:"tls" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Listener) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Listener) GoString() string {
 	return s.String()
 }
@@ -11408,12 +12481,20 @@ type ListenerTimeout struct {
 	Tcp *TcpTimeout `locationName:"tcp" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTimeout) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTimeout) GoString() string {
 	return s.String()
 }
@@ -11469,12 +12550,20 @@ type ListenerTls struct {
 	Validation *ListenerTlsValidationContext `locationName:"validation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTls) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTls) GoString() string {
 	return s.String()
 }
@@ -11523,7 +12612,7 @@ func (s *ListenerTls) SetValidation(v *ListenerTlsValidationContext) *ListenerTl
 	return s
 }
 
-// An object that represents an AWS Certicate Manager (ACM) certificate.
+// An object that represents an Certificate Manager certificate.
 type ListenerTlsAcmCertificate struct {
 	_ struct{} `type:"structure"`
 
@@ -11535,12 +12624,20 @@ type ListenerTlsAcmCertificate struct {
 	CertificateArn *string `locationName:"certificateArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsAcmCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsAcmCertificate) GoString() string {
 	return s.String()
 }
@@ -11568,7 +12665,7 @@ func (s *ListenerTlsAcmCertificate) SetCertificateArn(v string) *ListenerTlsAcmC
 type ListenerTlsCertificate struct {
 	_ struct{} `type:"structure"`
 
-	// A reference to an object that represents an AWS Certicate Manager (ACM) certificate.
+	// A reference to an object that represents an Certificate Manager certificate.
 	Acm *ListenerTlsAcmCertificate `locationName:"acm" type:"structure"`
 
 	// A reference to an object that represents a local file certificate.
@@ -11579,12 +12676,20 @@ type ListenerTlsCertificate struct {
 	Sds *ListenerTlsSdsCertificate `locationName:"sds" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsCertificate) GoString() string {
 	return s.String()
 }
@@ -11650,12 +12755,20 @@ type ListenerTlsFileCertificate struct {
 	PrivateKey *string `locationName:"privateKey" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsFileCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsFileCertificate) GoString() string {
 	return s.String()
 }
@@ -11709,12 +12822,20 @@ type ListenerTlsSdsCertificate struct {
 	SecretName *string `locationName:"secretName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsSdsCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsSdsCertificate) GoString() string {
 	return s.String()
 }
@@ -11754,12 +12875,20 @@ type ListenerTlsValidationContext struct {
 	Trust *ListenerTlsValidationContextTrust `locationName:"trust" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsValidationContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsValidationContext) GoString() string {
 	return s.String()
 }
@@ -11813,12 +12942,20 @@ type ListenerTlsValidationContextTrust struct {
 	Sds *TlsValidationContextSdsTrust `locationName:"sds" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsValidationContextTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListenerTlsValidationContextTrust) GoString() string {
 	return s.String()
 }
@@ -11863,12 +13000,20 @@ type Logging struct {
 	AccessLog *AccessLog `locationName:"accessLog" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Logging) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Logging) GoString() string {
 	return s.String()
 }
@@ -11894,6 +13039,68 @@ func (s *Logging) SetAccessLog(v *AccessLog) *Logging {
 	return s
 }
 
+// An object that represents the format for the logs.
+type LoggingFormat struct {
+	_ struct{} `type:"structure"`
+
+	Json []*JsonFormatRef `locationName:"json" type:"list"`
+
+	Text *string `locationName:"text" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoggingFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoggingFormat) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoggingFormat) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoggingFormat"}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+	if s.Json != nil {
+		for i, v := range s.Json {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Json", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJson sets the Json field's value.
+func (s *LoggingFormat) SetJson(v []*JsonFormatRef) *LoggingFormat {
+	s.Json = v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *LoggingFormat) SetText(v string) *LoggingFormat {
+	s.Text = &v
+	return s
+}
+
 // An object that represents the range of values to match on. The first character
 // of the range is included in the range, though the last character is not.
 // For example, if the range specified were 1-100, only values 1-99 would be
@@ -11912,12 +13119,20 @@ type MatchRange struct {
 	Start *int64 `locationName:"start" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MatchRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MatchRange) GoString() string {
 	return s.String()
 }
@@ -11975,12 +13190,20 @@ type MeshData struct {
 	Status *MeshStatus `locationName:"status" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MeshData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MeshData) GoString() string {
 	return s.String()
 }
@@ -12033,18 +13256,18 @@ type MeshRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -12056,12 +13279,20 @@ type MeshRef struct {
 	Version *int64 `locationName:"version" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MeshRef) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MeshRef) GoString() string {
 	return s.String()
 }
@@ -12108,20 +13339,65 @@ func (s *MeshRef) SetVersion(v int64) *MeshRef {
 	return s
 }
 
+// An object that represents the service discovery information for a service
+// mesh.
+type MeshServiceDiscovery struct {
+	_ struct{} `type:"structure"`
+
+	// The IP version to use to control traffic within the mesh.
+	IpPreference *string `locationName:"ipPreference" type:"string" enum:"IpPreference"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeshServiceDiscovery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeshServiceDiscovery) GoString() string {
+	return s.String()
+}
+
+// SetIpPreference sets the IpPreference field's value.
+func (s *MeshServiceDiscovery) SetIpPreference(v string) *MeshServiceDiscovery {
+	s.IpPreference = &v
+	return s
+}
+
 // An object that represents the specification of a service mesh.
 type MeshSpec struct {
 	_ struct{} `type:"structure"`
 
 	// The egress filter rules for the service mesh.
 	EgressFilter *EgressFilter `locationName:"egressFilter" type:"structure"`
+
+	// An object that represents the service discovery information for a service
+	// mesh.
+	ServiceDiscovery *MeshServiceDiscovery `locationName:"serviceDiscovery" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MeshSpec) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MeshSpec) GoString() string {
 	return s.String()
 }
@@ -12147,6 +13423,12 @@ func (s *MeshSpec) SetEgressFilter(v *EgressFilter) *MeshSpec {
 	return s
 }
 
+// SetServiceDiscovery sets the ServiceDiscovery field's value.
+func (s *MeshSpec) SetServiceDiscovery(v *MeshServiceDiscovery) *MeshSpec {
+	s.ServiceDiscovery = v
+	return s
+}
+
 // An object that represents the status of a service mesh.
 type MeshStatus struct {
 	_ struct{} `type:"structure"`
@@ -12155,12 +13437,20 @@ type MeshStatus struct {
 	Status *string `locationName:"status" type:"string" enum:"MeshStatusCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MeshStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MeshStatus) GoString() string {
 	return s.String()
 }
@@ -12179,12 +13469,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -12253,12 +13551,20 @@ type OutlierDetection struct {
 	MaxServerErrors *int64 `locationName:"maxServerErrors" min:"1" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutlierDetection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutlierDetection) GoString() string {
 	return s.String()
 }
@@ -12327,12 +13633,20 @@ type PortMapping struct {
 	Protocol *string `locationName:"protocol" type:"string" required:"true" enum:"PortProtocol"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortMapping) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortMapping) GoString() string {
 	return s.String()
 }
@@ -12376,12 +13690,20 @@ type QueryParameterMatch struct {
 	Exact *string `locationName:"exact" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryParameterMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryParameterMatch) GoString() string {
 	return s.String()
 }
@@ -12401,12 +13723,20 @@ type ResourceInUseException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -12468,18 +13798,18 @@ type ResourceMetadata struct {
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -12496,12 +13826,20 @@ type ResourceMetadata struct {
 	Version *int64 `locationName:"version" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceMetadata) GoString() string {
 	return s.String()
 }
@@ -12583,12 +13921,20 @@ type RouteData struct {
 	VirtualRouterName *string `locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteData) GoString() string {
 	return s.String()
 }
@@ -12653,18 +13999,18 @@ type RouteRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -12686,12 +14032,20 @@ type RouteRef struct {
 	VirtualRouterName *string `locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteRef) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteRef) GoString() string {
 	return s.String()
 }
@@ -12771,12 +14125,20 @@ type RouteSpec struct {
 	TcpRoute *TcpRoute `locationName:"tcpRoute" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteSpec) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteSpec) GoString() string {
 	return s.String()
 }
@@ -12851,12 +14213,20 @@ type RouteStatus struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"RouteStatusCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteStatus) GoString() string {
 	return s.String()
 }
@@ -12879,12 +14249,20 @@ type ServiceDiscovery struct {
 	Dns *DnsServiceDiscovery `locationName:"dns" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceDiscovery) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceDiscovery) GoString() string {
 	return s.String()
 }
@@ -12929,12 +14307,20 @@ type ServiceUnavailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -12988,12 +14374,20 @@ type SubjectAlternativeNameMatchers struct {
 	Exact []*string `locationName:"exact" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubjectAlternativeNameMatchers) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubjectAlternativeNameMatchers) GoString() string {
 	return s.String()
 }
@@ -13027,12 +14421,20 @@ type SubjectAlternativeNames struct {
 	Match *SubjectAlternativeNameMatchers `locationName:"match" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubjectAlternativeNames) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubjectAlternativeNames) GoString() string {
 	return s.String()
 }
@@ -13081,12 +14483,20 @@ type TagRef struct {
 	Value *string `locationName:"value" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagRef) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagRef) GoString() string {
 	return s.String()
 }
@@ -13138,12 +14548,20 @@ type TagResourceInput struct {
 	Tags []*TagRef `locationName:"tags" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -13190,12 +14608,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -13209,16 +14635,27 @@ type TcpRoute struct {
 	// Action is a required field
 	Action *TcpRouteAction `locationName:"action" type:"structure" required:"true"`
 
+	// An object that represents the criteria for determining a request match.
+	Match *TcpRouteMatch `locationName:"match" type:"structure"`
+
 	// An object that represents types of timeouts.
 	Timeout *TcpTimeout `locationName:"timeout" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TcpRoute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TcpRoute) GoString() string {
 	return s.String()
 }
@@ -13234,6 +14671,11 @@ func (s *TcpRoute) Validate() error {
 			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Match != nil {
+		if err := s.Match.Validate(); err != nil {
+			invalidParams.AddNested("Match", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13244,6 +14686,12 @@ func (s *TcpRoute) Validate() error {
 // SetAction sets the Action field's value.
 func (s *TcpRoute) SetAction(v *TcpRouteAction) *TcpRoute {
 	s.Action = v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *TcpRoute) SetMatch(v *TcpRouteMatch) *TcpRoute {
+	s.Match = v
 	return s
 }
 
@@ -13264,12 +14712,20 @@ type TcpRouteAction struct {
 	WeightedTargets []*WeightedTarget `locationName:"weightedTargets" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TcpRouteAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TcpRouteAction) GoString() string {
 	return s.String()
 }
@@ -13306,6 +14762,51 @@ func (s *TcpRouteAction) SetWeightedTargets(v []*WeightedTarget) *TcpRouteAction
 	return s
 }
 
+// An object representing the TCP route to match.
+type TcpRouteMatch struct {
+	_ struct{} `type:"structure"`
+
+	// The port number to match on.
+	Port *int64 `locationName:"port" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TcpRouteMatch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TcpRouteMatch) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TcpRouteMatch) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TcpRouteMatch"}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPort sets the Port field's value.
+func (s *TcpRouteMatch) SetPort(v int64) *TcpRouteMatch {
+	s.Port = &v
+	return s
+}
+
 // An object that represents types of timeouts.
 type TcpTimeout struct {
 	_ struct{} `type:"structure"`
@@ -13315,12 +14816,20 @@ type TcpTimeout struct {
 	Idle *Duration `locationName:"idle" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TcpTimeout) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TcpTimeout) GoString() string {
 	return s.String()
 }
@@ -13337,7 +14846,13 @@ type TlsValidationContext struct {
 	_ struct{} `type:"structure"`
 
 	// A reference to an object that represents the SANs for a Transport Layer Security
-	// (TLS) validation context.
+	// (TLS) validation context. If you don't specify SANs on the terminating mesh
+	// endpoint, the Envoy proxy for that node doesn't verify the SAN on a peer
+	// client certificate. If you don't specify SANs on the originating mesh endpoint,
+	// the SAN on the certificate provided by the terminating endpoint must match
+	// the mesh endpoint service discovery configuration. Since SPIRE vended certificates
+	// have a SPIFFE ID as a name, you must set the SAN since the name doesn't match
+	// the service discovery name.
 	SubjectAlternativeNames *SubjectAlternativeNames `locationName:"subjectAlternativeNames" type:"structure"`
 
 	// A reference to where to retrieve the trust chain when validating a peer’s
@@ -13347,12 +14862,20 @@ type TlsValidationContext struct {
 	Trust *TlsValidationContextTrust `locationName:"trust" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContext) GoString() string {
 	return s.String()
 }
@@ -13403,12 +14926,20 @@ type TlsValidationContextAcmTrust struct {
 	CertificateAuthorityArns []*string `locationName:"certificateAuthorityArns" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContextAcmTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContextAcmTrust) GoString() string {
 	return s.String()
 }
@@ -13447,12 +14978,20 @@ type TlsValidationContextFileTrust struct {
 	CertificateChain *string `locationName:"certificateChain" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContextFileTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContextFileTrust) GoString() string {
 	return s.String()
 }
@@ -13493,12 +15032,20 @@ type TlsValidationContextSdsTrust struct {
 	SecretName *string `locationName:"secretName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContextSdsTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContextSdsTrust) GoString() string {
 	return s.String()
 }
@@ -13540,12 +15087,20 @@ type TlsValidationContextTrust struct {
 	Sds *TlsValidationContextSdsTrust `locationName:"sds" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContextTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TlsValidationContextTrust) GoString() string {
 	return s.String()
 }
@@ -13603,12 +15158,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -13661,12 +15224,20 @@ type TooManyTagsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) GoString() string {
 	return s.String()
 }
@@ -13723,12 +15294,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -13765,12 +15344,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -13792,10 +15379,10 @@ type UpdateGatewayRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new gateway route specification to apply. This overwrites the existing
@@ -13810,12 +15397,20 @@ type UpdateGatewayRouteInput struct {
 	VirtualGatewayName *string `location:"uri" locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGatewayRouteInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGatewayRouteInput) GoString() string {
 	return s.String()
 }
@@ -13904,12 +15499,20 @@ type UpdateGatewayRouteOutput struct {
 	GatewayRoute *GatewayRouteData `locationName:"gatewayRoute" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGatewayRouteOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGatewayRouteOutput) GoString() string {
 	return s.String()
 }
@@ -13936,12 +15539,20 @@ type UpdateMeshInput struct {
 	Spec *MeshSpec `locationName:"spec" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateMeshInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateMeshInput) GoString() string {
 	return s.String()
 }
@@ -13994,12 +15605,20 @@ type UpdateMeshOutput struct {
 	Mesh *MeshData `locationName:"mesh" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateMeshOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateMeshOutput) GoString() string {
 	return s.String()
 }
@@ -14022,10 +15641,10 @@ type UpdateRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the route to update.
@@ -14044,12 +15663,20 @@ type UpdateRouteInput struct {
 	VirtualRouterName *string `location:"uri" locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRouteInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRouteInput) GoString() string {
 	return s.String()
 }
@@ -14138,12 +15765,20 @@ type UpdateRouteOutput struct {
 	Route *RouteData `locationName:"route" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRouteOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRouteOutput) GoString() string {
 	return s.String()
 }
@@ -14166,10 +15801,10 @@ type UpdateVirtualGatewayInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new virtual gateway specification to apply. This overwrites the existing
@@ -14184,12 +15819,20 @@ type UpdateVirtualGatewayInput struct {
 	VirtualGatewayName *string `location:"uri" locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualGatewayInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualGatewayInput) GoString() string {
 	return s.String()
 }
@@ -14266,12 +15909,20 @@ type UpdateVirtualGatewayOutput struct {
 	VirtualGateway *VirtualGatewayData `locationName:"virtualGateway" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualGatewayOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualGatewayOutput) GoString() string {
 	return s.String()
 }
@@ -14294,10 +15945,10 @@ type UpdateVirtualNodeInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new virtual node specification to apply. This overwrites the existing
@@ -14312,12 +15963,20 @@ type UpdateVirtualNodeInput struct {
 	VirtualNodeName *string `location:"uri" locationName:"virtualNodeName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualNodeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualNodeInput) GoString() string {
 	return s.String()
 }
@@ -14394,12 +16053,20 @@ type UpdateVirtualNodeOutput struct {
 	VirtualNode *VirtualNodeData `locationName:"virtualNode" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualNodeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualNodeOutput) GoString() string {
 	return s.String()
 }
@@ -14422,10 +16089,10 @@ type UpdateVirtualRouterInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new virtual router specification to apply. This overwrites the existing
@@ -14440,12 +16107,20 @@ type UpdateVirtualRouterInput struct {
 	VirtualRouterName *string `location:"uri" locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualRouterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualRouterInput) GoString() string {
 	return s.String()
 }
@@ -14522,12 +16197,20 @@ type UpdateVirtualRouterOutput struct {
 	VirtualRouter *VirtualRouterData `locationName:"virtualRouter" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualRouterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualRouterOutput) GoString() string {
 	return s.String()
 }
@@ -14550,10 +16233,10 @@ type UpdateVirtualServiceInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new virtual service specification to apply. This overwrites the existing
@@ -14568,12 +16251,20 @@ type UpdateVirtualServiceInput struct {
 	VirtualServiceName *string `location:"uri" locationName:"virtualServiceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualServiceInput) GoString() string {
 	return s.String()
 }
@@ -14650,12 +16341,20 @@ type UpdateVirtualServiceOutput struct {
 	VirtualService *VirtualServiceData `locationName:"virtualService" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualServiceOutput) GoString() string {
 	return s.String()
 }
@@ -14674,12 +16373,20 @@ type VirtualGatewayAccessLog struct {
 	File *VirtualGatewayFileAccessLog `locationName:"file" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayAccessLog) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayAccessLog) GoString() string {
 	return s.String()
 }
@@ -14713,12 +16420,20 @@ type VirtualGatewayBackendDefaults struct {
 	ClientPolicy *VirtualGatewayClientPolicy `locationName:"clientPolicy" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayBackendDefaults) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayBackendDefaults) GoString() string {
 	return s.String()
 }
@@ -14753,12 +16468,20 @@ type VirtualGatewayClientPolicy struct {
 	Tls *VirtualGatewayClientPolicyTls `locationName:"tls" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayClientPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayClientPolicy) GoString() string {
 	return s.String()
 }
@@ -14805,12 +16528,20 @@ type VirtualGatewayClientPolicyTls struct {
 	Validation *VirtualGatewayTlsValidationContext `locationName:"validation" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayClientPolicyTls) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayClientPolicyTls) GoString() string {
 	return s.String()
 }
@@ -14877,12 +16608,20 @@ type VirtualGatewayClientTlsCertificate struct {
 	Sds *VirtualGatewayListenerTlsSdsCertificate `locationName:"sds" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayClientTlsCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayClientTlsCertificate) GoString() string {
 	return s.String()
 }
@@ -14938,12 +16677,20 @@ type VirtualGatewayConnectionPool struct {
 	Http2 *VirtualGatewayHttp2ConnectionPool `locationName:"http2" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayConnectionPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayConnectionPool) GoString() string {
 	return s.String()
 }
@@ -15021,12 +16768,20 @@ type VirtualGatewayData struct {
 	VirtualGatewayName *string `locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayData) GoString() string {
 	return s.String()
 }
@@ -15065,6 +16820,10 @@ func (s *VirtualGatewayData) SetVirtualGatewayName(v string) *VirtualGatewayData
 type VirtualGatewayFileAccessLog struct {
 	_ struct{} `type:"structure"`
 
+	// The specified format for the virtual gateway access logs. It can be either
+	// json_format or text_format.
+	Format *LoggingFormat `locationName:"format" type:"structure"`
+
 	// The file path to write access logs to. You can use /dev/stdout to send access
 	// logs to standard out and configure your Envoy container to use a log driver,
 	// such as awslogs, to export the access logs to a log storage service such
@@ -15075,12 +16834,20 @@ type VirtualGatewayFileAccessLog struct {
 	Path *string `locationName:"path" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayFileAccessLog) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayFileAccessLog) GoString() string {
 	return s.String()
 }
@@ -15094,11 +16861,22 @@ func (s *VirtualGatewayFileAccessLog) Validate() error {
 	if s.Path != nil && len(*s.Path) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
 	}
+	if s.Format != nil {
+		if err := s.Format.Validate(); err != nil {
+			invalidParams.AddNested("Format", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *VirtualGatewayFileAccessLog) SetFormat(v *LoggingFormat) *VirtualGatewayFileAccessLog {
+	s.Format = v
+	return s
 }
 
 // SetPath sets the Path field's value.
@@ -15118,12 +16896,20 @@ type VirtualGatewayGrpcConnectionPool struct {
 	MaxRequests *int64 `locationName:"maxRequests" min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayGrpcConnectionPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayGrpcConnectionPool) GoString() string {
 	return s.String()
 }
@@ -15194,12 +16980,20 @@ type VirtualGatewayHealthCheckPolicy struct {
 	UnhealthyThreshold *int64 `locationName:"unhealthyThreshold" min:"2" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayHealthCheckPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayHealthCheckPolicy) GoString() string {
 	return s.String()
 }
@@ -15297,12 +17091,20 @@ type VirtualGatewayHttp2ConnectionPool struct {
 	MaxRequests *int64 `locationName:"maxRequests" min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayHttp2ConnectionPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayHttp2ConnectionPool) GoString() string {
 	return s.String()
 }
@@ -15344,12 +17146,20 @@ type VirtualGatewayHttpConnectionPool struct {
 	MaxPendingRequests *int64 `locationName:"maxPendingRequests" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayHttpConnectionPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayHttpConnectionPool) GoString() string {
 	return s.String()
 }
@@ -15405,12 +17215,20 @@ type VirtualGatewayListener struct {
 	Tls *VirtualGatewayListenerTls `locationName:"tls" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListener) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListener) GoString() string {
 	return s.String()
 }
@@ -15498,12 +17316,20 @@ type VirtualGatewayListenerTls struct {
 	Validation *VirtualGatewayListenerTlsValidationContext `locationName:"validation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTls) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTls) GoString() string {
 	return s.String()
 }
@@ -15564,12 +17390,20 @@ type VirtualGatewayListenerTlsAcmCertificate struct {
 	CertificateArn *string `locationName:"certificateArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsAcmCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsAcmCertificate) GoString() string {
 	return s.String()
 }
@@ -15608,12 +17442,20 @@ type VirtualGatewayListenerTlsCertificate struct {
 	Sds *VirtualGatewayListenerTlsSdsCertificate `locationName:"sds" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsCertificate) GoString() string {
 	return s.String()
 }
@@ -15679,12 +17521,20 @@ type VirtualGatewayListenerTlsFileCertificate struct {
 	PrivateKey *string `locationName:"privateKey" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsFileCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsFileCertificate) GoString() string {
 	return s.String()
 }
@@ -15738,12 +17588,20 @@ type VirtualGatewayListenerTlsSdsCertificate struct {
 	SecretName *string `locationName:"secretName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsSdsCertificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsSdsCertificate) GoString() string {
 	return s.String()
 }
@@ -15783,12 +17641,20 @@ type VirtualGatewayListenerTlsValidationContext struct {
 	Trust *VirtualGatewayListenerTlsValidationContextTrust `locationName:"trust" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsValidationContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsValidationContext) GoString() string {
 	return s.String()
 }
@@ -15842,12 +17708,20 @@ type VirtualGatewayListenerTlsValidationContextTrust struct {
 	Sds *VirtualGatewayTlsValidationContextSdsTrust `locationName:"sds" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsValidationContextTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayListenerTlsValidationContextTrust) GoString() string {
 	return s.String()
 }
@@ -15892,12 +17766,20 @@ type VirtualGatewayLogging struct {
 	AccessLog *VirtualGatewayAccessLog `locationName:"accessLog" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayLogging) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayLogging) GoString() string {
 	return s.String()
 }
@@ -15938,12 +17820,20 @@ type VirtualGatewayPortMapping struct {
 	Protocol *string `locationName:"protocol" type:"string" required:"true" enum:"VirtualGatewayPortProtocol"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayPortMapping) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayPortMapping) GoString() string {
 	return s.String()
 }
@@ -16003,18 +17893,18 @@ type VirtualGatewayRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -16031,12 +17921,20 @@ type VirtualGatewayRef struct {
 	VirtualGatewayName *string `locationName:"virtualGatewayName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayRef) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayRef) GoString() string {
 	return s.String()
 }
@@ -16106,12 +18004,20 @@ type VirtualGatewaySpec struct {
 	Logging *VirtualGatewayLogging `locationName:"logging" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewaySpec) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewaySpec) GoString() string {
 	return s.String()
 }
@@ -16177,12 +18083,20 @@ type VirtualGatewayStatus struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"VirtualGatewayStatusCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayStatus) GoString() string {
 	return s.String()
 }
@@ -16208,12 +18122,20 @@ type VirtualGatewayTlsValidationContext struct {
 	Trust *VirtualGatewayTlsValidationContextTrust `locationName:"trust" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContext) GoString() string {
 	return s.String()
 }
@@ -16264,12 +18186,20 @@ type VirtualGatewayTlsValidationContextAcmTrust struct {
 	CertificateAuthorityArns []*string `locationName:"certificateAuthorityArns" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContextAcmTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContextAcmTrust) GoString() string {
 	return s.String()
 }
@@ -16308,12 +18238,20 @@ type VirtualGatewayTlsValidationContextFileTrust struct {
 	CertificateChain *string `locationName:"certificateChain" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContextFileTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContextFileTrust) GoString() string {
 	return s.String()
 }
@@ -16356,12 +18294,20 @@ type VirtualGatewayTlsValidationContextSdsTrust struct {
 	SecretName *string `locationName:"secretName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContextSdsTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContextSdsTrust) GoString() string {
 	return s.String()
 }
@@ -16403,12 +18349,20 @@ type VirtualGatewayTlsValidationContextTrust struct {
 	Sds *VirtualGatewayTlsValidationContextSdsTrust `locationName:"sds" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContextTrust) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGatewayTlsValidationContextTrust) GoString() string {
 	return s.String()
 }
@@ -16478,12 +18432,20 @@ type VirtualNodeConnectionPool struct {
 	Tcp *VirtualNodeTcpConnectionPool `locationName:"tcp" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeConnectionPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeConnectionPool) GoString() string {
 	return s.String()
 }
@@ -16572,12 +18534,20 @@ type VirtualNodeData struct {
 	VirtualNodeName *string `locationName:"virtualNodeName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeData) GoString() string {
 	return s.String()
 }
@@ -16623,12 +18593,20 @@ type VirtualNodeGrpcConnectionPool struct {
 	MaxRequests *int64 `locationName:"maxRequests" min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeGrpcConnectionPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeGrpcConnectionPool) GoString() string {
 	return s.String()
 }
@@ -16666,12 +18644,20 @@ type VirtualNodeHttp2ConnectionPool struct {
 	MaxRequests *int64 `locationName:"maxRequests" min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeHttp2ConnectionPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeHttp2ConnectionPool) GoString() string {
 	return s.String()
 }
@@ -16713,12 +18699,20 @@ type VirtualNodeHttpConnectionPool struct {
 	MaxPendingRequests *int64 `locationName:"maxPendingRequests" min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeHttpConnectionPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeHttpConnectionPool) GoString() string {
 	return s.String()
 }
@@ -16778,18 +18772,18 @@ type VirtualNodeRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -16806,12 +18800,20 @@ type VirtualNodeRef struct {
 	VirtualNodeName *string `locationName:"virtualNodeName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeRef) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeRef) GoString() string {
 	return s.String()
 }
@@ -16874,12 +18876,20 @@ type VirtualNodeServiceProvider struct {
 	VirtualNodeName *string `locationName:"virtualNodeName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeServiceProvider) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeServiceProvider) GoString() string {
 	return s.String()
 }
@@ -16929,12 +18939,20 @@ type VirtualNodeSpec struct {
 	ServiceDiscovery *ServiceDiscovery `locationName:"serviceDiscovery" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeSpec) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeSpec) GoString() string {
 	return s.String()
 }
@@ -17024,12 +19042,20 @@ type VirtualNodeStatus struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"VirtualNodeStatusCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeStatus) GoString() string {
 	return s.String()
 }
@@ -17051,12 +19077,20 @@ type VirtualNodeTcpConnectionPool struct {
 	MaxConnections *int64 `locationName:"maxConnections" min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeTcpConnectionPool) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualNodeTcpConnectionPool) GoString() string {
 	return s.String()
 }
@@ -17113,12 +19147,20 @@ type VirtualRouterData struct {
 	VirtualRouterName *string `locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterData) GoString() string {
 	return s.String()
 }
@@ -17163,12 +19205,20 @@ type VirtualRouterListener struct {
 	PortMapping *PortMapping `locationName:"portMapping" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterListener) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterListener) GoString() string {
 	return s.String()
 }
@@ -17221,18 +19271,18 @@ type VirtualRouterRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -17249,12 +19299,20 @@ type VirtualRouterRef struct {
 	VirtualRouterName *string `locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterRef) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterRef) GoString() string {
 	return s.String()
 }
@@ -17317,12 +19375,20 @@ type VirtualRouterServiceProvider struct {
 	VirtualRouterName *string `locationName:"virtualRouterName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterServiceProvider) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterServiceProvider) GoString() string {
 	return s.String()
 }
@@ -17355,15 +19421,23 @@ type VirtualRouterSpec struct {
 
 	// The listeners that the virtual router is expected to receive inbound traffic
 	// from. You can specify one listener.
-	Listeners []*VirtualRouterListener `locationName:"listeners" min:"1" type:"list"`
+	Listeners []*VirtualRouterListener `locationName:"listeners" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterSpec) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterSpec) GoString() string {
 	return s.String()
 }
@@ -17371,9 +19445,6 @@ func (s VirtualRouterSpec) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *VirtualRouterSpec) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "VirtualRouterSpec"}
-	if s.Listeners != nil && len(s.Listeners) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Listeners", 1))
-	}
 	if s.Listeners != nil {
 		for i, v := range s.Listeners {
 			if v == nil {
@@ -17407,12 +19478,20 @@ type VirtualRouterStatus struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"VirtualRouterStatusCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualRouterStatus) GoString() string {
 	return s.String()
 }
@@ -17436,12 +19515,20 @@ type VirtualServiceBackend struct {
 	VirtualServiceName *string `locationName:"virtualServiceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceBackend) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceBackend) GoString() string {
 	return s.String()
 }
@@ -17506,12 +19593,20 @@ type VirtualServiceData struct {
 	VirtualServiceName *string `locationName:"virtualServiceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceData) GoString() string {
 	return s.String()
 }
@@ -17557,12 +19652,20 @@ type VirtualServiceProvider struct {
 	VirtualRouter *VirtualRouterServiceProvider `locationName:"virtualRouter" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceProvider) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceProvider) GoString() string {
 	return s.String()
 }
@@ -17623,18 +19726,18 @@ type VirtualServiceRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -17651,12 +19754,20 @@ type VirtualServiceRef struct {
 	VirtualServiceName *string `locationName:"virtualServiceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceRef) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceRef) GoString() string {
 	return s.String()
 }
@@ -17718,12 +19829,20 @@ type VirtualServiceSpec struct {
 	Provider *VirtualServiceProvider `locationName:"provider" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceSpec) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceSpec) GoString() string {
 	return s.String()
 }
@@ -17759,12 +19878,20 @@ type VirtualServiceStatus struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"VirtualServiceStatusCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualServiceStatus) GoString() string {
 	return s.String()
 }
@@ -17783,6 +19910,9 @@ func (s *VirtualServiceStatus) SetStatus(v string) *VirtualServiceStatus {
 type WeightedTarget struct {
 	_ struct{} `type:"structure"`
 
+	// The targeted port of the weighted object.
+	Port *int64 `locationName:"port" min:"1" type:"integer"`
+
 	// The virtual node to associate with the weighted target.
 	//
 	// VirtualNode is a required field
@@ -17794,12 +19924,20 @@ type WeightedTarget struct {
 	Weight *int64 `locationName:"weight" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WeightedTarget) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WeightedTarget) GoString() string {
 	return s.String()
 }
@@ -17807,6 +19945,9 @@ func (s WeightedTarget) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *WeightedTarget) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "WeightedTarget"}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
 	if s.VirtualNode == nil {
 		invalidParams.Add(request.NewErrParamRequired("VirtualNode"))
 	}
@@ -17821,6 +19962,12 @@ func (s *WeightedTarget) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetPort sets the Port field's value.
+func (s *WeightedTarget) SetPort(v int64) *WeightedTarget {
+	s.Port = &v
+	return s
 }
 
 // SetVirtualNode sets the VirtualNode field's value.
@@ -18004,6 +20151,30 @@ func HttpScheme_Values() []string {
 	return []string{
 		HttpSchemeHttp,
 		HttpSchemeHttps,
+	}
+}
+
+const (
+	// IpPreferenceIpv6Preferred is a IpPreference enum value
+	IpPreferenceIpv6Preferred = "IPv6_PREFERRED"
+
+	// IpPreferenceIpv4Preferred is a IpPreference enum value
+	IpPreferenceIpv4Preferred = "IPv4_PREFERRED"
+
+	// IpPreferenceIpv4Only is a IpPreference enum value
+	IpPreferenceIpv4Only = "IPv4_ONLY"
+
+	// IpPreferenceIpv6Only is a IpPreference enum value
+	IpPreferenceIpv6Only = "IPv6_ONLY"
+)
+
+// IpPreference_Values returns all elements of the IpPreference enum
+func IpPreference_Values() []string {
+	return []string{
+		IpPreferenceIpv6Preferred,
+		IpPreferenceIpv4Preferred,
+		IpPreferenceIpv4Only,
+		IpPreferenceIpv6Only,
 	}
 }
 

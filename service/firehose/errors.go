@@ -30,6 +30,13 @@ const (
 	// InvalidStateException, DisabledException, or NotFoundException.
 	ErrCodeInvalidKMSResourceException = "InvalidKMSResourceException"
 
+	// ErrCodeInvalidSourceException for service response error code
+	// "InvalidSourceException".
+	//
+	// Only requests from CloudWatch Logs are supported when CloudWatch Logs decompression
+	// is enabled.
+	ErrCodeInvalidSourceException = "InvalidSourceException"
+
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//
@@ -62,6 +69,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ConcurrentModificationException": newErrorConcurrentModificationException,
 	"InvalidArgumentException":        newErrorInvalidArgumentException,
 	"InvalidKMSResourceException":     newErrorInvalidKMSResourceException,
+	"InvalidSourceException":          newErrorInvalidSourceException,
 	"LimitExceededException":          newErrorLimitExceededException,
 	"ResourceInUseException":          newErrorResourceInUseException,
 	"ResourceNotFoundException":       newErrorResourceNotFoundException,

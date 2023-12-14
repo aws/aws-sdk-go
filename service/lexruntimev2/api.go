@@ -38,14 +38,13 @@ const opDeleteSession = "DeleteSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSessionRequest method.
+//	req, resp := client.DeleteSessionRequest(params)
 //
-//    // Example sending a request using the DeleteSessionRequest method.
-//    req, resp := client.DeleteSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/DeleteSession
 func (c *LexRuntimeV2) DeleteSessionRequest(input *DeleteSessionInput) (req *request.Request, output *DeleteSessionOutput) {
@@ -89,17 +88,18 @@ func (c *LexRuntimeV2) DeleteSessionRequest(input *DeleteSessionInput) (req *req
 // API operation DeleteSession for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
 //
-//   * ResourceNotFoundException
+//   - AccessDeniedException
 //
-//   * ValidationException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * InternalServerException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - InternalServerException
+//
+//   - ConflictException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/DeleteSession
 func (c *LexRuntimeV2) DeleteSession(input *DeleteSessionInput) (*DeleteSessionOutput, error) {
@@ -139,14 +139,13 @@ const opGetSession = "GetSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSessionRequest method.
+//	req, resp := client.GetSessionRequest(params)
 //
-//    // Example sending a request using the GetSessionRequest method.
-//    req, resp := client.GetSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/GetSession
 func (c *LexRuntimeV2) GetSessionRequest(input *GetSessionInput) (req *request.Request, output *GetSessionOutput) {
@@ -184,15 +183,16 @@ func (c *LexRuntimeV2) GetSessionRequest(input *GetSessionInput) (req *request.R
 // API operation GetSession for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
 //
-//   * ResourceNotFoundException
+//   - AccessDeniedException
 //
-//   * ValidationException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * InternalServerException
+//   - ThrottlingException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/GetSession
 func (c *LexRuntimeV2) GetSession(input *GetSessionInput) (*GetSessionOutput, error) {
@@ -232,14 +232,13 @@ const opPutSession = "PutSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutSessionRequest method.
+//	req, resp := client.PutSessionRequest(params)
 //
-//    // Example sending a request using the PutSessionRequest method.
-//    req, resp := client.PutSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/PutSession
 func (c *LexRuntimeV2) PutSessionRequest(input *PutSessionInput) (req *request.Request, output *PutSessionOutput) {
@@ -272,21 +271,22 @@ func (c *LexRuntimeV2) PutSessionRequest(input *PutSessionInput) (req *request.R
 // API operation PutSession for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
 //
-//   * ResourceNotFoundException
+//   - AccessDeniedException
 //
-//   * ValidationException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * InternalServerException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - InternalServerException
 //
-//   * DependencyFailedException
+//   - ConflictException
 //
-//   * BadGatewayException
+//   - DependencyFailedException
+//
+//   - BadGatewayException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/PutSession
 func (c *LexRuntimeV2) PutSession(input *PutSessionInput) (*PutSessionOutput, error) {
@@ -326,14 +326,13 @@ const opRecognizeText = "RecognizeText"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RecognizeTextRequest method.
+//	req, resp := client.RecognizeTextRequest(params)
 //
-//    // Example sending a request using the RecognizeTextRequest method.
-//    req, resp := client.RecognizeTextRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/RecognizeText
 func (c *LexRuntimeV2) RecognizeTextRequest(input *RecognizeTextInput) (req *request.Request, output *RecognizeTextOutput) {
@@ -361,6 +360,25 @@ func (c *LexRuntimeV2) RecognizeTextRequest(input *RecognizeTextInput) (req *req
 // In response, Amazon Lex V2 returns the next message to convey to the user
 // and an optional response card to display.
 //
+// If the optional post-fulfillment response is specified, the messages are
+// returned as follows. For more information, see PostFulfillmentStatusSpecification
+// (https://docs.aws.amazon.com/lexv2/latest/dg/API_PostFulfillmentStatusSpecification.html).
+//
+//   - Success message - Returned if the Lambda function completes successfully
+//     and the intent state is fulfilled or ready fulfillment if the message
+//     is present.
+//
+//   - Failed message - The failed message is returned if the Lambda function
+//     throws an exception or if the Lambda function returns a failed intent
+//     state without a message.
+//
+//   - Timeout message - If you don't configure a timeout message and a timeout,
+//     and the Lambda function doesn't return within 30 seconds, the timeout
+//     message is returned. If you configure a timeout, the timeout message is
+//     returned when the period times out.
+//
+// For more information, see Completion message (https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-complete.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -369,21 +387,22 @@ func (c *LexRuntimeV2) RecognizeTextRequest(input *RecognizeTextInput) (req *req
 // API operation RecognizeText for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
 //
-//   * ResourceNotFoundException
+//   - AccessDeniedException
 //
-//   * ValidationException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * InternalServerException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - InternalServerException
 //
-//   * DependencyFailedException
+//   - ConflictException
 //
-//   * BadGatewayException
+//   - DependencyFailedException
+//
+//   - BadGatewayException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/RecognizeText
 func (c *LexRuntimeV2) RecognizeText(input *RecognizeTextInput) (*RecognizeTextOutput, error) {
@@ -423,14 +442,13 @@ const opRecognizeUtterance = "RecognizeUtterance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RecognizeUtteranceRequest method.
+//	req, resp := client.RecognizeUtteranceRequest(params)
 //
-//    // Example sending a request using the RecognizeUtteranceRequest method.
-//    req, resp := client.RecognizeUtteranceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/RecognizeUtterance
 func (c *LexRuntimeV2) RecognizeUtteranceRequest(input *RecognizeUtteranceInput) (req *request.Request, output *RecognizeUtteranceOutput) {
@@ -462,27 +480,46 @@ func (c *LexRuntimeV2) RecognizeUtteranceRequest(input *RecognizeUtteranceInput)
 // The following request fields must be compressed with gzip and then base64
 // encoded before you send them to Amazon Lex V2.
 //
-//    * requestAttributes
+//   - requestAttributes
 //
-//    * sessionState
+//   - sessionState
 //
 // The following response fields are compressed using gzip and then base64 encoded
 // by Amazon Lex V2. Before you can use these fields, you must decode and decompress
 // them.
 //
-//    * inputTranscript
+//   - inputTranscript
 //
-//    * interpretations
+//   - interpretations
 //
-//    * messages
+//   - messages
 //
-//    * requestAttributes
+//   - requestAttributes
 //
-//    * sessionState
+//   - sessionState
 //
 // The example contains a Java application that compresses and encodes a Java
 // object to send to Amazon Lex V2, and a second that decodes and decompresses
 // a response from Amazon Lex V2.
+//
+// If the optional post-fulfillment response is specified, the messages are
+// returned as follows. For more information, see PostFulfillmentStatusSpecification
+// (https://docs.aws.amazon.com/lexv2/latest/dg/API_PostFulfillmentStatusSpecification.html).
+//
+//   - Success message - Returned if the Lambda function completes successfully
+//     and the intent state is fulfilled or ready fulfillment if the message
+//     is present.
+//
+//   - Failed message - The failed message is returned if the Lambda function
+//     throws an exception or if the Lambda function returns a failed intent
+//     state without a message.
+//
+//   - Timeout message - If you don't configure a timeout message and a timeout,
+//     and the Lambda function doesn't return within 30 seconds, the timeout
+//     message is returned. If you configure a timeout, the timeout message is
+//     returned when the period times out.
+//
+// For more information, see Completion message (https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-complete.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -492,21 +529,22 @@ func (c *LexRuntimeV2) RecognizeUtteranceRequest(input *RecognizeUtteranceInput)
 // API operation RecognizeUtterance for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
 //
-//   * ResourceNotFoundException
+//   - AccessDeniedException
 //
-//   * ValidationException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * InternalServerException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - InternalServerException
 //
-//   * DependencyFailedException
+//   - ConflictException
 //
-//   * BadGatewayException
+//   - DependencyFailedException
+//
+//   - BadGatewayException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/RecognizeUtterance
 func (c *LexRuntimeV2) RecognizeUtterance(input *RecognizeUtteranceInput) (*RecognizeUtteranceOutput, error) {
@@ -546,14 +584,13 @@ const opStartConversation = "StartConversation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartConversationRequest method.
+//	req, resp := client.StartConversationRequest(params)
 //
-//    // Example sending a request using the StartConversationRequest method.
-//    req, resp := client.StartConversationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/StartConversation
 func (c *LexRuntimeV2) StartConversationRequest(input *StartConversationInput) (req *request.Request, output *StartConversationOutput) {
@@ -591,6 +628,7 @@ func (c *LexRuntimeV2) StartConversationRequest(input *StartConversationInput) (
 		"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
 	}))
 	req.Handlers.Build.Swap(restjson.BuildHandler.Name, rest.BuildHandler)
+	eventstreamapi.ApplyHTTPTransportFixes(req)
 	req.Handlers.Send.Swap(client.LogHTTPRequestHandler.Name, client.LogHTTPRequestHeaderHandler)
 	req.Handlers.Unmarshal.PushBack(es.runInputStream)
 
@@ -611,13 +649,39 @@ func (c *LexRuntimeV2) StartConversationRequest(input *StartConversationInput) (
 // Audio input must be in the following format: audio/lpcm sample-rate=8000
 // sample-size-bits=16 channel-count=1; is-big-endian=false.
 //
+// If the optional post-fulfillment response is specified, the messages are
+// returned as follows. For more information, see PostFulfillmentStatusSpecification
+// (https://docs.aws.amazon.com/lexv2/latest/dg/API_PostFulfillmentStatusSpecification.html).
+//
+//   - Success message - Returned if the Lambda function completes successfully
+//     and the intent state is fulfilled or ready fulfillment if the message
+//     is present.
+//
+//   - Failed message - The failed message is returned if the Lambda function
+//     throws an exception or if the Lambda function returns a failed intent
+//     state without a message.
+//
+//   - Timeout message - If you don't configure a timeout message and a timeout,
+//     and the Lambda function doesn't return within 30 seconds, the timeout
+//     message is returned. If you configure a timeout, the timeout message is
+//     returned when the period times out.
+//
+// For more information, see Completion message (https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-complete.html).
+//
+// If the optional update message is configured, it is played at the specified
+// frequency while the Lambda function is running and the update message state
+// is active. If the fulfillment update message is not active, the Lambda function
+// runs with a 30 second timeout.
+//
+// For more information, see Update message (https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-update.html)
+//
 // The StartConversation operation is supported only in the following SDKs:
 //
-//    * AWS SDK for C++ (https://docs.aws.amazon.com/goto/SdkForCpp/runtime.lex.v2-2020-08-07/StartConversation)
+//   - AWS SDK for C++ (https://docs.aws.amazon.com/goto/SdkForCpp/runtime.lex.v2-2020-08-07/StartConversation)
 //
-//    * AWS SDK for Java V2 (https://docs.aws.amazon.com/goto/SdkForJavaV2/runtime.lex.v2-2020-08-07/StartConversation)
+//   - AWS SDK for Java V2 (https://docs.aws.amazon.com/goto/SdkForJavaV2/runtime.lex.v2-2020-08-07/StartConversation)
 //
-//    * AWS SDK for Ruby V3 (https://docs.aws.amazon.com/goto/SdkForRubyV3/runtime.lex.v2-2020-08-07/StartConversation)
+//   - AWS SDK for Ruby V3 (https://docs.aws.amazon.com/goto/SdkForRubyV3/runtime.lex.v2-2020-08-07/StartConversation)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -627,13 +691,14 @@ func (c *LexRuntimeV2) StartConversationRequest(input *StartConversationInput) (
 // API operation StartConversation for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
 //
-//   * ValidationException
+//   - AccessDeniedException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * InternalServerException
+//   - ThrottlingException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex.v2-2020-08-07/StartConversation
 func (c *LexRuntimeV2) StartConversation(input *StartConversationInput) (*StartConversationOutput, error) {
@@ -658,6 +723,7 @@ func (c *LexRuntimeV2) StartConversationWithContext(ctx aws.Context, input *Star
 }
 
 var _ awserr.Error
+var _ time.Time
 
 // StartConversationEventStream provides the event stream handling for the StartConversation.
 //
@@ -699,10 +765,10 @@ type StartConversationEventStream struct {
 //
 // The Reader member must be set before reading events from the stream.
 //
-//   es := NewStartConversationEventStream(func(o *StartConversationEventStream{
-//       es.Writer = myMockStreamWriter
-//       es.Reader = myMockStreamReader
-//   })
+//	es := NewStartConversationEventStream(func(o *StartConversationEventStream){
+//	    es.Writer = myMockStreamWriter
+//	    es.Reader = myMockStreamReader
+//	})
 func NewStartConversationEventStream(opts ...func(*StartConversationEventStream)) *StartConversationEventStream {
 	es := &StartConversationEventStream{
 		done: make(chan struct{}),
@@ -773,12 +839,12 @@ func (es *StartConversationEventStream) closeInputPipe() error {
 //
 // These events are:
 //
-//     * AudioInputEvent
-//     * ConfigurationEvent
-//     * DTMFInputEvent
-//     * DisconnectionEvent
-//     * PlaybackCompletionEvent
-//     * TextInputEvent
+//   - AudioInputEvent
+//   - ConfigurationEvent
+//   - DTMFInputEvent
+//   - DisconnectionEvent
+//   - PlaybackCompletionEvent
+//   - TextInputEvent
 func (es *StartConversationEventStream) Send(ctx aws.Context, event StartConversationRequestEventStreamEvent) error {
 	return es.Writer.Send(ctx, event)
 }
@@ -822,13 +888,13 @@ func (es *StartConversationEventStream) runInputStream(r *request.Request) {
 //
 // These events are:
 //
-//     * AudioResponseEvent
-//     * HeartbeatEvent
-//     * IntentResultEvent
-//     * PlaybackInterruptionEvent
-//     * TextResponseEvent
-//     * TranscriptEvent
-//     * StartConversationResponseEventStreamUnknownEvent
+//   - AudioResponseEvent
+//   - HeartbeatEvent
+//   - IntentResultEvent
+//   - PlaybackInterruptionEvent
+//   - TextResponseEvent
+//   - TranscriptEvent
+//   - StartConversationResponseEventStreamUnknownEvent
 func (es *StartConversationEventStream) Events() <-chan StartConversationResponseEventStreamEvent {
 	return es.Reader.Events()
 }
@@ -867,7 +933,6 @@ func (es *StartConversationEventStream) runOutputStream(r *request.Request) {
 //
 // You can use the closing of the Reader's Events channel to terminate your
 // application's read from the API's stream.
-//
 func (es *StartConversationEventStream) Close() (err error) {
 	es.closeOnce.Do(es.safeClose)
 	return es.Err()
@@ -924,12 +989,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -1012,10 +1085,10 @@ func (s *AccessDeniedException) RequestID() string {
 type ActiveContext struct {
 	_ struct{} `type:"structure"`
 
-	// A lis tof contexts active for the request. A context can be activated when
+	// A list of contexts active for the request. A context can be activated when
 	// a previous intent is fulfilled, or by including the context in the request.
 	//
-	// If you don't specify a list of contexts, Amazon Lex will use the current
+	// If you don't specify a list of contexts, Amazon Lex V2 will use the current
 	// list of contexts for the session. If you specify an empty list, all contexts
 	// for the session are cleared.
 	//
@@ -1034,12 +1107,20 @@ type ActiveContext struct {
 	TimeToLive *ActiveContextTimeToLive `locationName:"timeToLive" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveContext) GoString() string {
 	return s.String()
 }
@@ -1107,12 +1188,20 @@ type ActiveContextTimeToLive struct {
 	TurnsToLive *int64 `locationName:"turnsToLive" min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveContextTimeToLive) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveContextTimeToLive) GoString() string {
 	return s.String()
 }
@@ -1160,7 +1249,6 @@ type AudioInputEvent struct {
 	_ struct{} `type:"structure"`
 
 	// An encoded stream of audio.
-	//
 	// AudioChunk is automatically base64 encoded/decoded by the SDK.
 	AudioChunk []byte `locationName:"audioChunk" type:"blob"`
 
@@ -1181,12 +1269,20 @@ type AudioInputEvent struct {
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AudioInputEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AudioInputEvent) GoString() string {
 	return s.String()
 }
@@ -1250,7 +1346,6 @@ type AudioResponseEvent struct {
 	_ struct{} `type:"structure"`
 
 	// A chunk of the audio to play.
-	//
 	// AudioChunk is automatically base64 encoded/decoded by the SDK.
 	AudioChunk []byte `locationName:"audioChunk" type:"blob"`
 
@@ -1264,12 +1359,20 @@ type AudioResponseEvent struct {
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AudioResponseEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AudioResponseEvent) GoString() string {
 	return s.String()
 }
@@ -1328,12 +1431,20 @@ type BadGatewayException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadGatewayException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadGatewayException) GoString() string {
 	return s.String()
 }
@@ -1420,12 +1531,20 @@ type Button struct {
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Button) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Button) GoString() string {
 	return s.String()
 }
@@ -1475,12 +1594,20 @@ type ConfidenceScore struct {
 	Score *float64 `locationName:"score" type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfidenceScore) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfidenceScore) GoString() string {
 	return s.String()
 }
@@ -1502,8 +1629,12 @@ type ConfigurationEvent struct {
 	ClientTimestampMillis *int64 `locationName:"clientTimestampMillis" type:"long"`
 
 	// Determines whether Amazon Lex V2 should send audio responses to the client
-	// application. When this parameter if false, the client application needs to
-	// create responses for the user.
+	// application.
+	//
+	// Set this field to false when the client is operating in a playback mode where
+	// audio responses are played to the user. If the client isn't operating in
+	// playback mode, such as a text chat application, set this to true so that
+	// Amazon Lex V2 doesn't wait for the prompt to finish playing on the client.
 	DisablePlayback *bool `locationName:"disablePlayback" type:"boolean"`
 
 	// A unique identifier that your application assigns to the event. You can use
@@ -1542,15 +1673,27 @@ type ConfigurationEvent struct {
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 
 	// A list of messages to send to the user.
+	//
+	// If you set the welcomeMessage field, you must also set the DialogAction (https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_DialogAction.html)
+	// structure's type (https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_DialogAction.html#lexv2-Type-runtime_DialogAction-type)
+	// field.
 	WelcomeMessages []*Message `locationName:"welcomeMessages" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationEvent) GoString() string {
 	return s.String()
 }
@@ -1633,12 +1776,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -1727,16 +1878,28 @@ type DTMFInputEvent struct {
 	// The DTMF character that the user pressed. The allowed characters are A -
 	// D, 0 - 9, # and *.
 	//
+	// InputCharacter is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DTMFInputEvent's
+	// String and GoString methods.
+	//
 	// InputCharacter is a required field
 	InputCharacter *string `locationName:"inputCharacter" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DTMFInputEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DTMFInputEvent) GoString() string {
 	return s.String()
 }
@@ -1789,7 +1952,7 @@ func (s *DTMFInputEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventst
 }
 
 type DeleteSessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias identifier in use for the bot that contains the session data.
 	//
@@ -1812,12 +1975,20 @@ type DeleteSessionInput struct {
 	SessionId *string `location:"uri" locationName:"sessionId" min:"2" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSessionInput) GoString() string {
 	return s.String()
 }
@@ -1896,12 +2067,20 @@ type DeleteSessionOutput struct {
 	SessionId *string `locationName:"sessionId" min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSessionOutput) GoString() string {
 	return s.String()
 }
@@ -1937,12 +2116,20 @@ type DependencyFailedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DependencyFailedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DependencyFailedException) GoString() string {
 	return s.String()
 }
@@ -2018,34 +2205,59 @@ func (s *DependencyFailedException) RequestID() string {
 type DialogAction struct {
 	_ struct{} `type:"structure"`
 
+	// Configures the slot to use spell-by-letter or spell-by-word style. When you
+	// use a style on a slot, users can spell out their input to make it clear to
+	// your bot.
+	//
+	//    * Spell by letter - "b" "o" "b"
+	//
+	//    * Spell by word - "b as in boy" "o as in oscar" "b as in boy"
+	//
+	// For more information, see Using spelling to enter slot values (https://docs.aws.amazon.com/lexv2/latest/dg/spelling-styles.html).
+	SlotElicitationStyle *string `locationName:"slotElicitationStyle" type:"string" enum:"StyleType"`
+
 	// The name of the slot that should be elicited from the user.
 	SlotToElicit *string `locationName:"slotToElicit" min:"1" type:"string"`
 
+	// The name of the constituent sub slot of the composite slot specified in slotToElicit
+	// that should be elicited from the user.
+	SubSlotToElicit *ElicitSubSlot `locationName:"subSlotToElicit" type:"structure"`
+
 	// The next action that the bot should take in its interaction with the user.
-	// The possible values are:
+	// The following values are possible:
 	//
-	//    * Close - Indicates that there will not be a response from the user. For
-	//    example, the statement "Your order has been placed" does not require a
-	//    response.
+	//    * Close – Indicates that there will not be a response from the user.
+	//    For example, the statement "Your order has been placed" does not require
+	//    a response.
 	//
-	//    * ConfirmIntent - The next action is asking the user if the intent is
+	//    * ConfirmIntent – The next action is asking the user if the intent is
 	//    complete and ready to be fulfilled. This is a yes/no question such as
 	//    "Place the order?"
 	//
-	//    * Delegate - The next action is determined by Amazon Lex V2.
+	//    * Delegate – The next action is determined by Amazon Lex V2.
 	//
-	//    * ElicitSlot - The next action is to elicit a slot value from the user.
+	//    * ElicitIntent – The next action is to elicit an intent from the user.
+	//
+	//    * ElicitSlot – The next action is to elicit a slot value from the user.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"DialogActionType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DialogAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DialogAction) GoString() string {
 	return s.String()
 }
@@ -2059,6 +2271,11 @@ func (s *DialogAction) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.SubSlotToElicit != nil {
+		if err := s.SubSlotToElicit.Validate(); err != nil {
+			invalidParams.AddNested("SubSlotToElicit", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2066,9 +2283,21 @@ func (s *DialogAction) Validate() error {
 	return nil
 }
 
+// SetSlotElicitationStyle sets the SlotElicitationStyle field's value.
+func (s *DialogAction) SetSlotElicitationStyle(v string) *DialogAction {
+	s.SlotElicitationStyle = &v
+	return s
+}
+
 // SetSlotToElicit sets the SlotToElicit field's value.
 func (s *DialogAction) SetSlotToElicit(v string) *DialogAction {
 	s.SlotToElicit = &v
+	return s
+}
+
+// SetSubSlotToElicit sets the SubSlotToElicit field's value.
+func (s *DialogAction) SetSubSlotToElicit(v *ElicitSubSlot) *DialogAction {
+	s.SubSlotToElicit = v
 	return s
 }
 
@@ -2093,12 +2322,20 @@ type DisconnectionEvent struct {
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisconnectionEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisconnectionEvent) GoString() string {
 	return s.String()
 }
@@ -2144,8 +2381,73 @@ func (s *DisconnectionEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eve
 	return msg, err
 }
 
-type GetSessionInput struct {
+// The specific constituent sub slot of the composite slot to elicit in dialog
+// action.
+type ElicitSubSlot struct {
 	_ struct{} `type:"structure"`
+
+	// The name of the slot that should be elicited from the user.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The field is not supported.
+	SubSlotToElicit *ElicitSubSlot `locationName:"subSlotToElicit" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ElicitSubSlot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ElicitSubSlot) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ElicitSubSlot) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ElicitSubSlot"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SubSlotToElicit != nil {
+		if err := s.SubSlotToElicit.Validate(); err != nil {
+			invalidParams.AddNested("SubSlotToElicit", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ElicitSubSlot) SetName(v string) *ElicitSubSlot {
+	s.Name = &v
+	return s
+}
+
+// SetSubSlotToElicit sets the SubSlotToElicit field's value.
+func (s *ElicitSubSlot) SetSubSlotToElicit(v *ElicitSubSlot) *ElicitSubSlot {
+	s.SubSlotToElicit = v
+	return s
+}
+
+type GetSessionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias identifier in use for the bot that contains the session data.
 	//
@@ -2168,12 +2470,20 @@ type GetSessionInput struct {
 	SessionId *string `location:"uri" locationName:"sessionId" min:"2" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSessionInput) GoString() string {
 	return s.String()
 }
@@ -2262,12 +2572,20 @@ type GetSessionOutput struct {
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSessionOutput) GoString() string {
 	return s.String()
 }
@@ -2307,12 +2625,20 @@ type HeartbeatEvent struct {
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HeartbeatEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HeartbeatEvent) GoString() string {
 	return s.String()
 }
@@ -2380,12 +2706,20 @@ type ImageResponseCard struct {
 	Title *string `locationName:"title" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageResponseCard) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageResponseCard) GoString() string {
 	return s.String()
 }
@@ -2450,7 +2784,8 @@ func (s *ImageResponseCard) SetTitle(v string) *ImageResponseCard {
 type Intent struct {
 	_ struct{} `type:"structure"`
 
-	// Contains information about whether fulfillment of the intent has been confirmed.
+	// Indicates whether the intent has been Confirmed, Denied, or None if the confirmation
+	// stage has not yet been reached.
 	ConfirmationState *string `locationName:"confirmationState" type:"string" enum:"ConfirmationState"`
 
 	// The name of the intent.
@@ -2462,16 +2797,41 @@ type Intent struct {
 	// value of the slot. If a slot has not been filled, the value is null.
 	Slots map[string]*Slot `locationName:"slots" type:"map"`
 
-	// Contains fulfillment information for the intent.
+	// Indicates the fulfillment state for the intent. The meanings of each value
+	// are as follows:
+	//
+	//    * Failed – The bot failed to fulfill the intent.
+	//
+	//    * Fulfilled – The bot has completed fulfillment of the intent.
+	//
+	//    * FulfillmentInProgress – The bot is in the middle of fulfilling the
+	//    intent.
+	//
+	//    * InProgress – The bot is in the middle of eliciting the slot values
+	//    that are necessary to fulfill the intent.
+	//
+	//    * ReadyForFulfillment – The bot has elicited all the slot values for
+	//    the intent and is ready to fulfill the intent.
+	//
+	//    * Waiting – The bot is waiting for a response from the user (limited
+	//    to streaming conversations).
 	State *string `locationName:"state" type:"string" enum:"IntentState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Intent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Intent) GoString() string {
 	return s.String()
 }
@@ -2536,7 +2896,8 @@ type IntentResultEvent struct {
 	// for each event sent by Amazon Lex V2 in the current session.
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 
-	// Indicates whether the input to the operation was text or speech.
+	// Indicates whether the input to the operation was text, speech, or from a
+	// touch-tone keypad.
 	InputMode *string `locationName:"inputMode" type:"string" enum:"InputMode"`
 
 	// A list of intents that Amazon Lex V2 determined might satisfy the user's
@@ -2546,6 +2907,9 @@ type IntentResultEvent struct {
 	// Amazon Lex V2 is that the interpretation is the correct one, and an optional
 	// sentiment response that indicates the sentiment expressed in the utterance.
 	Interpretations []*Interpretation `locationName:"interpretations" type:"list"`
+
+	// The bot member that is processing the intent.
+	RecognizedBotMember *RecognizedBotMember `locationName:"recognizedBotMember" type:"structure"`
 
 	// The attributes sent in the request.
 	RequestAttributes map[string]*string `locationName:"requestAttributes" type:"map"`
@@ -2557,12 +2921,20 @@ type IntentResultEvent struct {
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IntentResultEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IntentResultEvent) GoString() string {
 	return s.String()
 }
@@ -2582,6 +2954,12 @@ func (s *IntentResultEvent) SetInputMode(v string) *IntentResultEvent {
 // SetInterpretations sets the Interpretations field's value.
 func (s *IntentResultEvent) SetInterpretations(v []*Interpretation) *IntentResultEvent {
 	s.Interpretations = v
+	return s
+}
+
+// SetRecognizedBotMember sets the RecognizedBotMember field's value.
+func (s *IntentResultEvent) SetRecognizedBotMember(v *RecognizedBotMember) *IntentResultEvent {
+	s.RecognizedBotMember = v
 	return s
 }
 
@@ -2639,12 +3017,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -2716,14 +3102,18 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An intent that Amazon Lex V2 determined might satisfy the user's utterance.
-// The intents are ordered by the confidence score.
+// An object containing information about an intent that Amazon Lex V2 determined
+// might satisfy the user's utterance. The intents are ordered by the confidence
+// score.
 type Interpretation struct {
 	_ struct{} `type:"structure"`
 
 	// A list of intents that might satisfy the user's utterance. The intents are
 	// ordered by the confidence score.
 	Intent *Intent `locationName:"intent" type:"structure"`
+
+	// Specifies the service that interpreted the input.
+	InterpretationSource *string `locationName:"interpretationSource" type:"string" enum:"InterpretationSource"`
 
 	// Determines the threshold where Amazon Lex V2 will insert the AMAZON.FallbackIntent,
 	// AMAZON.KendraSearchIntent, or both when returning alternative intents in
@@ -2738,12 +3128,20 @@ type Interpretation struct {
 	SentimentResponse *SentimentResponse `locationName:"sentimentResponse" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Interpretation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Interpretation) GoString() string {
 	return s.String()
 }
@@ -2751,6 +3149,12 @@ func (s Interpretation) GoString() string {
 // SetIntent sets the Intent field's value.
 func (s *Interpretation) SetIntent(v *Intent) *Interpretation {
 	s.Intent = v
+	return s
+}
+
+// SetInterpretationSource sets the InterpretationSource field's value.
+func (s *Interpretation) SetInterpretationSource(v string) *Interpretation {
+	s.InterpretationSource = &v
 	return s
 }
 
@@ -2771,6 +3175,10 @@ type Message struct {
 	_ struct{} `type:"structure"`
 
 	// The text of the message.
+	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Message's
+	// String and GoString methods.
 	Content *string `locationName:"content" min:"1" type:"string" sensitive:"true"`
 
 	// Indicates the type of response.
@@ -2786,12 +3194,20 @@ type Message struct {
 	ImageResponseCard *ImageResponseCard `locationName:"imageResponseCard" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Message) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Message) GoString() string {
 	return s.String()
 }
@@ -2850,12 +3266,20 @@ type PlaybackCompletionEvent struct {
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlaybackCompletionEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlaybackCompletionEvent) GoString() string {
 	return s.String()
 }
@@ -2923,12 +3347,20 @@ type PlaybackInterruptionEvent struct {
 	EventReason *string `locationName:"eventReason" type:"string" enum:"PlaybackInterruptionReason"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlaybackInterruptionEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlaybackInterruptionEvent) GoString() string {
 	return s.String()
 }
@@ -3030,12 +3462,20 @@ type PutSessionInput struct {
 	SessionState *SessionState `locationName:"sessionState" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSessionInput) GoString() string {
 	return s.String()
 }
@@ -3159,27 +3599,34 @@ type PutSessionOutput struct {
 	// that the messages are defined in the bot.
 	Messages *string `location:"header" locationName:"x-amz-lex-messages" min:"1" type:"string"`
 
-	// Request-specific information passed between the client application and Amazon
-	// Lex V2. These are the same as the requestAttribute parameter in the call
-	// to the PutSession operation.
+	// A base-64-encoded gzipped field that provides request-specific information
+	// passed between the client application and Amazon Lex V2. These are the same
+	// as the requestAttribute parameter in the call to the PutSession operation.
 	RequestAttributes *string `location:"header" locationName:"x-amz-lex-request-attributes" min:"1" type:"string"`
 
 	// The identifier of the session that received the data.
 	SessionId *string `location:"header" locationName:"x-amz-lex-session-id" min:"2" type:"string"`
 
-	// Represents the current state of the dialog between the user and the bot.
-	//
-	// Use this to determine the progress of the conversation and what the next
-	// action may be.
+	// A base-64-encoded gzipped field that represents the current state of the
+	// dialog between the user and the bot. Use this to determine the progress of
+	// the conversation and what the next action may be.
 	SessionState *string `location:"header" locationName:"x-amz-lex-session-state" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSessionOutput) GoString() string {
 	return s.String()
 }
@@ -3255,16 +3702,28 @@ type RecognizeTextInput struct {
 
 	// The text that the user entered. Amazon Lex V2 interprets this text.
 	//
+	// Text is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RecognizeTextInput's
+	// String and GoString methods.
+	//
 	// Text is a required field
 	Text *string `locationName:"text" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecognizeTextInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecognizeTextInput) GoString() string {
 	return s.String()
 }
@@ -3372,6 +3831,9 @@ type RecognizeTextOutput struct {
 	// the order that the messages are defined in the bot.
 	Messages []*Message `locationName:"messages" type:"list"`
 
+	// The bot member that recognized the text.
+	RecognizedBotMember *RecognizedBotMember `locationName:"recognizedBotMember" type:"structure"`
+
 	// The attributes sent in the request.
 	RequestAttributes map[string]*string `locationName:"requestAttributes" type:"map"`
 
@@ -3385,12 +3847,20 @@ type RecognizeTextOutput struct {
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecognizeTextOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecognizeTextOutput) GoString() string {
 	return s.String()
 }
@@ -3404,6 +3874,12 @@ func (s *RecognizeTextOutput) SetInterpretations(v []*Interpretation) *Recognize
 // SetMessages sets the Messages field's value.
 func (s *RecognizeTextOutput) SetMessages(v []*Message) *RecognizeTextOutput {
 	s.Messages = v
+	return s
+}
+
+// SetRecognizedBotMember sets the RecognizedBotMember field's value.
+func (s *RecognizeTextOutput) SetRecognizedBotMember(v *RecognizedBotMember) *RecognizeTextOutput {
+	s.RecognizedBotMember = v
 	return s
 }
 
@@ -3460,6 +3936,10 @@ type RecognizeUtteranceInput struct {
 	//
 	// The requestAttributes field must be compressed using gzip and then base64
 	// encoded before sending to Amazon Lex V2.
+	//
+	// RequestAttributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RecognizeUtteranceInput's
+	// String and GoString methods.
 	RequestAttributes *string `location:"header" locationName:"x-amz-lex-request-attributes" type:"string" sensitive:"true"`
 
 	// Indicates the format for audio input or that the content is text. The header
@@ -3484,7 +3964,7 @@ type RecognizeUtteranceInput struct {
 	//
 	//    * If the value begins with audio/, Amazon Lex V2 returns speech in the
 	//    response. Amazon Lex V2 uses Amazon Polly to generate the speech using
-	//    the configuration that you specified in the requestContentType parameter.
+	//    the configuration that you specified in the responseContentType parameter.
 	//    For example, if you specify audio/mpeg as the value, Amazon Lex V2 returns
 	//    speech in the MPEG format.
 	//
@@ -3507,15 +3987,27 @@ type RecognizeUtteranceInput struct {
 	//
 	// The sessionState field must be compressed using gzip and then base64 encoded
 	// before sending to Amazon Lex V2.
+	//
+	// SessionState is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RecognizeUtteranceInput's
+	// String and GoString methods.
 	SessionState *string `location:"header" locationName:"x-amz-lex-session-state" type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecognizeUtteranceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecognizeUtteranceInput) GoString() string {
 	return s.String()
 }
@@ -3632,7 +4124,8 @@ type RecognizeUtteranceOutput struct {
 	// Content type as specified in the responseContentType in the request.
 	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string"`
 
-	// Indicates whether the input mode to the operation was text or speech.
+	// Indicates whether the input mode to the operation was text, speech, or from
+	// a touch-tone keypad.
 	InputMode *string `location:"header" locationName:"x-amz-lex-input-mode" min:"1" type:"string"`
 
 	// The text used to process the request.
@@ -3671,6 +4164,9 @@ type RecognizeUtteranceOutput struct {
 	// the contents.
 	Messages *string `location:"header" locationName:"x-amz-lex-messages" min:"1" type:"string"`
 
+	// The bot member that recognized the utterance.
+	RecognizedBotMember *string `location:"header" locationName:"x-amz-lex-recognized-bot-member" min:"1" type:"string"`
+
 	// The attributes sent in the request.
 	//
 	// The requestAttributes field is compressed with gzip and then base64 encoded.
@@ -3693,12 +4189,20 @@ type RecognizeUtteranceOutput struct {
 	SessionState *string `location:"header" locationName:"x-amz-lex-session-state" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecognizeUtteranceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecognizeUtteranceOutput) GoString() string {
 	return s.String()
 }
@@ -3739,6 +4243,12 @@ func (s *RecognizeUtteranceOutput) SetMessages(v string) *RecognizeUtteranceOutp
 	return s
 }
 
+// SetRecognizedBotMember sets the RecognizedBotMember field's value.
+func (s *RecognizeUtteranceOutput) SetRecognizedBotMember(v string) *RecognizeUtteranceOutput {
+	s.RecognizedBotMember = &v
+	return s
+}
+
 // SetRequestAttributes sets the RequestAttributes field's value.
 func (s *RecognizeUtteranceOutput) SetRequestAttributes(v string) *RecognizeUtteranceOutput {
 	s.RequestAttributes = &v
@@ -3757,6 +4267,49 @@ func (s *RecognizeUtteranceOutput) SetSessionState(v string) *RecognizeUtterance
 	return s
 }
 
+// The bot member that processes the request.
+type RecognizedBotMember struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the bot member that processes the request.
+	//
+	// BotId is a required field
+	BotId *string `locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The name of the bot member that processes the request.
+	BotName *string `locationName:"botName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecognizedBotMember) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecognizedBotMember) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *RecognizedBotMember) SetBotId(v string) *RecognizedBotMember {
+	s.BotId = &v
+	return s
+}
+
+// SetBotName sets the BotName field's value.
+func (s *RecognizedBotMember) SetBotName(v string) *RecognizedBotMember {
+	s.BotName = &v
+	return s
+}
+
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3764,12 +4317,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -3841,6 +4402,137 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Provides an array of phrases that should be given preference when resolving
+// values for a slot.
+type RuntimeHintDetails struct {
+	_ struct{} `type:"structure"`
+
+	// One or more strings that Amazon Lex V2 should look for in the input to the
+	// bot. Each phrase is given preference when deciding on slot values.
+	RuntimeHintValues []*RuntimeHintValue `locationName:"runtimeHintValues" min:"1" type:"list"`
+
+	// A map of constituent sub slot names inside a composite slot in the intent
+	// and the phrases that should be added for each sub slot. Inside each composite
+	// slot hints, this structure provides a mechanism to add granular sub slot
+	// phrases. Only sub slot hints are supported for composite slots. The intent
+	// name, composite slot name and the constituent sub slot names must exist.
+	SubSlotHints map[string]*RuntimeHintDetails `locationName:"subSlotHints" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintDetails) GoString() string {
+	return s.String()
+}
+
+// SetRuntimeHintValues sets the RuntimeHintValues field's value.
+func (s *RuntimeHintDetails) SetRuntimeHintValues(v []*RuntimeHintValue) *RuntimeHintDetails {
+	s.RuntimeHintValues = v
+	return s
+}
+
+// SetSubSlotHints sets the SubSlotHints field's value.
+func (s *RuntimeHintDetails) SetSubSlotHints(v map[string]*RuntimeHintDetails) *RuntimeHintDetails {
+	s.SubSlotHints = v
+	return s
+}
+
+// Provides the phrase that Amazon Lex V2 should look for in the user's input
+// to the bot.
+type RuntimeHintValue struct {
+	_ struct{} `type:"structure"`
+
+	// The phrase that Amazon Lex V2 should look for in the user's input to the
+	// bot.
+	//
+	// Phrase is a required field
+	Phrase *string `locationName:"phrase" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintValue) GoString() string {
+	return s.String()
+}
+
+// SetPhrase sets the Phrase field's value.
+func (s *RuntimeHintValue) SetPhrase(v string) *RuntimeHintValue {
+	s.Phrase = &v
+	return s
+}
+
+// You can provide Amazon Lex V2 with hints to the phrases that a customer is
+// likely to use for a slot. When a slot with hints is resolved, the phrases
+// in the runtime hints are preferred in the resolution. You can provide hints
+// for a maximum of 100 intents. You can provide a maximum of 100 slots.
+//
+// Before you can use runtime hints with an existing bot, you must first rebuild
+// the bot.
+//
+// For more information, see Using runtime hints to improve recognition of slot
+// values (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html).
+type RuntimeHints struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the slots in the intent that should have runtime hints added, and
+	// the phrases that should be added for each slot.
+	//
+	// The first level of the slotHints map is the name of the intent. The second
+	// level is the name of the slot within the intent. For more information, see
+	// Using hints to improve accuracy (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html).
+	//
+	// The intent name and slot name must exist.
+	SlotHints map[string]map[string]*RuntimeHintDetails `locationName:"slotHints" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHints) GoString() string {
+	return s.String()
+}
+
+// SetSlotHints sets the SlotHints field's value.
+func (s *RuntimeHints) SetSlotHints(v map[string]map[string]*RuntimeHintDetails) *RuntimeHints {
+	s.SlotHints = v
+	return s
+}
+
 // Provides information about the sentiment expressed in a user's response in
 // a conversation. Sentiments are determined using Amazon Comprehend. Sentiments
 // are only returned if they are enabled for the bot.
@@ -3858,12 +4550,20 @@ type SentimentResponse struct {
 	SentimentScore *SentimentScore `locationName:"sentimentScore" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SentimentResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SentimentResponse) GoString() string {
 	return s.String()
 }
@@ -3901,12 +4601,20 @@ type SentimentScore struct {
 	Positive *float64 `locationName:"positive" type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SentimentScore) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SentimentScore) GoString() string {
 	return s.String()
 }
@@ -3950,7 +4658,12 @@ type SessionState struct {
 	// The active intent that Amazon Lex V2 is processing.
 	Intent *Intent `locationName:"intent" type:"structure"`
 
+	// A unique identifier for a specific request.
 	OriginatingRequestId *string `locationName:"originatingRequestId" min:"1" type:"string"`
+
+	// Hints for phrases that a customer is likely to use for a slot. Amazon Lex
+	// V2 uses the hints to help determine the correct value of a slot.
+	RuntimeHints *RuntimeHints `locationName:"runtimeHints" type:"structure"`
 
 	// Map of key/value pairs representing session-specific context information.
 	// It contains application information passed between Amazon Lex V2 and a client
@@ -3958,12 +4671,20 @@ type SessionState struct {
 	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SessionState) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SessionState) GoString() string {
 	return s.String()
 }
@@ -4025,6 +4746,12 @@ func (s *SessionState) SetOriginatingRequestId(v string) *SessionState {
 	return s
 }
 
+// SetRuntimeHints sets the RuntimeHints field's value.
+func (s *SessionState) SetRuntimeHints(v *RuntimeHints) *SessionState {
+	s.RuntimeHints = v
+	return s
+}
+
 // SetSessionAttributes sets the SessionAttributes field's value.
 func (s *SessionState) SetSessionAttributes(v map[string]*string) *SessionState {
 	s.SessionAttributes = v
@@ -4040,6 +4767,9 @@ type Slot struct {
 	// field contains a single value.
 	Shape *string `locationName:"shape" type:"string" enum:"Shape"`
 
+	// The constituent sub slots of a composite slot.
+	SubSlots map[string]*Slot `locationName:"subSlots" type:"map"`
+
 	// The current value of the slot.
 	Value *Value `locationName:"value" type:"structure"`
 
@@ -4049,12 +4779,20 @@ type Slot struct {
 	Values []*Slot `locationName:"values" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Slot) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Slot) GoString() string {
 	return s.String()
 }
@@ -4087,6 +4825,12 @@ func (s *Slot) Validate() error {
 // SetShape sets the Shape field's value.
 func (s *Slot) SetShape(v string) *Slot {
 	s.Shape = &v
+	return s
+}
+
+// SetSubSlots sets the SubSlots field's value.
+func (s *Slot) SetSubSlots(v map[string]*Slot) *Slot {
+	s.SubSlots = v
 	return s
 }
 
@@ -4131,12 +4875,20 @@ type StartConversationInput struct {
 	SessionId *string `location:"uri" locationName:"sessionId" min:"2" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConversationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConversationInput) GoString() string {
 	return s.String()
 }
@@ -4211,12 +4963,20 @@ type StartConversationOutput struct {
 	eventStream *StartConversationEventStream
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConversationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConversationOutput) GoString() string {
 	return s.String()
 }
@@ -4231,12 +4991,12 @@ func (s *StartConversationOutput) GetStream() *StartConversationEventStream {
 //
 // These events are:
 //
-//     * AudioInputEvent
-//     * ConfigurationEvent
-//     * DTMFInputEvent
-//     * DisconnectionEvent
-//     * PlaybackCompletionEvent
-//     * TextInputEvent
+//   - AudioInputEvent
+//   - ConfigurationEvent
+//   - DTMFInputEvent
+//   - DisconnectionEvent
+//   - PlaybackCompletionEvent
+//   - TextInputEvent
 type StartConversationRequestEventStreamEvent interface {
 	eventStartConversationRequestEventStream()
 	eventstreamapi.Marshaler
@@ -4250,12 +5010,12 @@ type StartConversationRequestEventStreamEvent interface {
 //
 // These events are:
 //
-//     * AudioInputEvent
-//     * ConfigurationEvent
-//     * DTMFInputEvent
-//     * DisconnectionEvent
-//     * PlaybackCompletionEvent
-//     * TextInputEvent
+//   - AudioInputEvent
+//   - ConfigurationEvent
+//   - DTMFInputEvent
+//   - DisconnectionEvent
+//   - PlaybackCompletionEvent
+//   - TextInputEvent
 type StartConversationRequestEventStreamWriter interface {
 	// Sends writes events to the stream blocking until the event has been
 	// written. An error is returned if the write fails.
@@ -4304,12 +5064,12 @@ func eventTypeForStartConversationRequestEventStreamEvent(event eventstreamapi.M
 //
 // These events are:
 //
-//     * AudioResponseEvent
-//     * HeartbeatEvent
-//     * IntentResultEvent
-//     * PlaybackInterruptionEvent
-//     * TextResponseEvent
-//     * TranscriptEvent
+//   - AudioResponseEvent
+//   - HeartbeatEvent
+//   - IntentResultEvent
+//   - PlaybackInterruptionEvent
+//   - TextResponseEvent
+//   - TranscriptEvent
 type StartConversationResponseEventStreamEvent interface {
 	eventStartConversationResponseEventStream()
 	eventstreamapi.Marshaler
@@ -4323,13 +5083,13 @@ type StartConversationResponseEventStreamEvent interface {
 //
 // These events are:
 //
-//     * AudioResponseEvent
-//     * HeartbeatEvent
-//     * IntentResultEvent
-//     * PlaybackInterruptionEvent
-//     * TextResponseEvent
-//     * TranscriptEvent
-//     * StartConversationResponseEventStreamUnknownEvent
+//   - AudioResponseEvent
+//   - HeartbeatEvent
+//   - IntentResultEvent
+//   - PlaybackInterruptionEvent
+//   - TextResponseEvent
+//   - TranscriptEvent
+//   - StartConversationResponseEventStreamUnknownEvent
 type StartConversationResponseEventStreamReader interface {
 	// Returns a channel of events as they are read from the event stream.
 	Events() <-chan StartConversationResponseEventStreamEvent
@@ -4503,16 +5263,28 @@ type TextInputEvent struct {
 
 	// The text from the user. Amazon Lex V2 processes this as a complete statement.
 	//
+	// Text is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TextInputEvent's
+	// String and GoString methods.
+	//
 	// Text is a required field
 	Text *string `locationName:"text" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextInputEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextInputEvent) GoString() string {
 	return s.String()
 }
@@ -4580,12 +5352,20 @@ type TextResponseEvent struct {
 	Messages []*Message `locationName:"messages" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextResponseEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextResponseEvent) GoString() string {
 	return s.String()
 }
@@ -4638,12 +5418,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -4729,12 +5517,20 @@ type TranscriptEvent struct {
 	Transcript *string `locationName:"transcript" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TranscriptEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TranscriptEvent) GoString() string {
 	return s.String()
 }
@@ -4787,12 +5583,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -4864,31 +5668,41 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The value of a slot.
+// Information about the value provided for a slot and Amazon Lex V2's interpretation.
 type Value struct {
 	_ struct{} `type:"structure"`
 
-	// The value that Amazon Lex V2 determines for the slot. The actual value depends
-	// on the setting of the value selection strategy for the bot. You can choose
-	// to use the value entered by the user, or you can have Amazon Lex V2 choose
-	// the first value in the resolvedValues list.
+	// The value that Amazon Lex V2 determines for the slot, given the user input.
+	// The actual value depends on the setting of the value selection strategy for
+	// the bot. You can choose to use the value entered by the user, or you can
+	// have Amazon Lex V2 choose the first value in the resolvedValues list.
 	//
 	// InterpretedValue is a required field
 	InterpretedValue *string `locationName:"interpretedValue" min:"1" type:"string" required:"true"`
 
-	// The text of the utterance from the user that was entered for the slot.
+	// The part of the user's response to the slot elicitation that Amazon Lex V2
+	// determines is relevant to the slot value.
 	OriginalValue *string `locationName:"originalValue" min:"1" type:"string"`
 
-	// A list of additional values that have been recognized for the slot.
+	// A list of values that Amazon Lex V2 determines are possible resolutions for
+	// the user input. The first value matches the interpretedValue.
 	ResolvedValues []*string `locationName:"resolvedValues" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Value) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Value) GoString() string {
 	return s.String()
 }
@@ -4981,6 +5795,9 @@ const (
 
 	// DialogActionTypeElicitSlot is a DialogActionType enum value
 	DialogActionTypeElicitSlot = "ElicitSlot"
+
+	// DialogActionTypeNone is a DialogActionType enum value
+	DialogActionTypeNone = "None"
 )
 
 // DialogActionType_Values returns all elements of the DialogActionType enum
@@ -4991,6 +5808,7 @@ func DialogActionType_Values() []string {
 		DialogActionTypeDelegate,
 		DialogActionTypeElicitIntent,
 		DialogActionTypeElicitSlot,
+		DialogActionTypeNone,
 	}
 }
 
@@ -5029,6 +5847,9 @@ const (
 
 	// IntentStateWaiting is a IntentState enum value
 	IntentStateWaiting = "Waiting"
+
+	// IntentStateFulfillmentInProgress is a IntentState enum value
+	IntentStateFulfillmentInProgress = "FulfillmentInProgress"
 )
 
 // IntentState_Values returns all elements of the IntentState enum
@@ -5039,6 +5860,23 @@ func IntentState_Values() []string {
 		IntentStateInProgress,
 		IntentStateReadyForFulfillment,
 		IntentStateWaiting,
+		IntentStateFulfillmentInProgress,
+	}
+}
+
+const (
+	// InterpretationSourceBedrock is a InterpretationSource enum value
+	InterpretationSourceBedrock = "Bedrock"
+
+	// InterpretationSourceLex is a InterpretationSource enum value
+	InterpretationSourceLex = "Lex"
+)
+
+// InterpretationSource_Values returns all elements of the InterpretationSource enum
+func InterpretationSource_Values() []string {
+	return []string{
+		InterpretationSourceBedrock,
+		InterpretationSourceLex,
 	}
 }
 
@@ -5116,6 +5954,9 @@ const (
 
 	// ShapeList is a Shape enum value
 	ShapeList = "List"
+
+	// ShapeComposite is a Shape enum value
+	ShapeComposite = "Composite"
 )
 
 // Shape_Values returns all elements of the Shape enum
@@ -5123,5 +5964,26 @@ func Shape_Values() []string {
 	return []string{
 		ShapeScalar,
 		ShapeList,
+		ShapeComposite,
+	}
+}
+
+const (
+	// StyleTypeDefault is a StyleType enum value
+	StyleTypeDefault = "Default"
+
+	// StyleTypeSpellByLetter is a StyleType enum value
+	StyleTypeSpellByLetter = "SpellByLetter"
+
+	// StyleTypeSpellByWord is a StyleType enum value
+	StyleTypeSpellByWord = "SpellByWord"
+)
+
+// StyleType_Values returns all elements of the StyleType enum
+func StyleType_Values() []string {
+	return []string{
+		StyleTypeDefault,
+		StyleTypeSpellByLetter,
+		StyleTypeSpellByWord,
 	}
 }

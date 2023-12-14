@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 package api
@@ -150,16 +151,8 @@ func (r *referenceResolver) resolveReference(ref *ShapeRef) {
 	}
 
 	if ref.JSONValue {
-		ref.ShapeName = "JSONValue"
-		if _, ok := r.API.Shapes[ref.ShapeName]; !ok {
-			r.API.Shapes[ref.ShapeName] = &Shape{
-				API:       r.API,
-				ShapeName: "JSONValue",
-				Type:      "jsonvalue",
-				ValueRef: ShapeRef{
-					JSONValue: true,
-				},
-			}
+		if err := setTargetAsJSONValue(r.API, "", "", ref); err != nil {
+			panic(fmt.Sprintf("failed to set reference as JSONValue, %v", err))
 		}
 	}
 
@@ -175,6 +168,21 @@ func (r *referenceResolver) resolveReference(ref *ShapeRef) {
 
 	// resolve shape's references, if it has any
 	r.resolveShape(shape)
+}
+
+func setTargetAsJSONValue(a *API, parentName, refName string, ref *ShapeRef) error {
+	ref.ShapeName = "JSONValue"
+	if _, ok := a.Shapes[ref.ShapeName]; !ok {
+		a.Shapes[ref.ShapeName] = &Shape{
+			API:       a,
+			ShapeName: "JSONValue",
+			Type:      "jsonvalue",
+			ValueRef: ShapeRef{
+				JSONValue: true,
+			},
+		}
+	}
+	return nil
 }
 
 // resolveShape resolves a shape's Member Key Value, and nested member
@@ -327,6 +335,7 @@ func (a *API) renameExportable() {
 					member.LocationName = mName
 				}
 			}
+			member.OriginalMemberName = mName
 
 			if newName == "_" {
 				panic("Shape " + s.ShapeName + " uses reserved member name '_'")

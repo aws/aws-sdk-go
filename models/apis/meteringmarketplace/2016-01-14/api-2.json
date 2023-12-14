@@ -115,6 +115,12 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "CustomerAWSAccountId":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[0-9]+$"
+    },
     "CustomerIdentifier":{
       "type":"string",
       "max":255,
@@ -262,7 +268,7 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"[\\s\\S]+"
+      "pattern":"^[-a-zA-Z0-9/=:_.@]*$"
     },
     "RegisterUsageRequest":{
       "type":"structure",
@@ -294,7 +300,8 @@
       "type":"structure",
       "members":{
         "CustomerIdentifier":{"shape":"CustomerIdentifier"},
-        "ProductCode":{"shape":"ProductCode"}
+        "ProductCode":{"shape":"ProductCode"},
+        "CustomerAWSAccountId":{"shape":"CustomerAWSAccountId"}
       }
     },
     "String":{"type":"string"},
@@ -353,7 +360,7 @@
     "UsageAllocations":{
       "type":"list",
       "member":{"shape":"UsageAllocation"},
-      "max":500,
+      "max":2500,
       "min":1
     },
     "UsageDimension":{

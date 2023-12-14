@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AmplifyBackend.
-//    func myFunc(svc amplifybackendiface.AmplifyBackendAPI) bool {
-//        // Make svc.CloneBackend request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AmplifyBackend.
+//	func myFunc(svc amplifybackendiface.AmplifyBackendAPI) bool {
+//	    // Make svc.CloneBackend request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := amplifybackend.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := amplifybackend.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockAmplifyBackendClient struct {
-//        amplifybackendiface.AmplifyBackendAPI
-//    }
-//    func (m *mockAmplifyBackendClient) CloneBackend(input *amplifybackend.CloneBackendInput) (*amplifybackend.CloneBackendOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockAmplifyBackendClient struct {
+//	    amplifybackendiface.AmplifyBackendAPI
+//	}
+//	func (m *mockAmplifyBackendClient) CloneBackend(input *amplifybackend.CloneBackendInput) (*amplifybackend.CloneBackendOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockAmplifyBackendClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockAmplifyBackendClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -80,6 +80,10 @@ type AmplifyBackendAPI interface {
 	CreateBackendConfigWithContext(aws.Context, *amplifybackend.CreateBackendConfigInput, ...request.Option) (*amplifybackend.CreateBackendConfigOutput, error)
 	CreateBackendConfigRequest(*amplifybackend.CreateBackendConfigInput) (*request.Request, *amplifybackend.CreateBackendConfigOutput)
 
+	CreateBackendStorage(*amplifybackend.CreateBackendStorageInput) (*amplifybackend.CreateBackendStorageOutput, error)
+	CreateBackendStorageWithContext(aws.Context, *amplifybackend.CreateBackendStorageInput, ...request.Option) (*amplifybackend.CreateBackendStorageOutput, error)
+	CreateBackendStorageRequest(*amplifybackend.CreateBackendStorageInput) (*request.Request, *amplifybackend.CreateBackendStorageOutput)
+
 	CreateToken(*amplifybackend.CreateTokenInput) (*amplifybackend.CreateTokenOutput, error)
 	CreateTokenWithContext(aws.Context, *amplifybackend.CreateTokenInput, ...request.Option) (*amplifybackend.CreateTokenOutput, error)
 	CreateTokenRequest(*amplifybackend.CreateTokenInput) (*request.Request, *amplifybackend.CreateTokenOutput)
@@ -95,6 +99,10 @@ type AmplifyBackendAPI interface {
 	DeleteBackendAuth(*amplifybackend.DeleteBackendAuthInput) (*amplifybackend.DeleteBackendAuthOutput, error)
 	DeleteBackendAuthWithContext(aws.Context, *amplifybackend.DeleteBackendAuthInput, ...request.Option) (*amplifybackend.DeleteBackendAuthOutput, error)
 	DeleteBackendAuthRequest(*amplifybackend.DeleteBackendAuthInput) (*request.Request, *amplifybackend.DeleteBackendAuthOutput)
+
+	DeleteBackendStorage(*amplifybackend.DeleteBackendStorageInput) (*amplifybackend.DeleteBackendStorageOutput, error)
+	DeleteBackendStorageWithContext(aws.Context, *amplifybackend.DeleteBackendStorageInput, ...request.Option) (*amplifybackend.DeleteBackendStorageOutput, error)
+	DeleteBackendStorageRequest(*amplifybackend.DeleteBackendStorageInput) (*request.Request, *amplifybackend.DeleteBackendStorageOutput)
 
 	DeleteToken(*amplifybackend.DeleteTokenInput) (*amplifybackend.DeleteTokenOutput, error)
 	DeleteTokenWithContext(aws.Context, *amplifybackend.DeleteTokenInput, ...request.Option) (*amplifybackend.DeleteTokenOutput, error)
@@ -124,6 +132,10 @@ type AmplifyBackendAPI interface {
 	GetBackendJobWithContext(aws.Context, *amplifybackend.GetBackendJobInput, ...request.Option) (*amplifybackend.GetBackendJobOutput, error)
 	GetBackendJobRequest(*amplifybackend.GetBackendJobInput) (*request.Request, *amplifybackend.GetBackendJobOutput)
 
+	GetBackendStorage(*amplifybackend.GetBackendStorageInput) (*amplifybackend.GetBackendStorageOutput, error)
+	GetBackendStorageWithContext(aws.Context, *amplifybackend.GetBackendStorageInput, ...request.Option) (*amplifybackend.GetBackendStorageOutput, error)
+	GetBackendStorageRequest(*amplifybackend.GetBackendStorageInput) (*request.Request, *amplifybackend.GetBackendStorageOutput)
+
 	GetToken(*amplifybackend.GetTokenInput) (*amplifybackend.GetTokenOutput, error)
 	GetTokenWithContext(aws.Context, *amplifybackend.GetTokenInput, ...request.Option) (*amplifybackend.GetTokenOutput, error)
 	GetTokenRequest(*amplifybackend.GetTokenInput) (*request.Request, *amplifybackend.GetTokenOutput)
@@ -132,12 +144,20 @@ type AmplifyBackendAPI interface {
 	ImportBackendAuthWithContext(aws.Context, *amplifybackend.ImportBackendAuthInput, ...request.Option) (*amplifybackend.ImportBackendAuthOutput, error)
 	ImportBackendAuthRequest(*amplifybackend.ImportBackendAuthInput) (*request.Request, *amplifybackend.ImportBackendAuthOutput)
 
+	ImportBackendStorage(*amplifybackend.ImportBackendStorageInput) (*amplifybackend.ImportBackendStorageOutput, error)
+	ImportBackendStorageWithContext(aws.Context, *amplifybackend.ImportBackendStorageInput, ...request.Option) (*amplifybackend.ImportBackendStorageOutput, error)
+	ImportBackendStorageRequest(*amplifybackend.ImportBackendStorageInput) (*request.Request, *amplifybackend.ImportBackendStorageOutput)
+
 	ListBackendJobs(*amplifybackend.ListBackendJobsInput) (*amplifybackend.ListBackendJobsOutput, error)
 	ListBackendJobsWithContext(aws.Context, *amplifybackend.ListBackendJobsInput, ...request.Option) (*amplifybackend.ListBackendJobsOutput, error)
 	ListBackendJobsRequest(*amplifybackend.ListBackendJobsInput) (*request.Request, *amplifybackend.ListBackendJobsOutput)
 
 	ListBackendJobsPages(*amplifybackend.ListBackendJobsInput, func(*amplifybackend.ListBackendJobsOutput, bool) bool) error
 	ListBackendJobsPagesWithContext(aws.Context, *amplifybackend.ListBackendJobsInput, func(*amplifybackend.ListBackendJobsOutput, bool) bool, ...request.Option) error
+
+	ListS3Buckets(*amplifybackend.ListS3BucketsInput) (*amplifybackend.ListS3BucketsOutput, error)
+	ListS3BucketsWithContext(aws.Context, *amplifybackend.ListS3BucketsInput, ...request.Option) (*amplifybackend.ListS3BucketsOutput, error)
+	ListS3BucketsRequest(*amplifybackend.ListS3BucketsInput) (*request.Request, *amplifybackend.ListS3BucketsOutput)
 
 	RemoveAllBackends(*amplifybackend.RemoveAllBackendsInput) (*amplifybackend.RemoveAllBackendsOutput, error)
 	RemoveAllBackendsWithContext(aws.Context, *amplifybackend.RemoveAllBackendsInput, ...request.Option) (*amplifybackend.RemoveAllBackendsOutput, error)
@@ -162,6 +182,10 @@ type AmplifyBackendAPI interface {
 	UpdateBackendJob(*amplifybackend.UpdateBackendJobInput) (*amplifybackend.UpdateBackendJobOutput, error)
 	UpdateBackendJobWithContext(aws.Context, *amplifybackend.UpdateBackendJobInput, ...request.Option) (*amplifybackend.UpdateBackendJobOutput, error)
 	UpdateBackendJobRequest(*amplifybackend.UpdateBackendJobInput) (*request.Request, *amplifybackend.UpdateBackendJobOutput)
+
+	UpdateBackendStorage(*amplifybackend.UpdateBackendStorageInput) (*amplifybackend.UpdateBackendStorageOutput, error)
+	UpdateBackendStorageWithContext(aws.Context, *amplifybackend.UpdateBackendStorageInput, ...request.Option) (*amplifybackend.UpdateBackendStorageOutput, error)
+	UpdateBackendStorageRequest(*amplifybackend.UpdateBackendStorageInput) (*request.Request, *amplifybackend.UpdateBackendStorageOutput)
 }
 
 var _ AmplifyBackendAPI = (*amplifybackend.AmplifyBackend)(nil)

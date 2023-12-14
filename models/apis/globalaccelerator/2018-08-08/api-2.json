@@ -31,6 +31,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "AddEndpoints":{
+      "name":"AddEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddEndpointsRequest"},
+      "output":{"shape":"AddEndpointsResponse"},
+      "errors":[
+        {"shape":"TransactionInProgressException"},
+        {"shape":"EndpointGroupNotFoundException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "AdvertiseByoipCidr":{
       "name":"AdvertiseByoipCidr",
       "http":{
@@ -55,6 +72,7 @@
       },
       "input":{"shape":"AllowCustomRoutingTrafficRequest"},
       "errors":[
+        {"shape":"EndpointGroupNotFoundException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"InternalServiceErrorException"}
       ]
@@ -71,6 +89,22 @@
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"LimitExceededException"}
+      ]
+    },
+    "CreateCrossAccountAttachment":{
+      "name":"CreateCrossAccountAttachment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCrossAccountAttachmentRequest"},
+      "output":{"shape":"CreateCrossAccountAttachmentResponse"},
+      "errors":[
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TransactionInProgressException"}
       ]
     },
     "CreateCustomRoutingAccelerator":{
@@ -172,6 +206,21 @@
         {"shape":"InvalidArgumentException"}
       ]
     },
+    "DeleteCrossAccountAttachment":{
+      "name":"DeleteCrossAccountAttachment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCrossAccountAttachmentRequest"},
+      "errors":[
+        {"shape":"AttachmentNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"TransactionInProgressException"}
+      ]
+    },
     "DeleteCustomRoutingAccelerator":{
       "name":"DeleteCustomRoutingAccelerator",
       "http":{
@@ -249,6 +298,7 @@
       },
       "input":{"shape":"DenyCustomRoutingTrafficRequest"},
       "errors":[
+        {"shape":"EndpointGroupNotFoundException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"InternalServiceErrorException"}
       ]
@@ -293,6 +343,21 @@
       "output":{"shape":"DescribeAcceleratorAttributesResponse"},
       "errors":[
         {"shape":"AcceleratorNotFoundException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"}
+      ]
+    },
+    "DescribeCrossAccountAttachment":{
+      "name":"DescribeCrossAccountAttachment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCrossAccountAttachmentRequest"},
+      "output":{"shape":"DescribeCrossAccountAttachmentResponse"},
+      "errors":[
+        {"shape":"AttachmentNotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"}
       ]
@@ -408,6 +473,50 @@
         {"shape":"InvalidArgumentException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InvalidNextTokenException"}
+      ]
+    },
+    "ListCrossAccountAttachments":{
+      "name":"ListCrossAccountAttachments",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCrossAccountAttachmentsRequest"},
+      "output":{"shape":"ListCrossAccountAttachmentsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "ListCrossAccountResourceAccounts":{
+      "name":"ListCrossAccountResourceAccounts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCrossAccountResourceAccountsRequest"},
+      "output":{"shape":"ListCrossAccountResourceAccountsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "ListCrossAccountResources":{
+      "name":"ListCrossAccountResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCrossAccountResourcesRequest"},
+      "output":{"shape":"ListCrossAccountResourcesResponse"},
+      "errors":[
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AcceleratorNotFoundException"}
       ]
     },
     "ListCustomRoutingAccelerators":{
@@ -561,6 +670,21 @@
         {"shape":"ConflictException"}
       ]
     },
+    "RemoveEndpoints":{
+      "name":"RemoveEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveEndpointsRequest"},
+      "errors":[
+        {"shape":"EndpointGroupNotFoundException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TransactionInProgressException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -599,6 +723,7 @@
       "output":{"shape":"UpdateAcceleratorResponse"},
       "errors":[
         {"shape":"AcceleratorNotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"}
       ]
@@ -616,6 +741,23 @@
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UpdateCrossAccountAttachment":{
+      "name":"UpdateCrossAccountAttachment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateCrossAccountAttachmentRequest"},
+      "output":{"shape":"UpdateCrossAccountAttachmentResponse"},
+      "errors":[
+        {"shape":"AttachmentNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"TransactionInProgressException"}
       ]
     },
     "UpdateCustomRoutingAccelerator":{
@@ -724,7 +866,9 @@
         "DnsName":{"shape":"GenericString"},
         "Status":{"shape":"AcceleratorStatus"},
         "CreatedTime":{"shape":"Timestamp"},
-        "LastModifiedTime":{"shape":"Timestamp"}
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "DualStackDnsName":{"shape":"GenericString"},
+        "Events":{"shape":"AcceleratorEvents"}
       }
     },
     "AcceleratorAttributes":{
@@ -734,6 +878,17 @@
         "FlowLogsS3Bucket":{"shape":"GenericString"},
         "FlowLogsS3Prefix":{"shape":"GenericString"}
       }
+    },
+    "AcceleratorEvent":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"GenericString"},
+        "Timestamp":{"shape":"Timestamp"}
+      }
+    },
+    "AcceleratorEvents":{
+      "type":"list",
+      "member":{"shape":"AcceleratorEvent"}
     },
     "AcceleratorNotDisabledException":{
       "type":"structure",
@@ -785,6 +940,24 @@
         "EndpointGroupArn":{"shape":"GenericString"}
       }
     },
+    "AddEndpointsRequest":{
+      "type":"structure",
+      "required":[
+        "EndpointConfigurations",
+        "EndpointGroupArn"
+      ],
+      "members":{
+        "EndpointConfigurations":{"shape":"EndpointConfigurations"},
+        "EndpointGroupArn":{"shape":"GenericString"}
+      }
+    },
+    "AddEndpointsResponse":{
+      "type":"structure",
+      "members":{
+        "EndpointDescriptions":{"shape":"EndpointDescriptions"},
+        "EndpointGroupArn":{"shape":"GenericString"}
+      }
+    },
     "AdvertiseByoipCidrRequest":{
       "type":"structure",
       "required":["Cidr"],
@@ -825,6 +998,43 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "Attachment":{
+      "type":"structure",
+      "members":{
+        "AttachmentArn":{"shape":"GenericString"},
+        "Name":{"shape":"AttachmentName"},
+        "Principals":{"shape":"Principals"},
+        "Resources":{"shape":"Resources"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "CreatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "AttachmentName":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\S\\s]+"
+    },
+    "AttachmentNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "Attachments":{
+      "type":"list",
+      "member":{"shape":"Attachment"}
+    },
+    "AwsAccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^\\d{12}$"
+    },
+    "AwsAccountIds":{
+      "type":"list",
+      "member":{"shape":"AwsAccountId"}
     },
     "ByoipCidr":{
       "type":"structure",
@@ -919,6 +1129,29 @@
       "type":"structure",
       "members":{
         "Accelerator":{"shape":"Accelerator"}
+      }
+    },
+    "CreateCrossAccountAttachmentRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "IdempotencyToken"
+      ],
+      "members":{
+        "Name":{"shape":"AttachmentName"},
+        "Principals":{"shape":"Principals"},
+        "Resources":{"shape":"Resources"},
+        "IdempotencyToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateCrossAccountAttachmentResponse":{
+      "type":"structure",
+      "members":{
+        "CrossAccountAttachment":{"shape":"Attachment"}
       }
     },
     "CreateCustomRoutingAcceleratorRequest":{
@@ -1046,6 +1279,17 @@
         "Listener":{"shape":"Listener"}
       }
     },
+    "CrossAccountResource":{
+      "type":"structure",
+      "members":{
+        "EndpointId":{"shape":"GenericString"},
+        "AttachmentArn":{"shape":"GenericString"}
+      }
+    },
+    "CrossAccountResources":{
+      "type":"list",
+      "member":{"shape":"CrossAccountResource"}
+    },
     "CustomRoutingAccelerator":{
       "type":"structure",
       "members":{
@@ -1120,7 +1364,8 @@
     "CustomRoutingEndpointConfiguration":{
       "type":"structure",
       "members":{
-        "EndpointId":{"shape":"GenericString"}
+        "EndpointId":{"shape":"GenericString"},
+        "AttachmentArn":{"shape":"GenericString"}
       }
     },
     "CustomRoutingEndpointConfigurations":{
@@ -1181,6 +1426,13 @@
       "required":["AcceleratorArn"],
       "members":{
         "AcceleratorArn":{"shape":"GenericString"}
+      }
+    },
+    "DeleteCrossAccountAttachmentRequest":{
+      "type":"structure",
+      "required":["AttachmentArn"],
+      "members":{
+        "AttachmentArn":{"shape":"GenericString"}
       }
     },
     "DeleteCustomRoutingAcceleratorRequest":{
@@ -1269,6 +1521,19 @@
       "type":"structure",
       "members":{
         "Accelerator":{"shape":"Accelerator"}
+      }
+    },
+    "DescribeCrossAccountAttachmentRequest":{
+      "type":"structure",
+      "required":["AttachmentArn"],
+      "members":{
+        "AttachmentArn":{"shape":"GenericString"}
+      }
+    },
+    "DescribeCrossAccountAttachmentResponse":{
+      "type":"structure",
+      "members":{
+        "CrossAccountAttachment":{"shape":"Attachment"}
       }
     },
     "DescribeCustomRoutingAcceleratorAttributesRequest":{
@@ -1388,7 +1653,8 @@
       "members":{
         "EndpointId":{"shape":"GenericString"},
         "Weight":{"shape":"EndpointWeight"},
-        "ClientIPPreservationEnabled":{"shape":"GenericBoolean"}
+        "ClientIPPreservationEnabled":{"shape":"GenericBoolean"},
+        "AttachmentArn":{"shape":"GenericString"}
       }
     },
     "EndpointConfigurations":{
@@ -1443,6 +1709,20 @@
     "EndpointGroups":{
       "type":"list",
       "member":{"shape":"EndpointGroup"}
+    },
+    "EndpointIdentifier":{
+      "type":"structure",
+      "required":["EndpointId"],
+      "members":{
+        "EndpointId":{"shape":"GenericString"},
+        "ClientIPPreservationEnabled":{"shape":"GenericBoolean"}
+      }
+    },
+    "EndpointIdentifiers":{
+      "type":"list",
+      "member":{"shape":"EndpointIdentifier"},
+      "max":10,
+      "min":1
     },
     "EndpointIds":{
       "type":"list",
@@ -1540,9 +1820,19 @@
       "type":"string",
       "max":45
     },
+    "IpAddressFamily":{
+      "type":"string",
+      "enum":[
+        "IPv4",
+        "IPv6"
+      ]
+    },
     "IpAddressType":{
       "type":"string",
-      "enum":["IPV4"]
+      "enum":[
+        "IPV4",
+        "DUAL_STACK"
+      ]
     },
     "IpAddresses":{
       "type":"list",
@@ -1553,8 +1843,13 @@
     "IpSet":{
       "type":"structure",
       "members":{
-        "IpFamily":{"shape":"GenericString"},
-        "IpAddresses":{"shape":"IpAddresses"}
+        "IpFamily":{
+          "shape":"GenericString",
+          "deprecated":true,
+          "deprecatedMessage":"IpFamily has been replaced by IpAddressFamily"
+        },
+        "IpAddresses":{"shape":"IpAddresses"},
+        "IpAddressFamily":{"shape":"IpAddressFamily"}
       }
     },
     "IpSets":{
@@ -1593,6 +1888,48 @@
       "type":"structure",
       "members":{
         "ByoipCidrs":{"shape":"ByoipCidrs"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "ListCrossAccountAttachmentsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "ListCrossAccountAttachmentsResponse":{
+      "type":"structure",
+      "members":{
+        "CrossAccountAttachments":{"shape":"Attachments"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "ListCrossAccountResourceAccountsRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ListCrossAccountResourceAccountsResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceOwnerAwsAccountIds":{"shape":"AwsAccountIds"}
+      }
+    },
+    "ListCrossAccountResourcesRequest":{
+      "type":"structure",
+      "required":["ResourceOwnerAwsAccountId"],
+      "members":{
+        "AcceleratorArn":{"shape":"GenericString"},
+        "ResourceOwnerAwsAccountId":{"shape":"AwsAccountId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "ListCrossAccountResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "CrossAccountResources":{"shape":"CrossAccountResources"},
         "NextToken":{"shape":"GenericString"}
       }
     },
@@ -1800,6 +2137,15 @@
       "max":10,
       "min":1
     },
+    "Principal":{
+      "type":"string",
+      "max":256,
+      "pattern":"(^\\d{12}$|arn:.*)"
+    },
+    "Principals":{
+      "type":"list",
+      "member":{"shape":"Principal"}
+    },
     "Protocol":{
       "type":"string",
       "enum":[
@@ -1839,10 +2185,33 @@
         "EndpointGroupArn":{"shape":"GenericString"}
       }
     },
+    "RemoveEndpointsRequest":{
+      "type":"structure",
+      "required":[
+        "EndpointIdentifiers",
+        "EndpointGroupArn"
+      ],
+      "members":{
+        "EndpointIdentifiers":{"shape":"EndpointIdentifiers"},
+        "EndpointGroupArn":{"shape":"GenericString"}
+      }
+    },
+    "Resource":{
+      "type":"structure",
+      "required":["EndpointId"],
+      "members":{
+        "EndpointId":{"shape":"GenericString"},
+        "Region":{"shape":"GenericString"}
+      }
+    },
     "ResourceArn":{
       "type":"string",
       "max":1011,
       "min":1
+    },
+    "Resources":{
+      "type":"list",
+      "member":{"shape":"Resource"}
     },
     "SocketAddress":{
       "type":"structure",
@@ -1913,6 +2282,13 @@
       "max":100,
       "min":0
     },
+    "TransactionInProgressException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -1959,6 +2335,24 @@
       "type":"structure",
       "members":{
         "Accelerator":{"shape":"Accelerator"}
+      }
+    },
+    "UpdateCrossAccountAttachmentRequest":{
+      "type":"structure",
+      "required":["AttachmentArn"],
+      "members":{
+        "AttachmentArn":{"shape":"GenericString"},
+        "Name":{"shape":"AttachmentName"},
+        "AddPrincipals":{"shape":"Principals"},
+        "RemovePrincipals":{"shape":"Principals"},
+        "AddResources":{"shape":"Resources"},
+        "RemoveResources":{"shape":"Resources"}
+      }
+    },
+    "UpdateCrossAccountAttachmentResponse":{
+      "type":"structure",
+      "members":{
+        "CrossAccountAttachment":{"shape":"Attachment"}
       }
     },
     "UpdateCustomRoutingAcceleratorAttributesRequest":{

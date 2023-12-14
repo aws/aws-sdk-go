@@ -29,14 +29,13 @@ const opAcceptPortfolioShare = "AcceptPortfolioShare"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AcceptPortfolioShareRequest method.
+//	req, resp := client.AcceptPortfolioShareRequest(params)
 //
-//    // Example sending a request using the AcceptPortfolioShareRequest method.
-//    req, resp := client.AcceptPortfolioShareRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AcceptPortfolioShare
 func (c *ServiceCatalog) AcceptPortfolioShareRequest(input *AcceptPortfolioShareInput) (req *request.Request, output *AcceptPortfolioShareOutput) {
@@ -68,16 +67,17 @@ func (c *ServiceCatalog) AcceptPortfolioShareRequest(input *AcceptPortfolioShare
 // API operation AcceptPortfolioShare for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AcceptPortfolioShare
 func (c *ServiceCatalog) AcceptPortfolioShare(input *AcceptPortfolioShareInput) (*AcceptPortfolioShareOutput, error) {
@@ -117,14 +117,13 @@ const opAssociateBudgetWithResource = "AssociateBudgetWithResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateBudgetWithResourceRequest method.
+//	req, resp := client.AssociateBudgetWithResourceRequest(params)
 //
-//    // Example sending a request using the AssociateBudgetWithResourceRequest method.
-//    req, resp := client.AssociateBudgetWithResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateBudgetWithResource
 func (c *ServiceCatalog) AssociateBudgetWithResourceRequest(input *AssociateBudgetWithResourceInput) (req *request.Request, output *AssociateBudgetWithResourceOutput) {
@@ -156,19 +155,20 @@ func (c *ServiceCatalog) AssociateBudgetWithResourceRequest(input *AssociateBudg
 // API operation AssociateBudgetWithResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * DuplicateResourceException
-//   The specified resource is a duplicate.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - DuplicateResourceException
+//     The specified resource is a duplicate.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateBudgetWithResource
 func (c *ServiceCatalog) AssociateBudgetWithResource(input *AssociateBudgetWithResourceInput) (*AssociateBudgetWithResourceOutput, error) {
@@ -208,14 +208,13 @@ const opAssociatePrincipalWithPortfolio = "AssociatePrincipalWithPortfolio"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociatePrincipalWithPortfolioRequest method.
+//	req, resp := client.AssociatePrincipalWithPortfolioRequest(params)
 //
-//    // Example sending a request using the AssociatePrincipalWithPortfolioRequest method.
-//    req, resp := client.AssociatePrincipalWithPortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociatePrincipalWithPortfolio
 func (c *ServiceCatalog) AssociatePrincipalWithPortfolioRequest(input *AssociatePrincipalWithPortfolioInput) (req *request.Request, output *AssociatePrincipalWithPortfolioOutput) {
@@ -239,6 +238,25 @@ func (c *ServiceCatalog) AssociatePrincipalWithPortfolioRequest(input *Associate
 //
 // Associates the specified principal ARN with the specified portfolio.
 //
+// If you share the portfolio with principal name sharing enabled, the PrincipalARN
+// association is included in the share.
+//
+// The PortfolioID, PrincipalARN, and PrincipalType parameters are required.
+//
+// You can associate a maximum of 10 Principals with a portfolio using PrincipalType
+// as IAM_PATTERN.
+//
+// When you associate a principal with portfolio, a potential privilege escalation
+// path may occur when that portfolio is then shared with other accounts. For
+// a user in a recipient account who is not an Service Catalog Admin, but still
+// has the ability to create Principals (Users/Groups/Roles), that user could
+// create a role that matches a principal name association for the portfolio.
+// Although this user may not know which principal names are associated through
+// Service Catalog, they may be able to guess the user. If this potential escalation
+// path is a concern, then Service Catalog recommends using PrincipalType as
+// IAM. With this configuration, the PrincipalARN must already exist in the
+// recipient account before it can be associated.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -247,16 +265,17 @@ func (c *ServiceCatalog) AssociatePrincipalWithPortfolioRequest(input *Associate
 // API operation AssociatePrincipalWithPortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociatePrincipalWithPortfolio
 func (c *ServiceCatalog) AssociatePrincipalWithPortfolio(input *AssociatePrincipalWithPortfolioInput) (*AssociatePrincipalWithPortfolioOutput, error) {
@@ -296,14 +315,13 @@ const opAssociateProductWithPortfolio = "AssociateProductWithPortfolio"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateProductWithPortfolioRequest method.
+//	req, resp := client.AssociateProductWithPortfolioRequest(params)
 //
-//    // Example sending a request using the AssociateProductWithPortfolioRequest method.
-//    req, resp := client.AssociateProductWithPortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateProductWithPortfolio
 func (c *ServiceCatalog) AssociateProductWithPortfolioRequest(input *AssociateProductWithPortfolioInput) (req *request.Request, output *AssociateProductWithPortfolioOutput) {
@@ -337,16 +355,17 @@ func (c *ServiceCatalog) AssociateProductWithPortfolioRequest(input *AssociatePr
 // API operation AssociateProductWithPortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateProductWithPortfolio
 func (c *ServiceCatalog) AssociateProductWithPortfolio(input *AssociateProductWithPortfolioInput) (*AssociateProductWithPortfolioOutput, error) {
@@ -386,14 +405,13 @@ const opAssociateServiceActionWithProvisioningArtifact = "AssociateServiceAction
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateServiceActionWithProvisioningArtifactRequest method.
+//	req, resp := client.AssociateServiceActionWithProvisioningArtifactRequest(params)
 //
-//    // Example sending a request using the AssociateServiceActionWithProvisioningArtifactRequest method.
-//    req, resp := client.AssociateServiceActionWithProvisioningArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateServiceActionWithProvisioningArtifact
 func (c *ServiceCatalog) AssociateServiceActionWithProvisioningArtifactRequest(input *AssociateServiceActionWithProvisioningArtifactInput) (req *request.Request, output *AssociateServiceActionWithProvisioningArtifactOutput) {
@@ -425,16 +443,20 @@ func (c *ServiceCatalog) AssociateServiceActionWithProvisioningArtifactRequest(i
 // API operation AssociateServiceActionWithProvisioningArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * DuplicateResourceException
-//   The specified resource is a duplicate.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - DuplicateResourceException
+//     The specified resource is a duplicate.
+//
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateServiceActionWithProvisioningArtifact
 func (c *ServiceCatalog) AssociateServiceActionWithProvisioningArtifact(input *AssociateServiceActionWithProvisioningArtifactInput) (*AssociateServiceActionWithProvisioningArtifactOutput, error) {
@@ -474,14 +496,13 @@ const opAssociateTagOptionWithResource = "AssociateTagOptionWithResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateTagOptionWithResourceRequest method.
+//	req, resp := client.AssociateTagOptionWithResourceRequest(params)
 //
-//    // Example sending a request using the AssociateTagOptionWithResourceRequest method.
-//    req, resp := client.AssociateTagOptionWithResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateTagOptionWithResource
 func (c *ServiceCatalog) AssociateTagOptionWithResourceRequest(input *AssociateTagOptionWithResourceInput) (req *request.Request, output *AssociateTagOptionWithResourceOutput) {
@@ -513,29 +534,30 @@ func (c *ServiceCatalog) AssociateTagOptionWithResourceRequest(input *AssociateT
 // API operation AssociateTagOptionWithResource for usage and error information.
 //
 // Returned Error Types:
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * DuplicateResourceException
-//   The specified resource is a duplicate.
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - DuplicateResourceException
+//     The specified resource is a duplicate.
+//
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateTagOptionWithResource
 func (c *ServiceCatalog) AssociateTagOptionWithResource(input *AssociateTagOptionWithResourceInput) (*AssociateTagOptionWithResourceOutput, error) {
@@ -575,14 +597,13 @@ const opBatchAssociateServiceActionWithProvisioningArtifact = "BatchAssociateSer
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchAssociateServiceActionWithProvisioningArtifactRequest method.
+//	req, resp := client.BatchAssociateServiceActionWithProvisioningArtifactRequest(params)
 //
-//    // Example sending a request using the BatchAssociateServiceActionWithProvisioningArtifactRequest method.
-//    req, resp := client.BatchAssociateServiceActionWithProvisioningArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/BatchAssociateServiceActionWithProvisioningArtifact
 func (c *ServiceCatalog) BatchAssociateServiceActionWithProvisioningArtifactRequest(input *BatchAssociateServiceActionWithProvisioningArtifactInput) (req *request.Request, output *BatchAssociateServiceActionWithProvisioningArtifactOutput) {
@@ -613,8 +634,8 @@ func (c *ServiceCatalog) BatchAssociateServiceActionWithProvisioningArtifactRequ
 // API operation BatchAssociateServiceActionWithProvisioningArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/BatchAssociateServiceActionWithProvisioningArtifact
 func (c *ServiceCatalog) BatchAssociateServiceActionWithProvisioningArtifact(input *BatchAssociateServiceActionWithProvisioningArtifactInput) (*BatchAssociateServiceActionWithProvisioningArtifactOutput, error) {
@@ -654,14 +675,13 @@ const opBatchDisassociateServiceActionFromProvisioningArtifact = "BatchDisassoci
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDisassociateServiceActionFromProvisioningArtifactRequest method.
+//	req, resp := client.BatchDisassociateServiceActionFromProvisioningArtifactRequest(params)
 //
-//    // Example sending a request using the BatchDisassociateServiceActionFromProvisioningArtifactRequest method.
-//    req, resp := client.BatchDisassociateServiceActionFromProvisioningArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/BatchDisassociateServiceActionFromProvisioningArtifact
 func (c *ServiceCatalog) BatchDisassociateServiceActionFromProvisioningArtifactRequest(input *BatchDisassociateServiceActionFromProvisioningArtifactInput) (req *request.Request, output *BatchDisassociateServiceActionFromProvisioningArtifactOutput) {
@@ -693,8 +713,8 @@ func (c *ServiceCatalog) BatchDisassociateServiceActionFromProvisioningArtifactR
 // API operation BatchDisassociateServiceActionFromProvisioningArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/BatchDisassociateServiceActionFromProvisioningArtifact
 func (c *ServiceCatalog) BatchDisassociateServiceActionFromProvisioningArtifact(input *BatchDisassociateServiceActionFromProvisioningArtifactInput) (*BatchDisassociateServiceActionFromProvisioningArtifactOutput, error) {
@@ -734,14 +754,13 @@ const opCopyProduct = "CopyProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CopyProductRequest method.
+//	req, resp := client.CopyProductRequest(params)
 //
-//    // Example sending a request using the CopyProductRequest method.
-//    req, resp := client.CopyProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CopyProduct
 func (c *ServiceCatalog) CopyProductRequest(input *CopyProductInput) (req *request.Request, output *CopyProductOutput) {
@@ -766,7 +785,8 @@ func (c *ServiceCatalog) CopyProductRequest(input *CopyProductInput) (req *reque
 // new product.
 //
 // You can copy a product to the same account or another account. You can copy
-// a product to the same region or another region.
+// a product to the same Region or another Region. If you copy a product to
+// another account, you must first share the product in a portfolio using CreatePortfolioShare.
 //
 // This operation is performed asynchronously. To track the progress of the
 // operation, use DescribeCopyProductStatus.
@@ -779,11 +799,12 @@ func (c *ServiceCatalog) CopyProductRequest(input *CopyProductInput) (req *reque
 // API operation CopyProduct for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CopyProduct
 func (c *ServiceCatalog) CopyProduct(input *CopyProductInput) (*CopyProductOutput, error) {
@@ -823,14 +844,13 @@ const opCreateConstraint = "CreateConstraint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConstraintRequest method.
+//	req, resp := client.CreateConstraintRequest(params)
 //
-//    // Example sending a request using the CreateConstraintRequest method.
-//    req, resp := client.CreateConstraintRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraint
 func (c *ServiceCatalog) CreateConstraintRequest(input *CreateConstraintInput) (req *request.Request, output *CreateConstraintOutput) {
@@ -863,19 +883,20 @@ func (c *ServiceCatalog) CreateConstraintRequest(input *CreateConstraintInput) (
 // API operation CreateConstraint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * DuplicateResourceException
-//   The specified resource is a duplicate.
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
+//
+//   - DuplicateResourceException
+//     The specified resource is a duplicate.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraint
 func (c *ServiceCatalog) CreateConstraint(input *CreateConstraintInput) (*CreateConstraintOutput, error) {
@@ -915,14 +936,13 @@ const opCreatePortfolio = "CreatePortfolio"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePortfolioRequest method.
+//	req, resp := client.CreatePortfolioRequest(params)
 //
-//    // Example sending a request using the CreatePortfolioRequest method.
-//    req, resp := client.CreatePortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolio
 func (c *ServiceCatalog) CreatePortfolioRequest(input *CreatePortfolioInput) (req *request.Request, output *CreatePortfolioOutput) {
@@ -955,18 +975,19 @@ func (c *ServiceCatalog) CreatePortfolioRequest(input *CreatePortfolioInput) (re
 // API operation CreatePortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
+//
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolio
 func (c *ServiceCatalog) CreatePortfolio(input *CreatePortfolioInput) (*CreatePortfolioOutput, error) {
@@ -1006,14 +1027,13 @@ const opCreatePortfolioShare = "CreatePortfolioShare"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePortfolioShareRequest method.
+//	req, resp := client.CreatePortfolioShareRequest(params)
 //
-//    // Example sending a request using the CreatePortfolioShareRequest method.
-//    req, resp := client.CreatePortfolioShareRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioShare
 func (c *ServiceCatalog) CreatePortfolioShareRequest(input *CreatePortfolioShareInput) (req *request.Request, output *CreatePortfolioShareOutput) {
@@ -1052,6 +1072,17 @@ func (c *ServiceCatalog) CreatePortfolioShareRequest(input *CreatePortfolioShare
 // exists, this action will have no effect and will not return an error. To
 // update an existing share, you must use the UpdatePortfolioShare API instead.
 //
+// When you associate a principal with portfolio, a potential privilege escalation
+// path may occur when that portfolio is then shared with other accounts. For
+// a user in a recipient account who is not an Service Catalog Admin, but still
+// has the ability to create Principals (Users/Groups/Roles), that user could
+// create a role that matches a principal name association for the portfolio.
+// Although this user may not know which principal names are associated through
+// Service Catalog, they may be able to guess the user. If this potential escalation
+// path is a concern, then Service Catalog recommends using PrincipalType as
+// IAM. With this configuration, the PrincipalARN must already exist in the
+// recipient account before it can be associated.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1060,24 +1091,25 @@ func (c *ServiceCatalog) CreatePortfolioShareRequest(input *CreatePortfolioShare
 // API operation CreatePortfolioShare for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
 //
-//   * OperationNotSupportedException
-//   The operation is not supported.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - OperationNotSupportedException
+//     The operation is not supported.
+//
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioShare
 func (c *ServiceCatalog) CreatePortfolioShare(input *CreatePortfolioShareInput) (*CreatePortfolioShareOutput, error) {
@@ -1117,14 +1149,13 @@ const opCreateProduct = "CreateProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProductRequest method.
+//	req, resp := client.CreateProductRequest(params)
 //
-//    // Example sending a request using the CreateProductRequest method.
-//    req, resp := client.CreateProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProduct
 func (c *ServiceCatalog) CreateProductRequest(input *CreateProductInput) (req *request.Request, output *CreateProductOutput) {
@@ -1161,18 +1192,19 @@ func (c *ServiceCatalog) CreateProductRequest(input *CreateProductInput) (req *r
 // API operation CreateProduct for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
+//
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProduct
 func (c *ServiceCatalog) CreateProduct(input *CreateProductInput) (*CreateProductOutput, error) {
@@ -1212,14 +1244,13 @@ const opCreateProvisionedProductPlan = "CreateProvisionedProductPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProvisionedProductPlanRequest method.
+//	req, resp := client.CreateProvisionedProductPlanRequest(params)
 //
-//    // Example sending a request using the CreateProvisionedProductPlanRequest method.
-//    req, resp := client.CreateProvisionedProductPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisionedProductPlan
 func (c *ServiceCatalog) CreateProvisionedProductPlanRequest(input *CreateProvisionedProductPlanInput) (req *request.Request, output *CreateProvisionedProductPlanOutput) {
@@ -1240,12 +1271,15 @@ func (c *ServiceCatalog) CreateProvisionedProductPlanRequest(input *CreateProvis
 
 // CreateProvisionedProductPlan API operation for AWS Service Catalog.
 //
-// Creates a plan. A plan includes the list of resources to be created (when
-// provisioning a new product) or modified (when updating a provisioned product)
-// when the plan is executed.
+// Creates a plan.
 //
-// You can create one plan per provisioned product. To create a plan for an
-// existing provisioned product, the product status must be AVAILBLE or TAINTED.
+// A plan includes the list of resources to be created (when provisioning a
+// new product) or modified (when updating a provisioned product) when the plan
+// is executed.
+//
+// You can create one plan for each provisioned product. To create a plan for
+// an existing provisioned product, the product status must be AVAILABLE or
+// TAINTED.
 //
 // To view the resource changes in the change set, use DescribeProvisionedProductPlan.
 // To create or modify the provisioned product, use ExecuteProvisionedProductPlan.
@@ -1258,16 +1292,17 @@ func (c *ServiceCatalog) CreateProvisionedProductPlanRequest(input *CreateProvis
 // API operation CreateProvisionedProductPlan for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisionedProductPlan
 func (c *ServiceCatalog) CreateProvisionedProductPlan(input *CreateProvisionedProductPlanInput) (*CreateProvisionedProductPlanOutput, error) {
@@ -1307,14 +1342,13 @@ const opCreateProvisioningArtifact = "CreateProvisioningArtifact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProvisioningArtifactRequest method.
+//	req, resp := client.CreateProvisioningArtifactRequest(params)
 //
-//    // Example sending a request using the CreateProvisioningArtifactRequest method.
-//    req, resp := client.CreateProvisioningArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifact
 func (c *ServiceCatalog) CreateProvisioningArtifactRequest(input *CreateProvisioningArtifactInput) (req *request.Request, output *CreateProvisioningArtifactOutput) {
@@ -1353,16 +1387,17 @@ func (c *ServiceCatalog) CreateProvisioningArtifactRequest(input *CreateProvisio
 // API operation CreateProvisioningArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifact
 func (c *ServiceCatalog) CreateProvisioningArtifact(input *CreateProvisioningArtifactInput) (*CreateProvisioningArtifactOutput, error) {
@@ -1402,14 +1437,13 @@ const opCreateServiceAction = "CreateServiceAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateServiceActionRequest method.
+//	req, resp := client.CreateServiceActionRequest(params)
 //
-//    // Example sending a request using the CreateServiceActionRequest method.
-//    req, resp := client.CreateServiceActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateServiceAction
 func (c *ServiceCatalog) CreateServiceActionRequest(input *CreateServiceActionInput) (req *request.Request, output *CreateServiceActionOutput) {
@@ -1440,13 +1474,14 @@ func (c *ServiceCatalog) CreateServiceActionRequest(input *CreateServiceActionIn
 // API operation CreateServiceAction for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateServiceAction
 func (c *ServiceCatalog) CreateServiceAction(input *CreateServiceActionInput) (*CreateServiceActionOutput, error) {
@@ -1486,14 +1521,13 @@ const opCreateTagOption = "CreateTagOption"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTagOptionRequest method.
+//	req, resp := client.CreateTagOptionRequest(params)
 //
-//    // Example sending a request using the CreateTagOptionRequest method.
-//    req, resp := client.CreateTagOptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateTagOption
 func (c *ServiceCatalog) CreateTagOptionRequest(input *CreateTagOptionInput) (req *request.Request, output *CreateTagOptionOutput) {
@@ -1524,18 +1558,19 @@ func (c *ServiceCatalog) CreateTagOptionRequest(input *CreateTagOptionInput) (re
 // API operation CreateTagOption for usage and error information.
 //
 // Returned Error Types:
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
 //
-//   * DuplicateResourceException
-//   The specified resource is a duplicate.
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - DuplicateResourceException
+//     The specified resource is a duplicate.
+//
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateTagOption
 func (c *ServiceCatalog) CreateTagOption(input *CreateTagOptionInput) (*CreateTagOptionOutput, error) {
@@ -1575,14 +1610,13 @@ const opDeleteConstraint = "DeleteConstraint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConstraintRequest method.
+//	req, resp := client.DeleteConstraintRequest(params)
 //
-//    // Example sending a request using the DeleteConstraintRequest method.
-//    req, resp := client.DeleteConstraintRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteConstraint
 func (c *ServiceCatalog) DeleteConstraintRequest(input *DeleteConstraintInput) (req *request.Request, output *DeleteConstraintOutput) {
@@ -1616,11 +1650,12 @@ func (c *ServiceCatalog) DeleteConstraintRequest(input *DeleteConstraintInput) (
 // API operation DeleteConstraint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteConstraint
 func (c *ServiceCatalog) DeleteConstraint(input *DeleteConstraintInput) (*DeleteConstraintOutput, error) {
@@ -1660,14 +1695,13 @@ const opDeletePortfolio = "DeletePortfolio"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePortfolioRequest method.
+//	req, resp := client.DeletePortfolioRequest(params)
 //
-//    // Example sending a request using the DeletePortfolioRequest method.
-//    req, resp := client.DeletePortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolio
 func (c *ServiceCatalog) DeletePortfolioRequest(input *DeletePortfolioInput) (req *request.Request, output *DeletePortfolioOutput) {
@@ -1704,20 +1738,21 @@ func (c *ServiceCatalog) DeletePortfolioRequest(input *DeletePortfolioInput) (re
 // API operation DeletePortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ResourceInUseException
-//   A resource that is currently in use. Ensure that the resource is not in use
-//   and retry the operation.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
+//   - ResourceInUseException
+//     A resource that is currently in use. Ensure that the resource is not in use
+//     and retry the operation.
+//
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolio
 func (c *ServiceCatalog) DeletePortfolio(input *DeletePortfolioInput) (*DeletePortfolioOutput, error) {
@@ -1757,14 +1792,13 @@ const opDeletePortfolioShare = "DeletePortfolioShare"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePortfolioShareRequest method.
+//	req, resp := client.DeletePortfolioShareRequest(params)
 //
-//    // Example sending a request using the DeletePortfolioShareRequest method.
-//    req, resp := client.DeletePortfolioShareRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioShare
 func (c *ServiceCatalog) DeletePortfolioShareRequest(input *DeletePortfolioShareInput) (req *request.Request, output *DeletePortfolioShareOutput) {
@@ -1800,19 +1834,20 @@ func (c *ServiceCatalog) DeletePortfolioShareRequest(input *DeletePortfolioShare
 // API operation DeletePortfolioShare for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * OperationNotSupportedException
-//   The operation is not supported.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - OperationNotSupportedException
+//     The operation is not supported.
+//
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioShare
 func (c *ServiceCatalog) DeletePortfolioShare(input *DeletePortfolioShareInput) (*DeletePortfolioShareOutput, error) {
@@ -1852,14 +1887,13 @@ const opDeleteProduct = "DeleteProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProductRequest method.
+//	req, resp := client.DeleteProductRequest(params)
 //
-//    // Example sending a request using the DeleteProductRequest method.
-//    req, resp := client.DeleteProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProduct
 func (c *ServiceCatalog) DeleteProductRequest(input *DeleteProductInput) (req *request.Request, output *DeleteProductOutput) {
@@ -1896,20 +1930,21 @@ func (c *ServiceCatalog) DeleteProductRequest(input *DeleteProductInput) (req *r
 // API operation DeleteProduct for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceInUseException
-//   A resource that is currently in use. Ensure that the resource is not in use
-//   and retry the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceInUseException
+//     A resource that is currently in use. Ensure that the resource is not in use
+//     and retry the operation.
 //
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProduct
 func (c *ServiceCatalog) DeleteProduct(input *DeleteProductInput) (*DeleteProductOutput, error) {
@@ -1949,14 +1984,13 @@ const opDeleteProvisionedProductPlan = "DeleteProvisionedProductPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProvisionedProductPlanRequest method.
+//	req, resp := client.DeleteProvisionedProductPlanRequest(params)
 //
-//    // Example sending a request using the DeleteProvisionedProductPlanRequest method.
-//    req, resp := client.DeleteProvisionedProductPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisionedProductPlan
 func (c *ServiceCatalog) DeleteProvisionedProductPlanRequest(input *DeleteProvisionedProductPlanInput) (req *request.Request, output *DeleteProvisionedProductPlanOutput) {
@@ -1988,11 +2022,12 @@ func (c *ServiceCatalog) DeleteProvisionedProductPlanRequest(input *DeleteProvis
 // API operation DeleteProvisionedProductPlan for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisionedProductPlan
 func (c *ServiceCatalog) DeleteProvisionedProductPlan(input *DeleteProvisionedProductPlanInput) (*DeleteProvisionedProductPlanOutput, error) {
@@ -2032,14 +2067,13 @@ const opDeleteProvisioningArtifact = "DeleteProvisioningArtifact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProvisioningArtifactRequest method.
+//	req, resp := client.DeleteProvisioningArtifactRequest(params)
 //
-//    // Example sending a request using the DeleteProvisioningArtifactRequest method.
-//    req, resp := client.DeleteProvisioningArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisioningArtifact
 func (c *ServiceCatalog) DeleteProvisioningArtifactRequest(input *DeleteProvisioningArtifactInput) (req *request.Request, output *DeleteProvisioningArtifactOutput) {
@@ -2076,15 +2110,16 @@ func (c *ServiceCatalog) DeleteProvisioningArtifactRequest(input *DeleteProvisio
 // API operation DeleteProvisioningArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceInUseException
-//   A resource that is currently in use. Ensure that the resource is not in use
-//   and retry the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceInUseException
+//     A resource that is currently in use. Ensure that the resource is not in use
+//     and retry the operation.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisioningArtifact
 func (c *ServiceCatalog) DeleteProvisioningArtifact(input *DeleteProvisioningArtifactInput) (*DeleteProvisioningArtifactOutput, error) {
@@ -2124,14 +2159,13 @@ const opDeleteServiceAction = "DeleteServiceAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteServiceActionRequest method.
+//	req, resp := client.DeleteServiceActionRequest(params)
 //
-//    // Example sending a request using the DeleteServiceActionRequest method.
-//    req, resp := client.DeleteServiceActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteServiceAction
 func (c *ServiceCatalog) DeleteServiceActionRequest(input *DeleteServiceActionInput) (req *request.Request, output *DeleteServiceActionOutput) {
@@ -2163,12 +2197,13 @@ func (c *ServiceCatalog) DeleteServiceActionRequest(input *DeleteServiceActionIn
 // API operation DeleteServiceAction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceInUseException
-//   A resource that is currently in use. Ensure that the resource is not in use
-//   and retry the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ResourceInUseException
+//     A resource that is currently in use. Ensure that the resource is not in use
+//     and retry the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteServiceAction
 func (c *ServiceCatalog) DeleteServiceAction(input *DeleteServiceActionInput) (*DeleteServiceActionOutput, error) {
@@ -2208,14 +2243,13 @@ const opDeleteTagOption = "DeleteTagOption"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTagOptionRequest method.
+//	req, resp := client.DeleteTagOptionRequest(params)
 //
-//    // Example sending a request using the DeleteTagOptionRequest method.
-//    req, resp := client.DeleteTagOptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteTagOption
 func (c *ServiceCatalog) DeleteTagOptionRequest(input *DeleteTagOptionInput) (req *request.Request, output *DeleteTagOptionOutput) {
@@ -2249,17 +2283,18 @@ func (c *ServiceCatalog) DeleteTagOptionRequest(input *DeleteTagOptionInput) (re
 // API operation DeleteTagOption for usage and error information.
 //
 // Returned Error Types:
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
 //
-//   * ResourceInUseException
-//   A resource that is currently in use. Ensure that the resource is not in use
-//   and retry the operation.
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceInUseException
+//     A resource that is currently in use. Ensure that the resource is not in use
+//     and retry the operation.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteTagOption
 func (c *ServiceCatalog) DeleteTagOption(input *DeleteTagOptionInput) (*DeleteTagOptionOutput, error) {
@@ -2299,14 +2334,13 @@ const opDescribeConstraint = "DescribeConstraint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeConstraintRequest method.
+//	req, resp := client.DescribeConstraintRequest(params)
 //
-//    // Example sending a request using the DescribeConstraintRequest method.
-//    req, resp := client.DescribeConstraintRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeConstraint
 func (c *ServiceCatalog) DescribeConstraintRequest(input *DescribeConstraintInput) (req *request.Request, output *DescribeConstraintOutput) {
@@ -2337,8 +2371,8 @@ func (c *ServiceCatalog) DescribeConstraintRequest(input *DescribeConstraintInpu
 // API operation DescribeConstraint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeConstraint
 func (c *ServiceCatalog) DescribeConstraint(input *DescribeConstraintInput) (*DescribeConstraintOutput, error) {
@@ -2378,14 +2412,13 @@ const opDescribeCopyProductStatus = "DescribeCopyProductStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCopyProductStatusRequest method.
+//	req, resp := client.DescribeCopyProductStatusRequest(params)
 //
-//    // Example sending a request using the DescribeCopyProductStatusRequest method.
-//    req, resp := client.DescribeCopyProductStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeCopyProductStatus
 func (c *ServiceCatalog) DescribeCopyProductStatusRequest(input *DescribeCopyProductStatusInput) (req *request.Request, output *DescribeCopyProductStatusOutput) {
@@ -2416,8 +2449,8 @@ func (c *ServiceCatalog) DescribeCopyProductStatusRequest(input *DescribeCopyPro
 // API operation DescribeCopyProductStatus for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeCopyProductStatus
 func (c *ServiceCatalog) DescribeCopyProductStatus(input *DescribeCopyProductStatusInput) (*DescribeCopyProductStatusOutput, error) {
@@ -2457,14 +2490,13 @@ const opDescribePortfolio = "DescribePortfolio"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePortfolioRequest method.
+//	req, resp := client.DescribePortfolioRequest(params)
 //
-//    // Example sending a request using the DescribePortfolioRequest method.
-//    req, resp := client.DescribePortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolio
 func (c *ServiceCatalog) DescribePortfolioRequest(input *DescribePortfolioInput) (req *request.Request, output *DescribePortfolioOutput) {
@@ -2497,8 +2529,8 @@ func (c *ServiceCatalog) DescribePortfolioRequest(input *DescribePortfolioInput)
 // API operation DescribePortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolio
 func (c *ServiceCatalog) DescribePortfolio(input *DescribePortfolioInput) (*DescribePortfolioOutput, error) {
@@ -2538,14 +2570,13 @@ const opDescribePortfolioShareStatus = "DescribePortfolioShareStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePortfolioShareStatusRequest method.
+//	req, resp := client.DescribePortfolioShareStatusRequest(params)
 //
-//    // Example sending a request using the DescribePortfolioShareStatusRequest method.
-//    req, resp := client.DescribePortfolioShareStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioShareStatus
 func (c *ServiceCatalog) DescribePortfolioShareStatusRequest(input *DescribePortfolioShareStatusInput) (req *request.Request, output *DescribePortfolioShareStatusOutput) {
@@ -2578,14 +2609,15 @@ func (c *ServiceCatalog) DescribePortfolioShareStatusRequest(input *DescribePort
 // API operation DescribePortfolioShareStatus for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * OperationNotSupportedException
-//   The operation is not supported.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - OperationNotSupportedException
+//     The operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioShareStatus
 func (c *ServiceCatalog) DescribePortfolioShareStatus(input *DescribePortfolioShareStatusInput) (*DescribePortfolioShareStatusOutput, error) {
@@ -2625,14 +2657,13 @@ const opDescribePortfolioShares = "DescribePortfolioShares"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePortfolioSharesRequest method.
+//	req, resp := client.DescribePortfolioSharesRequest(params)
 //
-//    // Example sending a request using the DescribePortfolioSharesRequest method.
-//    req, resp := client.DescribePortfolioSharesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioShares
 func (c *ServiceCatalog) DescribePortfolioSharesRequest(input *DescribePortfolioSharesInput) (req *request.Request, output *DescribePortfolioSharesOutput) {
@@ -2676,11 +2707,12 @@ func (c *ServiceCatalog) DescribePortfolioSharesRequest(input *DescribePortfolio
 // API operation DescribePortfolioShares for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioShares
 func (c *ServiceCatalog) DescribePortfolioShares(input *DescribePortfolioSharesInput) (*DescribePortfolioSharesOutput, error) {
@@ -2712,15 +2744,14 @@ func (c *ServiceCatalog) DescribePortfolioSharesWithContext(ctx aws.Context, inp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribePortfolioShares operation.
-//    pageNum := 0
-//    err := client.DescribePortfolioSharesPages(params,
-//        func(page *servicecatalog.DescribePortfolioSharesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribePortfolioShares operation.
+//	pageNum := 0
+//	err := client.DescribePortfolioSharesPages(params,
+//	    func(page *servicecatalog.DescribePortfolioSharesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) DescribePortfolioSharesPages(input *DescribePortfolioSharesInput, fn func(*DescribePortfolioSharesOutput, bool) bool) error {
 	return c.DescribePortfolioSharesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2772,14 +2803,13 @@ const opDescribeProduct = "DescribeProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProductRequest method.
+//	req, resp := client.DescribeProductRequest(params)
 //
-//    // Example sending a request using the DescribeProductRequest method.
-//    req, resp := client.DescribeProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProduct
 func (c *ServiceCatalog) DescribeProductRequest(input *DescribeProductInput) (req *request.Request, output *DescribeProductOutput) {
@@ -2802,6 +2832,9 @@ func (c *ServiceCatalog) DescribeProductRequest(input *DescribeProductInput) (re
 //
 // Gets information about the specified product.
 //
+// Running this operation with administrator access results in a failure. DescribeProductAsAdmin
+// should be used instead.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2810,11 +2843,12 @@ func (c *ServiceCatalog) DescribeProductRequest(input *DescribeProductInput) (re
 // API operation DescribeProduct for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProduct
 func (c *ServiceCatalog) DescribeProduct(input *DescribeProductInput) (*DescribeProductOutput, error) {
@@ -2854,14 +2888,13 @@ const opDescribeProductAsAdmin = "DescribeProductAsAdmin"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProductAsAdminRequest method.
+//	req, resp := client.DescribeProductAsAdminRequest(params)
 //
-//    // Example sending a request using the DescribeProductAsAdminRequest method.
-//    req, resp := client.DescribeProductAsAdminRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductAsAdmin
 func (c *ServiceCatalog) DescribeProductAsAdminRequest(input *DescribeProductAsAdminInput) (req *request.Request, output *DescribeProductAsAdminOutput) {
@@ -2893,11 +2926,12 @@ func (c *ServiceCatalog) DescribeProductAsAdminRequest(input *DescribeProductAsA
 // API operation DescribeProductAsAdmin for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductAsAdmin
 func (c *ServiceCatalog) DescribeProductAsAdmin(input *DescribeProductAsAdminInput) (*DescribeProductAsAdminOutput, error) {
@@ -2937,14 +2971,13 @@ const opDescribeProductView = "DescribeProductView"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProductViewRequest method.
+//	req, resp := client.DescribeProductViewRequest(params)
 //
-//    // Example sending a request using the DescribeProductViewRequest method.
-//    req, resp := client.DescribeProductViewRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductView
 func (c *ServiceCatalog) DescribeProductViewRequest(input *DescribeProductViewInput) (req *request.Request, output *DescribeProductViewOutput) {
@@ -2975,11 +3008,12 @@ func (c *ServiceCatalog) DescribeProductViewRequest(input *DescribeProductViewIn
 // API operation DescribeProductView for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductView
 func (c *ServiceCatalog) DescribeProductView(input *DescribeProductViewInput) (*DescribeProductViewOutput, error) {
@@ -3019,14 +3053,13 @@ const opDescribeProvisionedProduct = "DescribeProvisionedProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProvisionedProductRequest method.
+//	req, resp := client.DescribeProvisionedProductRequest(params)
 //
-//    // Example sending a request using the DescribeProvisionedProductRequest method.
-//    req, resp := client.DescribeProvisionedProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisionedProduct
 func (c *ServiceCatalog) DescribeProvisionedProductRequest(input *DescribeProvisionedProductInput) (req *request.Request, output *DescribeProvisionedProductOutput) {
@@ -3057,11 +3090,12 @@ func (c *ServiceCatalog) DescribeProvisionedProductRequest(input *DescribeProvis
 // API operation DescribeProvisionedProduct for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisionedProduct
 func (c *ServiceCatalog) DescribeProvisionedProduct(input *DescribeProvisionedProductInput) (*DescribeProvisionedProductOutput, error) {
@@ -3101,14 +3135,13 @@ const opDescribeProvisionedProductPlan = "DescribeProvisionedProductPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProvisionedProductPlanRequest method.
+//	req, resp := client.DescribeProvisionedProductPlanRequest(params)
 //
-//    // Example sending a request using the DescribeProvisionedProductPlanRequest method.
-//    req, resp := client.DescribeProvisionedProductPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisionedProductPlan
 func (c *ServiceCatalog) DescribeProvisionedProductPlanRequest(input *DescribeProvisionedProductPlanInput) (req *request.Request, output *DescribeProvisionedProductPlanOutput) {
@@ -3139,11 +3172,12 @@ func (c *ServiceCatalog) DescribeProvisionedProductPlanRequest(input *DescribePr
 // API operation DescribeProvisionedProductPlan for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisionedProductPlan
 func (c *ServiceCatalog) DescribeProvisionedProductPlan(input *DescribeProvisionedProductPlanInput) (*DescribeProvisionedProductPlanOutput, error) {
@@ -3183,14 +3217,13 @@ const opDescribeProvisioningArtifact = "DescribeProvisioningArtifact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProvisioningArtifactRequest method.
+//	req, resp := client.DescribeProvisioningArtifactRequest(params)
 //
-//    // Example sending a request using the DescribeProvisioningArtifactRequest method.
-//    req, resp := client.DescribeProvisioningArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifact
 func (c *ServiceCatalog) DescribeProvisioningArtifactRequest(input *DescribeProvisioningArtifactInput) (req *request.Request, output *DescribeProvisioningArtifactOutput) {
@@ -3222,11 +3255,12 @@ func (c *ServiceCatalog) DescribeProvisioningArtifactRequest(input *DescribeProv
 // API operation DescribeProvisioningArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifact
 func (c *ServiceCatalog) DescribeProvisioningArtifact(input *DescribeProvisioningArtifactInput) (*DescribeProvisioningArtifactOutput, error) {
@@ -3266,14 +3300,13 @@ const opDescribeProvisioningParameters = "DescribeProvisioningParameters"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProvisioningParametersRequest method.
+//	req, resp := client.DescribeProvisioningParametersRequest(params)
 //
-//    // Example sending a request using the DescribeProvisioningParametersRequest method.
-//    req, resp := client.DescribeProvisioningParametersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParameters
 func (c *ServiceCatalog) DescribeProvisioningParametersRequest(input *DescribeProvisioningParametersInput) (req *request.Request, output *DescribeProvisioningParametersOutput) {
@@ -3312,11 +3345,12 @@ func (c *ServiceCatalog) DescribeProvisioningParametersRequest(input *DescribePr
 // API operation DescribeProvisioningParameters for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParameters
 func (c *ServiceCatalog) DescribeProvisioningParameters(input *DescribeProvisioningParametersInput) (*DescribeProvisioningParametersOutput, error) {
@@ -3356,14 +3390,13 @@ const opDescribeRecord = "DescribeRecord"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRecordRequest method.
+//	req, resp := client.DescribeRecordRequest(params)
 //
-//    // Example sending a request using the DescribeRecordRequest method.
-//    req, resp := client.DescribeRecordRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeRecord
 func (c *ServiceCatalog) DescribeRecordRequest(input *DescribeRecordInput) (req *request.Request, output *DescribeRecordOutput) {
@@ -3403,8 +3436,8 @@ func (c *ServiceCatalog) DescribeRecordRequest(input *DescribeRecordInput) (req 
 // API operation DescribeRecord for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeRecord
 func (c *ServiceCatalog) DescribeRecord(input *DescribeRecordInput) (*DescribeRecordOutput, error) {
@@ -3444,14 +3477,13 @@ const opDescribeServiceAction = "DescribeServiceAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeServiceActionRequest method.
+//	req, resp := client.DescribeServiceActionRequest(params)
 //
-//    // Example sending a request using the DescribeServiceActionRequest method.
-//    req, resp := client.DescribeServiceActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeServiceAction
 func (c *ServiceCatalog) DescribeServiceActionRequest(input *DescribeServiceActionInput) (req *request.Request, output *DescribeServiceActionOutput) {
@@ -3482,8 +3514,8 @@ func (c *ServiceCatalog) DescribeServiceActionRequest(input *DescribeServiceActi
 // API operation DescribeServiceAction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeServiceAction
 func (c *ServiceCatalog) DescribeServiceAction(input *DescribeServiceActionInput) (*DescribeServiceActionOutput, error) {
@@ -3523,14 +3555,13 @@ const opDescribeServiceActionExecutionParameters = "DescribeServiceActionExecuti
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeServiceActionExecutionParametersRequest method.
+//	req, resp := client.DescribeServiceActionExecutionParametersRequest(params)
 //
-//    // Example sending a request using the DescribeServiceActionExecutionParametersRequest method.
-//    req, resp := client.DescribeServiceActionExecutionParametersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeServiceActionExecutionParameters
 func (c *ServiceCatalog) DescribeServiceActionExecutionParametersRequest(input *DescribeServiceActionExecutionParametersInput) (req *request.Request, output *DescribeServiceActionExecutionParametersOutput) {
@@ -3562,11 +3593,12 @@ func (c *ServiceCatalog) DescribeServiceActionExecutionParametersRequest(input *
 // API operation DescribeServiceActionExecutionParameters for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeServiceActionExecutionParameters
 func (c *ServiceCatalog) DescribeServiceActionExecutionParameters(input *DescribeServiceActionExecutionParametersInput) (*DescribeServiceActionExecutionParametersOutput, error) {
@@ -3606,14 +3638,13 @@ const opDescribeTagOption = "DescribeTagOption"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTagOptionRequest method.
+//	req, resp := client.DescribeTagOptionRequest(params)
 //
-//    // Example sending a request using the DescribeTagOptionRequest method.
-//    req, resp := client.DescribeTagOptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeTagOption
 func (c *ServiceCatalog) DescribeTagOptionRequest(input *DescribeTagOptionInput) (req *request.Request, output *DescribeTagOptionOutput) {
@@ -3644,13 +3675,14 @@ func (c *ServiceCatalog) DescribeTagOptionRequest(input *DescribeTagOptionInput)
 // API operation DescribeTagOption for usage and error information.
 //
 // Returned Error Types:
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeTagOption
 func (c *ServiceCatalog) DescribeTagOption(input *DescribeTagOptionInput) (*DescribeTagOptionOutput, error) {
@@ -3690,14 +3722,13 @@ const opDisableAWSOrganizationsAccess = "DisableAWSOrganizationsAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableAWSOrganizationsAccessRequest method.
+//	req, resp := client.DisableAWSOrganizationsAccessRequest(params)
 //
-//    // Example sending a request using the DisableAWSOrganizationsAccessRequest method.
-//    req, resp := client.DisableAWSOrganizationsAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisableAWSOrganizationsAccess
 func (c *ServiceCatalog) DisableAWSOrganizationsAccessRequest(input *DisableAWSOrganizationsAccessInput) (req *request.Request, output *DisableAWSOrganizationsAccessOutput) {
@@ -3719,16 +3750,23 @@ func (c *ServiceCatalog) DisableAWSOrganizationsAccessRequest(input *DisableAWSO
 
 // DisableAWSOrganizationsAccess API operation for AWS Service Catalog.
 //
-// Disable portfolio sharing through AWS Organizations feature. This feature
-// will not delete your current shares but it will prevent you from creating
-// new shares throughout your organization. Current shares will not be in sync
-// with your organization structure if it changes after calling this API. This
-// API can only be called by the management account in the organization.
+// Disable portfolio sharing through the Organizations service. This command
+// will not delete your current shares, but prevents you from creating new shares
+// throughout your organization. Current shares are not kept in sync with your
+// organization structure if the structure changes after calling this API. Only
+// the management account in the organization can call this API.
 //
-// This API can't be invoked if there are active delegated administrators in
+// You cannot call this API if there are active delegated administrators in
 // the organization.
 //
 // Note that a delegated administrator is not authorized to invoke DisableAWSOrganizationsAccess.
+//
+// If you share an Service Catalog portfolio in an organization within Organizations,
+// and then disable Organizations access for Service Catalog, the portfolio
+// access permissions will not sync with the latest changes to the organization
+// structure. Specifically, accounts that you removed from the organization
+// after disabling Service Catalog access will retain access to the previously
+// shared portfolio.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3738,16 +3776,17 @@ func (c *ServiceCatalog) DisableAWSOrganizationsAccessRequest(input *DisableAWSO
 // API operation DisableAWSOrganizationsAccess for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * OperationNotSupportedException
-//   The operation is not supported.
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
+//
+//   - OperationNotSupportedException
+//     The operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisableAWSOrganizationsAccess
 func (c *ServiceCatalog) DisableAWSOrganizationsAccess(input *DisableAWSOrganizationsAccessInput) (*DisableAWSOrganizationsAccessOutput, error) {
@@ -3787,14 +3826,13 @@ const opDisassociateBudgetFromResource = "DisassociateBudgetFromResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateBudgetFromResourceRequest method.
+//	req, resp := client.DisassociateBudgetFromResourceRequest(params)
 //
-//    // Example sending a request using the DisassociateBudgetFromResourceRequest method.
-//    req, resp := client.DisassociateBudgetFromResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateBudgetFromResource
 func (c *ServiceCatalog) DisassociateBudgetFromResourceRequest(input *DisassociateBudgetFromResourceInput) (req *request.Request, output *DisassociateBudgetFromResourceOutput) {
@@ -3826,8 +3864,8 @@ func (c *ServiceCatalog) DisassociateBudgetFromResourceRequest(input *Disassocia
 // API operation DisassociateBudgetFromResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateBudgetFromResource
 func (c *ServiceCatalog) DisassociateBudgetFromResource(input *DisassociateBudgetFromResourceInput) (*DisassociateBudgetFromResourceOutput, error) {
@@ -3867,14 +3905,13 @@ const opDisassociatePrincipalFromPortfolio = "DisassociatePrincipalFromPortfolio
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociatePrincipalFromPortfolioRequest method.
+//	req, resp := client.DisassociatePrincipalFromPortfolioRequest(params)
 //
-//    // Example sending a request using the DisassociatePrincipalFromPortfolioRequest method.
-//    req, resp := client.DisassociatePrincipalFromPortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociatePrincipalFromPortfolio
 func (c *ServiceCatalog) DisassociatePrincipalFromPortfolioRequest(input *DisassociatePrincipalFromPortfolioInput) (req *request.Request, output *DisassociatePrincipalFromPortfolioOutput) {
@@ -3898,6 +3935,26 @@ func (c *ServiceCatalog) DisassociatePrincipalFromPortfolioRequest(input *Disass
 //
 // Disassociates a previously associated principal ARN from a specified portfolio.
 //
+// The PrincipalType and PrincipalARN must match the AssociatePrincipalWithPortfolio
+// call request details. For example, to disassociate an association created
+// with a PrincipalARN of PrincipalType IAM you must use the PrincipalType IAM
+// when calling DisassociatePrincipalFromPortfolio.
+//
+// For portfolios that have been shared with principal name sharing enabled:
+// after disassociating a principal, share recipient accounts will no longer
+// be able to provision products in this portfolio using a role matching the
+// name of the associated principal.
+//
+// For more information, review associate-principal-with-portfolio (https://docs.aws.amazon.com/cli/latest/reference/servicecatalog/associate-principal-with-portfolio.html#options)
+// in the Amazon Web Services CLI Command Reference.
+//
+// If you disassociate a principal from a portfolio, with PrincipalType as IAM,
+// the same principal will still have access to the portfolio if it matches
+// one of the associated principals of type IAM_PATTERN. To fully remove access
+// for a principal, verify all the associated Principals of type IAM_PATTERN,
+// and then ensure you disassociate any IAM_PATTERN principals that match the
+// principal whose access you are removing.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3906,11 +3963,12 @@ func (c *ServiceCatalog) DisassociatePrincipalFromPortfolioRequest(input *Disass
 // API operation DisassociatePrincipalFromPortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociatePrincipalFromPortfolio
 func (c *ServiceCatalog) DisassociatePrincipalFromPortfolio(input *DisassociatePrincipalFromPortfolioInput) (*DisassociatePrincipalFromPortfolioOutput, error) {
@@ -3950,14 +4008,13 @@ const opDisassociateProductFromPortfolio = "DisassociateProductFromPortfolio"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateProductFromPortfolioRequest method.
+//	req, resp := client.DisassociateProductFromPortfolioRequest(params)
 //
-//    // Example sending a request using the DisassociateProductFromPortfolioRequest method.
-//    req, resp := client.DisassociateProductFromPortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateProductFromPortfolio
 func (c *ServiceCatalog) DisassociateProductFromPortfolioRequest(input *DisassociateProductFromPortfolioInput) (req *request.Request, output *DisassociateProductFromPortfolioOutput) {
@@ -3991,15 +4048,16 @@ func (c *ServiceCatalog) DisassociateProductFromPortfolioRequest(input *Disassoc
 // API operation DisassociateProductFromPortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceInUseException
-//   A resource that is currently in use. Ensure that the resource is not in use
-//   and retry the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceInUseException
+//     A resource that is currently in use. Ensure that the resource is not in use
+//     and retry the operation.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateProductFromPortfolio
 func (c *ServiceCatalog) DisassociateProductFromPortfolio(input *DisassociateProductFromPortfolioInput) (*DisassociateProductFromPortfolioOutput, error) {
@@ -4039,14 +4097,13 @@ const opDisassociateServiceActionFromProvisioningArtifact = "DisassociateService
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateServiceActionFromProvisioningArtifactRequest method.
+//	req, resp := client.DisassociateServiceActionFromProvisioningArtifactRequest(params)
 //
-//    // Example sending a request using the DisassociateServiceActionFromProvisioningArtifactRequest method.
-//    req, resp := client.DisassociateServiceActionFromProvisioningArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateServiceActionFromProvisioningArtifact
 func (c *ServiceCatalog) DisassociateServiceActionFromProvisioningArtifactRequest(input *DisassociateServiceActionFromProvisioningArtifactInput) (req *request.Request, output *DisassociateServiceActionFromProvisioningArtifactOutput) {
@@ -4079,8 +4136,8 @@ func (c *ServiceCatalog) DisassociateServiceActionFromProvisioningArtifactReques
 // API operation DisassociateServiceActionFromProvisioningArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateServiceActionFromProvisioningArtifact
 func (c *ServiceCatalog) DisassociateServiceActionFromProvisioningArtifact(input *DisassociateServiceActionFromProvisioningArtifactInput) (*DisassociateServiceActionFromProvisioningArtifactOutput, error) {
@@ -4120,14 +4177,13 @@ const opDisassociateTagOptionFromResource = "DisassociateTagOptionFromResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateTagOptionFromResourceRequest method.
+//	req, resp := client.DisassociateTagOptionFromResourceRequest(params)
 //
-//    // Example sending a request using the DisassociateTagOptionFromResourceRequest method.
-//    req, resp := client.DisassociateTagOptionFromResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateTagOptionFromResource
 func (c *ServiceCatalog) DisassociateTagOptionFromResourceRequest(input *DisassociateTagOptionFromResourceInput) (req *request.Request, output *DisassociateTagOptionFromResourceOutput) {
@@ -4159,13 +4215,14 @@ func (c *ServiceCatalog) DisassociateTagOptionFromResourceRequest(input *Disasso
 // API operation DisassociateTagOptionFromResource for usage and error information.
 //
 // Returned Error Types:
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateTagOptionFromResource
 func (c *ServiceCatalog) DisassociateTagOptionFromResource(input *DisassociateTagOptionFromResourceInput) (*DisassociateTagOptionFromResourceOutput, error) {
@@ -4205,14 +4262,13 @@ const opEnableAWSOrganizationsAccess = "EnableAWSOrganizationsAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableAWSOrganizationsAccessRequest method.
+//	req, resp := client.EnableAWSOrganizationsAccessRequest(params)
 //
-//    // Example sending a request using the EnableAWSOrganizationsAccessRequest method.
-//    req, resp := client.EnableAWSOrganizationsAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/EnableAWSOrganizationsAccess
 func (c *ServiceCatalog) EnableAWSOrganizationsAccessRequest(input *EnableAWSOrganizationsAccessInput) (req *request.Request, output *EnableAWSOrganizationsAccessOutput) {
@@ -4234,16 +4290,26 @@ func (c *ServiceCatalog) EnableAWSOrganizationsAccessRequest(input *EnableAWSOrg
 
 // EnableAWSOrganizationsAccess API operation for AWS Service Catalog.
 //
-// Enable portfolio sharing feature through AWS Organizations. This API will
-// allow Service Catalog to receive updates on your organization in order to
-// sync your shares with the current structure. This API can only be called
-// by the management account in the organization.
+// Enable portfolio sharing feature through Organizations. This API will allow
+// Service Catalog to receive updates on your organization in order to sync
+// your shares with the current structure. This API can only be called by the
+// management account in the organization.
 //
-// By calling this API Service Catalog will make a call to organizations:EnableAWSServiceAccess
-// on your behalf so that your shares can be in sync with any changes in your
-// AWS Organizations structure.
+// When you call this API, Service Catalog calls organizations:EnableAWSServiceAccess
+// on your behalf so that your shares stay in sync with any changes in your
+// Organizations structure.
 //
 // Note that a delegated administrator is not authorized to invoke EnableAWSOrganizationsAccess.
+//
+// If you have previously disabled Organizations access for Service Catalog,
+// and then enable access again, the portfolio access permissions might not
+// sync with the latest changes to the organization structure. Specifically,
+// accounts that you removed from the organization after disabling Service Catalog
+// access, and before you enabled access again, can retain access to the previously
+// shared portfolio. As a result, an account that has been removed from the
+// organization might still be able to create or manage Amazon Web Services
+// resources when it is no longer authorized to do so. Amazon Web Services is
+// working to resolve this issue.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4253,16 +4319,17 @@ func (c *ServiceCatalog) EnableAWSOrganizationsAccessRequest(input *EnableAWSOrg
 // API operation EnableAWSOrganizationsAccess for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * OperationNotSupportedException
-//   The operation is not supported.
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
+//
+//   - OperationNotSupportedException
+//     The operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/EnableAWSOrganizationsAccess
 func (c *ServiceCatalog) EnableAWSOrganizationsAccess(input *EnableAWSOrganizationsAccessInput) (*EnableAWSOrganizationsAccessOutput, error) {
@@ -4302,14 +4369,13 @@ const opExecuteProvisionedProductPlan = "ExecuteProvisionedProductPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ExecuteProvisionedProductPlanRequest method.
+//	req, resp := client.ExecuteProvisionedProductPlanRequest(params)
 //
-//    // Example sending a request using the ExecuteProvisionedProductPlanRequest method.
-//    req, resp := client.ExecuteProvisionedProductPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ExecuteProvisionedProductPlan
 func (c *ServiceCatalog) ExecuteProvisionedProductPlanRequest(input *ExecuteProvisionedProductPlanInput) (req *request.Request, output *ExecuteProvisionedProductPlanOutput) {
@@ -4341,16 +4407,17 @@ func (c *ServiceCatalog) ExecuteProvisionedProductPlanRequest(input *ExecuteProv
 // API operation ExecuteProvisionedProductPlan for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ExecuteProvisionedProductPlan
 func (c *ServiceCatalog) ExecuteProvisionedProductPlan(input *ExecuteProvisionedProductPlanInput) (*ExecuteProvisionedProductPlanOutput, error) {
@@ -4390,14 +4457,13 @@ const opExecuteProvisionedProductServiceAction = "ExecuteProvisionedProductServi
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ExecuteProvisionedProductServiceActionRequest method.
+//	req, resp := client.ExecuteProvisionedProductServiceActionRequest(params)
 //
-//    // Example sending a request using the ExecuteProvisionedProductServiceActionRequest method.
-//    req, resp := client.ExecuteProvisionedProductServiceActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ExecuteProvisionedProductServiceAction
 func (c *ServiceCatalog) ExecuteProvisionedProductServiceActionRequest(input *ExecuteProvisionedProductServiceActionInput) (req *request.Request, output *ExecuteProvisionedProductServiceActionOutput) {
@@ -4428,16 +4494,17 @@ func (c *ServiceCatalog) ExecuteProvisionedProductServiceActionRequest(input *Ex
 // API operation ExecuteProvisionedProductServiceAction for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ExecuteProvisionedProductServiceAction
 func (c *ServiceCatalog) ExecuteProvisionedProductServiceAction(input *ExecuteProvisionedProductServiceActionInput) (*ExecuteProvisionedProductServiceActionOutput, error) {
@@ -4477,14 +4544,13 @@ const opGetAWSOrganizationsAccessStatus = "GetAWSOrganizationsAccessStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAWSOrganizationsAccessStatusRequest method.
+//	req, resp := client.GetAWSOrganizationsAccessStatusRequest(params)
 //
-//    // Example sending a request using the GetAWSOrganizationsAccessStatusRequest method.
-//    req, resp := client.GetAWSOrganizationsAccessStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/GetAWSOrganizationsAccessStatus
 func (c *ServiceCatalog) GetAWSOrganizationsAccessStatusRequest(input *GetAWSOrganizationsAccessStatusInput) (req *request.Request, output *GetAWSOrganizationsAccessStatusOutput) {
@@ -4505,9 +4571,9 @@ func (c *ServiceCatalog) GetAWSOrganizationsAccessStatusRequest(input *GetAWSOrg
 
 // GetAWSOrganizationsAccessStatus API operation for AWS Service Catalog.
 //
-// Get the Access Status for AWS Organization portfolio share feature. This
-// API can only be called by the management account in the organization or by
-// a delegated admin.
+// Get the Access Status for Organizations portfolio share feature. This API
+// can only be called by the management account in the organization or by a
+// delegated admin.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4517,11 +4583,12 @@ func (c *ServiceCatalog) GetAWSOrganizationsAccessStatusRequest(input *GetAWSOrg
 // API operation GetAWSOrganizationsAccessStatus for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * OperationNotSupportedException
-//   The operation is not supported.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - OperationNotSupportedException
+//     The operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/GetAWSOrganizationsAccessStatus
 func (c *ServiceCatalog) GetAWSOrganizationsAccessStatus(input *GetAWSOrganizationsAccessStatusInput) (*GetAWSOrganizationsAccessStatusOutput, error) {
@@ -4561,14 +4628,13 @@ const opGetProvisionedProductOutputs = "GetProvisionedProductOutputs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetProvisionedProductOutputsRequest method.
+//	req, resp := client.GetProvisionedProductOutputsRequest(params)
 //
-//    // Example sending a request using the GetProvisionedProductOutputsRequest method.
-//    req, resp := client.GetProvisionedProductOutputsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/GetProvisionedProductOutputs
 func (c *ServiceCatalog) GetProvisionedProductOutputsRequest(input *GetProvisionedProductOutputsInput) (req *request.Request, output *GetProvisionedProductOutputsOutput) {
@@ -4607,11 +4673,12 @@ func (c *ServiceCatalog) GetProvisionedProductOutputsRequest(input *GetProvision
 // API operation GetProvisionedProductOutputs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/GetProvisionedProductOutputs
 func (c *ServiceCatalog) GetProvisionedProductOutputs(input *GetProvisionedProductOutputsInput) (*GetProvisionedProductOutputsOutput, error) {
@@ -4643,15 +4710,14 @@ func (c *ServiceCatalog) GetProvisionedProductOutputsWithContext(ctx aws.Context
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetProvisionedProductOutputs operation.
-//    pageNum := 0
-//    err := client.GetProvisionedProductOutputsPages(params,
-//        func(page *servicecatalog.GetProvisionedProductOutputsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetProvisionedProductOutputs operation.
+//	pageNum := 0
+//	err := client.GetProvisionedProductOutputsPages(params,
+//	    func(page *servicecatalog.GetProvisionedProductOutputsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) GetProvisionedProductOutputsPages(input *GetProvisionedProductOutputsInput, fn func(*GetProvisionedProductOutputsOutput, bool) bool) error {
 	return c.GetProvisionedProductOutputsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4703,14 +4769,13 @@ const opImportAsProvisionedProduct = "ImportAsProvisionedProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ImportAsProvisionedProductRequest method.
+//	req, resp := client.ImportAsProvisionedProductRequest(params)
 //
-//    // Example sending a request using the ImportAsProvisionedProductRequest method.
-//    req, resp := client.ImportAsProvisionedProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ImportAsProvisionedProduct
 func (c *ServiceCatalog) ImportAsProvisionedProductRequest(input *ImportAsProvisionedProductInput) (req *request.Request, output *ImportAsProvisionedProductOutput) {
@@ -4731,23 +4796,31 @@ func (c *ServiceCatalog) ImportAsProvisionedProductRequest(input *ImportAsProvis
 
 // ImportAsProvisionedProduct API operation for AWS Service Catalog.
 //
-// Requests the import of a resource as a Service Catalog provisioned product
-// that is associated to a Service Catalog product and provisioning artifact.
-// Once imported, all supported Service Catalog governance actions are supported
-// on the provisioned product.
+// Requests the import of a resource as an Service Catalog provisioned product
+// that is associated to an Service Catalog product and provisioning artifact.
+// Once imported, all supported governance actions are supported on the provisioned
+// product.
 //
-// Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets
-// and non-root nested stacks are not supported.
+// Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets,
+// and non-root nested stacks, are not supported.
 //
 // The CloudFormation stack must have one of the following statuses to be imported:
 // CREATE_COMPLETE, UPDATE_COMPLETE, UPDATE_ROLLBACK_COMPLETE, IMPORT_COMPLETE,
-// IMPORT_ROLLBACK_COMPLETE.
+// and IMPORT_ROLLBACK_COMPLETE.
 //
 // Import of the resource requires that the CloudFormation stack template matches
 // the associated Service Catalog product provisioning artifact.
 //
+// When you import an existing CloudFormation stack into a portfolio, Service
+// Catalog does not apply the product's associated constraints during the import
+// process. Service Catalog applies the constraints after you call UpdateProvisionedProduct
+// for the provisioned product.
+//
 // The user or role that performs this operation must have the cloudformation:GetTemplate
 // and cloudformation:DescribeStacks IAM policy permissions.
+//
+// You can only import one provisioned product at a time. The product's CloudFormation
+// stack must have the IMPORT_COMPLETE status before you import another.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4757,19 +4830,20 @@ func (c *ServiceCatalog) ImportAsProvisionedProductRequest(input *ImportAsProvis
 // API operation ImportAsProvisionedProduct for usage and error information.
 //
 // Returned Error Types:
-//   * DuplicateResourceException
-//   The specified resource is a duplicate.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - DuplicateResourceException
+//     The specified resource is a duplicate.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ImportAsProvisionedProduct
 func (c *ServiceCatalog) ImportAsProvisionedProduct(input *ImportAsProvisionedProductInput) (*ImportAsProvisionedProductOutput, error) {
@@ -4809,14 +4883,13 @@ const opListAcceptedPortfolioShares = "ListAcceptedPortfolioShares"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAcceptedPortfolioSharesRequest method.
+//	req, resp := client.ListAcceptedPortfolioSharesRequest(params)
 //
-//    // Example sending a request using the ListAcceptedPortfolioSharesRequest method.
-//    req, resp := client.ListAcceptedPortfolioSharesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListAcceptedPortfolioShares
 func (c *ServiceCatalog) ListAcceptedPortfolioSharesRequest(input *ListAcceptedPortfolioSharesInput) (req *request.Request, output *ListAcceptedPortfolioSharesOutput) {
@@ -4843,7 +4916,9 @@ func (c *ServiceCatalog) ListAcceptedPortfolioSharesRequest(input *ListAcceptedP
 
 // ListAcceptedPortfolioShares API operation for AWS Service Catalog.
 //
-// Lists all portfolios for which sharing was accepted by this account.
+// Lists all imported portfolios for which account-to-account shares were accepted
+// by this account. By specifying the PortfolioShareType, you can list portfolios
+// for which organizational shares were accepted by this account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4853,11 +4928,12 @@ func (c *ServiceCatalog) ListAcceptedPortfolioSharesRequest(input *ListAcceptedP
 // API operation ListAcceptedPortfolioShares for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * OperationNotSupportedException
-//   The operation is not supported.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - OperationNotSupportedException
+//     The operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListAcceptedPortfolioShares
 func (c *ServiceCatalog) ListAcceptedPortfolioShares(input *ListAcceptedPortfolioSharesInput) (*ListAcceptedPortfolioSharesOutput, error) {
@@ -4889,15 +4965,14 @@ func (c *ServiceCatalog) ListAcceptedPortfolioSharesWithContext(ctx aws.Context,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAcceptedPortfolioShares operation.
-//    pageNum := 0
-//    err := client.ListAcceptedPortfolioSharesPages(params,
-//        func(page *servicecatalog.ListAcceptedPortfolioSharesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAcceptedPortfolioShares operation.
+//	pageNum := 0
+//	err := client.ListAcceptedPortfolioSharesPages(params,
+//	    func(page *servicecatalog.ListAcceptedPortfolioSharesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListAcceptedPortfolioSharesPages(input *ListAcceptedPortfolioSharesInput, fn func(*ListAcceptedPortfolioSharesOutput, bool) bool) error {
 	return c.ListAcceptedPortfolioSharesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4949,14 +5024,13 @@ const opListBudgetsForResource = "ListBudgetsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBudgetsForResourceRequest method.
+//	req, resp := client.ListBudgetsForResourceRequest(params)
 //
-//    // Example sending a request using the ListBudgetsForResourceRequest method.
-//    req, resp := client.ListBudgetsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListBudgetsForResource
 func (c *ServiceCatalog) ListBudgetsForResourceRequest(input *ListBudgetsForResourceInput) (req *request.Request, output *ListBudgetsForResourceOutput) {
@@ -4993,11 +5067,12 @@ func (c *ServiceCatalog) ListBudgetsForResourceRequest(input *ListBudgetsForReso
 // API operation ListBudgetsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListBudgetsForResource
 func (c *ServiceCatalog) ListBudgetsForResource(input *ListBudgetsForResourceInput) (*ListBudgetsForResourceOutput, error) {
@@ -5029,15 +5104,14 @@ func (c *ServiceCatalog) ListBudgetsForResourceWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBudgetsForResource operation.
-//    pageNum := 0
-//    err := client.ListBudgetsForResourcePages(params,
-//        func(page *servicecatalog.ListBudgetsForResourceOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBudgetsForResource operation.
+//	pageNum := 0
+//	err := client.ListBudgetsForResourcePages(params,
+//	    func(page *servicecatalog.ListBudgetsForResourceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListBudgetsForResourcePages(input *ListBudgetsForResourceInput, fn func(*ListBudgetsForResourceOutput, bool) bool) error {
 	return c.ListBudgetsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5089,14 +5163,13 @@ const opListConstraintsForPortfolio = "ListConstraintsForPortfolio"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListConstraintsForPortfolioRequest method.
+//	req, resp := client.ListConstraintsForPortfolioRequest(params)
 //
-//    // Example sending a request using the ListConstraintsForPortfolioRequest method.
-//    req, resp := client.ListConstraintsForPortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListConstraintsForPortfolio
 func (c *ServiceCatalog) ListConstraintsForPortfolioRequest(input *ListConstraintsForPortfolioInput) (req *request.Request, output *ListConstraintsForPortfolioOutput) {
@@ -5133,11 +5206,12 @@ func (c *ServiceCatalog) ListConstraintsForPortfolioRequest(input *ListConstrain
 // API operation ListConstraintsForPortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListConstraintsForPortfolio
 func (c *ServiceCatalog) ListConstraintsForPortfolio(input *ListConstraintsForPortfolioInput) (*ListConstraintsForPortfolioOutput, error) {
@@ -5169,15 +5243,14 @@ func (c *ServiceCatalog) ListConstraintsForPortfolioWithContext(ctx aws.Context,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListConstraintsForPortfolio operation.
-//    pageNum := 0
-//    err := client.ListConstraintsForPortfolioPages(params,
-//        func(page *servicecatalog.ListConstraintsForPortfolioOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListConstraintsForPortfolio operation.
+//	pageNum := 0
+//	err := client.ListConstraintsForPortfolioPages(params,
+//	    func(page *servicecatalog.ListConstraintsForPortfolioOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListConstraintsForPortfolioPages(input *ListConstraintsForPortfolioInput, fn func(*ListConstraintsForPortfolioOutput, bool) bool) error {
 	return c.ListConstraintsForPortfolioPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5229,14 +5302,13 @@ const opListLaunchPaths = "ListLaunchPaths"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLaunchPathsRequest method.
+//	req, resp := client.ListLaunchPathsRequest(params)
 //
-//    // Example sending a request using the ListLaunchPathsRequest method.
-//    req, resp := client.ListLaunchPathsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListLaunchPaths
 func (c *ServiceCatalog) ListLaunchPathsRequest(input *ListLaunchPathsInput) (req *request.Request, output *ListLaunchPathsOutput) {
@@ -5263,9 +5335,15 @@ func (c *ServiceCatalog) ListLaunchPathsRequest(input *ListLaunchPathsInput) (re
 
 // ListLaunchPaths API operation for AWS Service Catalog.
 //
-// Lists the paths to the specified product. A path is how the user has access
-// to a specified product, and is necessary when provisioning a product. A path
-// also determines the constraints put on the product.
+// Lists the paths to the specified product. A path describes how the user gets
+// access to a specified product and is necessary when provisioning a product.
+// A path also determines the constraints that are put on a product. A path
+// is dependent on a specific product, porfolio, and principal.
+//
+// When provisioning a product that's been added to a portfolio, you must grant
+// your user, group, or role access to the portfolio. For more information,
+// see Granting users access (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/catalogs_portfolios_users.html)
+// in the Service Catalog User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5275,11 +5353,12 @@ func (c *ServiceCatalog) ListLaunchPathsRequest(input *ListLaunchPathsInput) (re
 // API operation ListLaunchPaths for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListLaunchPaths
 func (c *ServiceCatalog) ListLaunchPaths(input *ListLaunchPathsInput) (*ListLaunchPathsOutput, error) {
@@ -5311,15 +5390,14 @@ func (c *ServiceCatalog) ListLaunchPathsWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListLaunchPaths operation.
-//    pageNum := 0
-//    err := client.ListLaunchPathsPages(params,
-//        func(page *servicecatalog.ListLaunchPathsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListLaunchPaths operation.
+//	pageNum := 0
+//	err := client.ListLaunchPathsPages(params,
+//	    func(page *servicecatalog.ListLaunchPathsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListLaunchPathsPages(input *ListLaunchPathsInput, fn func(*ListLaunchPathsOutput, bool) bool) error {
 	return c.ListLaunchPathsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5371,14 +5449,13 @@ const opListOrganizationPortfolioAccess = "ListOrganizationPortfolioAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListOrganizationPortfolioAccessRequest method.
+//	req, resp := client.ListOrganizationPortfolioAccessRequest(params)
 //
-//    // Example sending a request using the ListOrganizationPortfolioAccessRequest method.
-//    req, resp := client.ListOrganizationPortfolioAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListOrganizationPortfolioAccess
 func (c *ServiceCatalog) ListOrganizationPortfolioAccessRequest(input *ListOrganizationPortfolioAccessInput) (req *request.Request, output *ListOrganizationPortfolioAccessOutput) {
@@ -5419,14 +5496,15 @@ func (c *ServiceCatalog) ListOrganizationPortfolioAccessRequest(input *ListOrgan
 // API operation ListOrganizationPortfolioAccess for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * OperationNotSupportedException
-//   The operation is not supported.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - OperationNotSupportedException
+//     The operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListOrganizationPortfolioAccess
 func (c *ServiceCatalog) ListOrganizationPortfolioAccess(input *ListOrganizationPortfolioAccessInput) (*ListOrganizationPortfolioAccessOutput, error) {
@@ -5458,15 +5536,14 @@ func (c *ServiceCatalog) ListOrganizationPortfolioAccessWithContext(ctx aws.Cont
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListOrganizationPortfolioAccess operation.
-//    pageNum := 0
-//    err := client.ListOrganizationPortfolioAccessPages(params,
-//        func(page *servicecatalog.ListOrganizationPortfolioAccessOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListOrganizationPortfolioAccess operation.
+//	pageNum := 0
+//	err := client.ListOrganizationPortfolioAccessPages(params,
+//	    func(page *servicecatalog.ListOrganizationPortfolioAccessOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListOrganizationPortfolioAccessPages(input *ListOrganizationPortfolioAccessInput, fn func(*ListOrganizationPortfolioAccessOutput, bool) bool) error {
 	return c.ListOrganizationPortfolioAccessPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5518,14 +5595,13 @@ const opListPortfolioAccess = "ListPortfolioAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPortfolioAccessRequest method.
+//	req, resp := client.ListPortfolioAccessRequest(params)
 //
-//    // Example sending a request using the ListPortfolioAccessRequest method.
-//    req, resp := client.ListPortfolioAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolioAccess
 func (c *ServiceCatalog) ListPortfolioAccessRequest(input *ListPortfolioAccessInput) (req *request.Request, output *ListPortfolioAccessOutput) {
@@ -5566,11 +5642,12 @@ func (c *ServiceCatalog) ListPortfolioAccessRequest(input *ListPortfolioAccessIn
 // API operation ListPortfolioAccess for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolioAccess
 func (c *ServiceCatalog) ListPortfolioAccess(input *ListPortfolioAccessInput) (*ListPortfolioAccessOutput, error) {
@@ -5602,15 +5679,14 @@ func (c *ServiceCatalog) ListPortfolioAccessWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPortfolioAccess operation.
-//    pageNum := 0
-//    err := client.ListPortfolioAccessPages(params,
-//        func(page *servicecatalog.ListPortfolioAccessOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPortfolioAccess operation.
+//	pageNum := 0
+//	err := client.ListPortfolioAccessPages(params,
+//	    func(page *servicecatalog.ListPortfolioAccessOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListPortfolioAccessPages(input *ListPortfolioAccessInput, fn func(*ListPortfolioAccessOutput, bool) bool) error {
 	return c.ListPortfolioAccessPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5662,14 +5738,13 @@ const opListPortfolios = "ListPortfolios"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPortfoliosRequest method.
+//	req, resp := client.ListPortfoliosRequest(params)
 //
-//    // Example sending a request using the ListPortfoliosRequest method.
-//    req, resp := client.ListPortfoliosRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolios
 func (c *ServiceCatalog) ListPortfoliosRequest(input *ListPortfoliosInput) (req *request.Request, output *ListPortfoliosOutput) {
@@ -5706,8 +5781,8 @@ func (c *ServiceCatalog) ListPortfoliosRequest(input *ListPortfoliosInput) (req 
 // API operation ListPortfolios for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolios
 func (c *ServiceCatalog) ListPortfolios(input *ListPortfoliosInput) (*ListPortfoliosOutput, error) {
@@ -5739,15 +5814,14 @@ func (c *ServiceCatalog) ListPortfoliosWithContext(ctx aws.Context, input *ListP
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPortfolios operation.
-//    pageNum := 0
-//    err := client.ListPortfoliosPages(params,
-//        func(page *servicecatalog.ListPortfoliosOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPortfolios operation.
+//	pageNum := 0
+//	err := client.ListPortfoliosPages(params,
+//	    func(page *servicecatalog.ListPortfoliosOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListPortfoliosPages(input *ListPortfoliosInput, fn func(*ListPortfoliosOutput, bool) bool) error {
 	return c.ListPortfoliosPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5799,14 +5873,13 @@ const opListPortfoliosForProduct = "ListPortfoliosForProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPortfoliosForProductRequest method.
+//	req, resp := client.ListPortfoliosForProductRequest(params)
 //
-//    // Example sending a request using the ListPortfoliosForProductRequest method.
-//    req, resp := client.ListPortfoliosForProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosForProduct
 func (c *ServiceCatalog) ListPortfoliosForProductRequest(input *ListPortfoliosForProductInput) (req *request.Request, output *ListPortfoliosForProductOutput) {
@@ -5843,11 +5916,12 @@ func (c *ServiceCatalog) ListPortfoliosForProductRequest(input *ListPortfoliosFo
 // API operation ListPortfoliosForProduct for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosForProduct
 func (c *ServiceCatalog) ListPortfoliosForProduct(input *ListPortfoliosForProductInput) (*ListPortfoliosForProductOutput, error) {
@@ -5879,15 +5953,14 @@ func (c *ServiceCatalog) ListPortfoliosForProductWithContext(ctx aws.Context, in
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPortfoliosForProduct operation.
-//    pageNum := 0
-//    err := client.ListPortfoliosForProductPages(params,
-//        func(page *servicecatalog.ListPortfoliosForProductOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPortfoliosForProduct operation.
+//	pageNum := 0
+//	err := client.ListPortfoliosForProductPages(params,
+//	    func(page *servicecatalog.ListPortfoliosForProductOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListPortfoliosForProductPages(input *ListPortfoliosForProductInput, fn func(*ListPortfoliosForProductOutput, bool) bool) error {
 	return c.ListPortfoliosForProductPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5939,14 +6012,13 @@ const opListPrincipalsForPortfolio = "ListPrincipalsForPortfolio"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPrincipalsForPortfolioRequest method.
+//	req, resp := client.ListPrincipalsForPortfolioRequest(params)
 //
-//    // Example sending a request using the ListPrincipalsForPortfolioRequest method.
-//    req, resp := client.ListPrincipalsForPortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPrincipalsForPortfolio
 func (c *ServiceCatalog) ListPrincipalsForPortfolioRequest(input *ListPrincipalsForPortfolioInput) (req *request.Request, output *ListPrincipalsForPortfolioOutput) {
@@ -5973,7 +6045,8 @@ func (c *ServiceCatalog) ListPrincipalsForPortfolioRequest(input *ListPrincipals
 
 // ListPrincipalsForPortfolio API operation for AWS Service Catalog.
 //
-// Lists all principal ARNs associated with the specified portfolio.
+// Lists all PrincipalARNs and corresponding PrincipalTypes associated with
+// the specified portfolio.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5983,11 +6056,12 @@ func (c *ServiceCatalog) ListPrincipalsForPortfolioRequest(input *ListPrincipals
 // API operation ListPrincipalsForPortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPrincipalsForPortfolio
 func (c *ServiceCatalog) ListPrincipalsForPortfolio(input *ListPrincipalsForPortfolioInput) (*ListPrincipalsForPortfolioOutput, error) {
@@ -6019,15 +6093,14 @@ func (c *ServiceCatalog) ListPrincipalsForPortfolioWithContext(ctx aws.Context, 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPrincipalsForPortfolio operation.
-//    pageNum := 0
-//    err := client.ListPrincipalsForPortfolioPages(params,
-//        func(page *servicecatalog.ListPrincipalsForPortfolioOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPrincipalsForPortfolio operation.
+//	pageNum := 0
+//	err := client.ListPrincipalsForPortfolioPages(params,
+//	    func(page *servicecatalog.ListPrincipalsForPortfolioOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListPrincipalsForPortfolioPages(input *ListPrincipalsForPortfolioInput, fn func(*ListPrincipalsForPortfolioOutput, bool) bool) error {
 	return c.ListPrincipalsForPortfolioPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6079,14 +6152,13 @@ const opListProvisionedProductPlans = "ListProvisionedProductPlans"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProvisionedProductPlansRequest method.
+//	req, resp := client.ListProvisionedProductPlansRequest(params)
 //
-//    // Example sending a request using the ListProvisionedProductPlansRequest method.
-//    req, resp := client.ListProvisionedProductPlansRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisionedProductPlans
 func (c *ServiceCatalog) ListProvisionedProductPlansRequest(input *ListProvisionedProductPlansInput) (req *request.Request, output *ListProvisionedProductPlansOutput) {
@@ -6118,11 +6190,12 @@ func (c *ServiceCatalog) ListProvisionedProductPlansRequest(input *ListProvision
 // API operation ListProvisionedProductPlans for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisionedProductPlans
 func (c *ServiceCatalog) ListProvisionedProductPlans(input *ListProvisionedProductPlansInput) (*ListProvisionedProductPlansOutput, error) {
@@ -6162,14 +6235,13 @@ const opListProvisioningArtifacts = "ListProvisioningArtifacts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProvisioningArtifactsRequest method.
+//	req, resp := client.ListProvisioningArtifactsRequest(params)
 //
-//    // Example sending a request using the ListProvisioningArtifactsRequest method.
-//    req, resp := client.ListProvisioningArtifactsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifacts
 func (c *ServiceCatalog) ListProvisioningArtifactsRequest(input *ListProvisioningArtifactsInput) (req *request.Request, output *ListProvisioningArtifactsOutput) {
@@ -6201,11 +6273,12 @@ func (c *ServiceCatalog) ListProvisioningArtifactsRequest(input *ListProvisionin
 // API operation ListProvisioningArtifacts for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifacts
 func (c *ServiceCatalog) ListProvisioningArtifacts(input *ListProvisioningArtifactsInput) (*ListProvisioningArtifactsOutput, error) {
@@ -6245,14 +6318,13 @@ const opListProvisioningArtifactsForServiceAction = "ListProvisioningArtifactsFo
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProvisioningArtifactsForServiceActionRequest method.
+//	req, resp := client.ListProvisioningArtifactsForServiceActionRequest(params)
 //
-//    // Example sending a request using the ListProvisioningArtifactsForServiceActionRequest method.
-//    req, resp := client.ListProvisioningArtifactsForServiceActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifactsForServiceAction
 func (c *ServiceCatalog) ListProvisioningArtifactsForServiceActionRequest(input *ListProvisioningArtifactsForServiceActionInput) (req *request.Request, output *ListProvisioningArtifactsForServiceActionOutput) {
@@ -6290,11 +6362,12 @@ func (c *ServiceCatalog) ListProvisioningArtifactsForServiceActionRequest(input 
 // API operation ListProvisioningArtifactsForServiceAction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifactsForServiceAction
 func (c *ServiceCatalog) ListProvisioningArtifactsForServiceAction(input *ListProvisioningArtifactsForServiceActionInput) (*ListProvisioningArtifactsForServiceActionOutput, error) {
@@ -6326,15 +6399,14 @@ func (c *ServiceCatalog) ListProvisioningArtifactsForServiceActionWithContext(ct
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProvisioningArtifactsForServiceAction operation.
-//    pageNum := 0
-//    err := client.ListProvisioningArtifactsForServiceActionPages(params,
-//        func(page *servicecatalog.ListProvisioningArtifactsForServiceActionOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProvisioningArtifactsForServiceAction operation.
+//	pageNum := 0
+//	err := client.ListProvisioningArtifactsForServiceActionPages(params,
+//	    func(page *servicecatalog.ListProvisioningArtifactsForServiceActionOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListProvisioningArtifactsForServiceActionPages(input *ListProvisioningArtifactsForServiceActionInput, fn func(*ListProvisioningArtifactsForServiceActionOutput, bool) bool) error {
 	return c.ListProvisioningArtifactsForServiceActionPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6386,14 +6458,13 @@ const opListRecordHistory = "ListRecordHistory"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRecordHistoryRequest method.
+//	req, resp := client.ListRecordHistoryRequest(params)
 //
-//    // Example sending a request using the ListRecordHistoryRequest method.
-//    req, resp := client.ListRecordHistoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistory
 func (c *ServiceCatalog) ListRecordHistoryRequest(input *ListRecordHistoryInput) (req *request.Request, output *ListRecordHistoryOutput) {
@@ -6424,8 +6495,8 @@ func (c *ServiceCatalog) ListRecordHistoryRequest(input *ListRecordHistoryInput)
 // API operation ListRecordHistory for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistory
 func (c *ServiceCatalog) ListRecordHistory(input *ListRecordHistoryInput) (*ListRecordHistoryOutput, error) {
@@ -6465,14 +6536,13 @@ const opListResourcesForTagOption = "ListResourcesForTagOption"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResourcesForTagOptionRequest method.
+//	req, resp := client.ListResourcesForTagOptionRequest(params)
 //
-//    // Example sending a request using the ListResourcesForTagOptionRequest method.
-//    req, resp := client.ListResourcesForTagOptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListResourcesForTagOption
 func (c *ServiceCatalog) ListResourcesForTagOptionRequest(input *ListResourcesForTagOptionInput) (req *request.Request, output *ListResourcesForTagOptionOutput) {
@@ -6509,16 +6579,17 @@ func (c *ServiceCatalog) ListResourcesForTagOptionRequest(input *ListResourcesFo
 // API operation ListResourcesForTagOption for usage and error information.
 //
 // Returned Error Types:
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListResourcesForTagOption
 func (c *ServiceCatalog) ListResourcesForTagOption(input *ListResourcesForTagOptionInput) (*ListResourcesForTagOptionOutput, error) {
@@ -6550,15 +6621,14 @@ func (c *ServiceCatalog) ListResourcesForTagOptionWithContext(ctx aws.Context, i
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResourcesForTagOption operation.
-//    pageNum := 0
-//    err := client.ListResourcesForTagOptionPages(params,
-//        func(page *servicecatalog.ListResourcesForTagOptionOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResourcesForTagOption operation.
+//	pageNum := 0
+//	err := client.ListResourcesForTagOptionPages(params,
+//	    func(page *servicecatalog.ListResourcesForTagOptionOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListResourcesForTagOptionPages(input *ListResourcesForTagOptionInput, fn func(*ListResourcesForTagOptionOutput, bool) bool) error {
 	return c.ListResourcesForTagOptionPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6610,14 +6680,13 @@ const opListServiceActions = "ListServiceActions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListServiceActionsRequest method.
+//	req, resp := client.ListServiceActionsRequest(params)
 //
-//    // Example sending a request using the ListServiceActionsRequest method.
-//    req, resp := client.ListServiceActionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListServiceActions
 func (c *ServiceCatalog) ListServiceActionsRequest(input *ListServiceActionsInput) (req *request.Request, output *ListServiceActionsOutput) {
@@ -6654,8 +6723,8 @@ func (c *ServiceCatalog) ListServiceActionsRequest(input *ListServiceActionsInpu
 // API operation ListServiceActions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListServiceActions
 func (c *ServiceCatalog) ListServiceActions(input *ListServiceActionsInput) (*ListServiceActionsOutput, error) {
@@ -6687,15 +6756,14 @@ func (c *ServiceCatalog) ListServiceActionsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListServiceActions operation.
-//    pageNum := 0
-//    err := client.ListServiceActionsPages(params,
-//        func(page *servicecatalog.ListServiceActionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListServiceActions operation.
+//	pageNum := 0
+//	err := client.ListServiceActionsPages(params,
+//	    func(page *servicecatalog.ListServiceActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListServiceActionsPages(input *ListServiceActionsInput, fn func(*ListServiceActionsOutput, bool) bool) error {
 	return c.ListServiceActionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6747,14 +6815,13 @@ const opListServiceActionsForProvisioningArtifact = "ListServiceActionsForProvis
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListServiceActionsForProvisioningArtifactRequest method.
+//	req, resp := client.ListServiceActionsForProvisioningArtifactRequest(params)
 //
-//    // Example sending a request using the ListServiceActionsForProvisioningArtifactRequest method.
-//    req, resp := client.ListServiceActionsForProvisioningArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListServiceActionsForProvisioningArtifact
 func (c *ServiceCatalog) ListServiceActionsForProvisioningArtifactRequest(input *ListServiceActionsForProvisioningArtifactInput) (req *request.Request, output *ListServiceActionsForProvisioningArtifactOutput) {
@@ -6792,11 +6859,12 @@ func (c *ServiceCatalog) ListServiceActionsForProvisioningArtifactRequest(input 
 // API operation ListServiceActionsForProvisioningArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListServiceActionsForProvisioningArtifact
 func (c *ServiceCatalog) ListServiceActionsForProvisioningArtifact(input *ListServiceActionsForProvisioningArtifactInput) (*ListServiceActionsForProvisioningArtifactOutput, error) {
@@ -6828,15 +6896,14 @@ func (c *ServiceCatalog) ListServiceActionsForProvisioningArtifactWithContext(ct
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListServiceActionsForProvisioningArtifact operation.
-//    pageNum := 0
-//    err := client.ListServiceActionsForProvisioningArtifactPages(params,
-//        func(page *servicecatalog.ListServiceActionsForProvisioningArtifactOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListServiceActionsForProvisioningArtifact operation.
+//	pageNum := 0
+//	err := client.ListServiceActionsForProvisioningArtifactPages(params,
+//	    func(page *servicecatalog.ListServiceActionsForProvisioningArtifactOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListServiceActionsForProvisioningArtifactPages(input *ListServiceActionsForProvisioningArtifactInput, fn func(*ListServiceActionsForProvisioningArtifactOutput, bool) bool) error {
 	return c.ListServiceActionsForProvisioningArtifactPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6888,14 +6955,13 @@ const opListStackInstancesForProvisionedProduct = "ListStackInstancesForProvisio
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListStackInstancesForProvisionedProductRequest method.
+//	req, resp := client.ListStackInstancesForProvisionedProductRequest(params)
 //
-//    // Example sending a request using the ListStackInstancesForProvisionedProductRequest method.
-//    req, resp := client.ListStackInstancesForProvisionedProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListStackInstancesForProvisionedProduct
 func (c *ServiceCatalog) ListStackInstancesForProvisionedProductRequest(input *ListStackInstancesForProvisionedProductInput) (req *request.Request, output *ListStackInstancesForProvisionedProductOutput) {
@@ -6918,7 +6984,8 @@ func (c *ServiceCatalog) ListStackInstancesForProvisionedProductRequest(input *L
 //
 // Returns summary information about stack instances that are associated with
 // the specified CFN_STACKSET type provisioned product. You can filter for stack
-// instances that are associated with a specific AWS account name or region.
+// instances that are associated with a specific Amazon Web Services account
+// name or Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6928,11 +6995,12 @@ func (c *ServiceCatalog) ListStackInstancesForProvisionedProductRequest(input *L
 // API operation ListStackInstancesForProvisionedProduct for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListStackInstancesForProvisionedProduct
 func (c *ServiceCatalog) ListStackInstancesForProvisionedProduct(input *ListStackInstancesForProvisionedProductInput) (*ListStackInstancesForProvisionedProductOutput, error) {
@@ -6972,14 +7040,13 @@ const opListTagOptions = "ListTagOptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagOptionsRequest method.
+//	req, resp := client.ListTagOptionsRequest(params)
 //
-//    // Example sending a request using the ListTagOptionsRequest method.
-//    req, resp := client.ListTagOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListTagOptions
 func (c *ServiceCatalog) ListTagOptionsRequest(input *ListTagOptionsInput) (req *request.Request, output *ListTagOptionsOutput) {
@@ -7016,13 +7083,14 @@ func (c *ServiceCatalog) ListTagOptionsRequest(input *ListTagOptionsInput) (req 
 // API operation ListTagOptions for usage and error information.
 //
 // Returned Error Types:
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListTagOptions
 func (c *ServiceCatalog) ListTagOptions(input *ListTagOptionsInput) (*ListTagOptionsOutput, error) {
@@ -7054,15 +7122,14 @@ func (c *ServiceCatalog) ListTagOptionsWithContext(ctx aws.Context, input *ListT
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTagOptions operation.
-//    pageNum := 0
-//    err := client.ListTagOptionsPages(params,
-//        func(page *servicecatalog.ListTagOptionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTagOptions operation.
+//	pageNum := 0
+//	err := client.ListTagOptionsPages(params,
+//	    func(page *servicecatalog.ListTagOptionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) ListTagOptionsPages(input *ListTagOptionsInput, fn func(*ListTagOptionsOutput, bool) bool) error {
 	return c.ListTagOptionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7098,6 +7165,255 @@ func (c *ServiceCatalog) ListTagOptionsPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opNotifyProvisionProductEngineWorkflowResult = "NotifyProvisionProductEngineWorkflowResult"
+
+// NotifyProvisionProductEngineWorkflowResultRequest generates a "aws/request.Request" representing the
+// client's request for the NotifyProvisionProductEngineWorkflowResult operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See NotifyProvisionProductEngineWorkflowResult for more information on using the NotifyProvisionProductEngineWorkflowResult
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the NotifyProvisionProductEngineWorkflowResultRequest method.
+//	req, resp := client.NotifyProvisionProductEngineWorkflowResultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyProvisionProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyProvisionProductEngineWorkflowResultRequest(input *NotifyProvisionProductEngineWorkflowResultInput) (req *request.Request, output *NotifyProvisionProductEngineWorkflowResultOutput) {
+	op := &request.Operation{
+		Name:       opNotifyProvisionProductEngineWorkflowResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &NotifyProvisionProductEngineWorkflowResultInput{}
+	}
+
+	output = &NotifyProvisionProductEngineWorkflowResultOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// NotifyProvisionProductEngineWorkflowResult API operation for AWS Service Catalog.
+//
+// Notifies the result of the provisioning engine execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation NotifyProvisionProductEngineWorkflowResult for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyProvisionProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyProvisionProductEngineWorkflowResult(input *NotifyProvisionProductEngineWorkflowResultInput) (*NotifyProvisionProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyProvisionProductEngineWorkflowResultRequest(input)
+	return out, req.Send()
+}
+
+// NotifyProvisionProductEngineWorkflowResultWithContext is the same as NotifyProvisionProductEngineWorkflowResult with the addition of
+// the ability to pass a context and additional request options.
+//
+// See NotifyProvisionProductEngineWorkflowResult for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) NotifyProvisionProductEngineWorkflowResultWithContext(ctx aws.Context, input *NotifyProvisionProductEngineWorkflowResultInput, opts ...request.Option) (*NotifyProvisionProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyProvisionProductEngineWorkflowResultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opNotifyTerminateProvisionedProductEngineWorkflowResult = "NotifyTerminateProvisionedProductEngineWorkflowResult"
+
+// NotifyTerminateProvisionedProductEngineWorkflowResultRequest generates a "aws/request.Request" representing the
+// client's request for the NotifyTerminateProvisionedProductEngineWorkflowResult operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See NotifyTerminateProvisionedProductEngineWorkflowResult for more information on using the NotifyTerminateProvisionedProductEngineWorkflowResult
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the NotifyTerminateProvisionedProductEngineWorkflowResultRequest method.
+//	req, resp := client.NotifyTerminateProvisionedProductEngineWorkflowResultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyTerminateProvisionedProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyTerminateProvisionedProductEngineWorkflowResultRequest(input *NotifyTerminateProvisionedProductEngineWorkflowResultInput) (req *request.Request, output *NotifyTerminateProvisionedProductEngineWorkflowResultOutput) {
+	op := &request.Operation{
+		Name:       opNotifyTerminateProvisionedProductEngineWorkflowResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &NotifyTerminateProvisionedProductEngineWorkflowResultInput{}
+	}
+
+	output = &NotifyTerminateProvisionedProductEngineWorkflowResultOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// NotifyTerminateProvisionedProductEngineWorkflowResult API operation for AWS Service Catalog.
+//
+// Notifies the result of the terminate engine execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation NotifyTerminateProvisionedProductEngineWorkflowResult for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyTerminateProvisionedProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyTerminateProvisionedProductEngineWorkflowResult(input *NotifyTerminateProvisionedProductEngineWorkflowResultInput) (*NotifyTerminateProvisionedProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyTerminateProvisionedProductEngineWorkflowResultRequest(input)
+	return out, req.Send()
+}
+
+// NotifyTerminateProvisionedProductEngineWorkflowResultWithContext is the same as NotifyTerminateProvisionedProductEngineWorkflowResult with the addition of
+// the ability to pass a context and additional request options.
+//
+// See NotifyTerminateProvisionedProductEngineWorkflowResult for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) NotifyTerminateProvisionedProductEngineWorkflowResultWithContext(ctx aws.Context, input *NotifyTerminateProvisionedProductEngineWorkflowResultInput, opts ...request.Option) (*NotifyTerminateProvisionedProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyTerminateProvisionedProductEngineWorkflowResultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opNotifyUpdateProvisionedProductEngineWorkflowResult = "NotifyUpdateProvisionedProductEngineWorkflowResult"
+
+// NotifyUpdateProvisionedProductEngineWorkflowResultRequest generates a "aws/request.Request" representing the
+// client's request for the NotifyUpdateProvisionedProductEngineWorkflowResult operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See NotifyUpdateProvisionedProductEngineWorkflowResult for more information on using the NotifyUpdateProvisionedProductEngineWorkflowResult
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the NotifyUpdateProvisionedProductEngineWorkflowResultRequest method.
+//	req, resp := client.NotifyUpdateProvisionedProductEngineWorkflowResultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyUpdateProvisionedProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyUpdateProvisionedProductEngineWorkflowResultRequest(input *NotifyUpdateProvisionedProductEngineWorkflowResultInput) (req *request.Request, output *NotifyUpdateProvisionedProductEngineWorkflowResultOutput) {
+	op := &request.Operation{
+		Name:       opNotifyUpdateProvisionedProductEngineWorkflowResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &NotifyUpdateProvisionedProductEngineWorkflowResultInput{}
+	}
+
+	output = &NotifyUpdateProvisionedProductEngineWorkflowResultOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// NotifyUpdateProvisionedProductEngineWorkflowResult API operation for AWS Service Catalog.
+//
+// Notifies the result of the update engine execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation NotifyUpdateProvisionedProductEngineWorkflowResult for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyUpdateProvisionedProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyUpdateProvisionedProductEngineWorkflowResult(input *NotifyUpdateProvisionedProductEngineWorkflowResultInput) (*NotifyUpdateProvisionedProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyUpdateProvisionedProductEngineWorkflowResultRequest(input)
+	return out, req.Send()
+}
+
+// NotifyUpdateProvisionedProductEngineWorkflowResultWithContext is the same as NotifyUpdateProvisionedProductEngineWorkflowResult with the addition of
+// the ability to pass a context and additional request options.
+//
+// See NotifyUpdateProvisionedProductEngineWorkflowResult for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) NotifyUpdateProvisionedProductEngineWorkflowResultWithContext(ctx aws.Context, input *NotifyUpdateProvisionedProductEngineWorkflowResultInput, opts ...request.Option) (*NotifyUpdateProvisionedProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyUpdateProvisionedProductEngineWorkflowResultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opProvisionProduct = "ProvisionProduct"
 
 // ProvisionProductRequest generates a "aws/request.Request" representing the
@@ -7114,14 +7430,13 @@ const opProvisionProduct = "ProvisionProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ProvisionProductRequest method.
+//	req, resp := client.ProvisionProductRequest(params)
 //
-//    // Example sending a request using the ProvisionProductRequest method.
-//    req, resp := client.ProvisionProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProduct
 func (c *ServiceCatalog) ProvisionProductRequest(input *ProvisionProductInput) (req *request.Request, output *ProvisionProductOutput) {
@@ -7145,14 +7460,19 @@ func (c *ServiceCatalog) ProvisionProductRequest(input *ProvisionProductInput) (
 // Provisions the specified product.
 //
 // A provisioned product is a resourced instance of a product. For example,
-// provisioning a product based on a CloudFormation template launches a CloudFormation
-// stack and its underlying resources. You can check the status of this request
-// using DescribeRecord.
+// provisioning a product that's based on an CloudFormation template launches
+// an CloudFormation stack and its underlying resources. You can check the status
+// of this request using DescribeRecord.
 //
-// If the request contains a tag key with an empty list of values, there is
-// a tag conflict for that key. Do not include conflicted keys as tags, or this
-// causes the error "Parameter validation failed: Missing required parameter
+// If the request contains a tag key with an empty list of values, there's a
+// tag conflict for that key. Don't include conflicted keys as tags, or this
+// will cause the error "Parameter validation failed: Missing required parameter
 // in Tags[N]:Value".
+//
+// When provisioning a product that's been added to a portfolio, you must grant
+// your user, group, or role access to the portfolio. For more information,
+// see Granting users access (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/catalogs_portfolios_users.html)
+// in the Service Catalog User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7162,14 +7482,15 @@ func (c *ServiceCatalog) ProvisionProductRequest(input *ProvisionProductInput) (
 // API operation ProvisionProduct for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * DuplicateResourceException
-//   The specified resource is a duplicate.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - DuplicateResourceException
+//     The specified resource is a duplicate.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProduct
 func (c *ServiceCatalog) ProvisionProduct(input *ProvisionProductInput) (*ProvisionProductOutput, error) {
@@ -7209,14 +7530,13 @@ const opRejectPortfolioShare = "RejectPortfolioShare"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RejectPortfolioShareRequest method.
+//	req, resp := client.RejectPortfolioShareRequest(params)
 //
-//    // Example sending a request using the RejectPortfolioShareRequest method.
-//    req, resp := client.RejectPortfolioShareRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RejectPortfolioShare
 func (c *ServiceCatalog) RejectPortfolioShareRequest(input *RejectPortfolioShareInput) (req *request.Request, output *RejectPortfolioShareOutput) {
@@ -7248,8 +7568,8 @@ func (c *ServiceCatalog) RejectPortfolioShareRequest(input *RejectPortfolioShare
 // API operation RejectPortfolioShare for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RejectPortfolioShare
 func (c *ServiceCatalog) RejectPortfolioShare(input *RejectPortfolioShareInput) (*RejectPortfolioShareOutput, error) {
@@ -7289,14 +7609,13 @@ const opScanProvisionedProducts = "ScanProvisionedProducts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ScanProvisionedProductsRequest method.
+//	req, resp := client.ScanProvisionedProductsRequest(params)
 //
-//    // Example sending a request using the ScanProvisionedProductsRequest method.
-//    req, resp := client.ScanProvisionedProductsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ScanProvisionedProducts
 func (c *ServiceCatalog) ScanProvisionedProductsRequest(input *ScanProvisionedProductsInput) (req *request.Request, output *ScanProvisionedProductsOutput) {
@@ -7329,8 +7648,8 @@ func (c *ServiceCatalog) ScanProvisionedProductsRequest(input *ScanProvisionedPr
 // API operation ScanProvisionedProducts for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ScanProvisionedProducts
 func (c *ServiceCatalog) ScanProvisionedProducts(input *ScanProvisionedProductsInput) (*ScanProvisionedProductsOutput, error) {
@@ -7370,14 +7689,13 @@ const opSearchProducts = "SearchProducts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchProductsRequest method.
+//	req, resp := client.SearchProductsRequest(params)
 //
-//    // Example sending a request using the SearchProductsRequest method.
-//    req, resp := client.SearchProductsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProducts
 func (c *ServiceCatalog) SearchProductsRequest(input *SearchProductsInput) (req *request.Request, output *SearchProductsOutput) {
@@ -7414,8 +7732,8 @@ func (c *ServiceCatalog) SearchProductsRequest(input *SearchProductsInput) (req 
 // API operation SearchProducts for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProducts
 func (c *ServiceCatalog) SearchProducts(input *SearchProductsInput) (*SearchProductsOutput, error) {
@@ -7447,15 +7765,14 @@ func (c *ServiceCatalog) SearchProductsWithContext(ctx aws.Context, input *Searc
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchProducts operation.
-//    pageNum := 0
-//    err := client.SearchProductsPages(params,
-//        func(page *servicecatalog.SearchProductsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchProducts operation.
+//	pageNum := 0
+//	err := client.SearchProductsPages(params,
+//	    func(page *servicecatalog.SearchProductsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) SearchProductsPages(input *SearchProductsInput, fn func(*SearchProductsOutput, bool) bool) error {
 	return c.SearchProductsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7507,14 +7824,13 @@ const opSearchProductsAsAdmin = "SearchProductsAsAdmin"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchProductsAsAdminRequest method.
+//	req, resp := client.SearchProductsAsAdminRequest(params)
 //
-//    // Example sending a request using the SearchProductsAsAdminRequest method.
-//    req, resp := client.SearchProductsAsAdminRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsAsAdmin
 func (c *ServiceCatalog) SearchProductsAsAdminRequest(input *SearchProductsAsAdminInput) (req *request.Request, output *SearchProductsAsAdminOutput) {
@@ -7551,11 +7867,12 @@ func (c *ServiceCatalog) SearchProductsAsAdminRequest(input *SearchProductsAsAdm
 // API operation SearchProductsAsAdmin for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsAsAdmin
 func (c *ServiceCatalog) SearchProductsAsAdmin(input *SearchProductsAsAdminInput) (*SearchProductsAsAdminOutput, error) {
@@ -7587,15 +7904,14 @@ func (c *ServiceCatalog) SearchProductsAsAdminWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchProductsAsAdmin operation.
-//    pageNum := 0
-//    err := client.SearchProductsAsAdminPages(params,
-//        func(page *servicecatalog.SearchProductsAsAdminOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchProductsAsAdmin operation.
+//	pageNum := 0
+//	err := client.SearchProductsAsAdminPages(params,
+//	    func(page *servicecatalog.SearchProductsAsAdminOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) SearchProductsAsAdminPages(input *SearchProductsAsAdminInput, fn func(*SearchProductsAsAdminOutput, bool) bool) error {
 	return c.SearchProductsAsAdminPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7647,14 +7963,13 @@ const opSearchProvisionedProducts = "SearchProvisionedProducts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchProvisionedProductsRequest method.
+//	req, resp := client.SearchProvisionedProductsRequest(params)
 //
-//    // Example sending a request using the SearchProvisionedProductsRequest method.
-//    req, resp := client.SearchProvisionedProductsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProvisionedProducts
 func (c *ServiceCatalog) SearchProvisionedProductsRequest(input *SearchProvisionedProductsInput) (req *request.Request, output *SearchProvisionedProductsOutput) {
@@ -7691,8 +8006,8 @@ func (c *ServiceCatalog) SearchProvisionedProductsRequest(input *SearchProvision
 // API operation SearchProvisionedProducts for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProvisionedProducts
 func (c *ServiceCatalog) SearchProvisionedProducts(input *SearchProvisionedProductsInput) (*SearchProvisionedProductsOutput, error) {
@@ -7724,15 +8039,14 @@ func (c *ServiceCatalog) SearchProvisionedProductsWithContext(ctx aws.Context, i
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchProvisionedProducts operation.
-//    pageNum := 0
-//    err := client.SearchProvisionedProductsPages(params,
-//        func(page *servicecatalog.SearchProvisionedProductsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchProvisionedProducts operation.
+//	pageNum := 0
+//	err := client.SearchProvisionedProductsPages(params,
+//	    func(page *servicecatalog.SearchProvisionedProductsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServiceCatalog) SearchProvisionedProductsPages(input *SearchProvisionedProductsInput, fn func(*SearchProvisionedProductsOutput, bool) bool) error {
 	return c.SearchProvisionedProductsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7784,14 +8098,13 @@ const opTerminateProvisionedProduct = "TerminateProvisionedProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TerminateProvisionedProductRequest method.
+//	req, resp := client.TerminateProvisionedProductRequest(params)
 //
-//    // Example sending a request using the TerminateProvisionedProductRequest method.
-//    req, resp := client.TerminateProvisionedProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TerminateProvisionedProduct
 func (c *ServiceCatalog) TerminateProvisionedProductRequest(input *TerminateProvisionedProductInput) (req *request.Request, output *TerminateProvisionedProductOutput) {
@@ -7827,8 +8140,8 @@ func (c *ServiceCatalog) TerminateProvisionedProductRequest(input *TerminateProv
 // API operation TerminateProvisionedProduct for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TerminateProvisionedProduct
 func (c *ServiceCatalog) TerminateProvisionedProduct(input *TerminateProvisionedProductInput) (*TerminateProvisionedProductOutput, error) {
@@ -7868,14 +8181,13 @@ const opUpdateConstraint = "UpdateConstraint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConstraintRequest method.
+//	req, resp := client.UpdateConstraintRequest(params)
 //
-//    // Example sending a request using the UpdateConstraintRequest method.
-//    req, resp := client.UpdateConstraintRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateConstraint
 func (c *ServiceCatalog) UpdateConstraintRequest(input *UpdateConstraintInput) (req *request.Request, output *UpdateConstraintOutput) {
@@ -7906,11 +8218,12 @@ func (c *ServiceCatalog) UpdateConstraintRequest(input *UpdateConstraintInput) (
 // API operation UpdateConstraint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateConstraint
 func (c *ServiceCatalog) UpdateConstraint(input *UpdateConstraintInput) (*UpdateConstraintOutput, error) {
@@ -7950,14 +8263,13 @@ const opUpdatePortfolio = "UpdatePortfolio"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePortfolioRequest method.
+//	req, resp := client.UpdatePortfolioRequest(params)
 //
-//    // Example sending a request using the UpdatePortfolioRequest method.
-//    req, resp := client.UpdatePortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolio
 func (c *ServiceCatalog) UpdatePortfolioRequest(input *UpdatePortfolioInput) (req *request.Request, output *UpdatePortfolioOutput) {
@@ -7990,21 +8302,22 @@ func (c *ServiceCatalog) UpdatePortfolioRequest(input *UpdatePortfolioInput) (re
 // API operation UpdatePortfolio for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * LimitExceededException
-//   The current limits of the service would have been exceeded by this operation.
-//   Decrease your resource use or increase your service limits and retry the
-//   operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
+//   - LimitExceededException
+//     The current limits of the service would have been exceeded by this operation.
+//     Decrease your resource use or increase your service limits and retry the
+//     operation.
+//
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolio
 func (c *ServiceCatalog) UpdatePortfolio(input *UpdatePortfolioInput) (*UpdatePortfolioOutput, error) {
@@ -8044,14 +8357,13 @@ const opUpdatePortfolioShare = "UpdatePortfolioShare"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePortfolioShareRequest method.
+//	req, resp := client.UpdatePortfolioShareRequest(params)
 //
-//    // Example sending a request using the UpdatePortfolioShareRequest method.
-//    req, resp := client.UpdatePortfolioShareRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolioShare
 func (c *ServiceCatalog) UpdatePortfolioShareRequest(input *UpdatePortfolioShareInput) (req *request.Request, output *UpdatePortfolioShareOutput) {
@@ -8073,11 +8385,12 @@ func (c *ServiceCatalog) UpdatePortfolioShareRequest(input *UpdatePortfolioShare
 // UpdatePortfolioShare API operation for AWS Service Catalog.
 //
 // Updates the specified portfolio share. You can use this API to enable or
-// disable TagOptions sharing for an existing portfolio share.
+// disable TagOptions sharing or Principal sharing for an existing portfolio
+// share.
 //
 // The portfolio share cannot be updated if the CreatePortfolioShare operation
 // is IN_PROGRESS, as the share is not available to recipient entities. In this
-// case, you must wait for the portfolio share to be COMPLETED.
+// case, you must wait for the portfolio share to be completed.
 //
 // You must provide the accountId or organization node in the input, but not
 // both.
@@ -8089,6 +8402,17 @@ func (c *ServiceCatalog) UpdatePortfolioShareRequest(input *UpdatePortfolioShare
 // This API cannot be used for removing the portfolio share. You must use DeletePortfolioShare
 // API for that action.
 //
+// When you associate a principal with portfolio, a potential privilege escalation
+// path may occur when that portfolio is then shared with other accounts. For
+// a user in a recipient account who is not an Service Catalog Admin, but still
+// has the ability to create Principals (Users/Groups/Roles), that user could
+// create a role that matches a principal name association for the portfolio.
+// Although this user may not know which principal names are associated through
+// Service Catalog, they may be able to guess the user. If this potential escalation
+// path is a concern, then Service Catalog recommends using PrincipalType as
+// IAM. With this configuration, the PrincipalARN must already exist in the
+// recipient account before it can be associated.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8097,19 +8421,20 @@ func (c *ServiceCatalog) UpdatePortfolioShareRequest(input *UpdatePortfolioShare
 // API operation UpdatePortfolioShare for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * OperationNotSupportedException
-//   The operation is not supported.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - OperationNotSupportedException
+//     The operation is not supported.
+//
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolioShare
 func (c *ServiceCatalog) UpdatePortfolioShare(input *UpdatePortfolioShareInput) (*UpdatePortfolioShareOutput, error) {
@@ -8149,14 +8474,13 @@ const opUpdateProduct = "UpdateProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProductRequest method.
+//	req, resp := client.UpdateProductRequest(params)
 //
-//    // Example sending a request using the UpdateProductRequest method.
-//    req, resp := client.UpdateProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProduct
 func (c *ServiceCatalog) UpdateProductRequest(input *UpdateProductInput) (req *request.Request, output *UpdateProductOutput) {
@@ -8187,16 +8511,17 @@ func (c *ServiceCatalog) UpdateProductRequest(input *UpdateProductInput) (req *r
 // API operation UpdateProduct for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProduct
 func (c *ServiceCatalog) UpdateProduct(input *UpdateProductInput) (*UpdateProductOutput, error) {
@@ -8236,14 +8561,13 @@ const opUpdateProvisionedProduct = "UpdateProvisionedProduct"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProvisionedProductRequest method.
+//	req, resp := client.UpdateProvisionedProductRequest(params)
 //
-//    // Example sending a request using the UpdateProvisionedProductRequest method.
-//    req, resp := client.UpdateProvisionedProductRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProduct
 func (c *ServiceCatalog) UpdateProvisionedProductRequest(input *UpdateProvisionedProductInput) (req *request.Request, output *UpdateProvisionedProductOutput) {
@@ -8281,11 +8605,12 @@ func (c *ServiceCatalog) UpdateProvisionedProductRequest(input *UpdateProvisione
 // API operation UpdateProvisionedProduct for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProduct
 func (c *ServiceCatalog) UpdateProvisionedProduct(input *UpdateProvisionedProductInput) (*UpdateProvisionedProductOutput, error) {
@@ -8325,14 +8650,13 @@ const opUpdateProvisionedProductProperties = "UpdateProvisionedProductProperties
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProvisionedProductPropertiesRequest method.
+//	req, resp := client.UpdateProvisionedProductPropertiesRequest(params)
 //
-//    // Example sending a request using the UpdateProvisionedProductPropertiesRequest method.
-//    req, resp := client.UpdateProvisionedProductPropertiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProductProperties
 func (c *ServiceCatalog) UpdateProvisionedProductPropertiesRequest(input *UpdateProvisionedProductPropertiesInput) (req *request.Request, output *UpdateProvisionedProductPropertiesOutput) {
@@ -8363,16 +8687,17 @@ func (c *ServiceCatalog) UpdateProvisionedProductPropertiesRequest(input *Update
 // API operation UpdateProvisionedProductProperties for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
-//   * InvalidStateException
-//   An attempt was made to modify a resource that is in a state that is not valid.
-//   Check your resources to ensure that they are in valid states before retrying
-//   the operation.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidStateException
+//     An attempt was made to modify a resource that is in a state that is not valid.
+//     Check your resources to ensure that they are in valid states before retrying
+//     the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProductProperties
 func (c *ServiceCatalog) UpdateProvisionedProductProperties(input *UpdateProvisionedProductPropertiesInput) (*UpdateProvisionedProductPropertiesOutput, error) {
@@ -8412,14 +8737,13 @@ const opUpdateProvisioningArtifact = "UpdateProvisioningArtifact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProvisioningArtifactRequest method.
+//	req, resp := client.UpdateProvisioningArtifactRequest(params)
 //
-//    // Example sending a request using the UpdateProvisioningArtifactRequest method.
-//    req, resp := client.UpdateProvisioningArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifact
 func (c *ServiceCatalog) UpdateProvisioningArtifactRequest(input *UpdateProvisioningArtifactInput) (req *request.Request, output *UpdateProvisioningArtifactOutput) {
@@ -8454,11 +8778,12 @@ func (c *ServiceCatalog) UpdateProvisioningArtifactRequest(input *UpdateProvisio
 // API operation UpdateProvisioningArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifact
 func (c *ServiceCatalog) UpdateProvisioningArtifact(input *UpdateProvisioningArtifactInput) (*UpdateProvisioningArtifactOutput, error) {
@@ -8498,14 +8823,13 @@ const opUpdateServiceAction = "UpdateServiceAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateServiceActionRequest method.
+//	req, resp := client.UpdateServiceActionRequest(params)
 //
-//    // Example sending a request using the UpdateServiceActionRequest method.
-//    req, resp := client.UpdateServiceActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateServiceAction
 func (c *ServiceCatalog) UpdateServiceActionRequest(input *UpdateServiceActionInput) (req *request.Request, output *UpdateServiceActionOutput) {
@@ -8536,11 +8860,12 @@ func (c *ServiceCatalog) UpdateServiceActionRequest(input *UpdateServiceActionIn
 // API operation UpdateServiceAction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateServiceAction
 func (c *ServiceCatalog) UpdateServiceAction(input *UpdateServiceActionInput) (*UpdateServiceActionOutput, error) {
@@ -8580,14 +8905,13 @@ const opUpdateTagOption = "UpdateTagOption"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTagOptionRequest method.
+//	req, resp := client.UpdateTagOptionRequest(params)
 //
-//    // Example sending a request using the UpdateTagOptionRequest method.
-//    req, resp := client.UpdateTagOptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateTagOption
 func (c *ServiceCatalog) UpdateTagOptionRequest(input *UpdateTagOptionInput) (req *request.Request, output *UpdateTagOptionOutput) {
@@ -8618,19 +8942,20 @@ func (c *ServiceCatalog) UpdateTagOptionRequest(input *UpdateTagOptionInput) (re
 // API operation UpdateTagOption for usage and error information.
 //
 // Returned Error Types:
-//   * TagOptionNotMigratedException
-//   An operation requiring TagOptions failed because the TagOptions migration
-//   process has not been performed for this account. Please use the AWS console
-//   to perform the migration process before retrying the operation.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - TagOptionNotMigratedException
+//     An operation requiring TagOptions failed because the TagOptions migration
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
-//   * DuplicateResourceException
-//   The specified resource is a duplicate.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidParametersException
-//   One or more parameters provided to the operation are not valid.
+//   - DuplicateResourceException
+//     The specified resource is a duplicate.
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateTagOption
 func (c *ServiceCatalog) UpdateTagOption(input *UpdateTagOptionInput) (*UpdateTagOptionOutput, error) {
@@ -8659,8 +8984,6 @@ type AcceptPortfolioShareInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -8686,12 +9009,20 @@ type AcceptPortfolioShareInput struct {
 	PortfolioShareType *string `type:"string" enum:"PortfolioShareType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptPortfolioShareInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptPortfolioShareInput) GoString() string {
 	return s.String()
 }
@@ -8734,12 +9065,20 @@ type AcceptPortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptPortfolioShareOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptPortfolioShareOutput) GoString() string {
 	return s.String()
 }
@@ -8757,16 +9096,24 @@ type AccessLevelFilter struct {
 	//    * User - Filter results based on the specified user.
 	Key *string `type:"string" enum:"AccessLevelFilterKey"`
 
-	// The user to which the access level applies. The only supported value is Self.
+	// The user to which the access level applies. The only supported value is self.
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessLevelFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessLevelFilter) GoString() string {
 	return s.String()
 }
@@ -8797,12 +9144,20 @@ type AssociateBudgetWithResourceInput struct {
 	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateBudgetWithResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateBudgetWithResourceInput) GoString() string {
 	return s.String()
 }
@@ -8845,12 +9200,20 @@ type AssociateBudgetWithResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateBudgetWithResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateBudgetWithResourceOutput) GoString() string {
 	return s.String()
 }
@@ -8859,8 +9222,6 @@ type AssociatePrincipalWithPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -8872,23 +9233,76 @@ type AssociatePrincipalWithPortfolioInput struct {
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
-	// The ARN of the principal (IAM user, role, or group).
+	// The ARN of the principal (user, role, or group). If the PrincipalType is
+	// IAM, the supported value is a fully defined IAM Amazon Resource Name (ARN)
+	// (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
+	// If the PrincipalType is IAM_PATTERN, the supported value is an IAM ARN without
+	// an AccountID in the following format:
+	//
+	// arn:partition:iam:::resource-type/resource-id
+	//
+	// The ARN resource-id can be either:
+	//
+	//    * A fully formed resource-id. For example, arn:aws:iam:::role/resource-name
+	//    or arn:aws:iam:::role/resource-path/resource-name
+	//
+	//    * A wildcard ARN. The wildcard ARN accepts IAM_PATTERN values with a "*"
+	//    or "?" in the resource-id segment of the ARN. For example arn:partition:service:::resource-type/resource-path/resource-name.
+	//    The new symbols are exclusive to the resource-path and resource-name and
+	//    cannot replace the resource-type or other ARN values. The ARN path and
+	//    principal name allow unlimited wildcard characters.
+	//
+	// Examples of an acceptable wildcard ARN:
+	//
+	//    * arn:aws:iam:::role/ResourceName_*
+	//
+	//    * arn:aws:iam:::role/*/ResourceName_?
+	//
+	// Examples of an unacceptable wildcard ARN:
+	//
+	//    * arn:aws:iam:::*/ResourceName
+	//
+	// You can associate multiple IAM_PATTERNs even if the account has no principal
+	// with that name.
+	//
+	// The "?" wildcard character matches zero or one of any character. This is
+	// similar to ".?" in regular regex context. The "*" wildcard character matches
+	// any number of any characters. This is similar to ".*" in regular regex context.
+	//
+	// In the IAM Principal ARN format (arn:partition:iam:::resource-type/resource-path/resource-name),
+	// valid resource-type values include user/, group/, or role/. The "?" and "*"
+	// characters are allowed only after the resource-type in the resource-id segment.
+	// You can use special characters anywhere within the resource-id.
+	//
+	// The "*" character also matches the "/" character, allowing paths to be formed
+	// within the resource-id. For example, arn:aws:iam:::role/*/ResourceName_?
+	// matches both arn:aws:iam:::role/pathA/pathB/ResourceName_1 and arn:aws:iam:::role/pathA/ResourceName_1.
 	//
 	// PrincipalARN is a required field
 	PrincipalARN *string `min:"1" type:"string" required:"true"`
 
-	// The principal type. The supported value is IAM.
+	// The principal type. The supported value is IAM if you use a fully defined
+	// Amazon Resource Name (ARN), or IAM_PATTERN if you use an ARN with no accountID,
+	// with or without wildcard characters.
 	//
 	// PrincipalType is a required field
 	PrincipalType *string `type:"string" required:"true" enum:"PrincipalType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatePrincipalWithPortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatePrincipalWithPortfolioInput) GoString() string {
 	return s.String()
 }
@@ -8946,12 +9360,20 @@ type AssociatePrincipalWithPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatePrincipalWithPortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatePrincipalWithPortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -8960,8 +9382,6 @@ type AssociateProductWithPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -8982,12 +9402,20 @@ type AssociateProductWithPortfolioInput struct {
 	SourcePortfolioId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateProductWithPortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateProductWithPortfolioInput) GoString() string {
 	return s.String()
 }
@@ -9045,12 +9473,20 @@ type AssociateProductWithPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateProductWithPortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateProductWithPortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -9059,8 +9495,6 @@ type AssociateServiceActionWithProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -9083,12 +9517,20 @@ type AssociateServiceActionWithProvisioningArtifactInput struct {
 	ServiceActionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateServiceActionWithProvisioningArtifactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateServiceActionWithProvisioningArtifactInput) GoString() string {
 	return s.String()
 }
@@ -9149,12 +9591,20 @@ type AssociateServiceActionWithProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateServiceActionWithProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateServiceActionWithProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -9173,12 +9623,20 @@ type AssociateTagOptionWithResourceInput struct {
 	TagOptionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateTagOptionWithResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateTagOptionWithResourceInput) GoString() string {
 	return s.String()
 }
@@ -9218,12 +9676,20 @@ type AssociateTagOptionWithResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateTagOptionWithResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateTagOptionWithResourceOutput) GoString() string {
 	return s.String()
 }
@@ -9232,8 +9698,6 @@ type BatchAssociateServiceActionWithProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -9247,12 +9711,20 @@ type BatchAssociateServiceActionWithProvisioningArtifactInput struct {
 	ServiceActionAssociations []*ServiceActionAssociation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateServiceActionWithProvisioningArtifactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateServiceActionWithProvisioningArtifactInput) GoString() string {
 	return s.String()
 }
@@ -9303,12 +9775,20 @@ type BatchAssociateServiceActionWithProvisioningArtifactOutput struct {
 	FailedServiceActionAssociations []*FailedServiceActionAssociation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateServiceActionWithProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateServiceActionWithProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -9324,8 +9804,6 @@ type BatchDisassociateServiceActionFromProvisioningArtifactInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -9338,12 +9816,20 @@ type BatchDisassociateServiceActionFromProvisioningArtifactInput struct {
 	ServiceActionAssociations []*ServiceActionAssociation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateServiceActionFromProvisioningArtifactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateServiceActionFromProvisioningArtifactInput) GoString() string {
 	return s.String()
 }
@@ -9394,12 +9880,20 @@ type BatchDisassociateServiceActionFromProvisioningArtifactOutput struct {
 	FailedServiceActionAssociations []*FailedServiceActionAssociation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateServiceActionFromProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateServiceActionFromProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -9418,12 +9912,20 @@ type BudgetDetail struct {
 	BudgetName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BudgetDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BudgetDetail) GoString() string {
 	return s.String()
 }
@@ -9442,12 +9944,20 @@ type CloudWatchDashboard struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDashboard) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDashboard) GoString() string {
 	return s.String()
 }
@@ -9455,6 +9965,110 @@ func (s CloudWatchDashboard) GoString() string {
 // SetName sets the Name field's value.
 func (s *CloudWatchDashboard) SetName(v string) *CloudWatchDashboard {
 	s.Name = &v
+	return s
+}
+
+// The subtype containing details about the Codestar connection Type.
+type CodeStarParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The absolute path wehre the artifact resides within the repo and branch,
+	// formatted as "folder/file.json."
+	//
+	// ArtifactPath is a required field
+	ArtifactPath *string `min:"1" type:"string" required:"true"`
+
+	// The specific branch where the artifact resides.
+	//
+	// Branch is a required field
+	Branch *string `min:"1" type:"string" required:"true"`
+
+	// The CodeStar ARN, which is the connection between Service Catalog and the
+	// external repository.
+	//
+	// ConnectionArn is a required field
+	ConnectionArn *string `min:"1" type:"string" required:"true"`
+
+	// The specific repository where the product’s artifact-to-be-synced resides,
+	// formatted as "Account/Repo."
+	//
+	// Repository is a required field
+	Repository *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeStarParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeStarParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodeStarParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodeStarParameters"}
+	if s.ArtifactPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("ArtifactPath"))
+	}
+	if s.ArtifactPath != nil && len(*s.ArtifactPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ArtifactPath", 1))
+	}
+	if s.Branch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Branch"))
+	}
+	if s.Branch != nil && len(*s.Branch) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Branch", 1))
+	}
+	if s.ConnectionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionArn"))
+	}
+	if s.ConnectionArn != nil && len(*s.ConnectionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectionArn", 1))
+	}
+	if s.Repository == nil {
+		invalidParams.Add(request.NewErrParamRequired("Repository"))
+	}
+	if s.Repository != nil && len(*s.Repository) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Repository", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArtifactPath sets the ArtifactPath field's value.
+func (s *CodeStarParameters) SetArtifactPath(v string) *CodeStarParameters {
+	s.ArtifactPath = &v
+	return s
+}
+
+// SetBranch sets the Branch field's value.
+func (s *CodeStarParameters) SetBranch(v string) *CodeStarParameters {
+	s.Branch = &v
+	return s
+}
+
+// SetConnectionArn sets the ConnectionArn field's value.
+func (s *CodeStarParameters) SetConnectionArn(v string) *CodeStarParameters {
+	s.ConnectionArn = &v
+	return s
+}
+
+// SetRepository sets the Repository field's value.
+func (s *CodeStarParameters) SetRepository(v string) *CodeStarParameters {
+	s.Repository = &v
 	return s
 }
 
@@ -9491,12 +10105,20 @@ type ConstraintDetail struct {
 	Type *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConstraintDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConstraintDetail) GoString() string {
 	return s.String()
 }
@@ -9556,12 +10178,20 @@ type ConstraintSummary struct {
 	Type *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConstraintSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConstraintSummary) GoString() string {
 	return s.String()
 }
@@ -9583,8 +10213,6 @@ type CopyProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -9592,7 +10220,7 @@ type CopyProductInput struct {
 
 	// The copy options. If the value is CopyTags, the tags from the source product
 	// are copied to the target product.
-	CopyOptions []*string `type:"list"`
+	CopyOptions []*string `type:"list" enum:"CopyOption"`
 
 	// A unique identifier that you provide to ensure idempotency. If multiple requests
 	// differ only by the idempotency token, the same response is returned for each
@@ -9615,12 +10243,20 @@ type CopyProductInput struct {
 	TargetProductName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyProductInput) GoString() string {
 	return s.String()
 }
@@ -9696,12 +10332,20 @@ type CopyProductOutput struct {
 	CopyProductToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyProductOutput) GoString() string {
 	return s.String()
 }
@@ -9716,8 +10360,6 @@ type CreateConstraintInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -9786,8 +10428,7 @@ type CreateConstraintInput struct {
 	//
 	// You also cannot have more than one STACKSET constraint on a product and portfolio.
 	//
-	// Products with a STACKSET constraint will launch an AWS CloudFormation stack
-	// set.
+	// Products with a STACKSET constraint will launch an CloudFormation stack set.
 	//
 	// TEMPLATE
 	//
@@ -9823,12 +10464,20 @@ type CreateConstraintInput struct {
 	Type *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConstraintInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConstraintInput) GoString() string {
 	return s.String()
 }
@@ -9922,12 +10571,20 @@ type CreateConstraintOutput struct {
 	Status *string `type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConstraintOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConstraintOutput) GoString() string {
 	return s.String()
 }
@@ -9954,8 +10611,6 @@ type CreatePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -9984,12 +10639,20 @@ type CreatePortfolioInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePortfolioInput) GoString() string {
 	return s.String()
 }
@@ -10075,12 +10738,20 @@ type CreatePortfolioOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -10102,20 +10773,18 @@ type CreatePortfolioShareInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// The AWS account ID. For example, 123456789012.
+	// The Amazon Web Services account ID. For example, 123456789012.
 	AccountId *string `type:"string"`
 
-	// The organization node to whom you are going to share. If OrganizationNode
-	// is passed in, PortfolioShare will be created for the node an ListOrganizationPortfolioAccessd
-	// its children (when applies), and a PortfolioShareToken will be returned in
-	// the output in order for the administrator to monitor the status of the PortfolioShare
+	// The organization node to whom you are going to share. When you pass OrganizationNode,
+	// it creates PortfolioShare for all of the Amazon Web Services accounts that
+	// are associated to the OrganizationNode. The output returns a PortfolioShareToken,
+	// which enables the administrator to monitor the status of the PortfolioShare
 	// creation process.
 	OrganizationNode *OrganizationNode `type:"structure"`
 
@@ -10124,17 +10793,36 @@ type CreatePortfolioShareInput struct {
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
+	// Enables or disables Principal sharing when creating the portfolio share.
+	// If this flag is not provided, principal sharing is disabled.
+	//
+	// When you enable Principal Name Sharing for a portfolio share, the share recipient
+	// account end users with a principal that matches any of the associated IAM
+	// patterns can provision products from the portfolio. Once shared, the share
+	// recipient can view associations of PrincipalType: IAM_PATTERN on their portfolio.
+	// You can create the principals in the recipient account before or after creating
+	// the share.
+	SharePrincipals *bool `type:"boolean"`
+
 	// Enables or disables TagOptions sharing when creating the portfolio share.
 	// If this flag is not provided, TagOptions sharing is disabled.
 	ShareTagOptions *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePortfolioShareInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePortfolioShareInput) GoString() string {
 	return s.String()
 }
@@ -10179,6 +10867,12 @@ func (s *CreatePortfolioShareInput) SetPortfolioId(v string) *CreatePortfolioSha
 	return s
 }
 
+// SetSharePrincipals sets the SharePrincipals field's value.
+func (s *CreatePortfolioShareInput) SetSharePrincipals(v bool) *CreatePortfolioShareInput {
+	s.SharePrincipals = &v
+	return s
+}
+
 // SetShareTagOptions sets the ShareTagOptions field's value.
 func (s *CreatePortfolioShareInput) SetShareTagOptions(v bool) *CreatePortfolioShareInput {
 	s.ShareTagOptions = &v
@@ -10193,12 +10887,20 @@ type CreatePortfolioShareOutput struct {
 	PortfolioShareToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePortfolioShareOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePortfolioShareOutput) GoString() string {
 	return s.String()
 }
@@ -10213,8 +10915,6 @@ type CreateProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -10248,9 +10948,17 @@ type CreateProductInput struct {
 	ProductType *string `type:"string" required:"true" enum:"ProductType"`
 
 	// The configuration of the provisioning artifact.
+	ProvisioningArtifactParameters *ProvisioningArtifactProperties `type:"structure"`
+
+	// Specifies connection details for the created product and syncs the product
+	// to the connection source artifact. This automatically manages the product's
+	// artifacts based on changes to the source. The SourceConnection parameter
+	// consists of the following sub-fields.
 	//
-	// ProvisioningArtifactParameters is a required field
-	ProvisioningArtifactParameters *ProvisioningArtifactProperties `type:"structure" required:"true"`
+	//    * Type
+	//
+	//    * ConnectionParamters
+	SourceConnection *SourceConnection `type:"structure"`
 
 	// The support information about the product.
 	SupportDescription *string `type:"string"`
@@ -10267,12 +10975,20 @@ type CreateProductInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProductInput) GoString() string {
 	return s.String()
 }
@@ -10292,12 +11008,14 @@ func (s *CreateProductInput) Validate() error {
 	if s.ProductType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProductType"))
 	}
-	if s.ProvisioningArtifactParameters == nil {
-		invalidParams.Add(request.NewErrParamRequired("ProvisioningArtifactParameters"))
-	}
 	if s.ProvisioningArtifactParameters != nil {
 		if err := s.ProvisioningArtifactParameters.Validate(); err != nil {
 			invalidParams.AddNested("ProvisioningArtifactParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceConnection != nil {
+		if err := s.SourceConnection.Validate(); err != nil {
+			invalidParams.AddNested("SourceConnection", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -10365,6 +11083,12 @@ func (s *CreateProductInput) SetProvisioningArtifactParameters(v *ProvisioningAr
 	return s
 }
 
+// SetSourceConnection sets the SourceConnection field's value.
+func (s *CreateProductInput) SetSourceConnection(v *SourceConnection) *CreateProductInput {
+	s.SourceConnection = v
+	return s
+}
+
 // SetSupportDescription sets the SupportDescription field's value.
 func (s *CreateProductInput) SetSupportDescription(v string) *CreateProductInput {
 	s.SupportDescription = &v
@@ -10402,12 +11126,20 @@ type CreateProductOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProductOutput) GoString() string {
 	return s.String()
 }
@@ -10434,8 +11166,6 @@ type CreateProvisionedProductPlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -10472,7 +11202,8 @@ type CreateProvisionedProductPlanInput struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 
 	// A user-friendly name for the provisioned product. This value must be unique
-	// for the AWS account and cannot be updated after the product is provisioned.
+	// for the Amazon Web Services account and cannot be updated after the product
+	// is provisioned.
 	//
 	// ProvisionedProductName is a required field
 	ProvisionedProductName *string `min:"1" type:"string" required:"true"`
@@ -10494,12 +11225,20 @@ type CreateProvisionedProductPlanInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProvisionedProductPlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProvisionedProductPlanInput) GoString() string {
 	return s.String()
 }
@@ -10649,12 +11388,20 @@ type CreateProvisionedProductPlanOutput struct {
 	ProvisioningArtifactId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProvisionedProductPlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProvisionedProductPlanOutput) GoString() string {
 	return s.String()
 }
@@ -10694,8 +11441,6 @@ type CreateProvisioningArtifactInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -10717,12 +11462,20 @@ type CreateProvisioningArtifactInput struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProvisioningArtifactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProvisioningArtifactInput) GoString() string {
 	return s.String()
 }
@@ -10784,11 +11537,13 @@ type CreateProvisioningArtifactOutput struct {
 	// Specify the template source with one of the following options, but not both.
 	// Keys accepted: [ LoadTemplateFromURL, ImportFromPhysicalId ].
 	//
-	// The URL of the CloudFormation template in Amazon S3, in JSON format.
+	// Use the URL of the CloudFormation template in Amazon S3 or GitHub in JSON
+	// format.
 	//
 	// LoadTemplateFromURL
 	//
-	// Use the URL of the CloudFormation template in Amazon S3 in JSON format.
+	// Use the URL of the CloudFormation template in Amazon S3 or GitHub in JSON
+	// format.
 	//
 	// ImportFromPhysicalId
 	//
@@ -10803,12 +11558,20 @@ type CreateProvisioningArtifactOutput struct {
 	Status *string `type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -10836,8 +11599,6 @@ type CreateServiceActionInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -10847,16 +11608,16 @@ type CreateServiceActionInput struct {
 	//
 	// Name
 	//
-	// The name of the AWS Systems Manager document (SSM document). For example,
-	// AWS-RestartEC2Instance.
+	// The name of the Amazon Web Services Systems Manager document (SSM document).
+	// For example, AWS-RestartEC2Instance.
 	//
 	// If you are using a shared SSM document, you must provide the ARN instead
 	// of the name.
 	//
 	// Version
 	//
-	// The AWS Systems Manager automation document version. For example, "Version":
-	// "1"
+	// The Amazon Web Services Systems Manager automation document version. For
+	// example, "Version": "1"
 	//
 	// AssumeRole
 	//
@@ -10893,12 +11654,20 @@ type CreateServiceActionInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateServiceActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateServiceActionInput) GoString() string {
 	return s.String()
 }
@@ -10974,12 +11743,20 @@ type CreateServiceActionOutput struct {
 	ServiceActionDetail *ServiceActionDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateServiceActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateServiceActionOutput) GoString() string {
 	return s.String()
 }
@@ -11004,12 +11781,20 @@ type CreateTagOptionInput struct {
 	Value *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagOptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagOptionInput) GoString() string {
 	return s.String()
 }
@@ -11055,12 +11840,20 @@ type CreateTagOptionOutput struct {
 	TagOptionDetail *TagOptionDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagOptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagOptionOutput) GoString() string {
 	return s.String()
 }
@@ -11076,8 +11869,6 @@ type DeleteConstraintInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -11089,12 +11880,20 @@ type DeleteConstraintInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConstraintInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConstraintInput) GoString() string {
 	return s.String()
 }
@@ -11131,12 +11930,20 @@ type DeleteConstraintOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConstraintOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConstraintOutput) GoString() string {
 	return s.String()
 }
@@ -11145,8 +11952,6 @@ type DeletePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -11159,12 +11964,20 @@ type DeletePortfolioInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePortfolioInput) GoString() string {
 	return s.String()
 }
@@ -11201,12 +12014,20 @@ type DeletePortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -11216,14 +12037,12 @@ type DeletePortfolioShareInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// The AWS account ID.
+	// The Amazon Web Services account ID.
 	AccountId *string `type:"string"`
 
 	// The organization node to whom you are going to stop sharing.
@@ -11235,12 +12054,20 @@ type DeletePortfolioShareInput struct {
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePortfolioShareInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePortfolioShareInput) GoString() string {
 	return s.String()
 }
@@ -11293,12 +12120,20 @@ type DeletePortfolioShareOutput struct {
 	PortfolioShareToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePortfolioShareOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePortfolioShareOutput) GoString() string {
 	return s.String()
 }
@@ -11314,8 +12149,6 @@ type DeleteProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -11327,12 +12160,20 @@ type DeleteProductInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProductInput) GoString() string {
 	return s.String()
 }
@@ -11369,12 +12210,20 @@ type DeleteProductOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProductOutput) GoString() string {
 	return s.String()
 }
@@ -11384,14 +12233,12 @@ type DeleteProvisionedProductPlanInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// If set to true, AWS Service Catalog stops managing the specified provisioned
+	// If set to true, Service Catalog stops managing the specified provisioned
 	// product even if it cannot delete the underlying resources.
 	IgnoreErrors *bool `type:"boolean"`
 
@@ -11401,12 +12248,20 @@ type DeleteProvisionedProductPlanInput struct {
 	PlanId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProvisionedProductPlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProvisionedProductPlanInput) GoString() string {
 	return s.String()
 }
@@ -11449,12 +12304,20 @@ type DeleteProvisionedProductPlanOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProvisionedProductPlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProvisionedProductPlanOutput) GoString() string {
 	return s.String()
 }
@@ -11463,8 +12326,6 @@ type DeleteProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -11482,12 +12343,20 @@ type DeleteProvisioningArtifactInput struct {
 	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProvisioningArtifactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProvisioningArtifactInput) GoString() string {
 	return s.String()
 }
@@ -11536,12 +12405,20 @@ type DeleteProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -11550,8 +12427,6 @@ type DeleteServiceActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -11564,12 +12439,20 @@ type DeleteServiceActionInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServiceActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServiceActionInput) GoString() string {
 	return s.String()
 }
@@ -11606,12 +12489,20 @@ type DeleteServiceActionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServiceActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServiceActionOutput) GoString() string {
 	return s.String()
 }
@@ -11625,12 +12516,20 @@ type DeleteTagOptionInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagOptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagOptionInput) GoString() string {
 	return s.String()
 }
@@ -11661,12 +12560,20 @@ type DeleteTagOptionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagOptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagOptionOutput) GoString() string {
 	return s.String()
 }
@@ -11675,8 +12582,6 @@ type DescribeConstraintInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -11689,12 +12594,20 @@ type DescribeConstraintInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConstraintInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConstraintInput) GoString() string {
 	return s.String()
 }
@@ -11740,12 +12653,20 @@ type DescribeConstraintOutput struct {
 	Status *string `type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConstraintOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConstraintOutput) GoString() string {
 	return s.String()
 }
@@ -11773,8 +12694,6 @@ type DescribeCopyProductStatusInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -11786,12 +12705,20 @@ type DescribeCopyProductStatusInput struct {
 	CopyProductToken *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCopyProductStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCopyProductStatusInput) GoString() string {
 	return s.String()
 }
@@ -11837,12 +12764,20 @@ type DescribeCopyProductStatusOutput struct {
 	TargetProductId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCopyProductStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCopyProductStatusOutput) GoString() string {
 	return s.String()
 }
@@ -11870,8 +12805,6 @@ type DescribePortfolioInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -11883,12 +12816,20 @@ type DescribePortfolioInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioInput) GoString() string {
 	return s.String()
 }
@@ -11937,12 +12878,20 @@ type DescribePortfolioOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -11981,12 +12930,20 @@ type DescribePortfolioShareStatusInput struct {
 	PortfolioShareToken *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioShareStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioShareStatusInput) GoString() string {
 	return s.String()
 }
@@ -12033,12 +12990,20 @@ type DescribePortfolioShareStatusOutput struct {
 	Status *string `type:"string" enum:"ShareStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioShareStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioShareStatusOutput) GoString() string {
 	return s.String()
 }
@@ -12105,12 +13070,20 @@ type DescribePortfolioSharesInput struct {
 	Type *string `type:"string" required:"true" enum:"DescribePortfolioShareType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioSharesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioSharesInput) GoString() string {
 	return s.String()
 }
@@ -12169,12 +13142,20 @@ type DescribePortfolioSharesOutput struct {
 	PortfolioShareDetails []*PortfolioShareDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioSharesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePortfolioSharesOutput) GoString() string {
 	return s.String()
 }
@@ -12195,8 +13176,6 @@ type DescribeProductAsAdminInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -12220,12 +13199,20 @@ type DescribeProductAsAdminInput struct {
 	SourcePortfolioId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductAsAdminInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductAsAdminInput) GoString() string {
 	return s.String()
 }
@@ -12290,12 +13277,20 @@ type DescribeProductAsAdminOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductAsAdminOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductAsAdminOutput) GoString() string {
 	return s.String()
 }
@@ -12335,8 +13330,6 @@ type DescribeProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -12349,12 +13342,20 @@ type DescribeProductInput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductInput) GoString() string {
 	return s.String()
 }
@@ -12406,12 +13407,20 @@ type DescribeProductOutput struct {
 	ProvisioningArtifacts []*ProvisioningArtifact `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductOutput) GoString() string {
 	return s.String()
 }
@@ -12445,8 +13454,6 @@ type DescribeProductViewInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -12458,12 +13465,20 @@ type DescribeProductViewInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductViewInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductViewInput) GoString() string {
 	return s.String()
 }
@@ -12506,12 +13521,20 @@ type DescribeProductViewOutput struct {
 	ProvisioningArtifacts []*ProvisioningArtifact `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductViewOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProductViewOutput) GoString() string {
 	return s.String()
 }
@@ -12537,8 +13560,6 @@ type DescribeProvisionedProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -12559,12 +13580,20 @@ type DescribeProvisionedProductInput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisionedProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisionedProductInput) GoString() string {
 	return s.String()
 }
@@ -12613,12 +13642,20 @@ type DescribeProvisionedProductOutput struct {
 	ProvisionedProductDetail *ProvisionedProductDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisionedProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisionedProductOutput) GoString() string {
 	return s.String()
 }
@@ -12640,8 +13677,6 @@ type DescribeProvisionedProductPlanInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -12660,12 +13695,20 @@ type DescribeProvisionedProductPlanInput struct {
 	PlanId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisionedProductPlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisionedProductPlanInput) GoString() string {
 	return s.String()
 }
@@ -12724,12 +13767,20 @@ type DescribeProvisionedProductPlanOutput struct {
 	ResourceChanges []*ResourceChange `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisionedProductPlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisionedProductPlanOutput) GoString() string {
 	return s.String()
 }
@@ -12757,12 +13808,14 @@ type DescribeProvisioningArtifactInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
+
+	// Indicates if the API call response does or does not include additional details
+	// about the provisioning parameters.
+	IncludeProvisioningArtifactParameters *bool `type:"boolean"`
 
 	// The product identifier.
 	ProductId *string `min:"1" type:"string"`
@@ -12780,12 +13833,20 @@ type DescribeProvisioningArtifactInput struct {
 	Verbose *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisioningArtifactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisioningArtifactInput) GoString() string {
 	return s.String()
 }
@@ -12809,6 +13870,12 @@ func (s *DescribeProvisioningArtifactInput) Validate() error {
 // SetAcceptLanguage sets the AcceptLanguage field's value.
 func (s *DescribeProvisioningArtifactInput) SetAcceptLanguage(v string) *DescribeProvisioningArtifactInput {
 	s.AcceptLanguage = &v
+	return s
+}
+
+// SetIncludeProvisioningArtifactParameters sets the IncludeProvisioningArtifactParameters field's value.
+func (s *DescribeProvisioningArtifactInput) SetIncludeProvisioningArtifactParameters(v bool) *DescribeProvisioningArtifactInput {
+	s.IncludeProvisioningArtifactParameters = &v
 	return s
 }
 
@@ -12845,22 +13912,33 @@ func (s *DescribeProvisioningArtifactInput) SetVerbose(v bool) *DescribeProvisio
 type DescribeProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the CloudFormation template in Amazon S3.
+	// The URL of the CloudFormation template in Amazon S3 or GitHub in JSON format.
 	Info map[string]*string `min:"1" type:"map"`
 
 	// Information about the provisioning artifact.
 	ProvisioningArtifactDetail *ProvisioningArtifactDetail `type:"structure"`
 
+	// Information about the parameters used to provision the product.
+	ProvisioningArtifactParameters []*ProvisioningArtifactParameter `type:"list"`
+
 	// The status of the current request.
 	Status *string `type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -12877,6 +13955,12 @@ func (s *DescribeProvisioningArtifactOutput) SetProvisioningArtifactDetail(v *Pr
 	return s
 }
 
+// SetProvisioningArtifactParameters sets the ProvisioningArtifactParameters field's value.
+func (s *DescribeProvisioningArtifactOutput) SetProvisioningArtifactParameters(v []*ProvisioningArtifactParameter) *DescribeProvisioningArtifactOutput {
+	s.ProvisioningArtifactParameters = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *DescribeProvisioningArtifactOutput) SetStatus(v string) *DescribeProvisioningArtifactOutput {
 	s.Status = &v
@@ -12887,8 +13971,6 @@ type DescribeProvisioningParametersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -12920,12 +14002,20 @@ type DescribeProvisioningParametersInput struct {
 	ProvisioningArtifactName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisioningParametersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisioningParametersInput) GoString() string {
 	return s.String()
 }
@@ -13000,13 +14090,19 @@ type DescribeProvisioningParametersOutput struct {
 	// Information about the constraints used to provision the product.
 	ConstraintSummaries []*ConstraintSummary `type:"list"`
 
+	// A list of the keys and descriptions of the outputs. These outputs can be
+	// referenced from a provisioned product launched from this provisioning artifact.
+	ProvisioningArtifactOutputKeys []*ProvisioningArtifactOutput `type:"list"`
+
 	// The output of the provisioning artifact.
-	ProvisioningArtifactOutputs []*ProvisioningArtifactOutput `type:"list"`
+	//
+	// Deprecated: This property is deprecated and returns the Id and Description of the Provisioning Artifact. Use ProvisioningArtifactOutputKeys instead to get the Keys and Descriptions of the outputs.
+	ProvisioningArtifactOutputs []*ProvisioningArtifactOutput `deprecated:"true" type:"list"`
 
 	// Information about the parameters used to provision the product.
 	ProvisioningArtifactParameters []*ProvisioningArtifactParameter `type:"list"`
 
-	// An object that contains information about preferences, such as regions and
+	// An object that contains information about preferences, such as Regions and
 	// accounts, for the provisioning artifact.
 	ProvisioningArtifactPreferences *ProvisioningArtifactPreferences `type:"structure"`
 
@@ -13018,12 +14114,20 @@ type DescribeProvisioningParametersOutput struct {
 	UsageInstructions []*UsageInstruction `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisioningParametersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeProvisioningParametersOutput) GoString() string {
 	return s.String()
 }
@@ -13031,6 +14135,12 @@ func (s DescribeProvisioningParametersOutput) GoString() string {
 // SetConstraintSummaries sets the ConstraintSummaries field's value.
 func (s *DescribeProvisioningParametersOutput) SetConstraintSummaries(v []*ConstraintSummary) *DescribeProvisioningParametersOutput {
 	s.ConstraintSummaries = v
+	return s
+}
+
+// SetProvisioningArtifactOutputKeys sets the ProvisioningArtifactOutputKeys field's value.
+func (s *DescribeProvisioningParametersOutput) SetProvisioningArtifactOutputKeys(v []*ProvisioningArtifactOutput) *DescribeProvisioningParametersOutput {
+	s.ProvisioningArtifactOutputKeys = v
 	return s
 }
 
@@ -13069,8 +14179,6 @@ type DescribeRecordInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -13090,12 +14198,20 @@ type DescribeRecordInput struct {
 	PageToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRecordInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRecordInput) GoString() string {
 	return s.String()
 }
@@ -13156,12 +14272,20 @@ type DescribeRecordOutput struct {
 	RecordOutputs []*RecordOutput `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRecordOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRecordOutput) GoString() string {
 	return s.String()
 }
@@ -13189,8 +14313,6 @@ type DescribeServiceActionExecutionParametersInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -13207,12 +14329,20 @@ type DescribeServiceActionExecutionParametersInput struct {
 	ServiceActionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceActionExecutionParametersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceActionExecutionParametersInput) GoString() string {
 	return s.String()
 }
@@ -13264,12 +14394,20 @@ type DescribeServiceActionExecutionParametersOutput struct {
 	ServiceActionParameters []*ExecutionParameter `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceActionExecutionParametersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceActionExecutionParametersOutput) GoString() string {
 	return s.String()
 }
@@ -13285,8 +14423,6 @@ type DescribeServiceActionInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -13298,12 +14434,20 @@ type DescribeServiceActionInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceActionInput) GoString() string {
 	return s.String()
 }
@@ -13343,12 +14487,20 @@ type DescribeServiceActionOutput struct {
 	ServiceActionDetail *ServiceActionDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceActionOutput) GoString() string {
 	return s.String()
 }
@@ -13368,12 +14520,20 @@ type DescribeTagOptionInput struct {
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagOptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagOptionInput) GoString() string {
 	return s.String()
 }
@@ -13407,12 +14567,20 @@ type DescribeTagOptionOutput struct {
 	TagOptionDetail *TagOptionDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagOptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagOptionOutput) GoString() string {
 	return s.String()
 }
@@ -13427,12 +14595,20 @@ type DisableAWSOrganizationsAccessInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableAWSOrganizationsAccessInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableAWSOrganizationsAccessInput) GoString() string {
 	return s.String()
 }
@@ -13441,12 +14617,20 @@ type DisableAWSOrganizationsAccessOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableAWSOrganizationsAccessOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableAWSOrganizationsAccessOutput) GoString() string {
 	return s.String()
 }
@@ -13466,12 +14650,20 @@ type DisassociateBudgetFromResourceInput struct {
 	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateBudgetFromResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateBudgetFromResourceInput) GoString() string {
 	return s.String()
 }
@@ -13514,12 +14706,20 @@ type DisassociateBudgetFromResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateBudgetFromResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateBudgetFromResourceOutput) GoString() string {
 	return s.String()
 }
@@ -13528,8 +14728,6 @@ type DisassociatePrincipalFromPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -13541,18 +14739,32 @@ type DisassociatePrincipalFromPortfolioInput struct {
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
-	// The ARN of the principal (IAM user, role, or group).
+	// The ARN of the principal (user, role, or group). This field allows an ARN
+	// with no accountID with or without wildcard characters if PrincipalType is
+	// IAM_PATTERN.
 	//
 	// PrincipalARN is a required field
 	PrincipalARN *string `min:"1" type:"string" required:"true"`
+
+	// The supported value is IAM if you use a fully defined ARN, or IAM_PATTERN
+	// if you specify an IAM ARN with no AccountId, with or without wildcard characters.
+	PrincipalType *string `type:"string" enum:"PrincipalType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociatePrincipalFromPortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociatePrincipalFromPortfolioInput) GoString() string {
 	return s.String()
 }
@@ -13597,16 +14809,30 @@ func (s *DisassociatePrincipalFromPortfolioInput) SetPrincipalARN(v string) *Dis
 	return s
 }
 
+// SetPrincipalType sets the PrincipalType field's value.
+func (s *DisassociatePrincipalFromPortfolioInput) SetPrincipalType(v string) *DisassociatePrincipalFromPortfolioInput {
+	s.PrincipalType = &v
+	return s
+}
+
 type DisassociatePrincipalFromPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociatePrincipalFromPortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociatePrincipalFromPortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -13615,8 +14841,6 @@ type DisassociateProductFromPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -13634,12 +14858,20 @@ type DisassociateProductFromPortfolioInput struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateProductFromPortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateProductFromPortfolioInput) GoString() string {
 	return s.String()
 }
@@ -13688,12 +14920,20 @@ type DisassociateProductFromPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateProductFromPortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateProductFromPortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -13702,8 +14942,6 @@ type DisassociateServiceActionFromProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -13726,12 +14964,20 @@ type DisassociateServiceActionFromProvisioningArtifactInput struct {
 	ServiceActionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateServiceActionFromProvisioningArtifactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateServiceActionFromProvisioningArtifactInput) GoString() string {
 	return s.String()
 }
@@ -13792,12 +15038,20 @@ type DisassociateServiceActionFromProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateServiceActionFromProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateServiceActionFromProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -13816,12 +15070,20 @@ type DisassociateTagOptionFromResourceInput struct {
 	TagOptionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateTagOptionFromResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateTagOptionFromResourceInput) GoString() string {
 	return s.String()
 }
@@ -13861,12 +15123,20 @@ type DisassociateTagOptionFromResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateTagOptionFromResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateTagOptionFromResourceOutput) GoString() string {
 	return s.String()
 }
@@ -13879,12 +15149,20 @@ type DuplicateResourceException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicateResourceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicateResourceException) GoString() string {
 	return s.String()
 }
@@ -13931,12 +15209,20 @@ type EnableAWSOrganizationsAccessInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableAWSOrganizationsAccessInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableAWSOrganizationsAccessInput) GoString() string {
 	return s.String()
 }
@@ -13945,22 +15231,76 @@ type EnableAWSOrganizationsAccessOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableAWSOrganizationsAccessOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableAWSOrganizationsAccessOutput) GoString() string {
 	return s.String()
+}
+
+// The ID for the provisioned product resources that are part of a resource
+// group.
+type EngineWorkflowResourceIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The unique key-value pair for a tag that identifies provisioned product resources.
+	UniqueTag *UniqueTagResourceIdentifier `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EngineWorkflowResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EngineWorkflowResourceIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EngineWorkflowResourceIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EngineWorkflowResourceIdentifier"}
+	if s.UniqueTag != nil {
+		if err := s.UniqueTag.Validate(); err != nil {
+			invalidParams.AddNested("UniqueTag", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUniqueTag sets the UniqueTag field's value.
+func (s *EngineWorkflowResourceIdentifier) SetUniqueTag(v *UniqueTagResourceIdentifier) *EngineWorkflowResourceIdentifier {
+	s.UniqueTag = v
+	return s
 }
 
 type ExecuteProvisionedProductPlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -13978,12 +15318,20 @@ type ExecuteProvisionedProductPlanInput struct {
 	PlanId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteProvisionedProductPlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteProvisionedProductPlanInput) GoString() string {
 	return s.String()
 }
@@ -14032,12 +15380,20 @@ type ExecuteProvisionedProductPlanOutput struct {
 	RecordDetail *RecordDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteProvisionedProductPlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteProvisionedProductPlanOutput) GoString() string {
 	return s.String()
 }
@@ -14053,8 +15409,6 @@ type ExecuteProvisionedProductServiceActionInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -14065,8 +15419,8 @@ type ExecuteProvisionedProductServiceActionInput struct {
 
 	// A map of all self-service action parameters and their values. If a provided
 	// parameter is of a special type, such as TARGET, the provided value will override
-	// the default value generated by AWS Service Catalog. If the parameters field
-	// is not provided, no additional parameters are passed and default values will
+	// the default value generated by Service Catalog. If the parameters field is
+	// not provided, no additional parameters are passed and default values will
 	// be used for any special parameters such as TARGET.
 	Parameters map[string][]*string `min:"1" type:"map"`
 
@@ -14081,12 +15435,20 @@ type ExecuteProvisionedProductServiceActionInput struct {
 	ServiceActionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteProvisionedProductServiceActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteProvisionedProductServiceActionInput) GoString() string {
 	return s.String()
 }
@@ -14157,12 +15519,20 @@ type ExecuteProvisionedProductServiceActionOutput struct {
 	RecordDetail *RecordDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteProvisionedProductServiceActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecuteProvisionedProductServiceActionOutput) GoString() string {
 	return s.String()
 }
@@ -14188,12 +15558,20 @@ type ExecutionParameter struct {
 	Type *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionParameter) GoString() string {
 	return s.String()
 }
@@ -14237,12 +15615,20 @@ type FailedServiceActionAssociation struct {
 	ServiceActionId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedServiceActionAssociation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedServiceActionAssociation) GoString() string {
 	return s.String()
 }
@@ -14281,12 +15667,20 @@ type GetAWSOrganizationsAccessStatusInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAWSOrganizationsAccessStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAWSOrganizationsAccessStatusInput) GoString() string {
 	return s.String()
 }
@@ -14298,12 +15692,20 @@ type GetAWSOrganizationsAccessStatusOutput struct {
 	AccessStatus *string `type:"string" enum:"AccessStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAWSOrganizationsAccessStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAWSOrganizationsAccessStatusOutput) GoString() string {
 	return s.String()
 }
@@ -14318,8 +15720,6 @@ type GetProvisionedProductOutputsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -14344,12 +15744,20 @@ type GetProvisionedProductOutputsInput struct {
 	ProvisionedProductName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProvisionedProductOutputsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProvisionedProductOutputsInput) GoString() string {
 	return s.String()
 }
@@ -14419,12 +15827,20 @@ type GetProvisionedProductOutputsOutput struct {
 	Outputs []*RecordOutput `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProvisionedProductOutputsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetProvisionedProductOutputsOutput) GoString() string {
 	return s.String()
 }
@@ -14445,8 +15861,6 @@ type ImportAsProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -14470,7 +15884,8 @@ type ImportAsProvisionedProductInput struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 
 	// The user-friendly name of the provisioned product. The value must be unique
-	// for the AWS account. The name cannot be updated after the product is provisioned.
+	// for the Amazon Web Services account. The name cannot be updated after the
+	// product is provisioned.
 	//
 	// ProvisionedProductName is a required field
 	ProvisionedProductName *string `min:"1" type:"string" required:"true"`
@@ -14481,12 +15896,20 @@ type ImportAsProvisionedProductInput struct {
 	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAsProvisionedProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAsProvisionedProductInput) GoString() string {
 	return s.String()
 }
@@ -14568,12 +15991,20 @@ type ImportAsProvisionedProductOutput struct {
 	RecordDetail *RecordDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAsProvisionedProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportAsProvisionedProductOutput) GoString() string {
 	return s.String()
 }
@@ -14592,12 +16023,20 @@ type InvalidParametersException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParametersException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParametersException) GoString() string {
 	return s.String()
 }
@@ -14650,12 +16089,20 @@ type InvalidStateException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStateException) GoString() string {
 	return s.String()
 }
@@ -14698,6 +16145,88 @@ func (s *InvalidStateException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Provides details about the product's connection sync and contains the following
+// sub-fields.
+//
+//   - LastSyncTime
+//
+//   - LastSyncStatus
+//
+//   - LastSyncStatusMessage
+//
+//   - LastSuccessfulSyncTime
+//
+//   - LastSuccessfulSyncProvisioningArtifactID
+type LastSync struct {
+	_ struct{} `type:"structure"`
+
+	// The ProvisioningArtifactID of the ProvisioningArtifact created from the latest
+	// successful sync.
+	LastSuccessfulSyncProvisioningArtifactId *string `min:"1" type:"string"`
+
+	// The time of the latest successful sync from the source repo artifact to the
+	// Service Catalog product.
+	LastSuccessfulSyncTime *time.Time `type:"timestamp"`
+
+	// The current status of the sync. Responses include SUCCEEDED or FAILED.
+	LastSyncStatus *string `type:"string" enum:"LastSyncStatus"`
+
+	// The sync's status message.
+	LastSyncStatusMessage *string `type:"string"`
+
+	// The time of the last attempted sync from the repository to the Service Catalog
+	// product.
+	LastSyncTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastSync) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastSync) GoString() string {
+	return s.String()
+}
+
+// SetLastSuccessfulSyncProvisioningArtifactId sets the LastSuccessfulSyncProvisioningArtifactId field's value.
+func (s *LastSync) SetLastSuccessfulSyncProvisioningArtifactId(v string) *LastSync {
+	s.LastSuccessfulSyncProvisioningArtifactId = &v
+	return s
+}
+
+// SetLastSuccessfulSyncTime sets the LastSuccessfulSyncTime field's value.
+func (s *LastSync) SetLastSuccessfulSyncTime(v time.Time) *LastSync {
+	s.LastSuccessfulSyncTime = &v
+	return s
+}
+
+// SetLastSyncStatus sets the LastSyncStatus field's value.
+func (s *LastSync) SetLastSyncStatus(v string) *LastSync {
+	s.LastSyncStatus = &v
+	return s
+}
+
+// SetLastSyncStatusMessage sets the LastSyncStatusMessage field's value.
+func (s *LastSync) SetLastSyncStatusMessage(v string) *LastSync {
+	s.LastSyncStatusMessage = &v
+	return s
+}
+
+// SetLastSyncTime sets the LastSyncTime field's value.
+func (s *LastSync) SetLastSyncTime(v time.Time) *LastSync {
+	s.LastSyncTime = &v
+	return s
+}
+
 // A launch path object.
 type LaunchPath struct {
 	_ struct{} `type:"structure"`
@@ -14709,12 +16238,20 @@ type LaunchPath struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchPath) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchPath) GoString() string {
 	return s.String()
 }
@@ -14741,19 +16278,27 @@ type LaunchPathSummary struct {
 	// The identifier of the product path.
 	Id *string `min:"1" type:"string"`
 
-	// The name of the portfolio to which the user was assigned.
+	// The name of the portfolio that contains the product.
 	Name *string `type:"string"`
 
 	// The tags associated with this product path.
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchPathSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchPathSummary) GoString() string {
 	return s.String()
 }
@@ -14792,12 +16337,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -14845,8 +16398,6 @@ type ListAcceptedPortfolioSharesInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -14861,21 +16412,30 @@ type ListAcceptedPortfolioSharesInput struct {
 
 	// The type of shared portfolios to list. The default is to list imported portfolios.
 	//
-	//    * AWS_ORGANIZATIONS - List portfolios shared by the management account
-	//    of your organization
+	//    * AWS_ORGANIZATIONS - List portfolios accepted and shared via organizational
+	//    sharing by the management account or delegated administrator of your organization.
 	//
-	//    * AWS_SERVICECATALOG - List default portfolios
+	//    * AWS_SERVICECATALOG - Deprecated type.
 	//
-	//    * IMPORTED - List imported portfolios
+	//    * IMPORTED - List imported portfolios that have been accepted and shared
+	//    through account-to-account sharing.
 	PortfolioShareType *string `type:"string" enum:"PortfolioShareType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAcceptedPortfolioSharesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAcceptedPortfolioSharesInput) GoString() string {
 	return s.String()
 }
@@ -14915,12 +16475,20 @@ type ListAcceptedPortfolioSharesOutput struct {
 	PortfolioDetails []*PortfolioDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAcceptedPortfolioSharesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAcceptedPortfolioSharesOutput) GoString() string {
 	return s.String()
 }
@@ -14942,8 +16510,6 @@ type ListBudgetsForResourceInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -14962,12 +16528,20 @@ type ListBudgetsForResourceInput struct {
 	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBudgetsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBudgetsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -15023,12 +16597,20 @@ type ListBudgetsForResourceOutput struct {
 	NextPageToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBudgetsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBudgetsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -15049,8 +16631,6 @@ type ListConstraintsForPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -15073,12 +16653,20 @@ type ListConstraintsForPortfolioInput struct {
 	ProductId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConstraintsForPortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConstraintsForPortfolioInput) GoString() string {
 	return s.String()
 }
@@ -15143,12 +16731,20 @@ type ListConstraintsForPortfolioOutput struct {
 	NextPageToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConstraintsForPortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConstraintsForPortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -15170,8 +16766,6 @@ type ListLaunchPathsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -15190,12 +16784,20 @@ type ListLaunchPathsInput struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLaunchPathsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLaunchPathsInput) GoString() string {
 	return s.String()
 }
@@ -15251,12 +16853,20 @@ type ListLaunchPathsOutput struct {
 	NextPageToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLaunchPathsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLaunchPathsOutput) GoString() string {
 	return s.String()
 }
@@ -15277,8 +16887,6 @@ type ListOrganizationPortfolioAccessInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -15310,12 +16918,20 @@ type ListOrganizationPortfolioAccessInput struct {
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOrganizationPortfolioAccessInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOrganizationPortfolioAccessInput) GoString() string {
 	return s.String()
 }
@@ -15380,12 +16996,20 @@ type ListOrganizationPortfolioAccessOutput struct {
 	OrganizationNodes []*OrganizationNode `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOrganizationPortfolioAccessOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOrganizationPortfolioAccessOutput) GoString() string {
 	return s.String()
 }
@@ -15406,8 +17030,6 @@ type ListPortfolioAccessInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -15431,12 +17053,20 @@ type ListPortfolioAccessInput struct {
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfolioAccessInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfolioAccessInput) GoString() string {
 	return s.String()
 }
@@ -15493,7 +17123,7 @@ func (s *ListPortfolioAccessInput) SetPortfolioId(v string) *ListPortfolioAccess
 type ListPortfolioAccessOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the AWS accounts with access to the portfolio.
+	// Information about the Amazon Web Services accounts with access to the portfolio.
 	AccountIds []*string `type:"list"`
 
 	// The page token to use to retrieve the next set of results. If there are no
@@ -15501,12 +17131,20 @@ type ListPortfolioAccessOutput struct {
 	NextPageToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfolioAccessOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfolioAccessOutput) GoString() string {
 	return s.String()
 }
@@ -15528,8 +17166,6 @@ type ListPortfoliosForProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -15548,12 +17184,20 @@ type ListPortfoliosForProductInput struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfoliosForProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfoliosForProductInput) GoString() string {
 	return s.String()
 }
@@ -15609,12 +17253,20 @@ type ListPortfoliosForProductOutput struct {
 	PortfolioDetails []*PortfolioDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfoliosForProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfoliosForProductOutput) GoString() string {
 	return s.String()
 }
@@ -15636,8 +17288,6 @@ type ListPortfoliosInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -15651,12 +17301,20 @@ type ListPortfoliosInput struct {
 	PageToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfoliosInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfoliosInput) GoString() string {
 	return s.String()
 }
@@ -15690,12 +17348,20 @@ type ListPortfoliosOutput struct {
 	PortfolioDetails []*PortfolioDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfoliosOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPortfoliosOutput) GoString() string {
 	return s.String()
 }
@@ -15717,8 +17383,6 @@ type ListPrincipalsForPortfolioInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -15737,12 +17401,20 @@ type ListPrincipalsForPortfolioInput struct {
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPrincipalsForPortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPrincipalsForPortfolioInput) GoString() string {
 	return s.String()
 }
@@ -15794,16 +17466,24 @@ type ListPrincipalsForPortfolioOutput struct {
 	// additional results, this value is null.
 	NextPageToken *string `type:"string"`
 
-	// The IAM principals (users or roles) associated with the portfolio.
+	// The PrincipalARNs and corresponding PrincipalTypes associated with the portfolio.
 	Principals []*Principal `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPrincipalsForPortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPrincipalsForPortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -15825,8 +17505,6 @@ type ListProvisionedProductPlansInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -15846,12 +17524,20 @@ type ListProvisionedProductPlansInput struct {
 	ProvisionProductId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisionedProductPlansInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisionedProductPlansInput) GoString() string {
 	return s.String()
 }
@@ -15910,12 +17596,20 @@ type ListProvisionedProductPlansOutput struct {
 	ProvisionedProductPlans []*ProvisionedProductPlanSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisionedProductPlansOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisionedProductPlansOutput) GoString() string {
 	return s.String()
 }
@@ -15937,8 +17631,6 @@ type ListProvisioningArtifactsForServiceActionInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -15957,12 +17649,20 @@ type ListProvisioningArtifactsForServiceActionInput struct {
 	ServiceActionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisioningArtifactsForServiceActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisioningArtifactsForServiceActionInput) GoString() string {
 	return s.String()
 }
@@ -16019,12 +17719,20 @@ type ListProvisioningArtifactsForServiceActionOutput struct {
 	ProvisioningArtifactViews []*ProvisioningArtifactView `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisioningArtifactsForServiceActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisioningArtifactsForServiceActionOutput) GoString() string {
 	return s.String()
 }
@@ -16046,8 +17754,6 @@ type ListProvisioningArtifactsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -16059,12 +17765,20 @@ type ListProvisioningArtifactsInput struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisioningArtifactsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisioningArtifactsInput) GoString() string {
 	return s.String()
 }
@@ -16108,12 +17822,20 @@ type ListProvisioningArtifactsOutput struct {
 	ProvisioningArtifactDetails []*ProvisioningArtifactDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisioningArtifactsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProvisioningArtifactsOutput) GoString() string {
 	return s.String()
 }
@@ -16135,8 +17857,6 @@ type ListRecordHistoryInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -16156,12 +17876,20 @@ type ListRecordHistoryInput struct {
 	SearchFilter *ListRecordHistorySearchFilter `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecordHistoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecordHistoryInput) GoString() string {
 	return s.String()
 }
@@ -16207,12 +17935,20 @@ type ListRecordHistoryOutput struct {
 	RecordDetails []*RecordDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecordHistoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecordHistoryOutput) GoString() string {
 	return s.String()
 }
@@ -16245,12 +17981,20 @@ type ListRecordHistorySearchFilter struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecordHistorySearchFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecordHistorySearchFilter) GoString() string {
 	return s.String()
 }
@@ -16290,12 +18034,20 @@ type ListResourcesForTagOptionInput struct {
 	TagOptionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForTagOptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForTagOptionInput) GoString() string {
 	return s.String()
 }
@@ -16351,12 +18103,20 @@ type ListResourcesForTagOptionOutput struct {
 	ResourceDetails []*ResourceDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForTagOptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForTagOptionOutput) GoString() string {
 	return s.String()
 }
@@ -16377,8 +18137,6 @@ type ListServiceActionsForProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -16403,12 +18161,20 @@ type ListServiceActionsForProvisioningArtifactInput struct {
 	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServiceActionsForProvisioningArtifactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServiceActionsForProvisioningArtifactInput) GoString() string {
 	return s.String()
 }
@@ -16477,12 +18243,20 @@ type ListServiceActionsForProvisioningArtifactOutput struct {
 	ServiceActionSummaries []*ServiceActionSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServiceActionsForProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServiceActionsForProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -16504,8 +18278,6 @@ type ListServiceActionsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -16519,12 +18291,20 @@ type ListServiceActionsInput struct {
 	PageToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServiceActionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServiceActionsInput) GoString() string {
 	return s.String()
 }
@@ -16559,12 +18339,20 @@ type ListServiceActionsOutput struct {
 	ServiceActionSummaries []*ServiceActionSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServiceActionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServiceActionsOutput) GoString() string {
 	return s.String()
 }
@@ -16586,8 +18374,6 @@ type ListStackInstancesForProvisionedProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -16606,12 +18392,20 @@ type ListStackInstancesForProvisionedProductInput struct {
 	ProvisionedProductId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStackInstancesForProvisionedProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStackInstancesForProvisionedProductInput) GoString() string {
 	return s.String()
 }
@@ -16667,12 +18461,20 @@ type ListStackInstancesForProvisionedProductOutput struct {
 	StackInstances []*StackInstance `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStackInstancesForProvisionedProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStackInstancesForProvisionedProductOutput) GoString() string {
 	return s.String()
 }
@@ -16703,12 +18505,20 @@ type ListTagOptionsFilters struct {
 	Value *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagOptionsFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagOptionsFilters) GoString() string {
 	return s.String()
 }
@@ -16762,12 +18572,20 @@ type ListTagOptionsInput struct {
 	PageToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagOptionsInput) GoString() string {
 	return s.String()
 }
@@ -16816,12 +18634,20 @@ type ListTagOptionsOutput struct {
 	TagOptionDetails []*TagOptionDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -16838,6 +18664,420 @@ func (s *ListTagOptionsOutput) SetTagOptionDetails(v []*TagOptionDetail) *ListTa
 	return s
 }
 
+type NotifyProvisionProductEngineWorkflowResultInput struct {
+	_ struct{} `type:"structure"`
+
+	// The reason why the provisioning engine execution failed.
+	FailureReason *string `min:"1" type:"string"`
+
+	// The idempotency token that identifies the provisioning engine execution.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The output of the provisioning engine execution.
+	Outputs []*RecordOutput `type:"list"`
+
+	// The identifier of the record.
+	//
+	// RecordId is a required field
+	RecordId *string `min:"1" type:"string" required:"true"`
+
+	// The ID for the provisioned product resources that are part of a resource
+	// group.
+	ResourceIdentifier *EngineWorkflowResourceIdentifier `type:"structure"`
+
+	// The status of the provisioning engine execution.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EngineWorkflowStatus"`
+
+	// The encrypted contents of the provisioning engine execution payload that
+	// Service Catalog sends after the Terraform product provisioning workflow starts.
+	//
+	// WorkflowToken is a required field
+	WorkflowToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyProvisionProductEngineWorkflowResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyProvisionProductEngineWorkflowResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotifyProvisionProductEngineWorkflowResultInput"}
+	if s.FailureReason != nil && len(*s.FailureReason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FailureReason", 1))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.RecordId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecordId"))
+	}
+	if s.RecordId != nil && len(*s.RecordId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecordId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.WorkflowToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowToken"))
+	}
+	if s.WorkflowToken != nil && len(*s.WorkflowToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowToken", 1))
+	}
+	if s.ResourceIdentifier != nil {
+		if err := s.ResourceIdentifier.Validate(); err != nil {
+			invalidParams.AddNested("ResourceIdentifier", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetFailureReason(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetIdempotencyToken(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetOutputs(v []*RecordOutput) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.Outputs = v
+	return s
+}
+
+// SetRecordId sets the RecordId field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetRecordId(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.RecordId = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetResourceIdentifier(v *EngineWorkflowResourceIdentifier) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.ResourceIdentifier = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetStatus(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.Status = &v
+	return s
+}
+
+// SetWorkflowToken sets the WorkflowToken field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetWorkflowToken(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.WorkflowToken = &v
+	return s
+}
+
+type NotifyProvisionProductEngineWorkflowResultOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyProvisionProductEngineWorkflowResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyProvisionProductEngineWorkflowResultOutput) GoString() string {
+	return s.String()
+}
+
+type NotifyTerminateProvisionedProductEngineWorkflowResultInput struct {
+	_ struct{} `type:"structure"`
+
+	// The reason why the terminate engine execution failed.
+	FailureReason *string `min:"1" type:"string"`
+
+	// The idempotency token that identifies the terminate engine execution.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The identifier of the record.
+	//
+	// RecordId is a required field
+	RecordId *string `min:"1" type:"string" required:"true"`
+
+	// The status of the terminate engine execution.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EngineWorkflowStatus"`
+
+	// The encrypted contents of the terminate engine execution payload that Service
+	// Catalog sends after the Terraform product terminate workflow starts.
+	//
+	// WorkflowToken is a required field
+	WorkflowToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyTerminateProvisionedProductEngineWorkflowResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyTerminateProvisionedProductEngineWorkflowResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotifyTerminateProvisionedProductEngineWorkflowResultInput"}
+	if s.FailureReason != nil && len(*s.FailureReason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FailureReason", 1))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.RecordId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecordId"))
+	}
+	if s.RecordId != nil && len(*s.RecordId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecordId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.WorkflowToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowToken"))
+	}
+	if s.WorkflowToken != nil && len(*s.WorkflowToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetFailureReason(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetIdempotencyToken(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetRecordId sets the RecordId field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetRecordId(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.RecordId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetStatus(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.Status = &v
+	return s
+}
+
+// SetWorkflowToken sets the WorkflowToken field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetWorkflowToken(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.WorkflowToken = &v
+	return s
+}
+
+type NotifyTerminateProvisionedProductEngineWorkflowResultOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyTerminateProvisionedProductEngineWorkflowResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyTerminateProvisionedProductEngineWorkflowResultOutput) GoString() string {
+	return s.String()
+}
+
+type NotifyUpdateProvisionedProductEngineWorkflowResultInput struct {
+	_ struct{} `type:"structure"`
+
+	// The reason why the update engine execution failed.
+	FailureReason *string `min:"1" type:"string"`
+
+	// The idempotency token that identifies the update engine execution.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The output of the update engine execution.
+	Outputs []*RecordOutput `type:"list"`
+
+	// The identifier of the record.
+	//
+	// RecordId is a required field
+	RecordId *string `min:"1" type:"string" required:"true"`
+
+	// The status of the update engine execution.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EngineWorkflowStatus"`
+
+	// The encrypted contents of the update engine execution payload that Service
+	// Catalog sends after the Terraform product update workflow starts.
+	//
+	// WorkflowToken is a required field
+	WorkflowToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyUpdateProvisionedProductEngineWorkflowResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyUpdateProvisionedProductEngineWorkflowResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotifyUpdateProvisionedProductEngineWorkflowResultInput"}
+	if s.FailureReason != nil && len(*s.FailureReason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FailureReason", 1))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.RecordId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecordId"))
+	}
+	if s.RecordId != nil && len(*s.RecordId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecordId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.WorkflowToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowToken"))
+	}
+	if s.WorkflowToken != nil && len(*s.WorkflowToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetFailureReason(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetIdempotencyToken(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetOutputs(v []*RecordOutput) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.Outputs = v
+	return s
+}
+
+// SetRecordId sets the RecordId field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetRecordId(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.RecordId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetStatus(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.Status = &v
+	return s
+}
+
+// SetWorkflowToken sets the WorkflowToken field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetWorkflowToken(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.WorkflowToken = &v
+	return s
+}
+
+type NotifyUpdateProvisionedProductEngineWorkflowResultOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyUpdateProvisionedProductEngineWorkflowResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyUpdateProvisionedProductEngineWorkflowResultOutput) GoString() string {
+	return s.String()
+}
+
 // The operation is not supported.
 type OperationNotSupportedException struct {
 	_            struct{}                  `type:"structure"`
@@ -16846,12 +19086,20 @@ type OperationNotSupportedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OperationNotSupportedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OperationNotSupportedException) GoString() string {
 	return s.String()
 }
@@ -16905,12 +19153,20 @@ type OrganizationNode struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationNode) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationNode) GoString() string {
 	return s.String()
 }
@@ -16970,12 +19226,20 @@ type ParameterConstraints struct {
 	MinValue *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParameterConstraints) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParameterConstraints) GoString() string {
 	return s.String()
 }
@@ -17045,12 +19309,20 @@ type PortfolioDetail struct {
 	ProviderName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortfolioDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortfolioDetail) GoString() string {
 	return s.String()
 }
@@ -17101,7 +19373,7 @@ type PortfolioShareDetail struct {
 	Accepted *bool `type:"boolean"`
 
 	// The identifier of the recipient entity that received the portfolio share.
-	// The recipient entities can be one of the following:
+	// The recipient entity can be one of the following:
 	//
 	// 1. An external account.
 	//
@@ -17112,6 +19384,9 @@ type PortfolioShareDetail struct {
 	// 4. The organization itself. (This shares with every account in the organization).
 	PrincipalId *string `min:"1" type:"string"`
 
+	// Indicates if Principal sharing is enabled or disabled for the portfolio share.
+	SharePrincipals *bool `type:"boolean"`
+
 	// Indicates whether TagOptions sharing is enabled or disabled for the portfolio
 	// share.
 	ShareTagOptions *bool `type:"boolean"`
@@ -17120,12 +19395,20 @@ type PortfolioShareDetail struct {
 	Type *string `type:"string" enum:"DescribePortfolioShareType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortfolioShareDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortfolioShareDetail) GoString() string {
 	return s.String()
 }
@@ -17139,6 +19422,12 @@ func (s *PortfolioShareDetail) SetAccepted(v bool) *PortfolioShareDetail {
 // SetPrincipalId sets the PrincipalId field's value.
 func (s *PortfolioShareDetail) SetPrincipalId(v string) *PortfolioShareDetail {
 	s.PrincipalId = &v
+	return s
+}
+
+// SetSharePrincipals sets the SharePrincipals field's value.
+func (s *PortfolioShareDetail) SetSharePrincipals(v bool) *PortfolioShareDetail {
+	s.SharePrincipals = &v
 	return s
 }
 
@@ -17158,19 +19447,34 @@ func (s *PortfolioShareDetail) SetType(v string) *PortfolioShareDetail {
 type Principal struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the principal (IAM user, role, or group).
+	// The ARN of the principal (user, role, or group). This field allows for an
+	// ARN with no accountID, with or without wildcard characters if the PrincipalType
+	// is an IAM_PATTERN.
+	//
+	// For more information, review associate-principal-with-portfolio (https://docs.aws.amazon.com/cli/latest/reference/servicecatalog/associate-principal-with-portfolio.html#options)
+	// in the Amazon Web Services CLI Command Reference.
 	PrincipalARN *string `min:"1" type:"string"`
 
-	// The principal type. The supported value is IAM.
+	// The principal type. The supported value is IAM if you use a fully defined
+	// ARN, or IAM_PATTERN if you use an ARN with no accountID, with or without
+	// wildcard characters.
 	PrincipalType *string `type:"string" enum:"PrincipalType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Principal) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Principal) GoString() string {
 	return s.String()
 }
@@ -17199,12 +19503,20 @@ type ProductViewAggregationValue struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductViewAggregationValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductViewAggregationValue) GoString() string {
 	return s.String()
 }
@@ -17234,6 +19546,13 @@ type ProductViewDetail struct {
 	// Summary information about the product view.
 	ProductViewSummary *ProductViewSummary `type:"structure"`
 
+	// A top level ProductViewDetail response containing details about the product’s
+	// connection. Service Catalog returns this field for the CreateProduct, UpdateProduct,
+	// DescribeProductAsAdmin, and SearchProductAsAdmin APIs. This response contains
+	// the same fields as the ConnectionParameters request, with the addition of
+	// the LastSync response.
+	SourceConnection *SourceConnectionDetail `type:"structure"`
+
 	// The status of the product.
 	//
 	//    * AVAILABLE - The product is ready for use.
@@ -17245,12 +19564,20 @@ type ProductViewDetail struct {
 	Status *string `type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductViewDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductViewDetail) GoString() string {
 	return s.String()
 }
@@ -17270,6 +19597,12 @@ func (s *ProductViewDetail) SetProductARN(v string) *ProductViewDetail {
 // SetProductViewSummary sets the ProductViewSummary field's value.
 func (s *ProductViewDetail) SetProductViewSummary(v *ProductViewSummary) *ProductViewDetail {
 	s.ProductViewSummary = v
+	return s
+}
+
+// SetSourceConnection sets the SourceConnection field's value.
+func (s *ProductViewDetail) SetSourceConnection(v *SourceConnectionDetail) *ProductViewDetail {
+	s.SourceConnection = v
 	return s
 }
 
@@ -17319,17 +19652,25 @@ type ProductViewSummary struct {
 	SupportUrl *string `type:"string"`
 
 	// The product type. Contact the product administrator for the significance
-	// of this value. If this value is MARKETPLACE, the product was created by AWS
-	// Marketplace.
+	// of this value. If this value is MARKETPLACE, the product was created by Amazon
+	// Web Services Marketplace.
 	Type *string `type:"string" enum:"ProductType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductViewSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductViewSummary) GoString() string {
 	return s.String()
 }
@@ -17405,8 +19746,6 @@ type ProvisionProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -17435,7 +19774,8 @@ type ProvisionProductInput struct {
 	ProvisionToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A user-friendly name for the provisioned product. This value must be unique
-	// for the AWS account and cannot be updated after the product is provisioned.
+	// for the Amazon Web Services account and cannot be updated after the product
+	// is provisioned.
 	//
 	// ProvisionedProductName is a required field
 	ProvisionedProductName *string `min:"1" type:"string" required:"true"`
@@ -17460,12 +19800,20 @@ type ProvisionProductInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionProductInput) GoString() string {
 	return s.String()
 }
@@ -17611,12 +19959,20 @@ type ProvisionProductOutput struct {
 	RecordDetail *RecordDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionProductOutput) GoString() string {
 	return s.String()
 }
@@ -17648,7 +20004,7 @@ type ProvisionedProductAttribute struct {
 	// The record identifier of the last request performed on this provisioned product
 	// of the following types:
 	//
-	//    * ProvisionedProduct
+	//    * ProvisionProduct
 	//
 	//    * UpdateProvisionedProduct
 	//
@@ -17663,7 +20019,7 @@ type ProvisionedProductAttribute struct {
 	// The record identifier of the last successful request performed on this provisioned
 	// product of the following types:
 	//
-	//    * ProvisionedProduct
+	//    * ProvisionProduct
 	//
 	//    * UpdateProvisionedProduct
 	//
@@ -17720,23 +20076,31 @@ type ProvisionedProductAttribute struct {
 	// One or more tags.
 	Tags []*Tag `type:"list"`
 
-	// The type of provisioned product. The supported values are CFN_STACK and CFN_STACKSET.
+	// The type of provisioned product. The supported values are CFN_STACK, CFN_STACKSET,
+	// TERRAFORM_OPEN_SOURCE, TERRAFORM_CLOUD, and EXTERNAL.
 	Type *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the IAM user.
+	// The Amazon Resource Name (ARN) of the user.
 	UserArn *string `type:"string"`
 
-	// The ARN of the IAM user in the session. This ARN might contain a session
-	// ID.
+	// The ARN of the user in the session. This ARN might contain a session ID.
 	UserArnSession *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionedProductAttribute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionedProductAttribute) GoString() string {
 	return s.String()
 }
@@ -17876,7 +20240,7 @@ type ProvisionedProductDetail struct {
 	// The record identifier of the last request performed on this provisioned product
 	// of the following types:
 	//
-	//    * ProvisionedProduct
+	//    * ProvisionProduct
 	//
 	//    * UpdateProvisionedProduct
 	//
@@ -17891,7 +20255,7 @@ type ProvisionedProductDetail struct {
 	// The record identifier of the last successful request performed on this provisioned
 	// product of the following types:
 	//
-	//    * ProvisionedProduct
+	//    * ProvisionProduct
 	//
 	//    * UpdateProvisionedProduct
 	//
@@ -17938,16 +20302,25 @@ type ProvisionedProductDetail struct {
 	// The current status message of the provisioned product.
 	StatusMessage *string `type:"string"`
 
-	// The type of provisioned product. The supported values are CFN_STACK and CFN_STACKSET.
+	// The type of provisioned product. The supported values are CFN_STACK, CFN_STACKSET,
+	// TERRAFORM_OPEN_SOURCE, TERRAFORM_CLOUD, and EXTERNAL.
 	Type *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionedProductDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionedProductDetail) GoString() string {
 	return s.String()
 }
@@ -18086,16 +20459,24 @@ type ProvisionedProductPlanDetails struct {
 	// One or more tags.
 	Tags []*Tag `type:"list"`
 
-	// The time when the plan was last updated.
+	// The UTC time stamp when the plan was last updated.
 	UpdatedTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionedProductPlanDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionedProductPlanDetails) GoString() string {
 	return s.String()
 }
@@ -18213,12 +20594,20 @@ type ProvisionedProductPlanSummary struct {
 	ProvisioningArtifactId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionedProductPlanSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionedProductPlanSummary) GoString() string {
 	return s.String()
 }
@@ -18281,12 +20670,20 @@ type ProvisioningArtifact struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifact) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifact) GoString() string {
 	return s.String()
 }
@@ -18345,22 +20742,42 @@ type ProvisioningArtifactDetail struct {
 	// The name of the provisioning artifact.
 	Name *string `type:"string"`
 
+	// Specifies the revision of the external artifact that was used to automatically
+	// sync the Service Catalog product and create the provisioning artifact. Service
+	// Catalog includes this response parameter as a high level field to the existing
+	// ProvisioningArtifactDetail type, which is returned as part of the response
+	// for CreateProduct, UpdateProduct, DescribeProductAsAdmin, DescribeProvisioningArtifact,
+	// ListProvisioningArtifact, and UpdateProvisioningArticat APIs.
+	//
+	// This field only exists for Repo-Synced products.
+	SourceRevision *string `min:"1" type:"string"`
+
 	// The type of provisioning artifact.
 	//
-	//    * CLOUD_FORMATION_TEMPLATE - AWS CloudFormation template
+	//    * CLOUD_FORMATION_TEMPLATE - CloudFormation template
 	//
-	//    * MARKETPLACE_AMI - AWS Marketplace AMI
+	//    * TERRAFORM_OPEN_SOURCE - Terraform Open Source configuration file
 	//
-	//    * MARKETPLACE_CAR - AWS Marketplace Clusters and AWS Resources
+	//    * TERRAFORM_CLOUD - Terraform Cloud configuration file
+	//
+	//    * EXTERNAL - External configuration file
 	Type *string `type:"string" enum:"ProvisioningArtifactType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactDetail) GoString() string {
 	return s.String()
 }
@@ -18401,6 +20818,12 @@ func (s *ProvisioningArtifactDetail) SetName(v string) *ProvisioningArtifactDeta
 	return s
 }
 
+// SetSourceRevision sets the SourceRevision field's value.
+func (s *ProvisioningArtifactDetail) SetSourceRevision(v string) *ProvisioningArtifactDetail {
+	s.SourceRevision = &v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *ProvisioningArtifactDetail) SetType(v string) *ProvisioningArtifactDetail {
 	s.Type = &v
@@ -18418,12 +20841,20 @@ type ProvisioningArtifactOutput struct {
 	Key *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -18465,12 +20896,20 @@ type ProvisioningArtifactParameter struct {
 	ParameterType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactParameter) GoString() string {
 	return s.String()
 }
@@ -18516,31 +20955,39 @@ func (s *ProvisioningArtifactParameter) SetParameterType(v string) *Provisioning
 //
 // For more information on maximum concurrent accounts and failure tolerance,
 // see Stack set operation options (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-ops-options)
-// in the AWS CloudFormation User Guide.
+// in the CloudFormation User Guide.
 type ProvisioningArtifactPreferences struct {
 	_ struct{} `type:"structure"`
 
-	// One or more AWS accounts where stack instances are deployed from the stack
-	// set. These accounts can be scoped in ProvisioningPreferences$StackSetAccounts
+	// One or more Amazon Web Services accounts where stack instances are deployed
+	// from the stack set. These accounts can be scoped in ProvisioningPreferences$StackSetAccounts
 	// and UpdateProvisioningPreferences$StackSetAccounts.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	StackSetAccounts []*string `type:"list"`
 
-	// One or more AWS Regions where stack instances are deployed from the stack
-	// set. These regions can be scoped in ProvisioningPreferences$StackSetRegions
+	// One or more Amazon Web Services Regions where stack instances are deployed
+	// from the stack set. These Regions can be scoped in ProvisioningPreferences$StackSetRegions
 	// and UpdateProvisioningPreferences$StackSetRegions.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	StackSetRegions []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactPreferences) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactPreferences) GoString() string {
 	return s.String()
 }
@@ -18566,24 +21013,25 @@ type ProvisioningArtifactProperties struct {
 	// the previous provisioning artifact.
 	Description *string `type:"string"`
 
-	// If set to true, AWS Service Catalog stops validating the specified provisioning
+	// If set to true, Service Catalog stops validating the specified provisioning
 	// artifact even if it is invalid.
+	//
+	// Service Catalog does not support template validation for the TERRAFORM_OS
+	// product type.
 	DisableTemplateValidation *bool `type:"boolean"`
 
 	// Specify the template source with one of the following options, but not both.
 	// Keys accepted: [ LoadTemplateFromURL, ImportFromPhysicalId ]
 	//
-	// The URL of the CloudFormation template in Amazon S3. Specify the URL in JSON
-	// format as follows:
+	// The URL of the CloudFormation template in Amazon S3 or GitHub in JSON format.
+	// Specify the URL in JSON format as follows:
 	//
 	// "LoadTemplateFromURL": "https://s3.amazonaws.com/cf-templates-ozkq9d3hgiq2-us-east-1/..."
 	//
 	// ImportFromPhysicalId: The physical id of the resource that contains the template.
 	// Currently only supports CloudFormation stack arn. Specify the physical id
 	// in JSON format as follows: ImportFromPhysicalId: “arn:aws:cloudformation:[us-east-1]:[accountId]:stack/[StackName]/[resourceId]
-	//
-	// Info is a required field
-	Info map[string]*string `min:"1" type:"map" required:"true"`
+	Info map[string]*string `min:"1" type:"map"`
 
 	// The name of the provisioning artifact (for example, v1 v2beta). No spaces
 	// are allowed.
@@ -18591,20 +21039,30 @@ type ProvisioningArtifactProperties struct {
 
 	// The type of provisioning artifact.
 	//
-	//    * CLOUD_FORMATION_TEMPLATE - AWS CloudFormation template
+	//    * CLOUD_FORMATION_TEMPLATE - CloudFormation template
 	//
-	//    * MARKETPLACE_AMI - AWS Marketplace AMI
+	//    * TERRAFORM_OPEN_SOURCE - Terraform Open Source configuration file
 	//
-	//    * MARKETPLACE_CAR - AWS Marketplace Clusters and AWS Resources
+	//    * TERRAFORM_CLOUD - Terraform Cloud configuration file
+	//
+	//    * EXTERNAL - External configuration file
 	Type *string `type:"string" enum:"ProvisioningArtifactType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactProperties) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactProperties) GoString() string {
 	return s.String()
 }
@@ -18612,9 +21070,6 @@ func (s ProvisioningArtifactProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ProvisioningArtifactProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ProvisioningArtifactProperties"}
-	if s.Info == nil {
-		invalidParams.Add(request.NewErrParamRequired("Info"))
-	}
 	if s.Info != nil && len(s.Info) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Info", 1))
 	}
@@ -18672,17 +21127,25 @@ type ProvisioningArtifactSummary struct {
 	// The name of the provisioning artifact.
 	Name *string `type:"string"`
 
-	// The metadata for the provisioning artifact. This is used with AWS Marketplace
-	// products.
+	// The metadata for the provisioning artifact. This is used with Amazon Web
+	// Services Marketplace products.
 	ProvisioningArtifactMetadata map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactSummary) GoString() string {
 	return s.String()
 }
@@ -18730,12 +21193,20 @@ type ProvisioningArtifactView struct {
 	ProvisioningArtifact *ProvisioningArtifact `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactView) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningArtifactView) GoString() string {
 	return s.String()
 }
@@ -18763,12 +21234,20 @@ type ProvisioningParameter struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningParameter) GoString() string {
 	return s.String()
 }
@@ -18801,20 +21280,22 @@ func (s *ProvisioningParameter) SetValue(v string) *ProvisioningParameter {
 // The user-defined preferences that will be applied when updating a provisioned
 // product. Not all preferences are applicable to all provisioned product type
 //
-// One or more AWS accounts that will have access to the provisioned product.
+// One or more Amazon Web Services accounts that will have access to the provisioned
+// product.
 //
 // Applicable only to a CFN_STACKSET provisioned product type.
 //
-// The AWS accounts specified should be within the list of accounts in the STACKSET
-// constraint. To get the list of accounts in the STACKSET constraint, use the
-// DescribeProvisioningParameters operation.
+// The Amazon Web Services accounts specified should be within the list of accounts
+// in the STACKSET constraint. To get the list of accounts in the STACKSET constraint,
+// use the DescribeProvisioningParameters operation.
 //
 // If no values are specified, the default value is all accounts from the STACKSET
 // constraint.
 type ProvisioningPreferences struct {
 	_ struct{} `type:"structure"`
 
-	// One or more AWS accounts where the provisioned product will be available.
+	// One or more Amazon Web Services accounts where the provisioned product will
+	// be available.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -18826,10 +21307,10 @@ type ProvisioningPreferences struct {
 	// constraint.
 	StackSetAccounts []*string `type:"list"`
 
-	// The number of accounts, per region, for which this operation can fail before
-	// AWS Service Catalog stops the operation in that region. If the operation
-	// is stopped in a region, AWS Service Catalog doesn't attempt the operation
-	// in any subsequent regions.
+	// The number of accounts, per Region, for which this operation can fail before
+	// Service Catalog stops the operation in that Region. If the operation is stopped
+	// in a Region, Service Catalog doesn't attempt the operation in any subsequent
+	// Regions.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -18839,13 +21320,13 @@ type ProvisioningPreferences struct {
 	// The default value is 0 if no value is specified.
 	StackSetFailureToleranceCount *int64 `type:"integer"`
 
-	// The percentage of accounts, per region, for which this stack operation can
-	// fail before AWS Service Catalog stops the operation in that region. If the
-	// operation is stopped in a region, AWS Service Catalog doesn't attempt the
-	// operation in any subsequent regions.
+	// The percentage of accounts, per Region, for which this stack operation can
+	// fail before Service Catalog stops the operation in that Region. If the operation
+	// is stopped in a Region, Service Catalog doesn't attempt the operation in
+	// any subsequent Regions.
 	//
 	// When calculating the number of accounts based on the specified percentage,
-	// AWS Service Catalog rounds down to the next whole number.
+	// Service Catalog rounds down to the next whole number.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -18871,8 +21352,8 @@ type ProvisioningPreferences struct {
 	// one time.
 	//
 	// When calculating the number of accounts based on the specified percentage,
-	// AWS Service Catalog rounds down to the next whole number. This is true except
-	// in cases where rounding down would result is zero. In this case, AWS Service
+	// Service Catalog rounds down to the next whole number. This is true except
+	// in cases where rounding down would result is zero. In this case, Service
 	// Catalog sets the number as 1 instead.
 	//
 	// Note that this setting lets you specify the maximum for operations. For large
@@ -18885,25 +21366,34 @@ type ProvisioningPreferences struct {
 	// but not both.
 	StackSetMaxConcurrencyPercentage *int64 `min:"1" type:"integer"`
 
-	// One or more AWS Regions where the provisioned product will be available.
+	// One or more Amazon Web Services Regions where the provisioned product will
+	// be available.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
-	// The specified regions should be within the list of regions from the STACKSET
-	// constraint. To get the list of regions in the STACKSET constraint, use the
+	// The specified Regions should be within the list of Regions from the STACKSET
+	// constraint. To get the list of Regions in the STACKSET constraint, use the
 	// DescribeProvisioningParameters operation.
 	//
-	// If no values are specified, the default value is all regions from the STACKSET
+	// If no values are specified, the default value is all Regions from the STACKSET
 	// constraint.
 	StackSetRegions []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningPreferences) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisioningPreferences) GoString() string {
 	return s.String()
 }
@@ -18982,7 +21472,8 @@ type RecordDetail struct {
 	// The user-friendly name of the provisioned product.
 	ProvisionedProductName *string `min:"1" type:"string"`
 
-	// The type of provisioned product. The supported values are CFN_STACK and CFN_STACKSET.
+	// The type of provisioned product. The supported values are CFN_STACK, CFN_STACKSET,
+	// TERRAFORM_OPEN_SOURCE, TERRAFORM_CLOUD, and EXTERNAL.
 	ProvisionedProductType *string `type:"string"`
 
 	// The identifier of the provisioning artifact.
@@ -19026,12 +21517,20 @@ type RecordDetail struct {
 	UpdatedTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordDetail) GoString() string {
 	return s.String()
 }
@@ -19131,12 +21630,20 @@ type RecordError struct {
 	Description *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordError) GoString() string {
 	return s.String()
 }
@@ -19169,12 +21676,20 @@ type RecordOutput struct {
 	OutputValue *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordOutput) GoString() string {
 	return s.String()
 }
@@ -19208,12 +21723,20 @@ type RecordTag struct {
 	Value *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordTag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordTag) GoString() string {
 	return s.String()
 }
@@ -19234,8 +21757,6 @@ type RejectPortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -19262,12 +21783,20 @@ type RejectPortfolioShareInput struct {
 	PortfolioShareType *string `type:"string" enum:"PortfolioShareType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectPortfolioShareInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectPortfolioShareInput) GoString() string {
 	return s.String()
 }
@@ -19310,12 +21839,20 @@ type RejectPortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectPortfolioShareOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectPortfolioShareOutput) GoString() string {
 	return s.String()
 }
@@ -19344,15 +21881,23 @@ type ResourceChange struct {
 	ResourceType *string `min:"1" type:"string"`
 
 	// The change scope.
-	Scope []*string `type:"list"`
+	Scope []*string `type:"list" enum:"ResourceAttribute"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceChange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceChange) GoString() string {
 	return s.String()
 }
@@ -19415,12 +21960,20 @@ type ResourceChangeDetail struct {
 	Target *ResourceTargetDefinition `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceChangeDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceChangeDetail) GoString() string {
 	return s.String()
 }
@@ -19463,12 +22016,20 @@ type ResourceDetail struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDetail) GoString() string {
 	return s.String()
 }
@@ -19512,12 +22073,20 @@ type ResourceInUseException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -19568,12 +22137,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -19632,12 +22209,20 @@ type ResourceTargetDefinition struct {
 	RequiresRecreation *string `type:"string" enum:"RequiresRecreation"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceTargetDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceTargetDefinition) GoString() string {
 	return s.String()
 }
@@ -19665,8 +22250,6 @@ type ScanProvisionedProductsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -19683,12 +22266,20 @@ type ScanProvisionedProductsInput struct {
 	PageToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScanProvisionedProductsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScanProvisionedProductsInput) GoString() string {
 	return s.String()
 }
@@ -19728,12 +22319,20 @@ type ScanProvisionedProductsOutput struct {
 	ProvisionedProducts []*ProvisionedProductDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScanProvisionedProductsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScanProvisionedProductsOutput) GoString() string {
 	return s.String()
 }
@@ -19754,8 +22353,6 @@ type SearchProductsAsAdminInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -19786,12 +22383,20 @@ type SearchProductsAsAdminInput struct {
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProductsAsAdminInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProductsAsAdminInput) GoString() string {
 	return s.String()
 }
@@ -19868,12 +22473,20 @@ type SearchProductsAsAdminOutput struct {
 	ProductViewDetails []*ProductViewDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProductsAsAdminOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProductsAsAdminOutput) GoString() string {
 	return s.String()
 }
@@ -19894,8 +22507,6 @@ type SearchProductsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -19920,12 +22531,20 @@ type SearchProductsInput struct {
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProductsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProductsInput) GoString() string {
 	return s.String()
 }
@@ -19980,12 +22599,20 @@ type SearchProductsOutput struct {
 	ProductViewSummaries []*ProductViewSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProductsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProductsOutput) GoString() string {
 	return s.String()
 }
@@ -20013,8 +22640,6 @@ type SearchProvisionedProductsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -20026,7 +22651,7 @@ type SearchProvisionedProductsInput struct {
 	// The search filters.
 	//
 	// When the key is SearchQuery, the searchable fields are arn, createdTime,
-	// id, lastRecordId, idempotencyToken, name, physicalId, productId, provisioningArtifact,
+	// id, lastRecordId, idempotencyToken, name, physicalId, productId, provisioningArtifactId,
 	// type, status, tags, userArn, userArnSession, lastProvisioningRecordId, lastSuccessfulProvisioningRecordId,
 	// productName, and provisioningArtifactName.
 	//
@@ -20048,12 +22673,20 @@ type SearchProvisionedProductsInput struct {
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProvisionedProductsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProvisionedProductsInput) GoString() string {
 	return s.String()
 }
@@ -20114,12 +22747,20 @@ type SearchProvisionedProductsOutput struct {
 	TotalResultsCount *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProvisionedProductsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchProvisionedProductsOutput) GoString() string {
 	return s.String()
 }
@@ -20163,12 +22804,20 @@ type ServiceActionAssociation struct {
 	ServiceActionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceActionAssociation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceActionAssociation) GoString() string {
 	return s.String()
 }
@@ -20230,12 +22879,20 @@ type ServiceActionDetail struct {
 	ServiceActionSummary *ServiceActionSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceActionDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceActionDetail) GoString() string {
 	return s.String()
 }
@@ -20269,12 +22926,20 @@ type ServiceActionSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceActionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceActionSummary) GoString() string {
 	return s.String()
 }
@@ -20314,12 +22979,20 @@ type ShareDetails struct {
 	SuccessfulShares []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ShareDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ShareDetails) GoString() string {
 	return s.String()
 }
@@ -20350,12 +23023,20 @@ type ShareError struct {
 	Message *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ShareError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ShareError) GoString() string {
 	return s.String()
 }
@@ -20378,20 +23059,195 @@ func (s *ShareError) SetMessage(v string) *ShareError {
 	return s
 }
 
-// An AWS CloudFormation stack, in a specific account and region, that's part
-// of a stack set operation. A stack instance is a reference to an attempted
-// or actual stack in a given account within a given region. A stack instance
-// can exist without a stack—for example, if the stack couldn't be created
-// for some reason. A stack instance is associated with only one stack set.
-// Each stack instance contains the ID of its associated stack set, as well
-// as the ID of the actual stack and the stack status.
+// A top level ProductViewDetail response containing details about the product’s
+// connection. Service Catalog returns this field for the CreateProduct, UpdateProduct,
+// DescribeProductAsAdmin, and SearchProductAsAdmin APIs. This response contains
+// the same fields as the ConnectionParameters request, with the addition of
+// the LastSync response.
+type SourceConnection struct {
+	_ struct{} `type:"structure"`
+
+	// The connection details based on the connection Type.
+	//
+	// ConnectionParameters is a required field
+	ConnectionParameters *SourceConnectionParameters `type:"structure" required:"true"`
+
+	// The only supported SourceConnection type is Codestar.
+	Type *string `type:"string" enum:"SourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceConnection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceConnection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceConnection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceConnection"}
+	if s.ConnectionParameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionParameters"))
+	}
+	if s.ConnectionParameters != nil {
+		if err := s.ConnectionParameters.Validate(); err != nil {
+			invalidParams.AddNested("ConnectionParameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionParameters sets the ConnectionParameters field's value.
+func (s *SourceConnection) SetConnectionParameters(v *SourceConnectionParameters) *SourceConnection {
+	s.ConnectionParameters = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SourceConnection) SetType(v string) *SourceConnection {
+	s.Type = &v
+	return s
+}
+
+// Provides details about the configured SourceConnection.
+type SourceConnectionDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The connection details based on the connection Type.
+	ConnectionParameters *SourceConnectionParameters `type:"structure"`
+
+	// Provides details about the product's connection sync and contains the following
+	// sub-fields.
+	//
+	//    * LastSyncTime
+	//
+	//    * LastSyncStatus
+	//
+	//    * LastSyncStatusMessage
+	//
+	//    * LastSuccessfulSyncTime
+	//
+	//    * LastSuccessfulSyncProvisioningArtifactID
+	LastSync *LastSync `type:"structure"`
+
+	// The only supported SourceConnection type is Codestar.
+	Type *string `type:"string" enum:"SourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceConnectionDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceConnectionDetail) GoString() string {
+	return s.String()
+}
+
+// SetConnectionParameters sets the ConnectionParameters field's value.
+func (s *SourceConnectionDetail) SetConnectionParameters(v *SourceConnectionParameters) *SourceConnectionDetail {
+	s.ConnectionParameters = v
+	return s
+}
+
+// SetLastSync sets the LastSync field's value.
+func (s *SourceConnectionDetail) SetLastSync(v *LastSync) *SourceConnectionDetail {
+	s.LastSync = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SourceConnectionDetail) SetType(v string) *SourceConnectionDetail {
+	s.Type = &v
+	return s
+}
+
+// Provides connection details.
+type SourceConnectionParameters struct {
+	_ struct{} `type:"structure"`
+
+	// Provides ConnectionType details.
+	CodeStar *CodeStarParameters `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceConnectionParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceConnectionParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceConnectionParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceConnectionParameters"}
+	if s.CodeStar != nil {
+		if err := s.CodeStar.Validate(); err != nil {
+			invalidParams.AddNested("CodeStar", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeStar sets the CodeStar field's value.
+func (s *SourceConnectionParameters) SetCodeStar(v *CodeStarParameters) *SourceConnectionParameters {
+	s.CodeStar = v
+	return s
+}
+
+// An CloudFormation stack, in a specific account and Region, that's part of
+// a stack set operation. A stack instance is a reference to an attempted or
+// actual stack in a given account within a given Region. A stack instance can
+// exist without a stack—for example, if the stack couldn't be created for
+// some reason. A stack instance is associated with only one stack set. Each
+// stack instance contains the ID of its associated stack set, as well as the
+// ID of the actual stack and the stack status.
 type StackInstance struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS account that the stack instance is associated with.
+	// The name of the Amazon Web Services account that the stack instance is associated
+	// with.
 	Account *string `type:"string"`
 
-	// The name of the AWS region that the stack instance is associated with.
+	// The name of the Amazon Web Services Region that the stack instance is associated
+	// with.
 	Region *string `type:"string"`
 
 	// The status of the stack instance, in terms of its synchronization with its
@@ -20412,12 +23268,20 @@ type StackInstance struct {
 	StackInstanceStatus *string `type:"string" enum:"StackInstanceStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StackInstance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StackInstance) GoString() string {
 	return s.String()
 }
@@ -20456,12 +23320,20 @@ type Tag struct {
 	Value *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -20513,19 +23385,28 @@ type TagOptionDetail struct {
 	// The TagOption key.
 	Key *string `min:"1" type:"string"`
 
-	// The AWS account Id of the owner account that created the TagOption.
+	// The Amazon Web Services account Id of the owner account that created the
+	// TagOption.
 	Owner *string `type:"string"`
 
 	// The TagOption value.
 	Value *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOptionDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOptionDetail) GoString() string {
 	return s.String()
 }
@@ -20561,8 +23442,8 @@ func (s *TagOptionDetail) SetValue(v string) *TagOptionDetail {
 }
 
 // An operation requiring TagOptions failed because the TagOptions migration
-// process has not been performed for this account. Please use the AWS console
-// to perform the migration process before retrying the operation.
+// process has not been performed for this account. Use the Amazon Web Services
+// Management Console to perform the migration process before retrying the operation.
 type TagOptionNotMigratedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -20570,12 +23451,20 @@ type TagOptionNotMigratedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOptionNotMigratedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOptionNotMigratedException) GoString() string {
 	return s.String()
 }
@@ -20629,12 +23518,20 @@ type TagOptionSummary struct {
 	Values []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOptionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOptionSummary) GoString() string {
 	return s.String()
 }
@@ -20656,14 +23553,12 @@ type TerminateProvisionedProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// If set to true, AWS Service Catalog stops managing the specified provisioned
+	// If set to true, Service Catalog stops managing the specified provisioned
 	// product even if it cannot delete the underlying resources.
 	IgnoreErrors *bool `type:"boolean"`
 
@@ -20688,12 +23583,20 @@ type TerminateProvisionedProductInput struct {
 	TerminateToken *string `min:"1" type:"string" idempotencyToken:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateProvisionedProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateProvisionedProductInput) GoString() string {
 	return s.String()
 }
@@ -20760,12 +23663,20 @@ type TerminateProvisionedProductOutput struct {
 	RecordDetail *RecordDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateProvisionedProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateProvisionedProductOutput) GoString() string {
 	return s.String()
 }
@@ -20776,12 +23687,67 @@ func (s *TerminateProvisionedProductOutput) SetRecordDetail(v *RecordDetail) *Te
 	return s
 }
 
+// The unique key-value pair for a tag that identifies provisioned product resources.
+type UniqueTagResourceIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// A unique key that's attached to a resource.
+	Key *string `min:"1" type:"string"`
+
+	// A unique value that's attached to a resource.
+	Value *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UniqueTagResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UniqueTagResourceIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UniqueTagResourceIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UniqueTagResourceIdentifier"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *UniqueTagResourceIdentifier) SetKey(v string) *UniqueTagResourceIdentifier {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *UniqueTagResourceIdentifier) SetValue(v string) *UniqueTagResourceIdentifier {
+	s.Value = &v
+	return s
+}
+
 type UpdateConstraintInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -20850,8 +23816,7 @@ type UpdateConstraintInput struct {
 	//
 	// You also cannot have more than one STACKSET constraint on a product and portfolio.
 	//
-	// Products with a STACKSET constraint will launch an AWS CloudFormation stack
-	// set.
+	// Products with a STACKSET constraint will launch an CloudFormation stack set.
 	//
 	// TEMPLATE
 	//
@@ -20860,12 +23825,20 @@ type UpdateConstraintInput struct {
 	Parameters *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConstraintInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConstraintInput) GoString() string {
 	return s.String()
 }
@@ -20923,12 +23896,20 @@ type UpdateConstraintOutput struct {
 	Status *string `type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConstraintOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConstraintOutput) GoString() string {
 	return s.String()
 }
@@ -20956,8 +23937,6 @@ type UpdatePortfolioInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -20984,12 +23963,20 @@ type UpdatePortfolioInput struct {
 	RemoveTags []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePortfolioInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePortfolioInput) GoString() string {
 	return s.String()
 }
@@ -21078,12 +24065,20 @@ type UpdatePortfolioOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePortfolioOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePortfolioOutput) GoString() string {
 	return s.String()
 }
@@ -21105,15 +24100,13 @@ type UpdatePortfolioShareInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// The AWS Account Id of the recipient account. This field is required when
-	// updating an external account to account type share.
+	// The Amazon Web Services account Id of the recipient account. This field is
+	// required when updating an external account to account type share.
 	AccountId *string `type:"string"`
 
 	// Information about the organization node.
@@ -21124,18 +24117,31 @@ type UpdatePortfolioShareInput struct {
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
-	// A flag to enable or disable TagOptions sharing for the portfolio share. If
-	// this field is not provided, the current state of TagOptions sharing on the
+	// A flag to enables or disables Principals sharing in the portfolio. If this
+	// field is not provided, the current state of the Principals sharing on the
 	// portfolio share will not be modified.
+	SharePrincipals *bool `type:"boolean"`
+
+	// Enables or disables TagOptions sharing for the portfolio share. If this field
+	// is not provided, the current state of TagOptions sharing on the portfolio
+	// share will not be modified.
 	ShareTagOptions *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePortfolioShareInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePortfolioShareInput) GoString() string {
 	return s.String()
 }
@@ -21180,6 +24186,12 @@ func (s *UpdatePortfolioShareInput) SetPortfolioId(v string) *UpdatePortfolioSha
 	return s
 }
 
+// SetSharePrincipals sets the SharePrincipals field's value.
+func (s *UpdatePortfolioShareInput) SetSharePrincipals(v bool) *UpdatePortfolioShareInput {
+	s.SharePrincipals = &v
+	return s
+}
+
 // SetShareTagOptions sets the ShareTagOptions field's value.
 func (s *UpdatePortfolioShareInput) SetShareTagOptions(v bool) *UpdatePortfolioShareInput {
 	s.ShareTagOptions = &v
@@ -21198,12 +24210,20 @@ type UpdatePortfolioShareOutput struct {
 	Status *string `type:"string" enum:"ShareStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePortfolioShareOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePortfolioShareOutput) GoString() string {
 	return s.String()
 }
@@ -21224,8 +24244,6 @@ type UpdateProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -21255,6 +24273,16 @@ type UpdateProductInput struct {
 	// The tags to remove from the product.
 	RemoveTags []*string `type:"list"`
 
+	// Specifies connection details for the updated product and syncs the product
+	// to the connection source artifact. This automatically manages the product's
+	// artifacts based on changes to the source. The SourceConnection parameter
+	// consists of the following sub-fields.
+	//
+	//    * Type
+	//
+	//    * ConnectionParamters
+	SourceConnection *SourceConnection `type:"structure"`
+
 	// The updated support description for the product.
 	SupportDescription *string `type:"string"`
 
@@ -21265,12 +24293,20 @@ type UpdateProductInput struct {
 	SupportUrl *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProductInput) GoString() string {
 	return s.String()
 }
@@ -21292,6 +24328,11 @@ func (s *UpdateProductInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AddTags", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.SourceConnection != nil {
+		if err := s.SourceConnection.Validate(); err != nil {
+			invalidParams.AddNested("SourceConnection", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -21349,6 +24390,12 @@ func (s *UpdateProductInput) SetRemoveTags(v []*string) *UpdateProductInput {
 	return s
 }
 
+// SetSourceConnection sets the SourceConnection field's value.
+func (s *UpdateProductInput) SetSourceConnection(v *SourceConnection) *UpdateProductInput {
+	s.SourceConnection = v
+	return s
+}
+
 // SetSupportDescription sets the SupportDescription field's value.
 func (s *UpdateProductInput) SetSupportDescription(v string) *UpdateProductInput {
 	s.SupportDescription = &v
@@ -21377,12 +24424,20 @@ type UpdateProductOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProductOutput) GoString() string {
 	return s.String()
 }
@@ -21403,8 +24458,6 @@ type UpdateProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -21455,12 +24508,20 @@ type UpdateProvisionedProductInput struct {
 	UpdateToken *string `min:"1" type:"string" idempotencyToken:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisionedProductInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisionedProductInput) GoString() string {
 	return s.String()
 }
@@ -21606,12 +24667,20 @@ type UpdateProvisionedProductOutput struct {
 	RecordDetail *RecordDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisionedProductOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisionedProductOutput) GoString() string {
 	return s.String()
 }
@@ -21626,8 +24695,6 @@ type UpdateProvisionedProductPropertiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -21652,12 +24719,12 @@ type UpdateProvisionedProductPropertiesInput struct {
 	// or ExecuteProvisionedProductServiceAction. Only a role ARN is valid. A user
 	// ARN is invalid.
 	//
-	// The OWNER key accepts user ARNs and role ARNs. The owner is the user that
-	// has permission to see, update, terminate, and execute service actions in
-	// the provisioned product.
+	// The OWNER key accepts user ARNs, IAM role ARNs, and STS assumed-role ARNs.
+	// The owner is the user that has permission to see, update, terminate, and
+	// execute service actions in the provisioned product.
 	//
 	// The administrator can change the owner of a provisioned product to another
-	// IAM user within the same account. Both end user owners and administrators
+	// IAM or STS entity within the same account. Both end user owners and administrators
 	// can see ownership history of the provisioned product using the ListRecordHistory
 	// API. The new owner can describe all past records for the provisioned product
 	// using the DescribeRecord API. The previous owner can no longer use DescribeRecord,
@@ -21674,12 +24741,20 @@ type UpdateProvisionedProductPropertiesInput struct {
 	ProvisionedProductProperties map[string]*string `min:"1" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisionedProductPropertiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisionedProductPropertiesInput) GoString() string {
 	return s.String()
 }
@@ -21749,12 +24824,20 @@ type UpdateProvisionedProductPropertiesOutput struct {
 	Status *string `type:"string" enum:"RecordStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisionedProductPropertiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisionedProductPropertiesOutput) GoString() string {
 	return s.String()
 }
@@ -21787,8 +24870,6 @@ type UpdateProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -21829,12 +24910,20 @@ type UpdateProvisioningArtifactInput struct {
 	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisioningArtifactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisioningArtifactInput) GoString() string {
 	return s.String()
 }
@@ -21906,7 +24995,7 @@ func (s *UpdateProvisioningArtifactInput) SetProvisioningArtifactId(v string) *U
 type UpdateProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the CloudFormation template in Amazon S3.
+	// The URL of the CloudFormation template in Amazon S3 or GitHub in JSON format.
 	Info map[string]*string `min:"1" type:"map"`
 
 	// Information about the provisioning artifact.
@@ -21916,12 +25005,20 @@ type UpdateProvisioningArtifactOutput struct {
 	Status *string `type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisioningArtifactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
@@ -21958,12 +25055,20 @@ type UpdateProvisioningParameter struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisioningParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisioningParameter) GoString() string {
 	return s.String()
 }
@@ -22004,22 +25109,23 @@ func (s *UpdateProvisioningParameter) SetValue(v string) *UpdateProvisioningPara
 type UpdateProvisioningPreferences struct {
 	_ struct{} `type:"structure"`
 
-	// One or more AWS accounts that will have access to the provisioned product.
+	// One or more Amazon Web Services accounts that will have access to the provisioned
+	// product.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
-	// The AWS accounts specified should be within the list of accounts in the STACKSET
-	// constraint. To get the list of accounts in the STACKSET constraint, use the
-	// DescribeProvisioningParameters operation.
+	// The Amazon Web Services accounts specified should be within the list of accounts
+	// in the STACKSET constraint. To get the list of accounts in the STACKSET constraint,
+	// use the DescribeProvisioningParameters operation.
 	//
 	// If no values are specified, the default value is all accounts from the STACKSET
 	// constraint.
 	StackSetAccounts []*string `type:"list"`
 
-	// The number of accounts, per region, for which this operation can fail before
-	// AWS Service Catalog stops the operation in that region. If the operation
-	// is stopped in a region, AWS Service Catalog doesn't attempt the operation
-	// in any subsequent regions.
+	// The number of accounts, per Region, for which this operation can fail before
+	// Service Catalog stops the operation in that Region. If the operation is stopped
+	// in a Region, Service Catalog doesn't attempt the operation in any subsequent
+	// Regions.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -22029,13 +25135,13 @@ type UpdateProvisioningPreferences struct {
 	// The default value is 0 if no value is specified.
 	StackSetFailureToleranceCount *int64 `type:"integer"`
 
-	// The percentage of accounts, per region, for which this stack operation can
-	// fail before AWS Service Catalog stops the operation in that region. If the
-	// operation is stopped in a region, AWS Service Catalog doesn't attempt the
-	// operation in any subsequent regions.
+	// The percentage of accounts, per Region, for which this stack operation can
+	// fail before Service Catalog stops the operation in that Region. If the operation
+	// is stopped in a Region, Service Catalog doesn't attempt the operation in
+	// any subsequent Regions.
 	//
 	// When calculating the number of accounts based on the specified percentage,
-	// AWS Service Catalog rounds down to the next whole number.
+	// Service Catalog rounds down to the next whole number.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -22061,8 +25167,8 @@ type UpdateProvisioningPreferences struct {
 	// one time.
 	//
 	// When calculating the number of accounts based on the specified percentage,
-	// AWS Service Catalog rounds down to the next whole number. This is true except
-	// in cases where rounding down would result is zero. In this case, AWS Service
+	// Service Catalog rounds down to the next whole number. This is true except
+	// in cases where rounding down would result is zero. In this case, Service
 	// Catalog sets the number as 1 instead.
 	//
 	// Note that this setting lets you specify the maximum for operations. For large
@@ -22075,7 +25181,7 @@ type UpdateProvisioningPreferences struct {
 	// but not both.
 	StackSetMaxConcurrencyPercentage *int64 `min:"1" type:"integer"`
 
-	// Determines what action AWS Service Catalog performs to a stack set or a stack
+	// Determines what action Service Catalog performs to a stack set or a stack
 	// instance represented by the provisioned product. The default value is UPDATE
 	// if nothing is specified.
 	//
@@ -22085,7 +25191,7 @@ type UpdateProvisioningPreferences struct {
 	//
 	// Creates a new stack instance in the stack set represented by the provisioned
 	// product. In this case, only new stack instances are created based on accounts
-	// and regions; if new ProductId or ProvisioningArtifactID are passed, they
+	// and Regions; if new ProductId or ProvisioningArtifactID are passed, they
 	// will be ignored.
 	//
 	// UPDATE
@@ -22099,25 +25205,34 @@ type UpdateProvisioningPreferences struct {
 	// product.
 	StackSetOperationType *string `type:"string" enum:"StackSetOperationType"`
 
-	// One or more AWS Regions where the provisioned product will be available.
+	// One or more Amazon Web Services Regions where the provisioned product will
+	// be available.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
-	// The specified regions should be within the list of regions from the STACKSET
-	// constraint. To get the list of regions in the STACKSET constraint, use the
+	// The specified Regions should be within the list of Regions from the STACKSET
+	// constraint. To get the list of Regions in the STACKSET constraint, use the
 	// DescribeProvisioningParameters operation.
 	//
-	// If no values are specified, the default value is all regions from the STACKSET
+	// If no values are specified, the default value is all Regions from the STACKSET
 	// constraint.
 	StackSetRegions []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisioningPreferences) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateProvisioningPreferences) GoString() string {
 	return s.String()
 }
@@ -22185,8 +25300,6 @@ type UpdateServiceActionInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -22207,12 +25320,20 @@ type UpdateServiceActionInput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceActionInput) GoString() string {
 	return s.String()
 }
@@ -22276,12 +25397,20 @@ type UpdateServiceActionOutput struct {
 	ServiceActionDetail *ServiceActionDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceActionOutput) GoString() string {
 	return s.String()
 }
@@ -22307,12 +25436,20 @@ type UpdateTagOptionInput struct {
 	Value *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTagOptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTagOptionInput) GoString() string {
 	return s.String()
 }
@@ -22361,12 +25498,20 @@ type UpdateTagOptionOutput struct {
 	TagOptionDetail *TagOptionDetail `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTagOptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTagOptionOutput) GoString() string {
 	return s.String()
 }
@@ -22388,12 +25533,20 @@ type UsageInstruction struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UsageInstruction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UsageInstruction) GoString() string {
 	return s.String()
 }
@@ -22527,6 +25680,22 @@ func DescribePortfolioShareType_Values() []string {
 }
 
 const (
+	// EngineWorkflowStatusSucceeded is a EngineWorkflowStatus enum value
+	EngineWorkflowStatusSucceeded = "SUCCEEDED"
+
+	// EngineWorkflowStatusFailed is a EngineWorkflowStatus enum value
+	EngineWorkflowStatusFailed = "FAILED"
+)
+
+// EngineWorkflowStatus_Values returns all elements of the EngineWorkflowStatus enum
+func EngineWorkflowStatus_Values() []string {
+	return []string{
+		EngineWorkflowStatusSucceeded,
+		EngineWorkflowStatusFailed,
+	}
+}
+
+const (
 	// EvaluationTypeStatic is a EvaluationType enum value
 	EvaluationTypeStatic = "STATIC"
 
@@ -22539,6 +25708,22 @@ func EvaluationType_Values() []string {
 	return []string{
 		EvaluationTypeStatic,
 		EvaluationTypeDynamic,
+	}
+}
+
+const (
+	// LastSyncStatusSucceeded is a LastSyncStatus enum value
+	LastSyncStatusSucceeded = "SUCCEEDED"
+
+	// LastSyncStatusFailed is a LastSyncStatus enum value
+	LastSyncStatusFailed = "FAILED"
+)
+
+// LastSyncStatus_Values returns all elements of the LastSyncStatus enum
+func LastSyncStatus_Values() []string {
+	return []string{
+		LastSyncStatusSucceeded,
+		LastSyncStatusFailed,
 	}
 }
 
@@ -22585,12 +25770,16 @@ func PortfolioShareType_Values() []string {
 const (
 	// PrincipalTypeIam is a PrincipalType enum value
 	PrincipalTypeIam = "IAM"
+
+	// PrincipalTypeIamPattern is a PrincipalType enum value
+	PrincipalTypeIamPattern = "IAM_PATTERN"
 )
 
 // PrincipalType_Values returns all elements of the PrincipalType enum
 func PrincipalType_Values() []string {
 	return []string{
 		PrincipalTypeIam,
+		PrincipalTypeIamPattern,
 	}
 }
 
@@ -22612,6 +25801,15 @@ const (
 
 	// ProductTypeMarketplace is a ProductType enum value
 	ProductTypeMarketplace = "MARKETPLACE"
+
+	// ProductTypeTerraformOpenSource is a ProductType enum value
+	ProductTypeTerraformOpenSource = "TERRAFORM_OPEN_SOURCE"
+
+	// ProductTypeTerraformCloud is a ProductType enum value
+	ProductTypeTerraformCloud = "TERRAFORM_CLOUD"
+
+	// ProductTypeExternal is a ProductType enum value
+	ProductTypeExternal = "EXTERNAL"
 )
 
 // ProductType_Values returns all elements of the ProductType enum
@@ -22619,6 +25817,9 @@ func ProductType_Values() []string {
 	return []string{
 		ProductTypeCloudFormationTemplate,
 		ProductTypeMarketplace,
+		ProductTypeTerraformOpenSource,
+		ProductTypeTerraformCloud,
+		ProductTypeExternal,
 	}
 }
 
@@ -22803,6 +26004,15 @@ const (
 
 	// ProvisioningArtifactTypeMarketplaceCar is a ProvisioningArtifactType enum value
 	ProvisioningArtifactTypeMarketplaceCar = "MARKETPLACE_CAR"
+
+	// ProvisioningArtifactTypeTerraformOpenSource is a ProvisioningArtifactType enum value
+	ProvisioningArtifactTypeTerraformOpenSource = "TERRAFORM_OPEN_SOURCE"
+
+	// ProvisioningArtifactTypeTerraformCloud is a ProvisioningArtifactType enum value
+	ProvisioningArtifactTypeTerraformCloud = "TERRAFORM_CLOUD"
+
+	// ProvisioningArtifactTypeExternal is a ProvisioningArtifactType enum value
+	ProvisioningArtifactTypeExternal = "EXTERNAL"
 )
 
 // ProvisioningArtifactType_Values returns all elements of the ProvisioningArtifactType enum
@@ -22811,6 +26021,9 @@ func ProvisioningArtifactType_Values() []string {
 		ProvisioningArtifactTypeCloudFormationTemplate,
 		ProvisioningArtifactTypeMarketplaceAmi,
 		ProvisioningArtifactTypeMarketplaceCar,
+		ProvisioningArtifactTypeTerraformOpenSource,
+		ProvisioningArtifactTypeTerraformCloud,
+		ProvisioningArtifactTypeExternal,
 	}
 }
 
@@ -22929,6 +26142,9 @@ const (
 
 	// ServiceActionAssociationErrorCodeThrottling is a ServiceActionAssociationErrorCode enum value
 	ServiceActionAssociationErrorCodeThrottling = "THROTTLING"
+
+	// ServiceActionAssociationErrorCodeInvalidParameter is a ServiceActionAssociationErrorCode enum value
+	ServiceActionAssociationErrorCodeInvalidParameter = "INVALID_PARAMETER"
 )
 
 // ServiceActionAssociationErrorCode_Values returns all elements of the ServiceActionAssociationErrorCode enum
@@ -22939,6 +26155,7 @@ func ServiceActionAssociationErrorCode_Values() []string {
 		ServiceActionAssociationErrorCodeLimitExceeded,
 		ServiceActionAssociationErrorCodeResourceNotFound,
 		ServiceActionAssociationErrorCodeThrottling,
+		ServiceActionAssociationErrorCodeInvalidParameter,
 	}
 }
 
@@ -23019,6 +26236,18 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderAscending,
 		SortOrderDescending,
+	}
+}
+
+const (
+	// SourceTypeCodestar is a SourceType enum value
+	SourceTypeCodestar = "CODESTAR"
+)
+
+// SourceType_Values returns all elements of the SourceType enum
+func SourceType_Values() []string {
+	return []string{
+		SourceTypeCodestar,
 	}
 }
 

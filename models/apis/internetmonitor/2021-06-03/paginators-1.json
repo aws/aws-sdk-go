@@ -1,0 +1,21 @@
+{
+  "pagination": {
+    "GetQueryResults": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListHealthEvents": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "HealthEvents"
+    },
+    "ListMonitors": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Monitors"
+    }
+  }
+}

@@ -11,36 +11,37 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You do not have authorization to perform the requested action.
+	// You don't have authorization to perform the requested action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeAttributeLimitExceededException for service response error code
 	// "AttributeLimitExceededException".
 	//
-	// You can apply up to 10 custom attributes per resource. You can view the attributes
-	// of a resource with ListAttributes. You can remove existing attributes on
-	// a resource with DeleteAttributes.
+	// You can apply up to 10 custom attributes for each resource. You can view
+	// the attributes of a resource with ListAttributes. You can remove existing
+	// attributes on a resource with DeleteAttributes.
 	ErrCodeAttributeLimitExceededException = "AttributeLimitExceededException"
 
 	// ErrCodeBlockedException for service response error code
 	// "BlockedException".
 	//
-	// Your Amazon Web Services account has been blocked. For more information,
-	// contact Amazon Web Services Support (http://aws.amazon.com/contact-us/).
+	// Your Amazon Web Services account was blocked. For more information, contact
+	// Amazon Web Services Support (http://aws.amazon.com/contact-us/).
 	ErrCodeBlockedException = "BlockedException"
 
 	// ErrCodeClientException for service response error code
 	// "ClientException".
 	//
-	// These errors are usually caused by a client action, such as using an action
-	// or resource on behalf of a user that doesn't have permissions to use the
-	// action or resource, or specifying an identifier that is not valid.
+	// These errors are usually caused by a client action. This client action might
+	// be using an action or resource on behalf of a user that doesn't have permissions
+	// to use the action or resource. Or, it might be specifying an identifier that
+	// isn't valid.
 	ErrCodeClientException = "ClientException"
 
 	// ErrCodeClusterContainsContainerInstancesException for service response error code
 	// "ClusterContainsContainerInstancesException".
 	//
-	// You cannot delete a cluster that has registered container instances. First,
+	// You can't delete a cluster that has registered container instances. First,
 	// deregister the container instances before you can delete the cluster. For
 	// more information, see DeregisterContainerInstance.
 	ErrCodeClusterContainsContainerInstancesException = "ClusterContainsContainerInstancesException"
@@ -48,77 +49,97 @@ const (
 	// ErrCodeClusterContainsServicesException for service response error code
 	// "ClusterContainsServicesException".
 	//
-	// You cannot delete a cluster that contains services. First, update the service
-	// to reduce its desired task count to 0 and then delete the service. For more
+	// You can't delete a cluster that contains services. First, update the service
+	// to reduce its desired task count to 0, and then delete the service. For more
 	// information, see UpdateService and DeleteService.
 	ErrCodeClusterContainsServicesException = "ClusterContainsServicesException"
 
 	// ErrCodeClusterContainsTasksException for service response error code
 	// "ClusterContainsTasksException".
 	//
-	// You cannot delete a cluster that has active tasks.
+	// You can't delete a cluster that has active tasks.
 	ErrCodeClusterContainsTasksException = "ClusterContainsTasksException"
 
 	// ErrCodeClusterNotFoundException for service response error code
 	// "ClusterNotFoundException".
 	//
-	// The specified cluster could not be found. You can view your available clusters
-	// with ListClusters. Amazon ECS clusters are Region-specific.
+	// The specified cluster wasn't found. You can view your available clusters
+	// with ListClusters. Amazon ECS clusters are Region specific.
 	ErrCodeClusterNotFoundException = "ClusterNotFoundException"
+
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// The RunTask request could not be processed due to conflicts. The provided
+	// clientToken is already in use with a different RunTask request. The resourceIds
+	// are the existing task ARNs which are already associated with the clientToken.
+	//
+	// To fix this issue:
+	//
+	//    * Run RunTask with a unique clientToken.
+	//
+	//    * Run RunTask with the clientToken and the original set of parameters
+	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInvalidParameterException for service response error code
 	// "InvalidParameterException".
 	//
-	// The specified parameter is invalid. Review the available parameters for the
-	// API request.
+	// The specified parameter isn't valid. Review the available parameters for
+	// the API request.
 	ErrCodeInvalidParameterException = "InvalidParameterException"
 
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//
-	// The limit for the resource has been exceeded.
+	// The limit for the resource was exceeded.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeMissingVersionException for service response error code
 	// "MissingVersionException".
 	//
-	// Amazon ECS is unable to determine the current version of the Amazon ECS container
-	// agent on the container instance and does not have enough information to proceed
+	// Amazon ECS can't determine the current version of the Amazon ECS container
+	// agent on the container instance and doesn't have enough information to proceed
 	// with an update. This could be because the agent running on the container
-	// instance is an older or custom version that does not use our version information.
+	// instance is a previous or custom version that doesn't use our version information.
 	ErrCodeMissingVersionException = "MissingVersionException"
+
+	// ErrCodeNamespaceNotFoundException for service response error code
+	// "NamespaceNotFoundException".
+	//
+	// The specified namespace wasn't found.
+	ErrCodeNamespaceNotFoundException = "NamespaceNotFoundException"
 
 	// ErrCodeNoUpdateAvailableException for service response error code
 	// "NoUpdateAvailableException".
 	//
-	// There is no update available for this Amazon ECS container agent. This could
-	// be because the agent is already running the latest version, or it is so old
-	// that there is no update path to the current version.
+	// There's no update available for this Amazon ECS container agent. This might
+	// be because the agent is already running the latest version or because it's
+	// so old that there's no update path to the current version.
 	ErrCodeNoUpdateAvailableException = "NoUpdateAvailableException"
 
 	// ErrCodePlatformTaskDefinitionIncompatibilityException for service response error code
 	// "PlatformTaskDefinitionIncompatibilityException".
 	//
-	// The specified platform version does not satisfy the task definition's required
-	// capabilities.
+	// The specified platform version doesn't satisfy the required capabilities
+	// of the task definition.
 	ErrCodePlatformTaskDefinitionIncompatibilityException = "PlatformTaskDefinitionIncompatibilityException"
 
 	// ErrCodePlatformUnknownException for service response error code
 	// "PlatformUnknownException".
 	//
-	// The specified platform version does not exist.
+	// The specified platform version doesn't exist.
 	ErrCodePlatformUnknownException = "PlatformUnknownException"
 
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
 	//
-	// The specified resource is in-use and cannot be removed.
+	// The specified resource is in-use and can't be removed.
 	ErrCodeResourceInUseException = "ResourceInUseException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// The specified resource could not be found.
+	// The specified resource wasn't found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServerException for service response error code
@@ -130,28 +151,39 @@ const (
 	// ErrCodeServiceNotActiveException for service response error code
 	// "ServiceNotActiveException".
 	//
-	// The specified service is not active. You can't update a service that is inactive.
+	// The specified service isn't active. You can't update a service that's inactive.
 	// If you have previously deleted a service, you can re-create it with CreateService.
 	ErrCodeServiceNotActiveException = "ServiceNotActiveException"
 
 	// ErrCodeServiceNotFoundException for service response error code
 	// "ServiceNotFoundException".
 	//
-	// The specified service could not be found. You can view your available services
-	// with ListServices. Amazon ECS services are cluster-specific and Region-specific.
+	// The specified service wasn't found. You can view your available services
+	// with ListServices. Amazon ECS services are cluster specific and Region specific.
 	ErrCodeServiceNotFoundException = "ServiceNotFoundException"
 
 	// ErrCodeTargetNotConnectedException for service response error code
 	// "TargetNotConnectedException".
 	//
-	// The target container is not properly configured with the execute command
-	// agent or the container is no longer active or running.
+	// The execute command cannot run. This error can be caused by any of the following
+	// configuration issues:
+	//
+	//    * Incorrect IAM permissions
+	//
+	//    * The SSM agent is not installed or is not running
+	//
+	//    * There is an interface Amazon VPC endpoint for Amazon ECS, but there
+	//    is not one for Systems Manager Session Manager
+	//
+	// For information about how to troubleshoot the issues, see Troubleshooting
+	// issues with ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html)
+	// in the Amazon Elastic Container Service Developer Guide.
 	ErrCodeTargetNotConnectedException = "TargetNotConnectedException"
 
 	// ErrCodeTargetNotFoundException for service response error code
 	// "TargetNotFoundException".
 	//
-	// The specified target could not be found. You can view your available container
+	// The specified target wasn't found. You can view your available container
 	// instances with ListContainerInstances. Amazon ECS container instances are
 	// cluster-specific and Region-specific.
 	ErrCodeTargetNotFoundException = "TargetNotFoundException"
@@ -159,23 +191,23 @@ const (
 	// ErrCodeTaskSetNotFoundException for service response error code
 	// "TaskSetNotFoundException".
 	//
-	// The specified task set could not be found. You can view your available task
-	// sets with DescribeTaskSets. Task sets are specific to each cluster, service
-	// and Region.
+	// The specified task set wasn't found. You can view your available task sets
+	// with DescribeTaskSets. Task sets are specific to each cluster, service and
+	// Region.
 	ErrCodeTaskSetNotFoundException = "TaskSetNotFoundException"
 
 	// ErrCodeUnsupportedFeatureException for service response error code
 	// "UnsupportedFeatureException".
 	//
-	// The specified task is not supported in this Region.
+	// The specified task isn't supported in this Region.
 	ErrCodeUnsupportedFeatureException = "UnsupportedFeatureException"
 
 	// ErrCodeUpdateInProgressException for service response error code
 	// "UpdateInProgressException".
 	//
-	// There is already a current Amazon ECS container agent update in progress
-	// on the specified container instance. If the container agent becomes disconnected
-	// while it is in a transitional stage, such as PENDING or STAGING, the update
+	// There's already a current Amazon ECS container agent update in progress on
+	// the container instance that's specified. If the container agent becomes disconnected
+	// while it's in a transitional stage, such as PENDING or STAGING, the update
 	// process can get stuck in that state. However, when the agent reconnects,
 	// it resumes where it stopped previously.
 	ErrCodeUpdateInProgressException = "UpdateInProgressException"
@@ -190,9 +222,11 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ClusterContainsServicesException":               newErrorClusterContainsServicesException,
 	"ClusterContainsTasksException":                  newErrorClusterContainsTasksException,
 	"ClusterNotFoundException":                       newErrorClusterNotFoundException,
+	"ConflictException":                              newErrorConflictException,
 	"InvalidParameterException":                      newErrorInvalidParameterException,
 	"LimitExceededException":                         newErrorLimitExceededException,
 	"MissingVersionException":                        newErrorMissingVersionException,
+	"NamespaceNotFoundException":                     newErrorNamespaceNotFoundException,
 	"NoUpdateAvailableException":                     newErrorNoUpdateAvailableException,
 	"PlatformTaskDefinitionIncompatibilityException": newErrorPlatformTaskDefinitionIncompatibilityException,
 	"PlatformUnknownException":                       newErrorPlatformUnknownException,

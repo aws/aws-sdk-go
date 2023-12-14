@@ -27,6 +27,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "BatchDeleteDetector":{
+      "name":"BatchDeleteDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detectors/delete",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchDeleteDetectorRequest"},
+      "output":{"shape":"BatchDeleteDetectorResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "BatchDisableAlarm":{
       "name":"BatchDisableAlarm",
       "http":{
@@ -296,6 +312,31 @@
         "errorMessage":{"shape":"ErrorMessage"}
       }
     },
+    "BatchDeleteDetectorErrorEntries":{
+      "type":"list",
+      "member":{"shape":"BatchDeleteDetectorErrorEntry"}
+    },
+    "BatchDeleteDetectorErrorEntry":{
+      "type":"structure",
+      "members":{
+        "messageId":{"shape":"MessageId"},
+        "errorCode":{"shape":"ErrorCode"},
+        "errorMessage":{"shape":"ErrorMessage"}
+      }
+    },
+    "BatchDeleteDetectorRequest":{
+      "type":"structure",
+      "required":["detectors"],
+      "members":{
+        "detectors":{"shape":"DeleteDetectorRequests"}
+      }
+    },
+    "BatchDeleteDetectorResponse":{
+      "type":"structure",
+      "members":{
+        "batchDeleteDetectorErrorEntries":{"shape":"BatchDeleteDetectorErrorEntries"}
+      }
+    },
     "BatchDisableAlarmRequest":{
       "type":"structure",
       "required":["disableActionRequests"],
@@ -429,6 +470,23 @@
         "ACKNOWLEDGE",
         "RESET"
       ]
+    },
+    "DeleteDetectorRequest":{
+      "type":"structure",
+      "required":[
+        "messageId",
+        "detectorModelName"
+      ],
+      "members":{
+        "messageId":{"shape":"MessageId"},
+        "detectorModelName":{"shape":"DetectorModelName"},
+        "keyValue":{"shape":"KeyValue"}
+      }
+    },
+    "DeleteDetectorRequests":{
+      "type":"list",
+      "member":{"shape":"DeleteDetectorRequest"},
+      "min":1
     },
     "DescribeAlarmRequest":{
       "type":"structure",

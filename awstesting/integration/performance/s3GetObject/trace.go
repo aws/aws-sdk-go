@@ -1,3 +1,4 @@
+//go:build integration && perftest
 // +build integration,perftest
 
 package main

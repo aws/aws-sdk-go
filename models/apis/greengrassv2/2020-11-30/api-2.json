@@ -3,7 +3,6 @@
   "metadata":{
     "apiVersion":"2020-11-30",
     "endpointPrefix":"greengrass",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
     "serviceAbbreviation":"AWS GreengrassV2",
     "serviceFullName":"AWS IoT Greengrass V2",
@@ -12,6 +11,20 @@
     "uid":"greengrassv2-2020-11-30"
   },
   "operations":{
+    "AssociateServiceRoleToAccount":{
+      "name":"AssociateServiceRoleToAccount",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/greengrass/servicerole",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociateServiceRoleToAccountRequest"},
+      "output":{"shape":"AssociateServiceRoleToAccountResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "BatchAssociateClientDeviceWithCoreDevice":{
       "name":"BatchAssociateClientDeviceWithCoreDevice",
       "http":{
@@ -78,7 +91,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"ThrottlingException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"RequestAlreadyInProgressException"}
       ]
     },
     "CreateDeployment":{
@@ -95,7 +109,9 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"RequestAlreadyInProgressException"}
       ]
     },
     "DeleteComponent":{
@@ -132,6 +148,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "DeleteDeployment":{
+      "name":"DeleteDeployment",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/greengrass/v2/deployments/{deploymentId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteDeploymentRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DescribeComponent":{
       "name":"DescribeComponent",
       "http":{
@@ -145,6 +178,19 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DisassociateServiceRoleFromAccount":{
+      "name":"DisassociateServiceRoleFromAccount",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/greengrass/servicerole",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociateServiceRoleFromAccountRequest"},
+      "output":{"shape":"DisassociateServiceRoleFromAccountResponse"},
+      "errors":[
         {"shape":"InternalServerException"}
       ]
     },
@@ -180,6 +226,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetConnectivityInfo":{
+      "name":"GetConnectivityInfo",
+      "http":{
+        "method":"GET",
+        "requestUri":"/greengrass/things/{thingName}/connectivityInfo",
+        "responseCode":200
+      },
+      "input":{"shape":"GetConnectivityInfoRequest"},
+      "output":{"shape":"GetConnectivityInfoResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetCoreDevice":{
       "name":"GetCoreDevice",
       "http":{
@@ -210,6 +270,19 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetServiceRoleForAccount":{
+      "name":"GetServiceRoleForAccount",
+      "http":{
+        "method":"GET",
+        "requestUri":"/greengrass/servicerole",
+        "responseCode":200
+      },
+      "input":{"shape":"GetServiceRoleForAccountRequest"},
+      "output":{"shape":"GetServiceRoleForAccountResponse"},
+      "errors":[
+        {"shape":"InternalServerException"}
       ]
     },
     "ListClientDevicesAssociatedWithCoreDevice":{
@@ -256,6 +329,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
@@ -348,9 +422,9 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ThrottlingException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ConflictException"}
+        {"shape":"InternalServerException"}
       ]
     },
     "TagResource":{
@@ -379,6 +453,20 @@
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UpdateConnectivityInfo":{
+      "name":"UpdateConnectivityInfo",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/greengrass/things/{thingName}/connectivityInfo",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateConnectivityInfoRequest"},
+      "output":{"shape":"UpdateConnectivityInfoResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
       ]
     }
   },
@@ -416,8 +504,26 @@
     "AssociateClientDeviceWithCoreDeviceErrorList":{
       "type":"list",
       "member":{"shape":"AssociateClientDeviceWithCoreDeviceErrorEntry"},
-      "max":100,
-      "min":1
+      "max":100
+    },
+    "AssociateServiceRoleToAccountRequest":{
+      "type":"structure",
+      "required":["roleArn"],
+      "members":{
+        "roleArn":{
+          "shape":"String",
+          "locationName":"RoleArn"
+        }
+      }
+    },
+    "AssociateServiceRoleToAccountResponse":{
+      "type":"structure",
+      "members":{
+        "associatedAt":{
+          "shape":"String",
+          "locationName":"AssociatedAt"
+        }
+      }
     },
     "AssociatedClientDevice":{
       "type":"structure",
@@ -468,6 +574,10 @@
         "errorEntries":{"shape":"DisassociateClientDeviceFromCoreDeviceErrorList"}
       }
     },
+    "CPU":{
+      "type":"double",
+      "min":0
+    },
     "CancelDeploymentRequest":{
       "type":"structure",
       "required":["deploymentId"],
@@ -485,6 +595,12 @@
         "message":{"shape":"NonEmptyString"}
       }
     },
+    "ClientTokenString":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-]+$"
+    },
     "CloudComponentState":{
       "type":"string",
       "enum":[
@@ -500,7 +616,9 @@
       "members":{
         "componentState":{"shape":"CloudComponentState"},
         "message":{"shape":"NonEmptyString"},
-        "errors":{"shape":"StringMap"}
+        "errors":{"shape":"StringMap"},
+        "vendorGuidance":{"shape":"VendorGuidance"},
+        "vendorGuidanceMessage":{"shape":"NonEmptyString"}
       }
     },
     "Component":{
@@ -513,7 +631,7 @@
     },
     "ComponentARN":{
       "type":"string",
-      "pattern":"arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):components:[^:]+"
+      "pattern":"arn:[^:]*:greengrass:[^:]*:(aws|[0-9]+):components:[^:]+"
     },
     "ComponentCandidate":{
       "type":"structure",
@@ -538,7 +656,7 @@
     },
     "ComponentConfigurationString":{
       "type":"string",
-      "max":65536,
+      "max":10485760,
       "min":1
     },
     "ComponentConfigurationUpdate":{
@@ -598,8 +716,7 @@
     "ComponentNameString":{
       "type":"string",
       "max":128,
-      "min":1,
-      "pattern":"[a-zA-Z0-9-_.]+"
+      "min":1
     },
     "ComponentPlatform":{
       "type":"structure",
@@ -615,12 +732,14 @@
     "ComponentRunWith":{
       "type":"structure",
       "members":{
-        "posixUser":{"shape":"NonEmptyString"}
+        "posixUser":{"shape":"NonEmptyString"},
+        "systemResourceLimits":{"shape":"SystemResourceLimits"},
+        "windowsUser":{"shape":"NonEmptyString"}
       }
     },
     "ComponentVersionARN":{
       "type":"string",
-      "pattern":"arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):components:[^:]+:versions:[^:]+"
+      "pattern":"arn:[^:]*:greengrass:[^:]*:(aws|[0-9]+):components:[^:]+:versions:[^:]+"
     },
     "ComponentVersionList":{
       "type":"list",
@@ -642,8 +761,7 @@
     "ComponentVersionString":{
       "type":"string",
       "max":64,
-      "min":1,
-      "pattern":"[0-9a-zA-Z-.+]+"
+      "min":1
     },
     "ComponentVisibilityScope":{
       "type":"string",
@@ -666,6 +784,27 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "ConnectivityInfo":{
+      "type":"structure",
+      "members":{
+        "id":{
+          "shape":"String",
+          "locationName":"Id"
+        },
+        "hostAddress":{
+          "shape":"String",
+          "locationName":"HostAddress"
+        },
+        "portNumber":{
+          "shape":"PortNumberInt",
+          "locationName":"PortNumber"
+        },
+        "metadata":{
+          "shape":"String",
+          "locationName":"Metadata"
+        }
+      }
     },
     "CoreDevice":{
       "type":"structure",
@@ -706,7 +845,11 @@
       "members":{
         "inlineRecipe":{"shape":"RecipeBlob"},
         "lambdaFunction":{"shape":"LambdaFunctionRecipeSource"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientTokenString",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateComponentVersionResponse":{
@@ -730,11 +873,16 @@
       "required":["targetArn"],
       "members":{
         "targetArn":{"shape":"TargetARN"},
-        "deploymentName":{"shape":"NonEmptyString"},
+        "deploymentName":{"shape":"DeploymentNameString"},
         "components":{"shape":"ComponentDeploymentSpecifications"},
         "iotJobConfiguration":{"shape":"DeploymentIoTJobConfiguration"},
         "deploymentPolicies":{"shape":"DeploymentPolicies"},
-        "tags":{"shape":"TagMap"}
+        "parentTargetArn":{"shape":"ThingGroupARN"},
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientTokenString",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateDeploymentResponse":{
@@ -772,6 +920,17 @@
         }
       }
     },
+    "DeleteDeploymentRequest":{
+      "type":"structure",
+      "required":["deploymentId"],
+      "members":{
+        "deploymentId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"deploymentId"
+        }
+      }
+    },
     "Deployment":{
       "type":"structure",
       "members":{
@@ -781,7 +940,8 @@
         "deploymentName":{"shape":"NonEmptyString"},
         "creationTimestamp":{"shape":"Timestamp"},
         "deploymentStatus":{"shape":"DeploymentStatus"},
-        "isLatestForTarget":{"shape":"IsLatestForTarget"}
+        "isLatestForTarget":{"shape":"IsLatestForTarget"},
+        "parentTargetArn":{"shape":"ThingGroupARN"}
       }
     },
     "DeploymentComponentUpdatePolicy":{
@@ -838,6 +998,11 @@
       "member":{"shape":"Deployment"}
     },
     "DeploymentName":{"type":"string"},
+    "DeploymentNameString":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "DeploymentPolicies":{
       "type":"structure",
       "members":{
@@ -911,8 +1076,21 @@
     "DisassociateClientDeviceFromCoreDeviceErrorList":{
       "type":"list",
       "member":{"shape":"DisassociateClientDeviceFromCoreDeviceErrorEntry"},
-      "max":100,
-      "min":1
+      "max":100
+    },
+    "DisassociateServiceRoleFromAccountRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisassociateServiceRoleFromAccountResponse":{
+      "type":"structure",
+      "members":{
+        "disassociatedAt":{
+          "shape":"String",
+          "locationName":"DisassociatedAt"
+        }
+      }
     },
     "EffectiveDeployment":{
       "type":"structure",
@@ -934,8 +1112,27 @@
         "coreDeviceExecutionStatus":{"shape":"EffectiveDeploymentExecutionStatus"},
         "reason":{"shape":"Reason"},
         "creationTimestamp":{"shape":"Timestamp"},
-        "modifiedTimestamp":{"shape":"Timestamp"}
+        "modifiedTimestamp":{"shape":"Timestamp"},
+        "statusDetails":{"shape":"EffectiveDeploymentStatusDetails"}
       }
+    },
+    "EffectiveDeploymentErrorCode":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "EffectiveDeploymentErrorStack":{
+      "type":"list",
+      "member":{"shape":"EffectiveDeploymentErrorCode"}
+    },
+    "EffectiveDeploymentErrorType":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "EffectiveDeploymentErrorTypeList":{
+      "type":"list",
+      "member":{"shape":"EffectiveDeploymentErrorType"}
     },
     "EffectiveDeploymentExecutionStatus":{
       "type":"string",
@@ -946,8 +1143,16 @@
         "COMPLETED",
         "TIMED_OUT",
         "CANCELED",
-        "REJECTED"
+        "REJECTED",
+        "SUCCEEDED"
       ]
+    },
+    "EffectiveDeploymentStatusDetails":{
+      "type":"structure",
+      "members":{
+        "errorStack":{"shape":"EffectiveDeploymentErrorStack"},
+        "errorTypes":{"shape":"EffectiveDeploymentErrorTypeList"}
+      }
     },
     "EffectiveDeploymentsList":{
       "type":"list",
@@ -961,7 +1166,7 @@
     },
     "GenericV2ARN":{
       "type":"string",
-      "pattern":"arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):(components|deployments|coreDevices):.+"
+      "pattern":"arn:[^:]*:greengrass:[^:]*:(aws|[0-9]+):(components|deployments|coreDevices):.*"
     },
     "GetComponentRequest":{
       "type":"structure",
@@ -1017,6 +1222,30 @@
         "preSignedUrl":{"shape":"NonEmptyString"}
       }
     },
+    "GetConnectivityInfoRequest":{
+      "type":"structure",
+      "required":["thingName"],
+      "members":{
+        "thingName":{
+          "shape":"CoreDeviceThingName",
+          "location":"uri",
+          "locationName":"thingName"
+        }
+      }
+    },
+    "GetConnectivityInfoResponse":{
+      "type":"structure",
+      "members":{
+        "connectivityInfo":{
+          "shape":"connectivityInfoList",
+          "locationName":"ConnectivityInfo"
+        },
+        "message":{
+          "shape":"String",
+          "locationName":"Message"
+        }
+      }
+    },
     "GetCoreDeviceRequest":{
       "type":"structure",
       "required":["coreDeviceThingName"],
@@ -1066,7 +1295,26 @@
         "iotJobConfiguration":{"shape":"DeploymentIoTJobConfiguration"},
         "creationTimestamp":{"shape":"Timestamp"},
         "isLatestForTarget":{"shape":"IsLatestForTarget"},
+        "parentTargetArn":{"shape":"ThingGroupARN"},
         "tags":{"shape":"TagMap"}
+      }
+    },
+    "GetServiceRoleForAccountRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetServiceRoleForAccountResponse":{
+      "type":"structure",
+      "members":{
+        "associatedAt":{
+          "shape":"String",
+          "locationName":"AssociatedAt"
+        },
+        "roleArn":{
+          "shape":"String",
+          "locationName":"RoleArn"
+        }
       }
     },
     "InstalledComponent":{
@@ -1076,7 +1324,11 @@
         "componentVersion":{"shape":"ComponentVersionString"},
         "lifecycleState":{"shape":"InstalledComponentLifecycleState"},
         "lifecycleStateDetails":{"shape":"LifecycleStateDetails"},
-        "isRoot":{"shape":"IsRoot"}
+        "isRoot":{"shape":"IsRoot"},
+        "lastStatusChangeTimestamp":{"shape":"Timestamp"},
+        "lastReportedTimestamp":{"shape":"Timestamp"},
+        "lastInstallationSource":{"shape":"NonEmptyString"},
+        "lifecycleStatusCodes":{"shape":"InstalledComponentLifecycleStatusCodeList"}
       }
     },
     "InstalledComponentLifecycleState":{
@@ -1092,9 +1344,25 @@
         "FINISHED"
       ]
     },
+    "InstalledComponentLifecycleStatusCode":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "InstalledComponentLifecycleStatusCodeList":{
+      "type":"list",
+      "member":{"shape":"InstalledComponentLifecycleStatusCode"}
+    },
     "InstalledComponentList":{
       "type":"list",
       "member":{"shape":"InstalledComponent"}
+    },
+    "InstalledComponentTopologyFilter":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "ROOT"
+      ]
     },
     "InternalServerException":{
       "type":"structure",
@@ -1113,7 +1381,7 @@
     },
     "IoTJobARN":{
       "type":"string",
-      "pattern":"arn:aws(-cn|-us-gov)?:iot:[^:]+:[0-9]+:job/.+"
+      "pattern":"arn:[^:]*:iot:[^:]+:[0-9]+:job/.+"
     },
     "IoTJobAbortAction":{
       "type":"string",
@@ -1344,15 +1612,11 @@
         "rw"
       ]
     },
-    "LambdaFunctionARNWithVersionNumber":{
-      "type":"string",
-      "pattern":"arn:aws(-cn|-us-gov)?:lambda:[^:]+:[0-9]+:function:[a-zA-Z0-9-_]+:[0-9]+"
-    },
     "LambdaFunctionRecipeSource":{
       "type":"structure",
       "required":["lambdaArn"],
       "members":{
-        "lambdaArn":{"shape":"LambdaFunctionARNWithVersionNumber"},
+        "lambdaArn":{"shape":"NonEmptyString"},
         "componentName":{"shape":"ComponentNameString"},
         "componentVersion":{"shape":"ComponentVersionString"},
         "componentPlatforms":{"shape":"ComponentPlatformList"},
@@ -1545,6 +1809,11 @@
           "location":"querystring",
           "locationName":"historyFilter"
         },
+        "parentTargetArn":{
+          "shape":"ThingGroupARN",
+          "location":"querystring",
+          "locationName":"parentTargetArn"
+        },
         "maxResults":{
           "shape":"DefaultMaxResults",
           "box":true,
@@ -1616,6 +1885,12 @@
           "box":true,
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "topologyFilter":{
+          "shape":"InstalledComponentTopologyFilter",
+          "box":true,
+          "location":"querystring",
+          "locationName":"topologyFilter"
         }
       }
     },
@@ -1643,6 +1918,11 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "Memory":{
+      "type":"long",
+      "max":9223372036854771712,
+      "min":0
+    },
     "NextTokenString":{"type":"string"},
     "NonEmptyString":{
       "type":"string",
@@ -1656,6 +1936,11 @@
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"NonEmptyString"}
     },
+    "PortNumberInt":{
+      "type":"integer",
+      "max":65535,
+      "min":0
+    },
     "PublisherString":{"type":"string"},
     "Reason":{"type":"string"},
     "RecipeBlob":{"type":"blob"},
@@ -1666,12 +1951,17 @@
         "YAML"
       ]
     },
+    "RequestAlreadyInProgressException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "ResolveComponentCandidatesRequest":{
       "type":"structure",
-      "required":[
-        "platform",
-        "componentCandidates"
-      ],
       "members":{
         "platform":{"shape":"ComponentPlatform"},
         "componentCandidates":{"shape":"ComponentCandidateList"}
@@ -1689,7 +1979,9 @@
         "arn":{"shape":"ComponentVersionARN"},
         "componentName":{"shape":"ComponentNameString"},
         "componentVersion":{"shape":"ComponentVersionString"},
-        "recipe":{"shape":"RecipeBlob"}
+        "recipe":{"shape":"RecipeBlob"},
+        "vendorGuidance":{"shape":"VendorGuidance"},
+        "message":{"shape":"NonEmptyString"}
       }
     },
     "ResolvedComponentVersionsList":{
@@ -1735,23 +2027,29 @@
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"NonEmptyString"}
     },
+    "SystemResourceLimits":{
+      "type":"structure",
+      "members":{
+        "memory":{"shape":"Memory"},
+        "cpus":{"shape":"CPU"}
+      }
+    },
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1,
-      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+      "min":1
     },
     "TagKeyList":{
       "type":"list",
       "member":{"shape":"TagKey"},
-      "max":50,
+      "max":200,
       "min":1
     },
     "TagMap":{
       "type":"map",
       "key":{"shape":"TagKey"},
       "value":{"shape":"TagValue"},
-      "max":50,
+      "max":200,
       "min":1
     },
     "TagResourceRequest":{
@@ -1780,11 +2078,11 @@
     },
     "TargetARN":{
       "type":"string",
-      "pattern":"arn:aws(-cn|-us-gov)?:iot:[^:]+:[0-9]+:(thing|thinggroup)/.+"
+      "pattern":"arn:[^:]*:iot:[^:]*:[0-9]+:(thing|thinggroup)/.+"
     },
     "ThingGroupARN":{
       "type":"string",
-      "pattern":"arn:aws(-cn|-us-gov)?:iot:[^:]+:[0-9]+:thinggroup/.+"
+      "pattern":"arn:[^:]*:iot:[^:]*:[0-9]+:thinggroup/.+"
     },
     "ThrottlingException":{
       "type":"structure",
@@ -1828,6 +2126,37 @@
       "members":{
       }
     },
+    "UpdateConnectivityInfoRequest":{
+      "type":"structure",
+      "required":[
+        "thingName",
+        "connectivityInfo"
+      ],
+      "members":{
+        "thingName":{
+          "shape":"CoreDeviceThingName",
+          "location":"uri",
+          "locationName":"thingName"
+        },
+        "connectivityInfo":{
+          "shape":"connectivityInfoList",
+          "locationName":"ConnectivityInfo"
+        }
+      }
+    },
+    "UpdateConnectivityInfoResponse":{
+      "type":"structure",
+      "members":{
+        "version":{
+          "shape":"String",
+          "locationName":"Version"
+        },
+        "message":{
+          "shape":"String",
+          "locationName":"Message"
+        }
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "required":["message"],
@@ -1862,6 +2191,18 @@
         "FIELD_VALIDATION_FAILED",
         "OTHER"
       ]
+    },
+    "VendorGuidance":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "DISCONTINUED",
+        "DELETED"
+      ]
+    },
+    "connectivityInfoList":{
+      "type":"list",
+      "member":{"shape":"ConnectivityInfo"}
     }
   }
 }

@@ -13,6 +13,35 @@
     "uid":"sesv2-2019-09-27"
   },
   "operations":{
+    "BatchGetMetricData":{
+      "name":"BatchGetMetricData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/metrics/batch"
+      },
+      "input":{"shape":"BatchGetMetricDataRequest"},
+      "output":{"shape":"BatchGetMetricDataResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "CancelExportJob":{
+      "name":"CancelExportJob",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/export-jobs/{JobId}/cancel"
+      },
+      "input":{"shape":"CancelExportJobRequest"},
+      "output":{"shape":"CancelExportJobResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "CreateConfigurationSet":{
       "name":"CreateConfigurationSet",
       "http":{
@@ -173,6 +202,21 @@
         {"shape":"AlreadyExistsException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "CreateExportJob":{
+      "name":"CreateExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/export-jobs"
+      },
+      "input":{"shape":"CreateExportJobRequest"},
+      "output":{"shape":"CreateExportJobResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"}
       ]
     },
@@ -445,6 +489,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetDedicatedIpPool":{
+      "name":"GetDedicatedIpPool",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/dedicated-ip-pools/{PoolName}"
+      },
+      "input":{"shape":"GetDedicatedIpPoolRequest"},
+      "output":{"shape":"GetDedicatedIpPoolResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "GetDedicatedIps":{
       "name":"GetDedicatedIps",
       "http":{
@@ -557,6 +615,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetExportJob":{
+      "name":"GetExportJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/export-jobs/{JobId}"
+      },
+      "input":{"shape":"GetExportJobRequest"},
+      "output":{"shape":"GetExportJobResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "GetImportJob":{
       "name":"GetImportJob",
       "http":{
@@ -569,6 +641,20 @@
         {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "GetMessageInsights":{
+      "name":"GetMessageInsights",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/insights/{MessageId}/"
+      },
+      "input":{"shape":"GetMessageInsightsRequest"},
+      "output":{"shape":"GetMessageInsightsResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "GetSuppressedDestination":{
@@ -705,6 +791,19 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "ListExportJobs":{
+      "name":"ListExportJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/list-export-jobs"
+      },
+      "input":{"shape":"ListExportJobsRequest"},
+      "output":{"shape":"ListExportJobsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "ListImportJobs":{
       "name":"ListImportJobs",
       "http":{
@@ -716,6 +815,20 @@
       "errors":[
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"}
+      ]
+    },
+    "ListRecommendations":{
+      "name":"ListRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/vdm/recommendations"
+      },
+      "input":{"shape":"ListRecommendationsRequest"},
+      "output":{"shape":"ListRecommendationsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "ListSuppressedDestinations":{
@@ -799,6 +912,19 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "PutAccountVdmAttributes":{
+      "name":"PutAccountVdmAttributes",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/account/vdm"
+      },
+      "input":{"shape":"PutAccountVdmAttributesRequest"},
+      "output":{"shape":"PutAccountVdmAttributesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "PutConfigurationSetDeliveryOptions":{
       "name":"PutConfigurationSetDeliveryOptions",
       "http":{
@@ -869,6 +995,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "PutConfigurationSetVdmOptions":{
+      "name":"PutConfigurationSetVdmOptions",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/configuration-sets/{ConfigurationSetName}/vdm-options"
+      },
+      "input":{"shape":"PutConfigurationSetVdmOptionsRequest"},
+      "output":{"shape":"PutConfigurationSetVdmOptionsResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "PutDedicatedIpInPool":{
       "name":"PutDedicatedIpInPool",
       "http":{
@@ -882,6 +1022,22 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"}
       ]
+    },
+    "PutDedicatedIpPoolScalingAttributes":{
+      "name":"PutDedicatedIpPoolScalingAttributes",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/dedicated-ip-pools/{PoolName}/scaling"
+      },
+      "input":{"shape":"PutDedicatedIpPoolScalingAttributesRequest"},
+      "output":{"shape":"PutDedicatedIpPoolScalingAttributesResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ],
+      "idempotent":true
     },
     "PutDedicatedIpWarmupAttributes":{
       "name":"PutDedicatedIpWarmupAttributes",
@@ -1216,6 +1372,7 @@
       "min":1,
       "sensitive":true
     },
+    "AdminEmail":{"type":"string"},
     "AlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -1231,6 +1388,44 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "BatchGetMetricDataQueries":{
+      "type":"list",
+      "member":{"shape":"BatchGetMetricDataQuery"},
+      "max":10,
+      "min":1
+    },
+    "BatchGetMetricDataQuery":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Namespace",
+        "Metric",
+        "StartDate",
+        "EndDate"
+      ],
+      "members":{
+        "Id":{"shape":"QueryIdentifier"},
+        "Namespace":{"shape":"MetricNamespace"},
+        "Metric":{"shape":"Metric"},
+        "Dimensions":{"shape":"Dimensions"},
+        "StartDate":{"shape":"Timestamp"},
+        "EndDate":{"shape":"Timestamp"}
+      }
+    },
+    "BatchGetMetricDataRequest":{
+      "type":"structure",
+      "required":["Queries"],
+      "members":{
+        "Queries":{"shape":"BatchGetMetricDataQueries"}
+      }
+    },
+    "BatchGetMetricDataResponse":{
+      "type":"structure",
+      "members":{
+        "Results":{"shape":"MetricDataResultList"},
+        "Errors":{"shape":"MetricDataErrorList"}
+      }
     },
     "BehaviorOnMxFailure":{
       "type":"string",
@@ -1268,6 +1463,23 @@
         "Text":{"shape":"Content"},
         "Html":{"shape":"Content"}
       }
+    },
+    "Bounce":{
+      "type":"structure",
+      "members":{
+        "BounceType":{"shape":"BounceType"},
+        "BounceSubType":{"shape":"BounceSubType"},
+        "DiagnosticCode":{"shape":"DiagnosticCode"}
+      }
+    },
+    "BounceSubType":{"type":"string"},
+    "BounceType":{
+      "type":"string",
+      "enum":[
+        "UNDETERMINED",
+        "TRANSIENT",
+        "PERMANENT"
+      ]
     },
     "BulkEmailContent":{
       "type":"structure",
@@ -1320,6 +1532,22 @@
       ]
     },
     "CampaignId":{"type":"string"},
+    "CancelExportJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"JobId"
+        }
+      }
+    },
+    "CancelExportJobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CaseId":{"type":"string"},
     "Charset":{"type":"string"},
     "CloudWatchDestination":{
@@ -1346,6 +1574,15 @@
       "type":"list",
       "member":{"shape":"CloudWatchDimensionConfiguration"}
     },
+    "Complaint":{
+      "type":"structure",
+      "members":{
+        "ComplaintSubType":{"shape":"ComplaintSubType"},
+        "ComplaintFeedbackType":{"shape":"ComplaintFeedbackType"}
+      }
+    },
+    "ComplaintFeedbackType":{"type":"string"},
+    "ComplaintSubType":{"type":"string"},
     "ConcurrentModificationException":{
       "type":"structure",
       "members":{
@@ -1417,6 +1654,7 @@
         "Charset":{"shape":"Charset"}
       }
     },
+    "Counter":{"type":"long"},
     "CreateConfigurationSetEventDestinationRequest":{
       "type":"structure",
       "required":[
@@ -1449,7 +1687,8 @@
         "ReputationOptions":{"shape":"ReputationOptions"},
         "SendingOptions":{"shape":"SendingOptions"},
         "Tags":{"shape":"TagList"},
-        "SuppressionOptions":{"shape":"SuppressionOptions"}
+        "SuppressionOptions":{"shape":"SuppressionOptions"},
+        "VdmOptions":{"shape":"VdmOptions"}
       }
     },
     "CreateConfigurationSetResponse":{
@@ -1524,7 +1763,8 @@
       "required":["PoolName"],
       "members":{
         "PoolName":{"shape":"PoolName"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ScalingMode":{"shape":"ScalingMode"}
       }
     },
     "CreateDedicatedIpPoolResponse":{
@@ -1616,6 +1856,23 @@
       "members":{
       }
     },
+    "CreateExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "ExportDataSource",
+        "ExportDestination"
+      ],
+      "members":{
+        "ExportDataSource":{"shape":"ExportDataSource"},
+        "ExportDestination":{"shape":"ExportDestination"}
+      }
+    },
+    "CreateExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
     "CreateImportJobRequest":{
       "type":"structure",
       "required":[
@@ -1660,6 +1917,18 @@
       "type":"list",
       "member":{"shape":"DailyVolume"}
     },
+    "DashboardAttributes":{
+      "type":"structure",
+      "members":{
+        "EngagementMetrics":{"shape":"FeatureStatus"}
+      }
+    },
+    "DashboardOptions":{
+      "type":"structure",
+      "members":{
+        "EngagementMetrics":{"shape":"FeatureStatus"}
+      }
+    },
     "DataFormat":{
       "type":"string",
       "enum":[
@@ -1684,6 +1953,17 @@
     "DedicatedIpList":{
       "type":"list",
       "member":{"shape":"DedicatedIp"}
+    },
+    "DedicatedIpPool":{
+      "type":"structure",
+      "required":[
+        "PoolName",
+        "ScalingMode"
+      ],
+      "members":{
+        "PoolName":{"shape":"PoolName"},
+        "ScalingMode":{"shape":"ScalingMode"}
+      }
     },
     "DefaultDimensionValue":{"type":"string"},
     "DeleteConfigurationSetEventDestinationRequest":{
@@ -1901,6 +2181,17 @@
       ]
     },
     "DeliverabilityTestSubject":{"type":"string"},
+    "DeliveryEventType":{
+      "type":"string",
+      "enum":[
+        "SEND",
+        "DELIVERY",
+        "TRANSIENT_BOUNCE",
+        "PERMANENT_BOUNCE",
+        "UNDETERMINED_BOUNCE",
+        "COMPLAINT"
+      ]
+    },
     "DeliveryOptions":{
       "type":"structure",
       "members":{
@@ -1917,6 +2208,7 @@
         "BccAddresses":{"shape":"EmailAddressList"}
       }
     },
+    "DiagnosticCode":{"type":"string"},
     "DimensionName":{"type":"string"},
     "DimensionValueSource":{
       "type":"string",
@@ -1926,6 +2218,13 @@
         "LINK_TAG"
       ]
     },
+    "Dimensions":{
+      "type":"map",
+      "key":{"shape":"MetricDimensionName"},
+      "value":{"shape":"MetricDimensionValue"},
+      "max":3,
+      "min":1
+    },
     "DisplayName":{"type":"string"},
     "DkimAttributes":{
       "type":"structure",
@@ -1933,18 +2232,18 @@
         "SigningEnabled":{"shape":"Enabled"},
         "Status":{"shape":"DkimStatus"},
         "Tokens":{"shape":"DnsTokenList"},
-        "SigningAttributesOrigin":{"shape":"DkimSigningAttributesOrigin"}
+        "SigningAttributesOrigin":{"shape":"DkimSigningAttributesOrigin"},
+        "NextSigningKeyLength":{"shape":"DkimSigningKeyLength"},
+        "CurrentSigningKeyLength":{"shape":"DkimSigningKeyLength"},
+        "LastKeyGenerationTimestamp":{"shape":"Timestamp"}
       }
     },
     "DkimSigningAttributes":{
       "type":"structure",
-      "required":[
-        "DomainSigningSelector",
-        "DomainSigningPrivateKey"
-      ],
       "members":{
         "DomainSigningSelector":{"shape":"Selector"},
-        "DomainSigningPrivateKey":{"shape":"PrivateKey"}
+        "DomainSigningPrivateKey":{"shape":"PrivateKey"},
+        "NextSigningKeyLength":{"shape":"DkimSigningKeyLength"}
       }
     },
     "DkimSigningAttributesOrigin":{
@@ -1952,6 +2251,13 @@
       "enum":[
         "AWS_SES",
         "EXTERNAL"
+      ]
+    },
+    "DkimSigningKeyLength":{
+      "type":"string",
+      "enum":[
+        "RSA_1024_BIT",
+        "RSA_2048_BIT"
       ]
     },
     "DkimStatus":{
@@ -2020,6 +2326,11 @@
       "member":{"shape":"DomainIspPlacement"}
     },
     "EmailAddress":{"type":"string"},
+    "EmailAddressFilterList":{
+      "type":"list",
+      "member":{"shape":"InsightsEmailAddress"},
+      "max":5
+    },
     "EmailAddressList":{
       "type":"list",
       "member":{"shape":"EmailAddress"}
@@ -2031,6 +2342,29 @@
         "Raw":{"shape":"RawMessage"},
         "Template":{"shape":"Template"}
       }
+    },
+    "EmailInsights":{
+      "type":"structure",
+      "members":{
+        "Destination":{"shape":"InsightsEmailAddress"},
+        "Isp":{"shape":"Isp"},
+        "Events":{"shape":"InsightsEvents"}
+      }
+    },
+    "EmailInsightsList":{
+      "type":"list",
+      "member":{"shape":"EmailInsights"}
+    },
+    "EmailSubject":{
+      "type":"string",
+      "max":998,
+      "min":1,
+      "sensitive":true
+    },
+    "EmailSubjectFilterList":{
+      "type":"list",
+      "member":{"shape":"EmailSubject"},
+      "max":1
     },
     "EmailTemplateContent":{
       "type":"structure",
@@ -2064,6 +2398,13 @@
     "EmailTemplateText":{"type":"string"},
     "Enabled":{"type":"boolean"},
     "EnabledWrapper":{"type":"boolean"},
+    "EngagementEventType":{
+      "type":"string",
+      "enum":[
+        "OPEN",
+        "CLICK"
+      ]
+    },
     "ErrorMessage":{"type":"string"},
     "Esp":{"type":"string"},
     "Esps":{
@@ -2102,6 +2443,13 @@
       "type":"list",
       "member":{"shape":"EventDestination"}
     },
+    "EventDetails":{
+      "type":"structure",
+      "members":{
+        "Bounce":{"shape":"Bounce"},
+        "Complaint":{"shape":"Complaint"}
+      }
+    },
     "EventType":{
       "type":"string",
       "enum":[
@@ -2121,6 +2469,76 @@
       "type":"list",
       "member":{"shape":"EventType"}
     },
+    "ExportDataSource":{
+      "type":"structure",
+      "members":{
+        "MetricsDataSource":{"shape":"MetricsDataSource"},
+        "MessageInsightsDataSource":{"shape":"MessageInsightsDataSource"}
+      }
+    },
+    "ExportDestination":{
+      "type":"structure",
+      "required":["DataFormat"],
+      "members":{
+        "DataFormat":{"shape":"DataFormat"},
+        "S3Url":{"shape":"S3Url"}
+      }
+    },
+    "ExportDimensionValue":{
+      "type":"list",
+      "member":{"shape":"MetricDimensionValue"},
+      "max":10,
+      "min":1
+    },
+    "ExportDimensions":{
+      "type":"map",
+      "key":{"shape":"MetricDimensionName"},
+      "value":{"shape":"ExportDimensionValue"},
+      "max":3,
+      "min":1
+    },
+    "ExportJobSummary":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "ExportSourceType":{"shape":"ExportSourceType"},
+        "JobStatus":{"shape":"JobStatus"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "CompletedTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "ExportJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"ExportJobSummary"}
+    },
+    "ExportMetric":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"Metric"},
+        "Aggregation":{"shape":"MetricAggregation"}
+      }
+    },
+    "ExportMetrics":{
+      "type":"list",
+      "member":{"shape":"ExportMetric"},
+      "max":10,
+      "min":1
+    },
+    "ExportSourceType":{
+      "type":"string",
+      "enum":[
+        "METRICS_DATA",
+        "MESSAGE_INSIGHTS"
+      ]
+    },
+    "ExportStatistics":{
+      "type":"structure",
+      "members":{
+        "ProcessedRecordsCount":{"shape":"ProcessedRecordsCount"},
+        "ExportedRecordsCount":{"shape":"ExportedRecordsCount"}
+      }
+    },
+    "ExportedRecordsCount":{"type":"integer"},
     "FailedRecordsCount":{"type":"integer"},
     "FailedRecordsS3Url":{"type":"string"},
     "FailureInfo":{
@@ -2131,6 +2549,13 @@
       }
     },
     "FailureRedirectionURL":{"type":"string"},
+    "FeatureStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "FeedbackId":{"type":"string"},
     "GeneralEnforcementStatus":{"type":"string"},
     "GetAccountRequest":{
@@ -2147,7 +2572,8 @@
         "SendQuota":{"shape":"SendQuota"},
         "SendingEnabled":{"shape":"Enabled"},
         "SuppressionAttributes":{"shape":"SuppressionAttributes"},
-        "Details":{"shape":"AccountDetails"}
+        "Details":{"shape":"AccountDetails"},
+        "VdmAttributes":{"shape":"VdmAttributes"}
       }
     },
     "GetBlacklistReportsRequest":{
@@ -2205,7 +2631,8 @@
         "ReputationOptions":{"shape":"ReputationOptions"},
         "SendingOptions":{"shape":"SendingOptions"},
         "Tags":{"shape":"TagList"},
-        "SuppressionOptions":{"shape":"SuppressionOptions"}
+        "SuppressionOptions":{"shape":"SuppressionOptions"},
+        "VdmOptions":{"shape":"VdmOptions"}
       }
     },
     "GetContactListRequest":{
@@ -2282,6 +2709,23 @@
         "TemplateContent":{"shape":"TemplateContent"},
         "SuccessRedirectionURL":{"shape":"SuccessRedirectionURL"},
         "FailureRedirectionURL":{"shape":"FailureRedirectionURL"}
+      }
+    },
+    "GetDedicatedIpPoolRequest":{
+      "type":"structure",
+      "required":["PoolName"],
+      "members":{
+        "PoolName":{
+          "shape":"PoolName",
+          "location":"uri",
+          "locationName":"PoolName"
+        }
+      }
+    },
+    "GetDedicatedIpPoolResponse":{
+      "type":"structure",
+      "members":{
+        "DedicatedIpPool":{"shape":"DedicatedIpPool"}
       }
     },
     "GetDedicatedIpRequest":{
@@ -2462,7 +2906,9 @@
         "MailFromAttributes":{"shape":"MailFromAttributes"},
         "Policies":{"shape":"PolicyMap"},
         "Tags":{"shape":"TagList"},
-        "ConfigurationSetName":{"shape":"ConfigurationSetName"}
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"},
+        "VerificationStatus":{"shape":"VerificationStatus"},
+        "VerificationInfo":{"shape":"VerificationInfo"}
       }
     },
     "GetEmailTemplateRequest":{
@@ -2485,6 +2931,31 @@
       "members":{
         "TemplateName":{"shape":"EmailTemplateName"},
         "TemplateContent":{"shape":"EmailTemplateContent"}
+      }
+    },
+    "GetExportJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"JobId"
+        }
+      }
+    },
+    "GetExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "ExportSourceType":{"shape":"ExportSourceType"},
+        "JobStatus":{"shape":"JobStatus"},
+        "ExportDestination":{"shape":"ExportDestination"},
+        "ExportDataSource":{"shape":"ExportDataSource"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "CompletedTimestamp":{"shape":"Timestamp"},
+        "FailureInfo":{"shape":"FailureInfo"},
+        "Statistics":{"shape":"ExportStatistics"}
       }
     },
     "GetImportJobRequest":{
@@ -2512,6 +2983,27 @@
         "FailedRecordsCount":{"shape":"FailedRecordsCount"}
       }
     },
+    "GetMessageInsightsRequest":{
+      "type":"structure",
+      "required":["MessageId"],
+      "members":{
+        "MessageId":{
+          "shape":"OutboundMessageId",
+          "location":"uri",
+          "locationName":"MessageId"
+        }
+      }
+    },
+    "GetMessageInsightsResponse":{
+      "type":"structure",
+      "members":{
+        "MessageId":{"shape":"OutboundMessageId"},
+        "FromEmailAddress":{"shape":"InsightsEmailAddress"},
+        "Subject":{"shape":"EmailSubject"},
+        "EmailTags":{"shape":"MessageTagList"},
+        "Insights":{"shape":"EmailInsightsList"}
+      }
+    },
     "GetSuppressedDestinationRequest":{
       "type":"structure",
       "required":["EmailAddress"],
@@ -2530,6 +3022,18 @@
         "SuppressedDestination":{"shape":"SuppressedDestination"}
       }
     },
+    "GuardianAttributes":{
+      "type":"structure",
+      "members":{
+        "OptimizedSharedDelivery":{"shape":"FeatureStatus"}
+      }
+    },
+    "GuardianOptions":{
+      "type":"structure",
+      "members":{
+        "OptimizedSharedDelivery":{"shape":"FeatureStatus"}
+      }
+    },
     "Identity":{
       "type":"string",
       "min":1
@@ -2539,7 +3043,8 @@
       "members":{
         "IdentityType":{"shape":"IdentityType"},
         "IdentityName":{"shape":"Identity"},
-        "SendingEnabled":{"shape":"Enabled"}
+        "SendingEnabled":{"shape":"Enabled"},
+        "VerificationStatus":{"shape":"VerificationStatus"}
       }
     },
     "IdentityInfoList":{
@@ -2586,7 +3091,9 @@
         "JobId":{"shape":"JobId"},
         "ImportDestination":{"shape":"ImportDestination"},
         "JobStatus":{"shape":"JobStatus"},
-        "CreatedTimestamp":{"shape":"Timestamp"}
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "ProcessedRecordsCount":{"shape":"ProcessedRecordsCount"},
+        "FailedRecordsCount":{"shape":"FailedRecordsCount"}
       }
     },
     "ImportJobSummaryList":{
@@ -2600,6 +3107,32 @@
         "TrackedIsps":{"shape":"IspNameList"}
       }
     },
+    "InsightsEmailAddress":{
+      "type":"string",
+      "max":320,
+      "min":1,
+      "sensitive":true
+    },
+    "InsightsEvent":{
+      "type":"structure",
+      "members":{
+        "Timestamp":{"shape":"Timestamp"},
+        "Type":{"shape":"EventType"},
+        "Details":{"shape":"EventDetails"}
+      }
+    },
+    "InsightsEvents":{
+      "type":"list",
+      "member":{"shape":"InsightsEvent"}
+    },
+    "InternalServiceErrorException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":500},
+      "exception":true,
+      "fault":true
+    },
     "InvalidNextTokenException":{
       "type":"structure",
       "members":{
@@ -2611,6 +3144,12 @@
     "IpList":{
       "type":"list",
       "member":{"shape":"Ip"}
+    },
+    "Isp":{"type":"string"},
+    "IspFilterList":{
+      "type":"list",
+      "member":{"shape":"Isp"},
+      "max":5
     },
     "IspName":{"type":"string"},
     "IspNameList":{
@@ -2638,7 +3177,8 @@
         "CREATED",
         "PROCESSING",
         "COMPLETED",
-        "FAILED"
+        "FAILED",
+        "CANCELLED"
       ]
     },
     "KinesisFirehoseDestination":{
@@ -2651,6 +3191,16 @@
         "IamRoleArn":{"shape":"AmazonResourceName"},
         "DeliveryStreamArn":{"shape":"AmazonResourceName"}
       }
+    },
+    "LastDeliveryEventList":{
+      "type":"list",
+      "member":{"shape":"DeliveryEventType"},
+      "max":5
+    },
+    "LastEngagementEventList":{
+      "type":"list",
+      "member":{"shape":"EngagementEventType"},
+      "max":2
     },
     "LastFreshStart":{"type":"timestamp"},
     "LimitExceededException":{
@@ -2894,6 +3444,22 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListExportJobsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "PageSize":{"shape":"MaxItems"},
+        "ExportSourceType":{"shape":"ExportSourceType"},
+        "JobStatus":{"shape":"JobStatus"}
+      }
+    },
+    "ListExportJobsResponse":{
+      "type":"structure",
+      "members":{
+        "ExportJobs":{"shape":"ExportJobSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListImportJobsRequest":{
       "type":"structure",
       "members":{
@@ -2936,6 +3502,42 @@
     "ListOfDedicatedIpPools":{
       "type":"list",
       "member":{"shape":"PoolName"}
+    },
+    "ListRecommendationFilterValue":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
+    "ListRecommendationsFilter":{
+      "type":"map",
+      "key":{"shape":"ListRecommendationsFilterKey"},
+      "value":{"shape":"ListRecommendationFilterValue"},
+      "max":2,
+      "min":1
+    },
+    "ListRecommendationsFilterKey":{
+      "type":"string",
+      "enum":[
+        "TYPE",
+        "IMPACT",
+        "STATUS",
+        "RESOURCE_ARN"
+      ]
+    },
+    "ListRecommendationsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"ListRecommendationsFilter"},
+        "NextToken":{"shape":"NextToken"},
+        "PageSize":{"shape":"MaxItems"}
+      }
+    },
+    "ListRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "Recommendations":{"shape":"RecommendationsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListSuppressedDestinationsRequest":{
       "type":"structure",
@@ -3045,6 +3647,36 @@
     },
     "MessageContent":{"type":"string"},
     "MessageData":{"type":"string"},
+    "MessageInsightsDataSource":{
+      "type":"structure",
+      "required":[
+        "StartDate",
+        "EndDate"
+      ],
+      "members":{
+        "StartDate":{"shape":"Timestamp"},
+        "EndDate":{"shape":"Timestamp"},
+        "Include":{"shape":"MessageInsightsFilters"},
+        "Exclude":{"shape":"MessageInsightsFilters"},
+        "MaxResults":{"shape":"MessageInsightsExportMaxResults"}
+      }
+    },
+    "MessageInsightsExportMaxResults":{
+      "type":"integer",
+      "max":10000,
+      "min":1
+    },
+    "MessageInsightsFilters":{
+      "type":"structure",
+      "members":{
+        "FromEmailAddress":{"shape":"EmailAddressFilterList"},
+        "Destination":{"shape":"EmailAddressFilterList"},
+        "Subject":{"shape":"EmailSubjectFilterList"},
+        "Isp":{"shape":"IspFilterList"},
+        "LastDeliveryEvent":{"shape":"LastDeliveryEventList"},
+        "LastEngagementEvent":{"shape":"LastEngagementEventList"}
+      }
+    },
     "MessageRejected":{
       "type":"structure",
       "members":{
@@ -3069,6 +3701,86 @@
     },
     "MessageTagName":{"type":"string"},
     "MessageTagValue":{"type":"string"},
+    "Metric":{
+      "type":"string",
+      "enum":[
+        "SEND",
+        "COMPLAINT",
+        "PERMANENT_BOUNCE",
+        "TRANSIENT_BOUNCE",
+        "OPEN",
+        "CLICK",
+        "DELIVERY",
+        "DELIVERY_OPEN",
+        "DELIVERY_CLICK",
+        "DELIVERY_COMPLAINT"
+      ]
+    },
+    "MetricAggregation":{
+      "type":"string",
+      "enum":[
+        "RATE",
+        "VOLUME"
+      ]
+    },
+    "MetricDataError":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"QueryIdentifier"},
+        "Code":{"shape":"QueryErrorCode"},
+        "Message":{"shape":"QueryErrorMessage"}
+      }
+    },
+    "MetricDataErrorList":{
+      "type":"list",
+      "member":{"shape":"MetricDataError"}
+    },
+    "MetricDataResult":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"QueryIdentifier"},
+        "Timestamps":{"shape":"TimestampList"},
+        "Values":{"shape":"MetricValueList"}
+      }
+    },
+    "MetricDataResultList":{
+      "type":"list",
+      "member":{"shape":"MetricDataResult"}
+    },
+    "MetricDimensionName":{
+      "type":"string",
+      "enum":[
+        "EMAIL_IDENTITY",
+        "CONFIGURATION_SET",
+        "ISP"
+      ]
+    },
+    "MetricDimensionValue":{"type":"string"},
+    "MetricNamespace":{
+      "type":"string",
+      "enum":["VDM"]
+    },
+    "MetricValueList":{
+      "type":"list",
+      "member":{"shape":"Counter"}
+    },
+    "MetricsDataSource":{
+      "type":"structure",
+      "required":[
+        "Dimensions",
+        "Namespace",
+        "Metrics",
+        "StartDate",
+        "EndDate"
+      ],
+      "members":{
+        "Dimensions":{"shape":"ExportDimensions"},
+        "Namespace":{"shape":"MetricNamespace"},
+        "Metrics":{"shape":"ExportMetrics"},
+        "StartDate":{"shape":"Timestamp"},
+        "EndDate":{"shape":"Timestamp"}
+      }
+    },
     "NextToken":{"type":"string"},
     "NotFoundException":{
       "type":"structure",
@@ -3119,6 +3831,7 @@
       "min":1
     },
     "PoolName":{"type":"string"},
+    "PrimaryNameServer":{"type":"string"},
     "PrivateKey":{
       "type":"string",
       "max":20480,
@@ -3177,6 +3890,18 @@
       }
     },
     "PutAccountSuppressionAttributesResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutAccountVdmAttributesRequest":{
+      "type":"structure",
+      "required":["VdmAttributes"],
+      "members":{
+        "VdmAttributes":{"shape":"VdmAttributes"}
+      }
+    },
+    "PutAccountVdmAttributesResponse":{
       "type":"structure",
       "members":{
       }
@@ -3267,6 +3992,23 @@
       "members":{
       }
     },
+    "PutConfigurationSetVdmOptionsRequest":{
+      "type":"structure",
+      "required":["ConfigurationSetName"],
+      "members":{
+        "ConfigurationSetName":{
+          "shape":"ConfigurationSetName",
+          "location":"uri",
+          "locationName":"ConfigurationSetName"
+        },
+        "VdmOptions":{"shape":"VdmOptions"}
+      }
+    },
+    "PutConfigurationSetVdmOptionsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "PutDedicatedIpInPoolRequest":{
       "type":"structure",
       "required":[
@@ -3283,6 +4025,26 @@
       }
     },
     "PutDedicatedIpInPoolResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutDedicatedIpPoolScalingAttributesRequest":{
+      "type":"structure",
+      "required":[
+        "PoolName",
+        "ScalingMode"
+      ],
+      "members":{
+        "PoolName":{
+          "shape":"PoolName",
+          "location":"uri",
+          "locationName":"PoolName"
+        },
+        "ScalingMode":{"shape":"ScalingMode"}
+      }
+    },
+    "PutDedicatedIpPoolScalingAttributesResponse":{
       "type":"structure",
       "members":{
       }
@@ -3428,6 +4190,19 @@
       "members":{
       }
     },
+    "QueryErrorCode":{
+      "type":"string",
+      "enum":[
+        "INTERNAL_FAILURE",
+        "ACCESS_DENIED"
+      ]
+    },
+    "QueryErrorMessage":{"type":"string"},
+    "QueryIdentifier":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "RawMessage":{
       "type":"structure",
       "required":["Data"],
@@ -3437,6 +4212,46 @@
     },
     "RawMessageData":{"type":"blob"},
     "RblName":{"type":"string"},
+    "Recommendation":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"AmazonResourceName"},
+        "Type":{"shape":"RecommendationType"},
+        "Description":{"shape":"RecommendationDescription"},
+        "Status":{"shape":"RecommendationStatus"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "LastUpdatedTimestamp":{"shape":"Timestamp"},
+        "Impact":{"shape":"RecommendationImpact"}
+      }
+    },
+    "RecommendationDescription":{"type":"string"},
+    "RecommendationImpact":{
+      "type":"string",
+      "enum":[
+        "LOW",
+        "HIGH"
+      ]
+    },
+    "RecommendationStatus":{
+      "type":"string",
+      "enum":[
+        "OPEN",
+        "FIXED"
+      ]
+    },
+    "RecommendationType":{
+      "type":"string",
+      "enum":[
+        "DKIM",
+        "DMARC",
+        "SPF",
+        "BIMI"
+      ]
+    },
+    "RecommendationsList":{
+      "type":"list",
+      "member":{"shape":"Recommendation"}
+    },
     "RenderedEmailTemplate":{"type":"string"},
     "ReplacementEmailContent":{
       "type":"structure",
@@ -3478,6 +4293,21 @@
     "S3Url":{
       "type":"string",
       "pattern":"^s3:\\/\\/([^\\/]+)\\/(.*?([^\\/]+)\\/?)$"
+    },
+    "SOARecord":{
+      "type":"structure",
+      "members":{
+        "PrimaryNameServer":{"shape":"PrimaryNameServer"},
+        "AdminEmail":{"shape":"AdminEmail"},
+        "SerialNumber":{"shape":"SerialNumber"}
+      }
+    },
+    "ScalingMode":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "MANAGED"
+      ]
     },
     "Selector":{
       "type":"string",
@@ -3573,6 +4403,7 @@
     },
     "SendingPoolName":{"type":"string"},
     "SentLast24Hours":{"type":"double"},
+    "SerialNumber":{"type":"long"},
     "SnsDestination":{
       "type":"structure",
       "required":["TopicArn"],
@@ -3733,6 +4564,10 @@
       }
     },
     "Timestamp":{"type":"timestamp"},
+    "TimestampList":{
+      "type":"list",
+      "member":{"shape":"Timestamp"}
+    },
     "TlsPolicy":{
       "type":"string",
       "enum":[
@@ -3972,6 +4807,51 @@
       "sensitive":true
     },
     "UseDefaultIfPreferenceUnavailable":{"type":"boolean"},
+    "VdmAttributes":{
+      "type":"structure",
+      "required":["VdmEnabled"],
+      "members":{
+        "VdmEnabled":{"shape":"FeatureStatus"},
+        "DashboardAttributes":{"shape":"DashboardAttributes"},
+        "GuardianAttributes":{"shape":"GuardianAttributes"}
+      }
+    },
+    "VdmOptions":{
+      "type":"structure",
+      "members":{
+        "DashboardOptions":{"shape":"DashboardOptions"},
+        "GuardianOptions":{"shape":"GuardianOptions"}
+      }
+    },
+    "VerificationError":{
+      "type":"string",
+      "enum":[
+        "SERVICE_ERROR",
+        "DNS_SERVER_ERROR",
+        "HOST_NOT_FOUND",
+        "TYPE_NOT_FOUND",
+        "INVALID_VALUE"
+      ]
+    },
+    "VerificationInfo":{
+      "type":"structure",
+      "members":{
+        "LastCheckedTimestamp":{"shape":"Timestamp"},
+        "LastSuccessTimestamp":{"shape":"Timestamp"},
+        "ErrorType":{"shape":"VerificationError"},
+        "SOARecord":{"shape":"SOARecord"}
+      }
+    },
+    "VerificationStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "SUCCESS",
+        "FAILED",
+        "TEMPORARY_FAILURE",
+        "NOT_STARTED"
+      ]
+    },
     "Volume":{"type":"long"},
     "VolumeStatistics":{
       "type":"structure",

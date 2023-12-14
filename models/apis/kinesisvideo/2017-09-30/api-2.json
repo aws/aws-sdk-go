@@ -46,6 +46,22 @@
         {"shape":"TagsPerResourceExceededLimitException"}
       ]
     },
+    "DeleteEdgeConfiguration":{
+      "name":"DeleteEdgeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/deleteEdgeConfiguration"
+      },
+      "input":{"shape":"DeleteEdgeConfigurationInput"},
+      "output":{"shape":"DeleteEdgeConfigurationOutput"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"StreamEdgeConfigurationNotFoundException"}
+      ]
+    },
     "DeleteSignalingChannel":{
       "name":"DeleteSignalingChannel",
       "http":{
@@ -78,6 +94,82 @@
         {"shape":"NotAuthorizedException"},
         {"shape":"VersionMismatchException"},
         {"shape":"ResourceInUseException"}
+      ]
+    },
+    "DescribeEdgeConfiguration":{
+      "name":"DescribeEdgeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeEdgeConfiguration"
+      },
+      "input":{"shape":"DescribeEdgeConfigurationInput"},
+      "output":{"shape":"DescribeEdgeConfigurationOutput"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"StreamEdgeConfigurationNotFoundException"}
+      ]
+    },
+    "DescribeImageGenerationConfiguration":{
+      "name":"DescribeImageGenerationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeImageGenerationConfiguration"
+      },
+      "input":{"shape":"DescribeImageGenerationConfigurationInput"},
+      "output":{"shape":"DescribeImageGenerationConfigurationOutput"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DescribeMappedResourceConfiguration":{
+      "name":"DescribeMappedResourceConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeMappedResourceConfiguration"
+      },
+      "input":{"shape":"DescribeMappedResourceConfigurationInput"},
+      "output":{"shape":"DescribeMappedResourceConfigurationOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"}
+      ]
+    },
+    "DescribeMediaStorageConfiguration":{
+      "name":"DescribeMediaStorageConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeMediaStorageConfiguration"
+      },
+      "input":{"shape":"DescribeMediaStorageConfigurationInput"},
+      "output":{"shape":"DescribeMediaStorageConfigurationOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"}
+      ]
+    },
+    "DescribeNotificationConfiguration":{
+      "name":"DescribeNotificationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeNotificationConfiguration"
+      },
+      "input":{"shape":"DescribeNotificationConfigurationInput"},
+      "output":{"shape":"DescribeNotificationConfigurationOutput"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DescribeSignalingChannel":{
@@ -141,6 +233,20 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "ListEdgeAgentConfigurations":{
+      "name":"ListEdgeAgentConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listEdgeAgentConfigurations"
+      },
+      "input":{"shape":"ListEdgeAgentConfigurationsInput"},
+      "output":{"shape":"ListEdgeAgentConfigurationsOutput"},
+      "errors":[
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"InvalidArgumentException"}
+      ]
+    },
     "ListSignalingChannels":{
       "name":"ListSignalingChannels",
       "http":{
@@ -197,6 +303,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"InvalidResourceFormatException"}
+      ]
+    },
+    "StartEdgeConfigurationUpdate":{
+      "name":"StartEdgeConfigurationUpdate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/startEdgeConfigurationUpdate"
+      },
+      "input":{"shape":"StartEdgeConfigurationUpdateInput"},
+      "output":{"shape":"StartEdgeConfigurationUpdateOutput"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"NoDataRetentionException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "TagResource":{
@@ -280,6 +403,57 @@
         {"shape":"VersionMismatchException"}
       ]
     },
+    "UpdateImageGenerationConfiguration":{
+      "name":"UpdateImageGenerationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/updateImageGenerationConfiguration"
+      },
+      "input":{"shape":"UpdateImageGenerationConfigurationInput"},
+      "output":{"shape":"UpdateImageGenerationConfigurationOutput"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"NoDataRetentionException"}
+      ]
+    },
+    "UpdateMediaStorageConfiguration":{
+      "name":"UpdateMediaStorageConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/updateMediaStorageConfiguration"
+      },
+      "input":{"shape":"UpdateMediaStorageConfigurationInput"},
+      "output":{"shape":"UpdateMediaStorageConfigurationOutput"},
+      "errors":[
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoDataRetentionException"}
+      ]
+    },
+    "UpdateNotificationConfiguration":{
+      "name":"UpdateNotificationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/updateNotificationConfiguration"
+      },
+      "input":{"shape":"UpdateNotificationConfigurationInput"},
+      "output":{"shape":"UpdateNotificationConfigurationOutput"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"NoDataRetentionException"}
+      ]
+    },
     "UpdateSignalingChannel":{
       "name":"UpdateSignalingChannel",
       "http":{
@@ -325,7 +499,8 @@
         "GET_MEDIA_FOR_FRAGMENT_LIST",
         "GET_HLS_STREAMING_SESSION_URL",
         "GET_DASH_STREAMING_SESSION_URL",
-        "GET_CLIP"
+        "GET_CLIP",
+        "GET_IMAGES"
       ]
     },
     "AccessDeniedException":{
@@ -385,7 +560,8 @@
       "type":"string",
       "enum":[
         "WSS",
-        "HTTPS"
+        "HTTPS",
+        "WEBRTC"
       ]
     },
     "ChannelRole":{
@@ -397,7 +573,10 @@
     },
     "ChannelType":{
       "type":"string",
-      "enum":["SINGLE_MASTER"]
+      "enum":[
+        "SINGLE_MASTER",
+        "FULL_MESH"
+      ]
     },
     "ClientLimitExceededException":{
       "type":"structure",
@@ -410,6 +589,13 @@
     "ComparisonOperator":{
       "type":"string",
       "enum":["BEGINS_WITH"]
+    },
+    "ConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "CreateSignalingChannelInput":{
       "type":"structure",
@@ -454,6 +640,19 @@
       "type":"integer",
       "min":0
     },
+    "DeleteAfterUpload":{"type":"boolean"},
+    "DeleteEdgeConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"}
+      }
+    },
+    "DeleteEdgeConfigurationOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteSignalingChannelInput":{
       "type":"structure",
       "required":["ChannelARN"],
@@ -478,6 +677,89 @@
     "DeleteStreamOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeletionConfig":{
+      "type":"structure",
+      "members":{
+        "EdgeRetentionInHours":{"shape":"EdgeRetentionInHours"},
+        "LocalSizeConfig":{"shape":"LocalSizeConfig"},
+        "DeleteAfterUpload":{"shape":"DeleteAfterUpload"}
+      }
+    },
+    "DescribeEdgeConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"}
+      }
+    },
+    "DescribeEdgeConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "SyncStatus":{"shape":"SyncStatus"},
+        "FailedStatusDetails":{"shape":"FailedStatusDetails"},
+        "EdgeConfig":{"shape":"EdgeConfig"},
+        "EdgeAgentStatus":{"shape":"EdgeAgentStatus"}
+      }
+    },
+    "DescribeImageGenerationConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"}
+      }
+    },
+    "DescribeImageGenerationConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "ImageGenerationConfiguration":{"shape":"ImageGenerationConfiguration"}
+      }
+    },
+    "DescribeMappedResourceConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "MaxResults":{"shape":"MappedResourceConfigurationListLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeMappedResourceConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "MappedResourceConfigurationList":{"shape":"MappedResourceConfigurationList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeMediaStorageConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "ChannelName":{"shape":"ChannelName"},
+        "ChannelARN":{"shape":"ResourceARN"}
+      }
+    },
+    "DescribeMediaStorageConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "MediaStorageConfiguration":{"shape":"MediaStorageConfiguration"}
+      }
+    },
+    "DescribeNotificationConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"}
+      }
+    },
+    "DescribeNotificationConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "NotificationConfiguration":{"shape":"NotificationConfiguration"}
       }
     },
     "DescribeSignalingChannelInput":{
@@ -506,6 +788,18 @@
         "StreamInfo":{"shape":"StreamInfo"}
       }
     },
+    "DestinationRegion":{
+      "type":"string",
+      "max":14,
+      "min":9,
+      "pattern":"^[a-z]+(-[a-z]+)?-[a-z]+-[0-9]$"
+    },
+    "DestinationUri":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z_0-9]+:(//)?([^/]+)/?([^*]*)$"
+    },
     "DeviceName":{
       "type":"string",
       "max":128,
@@ -520,7 +814,62 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "DurationInSeconds":{
+      "type":"integer",
+      "max":3600,
+      "min":60
+    },
+    "EdgeAgentStatus":{
+      "type":"structure",
+      "members":{
+        "LastRecorderStatus":{"shape":"LastRecorderStatus"},
+        "LastUploaderStatus":{"shape":"LastUploaderStatus"}
+      }
+    },
+    "EdgeConfig":{
+      "type":"structure",
+      "required":[
+        "HubDeviceArn",
+        "RecorderConfig"
+      ],
+      "members":{
+        "HubDeviceArn":{"shape":"HubDeviceArn"},
+        "RecorderConfig":{"shape":"RecorderConfig"},
+        "UploaderConfig":{"shape":"UploaderConfig"},
+        "DeletionConfig":{"shape":"DeletionConfig"}
+      }
+    },
+    "EdgeRetentionInHours":{
+      "type":"integer",
+      "max":720,
+      "min":1
+    },
     "ErrorMessage":{"type":"string"},
+    "FailedStatusDetails":{"type":"string"},
+    "Format":{
+      "type":"string",
+      "enum":[
+        "JPEG",
+        "PNG"
+      ]
+    },
+    "FormatConfig":{
+      "type":"map",
+      "key":{"shape":"FormatConfigKey"},
+      "value":{"shape":"FormatConfigValue"},
+      "max":1,
+      "min":1
+    },
+    "FormatConfigKey":{
+      "type":"string",
+      "enum":["JPEGQuality"]
+    },
+    "FormatConfigValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^[a-zA-Z_0-9]+"
+    },
     "GetDataEndpointInput":{
       "type":"structure",
       "required":["APIName"],
@@ -550,6 +899,55 @@
         "ResourceEndpointList":{"shape":"ResourceEndpointList"}
       }
     },
+    "HeightPixels":{
+      "type":"integer",
+      "max":2160,
+      "min":1
+    },
+    "HubDeviceArn":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"arn:[a-z\\d-]+:iot:[a-z0-9-]+:[0-9]+:thing/[a-zA-Z0-9_.-]+"
+    },
+    "ImageGenerationConfiguration":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "ImageSelectorType",
+        "DestinationConfig",
+        "SamplingInterval",
+        "Format"
+      ],
+      "members":{
+        "Status":{"shape":"ConfigurationStatus"},
+        "ImageSelectorType":{"shape":"ImageSelectorType"},
+        "DestinationConfig":{"shape":"ImageGenerationDestinationConfig"},
+        "SamplingInterval":{"shape":"SamplingInterval"},
+        "Format":{"shape":"Format"},
+        "FormatConfig":{"shape":"FormatConfig"},
+        "WidthPixels":{"shape":"WidthPixels"},
+        "HeightPixels":{"shape":"HeightPixels"}
+      }
+    },
+    "ImageGenerationDestinationConfig":{
+      "type":"structure",
+      "required":[
+        "Uri",
+        "DestinationRegion"
+      ],
+      "members":{
+        "Uri":{"shape":"DestinationUri"},
+        "DestinationRegion":{"shape":"DestinationRegion"}
+      }
+    },
+    "ImageSelectorType":{
+      "type":"string",
+      "enum":[
+        "SERVER_TIMESTAMP",
+        "PRODUCER_TIMESTAMP"
+      ]
+    },
     "InvalidArgumentException":{
       "type":"structure",
       "members":{
@@ -574,11 +972,67 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "JobStatusDetails":{"type":"string"},
     "KmsKeyId":{
       "type":"string",
       "max":2048,
       "min":1,
       "pattern":".+"
+    },
+    "LastRecorderStatus":{
+      "type":"structure",
+      "members":{
+        "JobStatusDetails":{"shape":"JobStatusDetails"},
+        "LastCollectedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "RecorderStatus":{"shape":"RecorderStatus"}
+      }
+    },
+    "LastUploaderStatus":{
+      "type":"structure",
+      "members":{
+        "JobStatusDetails":{"shape":"JobStatusDetails"},
+        "LastCollectedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "UploaderStatus":{"shape":"UploaderStatus"}
+      }
+    },
+    "ListEdgeAgentConfigurationsEdgeConfig":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "SyncStatus":{"shape":"SyncStatus"},
+        "FailedStatusDetails":{"shape":"FailedStatusDetails"},
+        "EdgeConfig":{"shape":"EdgeConfig"}
+      }
+    },
+    "ListEdgeAgentConfigurationsEdgeConfigList":{
+      "type":"list",
+      "member":{"shape":"ListEdgeAgentConfigurationsEdgeConfig"}
+    },
+    "ListEdgeAgentConfigurationsInput":{
+      "type":"structure",
+      "required":["HubDeviceArn"],
+      "members":{
+        "HubDeviceArn":{"shape":"HubDeviceArn"},
+        "MaxResults":{"shape":"ListEdgeAgentConfigurationsInputLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListEdgeAgentConfigurationsInputLimit":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
+    "ListEdgeAgentConfigurationsOutput":{
+      "type":"structure",
+      "members":{
+        "EdgeConfigs":{"shape":"ListEdgeAgentConfigurationsEdgeConfigList"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListOfProtocols":{
       "type":"list",
@@ -651,11 +1105,81 @@
         "Tags":{"shape":"ResourceTags"}
       }
     },
+    "LocalSizeConfig":{
+      "type":"structure",
+      "members":{
+        "MaxLocalMediaSizeInMB":{"shape":"MaxLocalMediaSizeInMB"},
+        "StrategyOnFullSize":{"shape":"StrategyOnFullSize"}
+      }
+    },
+    "MappedResourceConfigurationList":{
+      "type":"list",
+      "member":{"shape":"MappedResourceConfigurationListItem"},
+      "max":1,
+      "min":0
+    },
+    "MappedResourceConfigurationListItem":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"Type"},
+        "ARN":{"shape":"ResourceARN"}
+      }
+    },
+    "MappedResourceConfigurationListLimit":{
+      "type":"integer",
+      "max":1,
+      "min":1
+    },
+    "MaxLocalMediaSizeInMB":{
+      "type":"integer",
+      "max":2000000,
+      "min":64
+    },
+    "MediaSourceConfig":{
+      "type":"structure",
+      "required":[
+        "MediaUriSecretArn",
+        "MediaUriType"
+      ],
+      "members":{
+        "MediaUriSecretArn":{"shape":"MediaUriSecretArn"},
+        "MediaUriType":{"shape":"MediaUriType"}
+      }
+    },
+    "MediaStorageConfiguration":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "StreamARN":{"shape":"ResourceARN"},
+        "Status":{"shape":"MediaStorageConfigurationStatus"}
+      }
+    },
+    "MediaStorageConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "MediaType":{
       "type":"string",
       "max":128,
       "min":1,
       "pattern":"[\\w\\-\\.\\+]+/[\\w\\-\\.\\+]+(,[\\w\\-\\.\\+]+/[\\w\\-\\.\\+]+)*"
+    },
+    "MediaUriSecretArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:[a-z\\d-]+:secretsmanager:[a-z0-9-]+:[0-9]+:secret:[a-zA-Z0-9_.-]+",
+      "sensitive":true
+    },
+    "MediaUriType":{
+      "type":"string",
+      "enum":[
+        "RTSP_URI",
+        "FILE_URI"
+      ]
     },
     "MessageTtlSeconds":{
       "type":"integer",
@@ -668,6 +1192,14 @@
       "min":0,
       "pattern":"[a-zA-Z0-9+/=]*"
     },
+    "NoDataRetentionException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "NotAuthorizedException":{
       "type":"structure",
       "members":{
@@ -676,11 +1208,45 @@
       "error":{"httpStatusCode":401},
       "exception":true
     },
+    "NotificationConfiguration":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "DestinationConfig"
+      ],
+      "members":{
+        "Status":{"shape":"ConfigurationStatus"},
+        "DestinationConfig":{"shape":"NotificationDestinationConfig"}
+      }
+    },
+    "NotificationDestinationConfig":{
+      "type":"structure",
+      "required":["Uri"],
+      "members":{
+        "Uri":{"shape":"DestinationUri"}
+      }
+    },
+    "RecorderConfig":{
+      "type":"structure",
+      "required":["MediaSourceConfig"],
+      "members":{
+        "MediaSourceConfig":{"shape":"MediaSourceConfig"},
+        "ScheduleConfig":{"shape":"ScheduleConfig"}
+      }
+    },
+    "RecorderStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "USER_ERROR",
+        "SYSTEM_ERROR"
+      ]
+    },
     "ResourceARN":{
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+"
+      "pattern":"arn:[a-z\\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+"
     },
     "ResourceEndpoint":{"type":"string"},
     "ResourceEndpointList":{
@@ -717,6 +1283,24 @@
       "max":50,
       "min":1
     },
+    "SamplingInterval":{"type":"integer"},
+    "ScheduleConfig":{
+      "type":"structure",
+      "required":[
+        "ScheduleExpression",
+        "DurationInSeconds"
+      ],
+      "members":{
+        "ScheduleExpression":{"shape":"ScheduleExpression"},
+        "DurationInSeconds":{"shape":"DurationInSeconds"}
+      }
+    },
+    "ScheduleExpression":{
+      "type":"string",
+      "max":100,
+      "min":11,
+      "pattern":"[^\\n]{11,100}"
+    },
     "SingleMasterChannelEndpointConfiguration":{
       "type":"structure",
       "members":{
@@ -730,6 +1314,27 @@
         "MessageTtlSeconds":{"shape":"MessageTtlSeconds"}
       }
     },
+    "StartEdgeConfigurationUpdateInput":{
+      "type":"structure",
+      "required":["EdgeConfig"],
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "EdgeConfig":{"shape":"EdgeConfig"}
+      }
+    },
+    "StartEdgeConfigurationUpdateOutput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "SyncStatus":{"shape":"SyncStatus"},
+        "FailedStatusDetails":{"shape":"FailedStatusDetails"},
+        "EdgeConfig":{"shape":"EdgeConfig"}
+      }
+    },
     "Status":{
       "type":"string",
       "enum":[
@@ -738,6 +1343,21 @@
         "UPDATING",
         "DELETING"
       ]
+    },
+    "StrategyOnFullSize":{
+      "type":"string",
+      "enum":[
+        "DELETE_OLDEST_MEDIA",
+        "DENY_NEW_MEDIA"
+      ]
+    },
+    "StreamEdgeConfigurationNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
     },
     "StreamInfo":{
       "type":"structure",
@@ -769,6 +1389,18 @@
         "ComparisonOperator":{"shape":"ComparisonOperator"},
         "ComparisonValue":{"shape":"StreamName"}
       }
+    },
+    "SyncStatus":{
+      "type":"string",
+      "enum":[
+        "SYNCING",
+        "ACKNOWLEDGED",
+        "IN_SYNC",
+        "SYNC_FAILED",
+        "DELETING",
+        "DELETE_FAILED",
+        "DELETING_ACKNOWLEDGED"
+      ]
     },
     "Tag":{
       "type":"structure",
@@ -850,6 +1482,7 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "Type":{"type":"string"},
     "UntagResourceInput":{
       "type":"structure",
       "required":[
@@ -907,6 +1540,48 @@
       "members":{
       }
     },
+    "UpdateImageGenerationConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "ImageGenerationConfiguration":{"shape":"ImageGenerationConfiguration"}
+      }
+    },
+    "UpdateImageGenerationConfigurationOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateMediaStorageConfigurationInput":{
+      "type":"structure",
+      "required":[
+        "ChannelARN",
+        "MediaStorageConfiguration"
+      ],
+      "members":{
+        "ChannelARN":{"shape":"ResourceARN"},
+        "MediaStorageConfiguration":{"shape":"MediaStorageConfiguration"}
+      }
+    },
+    "UpdateMediaStorageConfigurationOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateNotificationConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "NotificationConfiguration":{"shape":"NotificationConfiguration"}
+      }
+    },
+    "UpdateNotificationConfigurationOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateSignalingChannelInput":{
       "type":"structure",
       "required":[
@@ -940,6 +1615,21 @@
       "members":{
       }
     },
+    "UploaderConfig":{
+      "type":"structure",
+      "required":["ScheduleConfig"],
+      "members":{
+        "ScheduleConfig":{"shape":"ScheduleConfig"}
+      }
+    },
+    "UploaderStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "USER_ERROR",
+        "SYSTEM_ERROR"
+      ]
+    },
     "Version":{
       "type":"string",
       "max":64,
@@ -953,6 +1643,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "WidthPixels":{
+      "type":"integer",
+      "max":3840,
+      "min":1
     }
   }
 }

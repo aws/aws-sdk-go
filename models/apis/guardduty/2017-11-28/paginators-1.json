@@ -1,9 +1,26 @@
 {
   "pagination": {
+    "DescribeMalwareScans": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Scans"
+    },
+    "DescribeOrganizationConfiguration": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "GetUsageStatistics": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"
+    },
+    "ListCoverage": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Resources"
     },
     "ListDetectors": {
       "input_token": "NextToken",

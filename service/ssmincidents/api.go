@@ -13,6 +13,103 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opBatchGetIncidentFindings = "BatchGetIncidentFindings"
+
+// BatchGetIncidentFindingsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetIncidentFindings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetIncidentFindings for more information on using the BatchGetIncidentFindings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetIncidentFindingsRequest method.
+//	req, resp := client.BatchGetIncidentFindingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/BatchGetIncidentFindings
+func (c *SSMIncidents) BatchGetIncidentFindingsRequest(input *BatchGetIncidentFindingsInput) (req *request.Request, output *BatchGetIncidentFindingsOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetIncidentFindings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/batchGetIncidentFindings",
+	}
+
+	if input == nil {
+		input = &BatchGetIncidentFindingsInput{}
+	}
+
+	output = &BatchGetIncidentFindingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetIncidentFindings API operation for AWS Systems Manager Incident Manager.
+//
+// Retrieves details about all specified findings for an incident, including
+// descriptive details about each finding. A finding represents a recent application
+// environment change made by an CodeDeploy deployment or an CloudFormation
+// stack creation or update that can be investigated as a potential cause of
+// the incident.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Systems Manager Incident Manager's
+// API operation BatchGetIncidentFindings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/BatchGetIncidentFindings
+func (c *SSMIncidents) BatchGetIncidentFindings(input *BatchGetIncidentFindingsInput) (*BatchGetIncidentFindingsOutput, error) {
+	req, out := c.BatchGetIncidentFindingsRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetIncidentFindingsWithContext is the same as BatchGetIncidentFindings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetIncidentFindings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSMIncidents) BatchGetIncidentFindingsWithContext(ctx aws.Context, input *BatchGetIncidentFindingsInput, opts ...request.Option) (*BatchGetIncidentFindingsOutput, error) {
+	req, out := c.BatchGetIncidentFindingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateReplicationSet = "CreateReplicationSet"
 
 // CreateReplicationSetRequest generates a "aws/request.Request" representing the
@@ -29,14 +126,13 @@ const opCreateReplicationSet = "CreateReplicationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReplicationSetRequest method.
+//	req, resp := client.CreateReplicationSetRequest(params)
 //
-//    // Example sending a request using the CreateReplicationSetRequest method.
-//    req, resp := client.CreateReplicationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/CreateReplicationSet
 func (c *SSMIncidents) CreateReplicationSetRequest(input *CreateReplicationSetInput) (req *request.Request, output *CreateReplicationSetOutput) {
@@ -68,24 +164,26 @@ func (c *SSMIncidents) CreateReplicationSetRequest(input *CreateReplicationSetIn
 // API operation CreateReplicationSet for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   Request would cause a service quota to be exceeded.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ServiceQuotaExceededException
+//     Request would cause a service quota to be exceeded.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/CreateReplicationSet
 func (c *SSMIncidents) CreateReplicationSet(input *CreateReplicationSetInput) (*CreateReplicationSetOutput, error) {
@@ -125,14 +223,13 @@ const opCreateResponsePlan = "CreateResponsePlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateResponsePlanRequest method.
+//	req, resp := client.CreateResponsePlanRequest(params)
 //
-//    // Example sending a request using the CreateResponsePlanRequest method.
-//    req, resp := client.CreateResponsePlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/CreateResponsePlan
 func (c *SSMIncidents) CreateResponsePlanRequest(input *CreateResponsePlanInput) (req *request.Request, output *CreateResponsePlanOutput) {
@@ -165,24 +262,26 @@ func (c *SSMIncidents) CreateResponsePlanRequest(input *CreateResponsePlanInput)
 // API operation CreateResponsePlan for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/CreateResponsePlan
 func (c *SSMIncidents) CreateResponsePlan(input *CreateResponsePlanInput) (*CreateResponsePlanOutput, error) {
@@ -222,14 +321,13 @@ const opCreateTimelineEvent = "CreateTimelineEvent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTimelineEventRequest method.
+//	req, resp := client.CreateTimelineEventRequest(params)
 //
-//    // Example sending a request using the CreateTimelineEventRequest method.
-//    req, resp := client.CreateTimelineEventRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/CreateTimelineEvent
 func (c *SSMIncidents) CreateTimelineEventRequest(input *CreateTimelineEventInput) (req *request.Request, output *CreateTimelineEventOutput) {
@@ -251,9 +349,9 @@ func (c *SSMIncidents) CreateTimelineEventRequest(input *CreateTimelineEventInpu
 // CreateTimelineEvent API operation for AWS Systems Manager Incident Manager.
 //
 // Creates a custom timeline event on the incident details page of an incident
-// record. Timeline events are automatically created by Incident Manager, marking
-// key moment during an incident. You can create custom timeline events to mark
-// important events that are automatically detected by Incident Manager.
+// record. Incident Manager automatically creates timeline events that mark
+// key moments during an incident. You can create custom timeline events to
+// mark important events that Incident Manager can detect automatically.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -263,24 +361,26 @@ func (c *SSMIncidents) CreateTimelineEventRequest(input *CreateTimelineEventInpu
 // API operation CreateTimelineEvent for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/CreateTimelineEvent
 func (c *SSMIncidents) CreateTimelineEvent(input *CreateTimelineEventInput) (*CreateTimelineEventOutput, error) {
@@ -320,14 +420,13 @@ const opDeleteIncidentRecord = "DeleteIncidentRecord"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteIncidentRecordRequest method.
+//	req, resp := client.DeleteIncidentRecordRequest(params)
 //
-//    // Example sending a request using the DeleteIncidentRecordRequest method.
-//    req, resp := client.DeleteIncidentRecordRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteIncidentRecord
 func (c *SSMIncidents) DeleteIncidentRecordRequest(input *DeleteIncidentRecordInput) (req *request.Request, output *DeleteIncidentRecordOutput) {
@@ -359,18 +458,20 @@ func (c *SSMIncidents) DeleteIncidentRecordRequest(input *DeleteIncidentRecordIn
 // API operation DeleteIncidentRecord for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteIncidentRecord
 func (c *SSMIncidents) DeleteIncidentRecord(input *DeleteIncidentRecordInput) (*DeleteIncidentRecordOutput, error) {
@@ -410,14 +511,13 @@ const opDeleteReplicationSet = "DeleteReplicationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReplicationSetRequest method.
+//	req, resp := client.DeleteReplicationSetRequest(params)
 //
-//    // Example sending a request using the DeleteReplicationSetRequest method.
-//    req, resp := client.DeleteReplicationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteReplicationSet
 func (c *SSMIncidents) DeleteReplicationSetRequest(input *DeleteReplicationSetInput) (req *request.Request, output *DeleteReplicationSetOutput) {
@@ -450,21 +550,23 @@ func (c *SSMIncidents) DeleteReplicationSetRequest(input *DeleteReplicationSetIn
 // API operation DeleteReplicationSet for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteReplicationSet
 func (c *SSMIncidents) DeleteReplicationSet(input *DeleteReplicationSetInput) (*DeleteReplicationSetOutput, error) {
@@ -504,14 +606,13 @@ const opDeleteResourcePolicy = "DeleteResourcePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteResourcePolicyRequest method.
+//	req, resp := client.DeleteResourcePolicyRequest(params)
 //
-//    // Example sending a request using the DeleteResourcePolicyRequest method.
-//    req, resp := client.DeleteResourcePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteResourcePolicy
 func (c *SSMIncidents) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
@@ -533,8 +634,8 @@ func (c *SSMIncidents) DeleteResourcePolicyRequest(input *DeleteResourcePolicyIn
 
 // DeleteResourcePolicy API operation for AWS Systems Manager Incident Manager.
 //
-// Deletes the resource policy that AWS Resource Access Manager uses to share
-// your Incident Manager resource.
+// Deletes the resource policy that Resource Access Manager uses to share your
+// Incident Manager resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -544,21 +645,23 @@ func (c *SSMIncidents) DeleteResourcePolicyRequest(input *DeleteResourcePolicyIn
 // API operation DeleteResourcePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteResourcePolicy
 func (c *SSMIncidents) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
@@ -598,14 +701,13 @@ const opDeleteResponsePlan = "DeleteResponsePlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteResponsePlanRequest method.
+//	req, resp := client.DeleteResponsePlanRequest(params)
 //
-//    // Example sending a request using the DeleteResponsePlanRequest method.
-//    req, resp := client.DeleteResponsePlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteResponsePlan
 func (c *SSMIncidents) DeleteResponsePlanRequest(input *DeleteResponsePlanInput) (req *request.Request, output *DeleteResponsePlanOutput) {
@@ -639,18 +741,20 @@ func (c *SSMIncidents) DeleteResponsePlanRequest(input *DeleteResponsePlanInput)
 // API operation DeleteResponsePlan for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteResponsePlan
 func (c *SSMIncidents) DeleteResponsePlan(input *DeleteResponsePlanInput) (*DeleteResponsePlanOutput, error) {
@@ -690,14 +794,13 @@ const opDeleteTimelineEvent = "DeleteTimelineEvent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTimelineEventRequest method.
+//	req, resp := client.DeleteTimelineEventRequest(params)
 //
-//    // Example sending a request using the DeleteTimelineEventRequest method.
-//    req, resp := client.DeleteTimelineEventRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteTimelineEvent
 func (c *SSMIncidents) DeleteTimelineEventRequest(input *DeleteTimelineEventInput) (req *request.Request, output *DeleteTimelineEventOutput) {
@@ -729,18 +832,20 @@ func (c *SSMIncidents) DeleteTimelineEventRequest(input *DeleteTimelineEventInpu
 // API operation DeleteTimelineEvent for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/DeleteTimelineEvent
 func (c *SSMIncidents) DeleteTimelineEvent(input *DeleteTimelineEventInput) (*DeleteTimelineEventOutput, error) {
@@ -780,14 +885,13 @@ const opGetIncidentRecord = "GetIncidentRecord"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIncidentRecordRequest method.
+//	req, resp := client.GetIncidentRecordRequest(params)
 //
-//    // Example sending a request using the GetIncidentRecordRequest method.
-//    req, resp := client.GetIncidentRecordRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetIncidentRecord
 func (c *SSMIncidents) GetIncidentRecordRequest(input *GetIncidentRecordInput) (req *request.Request, output *GetIncidentRecordOutput) {
@@ -808,7 +912,7 @@ func (c *SSMIncidents) GetIncidentRecordRequest(input *GetIncidentRecordInput) (
 
 // GetIncidentRecord API operation for AWS Systems Manager Incident Manager.
 //
-// Returns the details of the specified incident record.
+// Returns the details for the specified incident record.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -818,21 +922,23 @@ func (c *SSMIncidents) GetIncidentRecordRequest(input *GetIncidentRecordInput) (
 // API operation GetIncidentRecord for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetIncidentRecord
 func (c *SSMIncidents) GetIncidentRecord(input *GetIncidentRecordInput) (*GetIncidentRecordOutput, error) {
@@ -872,14 +978,13 @@ const opGetReplicationSet = "GetReplicationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetReplicationSetRequest method.
+//	req, resp := client.GetReplicationSetRequest(params)
 //
-//    // Example sending a request using the GetReplicationSetRequest method.
-//    req, resp := client.GetReplicationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetReplicationSet
 func (c *SSMIncidents) GetReplicationSetRequest(input *GetReplicationSetInput) (req *request.Request, output *GetReplicationSetOutput) {
@@ -910,21 +1015,23 @@ func (c *SSMIncidents) GetReplicationSetRequest(input *GetReplicationSetInput) (
 // API operation GetReplicationSet for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetReplicationSet
 func (c *SSMIncidents) GetReplicationSet(input *GetReplicationSetInput) (*GetReplicationSetOutput, error) {
@@ -964,14 +1071,13 @@ const opGetResourcePolicies = "GetResourcePolicies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResourcePoliciesRequest method.
+//	req, resp := client.GetResourcePoliciesRequest(params)
 //
-//    // Example sending a request using the GetResourcePoliciesRequest method.
-//    req, resp := client.GetResourcePoliciesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetResourcePolicies
 func (c *SSMIncidents) GetResourcePoliciesRequest(input *GetResourcePoliciesInput) (req *request.Request, output *GetResourcePoliciesOutput) {
@@ -1008,21 +1114,23 @@ func (c *SSMIncidents) GetResourcePoliciesRequest(input *GetResourcePoliciesInpu
 // API operation GetResourcePolicies for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetResourcePolicies
 func (c *SSMIncidents) GetResourcePolicies(input *GetResourcePoliciesInput) (*GetResourcePoliciesOutput, error) {
@@ -1054,15 +1162,14 @@ func (c *SSMIncidents) GetResourcePoliciesWithContext(ctx aws.Context, input *Ge
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetResourcePolicies operation.
-//    pageNum := 0
-//    err := client.GetResourcePoliciesPages(params,
-//        func(page *ssmincidents.GetResourcePoliciesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetResourcePolicies operation.
+//	pageNum := 0
+//	err := client.GetResourcePoliciesPages(params,
+//	    func(page *ssmincidents.GetResourcePoliciesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SSMIncidents) GetResourcePoliciesPages(input *GetResourcePoliciesInput, fn func(*GetResourcePoliciesOutput, bool) bool) error {
 	return c.GetResourcePoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1114,14 +1221,13 @@ const opGetResponsePlan = "GetResponsePlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResponsePlanRequest method.
+//	req, resp := client.GetResponsePlanRequest(params)
 //
-//    // Example sending a request using the GetResponsePlanRequest method.
-//    req, resp := client.GetResponsePlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetResponsePlan
 func (c *SSMIncidents) GetResponsePlanRequest(input *GetResponsePlanInput) (req *request.Request, output *GetResponsePlanOutput) {
@@ -1152,21 +1258,23 @@ func (c *SSMIncidents) GetResponsePlanRequest(input *GetResponsePlanInput) (req 
 // API operation GetResponsePlan for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetResponsePlan
 func (c *SSMIncidents) GetResponsePlan(input *GetResponsePlanInput) (*GetResponsePlanOutput, error) {
@@ -1206,14 +1314,13 @@ const opGetTimelineEvent = "GetTimelineEvent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetTimelineEventRequest method.
+//	req, resp := client.GetTimelineEventRequest(params)
 //
-//    // Example sending a request using the GetTimelineEventRequest method.
-//    req, resp := client.GetTimelineEventRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetTimelineEvent
 func (c *SSMIncidents) GetTimelineEventRequest(input *GetTimelineEventInput) (req *request.Request, output *GetTimelineEventOutput) {
@@ -1244,21 +1351,23 @@ func (c *SSMIncidents) GetTimelineEventRequest(input *GetTimelineEventInput) (re
 // API operation GetTimelineEvent for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/GetTimelineEvent
 func (c *SSMIncidents) GetTimelineEvent(input *GetTimelineEventInput) (*GetTimelineEventOutput, error) {
@@ -1282,6 +1391,160 @@ func (c *SSMIncidents) GetTimelineEventWithContext(ctx aws.Context, input *GetTi
 	return out, req.Send()
 }
 
+const opListIncidentFindings = "ListIncidentFindings"
+
+// ListIncidentFindingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIncidentFindings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIncidentFindings for more information on using the ListIncidentFindings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIncidentFindingsRequest method.
+//	req, resp := client.ListIncidentFindingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListIncidentFindings
+func (c *SSMIncidents) ListIncidentFindingsRequest(input *ListIncidentFindingsInput) (req *request.Request, output *ListIncidentFindingsOutput) {
+	op := &request.Operation{
+		Name:       opListIncidentFindings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/listIncidentFindings",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIncidentFindingsInput{}
+	}
+
+	output = &ListIncidentFindingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIncidentFindings API operation for AWS Systems Manager Incident Manager.
+//
+// Retrieves a list of the IDs of findings, plus their last modified times,
+// that have been identified for a specified incident. A finding represents
+// a recent application environment change made by an CloudFormation stack creation
+// or update or an CodeDeploy deployment that can be investigated as a potential
+// cause of the incident.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Systems Manager Incident Manager's
+// API operation ListIncidentFindings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListIncidentFindings
+func (c *SSMIncidents) ListIncidentFindings(input *ListIncidentFindingsInput) (*ListIncidentFindingsOutput, error) {
+	req, out := c.ListIncidentFindingsRequest(input)
+	return out, req.Send()
+}
+
+// ListIncidentFindingsWithContext is the same as ListIncidentFindings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIncidentFindings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSMIncidents) ListIncidentFindingsWithContext(ctx aws.Context, input *ListIncidentFindingsInput, opts ...request.Option) (*ListIncidentFindingsOutput, error) {
+	req, out := c.ListIncidentFindingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIncidentFindingsPages iterates over the pages of a ListIncidentFindings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIncidentFindings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIncidentFindings operation.
+//	pageNum := 0
+//	err := client.ListIncidentFindingsPages(params,
+//	    func(page *ssmincidents.ListIncidentFindingsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SSMIncidents) ListIncidentFindingsPages(input *ListIncidentFindingsInput, fn func(*ListIncidentFindingsOutput, bool) bool) error {
+	return c.ListIncidentFindingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIncidentFindingsPagesWithContext same as ListIncidentFindingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSMIncidents) ListIncidentFindingsPagesWithContext(ctx aws.Context, input *ListIncidentFindingsInput, fn func(*ListIncidentFindingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIncidentFindingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIncidentFindingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIncidentFindingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListIncidentRecords = "ListIncidentRecords"
 
 // ListIncidentRecordsRequest generates a "aws/request.Request" representing the
@@ -1298,14 +1561,13 @@ const opListIncidentRecords = "ListIncidentRecords"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListIncidentRecordsRequest method.
+//	req, resp := client.ListIncidentRecordsRequest(params)
 //
-//    // Example sending a request using the ListIncidentRecordsRequest method.
-//    req, resp := client.ListIncidentRecordsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListIncidentRecords
 func (c *SSMIncidents) ListIncidentRecordsRequest(input *ListIncidentRecordsInput) (req *request.Request, output *ListIncidentRecordsOutput) {
@@ -1343,18 +1605,20 @@ func (c *SSMIncidents) ListIncidentRecordsRequest(input *ListIncidentRecordsInpu
 // API operation ListIncidentRecords for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListIncidentRecords
 func (c *SSMIncidents) ListIncidentRecords(input *ListIncidentRecordsInput) (*ListIncidentRecordsOutput, error) {
@@ -1386,15 +1650,14 @@ func (c *SSMIncidents) ListIncidentRecordsWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListIncidentRecords operation.
-//    pageNum := 0
-//    err := client.ListIncidentRecordsPages(params,
-//        func(page *ssmincidents.ListIncidentRecordsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListIncidentRecords operation.
+//	pageNum := 0
+//	err := client.ListIncidentRecordsPages(params,
+//	    func(page *ssmincidents.ListIncidentRecordsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SSMIncidents) ListIncidentRecordsPages(input *ListIncidentRecordsInput, fn func(*ListIncidentRecordsOutput, bool) bool) error {
 	return c.ListIncidentRecordsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1446,14 +1709,13 @@ const opListRelatedItems = "ListRelatedItems"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRelatedItemsRequest method.
+//	req, resp := client.ListRelatedItemsRequest(params)
 //
-//    // Example sending a request using the ListRelatedItemsRequest method.
-//    req, resp := client.ListRelatedItemsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListRelatedItems
 func (c *SSMIncidents) ListRelatedItemsRequest(input *ListRelatedItemsInput) (req *request.Request, output *ListRelatedItemsOutput) {
@@ -1490,18 +1752,20 @@ func (c *SSMIncidents) ListRelatedItemsRequest(input *ListRelatedItemsInput) (re
 // API operation ListRelatedItems for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListRelatedItems
 func (c *SSMIncidents) ListRelatedItems(input *ListRelatedItemsInput) (*ListRelatedItemsOutput, error) {
@@ -1533,15 +1797,14 @@ func (c *SSMIncidents) ListRelatedItemsWithContext(ctx aws.Context, input *ListR
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRelatedItems operation.
-//    pageNum := 0
-//    err := client.ListRelatedItemsPages(params,
-//        func(page *ssmincidents.ListRelatedItemsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRelatedItems operation.
+//	pageNum := 0
+//	err := client.ListRelatedItemsPages(params,
+//	    func(page *ssmincidents.ListRelatedItemsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SSMIncidents) ListRelatedItemsPages(input *ListRelatedItemsInput, fn func(*ListRelatedItemsOutput, bool) bool) error {
 	return c.ListRelatedItemsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1593,14 +1856,13 @@ const opListReplicationSets = "ListReplicationSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListReplicationSetsRequest method.
+//	req, resp := client.ListReplicationSetsRequest(params)
 //
-//    // Example sending a request using the ListReplicationSetsRequest method.
-//    req, resp := client.ListReplicationSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListReplicationSets
 func (c *SSMIncidents) ListReplicationSetsRequest(input *ListReplicationSetsInput) (req *request.Request, output *ListReplicationSetsOutput) {
@@ -1637,18 +1899,20 @@ func (c *SSMIncidents) ListReplicationSetsRequest(input *ListReplicationSetsInpu
 // API operation ListReplicationSets for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListReplicationSets
 func (c *SSMIncidents) ListReplicationSets(input *ListReplicationSetsInput) (*ListReplicationSetsOutput, error) {
@@ -1680,15 +1944,14 @@ func (c *SSMIncidents) ListReplicationSetsWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListReplicationSets operation.
-//    pageNum := 0
-//    err := client.ListReplicationSetsPages(params,
-//        func(page *ssmincidents.ListReplicationSetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListReplicationSets operation.
+//	pageNum := 0
+//	err := client.ListReplicationSetsPages(params,
+//	    func(page *ssmincidents.ListReplicationSetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SSMIncidents) ListReplicationSetsPages(input *ListReplicationSetsInput, fn func(*ListReplicationSetsOutput, bool) bool) error {
 	return c.ListReplicationSetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1740,14 +2003,13 @@ const opListResponsePlans = "ListResponsePlans"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResponsePlansRequest method.
+//	req, resp := client.ListResponsePlansRequest(params)
 //
-//    // Example sending a request using the ListResponsePlansRequest method.
-//    req, resp := client.ListResponsePlansRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListResponsePlans
 func (c *SSMIncidents) ListResponsePlansRequest(input *ListResponsePlansInput) (req *request.Request, output *ListResponsePlansOutput) {
@@ -1784,18 +2046,20 @@ func (c *SSMIncidents) ListResponsePlansRequest(input *ListResponsePlansInput) (
 // API operation ListResponsePlans for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListResponsePlans
 func (c *SSMIncidents) ListResponsePlans(input *ListResponsePlansInput) (*ListResponsePlansOutput, error) {
@@ -1827,15 +2091,14 @@ func (c *SSMIncidents) ListResponsePlansWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResponsePlans operation.
-//    pageNum := 0
-//    err := client.ListResponsePlansPages(params,
-//        func(page *ssmincidents.ListResponsePlansOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResponsePlans operation.
+//	pageNum := 0
+//	err := client.ListResponsePlansPages(params,
+//	    func(page *ssmincidents.ListResponsePlansOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SSMIncidents) ListResponsePlansPages(input *ListResponsePlansInput, fn func(*ListResponsePlansOutput, bool) bool) error {
 	return c.ListResponsePlansPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1887,14 +2150,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListTagsForResource
 func (c *SSMIncidents) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1915,7 +2177,7 @@ func (c *SSMIncidents) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 
 // ListTagsForResource API operation for AWS Systems Manager Incident Manager.
 //
-// Lists the tags that are attached to the specified response plan.
+// Lists the tags that are attached to the specified response plan or incident.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1925,21 +2187,23 @@ func (c *SSMIncidents) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListTagsForResource
 func (c *SSMIncidents) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1979,14 +2243,13 @@ const opListTimelineEvents = "ListTimelineEvents"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTimelineEventsRequest method.
+//	req, resp := client.ListTimelineEventsRequest(params)
 //
-//    // Example sending a request using the ListTimelineEventsRequest method.
-//    req, resp := client.ListTimelineEventsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListTimelineEvents
 func (c *SSMIncidents) ListTimelineEventsRequest(input *ListTimelineEventsInput) (req *request.Request, output *ListTimelineEventsOutput) {
@@ -2013,7 +2276,7 @@ func (c *SSMIncidents) ListTimelineEventsRequest(input *ListTimelineEventsInput)
 
 // ListTimelineEvents API operation for AWS Systems Manager Incident Manager.
 //
-// Lists timeline events of the specified incident record.
+// Lists timeline events for the specified incident record.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2023,18 +2286,20 @@ func (c *SSMIncidents) ListTimelineEventsRequest(input *ListTimelineEventsInput)
 // API operation ListTimelineEvents for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListTimelineEvents
 func (c *SSMIncidents) ListTimelineEvents(input *ListTimelineEventsInput) (*ListTimelineEventsOutput, error) {
@@ -2066,15 +2331,14 @@ func (c *SSMIncidents) ListTimelineEventsWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTimelineEvents operation.
-//    pageNum := 0
-//    err := client.ListTimelineEventsPages(params,
-//        func(page *ssmincidents.ListTimelineEventsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTimelineEvents operation.
+//	pageNum := 0
+//	err := client.ListTimelineEventsPages(params,
+//	    func(page *ssmincidents.ListTimelineEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SSMIncidents) ListTimelineEventsPages(input *ListTimelineEventsInput, fn func(*ListTimelineEventsOutput, bool) bool) error {
 	return c.ListTimelineEventsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2126,14 +2390,13 @@ const opPutResourcePolicy = "PutResourcePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutResourcePolicyRequest method.
+//	req, resp := client.PutResourcePolicyRequest(params)
 //
-//    // Example sending a request using the PutResourcePolicyRequest method.
-//    req, resp := client.PutResourcePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/PutResourcePolicy
 func (c *SSMIncidents) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
@@ -2154,7 +2417,10 @@ func (c *SSMIncidents) PutResourcePolicyRequest(input *PutResourcePolicyInput) (
 
 // PutResourcePolicy API operation for AWS Systems Manager Incident Manager.
 //
-// Adds a resource policy to the specified response plan.
+// Adds a resource policy to the specified response plan. The resource policy
+// is used to share the response plan using Resource Access Manager (RAM). For
+// more information about cross-account sharing, see Cross-Region and cross-account
+// incident management (https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-manager-cross-account-cross-region.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2164,21 +2430,23 @@ func (c *SSMIncidents) PutResourcePolicyRequest(input *PutResourcePolicyInput) (
 // API operation PutResourcePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/PutResourcePolicy
 func (c *SSMIncidents) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
@@ -2218,14 +2486,13 @@ const opStartIncident = "StartIncident"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartIncidentRequest method.
+//	req, resp := client.StartIncidentRequest(params)
 //
-//    // Example sending a request using the StartIncidentRequest method.
-//    req, resp := client.StartIncidentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/StartIncident
 func (c *SSMIncidents) StartIncidentRequest(input *StartIncidentInput) (req *request.Request, output *StartIncidentOutput) {
@@ -2257,24 +2524,26 @@ func (c *SSMIncidents) StartIncidentRequest(input *StartIncidentInput) (req *req
 // API operation StartIncident for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/StartIncident
 func (c *SSMIncidents) StartIncident(input *StartIncidentInput) (*StartIncidentOutput, error) {
@@ -2314,14 +2583,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/TagResource
 func (c *SSMIncidents) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2353,27 +2621,29 @@ func (c *SSMIncidents) TagResourceRequest(input *TagResourceInput) (req *request
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   Request would cause a service quota to be exceeded.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ServiceQuotaExceededException
+//     Request would cause a service quota to be exceeded.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/TagResource
 func (c *SSMIncidents) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2413,14 +2683,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UntagResource
 func (c *SSMIncidents) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2452,24 +2721,26 @@ func (c *SSMIncidents) UntagResourceRequest(input *UntagResourceInput) (req *req
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UntagResource
 func (c *SSMIncidents) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2509,14 +2780,13 @@ const opUpdateDeletionProtection = "UpdateDeletionProtection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDeletionProtectionRequest method.
+//	req, resp := client.UpdateDeletionProtectionRequest(params)
 //
-//    // Example sending a request using the UpdateDeletionProtectionRequest method.
-//    req, resp := client.UpdateDeletionProtectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateDeletionProtection
 func (c *SSMIncidents) UpdateDeletionProtectionRequest(input *UpdateDeletionProtectionInput) (req *request.Request, output *UpdateDeletionProtectionOutput) {
@@ -2549,21 +2819,23 @@ func (c *SSMIncidents) UpdateDeletionProtectionRequest(input *UpdateDeletionProt
 // API operation UpdateDeletionProtection for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateDeletionProtection
 func (c *SSMIncidents) UpdateDeletionProtection(input *UpdateDeletionProtectionInput) (*UpdateDeletionProtectionOutput, error) {
@@ -2603,14 +2875,13 @@ const opUpdateIncidentRecord = "UpdateIncidentRecord"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateIncidentRecordRequest method.
+//	req, resp := client.UpdateIncidentRecordRequest(params)
 //
-//    // Example sending a request using the UpdateIncidentRecordRequest method.
-//    req, resp := client.UpdateIncidentRecordRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateIncidentRecord
 func (c *SSMIncidents) UpdateIncidentRecordRequest(input *UpdateIncidentRecordInput) (req *request.Request, output *UpdateIncidentRecordOutput) {
@@ -2632,7 +2903,7 @@ func (c *SSMIncidents) UpdateIncidentRecordRequest(input *UpdateIncidentRecordIn
 
 // UpdateIncidentRecord API operation for AWS Systems Manager Incident Manager.
 //
-// Update the details of an incident record. You can use this action to update
+// Update the details of an incident record. You can use this operation to update
 // an incident record from the defined chat channel. For more information about
 // using actions in chat channels, see Interacting through chat (https://docs.aws.amazon.com/incident-manager/latest/userguide/chat.html#chat-interact).
 //
@@ -2644,24 +2915,26 @@ func (c *SSMIncidents) UpdateIncidentRecordRequest(input *UpdateIncidentRecordIn
 // API operation UpdateIncidentRecord for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateIncidentRecord
 func (c *SSMIncidents) UpdateIncidentRecord(input *UpdateIncidentRecordInput) (*UpdateIncidentRecordOutput, error) {
@@ -2701,14 +2974,13 @@ const opUpdateRelatedItems = "UpdateRelatedItems"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRelatedItemsRequest method.
+//	req, resp := client.UpdateRelatedItemsRequest(params)
 //
-//    // Example sending a request using the UpdateRelatedItemsRequest method.
-//    req, resp := client.UpdateRelatedItemsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateRelatedItems
 func (c *SSMIncidents) UpdateRelatedItemsRequest(input *UpdateRelatedItemsInput) (req *request.Request, output *UpdateRelatedItemsOutput) {
@@ -2740,24 +3012,26 @@ func (c *SSMIncidents) UpdateRelatedItemsRequest(input *UpdateRelatedItemsInput)
 // API operation UpdateRelatedItems for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateRelatedItems
 func (c *SSMIncidents) UpdateRelatedItems(input *UpdateRelatedItemsInput) (*UpdateRelatedItemsOutput, error) {
@@ -2797,14 +3071,13 @@ const opUpdateReplicationSet = "UpdateReplicationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateReplicationSetRequest method.
+//	req, resp := client.UpdateReplicationSetRequest(params)
 //
-//    // Example sending a request using the UpdateReplicationSetRequest method.
-//    req, resp := client.UpdateReplicationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateReplicationSet
 func (c *SSMIncidents) UpdateReplicationSetRequest(input *UpdateReplicationSetInput) (req *request.Request, output *UpdateReplicationSetOutput) {
@@ -2836,21 +3109,26 @@ func (c *SSMIncidents) UpdateReplicationSetRequest(input *UpdateReplicationSetIn
 // API operation UpdateReplicationSet for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateReplicationSet
 func (c *SSMIncidents) UpdateReplicationSet(input *UpdateReplicationSetInput) (*UpdateReplicationSetOutput, error) {
@@ -2890,14 +3168,13 @@ const opUpdateResponsePlan = "UpdateResponsePlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateResponsePlanRequest method.
+//	req, resp := client.UpdateResponsePlanRequest(params)
 //
-//    // Example sending a request using the UpdateResponsePlanRequest method.
-//    req, resp := client.UpdateResponsePlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateResponsePlan
 func (c *SSMIncidents) UpdateResponsePlanRequest(input *UpdateResponsePlanInput) (req *request.Request, output *UpdateResponsePlanOutput) {
@@ -2929,24 +3206,26 @@ func (c *SSMIncidents) UpdateResponsePlanRequest(input *UpdateResponsePlanInput)
 // API operation UpdateResponsePlan for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateResponsePlan
 func (c *SSMIncidents) UpdateResponsePlan(input *UpdateResponsePlanInput) (*UpdateResponsePlanOutput, error) {
@@ -2986,14 +3265,13 @@ const opUpdateTimelineEvent = "UpdateTimelineEvent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTimelineEventRequest method.
+//	req, resp := client.UpdateTimelineEventRequest(params)
 //
-//    // Example sending a request using the UpdateTimelineEventRequest method.
-//    req, resp := client.UpdateTimelineEventRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateTimelineEvent
 func (c *SSMIncidents) UpdateTimelineEventRequest(input *UpdateTimelineEventInput) (req *request.Request, output *UpdateTimelineEventOutput) {
@@ -3025,24 +3303,26 @@ func (c *SSMIncidents) UpdateTimelineEventRequest(input *UpdateTimelineEventInpu
 // API operation UpdateTimelineEvent for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//   The request was denied due to request throttling.
 //
-//   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
 //
-//   * ConflictException
-//   Updating or deleting a resource causes an inconsistent state.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
+//   - ConflictException
+//     Updating or deleting a resource causes an inconsistent state.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/UpdateTimelineEvent
 func (c *SSMIncidents) UpdateTimelineEvent(input *UpdateTimelineEventInput) (*UpdateTimelineEventOutput, error) {
@@ -3066,7 +3346,7 @@ func (c *SSMIncidents) UpdateTimelineEventWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
-// You don't have sufficient access to perform this action.
+// You don't have sufficient access to perform this operation.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3074,12 +3354,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -3132,12 +3420,20 @@ type Action struct {
 	SsmAutomation *SsmAutomation `locationName:"ssmAutomation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Action) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Action) GoString() string {
 	return s.String()
 }
@@ -3163,11 +3459,12 @@ func (s *Action) SetSsmAutomation(v *SsmAutomation) *Action {
 	return s
 }
 
-// Defines the Region and KMS key to add to the replication set.
+// Defines the Amazon Web Services Region and KMS key to add to the replication
+// set.
 type AddRegionAction struct {
 	_ struct{} `type:"structure"`
 
-	// The Region name to add to the replication set.
+	// The Amazon Web Services Region name to add to the replication set.
 	//
 	// RegionName is a required field
 	RegionName *string `locationName:"regionName" type:"string" required:"true"`
@@ -3176,12 +3473,20 @@ type AddRegionAction struct {
 	SseKmsKeyId *string `locationName:"sseKmsKeyId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddRegionAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddRegionAction) GoString() string {
 	return s.String()
 }
@@ -3222,12 +3527,20 @@ type AttributeValueList struct {
 	StringValues []*string `locationName:"stringValues" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AttributeValueList) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AttributeValueList) GoString() string {
 	return s.String()
 }
@@ -3253,12 +3566,20 @@ type AutomationExecution struct {
 	SsmExecutionArn *string `locationName:"ssmExecutionArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutomationExecution) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutomationExecution) GoString() string {
 	return s.String()
 }
@@ -3269,25 +3590,197 @@ func (s *AutomationExecution) SetSsmExecutionArn(v string) *AutomationExecution 
 	return s
 }
 
-// The AWS Chatbot chat channel used for collaboration during an incident.
+// Details about an error returned for a BatchGetIncidentFindings operation.
+type BatchGetIncidentFindingsError struct {
+	_ struct{} `type:"structure"`
+
+	// The code associated with an error that was returned for a BatchGetIncidentFindings
+	// operation.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true"`
+
+	// The ID of a specified finding for which an error was returned for a BatchGetIncidentFindings
+	// operation.
+	//
+	// FindingId is a required field
+	FindingId *string `locationName:"findingId" type:"string" required:"true"`
+
+	// The description for an error that was returned for a BatchGetIncidentFindings
+	// operation.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *BatchGetIncidentFindingsError) SetCode(v string) *BatchGetIncidentFindingsError {
+	s.Code = &v
+	return s
+}
+
+// SetFindingId sets the FindingId field's value.
+func (s *BatchGetIncidentFindingsError) SetFindingId(v string) *BatchGetIncidentFindingsError {
+	s.FindingId = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *BatchGetIncidentFindingsError) SetMessage(v string) *BatchGetIncidentFindingsError {
+	s.Message = &v
+	return s
+}
+
+type BatchGetIncidentFindingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of IDs of findings for which you want to view details.
+	//
+	// FindingIds is a required field
+	FindingIds []*string `locationName:"findingIds" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the incident for which you want to view
+	// finding details.
+	//
+	// IncidentRecordArn is a required field
+	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetIncidentFindingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetIncidentFindingsInput"}
+	if s.FindingIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingIds"))
+	}
+	if s.IncidentRecordArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IncidentRecordArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFindingIds sets the FindingIds field's value.
+func (s *BatchGetIncidentFindingsInput) SetFindingIds(v []*string) *BatchGetIncidentFindingsInput {
+	s.FindingIds = v
+	return s
+}
+
+// SetIncidentRecordArn sets the IncidentRecordArn field's value.
+func (s *BatchGetIncidentFindingsInput) SetIncidentRecordArn(v string) *BatchGetIncidentFindingsInput {
+	s.IncidentRecordArn = &v
+	return s
+}
+
+type BatchGetIncidentFindingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of errors encountered during the operation.
+	//
+	// Errors is a required field
+	Errors []*BatchGetIncidentFindingsError `locationName:"errors" type:"list" required:"true"`
+
+	// Information about the requested findings.
+	//
+	// Findings is a required field
+	Findings []*Finding `locationName:"findings" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetIncidentFindingsOutput) SetErrors(v []*BatchGetIncidentFindingsError) *BatchGetIncidentFindingsOutput {
+	s.Errors = v
+	return s
+}
+
+// SetFindings sets the Findings field's value.
+func (s *BatchGetIncidentFindingsOutput) SetFindings(v []*Finding) *BatchGetIncidentFindingsOutput {
+	s.Findings = v
+	return s
+}
+
+// The Chatbot chat channel used for collaboration during an incident.
 type ChatChannel struct {
 	_ struct{} `type:"structure"`
 
-	// The SNS targets that AWS Chatbot uses to notify the chat channel of updates
+	// The Amazon SNS targets that Chatbot uses to notify the chat channel of updates
 	// to an incident. You can also make updates to the incident through the chat
-	// channel by using the SNS topics.
+	// channel by using the Amazon SNS topics.
 	ChatbotSns []*string `locationName:"chatbotSns" min:"1" type:"list"`
 
 	// Used to remove the chat channel from an incident record or response plan.
 	Empty *EmptyChatChannel `locationName:"empty" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChatChannel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChatChannel) GoString() string {
 	return s.String()
 }
@@ -3317,6 +3810,131 @@ func (s *ChatChannel) SetEmpty(v *EmptyChatChannel) *ChatChannel {
 	return s
 }
 
+// Information about an CloudFormation stack creation or update that occurred
+// around the time of an incident and could be a potential cause of the incident.
+type CloudFormationStackUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp for when the CloudFormation stack creation or update ended.
+	// Not reported for deployments that are still in progress.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the CloudFormation stack involved in the
+	// update.
+	//
+	// StackArn is a required field
+	StackArn *string `locationName:"stackArn" type:"string" required:"true"`
+
+	// The timestamp for when the CloudFormation stack creation or update began.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudFormationStackUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudFormationStackUpdate) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CloudFormationStackUpdate) SetEndTime(v time.Time) *CloudFormationStackUpdate {
+	s.EndTime = &v
+	return s
+}
+
+// SetStackArn sets the StackArn field's value.
+func (s *CloudFormationStackUpdate) SetStackArn(v string) *CloudFormationStackUpdate {
+	s.StackArn = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CloudFormationStackUpdate) SetStartTime(v time.Time) *CloudFormationStackUpdate {
+	s.StartTime = &v
+	return s
+}
+
+// Information about a CodeDeploy deployment that occurred around the time of
+// an incident and could be a possible cause of the incident.
+type CodeDeployDeployment struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the CodeDeploy deployment group associated
+	// with the deployment.
+	//
+	// DeploymentGroupArn is a required field
+	DeploymentGroupArn *string `locationName:"deploymentGroupArn" type:"string" required:"true"`
+
+	// The ID of the CodeDeploy deployment.
+	//
+	// DeploymentId is a required field
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
+
+	// The timestamp for when the CodeDeploy deployment ended. Not reported for
+	// deployments that are still in progress.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
+	// The timestamp for when the CodeDeploy deployment began.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeDeployDeployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeDeployDeployment) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentGroupArn sets the DeploymentGroupArn field's value.
+func (s *CodeDeployDeployment) SetDeploymentGroupArn(v string) *CodeDeployDeployment {
+	s.DeploymentGroupArn = &v
+	return s
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *CodeDeployDeployment) SetDeploymentId(v string) *CodeDeployDeployment {
+	s.DeploymentId = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CodeDeployDeployment) SetEndTime(v time.Time) *CodeDeployDeployment {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CodeDeployDeployment) SetStartTime(v time.Time) *CodeDeployDeployment {
+	s.StartTime = &v
+	return s
+}
+
 // A conditional statement with which to compare a value, after a timestamp,
 // before a timestamp, or equal to a string or integer. If multiple conditions
 // are specified, the conditionals become an ANDed statement. If multiple values
@@ -3334,12 +3952,20 @@ type Condition struct {
 	Equals *AttributeValueList `locationName:"equals" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Condition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Condition) GoString() string {
 	return s.String()
 }
@@ -3374,14 +4000,25 @@ type ConflictException struct {
 
 	// The resource type
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	// If present in the output, the operation can be retried after this time
+	RetryAfter *time.Time `locationName:"retryAfter" type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -3427,7 +4064,8 @@ func (s *ConflictException) RequestID() string {
 type CreateReplicationSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token that ensures that the operation is called only once with the specified
+	// details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// The Regions that Incident Manager replicates your data to. You can have up
@@ -3435,14 +4073,25 @@ type CreateReplicationSetInput struct {
 	//
 	// Regions is a required field
 	Regions map[string]*RegionMapInputValue `locationName:"regions" min:"1" type:"map" required:"true"`
+
+	// A list of tags to add to the replication set.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationSetInput) GoString() string {
 	return s.String()
 }
@@ -3455,6 +4104,9 @@ func (s *CreateReplicationSetInput) Validate() error {
 	}
 	if s.Regions != nil && len(s.Regions) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Regions", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3475,6 +4127,12 @@ func (s *CreateReplicationSetInput) SetRegions(v map[string]*RegionMapInputValue
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateReplicationSetInput) SetTags(v map[string]*string) *CreateReplicationSetInput {
+	s.Tags = v
+	return s
+}
+
 type CreateReplicationSetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3484,12 +4142,20 @@ type CreateReplicationSetOutput struct {
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationSetOutput) GoString() string {
 	return s.String()
 }
@@ -3506,23 +4172,27 @@ type CreateResponsePlanInput struct {
 	// The actions that the response plan starts at the beginning of an incident.
 	Actions []*Action `locationName:"actions" type:"list"`
 
-	// The AWS Chatbot chat channel used for collaboration during an incident.
+	// The Chatbot chat channel used for collaboration during an incident.
 	ChatChannel *ChatChannel `locationName:"chatChannel" type:"structure"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token ensuring that the operation is called only once with the specified
+	// details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// The long format of the response plan name. This field can contain spaces.
 	DisplayName *string `locationName:"displayName" type:"string"`
 
-	// The contacts and escalation plans that the response plan engages during an
-	// incident.
+	// The Amazon Resource Name (ARN) for the contacts and escalation plans that
+	// the response plan engages during an incident.
 	Engagements []*string `locationName:"engagements" type:"list"`
 
 	// Details used to create an incident when using this response plan.
 	//
 	// IncidentTemplate is a required field
 	IncidentTemplate *IncidentTemplate `locationName:"incidentTemplate" type:"structure" required:"true"`
+
+	// Information about third-party services integrated into the response plan.
+	Integrations []*Integration `locationName:"integrations" type:"list"`
 
 	// The short format name of the response plan. Can't include spaces.
 	//
@@ -3533,12 +4203,20 @@ type CreateResponsePlanInput struct {
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResponsePlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResponsePlanInput) GoString() string {
 	return s.String()
 }
@@ -3576,6 +4254,16 @@ func (s *CreateResponsePlanInput) Validate() error {
 	if s.IncidentTemplate != nil {
 		if err := s.IncidentTemplate.Validate(); err != nil {
 			invalidParams.AddNested("IncidentTemplate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Integrations != nil {
+		for i, v := range s.Integrations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Integrations", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -3621,6 +4309,12 @@ func (s *CreateResponsePlanInput) SetIncidentTemplate(v *IncidentTemplate) *Crea
 	return s
 }
 
+// SetIntegrations sets the Integrations field's value.
+func (s *CreateResponsePlanInput) SetIntegrations(v []*Integration) *CreateResponsePlanInput {
+	s.Integrations = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateResponsePlanInput) SetName(v string) *CreateResponsePlanInput {
 	s.Name = &v
@@ -3642,12 +4336,20 @@ type CreateResponsePlanOutput struct {
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResponsePlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResponsePlanOutput) GoString() string {
 	return s.String()
 }
@@ -3661,7 +4363,8 @@ func (s *CreateResponsePlanOutput) SetArn(v string) *CreateResponsePlanOutput {
 type CreateTimelineEventInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token that ensures that a client calls the action only once with the specified
+	// details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// A short description of the event.
@@ -3669,29 +4372,51 @@ type CreateTimelineEventInput struct {
 	// EventData is a required field
 	EventData *string `locationName:"eventData" type:"string" required:"true"`
 
-	// The time that the event occurred.
+	// Adds one or more references to the TimelineEvent. A reference is an Amazon
+	// Web Services resource involved or associated with the incident. To specify
+	// a reference, enter its Amazon Resource Name (ARN). You can also specify a
+	// related item associated with a resource. For example, to specify an Amazon
+	// DynamoDB (DynamoDB) table as a resource, use the table's ARN. You can also
+	// specify an Amazon CloudWatch metric associated with the DynamoDB table as
+	// a related item.
+	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
+
+	// The timestamp for when the event occurred.
 	//
 	// EventTime is a required field
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp" required:"true"`
 
-	// The type of the event. You can create timeline events of type Custom Event.
+	// The type of event. You can create timeline events of type Custom Event and
+	// Note.
+	//
+	// To make a Note-type event appear on the Incident notes panel in the console,
+	// specify eventType as Noteand enter the Amazon Resource Name (ARN) of the
+	// incident as the value for eventReference.
 	//
 	// EventType is a required field
 	EventType *string `locationName:"eventType" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the incident record you are adding the
-	// event to.
+	// The Amazon Resource Name (ARN) of the incident record that the action adds
+	// the incident to.
 	//
 	// IncidentRecordArn is a required field
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTimelineEventInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTimelineEventInput) GoString() string {
 	return s.String()
 }
@@ -3730,6 +4455,12 @@ func (s *CreateTimelineEventInput) SetEventData(v string) *CreateTimelineEventIn
 	return s
 }
 
+// SetEventReferences sets the EventReferences field's value.
+func (s *CreateTimelineEventInput) SetEventReferences(v []*EventReference) *CreateTimelineEventInput {
+	s.EventReferences = v
+	return s
+}
+
 // SetEventTime sets the EventTime field's value.
 func (s *CreateTimelineEventInput) SetEventTime(v time.Time) *CreateTimelineEventInput {
 	s.EventTime = &v
@@ -3762,12 +4493,20 @@ type CreateTimelineEventOutput struct {
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTimelineEventOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTimelineEventOutput) GoString() string {
 	return s.String()
 }
@@ -3793,12 +4532,20 @@ type DeleteIncidentRecordInput struct {
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIncidentRecordInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIncidentRecordInput) GoString() string {
 	return s.String()
 }
@@ -3826,33 +4573,50 @@ type DeleteIncidentRecordOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIncidentRecordOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIncidentRecordOutput) GoString() string {
 	return s.String()
 }
 
-// Defines the information about the Region you're deleting from your replication
-// set.
+// Defines the information about the Amazon Web Services Region you're deleting
+// from your replication set.
 type DeleteRegionAction struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Region you're deleting from the replication set.
+	// The name of the Amazon Web Services Region you're deleting from the replication
+	// set.
 	//
 	// RegionName is a required field
 	RegionName *string `locationName:"regionName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegionAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegionAction) GoString() string {
 	return s.String()
 }
@@ -3877,7 +4641,7 @@ func (s *DeleteRegionAction) SetRegionName(v string) *DeleteRegionAction {
 }
 
 type DeleteReplicationSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the replication set you're deleting.
 	//
@@ -3885,12 +4649,20 @@ type DeleteReplicationSetInput struct {
 	Arn *string `location:"querystring" locationName:"arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationSetInput) GoString() string {
 	return s.String()
 }
@@ -3918,12 +4690,20 @@ type DeleteReplicationSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationSetOutput) GoString() string {
 	return s.String()
 }
@@ -3943,12 +4723,20 @@ type DeleteResourcePolicyInput struct {
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourcePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourcePolicyInput) GoString() string {
 	return s.String()
 }
@@ -3985,12 +4773,20 @@ type DeleteResourcePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourcePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourcePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -4004,12 +4800,20 @@ type DeleteResponsePlanInput struct {
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResponsePlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResponsePlanInput) GoString() string {
 	return s.String()
 }
@@ -4037,12 +4841,20 @@ type DeleteResponsePlanOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResponsePlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResponsePlanOutput) GoString() string {
 	return s.String()
 }
@@ -4050,23 +4862,33 @@ func (s DeleteResponsePlanOutput) GoString() string {
 type DeleteTimelineEventInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the event you are updating. You can find this by using ListTimelineEvents.
+	// The ID of the event to update. You can use ListTimelineEvents to find an
+	// event's ID.
 	//
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the incident that the event is part of.
+	// The Amazon Resource Name (ARN) of the incident that includes the timeline
+	// event.
 	//
 	// IncidentRecordArn is a required field
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTimelineEventInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTimelineEventInput) GoString() string {
 	return s.String()
 }
@@ -4103,14 +4925,55 @@ type DeleteTimelineEventOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTimelineEventOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTimelineEventOutput) GoString() string {
 	return s.String()
+}
+
+// The dynamic SSM parameter value.
+type DynamicSsmParameterValue struct {
+	_ struct{} `type:"structure"`
+
+	// Variable dynamic parameters. A parameter value is determined when an incident
+	// is created.
+	Variable *string `locationName:"variable" type:"string" enum:"VariableType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamicSsmParameterValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamicSsmParameterValue) GoString() string {
+	return s.String()
+}
+
+// SetVariable sets the Variable field's value.
+func (s *DynamicSsmParameterValue) SetVariable(v string) *DynamicSsmParameterValue {
+	s.Variable = &v
+	return s
 }
 
 // Used to remove the chat channel from an incident record or response plan.
@@ -4118,14 +4981,66 @@ type EmptyChatChannel struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmptyChatChannel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmptyChatChannel) GoString() string {
 	return s.String()
+}
+
+// An item referenced in a TimelineEvent that is involved in or somehow associated
+// with an incident. You can specify an Amazon Resource Name (ARN) for an Amazon
+// Web Services resource or a RelatedItem ID.
+type EventReference struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a RelatedItem referenced in a TimelineEvent.
+	RelatedItemId *string `locationName:"relatedItemId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an Amazon Web Services resource referenced
+	// in a TimelineEvent.
+	Resource *string `locationName:"resource" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventReference) GoString() string {
+	return s.String()
+}
+
+// SetRelatedItemId sets the RelatedItemId field's value.
+func (s *EventReference) SetRelatedItemId(v string) *EventReference {
+	s.RelatedItemId = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *EventReference) SetResource(v string) *EventReference {
+	s.Resource = &v
+	return s
 }
 
 // Details about a timeline event during an incident.
@@ -4137,17 +5052,20 @@ type EventSummary struct {
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
 
-	// The time that the event occurred.
+	// A list of references in a TimelineEvent.
+	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
+
+	// The timestamp for when the event occurred.
 	//
 	// EventTime is a required field
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp" required:"true"`
 
-	// The type of event. The timeline event must be Custom Event.
+	// The type of event. The timeline event must be Custom Event or Note.
 	//
 	// EventType is a required field
 	EventType *string `locationName:"eventType" type:"string" required:"true"`
 
-	// The time that the timeline event was last updated.
+	// The timestamp for when the timeline event was last updated.
 	//
 	// EventUpdatedTime is a required field
 	EventUpdatedTime *time.Time `locationName:"eventUpdatedTime" type:"timestamp" required:"true"`
@@ -4158,12 +5076,20 @@ type EventSummary struct {
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventSummary) GoString() string {
 	return s.String()
 }
@@ -4171,6 +5097,12 @@ func (s EventSummary) GoString() string {
 // SetEventId sets the EventId field's value.
 func (s *EventSummary) SetEventId(v string) *EventSummary {
 	s.EventId = &v
+	return s
+}
+
+// SetEventReferences sets the EventReferences field's value.
+func (s *EventSummary) SetEventReferences(v []*EventReference) *EventSummary {
+	s.EventReferences = v
 	return s
 }
 
@@ -4214,12 +5146,20 @@ type Filter struct {
 	Key *string `locationName:"key" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -4252,8 +5192,163 @@ func (s *Filter) SetKey(v string) *Filter {
 	return s
 }
 
-type GetIncidentRecordInput struct {
+// Information about a specific CodeDeploy deployment or CloudFormation stack
+// creation or update that occurred around the time of a reported incident.
+// These activities can be investigated as a potential cause of the incident.
+type Finding struct {
 	_ struct{} `type:"structure"`
+
+	// The timestamp for when a finding was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
+
+	// Details about the finding.
+	Details *FindingDetails `locationName:"details" type:"structure"`
+
+	// The ID assigned to the finding.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The timestamp for when the finding was most recently updated with additional
+	// information.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Finding) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Finding) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Finding) SetCreationTime(v time.Time) *Finding {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *Finding) SetDetails(v *FindingDetails) *Finding {
+	s.Details = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Finding) SetId(v string) *Finding {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Finding) SetLastModifiedTime(v time.Time) *Finding {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// Extended textual information about the finding.
+type FindingDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the CloudFormation stack creation or update associated
+	// with the finding.
+	CloudFormationStackUpdate *CloudFormationStackUpdate `locationName:"cloudFormationStackUpdate" type:"structure"`
+
+	// Information about the CodeDeploy deployment associated with the finding.
+	CodeDeployDeployment *CodeDeployDeployment `locationName:"codeDeployDeployment" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudFormationStackUpdate sets the CloudFormationStackUpdate field's value.
+func (s *FindingDetails) SetCloudFormationStackUpdate(v *CloudFormationStackUpdate) *FindingDetails {
+	s.CloudFormationStackUpdate = v
+	return s
+}
+
+// SetCodeDeployDeployment sets the CodeDeployDeployment field's value.
+func (s *FindingDetails) SetCodeDeployDeployment(v *CodeDeployDeployment) *FindingDetails {
+	s.CodeDeployDeployment = v
+	return s
+}
+
+// Identifying information about the finding.
+type FindingSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the finding.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The timestamp for when the finding was last updated.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingSummary) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *FindingSummary) SetId(v string) *FindingSummary {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *FindingSummary) SetLastModifiedTime(v time.Time) *FindingSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+type GetIncidentRecordInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the incident record.
 	//
@@ -4261,12 +5356,20 @@ type GetIncidentRecordInput struct {
 	Arn *string `location:"querystring" locationName:"arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIncidentRecordInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIncidentRecordInput) GoString() string {
 	return s.String()
 }
@@ -4293,18 +5396,26 @@ func (s *GetIncidentRecordInput) SetArn(v string) *GetIncidentRecordInput {
 type GetIncidentRecordOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Details structure of the incident record.
+	// Details the structure of the incident record.
 	//
 	// IncidentRecord is a required field
 	IncidentRecord *IncidentRecord `locationName:"incidentRecord" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIncidentRecordOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIncidentRecordOutput) GoString() string {
 	return s.String()
 }
@@ -4316,7 +5427,7 @@ func (s *GetIncidentRecordOutput) SetIncidentRecord(v *IncidentRecord) *GetIncid
 }
 
 type GetReplicationSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the replication set you want to retrieve.
 	//
@@ -4324,12 +5435,20 @@ type GetReplicationSetInput struct {
 	Arn *string `location:"querystring" locationName:"arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationSetInput) GoString() string {
 	return s.String()
 }
@@ -4362,12 +5481,20 @@ type GetReplicationSetOutput struct {
 	ReplicationSet *ReplicationSet `locationName:"replicationSet" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetReplicationSetOutput) GoString() string {
 	return s.String()
 }
@@ -4381,10 +5508,11 @@ func (s *GetReplicationSetOutput) SetReplicationSet(v *ReplicationSet) *GetRepli
 type GetResourcePoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of resource policies to display per page of results.
+	// The maximum number of resource policies to display for each page of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the response plan with the attached resource
@@ -4394,12 +5522,20 @@ type GetResourcePoliciesInput struct {
 	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourcePoliciesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourcePoliciesInput) GoString() string {
 	return s.String()
 }
@@ -4441,7 +5577,8 @@ func (s *GetResourcePoliciesInput) SetResourceArn(v string) *GetResourcePolicies
 type GetResourcePoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Details about the resource policy attached to the response plan.
@@ -4450,12 +5587,20 @@ type GetResourcePoliciesOutput struct {
 	ResourcePolicies []*ResourcePolicy `locationName:"resourcePolicies" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourcePoliciesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourcePoliciesOutput) GoString() string {
 	return s.String()
 }
@@ -4473,7 +5618,7 @@ func (s *GetResourcePoliciesOutput) SetResourcePolicies(v []*ResourcePolicy) *Ge
 }
 
 type GetResponsePlanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the response plan.
 	//
@@ -4481,12 +5626,20 @@ type GetResponsePlanInput struct {
 	Arn *string `location:"querystring" locationName:"arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResponsePlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResponsePlanInput) GoString() string {
 	return s.String()
 }
@@ -4521,14 +5674,14 @@ type GetResponsePlanOutput struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// The AWS Chatbot chat channel used for collaboration during an incident.
+	// The Chatbot chat channel used for collaboration during an incident.
 	ChatChannel *ChatChannel `locationName:"chatChannel" type:"structure"`
 
 	// The long format name of the response plan. Can contain spaces.
 	DisplayName *string `locationName:"displayName" type:"string"`
 
-	// The contacts and escalation plans that the response plan engages during an
-	// incident.
+	// The Amazon Resource Name (ARN) for the contacts and escalation plans that
+	// the response plan engages during an incident.
 	Engagements []*string `locationName:"engagements" type:"list"`
 
 	// Details used to create the incident when using this response plan.
@@ -4536,18 +5689,30 @@ type GetResponsePlanOutput struct {
 	// IncidentTemplate is a required field
 	IncidentTemplate *IncidentTemplate `locationName:"incidentTemplate" type:"structure" required:"true"`
 
-	// The short format name of the response plan. Can't contain spaces.
+	// Information about third-party services integrated into the Incident Manager
+	// response plan.
+	Integrations []*Integration `locationName:"integrations" type:"list"`
+
+	// The short format name of the response plan. The name can't contain spaces.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResponsePlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResponsePlanOutput) GoString() string {
 	return s.String()
 }
@@ -4588,6 +5753,12 @@ func (s *GetResponsePlanOutput) SetIncidentTemplate(v *IncidentTemplate) *GetRes
 	return s
 }
 
+// SetIntegrations sets the Integrations field's value.
+func (s *GetResponsePlanOutput) SetIntegrations(v []*Integration) *GetResponsePlanOutput {
+	s.Integrations = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *GetResponsePlanOutput) SetName(v string) *GetResponsePlanOutput {
 	s.Name = &v
@@ -4595,27 +5766,35 @@ func (s *GetResponsePlanOutput) SetName(v string) *GetResponsePlanOutput {
 }
 
 type GetTimelineEventInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the event. You can get an event's ID when you create it or by using
-	// ListTimelineEvents.
+	// The ID of the event. You can get an event's ID when you create it, or by
+	// using ListTimelineEvents.
 	//
 	// EventId is a required field
 	EventId *string `location:"querystring" locationName:"eventId" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the incident that the timeline event is
-	// part of.
+	// The Amazon Resource Name (ARN) of the incident that includes the timeline
+	// event.
 	//
 	// IncidentRecordArn is a required field
 	IncidentRecordArn *string `location:"querystring" locationName:"incidentRecordArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTimelineEventInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTimelineEventInput) GoString() string {
 	return s.String()
 }
@@ -4657,12 +5836,20 @@ type GetTimelineEventOutput struct {
 	Event *TimelineEvent `locationName:"event" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTimelineEventOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTimelineEventOutput) GoString() string {
 	return s.String()
 }
@@ -4688,18 +5875,30 @@ type IncidentRecord struct {
 	// The chat channel used for collaboration during an incident.
 	ChatChannel *ChatChannel `locationName:"chatChannel" type:"structure"`
 
-	// The time that Incident Manager created the incident record.
+	// The timestamp for when Incident Manager created the incident record.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
 
 	// The string Incident Manager uses to prevent duplicate incidents from being
-	// created by the same incident.
+	// created by the same incident in the same account.
 	//
 	// DedupeString is a required field
 	DedupeString *string `locationName:"dedupeString" type:"string" required:"true"`
 
 	// The impact of the incident on customers and applications.
+	//
+	// Supported impact codes
+	//
+	//    * 1 - Critical
+	//
+	//    * 2 - High
+	//
+	//    * 3 - Medium
+	//
+	//    * 4 - Low
+	//
+	//    * 5 - No Impact
 	//
 	// Impact is a required field
 	Impact *int64 `locationName:"impact" min:"1" type:"integer" required:"true"`
@@ -4714,16 +5913,16 @@ type IncidentRecord struct {
 	// LastModifiedBy is a required field
 	LastModifiedBy *string `locationName:"lastModifiedBy" type:"string" required:"true"`
 
-	// The time at which the incident was most recently modified.
+	// The timestamp for when the incident was most recently modified.
 	//
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" required:"true"`
 
-	// The SNS targets that AWS Chatbot uses to notify the chat channels and perform
-	// actions on the incident record.
+	// The Amazon SNS targets that are notified when updates are made to an incident.
 	NotificationTargets []*NotificationTargetItem `locationName:"notificationTargets" type:"list"`
 
-	// The time at which the incident was resolved. This appears as a timeline event.
+	// The timestamp for when the incident was resolved. This appears as a timeline
+	// event.
 	ResolvedTime *time.Time `locationName:"resolvedTime" type:"timestamp"`
 
 	// The current status of the incident.
@@ -4732,7 +5931,7 @@ type IncidentRecord struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"IncidentRecordStatus"`
 
 	// The summary of the incident. The summary is a brief synopsis of what occurred,
-	// what is currently happening, and context.
+	// what's currently happening, and context of the incident.
 	Summary *string `locationName:"summary" type:"string"`
 
 	// The title of the incident.
@@ -4741,12 +5940,20 @@ type IncidentRecord struct {
 	Title *string `locationName:"title" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncidentRecord) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncidentRecord) GoString() string {
 	return s.String()
 }
@@ -4835,7 +6042,7 @@ func (s *IncidentRecord) SetTitle(v string) *IncidentRecord {
 	return s
 }
 
-// Details about how the incident record was created and when.
+// Details about what created the incident record and when it was created.
 type IncidentRecordSource struct {
 	_ struct{} `type:"structure"`
 
@@ -4844,26 +6051,35 @@ type IncidentRecordSource struct {
 	// CreatedBy is a required field
 	CreatedBy *string `locationName:"createdBy" type:"string" required:"true"`
 
-	// The principal the assumed the role specified of the createdBy.
+	// The service principal that assumed the role specified in createdBy. If no
+	// service principal assumed the role this will be left blank.
 	InvokedBy *string `locationName:"invokedBy" type:"string"`
 
 	// The resource that caused the incident to be created.
 	ResourceArn *string `locationName:"resourceArn" type:"string"`
 
 	// The service that started the incident. This can be manually created from
-	// Incident Manager, automatically created using an AWS CloudWatch alarm, or
-	// Amazon EventBridge event.
+	// Incident Manager, automatically created using an Amazon CloudWatch alarm,
+	// or Amazon EventBridge event.
 	//
 	// Source is a required field
 	Source *string `locationName:"source" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncidentRecordSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncidentRecordSource) GoString() string {
 	return s.String()
 }
@@ -4901,7 +6117,7 @@ type IncidentRecordSummary struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// The time the incident was created.
+	// The timestamp for when the incident was created.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
@@ -4916,7 +6132,7 @@ type IncidentRecordSummary struct {
 	// IncidentRecordSource is a required field
 	IncidentRecordSource *IncidentRecordSource `locationName:"incidentRecordSource" type:"structure" required:"true"`
 
-	// The time the incident was resolved.
+	// The timestamp for when the incident was resolved.
 	ResolvedTime *time.Time `locationName:"resolvedTime" type:"timestamp"`
 
 	// The current status of the incident.
@@ -4931,12 +6147,20 @@ type IncidentRecordSummary struct {
 	Title *string `locationName:"title" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncidentRecordSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncidentRecordSummary) GoString() string {
 	return s.String()
 }
@@ -4988,18 +6212,43 @@ func (s *IncidentRecordSummary) SetTitle(v string) *IncidentRecordSummary {
 type IncidentTemplate struct {
 	_ struct{} `type:"structure"`
 
-	// Used to stop Incident Manager from creating multiple incident records for
-	// the same incident.
+	// The string Incident Manager uses to prevent the same root cause from creating
+	// multiple incidents in the same account.
+	//
+	// A deduplication string is a term or phrase the system uses to check for duplicate
+	// incidents. If you specify a deduplication string, Incident Manager searches
+	// for open incidents that contain the same string in the dedupeString field
+	// when it creates the incident. If a duplicate is detected, Incident Manager
+	// deduplicates the newer incident into the existing incident.
+	//
+	// By default, Incident Manager automatically deduplicates multiple incidents
+	// created by the same Amazon CloudWatch alarm or Amazon EventBridge event.
+	// You don't have to enter your own deduplication string to prevent duplication
+	// for these resource types.
 	DedupeString *string `locationName:"dedupeString" type:"string"`
 
 	// The impact of the incident on your customers and applications.
 	//
+	// Supported impact codes
+	//
+	//    * 1 - Critical
+	//
+	//    * 2 - High
+	//
+	//    * 3 - Medium
+	//
+	//    * 4 - Low
+	//
+	//    * 5 - No Impact
+	//
 	// Impact is a required field
 	Impact *int64 `locationName:"impact" min:"1" type:"integer" required:"true"`
 
-	// The SNS targets that AWS Chatbot uses to notify the chat channel of updates
-	// to an incident. You can also make updates to the incident through the chat
-	// channel using the SNS topics.
+	// Tags to assign to the template. When the StartIncident API action is called,
+	// Incident Manager assigns the tags specified in the template to the incident.
+	IncidentTags map[string]*string `locationName:"incidentTags" min:"1" type:"map"`
+
+	// The Amazon SNS targets that are notified when updates are made to an incident.
 	NotificationTargets []*NotificationTargetItem `locationName:"notificationTargets" type:"list"`
 
 	// The summary of the incident. The summary is a brief synopsis of what occurred,
@@ -5012,12 +6261,20 @@ type IncidentTemplate struct {
 	Title *string `locationName:"title" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncidentTemplate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncidentTemplate) GoString() string {
 	return s.String()
 }
@@ -5030,6 +6287,9 @@ func (s *IncidentTemplate) Validate() error {
 	}
 	if s.Impact != nil && *s.Impact < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Impact", 1))
+	}
+	if s.IncidentTags != nil && len(s.IncidentTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncidentTags", 1))
 	}
 	if s.Title == nil {
 		invalidParams.Add(request.NewErrParamRequired("Title"))
@@ -5053,6 +6313,12 @@ func (s *IncidentTemplate) SetImpact(v int64) *IncidentTemplate {
 	return s
 }
 
+// SetIncidentTags sets the IncidentTags field's value.
+func (s *IncidentTemplate) SetIncidentTags(v map[string]*string) *IncidentTemplate {
+	s.IncidentTags = v
+	return s
+}
+
 // SetNotificationTargets sets the NotificationTargets field's value.
 func (s *IncidentTemplate) SetNotificationTargets(v []*NotificationTargetItem) *IncidentTemplate {
 	s.NotificationTargets = v
@@ -5071,6 +6337,54 @@ func (s *IncidentTemplate) SetTitle(v string) *IncidentTemplate {
 	return s
 }
 
+// Information about third-party services integrated into a response plan.
+type Integration struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the PagerDuty service where the response plan creates an
+	// incident.
+	PagerDutyConfiguration *PagerDutyConfiguration `locationName:"pagerDutyConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Integration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Integration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Integration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Integration"}
+	if s.PagerDutyConfiguration != nil {
+		if err := s.PagerDutyConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PagerDutyConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPagerDutyConfiguration sets the PagerDutyConfiguration field's value.
+func (s *Integration) SetPagerDutyConfiguration(v *PagerDutyConfiguration) *Integration {
+	s.PagerDutyConfiguration = v
+	return s
+}
+
 // The request processing has failed because of an unknown error, exception
 // or failure.
 type InternalServerException struct {
@@ -5080,12 +6394,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -5132,19 +6454,7 @@ func (s *InternalServerException) RequestID() string {
 type ItemIdentifier struct {
 	_ struct{} `type:"structure"`
 
-	// The type of related item. Incident Manager supports the following types:
-	//
-	//    * ANALYSIS
-	//
-	//    * INCIDENT
-	//
-	//    * METRIC
-	//
-	//    * PARENT
-	//
-	//    * ATTACHMENT
-	//
-	//    * OTHER
+	// The type of related item.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ItemType"`
@@ -5155,12 +6465,20 @@ type ItemIdentifier struct {
 	Value *ItemValue `locationName:"value" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ItemIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ItemIdentifier) GoString() string {
 	return s.String()
 }
@@ -5173,6 +6491,11 @@ func (s *ItemIdentifier) Validate() error {
 	}
 	if s.Value == nil {
 		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil {
+		if err := s.Value.Validate(); err != nil {
+			invalidParams.AddNested("Value", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5201,21 +6524,47 @@ type ItemValue struct {
 	// an Amazon resource.
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The metric definition, if the related item is a metric in CloudWatch.
+	// The metric definition, if the related item is a metric in Amazon CloudWatch.
 	MetricDefinition *string `locationName:"metricDefinition" type:"string"`
 
-	// The URL, if the related item is a non-AWS resource.
+	// Details about an incident that is associated with a PagerDuty incident.
+	PagerDutyIncidentDetail *PagerDutyIncidentDetail `locationName:"pagerDutyIncidentDetail" type:"structure"`
+
+	// The URL, if the related item is a non-Amazon Web Services resource.
 	Url *string `locationName:"url" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ItemValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ItemValue) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ItemValue) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ItemValue"}
+	if s.PagerDutyIncidentDetail != nil {
+		if err := s.PagerDutyIncidentDetail.Validate(); err != nil {
+			invalidParams.AddNested("PagerDutyIncidentDetail", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetArn sets the Arn field's value.
@@ -5230,17 +6579,136 @@ func (s *ItemValue) SetMetricDefinition(v string) *ItemValue {
 	return s
 }
 
+// SetPagerDutyIncidentDetail sets the PagerDutyIncidentDetail field's value.
+func (s *ItemValue) SetPagerDutyIncidentDetail(v *PagerDutyIncidentDetail) *ItemValue {
+	s.PagerDutyIncidentDetail = v
+	return s
+}
+
 // SetUrl sets the Url field's value.
 func (s *ItemValue) SetUrl(v string) *ItemValue {
 	s.Url = &v
 	return s
 }
 
+type ListIncidentFindingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the incident for which you want to view
+	// associated findings.
+	//
+	// IncidentRecordArn is a required field
+	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
+
+	// The maximum number of findings to retrieve per call.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIncidentFindingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIncidentFindingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIncidentFindingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIncidentFindingsInput"}
+	if s.IncidentRecordArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IncidentRecordArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncidentRecordArn sets the IncidentRecordArn field's value.
+func (s *ListIncidentFindingsInput) SetIncidentRecordArn(v string) *ListIncidentFindingsInput {
+	s.IncidentRecordArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIncidentFindingsInput) SetMaxResults(v int64) *ListIncidentFindingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIncidentFindingsInput) SetNextToken(v string) *ListIncidentFindingsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIncidentFindingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of findings that represent deployments that might be the potential
+	// cause of the incident.
+	//
+	// Findings is a required field
+	Findings []*FindingSummary `locationName:"findings" type:"list" required:"true"`
+
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIncidentFindingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIncidentFindingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFindings sets the Findings field's value.
+func (s *ListIncidentFindingsOutput) SetFindings(v []*FindingSummary) *ListIncidentFindingsOutput {
+	s.Findings = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIncidentFindingsOutput) SetNextToken(v string) *ListIncidentFindingsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListIncidentRecordsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filter the list of incident records you are searching through. You can filter
-	// on the following keys:
+	// Filters the list of incident records you want to search through. You can
+	// filter on the following keys:
 	//
 	//    * creationTime
 	//
@@ -5249,21 +6717,40 @@ type ListIncidentRecordsInput struct {
 	//    * status
 	//
 	//    * createdBy
+	//
+	// Note the following when when you use Filters:
+	//
+	//    * If you don't specify a Filter, the response includes all incident records.
+	//
+	//    * If you specify more than one filter in a single request, the response
+	//    returns incident records that match all filters.
+	//
+	//    * If you specify a filter with more than one value, the response returns
+	//    incident records that match any of the values provided.
 	Filters []*Filter `locationName:"filters" type:"list"`
 
 	// The maximum number of results per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIncidentRecordsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIncidentRecordsInput) GoString() string {
 	return s.String()
 }
@@ -5317,16 +6804,25 @@ type ListIncidentRecordsOutput struct {
 	// IncidentRecordSummaries is a required field
 	IncidentRecordSummaries []*IncidentRecordSummary `locationName:"incidentRecordSummaries" type:"list" required:"true"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIncidentRecordsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIncidentRecordsOutput) GoString() string {
 	return s.String()
 }
@@ -5346,8 +6842,8 @@ func (s *ListIncidentRecordsOutput) SetNextToken(v string) *ListIncidentRecordsO
 type ListRelatedItemsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the incident record that you are listing
-	// related items for.
+	// The Amazon Resource Name (ARN) of the incident record containing the listed
+	// related items.
 	//
 	// IncidentRecordArn is a required field
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
@@ -5355,16 +6851,25 @@ type ListRelatedItemsInput struct {
 	// The maximum number of related items per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRelatedItemsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRelatedItemsInput) GoString() string {
 	return s.String()
 }
@@ -5406,7 +6911,8 @@ func (s *ListRelatedItemsInput) SetNextToken(v string) *ListRelatedItemsInput {
 type ListRelatedItemsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Details about each related item.
@@ -5415,12 +6921,20 @@ type ListRelatedItemsOutput struct {
 	RelatedItems []*RelatedItem `locationName:"relatedItems" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRelatedItemsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRelatedItemsOutput) GoString() string {
 	return s.String()
 }
@@ -5443,16 +6957,25 @@ type ListReplicationSetsInput struct {
 	// The maximum number of results per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReplicationSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReplicationSetsInput) GoString() string {
 	return s.String()
 }
@@ -5485,7 +7008,8 @@ func (s *ListReplicationSetsInput) SetNextToken(v string) *ListReplicationSetsIn
 type ListReplicationSetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the list replication set.
@@ -5494,12 +7018,20 @@ type ListReplicationSetsOutput struct {
 	ReplicationSetArns []*string `locationName:"replicationSetArns" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReplicationSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReplicationSetsOutput) GoString() string {
 	return s.String()
 }
@@ -5522,16 +7054,25 @@ type ListResponsePlansInput struct {
 	// The maximum number of response plans per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResponsePlansInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResponsePlansInput) GoString() string {
 	return s.String()
 }
@@ -5564,7 +7105,8 @@ func (s *ListResponsePlansInput) SetNextToken(v string) *ListResponsePlansInput 
 type ListResponsePlansOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Details of each response plan.
@@ -5573,12 +7115,20 @@ type ListResponsePlansOutput struct {
 	ResponsePlanSummaries []*ResponsePlanSummary `locationName:"responsePlanSummaries" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResponsePlansOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResponsePlansOutput) GoString() string {
 	return s.String()
 }
@@ -5596,20 +7146,28 @@ func (s *ListResponsePlansOutput) SetResponsePlanSummaries(v []*ResponsePlanSumm
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the response plan.
+	// The Amazon Resource Name (ARN) of the response plan or incident.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -5639,18 +7197,26 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of tags for the response plan.
+	// A list of tags for the response plan or incident.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5665,14 +7231,27 @@ type ListTimelineEventsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filters the timeline events based on the provided conditional values. You
-	// can filter timeline events using the following keys:
+	// can filter timeline events with the following keys:
+	//
+	//    * eventReference
 	//
 	//    * eventTime
 	//
 	//    * eventType
+	//
+	// Note the following when deciding how to use Filters:
+	//
+	//    * If you don't specify a Filter, the response includes all timeline events.
+	//
+	//    * If you specify more than one filter in a single request, the response
+	//    returns timeline events that match all filters.
+	//
+	//    * If you specify a filter with more than one value, the response returns
+	//    timeline events that match any of the values provided.
 	Filters []*Filter `locationName:"filters" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the incident that the event is part of.
+	// The Amazon Resource Name (ARN) of the incident that includes the timeline
+	// event.
 	//
 	// IncidentRecordArn is a required field
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
@@ -5680,22 +7259,31 @@ type ListTimelineEventsInput struct {
 	// The maximum number of results per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Sort by the specified key value pair.
+	// Sort timeline events by the specified key value pair.
 	SortBy *string `locationName:"sortBy" type:"string" enum:"TimelineEventSort"`
 
 	// Sorts the order of timeline events by the value specified in the sortBy field.
 	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTimelineEventsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTimelineEventsInput) GoString() string {
 	return s.String()
 }
@@ -5770,16 +7358,25 @@ type ListTimelineEventsOutput struct {
 	// EventSummaries is a required field
 	EventSummaries []*EventSummary `locationName:"eventSummaries" type:"list" required:"true"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTimelineEventsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTimelineEventsOutput) GoString() string {
 	return s.String()
 }
@@ -5796,7 +7393,7 @@ func (s *ListTimelineEventsOutput) SetNextToken(v string) *ListTimelineEventsOut
 	return s
 }
 
-// The SNS topic that's used by AWS Chatbot to notify the incidents chat channel.
+// The SNS targets that are notified when updates are made to an incident.
 type NotificationTargetItem struct {
 	_ struct{} `type:"structure"`
 
@@ -5804,12 +7401,20 @@ type NotificationTargetItem struct {
 	SnsTopicArn *string `locationName:"snsTopicArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationTargetItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationTargetItem) GoString() string {
 	return s.String()
 }
@@ -5817,6 +7422,221 @@ func (s NotificationTargetItem) GoString() string {
 // SetSnsTopicArn sets the SnsTopicArn field's value.
 func (s *NotificationTargetItem) SetSnsTopicArn(v string) *NotificationTargetItem {
 	s.SnsTopicArn = &v
+	return s
+}
+
+// Details about the PagerDuty configuration for a response plan.
+type PagerDutyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the PagerDuty configuration.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Details about the PagerDuty service associated with the configuration.
+	//
+	// PagerDutyIncidentConfiguration is a required field
+	PagerDutyIncidentConfiguration *PagerDutyIncidentConfiguration `locationName:"pagerDutyIncidentConfiguration" type:"structure" required:"true"`
+
+	// The ID of the Amazon Web Services Secrets Manager secret that stores your
+	// PagerDuty key, either a General Access REST API Key or User Token REST API
+	// Key, and other user credentials.
+	//
+	// SecretId is a required field
+	SecretId *string `locationName:"secretId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PagerDutyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PagerDutyConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PagerDutyConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PagerDutyConfiguration"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PagerDutyIncidentConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("PagerDutyIncidentConfiguration"))
+	}
+	if s.SecretId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretId"))
+	}
+	if s.SecretId != nil && len(*s.SecretId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretId", 1))
+	}
+	if s.PagerDutyIncidentConfiguration != nil {
+		if err := s.PagerDutyIncidentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PagerDutyIncidentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *PagerDutyConfiguration) SetName(v string) *PagerDutyConfiguration {
+	s.Name = &v
+	return s
+}
+
+// SetPagerDutyIncidentConfiguration sets the PagerDutyIncidentConfiguration field's value.
+func (s *PagerDutyConfiguration) SetPagerDutyIncidentConfiguration(v *PagerDutyIncidentConfiguration) *PagerDutyConfiguration {
+	s.PagerDutyIncidentConfiguration = v
+	return s
+}
+
+// SetSecretId sets the SecretId field's value.
+func (s *PagerDutyConfiguration) SetSecretId(v string) *PagerDutyConfiguration {
+	s.SecretId = &v
+	return s
+}
+
+// Details about the PagerDuty service where the response plan creates an incident.
+type PagerDutyIncidentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the PagerDuty service that the response plan associates with an
+	// incident when it launches.
+	//
+	// ServiceId is a required field
+	ServiceId *string `locationName:"serviceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PagerDutyIncidentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PagerDutyIncidentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PagerDutyIncidentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PagerDutyIncidentConfiguration"}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *PagerDutyIncidentConfiguration) SetServiceId(v string) *PagerDutyIncidentConfiguration {
+	s.ServiceId = &v
+	return s
+}
+
+// Details about the PagerDuty incident associated with an incident created
+// by an Incident Manager response plan.
+type PagerDutyIncidentDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether to resolve the PagerDuty incident when you resolve the
+	// associated Incident Manager incident.
+	AutoResolve *bool `locationName:"autoResolve" type:"boolean"`
+
+	// The ID of the incident associated with the PagerDuty service for the response
+	// plan.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services Secrets Manager secret that stores your
+	// PagerDuty key, either a General Access REST API Key or User Token REST API
+	// Key, and other user credentials.
+	SecretId *string `locationName:"secretId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PagerDutyIncidentDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PagerDutyIncidentDetail) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PagerDutyIncidentDetail) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PagerDutyIncidentDetail"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.SecretId != nil && len(*s.SecretId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoResolve sets the AutoResolve field's value.
+func (s *PagerDutyIncidentDetail) SetAutoResolve(v bool) *PagerDutyIncidentDetail {
+	s.AutoResolve = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *PagerDutyIncidentDetail) SetId(v string) *PagerDutyIncidentDetail {
+	s.Id = &v
+	return s
+}
+
+// SetSecretId sets the SecretId field's value.
+func (s *PagerDutyIncidentDetail) SetSecretId(v string) *PagerDutyIncidentDetail {
+	s.SecretId = &v
 	return s
 }
 
@@ -5828,19 +7648,27 @@ type PutResourcePolicyInput struct {
 	// Policy is a required field
 	Policy *string `locationName:"policy" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the response plan you're adding the resource
-	// policy to.
+	// The Amazon Resource Name (ARN) of the response plan to add the resource policy
+	// to.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourcePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourcePolicyInput) GoString() string {
 	return s.String()
 }
@@ -5882,12 +7710,20 @@ type PutResourcePolicyOutput struct {
 	PolicyId *string `locationName:"policyId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourcePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourcePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -5898,33 +7734,43 @@ func (s *PutResourcePolicyOutput) SetPolicyId(v string) *PutResourcePolicyOutput
 	return s
 }
 
-// Information about a Region in your replication set.
+// Information about a Amazon Web Services Region in your replication set.
 type RegionInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the KMS key used to encrypt the data in this Region.
+	// The ID of the KMS key used to encrypt the data in this Amazon Web Services
+	// Region.
 	SseKmsKeyId *string `locationName:"sseKmsKeyId" type:"string"`
 
-	// The status of the Region in the replication set.
+	// The status of the Amazon Web Services Region in the replication set.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"RegionStatus"`
 
-	// Information displayed about the status of the Region.
+	// Information displayed about the status of the Amazon Web Services Region.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	// The most recent date and time that the Region's status was updated.
+	// The timestamp for when Incident Manager updated the status of the Amazon
+	// Web Services Region.
 	//
 	// StatusUpdateDateTime is a required field
 	StatusUpdateDateTime *time.Time `locationName:"statusUpdateDateTime" type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegionInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegionInfo) GoString() string {
 	return s.String()
 }
@@ -5953,7 +7799,8 @@ func (s *RegionInfo) SetStatusUpdateDateTime(v time.Time) *RegionInfo {
 	return s
 }
 
-// The mapping between a Region and the key that's used to encrypt the data.
+// The mapping between a Amazon Web Services Region and the key that's used
+// to encrypt the data.
 type RegionMapInputValue struct {
 	_ struct{} `type:"structure"`
 
@@ -5961,12 +7808,20 @@ type RegionMapInputValue struct {
 	SseKmsKeyId *string `locationName:"sseKmsKeyId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegionMapInputValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegionMapInputValue) GoString() string {
 	return s.String()
 }
@@ -5981,6 +7836,12 @@ func (s *RegionMapInputValue) SetSseKmsKeyId(v string) *RegionMapInputValue {
 type RelatedItem struct {
 	_ struct{} `type:"structure"`
 
+	// A unique ID for a RelatedItem.
+	//
+	// Don't specify this parameter when you add a RelatedItem by using the UpdateRelatedItems
+	// API action.
+	GeneratedId *string `locationName:"generatedId" type:"string"`
+
 	// Details about the related item.
 	//
 	// Identifier is a required field
@@ -5990,12 +7851,20 @@ type RelatedItem struct {
 	Title *string `locationName:"title" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RelatedItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RelatedItem) GoString() string {
 	return s.String()
 }
@@ -6016,6 +7885,12 @@ func (s *RelatedItem) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGeneratedId sets the GeneratedId field's value.
+func (s *RelatedItem) SetGeneratedId(v string) *RelatedItem {
+	s.GeneratedId = &v
+	return s
 }
 
 // SetIdentifier sets the Identifier field's value.
@@ -6041,12 +7916,20 @@ type RelatedItemsUpdate struct {
 	ItemToRemove *ItemIdentifier `locationName:"itemToRemove" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RelatedItemsUpdate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RelatedItemsUpdate) GoString() string {
 	return s.String()
 }
@@ -6083,10 +7966,13 @@ func (s *RelatedItemsUpdate) SetItemToRemove(v *ItemIdentifier) *RelatedItemsUpd
 	return s
 }
 
-// The set of Regions that your Incident Manager data will be replicated to
-// and the KMS key used to encrypt the data.
+// The set of Amazon Web Services Region that your Incident Manager data will
+// be replicated to and the KMS key used to encrypt the data.
 type ReplicationSet struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the replication set.
+	Arn *string `locationName:"arn" type:"string"`
 
 	// Details about who created the replication set.
 	//
@@ -6099,8 +7985,8 @@ type ReplicationSet struct {
 	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp" required:"true"`
 
 	// Determines if the replication set deletion protection is enabled or not.
-	// If deletion protection is enabled, you can't delete the last Region in the
-	// replication set.
+	// If deletion protection is enabled, you can't delete the last Amazon Web Services
+	// Region in the replication set.
 	//
 	// DeletionProtected is a required field
 	DeletionProtected *bool `locationName:"deletionProtected" type:"boolean" required:"true"`
@@ -6115,8 +8001,8 @@ type ReplicationSet struct {
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" required:"true"`
 
-	// The map between each Region in your replication set and the KMS key that
-	// is used to encrypt the data in that Region.
+	// The map between each Amazon Web Services Region in your replication set and
+	// the KMS key that's used to encrypt the data in that Region.
 	//
 	// RegionMap is a required field
 	RegionMap map[string]*RegionInfo `locationName:"regionMap" type:"map" required:"true"`
@@ -6128,14 +8014,28 @@ type ReplicationSet struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ReplicationSetStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationSet) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ReplicationSet) SetArn(v string) *ReplicationSet {
+	s.Arn = &v
+	return s
 }
 
 // SetCreatedBy sets the CreatedBy field's value.
@@ -6180,7 +8080,7 @@ func (s *ReplicationSet) SetStatus(v string) *ReplicationSet {
 	return s
 }
 
-// Request references a resource which does not exist.
+// Request references a resource which doesn't exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6194,12 +8094,20 @@ type ResourceNotFoundException struct {
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -6257,18 +8165,26 @@ type ResourcePolicy struct {
 	// PolicyId is a required field
 	PolicyId *string `locationName:"policyId" type:"string" required:"true"`
 
-	// The Region that policy allows resources to be used in.
+	// The Amazon Web Services Region that policy allows resources to be used in.
 	//
 	// RamResourceShareRegion is a required field
 	RamResourceShareRegion *string `locationName:"ramResourceShareRegion" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourcePolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourcePolicy) GoString() string {
 	return s.String()
 }
@@ -6309,12 +8225,20 @@ type ResponsePlanSummary struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResponsePlanSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResponsePlanSummary) GoString() string {
 	return s.String()
 }
@@ -6361,12 +8285,20 @@ type ServiceQuotaExceededException struct {
 	ServiceCode *string `locationName:"serviceCode" type:"string" required:"true" enum:"ServiceCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -6422,6 +8354,10 @@ type SsmAutomation struct {
 	// The automation document's version to use when running.
 	DocumentVersion *string `locationName:"documentVersion" type:"string"`
 
+	// The key-value pair to resolve dynamic parameter values when processing a
+	// Systems Manager Automation runbook.
+	DynamicParameters map[string]*DynamicSsmParameterValue `locationName:"dynamicParameters" min:"1" type:"map"`
+
 	// The key-value pair parameters to use when running the automation document.
 	Parameters map[string][]*string `locationName:"parameters" min:"1" type:"map"`
 
@@ -6436,12 +8372,20 @@ type SsmAutomation struct {
 	TargetAccount *string `locationName:"targetAccount" type:"string" enum:"SsmTargetAccount"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SsmAutomation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SsmAutomation) GoString() string {
 	return s.String()
 }
@@ -6451,6 +8395,9 @@ func (s *SsmAutomation) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SsmAutomation"}
 	if s.DocumentName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DocumentName"))
+	}
+	if s.DynamicParameters != nil && len(s.DynamicParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DynamicParameters", 1))
 	}
 	if s.Parameters != nil && len(s.Parameters) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
@@ -6477,6 +8424,12 @@ func (s *SsmAutomation) SetDocumentVersion(v string) *SsmAutomation {
 	return s
 }
 
+// SetDynamicParameters sets the DynamicParameters field's value.
+func (s *SsmAutomation) SetDynamicParameters(v map[string]*DynamicSsmParameterValue) *SsmAutomation {
+	s.DynamicParameters = v
+	return s
+}
+
 // SetParameters sets the Parameters field's value.
 func (s *SsmAutomation) SetParameters(v map[string][]*string) *SsmAutomation {
 	s.Parameters = v
@@ -6498,33 +8451,33 @@ func (s *SsmAutomation) SetTargetAccount(v string) *SsmAutomation {
 type StartIncidentInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token ensuring that the operation is called only once with the specified
+	// details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// Defines the impact to the customers. Providing an impact overwrites the impact
 	// provided by a response plan.
 	//
-	// Possible impacts:
+	// Supported impact codes
 	//
-	//    * 1 - Critical impact, this typically relates to full application failure
-	//    that impacts many to all customers.
+	//    * 1 - Critical
 	//
-	//    * 2 - High impact, partial application failure with impact to many customers.
+	//    * 2 - High
 	//
-	//    * 3 - Medium impact, the application is providing reduced service to customers.
+	//    * 3 - Medium
 	//
-	//    * 4 - Low impact, customer might aren't impacted by the problem yet.
+	//    * 4 - Low
 	//
-	//    * 5 - No impact, customers aren't currently impacted but urgent action
-	//    is needed to avoid impact.
+	//    * 5 - No Impact
 	Impact *int64 `locationName:"impact" min:"1" type:"integer"`
 
 	// Add related items to the incident for other responders to use. Related items
-	// are AWS resources, external links, or files uploaded to an S3 bucket.
+	// are Amazon Web Services resources, external links, or files uploaded to an
+	// Amazon S3 bucket.
 	RelatedItems []*RelatedItem `locationName:"relatedItems" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the response plan that pre-defines summary,
-	// chat channels, SNS topics, runbooks, title, and impact of the incident.
+	// chat channels, Amazon SNS topics, runbooks, title, and impact of the incident.
 	//
 	// ResponsePlanArn is a required field
 	ResponsePlanArn *string `locationName:"responsePlanArn" type:"string" required:"true"`
@@ -6537,12 +8490,20 @@ type StartIncidentInput struct {
 	TriggerDetails *TriggerDetails `locationName:"triggerDetails" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartIncidentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartIncidentInput) GoString() string {
 	return s.String()
 }
@@ -6623,12 +8584,20 @@ type StartIncidentOutput struct {
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartIncidentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartIncidentOutput) GoString() string {
 	return s.String()
 }
@@ -6648,18 +8617,26 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
-	// A list of tags that you are adding to the response plan.
+	// A list of tags to add to the response plan.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6702,12 +8679,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6730,12 +8715,20 @@ type ThrottlingException struct {
 	ServiceCode *string `locationName:"serviceCode" type:"string" required:"true" enum:"ServiceCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -6792,18 +8785,21 @@ type TimelineEvent struct {
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
 
-	// The time that the event occurred.
+	// A list of references in a TimelineEvent.
+	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
+
+	// The timestamp for when the event occurred.
 	//
 	// EventTime is a required field
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp" required:"true"`
 
 	// The type of event that occurred. Currently Incident Manager supports only
-	// the Custom Event type.
+	// the Custom Event and Note types.
 	//
 	// EventType is a required field
 	EventType *string `locationName:"eventType" type:"string" required:"true"`
 
-	// The time that the timeline event was last updated.
+	// The timestamp for when the timeline event was last updated.
 	//
 	// EventUpdatedTime is a required field
 	EventUpdatedTime *time.Time `locationName:"eventUpdatedTime" type:"timestamp" required:"true"`
@@ -6814,12 +8810,20 @@ type TimelineEvent struct {
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimelineEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimelineEvent) GoString() string {
 	return s.String()
 }
@@ -6833,6 +8837,12 @@ func (s *TimelineEvent) SetEventData(v string) *TimelineEvent {
 // SetEventId sets the EventId field's value.
 func (s *TimelineEvent) SetEventId(v string) *TimelineEvent {
 	s.EventId = &v
+	return s
+}
+
+// SetEventReferences sets the EventReferences field's value.
+func (s *TimelineEvent) SetEventReferences(v []*EventReference) *TimelineEvent {
+	s.EventReferences = v
 	return s
 }
 
@@ -6864,33 +8874,41 @@ func (s *TimelineEvent) SetIncidentRecordArn(v string) *TimelineEvent {
 type TriggerDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Raw data passed from either EventBridge, CloudWatch, or Incident Manager
-	// when an incident is created.
+	// Raw data passed from either Amazon EventBridge, Amazon CloudWatch, or Incident
+	// Manager when an incident is created.
 	RawData *string `locationName:"rawData" type:"string"`
 
 	// Identifies the service that sourced the event. All events sourced from within
-	// AWS begin with "aws." Customer-generated events can have any value here,
-	// as long as it doesn't begin with "aws." We recommend the use of Java package-name
-	// style reverse domain-name strings.
+	// Amazon Web Services begin with "aws." Customer-generated events can have
+	// any value here, as long as it doesn't begin with "aws." We recommend the
+	// use of Java package-name style reverse domain-name strings.
 	//
 	// Source is a required field
 	Source *string `locationName:"source" type:"string" required:"true"`
 
-	// The time that the incident was detected.
+	// The timestamp for when the incident was detected.
 	//
 	// Timestamp is a required field
 	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" required:"true"`
 
-	// The ARN of the source that detected the incident.
+	// The Amazon Resource Name (ARN) of the source that detected the incident.
 	TriggerArn *string `locationName:"triggerArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TriggerDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TriggerDetails) GoString() string {
 	return s.String()
 }
@@ -6936,7 +8954,7 @@ func (s *TriggerDetails) SetTriggerArn(v string) *TriggerDetails {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the response plan you're removing a tag
 	// from.
@@ -6944,18 +8962,26 @@ type UntagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
-	// The name of the tag you're removing from the response plan.
+	// The name of the tag to remove from the response plan.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6998,12 +9024,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -7011,26 +9045,35 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDeletionProtectionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the replication set you're updating.
+	// The Amazon Resource Name (ARN) of the replication set to update.
 	//
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token that ensures that the operation is called only once with the specified
+	// details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// Details if deletion protection is enabled or disabled in your account.
+	// Specifies if deletion protection is turned on or off in your account.
 	//
 	// DeletionProtected is a required field
 	DeletionProtected *bool `locationName:"deletionProtected" type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeletionProtectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeletionProtectionInput) GoString() string {
 	return s.String()
 }
@@ -7073,12 +9116,20 @@ type UpdateDeletionProtectionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeletionProtectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeletionProtectionOutput) GoString() string {
 	return s.String()
 }
@@ -7091,54 +9142,61 @@ type UpdateIncidentRecordInput struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// The AWS Chatbot chat channel for responders to collaborate in.
+	// The Chatbot chat channel where responders can collaborate.
 	ChatChannel *ChatChannel `locationName:"chatChannel" type:"structure"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token that ensures that a client calls the operation only once with the
+	// specified details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// Defines the impact to customers and applications. Providing an impact overwrites
-	// the impact provided by the response plan.
+	// Defines the impact of the incident to customers and applications. If you
+	// provide an impact for an incident, it overwrites the impact provided by the
+	// response plan.
 	//
-	// Possible impacts:
+	// Supported impact codes
 	//
-	//    * 1 - Critical impact, this typically relates to full application failure
-	//    that impacts many to all customers.
+	//    * 1 - Critical
 	//
-	//    * 2 - High impact, partial application failure with impact to many customers.
+	//    * 2 - High
 	//
-	//    * 3 - Medium impact, the application is providing reduced service to customers.
+	//    * 3 - Medium
 	//
-	//    * 4 - Low impact, customer might aren't impacted by the problem yet.
+	//    * 4 - Low
 	//
-	//    * 5 - No impact, customers aren't currently impacted but urgent action
-	//    is needed to avoid impact.
+	//    * 5 - No Impact
 	Impact *int64 `locationName:"impact" min:"1" type:"integer"`
 
-	// The SNS targets that AWS Chatbot uses to notify the chat channel of updates
-	// to an incident. You can also make updates to the incident through the chat
-	// channel using the SNS topics.
+	// The Amazon SNS targets that Incident Manager notifies when a client updates
+	// an incident.
 	//
-	// Using multiple SNS topics creates redundancy in the case that a Region is
+	// Using multiple SNS topics creates redundancy in the event that a Region is
 	// down during the incident.
 	NotificationTargets []*NotificationTargetItem `locationName:"notificationTargets" type:"list"`
 
-	// The status of the incident. An incident can be Open or Resolved.
+	// The status of the incident. Possible statuses are Open or Resolved.
 	Status *string `locationName:"status" type:"string" enum:"IncidentRecordStatus"`
 
-	// The summary describes what has happened during the incident.
+	// A longer description of what occurred during the incident.
 	Summary *string `locationName:"summary" type:"string"`
 
-	// The title of the incident is a brief and easily recognizable.
+	// A brief description of the incident.
 	Title *string `locationName:"title" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIncidentRecordInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIncidentRecordInput) GoString() string {
 	return s.String()
 }
@@ -7216,12 +9274,20 @@ type UpdateIncidentRecordOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIncidentRecordOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIncidentRecordOutput) GoString() string {
 	return s.String()
 }
@@ -7229,27 +9295,36 @@ func (s UpdateIncidentRecordOutput) GoString() string {
 type UpdateRelatedItemsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token that ensures that a client calls the operation only once with the
+	// specified details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the incident record you are updating related
-	// items in.
+	// The Amazon Resource Name (ARN) of the incident record that contains the related
+	// items that you update.
 	//
 	// IncidentRecordArn is a required field
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
 
-	// Details about the item you are adding or deleting.
+	// Details about the item that you are add to, or delete from, an incident.
 	//
 	// RelatedItemsUpdate is a required field
 	RelatedItemsUpdate *RelatedItemsUpdate `locationName:"relatedItemsUpdate" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRelatedItemsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRelatedItemsInput) GoString() string {
 	return s.String()
 }
@@ -7297,12 +9372,20 @@ type UpdateRelatedItemsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRelatedItemsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRelatedItemsOutput) GoString() string {
 	return s.String()
 }
@@ -7311,19 +9394,29 @@ func (s UpdateRelatedItemsOutput) GoString() string {
 type UpdateReplicationSetAction struct {
 	_ struct{} `type:"structure"`
 
-	// Details about the Region that you're adding to the replication set.
+	// Details about the Amazon Web Services Region that you're adding to the replication
+	// set.
 	AddRegionAction *AddRegionAction `locationName:"addRegionAction" type:"structure"`
 
-	// Details about the Region that you're deleting to the replication set.
+	// Details about the Amazon Web Services Region that you're deleting to the
+	// replication set.
 	DeleteRegionAction *DeleteRegionAction `locationName:"deleteRegionAction" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationSetAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationSetAction) GoString() string {
 	return s.String()
 }
@@ -7373,16 +9466,25 @@ type UpdateReplicationSetInput struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token that ensures that the operation is called only once with the specified
+	// details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationSetInput) GoString() string {
 	return s.String()
 }
@@ -7438,12 +9540,20 @@ type UpdateReplicationSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReplicationSetOutput) GoString() string {
 	return s.String()
 }
@@ -7459,56 +9569,77 @@ type UpdateResponsePlanInput struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// The AWS Chatbot chat channel used for collaboration during an incident.
+	// The Chatbot chat channel used for collaboration during an incident.
+	//
+	// Use the empty structure to remove the chat channel from the response plan.
 	ChatChannel *ChatChannel `locationName:"chatChannel" type:"structure"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token ensuring that the operation is called only once with the specified
+	// details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The long format name of the response plan. Can't contain spaces.
+	// The long format name of the response plan. The display name can't contain
+	// spaces.
 	DisplayName *string `locationName:"displayName" type:"string"`
 
-	// The contacts and escalation plans that Incident Manager engages at the start
-	// of the incident.
+	// The Amazon Resource Name (ARN) for the contacts and escalation plans that
+	// the response plan engages during an incident.
 	Engagements []*string `locationName:"engagements" type:"list"`
 
-	// Used to create only one incident record for an incident.
+	// The string Incident Manager uses to prevent duplicate incidents from being
+	// created by the same incident in the same account.
 	IncidentTemplateDedupeString *string `locationName:"incidentTemplateDedupeString" type:"string"`
 
 	// Defines the impact to the customers. Providing an impact overwrites the impact
 	// provided by a response plan.
 	//
-	// Possible impacts:
+	// Supported impact codes
 	//
-	//    * 5 - Severe impact
+	//    * 1 - Critical
 	//
-	//    * 4 - High impact
+	//    * 2 - High
 	//
-	//    * 3 - Medium impact
+	//    * 3 - Medium
 	//
-	//    * 2 - Low impact
+	//    * 4 - Low
 	//
-	//    * 1 - No impact
+	//    * 5 - No Impact
 	IncidentTemplateImpact *int64 `locationName:"incidentTemplateImpact" min:"1" type:"integer"`
 
-	// The SNS targets that AWS Chatbot uses to notify the chat channels and perform
-	// actions on the incident record.
+	// The Amazon SNS targets that are notified when updates are made to an incident.
 	IncidentTemplateNotificationTargets []*NotificationTargetItem `locationName:"incidentTemplateNotificationTargets" type:"list"`
 
 	// A brief summary of the incident. This typically contains what has happened,
 	// what's currently happening, and next steps.
 	IncidentTemplateSummary *string `locationName:"incidentTemplateSummary" type:"string"`
 
-	// The short format name of the incident. Can't contain spaces.
+	// Tags to assign to the template. When the StartIncident API action is called,
+	// Incident Manager assigns the tags specified in the template to the incident.
+	// To call this action, you must also have permission to call the TagResource
+	// API action for the incident record resource.
+	IncidentTemplateTags map[string]*string `locationName:"incidentTemplateTags" type:"map"`
+
+	// The short format name of the incident. The title can't contain spaces.
 	IncidentTemplateTitle *string `locationName:"incidentTemplateTitle" type:"string"`
+
+	// Information about third-party services integrated into the response plan.
+	Integrations []*Integration `locationName:"integrations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResponsePlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResponsePlanInput) GoString() string {
 	return s.String()
 }
@@ -7535,6 +9666,16 @@ func (s *UpdateResponsePlanInput) Validate() error {
 	if s.ChatChannel != nil {
 		if err := s.ChatChannel.Validate(); err != nil {
 			invalidParams.AddNested("ChatChannel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Integrations != nil {
+		for i, v := range s.Integrations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Integrations", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -7604,9 +9745,21 @@ func (s *UpdateResponsePlanInput) SetIncidentTemplateSummary(v string) *UpdateRe
 	return s
 }
 
+// SetIncidentTemplateTags sets the IncidentTemplateTags field's value.
+func (s *UpdateResponsePlanInput) SetIncidentTemplateTags(v map[string]*string) *UpdateResponsePlanInput {
+	s.IncidentTemplateTags = v
+	return s
+}
+
 // SetIncidentTemplateTitle sets the IncidentTemplateTitle field's value.
 func (s *UpdateResponsePlanInput) SetIncidentTemplateTitle(v string) *UpdateResponsePlanInput {
 	s.IncidentTemplateTitle = &v
+	return s
+}
+
+// SetIntegrations sets the Integrations field's value.
+func (s *UpdateResponsePlanInput) SetIntegrations(v []*Integration) *UpdateResponsePlanInput {
+	s.Integrations = v
 	return s
 }
 
@@ -7614,12 +9767,20 @@ type UpdateResponsePlanOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResponsePlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResponsePlanOutput) GoString() string {
 	return s.String()
 }
@@ -7627,36 +9788,59 @@ func (s UpdateResponsePlanOutput) GoString() string {
 type UpdateTimelineEventInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token that ensures that a client calls the operation only once with the
+	// specified details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// A short description of the event.
 	EventData *string `locationName:"eventData" type:"string"`
 
-	// The ID of the event you are updating. You can find this by using ListTimelineEvents.
+	// The ID of the event to update. You can use ListTimelineEvents to find an
+	// event's ID.
 	//
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
 
-	// The time that the event occurred.
+	// Updates all existing references in a TimelineEvent. A reference is an Amazon
+	// Web Services resource involved or associated with the incident. To specify
+	// a reference, enter its Amazon Resource Name (ARN). You can also specify a
+	// related item associated with that resource. For example, to specify an Amazon
+	// DynamoDB (DynamoDB) table as a resource, use its ARN. You can also specify
+	// an Amazon CloudWatch metric associated with the DynamoDB table as a related
+	// item.
+	//
+	// This update action overrides all existing references. If you want to keep
+	// existing references, you must specify them in the call. If you don't, this
+	// action removes any existing references and enters only new references.
+	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
+
+	// The timestamp for when the event occurred.
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp"`
 
-	// The type of the event. You can update events of type Custom Event.
+	// The type of event. You can update events of type Custom Event and Note.
 	EventType *string `locationName:"eventType" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the incident that the timeline event is
-	// part of.
+	// The Amazon Resource Name (ARN) of the incident that includes the timeline
+	// event.
 	//
 	// IncidentRecordArn is a required field
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTimelineEventInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTimelineEventInput) GoString() string {
 	return s.String()
 }
@@ -7695,6 +9879,12 @@ func (s *UpdateTimelineEventInput) SetEventId(v string) *UpdateTimelineEventInpu
 	return s
 }
 
+// SetEventReferences sets the EventReferences field's value.
+func (s *UpdateTimelineEventInput) SetEventReferences(v []*EventReference) *UpdateTimelineEventInput {
+	s.EventReferences = v
+	return s
+}
+
 // SetEventTime sets the EventTime field's value.
 func (s *UpdateTimelineEventInput) SetEventTime(v time.Time) *UpdateTimelineEventInput {
 	s.EventTime = &v
@@ -7717,17 +9907,26 @@ type UpdateTimelineEventOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTimelineEventOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTimelineEventOutput) GoString() string {
 	return s.String()
 }
 
-// The input fails to satisfy the constraints specified by an AWS service.
+// The input fails to satisfy the constraints specified by an Amazon Web Services
+// service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7735,12 +9934,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -7817,6 +10024,15 @@ const (
 
 	// ItemTypeOther is a ItemType enum value
 	ItemTypeOther = "OTHER"
+
+	// ItemTypeAutomation is a ItemType enum value
+	ItemTypeAutomation = "AUTOMATION"
+
+	// ItemTypeInvolvedResource is a ItemType enum value
+	ItemTypeInvolvedResource = "INVOLVED_RESOURCE"
+
+	// ItemTypeTask is a ItemType enum value
+	ItemTypeTask = "TASK"
 )
 
 // ItemType_Values returns all elements of the ItemType enum
@@ -7828,6 +10044,9 @@ func ItemType_Values() []string {
 		ItemTypeParent,
 		ItemTypeAttachment,
 		ItemTypeOther,
+		ItemTypeAutomation,
+		ItemTypeInvolvedResource,
+		ItemTypeTask,
 	}
 }
 
@@ -7964,5 +10183,21 @@ const (
 func TimelineEventSort_Values() []string {
 	return []string{
 		TimelineEventSortEventTime,
+	}
+}
+
+const (
+	// VariableTypeIncidentRecordArn is a VariableType enum value
+	VariableTypeIncidentRecordArn = "INCIDENT_RECORD_ARN"
+
+	// VariableTypeInvolvedResources is a VariableType enum value
+	VariableTypeInvolvedResources = "INVOLVED_RESOURCES"
+)
+
+// VariableType_Values returns all elements of the VariableType enum
+func VariableType_Values() []string {
+	return []string{
+		VariableTypeIncidentRecordArn,
+		VariableTypeInvolvedResources,
 	}
 }

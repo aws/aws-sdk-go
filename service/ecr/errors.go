@@ -125,9 +125,23 @@ const (
 	// "LimitExceededException".
 	//
 	// The operation did not succeed because it would have exceeded a service limit
-	// for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
+	// for your account. For more information, see Amazon ECR service quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 	// in the Amazon Elastic Container Registry User Guide.
 	ErrCodeLimitExceededException = "LimitExceededException"
+
+	// ErrCodePullThroughCacheRuleAlreadyExistsException for service response error code
+	// "PullThroughCacheRuleAlreadyExistsException".
+	//
+	// A pull through cache rule with these settings already exists for the private
+	// registry.
+	ErrCodePullThroughCacheRuleAlreadyExistsException = "PullThroughCacheRuleAlreadyExistsException"
+
+	// ErrCodePullThroughCacheRuleNotFoundException for service response error code
+	// "PullThroughCacheRuleNotFoundException".
+	//
+	// The pull through cache rule was not found. Specify a valid pull through cache
+	// rule and try again.
+	ErrCodePullThroughCacheRuleNotFoundException = "PullThroughCacheRuleNotFoundException"
 
 	// ErrCodeReferencedImagesNotFoundException for service response error code
 	// "ReferencedImagesNotFoundException".
@@ -175,6 +189,13 @@ const (
 	// enabled on the repository and try again.
 	ErrCodeScanNotFoundException = "ScanNotFoundException"
 
+	// ErrCodeSecretNotFoundException for service response error code
+	// "SecretNotFoundException".
+	//
+	// The ARN of the secret specified in the pull through cache rule was not found.
+	// Update the pull through cache rule with a valid secret ARN and try again.
+	ErrCodeSecretNotFoundException = "SecretNotFoundException"
+
 	// ErrCodeServerException for service response error code
 	// "ServerException".
 	//
@@ -188,11 +209,46 @@ const (
 	// of tags that can be applied to a repository is 50.
 	ErrCodeTooManyTagsException = "TooManyTagsException"
 
+	// ErrCodeUnableToAccessSecretException for service response error code
+	// "UnableToAccessSecretException".
+	//
+	// The secret is unable to be accessed. Verify the resource permissions for
+	// the secret and try again.
+	ErrCodeUnableToAccessSecretException = "UnableToAccessSecretException"
+
+	// ErrCodeUnableToDecryptSecretValueException for service response error code
+	// "UnableToDecryptSecretValueException".
+	//
+	// The secret is accessible but is unable to be decrypted. Verify the resource
+	// permisisons and try again.
+	ErrCodeUnableToDecryptSecretValueException = "UnableToDecryptSecretValueException"
+
+	// ErrCodeUnableToGetUpstreamImageException for service response error code
+	// "UnableToGetUpstreamImageException".
+	//
+	// The image or images were unable to be pulled using the pull through cache
+	// rule. This is usually caused because of an issue with the Secrets Manager
+	// secret containing the credentials for the upstream registry.
+	ErrCodeUnableToGetUpstreamImageException = "UnableToGetUpstreamImageException"
+
+	// ErrCodeUnableToGetUpstreamLayerException for service response error code
+	// "UnableToGetUpstreamLayerException".
+	//
+	// There was an issue getting the upstream layer matching the pull through cache
+	// rule.
+	ErrCodeUnableToGetUpstreamLayerException = "UnableToGetUpstreamLayerException"
+
 	// ErrCodeUnsupportedImageTypeException for service response error code
 	// "UnsupportedImageTypeException".
 	//
 	// The image is of a type that cannot be scanned.
 	ErrCodeUnsupportedImageTypeException = "UnsupportedImageTypeException"
+
+	// ErrCodeUnsupportedUpstreamRegistryException for service response error code
+	// "UnsupportedUpstreamRegistryException".
+	//
+	// The specified upstream registry isn't supported.
+	ErrCodeUnsupportedUpstreamRegistryException = "UnsupportedUpstreamRegistryException"
 
 	// ErrCodeUploadNotFoundException for service response error code
 	// "UploadNotFoundException".
@@ -209,34 +265,42 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"EmptyUploadException":                      newErrorEmptyUploadException,
-	"ImageAlreadyExistsException":               newErrorImageAlreadyExistsException,
-	"ImageDigestDoesNotMatchException":          newErrorImageDigestDoesNotMatchException,
-	"ImageNotFoundException":                    newErrorImageNotFoundException,
-	"ImageTagAlreadyExistsException":            newErrorImageTagAlreadyExistsException,
-	"InvalidLayerException":                     newErrorInvalidLayerException,
-	"InvalidLayerPartException":                 newErrorInvalidLayerPartException,
-	"InvalidParameterException":                 newErrorInvalidParameterException,
-	"InvalidTagParameterException":              newErrorInvalidTagParameterException,
-	"KmsException":                              newErrorKmsException,
-	"LayerAlreadyExistsException":               newErrorLayerAlreadyExistsException,
-	"LayerInaccessibleException":                newErrorLayerInaccessibleException,
-	"LayerPartTooSmallException":                newErrorLayerPartTooSmallException,
-	"LayersNotFoundException":                   newErrorLayersNotFoundException,
-	"LifecyclePolicyNotFoundException":          newErrorLifecyclePolicyNotFoundException,
-	"LifecyclePolicyPreviewInProgressException": newErrorLifecyclePolicyPreviewInProgressException,
-	"LifecyclePolicyPreviewNotFoundException":   newErrorLifecyclePolicyPreviewNotFoundException,
-	"LimitExceededException":                    newErrorLimitExceededException,
-	"ReferencedImagesNotFoundException":         newErrorReferencedImagesNotFoundException,
-	"RegistryPolicyNotFoundException":           newErrorRegistryPolicyNotFoundException,
-	"RepositoryAlreadyExistsException":          newErrorRepositoryAlreadyExistsException,
-	"RepositoryNotEmptyException":               newErrorRepositoryNotEmptyException,
-	"RepositoryNotFoundException":               newErrorRepositoryNotFoundException,
-	"RepositoryPolicyNotFoundException":         newErrorRepositoryPolicyNotFoundException,
-	"ScanNotFoundException":                     newErrorScanNotFoundException,
-	"ServerException":                           newErrorServerException,
-	"TooManyTagsException":                      newErrorTooManyTagsException,
-	"UnsupportedImageTypeException":             newErrorUnsupportedImageTypeException,
-	"UploadNotFoundException":                   newErrorUploadNotFoundException,
-	"ValidationException":                       newErrorValidationException,
+	"EmptyUploadException":                       newErrorEmptyUploadException,
+	"ImageAlreadyExistsException":                newErrorImageAlreadyExistsException,
+	"ImageDigestDoesNotMatchException":           newErrorImageDigestDoesNotMatchException,
+	"ImageNotFoundException":                     newErrorImageNotFoundException,
+	"ImageTagAlreadyExistsException":             newErrorImageTagAlreadyExistsException,
+	"InvalidLayerException":                      newErrorInvalidLayerException,
+	"InvalidLayerPartException":                  newErrorInvalidLayerPartException,
+	"InvalidParameterException":                  newErrorInvalidParameterException,
+	"InvalidTagParameterException":               newErrorInvalidTagParameterException,
+	"KmsException":                               newErrorKmsException,
+	"LayerAlreadyExistsException":                newErrorLayerAlreadyExistsException,
+	"LayerInaccessibleException":                 newErrorLayerInaccessibleException,
+	"LayerPartTooSmallException":                 newErrorLayerPartTooSmallException,
+	"LayersNotFoundException":                    newErrorLayersNotFoundException,
+	"LifecyclePolicyNotFoundException":           newErrorLifecyclePolicyNotFoundException,
+	"LifecyclePolicyPreviewInProgressException":  newErrorLifecyclePolicyPreviewInProgressException,
+	"LifecyclePolicyPreviewNotFoundException":    newErrorLifecyclePolicyPreviewNotFoundException,
+	"LimitExceededException":                     newErrorLimitExceededException,
+	"PullThroughCacheRuleAlreadyExistsException": newErrorPullThroughCacheRuleAlreadyExistsException,
+	"PullThroughCacheRuleNotFoundException":      newErrorPullThroughCacheRuleNotFoundException,
+	"ReferencedImagesNotFoundException":          newErrorReferencedImagesNotFoundException,
+	"RegistryPolicyNotFoundException":            newErrorRegistryPolicyNotFoundException,
+	"RepositoryAlreadyExistsException":           newErrorRepositoryAlreadyExistsException,
+	"RepositoryNotEmptyException":                newErrorRepositoryNotEmptyException,
+	"RepositoryNotFoundException":                newErrorRepositoryNotFoundException,
+	"RepositoryPolicyNotFoundException":          newErrorRepositoryPolicyNotFoundException,
+	"ScanNotFoundException":                      newErrorScanNotFoundException,
+	"SecretNotFoundException":                    newErrorSecretNotFoundException,
+	"ServerException":                            newErrorServerException,
+	"TooManyTagsException":                       newErrorTooManyTagsException,
+	"UnableToAccessSecretException":              newErrorUnableToAccessSecretException,
+	"UnableToDecryptSecretValueException":        newErrorUnableToDecryptSecretValueException,
+	"UnableToGetUpstreamImageException":          newErrorUnableToGetUpstreamImageException,
+	"UnableToGetUpstreamLayerException":          newErrorUnableToGetUpstreamLayerException,
+	"UnsupportedImageTypeException":              newErrorUnsupportedImageTypeException,
+	"UnsupportedUpstreamRegistryException":       newErrorUnsupportedUpstreamRegistryException,
+	"UploadNotFoundException":                    newErrorUploadNotFoundException,
+	"ValidationException":                        newErrorValidationException,
 }

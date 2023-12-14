@@ -322,7 +322,7 @@
       "type":"string",
       "max":1011,
       "min":1,
-      "pattern":"^arn:aws\\S*:elastic-inference:\\S+:\\d{12}:elastic-inference-accelerator/eia-[0-9a-f]+$"
+      "pattern":"^arn:aws[^\\s:]*:elastic-inference:[^\\s:]+:\\d{12}:elastic-inference-accelerator/eia-[0-9a-f]+$"
     },
     "ResourceArn":{
       "type":"string",
@@ -383,7 +383,8 @@
     },
     "TagValue":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":".*"
     },
     "ThroughputInfoList":{
       "type":"list",

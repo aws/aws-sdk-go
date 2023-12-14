@@ -1044,7 +1044,9 @@
       "members":{
         "executionContext":{"shape":"Data"},
         "scheduledEventId":{"shape":"EventId"},
-        "startedEventId":{"shape":"EventId"}
+        "startedEventId":{"shape":"EventId"},
+        "taskList":{"shape":"TaskList"},
+        "taskListScheduleToStartTimeout":{"shape":"DurationInSecondsOptional"}
       }
     },
     "DecisionTaskScheduledEventAttributes":{
@@ -1053,7 +1055,8 @@
       "members":{
         "taskList":{"shape":"TaskList"},
         "taskPriority":{"shape":"TaskPriority"},
-        "startToCloseTimeout":{"shape":"DurationInSecondsOptional"}
+        "startToCloseTimeout":{"shape":"DurationInSecondsOptional"},
+        "scheduleToStartTimeout":{"shape":"DurationInSecondsOptional"}
       }
     },
     "DecisionTaskStartedEventAttributes":{
@@ -1079,7 +1082,10 @@
     },
     "DecisionTaskTimeoutType":{
       "type":"string",
-      "enum":["START_TO_CLOSE"]
+      "enum":[
+        "START_TO_CLOSE",
+        "SCHEDULE_TO_START"
+      ]
     },
     "DecisionType":{
       "type":"string",
@@ -1730,7 +1736,8 @@
         "identity":{"shape":"Identity"},
         "nextPageToken":{"shape":"PageToken"},
         "maximumPageSize":{"shape":"PageSize"},
-        "reverseOrder":{"shape":"ReverseOrder"}
+        "reverseOrder":{"shape":"ReverseOrder"},
+        "startAtPreviousStartedEvent":{"shape":"StartAtPreviousStartedEvent"}
       }
     },
     "RecordActivityTaskHeartbeatInput":{
@@ -1968,7 +1975,9 @@
       "members":{
         "taskToken":{"shape":"TaskToken"},
         "decisions":{"shape":"DecisionList"},
-        "executionContext":{"shape":"Data"}
+        "executionContext":{"shape":"Data"},
+        "taskList":{"shape":"TaskList"},
+        "taskListScheduleToStartTimeout":{"shape":"DurationInSecondsOptional"}
       }
     },
     "ReverseOrder":{"type":"boolean"},
@@ -2141,6 +2150,7 @@
         "input":{"shape":"Data"}
       }
     },
+    "StartAtPreviousStartedEvent":{"type":"boolean"},
     "StartChildWorkflowExecutionDecisionAttributes":{
       "type":"structure",
       "required":[

@@ -1,3 +1,4 @@
+//go:build go1.7
 // +build go1.7
 
 package ec2metadata_test
@@ -71,8 +72,9 @@ const (
 	NotFoundRequestTestType
 	InvalidTokenRequestTestType
 	ServerErrorForTokenTestType
-	pageNotFoundForTokenTestType
-	pageNotFoundWith401TestType
+	PageNotFoundForTokenTestType
+	PageNotFoundWith401TestType
+	ThrottleErrorForTokenNoFallbackTestType
 )
 
 type testServer struct {
@@ -125,11 +127,14 @@ func newTestServer(t *testing.T, testType testType, testServer *testServer) *htt
 	case ServerErrorForTokenTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.serverErrorGetTokenHandler))
 		mux.HandleFunc("/", testServer.insecureGetLatestHandler)
-	case pageNotFoundForTokenTestType:
+	case PageNotFoundForTokenTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.pageNotFoundGetTokenHandler))
 		mux.HandleFunc("/", testServer.insecureGetLatestHandler)
-	case pageNotFoundWith401TestType:
+	case PageNotFoundWith401TestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.pageNotFoundGetTokenHandler))
+		mux.HandleFunc("/", testServer.unauthorizedGetLatestHandler)
+	case ThrottleErrorForTokenNoFallbackTestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.throtleErrorGetTokenHandler))
 		mux.HandleFunc("/", testServer.unauthorizedGetLatestHandler)
 
 	}
@@ -212,6 +217,10 @@ func (s *testServer) unauthorizedGetLatestHandler(w http.ResponseWriter, r *http
 	http.Error(w, "", 401)
 }
 
+func (s *testServer) throtleErrorGetTokenHandler(w http.ResponseWriter, r *http.Request) {
+	http.Error(w, "", 429)
+}
+
 func (opListProvider *operationListProvider) addToOperationPerformedList(r *request.Request) {
 	opListProvider.operationsPerformed = append(opListProvider.operationsPerformed, r.Operation.Name)
 }
@@ -240,6 +249,7 @@ func TestGetMetadata(t *testing.T) {
 		expectedData                string
 		expectedError               string
 		expectedOperationsAttempted []string
+		enableImdsFallback          *bool
 	}{
 		"Insecure server success case": {
 			NewServer: func(t *testing.T, tokens []string) *httptest.Server {
@@ -324,6 +334,21 @@ func TestGetMetadata(t *testing.T) {
 			expectedData:                "IMDSProfileForGoSDK",
 			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
+		"No fallback to IMDSv1": {
+			NewServer: func(t *testing.T, tokens []string) *httptest.Server {
+				testType := ThrottleErrorForTokenNoFallbackTestType
+				Ts := &testServer{
+					t:      t,
+					tokens: []string{},
+					data:   "IMDSProfileForGoSDK",
+				}
+				return newTestServer(t, testType, Ts)
+			},
+			expectedError: "failed to get IMDSv2 token and fallback to IMDSv1 is disabled",
+			// 2 attempts + 2 retries per/attempt
+			expectedOperationsAttempted: []string{"GetToken", "GetToken", "GetToken", "GetToken", "GetToken", "GetToken"},
+			enableImdsFallback:          aws.Bool(false),
+		},
 	}
 
 	for name, x := range cases {
@@ -335,8 +360,10 @@ func TestGetMetadata(t *testing.T) {
 			op := &operationListProvider{}
 
 			c := ec2metadata.New(unit.Session, &aws.Config{
-				Endpoint: aws.String(server.URL),
+				Endpoint:                  aws.String(server.URL),
+				EC2MetadataEnableFallback: x.enableImdsFallback,
 			})
+
 			c.Handlers.CompleteAttempt.PushBack(op.addToOperationPerformedList)
 
 			tokenCounter := -1
@@ -952,7 +979,7 @@ func TestExhaustiveRetryToFetchToken(t *testing.T) {
 		data:   "IMDSProfileForSDKGo",
 	}
 
-	server := newTestServer(t, pageNotFoundForTokenTestType, ts)
+	server := newTestServer(t, PageNotFoundForTokenTestType, ts)
 	defer server.Close()
 
 	op := &operationListProvider{}
@@ -1006,7 +1033,7 @@ func TestExhaustiveRetryWith401(t *testing.T) {
 		data:   "IMDSProfileForSDKGo",
 	}
 
-	server := newTestServer(t, pageNotFoundWith401TestType, ts)
+	server := newTestServer(t, PageNotFoundWith401TestType, ts)
 	defer server.Close()
 
 	op := &operationListProvider{}
@@ -1116,7 +1143,7 @@ func TestRequestTimeOut(t *testing.T) {
 		t.Fatalf("Expected no error, got %v", err)
 	}
 
-	expectedOperationsPerformed = []string{"GetToken", "GetMetadata", "GetMetadata"}
+	expectedOperationsPerformed = []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata"}
 	if e, a := expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
 		t.Fatalf("expect %v operations, got %v", e, a)
 	}

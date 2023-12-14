@@ -11,14 +11,14 @@ const (
 	// ErrCodeInsufficientCapacityException for service response error code
 	// "InsufficientCapacityException".
 	//
-	// AWS doesn't currently have enough available capacity to fulfill your request.
-	// Try your request later.
+	// Amazon Web Services doesn't currently have enough available capacity to fulfill
+	// your request. Try your request later.
 	ErrCodeInsufficientCapacityException = "InsufficientCapacityException"
 
 	// ErrCodeInternalServerError for service response error code
 	// "InternalServerError".
 	//
-	// Your request is valid, but Network Firewall couldn’t perform the operation
+	// Your request is valid, but Network Firewall couldn't perform the operation
 	// because of a system problem. Retry your request.
 	ErrCodeInternalServerError = "InternalServerError"
 
@@ -45,6 +45,8 @@ const (
 
 	// ErrCodeInvalidResourcePolicyException for service response error code
 	// "InvalidResourcePolicyException".
+	//
+	// The policy statement failed validation.
 	ErrCodeInvalidResourcePolicyException = "InvalidResourcePolicyException"
 
 	// ErrCodeInvalidTokenException for service response error code
@@ -73,6 +75,8 @@ const (
 
 	// ErrCodeResourceOwnerCheckException for service response error code
 	// "ResourceOwnerCheckException".
+	//
+	// Unable to change the resource because your account doesn't own it.
 	ErrCodeResourceOwnerCheckException = "ResourceOwnerCheckException"
 
 	// ErrCodeThrottlingException for service response error code

@@ -28,57 +28,28 @@
         {"shape":"AccessDenied"}
       ]
     },
-    "CreateCachePolicy":{
-      "name":"CreateCachePolicy2020_05_31",
+    "CopyDistribution":{
+      "name":"CopyDistribution2020_05_31",
       "http":{
         "method":"POST",
-        "requestUri":"/2020-05-31/cache-policy",
+        "requestUri":"/2020-05-31/distribution/{PrimaryDistributionId}/copy",
         "responseCode":201
       },
-      "input":{"shape":"CreateCachePolicyRequest"},
-      "output":{"shape":"CreateCachePolicyResult"},
-      "errors":[
-        {"shape":"AccessDenied"},
-        {"shape":"InconsistentQuantities"},
-        {"shape":"InvalidArgument"},
-        {"shape":"CachePolicyAlreadyExists"},
-        {"shape":"TooManyCachePolicies"},
-        {"shape":"TooManyHeadersInCachePolicy"},
-        {"shape":"TooManyCookiesInCachePolicy"},
-        {"shape":"TooManyQueryStringsInCachePolicy"}
-      ]
-    },
-    "CreateCloudFrontOriginAccessIdentity":{
-      "name":"CreateCloudFrontOriginAccessIdentity2020_05_31",
-      "http":{
-        "method":"POST",
-        "requestUri":"/2020-05-31/origin-access-identity/cloudfront",
-        "responseCode":201
+      "input":{
+        "shape":"CopyDistributionRequest",
+        "locationName":"CopyDistributionRequest",
+        "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
       },
-      "input":{"shape":"CreateCloudFrontOriginAccessIdentityRequest"},
-      "output":{"shape":"CreateCloudFrontOriginAccessIdentityResult"},
-      "errors":[
-        {"shape":"CloudFrontOriginAccessIdentityAlreadyExists"},
-        {"shape":"MissingBody"},
-        {"shape":"TooManyCloudFrontOriginAccessIdentities"},
-        {"shape":"InvalidArgument"},
-        {"shape":"InconsistentQuantities"}
-      ]
-    },
-    "CreateDistribution":{
-      "name":"CreateDistribution2020_05_31",
-      "http":{
-        "method":"POST",
-        "requestUri":"/2020-05-31/distribution",
-        "responseCode":201
-      },
-      "input":{"shape":"CreateDistributionRequest"},
-      "output":{"shape":"CreateDistributionResult"},
+      "output":{"shape":"CopyDistributionResult"},
       "errors":[
         {"shape":"CNAMEAlreadyExists"},
         {"shape":"DistributionAlreadyExists"},
         {"shape":"InvalidOrigin"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchDistribution"},
+        {"shape":"PreconditionFailed"},
         {"shape":"AccessDenied"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
@@ -125,6 +96,9 @@
         {"shape":"TooManyDistributionsAssociatedToFieldLevelEncryptionConfig"},
         {"shape":"NoSuchCachePolicy"},
         {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
+        {"shape":"TooManyDistributionsAssociatedToOriginAccessControl"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToResponseHeadersPolicy"},
         {"shape":"NoSuchOriginRequestPolicy"},
         {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
         {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
@@ -132,6 +106,138 @@
         {"shape":"TrustedKeyGroupDoesNotExist"},
         {"shape":"NoSuchRealtimeLogConfig"},
         {"shape":"RealtimeLogConfigOwnerMismatch"}
+      ]
+    },
+    "CreateCachePolicy":{
+      "name":"CreateCachePolicy2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/cache-policy",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateCachePolicyRequest"},
+      "output":{"shape":"CreateCachePolicyResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"InvalidArgument"},
+        {"shape":"CachePolicyAlreadyExists"},
+        {"shape":"TooManyCachePolicies"},
+        {"shape":"TooManyHeadersInCachePolicy"},
+        {"shape":"TooManyCookiesInCachePolicy"},
+        {"shape":"TooManyQueryStringsInCachePolicy"}
+      ]
+    },
+    "CreateCloudFrontOriginAccessIdentity":{
+      "name":"CreateCloudFrontOriginAccessIdentity2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/origin-access-identity/cloudfront",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateCloudFrontOriginAccessIdentityRequest"},
+      "output":{"shape":"CreateCloudFrontOriginAccessIdentityResult"},
+      "errors":[
+        {"shape":"CloudFrontOriginAccessIdentityAlreadyExists"},
+        {"shape":"MissingBody"},
+        {"shape":"TooManyCloudFrontOriginAccessIdentities"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InconsistentQuantities"}
+      ]
+    },
+    "CreateContinuousDeploymentPolicy":{
+      "name":"CreateContinuousDeploymentPolicy2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/continuous-deployment-policy",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateContinuousDeploymentPolicyRequest"},
+      "output":{"shape":"CreateContinuousDeploymentPolicyResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"ContinuousDeploymentPolicyAlreadyExists"},
+        {"shape":"TooManyContinuousDeploymentPolicies"},
+        {"shape":"StagingDistributionInUse"}
+      ]
+    },
+    "CreateDistribution":{
+      "name":"CreateDistribution2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/distribution",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateDistributionRequest"},
+      "output":{"shape":"CreateDistributionResult"},
+      "errors":[
+        {"shape":"CNAMEAlreadyExists"},
+        {"shape":"DistributionAlreadyExists"},
+        {"shape":"InvalidOrigin"},
+        {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
+        {"shape":"IllegalOriginAccessConfiguration"},
+        {"shape":"TooManyDistributionsAssociatedToOriginAccessControl"},
+        {"shape":"AccessDenied"},
+        {"shape":"TooManyTrustedSigners"},
+        {"shape":"TrustedSignerDoesNotExist"},
+        {"shape":"InvalidViewerCertificate"},
+        {"shape":"InvalidMinimumProtocolVersion"},
+        {"shape":"MissingBody"},
+        {"shape":"TooManyDistributionCNAMEs"},
+        {"shape":"TooManyDistributions"},
+        {"shape":"InvalidDefaultRootObject"},
+        {"shape":"InvalidRelativePath"},
+        {"shape":"InvalidErrorCode"},
+        {"shape":"InvalidResponseCode"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidRequiredProtocol"},
+        {"shape":"NoSuchOrigin"},
+        {"shape":"TooManyOrigins"},
+        {"shape":"TooManyOriginGroupsPerDistribution"},
+        {"shape":"TooManyCacheBehaviors"},
+        {"shape":"TooManyCookieNamesInWhiteList"},
+        {"shape":"InvalidForwardCookies"},
+        {"shape":"TooManyHeadersInForwardedValues"},
+        {"shape":"InvalidHeadersForS3Origin"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"TooManyCertificates"},
+        {"shape":"InvalidLocationCode"},
+        {"shape":"InvalidGeoRestrictionParameter"},
+        {"shape":"InvalidProtocolSettings"},
+        {"shape":"InvalidTTLOrder"},
+        {"shape":"InvalidWebACLId"},
+        {"shape":"TooManyOriginCustomHeaders"},
+        {"shape":"TooManyQueryStringParameters"},
+        {"shape":"InvalidQueryStringParameters"},
+        {"shape":"TooManyDistributionsWithLambdaAssociations"},
+        {"shape":"TooManyDistributionsWithSingleFunctionARN"},
+        {"shape":"TooManyLambdaFunctionAssociations"},
+        {"shape":"InvalidLambdaFunctionAssociation"},
+        {"shape":"TooManyDistributionsWithFunctionAssociations"},
+        {"shape":"TooManyFunctionAssociations"},
+        {"shape":"InvalidFunctionAssociation"},
+        {"shape":"InvalidOriginReadTimeout"},
+        {"shape":"InvalidOriginKeepaliveTimeout"},
+        {"shape":"NoSuchFieldLevelEncryptionConfig"},
+        {"shape":"IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior"},
+        {"shape":"TooManyDistributionsAssociatedToFieldLevelEncryptionConfig"},
+        {"shape":"NoSuchCachePolicy"},
+        {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToResponseHeadersPolicy"},
+        {"shape":"NoSuchOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
+        {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
+        {"shape":"TrustedKeyGroupDoesNotExist"},
+        {"shape":"NoSuchRealtimeLogConfig"},
+        {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"ContinuousDeploymentPolicyInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"},
+        {"shape":"InvalidDomainNameForOriginAccessControl"}
       ]
     },
     "CreateDistributionWithTags":{
@@ -148,6 +254,8 @@
         {"shape":"DistributionAlreadyExists"},
         {"shape":"InvalidOrigin"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
+        {"shape":"IllegalOriginAccessConfiguration"},
         {"shape":"AccessDenied"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
@@ -195,13 +303,19 @@
         {"shape":"TooManyDistributionsAssociatedToFieldLevelEncryptionConfig"},
         {"shape":"NoSuchCachePolicy"},
         {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
+        {"shape":"TooManyDistributionsAssociatedToOriginAccessControl"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToResponseHeadersPolicy"},
         {"shape":"NoSuchOriginRequestPolicy"},
         {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
         {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
         {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
         {"shape":"TrustedKeyGroupDoesNotExist"},
         {"shape":"NoSuchRealtimeLogConfig"},
-        {"shape":"RealtimeLogConfigOwnerMismatch"}
+        {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"ContinuousDeploymentPolicyInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"},
+        {"shape":"InvalidDomainNameForOriginAccessControl"}
       ]
     },
     "CreateFieldLevelEncryptionConfig":{
@@ -300,18 +414,55 @@
         {"shape":"TooManyPublicKeysInKeyGroup"}
       ]
     },
+    "CreateKeyValueStore":{
+      "name":"CreateKeyValueStore2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/key-value-store/",
+        "responseCode":201
+      },
+      "input":{
+        "shape":"CreateKeyValueStoreRequest",
+        "locationName":"CreateKeyValueStoreRequest",
+        "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+      },
+      "output":{"shape":"CreateKeyValueStoreResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"EntityLimitExceeded"},
+        {"shape":"EntityAlreadyExists"},
+        {"shape":"EntitySizeLimitExceeded"},
+        {"shape":"InvalidArgument"}
+      ]
+    },
     "CreateMonitoringSubscription":{
       "name":"CreateMonitoringSubscription2020_05_31",
       "http":{
         "method":"POST",
-        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
+        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription/"
       },
       "input":{"shape":"CreateMonitoringSubscriptionRequest"},
       "output":{"shape":"CreateMonitoringSubscriptionResult"},
       "errors":[
         {"shape":"AccessDenied"},
         {"shape":"NoSuchDistribution"},
+        {"shape":"MonitoringSubscriptionAlreadyExists"},
         {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "CreateOriginAccessControl":{
+      "name":"CreateOriginAccessControl2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/origin-access-control",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateOriginAccessControlRequest"},
+      "output":{"shape":"CreateOriginAccessControlResult"},
+      "errors":[
+        {"shape":"OriginAccessControlAlreadyExists"},
+        {"shape":"TooManyOriginAccessControls"},
+        {"shape":"InvalidArgument"}
       ]
     },
     "CreateOriginRequestPolicy":{
@@ -369,6 +520,26 @@
         {"shape":"AccessDenied"}
       ]
     },
+    "CreateResponseHeadersPolicy":{
+      "name":"CreateResponseHeadersPolicy2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/response-headers-policy",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateResponseHeadersPolicyRequest"},
+      "output":{"shape":"CreateResponseHeadersPolicyResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"InvalidArgument"},
+        {"shape":"ResponseHeadersPolicyAlreadyExists"},
+        {"shape":"TooManyResponseHeadersPolicies"},
+        {"shape":"TooManyCustomHeadersInResponseHeadersPolicy"},
+        {"shape":"TooLongCSPInResponseHeadersPolicy"},
+        {"shape":"TooManyRemoveHeadersInResponseHeadersPolicy"}
+      ]
+    },
     "CreateStreamingDistribution":{
       "name":"CreateStreamingDistribution2020_05_31",
       "http":{
@@ -383,6 +554,7 @@
         {"shape":"StreamingDistributionAlreadyExists"},
         {"shape":"InvalidOrigin"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
         {"shape":"AccessDenied"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
@@ -407,6 +579,7 @@
         {"shape":"StreamingDistributionAlreadyExists"},
         {"shape":"InvalidOrigin"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
         {"shape":"AccessDenied"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
@@ -449,6 +622,23 @@
         {"shape":"NoSuchCloudFrontOriginAccessIdentity"},
         {"shape":"PreconditionFailed"},
         {"shape":"CloudFrontOriginAccessIdentityInUse"}
+      ]
+    },
+    "DeleteContinuousDeploymentPolicy":{
+      "name":"DeleteContinuousDeploymentPolicy2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/continuous-deployment-policy/{Id}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteContinuousDeploymentPolicyRequest"},
+      "errors":[
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"ContinuousDeploymentPolicyInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
       ]
     },
     "DeleteDistribution":{
@@ -530,18 +720,52 @@
         {"shape":"ResourceInUse"}
       ]
     },
+    "DeleteKeyValueStore":{
+      "name":"DeleteKeyValueStore2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/key-value-store/{Name}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteKeyValueStoreRequest"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"EntityNotFound"},
+        {"shape":"CannotDeleteEntityWhileInUse"},
+        {"shape":"PreconditionFailed"}
+      ],
+      "idempotent":true
+    },
     "DeleteMonitoringSubscription":{
       "name":"DeleteMonitoringSubscription2020_05_31",
       "http":{
         "method":"DELETE",
-        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
+        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription/"
       },
       "input":{"shape":"DeleteMonitoringSubscriptionRequest"},
       "output":{"shape":"DeleteMonitoringSubscriptionResult"},
       "errors":[
         {"shape":"AccessDenied"},
         {"shape":"NoSuchDistribution"},
+        {"shape":"NoSuchMonitoringSubscription"},
         {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "DeleteOriginAccessControl":{
+      "name":"DeleteOriginAccessControl2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/origin-access-control/{Id}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteOriginAccessControlRequest"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchOriginAccessControl"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"OriginAccessControlInUse"}
       ]
     },
     "DeleteOriginRequestPolicy":{
@@ -596,6 +820,23 @@
         {"shape":"AccessDenied"}
       ]
     },
+    "DeleteResponseHeadersPolicy":{
+      "name":"DeleteResponseHeadersPolicy2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/response-headers-policy/{Id}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteResponseHeadersPolicyRequest"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"IllegalDelete"},
+        {"shape":"ResponseHeadersPolicyInUse"}
+      ]
+    },
     "DeleteStreamingDistribution":{
       "name":"DeleteStreamingDistribution2020_05_31",
       "http":{
@@ -623,6 +864,20 @@
       "errors":[
         {"shape":"NoSuchFunctionExists"},
         {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "DescribeKeyValueStore":{
+      "name":"DescribeKeyValueStore2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/key-value-store/{Name}"
+      },
+      "input":{"shape":"DescribeKeyValueStoreRequest"},
+      "output":{"shape":"DescribeKeyValueStoreResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidArgument"},
+        {"shape":"EntityNotFound"}
       ]
     },
     "GetCachePolicy":{
@@ -675,6 +930,32 @@
       "errors":[
         {"shape":"NoSuchCloudFrontOriginAccessIdentity"},
         {"shape":"AccessDenied"}
+      ]
+    },
+    "GetContinuousDeploymentPolicy":{
+      "name":"GetContinuousDeploymentPolicy2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/continuous-deployment-policy/{Id}"
+      },
+      "input":{"shape":"GetContinuousDeploymentPolicyRequest"},
+      "output":{"shape":"GetContinuousDeploymentPolicyResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
+      ]
+    },
+    "GetContinuousDeploymentPolicyConfig":{
+      "name":"GetContinuousDeploymentPolicyConfig2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/continuous-deployment-policy/{Id}/config"
+      },
+      "input":{"shape":"GetContinuousDeploymentPolicyConfigRequest"},
+      "output":{"shape":"GetContinuousDeploymentPolicyConfigResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
       ]
     },
     "GetDistribution":{
@@ -810,14 +1091,41 @@
       "name":"GetMonitoringSubscription2020_05_31",
       "http":{
         "method":"GET",
-        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
+        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription/"
       },
       "input":{"shape":"GetMonitoringSubscriptionRequest"},
       "output":{"shape":"GetMonitoringSubscriptionResult"},
       "errors":[
         {"shape":"AccessDenied"},
         {"shape":"NoSuchDistribution"},
+        {"shape":"NoSuchMonitoringSubscription"},
         {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "GetOriginAccessControl":{
+      "name":"GetOriginAccessControl2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/origin-access-control/{Id}"
+      },
+      "input":{"shape":"GetOriginAccessControlRequest"},
+      "output":{"shape":"GetOriginAccessControlResult"},
+      "errors":[
+        {"shape":"NoSuchOriginAccessControl"},
+        {"shape":"AccessDenied"}
+      ]
+    },
+    "GetOriginAccessControlConfig":{
+      "name":"GetOriginAccessControlConfig2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/origin-access-control/{Id}/config"
+      },
+      "input":{"shape":"GetOriginAccessControlConfigRequest"},
+      "output":{"shape":"GetOriginAccessControlConfigResult"},
+      "errors":[
+        {"shape":"NoSuchOriginAccessControl"},
+        {"shape":"AccessDenied"}
       ]
     },
     "GetOriginRequestPolicy":{
@@ -890,6 +1198,32 @@
         {"shape":"AccessDenied"}
       ]
     },
+    "GetResponseHeadersPolicy":{
+      "name":"GetResponseHeadersPolicy2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/response-headers-policy/{Id}"
+      },
+      "input":{"shape":"GetResponseHeadersPolicyRequest"},
+      "output":{"shape":"GetResponseHeadersPolicyResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchResponseHeadersPolicy"}
+      ]
+    },
+    "GetResponseHeadersPolicyConfig":{
+      "name":"GetResponseHeadersPolicyConfig2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/response-headers-policy/{Id}/config"
+      },
+      "input":{"shape":"GetResponseHeadersPolicyConfigRequest"},
+      "output":{"shape":"GetResponseHeadersPolicyConfigResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchResponseHeadersPolicy"}
+      ]
+    },
     "GetStreamingDistribution":{
       "name":"GetStreamingDistribution2020_05_31",
       "http":{
@@ -954,6 +1288,20 @@
       "errors":[
         {"shape":"InvalidArgument"},
         {"shape":"NoSuchDistribution"}
+      ]
+    },
+    "ListContinuousDeploymentPolicies":{
+      "name":"ListContinuousDeploymentPolicies2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/continuous-deployment-policy"
+      },
+      "input":{"shape":"ListContinuousDeploymentPoliciesRequest"},
+      "output":{"shape":"ListContinuousDeploymentPoliciesResult"},
+      "errors":[
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
       ]
     },
     "ListDistributions":{
@@ -1023,6 +1371,20 @@
       "output":{"shape":"ListDistributionsByRealtimeLogConfigResult"},
       "errors":[
         {"shape":"InvalidArgument"}
+      ]
+    },
+    "ListDistributionsByResponseHeadersPolicyId":{
+      "name":"ListDistributionsByResponseHeadersPolicyId2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/distributionsByResponseHeadersPolicyId/{ResponseHeadersPolicyId}"
+      },
+      "input":{"shape":"ListDistributionsByResponseHeadersPolicyIdRequest"},
+      "output":{"shape":"ListDistributionsByResponseHeadersPolicyIdResult"},
+      "errors":[
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"}
       ]
     },
     "ListDistributionsByWebACLId":{
@@ -1101,6 +1463,31 @@
         {"shape":"InvalidArgument"}
       ]
     },
+    "ListKeyValueStores":{
+      "name":"ListKeyValueStores2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/key-value-store"
+      },
+      "input":{"shape":"ListKeyValueStoresRequest"},
+      "output":{"shape":"ListKeyValueStoresResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidArgument"}
+      ]
+    },
+    "ListOriginAccessControls":{
+      "name":"ListOriginAccessControls2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/origin-access-control"
+      },
+      "input":{"shape":"ListOriginAccessControlsRequest"},
+      "output":{"shape":"ListOriginAccessControlsResult"},
+      "errors":[
+        {"shape":"InvalidArgument"}
+      ]
+    },
     "ListOriginRequestPolicies":{
       "name":"ListOriginRequestPolicies2020_05_31",
       "http":{
@@ -1139,6 +1526,20 @@
         {"shape":"InvalidArgument"},
         {"shape":"AccessDenied"},
         {"shape":"NoSuchRealtimeLogConfig"}
+      ]
+    },
+    "ListResponseHeadersPolicies":{
+      "name":"ListResponseHeadersPolicies2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/response-headers-policy"
+      },
+      "input":{"shape":"ListResponseHeadersPoliciesRequest"},
+      "output":{"shape":"ListResponseHeadersPoliciesResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"InvalidArgument"}
       ]
     },
     "ListStreamingDistributions":{
@@ -1275,6 +1676,24 @@
         {"shape":"InconsistentQuantities"}
       ]
     },
+    "UpdateContinuousDeploymentPolicy":{
+      "name":"UpdateContinuousDeploymentPolicy2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/continuous-deployment-policy/{Id}"
+      },
+      "input":{"shape":"UpdateContinuousDeploymentPolicyRequest"},
+      "output":{"shape":"UpdateContinuousDeploymentPolicyResult"},
+      "errors":[
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"StagingDistributionInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
+      ]
+    },
     "UpdateDistribution":{
       "name":"UpdateDistribution2020_05_31",
       "http":{
@@ -1298,6 +1717,7 @@
         {"shape":"InvalidResponseCode"},
         {"shape":"InvalidArgument"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
         {"shape":"InvalidViewerCertificate"},
@@ -1334,6 +1754,86 @@
         {"shape":"TooManyDistributionsAssociatedToFieldLevelEncryptionConfig"},
         {"shape":"NoSuchCachePolicy"},
         {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
+        {"shape":"TooManyDistributionsAssociatedToOriginAccessControl"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToResponseHeadersPolicy"},
+        {"shape":"NoSuchOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
+        {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
+        {"shape":"TrustedKeyGroupDoesNotExist"},
+        {"shape":"NoSuchRealtimeLogConfig"},
+        {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"ContinuousDeploymentPolicyInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"},
+        {"shape":"StagingDistributionInUse"},
+        {"shape":"IllegalOriginAccessConfiguration"},
+        {"shape":"InvalidDomainNameForOriginAccessControl"}
+      ]
+    },
+    "UpdateDistributionWithStagingConfig":{
+      "name":"UpdateDistributionWithStagingConfig2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/distribution/{Id}/promote-staging-config"
+      },
+      "input":{"shape":"UpdateDistributionWithStagingConfigRequest"},
+      "output":{"shape":"UpdateDistributionWithStagingConfigResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"CNAMEAlreadyExists"},
+        {"shape":"IllegalUpdate"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"MissingBody"},
+        {"shape":"NoSuchDistribution"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"TooManyDistributionCNAMEs"},
+        {"shape":"InvalidDefaultRootObject"},
+        {"shape":"InvalidRelativePath"},
+        {"shape":"InvalidErrorCode"},
+        {"shape":"InvalidResponseCode"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
+        {"shape":"TooManyTrustedSigners"},
+        {"shape":"TrustedSignerDoesNotExist"},
+        {"shape":"InvalidViewerCertificate"},
+        {"shape":"InvalidMinimumProtocolVersion"},
+        {"shape":"InvalidRequiredProtocol"},
+        {"shape":"NoSuchOrigin"},
+        {"shape":"TooManyOrigins"},
+        {"shape":"TooManyOriginGroupsPerDistribution"},
+        {"shape":"TooManyCacheBehaviors"},
+        {"shape":"TooManyCookieNamesInWhiteList"},
+        {"shape":"InvalidForwardCookies"},
+        {"shape":"TooManyHeadersInForwardedValues"},
+        {"shape":"InvalidHeadersForS3Origin"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"TooManyCertificates"},
+        {"shape":"InvalidLocationCode"},
+        {"shape":"InvalidGeoRestrictionParameter"},
+        {"shape":"InvalidTTLOrder"},
+        {"shape":"InvalidWebACLId"},
+        {"shape":"TooManyOriginCustomHeaders"},
+        {"shape":"TooManyQueryStringParameters"},
+        {"shape":"InvalidQueryStringParameters"},
+        {"shape":"TooManyDistributionsWithLambdaAssociations"},
+        {"shape":"TooManyDistributionsWithSingleFunctionARN"},
+        {"shape":"TooManyLambdaFunctionAssociations"},
+        {"shape":"InvalidLambdaFunctionAssociation"},
+        {"shape":"TooManyDistributionsWithFunctionAssociations"},
+        {"shape":"TooManyFunctionAssociations"},
+        {"shape":"InvalidFunctionAssociation"},
+        {"shape":"InvalidOriginReadTimeout"},
+        {"shape":"InvalidOriginKeepaliveTimeout"},
+        {"shape":"NoSuchFieldLevelEncryptionConfig"},
+        {"shape":"IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior"},
+        {"shape":"TooManyDistributionsAssociatedToFieldLevelEncryptionConfig"},
+        {"shape":"NoSuchCachePolicy"},
+        {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
+        {"shape":"TooManyDistributionsAssociatedToOriginAccessControl"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToResponseHeadersPolicy"},
         {"shape":"NoSuchOriginRequestPolicy"},
         {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
         {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
@@ -1426,6 +1926,45 @@
         {"shape":"TooManyPublicKeysInKeyGroup"}
       ]
     },
+    "UpdateKeyValueStore":{
+      "name":"UpdateKeyValueStore2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/key-value-store/{Name}"
+      },
+      "input":{
+        "shape":"UpdateKeyValueStoreRequest",
+        "locationName":"UpdateKeyValueStoreRequest",
+        "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+      },
+      "output":{"shape":"UpdateKeyValueStoreResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidArgument"},
+        {"shape":"EntityNotFound"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"PreconditionFailed"}
+      ],
+      "idempotent":true
+    },
+    "UpdateOriginAccessControl":{
+      "name":"UpdateOriginAccessControl2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/origin-access-control/{Id}/config"
+      },
+      "input":{"shape":"UpdateOriginAccessControlRequest"},
+      "output":{"shape":"UpdateOriginAccessControlResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"IllegalUpdate"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"OriginAccessControlAlreadyExists"},
+        {"shape":"NoSuchOriginAccessControl"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"InvalidArgument"}
+      ]
+    },
     "UpdateOriginRequestPolicy":{
       "name":"UpdateOriginRequestPolicy2020_05_31",
       "http":{
@@ -1484,6 +2023,28 @@
         {"shape":"AccessDenied"}
       ]
     },
+    "UpdateResponseHeadersPolicy":{
+      "name":"UpdateResponseHeadersPolicy2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/response-headers-policy/{Id}"
+      },
+      "input":{"shape":"UpdateResponseHeadersPolicyRequest"},
+      "output":{"shape":"UpdateResponseHeadersPolicyResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"IllegalUpdate"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"ResponseHeadersPolicyAlreadyExists"},
+        {"shape":"TooManyCustomHeadersInResponseHeadersPolicy"},
+        {"shape":"TooLongCSPInResponseHeadersPolicy"},
+        {"shape":"TooManyRemoveHeadersInResponseHeadersPolicy"}
+      ]
+    },
     "UpdateStreamingDistribution":{
       "name":"UpdateStreamingDistribution2020_05_31",
       "http":{
@@ -1503,6 +2064,7 @@
         {"shape":"TooManyStreamingDistributionCNAMEs"},
         {"shape":"InvalidArgument"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
         {"shape":"InconsistentQuantities"}
@@ -1510,6 +2072,34 @@
     }
   },
   "shapes":{
+    "AccessControlAllowHeadersList":{
+      "type":"list",
+      "member":{
+        "shape":"string",
+        "locationName":"Header"
+      }
+    },
+    "AccessControlAllowMethodsList":{
+      "type":"list",
+      "member":{
+        "shape":"ResponseHeadersPolicyAccessControlAllowMethodsValues",
+        "locationName":"Method"
+      }
+    },
+    "AccessControlAllowOriginsList":{
+      "type":"list",
+      "member":{
+        "shape":"string",
+        "locationName":"Origin"
+      }
+    },
+    "AccessControlExposeHeadersList":{
+      "type":"list",
+      "member":{
+        "shape":"string",
+        "locationName":"Header"
+      }
+    },
     "AccessDenied":{
       "type":"structure",
       "members":{
@@ -1647,6 +2237,7 @@
         "RealtimeLogConfigArn":{"shape":"string"},
         "CachePolicyId":{"shape":"string"},
         "OriginRequestPolicyId":{"shape":"string"},
+        "ResponseHeadersPolicyId":{"shape":"string"},
         "ForwardedValues":{
           "shape":"ForwardedValues",
           "deprecated":true
@@ -1830,6 +2421,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "CannotDeleteEntityWhileInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "CertificateSource":{
       "type":"string",
       "enum":[
@@ -1977,6 +2576,100 @@
         "Items":{"shape":"ContentTypeProfileList"}
       }
     },
+    "ContinuousDeploymentPolicy":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "LastModifiedTime",
+        "ContinuousDeploymentPolicyConfig"
+      ],
+      "members":{
+        "Id":{"shape":"string"},
+        "LastModifiedTime":{"shape":"timestamp"},
+        "ContinuousDeploymentPolicyConfig":{"shape":"ContinuousDeploymentPolicyConfig"}
+      }
+    },
+    "ContinuousDeploymentPolicyAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "ContinuousDeploymentPolicyConfig":{
+      "type":"structure",
+      "required":[
+        "StagingDistributionDnsNames",
+        "Enabled"
+      ],
+      "members":{
+        "StagingDistributionDnsNames":{"shape":"StagingDistributionDnsNames"},
+        "Enabled":{"shape":"boolean"},
+        "TrafficConfig":{"shape":"TrafficConfig"}
+      }
+    },
+    "ContinuousDeploymentPolicyInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "ContinuousDeploymentPolicyList":{
+      "type":"structure",
+      "required":[
+        "MaxItems",
+        "Quantity"
+      ],
+      "members":{
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"ContinuousDeploymentPolicySummaryList"}
+      }
+    },
+    "ContinuousDeploymentPolicySummary":{
+      "type":"structure",
+      "required":["ContinuousDeploymentPolicy"],
+      "members":{
+        "ContinuousDeploymentPolicy":{"shape":"ContinuousDeploymentPolicy"}
+      }
+    },
+    "ContinuousDeploymentPolicySummaryList":{
+      "type":"list",
+      "member":{
+        "shape":"ContinuousDeploymentPolicySummary",
+        "locationName":"ContinuousDeploymentPolicySummary"
+      }
+    },
+    "ContinuousDeploymentPolicyType":{
+      "type":"string",
+      "enum":[
+        "SingleWeight",
+        "SingleHeader"
+      ]
+    },
+    "ContinuousDeploymentSingleHeaderConfig":{
+      "type":"structure",
+      "required":[
+        "Header",
+        "Value"
+      ],
+      "members":{
+        "Header":{"shape":"string"},
+        "Value":{"shape":"string"}
+      }
+    },
+    "ContinuousDeploymentSingleWeightConfig":{
+      "type":"structure",
+      "required":["Weight"],
+      "members":{
+        "Weight":{"shape":"float"},
+        "SessionStickinessConfig":{"shape":"SessionStickinessConfig"}
+      }
+    },
     "CookieNameList":{
       "type":"list",
       "member":{
@@ -1999,6 +2692,49 @@
         "Forward":{"shape":"ItemSelection"},
         "WhitelistedNames":{"shape":"CookieNames"}
       }
+    },
+    "CopyDistributionRequest":{
+      "type":"structure",
+      "required":[
+        "PrimaryDistributionId",
+        "CallerReference"
+      ],
+      "members":{
+        "PrimaryDistributionId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"PrimaryDistributionId"
+        },
+        "Staging":{
+          "shape":"boolean",
+          "location":"header",
+          "locationName":"Staging"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        },
+        "CallerReference":{"shape":"string"},
+        "Enabled":{"shape":"boolean"}
+      }
+    },
+    "CopyDistributionResult":{
+      "type":"structure",
+      "members":{
+        "Distribution":{"shape":"Distribution"},
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        },
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"Distribution"
     },
     "CreateCachePolicyRequest":{
       "type":"structure",
@@ -2057,6 +2793,35 @@
         }
       },
       "payload":"CloudFrontOriginAccessIdentity"
+    },
+    "CreateContinuousDeploymentPolicyRequest":{
+      "type":"structure",
+      "required":["ContinuousDeploymentPolicyConfig"],
+      "members":{
+        "ContinuousDeploymentPolicyConfig":{
+          "shape":"ContinuousDeploymentPolicyConfig",
+          "locationName":"ContinuousDeploymentPolicyConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        }
+      },
+      "payload":"ContinuousDeploymentPolicyConfig"
+    },
+    "CreateContinuousDeploymentPolicyResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicy":{"shape":"ContinuousDeploymentPolicy"},
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        },
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicy"
     },
     "CreateDistributionRequest":{
       "type":"structure",
@@ -2265,6 +3030,32 @@
       },
       "payload":"KeyGroup"
     },
+    "CreateKeyValueStoreRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"KeyValueStoreName"},
+        "Comment":{"shape":"KeyValueStoreComment"},
+        "ImportSource":{"shape":"ImportSource"}
+      }
+    },
+    "CreateKeyValueStoreResult":{
+      "type":"structure",
+      "members":{
+        "KeyValueStore":{"shape":"KeyValueStore"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        },
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        }
+      },
+      "payload":"KeyValueStore"
+    },
     "CreateMonitoringSubscriptionRequest":{
       "type":"structure",
       "required":[
@@ -2291,6 +3082,35 @@
         "MonitoringSubscription":{"shape":"MonitoringSubscription"}
       },
       "payload":"MonitoringSubscription"
+    },
+    "CreateOriginAccessControlRequest":{
+      "type":"structure",
+      "required":["OriginAccessControlConfig"],
+      "members":{
+        "OriginAccessControlConfig":{
+          "shape":"OriginAccessControlConfig",
+          "locationName":"OriginAccessControlConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        }
+      },
+      "payload":"OriginAccessControlConfig"
+    },
+    "CreateOriginAccessControlResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControl":{"shape":"OriginAccessControl"},
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        },
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"OriginAccessControl"
     },
     "CreateOriginRequestPolicyRequest":{
       "type":"structure",
@@ -2370,6 +3190,35 @@
       "members":{
         "RealtimeLogConfig":{"shape":"RealtimeLogConfig"}
       }
+    },
+    "CreateResponseHeadersPolicyRequest":{
+      "type":"structure",
+      "required":["ResponseHeadersPolicyConfig"],
+      "members":{
+        "ResponseHeadersPolicyConfig":{
+          "shape":"ResponseHeadersPolicyConfig",
+          "locationName":"ResponseHeadersPolicyConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        }
+      },
+      "payload":"ResponseHeadersPolicyConfig"
+    },
+    "CreateResponseHeadersPolicyResult":{
+      "type":"structure",
+      "members":{
+        "ResponseHeadersPolicy":{"shape":"ResponseHeadersPolicy"},
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        },
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ResponseHeadersPolicy"
     },
     "CreateStreamingDistributionRequest":{
       "type":"structure",
@@ -2498,6 +3347,7 @@
         "RealtimeLogConfigArn":{"shape":"string"},
         "CachePolicyId":{"shape":"string"},
         "OriginRequestPolicyId":{"shape":"string"},
+        "ResponseHeadersPolicyId":{"shape":"string"},
         "ForwardedValues":{
           "shape":"ForwardedValues",
           "deprecated":true
@@ -2533,6 +3383,22 @@
       }
     },
     "DeleteCloudFrontOriginAccessIdentityRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
+    "DeleteContinuousDeploymentPolicyRequest":{
       "type":"structure",
       "required":["Id"],
       "members":{
@@ -2631,6 +3497,25 @@
         }
       }
     },
+    "DeleteKeyValueStoreRequest":{
+      "type":"structure",
+      "required":[
+        "IfMatch",
+        "Name"
+      ],
+      "members":{
+        "Name":{
+          "shape":"KeyValueStoreName",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
     "DeleteMonitoringSubscriptionRequest":{
       "type":"structure",
       "required":["DistributionId"],
@@ -2645,6 +3530,22 @@
     "DeleteMonitoringSubscriptionResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteOriginAccessControlRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
       }
     },
     "DeleteOriginRequestPolicyRequest":{
@@ -2684,6 +3585,22 @@
       "members":{
         "Name":{"shape":"string"},
         "ARN":{"shape":"string"}
+      }
+    },
+    "DeleteResponseHeadersPolicyRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
       }
     },
     "DeleteStreamingDistributionRequest":{
@@ -2729,6 +3646,29 @@
         }
       },
       "payload":"FunctionSummary"
+    },
+    "DescribeKeyValueStoreRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"KeyValueStoreName",
+          "location":"uri",
+          "locationName":"Name"
+        }
+      }
+    },
+    "DescribeKeyValueStoreResult":{
+      "type":"structure",
+      "members":{
+        "KeyValueStore":{"shape":"KeyValueStore"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"KeyValueStore"
     },
     "Distribution":{
       "type":"structure",
@@ -2788,7 +3728,9 @@
         "Restrictions":{"shape":"Restrictions"},
         "WebACLId":{"shape":"string"},
         "HttpVersion":{"shape":"HttpVersion"},
-        "IsIPV6Enabled":{"shape":"boolean"}
+        "IsIPV6Enabled":{"shape":"boolean"},
+        "ContinuousDeploymentPolicyId":{"shape":"string"},
+        "Staging":{"shape":"boolean"}
       }
     },
     "DistributionConfigWithTags":{
@@ -2871,7 +3813,8 @@
         "Restrictions",
         "WebACLId",
         "HttpVersion",
-        "IsIPV6Enabled"
+        "IsIPV6Enabled",
+        "Staging"
       ],
       "members":{
         "Id":{"shape":"string"},
@@ -2893,7 +3836,8 @@
         "WebACLId":{"shape":"string"},
         "HttpVersion":{"shape":"HttpVersion"},
         "IsIPV6Enabled":{"shape":"boolean"},
-        "AliasICPRecordals":{"shape":"AliasICPRecordals"}
+        "AliasICPRecordals":{"shape":"AliasICPRecordals"},
+        "Staging":{"shape":"boolean"}
       }
     },
     "DistributionSummaryList":{
@@ -2942,6 +3886,38 @@
     "EndPointList":{
       "type":"list",
       "member":{"shape":"EndPoint"}
+    },
+    "EntityAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "EntityLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "EntityNotFound":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "EntitySizeLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":413},
+      "exception":true
     },
     "EventType":{
       "type":"string",
@@ -3151,6 +4127,13 @@
         "QueryStringCacheKeys":{"shape":"QueryStringCacheKeys"}
       }
     },
+    "FrameOptionsList":{
+      "type":"string",
+      "enum":[
+        "DENY",
+        "SAMEORIGIN"
+      ]
+    },
     "FunctionARN":{
       "type":"string",
       "max":108,
@@ -3204,7 +4187,8 @@
       ],
       "members":{
         "Comment":{"shape":"string"},
-        "Runtime":{"shape":"FunctionRuntime"}
+        "Runtime":{"shape":"FunctionRuntime"},
+        "KeyValueStoreAssociations":{"shape":"KeyValueStoreAssociations"}
       }
     },
     "FunctionEventObject":{
@@ -3214,7 +4198,8 @@
     },
     "FunctionExecutionLogList":{
       "type":"list",
-      "member":{"shape":"string"}
+      "member":{"shape":"string"},
+      "sensitive":true
     },
     "FunctionInUse":{
       "type":"structure",
@@ -3258,7 +4243,10 @@
     },
     "FunctionRuntime":{
       "type":"string",
-      "enum":["cloudfront-js-1.0"]
+      "enum":[
+        "cloudfront-js-1.0",
+        "cloudfront-js-2.0"
+      ]
     },
     "FunctionSizeLimitExceeded":{
       "type":"structure",
@@ -3407,6 +4395,52 @@
         }
       },
       "payload":"CloudFrontOriginAccessIdentity"
+    },
+    "GetContinuousDeploymentPolicyConfigRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetContinuousDeploymentPolicyConfigResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicyConfig":{"shape":"ContinuousDeploymentPolicyConfig"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicyConfig"
+    },
+    "GetContinuousDeploymentPolicyRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetContinuousDeploymentPolicyResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicy":{"shape":"ContinuousDeploymentPolicy"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicy"
     },
     "GetDistributionConfigRequest":{
       "type":"structure",
@@ -3669,6 +4703,52 @@
       },
       "payload":"MonitoringSubscription"
     },
+    "GetOriginAccessControlConfigRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetOriginAccessControlConfigResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControlConfig":{"shape":"OriginAccessControlConfig"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"OriginAccessControlConfig"
+    },
+    "GetOriginAccessControlRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetOriginAccessControlResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControl":{"shape":"OriginAccessControl"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"OriginAccessControl"
+    },
     "GetOriginRequestPolicyConfigRequest":{
       "type":"structure",
       "required":["Id"],
@@ -3774,6 +4854,52 @@
         "RealtimeLogConfig":{"shape":"RealtimeLogConfig"}
       }
     },
+    "GetResponseHeadersPolicyConfigRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetResponseHeadersPolicyConfigResult":{
+      "type":"structure",
+      "members":{
+        "ResponseHeadersPolicyConfig":{"shape":"ResponseHeadersPolicyConfig"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ResponseHeadersPolicyConfig"
+    },
+    "GetResponseHeadersPolicyRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetResponseHeadersPolicyResult":{
+      "type":"structure",
+      "members":{
+        "ResponseHeadersPolicy":{"shape":"ResponseHeadersPolicy"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ResponseHeadersPolicy"
+    },
     "GetStreamingDistributionConfigRequest":{
       "type":"structure",
       "required":["Id"],
@@ -3839,7 +4965,9 @@
       "type":"string",
       "enum":[
         "http1.1",
-        "http2"
+        "http2",
+        "http3",
+        "http2and3"
       ]
     },
     "ICPRecordalStatus":{
@@ -3866,6 +4994,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "IllegalOriginAccessConfiguration":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "IllegalUpdate":{
       "type":"structure",
       "members":{
@@ -3873,6 +5009,21 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ImportSource":{
+      "type":"structure",
+      "required":[
+        "SourceType",
+        "SourceARN"
+      ],
+      "members":{
+        "SourceType":{"shape":"ImportSourceType"},
+        "SourceARN":{"shape":"string"}
+      }
+    },
+    "ImportSourceType":{
+      "type":"string",
+      "enum":["S3"]
     },
     "InconsistentQuantities":{
       "type":"structure",
@@ -3891,6 +5042,14 @@
       "exception":true
     },
     "InvalidDefaultRootObject":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidDomainNameForOriginAccessControl":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -3971,6 +5130,14 @@
       "exception":true
     },
     "InvalidOrigin":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidOriginAccessControl":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -4234,6 +5401,81 @@
         "Items":{"shape":"KeyPairIdList"}
       }
     },
+    "KeyValueStore":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Id",
+        "Comment",
+        "ARN",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "Name":{"shape":"string"},
+        "Id":{"shape":"string"},
+        "Comment":{"shape":"string"},
+        "ARN":{"shape":"string"},
+        "Status":{"shape":"string"},
+        "LastModifiedTime":{"shape":"timestamp"}
+      }
+    },
+    "KeyValueStoreARN":{
+      "type":"string",
+      "max":85,
+      "pattern":"arn:aws:cloudfront::[0-9]{12}:key-value-store\\/[0-9a-fA-F-]{36}$"
+    },
+    "KeyValueStoreAssociation":{
+      "type":"structure",
+      "required":["KeyValueStoreARN"],
+      "members":{
+        "KeyValueStoreARN":{"shape":"KeyValueStoreARN"}
+      }
+    },
+    "KeyValueStoreAssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"KeyValueStoreAssociation",
+        "locationName":"KeyValueStoreAssociation"
+      }
+    },
+    "KeyValueStoreAssociations":{
+      "type":"structure",
+      "required":["Quantity"],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"KeyValueStoreAssociationList"}
+      }
+    },
+    "KeyValueStoreComment":{
+      "type":"string",
+      "max":128
+    },
+    "KeyValueStoreList":{
+      "type":"structure",
+      "required":[
+        "MaxItems",
+        "Quantity"
+      ],
+      "members":{
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"KeyValueStoreSummaryList"}
+      }
+    },
+    "KeyValueStoreName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-_]{1,64}$"
+    },
+    "KeyValueStoreSummaryList":{
+      "type":"list",
+      "member":{
+        "shape":"KeyValueStore",
+        "locationName":"KeyValueStore"
+      }
+    },
     "KinesisStreamConfig":{
       "type":"structure",
       "required":[
@@ -4358,6 +5600,28 @@
       },
       "payload":"ConflictingAliasesList"
     },
+    "ListContinuousDeploymentPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListContinuousDeploymentPoliciesResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicyList":{"shape":"ContinuousDeploymentPolicyList"}
+      },
+      "payload":"ContinuousDeploymentPolicyList"
+    },
     "ListDistributionsByCachePolicyIdRequest":{
       "type":"structure",
       "required":["CachePolicyId"],
@@ -4457,6 +5721,34 @@
         "DistributionList":{"shape":"DistributionList"}
       },
       "payload":"DistributionList"
+    },
+    "ListDistributionsByResponseHeadersPolicyIdRequest":{
+      "type":"structure",
+      "required":["ResponseHeadersPolicyId"],
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        },
+        "ResponseHeadersPolicyId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"ResponseHeadersPolicyId"
+        }
+      }
+    },
+    "ListDistributionsByResponseHeadersPolicyIdResult":{
+      "type":"structure",
+      "members":{
+        "DistributionIdList":{"shape":"DistributionIdList"}
+      },
+      "payload":"DistributionIdList"
     },
     "ListDistributionsByWebACLIdRequest":{
       "type":"structure",
@@ -4629,6 +5921,55 @@
       },
       "payload":"KeyGroupList"
     },
+    "ListKeyValueStoresRequest":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        },
+        "Status":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Status"
+        }
+      }
+    },
+    "ListKeyValueStoresResult":{
+      "type":"structure",
+      "members":{
+        "KeyValueStoreList":{"shape":"KeyValueStoreList"}
+      },
+      "payload":"KeyValueStoreList"
+    },
+    "ListOriginAccessControlsRequest":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListOriginAccessControlsResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControlList":{"shape":"OriginAccessControlList"}
+      },
+      "payload":"OriginAccessControlList"
+    },
     "ListOriginRequestPoliciesRequest":{
       "type":"structure",
       "members":{
@@ -4699,6 +6040,33 @@
         "RealtimeLogConfigs":{"shape":"RealtimeLogConfigs"}
       },
       "payload":"RealtimeLogConfigs"
+    },
+    "ListResponseHeadersPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "Type":{
+          "shape":"ResponseHeadersPolicyType",
+          "location":"querystring",
+          "locationName":"Type"
+        },
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListResponseHeadersPoliciesResult":{
+      "type":"structure",
+      "members":{
+        "ResponseHeadersPolicyList":{"shape":"ResponseHeadersPolicyList"}
+      },
+      "payload":"ResponseHeadersPolicyList"
     },
     "ListStreamingDistributionsRequest":{
       "type":"structure",
@@ -4808,6 +6176,14 @@
         "RealtimeMetricsSubscriptionConfig":{"shape":"RealtimeMetricsSubscriptionConfig"}
       }
     },
+    "MonitoringSubscriptionAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "NoSuchCachePolicy":{
       "type":"structure",
       "members":{
@@ -4817,6 +6193,14 @@
       "exception":true
     },
     "NoSuchCloudFrontOriginAccessIdentity":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "NoSuchContinuousDeploymentPolicy":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -4864,7 +6248,23 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NoSuchMonitoringSubscription":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "NoSuchOrigin":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "NoSuchOriginAccessControl":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -4904,6 +6304,14 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NoSuchResponseHeadersPolicy":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "NoSuchStreamingDistribution":{
       "type":"structure",
       "members":{
@@ -4927,7 +6335,110 @@
         "CustomOriginConfig":{"shape":"CustomOriginConfig"},
         "ConnectionAttempts":{"shape":"integer"},
         "ConnectionTimeout":{"shape":"integer"},
-        "OriginShield":{"shape":"OriginShield"}
+        "OriginShield":{"shape":"OriginShield"},
+        "OriginAccessControlId":{"shape":"string"}
+      }
+    },
+    "OriginAccessControl":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"string"},
+        "OriginAccessControlConfig":{"shape":"OriginAccessControlConfig"}
+      }
+    },
+    "OriginAccessControlAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "OriginAccessControlConfig":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "SigningProtocol",
+        "SigningBehavior",
+        "OriginAccessControlOriginType"
+      ],
+      "members":{
+        "Name":{"shape":"string"},
+        "Description":{"shape":"string"},
+        "SigningProtocol":{"shape":"OriginAccessControlSigningProtocols"},
+        "SigningBehavior":{"shape":"OriginAccessControlSigningBehaviors"},
+        "OriginAccessControlOriginType":{"shape":"OriginAccessControlOriginTypes"}
+      }
+    },
+    "OriginAccessControlInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "OriginAccessControlList":{
+      "type":"structure",
+      "required":[
+        "Marker",
+        "MaxItems",
+        "IsTruncated",
+        "Quantity"
+      ],
+      "members":{
+        "Marker":{"shape":"string"},
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "IsTruncated":{"shape":"boolean"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"OriginAccessControlSummaryList"}
+      }
+    },
+    "OriginAccessControlOriginTypes":{
+      "type":"string",
+      "enum":[
+        "s3",
+        "mediastore"
+      ]
+    },
+    "OriginAccessControlSigningBehaviors":{
+      "type":"string",
+      "enum":[
+        "never",
+        "always",
+        "no-override"
+      ]
+    },
+    "OriginAccessControlSigningProtocols":{
+      "type":"string",
+      "enum":["sigv4"]
+    },
+    "OriginAccessControlSummary":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Description",
+        "Name",
+        "SigningProtocol",
+        "SigningBehavior",
+        "OriginAccessControlOriginType"
+      ],
+      "members":{
+        "Id":{"shape":"string"},
+        "Description":{"shape":"string"},
+        "Name":{"shape":"string"},
+        "SigningProtocol":{"shape":"OriginAccessControlSigningProtocols"},
+        "SigningBehavior":{"shape":"OriginAccessControlSigningBehaviors"},
+        "OriginAccessControlOriginType":{"shape":"OriginAccessControlOriginTypes"}
+      }
+    },
+    "OriginAccessControlSummaryList":{
+      "type":"list",
+      "member":{
+        "shape":"OriginAccessControlSummary",
+        "locationName":"OriginAccessControlSummary"
       }
     },
     "OriginCustomHeader":{
@@ -4938,7 +6449,7 @@
       ],
       "members":{
         "HeaderName":{"shape":"string"},
-        "HeaderValue":{"shape":"string"}
+        "HeaderValue":{"shape":"sensitiveStringType"}
       }
     },
     "OriginCustomHeadersList":{
@@ -5068,7 +6579,8 @@
       "enum":[
         "none",
         "whitelist",
-        "all"
+        "all",
+        "allExcept"
       ]
     },
     "OriginRequestPolicyCookiesConfig":{
@@ -5085,7 +6597,8 @@
         "none",
         "whitelist",
         "allViewer",
-        "allViewerAndWhitelistCloudFront"
+        "allViewerAndWhitelistCloudFront",
+        "allExcept"
       ]
     },
     "OriginRequestPolicyHeadersConfig":{
@@ -5122,7 +6635,8 @@
       "enum":[
         "none",
         "whitelist",
-        "all"
+        "all",
+        "allExcept"
       ]
     },
     "OriginRequestPolicyQueryStringsConfig":{
@@ -5499,6 +7013,19 @@
         "Disabled"
       ]
     },
+    "ReferrerPolicyList":{
+      "type":"string",
+      "enum":[
+        "no-referrer",
+        "no-referrer-when-downgrade",
+        "origin",
+        "origin-when-cross-origin",
+        "same-origin",
+        "strict-origin",
+        "strict-origin-when-cross-origin",
+        "unsafe-url"
+      ]
+    },
     "ResourceARN":{
       "type":"string",
       "pattern":"arn:aws(-cn)?:cloudfront::[0-9]+:.*"
@@ -5510,6 +7037,294 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "ResponseHeadersPolicy":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "LastModifiedTime",
+        "ResponseHeadersPolicyConfig"
+      ],
+      "members":{
+        "Id":{"shape":"string"},
+        "LastModifiedTime":{"shape":"timestamp"},
+        "ResponseHeadersPolicyConfig":{"shape":"ResponseHeadersPolicyConfig"}
+      }
+    },
+    "ResponseHeadersPolicyAccessControlAllowHeaders":{
+      "type":"structure",
+      "required":[
+        "Quantity",
+        "Items"
+      ],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"AccessControlAllowHeadersList"}
+      }
+    },
+    "ResponseHeadersPolicyAccessControlAllowMethods":{
+      "type":"structure",
+      "required":[
+        "Quantity",
+        "Items"
+      ],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"AccessControlAllowMethodsList"}
+      }
+    },
+    "ResponseHeadersPolicyAccessControlAllowMethodsValues":{
+      "type":"string",
+      "enum":[
+        "GET",
+        "POST",
+        "OPTIONS",
+        "PUT",
+        "DELETE",
+        "PATCH",
+        "HEAD",
+        "ALL"
+      ]
+    },
+    "ResponseHeadersPolicyAccessControlAllowOrigins":{
+      "type":"structure",
+      "required":[
+        "Quantity",
+        "Items"
+      ],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"AccessControlAllowOriginsList"}
+      }
+    },
+    "ResponseHeadersPolicyAccessControlExposeHeaders":{
+      "type":"structure",
+      "required":["Quantity"],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"AccessControlExposeHeadersList"}
+      }
+    },
+    "ResponseHeadersPolicyAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "ResponseHeadersPolicyConfig":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Comment":{"shape":"string"},
+        "Name":{"shape":"string"},
+        "CorsConfig":{"shape":"ResponseHeadersPolicyCorsConfig"},
+        "SecurityHeadersConfig":{"shape":"ResponseHeadersPolicySecurityHeadersConfig"},
+        "ServerTimingHeadersConfig":{"shape":"ResponseHeadersPolicyServerTimingHeadersConfig"},
+        "CustomHeadersConfig":{"shape":"ResponseHeadersPolicyCustomHeadersConfig"},
+        "RemoveHeadersConfig":{"shape":"ResponseHeadersPolicyRemoveHeadersConfig"}
+      }
+    },
+    "ResponseHeadersPolicyContentSecurityPolicy":{
+      "type":"structure",
+      "required":[
+        "Override",
+        "ContentSecurityPolicy"
+      ],
+      "members":{
+        "Override":{"shape":"boolean"},
+        "ContentSecurityPolicy":{"shape":"string"}
+      }
+    },
+    "ResponseHeadersPolicyContentTypeOptions":{
+      "type":"structure",
+      "required":["Override"],
+      "members":{
+        "Override":{"shape":"boolean"}
+      }
+    },
+    "ResponseHeadersPolicyCorsConfig":{
+      "type":"structure",
+      "required":[
+        "AccessControlAllowOrigins",
+        "AccessControlAllowHeaders",
+        "AccessControlAllowMethods",
+        "AccessControlAllowCredentials",
+        "OriginOverride"
+      ],
+      "members":{
+        "AccessControlAllowOrigins":{"shape":"ResponseHeadersPolicyAccessControlAllowOrigins"},
+        "AccessControlAllowHeaders":{"shape":"ResponseHeadersPolicyAccessControlAllowHeaders"},
+        "AccessControlAllowMethods":{"shape":"ResponseHeadersPolicyAccessControlAllowMethods"},
+        "AccessControlAllowCredentials":{"shape":"boolean"},
+        "AccessControlExposeHeaders":{"shape":"ResponseHeadersPolicyAccessControlExposeHeaders"},
+        "AccessControlMaxAgeSec":{"shape":"integer"},
+        "OriginOverride":{"shape":"boolean"}
+      }
+    },
+    "ResponseHeadersPolicyCustomHeader":{
+      "type":"structure",
+      "required":[
+        "Header",
+        "Value",
+        "Override"
+      ],
+      "members":{
+        "Header":{"shape":"string"},
+        "Value":{"shape":"string"},
+        "Override":{"shape":"boolean"}
+      }
+    },
+    "ResponseHeadersPolicyCustomHeaderList":{
+      "type":"list",
+      "member":{
+        "shape":"ResponseHeadersPolicyCustomHeader",
+        "locationName":"ResponseHeadersPolicyCustomHeader"
+      }
+    },
+    "ResponseHeadersPolicyCustomHeadersConfig":{
+      "type":"structure",
+      "required":["Quantity"],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"ResponseHeadersPolicyCustomHeaderList"}
+      }
+    },
+    "ResponseHeadersPolicyFrameOptions":{
+      "type":"structure",
+      "required":[
+        "Override",
+        "FrameOption"
+      ],
+      "members":{
+        "Override":{"shape":"boolean"},
+        "FrameOption":{"shape":"FrameOptionsList"}
+      }
+    },
+    "ResponseHeadersPolicyInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "ResponseHeadersPolicyList":{
+      "type":"structure",
+      "required":[
+        "MaxItems",
+        "Quantity"
+      ],
+      "members":{
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"ResponseHeadersPolicySummaryList"}
+      }
+    },
+    "ResponseHeadersPolicyReferrerPolicy":{
+      "type":"structure",
+      "required":[
+        "Override",
+        "ReferrerPolicy"
+      ],
+      "members":{
+        "Override":{"shape":"boolean"},
+        "ReferrerPolicy":{"shape":"ReferrerPolicyList"}
+      }
+    },
+    "ResponseHeadersPolicyRemoveHeader":{
+      "type":"structure",
+      "required":["Header"],
+      "members":{
+        "Header":{"shape":"string"}
+      }
+    },
+    "ResponseHeadersPolicyRemoveHeaderList":{
+      "type":"list",
+      "member":{
+        "shape":"ResponseHeadersPolicyRemoveHeader",
+        "locationName":"ResponseHeadersPolicyRemoveHeader"
+      }
+    },
+    "ResponseHeadersPolicyRemoveHeadersConfig":{
+      "type":"structure",
+      "required":["Quantity"],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"ResponseHeadersPolicyRemoveHeaderList"}
+      }
+    },
+    "ResponseHeadersPolicySecurityHeadersConfig":{
+      "type":"structure",
+      "members":{
+        "XSSProtection":{"shape":"ResponseHeadersPolicyXSSProtection"},
+        "FrameOptions":{"shape":"ResponseHeadersPolicyFrameOptions"},
+        "ReferrerPolicy":{"shape":"ResponseHeadersPolicyReferrerPolicy"},
+        "ContentSecurityPolicy":{"shape":"ResponseHeadersPolicyContentSecurityPolicy"},
+        "ContentTypeOptions":{"shape":"ResponseHeadersPolicyContentTypeOptions"},
+        "StrictTransportSecurity":{"shape":"ResponseHeadersPolicyStrictTransportSecurity"}
+      }
+    },
+    "ResponseHeadersPolicyServerTimingHeadersConfig":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"boolean"},
+        "SamplingRate":{"shape":"SamplingRate"}
+      }
+    },
+    "ResponseHeadersPolicyStrictTransportSecurity":{
+      "type":"structure",
+      "required":[
+        "Override",
+        "AccessControlMaxAgeSec"
+      ],
+      "members":{
+        "Override":{"shape":"boolean"},
+        "IncludeSubdomains":{"shape":"boolean"},
+        "Preload":{"shape":"boolean"},
+        "AccessControlMaxAgeSec":{"shape":"integer"}
+      }
+    },
+    "ResponseHeadersPolicySummary":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "ResponseHeadersPolicy"
+      ],
+      "members":{
+        "Type":{"shape":"ResponseHeadersPolicyType"},
+        "ResponseHeadersPolicy":{"shape":"ResponseHeadersPolicy"}
+      }
+    },
+    "ResponseHeadersPolicySummaryList":{
+      "type":"list",
+      "member":{
+        "shape":"ResponseHeadersPolicySummary",
+        "locationName":"ResponseHeadersPolicySummary"
+      }
+    },
+    "ResponseHeadersPolicyType":{
+      "type":"string",
+      "enum":[
+        "managed",
+        "custom"
+      ]
+    },
+    "ResponseHeadersPolicyXSSProtection":{
+      "type":"structure",
+      "required":[
+        "Override",
+        "Protection"
+      ],
+      "members":{
+        "Override":{"shape":"boolean"},
+        "Protection":{"shape":"boolean"},
+        "ModeBlock":{"shape":"boolean"},
+        "ReportUri":{"shape":"string"}
+      }
     },
     "Restrictions":{
       "type":"structure",
@@ -5544,6 +7359,22 @@
         "static-ip"
       ]
     },
+    "SamplingRate":{
+      "type":"double",
+      "max":100.0,
+      "min":0.0
+    },
+    "SessionStickinessConfig":{
+      "type":"structure",
+      "required":[
+        "IdleTTL",
+        "MaximumTTL"
+      ],
+      "members":{
+        "IdleTTL":{"shape":"integer"},
+        "MaximumTTL":{"shape":"integer"}
+      }
+    },
     "Signer":{
       "type":"structure",
       "members":{
@@ -5573,6 +7404,29 @@
         "shape":"SslProtocol",
         "locationName":"SslProtocol"
       }
+    },
+    "StagingDistributionDnsNameList":{
+      "type":"list",
+      "member":{
+        "shape":"string",
+        "locationName":"DnsName"
+      }
+    },
+    "StagingDistributionDnsNames":{
+      "type":"structure",
+      "required":["Quantity"],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"StagingDistributionDnsNameList"}
+      }
+    },
+    "StagingDistributionInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "StatusCodeList":{
       "type":"list",
@@ -5835,9 +7689,17 @@
         "FunctionSummary":{"shape":"FunctionSummary"},
         "ComputeUtilization":{"shape":"string"},
         "FunctionExecutionLogs":{"shape":"FunctionExecutionLogList"},
-        "FunctionErrorMessage":{"shape":"string"},
-        "FunctionOutput":{"shape":"string"}
+        "FunctionErrorMessage":{"shape":"sensitiveStringType"},
+        "FunctionOutput":{"shape":"sensitiveStringType"}
       }
+    },
+    "TooLongCSPInResponseHeadersPolicy":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "TooManyCacheBehaviors":{
       "type":"structure",
@@ -5871,6 +7733,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TooManyContinuousDeploymentPolicies":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TooManyCookieNamesInWhiteList":{
       "type":"structure",
       "members":{
@@ -5888,6 +7758,14 @@
       "exception":true
     },
     "TooManyCookiesInOriginRequestPolicy":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyCustomHeadersInResponseHeadersPolicy":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -5935,7 +7813,23 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TooManyDistributionsAssociatedToOriginAccessControl":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TooManyDistributionsAssociatedToOriginRequestPolicy":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyDistributionsAssociatedToResponseHeadersPolicy":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -6087,6 +7981,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TooManyOriginAccessControls":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TooManyOriginCustomHeaders":{
       "type":"structure",
       "members":{
@@ -6167,6 +8069,22 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TooManyRemoveHeadersInResponseHeadersPolicy":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyResponseHeadersPolicies":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TooManyStreamingDistributionCNAMEs":{
       "type":"structure",
       "members":{
@@ -6190,6 +8108,15 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "TrafficConfig":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "SingleWeightConfig":{"shape":"ContinuousDeploymentSingleWeightConfig"},
+        "SingleHeaderConfig":{"shape":"ContinuousDeploymentSingleHeaderConfig"},
+        "Type":{"shape":"ContinuousDeploymentPolicyType"}
+      }
     },
     "TrustedKeyGroupDoesNotExist":{
       "type":"structure",
@@ -6340,6 +8267,43 @@
       },
       "payload":"CloudFrontOriginAccessIdentity"
     },
+    "UpdateContinuousDeploymentPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ContinuousDeploymentPolicyConfig",
+        "Id"
+      ],
+      "members":{
+        "ContinuousDeploymentPolicyConfig":{
+          "shape":"ContinuousDeploymentPolicyConfig",
+          "locationName":"ContinuousDeploymentPolicyConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        },
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicyConfig"
+    },
+    "UpdateContinuousDeploymentPolicyResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicy":{"shape":"ContinuousDeploymentPolicy"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicy"
+    },
     "UpdateDistributionRequest":{
       "type":"structure",
       "required":[
@@ -6366,6 +8330,39 @@
       "payload":"DistributionConfig"
     },
     "UpdateDistributionResult":{
+      "type":"structure",
+      "members":{
+        "Distribution":{"shape":"Distribution"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"Distribution"
+    },
+    "UpdateDistributionWithStagingConfigRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "StagingDistributionId":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"StagingDistributionId"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
+    "UpdateDistributionWithStagingConfigResult":{
       "type":"structure",
       "members":{
         "Distribution":{"shape":"Distribution"},
@@ -6523,6 +8520,76 @@
       },
       "payload":"KeyGroup"
     },
+    "UpdateKeyValueStoreRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Comment",
+        "IfMatch"
+      ],
+      "members":{
+        "Name":{
+          "shape":"KeyValueStoreName",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "Comment":{"shape":"KeyValueStoreComment"},
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
+    "UpdateKeyValueStoreResult":{
+      "type":"structure",
+      "members":{
+        "KeyValueStore":{"shape":"KeyValueStore"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"KeyValueStore"
+    },
+    "UpdateOriginAccessControlRequest":{
+      "type":"structure",
+      "required":[
+        "OriginAccessControlConfig",
+        "Id"
+      ],
+      "members":{
+        "OriginAccessControlConfig":{
+          "shape":"OriginAccessControlConfig",
+          "locationName":"OriginAccessControlConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        },
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      },
+      "payload":"OriginAccessControlConfig"
+    },
+    "UpdateOriginAccessControlResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControl":{"shape":"OriginAccessControl"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"OriginAccessControl"
+    },
     "UpdateOriginRequestPolicyRequest":{
       "type":"structure",
       "required":[
@@ -6613,6 +8680,43 @@
         "RealtimeLogConfig":{"shape":"RealtimeLogConfig"}
       }
     },
+    "UpdateResponseHeadersPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ResponseHeadersPolicyConfig",
+        "Id"
+      ],
+      "members":{
+        "ResponseHeadersPolicyConfig":{
+          "shape":"ResponseHeadersPolicyConfig",
+          "locationName":"ResponseHeadersPolicyConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        },
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      },
+      "payload":"ResponseHeadersPolicyConfig"
+    },
+    "UpdateResponseHeadersPolicyResult":{
+      "type":"structure",
+      "members":{
+        "ResponseHeadersPolicy":{"shape":"ResponseHeadersPolicy"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ResponseHeadersPolicy"
+    },
     "UpdateStreamingDistributionRequest":{
       "type":"structure",
       "required":[
@@ -6685,12 +8789,17 @@
       "type":"string",
       "max":25
     },
+    "float":{"type":"float"},
     "integer":{"type":"integer"},
     "listConflictingAliasesMaxItemsInteger":{
       "type":"integer",
       "max":100
     },
     "long":{"type":"long"},
+    "sensitiveStringType":{
+      "type":"string",
+      "sensitive":true
+    },
     "string":{"type":"string"},
     "timestamp":{"type":"timestamp"}
   }

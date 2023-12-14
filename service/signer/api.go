@@ -29,14 +29,13 @@ const opAddProfilePermission = "AddProfilePermission"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddProfilePermissionRequest method.
+//	req, resp := client.AddProfilePermissionRequest(params)
 //
-//    // Example sending a request using the AddProfilePermissionRequest method.
-//    req, resp := client.AddProfilePermissionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/AddProfilePermission
 func (c *Signer) AddProfilePermissionRequest(input *AddProfilePermissionInput) (req *request.Request, output *AddProfilePermissionOutput) {
@@ -67,28 +66,29 @@ func (c *Signer) AddProfilePermissionRequest(input *AddProfilePermissionInput) (
 // API operation AddProfilePermission for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   You signing certificate could not be validated.
 //
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
+//   - ValidationException
+//     You signing certificate could not be validated.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   * ServiceLimitExceededException
-//   The client is making a request that exceeds service limits.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * ConflictException
-//   The resource encountered a conflicting state.
+//   - ServiceLimitExceededException
+//     The client is making a request that exceeds service limits.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - ConflictException
+//     The resource encountered a conflicting state.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/AddProfilePermission
 func (c *Signer) AddProfilePermission(input *AddProfilePermissionInput) (*AddProfilePermissionOutput, error) {
@@ -128,14 +128,13 @@ const opCancelSigningProfile = "CancelSigningProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelSigningProfileRequest method.
+//	req, resp := client.CancelSigningProfileRequest(params)
 //
-//    // Example sending a request using the CancelSigningProfileRequest method.
-//    req, resp := client.CancelSigningProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/CancelSigningProfile
 func (c *Signer) CancelSigningProfileRequest(input *CancelSigningProfileInput) (req *request.Request, output *CancelSigningProfileOutput) {
@@ -169,19 +168,20 @@ func (c *Signer) CancelSigningProfileRequest(input *CancelSigningProfileInput) (
 // API operation CancelSigningProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/CancelSigningProfile
 func (c *Signer) CancelSigningProfile(input *CancelSigningProfileInput) (*CancelSigningProfileOutput, error) {
@@ -221,14 +221,13 @@ const opDescribeSigningJob = "DescribeSigningJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSigningJobRequest method.
+//	req, resp := client.DescribeSigningJobRequest(params)
 //
-//    // Example sending a request using the DescribeSigningJobRequest method.
-//    req, resp := client.DescribeSigningJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/DescribeSigningJob
 func (c *Signer) DescribeSigningJobRequest(input *DescribeSigningJobInput) (req *request.Request, output *DescribeSigningJobOutput) {
@@ -260,19 +259,20 @@ func (c *Signer) DescribeSigningJobRequest(input *DescribeSigningJobInput) (req 
 // API operation DescribeSigningJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/DescribeSigningJob
 func (c *Signer) DescribeSigningJob(input *DescribeSigningJobInput) (*DescribeSigningJobOutput, error) {
@@ -296,6 +296,99 @@ func (c *Signer) DescribeSigningJobWithContext(ctx aws.Context, input *DescribeS
 	return out, req.Send()
 }
 
+const opGetRevocationStatus = "GetRevocationStatus"
+
+// GetRevocationStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetRevocationStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRevocationStatus for more information on using the GetRevocationStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetRevocationStatusRequest method.
+//	req, resp := client.GetRevocationStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetRevocationStatus
+func (c *Signer) GetRevocationStatusRequest(input *GetRevocationStatusInput) (req *request.Request, output *GetRevocationStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetRevocationStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/revocations",
+	}
+
+	if input == nil {
+		input = &GetRevocationStatusInput{}
+	}
+
+	output = &GetRevocationStatusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("verification.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetRevocationStatus API operation for AWS Signer.
+//
+// Retrieves the revocation status of one or more of the signing profile, signing
+// job, and signing certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Signer's
+// API operation GetRevocationStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     You signing certificate could not be validated.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
+//
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetRevocationStatus
+func (c *Signer) GetRevocationStatus(input *GetRevocationStatusInput) (*GetRevocationStatusOutput, error) {
+	req, out := c.GetRevocationStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetRevocationStatusWithContext is the same as GetRevocationStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRevocationStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Signer) GetRevocationStatusWithContext(ctx aws.Context, input *GetRevocationStatusInput, opts ...request.Option) (*GetRevocationStatusOutput, error) {
+	req, out := c.GetRevocationStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetSigningPlatform = "GetSigningPlatform"
 
 // GetSigningPlatformRequest generates a "aws/request.Request" representing the
@@ -312,14 +405,13 @@ const opGetSigningPlatform = "GetSigningPlatform"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSigningPlatformRequest method.
+//	req, resp := client.GetSigningPlatformRequest(params)
 //
-//    // Example sending a request using the GetSigningPlatformRequest method.
-//    req, resp := client.GetSigningPlatformRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetSigningPlatform
 func (c *Signer) GetSigningPlatformRequest(input *GetSigningPlatformInput) (req *request.Request, output *GetSigningPlatformOutput) {
@@ -350,19 +442,20 @@ func (c *Signer) GetSigningPlatformRequest(input *GetSigningPlatformInput) (req 
 // API operation GetSigningPlatform for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetSigningPlatform
 func (c *Signer) GetSigningPlatform(input *GetSigningPlatformInput) (*GetSigningPlatformOutput, error) {
@@ -402,14 +495,13 @@ const opGetSigningProfile = "GetSigningProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSigningProfileRequest method.
+//	req, resp := client.GetSigningProfileRequest(params)
 //
-//    // Example sending a request using the GetSigningProfileRequest method.
-//    req, resp := client.GetSigningProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetSigningProfile
 func (c *Signer) GetSigningProfileRequest(input *GetSigningProfileInput) (req *request.Request, output *GetSigningProfileOutput) {
@@ -440,19 +532,20 @@ func (c *Signer) GetSigningProfileRequest(input *GetSigningProfileInput) (req *r
 // API operation GetSigningProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetSigningProfile
 func (c *Signer) GetSigningProfile(input *GetSigningProfileInput) (*GetSigningProfileOutput, error) {
@@ -492,14 +585,13 @@ const opListProfilePermissions = "ListProfilePermissions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProfilePermissionsRequest method.
+//	req, resp := client.ListProfilePermissionsRequest(params)
 //
-//    // Example sending a request using the ListProfilePermissionsRequest method.
-//    req, resp := client.ListProfilePermissionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListProfilePermissions
 func (c *Signer) ListProfilePermissionsRequest(input *ListProfilePermissionsInput) (req *request.Request, output *ListProfilePermissionsOutput) {
@@ -530,22 +622,23 @@ func (c *Signer) ListProfilePermissionsRequest(input *ListProfilePermissionsInpu
 // API operation ListProfilePermissions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   You signing certificate could not be validated.
 //
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
+//   - ValidationException
+//     You signing certificate could not be validated.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListProfilePermissions
 func (c *Signer) ListProfilePermissions(input *ListProfilePermissionsInput) (*ListProfilePermissionsOutput, error) {
@@ -585,14 +678,13 @@ const opListSigningJobs = "ListSigningJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSigningJobsRequest method.
+//	req, resp := client.ListSigningJobsRequest(params)
 //
-//    // Example sending a request using the ListSigningJobsRequest method.
-//    req, resp := client.ListSigningJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListSigningJobs
 func (c *Signer) ListSigningJobsRequest(input *ListSigningJobsInput) (req *request.Request, output *ListSigningJobsOutput) {
@@ -621,11 +713,11 @@ func (c *Signer) ListSigningJobsRequest(input *ListSigningJobsInput) (req *reque
 //
 // Lists all your signing jobs. You can use the maxResults parameter to limit
 // the number of signing jobs that are returned in the response. If additional
-// jobs remain to be listed, code signing returns a nextToken value. Use this
+// jobs remain to be listed, AWS Signer returns a nextToken value. Use this
 // value in subsequent calls to ListSigningJobs to fetch the remaining values.
 // You can continue calling ListSigningJobs with your maxResults parameter and
-// with new values that code signing returns in the nextToken parameter until
-// all of your signing jobs have been returned.
+// with new values that Signer returns in the nextToken parameter until all
+// of your signing jobs have been returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -635,19 +727,20 @@ func (c *Signer) ListSigningJobsRequest(input *ListSigningJobsInput) (req *reque
 // API operation ListSigningJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   You signing certificate could not be validated.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     You signing certificate could not be validated.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListSigningJobs
 func (c *Signer) ListSigningJobs(input *ListSigningJobsInput) (*ListSigningJobsOutput, error) {
@@ -679,15 +772,14 @@ func (c *Signer) ListSigningJobsWithContext(ctx aws.Context, input *ListSigningJ
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSigningJobs operation.
-//    pageNum := 0
-//    err := client.ListSigningJobsPages(params,
-//        func(page *signer.ListSigningJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSigningJobs operation.
+//	pageNum := 0
+//	err := client.ListSigningJobsPages(params,
+//	    func(page *signer.ListSigningJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Signer) ListSigningJobsPages(input *ListSigningJobsInput, fn func(*ListSigningJobsOutput, bool) bool) error {
 	return c.ListSigningJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -739,14 +831,13 @@ const opListSigningPlatforms = "ListSigningPlatforms"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSigningPlatformsRequest method.
+//	req, resp := client.ListSigningPlatformsRequest(params)
 //
-//    // Example sending a request using the ListSigningPlatformsRequest method.
-//    req, resp := client.ListSigningPlatformsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListSigningPlatforms
 func (c *Signer) ListSigningPlatformsRequest(input *ListSigningPlatformsInput) (req *request.Request, output *ListSigningPlatformsOutput) {
@@ -773,12 +864,12 @@ func (c *Signer) ListSigningPlatformsRequest(input *ListSigningPlatformsInput) (
 
 // ListSigningPlatforms API operation for AWS Signer.
 //
-// Lists all signing platforms available in code signing that match the request
-// parameters. If additional jobs remain to be listed, code signing returns
-// a nextToken value. Use this value in subsequent calls to ListSigningJobs
-// to fetch the remaining values. You can continue calling ListSigningJobs with
-// your maxResults parameter and with new values that code signing returns in
-// the nextToken parameter until all of your signing jobs have been returned.
+// Lists all signing platforms available in AWS Signer that match the request
+// parameters. If additional jobs remain to be listed, Signer returns a nextToken
+// value. Use this value in subsequent calls to ListSigningJobs to fetch the
+// remaining values. You can continue calling ListSigningJobs with your maxResults
+// parameter and with new values that Signer returns in the nextToken parameter
+// until all of your signing jobs have been returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -788,19 +879,20 @@ func (c *Signer) ListSigningPlatformsRequest(input *ListSigningPlatformsInput) (
 // API operation ListSigningPlatforms for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   You signing certificate could not be validated.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     You signing certificate could not be validated.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListSigningPlatforms
 func (c *Signer) ListSigningPlatforms(input *ListSigningPlatformsInput) (*ListSigningPlatformsOutput, error) {
@@ -832,15 +924,14 @@ func (c *Signer) ListSigningPlatformsWithContext(ctx aws.Context, input *ListSig
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSigningPlatforms operation.
-//    pageNum := 0
-//    err := client.ListSigningPlatformsPages(params,
-//        func(page *signer.ListSigningPlatformsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSigningPlatforms operation.
+//	pageNum := 0
+//	err := client.ListSigningPlatformsPages(params,
+//	    func(page *signer.ListSigningPlatformsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Signer) ListSigningPlatformsPages(input *ListSigningPlatformsInput, fn func(*ListSigningPlatformsOutput, bool) bool) error {
 	return c.ListSigningPlatformsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -892,14 +983,13 @@ const opListSigningProfiles = "ListSigningProfiles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSigningProfilesRequest method.
+//	req, resp := client.ListSigningProfilesRequest(params)
 //
-//    // Example sending a request using the ListSigningProfilesRequest method.
-//    req, resp := client.ListSigningProfilesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListSigningProfiles
 func (c *Signer) ListSigningProfilesRequest(input *ListSigningProfilesInput) (req *request.Request, output *ListSigningProfilesOutput) {
@@ -928,11 +1018,11 @@ func (c *Signer) ListSigningProfilesRequest(input *ListSigningProfilesInput) (re
 //
 // Lists all available signing profiles in your AWS account. Returns only profiles
 // with an ACTIVE status unless the includeCanceled request field is set to
-// true. If additional jobs remain to be listed, code signing returns a nextToken
+// true. If additional jobs remain to be listed, AWS Signer returns a nextToken
 // value. Use this value in subsequent calls to ListSigningJobs to fetch the
 // remaining values. You can continue calling ListSigningJobs with your maxResults
-// parameter and with new values that code signing returns in the nextToken
-// parameter until all of your signing jobs have been returned.
+// parameter and with new values that Signer returns in the nextToken parameter
+// until all of your signing jobs have been returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -942,16 +1032,17 @@ func (c *Signer) ListSigningProfilesRequest(input *ListSigningProfilesInput) (re
 // API operation ListSigningProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListSigningProfiles
 func (c *Signer) ListSigningProfiles(input *ListSigningProfilesInput) (*ListSigningProfilesOutput, error) {
@@ -983,15 +1074,14 @@ func (c *Signer) ListSigningProfilesWithContext(ctx aws.Context, input *ListSign
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSigningProfiles operation.
-//    pageNum := 0
-//    err := client.ListSigningProfilesPages(params,
-//        func(page *signer.ListSigningProfilesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSigningProfiles operation.
+//	pageNum := 0
+//	err := client.ListSigningProfilesPages(params,
+//	    func(page *signer.ListSigningProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Signer) ListSigningProfilesPages(input *ListSigningProfilesInput, fn func(*ListSigningProfilesOutput, bool) bool) error {
 	return c.ListSigningProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1043,14 +1133,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListTagsForResource
 func (c *Signer) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1081,20 +1170,21 @@ func (c *Signer) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServiceErrorException
-//   An internal error occurred.
 //
-//   * BadRequestException
-//   The request contains invalid parameters for the ARN or tags. This exception
-//   also occurs when you call a tagging API on a cancelled signing profile.
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
-//   * NotFoundException
-//   The signing profile was not found.
+//   - BadRequestException
+//     The request contains invalid parameters for the ARN or tags. This exception
+//     also occurs when you call a tagging API on a cancelled signing profile.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - NotFoundException
+//     The signing profile was not found.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
+//
+//     This error supersedes the error ThrottlingException.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListTagsForResource
 func (c *Signer) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1134,14 +1224,13 @@ const opPutSigningProfile = "PutSigningProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutSigningProfileRequest method.
+//	req, resp := client.PutSigningProfileRequest(params)
 //
-//    // Example sending a request using the PutSigningProfileRequest method.
-//    req, resp := client.PutSigningProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/PutSigningProfile
 func (c *Signer) PutSigningProfileRequest(input *PutSigningProfileInput) (req *request.Request, output *PutSigningProfileOutput) {
@@ -1162,10 +1251,8 @@ func (c *Signer) PutSigningProfileRequest(input *PutSigningProfileInput) (req *r
 
 // PutSigningProfile API operation for AWS Signer.
 //
-// Creates a signing profile. A signing profile is a code signing template that
-// can be used to carry out a pre-defined signing job. For more information,
-// see http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html
-// (http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html)
+// Creates a signing profile. A signing profile is a code-signing template that
+// can be used to carry out a pre-defined signing job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1175,22 +1262,23 @@ func (c *Signer) PutSigningProfileRequest(input *PutSigningProfileInput) (req *r
 // API operation PutSigningProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   * ValidationException
-//   You signing certificate could not be validated.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - ValidationException
+//     You signing certificate could not be validated.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/PutSigningProfile
 func (c *Signer) PutSigningProfile(input *PutSigningProfileInput) (*PutSigningProfileOutput, error) {
@@ -1230,14 +1318,13 @@ const opRemoveProfilePermission = "RemoveProfilePermission"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveProfilePermissionRequest method.
+//	req, resp := client.RemoveProfilePermissionRequest(params)
 //
-//    // Example sending a request using the RemoveProfilePermissionRequest method.
-//    req, resp := client.RemoveProfilePermissionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RemoveProfilePermission
 func (c *Signer) RemoveProfilePermissionRequest(input *RemoveProfilePermissionInput) (req *request.Request, output *RemoveProfilePermissionOutput) {
@@ -1268,25 +1355,26 @@ func (c *Signer) RemoveProfilePermissionRequest(input *RemoveProfilePermissionIn
 // API operation RemoveProfilePermission for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   You signing certificate could not be validated.
 //
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
+//   - ValidationException
+//     You signing certificate could not be validated.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   * ConflictException
-//   The resource encountered a conflicting state.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - ConflictException
+//     The resource encountered a conflicting state.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RemoveProfilePermission
 func (c *Signer) RemoveProfilePermission(input *RemoveProfilePermissionInput) (*RemoveProfilePermissionOutput, error) {
@@ -1326,14 +1414,13 @@ const opRevokeSignature = "RevokeSignature"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RevokeSignatureRequest method.
+//	req, resp := client.RevokeSignatureRequest(params)
 //
-//    // Example sending a request using the RevokeSignatureRequest method.
-//    req, resp := client.RevokeSignatureRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RevokeSignature
 func (c *Signer) RevokeSignatureRequest(input *RevokeSignatureInput) (req *request.Request, output *RevokeSignatureOutput) {
@@ -1366,22 +1453,23 @@ func (c *Signer) RevokeSignatureRequest(input *RevokeSignatureInput) (req *reque
 // API operation RevokeSignature for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   You signing certificate could not be validated.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     You signing certificate could not be validated.
 //
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RevokeSignature
 func (c *Signer) RevokeSignature(input *RevokeSignatureInput) (*RevokeSignatureOutput, error) {
@@ -1421,14 +1509,13 @@ const opRevokeSigningProfile = "RevokeSigningProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RevokeSigningProfileRequest method.
+//	req, resp := client.RevokeSigningProfileRequest(params)
 //
-//    // Example sending a request using the RevokeSigningProfileRequest method.
-//    req, resp := client.RevokeSigningProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RevokeSigningProfile
 func (c *Signer) RevokeSigningProfileRequest(input *RevokeSigningProfileInput) (req *request.Request, output *RevokeSigningProfileOutput) {
@@ -1462,22 +1549,23 @@ func (c *Signer) RevokeSigningProfileRequest(input *RevokeSigningProfileInput) (
 // API operation RevokeSigningProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   You signing certificate could not be validated.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     You signing certificate could not be validated.
 //
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RevokeSigningProfile
 func (c *Signer) RevokeSigningProfile(input *RevokeSigningProfileInput) (*RevokeSigningProfileOutput, error) {
@@ -1501,6 +1589,99 @@ func (c *Signer) RevokeSigningProfileWithContext(ctx aws.Context, input *RevokeS
 	return out, req.Send()
 }
 
+const opSignPayload = "SignPayload"
+
+// SignPayloadRequest generates a "aws/request.Request" representing the
+// client's request for the SignPayload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SignPayload for more information on using the SignPayload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SignPayloadRequest method.
+//	req, resp := client.SignPayloadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/SignPayload
+func (c *Signer) SignPayloadRequest(input *SignPayloadInput) (req *request.Request, output *SignPayloadOutput) {
+	op := &request.Operation{
+		Name:       opSignPayload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/signing-jobs/with-payload",
+	}
+
+	if input == nil {
+		input = &SignPayloadInput{}
+	}
+
+	output = &SignPayloadOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SignPayload API operation for AWS Signer.
+//
+// Signs a binary payload and returns a signature envelope.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Signer's
+// API operation SignPayload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     You signing certificate could not be validated.
+//
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
+//
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/SignPayload
+func (c *Signer) SignPayload(input *SignPayloadInput) (*SignPayloadOutput, error) {
+	req, out := c.SignPayloadRequest(input)
+	return out, req.Send()
+}
+
+// SignPayloadWithContext is the same as SignPayload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SignPayload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Signer) SignPayloadWithContext(ctx aws.Context, input *SignPayloadInput, opts ...request.Option) (*SignPayloadOutput, error) {
+	req, out := c.SignPayloadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartSigningJob = "StartSigningJob"
 
 // StartSigningJobRequest generates a "aws/request.Request" representing the
@@ -1517,14 +1698,13 @@ const opStartSigningJob = "StartSigningJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartSigningJobRequest method.
+//	req, resp := client.StartSigningJobRequest(params)
 //
-//    // Example sending a request using the StartSigningJobRequest method.
-//    req, resp := client.StartSigningJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/StartSigningJob
 func (c *Signer) StartSigningJobRequest(input *StartSigningJobInput) (req *request.Request, output *StartSigningJobOutput) {
@@ -1549,26 +1729,26 @@ func (c *Signer) StartSigningJobRequest(input *StartSigningJobInput) (req *reque
 // are viewable by the ListSigningJobs operation for two years after they are
 // performed. Note the following requirements:
 //
-//    * You must create an Amazon S3 source bucket. For more information, see
-//    Create a Bucket (http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
-//    in the Amazon S3 Getting Started Guide.
+//   - You must create an Amazon S3 source bucket. For more information, see
+//     Creating a Bucket (http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
+//     in the Amazon S3 Getting Started Guide.
 //
-//    * Your S3 source bucket must be version enabled.
+//   - Your S3 source bucket must be version enabled.
 //
-//    * You must create an S3 destination bucket. Code signing uses your S3
-//    destination bucket to write your signed code.
+//   - You must create an S3 destination bucket. AWS Signer uses your S3 destination
+//     bucket to write your signed code.
 //
-//    * You specify the name of the source and destination buckets when calling
-//    the StartSigningJob operation.
+//   - You specify the name of the source and destination buckets when calling
+//     the StartSigningJob operation.
 //
-//    * You must also specify a request token that identifies your request to
-//    code signing.
+//   - You must also specify a request token that identifies your request to
+//     Signer.
 //
 // You can call the DescribeSigningJob and the ListSigningJobs actions after
 // you call StartSigningJob.
 //
-// For a Java example that shows how to use this action, see http://docs.aws.amazon.com/acm/latest/userguide/
-// (http://docs.aws.amazon.com/acm/latest/userguide/)
+// For a Java example that shows how to use this action, see StartSigningJob
+// (https://docs.aws.amazon.com/signer/latest/developerguide/api-startsigningjob.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1578,27 +1758,28 @@ func (c *Signer) StartSigningJobRequest(input *StartSigningJobInput) (req *reque
 // API operation StartSigningJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   You signing certificate could not be validated.
 //
-//   * ResourceNotFoundException
-//   A specified resource could not be found.
+//   - ValidationException
+//     You signing certificate could not be validated.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     A specified resource could not be found.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   Instead of this error, TooManyRequestsException should be used.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//     Instead of this error, TooManyRequestsException should be used.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
 //
-//   * InternalServiceErrorException
-//   An internal error occurred.
+//     This error supersedes the error ThrottlingException.
+//
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/StartSigningJob
 func (c *Signer) StartSigningJob(input *StartSigningJobInput) (*StartSigningJobOutput, error) {
@@ -1638,14 +1819,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/TagResource
 func (c *Signer) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1680,20 +1860,21 @@ func (c *Signer) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServiceErrorException
-//   An internal error occurred.
 //
-//   * BadRequestException
-//   The request contains invalid parameters for the ARN or tags. This exception
-//   also occurs when you call a tagging API on a cancelled signing profile.
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
-//   * NotFoundException
-//   The signing profile was not found.
+//   - BadRequestException
+//     The request contains invalid parameters for the ARN or tags. This exception
+//     also occurs when you call a tagging API on a cancelled signing profile.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - NotFoundException
+//     The signing profile was not found.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
+//
+//     This error supersedes the error ThrottlingException.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/TagResource
 func (c *Signer) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1733,14 +1914,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/UntagResource
 func (c *Signer) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1773,20 +1953,21 @@ func (c *Signer) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServiceErrorException
-//   An internal error occurred.
 //
-//   * BadRequestException
-//   The request contains invalid parameters for the ARN or tags. This exception
-//   also occurs when you call a tagging API on a cancelled signing profile.
+//   - InternalServiceErrorException
+//     An internal error occurred.
 //
-//   * NotFoundException
-//   The signing profile was not found.
+//   - BadRequestException
+//     The request contains invalid parameters for the ARN or tags. This exception
+//     also occurs when you call a tagging API on a cancelled signing profile.
 //
-//   * TooManyRequestsException
-//   The allowed number of job-signing requests has been exceeded.
+//   - NotFoundException
+//     The signing profile was not found.
 //
-//   This error supersedes the error ThrottlingException.
+//   - TooManyRequestsException
+//     The allowed number of job-signing requests has been exceeded.
+//
+//     This error supersedes the error ThrottlingException.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/UntagResource
 func (c *Signer) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1820,12 +2001,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -1899,12 +2088,20 @@ type AddProfilePermissionInput struct {
 	StatementId *string `locationName:"statementId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddProfilePermissionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddProfilePermissionInput) GoString() string {
 	return s.String()
 }
@@ -1980,12 +2177,20 @@ type AddProfilePermissionOutput struct {
 	RevisionId *string `locationName:"revisionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddProfilePermissionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddProfilePermissionOutput) GoString() string {
 	return s.String()
 }
@@ -2007,12 +2212,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -2056,7 +2269,7 @@ func (s *BadRequestException) RequestID() string {
 }
 
 type CancelSigningProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the signing profile to be canceled.
 	//
@@ -2064,12 +2277,20 @@ type CancelSigningProfileInput struct {
 	ProfileName *string `location:"uri" locationName:"profileName" min:"2" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSigningProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSigningProfileInput) GoString() string {
 	return s.String()
 }
@@ -2100,12 +2321,20 @@ type CancelSigningProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSigningProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelSigningProfileOutput) GoString() string {
 	return s.String()
 }
@@ -2120,12 +2349,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -2169,7 +2406,7 @@ func (s *ConflictException) RequestID() string {
 }
 
 type DescribeSigningJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the signing job on input.
 	//
@@ -2177,12 +2414,20 @@ type DescribeSigningJobInput struct {
 	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSigningJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSigningJobInput) GoString() string {
 	return s.String()
 }
@@ -2254,7 +2499,7 @@ type DescribeSigningJobOutput struct {
 	// Thr expiration timestamp for the signature generated by the signing job.
 	SignatureExpiresAt *time.Time `locationName:"signatureExpiresAt" type:"timestamp"`
 
-	// Name of the S3 bucket where the signed code image is saved by code signing.
+	// Name of the S3 bucket where the signed code image is saved by AWS Signer.
 	SignedObject *SignedObject `locationName:"signedObject" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of your code signing certificate.
@@ -2274,12 +2519,20 @@ type DescribeSigningJobOutput struct {
 	StatusReason *string `locationName:"statusReason" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSigningJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSigningJobOutput) GoString() string {
 	return s.String()
 }
@@ -2407,12 +2660,20 @@ type Destination struct {
 	S3 *S3Destination `locationName:"s3" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Destination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Destination) GoString() string {
 	return s.String()
 }
@@ -2423,28 +2684,36 @@ func (s *Destination) SetS3(v *S3Destination) *Destination {
 	return s
 }
 
-// The encryption algorithm options that are available to a code signing job.
+// The encryption algorithm options that are available to a code-signing job.
 type EncryptionAlgorithmOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The set of accepted encryption algorithms that are allowed in a code signing
+	// The set of accepted encryption algorithms that are allowed in a code-signing
 	// job.
 	//
 	// AllowedValues is a required field
-	AllowedValues []*string `locationName:"allowedValues" type:"list" required:"true"`
+	AllowedValues []*string `locationName:"allowedValues" type:"list" required:"true" enum:"EncryptionAlgorithm"`
 
-	// The default encryption algorithm that is used by a code signing job.
+	// The default encryption algorithm that is used by a code-signing job.
 	//
 	// DefaultValue is a required field
 	DefaultValue *string `locationName:"defaultValue" type:"string" required:"true" enum:"EncryptionAlgorithm"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionAlgorithmOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionAlgorithmOptions) GoString() string {
 	return s.String()
 }
@@ -2461,8 +2730,166 @@ func (s *EncryptionAlgorithmOptions) SetDefaultValue(v string) *EncryptionAlgori
 	return s
 }
 
-type GetSigningPlatformInput struct {
+type GetRevocationStatusInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A list of composite signed hashes that identify certificates.
+	//
+	// A certificate identifier consists of a subject certificate TBS hash (signed
+	// by the parent CA) combined with a parent CA TBS hash (signed by the parent
+	// CA’s CA). Root certificates are defined as their own CA.
+	//
+	// The following example shows how to calculate a hash for this parameter using
+	// OpenSSL commands:
+	//
+	// openssl asn1parse -in childCert.pem -strparse 4 -out childCert.tbs
+	//
+	// openssl sha384 < childCert.tbs -binary > childCertTbsHash
+	//
+	// openssl asn1parse -in parentCert.pem -strparse 4 -out parentCert.tbs
+	//
+	// openssl sha384 < parentCert.tbs -binary > parentCertTbsHash xxd -p childCertTbsHash
+	// > certificateHash.hex xxd -p parentCertTbsHash >> certificateHash.hex
+	//
+	// cat certificateHash.hex | tr -d '\n'
+	//
+	// CertificateHashes is a required field
+	CertificateHashes []*string `location:"querystring" locationName:"certificateHashes" type:"list" required:"true"`
+
+	// The ARN of a signing job.
+	//
+	// JobArn is a required field
+	JobArn *string `location:"querystring" locationName:"jobArn" min:"20" type:"string" required:"true"`
+
+	// The ID of a signing platform.
+	//
+	// PlatformId is a required field
+	PlatformId *string `location:"querystring" locationName:"platformId" type:"string" required:"true"`
+
+	// The version of a signing profile.
+	//
+	// ProfileVersionArn is a required field
+	ProfileVersionArn *string `location:"querystring" locationName:"profileVersionArn" min:"20" type:"string" required:"true"`
+
+	// The timestamp of the signature that validates the profile or job.
+	//
+	// SignatureTimestamp is a required field
+	SignatureTimestamp *time.Time `location:"querystring" locationName:"signatureTimestamp" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRevocationStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRevocationStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRevocationStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRevocationStatusInput"}
+	if s.CertificateHashes == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateHashes"))
+	}
+	if s.JobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobArn"))
+	}
+	if s.JobArn != nil && len(*s.JobArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("JobArn", 20))
+	}
+	if s.PlatformId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlatformId"))
+	}
+	if s.ProfileVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileVersionArn"))
+	}
+	if s.ProfileVersionArn != nil && len(*s.ProfileVersionArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileVersionArn", 20))
+	}
+	if s.SignatureTimestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("SignatureTimestamp"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateHashes sets the CertificateHashes field's value.
+func (s *GetRevocationStatusInput) SetCertificateHashes(v []*string) *GetRevocationStatusInput {
+	s.CertificateHashes = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *GetRevocationStatusInput) SetJobArn(v string) *GetRevocationStatusInput {
+	s.JobArn = &v
+	return s
+}
+
+// SetPlatformId sets the PlatformId field's value.
+func (s *GetRevocationStatusInput) SetPlatformId(v string) *GetRevocationStatusInput {
+	s.PlatformId = &v
+	return s
+}
+
+// SetProfileVersionArn sets the ProfileVersionArn field's value.
+func (s *GetRevocationStatusInput) SetProfileVersionArn(v string) *GetRevocationStatusInput {
+	s.ProfileVersionArn = &v
+	return s
+}
+
+// SetSignatureTimestamp sets the SignatureTimestamp field's value.
+func (s *GetRevocationStatusInput) SetSignatureTimestamp(v time.Time) *GetRevocationStatusInput {
+	s.SignatureTimestamp = &v
+	return s
+}
+
+type GetRevocationStatusOutput struct {
 	_ struct{} `type:"structure"`
+
+	// A list of revoked entities (including zero or more of the signing profile
+	// ARN, signing job ARN, and certificate hashes) supplied as input to the API.
+	RevokedEntities []*string `locationName:"revokedEntities" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRevocationStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRevocationStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetRevokedEntities sets the RevokedEntities field's value.
+func (s *GetRevocationStatusOutput) SetRevokedEntities(v []*string) *GetRevocationStatusOutput {
+	s.RevokedEntities = v
+	return s
+}
+
+type GetSigningPlatformInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the target signing platform.
 	//
@@ -2470,12 +2897,20 @@ type GetSigningPlatformInput struct {
 	PlatformId *string `location:"uri" locationName:"platformId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSigningPlatformInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSigningPlatformInput) GoString() string {
 	return s.String()
 }
@@ -2535,12 +2970,20 @@ type GetSigningPlatformOutput struct {
 	Target *string `locationName:"target" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSigningPlatformOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSigningPlatformOutput) GoString() string {
 	return s.String()
 }
@@ -2600,7 +3043,7 @@ func (s *GetSigningPlatformOutput) SetTarget(v string) *GetSigningPlatformOutput
 }
 
 type GetSigningProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the target signing profile.
 	//
@@ -2611,12 +3054,20 @@ type GetSigningProfileInput struct {
 	ProfileOwner *string `location:"querystring" locationName:"profileOwner" min:"12" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSigningProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSigningProfileInput) GoString() string {
 	return s.String()
 }
@@ -2700,12 +3151,20 @@ type GetSigningProfileOutput struct {
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSigningProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSigningProfileOutput) GoString() string {
 	return s.String()
 }
@@ -2794,27 +3253,35 @@ func (s *GetSigningProfileOutput) SetTags(v map[string]*string) *GetSigningProfi
 	return s
 }
 
-// The hash algorithms that are available to a code signing job.
+// The hash algorithms that are available to a code-signing job.
 type HashAlgorithmOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The set of accepted hash algorithms allowed in a code signing job.
+	// The set of accepted hash algorithms allowed in a code-signing job.
 	//
 	// AllowedValues is a required field
-	AllowedValues []*string `locationName:"allowedValues" type:"list" required:"true"`
+	AllowedValues []*string `locationName:"allowedValues" type:"list" required:"true" enum:"HashAlgorithm"`
 
-	// The default hash algorithm that is used in a code signing job.
+	// The default hash algorithm that is used in a code-signing job.
 	//
 	// DefaultValue is a required field
 	DefaultValue *string `locationName:"defaultValue" type:"string" required:"true" enum:"HashAlgorithm"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HashAlgorithmOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HashAlgorithmOptions) GoString() string {
 	return s.String()
 }
@@ -2841,12 +3308,20 @@ type InternalServiceErrorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceErrorException) GoString() string {
 	return s.String()
 }
@@ -2890,7 +3365,7 @@ func (s *InternalServiceErrorException) RequestID() string {
 }
 
 type ListProfilePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// String for specifying the next set of paginated results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
@@ -2901,12 +3376,20 @@ type ListProfilePermissionsInput struct {
 	ProfileName *string `location:"uri" locationName:"profileName" min:"2" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfilePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfilePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -2955,12 +3438,20 @@ type ListProfilePermissionsOutput struct {
 	RevisionId *string `locationName:"revisionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfilePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListProfilePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -2990,7 +3481,7 @@ func (s *ListProfilePermissionsOutput) SetRevisionId(v string) *ListProfilePermi
 }
 
 type ListSigningJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Filters results to return only signing jobs with revoked signatures.
 	IsRevoked *bool `location:"querystring" locationName:"isRevoked" type:"boolean"`
@@ -3030,12 +3521,20 @@ type ListSigningJobsInput struct {
 	Status *string `location:"querystring" locationName:"status" type:"string" enum:"SigningStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningJobsInput) GoString() string {
 	return s.String()
 }
@@ -3120,12 +3619,20 @@ type ListSigningJobsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningJobsOutput) GoString() string {
 	return s.String()
 }
@@ -3143,7 +3650,7 @@ func (s *ListSigningJobsOutput) SetNextToken(v string) *ListSigningJobsOutput {
 }
 
 type ListSigningPlatformsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The category type of a signing platform.
 	Category *string `location:"querystring" locationName:"category" type:"string"`
@@ -3164,12 +3671,20 @@ type ListSigningPlatformsInput struct {
 	Target *string `location:"querystring" locationName:"target" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningPlatformsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningPlatformsInput) GoString() string {
 	return s.String()
 }
@@ -3227,12 +3742,20 @@ type ListSigningPlatformsOutput struct {
 	Platforms []*SigningPlatform `locationName:"platforms" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningPlatformsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningPlatformsOutput) GoString() string {
 	return s.String()
 }
@@ -3250,7 +3773,7 @@ func (s *ListSigningPlatformsOutput) SetPlatforms(v []*SigningPlatform) *ListSig
 }
 
 type ListSigningProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Designates whether to include profiles with the status of CANCELED.
 	IncludeCanceled *bool `location:"querystring" locationName:"includeCanceled" type:"boolean"`
@@ -3270,15 +3793,23 @@ type ListSigningProfilesInput struct {
 
 	// Filters results to return only signing jobs with statuses in the specified
 	// list.
-	Statuses []*string `location:"querystring" locationName:"statuses" type:"list"`
+	Statuses []*string `location:"querystring" locationName:"statuses" type:"list" enum:"SigningProfileStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningProfilesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningProfilesInput) GoString() string {
 	return s.String()
 }
@@ -3337,12 +3868,20 @@ type ListSigningProfilesOutput struct {
 	Profiles []*SigningProfile `locationName:"profiles" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningProfilesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSigningProfilesOutput) GoString() string {
 	return s.String()
 }
@@ -3360,7 +3899,7 @@ func (s *ListSigningProfilesOutput) SetProfiles(v []*SigningProfile) *ListSignin
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) for the signing profile.
 	//
@@ -3368,12 +3907,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -3407,12 +3954,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3433,12 +3988,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -3498,12 +4061,20 @@ type Permission struct {
 	StatementId *string `locationName:"statementId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Permission) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Permission) GoString() string {
 	return s.String()
 }
@@ -3566,12 +4137,20 @@ type PutSigningProfileInput struct {
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSigningProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSigningProfileInput) GoString() string {
 	return s.String()
 }
@@ -3658,12 +4237,20 @@ type PutSigningProfileOutput struct {
 	ProfileVersionArn *string `locationName:"profileVersionArn" min:"20" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSigningProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutSigningProfileOutput) GoString() string {
 	return s.String()
 }
@@ -3687,7 +4274,7 @@ func (s *PutSigningProfileOutput) SetProfileVersionArn(v string) *PutSigningProf
 }
 
 type RemoveProfilePermissionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A human-readable name for the signing profile with permissions to be removed.
 	//
@@ -3705,12 +4292,20 @@ type RemoveProfilePermissionInput struct {
 	StatementId *string `location:"uri" locationName:"statementId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveProfilePermissionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveProfilePermissionInput) GoString() string {
 	return s.String()
 }
@@ -3765,12 +4360,20 @@ type RemoveProfilePermissionOutput struct {
 	RevisionId *string `locationName:"revisionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveProfilePermissionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveProfilePermissionOutput) GoString() string {
 	return s.String()
 }
@@ -3791,12 +4394,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -3856,12 +4467,20 @@ type RevokeSignatureInput struct {
 	Reason *string `locationName:"reason" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevokeSignatureInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevokeSignatureInput) GoString() string {
 	return s.String()
 }
@@ -3913,12 +4532,20 @@ type RevokeSignatureOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevokeSignatureOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevokeSignatureOutput) GoString() string {
 	return s.String()
 }
@@ -3949,12 +4576,20 @@ type RevokeSigningProfileInput struct {
 	Reason *string `locationName:"reason" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevokeSigningProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevokeSigningProfileInput) GoString() string {
 	return s.String()
 }
@@ -4018,17 +4653,25 @@ type RevokeSigningProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevokeSigningProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevokeSigningProfileOutput) GoString() string {
 	return s.String()
 }
 
-// The name and prefix of the S3 bucket where code signing saves your signed
+// The name and prefix of the Amazon S3 bucket where AWS Signer saves your signed
 // objects.
 type S3Destination struct {
 	_ struct{} `type:"structure"`
@@ -4036,17 +4679,25 @@ type S3Destination struct {
 	// Name of the S3 bucket.
 	BucketName *string `locationName:"bucketName" type:"string"`
 
-	// An Amazon S3 prefix that you can use to limit responses to those that begin
-	// with the specified prefix.
+	// An S3 prefix that you can use to limit responses to those that begin with
+	// the specified prefix.
 	Prefix *string `locationName:"prefix" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Destination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Destination) GoString() string {
 	return s.String()
 }
@@ -4063,7 +4714,7 @@ func (s *S3Destination) SetPrefix(v string) *S3Destination {
 	return s
 }
 
-// The S3 bucket name and key where code signing saved your signed code image.
+// The Amazon S3 bucket name and key where Signer saved your signed code image.
 type S3SignedObject struct {
 	_ struct{} `type:"structure"`
 
@@ -4074,12 +4725,20 @@ type S3SignedObject struct {
 	Key *string `locationName:"key" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SignedObject) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SignedObject) GoString() string {
 	return s.String()
 }
@@ -4096,7 +4755,7 @@ func (s *S3SignedObject) SetKey(v string) *S3SignedObject {
 	return s
 }
 
-// Information about the S3 bucket where you saved your unsigned code.
+// Information about the Amazon S3 bucket where you saved your unsigned code.
 type S3Source struct {
 	_ struct{} `type:"structure"`
 
@@ -4116,12 +4775,20 @@ type S3Source struct {
 	Version *string `locationName:"version" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Source) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Source) GoString() string {
 	return s.String()
 }
@@ -4173,12 +4840,20 @@ type ServiceLimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -4221,6 +4896,158 @@ func (s *ServiceLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type SignPayloadInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the object digest (hash) to sign.
+	// Payload is automatically base64 encoded/decoded by the SDK.
+	//
+	// Payload is a required field
+	Payload []byte `locationName:"payload" min:"1" type:"blob" required:"true"`
+
+	// Payload content type. The single valid type is application/vnd.cncf.notary.payload.v1+json.
+	//
+	// PayloadFormat is a required field
+	PayloadFormat *string `locationName:"payloadFormat" type:"string" required:"true"`
+
+	// The name of the signing profile.
+	//
+	// ProfileName is a required field
+	ProfileName *string `locationName:"profileName" min:"2" type:"string" required:"true"`
+
+	// The AWS account ID of the profile owner.
+	ProfileOwner *string `locationName:"profileOwner" min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignPayloadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignPayloadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SignPayloadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SignPayloadInput"}
+	if s.Payload == nil {
+		invalidParams.Add(request.NewErrParamRequired("Payload"))
+	}
+	if s.Payload != nil && len(s.Payload) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Payload", 1))
+	}
+	if s.PayloadFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("PayloadFormat"))
+	}
+	if s.ProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileName"))
+	}
+	if s.ProfileName != nil && len(*s.ProfileName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 2))
+	}
+	if s.ProfileOwner != nil && len(*s.ProfileOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileOwner", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPayload sets the Payload field's value.
+func (s *SignPayloadInput) SetPayload(v []byte) *SignPayloadInput {
+	s.Payload = v
+	return s
+}
+
+// SetPayloadFormat sets the PayloadFormat field's value.
+func (s *SignPayloadInput) SetPayloadFormat(v string) *SignPayloadInput {
+	s.PayloadFormat = &v
+	return s
+}
+
+// SetProfileName sets the ProfileName field's value.
+func (s *SignPayloadInput) SetProfileName(v string) *SignPayloadInput {
+	s.ProfileName = &v
+	return s
+}
+
+// SetProfileOwner sets the ProfileOwner field's value.
+func (s *SignPayloadInput) SetProfileOwner(v string) *SignPayloadInput {
+	s.ProfileOwner = &v
+	return s
+}
+
+type SignPayloadOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier of the signing job.
+	JobId *string `locationName:"jobId" type:"string"`
+
+	// The AWS account ID of the job owner.
+	JobOwner *string `locationName:"jobOwner" min:"12" type:"string"`
+
+	// Information including the signing profile ARN and the signing job ID.
+	Metadata map[string]*string `locationName:"metadata" type:"map"`
+
+	// A cryptographic signature.
+	// Signature is automatically base64 encoded/decoded by the SDK.
+	Signature []byte `locationName:"signature" type:"blob"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignPayloadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignPayloadOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *SignPayloadOutput) SetJobId(v string) *SignPayloadOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobOwner sets the JobOwner field's value.
+func (s *SignPayloadOutput) SetJobOwner(v string) *SignPayloadOutput {
+	s.JobOwner = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *SignPayloadOutput) SetMetadata(v map[string]*string) *SignPayloadOutput {
+	s.Metadata = v
+	return s
+}
+
+// SetSignature sets the Signature field's value.
+func (s *SignPayloadOutput) SetSignature(v []byte) *SignPayloadOutput {
+	s.Signature = v
+	return s
+}
+
 // The validity period for a signing job.
 type SignatureValidityPeriod struct {
 	_ struct{} `type:"structure"`
@@ -4232,12 +5059,20 @@ type SignatureValidityPeriod struct {
 	Value *int64 `locationName:"value" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SignatureValidityPeriod) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SignatureValidityPeriod) GoString() string {
 	return s.String()
 }
@@ -4263,12 +5098,20 @@ type SignedObject struct {
 	S3 *S3SignedObject `locationName:"s3" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SignedObject) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SignedObject) GoString() string {
 	return s.String()
 }
@@ -4279,27 +5122,35 @@ func (s *SignedObject) SetS3(v *S3SignedObject) *SignedObject {
 	return s
 }
 
-// The configuration of a code signing operation.
+// The configuration of a signing operation.
 type SigningConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The encryption algorithm options that are available for a code signing job.
+	// The encryption algorithm options that are available for a code-signing job.
 	//
 	// EncryptionAlgorithmOptions is a required field
 	EncryptionAlgorithmOptions *EncryptionAlgorithmOptions `locationName:"encryptionAlgorithmOptions" type:"structure" required:"true"`
 
-	// The hash algorithm options that are available for a code signing job.
+	// The hash algorithm options that are available for a code-signing job.
 	//
 	// HashAlgorithmOptions is a required field
 	HashAlgorithmOptions *HashAlgorithmOptions `locationName:"hashAlgorithmOptions" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningConfiguration) GoString() string {
 	return s.String()
 }
@@ -4322,20 +5173,28 @@ type SigningConfigurationOverrides struct {
 	_ struct{} `type:"structure"`
 
 	// A specified override of the default encryption algorithm that is used in
-	// a code signing job.
+	// a code-signing job.
 	EncryptionAlgorithm *string `locationName:"encryptionAlgorithm" type:"string" enum:"EncryptionAlgorithm"`
 
-	// A specified override of the default hash algorithm that is used in a code
-	// signing job.
+	// A specified override of the default hash algorithm that is used in a code-signing
+	// job.
 	HashAlgorithm *string `locationName:"hashAlgorithm" type:"string" enum:"HashAlgorithm"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningConfigurationOverrides) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningConfigurationOverrides) GoString() string {
 	return s.String()
 }
@@ -4352,27 +5211,35 @@ func (s *SigningConfigurationOverrides) SetHashAlgorithm(v string) *SigningConfi
 	return s
 }
 
-// The image format of a code signing platform or profile.
+// The image format of a AWS Signer platform or profile.
 type SigningImageFormat struct {
 	_ struct{} `type:"structure"`
 
-	// The default format of a code signing image.
+	// The default format of a signing image.
 	//
 	// DefaultFormat is a required field
 	DefaultFormat *string `locationName:"defaultFormat" type:"string" required:"true" enum:"ImageFormat"`
 
-	// The supported formats of a code signing image.
+	// The supported formats of a signing image.
 	//
 	// SupportedFormats is a required field
-	SupportedFormats []*string `locationName:"supportedFormats" type:"list" required:"true"`
+	SupportedFormats []*string `locationName:"supportedFormats" type:"list" required:"true" enum:"ImageFormat"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningImageFormat) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningImageFormat) GoString() string {
 	return s.String()
 }
@@ -4438,12 +5305,20 @@ type SigningJob struct {
 	Status *string `locationName:"status" type:"string" enum:"SigningStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningJob) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningJob) GoString() string {
 	return s.String()
 }
@@ -4546,12 +5421,20 @@ type SigningJobRevocationRecord struct {
 	RevokedBy *string `locationName:"revokedBy" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningJobRevocationRecord) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningJobRevocationRecord) GoString() string {
 	return s.String()
 }
@@ -4585,12 +5468,20 @@ type SigningMaterial struct {
 	CertificateArn *string `locationName:"certificateArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningMaterial) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningMaterial) GoString() string {
 	return s.String()
 }
@@ -4615,45 +5506,53 @@ func (s *SigningMaterial) SetCertificateArn(v string) *SigningMaterial {
 }
 
 // Contains information about the signing configurations and parameters that
-// are used to perform a code signing job.
+// are used to perform a code-signing job.
 type SigningPlatform struct {
 	_ struct{} `type:"structure"`
 
-	// The category of a code signing platform.
+	// The category of a signing platform.
 	Category *string `locationName:"category" type:"string" enum:"Category"`
 
-	// The display name of a code signing platform.
+	// The display name of a signing platform.
 	DisplayName *string `locationName:"displayName" type:"string"`
 
-	// The maximum size (in MB) of code that can be signed by a code signing platform.
+	// The maximum size (in MB) of code that can be signed by a signing platform.
 	MaxSizeInMB *int64 `locationName:"maxSizeInMB" type:"integer"`
 
-	// Any partner entities linked to a code signing platform.
+	// Any partner entities linked to a signing platform.
 	Partner *string `locationName:"partner" type:"string"`
 
-	// The ID of a code signing; platform.
+	// The ID of a signing platform.
 	PlatformId *string `locationName:"platformId" type:"string"`
 
 	// Indicates whether revocation is supported for the platform.
 	RevocationSupported *bool `locationName:"revocationSupported" type:"boolean"`
 
-	// The configuration of a code signing platform. This includes the designated
-	// hash algorithm and encryption algorithm of a signing platform.
+	// The configuration of a signing platform. This includes the designated hash
+	// algorithm and encryption algorithm of a signing platform.
 	SigningConfiguration *SigningConfiguration `locationName:"signingConfiguration" type:"structure"`
 
-	// The image format of a code signing platform or profile.
+	// The image format of a AWS Signer platform or profile.
 	SigningImageFormat *SigningImageFormat `locationName:"signingImageFormat" type:"structure"`
 
-	// The types of targets that can be signed by a code signing platform.
+	// The types of targets that can be signed by a signing platform.
 	Target *string `locationName:"target" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningPlatform) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningPlatform) GoString() string {
 	return s.String()
 }
@@ -4712,7 +5611,7 @@ func (s *SigningPlatform) SetTarget(v string) *SigningPlatform {
 	return s
 }
 
-// Any overrides that are applied to the signing configuration of a code signing
+// Any overrides that are applied to the signing configuration of a signing
 // platform.
 type SigningPlatformOverrides struct {
 	_ struct{} `type:"structure"`
@@ -4729,12 +5628,20 @@ type SigningPlatformOverrides struct {
 	SigningImageFormat *string `locationName:"signingImageFormat" type:"string" enum:"ImageFormat"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningPlatformOverrides) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningPlatformOverrides) GoString() string {
 	return s.String()
 }
@@ -4751,7 +5658,7 @@ func (s *SigningPlatformOverrides) SetSigningImageFormat(v string) *SigningPlatf
 	return s
 }
 
-// Contains information about the ACM certificates and code signing configuration
+// Contains information about the ACM certificates and signing configuration
 // parameters that can be used by a given code signing user.
 type SigningProfile struct {
 	_ struct{} `type:"structure"`
@@ -4780,22 +5687,30 @@ type SigningProfile struct {
 	// The ACM certificate that is available for use by a signing profile.
 	SigningMaterial *SigningMaterial `locationName:"signingMaterial" type:"structure"`
 
-	// The parameters that are available for use by a code signing user.
+	// The parameters that are available for use by a Signer user.
 	SigningParameters map[string]*string `locationName:"signingParameters" type:"map"`
 
-	// The status of a code signing profile.
+	// The status of a signing profile.
 	Status *string `locationName:"status" type:"string" enum:"SigningProfileStatus"`
 
 	// A list of tags associated with the signing profile.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningProfile) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningProfile) GoString() string {
 	return s.String()
 }
@@ -4880,12 +5795,20 @@ type SigningProfileRevocationRecord struct {
 	RevokedBy *string `locationName:"revokedBy" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningProfileRevocationRecord) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SigningProfileRevocationRecord) GoString() string {
 	return s.String()
 }
@@ -4917,12 +5840,20 @@ type Source struct {
 	S3 *S3Source `locationName:"s3" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Source) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Source) GoString() string {
 	return s.String()
 }
@@ -4976,12 +5907,20 @@ type StartSigningJobInput struct {
 	Source *Source `locationName:"source" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSigningJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSigningJobInput) GoString() string {
 	return s.String()
 }
@@ -5056,12 +5995,20 @@ type StartSigningJobOutput struct {
 	JobOwner *string `locationName:"jobOwner" min:"12" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSigningJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSigningJobOutput) GoString() string {
 	return s.String()
 }
@@ -5092,12 +6039,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -5140,12 +6095,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5164,12 +6127,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -5224,12 +6195,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -5273,7 +6252,7 @@ func (s *TooManyRequestsException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) for the signing profile.
 	//
@@ -5286,12 +6265,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -5334,12 +6321,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5354,12 +6349,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }

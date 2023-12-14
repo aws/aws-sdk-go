@@ -13,6 +13,23 @@
     "uid":"secretsmanager-2017-10-17"
   },
   "operations":{
+    "BatchGetSecretValue":{
+      "name":"BatchGetSecretValue",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetSecretValueRequest"},
+      "output":{"shape":"BatchGetSecretValueResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"DecryptionFailure"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "CancelRotateSecret":{
       "name":"CancelRotateSecret",
       "http":{
@@ -45,7 +62,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"MalformedPolicyDocumentException"},
         {"shape":"InternalServiceError"},
-        {"shape":"PreconditionNotMetException"}
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"DecryptionFailure"}
       ]
     },
     "DeleteResourcePolicy":{
@@ -88,7 +106,8 @@
       "output":{"shape":"DescribeSecretResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServiceError"}
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "GetRandomPassword":{
@@ -116,7 +135,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceError"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "GetSecretValue":{
@@ -146,7 +166,8 @@
       "errors":[
         {"shape":"InvalidNextTokenException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServiceError"}
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "ListSecrets":{
@@ -159,6 +180,7 @@
       "output":{"shape":"ListSecretsResponse"},
       "errors":[
         {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"InternalServiceError"}
       ]
@@ -195,7 +217,8 @@
         {"shape":"EncryptionFailure"},
         {"shape":"ResourceExistsException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServiceError"}
+        {"shape":"InternalServiceError"},
+        {"shape":"DecryptionFailure"}
       ]
     },
     "RemoveRegionsFromReplication":{
@@ -318,7 +341,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"MalformedPolicyDocumentException"},
         {"shape":"InternalServiceError"},
-        {"shape":"PreconditionNotMetException"}
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"DecryptionFailure"}
       ]
     },
     "UpdateSecretVersionStage":{
@@ -355,6 +379,18 @@
     }
   },
   "shapes":{
+    "APIErrorListType":{
+      "type":"list",
+      "member":{"shape":"APIErrorType"}
+    },
+    "APIErrorType":{
+      "type":"structure",
+      "members":{
+        "SecretId":{"shape":"SecretIdType"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      }
+    },
     "AddReplicaRegionListType":{
       "type":"list",
       "member":{"shape":"ReplicaRegionType"},
@@ -364,6 +400,26 @@
       "type":"long",
       "max":1000,
       "min":1
+    },
+    "BatchGetSecretValueRequest":{
+      "type":"structure",
+      "members":{
+        "SecretIdList":{"shape":"SecretIdListType"},
+        "Filters":{"shape":"FiltersListType"},
+        "MaxResults":{
+          "shape":"MaxResultsBatchType",
+          "box":true
+        },
+        "NextToken":{"shape":"NextTokenType"}
+      }
+    },
+    "BatchGetSecretValueResponse":{
+      "type":"structure",
+      "members":{
+        "SecretValues":{"shape":"SecretValuesType"},
+        "NextToken":{"shape":"NextTokenType"},
+        "Errors":{"shape":"APIErrorListType"}
+      }
     },
     "BooleanType":{"type":"boolean"},
     "CancelRotateSecretRequest":{
@@ -499,6 +555,7 @@
           "shape":"DeletedDateType",
           "box":true
         },
+        "NextRotationDate":{"shape":"NextRotationDateType"},
         "Tags":{"shape":"TagListType"},
         "VersionIdsToStages":{"shape":"SecretVersionsToStagesMapType"},
         "OwningService":{"shape":"OwningServiceType"},
@@ -514,6 +571,12 @@
       "type":"string",
       "max":2048
     },
+    "DurationType":{
+      "type":"string",
+      "max":3,
+      "min":2,
+      "pattern":"[0-9h]+"
+    },
     "EncryptionFailure":{
       "type":"structure",
       "members":{
@@ -521,6 +584,7 @@
       },
       "exception":true
     },
+    "ErrorCode":{"type":"string"},
     "ErrorMessage":{"type":"string"},
     "ExcludeCharactersType":{
       "type":"string",
@@ -546,13 +610,14 @@
         "tag-key",
         "tag-value",
         "primary-region",
+        "owning-service",
         "all"
       ]
     },
     "FilterValueStringType":{
       "type":"string",
       "max":512,
-      "pattern":"^\\!?[a-zA-Z0-9 :_@\\/\\+\\=\\.\\-]*$"
+      "pattern":"^\\!?[a-zA-Z0-9 :_@\\/\\+\\=\\.\\-\\!]*$"
     },
     "FilterValuesStringList":{
       "type":"list",
@@ -674,6 +739,10 @@
       },
       "exception":true
     },
+    "KmsKeyIdListType":{
+      "type":"list",
+      "member":{"shape":"KmsKeyIdType"}
+    },
     "KmsKeyIdType":{
       "type":"string",
       "max":2048,
@@ -717,6 +786,10 @@
     "ListSecretsRequest":{
       "type":"structure",
       "members":{
+        "IncludePlannedDeletion":{
+          "shape":"BooleanType",
+          "box":true
+        },
         "MaxResults":{
           "shape":"MaxResultsType",
           "box":true
@@ -740,6 +813,12 @@
       },
       "exception":true
     },
+    "MaxResultsBatchType":{
+      "type":"integer",
+      "box":true,
+      "max":20,
+      "min":1
+    },
     "MaxResultsType":{
       "type":"integer",
       "max":100,
@@ -750,6 +829,7 @@
       "max":512,
       "min":1
     },
+    "NextRotationDateType":{"type":"timestamp"},
     "NextTokenType":{
       "type":"string",
       "max":4096,
@@ -944,7 +1024,11 @@
           "idempotencyToken":true
         },
         "RotationLambdaARN":{"shape":"RotationLambdaARNType"},
-        "RotationRules":{"shape":"RotationRulesType"}
+        "RotationRules":{"shape":"RotationRulesType"},
+        "RotateImmediately":{
+          "shape":"BooleanType",
+          "box":true
+        }
       }
     },
     "RotateSecretResponse":{
@@ -970,8 +1054,16 @@
         "AutomaticallyAfterDays":{
           "shape":"AutomaticallyRotateAfterDaysType",
           "box":true
-        }
+        },
+        "Duration":{"shape":"DurationType"},
+        "ScheduleExpression":{"shape":"ScheduleExpressionType"}
       }
+    },
+    "ScheduleExpressionType":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[0-9A-Za-z\\(\\)#\\?\\*\\-\\/, ]+"
     },
     "SecretARNType":{
       "type":"string",
@@ -981,8 +1073,14 @@
     "SecretBinaryType":{
       "type":"blob",
       "max":65536,
-      "min":0,
+      "min":1,
       "sensitive":true
+    },
+    "SecretIdListType":{
+      "type":"list",
+      "member":{"shape":"SecretIdType"},
+      "max":20,
+      "min":1
     },
     "SecretIdType":{
       "type":"string",
@@ -1015,6 +1113,7 @@
           "box":true
         },
         "DeletedDate":{"shape":"DeletedDateType"},
+        "NextRotationDate":{"shape":"NextRotationDateType"},
         "Tags":{"shape":"TagListType"},
         "SecretVersionsToStages":{"shape":"SecretVersionsToStagesMapType"},
         "OwningService":{"shape":"OwningServiceType"},
@@ -1037,8 +1136,27 @@
     "SecretStringType":{
       "type":"string",
       "max":65536,
-      "min":0,
+      "min":1,
       "sensitive":true
+    },
+    "SecretValueEntry":{
+      "type":"structure",
+      "members":{
+        "ARN":{"shape":"SecretARNType"},
+        "Name":{"shape":"SecretNameType"},
+        "VersionId":{"shape":"SecretVersionIdType"},
+        "SecretBinary":{"shape":"SecretBinaryType"},
+        "SecretString":{"shape":"SecretStringType"},
+        "VersionStages":{"shape":"SecretVersionStagesType"},
+        "CreatedDate":{
+          "shape":"CreatedDateType",
+          "box":true
+        }
+      }
+    },
+    "SecretValuesType":{
+      "type":"list",
+      "member":{"shape":"SecretValueEntry"}
     },
     "SecretVersionIdType":{
       "type":"string",
@@ -1068,7 +1186,8 @@
         "CreatedDate":{
           "shape":"CreatedDateType",
           "box":true
-        }
+        },
+        "KmsKeyIds":{"shape":"KmsKeyIdListType"}
       }
     },
     "SecretVersionsListType":{

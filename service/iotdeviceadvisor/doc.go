@@ -3,23 +3,24 @@
 // Package iotdeviceadvisor provides the client and types for making API
 // requests to AWS IoT Core Device Advisor.
 //
-// AWS IoT Core Device Advisor is a cloud-based, fully managed test capability
-// for validating IoT devices during device software development. Device Advisor
-// provides pre-built tests that you can use to validate IoT devices for reliable
-// and secure connectivity with AWS IoT Core before deploying devices to production.
-// By using Device Advisor, you can confirm that your devices can connect to
-// AWS IoT Core, follow security best practices and, if applicable, receive
-// software updates from IoT Device Management. You can also download signed
-// qualification reports to submit to the AWS Partner Network to get your device
-// qualified for the AWS Partner Device Catalog without the need to send your
-// device in and wait for it to be tested.
+// Amazon Web Services IoT Core Device Advisor is a cloud-based, fully managed
+// test capability for validating IoT devices during device software development.
+// Device Advisor provides pre-built tests that you can use to validate IoT
+// devices for reliable and secure connectivity with Amazon Web Services IoT
+// Core before deploying devices to production. By using Device Advisor, you
+// can confirm that your devices can connect to Amazon Web Services IoT Core,
+// follow security best practices and, if applicable, receive software updates
+// from IoT Device Management. You can also download signed qualification reports
+// to submit to the Amazon Web Services Partner Network to get your device qualified
+// for the Amazon Web Services Partner Device Catalog without the need to send
+// your device in and wait for it to be tested.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18 for more information on this service.
 //
 // See iotdeviceadvisor package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/iotdeviceadvisor/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS IoT Core Device Advisor with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

@@ -247,7 +247,8 @@
     "AutomaticStopTimeMinutes":{
       "type":"integer",
       "box":true,
-      "max":20160
+      "max":20160,
+      "min":0
     },
     "BadRequestException":{
       "type":"structure",
@@ -288,7 +289,8 @@
       "type":"structure",
       "required":[
         "name",
-        "instanceType"
+        "instanceType",
+        "imageId"
       ],
       "members":{
         "name":{"shape":"EnvironmentName"},
@@ -300,7 +302,8 @@
         "automaticStopTimeMinutes":{"shape":"AutomaticStopTimeMinutes"},
         "ownerArn":{"shape":"UserArn"},
         "tags":{"shape":"TagList"},
-        "connectionType":{"shape":"ConnectionType"}
+        "connectionType":{"shape":"ConnectionType"},
+        "dryRun":{"shape":"NullableBoolean"}
       }
     },
     "CreateEnvironmentEC2Result":{
@@ -521,7 +524,7 @@
       "type":"string",
       "max":20,
       "min":5,
-      "pattern":"^[a-z][1-9][.][a-z0-9]+$"
+      "pattern":"^[a-z]+[1-9][.][a-z0-9]+$"
     },
     "InternalServerErrorException":{
       "type":"structure",
@@ -563,6 +566,13 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "ManagedCredentialsAction":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
+    },
     "ManagedCredentialsStatus":{
       "type":"string",
       "enum":[
@@ -598,6 +608,7 @@
       },
       "exception":true
     },
+    "NullableBoolean":{"type":"boolean"},
     "Permissions":{
       "type":"string",
       "enum":[
@@ -719,7 +730,8 @@
       "members":{
         "environmentId":{"shape":"EnvironmentId"},
         "name":{"shape":"EnvironmentName"},
-        "description":{"shape":"EnvironmentDescription"}
+        "description":{"shape":"EnvironmentDescription"},
+        "managedCredentialsAction":{"shape":"ManagedCredentialsAction"}
       }
     },
     "UpdateEnvironmentResult":{

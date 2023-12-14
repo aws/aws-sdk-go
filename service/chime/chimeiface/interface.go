@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // Amazon Chime.
-//    func myFunc(svc chimeiface.ChimeAPI) bool {
-//        // Make svc.AssociatePhoneNumberWithUser request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// Amazon Chime.
+//	func myFunc(svc chimeiface.ChimeAPI) bool {
+//	    // Make svc.AssociatePhoneNumberWithUser request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := chime.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := chime.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockChimeClient struct {
-//        chimeiface.ChimeAPI
-//    }
-//    func (m *mockChimeClient) AssociatePhoneNumberWithUser(input *chime.AssociatePhoneNumberWithUserInput) (*chime.AssociatePhoneNumberWithUserOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockChimeClient struct {
+//	    chimeiface.ChimeAPI
+//	}
+//	func (m *mockChimeClient) AssociatePhoneNumberWithUser(input *chime.AssociatePhoneNumberWithUserInput) (*chime.AssociatePhoneNumberWithUserOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockChimeClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockChimeClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -782,6 +782,14 @@ type ChimeAPI interface {
 	SendChannelMessageWithContext(aws.Context, *chime.SendChannelMessageInput, ...request.Option) (*chime.SendChannelMessageOutput, error)
 	SendChannelMessageRequest(*chime.SendChannelMessageInput) (*request.Request, *chime.SendChannelMessageOutput)
 
+	StartMeetingTranscription(*chime.StartMeetingTranscriptionInput) (*chime.StartMeetingTranscriptionOutput, error)
+	StartMeetingTranscriptionWithContext(aws.Context, *chime.StartMeetingTranscriptionInput, ...request.Option) (*chime.StartMeetingTranscriptionOutput, error)
+	StartMeetingTranscriptionRequest(*chime.StartMeetingTranscriptionInput) (*request.Request, *chime.StartMeetingTranscriptionOutput)
+
+	StopMeetingTranscription(*chime.StopMeetingTranscriptionInput) (*chime.StopMeetingTranscriptionOutput, error)
+	StopMeetingTranscriptionWithContext(aws.Context, *chime.StopMeetingTranscriptionInput, ...request.Option) (*chime.StopMeetingTranscriptionOutput, error)
+	StopMeetingTranscriptionRequest(*chime.StopMeetingTranscriptionInput) (*request.Request, *chime.StopMeetingTranscriptionOutput)
+
 	TagAttendee(*chime.TagAttendeeInput) (*chime.TagAttendeeOutput, error)
 	TagAttendeeWithContext(aws.Context, *chime.TagAttendeeInput, ...request.Option) (*chime.TagAttendeeOutput, error)
 	TagAttendeeRequest(*chime.TagAttendeeInput) (*request.Request, *chime.TagAttendeeOutput)
@@ -889,6 +897,10 @@ type ChimeAPI interface {
 	UpdateVoiceConnectorGroup(*chime.UpdateVoiceConnectorGroupInput) (*chime.UpdateVoiceConnectorGroupOutput, error)
 	UpdateVoiceConnectorGroupWithContext(aws.Context, *chime.UpdateVoiceConnectorGroupInput, ...request.Option) (*chime.UpdateVoiceConnectorGroupOutput, error)
 	UpdateVoiceConnectorGroupRequest(*chime.UpdateVoiceConnectorGroupInput) (*request.Request, *chime.UpdateVoiceConnectorGroupOutput)
+
+	ValidateE911Address(*chime.ValidateE911AddressInput) (*chime.ValidateE911AddressOutput, error)
+	ValidateE911AddressWithContext(aws.Context, *chime.ValidateE911AddressInput, ...request.Option) (*chime.ValidateE911AddressOutput, error)
+	ValidateE911AddressRequest(*chime.ValidateE911AddressInput) (*request.Request, *chime.ValidateE911AddressOutput)
 }
 
 var _ ChimeAPI = (*chime.Chime)(nil)

@@ -38,6 +38,20 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "ModifyReportDefinition":{
       "name":"ModifyReportDefinition",
       "http":{
@@ -63,6 +77,35 @@
         {"shape":"DuplicateReportNameException"},
         {"shape":"ReportLimitReachedException"},
         {"shape":"InternalErrorException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
         {"shape":"ValidationException"}
       ]
     }
@@ -74,18 +117,23 @@
         "af-south-1",
         "ap-east-1",
         "ap-south-1",
+        "ap-south-2",
         "ap-southeast-1",
         "ap-southeast-2",
+        "ap-southeast-3",
         "ap-northeast-1",
         "ap-northeast-2",
         "ap-northeast-3",
         "ca-central-1",
         "eu-central-1",
+        "eu-central-2",
         "eu-west-1",
         "eu-west-2",
         "eu-west-3",
         "eu-north-1",
         "eu-south-1",
+        "eu-south-2",
+        "me-central-1",
         "me-south-1",
         "sa-east-1",
         "us-east-1",
@@ -123,6 +171,7 @@
     },
     "DeleteReportDefinitionRequest":{
       "type":"structure",
+      "required":["ReportName"],
       "members":{
         "ReportName":{"shape":"ReportName"}
       }
@@ -169,6 +218,33 @@
       "exception":true,
       "fault":true
     },
+    "LastDelivery":{
+      "type":"string",
+      "max":20,
+      "min":16,
+      "pattern":"[0-9]{8}[T][0-9]{6}([Z]|[+-][0-9]{4})"
+    },
+    "LastStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "ERROR_PERMISSIONS",
+        "ERROR_NO_BUCKET"
+      ]
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ReportName"],
+      "members":{
+        "ReportName":{"shape":"ReportName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -195,7 +271,8 @@
       "type":"structure",
       "required":["ReportDefinition"],
       "members":{
-        "ReportDefinition":{"shape":"ReportDefinition"}
+        "ReportDefinition":{"shape":"ReportDefinition"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "PutReportDefinitionResponse":{
@@ -231,7 +308,8 @@
         "AdditionalArtifacts":{"shape":"AdditionalArtifactList"},
         "RefreshClosedReports":{"shape":"RefreshClosedReports"},
         "ReportVersioning":{"shape":"ReportVersioning"},
-        "BillingViewArn":{"shape":"BillingViewArn"}
+        "BillingViewArn":{"shape":"BillingViewArn"},
+        "ReportStatus":{"shape":"ReportStatus"}
       }
     },
     "ReportDefinitionList":{
@@ -257,12 +335,26 @@
       "max":256,
       "pattern":"[0-9A-Za-z!\\-_.*\\'()]+"
     },
+    "ReportStatus":{
+      "type":"structure",
+      "members":{
+        "lastDelivery":{"shape":"LastDelivery"},
+        "lastStatus":{"shape":"LastStatus"}
+      }
+    },
     "ReportVersioning":{
       "type":"string",
       "enum":[
         "CREATE_NEW_REPORT",
         "OVERWRITE_REPORT"
       ]
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "S3Bucket":{
       "type":"string",
@@ -276,11 +368,66 @@
     },
     "SchemaElement":{
       "type":"string",
-      "enum":["RESOURCES"]
+      "enum":[
+        "RESOURCES",
+        "SPLIT_COST_ALLOCATION_DATA",
+        "MANUAL_DISCOUNT_COMPATIBILITY"
+      ]
     },
     "SchemaElementList":{
       "type":"list",
       "member":{"shape":"SchemaElement"}
+    },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":".*"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ReportName",
+        "Tags"
+      ],
+      "members":{
+        "ReportName":{"shape":"ReportName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":".*"
     },
     "TimeUnit":{
       "type":"string",
@@ -289,6 +436,22 @@
         "DAILY",
         "MONTHLY"
       ]
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ReportName",
+        "TagKeys"
+      ],
+      "members":{
+        "ReportName":{"shape":"ReportName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "ValidationException":{
       "type":"structure",

@@ -40,34 +40,36 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a SageMakerRuntime client from just a session.
-//     svc := sagemakerruntime.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a SageMakerRuntime client with additional configuration
-//     svc := sagemakerruntime.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a SageMakerRuntime client from just a session.
+//	svc := sagemakerruntime.New(mySession)
+//
+//	// Create a SageMakerRuntime client with additional configuration
+//	svc := sagemakerruntime.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *SageMakerRuntime {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "sagemaker"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *SageMakerRuntime {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *SageMakerRuntime {
 	svc := &SageMakerRuntime{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2017-05-13",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2017-05-13",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
@@ -81,6 +83,9 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 	svc.Handlers.UnmarshalError.PushBackNamed(
 		protocol.NewUnmarshalErrorHandler(restjson.NewUnmarshalTypedError(exceptionFromCode)).NamedHandler(),
 	)
+
+	svc.Handlers.BuildStream.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.UnmarshalStream.PushBackNamed(restjson.UnmarshalHandler)
 
 	// Run custom client initialization if present
 	if initClient != nil {

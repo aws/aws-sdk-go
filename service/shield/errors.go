@@ -18,10 +18,11 @@ const (
 	// ErrCodeAccessDeniedForDependencyException for service response error code
 	// "AccessDeniedForDependencyException".
 	//
-	// In order to grant the necessary access to the DDoS Response Team (DRT), the
-	// user submitting the request must have the iam:PassRole permission. This error
-	// indicates the user did not have the appropriate permissions. For more information,
-	// see Granting a User Permissions to Pass a Role to an AWS Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+	// In order to grant the necessary access to the Shield Response Team (SRT)
+	// the user submitting the request must have the iam:PassRole permission. This
+	// error indicates the user did not have the appropriate permissions. For more
+	// information, see Granting a User Permissions to Pass a Role to an Amazon
+	// Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 	ErrCodeAccessDeniedForDependencyException = "AccessDeniedForDependencyException"
 
 	// ErrCodeInternalErrorException for service response error code
@@ -42,7 +43,8 @@ const (
 	// "InvalidPaginationTokenException".
 	//
 	// Exception that indicates that the NextToken specified in the request is invalid.
-	// Submit the request using the NextToken value that was returned in the response.
+	// Submit the request using the NextToken value that was returned in the prior
+	// response.
 	ErrCodeInvalidPaginationTokenException = "InvalidPaginationTokenException"
 
 	// ErrCodeInvalidParameterException for service response error code
@@ -77,7 +79,7 @@ const (
 	// ErrCodeNoAssociatedRoleException for service response error code
 	// "NoAssociatedRoleException".
 	//
-	// The ARN of the role that you specifed does not exist.
+	// The ARN of the role that you specified does not exist.
 	ErrCodeNoAssociatedRoleException = "NoAssociatedRoleException"
 
 	// ErrCodeOptimisticLockException for service response error code

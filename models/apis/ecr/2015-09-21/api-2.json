@@ -53,7 +53,24 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"UnableToGetUpstreamImageException"}
+      ]
+    },
+    "BatchGetRepositoryScanningConfiguration":{
+      "name":"BatchGetRepositoryScanningConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetRepositoryScanningConfigurationRequest"},
+      "output":{"shape":"BatchGetRepositoryScanningConfigurationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "CompleteLayerUpload":{
@@ -74,6 +91,26 @@
         {"shape":"LayerAlreadyExistsException"},
         {"shape":"EmptyUploadException"},
         {"shape":"KmsException"}
+      ]
+    },
+    "CreatePullThroughCacheRule":{
+      "name":"CreatePullThroughCacheRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreatePullThroughCacheRuleRequest"},
+      "output":{"shape":"CreatePullThroughCacheRuleResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"},
+        {"shape":"PullThroughCacheRuleAlreadyExistsException"},
+        {"shape":"UnsupportedUpstreamRegistryException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"UnableToAccessSecretException"},
+        {"shape":"SecretNotFoundException"},
+        {"shape":"UnableToDecryptSecretValueException"}
       ]
     },
     "CreateRepository":{
@@ -106,7 +143,23 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"LifecyclePolicyNotFoundException"}
+        {"shape":"LifecyclePolicyNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "DeletePullThroughCacheRule":{
+      "name":"DeletePullThroughCacheRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePullThroughCacheRuleRequest"},
+      "output":{"shape":"DeletePullThroughCacheRuleResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"},
+        {"shape":"PullThroughCacheRuleNotFoundException"}
       ]
     },
     "DeleteRegistryPolicy":{
@@ -120,7 +173,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RegistryPolicyNotFoundException"}
+        {"shape":"RegistryPolicyNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteRepository":{
@@ -154,6 +208,22 @@
         {"shape":"RepositoryPolicyNotFoundException"}
       ]
     },
+    "DescribeImageReplicationStatus":{
+      "name":"DescribeImageReplicationStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeImageReplicationStatusRequest"},
+      "output":{"shape":"DescribeImageReplicationStatusResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ImageNotFoundException"},
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeImageScanFindings":{
       "name":"DescribeImageScanFindings",
       "http":{
@@ -167,7 +237,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
         {"shape":"ImageNotFoundException"},
-        {"shape":"ScanNotFoundException"}
+        {"shape":"ScanNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribeImages":{
@@ -183,6 +254,21 @@
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
         {"shape":"ImageNotFoundException"}
+      ]
+    },
+    "DescribePullThroughCacheRules":{
+      "name":"DescribePullThroughCacheRules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribePullThroughCacheRulesRequest"},
+      "output":{"shape":"DescribePullThroughCacheRulesResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"},
+        {"shape":"PullThroughCacheRuleNotFoundException"}
       ]
     },
     "DescribeRegistry":{
@@ -239,7 +325,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"LayersNotFoundException"},
         {"shape":"LayerInaccessibleException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnableToGetUpstreamLayerException"}
       ]
     },
     "GetLifecyclePolicy":{
@@ -254,7 +341,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"LifecyclePolicyNotFoundException"}
+        {"shape":"LifecyclePolicyNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetLifecyclePolicyPreview":{
@@ -269,7 +357,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"LifecyclePolicyPreviewNotFoundException"}
+        {"shape":"LifecyclePolicyPreviewNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetRegistryPolicy":{
@@ -283,7 +372,22 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RegistryPolicyNotFoundException"}
+        {"shape":"RegistryPolicyNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "GetRegistryScanningConfiguration":{
+      "name":"GetRegistryScanningConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRegistryScanningConfigurationRequest"},
+      "output":{"shape":"GetRegistryScanningConfigurationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetRepositoryPolicy":{
@@ -376,7 +480,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "PutImageTagMutability":{
@@ -404,7 +509,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "PutRegistryPolicy":{
@@ -417,7 +523,22 @@
       "output":{"shape":"PutRegistryPolicyResponse"},
       "errors":[
         {"shape":"ServerException"},
-        {"shape":"InvalidParameterException"}
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "PutRegistryScanningConfiguration":{
+      "name":"PutRegistryScanningConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutRegistryScanningConfigurationRequest"},
+      "output":{"shape":"PutRegistryScanningConfigurationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"}
       ]
     },
     "PutReplicationConfiguration":{
@@ -462,7 +583,8 @@
         {"shape":"UnsupportedImageTypeException"},
         {"shape":"LimitExceededException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"ImageNotFoundException"}
+        {"shape":"ImageNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "StartLifecyclePolicyPreview":{
@@ -478,7 +600,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
         {"shape":"LifecyclePolicyNotFoundException"},
-        {"shape":"LifecyclePolicyPreviewInProgressException"}
+        {"shape":"LifecyclePolicyPreviewInProgressException"},
+        {"shape":"ValidationException"}
       ]
     },
     "TagResource":{
@@ -513,6 +636,24 @@
         {"shape":"ServerException"}
       ]
     },
+    "UpdatePullThroughCacheRule":{
+      "name":"UpdatePullThroughCacheRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdatePullThroughCacheRuleRequest"},
+      "output":{"shape":"UpdatePullThroughCacheRuleResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnableToAccessSecretException"},
+        {"shape":"PullThroughCacheRuleNotFoundException"},
+        {"shape":"SecretNotFoundException"},
+        {"shape":"UnableToDecryptSecretValueException"}
+      ]
+    },
     "UploadLayerPart":{
       "name":"UploadLayerPart",
       "http":{
@@ -530,9 +671,25 @@
         {"shape":"LimitExceededException"},
         {"shape":"KmsException"}
       ]
+    },
+    "ValidatePullThroughCacheRule":{
+      "name":"ValidatePullThroughCacheRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ValidatePullThroughCacheRuleRequest"},
+      "output":{"shape":"ValidatePullThroughCacheRuleResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"},
+        {"shape":"PullThroughCacheRuleNotFoundException"}
+      ]
     }
   },
   "shapes":{
+    "Arch":{"type":"string"},
     "Arn":{"type":"string"},
     "Attribute":{
       "type":"structure",
@@ -558,6 +715,7 @@
       "max":256,
       "min":1
     },
+    "Author":{"type":"string"},
     "AuthorizationData":{
       "type":"structure",
       "members":{
@@ -570,10 +728,24 @@
       "type":"list",
       "member":{"shape":"AuthorizationData"}
     },
+    "AwsEcrContainerImageDetails":{
+      "type":"structure",
+      "members":{
+        "architecture":{"shape":"Arch"},
+        "author":{"shape":"Author"},
+        "imageHash":{"shape":"ImageDigest"},
+        "imageTags":{"shape":"ImageTagsList"},
+        "platform":{"shape":"Platform"},
+        "pushedAt":{"shape":"Date"},
+        "registry":{"shape":"RegistryId"},
+        "repositoryName":{"shape":"RepositoryName"}
+      }
+    },
     "Base64":{
       "type":"string",
       "pattern":"^\\S+$"
     },
+    "BaseScore":{"type":"double"},
     "BatchCheckLayerAvailabilityRequest":{
       "type":"structure",
       "required":[
@@ -632,6 +804,20 @@
         "failures":{"shape":"ImageFailureList"}
       }
     },
+    "BatchGetRepositoryScanningConfigurationRequest":{
+      "type":"structure",
+      "required":["repositoryNames"],
+      "members":{
+        "repositoryNames":{"shape":"ScanningConfigurationRepositoryNameList"}
+      }
+    },
+    "BatchGetRepositoryScanningConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "scanningConfigurations":{"shape":"RepositoryScanningConfigurationList"},
+        "failures":{"shape":"RepositoryScanningConfigurationFailureList"}
+      }
+    },
     "BatchedOperationLayerDigest":{
       "type":"string",
       "max":1000,
@@ -666,10 +852,36 @@
         "layerDigest":{"shape":"LayerDigest"}
       }
     },
+    "CreatePullThroughCacheRuleRequest":{
+      "type":"structure",
+      "required":[
+        "ecrRepositoryPrefix",
+        "upstreamRegistryUrl"
+      ],
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "upstreamRegistryUrl":{"shape":"Url"},
+        "registryId":{"shape":"RegistryId"},
+        "upstreamRegistry":{"shape":"UpstreamRegistry"},
+        "credentialArn":{"shape":"CredentialArn"}
+      }
+    },
+    "CreatePullThroughCacheRuleResponse":{
+      "type":"structure",
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "upstreamRegistryUrl":{"shape":"Url"},
+        "createdAt":{"shape":"CreationTimestamp"},
+        "registryId":{"shape":"RegistryId"},
+        "upstreamRegistry":{"shape":"UpstreamRegistry"},
+        "credentialArn":{"shape":"CredentialArn"}
+      }
+    },
     "CreateRepositoryRequest":{
       "type":"structure",
       "required":["repositoryName"],
       "members":{
+        "registryId":{"shape":"RegistryId"},
         "repositoryName":{"shape":"RepositoryName"},
         "tags":{"shape":"TagList"},
         "imageTagMutability":{"shape":"ImageTagMutability"},
@@ -684,6 +896,47 @@
       }
     },
     "CreationTimestamp":{"type":"timestamp"},
+    "CredentialArn":{
+      "type":"string",
+      "max":612,
+      "min":50,
+      "pattern":"^arn:aws:secretsmanager:[a-zA-Z0-9-:]+:secret:ecr\\-pullthroughcache\\/[a-zA-Z0-9\\/_+=.@-]+$"
+    },
+    "CvssScore":{
+      "type":"structure",
+      "members":{
+        "baseScore":{"shape":"BaseScore"},
+        "scoringVector":{"shape":"ScoringVector"},
+        "source":{"shape":"Source"},
+        "version":{"shape":"Version"}
+      }
+    },
+    "CvssScoreAdjustment":{
+      "type":"structure",
+      "members":{
+        "metric":{"shape":"Metric"},
+        "reason":{"shape":"Reason"}
+      }
+    },
+    "CvssScoreAdjustmentList":{
+      "type":"list",
+      "member":{"shape":"CvssScoreAdjustment"}
+    },
+    "CvssScoreDetails":{
+      "type":"structure",
+      "members":{
+        "adjustments":{"shape":"CvssScoreAdjustmentList"},
+        "score":{"shape":"Score"},
+        "scoreSource":{"shape":"Source"},
+        "scoringVector":{"shape":"ScoringVector"},
+        "version":{"shape":"Version"}
+      }
+    },
+    "CvssScoreList":{
+      "type":"list",
+      "member":{"shape":"CvssScore"}
+    },
+    "Date":{"type":"timestamp"},
     "DeleteLifecyclePolicyRequest":{
       "type":"structure",
       "required":["repositoryName"],
@@ -699,6 +952,24 @@
         "repositoryName":{"shape":"RepositoryName"},
         "lifecyclePolicyText":{"shape":"LifecyclePolicyText"},
         "lastEvaluatedAt":{"shape":"EvaluationTimestamp"}
+      }
+    },
+    "DeletePullThroughCacheRuleRequest":{
+      "type":"structure",
+      "required":["ecrRepositoryPrefix"],
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "registryId":{"shape":"RegistryId"}
+      }
+    },
+    "DeletePullThroughCacheRuleResponse":{
+      "type":"structure",
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "upstreamRegistryUrl":{"shape":"Url"},
+        "createdAt":{"shape":"CreationTimestamp"},
+        "registryId":{"shape":"RegistryId"},
+        "credentialArn":{"shape":"CredentialArn"}
       }
     },
     "DeleteRegistryPolicyRequest":{
@@ -742,6 +1013,26 @@
       "type":"structure",
       "members":{
         "repository":{"shape":"Repository"}
+      }
+    },
+    "DescribeImageReplicationStatusRequest":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "imageId"
+      ],
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageId":{"shape":"ImageIdentifier"},
+        "registryId":{"shape":"RegistryId"}
+      }
+    },
+    "DescribeImageReplicationStatusResponse":{
+      "type":"structure",
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageId":{"shape":"ImageIdentifier"},
+        "replicationStatuses":{"shape":"ImageReplicationStatusList"}
       }
     },
     "DescribeImageScanFindingsRequest":{
@@ -791,6 +1082,22 @@
       "type":"structure",
       "members":{
         "imageDetails":{"shape":"ImageDetailList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribePullThroughCacheRulesRequest":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "ecrRepositoryPrefixes":{"shape":"PullThroughCacheRuleRepositoryPrefixList"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "DescribePullThroughCacheRulesResponse":{
+      "type":"structure",
+      "members":{
+        "pullThroughCacheRules":{"shape":"PullThroughCacheRuleList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -844,9 +1151,36 @@
         "KMS"
       ]
     },
+    "EnhancedImageScanFinding":{
+      "type":"structure",
+      "members":{
+        "awsAccountId":{"shape":"RegistryId"},
+        "description":{"shape":"FindingDescription"},
+        "findingArn":{"shape":"FindingArn"},
+        "firstObservedAt":{"shape":"Date"},
+        "lastObservedAt":{"shape":"Date"},
+        "packageVulnerabilityDetails":{"shape":"PackageVulnerabilityDetails"},
+        "remediation":{"shape":"Remediation"},
+        "resources":{"shape":"ResourceList"},
+        "score":{"shape":"Score"},
+        "scoreDetails":{"shape":"ScoreDetails"},
+        "severity":{"shape":"Severity"},
+        "status":{"shape":"Status"},
+        "title":{"shape":"Title"},
+        "type":{"shape":"Type"},
+        "updatedAt":{"shape":"Date"}
+      }
+    },
+    "EnhancedImageScanFindingList":{
+      "type":"list",
+      "member":{"shape":"EnhancedImageScanFinding"}
+    },
+    "Epoch":{"type":"integer"},
     "EvaluationTimestamp":{"type":"timestamp"},
     "ExceptionMessage":{"type":"string"},
     "ExpirationTimestamp":{"type":"timestamp"},
+    "FilePath":{"type":"string"},
+    "FindingArn":{"type":"string"},
     "FindingDescription":{"type":"string"},
     "FindingName":{"type":"string"},
     "FindingSeverity":{
@@ -960,6 +1294,18 @@
         "policyText":{"shape":"RegistryPolicyText"}
       }
     },
+    "GetRegistryScanningConfigurationRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetRegistryScanningConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "scanningConfiguration":{"shape":"RegistryScanningConfiguration"}
+      }
+    },
     "GetRepositoryPolicyRequest":{
       "type":"structure",
       "required":["repositoryName"],
@@ -1013,7 +1359,8 @@
         "imageScanStatus":{"shape":"ImageScanStatus"},
         "imageScanFindingsSummary":{"shape":"ImageScanFindingsSummary"},
         "imageManifestMediaType":{"shape":"MediaType"},
-        "artifactMediaType":{"shape":"MediaType"}
+        "artifactMediaType":{"shape":"MediaType"},
+        "lastRecordedPullTime":{"shape":"RecordedPullTimestamp"}
       }
     },
     "ImageDetailList":{
@@ -1045,7 +1392,10 @@
         "ImageNotFound",
         "MissingDigestAndTag",
         "ImageReferencedByManifestList",
-        "KmsError"
+        "KmsError",
+        "UpstreamAccessDenied",
+        "UpstreamTooManyRequests",
+        "UpstreamUnavailable"
       ]
     },
     "ImageFailureList":{
@@ -1082,6 +1432,19 @@
       },
       "exception":true
     },
+    "ImageReplicationStatus":{
+      "type":"structure",
+      "members":{
+        "region":{"shape":"Region"},
+        "registryId":{"shape":"RegistryId"},
+        "status":{"shape":"ReplicationStatus"},
+        "failureCode":{"shape":"ReplicationError"}
+      }
+    },
+    "ImageReplicationStatusList":{
+      "type":"list",
+      "member":{"shape":"ImageReplicationStatus"}
+    },
     "ImageScanFinding":{
       "type":"structure",
       "members":{
@@ -1101,8 +1464,9 @@
       "members":{
         "imageScanCompletedAt":{"shape":"ScanTimestamp"},
         "vulnerabilitySourceUpdatedAt":{"shape":"VulnerabilitySourceUpdateTimestamp"},
+        "findingSeverityCounts":{"shape":"FindingSeverityCounts"},
         "findings":{"shape":"ImageScanFindingList"},
-        "findingSeverityCounts":{"shape":"FindingSeverityCounts"}
+        "enhancedFindings":{"shape":"EnhancedImageScanFindingList"}
       }
     },
     "ImageScanFindingsSummary":{
@@ -1149,6 +1513,10 @@
         "MUTABLE",
         "IMMUTABLE"
       ]
+    },
+    "ImageTagsList":{
+      "type":"list",
+      "member":{"shape":"ImageTag"}
     },
     "InitiateLayerUploadRequest":{
       "type":"structure",
@@ -1197,6 +1565,7 @@
       },
       "exception":true
     },
+    "IsPTCRuleValid":{"type":"boolean"},
     "KmsError":{"type":"string"},
     "KmsException":{
       "type":"structure",
@@ -1427,12 +1796,73 @@
       "max":100,
       "min":1
     },
+    "Metric":{"type":"string"},
     "NextToken":{"type":"string"},
+    "PTCValidateFailure":{"type":"string"},
+    "PackageManager":{"type":"string"},
+    "PackageVulnerabilityDetails":{
+      "type":"structure",
+      "members":{
+        "cvss":{"shape":"CvssScoreList"},
+        "referenceUrls":{"shape":"ReferenceUrlsList"},
+        "relatedVulnerabilities":{"shape":"RelatedVulnerabilitiesList"},
+        "source":{"shape":"Source"},
+        "sourceUrl":{"shape":"Url"},
+        "vendorCreatedAt":{"shape":"Date"},
+        "vendorSeverity":{"shape":"Severity"},
+        "vendorUpdatedAt":{"shape":"Date"},
+        "vulnerabilityId":{"shape":"VulnerabilityId"},
+        "vulnerablePackages":{"shape":"VulnerablePackagesList"}
+      }
+    },
     "PartSize":{
       "type":"long",
       "min":0
     },
+    "Platform":{"type":"string"},
     "ProxyEndpoint":{"type":"string"},
+    "PullThroughCacheRule":{
+      "type":"structure",
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "upstreamRegistryUrl":{"shape":"Url"},
+        "createdAt":{"shape":"CreationTimestamp"},
+        "registryId":{"shape":"RegistryId"},
+        "credentialArn":{"shape":"CredentialArn"},
+        "upstreamRegistry":{"shape":"UpstreamRegistry"},
+        "updatedAt":{"shape":"UpdatedTimestamp"}
+      }
+    },
+    "PullThroughCacheRuleAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "PullThroughCacheRuleList":{
+      "type":"list",
+      "member":{"shape":"PullThroughCacheRule"}
+    },
+    "PullThroughCacheRuleNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "PullThroughCacheRuleRepositoryPrefix":{
+      "type":"string",
+      "max":30,
+      "min":2,
+      "pattern":"(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*"
+    },
+    "PullThroughCacheRuleRepositoryPrefixList":{
+      "type":"list",
+      "member":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+      "max":100,
+      "min":1
+    },
     "PushTimestamp":{"type":"timestamp"},
     "PutImageRequest":{
       "type":"structure",
@@ -1529,6 +1959,19 @@
         "policyText":{"shape":"RegistryPolicyText"}
       }
     },
+    "PutRegistryScanningConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "scanType":{"shape":"ScanType"},
+        "rules":{"shape":"RegistryScanningRuleList"}
+      }
+    },
+    "PutRegistryScanningConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "registryScanningConfiguration":{"shape":"RegistryScanningConfiguration"}
+      }
+    },
     "PutReplicationConfigurationRequest":{
       "type":"structure",
       "required":["replicationConfiguration"],
@@ -1541,6 +1984,20 @@
       "members":{
         "replicationConfiguration":{"shape":"ReplicationConfiguration"}
       }
+    },
+    "Reason":{"type":"string"},
+    "Recommendation":{
+      "type":"structure",
+      "members":{
+        "url":{"shape":"Url"},
+        "text":{"shape":"RecommendationText"}
+      }
+    },
+    "RecommendationText":{"type":"string"},
+    "RecordedPullTimestamp":{"type":"timestamp"},
+    "ReferenceUrlsList":{
+      "type":"list",
+      "member":{"shape":"Url"}
     },
     "ReferencedImagesNotFoundException":{
       "type":"structure",
@@ -1571,6 +2028,42 @@
       "max":10240,
       "min":0
     },
+    "RegistryScanningConfiguration":{
+      "type":"structure",
+      "members":{
+        "scanType":{"shape":"ScanType"},
+        "rules":{"shape":"RegistryScanningRuleList"}
+      }
+    },
+    "RegistryScanningRule":{
+      "type":"structure",
+      "required":[
+        "scanFrequency",
+        "repositoryFilters"
+      ],
+      "members":{
+        "scanFrequency":{"shape":"ScanFrequency"},
+        "repositoryFilters":{"shape":"ScanningRepositoryFilterList"}
+      }
+    },
+    "RegistryScanningRuleList":{
+      "type":"list",
+      "member":{"shape":"RegistryScanningRule"},
+      "max":2,
+      "min":0
+    },
+    "RelatedVulnerabilitiesList":{
+      "type":"list",
+      "member":{"shape":"RelatedVulnerability"}
+    },
+    "RelatedVulnerability":{"type":"string"},
+    "Release":{"type":"string"},
+    "Remediation":{
+      "type":"structure",
+      "members":{
+        "recommendation":{"shape":"Recommendation"}
+      }
+    },
     "ReplicationConfiguration":{
       "type":"structure",
       "required":["rules"],
@@ -1595,18 +2088,28 @@
       "max":25,
       "min":0
     },
+    "ReplicationError":{"type":"string"},
     "ReplicationRule":{
       "type":"structure",
       "required":["destinations"],
       "members":{
-        "destinations":{"shape":"ReplicationDestinationList"}
+        "destinations":{"shape":"ReplicationDestinationList"},
+        "repositoryFilters":{"shape":"RepositoryFilterList"}
       }
     },
     "ReplicationRuleList":{
       "type":"list",
       "member":{"shape":"ReplicationRule"},
-      "max":1,
+      "max":10,
       "min":0
+    },
+    "ReplicationStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETE",
+        "FAILED"
+      ]
     },
     "Repository":{
       "type":"structure",
@@ -1627,6 +2130,33 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "RepositoryFilter":{
+      "type":"structure",
+      "required":[
+        "filter",
+        "filterType"
+      ],
+      "members":{
+        "filter":{"shape":"RepositoryFilterValue"},
+        "filterType":{"shape":"RepositoryFilterType"}
+      }
+    },
+    "RepositoryFilterList":{
+      "type":"list",
+      "member":{"shape":"RepositoryFilter"},
+      "max":100,
+      "min":1
+    },
+    "RepositoryFilterType":{
+      "type":"string",
+      "enum":["PREFIX_MATCH"]
+    },
+    "RepositoryFilterValue":{
+      "type":"string",
+      "max":256,
+      "min":2,
+      "pattern":"^(?:[a-z0-9]+(?:[._-][a-z0-9]*)*/)*[a-z0-9]*(?:[._-][a-z0-9]*)*$"
     },
     "RepositoryList":{
       "type":"list",
@@ -1670,6 +2200,60 @@
       "max":10240,
       "min":0
     },
+    "RepositoryScanningConfiguration":{
+      "type":"structure",
+      "members":{
+        "repositoryArn":{"shape":"Arn"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "scanOnPush":{"shape":"ScanOnPushFlag"},
+        "scanFrequency":{"shape":"ScanFrequency"},
+        "appliedScanFilters":{"shape":"ScanningRepositoryFilterList"}
+      }
+    },
+    "RepositoryScanningConfigurationFailure":{
+      "type":"structure",
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "failureCode":{"shape":"ScanningConfigurationFailureCode"},
+        "failureReason":{"shape":"ScanningConfigurationFailureReason"}
+      }
+    },
+    "RepositoryScanningConfigurationFailureList":{
+      "type":"list",
+      "member":{"shape":"RepositoryScanningConfigurationFailure"}
+    },
+    "RepositoryScanningConfigurationList":{
+      "type":"list",
+      "member":{"shape":"RepositoryScanningConfiguration"}
+    },
+    "Resource":{
+      "type":"structure",
+      "members":{
+        "details":{"shape":"ResourceDetails"},
+        "id":{"shape":"ResourceId"},
+        "tags":{"shape":"Tags"},
+        "type":{"shape":"Type"}
+      }
+    },
+    "ResourceDetails":{
+      "type":"structure",
+      "members":{
+        "awsEcrContainerImage":{"shape":"AwsEcrContainerImageDetails"}
+      }
+    },
+    "ResourceId":{"type":"string"},
+    "ResourceList":{
+      "type":"list",
+      "member":{"shape":"Resource"}
+    },
+    "ScanFrequency":{
+      "type":"string",
+      "enum":[
+        "SCAN_ON_PUSH",
+        "CONTINUOUS_SCAN",
+        "MANUAL"
+      ]
+    },
     "ScanNotFoundException":{
       "type":"structure",
       "members":{
@@ -1683,11 +2267,76 @@
       "enum":[
         "IN_PROGRESS",
         "COMPLETE",
-        "FAILED"
+        "FAILED",
+        "UNSUPPORTED_IMAGE",
+        "ACTIVE",
+        "PENDING",
+        "SCAN_ELIGIBILITY_EXPIRED",
+        "FINDINGS_UNAVAILABLE"
       ]
     },
     "ScanStatusDescription":{"type":"string"},
     "ScanTimestamp":{"type":"timestamp"},
+    "ScanType":{
+      "type":"string",
+      "enum":[
+        "BASIC",
+        "ENHANCED"
+      ]
+    },
+    "ScanningConfigurationFailureCode":{
+      "type":"string",
+      "enum":["REPOSITORY_NOT_FOUND"]
+    },
+    "ScanningConfigurationFailureReason":{"type":"string"},
+    "ScanningConfigurationRepositoryNameList":{
+      "type":"list",
+      "member":{"shape":"RepositoryName"},
+      "max":25,
+      "min":1
+    },
+    "ScanningRepositoryFilter":{
+      "type":"structure",
+      "required":[
+        "filter",
+        "filterType"
+      ],
+      "members":{
+        "filter":{"shape":"ScanningRepositoryFilterValue"},
+        "filterType":{"shape":"ScanningRepositoryFilterType"}
+      }
+    },
+    "ScanningRepositoryFilterList":{
+      "type":"list",
+      "member":{"shape":"ScanningRepositoryFilter"},
+      "max":100,
+      "min":0
+    },
+    "ScanningRepositoryFilterType":{
+      "type":"string",
+      "enum":["WILDCARD"]
+    },
+    "ScanningRepositoryFilterValue":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-z0-9*](?:[._\\-/a-z0-9*]?[a-z0-9*]+)*$"
+    },
+    "Score":{"type":"double"},
+    "ScoreDetails":{
+      "type":"structure",
+      "members":{
+        "cvss":{"shape":"CvssScoreDetails"}
+      }
+    },
+    "ScoringVector":{"type":"string"},
+    "SecretNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "ServerException":{
       "type":"structure",
       "members":{
@@ -1717,10 +2366,13 @@
         "policyText":{"shape":"RepositoryPolicyText"}
       }
     },
+    "Severity":{"type":"string"},
     "SeverityCount":{
       "type":"integer",
       "min":0
     },
+    "Source":{"type":"string"},
+    "SourceLayerHash":{"type":"string"},
     "StartImageScanRequest":{
       "type":"structure",
       "required":[
@@ -1760,8 +2412,13 @@
         "status":{"shape":"LifecyclePolicyPreviewStatus"}
       }
     },
+    "Status":{"type":"string"},
     "Tag":{
       "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
       "members":{
         "Key":{"shape":"TagKey"},
         "Value":{"shape":"TagValue"}
@@ -1801,6 +2458,12 @@
       ]
     },
     "TagValue":{"type":"string"},
+    "Tags":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"}
+    },
+    "Title":{"type":"string"},
     "TooManyTagsException":{
       "type":"structure",
       "members":{
@@ -1808,7 +2471,43 @@
       },
       "exception":true
     },
+    "Type":{"type":"string"},
+    "UnableToAccessSecretException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "UnableToDecryptSecretValueException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "UnableToGetUpstreamImageException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "UnableToGetUpstreamLayerException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "UnsupportedImageTypeException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "UnsupportedUpstreamRegistryException":{
       "type":"structure",
       "members":{
         "message":{"shape":"ExceptionMessage"}
@@ -1831,6 +2530,28 @@
       "members":{
       }
     },
+    "UpdatePullThroughCacheRuleRequest":{
+      "type":"structure",
+      "required":[
+        "ecrRepositoryPrefix",
+        "credentialArn"
+      ],
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "credentialArn":{"shape":"CredentialArn"}
+      }
+    },
+    "UpdatePullThroughCacheRuleResponse":{
+      "type":"structure",
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "registryId":{"shape":"RegistryId"},
+        "updatedAt":{"shape":"UpdatedTimestamp"},
+        "credentialArn":{"shape":"CredentialArn"}
+      }
+    },
+    "UpdatedTimestamp":{"type":"timestamp"},
     "UploadId":{
       "type":"string",
       "pattern":"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
@@ -1869,7 +2590,37 @@
       },
       "exception":true
     },
+    "UpstreamRegistry":{
+      "type":"string",
+      "enum":[
+        "ecr-public",
+        "quay",
+        "k8s",
+        "docker-hub",
+        "github-container-registry",
+        "azure-container-registry"
+      ]
+    },
     "Url":{"type":"string"},
+    "ValidatePullThroughCacheRuleRequest":{
+      "type":"structure",
+      "required":["ecrRepositoryPrefix"],
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "registryId":{"shape":"RegistryId"}
+      }
+    },
+    "ValidatePullThroughCacheRuleResponse":{
+      "type":"structure",
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "registryId":{"shape":"RegistryId"},
+        "upstreamRegistryUrl":{"shape":"Url"},
+        "credentialArn":{"shape":"CredentialArn"},
+        "isValid":{"shape":"IsPTCRuleValid"},
+        "failure":{"shape":"PTCValidateFailure"}
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "members":{
@@ -1877,6 +2628,26 @@
       },
       "exception":true
     },
-    "VulnerabilitySourceUpdateTimestamp":{"type":"timestamp"}
+    "Version":{"type":"string"},
+    "VulnerabilityId":{"type":"string"},
+    "VulnerabilitySourceUpdateTimestamp":{"type":"timestamp"},
+    "VulnerablePackage":{
+      "type":"structure",
+      "members":{
+        "arch":{"shape":"Arch"},
+        "epoch":{"shape":"Epoch"},
+        "filePath":{"shape":"FilePath"},
+        "name":{"shape":"VulnerablePackageName"},
+        "packageManager":{"shape":"PackageManager"},
+        "release":{"shape":"Release"},
+        "sourceLayerHash":{"shape":"SourceLayerHash"},
+        "version":{"shape":"Version"}
+      }
+    },
+    "VulnerablePackageName":{"type":"string"},
+    "VulnerablePackagesList":{
+      "type":"list",
+      "member":{"shape":"VulnerablePackage"}
+    }
   }
 }

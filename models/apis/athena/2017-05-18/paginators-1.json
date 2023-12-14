@@ -5,6 +5,21 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "ListApplicationDPUSizes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListCalculationExecutions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListCapacityReservations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListDataCatalogs": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -17,6 +32,16 @@
       "output_token": "NextToken",
       "result_key": "DatabaseList"
     },
+    "ListEngineVersions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListExecutors": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListNamedQueries": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -28,6 +53,11 @@
       "output_token": "NextToken"
     },
     "ListQueryExecutions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListSessions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken"

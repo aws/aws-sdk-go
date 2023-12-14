@@ -8,6 +8,13 @@ import (
 
 const (
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// The request issuer does not have permission to access this resource or perform
+	// this operation.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
@@ -33,7 +40,7 @@ const (
 	//
 	//    * The request would cause the number of member accounts in the behavior
 	//    graph to exceed the maximum allowed. A behavior graph cannot have more
-	//    than 1000 member accounts.
+	//    than 1200 member accounts.
 	//
 	//    * The request would cause the data rate for the behavior graph to exceed
 	//    the maximum allowed.
@@ -41,6 +48,13 @@ const (
 	//    * Detective is unable to verify the data rate for the member account.
 	//    This is usually because the member account is not enrolled in Amazon GuardDuty.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
+	// ErrCodeTooManyRequestsException for service response error code
+	// "TooManyRequestsException".
+	//
+	// The request cannot be completed because too many other requests are occurring
+	// at the same time.
+	ErrCodeTooManyRequestsException = "TooManyRequestsException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
@@ -50,9 +64,11 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":         newErrorAccessDeniedException,
 	"ConflictException":             newErrorConflictException,
 	"InternalServerException":       newErrorInternalServerException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"TooManyRequestsException":      newErrorTooManyRequestsException,
 	"ValidationException":           newErrorValidationException,
 }

@@ -117,6 +117,23 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DeletePackage":{
+      "name":"DeletePackage",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/package"
+      },
+      "input":{"shape":"DeletePackageRequest"},
+      "output":{"shape":"DeletePackageResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DeletePackageVersions":{
       "name":"DeletePackageVersions",
       "http":{
@@ -176,6 +193,22 @@
       },
       "input":{"shape":"DescribeDomainRequest"},
       "output":{"shape":"DescribeDomainResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "DescribePackage":{
+      "name":"DescribePackage",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/package"
+      },
+      "input":{"shape":"DescribePackageRequest"},
+      "output":{"shape":"DescribePackageResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
@@ -474,6 +507,24 @@
         {"shape":"ValidationException"}
       ]
     },
+    "PublishPackageVersion":{
+      "name":"PublishPackageVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/package/version/publish"
+      },
+      "input":{"shape":"PublishPackageVersionRequest"},
+      "output":{"shape":"PublishPackageVersionResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "PutDomainPermissionsPolicy":{
       "name":"PutDomainPermissionsPolicy",
       "http":{
@@ -488,6 +539,22 @@
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "PutPackageOriginConfiguration":{
+      "name":"PutPackageOriginConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/package"
+      },
+      "input":{"shape":"PutPackageOriginConfigurationRequest"},
+      "output":{"shape":"PutPackageOriginConfigurationResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ]
@@ -592,6 +659,20 @@
       "max":12,
       "min":12,
       "pattern":"[0-9]{12}"
+    },
+    "AllowPublish":{
+      "type":"string",
+      "enum":[
+        "ALLOW",
+        "BLOCK"
+      ]
+    },
+    "AllowUpstream":{
+      "type":"string",
+      "enum":[
+        "ALLOW",
+        "BLOCK"
+      ]
     },
     "Arn":{
       "type":"string",
@@ -839,6 +920,53 @@
         "domain":{"shape":"DomainDescription"}
       }
     },
+    "DeletePackageRequest":{
+      "type":"structure",
+      "required":[
+        "domain",
+        "repository",
+        "format",
+        "package"
+      ],
+      "members":{
+        "domain":{
+          "shape":"DomainName",
+          "location":"querystring",
+          "locationName":"domain"
+        },
+        "domainOwner":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"domain-owner"
+        },
+        "repository":{
+          "shape":"RepositoryName",
+          "location":"querystring",
+          "locationName":"repository"
+        },
+        "format":{
+          "shape":"PackageFormat",
+          "location":"querystring",
+          "locationName":"format"
+        },
+        "namespace":{
+          "shape":"PackageNamespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "package":{
+          "shape":"PackageName",
+          "location":"querystring",
+          "locationName":"package"
+        }
+      }
+    },
+    "DeletePackageResult":{
+      "type":"structure",
+      "members":{
+        "deletedPackage":{"shape":"PackageSummary"}
+      }
+    },
     "DeletePackageVersionsRequest":{
       "type":"structure",
       "required":[
@@ -977,6 +1105,54 @@
         "domain":{"shape":"DomainDescription"}
       }
     },
+    "DescribePackageRequest":{
+      "type":"structure",
+      "required":[
+        "domain",
+        "repository",
+        "format",
+        "package"
+      ],
+      "members":{
+        "domain":{
+          "shape":"DomainName",
+          "location":"querystring",
+          "locationName":"domain"
+        },
+        "domainOwner":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"domain-owner"
+        },
+        "repository":{
+          "shape":"RepositoryName",
+          "location":"querystring",
+          "locationName":"repository"
+        },
+        "format":{
+          "shape":"PackageFormat",
+          "location":"querystring",
+          "locationName":"format"
+        },
+        "namespace":{
+          "shape":"PackageNamespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "package":{
+          "shape":"PackageName",
+          "location":"querystring",
+          "locationName":"package"
+        }
+      }
+    },
+    "DescribePackageResult":{
+      "type":"structure",
+      "required":["package"],
+      "members":{
+        "package":{"shape":"PackageDescription"}
+      }
+    },
     "DescribePackageVersionRequest":{
       "type":"structure",
       "required":[
@@ -1064,7 +1240,7 @@
     "Description":{
       "type":"string",
       "max":1000,
-      "pattern":"\\P{C}+"
+      "pattern":"\\P{C}*"
     },
     "DisassociateExternalConnectionRequest":{
       "type":"structure",
@@ -1168,6 +1344,13 @@
         "s3BucketArn":{"shape":"Arn"}
       }
     },
+    "DomainEntryPoint":{
+      "type":"structure",
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "externalConnectionName":{"shape":"ExternalConnectionName"}
+      }
+    },
     "DomainName":{
       "type":"string",
       "max":50,
@@ -1199,6 +1382,8 @@
     "ErrorMessage":{"type":"string"},
     "ExternalConnectionName":{
       "type":"string",
+      "max":100,
+      "min":2,
       "pattern":"[A-Za-z0-9][A-Za-z0-9._\\-:]{1,99}"
     },
     "ExternalConnectionStatus":{
@@ -1716,6 +1901,11 @@
           "shape":"PaginationToken",
           "location":"querystring",
           "locationName":"next-token"
+        },
+        "originType":{
+          "shape":"PackageVersionOriginType",
+          "location":"querystring",
+          "locationName":"originType"
         }
       }
     },
@@ -1781,6 +1971,16 @@
           "shape":"PaginationToken",
           "location":"querystring",
           "locationName":"next-token"
+        },
+        "publish":{
+          "shape":"AllowPublish",
+          "location":"querystring",
+          "locationName":"publish"
+        },
+        "upstream":{
+          "shape":"AllowUpstream",
+          "location":"querystring",
+          "locationName":"upstream"
         }
       }
     },
@@ -1903,33 +2103,62 @@
       "type":"list",
       "member":{"shape":"PackageDependency"}
     },
+    "PackageDescription":{
+      "type":"structure",
+      "members":{
+        "format":{"shape":"PackageFormat"},
+        "namespace":{"shape":"PackageNamespace"},
+        "name":{"shape":"PackageName"},
+        "originConfiguration":{"shape":"PackageOriginConfiguration"}
+      }
+    },
     "PackageFormat":{
       "type":"string",
       "enum":[
         "npm",
         "pypi",
         "maven",
-        "nuget"
+        "nuget",
+        "generic",
+        "swift"
       ]
     },
     "PackageName":{
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"[^!#/\\s]+"
+      "pattern":"[^#/\\s]+"
     },
     "PackageNamespace":{
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"[^!#/\\s]+"
+      "pattern":"[^#/\\s]+"
+    },
+    "PackageOriginConfiguration":{
+      "type":"structure",
+      "members":{
+        "restrictions":{"shape":"PackageOriginRestrictions"}
+      }
+    },
+    "PackageOriginRestrictions":{
+      "type":"structure",
+      "required":[
+        "publish",
+        "upstream"
+      ],
+      "members":{
+        "publish":{"shape":"AllowPublish"},
+        "upstream":{"shape":"AllowUpstream"}
+      }
     },
     "PackageSummary":{
       "type":"structure",
       "members":{
         "format":{"shape":"PackageFormat"},
         "namespace":{"shape":"PackageNamespace"},
-        "package":{"shape":"PackageName"}
+        "package":{"shape":"PackageName"},
+        "originConfiguration":{"shape":"PackageOriginConfiguration"}
       }
     },
     "PackageSummaryList":{
@@ -1940,7 +2169,7 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"[^!#/\\s]+"
+      "pattern":"[^#/\\s]+"
     },
     "PackageVersionDescription":{
       "type":"structure",
@@ -1956,7 +2185,8 @@
         "publishedTime":{"shape":"Timestamp"},
         "licenses":{"shape":"LicenseInfoList"},
         "revision":{"shape":"PackageVersionRevision"},
-        "status":{"shape":"PackageVersionStatus"}
+        "status":{"shape":"PackageVersionStatus"},
+        "origin":{"shape":"PackageVersionOrigin"}
       }
     },
     "PackageVersionError":{
@@ -1986,6 +2216,21 @@
       "type":"list",
       "member":{"shape":"PackageVersion"},
       "max":100
+    },
+    "PackageVersionOrigin":{
+      "type":"structure",
+      "members":{
+        "domainEntryPoint":{"shape":"DomainEntryPoint"},
+        "originType":{"shape":"PackageVersionOriginType"}
+      }
+    },
+    "PackageVersionOriginType":{
+      "type":"string",
+      "enum":[
+        "INTERNAL",
+        "EXTERNAL",
+        "UNKNOWN"
+      ]
     },
     "PackageVersionRevision":{
       "type":"string",
@@ -2022,7 +2267,8 @@
       "members":{
         "version":{"shape":"PackageVersion"},
         "revision":{"shape":"PackageVersionRevision"},
-        "status":{"shape":"PackageVersionStatus"}
+        "status":{"shape":"PackageVersionStatus"},
+        "origin":{"shape":"PackageVersionOrigin"}
       }
     },
     "PackageVersionSummaryList":{
@@ -2037,14 +2283,94 @@
     },
     "PolicyDocument":{
       "type":"string",
-      "max":5120,
-      "min":1
+      "max":7168,
+      "min":1,
+      "pattern":"[\\P{C}\\s]+"
     },
     "PolicyRevision":{
       "type":"string",
       "max":100,
       "min":1,
       "pattern":"\\S+"
+    },
+    "PublishPackageVersionRequest":{
+      "type":"structure",
+      "required":[
+        "domain",
+        "repository",
+        "format",
+        "package",
+        "packageVersion",
+        "assetContent",
+        "assetName",
+        "assetSHA256"
+      ],
+      "members":{
+        "domain":{
+          "shape":"DomainName",
+          "location":"querystring",
+          "locationName":"domain"
+        },
+        "domainOwner":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"domain-owner"
+        },
+        "repository":{
+          "shape":"RepositoryName",
+          "location":"querystring",
+          "locationName":"repository"
+        },
+        "format":{
+          "shape":"PackageFormat",
+          "location":"querystring",
+          "locationName":"format"
+        },
+        "namespace":{
+          "shape":"PackageNamespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "package":{
+          "shape":"PackageName",
+          "location":"querystring",
+          "locationName":"package"
+        },
+        "packageVersion":{
+          "shape":"PackageVersion",
+          "location":"querystring",
+          "locationName":"version"
+        },
+        "assetContent":{"shape":"Asset"},
+        "assetName":{
+          "shape":"AssetName",
+          "location":"querystring",
+          "locationName":"asset"
+        },
+        "assetSHA256":{
+          "shape":"SHA256",
+          "location":"header",
+          "locationName":"x-amz-content-sha256"
+        },
+        "unfinished":{
+          "shape":"BooleanOptional",
+          "location":"querystring",
+          "locationName":"unfinished"
+        }
+      },
+      "payload":"assetContent"
+    },
+    "PublishPackageVersionResult":{
+      "type":"structure",
+      "members":{
+        "format":{"shape":"PackageFormat"},
+        "namespace":{"shape":"PackageNamespace"},
+        "package":{"shape":"PackageName"},
+        "version":{"shape":"PackageVersion"},
+        "versionRevision":{"shape":"PackageVersionRevision"},
+        "status":{"shape":"PackageVersionStatus"},
+        "asset":{"shape":"AssetSummary"}
+      }
     },
     "PutDomainPermissionsPolicyRequest":{
       "type":"structure",
@@ -2063,6 +2389,55 @@
       "type":"structure",
       "members":{
         "policy":{"shape":"ResourcePolicy"}
+      }
+    },
+    "PutPackageOriginConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "domain",
+        "repository",
+        "format",
+        "package",
+        "restrictions"
+      ],
+      "members":{
+        "domain":{
+          "shape":"DomainName",
+          "location":"querystring",
+          "locationName":"domain"
+        },
+        "domainOwner":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"domain-owner"
+        },
+        "repository":{
+          "shape":"RepositoryName",
+          "location":"querystring",
+          "locationName":"repository"
+        },
+        "format":{
+          "shape":"PackageFormat",
+          "location":"querystring",
+          "locationName":"format"
+        },
+        "namespace":{
+          "shape":"PackageNamespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "package":{
+          "shape":"PackageName",
+          "location":"querystring",
+          "locationName":"package"
+        },
+        "restrictions":{"shape":"PackageOriginRestrictions"}
+      }
+    },
+    "PutPackageOriginConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "originConfiguration":{"shape":"PackageOriginConfiguration"}
       }
     },
     "PutRepositoryPermissionsPolicyRequest":{
@@ -2108,7 +2483,8 @@
         "arn":{"shape":"Arn"},
         "description":{"shape":"Description"},
         "upstreams":{"shape":"UpstreamRepositoryInfoList"},
-        "externalConnections":{"shape":"RepositoryExternalConnectionInfoList"}
+        "externalConnections":{"shape":"RepositoryExternalConnectionInfoList"},
+        "createdTime":{"shape":"Timestamp"}
       }
     },
     "RepositoryExternalConnectionInfo":{
@@ -2137,7 +2513,8 @@
         "domainName":{"shape":"DomainName"},
         "domainOwner":{"shape":"AccountId"},
         "arn":{"shape":"Arn"},
-        "description":{"shape":"Description"}
+        "description":{"shape":"Description"},
+        "createdTime":{"shape":"Timestamp"}
       }
     },
     "RepositorySummaryList":{
@@ -2174,6 +2551,12 @@
       ]
     },
     "RetryAfterSeconds":{"type":"integer"},
+    "SHA256":{
+      "type":"string",
+      "max":64,
+      "min":64,
+      "pattern":"[0-9a-f]+"
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "required":["message"],
@@ -2217,7 +2600,8 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"\\P{C}+"
     },
     "TagKeyList":{
       "type":"list",
@@ -2254,7 +2638,8 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":0
+      "min":0,
+      "pattern":"\\P{C}*"
     },
     "ThrottlingException":{
       "type":"structure",

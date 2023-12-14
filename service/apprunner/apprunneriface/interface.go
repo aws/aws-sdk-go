@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS App Runner.
-//    func myFunc(svc apprunneriface.AppRunnerAPI) bool {
-//        // Make svc.AssociateCustomDomain request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS App Runner.
+//	func myFunc(svc apprunneriface.AppRunnerAPI) bool {
+//	    // Make svc.AssociateCustomDomain request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := apprunner.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := apprunner.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockAppRunnerClient struct {
-//        apprunneriface.AppRunnerAPI
-//    }
-//    func (m *mockAppRunnerClient) AssociateCustomDomain(input *apprunner.AssociateCustomDomainInput) (*apprunner.AssociateCustomDomainOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockAppRunnerClient struct {
+//	    apprunneriface.AppRunnerAPI
+//	}
+//	func (m *mockAppRunnerClient) AssociateCustomDomain(input *apprunner.AssociateCustomDomainInput) (*apprunner.AssociateCustomDomainOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockAppRunnerClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockAppRunnerClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -72,9 +72,21 @@ type AppRunnerAPI interface {
 	CreateConnectionWithContext(aws.Context, *apprunner.CreateConnectionInput, ...request.Option) (*apprunner.CreateConnectionOutput, error)
 	CreateConnectionRequest(*apprunner.CreateConnectionInput) (*request.Request, *apprunner.CreateConnectionOutput)
 
+	CreateObservabilityConfiguration(*apprunner.CreateObservabilityConfigurationInput) (*apprunner.CreateObservabilityConfigurationOutput, error)
+	CreateObservabilityConfigurationWithContext(aws.Context, *apprunner.CreateObservabilityConfigurationInput, ...request.Option) (*apprunner.CreateObservabilityConfigurationOutput, error)
+	CreateObservabilityConfigurationRequest(*apprunner.CreateObservabilityConfigurationInput) (*request.Request, *apprunner.CreateObservabilityConfigurationOutput)
+
 	CreateService(*apprunner.CreateServiceInput) (*apprunner.CreateServiceOutput, error)
 	CreateServiceWithContext(aws.Context, *apprunner.CreateServiceInput, ...request.Option) (*apprunner.CreateServiceOutput, error)
 	CreateServiceRequest(*apprunner.CreateServiceInput) (*request.Request, *apprunner.CreateServiceOutput)
+
+	CreateVpcConnector(*apprunner.CreateVpcConnectorInput) (*apprunner.CreateVpcConnectorOutput, error)
+	CreateVpcConnectorWithContext(aws.Context, *apprunner.CreateVpcConnectorInput, ...request.Option) (*apprunner.CreateVpcConnectorOutput, error)
+	CreateVpcConnectorRequest(*apprunner.CreateVpcConnectorInput) (*request.Request, *apprunner.CreateVpcConnectorOutput)
+
+	CreateVpcIngressConnection(*apprunner.CreateVpcIngressConnectionInput) (*apprunner.CreateVpcIngressConnectionOutput, error)
+	CreateVpcIngressConnectionWithContext(aws.Context, *apprunner.CreateVpcIngressConnectionInput, ...request.Option) (*apprunner.CreateVpcIngressConnectionOutput, error)
+	CreateVpcIngressConnectionRequest(*apprunner.CreateVpcIngressConnectionInput) (*request.Request, *apprunner.CreateVpcIngressConnectionOutput)
 
 	DeleteAutoScalingConfiguration(*apprunner.DeleteAutoScalingConfigurationInput) (*apprunner.DeleteAutoScalingConfigurationOutput, error)
 	DeleteAutoScalingConfigurationWithContext(aws.Context, *apprunner.DeleteAutoScalingConfigurationInput, ...request.Option) (*apprunner.DeleteAutoScalingConfigurationOutput, error)
@@ -84,9 +96,21 @@ type AppRunnerAPI interface {
 	DeleteConnectionWithContext(aws.Context, *apprunner.DeleteConnectionInput, ...request.Option) (*apprunner.DeleteConnectionOutput, error)
 	DeleteConnectionRequest(*apprunner.DeleteConnectionInput) (*request.Request, *apprunner.DeleteConnectionOutput)
 
+	DeleteObservabilityConfiguration(*apprunner.DeleteObservabilityConfigurationInput) (*apprunner.DeleteObservabilityConfigurationOutput, error)
+	DeleteObservabilityConfigurationWithContext(aws.Context, *apprunner.DeleteObservabilityConfigurationInput, ...request.Option) (*apprunner.DeleteObservabilityConfigurationOutput, error)
+	DeleteObservabilityConfigurationRequest(*apprunner.DeleteObservabilityConfigurationInput) (*request.Request, *apprunner.DeleteObservabilityConfigurationOutput)
+
 	DeleteService(*apprunner.DeleteServiceInput) (*apprunner.DeleteServiceOutput, error)
 	DeleteServiceWithContext(aws.Context, *apprunner.DeleteServiceInput, ...request.Option) (*apprunner.DeleteServiceOutput, error)
 	DeleteServiceRequest(*apprunner.DeleteServiceInput) (*request.Request, *apprunner.DeleteServiceOutput)
+
+	DeleteVpcConnector(*apprunner.DeleteVpcConnectorInput) (*apprunner.DeleteVpcConnectorOutput, error)
+	DeleteVpcConnectorWithContext(aws.Context, *apprunner.DeleteVpcConnectorInput, ...request.Option) (*apprunner.DeleteVpcConnectorOutput, error)
+	DeleteVpcConnectorRequest(*apprunner.DeleteVpcConnectorInput) (*request.Request, *apprunner.DeleteVpcConnectorOutput)
+
+	DeleteVpcIngressConnection(*apprunner.DeleteVpcIngressConnectionInput) (*apprunner.DeleteVpcIngressConnectionOutput, error)
+	DeleteVpcIngressConnectionWithContext(aws.Context, *apprunner.DeleteVpcIngressConnectionInput, ...request.Option) (*apprunner.DeleteVpcIngressConnectionOutput, error)
+	DeleteVpcIngressConnectionRequest(*apprunner.DeleteVpcIngressConnectionInput) (*request.Request, *apprunner.DeleteVpcIngressConnectionOutput)
 
 	DescribeAutoScalingConfiguration(*apprunner.DescribeAutoScalingConfigurationInput) (*apprunner.DescribeAutoScalingConfigurationOutput, error)
 	DescribeAutoScalingConfigurationWithContext(aws.Context, *apprunner.DescribeAutoScalingConfigurationInput, ...request.Option) (*apprunner.DescribeAutoScalingConfigurationOutput, error)
@@ -99,9 +123,21 @@ type AppRunnerAPI interface {
 	DescribeCustomDomainsPages(*apprunner.DescribeCustomDomainsInput, func(*apprunner.DescribeCustomDomainsOutput, bool) bool) error
 	DescribeCustomDomainsPagesWithContext(aws.Context, *apprunner.DescribeCustomDomainsInput, func(*apprunner.DescribeCustomDomainsOutput, bool) bool, ...request.Option) error
 
+	DescribeObservabilityConfiguration(*apprunner.DescribeObservabilityConfigurationInput) (*apprunner.DescribeObservabilityConfigurationOutput, error)
+	DescribeObservabilityConfigurationWithContext(aws.Context, *apprunner.DescribeObservabilityConfigurationInput, ...request.Option) (*apprunner.DescribeObservabilityConfigurationOutput, error)
+	DescribeObservabilityConfigurationRequest(*apprunner.DescribeObservabilityConfigurationInput) (*request.Request, *apprunner.DescribeObservabilityConfigurationOutput)
+
 	DescribeService(*apprunner.DescribeServiceInput) (*apprunner.DescribeServiceOutput, error)
 	DescribeServiceWithContext(aws.Context, *apprunner.DescribeServiceInput, ...request.Option) (*apprunner.DescribeServiceOutput, error)
 	DescribeServiceRequest(*apprunner.DescribeServiceInput) (*request.Request, *apprunner.DescribeServiceOutput)
+
+	DescribeVpcConnector(*apprunner.DescribeVpcConnectorInput) (*apprunner.DescribeVpcConnectorOutput, error)
+	DescribeVpcConnectorWithContext(aws.Context, *apprunner.DescribeVpcConnectorInput, ...request.Option) (*apprunner.DescribeVpcConnectorOutput, error)
+	DescribeVpcConnectorRequest(*apprunner.DescribeVpcConnectorInput) (*request.Request, *apprunner.DescribeVpcConnectorOutput)
+
+	DescribeVpcIngressConnection(*apprunner.DescribeVpcIngressConnectionInput) (*apprunner.DescribeVpcIngressConnectionOutput, error)
+	DescribeVpcIngressConnectionWithContext(aws.Context, *apprunner.DescribeVpcIngressConnectionInput, ...request.Option) (*apprunner.DescribeVpcIngressConnectionOutput, error)
+	DescribeVpcIngressConnectionRequest(*apprunner.DescribeVpcIngressConnectionInput) (*request.Request, *apprunner.DescribeVpcIngressConnectionOutput)
 
 	DisassociateCustomDomain(*apprunner.DisassociateCustomDomainInput) (*apprunner.DisassociateCustomDomainOutput, error)
 	DisassociateCustomDomainWithContext(aws.Context, *apprunner.DisassociateCustomDomainInput, ...request.Option) (*apprunner.DisassociateCustomDomainOutput, error)
@@ -121,6 +157,13 @@ type AppRunnerAPI interface {
 	ListConnectionsPages(*apprunner.ListConnectionsInput, func(*apprunner.ListConnectionsOutput, bool) bool) error
 	ListConnectionsPagesWithContext(aws.Context, *apprunner.ListConnectionsInput, func(*apprunner.ListConnectionsOutput, bool) bool, ...request.Option) error
 
+	ListObservabilityConfigurations(*apprunner.ListObservabilityConfigurationsInput) (*apprunner.ListObservabilityConfigurationsOutput, error)
+	ListObservabilityConfigurationsWithContext(aws.Context, *apprunner.ListObservabilityConfigurationsInput, ...request.Option) (*apprunner.ListObservabilityConfigurationsOutput, error)
+	ListObservabilityConfigurationsRequest(*apprunner.ListObservabilityConfigurationsInput) (*request.Request, *apprunner.ListObservabilityConfigurationsOutput)
+
+	ListObservabilityConfigurationsPages(*apprunner.ListObservabilityConfigurationsInput, func(*apprunner.ListObservabilityConfigurationsOutput, bool) bool) error
+	ListObservabilityConfigurationsPagesWithContext(aws.Context, *apprunner.ListObservabilityConfigurationsInput, func(*apprunner.ListObservabilityConfigurationsOutput, bool) bool, ...request.Option) error
+
 	ListOperations(*apprunner.ListOperationsInput) (*apprunner.ListOperationsOutput, error)
 	ListOperationsWithContext(aws.Context, *apprunner.ListOperationsInput, ...request.Option) (*apprunner.ListOperationsOutput, error)
 	ListOperationsRequest(*apprunner.ListOperationsInput) (*request.Request, *apprunner.ListOperationsOutput)
@@ -135,9 +178,30 @@ type AppRunnerAPI interface {
 	ListServicesPages(*apprunner.ListServicesInput, func(*apprunner.ListServicesOutput, bool) bool) error
 	ListServicesPagesWithContext(aws.Context, *apprunner.ListServicesInput, func(*apprunner.ListServicesOutput, bool) bool, ...request.Option) error
 
+	ListServicesForAutoScalingConfiguration(*apprunner.ListServicesForAutoScalingConfigurationInput) (*apprunner.ListServicesForAutoScalingConfigurationOutput, error)
+	ListServicesForAutoScalingConfigurationWithContext(aws.Context, *apprunner.ListServicesForAutoScalingConfigurationInput, ...request.Option) (*apprunner.ListServicesForAutoScalingConfigurationOutput, error)
+	ListServicesForAutoScalingConfigurationRequest(*apprunner.ListServicesForAutoScalingConfigurationInput) (*request.Request, *apprunner.ListServicesForAutoScalingConfigurationOutput)
+
+	ListServicesForAutoScalingConfigurationPages(*apprunner.ListServicesForAutoScalingConfigurationInput, func(*apprunner.ListServicesForAutoScalingConfigurationOutput, bool) bool) error
+	ListServicesForAutoScalingConfigurationPagesWithContext(aws.Context, *apprunner.ListServicesForAutoScalingConfigurationInput, func(*apprunner.ListServicesForAutoScalingConfigurationOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*apprunner.ListTagsForResourceInput) (*apprunner.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *apprunner.ListTagsForResourceInput, ...request.Option) (*apprunner.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*apprunner.ListTagsForResourceInput) (*request.Request, *apprunner.ListTagsForResourceOutput)
+
+	ListVpcConnectors(*apprunner.ListVpcConnectorsInput) (*apprunner.ListVpcConnectorsOutput, error)
+	ListVpcConnectorsWithContext(aws.Context, *apprunner.ListVpcConnectorsInput, ...request.Option) (*apprunner.ListVpcConnectorsOutput, error)
+	ListVpcConnectorsRequest(*apprunner.ListVpcConnectorsInput) (*request.Request, *apprunner.ListVpcConnectorsOutput)
+
+	ListVpcConnectorsPages(*apprunner.ListVpcConnectorsInput, func(*apprunner.ListVpcConnectorsOutput, bool) bool) error
+	ListVpcConnectorsPagesWithContext(aws.Context, *apprunner.ListVpcConnectorsInput, func(*apprunner.ListVpcConnectorsOutput, bool) bool, ...request.Option) error
+
+	ListVpcIngressConnections(*apprunner.ListVpcIngressConnectionsInput) (*apprunner.ListVpcIngressConnectionsOutput, error)
+	ListVpcIngressConnectionsWithContext(aws.Context, *apprunner.ListVpcIngressConnectionsInput, ...request.Option) (*apprunner.ListVpcIngressConnectionsOutput, error)
+	ListVpcIngressConnectionsRequest(*apprunner.ListVpcIngressConnectionsInput) (*request.Request, *apprunner.ListVpcIngressConnectionsOutput)
+
+	ListVpcIngressConnectionsPages(*apprunner.ListVpcIngressConnectionsInput, func(*apprunner.ListVpcIngressConnectionsOutput, bool) bool) error
+	ListVpcIngressConnectionsPagesWithContext(aws.Context, *apprunner.ListVpcIngressConnectionsInput, func(*apprunner.ListVpcIngressConnectionsOutput, bool) bool, ...request.Option) error
 
 	PauseService(*apprunner.PauseServiceInput) (*apprunner.PauseServiceOutput, error)
 	PauseServiceWithContext(aws.Context, *apprunner.PauseServiceInput, ...request.Option) (*apprunner.PauseServiceOutput, error)
@@ -159,9 +223,17 @@ type AppRunnerAPI interface {
 	UntagResourceWithContext(aws.Context, *apprunner.UntagResourceInput, ...request.Option) (*apprunner.UntagResourceOutput, error)
 	UntagResourceRequest(*apprunner.UntagResourceInput) (*request.Request, *apprunner.UntagResourceOutput)
 
+	UpdateDefaultAutoScalingConfiguration(*apprunner.UpdateDefaultAutoScalingConfigurationInput) (*apprunner.UpdateDefaultAutoScalingConfigurationOutput, error)
+	UpdateDefaultAutoScalingConfigurationWithContext(aws.Context, *apprunner.UpdateDefaultAutoScalingConfigurationInput, ...request.Option) (*apprunner.UpdateDefaultAutoScalingConfigurationOutput, error)
+	UpdateDefaultAutoScalingConfigurationRequest(*apprunner.UpdateDefaultAutoScalingConfigurationInput) (*request.Request, *apprunner.UpdateDefaultAutoScalingConfigurationOutput)
+
 	UpdateService(*apprunner.UpdateServiceInput) (*apprunner.UpdateServiceOutput, error)
 	UpdateServiceWithContext(aws.Context, *apprunner.UpdateServiceInput, ...request.Option) (*apprunner.UpdateServiceOutput, error)
 	UpdateServiceRequest(*apprunner.UpdateServiceInput) (*request.Request, *apprunner.UpdateServiceOutput)
+
+	UpdateVpcIngressConnection(*apprunner.UpdateVpcIngressConnectionInput) (*apprunner.UpdateVpcIngressConnectionOutput, error)
+	UpdateVpcIngressConnectionWithContext(aws.Context, *apprunner.UpdateVpcIngressConnectionInput, ...request.Option) (*apprunner.UpdateVpcIngressConnectionOutput, error)
+	UpdateVpcIngressConnectionRequest(*apprunner.UpdateVpcIngressConnectionInput) (*request.Request, *apprunner.UpdateVpcIngressConnectionOutput)
 }
 
 var _ AppRunnerAPI = (*apprunner.AppRunner)(nil)

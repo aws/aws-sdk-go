@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS Data Exchange.
-//    func myFunc(svc dataexchangeiface.DataExchangeAPI) bool {
-//        // Make svc.CancelJob request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS Data Exchange.
+//	func myFunc(svc dataexchangeiface.DataExchangeAPI) bool {
+//	    // Make svc.CancelJob request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := dataexchange.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := dataexchange.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockDataExchangeClient struct {
-//        dataexchangeiface.DataExchangeAPI
-//    }
-//    func (m *mockDataExchangeClient) CancelJob(input *dataexchange.CancelJobInput) (*dataexchange.CancelJobOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockDataExchangeClient struct {
+//	    dataexchangeiface.DataExchangeAPI
+//	}
+//	func (m *mockDataExchangeClient) CancelJob(input *dataexchange.CancelJobInput) (*dataexchange.CancelJobOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockDataExchangeClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockDataExchangeClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -67,6 +67,10 @@ type DataExchangeAPI interface {
 	CreateDataSet(*dataexchange.CreateDataSetInput) (*dataexchange.CreateDataSetOutput, error)
 	CreateDataSetWithContext(aws.Context, *dataexchange.CreateDataSetInput, ...request.Option) (*dataexchange.CreateDataSetOutput, error)
 	CreateDataSetRequest(*dataexchange.CreateDataSetInput) (*request.Request, *dataexchange.CreateDataSetOutput)
+
+	CreateEventAction(*dataexchange.CreateEventActionInput) (*dataexchange.CreateEventActionOutput, error)
+	CreateEventActionWithContext(aws.Context, *dataexchange.CreateEventActionInput, ...request.Option) (*dataexchange.CreateEventActionOutput, error)
+	CreateEventActionRequest(*dataexchange.CreateEventActionInput) (*request.Request, *dataexchange.CreateEventActionOutput)
 
 	CreateJob(*dataexchange.CreateJobInput) (*dataexchange.CreateJobOutput, error)
 	CreateJobWithContext(aws.Context, *dataexchange.CreateJobInput, ...request.Option) (*dataexchange.CreateJobOutput, error)
@@ -84,6 +88,10 @@ type DataExchangeAPI interface {
 	DeleteDataSetWithContext(aws.Context, *dataexchange.DeleteDataSetInput, ...request.Option) (*dataexchange.DeleteDataSetOutput, error)
 	DeleteDataSetRequest(*dataexchange.DeleteDataSetInput) (*request.Request, *dataexchange.DeleteDataSetOutput)
 
+	DeleteEventAction(*dataexchange.DeleteEventActionInput) (*dataexchange.DeleteEventActionOutput, error)
+	DeleteEventActionWithContext(aws.Context, *dataexchange.DeleteEventActionInput, ...request.Option) (*dataexchange.DeleteEventActionOutput, error)
+	DeleteEventActionRequest(*dataexchange.DeleteEventActionInput) (*request.Request, *dataexchange.DeleteEventActionOutput)
+
 	DeleteRevision(*dataexchange.DeleteRevisionInput) (*dataexchange.DeleteRevisionOutput, error)
 	DeleteRevisionWithContext(aws.Context, *dataexchange.DeleteRevisionInput, ...request.Option) (*dataexchange.DeleteRevisionOutput, error)
 	DeleteRevisionRequest(*dataexchange.DeleteRevisionInput) (*request.Request, *dataexchange.DeleteRevisionOutput)
@@ -95,6 +103,10 @@ type DataExchangeAPI interface {
 	GetDataSet(*dataexchange.GetDataSetInput) (*dataexchange.GetDataSetOutput, error)
 	GetDataSetWithContext(aws.Context, *dataexchange.GetDataSetInput, ...request.Option) (*dataexchange.GetDataSetOutput, error)
 	GetDataSetRequest(*dataexchange.GetDataSetInput) (*request.Request, *dataexchange.GetDataSetOutput)
+
+	GetEventAction(*dataexchange.GetEventActionInput) (*dataexchange.GetEventActionOutput, error)
+	GetEventActionWithContext(aws.Context, *dataexchange.GetEventActionInput, ...request.Option) (*dataexchange.GetEventActionOutput, error)
+	GetEventActionRequest(*dataexchange.GetEventActionInput) (*request.Request, *dataexchange.GetEventActionOutput)
 
 	GetJob(*dataexchange.GetJobInput) (*dataexchange.GetJobOutput, error)
 	GetJobWithContext(aws.Context, *dataexchange.GetJobInput, ...request.Option) (*dataexchange.GetJobOutput, error)
@@ -118,6 +130,13 @@ type DataExchangeAPI interface {
 	ListDataSetsPages(*dataexchange.ListDataSetsInput, func(*dataexchange.ListDataSetsOutput, bool) bool) error
 	ListDataSetsPagesWithContext(aws.Context, *dataexchange.ListDataSetsInput, func(*dataexchange.ListDataSetsOutput, bool) bool, ...request.Option) error
 
+	ListEventActions(*dataexchange.ListEventActionsInput) (*dataexchange.ListEventActionsOutput, error)
+	ListEventActionsWithContext(aws.Context, *dataexchange.ListEventActionsInput, ...request.Option) (*dataexchange.ListEventActionsOutput, error)
+	ListEventActionsRequest(*dataexchange.ListEventActionsInput) (*request.Request, *dataexchange.ListEventActionsOutput)
+
+	ListEventActionsPages(*dataexchange.ListEventActionsInput, func(*dataexchange.ListEventActionsOutput, bool) bool) error
+	ListEventActionsPagesWithContext(aws.Context, *dataexchange.ListEventActionsInput, func(*dataexchange.ListEventActionsOutput, bool) bool, ...request.Option) error
+
 	ListJobs(*dataexchange.ListJobsInput) (*dataexchange.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *dataexchange.ListJobsInput, ...request.Option) (*dataexchange.ListJobsOutput, error)
 	ListJobsRequest(*dataexchange.ListJobsInput) (*request.Request, *dataexchange.ListJobsOutput)
@@ -135,6 +154,18 @@ type DataExchangeAPI interface {
 	ListTagsForResource(*dataexchange.ListTagsForResourceInput) (*dataexchange.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *dataexchange.ListTagsForResourceInput, ...request.Option) (*dataexchange.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*dataexchange.ListTagsForResourceInput) (*request.Request, *dataexchange.ListTagsForResourceOutput)
+
+	RevokeRevision(*dataexchange.RevokeRevisionInput) (*dataexchange.RevokeRevisionOutput, error)
+	RevokeRevisionWithContext(aws.Context, *dataexchange.RevokeRevisionInput, ...request.Option) (*dataexchange.RevokeRevisionOutput, error)
+	RevokeRevisionRequest(*dataexchange.RevokeRevisionInput) (*request.Request, *dataexchange.RevokeRevisionOutput)
+
+	SendApiAsset(*dataexchange.SendApiAssetInput) (*dataexchange.SendApiAssetOutput, error)
+	SendApiAssetWithContext(aws.Context, *dataexchange.SendApiAssetInput, ...request.Option) (*dataexchange.SendApiAssetOutput, error)
+	SendApiAssetRequest(*dataexchange.SendApiAssetInput) (*request.Request, *dataexchange.SendApiAssetOutput)
+
+	SendDataSetNotification(*dataexchange.SendDataSetNotificationInput) (*dataexchange.SendDataSetNotificationOutput, error)
+	SendDataSetNotificationWithContext(aws.Context, *dataexchange.SendDataSetNotificationInput, ...request.Option) (*dataexchange.SendDataSetNotificationOutput, error)
+	SendDataSetNotificationRequest(*dataexchange.SendDataSetNotificationInput) (*request.Request, *dataexchange.SendDataSetNotificationOutput)
 
 	StartJob(*dataexchange.StartJobInput) (*dataexchange.StartJobOutput, error)
 	StartJobWithContext(aws.Context, *dataexchange.StartJobInput, ...request.Option) (*dataexchange.StartJobOutput, error)
@@ -155,6 +186,10 @@ type DataExchangeAPI interface {
 	UpdateDataSet(*dataexchange.UpdateDataSetInput) (*dataexchange.UpdateDataSetOutput, error)
 	UpdateDataSetWithContext(aws.Context, *dataexchange.UpdateDataSetInput, ...request.Option) (*dataexchange.UpdateDataSetOutput, error)
 	UpdateDataSetRequest(*dataexchange.UpdateDataSetInput) (*request.Request, *dataexchange.UpdateDataSetOutput)
+
+	UpdateEventAction(*dataexchange.UpdateEventActionInput) (*dataexchange.UpdateEventActionOutput, error)
+	UpdateEventActionWithContext(aws.Context, *dataexchange.UpdateEventActionInput, ...request.Option) (*dataexchange.UpdateEventActionOutput, error)
+	UpdateEventActionRequest(*dataexchange.UpdateEventActionInput) (*request.Request, *dataexchange.UpdateEventActionOutput)
 
 	UpdateRevision(*dataexchange.UpdateRevisionInput) (*dataexchange.UpdateRevisionOutput, error)
 	UpdateRevisionWithContext(aws.Context, *dataexchange.UpdateRevisionInput, ...request.Option) (*dataexchange.UpdateRevisionOutput, error)

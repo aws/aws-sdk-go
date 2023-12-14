@@ -590,6 +590,7 @@
       "type":"string",
       "max":255,
       "min":1,
+      "pattern":"(?s).+",
       "sensitive":true
     },
     "ActiveJobId":{
@@ -635,7 +636,8 @@
         "customHeaders":{"shape":"CustomHeaders"},
         "enableAutoBranchCreation":{"shape":"EnableAutoBranchCreation"},
         "autoBranchCreationPatterns":{"shape":"AutoBranchCreationPatterns"},
-        "autoBranchCreationConfig":{"shape":"AutoBranchCreationConfig"}
+        "autoBranchCreationConfig":{"shape":"AutoBranchCreationConfig"},
+        "repositoryCloneMethod":{"shape":"RepositoryCloneMethod"}
       }
     },
     "AppArn":{
@@ -669,7 +671,8 @@
     },
     "ArtifactId":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"(?s).*"
     },
     "ArtifactUrl":{
       "type":"string",
@@ -710,7 +713,8 @@
     "AutoBranchCreationPattern":{
       "type":"string",
       "max":2048,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+"
     },
     "AutoBranchCreationPatterns":{
       "type":"list",
@@ -719,7 +723,8 @@
     "AutoSubDomainCreationPattern":{
       "type":"string",
       "max":2048,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+"
     },
     "AutoSubDomainCreationPatterns":{
       "type":"list",
@@ -729,6 +734,12 @@
       "type":"string",
       "max":1000,
       "pattern":"^$|^arn:aws:iam::\\d{12}:role.+"
+    },
+    "Backend":{
+      "type":"structure",
+      "members":{
+        "stackArn":{"shape":"StackArn"}
+      }
     },
     "BackendEnvironment":{
       "type":"structure",
@@ -750,7 +761,8 @@
     "BackendEnvironmentArn":{
       "type":"string",
       "max":1000,
-      "min":1
+      "min":0,
+      "pattern":"(?s).*"
     },
     "BackendEnvironments":{
       "type":"list",
@@ -767,6 +779,7 @@
     "BasicAuthCredentials":{
       "type":"string",
       "max":2000,
+      "pattern":"(?s).*",
       "sensitive":true
     },
     "Branch":{
@@ -817,17 +830,20 @@
         "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"},
         "destinationBranch":{"shape":"BranchName"},
         "sourceBranch":{"shape":"BranchName"},
-        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"}
+        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"},
+        "backend":{"shape":"Backend"}
       }
     },
     "BranchArn":{
       "type":"string",
-      "max":1000
+      "max":1000,
+      "pattern":"(?s).*"
     },
     "BranchName":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+"
     },
     "Branches":{
       "type":"list",
@@ -837,7 +853,9 @@
     "BuildSpec":{
       "type":"string",
       "max":25000,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+",
+      "sensitive":true
     },
     "CertificateVerificationDNSRecord":{
       "type":"string",
@@ -846,17 +864,20 @@
     "Code":{"type":"string"},
     "CommitId":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"(?s).*"
     },
     "CommitMessage":{
       "type":"string",
-      "max":10000
+      "max":10000,
+      "pattern":"(?s).*"
     },
     "CommitTime":{"type":"timestamp"},
     "Condition":{
       "type":"string",
       "max":2048,
-      "min":1
+      "min":0,
+      "pattern":"(?s).*"
     },
     "Context":{"type":"string"},
     "CreateAppRequest":{
@@ -943,7 +964,8 @@
         "displayName":{"shape":"DisplayName"},
         "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"},
         "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"},
-        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"}
+        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"},
+        "backend":{"shape":"Backend"}
       }
     },
     "CreateBranchResult":{
@@ -1048,7 +1070,8 @@
     "CustomHeaders":{
       "type":"string",
       "max":25000,
-      "min":1
+      "min":0,
+      "pattern":"(?s).*"
     },
     "CustomRule":{
       "type":"structure",
@@ -1233,15 +1256,18 @@
     "DeploymentArtifacts":{
       "type":"string",
       "max":1000,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+"
     },
     "Description":{
       "type":"string",
-      "max":1000
+      "max":1000,
+      "pattern":"(?s).*"
     },
     "DisplayName":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"(?s).*"
     },
     "DomainAssociation":{
       "type":"structure",
@@ -1276,11 +1302,13 @@
     },
     "DomainName":{
       "type":"string",
-      "max":255
+      "max":64,
+      "pattern":"^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])(\\.)?$"
     },
     "DomainPrefix":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"(?s).*"
     },
     "DomainStatus":{
       "type":"string",
@@ -1307,16 +1335,19 @@
     "EndTime":{"type":"timestamp"},
     "EnvKey":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"(?s).*"
     },
     "EnvValue":{
       "type":"string",
-      "max":1000
+      "max":5500,
+      "pattern":"(?s).*"
     },
     "EnvironmentName":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+"
     },
     "EnvironmentVariables":{
       "type":"map",
@@ -1334,7 +1365,8 @@
     },
     "FileName":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"(?s).*"
     },
     "FileUploadUrls":{
       "type":"map",
@@ -1343,7 +1375,8 @@
     },
     "Framework":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"(?s).*"
     },
     "GenerateAccessLogsRequest":{
       "type":"structure",
@@ -1562,11 +1595,13 @@
     },
     "JobId":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"[0-9]+"
     },
     "JobReason":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"(?s).*"
     },
     "JobStatus":{
       "type":"string",
@@ -1874,7 +1909,8 @@
     },
     "MD5Hash":{
       "type":"string",
-      "max":32
+      "max":32,
+      "pattern":"(?s).*"
     },
     "MaxResults":{
       "type":"integer",
@@ -1884,11 +1920,13 @@
     "Name":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+"
     },
     "NextToken":{
       "type":"string",
-      "max":2000
+      "max":2000,
+      "pattern":"(?s).*"
     },
     "NotFoundException":{
       "type":"structure",
@@ -1901,11 +1939,16 @@
     "OauthToken":{
       "type":"string",
       "max":1000,
+      "pattern":"(?s).*",
       "sensitive":true
     },
     "Platform":{
       "type":"string",
-      "enum":["WEB"]
+      "enum":[
+        "WEB",
+        "WEB_DYNAMIC",
+        "WEB_COMPUTE"
+      ]
     },
     "ProductionBranch":{
       "type":"structure",
@@ -1918,14 +1961,26 @@
     },
     "PullRequestEnvironmentName":{
       "type":"string",
-      "max":20
+      "max":20,
+      "pattern":"(?s).*"
     },
     "Repository":{
       "type":"string",
-      "max":1000
+      "max":1000,
+      "pattern":"(?s).*"
+    },
+    "RepositoryCloneMethod":{
+      "type":"string",
+      "enum":[
+        "SSH",
+        "TOKEN",
+        "SIGV4"
+      ]
     },
     "ResourceArn":{
       "type":"string",
+      "max":2048,
+      "min":0,
       "pattern":"^arn:aws:amplify:.*"
     },
     "ResourceNotFoundException":{
@@ -1949,21 +2004,31 @@
     "ServiceRoleArn":{
       "type":"string",
       "max":1000,
-      "min":1
+      "min":0,
+      "pattern":"(?s).*"
     },
     "Source":{
       "type":"string",
       "max":2048,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+"
     },
     "SourceUrl":{
       "type":"string",
-      "max":1000
+      "max":3000,
+      "pattern":"(?s).*"
+    },
+    "StackArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws:cloudformation:[a-z0-9-]+:\\d{12}:stack/.+/.+$"
     },
     "StackName":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+"
     },
     "Stage":{
       "type":"string",
@@ -2040,7 +2105,8 @@
     "Status":{
       "type":"string",
       "max":7,
-      "min":3
+      "min":3,
+      "pattern":".{3,7}"
     },
     "StatusReason":{
       "type":"string",
@@ -2135,14 +2201,19 @@
     "SubDomainSettings":{
       "type":"list",
       "member":{"shape":"SubDomainSetting"},
-      "max":255
+      "max":500
     },
     "SubDomains":{
       "type":"list",
       "member":{"shape":"SubDomain"},
-      "max":255
+      "max":500
     },
-    "TTL":{"type":"string"},
+    "TTL":{
+      "type":"string",
+      "max":32,
+      "min":0,
+      "pattern":"\\d*"
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -2160,7 +2231,7 @@
       "key":{"shape":"TagKey"},
       "value":{"shape":"TagValue"},
       "max":50,
-      "min":1
+      "min":0
     },
     "TagResourceRequest":{
       "type":"structure",
@@ -2184,12 +2255,14 @@
     },
     "TagValue":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "Target":{
       "type":"string",
       "max":2048,
-      "min":1
+      "min":1,
+      "pattern":"(?s).+"
     },
     "TestArtifactsUrl":{
       "type":"string",
@@ -2311,7 +2384,8 @@
         "displayName":{"shape":"DisplayName"},
         "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"},
         "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"},
-        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"}
+        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"},
+        "backend":{"shape":"Backend"}
       }
     },
     "UpdateBranchResult":{
@@ -2325,8 +2399,7 @@
       "type":"structure",
       "required":[
         "appId",
-        "domainName",
-        "subDomainSettings"
+        "domainName"
       ],
       "members":{
         "appId":{
@@ -2405,7 +2478,8 @@
     },
     "WebhookId":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"(?s).*"
     },
     "WebhookUrl":{
       "type":"string",

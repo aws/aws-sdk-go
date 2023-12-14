@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // Amazon Honeycode.
-//    func myFunc(svc honeycodeiface.HoneycodeAPI) bool {
-//        // Make svc.BatchCreateTableRows request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// Amazon Honeycode.
+//	func myFunc(svc honeycodeiface.HoneycodeAPI) bool {
+//	    // Make svc.BatchCreateTableRows request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := honeycode.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := honeycode.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockHoneycodeClient struct {
-//        honeycodeiface.HoneycodeAPI
-//    }
-//    func (m *mockHoneycodeClient) BatchCreateTableRows(input *honeycode.BatchCreateTableRowsInput) (*honeycode.BatchCreateTableRowsOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockHoneycodeClient struct {
+//	    honeycodeiface.HoneycodeAPI
+//	}
+//	func (m *mockHoneycodeClient) BatchCreateTableRows(input *honeycode.BatchCreateTableRowsInput) (*honeycode.BatchCreateTableRowsOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockHoneycodeClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockHoneycodeClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -109,6 +109,10 @@ type HoneycodeAPI interface {
 	ListTablesPages(*honeycode.ListTablesInput, func(*honeycode.ListTablesOutput, bool) bool) error
 	ListTablesPagesWithContext(aws.Context, *honeycode.ListTablesInput, func(*honeycode.ListTablesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*honeycode.ListTagsForResourceInput) (*honeycode.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *honeycode.ListTagsForResourceInput, ...request.Option) (*honeycode.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*honeycode.ListTagsForResourceInput) (*request.Request, *honeycode.ListTagsForResourceOutput)
+
 	QueryTableRows(*honeycode.QueryTableRowsInput) (*honeycode.QueryTableRowsOutput, error)
 	QueryTableRowsWithContext(aws.Context, *honeycode.QueryTableRowsInput, ...request.Option) (*honeycode.QueryTableRowsOutput, error)
 	QueryTableRowsRequest(*honeycode.QueryTableRowsInput) (*request.Request, *honeycode.QueryTableRowsOutput)
@@ -119,6 +123,14 @@ type HoneycodeAPI interface {
 	StartTableDataImportJob(*honeycode.StartTableDataImportJobInput) (*honeycode.StartTableDataImportJobOutput, error)
 	StartTableDataImportJobWithContext(aws.Context, *honeycode.StartTableDataImportJobInput, ...request.Option) (*honeycode.StartTableDataImportJobOutput, error)
 	StartTableDataImportJobRequest(*honeycode.StartTableDataImportJobInput) (*request.Request, *honeycode.StartTableDataImportJobOutput)
+
+	TagResource(*honeycode.TagResourceInput) (*honeycode.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *honeycode.TagResourceInput, ...request.Option) (*honeycode.TagResourceOutput, error)
+	TagResourceRequest(*honeycode.TagResourceInput) (*request.Request, *honeycode.TagResourceOutput)
+
+	UntagResource(*honeycode.UntagResourceInput) (*honeycode.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *honeycode.UntagResourceInput, ...request.Option) (*honeycode.UntagResourceOutput, error)
+	UntagResourceRequest(*honeycode.UntagResourceInput) (*request.Request, *honeycode.UntagResourceOutput)
 }
 
 var _ HoneycodeAPI = (*honeycode.Honeycode)(nil)

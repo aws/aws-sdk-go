@@ -9,7 +9,7 @@
     "serviceFullName":"AWS SSO OIDC",
     "serviceId":"SSO OIDC",
     "signatureVersion":"v4",
-    "signingName":"awsssooidc",
+    "signingName":"sso-oauth",
     "uid":"sso-oidc-2019-06-10"
   },
   "operations":{
@@ -35,6 +35,29 @@
         {"shape":"InternalServerException"}
       ],
       "authtype":"none"
+    },
+    "CreateTokenWithIAM":{
+      "name":"CreateTokenWithIAM",
+      "http":{
+        "method":"POST",
+        "requestUri":"/token?aws_iam=t"
+      },
+      "input":{"shape":"CreateTokenWithIAMRequest"},
+      "output":{"shape":"CreateTokenWithIAMResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidClientException"},
+        {"shape":"InvalidGrantException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"UnsupportedGrantTypeException"},
+        {"shape":"InvalidScopeException"},
+        {"shape":"AuthorizationPendingException"},
+        {"shape":"SlowDownException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ExpiredTokenException"},
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestRegionException"}
+      ]
     },
     "RegisterClient":{
       "name":"RegisterClient",
@@ -80,7 +103,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
-    "AccessToken":{"type":"string"},
+    "AccessToken":{
+      "type":"string",
+      "sensitive":true
+    },
+    "Assertion":{
+      "type":"string",
+      "sensitive":true
+    },
     "AuthCode":{"type":"string"},
     "AuthorizationPendingException":{
       "type":"structure",
@@ -93,15 +123,17 @@
     },
     "ClientId":{"type":"string"},
     "ClientName":{"type":"string"},
-    "ClientSecret":{"type":"string"},
+    "ClientSecret":{
+      "type":"string",
+      "sensitive":true
+    },
     "ClientType":{"type":"string"},
     "CreateTokenRequest":{
       "type":"structure",
       "required":[
         "clientId",
         "clientSecret",
-        "grantType",
-        "deviceCode"
+        "grantType"
       ],
       "members":{
         "clientId":{"shape":"ClientId"},
@@ -124,6 +156,37 @@
         "idToken":{"shape":"IdToken"}
       }
     },
+    "CreateTokenWithIAMRequest":{
+      "type":"structure",
+      "required":[
+        "clientId",
+        "grantType"
+      ],
+      "members":{
+        "clientId":{"shape":"ClientId"},
+        "grantType":{"shape":"GrantType"},
+        "code":{"shape":"AuthCode"},
+        "refreshToken":{"shape":"RefreshToken"},
+        "assertion":{"shape":"Assertion"},
+        "scope":{"shape":"Scopes"},
+        "redirectUri":{"shape":"URI"},
+        "subjectToken":{"shape":"SubjectToken"},
+        "subjectTokenType":{"shape":"TokenTypeURI"},
+        "requestedTokenType":{"shape":"TokenTypeURI"}
+      }
+    },
+    "CreateTokenWithIAMResponse":{
+      "type":"structure",
+      "members":{
+        "accessToken":{"shape":"AccessToken"},
+        "tokenType":{"shape":"TokenType"},
+        "expiresIn":{"shape":"ExpirationInSeconds"},
+        "refreshToken":{"shape":"RefreshToken"},
+        "idToken":{"shape":"IdToken"},
+        "issuedTokenType":{"shape":"TokenTypeURI"},
+        "scope":{"shape":"Scopes"}
+      }
+    },
     "DeviceCode":{"type":"string"},
     "Error":{"type":"string"},
     "ErrorDescription":{"type":"string"},
@@ -138,7 +201,10 @@
       "exception":true
     },
     "GrantType":{"type":"string"},
-    "IdToken":{"type":"string"},
+    "IdToken":{
+      "type":"string",
+      "sensitive":true
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -186,6 +252,17 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "InvalidRequestRegionException":{
+      "type":"structure",
+      "members":{
+        "error":{"shape":"Error"},
+        "error_description":{"shape":"ErrorDescription"},
+        "endpoint":{"shape":"Location"},
+        "region":{"shape":"Region"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "InvalidScopeException":{
       "type":"structure",
       "members":{
@@ -195,8 +272,13 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "Location":{"type":"string"},
     "LongTimeStampType":{"type":"long"},
-    "RefreshToken":{"type":"string"},
+    "RefreshToken":{
+      "type":"string",
+      "sensitive":true
+    },
+    "Region":{"type":"string"},
     "RegisterClientRequest":{
       "type":"structure",
       "required":[
@@ -258,7 +340,12 @@
         "interval":{"shape":"IntervalInSeconds"}
       }
     },
+    "SubjectToken":{
+      "type":"string",
+      "sensitive":true
+    },
     "TokenType":{"type":"string"},
+    "TokenTypeURI":{"type":"string"},
     "URI":{"type":"string"},
     "UnauthorizedClientException":{
       "type":"structure",

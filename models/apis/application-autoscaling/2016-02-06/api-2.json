@@ -119,6 +119,18 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "PutScalingPolicy":{
       "name":"PutScalingPolicy",
       "http":{
@@ -166,6 +178,33 @@
         {"shape":"ConcurrentUpdateException"},
         {"shape":"InternalServiceException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
     }
   },
   "shapes":{
@@ -192,6 +231,12 @@
       "type":"list",
       "member":{"shape":"Alarm"}
     },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"^arn:.+:application-autoscaling:.+:[0-9]+:scalable-target\\/[a-zA-Z0-9-]+$"
+    },
     "ConcurrentUpdateException":{
       "type":"structure",
       "members":{
@@ -202,17 +247,13 @@
     "Cooldown":{"type":"integer"},
     "CustomizedMetricSpecification":{
       "type":"structure",
-      "required":[
-        "MetricName",
-        "Namespace",
-        "Statistic"
-      ],
       "members":{
         "MetricName":{"shape":"MetricName"},
         "Namespace":{"shape":"MetricNamespace"},
         "Dimensions":{"shape":"MetricDimensions"},
         "Statistic":{"shape":"MetricStatistic"},
-        "Unit":{"shape":"MetricUnit"}
+        "Unit":{"shape":"MetricUnit"},
+        "Metrics":{"shape":"TargetTrackingMetricDataQueries"}
       }
     },
     "DeleteScalingPolicyRequest":{
@@ -299,7 +340,8 @@
         "ResourceId":{"shape":"ResourceIdMaxLen1600"},
         "ScalableDimension":{"shape":"ScalableDimension"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"XmlString"}
+        "NextToken":{"shape":"XmlString"},
+        "IncludeNotScaledActivities":{"shape":"IncludeNotScaledActivities"}
       }
     },
     "DescribeScalingActivitiesResponse":{
@@ -349,6 +391,13 @@
     },
     "DisableScaleIn":{"type":"boolean"},
     "ErrorMessage":{"type":"string"},
+    "ExceptionMessage":{"type":"string"},
+    "Expression":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
     "FailedResourceAccessException":{
       "type":"structure",
       "members":{
@@ -356,6 +405,13 @@
       },
       "exception":true
     },
+    "Id":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "IncludeNotScaledActivities":{"type":"boolean"},
     "InternalServiceException":{
       "type":"structure",
       "members":{
@@ -376,6 +432,19 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagMap"}
+      }
     },
     "MaxResults":{"type":"integer"},
     "MetricAggregationType":{
@@ -435,11 +504,32 @@
         "LambdaProvisionedConcurrencyUtilization",
         "CassandraReadCapacityUtilization",
         "CassandraWriteCapacityUtilization",
-        "KafkaBrokerStorageUtilization"
+        "KafkaBrokerStorageUtilization",
+        "ElastiCachePrimaryEngineCPUUtilization",
+        "ElastiCacheReplicaEngineCPUUtilization",
+        "ElastiCacheDatabaseMemoryUsageCountedForEvictPercentage",
+        "NeptuneReaderAverageCPUUtilization",
+        "SageMakerVariantProvisionedConcurrencyUtilization",
+        "ElastiCacheDatabaseCapacityUsageCountedForEvictPercentage",
+        "SageMakerInferenceComponentInvocationsPerCopy"
       ]
     },
     "MetricUnit":{"type":"string"},
     "MinAdjustmentMagnitude":{"type":"integer"},
+    "NotScaledReason":{
+      "type":"structure",
+      "required":["Code"],
+      "members":{
+        "Code":{"shape":"XmlString"},
+        "MaxCapacity":{"shape":"ResourceCapacity"},
+        "MinCapacity":{"shape":"ResourceCapacity"},
+        "CurrentCapacity":{"shape":"ResourceCapacity"}
+      }
+    },
+    "NotScaledReasons":{
+      "type":"list",
+      "member":{"shape":"NotScaledReason"}
+    },
     "ObjectNotFoundException":{
       "type":"structure",
       "members":{
@@ -533,12 +623,14 @@
         "MinCapacity":{"shape":"ResourceCapacity"},
         "MaxCapacity":{"shape":"ResourceCapacity"},
         "RoleARN":{"shape":"ResourceIdMaxLen1600"},
-        "SuspendedState":{"shape":"SuspendedState"}
+        "SuspendedState":{"shape":"SuspendedState"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "RegisterScalableTargetResponse":{
       "type":"structure",
       "members":{
+        "ScalableTargetARN":{"shape":"XmlString"}
       }
     },
     "ResourceCapacity":{"type":"integer"},
@@ -562,6 +654,15 @@
       "max":1023,
       "min":1
     },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "ResourceName":{"shape":"AmazonResourceName"}
+      },
+      "exception":true
+    },
+    "ReturnData":{"type":"boolean"},
     "ScalableDimension":{
       "type":"string",
       "enum":[
@@ -581,7 +682,12 @@
         "lambda:function:ProvisionedConcurrency",
         "cassandra:table:ReadCapacityUnits",
         "cassandra:table:WriteCapacityUnits",
-        "kafka:broker-storage:VolumeSize"
+        "kafka:broker-storage:VolumeSize",
+        "elasticache:replication-group:NodeGroups",
+        "elasticache:replication-group:Replicas",
+        "neptune:cluster:ReadReplicaCount",
+        "sagemaker:variant:DesiredProvisionedConcurrency",
+        "sagemaker:inference-component:DesiredCopyCount"
       ]
     },
     "ScalableTarget":{
@@ -603,7 +709,8 @@
         "MaxCapacity":{"shape":"ResourceCapacity"},
         "RoleARN":{"shape":"ResourceIdMaxLen1600"},
         "CreationTime":{"shape":"TimestampType"},
-        "SuspendedState":{"shape":"SuspendedState"}
+        "SuspendedState":{"shape":"SuspendedState"},
+        "ScalableTargetARN":{"shape":"XmlString"}
       }
     },
     "ScalableTargetAction":{
@@ -644,7 +751,8 @@
         "EndTime":{"shape":"TimestampType"},
         "StatusCode":{"shape":"ScalingActivityStatusCode"},
         "StatusMessage":{"shape":"XmlString"},
-        "Details":{"shape":"XmlString"}
+        "Details":{"shape":"XmlString"},
+        "NotScaledReasons":{"shape":"NotScaledReasons"}
       }
     },
     "ScalingActivityStatusCode":{
@@ -736,7 +844,9 @@
         "comprehend",
         "lambda",
         "cassandra",
-        "kafka"
+        "kafka",
+        "elasticache",
+        "neptune"
       ]
     },
     "StepAdjustment":{
@@ -770,6 +880,123 @@
         "ScheduledScalingSuspended":{"shape":"ScalingSuspended"}
       }
     },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"}
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "TargetTrackingMetric":{
+      "type":"structure",
+      "members":{
+        "Dimensions":{"shape":"TargetTrackingMetricDimensions"},
+        "MetricName":{"shape":"TargetTrackingMetricName"},
+        "Namespace":{"shape":"TargetTrackingMetricNamespace"}
+      }
+    },
+    "TargetTrackingMetricDataQueries":{
+      "type":"list",
+      "member":{"shape":"TargetTrackingMetricDataQuery"}
+    },
+    "TargetTrackingMetricDataQuery":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Expression":{"shape":"Expression"},
+        "Id":{"shape":"Id"},
+        "Label":{"shape":"XmlString"},
+        "MetricStat":{"shape":"TargetTrackingMetricStat"},
+        "ReturnData":{"shape":"ReturnData"}
+      }
+    },
+    "TargetTrackingMetricDimension":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"TargetTrackingMetricDimensionName"},
+        "Value":{"shape":"TargetTrackingMetricDimensionValue"}
+      }
+    },
+    "TargetTrackingMetricDimensionName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "TargetTrackingMetricDimensionValue":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "TargetTrackingMetricDimensions":{
+      "type":"list",
+      "member":{"shape":"TargetTrackingMetricDimension"}
+    },
+    "TargetTrackingMetricName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "TargetTrackingMetricNamespace":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "TargetTrackingMetricStat":{
+      "type":"structure",
+      "required":[
+        "Metric",
+        "Stat"
+      ],
+      "members":{
+        "Metric":{"shape":"TargetTrackingMetric"},
+        "Stat":{"shape":"XmlString"},
+        "Unit":{"shape":"TargetTrackingMetricUnit"}
+      }
+    },
+    "TargetTrackingMetricUnit":{
+      "type":"string",
+      "max":1023,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
     "TargetTrackingScalingPolicyConfiguration":{
       "type":"structure",
       "required":["TargetValue"],
@@ -783,6 +1010,30 @@
       }
     },
     "TimestampType":{"type":"timestamp"},
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "ResourceName":{"shape":"AmazonResourceName"}
+      },
+      "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "members":{

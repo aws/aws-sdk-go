@@ -18,6 +18,18 @@
       "output_token": "NextToken",
       "result_key": "Datasets"
     },
+    "ListExplainabilities": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Explainabilities"
+    },
+    "ListExplainabilityExports": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ExplainabilityExports"
+    },
     "ListForecastExportJobs": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -30,6 +42,18 @@
       "output_token": "NextToken",
       "result_key": "Forecasts"
     },
+    "ListMonitorEvaluations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "PredictorMonitorEvaluations"
+    },
+    "ListMonitors": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Monitors"
+    },
     "ListPredictorBacktestExportJobs": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -41,6 +65,24 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "Predictors"
+    },
+    "ListWhatIfAnalyses": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "WhatIfAnalyses"
+    },
+    "ListWhatIfForecastExports": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "WhatIfForecastExports"
+    },
+    "ListWhatIfForecasts": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "WhatIfForecasts"
     }
   }
 }

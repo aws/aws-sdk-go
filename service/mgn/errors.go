@@ -34,6 +34,12 @@ const (
 	// Resource not found exception.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// The request could not be completed because its exceeded the service quota.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
@@ -43,7 +49,7 @@ const (
 	// ErrCodeUninitializedAccountException for service response error code
 	// "UninitializedAccountException".
 	//
-	// Unitialized account exception.
+	// Uninitialized account exception.
 	ErrCodeUninitializedAccountException = "UninitializedAccountException"
 
 	// ErrCodeValidationException for service response error code
@@ -58,6 +64,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ConflictException":             newErrorConflictException,
 	"InternalServerException":       newErrorInternalServerException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
 	"ThrottlingException":           newErrorThrottlingException,
 	"UninitializedAccountException": newErrorUninitializedAccountException,
 	"ValidationException":           newErrorValidationException,

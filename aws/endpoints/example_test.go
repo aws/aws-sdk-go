@@ -1,3 +1,6 @@
+//go:build go1.9
+// +build go1.9
+
 package endpoints_test
 
 import (
@@ -9,6 +12,12 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
+
+// ***************************************************************************
+// All endpoint metadata is sourced from the testdata/endpoints.json file at
+// test startup. Not the live endpoints model file. Update the testdata file
+// for the tests to use the latest live model.
+// ***************************************************************************
 
 func ExampleEnumPartitions() {
 	resolver := endpoints.DefaultResolver()
@@ -28,7 +37,9 @@ func ExampleEnumPartitions() {
 }
 
 func ExampleResolverFunc() {
-	myCustomResolver := func(service, region string, optFns ...func(*endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
+	myCustomResolver := func(service, region string, optFns ...func(*endpoints.Options)) (
+		endpoints.ResolvedEndpoint, error,
+	) {
 		if service == endpoints.S3ServiceID {
 			return endpoints.ResolvedEndpoint{
 				URL:           "s3.custom.endpoint.com",

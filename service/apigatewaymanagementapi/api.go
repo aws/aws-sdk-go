@@ -29,14 +29,13 @@ const opDeleteConnection = "DeleteConnection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConnectionRequest method.
+//	req, resp := client.DeleteConnectionRequest(params)
 //
-//    // Example sending a request using the DeleteConnectionRequest method.
-//    req, resp := client.DeleteConnectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apigatewaymanagementapi-2018-11-29/DeleteConnection
 func (c *ApiGatewayManagementApi) DeleteConnectionRequest(input *DeleteConnectionInput) (req *request.Request, output *DeleteConnectionOutput) {
@@ -68,15 +67,16 @@ func (c *ApiGatewayManagementApi) DeleteConnectionRequest(input *DeleteConnectio
 // API operation DeleteConnection for usage and error information.
 //
 // Returned Error Types:
-//   * GoneException
-//   The connection with the provided id no longer exists.
 //
-//   * LimitExceededException
-//   The client is sending more than the allowed number of requests per unit of
-//   time or the WebSocket client side buffer is full.
+//   - GoneException
+//     The connection with the provided id no longer exists.
 //
-//   * ForbiddenException
-//   The caller is not authorized to invoke this operation.
+//   - LimitExceededException
+//     The client is sending more than the allowed number of requests per unit of
+//     time or the WebSocket client side buffer is full.
+//
+//   - ForbiddenException
+//     The caller is not authorized to invoke this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apigatewaymanagementapi-2018-11-29/DeleteConnection
 func (c *ApiGatewayManagementApi) DeleteConnection(input *DeleteConnectionInput) (*DeleteConnectionOutput, error) {
@@ -116,14 +116,13 @@ const opGetConnection = "GetConnection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConnectionRequest method.
+//	req, resp := client.GetConnectionRequest(params)
 //
-//    // Example sending a request using the GetConnectionRequest method.
-//    req, resp := client.GetConnectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apigatewaymanagementapi-2018-11-29/GetConnection
 func (c *ApiGatewayManagementApi) GetConnectionRequest(input *GetConnectionInput) (req *request.Request, output *GetConnectionOutput) {
@@ -154,15 +153,16 @@ func (c *ApiGatewayManagementApi) GetConnectionRequest(input *GetConnectionInput
 // API operation GetConnection for usage and error information.
 //
 // Returned Error Types:
-//   * GoneException
-//   The connection with the provided id no longer exists.
 //
-//   * LimitExceededException
-//   The client is sending more than the allowed number of requests per unit of
-//   time or the WebSocket client side buffer is full.
+//   - GoneException
+//     The connection with the provided id no longer exists.
 //
-//   * ForbiddenException
-//   The caller is not authorized to invoke this operation.
+//   - LimitExceededException
+//     The client is sending more than the allowed number of requests per unit of
+//     time or the WebSocket client side buffer is full.
+//
+//   - ForbiddenException
+//     The caller is not authorized to invoke this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apigatewaymanagementapi-2018-11-29/GetConnection
 func (c *ApiGatewayManagementApi) GetConnection(input *GetConnectionInput) (*GetConnectionOutput, error) {
@@ -202,14 +202,13 @@ const opPostToConnection = "PostToConnection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PostToConnectionRequest method.
+//	req, resp := client.PostToConnectionRequest(params)
 //
-//    // Example sending a request using the PostToConnectionRequest method.
-//    req, resp := client.PostToConnectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apigatewaymanagementapi-2018-11-29/PostToConnection
 func (c *ApiGatewayManagementApi) PostToConnectionRequest(input *PostToConnectionInput) (req *request.Request, output *PostToConnectionOutput) {
@@ -241,18 +240,19 @@ func (c *ApiGatewayManagementApi) PostToConnectionRequest(input *PostToConnectio
 // API operation PostToConnection for usage and error information.
 //
 // Returned Error Types:
-//   * GoneException
-//   The connection with the provided id no longer exists.
 //
-//   * LimitExceededException
-//   The client is sending more than the allowed number of requests per unit of
-//   time or the WebSocket client side buffer is full.
+//   - GoneException
+//     The connection with the provided id no longer exists.
 //
-//   * PayloadTooLargeException
-//   The data has exceeded the maximum size allowed.
+//   - LimitExceededException
+//     The client is sending more than the allowed number of requests per unit of
+//     time or the WebSocket client side buffer is full.
 //
-//   * ForbiddenException
-//   The caller is not authorized to invoke this operation.
+//   - PayloadTooLargeException
+//     The data has exceeded the maximum size allowed.
+//
+//   - ForbiddenException
+//     The caller is not authorized to invoke this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apigatewaymanagementapi-2018-11-29/PostToConnection
 func (c *ApiGatewayManagementApi) PostToConnection(input *PostToConnectionInput) (*PostToConnectionOutput, error) {
@@ -277,18 +277,26 @@ func (c *ApiGatewayManagementApi) PostToConnectionWithContext(ctx aws.Context, i
 }
 
 type DeleteConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectionId is a required field
 	ConnectionId *string `location:"uri" locationName:"connectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionInput) GoString() string {
 	return s.String()
 }
@@ -319,12 +327,20 @@ type DeleteConnectionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -337,12 +353,20 @@ type ForbiddenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) GoString() string {
 	return s.String()
 }
@@ -386,18 +410,26 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectionId is a required field
 	ConnectionId *string `location:"uri" locationName:"connectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectionInput) GoString() string {
 	return s.String()
 }
@@ -434,12 +466,20 @@ type GetConnectionOutput struct {
 	LastActiveAt *time.Time `locationName:"lastActiveAt" type:"timestamp" timestampFormat:"iso8601"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -470,12 +510,20 @@ type GoneException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GoneException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GoneException) GoString() string {
 	return s.String()
 }
@@ -532,12 +580,20 @@ type Identity struct {
 	UserAgent *string `locationName:"userAgent" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Identity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Identity) GoString() string {
 	return s.String()
 }
@@ -563,12 +619,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -619,12 +683,20 @@ type PayloadTooLargeException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PayloadTooLargeException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PayloadTooLargeException) GoString() string {
 	return s.String()
 }
@@ -679,12 +751,20 @@ type PostToConnectionInput struct {
 	Data []byte `type:"blob" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostToConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostToConnectionInput) GoString() string {
 	return s.String()
 }
@@ -724,12 +804,20 @@ type PostToConnectionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostToConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostToConnectionOutput) GoString() string {
 	return s.String()
 }

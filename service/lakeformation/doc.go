@@ -3,14 +3,14 @@
 // Package lakeformation provides the client and types for making API
 // requests to AWS Lake Formation.
 //
-// Defines the public endpoint for the AWS Lake Formation service.
+// Defines the public endpoint for the Lake Formation service.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31 for more information on this service.
 //
 // See lakeformation package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/lakeformation/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS Lake Formation with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

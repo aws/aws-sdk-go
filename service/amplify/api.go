@@ -29,14 +29,13 @@ const opCreateApp = "CreateApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAppRequest method.
+//	req, resp := client.CreateAppRequest(params)
 //
-//    // Example sending a request using the CreateAppRequest method.
-//    req, resp := client.CreateAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateApp
 func (c *Amplify) CreateAppRequest(input *CreateAppInput) (req *request.Request, output *CreateAppOutput) {
@@ -67,20 +66,21 @@ func (c *Amplify) CreateAppRequest(input *CreateAppInput) (req *request.Request,
 // API operation CreateApp for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateApp
 func (c *Amplify) CreateApp(input *CreateAppInput) (*CreateAppOutput, error) {
@@ -120,14 +120,13 @@ const opCreateBackendEnvironment = "CreateBackendEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBackendEnvironmentRequest method.
+//	req, resp := client.CreateBackendEnvironmentRequest(params)
 //
-//    // Example sending a request using the CreateBackendEnvironmentRequest method.
-//    req, resp := client.CreateBackendEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateBackendEnvironment
 func (c *Amplify) CreateBackendEnvironmentRequest(input *CreateBackendEnvironmentInput) (req *request.Request, output *CreateBackendEnvironmentOutput) {
@@ -158,20 +157,21 @@ func (c *Amplify) CreateBackendEnvironmentRequest(input *CreateBackendEnvironmen
 // API operation CreateBackendEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateBackendEnvironment
 func (c *Amplify) CreateBackendEnvironment(input *CreateBackendEnvironmentInput) (*CreateBackendEnvironmentOutput, error) {
@@ -211,14 +211,13 @@ const opCreateBranch = "CreateBranch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBranchRequest method.
+//	req, resp := client.CreateBranchRequest(params)
 //
-//    // Example sending a request using the CreateBranchRequest method.
-//    req, resp := client.CreateBranchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateBranch
 func (c *Amplify) CreateBranchRequest(input *CreateBranchInput) (req *request.Request, output *CreateBranchOutput) {
@@ -249,23 +248,24 @@ func (c *Amplify) CreateBranchRequest(input *CreateBranchInput) (req *request.Re
 // API operation CreateBranch for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateBranch
 func (c *Amplify) CreateBranch(input *CreateBranchInput) (*CreateBranchOutput, error) {
@@ -305,14 +305,13 @@ const opCreateDeployment = "CreateDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDeploymentRequest method.
+//	req, resp := client.CreateDeploymentRequest(params)
 //
-//    // Example sending a request using the CreateDeploymentRequest method.
-//    req, resp := client.CreateDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateDeployment
 func (c *Amplify) CreateDeploymentRequest(input *CreateDeploymentInput) (req *request.Request, output *CreateDeploymentOutput) {
@@ -336,6 +335,10 @@ func (c *Amplify) CreateDeploymentRequest(input *CreateDeploymentInput) (req *re
 // Creates a deployment for a manually deployed Amplify app. Manually deployed
 // apps are not connected to a repository.
 //
+// The maximum duration between the CreateDeployment call and the StartDeployment
+// call cannot exceed 8 hours. If the duration exceeds 8 hours, the StartDeployment
+// call and the associated Job will fail.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -344,17 +347,18 @@ func (c *Amplify) CreateDeploymentRequest(input *CreateDeploymentInput) (req *re
 // API operation CreateDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateDeployment
 func (c *Amplify) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, error) {
@@ -394,14 +398,13 @@ const opCreateDomainAssociation = "CreateDomainAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDomainAssociationRequest method.
+//	req, resp := client.CreateDomainAssociationRequest(params)
 //
-//    // Example sending a request using the CreateDomainAssociationRequest method.
-//    req, resp := client.CreateDomainAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateDomainAssociation
 func (c *Amplify) CreateDomainAssociationRequest(input *CreateDomainAssociationInput) (req *request.Request, output *CreateDomainAssociationOutput) {
@@ -433,23 +436,24 @@ func (c *Amplify) CreateDomainAssociationRequest(input *CreateDomainAssociationI
 // API operation CreateDomainAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateDomainAssociation
 func (c *Amplify) CreateDomainAssociation(input *CreateDomainAssociationInput) (*CreateDomainAssociationOutput, error) {
@@ -489,14 +493,13 @@ const opCreateWebhook = "CreateWebhook"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateWebhookRequest method.
+//	req, resp := client.CreateWebhookRequest(params)
 //
-//    // Example sending a request using the CreateWebhookRequest method.
-//    req, resp := client.CreateWebhookRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateWebhook
 func (c *Amplify) CreateWebhookRequest(input *CreateWebhookInput) (req *request.Request, output *CreateWebhookOutput) {
@@ -527,23 +530,24 @@ func (c *Amplify) CreateWebhookRequest(input *CreateWebhookInput) (req *request.
 // API operation CreateWebhook for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/CreateWebhook
 func (c *Amplify) CreateWebhook(input *CreateWebhookInput) (*CreateWebhookOutput, error) {
@@ -583,14 +587,13 @@ const opDeleteApp = "DeleteApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAppRequest method.
+//	req, resp := client.DeleteAppRequest(params)
 //
-//    // Example sending a request using the DeleteAppRequest method.
-//    req, resp := client.DeleteAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteApp
 func (c *Amplify) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, output *DeleteAppOutput) {
@@ -621,20 +624,21 @@ func (c *Amplify) DeleteAppRequest(input *DeleteAppInput) (req *request.Request,
 // API operation DeleteApp for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteApp
 func (c *Amplify) DeleteApp(input *DeleteAppInput) (*DeleteAppOutput, error) {
@@ -674,14 +678,13 @@ const opDeleteBackendEnvironment = "DeleteBackendEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBackendEnvironmentRequest method.
+//	req, resp := client.DeleteBackendEnvironmentRequest(params)
 //
-//    // Example sending a request using the DeleteBackendEnvironmentRequest method.
-//    req, resp := client.DeleteBackendEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteBackendEnvironment
 func (c *Amplify) DeleteBackendEnvironmentRequest(input *DeleteBackendEnvironmentInput) (req *request.Request, output *DeleteBackendEnvironmentOutput) {
@@ -712,20 +715,21 @@ func (c *Amplify) DeleteBackendEnvironmentRequest(input *DeleteBackendEnvironmen
 // API operation DeleteBackendEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteBackendEnvironment
 func (c *Amplify) DeleteBackendEnvironment(input *DeleteBackendEnvironmentInput) (*DeleteBackendEnvironmentOutput, error) {
@@ -765,14 +769,13 @@ const opDeleteBranch = "DeleteBranch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBranchRequest method.
+//	req, resp := client.DeleteBranchRequest(params)
 //
-//    // Example sending a request using the DeleteBranchRequest method.
-//    req, resp := client.DeleteBranchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteBranch
 func (c *Amplify) DeleteBranchRequest(input *DeleteBranchInput) (req *request.Request, output *DeleteBranchOutput) {
@@ -803,20 +806,21 @@ func (c *Amplify) DeleteBranchRequest(input *DeleteBranchInput) (req *request.Re
 // API operation DeleteBranch for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteBranch
 func (c *Amplify) DeleteBranch(input *DeleteBranchInput) (*DeleteBranchOutput, error) {
@@ -856,14 +860,13 @@ const opDeleteDomainAssociation = "DeleteDomainAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDomainAssociationRequest method.
+//	req, resp := client.DeleteDomainAssociationRequest(params)
 //
-//    // Example sending a request using the DeleteDomainAssociationRequest method.
-//    req, resp := client.DeleteDomainAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteDomainAssociation
 func (c *Amplify) DeleteDomainAssociationRequest(input *DeleteDomainAssociationInput) (req *request.Request, output *DeleteDomainAssociationOutput) {
@@ -894,20 +897,21 @@ func (c *Amplify) DeleteDomainAssociationRequest(input *DeleteDomainAssociationI
 // API operation DeleteDomainAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteDomainAssociation
 func (c *Amplify) DeleteDomainAssociation(input *DeleteDomainAssociationInput) (*DeleteDomainAssociationOutput, error) {
@@ -947,14 +951,13 @@ const opDeleteJob = "DeleteJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteJobRequest method.
+//	req, resp := client.DeleteJobRequest(params)
 //
-//    // Example sending a request using the DeleteJobRequest method.
-//    req, resp := client.DeleteJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteJob
 func (c *Amplify) DeleteJobRequest(input *DeleteJobInput) (req *request.Request, output *DeleteJobOutput) {
@@ -985,20 +988,21 @@ func (c *Amplify) DeleteJobRequest(input *DeleteJobInput) (req *request.Request,
 // API operation DeleteJob for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteJob
 func (c *Amplify) DeleteJob(input *DeleteJobInput) (*DeleteJobOutput, error) {
@@ -1038,14 +1042,13 @@ const opDeleteWebhook = "DeleteWebhook"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteWebhookRequest method.
+//	req, resp := client.DeleteWebhookRequest(params)
 //
-//    // Example sending a request using the DeleteWebhookRequest method.
-//    req, resp := client.DeleteWebhookRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteWebhook
 func (c *Amplify) DeleteWebhookRequest(input *DeleteWebhookInput) (req *request.Request, output *DeleteWebhookOutput) {
@@ -1076,20 +1079,21 @@ func (c *Amplify) DeleteWebhookRequest(input *DeleteWebhookInput) (req *request.
 // API operation DeleteWebhook for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/DeleteWebhook
 func (c *Amplify) DeleteWebhook(input *DeleteWebhookInput) (*DeleteWebhookOutput, error) {
@@ -1129,14 +1133,13 @@ const opGenerateAccessLogs = "GenerateAccessLogs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GenerateAccessLogsRequest method.
+//	req, resp := client.GenerateAccessLogsRequest(params)
 //
-//    // Example sending a request using the GenerateAccessLogsRequest method.
-//    req, resp := client.GenerateAccessLogsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GenerateAccessLogs
 func (c *Amplify) GenerateAccessLogsRequest(input *GenerateAccessLogsInput) (req *request.Request, output *GenerateAccessLogsOutput) {
@@ -1168,17 +1171,18 @@ func (c *Amplify) GenerateAccessLogsRequest(input *GenerateAccessLogsInput) (req
 // API operation GenerateAccessLogs for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An entity was not found during an operation.
 //
-//   * BadRequestException
-//   A request contains unexpected data.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GenerateAccessLogs
 func (c *Amplify) GenerateAccessLogs(input *GenerateAccessLogsInput) (*GenerateAccessLogsOutput, error) {
@@ -1218,14 +1222,13 @@ const opGetApp = "GetApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAppRequest method.
+//	req, resp := client.GetAppRequest(params)
 //
-//    // Example sending a request using the GetAppRequest method.
-//    req, resp := client.GetAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetApp
 func (c *Amplify) GetAppRequest(input *GetAppInput) (req *request.Request, output *GetAppOutput) {
@@ -1246,7 +1249,7 @@ func (c *Amplify) GetAppRequest(input *GetAppInput) (req *request.Request, outpu
 
 // GetApp API operation for AWS Amplify.
 //
-// Returns an existing Amplify app by appID.
+// Returns an existing Amplify app specified by an app ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1256,17 +1259,18 @@ func (c *Amplify) GetAppRequest(input *GetAppInput) (req *request.Request, outpu
 // API operation GetApp for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetApp
 func (c *Amplify) GetApp(input *GetAppInput) (*GetAppOutput, error) {
@@ -1306,14 +1310,13 @@ const opGetArtifactUrl = "GetArtifactUrl"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetArtifactUrlRequest method.
+//	req, resp := client.GetArtifactUrlRequest(params)
 //
-//    // Example sending a request using the GetArtifactUrlRequest method.
-//    req, resp := client.GetArtifactUrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetArtifactUrl
 func (c *Amplify) GetArtifactUrlRequest(input *GetArtifactUrlInput) (req *request.Request, output *GetArtifactUrlOutput) {
@@ -1344,20 +1347,21 @@ func (c *Amplify) GetArtifactUrlRequest(input *GetArtifactUrlInput) (req *reques
 // API operation GetArtifactUrl for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetArtifactUrl
 func (c *Amplify) GetArtifactUrl(input *GetArtifactUrlInput) (*GetArtifactUrlOutput, error) {
@@ -1397,14 +1401,13 @@ const opGetBackendEnvironment = "GetBackendEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBackendEnvironmentRequest method.
+//	req, resp := client.GetBackendEnvironmentRequest(params)
 //
-//    // Example sending a request using the GetBackendEnvironmentRequest method.
-//    req, resp := client.GetBackendEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetBackendEnvironment
 func (c *Amplify) GetBackendEnvironmentRequest(input *GetBackendEnvironmentInput) (req *request.Request, output *GetBackendEnvironmentOutput) {
@@ -1435,17 +1438,18 @@ func (c *Amplify) GetBackendEnvironmentRequest(input *GetBackendEnvironmentInput
 // API operation GetBackendEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetBackendEnvironment
 func (c *Amplify) GetBackendEnvironment(input *GetBackendEnvironmentInput) (*GetBackendEnvironmentOutput, error) {
@@ -1485,14 +1489,13 @@ const opGetBranch = "GetBranch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBranchRequest method.
+//	req, resp := client.GetBranchRequest(params)
 //
-//    // Example sending a request using the GetBranchRequest method.
-//    req, resp := client.GetBranchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetBranch
 func (c *Amplify) GetBranchRequest(input *GetBranchInput) (req *request.Request, output *GetBranchOutput) {
@@ -1523,17 +1526,18 @@ func (c *Amplify) GetBranchRequest(input *GetBranchInput) (req *request.Request,
 // API operation GetBranch for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetBranch
 func (c *Amplify) GetBranch(input *GetBranchInput) (*GetBranchOutput, error) {
@@ -1573,14 +1577,13 @@ const opGetDomainAssociation = "GetDomainAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDomainAssociationRequest method.
+//	req, resp := client.GetDomainAssociationRequest(params)
 //
-//    // Example sending a request using the GetDomainAssociationRequest method.
-//    req, resp := client.GetDomainAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetDomainAssociation
 func (c *Amplify) GetDomainAssociationRequest(input *GetDomainAssociationInput) (req *request.Request, output *GetDomainAssociationOutput) {
@@ -1611,17 +1614,18 @@ func (c *Amplify) GetDomainAssociationRequest(input *GetDomainAssociationInput) 
 // API operation GetDomainAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetDomainAssociation
 func (c *Amplify) GetDomainAssociation(input *GetDomainAssociationInput) (*GetDomainAssociationOutput, error) {
@@ -1661,14 +1665,13 @@ const opGetJob = "GetJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetJobRequest method.
+//	req, resp := client.GetJobRequest(params)
 //
-//    // Example sending a request using the GetJobRequest method.
-//    req, resp := client.GetJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetJob
 func (c *Amplify) GetJobRequest(input *GetJobInput) (req *request.Request, output *GetJobOutput) {
@@ -1699,20 +1702,21 @@ func (c *Amplify) GetJobRequest(input *GetJobInput) (req *request.Request, outpu
 // API operation GetJob for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetJob
 func (c *Amplify) GetJob(input *GetJobInput) (*GetJobOutput, error) {
@@ -1752,14 +1756,13 @@ const opGetWebhook = "GetWebhook"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetWebhookRequest method.
+//	req, resp := client.GetWebhookRequest(params)
 //
-//    // Example sending a request using the GetWebhookRequest method.
-//    req, resp := client.GetWebhookRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetWebhook
 func (c *Amplify) GetWebhookRequest(input *GetWebhookInput) (req *request.Request, output *GetWebhookOutput) {
@@ -1790,20 +1793,21 @@ func (c *Amplify) GetWebhookRequest(input *GetWebhookInput) (req *request.Reques
 // API operation GetWebhook for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/GetWebhook
 func (c *Amplify) GetWebhook(input *GetWebhookInput) (*GetWebhookOutput, error) {
@@ -1843,14 +1847,13 @@ const opListApps = "ListApps"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAppsRequest method.
+//	req, resp := client.ListAppsRequest(params)
 //
-//    // Example sending a request using the ListAppsRequest method.
-//    req, resp := client.ListAppsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListApps
 func (c *Amplify) ListAppsRequest(input *ListAppsInput) (req *request.Request, output *ListAppsOutput) {
@@ -1858,6 +1861,12 @@ func (c *Amplify) ListAppsRequest(input *ListAppsInput) (req *request.Request, o
 		Name:       opListApps,
 		HTTPMethod: "GET",
 		HTTPPath:   "/apps",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1881,14 +1890,15 @@ func (c *Amplify) ListAppsRequest(input *ListAppsInput) (req *request.Request, o
 // API operation ListApps for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListApps
 func (c *Amplify) ListApps(input *ListAppsInput) (*ListAppsOutput, error) {
@@ -1912,6 +1922,57 @@ func (c *Amplify) ListAppsWithContext(ctx aws.Context, input *ListAppsInput, opt
 	return out, req.Send()
 }
 
+// ListAppsPages iterates over the pages of a ListApps operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApps method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListApps operation.
+//	pageNum := 0
+//	err := client.ListAppsPages(params,
+//	    func(page *amplify.ListAppsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Amplify) ListAppsPages(input *ListAppsInput, fn func(*ListAppsOutput, bool) bool) error {
+	return c.ListAppsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAppsPagesWithContext same as ListAppsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Amplify) ListAppsPagesWithContext(ctx aws.Context, input *ListAppsInput, fn func(*ListAppsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAppsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAppsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAppsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListArtifacts = "ListArtifacts"
 
 // ListArtifactsRequest generates a "aws/request.Request" representing the
@@ -1928,14 +1989,13 @@ const opListArtifacts = "ListArtifacts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListArtifactsRequest method.
+//	req, resp := client.ListArtifactsRequest(params)
 //
-//    // Example sending a request using the ListArtifactsRequest method.
-//    req, resp := client.ListArtifactsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListArtifacts
 func (c *Amplify) ListArtifactsRequest(input *ListArtifactsInput) (req *request.Request, output *ListArtifactsOutput) {
@@ -1966,17 +2026,18 @@ func (c *Amplify) ListArtifactsRequest(input *ListArtifactsInput) (req *request.
 // API operation ListArtifacts for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListArtifacts
 func (c *Amplify) ListArtifacts(input *ListArtifactsInput) (*ListArtifactsOutput, error) {
@@ -2016,14 +2077,13 @@ const opListBackendEnvironments = "ListBackendEnvironments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBackendEnvironmentsRequest method.
+//	req, resp := client.ListBackendEnvironmentsRequest(params)
 //
-//    // Example sending a request using the ListBackendEnvironmentsRequest method.
-//    req, resp := client.ListBackendEnvironmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListBackendEnvironments
 func (c *Amplify) ListBackendEnvironmentsRequest(input *ListBackendEnvironmentsInput) (req *request.Request, output *ListBackendEnvironmentsOutput) {
@@ -2054,14 +2114,15 @@ func (c *Amplify) ListBackendEnvironmentsRequest(input *ListBackendEnvironmentsI
 // API operation ListBackendEnvironments for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListBackendEnvironments
 func (c *Amplify) ListBackendEnvironments(input *ListBackendEnvironmentsInput) (*ListBackendEnvironmentsOutput, error) {
@@ -2101,14 +2162,13 @@ const opListBranches = "ListBranches"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBranchesRequest method.
+//	req, resp := client.ListBranchesRequest(params)
 //
-//    // Example sending a request using the ListBranchesRequest method.
-//    req, resp := client.ListBranchesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListBranches
 func (c *Amplify) ListBranchesRequest(input *ListBranchesInput) (req *request.Request, output *ListBranchesOutput) {
@@ -2116,6 +2176,12 @@ func (c *Amplify) ListBranchesRequest(input *ListBranchesInput) (req *request.Re
 		Name:       opListBranches,
 		HTTPMethod: "GET",
 		HTTPPath:   "/apps/{appId}/branches",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2139,14 +2205,15 @@ func (c *Amplify) ListBranchesRequest(input *ListBranchesInput) (req *request.Re
 // API operation ListBranches for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListBranches
 func (c *Amplify) ListBranches(input *ListBranchesInput) (*ListBranchesOutput, error) {
@@ -2170,6 +2237,57 @@ func (c *Amplify) ListBranchesWithContext(ctx aws.Context, input *ListBranchesIn
 	return out, req.Send()
 }
 
+// ListBranchesPages iterates over the pages of a ListBranches operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBranches method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListBranches operation.
+//	pageNum := 0
+//	err := client.ListBranchesPages(params,
+//	    func(page *amplify.ListBranchesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Amplify) ListBranchesPages(input *ListBranchesInput, fn func(*ListBranchesOutput, bool) bool) error {
+	return c.ListBranchesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListBranchesPagesWithContext same as ListBranchesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Amplify) ListBranchesPagesWithContext(ctx aws.Context, input *ListBranchesInput, fn func(*ListBranchesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListBranchesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListBranchesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListBranchesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDomainAssociations = "ListDomainAssociations"
 
 // ListDomainAssociationsRequest generates a "aws/request.Request" representing the
@@ -2186,14 +2304,13 @@ const opListDomainAssociations = "ListDomainAssociations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDomainAssociationsRequest method.
+//	req, resp := client.ListDomainAssociationsRequest(params)
 //
-//    // Example sending a request using the ListDomainAssociationsRequest method.
-//    req, resp := client.ListDomainAssociationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListDomainAssociations
 func (c *Amplify) ListDomainAssociationsRequest(input *ListDomainAssociationsInput) (req *request.Request, output *ListDomainAssociationsOutput) {
@@ -2201,6 +2318,12 @@ func (c *Amplify) ListDomainAssociationsRequest(input *ListDomainAssociationsInp
 		Name:       opListDomainAssociations,
 		HTTPMethod: "GET",
 		HTTPPath:   "/apps/{appId}/domains",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2224,14 +2347,15 @@ func (c *Amplify) ListDomainAssociationsRequest(input *ListDomainAssociationsInp
 // API operation ListDomainAssociations for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListDomainAssociations
 func (c *Amplify) ListDomainAssociations(input *ListDomainAssociationsInput) (*ListDomainAssociationsOutput, error) {
@@ -2255,6 +2379,57 @@ func (c *Amplify) ListDomainAssociationsWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
+// ListDomainAssociationsPages iterates over the pages of a ListDomainAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDomainAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDomainAssociations operation.
+//	pageNum := 0
+//	err := client.ListDomainAssociationsPages(params,
+//	    func(page *amplify.ListDomainAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Amplify) ListDomainAssociationsPages(input *ListDomainAssociationsInput, fn func(*ListDomainAssociationsOutput, bool) bool) error {
+	return c.ListDomainAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDomainAssociationsPagesWithContext same as ListDomainAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Amplify) ListDomainAssociationsPagesWithContext(ctx aws.Context, input *ListDomainAssociationsInput, fn func(*ListDomainAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDomainAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDomainAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDomainAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListJobs = "ListJobs"
 
 // ListJobsRequest generates a "aws/request.Request" representing the
@@ -2271,14 +2446,13 @@ const opListJobs = "ListJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListJobsRequest method.
+//	req, resp := client.ListJobsRequest(params)
 //
-//    // Example sending a request using the ListJobsRequest method.
-//    req, resp := client.ListJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListJobs
 func (c *Amplify) ListJobsRequest(input *ListJobsInput) (req *request.Request, output *ListJobsOutput) {
@@ -2286,6 +2460,12 @@ func (c *Amplify) ListJobsRequest(input *ListJobsInput) (req *request.Request, o
 		Name:       opListJobs,
 		HTTPMethod: "GET",
 		HTTPPath:   "/apps/{appId}/branches/{branchName}/jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2309,17 +2489,18 @@ func (c *Amplify) ListJobsRequest(input *ListJobsInput) (req *request.Request, o
 // API operation ListJobs for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListJobs
 func (c *Amplify) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
@@ -2343,6 +2524,57 @@ func (c *Amplify) ListJobsWithContext(ctx aws.Context, input *ListJobsInput, opt
 	return out, req.Send()
 }
 
+// ListJobsPages iterates over the pages of a ListJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListJobs operation.
+//	pageNum := 0
+//	err := client.ListJobsPages(params,
+//	    func(page *amplify.ListJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Amplify) ListJobsPages(input *ListJobsInput, fn func(*ListJobsOutput, bool) bool) error {
+	return c.ListJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListJobsPagesWithContext same as ListJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Amplify) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInput, fn func(*ListJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -2359,14 +2591,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListTagsForResource
 func (c *Amplify) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2397,14 +2628,15 @@ func (c *Amplify) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
 //
-//   * BadRequestException
-//   A request contains unexpected data.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * ResourceNotFoundException
-//   An operation failed due to a non-existent resource.
+//   - BadRequestException
+//     A request contains unexpected data.
+//
+//   - ResourceNotFoundException
+//     An operation failed due to a non-existent resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListTagsForResource
 func (c *Amplify) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2444,14 +2676,13 @@ const opListWebhooks = "ListWebhooks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWebhooksRequest method.
+//	req, resp := client.ListWebhooksRequest(params)
 //
-//    // Example sending a request using the ListWebhooksRequest method.
-//    req, resp := client.ListWebhooksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListWebhooks
 func (c *Amplify) ListWebhooksRequest(input *ListWebhooksInput) (req *request.Request, output *ListWebhooksOutput) {
@@ -2482,17 +2713,18 @@ func (c *Amplify) ListWebhooksRequest(input *ListWebhooksInput) (req *request.Re
 // API operation ListWebhooks for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/ListWebhooks
 func (c *Amplify) ListWebhooks(input *ListWebhooksInput) (*ListWebhooksOutput, error) {
@@ -2532,14 +2764,13 @@ const opStartDeployment = "StartDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartDeploymentRequest method.
+//	req, resp := client.StartDeploymentRequest(params)
 //
-//    // Example sending a request using the StartDeploymentRequest method.
-//    req, resp := client.StartDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/StartDeployment
 func (c *Amplify) StartDeploymentRequest(input *StartDeploymentInput) (req *request.Request, output *StartDeploymentOutput) {
@@ -2563,6 +2794,10 @@ func (c *Amplify) StartDeploymentRequest(input *StartDeploymentInput) (req *requ
 // Starts a deployment for a manually deployed app. Manually deployed apps are
 // not connected to a repository.
 //
+// The maximum duration between the CreateDeployment call and the StartDeployment
+// call cannot exceed 8 hours. If the duration exceeds 8 hours, the StartDeployment
+// call and the associated Job will fail.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2571,20 +2806,21 @@ func (c *Amplify) StartDeploymentRequest(input *StartDeploymentInput) (req *requ
 // API operation StartDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/StartDeployment
 func (c *Amplify) StartDeployment(input *StartDeploymentInput) (*StartDeploymentOutput, error) {
@@ -2624,14 +2860,13 @@ const opStartJob = "StartJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartJobRequest method.
+//	req, resp := client.StartJobRequest(params)
 //
-//    // Example sending a request using the StartJobRequest method.
-//    req, resp := client.StartJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/StartJob
 func (c *Amplify) StartJobRequest(input *StartJobInput) (req *request.Request, output *StartJobOutput) {
@@ -2662,20 +2897,21 @@ func (c *Amplify) StartJobRequest(input *StartJobInput) (req *request.Request, o
 // API operation StartJob for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/StartJob
 func (c *Amplify) StartJob(input *StartJobInput) (*StartJobOutput, error) {
@@ -2715,14 +2951,13 @@ const opStopJob = "StopJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopJobRequest method.
+//	req, resp := client.StopJobRequest(params)
 //
-//    // Example sending a request using the StopJobRequest method.
-//    req, resp := client.StopJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/StopJob
 func (c *Amplify) StopJobRequest(input *StopJobInput) (req *request.Request, output *StopJobOutput) {
@@ -2753,20 +2988,21 @@ func (c *Amplify) StopJobRequest(input *StopJobInput) (req *request.Request, out
 // API operation StopJob for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * LimitExceededException
-//   A resource could not be created because service quotas were exceeded.
+//   - NotFoundException
+//     An entity was not found during an operation.
+//
+//   - LimitExceededException
+//     A resource could not be created because service quotas were exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/StopJob
 func (c *Amplify) StopJob(input *StopJobInput) (*StopJobOutput, error) {
@@ -2806,14 +3042,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/TagResource
 func (c *Amplify) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2845,14 +3080,15 @@ func (c *Amplify) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
 //
-//   * BadRequestException
-//   A request contains unexpected data.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * ResourceNotFoundException
-//   An operation failed due to a non-existent resource.
+//   - BadRequestException
+//     A request contains unexpected data.
+//
+//   - ResourceNotFoundException
+//     An operation failed due to a non-existent resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/TagResource
 func (c *Amplify) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2892,14 +3128,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UntagResource
 func (c *Amplify) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2931,14 +3166,15 @@ func (c *Amplify) UntagResourceRequest(input *UntagResourceInput) (req *request.
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
 //
-//   * BadRequestException
-//   A request contains unexpected data.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
-//   * ResourceNotFoundException
-//   An operation failed due to a non-existent resource.
+//   - BadRequestException
+//     A request contains unexpected data.
+//
+//   - ResourceNotFoundException
+//     An operation failed due to a non-existent resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UntagResource
 func (c *Amplify) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2978,14 +3214,13 @@ const opUpdateApp = "UpdateApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateAppRequest method.
+//	req, resp := client.UpdateAppRequest(params)
 //
-//    // Example sending a request using the UpdateAppRequest method.
-//    req, resp := client.UpdateAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UpdateApp
 func (c *Amplify) UpdateAppRequest(input *UpdateAppInput) (req *request.Request, output *UpdateAppOutput) {
@@ -3016,17 +3251,18 @@ func (c *Amplify) UpdateAppRequest(input *UpdateAppInput) (req *request.Request,
 // API operation UpdateApp for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
+//
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UpdateApp
 func (c *Amplify) UpdateApp(input *UpdateAppInput) (*UpdateAppOutput, error) {
@@ -3066,14 +3302,13 @@ const opUpdateBranch = "UpdateBranch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateBranchRequest method.
+//	req, resp := client.UpdateBranchRequest(params)
 //
-//    // Example sending a request using the UpdateBranchRequest method.
-//    req, resp := client.UpdateBranchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UpdateBranch
 func (c *Amplify) UpdateBranchRequest(input *UpdateBranchInput) (req *request.Request, output *UpdateBranchOutput) {
@@ -3104,20 +3339,21 @@ func (c *Amplify) UpdateBranchRequest(input *UpdateBranchInput) (req *request.Re
 // API operation UpdateBranch for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UpdateBranch
 func (c *Amplify) UpdateBranch(input *UpdateBranchInput) (*UpdateBranchOutput, error) {
@@ -3157,14 +3393,13 @@ const opUpdateDomainAssociation = "UpdateDomainAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDomainAssociationRequest method.
+//	req, resp := client.UpdateDomainAssociationRequest(params)
 //
-//    // Example sending a request using the UpdateDomainAssociationRequest method.
-//    req, resp := client.UpdateDomainAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UpdateDomainAssociation
 func (c *Amplify) UpdateDomainAssociationRequest(input *UpdateDomainAssociationInput) (req *request.Request, output *UpdateDomainAssociationOutput) {
@@ -3195,20 +3430,21 @@ func (c *Amplify) UpdateDomainAssociationRequest(input *UpdateDomainAssociationI
 // API operation UpdateDomainAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UpdateDomainAssociation
 func (c *Amplify) UpdateDomainAssociation(input *UpdateDomainAssociationInput) (*UpdateDomainAssociationOutput, error) {
@@ -3248,14 +3484,13 @@ const opUpdateWebhook = "UpdateWebhook"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateWebhookRequest method.
+//	req, resp := client.UpdateWebhookRequest(params)
 //
-//    // Example sending a request using the UpdateWebhookRequest method.
-//    req, resp := client.UpdateWebhookRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UpdateWebhook
 func (c *Amplify) UpdateWebhookRequest(input *UpdateWebhookInput) (req *request.Request, output *UpdateWebhookOutput) {
@@ -3286,20 +3521,21 @@ func (c *Amplify) UpdateWebhookRequest(input *UpdateWebhookInput) (req *request.
 // API operation UpdateWebhook for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   A request contains unexpected data.
 //
-//   * UnauthorizedException
-//   An operation failed due to a lack of access.
+//   - BadRequestException
+//     A request contains unexpected data.
 //
-//   * NotFoundException
-//   An entity was not found during an operation.
+//   - UnauthorizedException
+//     An operation failed due to a lack of access.
 //
-//   * InternalFailureException
-//   The service failed to perform an operation due to an internal issue.
+//   - NotFoundException
+//     An entity was not found during an operation.
 //
-//   * DependentServiceFailureException
-//   An operation failed because a dependent service threw an exception.
+//   - InternalFailureException
+//     The service failed to perform an operation due to an internal issue.
+//
+//   - DependentServiceFailureException
+//     An operation failed because a dependent service threw an exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplify-2017-07-25/UpdateWebhook
 func (c *Amplify) UpdateWebhook(input *UpdateWebhookInput) (*UpdateWebhookOutput, error) {
@@ -3344,12 +3580,22 @@ type App struct {
 	// Describes the automated branch creation glob patterns for the Amplify app.
 	AutoBranchCreationPatterns []*string `locationName:"autoBranchCreationPatterns" type:"list"`
 
-	// The basic authorization credentials for branches for the Amplify app.
+	// The basic authorization credentials for branches for the Amplify app. You
+	// must base64-encode the authorization credentials and provide them in the
+	// format user:password.
+	//
+	// BasicAuthCredentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by App's
+	// String and GoString methods.
 	BasicAuthCredentials *string `locationName:"basicAuthCredentials" type:"string" sensitive:"true"`
 
 	// Describes the content of the build specification (build spec) for the Amplify
 	// app.
-	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string"`
+	//
+	// BuildSpec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by App's
+	// String and GoString methods.
+	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string" sensitive:"true"`
 
 	// Creates a date and time for the Amplify app.
 	//
@@ -3357,7 +3603,7 @@ type App struct {
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
 	// Describes the custom HTTP headers for the Amplify app.
-	CustomHeaders *string `locationName:"customHeaders" min:"1" type:"string"`
+	CustomHeaders *string `locationName:"customHeaders" type:"string"`
 
 	// Describes the custom redirect and rewrite rules for the Amplify app.
 	CustomRules []*CustomRule `locationName:"customRules" type:"list"`
@@ -3385,25 +3631,32 @@ type App struct {
 	// EnableBranchAutoBuild is a required field
 	EnableBranchAutoBuild *bool `locationName:"enableBranchAutoBuild" type:"boolean" required:"true"`
 
-	// Automatically disconnect a branch in the Amplify Console when you delete
+	// Automatically disconnect a branch in the Amplify console when you delete
 	// a branch from your Git repository.
 	EnableBranchAutoDeletion *bool `locationName:"enableBranchAutoDeletion" type:"boolean"`
 
 	// The environment variables for the Amplify app.
+	//
+	// For a list of the environment variables that are accessible to Amplify by
+	// default, see Amplify Environment variables (https://docs.aws.amazon.com/amplify/latest/userguide/amplify-console-environment-variables.html)
+	// in the Amplify Hosting User Guide.
 	//
 	// EnvironmentVariables is a required field
 	EnvironmentVariables map[string]*string `locationName:"environmentVariables" type:"map" required:"true"`
 
 	// The AWS Identity and Access Management (IAM) service role for the Amazon
 	// Resource Name (ARN) of the Amplify app.
-	IamServiceRoleArn *string `locationName:"iamServiceRoleArn" min:"1" type:"string"`
+	IamServiceRoleArn *string `locationName:"iamServiceRoleArn" type:"string"`
 
 	// The name for the Amplify app.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The platform for the Amplify app.
+	// The platform for the Amplify app. For a static app, set the platform type
+	// to WEB. For a dynamic server-side rendered (SSR) app, set the platform type
+	// to WEB_COMPUTE. For an app requiring Amplify Hosting's original SSR support
+	// only, set the platform type to WEB_DYNAMIC.
 	//
 	// Platform is a required field
 	Platform *string `locationName:"platform" type:"string" required:"true" enum:"Platform"`
@@ -3411,13 +3664,22 @@ type App struct {
 	// Describes the information about a production branch of the Amplify app.
 	ProductionBranch *ProductionBranch `locationName:"productionBranch" type:"structure"`
 
-	// The repository for the Amplify app.
+	// The Git repository for the Amplify app.
 	//
 	// Repository is a required field
 	Repository *string `locationName:"repository" type:"string" required:"true"`
 
+	//
+	// This is for internal use.
+	//
+	// The Amplify service uses this parameter to specify the authentication protocol
+	// to use to access the Git repository for an Amplify app. Amplify specifies
+	// TOKEN for a GitHub repository, SIGV4 for an Amazon Web Services CodeCommit
+	// repository, and SSH for GitLab and Bitbucket repositories.
+	RepositoryCloneMethod *string `locationName:"repositoryCloneMethod" type:"string" enum:"RepositoryCloneMethod"`
+
 	// The tag for the Amplify app.
-	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Updates the date and time for the Amplify app.
 	//
@@ -3425,12 +3687,20 @@ type App struct {
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s App) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s App) GoString() string {
 	return s.String()
 }
@@ -3561,6 +3831,12 @@ func (s *App) SetRepository(v string) *App {
 	return s
 }
 
+// SetRepositoryCloneMethod sets the RepositoryCloneMethod field's value.
+func (s *App) SetRepositoryCloneMethod(v string) *App {
+	s.RepositoryCloneMethod = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *App) SetTags(v map[string]*string) *App {
 	s.Tags = v
@@ -3588,12 +3864,20 @@ type Artifact struct {
 	ArtifactId *string `locationName:"artifactId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Artifact) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Artifact) GoString() string {
 	return s.String()
 }
@@ -3614,11 +3898,21 @@ func (s *Artifact) SetArtifactId(v string) *Artifact {
 type AutoBranchCreationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The basic authorization credentials for the autocreated branch.
+	// The basic authorization credentials for the autocreated branch. You must
+	// base64-encode the authorization credentials and provide them in the format
+	// user:password.
+	//
+	// BasicAuthCredentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AutoBranchCreationConfig's
+	// String and GoString methods.
 	BasicAuthCredentials *string `locationName:"basicAuthCredentials" type:"string" sensitive:"true"`
 
 	// The build specification (build spec) for the autocreated branch.
-	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string"`
+	//
+	// BuildSpec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AutoBranchCreationConfig's
+	// String and GoString methods.
+	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string" sensitive:"true"`
 
 	// Enables auto building for the autocreated branch.
 	EnableAutoBuild *bool `locationName:"enableAutoBuild" type:"boolean"`
@@ -3649,12 +3943,20 @@ type AutoBranchCreationConfig struct {
 	Stage *string `locationName:"stage" type:"string" enum:"Stage"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoBranchCreationConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoBranchCreationConfig) GoString() string {
 	return s.String()
 }
@@ -3732,6 +4034,51 @@ func (s *AutoBranchCreationConfig) SetStage(v string) *AutoBranchCreationConfig 
 	return s
 }
 
+// Describes the backend properties associated with an Amplify Branch.
+type Backend struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the CloudFormation stack.
+	StackArn *string `locationName:"stackArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Backend) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Backend) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Backend) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Backend"}
+	if s.StackArn != nil && len(*s.StackArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("StackArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStackArn sets the StackArn field's value.
+func (s *Backend) SetStackArn(v string) *Backend {
+	s.StackArn = &v
+	return s
+}
+
 // Describes the backend environment for an Amplify app.
 type BackendEnvironment struct {
 	_ struct{} `type:"structure"`
@@ -3740,7 +4087,7 @@ type BackendEnvironment struct {
 	// an Amplify app.
 	//
 	// BackendEnvironmentArn is a required field
-	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" min:"1" type:"string" required:"true"`
+	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" type:"string" required:"true"`
 
 	// The creation date and time for a backend environment that is part of an Amplify
 	// app.
@@ -3766,12 +4113,20 @@ type BackendEnvironment struct {
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendEnvironment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendEnvironment) GoString() string {
 	return s.String()
 }
@@ -3820,12 +4175,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -3880,11 +4243,20 @@ type Branch struct {
 	// A list of custom resources that are linked to this branch.
 	AssociatedResources []*string `locationName:"associatedResources" type:"list"`
 
+	// Describes the backend properties associated with an Amplify Branch.
+	Backend *Backend `locationName:"backend" type:"structure"`
+
 	// The Amazon Resource Name (ARN) for a backend environment that is part of
 	// an Amplify app.
-	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" min:"1" type:"string"`
+	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" type:"string"`
 
-	// The basic authorization credentials for a branch of an Amplify app.
+	// The basic authorization credentials for a branch of an Amplify app. You must
+	// base64-encode the authorization credentials and provide them in the format
+	// user:password.
+	//
+	// BasicAuthCredentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Branch's
+	// String and GoString methods.
 	BasicAuthCredentials *string `locationName:"basicAuthCredentials" type:"string" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) for a branch that is part of an Amplify app.
@@ -3899,7 +4271,11 @@ type Branch struct {
 
 	// The build specification (build spec) content for the branch of an Amplify
 	// app.
-	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string"`
+	//
+	// BuildSpec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Branch's
+	// String and GoString methods.
+	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string" sensitive:"true"`
 
 	// The creation date and time for a branch that is part of an Amplify app.
 	//
@@ -3973,7 +4349,7 @@ type Branch struct {
 	Stage *string `locationName:"stage" type:"string" required:"true" enum:"Stage"`
 
 	// The tag for the branch of an Amplify app.
-	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The thumbnail URL for the branch of an Amplify app.
 	ThumbnailUrl *string `locationName:"thumbnailUrl" min:"1" type:"string"`
@@ -3994,12 +4370,20 @@ type Branch struct {
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Branch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Branch) GoString() string {
 	return s.String()
 }
@@ -4013,6 +4397,12 @@ func (s *Branch) SetActiveJobId(v string) *Branch {
 // SetAssociatedResources sets the AssociatedResources field's value.
 func (s *Branch) SetAssociatedResources(v []*string) *Branch {
 	s.AssociatedResources = v
+	return s
+}
+
+// SetBackend sets the Backend field's value.
+func (s *Branch) SetBackend(v *Backend) *Branch {
+	s.Backend = v
 	return s
 }
 
@@ -4170,9 +4560,24 @@ func (s *Branch) SetUpdateTime(v time.Time) *Branch {
 type CreateAppInput struct {
 	_ struct{} `type:"structure"`
 
-	// The personal access token for a third-party source control system for an
-	// Amplify app. The personal access token is used to create a webhook and a
-	// read-only deploy key. The token is not stored.
+	// The personal access token for a GitHub repository for an Amplify app. The
+	// personal access token is used to authorize access to a GitHub repository
+	// using the Amplify GitHub App. The token is not stored.
+	//
+	// Use accessToken for GitHub repositories only. To authorize access to a repository
+	// provider such as Bitbucket or CodeCommit, use oauthToken.
+	//
+	// You must specify either accessToken or oauthToken when you create a new app.
+	//
+	// Existing Amplify apps deployed from a GitHub repository using OAuth continue
+	// to work with CI/CD. However, we strongly recommend that you migrate these
+	// apps to use the GitHub App. For more information, see Migrating an existing
+	// OAuth app to the Amplify GitHub App (https://docs.aws.amazon.com/amplify/latest/userguide/setting-up-GitHub-access.html#migrating-to-github-app-auth)
+	// in the Amplify User Guide .
+	//
+	// AccessToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAppInput's
+	// String and GoString methods.
 	AccessToken *string `locationName:"accessToken" min:"1" type:"string" sensitive:"true"`
 
 	// The automated branch creation configuration for an Amplify app.
@@ -4181,19 +4586,28 @@ type CreateAppInput struct {
 	// The automated branch creation glob patterns for an Amplify app.
 	AutoBranchCreationPatterns []*string `locationName:"autoBranchCreationPatterns" type:"list"`
 
-	// The credentials for basic authorization for an Amplify app.
+	// The credentials for basic authorization for an Amplify app. You must base64-encode
+	// the authorization credentials and provide them in the format user:password.
+	//
+	// BasicAuthCredentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAppInput's
+	// String and GoString methods.
 	BasicAuthCredentials *string `locationName:"basicAuthCredentials" type:"string" sensitive:"true"`
 
 	// The build specification (build spec) for an Amplify app.
-	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string"`
+	//
+	// BuildSpec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAppInput's
+	// String and GoString methods.
+	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string" sensitive:"true"`
 
 	// The custom HTTP headers for an Amplify app.
-	CustomHeaders *string `locationName:"customHeaders" min:"1" type:"string"`
+	CustomHeaders *string `locationName:"customHeaders" type:"string"`
 
 	// The custom rewrite and redirect rules for an Amplify app.
 	CustomRules []*CustomRule `locationName:"customRules" type:"list"`
 
-	// The description for an Amplify app.
+	// The description of the Amplify app.
 	Description *string `locationName:"description" type:"string"`
 
 	// Enables automated branch creation for an Amplify app.
@@ -4206,43 +4620,74 @@ type CreateAppInput struct {
 	// Enables the auto building of branches for an Amplify app.
 	EnableBranchAutoBuild *bool `locationName:"enableBranchAutoBuild" type:"boolean"`
 
-	// Automatically disconnects a branch in the Amplify Console when you delete
+	// Automatically disconnects a branch in the Amplify console when you delete
 	// a branch from your Git repository.
 	EnableBranchAutoDeletion *bool `locationName:"enableBranchAutoDeletion" type:"boolean"`
 
 	// The environment variables map for an Amplify app.
+	//
+	// For a list of the environment variables that are accessible to Amplify by
+	// default, see Amplify Environment variables (https://docs.aws.amazon.com/amplify/latest/userguide/amplify-console-environment-variables.html)
+	// in the Amplify Hosting User Guide.
 	EnvironmentVariables map[string]*string `locationName:"environmentVariables" type:"map"`
 
 	// The AWS Identity and Access Management (IAM) service role for an Amplify
 	// app.
-	IamServiceRoleArn *string `locationName:"iamServiceRoleArn" min:"1" type:"string"`
+	IamServiceRoleArn *string `locationName:"iamServiceRoleArn" type:"string"`
 
-	// The name for an Amplify app.
+	// The name of the Amplify app.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The OAuth token for a third-party source control system for an Amplify app.
-	// The OAuth token is used to create a webhook and a read-only deploy key. The
-	// OAuth token is not stored.
+	// The OAuth token is used to create a webhook and a read-only deploy key using
+	// SSH cloning. The OAuth token is not stored.
+	//
+	// Use oauthToken for repository providers other than GitHub, such as Bitbucket
+	// or CodeCommit. To authorize access to GitHub as your repository provider,
+	// use accessToken.
+	//
+	// You must specify either oauthToken or accessToken when you create a new app.
+	//
+	// Existing Amplify apps deployed from a GitHub repository using OAuth continue
+	// to work with CI/CD. However, we strongly recommend that you migrate these
+	// apps to use the GitHub App. For more information, see Migrating an existing
+	// OAuth app to the Amplify GitHub App (https://docs.aws.amazon.com/amplify/latest/userguide/setting-up-GitHub-access.html#migrating-to-github-app-auth)
+	// in the Amplify User Guide .
+	//
+	// OauthToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAppInput's
+	// String and GoString methods.
 	OauthToken *string `locationName:"oauthToken" type:"string" sensitive:"true"`
 
-	// The platform or framework for an Amplify app.
+	// The platform for the Amplify app. For a static app, set the platform type
+	// to WEB. For a dynamic server-side rendered (SSR) app, set the platform type
+	// to WEB_COMPUTE. For an app requiring Amplify Hosting's original SSR support
+	// only, set the platform type to WEB_DYNAMIC.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
-	// The repository for an Amplify app.
+	// The Git repository for the Amplify app.
 	Repository *string `locationName:"repository" type:"string"`
 
 	// The tag for an Amplify app.
-	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAppInput) GoString() string {
 	return s.String()
 }
@@ -4256,20 +4701,11 @@ func (s *CreateAppInput) Validate() error {
 	if s.BuildSpec != nil && len(*s.BuildSpec) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BuildSpec", 1))
 	}
-	if s.CustomHeaders != nil && len(*s.CustomHeaders) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("CustomHeaders", 1))
-	}
-	if s.IamServiceRoleArn != nil && len(*s.IamServiceRoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("IamServiceRoleArn", 1))
-	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.Tags != nil && len(s.Tags) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 	if s.AutoBranchCreationConfig != nil {
 		if err := s.AutoBranchCreationConfig.Validate(); err != nil {
@@ -4417,12 +4853,20 @@ type CreateAppOutput struct {
 	App *App `locationName:"app" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAppOutput) GoString() string {
 	return s.String()
 }
@@ -4454,12 +4898,20 @@ type CreateBackendEnvironmentInput struct {
 	StackName *string `locationName:"stackName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -4526,12 +4978,20 @@ type CreateBackendEnvironmentOutput struct {
 	BackendEnvironment *BackendEnvironment `locationName:"backendEnvironment" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendEnvironmentOutput) GoString() string {
 	return s.String()
 }
@@ -4551,11 +5011,20 @@ type CreateBranchInput struct {
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
+	// The backend for a Branch of an Amplify app. Use for a backend created from
+	// an CloudFormation stack.
+	Backend *Backend `locationName:"backend" type:"structure"`
+
 	// The Amazon Resource Name (ARN) for a backend environment that is part of
 	// an Amplify app.
-	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" min:"1" type:"string"`
+	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" type:"string"`
 
-	// The basic authorization credentials for the branch.
+	// The basic authorization credentials for the branch. You must base64-encode
+	// the authorization credentials and provide them in the format user:password.
+	//
+	// BasicAuthCredentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBranchInput's
+	// String and GoString methods.
 	BasicAuthCredentials *string `locationName:"basicAuthCredentials" type:"string" sensitive:"true"`
 
 	// The name for the branch.
@@ -4564,7 +5033,11 @@ type CreateBranchInput struct {
 	BranchName *string `locationName:"branchName" min:"1" type:"string" required:"true"`
 
 	// The build specification (build spec) for the branch.
-	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string"`
+	//
+	// BuildSpec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBranchInput's
+	// String and GoString methods.
+	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string" sensitive:"true"`
 
 	// The description for the branch.
 	Description *string `locationName:"description" type:"string"`
@@ -4604,18 +5077,26 @@ type CreateBranchInput struct {
 	Stage *string `locationName:"stage" type:"string" enum:"Stage"`
 
 	// The tag for the branch.
-	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The content Time To Live (TTL) for the website in seconds.
 	Ttl *string `locationName:"ttl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBranchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBranchInput) GoString() string {
 	return s.String()
 }
@@ -4629,9 +5110,6 @@ func (s *CreateBranchInput) Validate() error {
 	if s.AppId != nil && len(*s.AppId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
 	}
-	if s.BackendEnvironmentArn != nil && len(*s.BackendEnvironmentArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("BackendEnvironmentArn", 1))
-	}
 	if s.BranchName == nil {
 		invalidParams.Add(request.NewErrParamRequired("BranchName"))
 	}
@@ -4641,8 +5119,10 @@ func (s *CreateBranchInput) Validate() error {
 	if s.BuildSpec != nil && len(*s.BuildSpec) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BuildSpec", 1))
 	}
-	if s.Tags != nil && len(s.Tags) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	if s.Backend != nil {
+		if err := s.Backend.Validate(); err != nil {
+			invalidParams.AddNested("Backend", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4654,6 +5134,12 @@ func (s *CreateBranchInput) Validate() error {
 // SetAppId sets the AppId field's value.
 func (s *CreateBranchInput) SetAppId(v string) *CreateBranchInput {
 	s.AppId = &v
+	return s
+}
+
+// SetBackend sets the Backend field's value.
+func (s *CreateBranchInput) SetBackend(v *Backend) *CreateBranchInput {
+	s.Backend = v
 	return s
 }
 
@@ -4770,12 +5256,20 @@ type CreateBranchOutput struct {
 	Branch *Branch `locationName:"branch" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBranchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBranchOutput) GoString() string {
 	return s.String()
 }
@@ -4795,7 +5289,7 @@ type CreateDeploymentInput struct {
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
-	// The name for the branch, for the job.
+	// The name of the branch to use for the job.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
@@ -4807,12 +5301,20 @@ type CreateDeploymentInput struct {
 	FileMap map[string]*string `locationName:"fileMap" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentInput) GoString() string {
 	return s.String()
 }
@@ -4877,12 +5379,20 @@ type CreateDeploymentOutput struct {
 	ZipUploadUrl *string `locationName:"zipUploadUrl" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentOutput) GoString() string {
 	return s.String()
 }
@@ -4935,12 +5445,20 @@ type CreateDomainAssociationInput struct {
 	SubDomainSettings []*SubDomainSetting `locationName:"subDomainSettings" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDomainAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDomainAssociationInput) GoString() string {
 	return s.String()
 }
@@ -5024,12 +5542,20 @@ type CreateDomainAssociationOutput struct {
 	DomainAssociation *DomainAssociation `locationName:"domainAssociation" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDomainAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDomainAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -5058,12 +5584,20 @@ type CreateWebhookInput struct {
 	Description *string `locationName:"description" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebhookInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebhookInput) GoString() string {
 	return s.String()
 }
@@ -5118,12 +5652,20 @@ type CreateWebhookOutput struct {
 	Webhook *Webhook `locationName:"webhook" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebhookOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebhookOutput) GoString() string {
 	return s.String()
 }
@@ -5139,7 +5681,7 @@ type CustomRule struct {
 	_ struct{} `type:"structure"`
 
 	// The condition for a URL rewrite or redirect rule, such as a country code.
-	Condition *string `locationName:"condition" min:"1" type:"string"`
+	Condition *string `locationName:"condition" type:"string"`
 
 	// The source pattern for a URL rewrite or redirect rule.
 	//
@@ -5176,12 +5718,20 @@ type CustomRule struct {
 	Target *string `locationName:"target" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomRule) GoString() string {
 	return s.String()
 }
@@ -5189,9 +5739,6 @@ func (s CustomRule) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CustomRule) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CustomRule"}
-	if s.Condition != nil && len(*s.Condition) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Condition", 1))
-	}
 	if s.Source == nil {
 		invalidParams.Add(request.NewErrParamRequired("Source"))
 	}
@@ -5240,7 +5787,7 @@ func (s *CustomRule) SetTarget(v string) *CustomRule {
 
 // Describes the request structure for the delete app request.
 type DeleteAppInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -5248,12 +5795,20 @@ type DeleteAppInput struct {
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppInput) GoString() string {
 	return s.String()
 }
@@ -5291,12 +5846,20 @@ type DeleteAppOutput struct {
 	App *App `locationName:"app" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAppOutput) GoString() string {
 	return s.String()
 }
@@ -5309,7 +5872,7 @@ func (s *DeleteAppOutput) SetApp(v *App) *DeleteAppOutput {
 
 // The request structure for the delete backend environment request.
 type DeleteBackendEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of an Amplify app.
 	//
@@ -5322,12 +5885,20 @@ type DeleteBackendEnvironmentInput struct {
 	EnvironmentName *string `location:"uri" locationName:"environmentName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -5376,12 +5947,20 @@ type DeleteBackendEnvironmentOutput struct {
 	BackendEnvironment *BackendEnvironment `locationName:"backendEnvironment" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendEnvironmentOutput) GoString() string {
 	return s.String()
 }
@@ -5394,25 +5973,33 @@ func (s *DeleteBackendEnvironmentOutput) SetBackendEnvironment(v *BackendEnviron
 
 // The request structure for the delete branch request.
 type DeleteBranchInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
-	// The name for the branch.
+	// The name of the branch.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBranchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBranchInput) GoString() string {
 	return s.String()
 }
@@ -5461,12 +6048,20 @@ type DeleteBranchOutput struct {
 	Branch *Branch `locationName:"branch" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBranchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBranchOutput) GoString() string {
 	return s.String()
 }
@@ -5479,7 +6074,7 @@ func (s *DeleteBranchOutput) SetBranch(v *Branch) *DeleteBranchOutput {
 
 // The request structure for the delete domain association request.
 type DeleteDomainAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique id for an Amplify app.
 	//
@@ -5492,12 +6087,20 @@ type DeleteDomainAssociationInput struct {
 	DomainName *string `location:"uri" locationName:"domainName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDomainAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDomainAssociationInput) GoString() string {
 	return s.String()
 }
@@ -5546,12 +6149,20 @@ type DeleteDomainAssociationOutput struct {
 	DomainAssociation *DomainAssociation `locationName:"domainAssociation" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDomainAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDomainAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -5564,14 +6175,14 @@ func (s *DeleteDomainAssociationOutput) SetDomainAssociation(v *DomainAssociatio
 
 // The request structure for the delete job request.
 type DeleteJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
-	// The name for the branch, for the job.
+	// The name of the branch to use for the job.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
@@ -5582,12 +6193,20 @@ type DeleteJobInput struct {
 	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteJobInput) GoString() string {
 	return s.String()
 }
@@ -5648,12 +6267,20 @@ type DeleteJobOutput struct {
 	JobSummary *JobSummary `locationName:"jobSummary" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteJobOutput) GoString() string {
 	return s.String()
 }
@@ -5666,7 +6293,7 @@ func (s *DeleteJobOutput) SetJobSummary(v *JobSummary) *DeleteJobOutput {
 
 // The request structure for the delete webhook request.
 type DeleteWebhookInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for a webhook.
 	//
@@ -5674,12 +6301,20 @@ type DeleteWebhookInput struct {
 	WebhookId *string `location:"uri" locationName:"webhookId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebhookInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebhookInput) GoString() string {
 	return s.String()
 }
@@ -5716,12 +6351,20 @@ type DeleteWebhookOutput struct {
 	Webhook *Webhook `locationName:"webhook" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebhookOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebhookOutput) GoString() string {
 	return s.String()
 }
@@ -5740,12 +6383,20 @@ type DependentServiceFailureException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DependentServiceFailureException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DependentServiceFailureException) GoString() string {
 	return s.String()
 }
@@ -5834,12 +6485,20 @@ type DomainAssociation struct {
 	SubDomains []*SubDomain `locationName:"subDomains" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainAssociation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainAssociation) GoString() string {
 	return s.String()
 }
@@ -5921,12 +6580,20 @@ type GenerateAccessLogsInput struct {
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateAccessLogsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateAccessLogsInput) GoString() string {
 	return s.String()
 }
@@ -5982,12 +6649,20 @@ type GenerateAccessLogsOutput struct {
 	LogUrl *string `locationName:"logUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateAccessLogsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateAccessLogsOutput) GoString() string {
 	return s.String()
 }
@@ -6000,7 +6675,7 @@ func (s *GenerateAccessLogsOutput) SetLogUrl(v string) *GenerateAccessLogsOutput
 
 // The request structure for the get app request.
 type GetAppInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -6008,12 +6683,20 @@ type GetAppInput struct {
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppInput) GoString() string {
 	return s.String()
 }
@@ -6050,12 +6733,20 @@ type GetAppOutput struct {
 	App *App `locationName:"app" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAppOutput) GoString() string {
 	return s.String()
 }
@@ -6068,7 +6759,7 @@ func (s *GetAppOutput) SetApp(v *App) *GetAppOutput {
 
 // Returns the request structure for the get artifact request.
 type GetArtifactUrlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an artifact.
 	//
@@ -6076,12 +6767,20 @@ type GetArtifactUrlInput struct {
 	ArtifactId *string `location:"uri" locationName:"artifactId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetArtifactUrlInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetArtifactUrlInput) GoString() string {
 	return s.String()
 }
@@ -6123,12 +6822,20 @@ type GetArtifactUrlOutput struct {
 	ArtifactUrl *string `locationName:"artifactUrl" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetArtifactUrlOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetArtifactUrlOutput) GoString() string {
 	return s.String()
 }
@@ -6147,7 +6854,7 @@ func (s *GetArtifactUrlOutput) SetArtifactUrl(v string) *GetArtifactUrlOutput {
 
 // The request structure for the get backend environment request.
 type GetBackendEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique id for an Amplify app.
 	//
@@ -6160,12 +6867,20 @@ type GetBackendEnvironmentInput struct {
 	EnvironmentName *string `location:"uri" locationName:"environmentName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -6214,12 +6929,20 @@ type GetBackendEnvironmentOutput struct {
 	BackendEnvironment *BackendEnvironment `locationName:"backendEnvironment" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendEnvironmentOutput) GoString() string {
 	return s.String()
 }
@@ -6232,25 +6955,33 @@ func (s *GetBackendEnvironmentOutput) SetBackendEnvironment(v *BackendEnvironmen
 
 // The request structure for the get branch request.
 type GetBranchInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
-	// The name for the branch.
+	// The name of the branch.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBranchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBranchInput) GoString() string {
 	return s.String()
 }
@@ -6298,12 +7029,20 @@ type GetBranchOutput struct {
 	Branch *Branch `locationName:"branch" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBranchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBranchOutput) GoString() string {
 	return s.String()
 }
@@ -6316,7 +7055,7 @@ func (s *GetBranchOutput) SetBranch(v *Branch) *GetBranchOutput {
 
 // The request structure for the get domain association request.
 type GetDomainAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique id for an Amplify app.
 	//
@@ -6329,12 +7068,20 @@ type GetDomainAssociationInput struct {
 	DomainName *string `location:"uri" locationName:"domainName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainAssociationInput) GoString() string {
 	return s.String()
 }
@@ -6384,12 +7131,20 @@ type GetDomainAssociationOutput struct {
 	DomainAssociation *DomainAssociation `locationName:"domainAssociation" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -6402,14 +7157,14 @@ func (s *GetDomainAssociationOutput) SetDomainAssociation(v *DomainAssociation) 
 
 // The request structure for the get job request.
 type GetJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
-	// The branch name for the job.
+	// The name of the branch to use for the job.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
@@ -6420,12 +7175,20 @@ type GetJobInput struct {
 	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobInput) GoString() string {
 	return s.String()
 }
@@ -6485,12 +7248,20 @@ type GetJobOutput struct {
 	Job *Job `locationName:"job" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobOutput) GoString() string {
 	return s.String()
 }
@@ -6503,7 +7274,7 @@ func (s *GetJobOutput) SetJob(v *Job) *GetJobOutput {
 
 // The request structure for the get webhook request.
 type GetWebhookInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for a webhook.
 	//
@@ -6511,12 +7282,20 @@ type GetWebhookInput struct {
 	WebhookId *string `location:"uri" locationName:"webhookId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebhookInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebhookInput) GoString() string {
 	return s.String()
 }
@@ -6553,12 +7332,20 @@ type GetWebhookOutput struct {
 	Webhook *Webhook `locationName:"webhook" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebhookOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebhookOutput) GoString() string {
 	return s.String()
 }
@@ -6577,12 +7364,20 @@ type InternalFailureException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) GoString() string {
 	return s.String()
 }
@@ -6640,12 +7435,20 @@ type Job struct {
 	Summary *JobSummary `locationName:"summary" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Job) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Job) GoString() string {
 	return s.String()
 }
@@ -6713,12 +7516,20 @@ type JobSummary struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"JobStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobSummary) GoString() string {
 	return s.String()
 }
@@ -6785,12 +7596,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -6835,7 +7654,7 @@ func (s *LimitExceededException) RequestID() string {
 
 // The request structure for the list apps request.
 type ListAppsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of records to list in a single response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -6845,12 +7664,20 @@ type ListAppsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAppsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAppsInput) GoString() string {
 	return s.String()
 }
@@ -6882,12 +7709,20 @@ type ListAppsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAppsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAppsOutput) GoString() string {
 	return s.String()
 }
@@ -6906,7 +7741,7 @@ func (s *ListAppsOutput) SetNextToken(v string) *ListAppsOutput {
 
 // Describes the request structure for the list artifacts request.
 type ListArtifactsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -6932,12 +7767,20 @@ type ListArtifactsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListArtifactsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListArtifactsInput) GoString() string {
 	return s.String()
 }
@@ -7014,12 +7857,20 @@ type ListArtifactsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListArtifactsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListArtifactsOutput) GoString() string {
 	return s.String()
 }
@@ -7038,7 +7889,7 @@ func (s *ListArtifactsOutput) SetNextToken(v string) *ListArtifactsOutput {
 
 // The request structure for the list backend environments request.
 type ListBackendEnvironmentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -7057,12 +7908,20 @@ type ListBackendEnvironmentsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBackendEnvironmentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBackendEnvironmentsInput) GoString() string {
 	return s.String()
 }
@@ -7124,12 +7983,20 @@ type ListBackendEnvironmentsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBackendEnvironmentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBackendEnvironmentsOutput) GoString() string {
 	return s.String()
 }
@@ -7148,7 +8015,7 @@ func (s *ListBackendEnvironmentsOutput) SetNextToken(v string) *ListBackendEnvir
 
 // The request structure for the list branches request.
 type ListBranchesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -7164,12 +8031,20 @@ type ListBranchesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBranchesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBranchesInput) GoString() string {
 	return s.String()
 }
@@ -7222,12 +8097,20 @@ type ListBranchesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBranchesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBranchesOutput) GoString() string {
 	return s.String()
 }
@@ -7246,7 +8129,7 @@ func (s *ListBranchesOutput) SetNextToken(v string) *ListBranchesOutput {
 
 // The request structure for the list domain associations request.
 type ListDomainAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -7262,12 +8145,20 @@ type ListDomainAssociationsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainAssociationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainAssociationsInput) GoString() string {
 	return s.String()
 }
@@ -7320,12 +8211,20 @@ type ListDomainAssociationsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainAssociationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainAssociationsOutput) GoString() string {
 	return s.String()
 }
@@ -7344,14 +8243,14 @@ func (s *ListDomainAssociationsOutput) SetNextToken(v string) *ListDomainAssocia
 
 // The request structure for the list jobs request.
 type ListJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
-	// The name for a branch.
+	// The name of the branch to use for the request.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
@@ -7365,12 +8264,20 @@ type ListJobsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsInput) GoString() string {
 	return s.String()
 }
@@ -7435,12 +8342,20 @@ type ListJobsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsOutput) GoString() string {
 	return s.String()
 }
@@ -7459,7 +8374,7 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 
 // The request structure to use to list tags for a resource.
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) to use to list tags.
 	//
@@ -7467,12 +8382,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -7504,15 +8427,23 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of tags for the specified The Amazon Resource Name (ARN).
-	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -7525,7 +8456,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 
 // The request structure for the list webhooks request.
 type ListWebhooksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -7541,12 +8472,20 @@ type ListWebhooksInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhooksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhooksInput) GoString() string {
 	return s.String()
 }
@@ -7599,12 +8538,20 @@ type ListWebhooksOutput struct {
 	Webhooks []*Webhook `locationName:"webhooks" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhooksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebhooksOutput) GoString() string {
 	return s.String()
 }
@@ -7629,12 +8576,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -7694,12 +8649,20 @@ type ProductionBranch struct {
 	ThumbnailUrl *string `locationName:"thumbnailUrl" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductionBranch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductionBranch) GoString() string {
 	return s.String()
 }
@@ -7738,12 +8701,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -7795,7 +8766,7 @@ type StartDeploymentInput struct {
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
-	// The name for the branch, for the job.
+	// The name of the branch to use for the job.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
@@ -7809,12 +8780,20 @@ type StartDeploymentInput struct {
 	SourceUrl *string `locationName:"sourceUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentInput) GoString() string {
 	return s.String()
 }
@@ -7875,12 +8854,20 @@ type StartDeploymentOutput struct {
 	JobSummary *JobSummary `locationName:"jobSummary" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentOutput) GoString() string {
 	return s.String()
 }
@@ -7900,7 +8887,7 @@ type StartJobInput struct {
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
-	// The branch name for the job.
+	// The name of the branch to use for the job.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
@@ -7918,24 +8905,34 @@ type StartJobInput struct {
 	// is RETRY.
 	JobId *string `locationName:"jobId" type:"string"`
 
-	// A descriptive reason for starting this job.
+	// A descriptive reason for starting the job.
 	JobReason *string `locationName:"jobReason" type:"string"`
 
 	// Describes the type for the job. The job type RELEASE starts a new job with
 	// the latest change from the specified branch. This value is available only
-	// for apps that are connected to a repository. The job type RETRY retries an
-	// existing job. If the job type value is RETRY, the jobId is also required.
+	// for apps that are connected to a repository.
+	//
+	// The job type RETRY retries an existing job. If the job type value is RETRY,
+	// the jobId is also required.
 	//
 	// JobType is a required field
 	JobType *string `locationName:"jobType" type:"string" required:"true" enum:"JobType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartJobInput) GoString() string {
 	return s.String()
 }
@@ -8023,12 +9020,20 @@ type StartJobOutput struct {
 	JobSummary *JobSummary `locationName:"jobSummary" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartJobOutput) GoString() string {
 	return s.String()
 }
@@ -8085,12 +9090,20 @@ type Step struct {
 	TestConfigUrl *string `locationName:"testConfigUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Step) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Step) GoString() string {
 	return s.String()
 }
@@ -8163,14 +9176,14 @@ func (s *Step) SetTestConfigUrl(v string) *Step {
 
 // The request structure for the stop job request.
 type StopJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
-	// The name for the branch, for the job.
+	// The name of the branch to use for the stop job request.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
@@ -8181,12 +9194,20 @@ type StopJobInput struct {
 	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopJobInput) GoString() string {
 	return s.String()
 }
@@ -8247,12 +9268,20 @@ type StopJobOutput struct {
 	JobSummary *JobSummary `locationName:"jobSummary" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopJobOutput) GoString() string {
 	return s.String()
 }
@@ -8283,12 +9312,20 @@ type SubDomain struct {
 	Verified *bool `locationName:"verified" type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubDomain) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubDomain) GoString() string {
 	return s.String()
 }
@@ -8326,12 +9363,20 @@ type SubDomainSetting struct {
 	Prefix *string `locationName:"prefix" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubDomainSetting) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubDomainSetting) GoString() string {
 	return s.String()
 }
@@ -8379,15 +9424,23 @@ type TagResourceInput struct {
 	// The tags used to tag the resource.
 	//
 	// Tags is a required field
-	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -8403,9 +9456,6 @@ func (s *TagResourceInput) Validate() error {
 	}
 	if s.Tags == nil {
 		invalidParams.Add(request.NewErrParamRequired("Tags"))
-	}
-	if s.Tags != nil && len(s.Tags) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8431,12 +9481,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -8449,12 +9507,20 @@ type UnauthorizedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) GoString() string {
 	return s.String()
 }
@@ -8499,7 +9565,7 @@ func (s *UnauthorizedException) RequestID() string {
 
 // The request structure for the untag resource request.
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) to use to untag a resource.
 	//
@@ -8512,12 +9578,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -8561,12 +9635,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -8575,9 +9657,24 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAppInput struct {
 	_ struct{} `type:"structure"`
 
-	// The personal access token for a third-party source control system for an
-	// Amplify app. The token is used to create webhook and a read-only deploy key.
-	// The token is not stored.
+	// The personal access token for a GitHub repository for an Amplify app. The
+	// personal access token is used to authorize access to a GitHub repository
+	// using the Amplify GitHub App. The token is not stored.
+	//
+	// Use accessToken for GitHub repositories only. To authorize access to a repository
+	// provider such as Bitbucket or CodeCommit, use oauthToken.
+	//
+	// You must specify either accessToken or oauthToken when you update an app.
+	//
+	// Existing Amplify apps deployed from a GitHub repository using OAuth continue
+	// to work with CI/CD. However, we strongly recommend that you migrate these
+	// apps to use the GitHub App. For more information, see Migrating an existing
+	// OAuth app to the Amplify GitHub App (https://docs.aws.amazon.com/amplify/latest/userguide/setting-up-GitHub-access.html#migrating-to-github-app-auth)
+	// in the Amplify User Guide .
+	//
+	// AccessToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAppInput's
+	// String and GoString methods.
 	AccessToken *string `locationName:"accessToken" min:"1" type:"string" sensitive:"true"`
 
 	// The unique ID for an Amplify app.
@@ -8591,14 +9688,23 @@ type UpdateAppInput struct {
 	// Describes the automated branch creation glob patterns for an Amplify app.
 	AutoBranchCreationPatterns []*string `locationName:"autoBranchCreationPatterns" type:"list"`
 
-	// The basic authorization credentials for an Amplify app.
+	// The basic authorization credentials for an Amplify app. You must base64-encode
+	// the authorization credentials and provide them in the format user:password.
+	//
+	// BasicAuthCredentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAppInput's
+	// String and GoString methods.
 	BasicAuthCredentials *string `locationName:"basicAuthCredentials" type:"string" sensitive:"true"`
 
 	// The build specification (build spec) for an Amplify app.
-	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string"`
+	//
+	// BuildSpec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAppInput's
+	// String and GoString methods.
+	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string" sensitive:"true"`
 
 	// The custom HTTP headers for an Amplify app.
-	CustomHeaders *string `locationName:"customHeaders" min:"1" type:"string"`
+	CustomHeaders *string `locationName:"customHeaders" type:"string"`
 
 	// The custom redirect and rewrite rules for an Amplify app.
 	CustomRules []*CustomRule `locationName:"customRules" type:"list"`
@@ -8615,7 +9721,7 @@ type UpdateAppInput struct {
 	// Enables branch auto-building for an Amplify app.
 	EnableBranchAutoBuild *bool `locationName:"enableBranchAutoBuild" type:"boolean"`
 
-	// Automatically disconnects a branch in the Amplify Console when you delete
+	// Automatically disconnects a branch in the Amplify console when you delete
 	// a branch from your Git repository.
 	EnableBranchAutoDeletion *bool `locationName:"enableBranchAutoDeletion" type:"boolean"`
 
@@ -8624,29 +9730,57 @@ type UpdateAppInput struct {
 
 	// The AWS Identity and Access Management (IAM) service role for an Amplify
 	// app.
-	IamServiceRoleArn *string `locationName:"iamServiceRoleArn" min:"1" type:"string"`
+	IamServiceRoleArn *string `locationName:"iamServiceRoleArn" type:"string"`
 
 	// The name for an Amplify app.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The OAuth token for a third-party source control system for an Amplify app.
-	// The token is used to create a webhook and a read-only deploy key. The OAuth
-	// token is not stored.
+	// The OAuth token is used to create a webhook and a read-only deploy key using
+	// SSH cloning. The OAuth token is not stored.
+	//
+	// Use oauthToken for repository providers other than GitHub, such as Bitbucket
+	// or CodeCommit.
+	//
+	// To authorize access to GitHub as your repository provider, use accessToken.
+	//
+	// You must specify either oauthToken or accessToken when you update an app.
+	//
+	// Existing Amplify apps deployed from a GitHub repository using OAuth continue
+	// to work with CI/CD. However, we strongly recommend that you migrate these
+	// apps to use the GitHub App. For more information, see Migrating an existing
+	// OAuth app to the Amplify GitHub App (https://docs.aws.amazon.com/amplify/latest/userguide/setting-up-GitHub-access.html#migrating-to-github-app-auth)
+	// in the Amplify User Guide .
+	//
+	// OauthToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAppInput's
+	// String and GoString methods.
 	OauthToken *string `locationName:"oauthToken" type:"string" sensitive:"true"`
 
-	// The platform for an Amplify app.
+	// The platform for the Amplify app. For a static app, set the platform type
+	// to WEB. For a dynamic server-side rendered (SSR) app, set the platform type
+	// to WEB_COMPUTE. For an app requiring Amplify Hosting's original SSR support
+	// only, set the platform type to WEB_DYNAMIC.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
-	// The name of the repository for an Amplify app
+	// The name of the Git repository for an Amplify app.
 	Repository *string `locationName:"repository" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAppInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAppInput) GoString() string {
 	return s.String()
 }
@@ -8665,12 +9799,6 @@ func (s *UpdateAppInput) Validate() error {
 	}
 	if s.BuildSpec != nil && len(*s.BuildSpec) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BuildSpec", 1))
-	}
-	if s.CustomHeaders != nil && len(*s.CustomHeaders) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("CustomHeaders", 1))
-	}
-	if s.IamServiceRoleArn != nil && len(*s.IamServiceRoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("IamServiceRoleArn", 1))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
@@ -8821,12 +9949,20 @@ type UpdateAppOutput struct {
 	App *App `locationName:"app" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAppOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAppOutput) GoString() string {
 	return s.String()
 }
@@ -8846,20 +9982,33 @@ type UpdateBranchInput struct {
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" min:"1" type:"string" required:"true"`
 
+	// The backend for a Branch of an Amplify app. Use for a backend created from
+	// an CloudFormation stack.
+	Backend *Backend `locationName:"backend" type:"structure"`
+
 	// The Amazon Resource Name (ARN) for a backend environment that is part of
 	// an Amplify app.
-	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" min:"1" type:"string"`
+	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" type:"string"`
 
-	// The basic authorization credentials for the branch.
+	// The basic authorization credentials for the branch. You must base64-encode
+	// the authorization credentials and provide them in the format user:password.
+	//
+	// BasicAuthCredentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBranchInput's
+	// String and GoString methods.
 	BasicAuthCredentials *string `locationName:"basicAuthCredentials" type:"string" sensitive:"true"`
 
-	// The name for the branch.
+	// The name of the branch.
 	//
 	// BranchName is a required field
 	BranchName *string `location:"uri" locationName:"branchName" min:"1" type:"string" required:"true"`
 
 	// The build specification (build spec) for the branch.
-	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string"`
+	//
+	// BuildSpec is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBranchInput's
+	// String and GoString methods.
+	BuildSpec *string `locationName:"buildSpec" min:"1" type:"string" sensitive:"true"`
 
 	// The description for the branch.
 	Description *string `locationName:"description" type:"string"`
@@ -8902,12 +10051,20 @@ type UpdateBranchInput struct {
 	Ttl *string `locationName:"ttl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBranchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBranchInput) GoString() string {
 	return s.String()
 }
@@ -8921,9 +10078,6 @@ func (s *UpdateBranchInput) Validate() error {
 	if s.AppId != nil && len(*s.AppId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
 	}
-	if s.BackendEnvironmentArn != nil && len(*s.BackendEnvironmentArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("BackendEnvironmentArn", 1))
-	}
 	if s.BranchName == nil {
 		invalidParams.Add(request.NewErrParamRequired("BranchName"))
 	}
@@ -8932,6 +10086,11 @@ func (s *UpdateBranchInput) Validate() error {
 	}
 	if s.BuildSpec != nil && len(*s.BuildSpec) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BuildSpec", 1))
+	}
+	if s.Backend != nil {
+		if err := s.Backend.Validate(); err != nil {
+			invalidParams.AddNested("Backend", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8943,6 +10102,12 @@ func (s *UpdateBranchInput) Validate() error {
 // SetAppId sets the AppId field's value.
 func (s *UpdateBranchInput) SetAppId(v string) *UpdateBranchInput {
 	s.AppId = &v
+	return s
+}
+
+// SetBackend sets the Backend field's value.
+func (s *UpdateBranchInput) SetBackend(v *Backend) *UpdateBranchInput {
+	s.Backend = v
 	return s
 }
 
@@ -9052,12 +10217,20 @@ type UpdateBranchOutput struct {
 	Branch *Branch `locationName:"branch" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBranchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBranchOutput) GoString() string {
 	return s.String()
 }
@@ -9093,17 +10266,23 @@ type UpdateDomainAssociationInput struct {
 	EnableAutoSubDomain *bool `locationName:"enableAutoSubDomain" type:"boolean"`
 
 	// Describes the settings for the subdomain.
-	//
-	// SubDomainSettings is a required field
-	SubDomainSettings []*SubDomainSetting `locationName:"subDomainSettings" type:"list" required:"true"`
+	SubDomainSettings []*SubDomainSetting `locationName:"subDomainSettings" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDomainAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDomainAssociationInput) GoString() string {
 	return s.String()
 }
@@ -9122,9 +10301,6 @@ func (s *UpdateDomainAssociationInput) Validate() error {
 	}
 	if s.DomainName != nil && len(*s.DomainName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
-	}
-	if s.SubDomainSettings == nil {
-		invalidParams.Add(request.NewErrParamRequired("SubDomainSettings"))
 	}
 	if s.SubDomainSettings != nil {
 		for i, v := range s.SubDomainSettings {
@@ -9190,12 +10366,20 @@ type UpdateDomainAssociationOutput struct {
 	DomainAssociation *DomainAssociation `locationName:"domainAssociation" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDomainAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDomainAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -9222,12 +10406,20 @@ type UpdateWebhookInput struct {
 	WebhookId *string `location:"uri" locationName:"webhookId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebhookInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebhookInput) GoString() string {
 	return s.String()
 }
@@ -9279,12 +10471,20 @@ type UpdateWebhookOutput struct {
 	Webhook *Webhook `locationName:"webhook" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebhookOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebhookOutput) GoString() string {
 	return s.String()
 }
@@ -9335,12 +10535,20 @@ type Webhook struct {
 	WebhookUrl *string `locationName:"webhookUrl" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Webhook) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Webhook) GoString() string {
 	return s.String()
 }
@@ -9490,12 +10698,40 @@ func JobType_Values() []string {
 const (
 	// PlatformWeb is a Platform enum value
 	PlatformWeb = "WEB"
+
+	// PlatformWebDynamic is a Platform enum value
+	PlatformWebDynamic = "WEB_DYNAMIC"
+
+	// PlatformWebCompute is a Platform enum value
+	PlatformWebCompute = "WEB_COMPUTE"
 )
 
 // Platform_Values returns all elements of the Platform enum
 func Platform_Values() []string {
 	return []string{
 		PlatformWeb,
+		PlatformWebDynamic,
+		PlatformWebCompute,
+	}
+}
+
+const (
+	// RepositoryCloneMethodSsh is a RepositoryCloneMethod enum value
+	RepositoryCloneMethodSsh = "SSH"
+
+	// RepositoryCloneMethodToken is a RepositoryCloneMethod enum value
+	RepositoryCloneMethodToken = "TOKEN"
+
+	// RepositoryCloneMethodSigv4 is a RepositoryCloneMethod enum value
+	RepositoryCloneMethodSigv4 = "SIGV4"
+)
+
+// RepositoryCloneMethod_Values returns all elements of the RepositoryCloneMethod enum
+func RepositoryCloneMethod_Values() []string {
+	return []string{
+		RepositoryCloneMethodSsh,
+		RepositoryCloneMethodToken,
+		RepositoryCloneMethodSigv4,
 	}
 }
 

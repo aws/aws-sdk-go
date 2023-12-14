@@ -1,20 +1,20 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon HealthLake is a HIPAA eligibile service that allows customers to store, transform, query, and analyze their FHIR-formatted data in a consistent fashion in the cloud.</p>",
+  "service": "<p>AWS HealthLake is a HIPAA eligibile service that allows customers to store, transform, query, and analyze their FHIR-formatted data in a consistent fashion in the cloud.</p>",
   "operations": {
-    "CreateFHIRDatastore": "<p>Creates a Data Store that can ingest and export FHIR formatted data.</p>",
-    "DeleteFHIRDatastore": "<p>Deletes a Data Store. </p>",
-    "DescribeFHIRDatastore": "<p>Gets the properties associated with the FHIR Data Store, including the Data Store ID, Data Store ARN, Data Store name, Data Store status, created at, Data Store type version, and Data Store endpoint.</p>",
+    "CreateFHIRDatastore": "<p>Creates a data store that can ingest and export FHIR formatted data.</p>",
+    "DeleteFHIRDatastore": "<p>Deletes a data store. </p>",
+    "DescribeFHIRDatastore": "<p>Gets the properties associated with the FHIR data store, including the data store ID, data store ARN, data store name, data store status, when the data store was created, data store type version, and the data store's endpoint.</p>",
     "DescribeFHIRExportJob": "<p>Displays the properties of a FHIR export job, including the ID, ARN, name, and the status of the job.</p>",
     "DescribeFHIRImportJob": "<p>Displays the properties of a FHIR import job, including the ID, ARN, name, and the status of the job. </p>",
-    "ListFHIRDatastores": "<p>Lists all FHIR Data Stores that are in the user’s account, regardless of Data Store status.</p>",
+    "ListFHIRDatastores": "<p>Lists all FHIR data stores that are in the user’s account, regardless of data store status.</p>",
     "ListFHIRExportJobs": "<p> Lists all FHIR export jobs associated with an account and their statuses. </p>",
     "ListFHIRImportJobs": "<p> Lists all FHIR import jobs associated with an account and their statuses. </p>",
-    "ListTagsForResource": "<p> Returns a list of all existing tags associated with a Data Store. </p>",
+    "ListTagsForResource": "<p> Returns a list of all existing tags associated with a data store. </p>",
     "StartFHIRExportJob": "<p>Begins a FHIR export job.</p>",
     "StartFHIRImportJob": "<p>Begins a FHIR Import job.</p>",
-    "TagResource": "<p> Adds a user specifed key and value tag to a Data Store. </p>",
-    "UntagResource": "<p> Removes tags from a Data Store. </p>"
+    "TagResource": "<p> Adds a user specified key and value tag to a data store. </p>",
+    "UntagResource": "<p> Removes tags from a data store. </p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -25,16 +25,28 @@
     "AmazonResourceName": {
       "base": null,
       "refs": {
-        "ListTagsForResourceRequest$ResourceARN": "<p> The Amazon Resource Name(ARN) of the Data Store for which tags are being added. </p>",
-        "TagResourceRequest$ResourceARN": "<p> The Amazon Resource Name(ARN)that gives Amazon HealthLake access to the Data Store which tags are being added to. </p>",
-        "UntagResourceRequest$ResourceARN": "<p> \"The Amazon Resource Name(ARN) of the Data Store for which tags are being removed </p>"
+        "ListTagsForResourceRequest$ResourceARN": "<p> The Amazon Resource Name(ARN) of the data store for which tags are being added. </p>",
+        "TagResourceRequest$ResourceARN": "<p> The Amazon Resource Name(ARN)that gives AWS HealthLake access to the data store which tags are being added to. </p>",
+        "UntagResourceRequest$ResourceARN": "<p>The Amazon Resource Name(ARN) of the data store for which tags are being removed.</p>"
+      }
+    },
+    "AuthorizationStrategy": {
+      "base": null,
+      "refs": {
+        "IdentityProviderConfiguration$AuthorizationStrategy": "<p>The authorization strategy that you selected when you created the data store.</p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "IdentityProviderConfiguration$FineGrainedAuthorizationEnabled": "<p>If you enabled fine-grained authorization when you created the data store.</p>"
       }
     },
     "BoundedLengthString": {
       "base": null,
       "refs": {
-        "CreateFHIRDatastoreResponse$DatastoreEndpoint": "<p>The AWS endpoint for the created Data Store. For preview, only US-east-1 endpoints are supported.</p>",
-        "DeleteFHIRDatastoreResponse$DatastoreEndpoint": "<p>The AWS endpoint for the Data Store the user has requested to be deleted.</p>"
+        "CreateFHIRDatastoreResponse$DatastoreEndpoint": "<p>The AWS endpoint for the created data store.</p>",
+        "DeleteFHIRDatastoreResponse$DatastoreEndpoint": "<p>The AWS endpoint for the data store the user has requested to be deleted.</p>"
       }
     },
     "ClientTokenString": {
@@ -48,11 +60,17 @@
     "CmkType": {
       "base": null,
       "refs": {
-        "KmsEncryptionConfig$CmkType": "<p> The type of customer-managed-key(CMK) used for encyrption. The two types of supported CMKs are customer owned CMKs and AWS owned CMKs. </p>"
+        "KmsEncryptionConfig$CmkType": "<p> The type of customer-managed-key(CMK) used for encryption. The two types of supported CMKs are customer owned CMKs and AWS owned CMKs. </p>"
+      }
+    },
+    "ConfigurationMetadata": {
+      "base": null,
+      "refs": {
+        "IdentityProviderConfiguration$Metadata": "<p>The JSON metadata elements that you want to use in your identity provider configuration. Required elements are listed based on the launch specification of the SMART application. For more information on all possible elements, see <a href=\"https://build.fhir.org/ig/HL7/smart-app-launch/conformance.html#metadata\">Metadata</a> in SMART's App Launch specification.</p> <p> <code>authorization_endpoint</code>: The URL to the OAuth2 authorization endpoint.</p> <p> <code>grant_types_supported</code>: An array of grant types that are supported at the token endpoint. You must provide at least one grant type option. Valid options are <code>authorization_code</code> and <code>client_credentials</code>.</p> <p> <code>token_endpoint</code>: The URL to the OAuth2 token endpoint.</p> <p> <code>capabilities</code>: An array of strings of the SMART capabilities that the authorization server supports.</p> <p> <code>code_challenge_methods_supported</code>: An array of strings of supported PKCE code challenge methods. You must include the <code>S256</code> method in the array of PKCE code challenge methods.</p>"
       }
     },
     "ConflictException": {
-      "base": "<p>The Data Store is in a transition state and the user requested action can not be performed.</p>",
+      "base": "<p>The data store is in a transition state and the user requested action can not be performed.</p>",
       "refs": {
       }
     },
@@ -69,65 +87,65 @@
     "DatastoreArn": {
       "base": null,
       "refs": {
-        "CreateFHIRDatastoreResponse$DatastoreArn": "<p>The datastore ARN is generated during the creation of the Data Store and can be found in the output from the initial Data Store creation call.</p>",
-        "DatastoreProperties$DatastoreArn": "<p>The Amazon Resource Name used in the creation of the Data Store.</p>",
-        "DeleteFHIRDatastoreResponse$DatastoreArn": "<p>The Amazon Resource Name (ARN) that gives Amazon HealthLake access permission.</p>"
+        "CreateFHIRDatastoreResponse$DatastoreArn": "<p>The data store ARN is generated during the creation of the data store and can be found in the output from the initial data store creation call.</p>",
+        "DatastoreProperties$DatastoreArn": "<p>The Amazon Resource Name used in the creation of the data store.</p>",
+        "DeleteFHIRDatastoreResponse$DatastoreArn": "<p>The Amazon Resource Name (ARN) that gives AWS HealthLake access permission.</p>"
       }
     },
     "DatastoreFilter": {
-      "base": "<p>The filters applied to Data Store query.</p>",
+      "base": "<p>The filters applied to data store query.</p>",
       "refs": {
-        "ListFHIRDatastoresRequest$Filter": "<p>Lists all filters associated with a FHIR Data Store request.</p>"
+        "ListFHIRDatastoresRequest$Filter": "<p>Lists all filters associated with a FHIR data store request.</p>"
       }
     },
     "DatastoreId": {
       "base": null,
       "refs": {
-        "CreateFHIRDatastoreResponse$DatastoreId": "<p>The AWS-generated Data Store id. This id is in the output from the initial Data Store creation call.</p>",
-        "DatastoreProperties$DatastoreId": "<p>The AWS-generated ID number for the Data Store.</p>",
-        "DeleteFHIRDatastoreRequest$DatastoreId": "<p> The AWS-generated ID for the Data Store to be deleted.</p>",
-        "DeleteFHIRDatastoreResponse$DatastoreId": "<p>The AWS-generated ID for the Data Store to be deleted.</p>",
-        "DescribeFHIRDatastoreRequest$DatastoreId": "<p>The AWS-generated Data Store id. This is part of the ‘CreateFHIRDatastore’ output.</p>",
-        "DescribeFHIRExportJobRequest$DatastoreId": "<p>The AWS generated ID for the Data Store from which files are being exported from for an export job.</p>",
-        "DescribeFHIRImportJobRequest$DatastoreId": "<p>The AWS-generated ID of the Data Store.</p>",
-        "ExportJobProperties$DatastoreId": "<p>The AWS generated ID for the Data Store from which files are being exported for an export job.</p>",
+        "CreateFHIRDatastoreResponse$DatastoreId": "<p>The AWS-generated data store id. This id is in the output from the initial data store creation call.</p>",
+        "DatastoreProperties$DatastoreId": "<p>The AWS-generated ID number for the data store.</p>",
+        "DeleteFHIRDatastoreRequest$DatastoreId": "<p> The AWS-generated ID for the data store to be deleted.</p>",
+        "DeleteFHIRDatastoreResponse$DatastoreId": "<p>The AWS-generated ID for the data store to be deleted.</p>",
+        "DescribeFHIRDatastoreRequest$DatastoreId": "<p>The AWS-generated data store ID.</p>",
+        "DescribeFHIRExportJobRequest$DatastoreId": "<p>The AWS generated ID for the data store from which files are being exported from for an export job.</p>",
+        "DescribeFHIRImportJobRequest$DatastoreId": "<p>The AWS-generated ID of the data store.</p>",
+        "ExportJobProperties$DatastoreId": "<p>The AWS generated ID for the data store from which files are being exported for an export job.</p>",
         "ImportJobProperties$DatastoreId": "<p>The datastore id used when the Import job was created. </p>",
-        "ListFHIRExportJobsRequest$DatastoreId": "<p> This parameter limits the response to the export job with the specified Data Store ID. </p>",
-        "ListFHIRImportJobsRequest$DatastoreId": "<p> This parameter limits the response to the import job with the specified Data Store ID. </p>",
-        "StartFHIRExportJobRequest$DatastoreId": "<p>The AWS generated ID for the Data Store from which files are being exported for an export job.</p>",
-        "StartFHIRExportJobResponse$DatastoreId": "<p>The AWS generated ID for the Data Store from which files are being exported for an export job.</p>",
-        "StartFHIRImportJobRequest$DatastoreId": "<p>The AWS-generated Data Store ID.</p>",
-        "StartFHIRImportJobResponse$DatastoreId": "<p>The AWS-generated Data Store ID.</p>"
+        "ListFHIRExportJobsRequest$DatastoreId": "<p> This parameter limits the response to the export job with the specified data store ID. </p>",
+        "ListFHIRImportJobsRequest$DatastoreId": "<p> This parameter limits the response to the import job with the specified data store ID. </p>",
+        "StartFHIRExportJobRequest$DatastoreId": "<p>The AWS generated ID for the data store from which files are being exported for an export job.</p>",
+        "StartFHIRExportJobResponse$DatastoreId": "<p>The AWS generated ID for the data store from which files are being exported for an export job.</p>",
+        "StartFHIRImportJobRequest$DatastoreId": "<p>The AWS-generated data store ID.</p>",
+        "StartFHIRImportJobResponse$DatastoreId": "<p>The AWS-generated data store ID.</p>"
       }
     },
     "DatastoreName": {
       "base": null,
       "refs": {
-        "CreateFHIRDatastoreRequest$DatastoreName": "<p>The user generated name for the Data Store.</p>",
-        "DatastoreFilter$DatastoreName": "<p>Allows the user to filter Data Store results by name.</p>",
-        "DatastoreProperties$DatastoreName": "<p>The user-generated name for the Data Store.</p>"
+        "CreateFHIRDatastoreRequest$DatastoreName": "<p>The user generated name for the data store.</p>",
+        "DatastoreFilter$DatastoreName": "<p>Allows the user to filter data store results by name.</p>",
+        "DatastoreProperties$DatastoreName": "<p>The user-generated name for the data store.</p>"
       }
     },
     "DatastoreProperties": {
-      "base": "<p>Displays the properties of the Data Store, including the ID, Arn, name, and the status of the Data Store.</p>",
+      "base": "<p>Displays the properties of the data store, including the ID, ARN, name, and the status of the data store.</p>",
       "refs": {
         "DatastorePropertiesList$member": null,
-        "DescribeFHIRDatastoreResponse$DatastoreProperties": "<p>All properties associated with a Data Store, including the Data Store ID, Data Store ARN, Data Store name, Data Store status, created at, Data Store type version, and Data Store endpoint.</p>"
+        "DescribeFHIRDatastoreResponse$DatastoreProperties": "<p>All properties associated with a data store, including the data store ID, data store ARN, data store name, data store status, when the data store was created, data store type version, and the data store's endpoint.</p>"
       }
     },
     "DatastorePropertiesList": {
       "base": null,
       "refs": {
-        "ListFHIRDatastoresResponse$DatastorePropertiesList": "<p>All properties associated with the listed Data Stores.</p>"
+        "ListFHIRDatastoresResponse$DatastorePropertiesList": "<p>All properties associated with the listed data stores.</p>"
       }
     },
     "DatastoreStatus": {
       "base": null,
       "refs": {
-        "CreateFHIRDatastoreResponse$DatastoreStatus": "<p>The status of the FHIR Data Store. Possible statuses are ‘CREATING’, ‘ACTIVE’, ‘DELETING’, ‘DELETED’.</p>",
-        "DatastoreFilter$DatastoreStatus": "<p>Allows the user to filter Data Store results by status.</p>",
-        "DatastoreProperties$DatastoreStatus": "<p>The status of the Data Store. Possible statuses are 'CREATING', 'ACTIVE', 'DELETING', or 'DELETED'.</p>",
-        "DeleteFHIRDatastoreResponse$DatastoreStatus": "<p>The status of the Data Store that the user has requested to be deleted. </p>"
+        "CreateFHIRDatastoreResponse$DatastoreStatus": "<p>The status of the FHIR data store.</p>",
+        "DatastoreFilter$DatastoreStatus": "<p>Allows the user to filter data store results by status.</p>",
+        "DatastoreProperties$DatastoreStatus": "<p>The status of the data store.</p>",
+        "DeleteFHIRDatastoreResponse$DatastoreStatus": "<p>The status of the data store that the user has requested to be deleted. </p>"
       }
     },
     "DeleteFHIRDatastoreRequest": {
@@ -173,7 +191,7 @@
     "EncryptionKeyID": {
       "base": null,
       "refs": {
-        "KmsEncryptionConfig$KmsKeyId": "<p> The KMS encryption key id/alias used to encrypt the Data Store contents at rest. </p>",
+        "KmsEncryptionConfig$KmsKeyId": "<p> The KMS encryption key id/alias used to encrypt the data store contents at rest. </p>",
         "S3Configuration$KmsKeyId": "<p> The KMS key ID used to access the S3 bucket. </p>"
       }
     },
@@ -193,7 +211,7 @@
     "FHIRVersion": {
       "base": null,
       "refs": {
-        "CreateFHIRDatastoreRequest$DatastoreTypeVersion": "<p>The FHIR version of the Data Store. The only supported version is R4.</p>",
+        "CreateFHIRDatastoreRequest$DatastoreTypeVersion": "<p>The FHIR version of the data store. The only supported version is R4.</p>",
         "DatastoreProperties$DatastoreTypeVersion": "<p>The FHIR version. Only R4 version data is supported.</p>"
       }
     },
@@ -201,13 +219,20 @@
       "base": null,
       "refs": {
         "ExportJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name used during the initiation of the job.</p>",
-        "ImportJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon HealthLake access to your input data.</p>",
+        "ImportJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives AWS HealthLake access to your input data.</p>",
         "StartFHIRExportJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name used during the initiation of the job.</p>",
-        "StartFHIRImportJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon HealthLake access permission.</p>"
+        "StartFHIRImportJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives AWS HealthLake access permission.</p>"
+      }
+    },
+    "IdentityProviderConfiguration": {
+      "base": "<p>The identity provider configuration that you gave when the data store was created.</p>",
+      "refs": {
+        "CreateFHIRDatastoreRequest$IdentityProviderConfiguration": "<p>The configuration of the identity provider that you want to use for your data store.</p>",
+        "DatastoreProperties$IdentityProviderConfiguration": "<p>The identity provider that you selected when you created the data store.</p>"
       }
     },
     "ImportJobProperties": {
-      "base": "<p>Displays the properties of the import job, including the ID, Arn, Name, and the status of the Data Store.</p>",
+      "base": "<p>Displays the properties of the import job, including the ID, Arn, Name, and the status of the data store.</p>",
       "refs": {
         "DescribeFHIRImportJobResponse$ImportJobProperties": "<p>The properties of the Import job request, including the ID, ARN, name, and the status of the job.</p>",
         "ImportJobPropertiesList$member": null
@@ -257,7 +282,7 @@
       "base": null,
       "refs": {
         "ExportJobProperties$JobStatus": "<p>The status of a FHIR export job. Possible statuses are SUBMITTED, IN_PROGRESS, COMPLETED, or FAILED.</p>",
-        "ImportJobProperties$JobStatus": "<p>The job status for an Import job. Possible statuses are SUBMITTED, IN_PROGRESS, COMPLETED, FAILED.</p>",
+        "ImportJobProperties$JobStatus": "<p>The job status for an Import job. Possible statuses are SUBMITTED, IN_PROGRESS, COMPLETED_WITH_ERRORS, COMPLETED, FAILED.</p>",
         "ListFHIRExportJobsRequest$JobStatus": "<p> This parameter limits the response to the export jobs with the specified job status. </p>",
         "ListFHIRImportJobsRequest$JobStatus": "<p> This parameter limits the response to the import job with the specified job status. </p>",
         "StartFHIRExportJobResponse$JobStatus": "<p>The status of a FHIR export job. Possible statuses are SUBMITTED, IN_PROGRESS, COMPLETED, or FAILED.</p>",
@@ -265,9 +290,15 @@
       }
     },
     "KmsEncryptionConfig": {
-      "base": "<p> The customer-managed-key(CMK) used when creating a Data Store. If a customer owned key is not specified, an AWS owned key will be used for encryption. </p>",
+      "base": "<p> The customer-managed-key(CMK) used when creating a data store. If a customer owned key is not specified, an AWS owned key will be used for encryption. </p>",
       "refs": {
         "SseConfiguration$KmsEncryptionConfig": "<p> The KMS encryption configuration used to provide details for data encryption. </p>"
+      }
+    },
+    "LambdaArn": {
+      "base": null,
+      "refs": {
+        "IdentityProviderConfiguration$IdpLambdaArn": "<p>The Amazon Resource Name (ARN) of the Lambda function that you want to use to decode the access token created by the authorization server.</p>"
       }
     },
     "ListFHIRDatastoresRequest": {
@@ -313,7 +344,7 @@
     "MaxResultsInteger": {
       "base": null,
       "refs": {
-        "ListFHIRDatastoresRequest$MaxResults": "<p>The maximum number of Data Stores returned in a single page of a ListFHIRDatastoresRequest call.</p>",
+        "ListFHIRDatastoresRequest$MaxResults": "<p>The maximum number of data stores returned in a single page of a ListFHIRDatastoresRequest call.</p>",
         "ListFHIRExportJobsRequest$MaxResults": "<p> This parameter limits the number of results returned for a ListFHIRExportJobs to a maximum quantity specified by the user. </p>",
         "ListFHIRImportJobsRequest$MaxResults": "<p> This parameter limits the number of results returned for a ListFHIRImportJobs to a maximum quantity specified by the user. </p>"
       }
@@ -328,7 +359,7 @@
     "NextToken": {
       "base": null,
       "refs": {
-        "ListFHIRDatastoresRequest$NextToken": "<p>Fetches the next page of Data Stores when results are paginated.</p>",
+        "ListFHIRDatastoresRequest$NextToken": "<p>Fetches the next page of data stores when results are paginated.</p>",
         "ListFHIRDatastoresResponse$NextToken": "<p>Pagination token that can be used to retrieve the next page of results.</p>",
         "ListFHIRExportJobsRequest$NextToken": "<p> A pagination token used to identify the next page of results to return for a ListFHIRExportJobs query. </p>",
         "ListFHIRExportJobsResponse$NextToken": "<p> A pagination token used to identify the next page of results to return for a ListFHIRExportJobs query. </p>",
@@ -346,10 +377,10 @@
       }
     },
     "PreloadDataConfig": {
-      "base": "<p> The input properties for the preloaded Data Store. Only data preloaded from Synthea is supported.</p>",
+      "base": "<p> The input properties for the preloaded data store. Only data preloaded from Synthea is supported.</p>",
       "refs": {
-        "CreateFHIRDatastoreRequest$PreloadDataConfig": "<p>Optional parameter to preload data upon creation of the Data Store. Currently, the only supported preloaded data is synthetic data generated from Synthea.</p>",
-        "DatastoreProperties$PreloadDataConfig": "<p>The preloaded data configuration for the Data Store. Only data preloaded from Synthea is supported.</p>"
+        "CreateFHIRDatastoreRequest$PreloadDataConfig": "<p>Optional parameter to preload data upon creation of the data store. Currently, the only supported preloaded data is synthetic data generated from Synthea.</p>",
+        "DatastoreProperties$PreloadDataConfig": "<p>The preloaded data configuration for the data store. Only data preloaded from Synthea is supported.</p>"
       }
     },
     "PreloadDataType": {
@@ -359,7 +390,7 @@
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p> The requested Data Store was not found.</p>",
+      "base": "<p> The requested data store was not found.</p>",
       "refs": {
       }
     },
@@ -372,14 +403,14 @@
     "S3Uri": {
       "base": null,
       "refs": {
-        "InputDataConfig$S3Uri": "<p>The S3Uri is the user specified S3 location of the FHIR data to be imported into Amazon HealthLake. </p>",
-        "S3Configuration$S3Uri": "<p> The S3Uri is the user specified S3 location of the FHIR data to be imported into Amazon HealthLake. </p>"
+        "InputDataConfig$S3Uri": "<p>The S3Uri is the user specified S3 location of the FHIR data to be imported into AWS HealthLake. </p>",
+        "S3Configuration$S3Uri": "<p> The S3Uri is the user specified S3 location of the FHIR data to be imported into AWS HealthLake. </p>"
       }
     },
     "SseConfiguration": {
       "base": "<p> The server-side encryption key configuration for a customer provided encryption key. </p>",
       "refs": {
-        "CreateFHIRDatastoreRequest$SseConfiguration": "<p> The server-side encryption key configuration for a customer provided encryption key specified for creating a Data Store. </p>",
+        "CreateFHIRDatastoreRequest$SseConfiguration": "<p> The server-side encryption key configuration for a customer provided encryption key specified for creating a data store. </p>",
         "DatastoreProperties$SseConfiguration": "<p> The server-side encryption key configuration for a customer provided encryption key (CMK). </p>"
       }
     },
@@ -408,7 +439,7 @@
       "refs": {
         "AccessDeniedException$Message": null,
         "ConflictException$Message": null,
-        "DatastoreProperties$DatastoreEndpoint": "<p>The AWS endpoint for the Data Store. Each Data Store will have it's own endpoint with Data Store ID in the endpoint URL.</p>",
+        "DatastoreProperties$DatastoreEndpoint": "<p>The AWS endpoint for the data store. Each data store will have it's own endpoint with data store ID in the endpoint URL.</p>",
         "InternalServerException$Message": null,
         "ResourceNotFoundException$Message": null,
         "ThrottlingException$Message": null,
@@ -431,15 +462,15 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$TagKeys": "<p> The keys for the tags to be removed from the Healthlake Data Store. </p>"
+        "UntagResourceRequest$TagKeys": "<p> The keys for the tags to be removed from the HealthLake data store. </p>"
       }
     },
     "TagList": {
       "base": null,
       "refs": {
-        "CreateFHIRDatastoreRequest$Tags": "<p> Resource tags that are applied to a Data Store when it is created. </p>",
-        "ListTagsForResourceResponse$Tags": "<p> Returns a list of tags associated with a Data Store. </p>",
-        "TagResourceRequest$Tags": "<p> The user specified key and value pair tags being added to a Data Store. </p>"
+        "CreateFHIRDatastoreRequest$Tags": "<p> Resource tags that are applied to a data store when it is created. </p>",
+        "ListTagsForResourceResponse$Tags": "<p> Returns a list of tags associated with a data store. </p>",
+        "TagResourceRequest$Tags": "<p> The user specified key and value pair tags being added to a data store. </p>"
       }
     },
     "TagResourceRequest": {
@@ -455,7 +486,7 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": "<p> The value portion of tag. Tag values are case sensitive. </p>"
+        "Tag$Value": "<p> The value portion of a tag. Tag values are case sensitive. </p>"
       }
     },
     "ThrottlingException": {
@@ -466,9 +497,9 @@
     "Timestamp": {
       "base": null,
       "refs": {
-        "DatastoreFilter$CreatedBefore": "<p>A filter that allows the user to set cutoff dates for records. All Data Stores created before the specified date will be included in the results. </p>",
-        "DatastoreFilter$CreatedAfter": "<p>A filter that allows the user to set cutoff dates for records. All Data Stores created after the specified date will be included in the results.</p>",
-        "DatastoreProperties$CreatedAt": "<p>The time that a Data Store was created. </p>",
+        "DatastoreFilter$CreatedBefore": "<p>A filter that allows the user to set cutoff dates for records. All data stores created before the specified date will be included in the results. </p>",
+        "DatastoreFilter$CreatedAfter": "<p>A filter that allows the user to set cutoff dates for records. All data stores created after the specified date will be included in the results.</p>",
+        "DatastoreProperties$CreatedAt": "<p>The time that a data store was created. </p>",
         "ExportJobProperties$SubmitTime": "<p>The time an export job was initiated.</p>",
         "ExportJobProperties$EndTime": "<p>The time an export job completed.</p>",
         "ImportJobProperties$SubmitTime": "<p>The time that the Import job was submitted for processing.</p>",

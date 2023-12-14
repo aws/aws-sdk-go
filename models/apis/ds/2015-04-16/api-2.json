@@ -375,6 +375,23 @@
         {"shape":"ServiceException"}
       ]
     },
+    "DescribeClientAuthenticationSettings":{
+      "name":"DescribeClientAuthenticationSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeClientAuthenticationSettingsRequest"},
+      "output":{"shape":"DescribeClientAuthenticationSettingsResult"},
+      "errors":[
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "DescribeConditionalForwarders":{
       "name":"DescribeConditionalForwarders",
       "http":{
@@ -475,6 +492,23 @@
         {"shape":"ServiceException"}
       ]
     },
+    "DescribeSettings":{
+      "name":"DescribeSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSettingsRequest"},
+      "output":{"shape":"DescribeSettingsResult"},
+      "errors":[
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "DescribeSharedDirectories":{
       "name":"DescribeSharedDirectories",
       "http":{
@@ -523,6 +557,23 @@
         {"shape":"ClientException"},
         {"shape":"ServiceException"},
         {"shape":"UnsupportedOperationException"}
+      ]
+    },
+    "DescribeUpdateDirectory":{
+      "name":"DescribeUpdateDirectory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeUpdateDirectoryRequest"},
+      "output":{"shape":"DescribeUpdateDirectoryResult"},
+      "errors":[
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"},
+        {"shape":"InvalidNextTokenException"}
       ]
     },
     "DisableClientAuthentication":{
@@ -969,6 +1020,26 @@
         {"shape":"ServiceException"}
       ]
     },
+    "UpdateDirectorySetup":{
+      "name":"UpdateDirectorySetup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDirectorySetupRequest"},
+      "output":{"shape":"UpdateDirectorySetupResult"},
+      "errors":[
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"DirectoryInDesiredStateException"},
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"SnapshotLimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "UpdateNumberOfDomainControllers":{
       "name":"UpdateNumberOfDomainControllers",
       "http":{
@@ -998,6 +1069,25 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"EntityDoesNotExistException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "UpdateSettings":{
+      "name":"UpdateSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSettingsRequest"},
+      "output":{"shape":"UpdateSettingsResult"},
+      "errors":[
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"IncompatibleSettingsException"},
+        {"shape":"UnsupportedSettingsException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"ClientException"},
         {"shape":"ServiceException"}
       ]
@@ -1121,7 +1211,7 @@
       "type":"string",
       "max":62,
       "min":1,
-      "pattern":"^(?!d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*"
+      "pattern":"^(?!D-|d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*"
     },
     "Attribute":{
       "type":"structure",
@@ -1266,9 +1356,31 @@
       "type":"list",
       "member":{"shape":"CidrIp"}
     },
+    "ClientAuthenticationSettingInfo":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ClientAuthenticationType"},
+        "Status":{"shape":"ClientAuthenticationStatus"},
+        "LastUpdatedDateTime":{"shape":"LastUpdatedDateTime"}
+      }
+    },
+    "ClientAuthenticationSettingsInfo":{
+      "type":"list",
+      "member":{"shape":"ClientAuthenticationSettingInfo"}
+    },
+    "ClientAuthenticationStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "ClientAuthenticationType":{
       "type":"string",
-      "enum":["SmartCard"]
+      "enum":[
+        "SmartCard",
+        "SmartCardOrPassword"
+      ]
     },
     "ClientCertAuthSettings":{
       "type":"structure",
@@ -1468,6 +1580,7 @@
       }
     },
     "CreateSnapshotBeforeSchemaExtension":{"type":"boolean"},
+    "CreateSnapshotBeforeUpdate":{"type":"boolean"},
     "CreateSnapshotRequest":{
       "type":"structure",
       "required":["DirectoryId"],
@@ -1635,6 +1748,23 @@
         "Certificate":{"shape":"Certificate"}
       }
     },
+    "DescribeClientAuthenticationSettingsRequest":{
+      "type":"structure",
+      "required":["DirectoryId"],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Type":{"shape":"ClientAuthenticationType"},
+        "NextToken":{"shape":"NextToken"},
+        "Limit":{"shape":"PageLimit"}
+      }
+    },
+    "DescribeClientAuthenticationSettingsResult":{
+      "type":"structure",
+      "members":{
+        "ClientAuthenticationSettingsInfo":{"shape":"ClientAuthenticationSettingsInfo"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeConditionalForwardersRequest":{
       "type":"structure",
       "required":["DirectoryId"],
@@ -1727,6 +1857,23 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeSettingsRequest":{
+      "type":"structure",
+      "required":["DirectoryId"],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Status":{"shape":"DirectoryConfigurationStatus"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeSettingsResult":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "SettingEntries":{"shape":"SettingEntries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeSharedDirectoriesRequest":{
       "type":"structure",
       "required":["OwnerDirectoryId"],
@@ -1776,6 +1923,26 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeUpdateDirectoryRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "UpdateType"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "UpdateType":{"shape":"UpdateType"},
+        "RegionName":{"shape":"RegionName"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeUpdateDirectoryResult":{
+      "type":"structure",
+      "members":{
+        "UpdateActivities":{"shape":"UpdateActivities"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "Description":{
       "type":"string",
       "max":128,
@@ -1801,6 +1968,39 @@
         "RequestId":{"shape":"RequestId"}
       },
       "exception":true
+    },
+    "DirectoryConfigurationSettingAllowedValues":{"type":"string"},
+    "DirectoryConfigurationSettingDataType":{"type":"string"},
+    "DirectoryConfigurationSettingLastRequestedDateTime":{"type":"timestamp"},
+    "DirectoryConfigurationSettingLastUpdatedDateTime":{"type":"timestamp"},
+    "DirectoryConfigurationSettingName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-/. _]*$"
+    },
+    "DirectoryConfigurationSettingRequestDetailedStatus":{
+      "type":"map",
+      "key":{"shape":"RegionName"},
+      "value":{"shape":"DirectoryConfigurationStatus"}
+    },
+    "DirectoryConfigurationSettingRequestStatusMessage":{"type":"string"},
+    "DirectoryConfigurationSettingType":{"type":"string"},
+    "DirectoryConfigurationSettingValue":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_]*$"
+    },
+    "DirectoryConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "Requested",
+        "Updating",
+        "Updated",
+        "Failed",
+        "Default"
+      ]
     },
     "DirectoryConnectSettings":{
       "type":"structure",
@@ -1855,7 +2055,8 @@
         "SsoEnabled":{"shape":"SsoEnabled"},
         "DesiredNumberOfDomainControllers":{"shape":"DesiredNumberOfDomainControllers"},
         "OwnerDirectoryDescription":{"shape":"OwnerDirectoryDescription"},
-        "RegionsInfo":{"shape":"RegionsInfo"}
+        "RegionsInfo":{"shape":"RegionsInfo"},
+        "OsVersion":{"shape":"OSVersion"}
       }
     },
     "DirectoryDescriptions":{
@@ -1884,6 +2085,14 @@
     "DirectoryIds":{
       "type":"list",
       "member":{"shape":"DirectoryId"}
+    },
+    "DirectoryInDesiredStateException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "RequestId":{"shape":"RequestId"}
+      },
+      "exception":true
     },
     "DirectoryLimitExceededException":{
       "type":"structure",
@@ -2211,6 +2420,15 @@
         "SnapshotLimits":{"shape":"SnapshotLimits"}
       }
     },
+    "IncompatibleSettingsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "RequestId":{"shape":"RequestId"}
+      },
+      "exception":true
+    },
+    "InitiatedBy":{"type":"string"},
     "InsufficientPermissionsException":{
       "type":"structure",
       "members":{
@@ -2484,6 +2702,19 @@
       "min":1,
       "pattern":"^(https?|ftp|file|ldaps?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;()]*[-a-zA-Z0-9+&@#/%=~_|()]"
     },
+    "OSUpdateSettings":{
+      "type":"structure",
+      "members":{
+        "OSVersion":{"shape":"OSVersion"}
+      }
+    },
+    "OSVersion":{
+      "type":"string",
+      "enum":[
+        "SERVER_2012",
+        "SERVER_2019"
+      ]
+    },
     "OrganizationalUnitDN":{
       "type":"string",
       "max":2000,
@@ -2559,6 +2790,7 @@
       "type":"string",
       "max":512,
       "min":8,
+      "pattern":"^(\\p{LD}|\\p{Punct}| )+$",
       "sensitive":true
     },
     "RadiusStatus":{
@@ -2669,6 +2901,7 @@
     },
     "RemoteDomainName":{
       "type":"string",
+      "max":1024,
       "pattern":"^([a-zA-Z0-9]+[\\\\.-])+([a-zA-Z0-9])+[.]?$"
     },
     "RemoteDomainNames":{
@@ -2830,6 +3063,41 @@
       },
       "exception":true,
       "fault":true
+    },
+    "Setting":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"DirectoryConfigurationSettingName"},
+        "Value":{"shape":"DirectoryConfigurationSettingValue"}
+      }
+    },
+    "SettingEntries":{
+      "type":"list",
+      "member":{"shape":"SettingEntry"}
+    },
+    "SettingEntry":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"DirectoryConfigurationSettingType"},
+        "Name":{"shape":"DirectoryConfigurationSettingName"},
+        "AllowedValues":{"shape":"DirectoryConfigurationSettingAllowedValues"},
+        "AppliedValue":{"shape":"DirectoryConfigurationSettingValue"},
+        "RequestedValue":{"shape":"DirectoryConfigurationSettingValue"},
+        "RequestStatus":{"shape":"DirectoryConfigurationStatus"},
+        "RequestDetailedStatus":{"shape":"DirectoryConfigurationSettingRequestDetailedStatus"},
+        "RequestStatusMessage":{"shape":"DirectoryConfigurationSettingRequestStatusMessage"},
+        "LastUpdatedDateTime":{"shape":"DirectoryConfigurationSettingLastUpdatedDateTime"},
+        "LastRequestedDateTime":{"shape":"DirectoryConfigurationSettingLastRequestedDateTime"},
+        "DataType":{"shape":"DirectoryConfigurationSettingDataType"}
+      }
+    },
+    "Settings":{
+      "type":"list",
+      "member":{"shape":"Setting"}
     },
     "ShareDirectoryRequest":{
       "type":"structure",
@@ -3108,7 +3376,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"(.|\\s)*\\S(.|\\s)*",
+      "pattern":"^(\\p{LD}|\\p{Punct}| )+$",
       "sensitive":true
     },
     "TrustState":{
@@ -3175,6 +3443,18 @@
       },
       "exception":true
     },
+    "UnsupportedSettingsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "RequestId":{"shape":"RequestId"}
+      },
+      "exception":true
+    },
+    "UpdateActivities":{
+      "type":"list",
+      "member":{"shape":"UpdateInfoEntry"}
+    },
     "UpdateConditionalForwarderRequest":{
       "type":"structure",
       "required":[
@@ -3191,6 +3471,40 @@
     "UpdateConditionalForwarderResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateDirectorySetupRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "UpdateType"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "UpdateType":{"shape":"UpdateType"},
+        "OSUpdateSettings":{"shape":"OSUpdateSettings"},
+        "CreateSnapshotBeforeUpdate":{
+          "shape":"CreateSnapshotBeforeUpdate",
+          "box":true
+        }
+      }
+    },
+    "UpdateDirectorySetupResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateInfoEntry":{
+      "type":"structure",
+      "members":{
+        "Region":{"shape":"RegionName"},
+        "Status":{"shape":"UpdateStatus"},
+        "StatusReason":{"shape":"UpdateStatusReason"},
+        "InitiatedBy":{"shape":"InitiatedBy"},
+        "NewValue":{"shape":"UpdateValue"},
+        "PreviousValue":{"shape":"UpdateValue"},
+        "StartTime":{"shape":"StartDateTime"},
+        "LastUpdatedDateTime":{"shape":"LastUpdatedDateTime"}
       }
     },
     "UpdateNumberOfDomainControllersRequest":{
@@ -3226,6 +3540,32 @@
       }
     },
     "UpdateSecurityGroupForDirectoryControllers":{"type":"boolean"},
+    "UpdateSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "Settings"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Settings":{"shape":"Settings"}
+      }
+    },
+    "UpdateSettingsResult":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"}
+      }
+    },
+    "UpdateStatus":{
+      "type":"string",
+      "enum":[
+        "Updated",
+        "Updating",
+        "UpdateFailed"
+      ]
+    },
+    "UpdateStatusReason":{"type":"string"},
     "UpdateTrustRequest":{
       "type":"structure",
       "required":["TrustId"],
@@ -3239,6 +3579,16 @@
       "members":{
         "RequestId":{"shape":"RequestId"},
         "TrustId":{"shape":"TrustId"}
+      }
+    },
+    "UpdateType":{
+      "type":"string",
+      "enum":["OS"]
+    },
+    "UpdateValue":{
+      "type":"structure",
+      "members":{
+        "OSUpdateSettings":{"shape":"OSUpdateSettings"}
       }
     },
     "UseSameUsername":{"type":"boolean"},

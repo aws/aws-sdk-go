@@ -29,14 +29,13 @@ const opDeleteHumanLoop = "DeleteHumanLoop"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteHumanLoopRequest method.
+//	req, resp := client.DeleteHumanLoopRequest(params)
 //
-//    // Example sending a request using the DeleteHumanLoopRequest method.
-//    req, resp := client.DeleteHumanLoopRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/DeleteHumanLoop
 func (c *AugmentedAIRuntime) DeleteHumanLoopRequest(input *DeleteHumanLoopInput) (req *request.Request, output *DeleteHumanLoopOutput) {
@@ -70,20 +69,21 @@ func (c *AugmentedAIRuntime) DeleteHumanLoopRequest(input *DeleteHumanLoopInput)
 // API operation DeleteHumanLoop for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request isn't valid. Check the syntax and try again.
 //
-//   * ResourceNotFoundException
-//   We couldn't find the requested resource. Check that your resources exists
-//   and were created in the same AWS Region as your request, and try your request
-//   again.
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
 //
-//   * ThrottlingException
-//   You exceeded the maximum number of requests.
+//   - ResourceNotFoundException
+//     We couldn't find the requested resource. Check that your resources exists
+//     and were created in the same AWS Region as your request, and try your request
+//     again.
 //
-//   * InternalServerException
-//   We couldn't process your request because of an issue with the server. Try
-//   again later.
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/DeleteHumanLoop
 func (c *AugmentedAIRuntime) DeleteHumanLoop(input *DeleteHumanLoopInput) (*DeleteHumanLoopOutput, error) {
@@ -123,14 +123,13 @@ const opDescribeHumanLoop = "DescribeHumanLoop"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeHumanLoopRequest method.
+//	req, resp := client.DescribeHumanLoopRequest(params)
 //
-//    // Example sending a request using the DescribeHumanLoopRequest method.
-//    req, resp := client.DescribeHumanLoopRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/DescribeHumanLoop
 func (c *AugmentedAIRuntime) DescribeHumanLoopRequest(input *DescribeHumanLoopInput) (req *request.Request, output *DescribeHumanLoopOutput) {
@@ -162,20 +161,21 @@ func (c *AugmentedAIRuntime) DescribeHumanLoopRequest(input *DescribeHumanLoopIn
 // API operation DescribeHumanLoop for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request isn't valid. Check the syntax and try again.
 //
-//   * ResourceNotFoundException
-//   We couldn't find the requested resource. Check that your resources exists
-//   and were created in the same AWS Region as your request, and try your request
-//   again.
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
 //
-//   * ThrottlingException
-//   You exceeded the maximum number of requests.
+//   - ResourceNotFoundException
+//     We couldn't find the requested resource. Check that your resources exists
+//     and were created in the same AWS Region as your request, and try your request
+//     again.
 //
-//   * InternalServerException
-//   We couldn't process your request because of an issue with the server. Try
-//   again later.
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/DescribeHumanLoop
 func (c *AugmentedAIRuntime) DescribeHumanLoop(input *DescribeHumanLoopInput) (*DescribeHumanLoopOutput, error) {
@@ -215,14 +215,13 @@ const opListHumanLoops = "ListHumanLoops"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListHumanLoopsRequest method.
+//	req, resp := client.ListHumanLoopsRequest(params)
 //
-//    // Example sending a request using the ListHumanLoopsRequest method.
-//    req, resp := client.ListHumanLoopsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/ListHumanLoops
 func (c *AugmentedAIRuntime) ListHumanLoopsRequest(input *ListHumanLoopsInput) (req *request.Request, output *ListHumanLoopsOutput) {
@@ -260,20 +259,21 @@ func (c *AugmentedAIRuntime) ListHumanLoopsRequest(input *ListHumanLoopsInput) (
 // API operation ListHumanLoops for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request isn't valid. Check the syntax and try again.
 //
-//   * ResourceNotFoundException
-//   We couldn't find the requested resource. Check that your resources exists
-//   and were created in the same AWS Region as your request, and try your request
-//   again.
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
 //
-//   * ThrottlingException
-//   You exceeded the maximum number of requests.
+//   - ResourceNotFoundException
+//     We couldn't find the requested resource. Check that your resources exists
+//     and were created in the same AWS Region as your request, and try your request
+//     again.
 //
-//   * InternalServerException
-//   We couldn't process your request because of an issue with the server. Try
-//   again later.
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/ListHumanLoops
 func (c *AugmentedAIRuntime) ListHumanLoops(input *ListHumanLoopsInput) (*ListHumanLoopsOutput, error) {
@@ -305,15 +305,14 @@ func (c *AugmentedAIRuntime) ListHumanLoopsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListHumanLoops operation.
-//    pageNum := 0
-//    err := client.ListHumanLoopsPages(params,
-//        func(page *augmentedairuntime.ListHumanLoopsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListHumanLoops operation.
+//	pageNum := 0
+//	err := client.ListHumanLoopsPages(params,
+//	    func(page *augmentedairuntime.ListHumanLoopsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AugmentedAIRuntime) ListHumanLoopsPages(input *ListHumanLoopsInput, fn func(*ListHumanLoopsOutput, bool) bool) error {
 	return c.ListHumanLoopsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -365,14 +364,13 @@ const opStartHumanLoop = "StartHumanLoop"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartHumanLoopRequest method.
+//	req, resp := client.StartHumanLoopRequest(params)
 //
-//    // Example sending a request using the StartHumanLoopRequest method.
-//    req, resp := client.StartHumanLoopRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/StartHumanLoop
 func (c *AugmentedAIRuntime) StartHumanLoopRequest(input *StartHumanLoopInput) (req *request.Request, output *StartHumanLoopOutput) {
@@ -403,30 +401,31 @@ func (c *AugmentedAIRuntime) StartHumanLoopRequest(input *StartHumanLoopInput) (
 // API operation StartHumanLoop for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request isn't valid. Check the syntax and try again.
 //
-//   * ThrottlingException
-//   You exceeded the maximum number of requests.
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
 //
-//   * ServiceQuotaExceededException
-//   You exceeded your service quota. Service quotas, also referred to as limits,
-//   are the maximum number of service resources or operations for your AWS account.
-//   For a list of Amazon A2I service quotes, see Amazon Augmented AI Service
-//   Quotes (https://docs.aws.amazon.com/general/latest/gr/a2i.html). Delete some
-//   resources or request an increase in your service quota. You can request a
-//   quota increase using Service Quotas or the AWS Support Center. To request
-//   an increase, see AWS Service Quotas (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
-//   in the AWS General Reference.
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
 //
-//   * InternalServerException
-//   We couldn't process your request because of an issue with the server. Try
-//   again later.
+//   - ServiceQuotaExceededException
+//     You exceeded your service quota. Service quotas, also referred to as limits,
+//     are the maximum number of service resources or operations for your AWS account.
+//     For a list of Amazon A2I service quotes, see Amazon Augmented AI Service
+//     Quotes (https://docs.aws.amazon.com/general/latest/gr/a2i.html). Delete some
+//     resources or request an increase in your service quota. You can request a
+//     quota increase using Service Quotas or the AWS Support Center. To request
+//     an increase, see AWS Service Quotas (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+//     in the AWS General Reference.
 //
-//   * ConflictException
-//   Your request has the same name as another active human loop but has different
-//   input data. You cannot start two human loops with the same name and different
-//   input data.
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
+//
+//   - ConflictException
+//     Your request has the same name as another active human loop but has different
+//     input data. You cannot start two human loops with the same name and different
+//     input data.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/StartHumanLoop
 func (c *AugmentedAIRuntime) StartHumanLoop(input *StartHumanLoopInput) (*StartHumanLoopOutput, error) {
@@ -466,14 +465,13 @@ const opStopHumanLoop = "StopHumanLoop"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopHumanLoopRequest method.
+//	req, resp := client.StopHumanLoopRequest(params)
 //
-//    // Example sending a request using the StopHumanLoopRequest method.
-//    req, resp := client.StopHumanLoopRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/StopHumanLoop
 func (c *AugmentedAIRuntime) StopHumanLoopRequest(input *StopHumanLoopInput) (req *request.Request, output *StopHumanLoopOutput) {
@@ -505,20 +503,21 @@ func (c *AugmentedAIRuntime) StopHumanLoopRequest(input *StopHumanLoopInput) (re
 // API operation StopHumanLoop for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request isn't valid. Check the syntax and try again.
 //
-//   * ResourceNotFoundException
-//   We couldn't find the requested resource. Check that your resources exists
-//   and were created in the same AWS Region as your request, and try your request
-//   again.
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
 //
-//   * ThrottlingException
-//   You exceeded the maximum number of requests.
+//   - ResourceNotFoundException
+//     We couldn't find the requested resource. Check that your resources exists
+//     and were created in the same AWS Region as your request, and try your request
+//     again.
 //
-//   * InternalServerException
-//   We couldn't process your request because of an issue with the server. Try
-//   again later.
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/StopHumanLoop
 func (c *AugmentedAIRuntime) StopHumanLoop(input *StopHumanLoopInput) (*StopHumanLoopOutput, error) {
@@ -552,12 +551,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -601,7 +608,7 @@ func (s *ConflictException) RequestID() string {
 }
 
 type DeleteHumanLoopInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the human loop that you want to delete.
 	//
@@ -609,12 +616,20 @@ type DeleteHumanLoopInput struct {
 	HumanLoopName *string `location:"uri" locationName:"HumanLoopName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHumanLoopInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHumanLoopInput) GoString() string {
 	return s.String()
 }
@@ -645,18 +660,26 @@ type DeleteHumanLoopOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHumanLoopOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHumanLoopOutput) GoString() string {
 	return s.String()
 }
 
 type DescribeHumanLoopInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the human loop that you want information about.
 	//
@@ -664,12 +687,20 @@ type DescribeHumanLoopInput struct {
 	HumanLoopName *string `location:"uri" locationName:"HumanLoopName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHumanLoopInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHumanLoopInput) GoString() string {
 	return s.String()
 }
@@ -702,7 +733,7 @@ type DescribeHumanLoopOutput struct {
 	// The creation time when Amazon Augmented AI created the human loop.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" required:"true"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// A failure code that identifies the type of failure.
 	//
@@ -739,12 +770,20 @@ type DescribeHumanLoopOutput struct {
 	HumanLoopStatus *string `type:"string" required:"true" enum:"HumanLoopStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHumanLoopOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHumanLoopOutput) GoString() string {
 	return s.String()
 }
@@ -809,15 +848,23 @@ type HumanLoopDataAttributes struct {
 	// view your task based on this information.
 	//
 	// ContentClassifiers is a required field
-	ContentClassifiers []*string `type:"list" required:"true"`
+	ContentClassifiers []*string `type:"list" required:"true" enum:"ContentClassifier"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HumanLoopDataAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HumanLoopDataAttributes) GoString() string {
 	return s.String()
 }
@@ -852,12 +899,20 @@ type HumanLoopInput struct {
 	InputContent *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HumanLoopInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HumanLoopInput) GoString() string {
 	return s.String()
 }
@@ -892,12 +947,20 @@ type HumanLoopOutput struct {
 	OutputS3Uri *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HumanLoopOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HumanLoopOutput) GoString() string {
 	return s.String()
 }
@@ -913,7 +976,7 @@ type HumanLoopSummary struct {
 	_ struct{} `type:"structure"`
 
 	// When Amazon Augmented AI created the human loop.
-	CreationTime *time.Time `type:"timestamp"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The reason why the human loop failed. A failure reason is returned when the
 	// status of the human loop is Failed.
@@ -930,12 +993,20 @@ type HumanLoopSummary struct {
 	HumanLoopStatus *string `type:"string" enum:"HumanLoopStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HumanLoopSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HumanLoopSummary) GoString() string {
 	return s.String()
 }
@@ -979,12 +1050,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -1028,15 +1107,15 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListHumanLoopsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) The timestamp of the date when you want the human loops to begin
 	// in ISO 8601 format. For example, 2020-02-24.
-	CreationTimeAfter *time.Time `location:"querystring" locationName:"CreationTimeAfter" type:"timestamp"`
+	CreationTimeAfter *time.Time `location:"querystring" locationName:"CreationTimeAfter" type:"timestamp" timestampFormat:"iso8601"`
 
 	// (Optional) The timestamp of the date before which you want the human loops
 	// to begin in ISO 8601 format. For example, 2020-02-24.
-	CreationTimeBefore *time.Time `location:"querystring" locationName:"CreationTimeBefore" type:"timestamp"`
+	CreationTimeBefore *time.Time `location:"querystring" locationName:"CreationTimeBefore" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The Amazon Resource Name (ARN) of a flow definition.
 	//
@@ -1055,12 +1134,20 @@ type ListHumanLoopsInput struct {
 	SortOrder *string `location:"querystring" locationName:"SortOrder" type:"string" enum:"SortOrder"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHumanLoopsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHumanLoopsInput) GoString() string {
 	return s.String()
 }
@@ -1129,12 +1216,20 @@ type ListHumanLoopsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHumanLoopsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHumanLoopsOutput) GoString() string {
 	return s.String()
 }
@@ -1161,12 +1256,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -1224,12 +1327,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -1296,12 +1407,20 @@ type StartHumanLoopInput struct {
 	HumanLoopName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartHumanLoopInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartHumanLoopInput) GoString() string {
 	return s.String()
 }
@@ -1369,12 +1488,20 @@ type StartHumanLoopOutput struct {
 	HumanLoopArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartHumanLoopOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartHumanLoopOutput) GoString() string {
 	return s.String()
 }
@@ -1394,12 +1521,20 @@ type StopHumanLoopInput struct {
 	HumanLoopName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopHumanLoopInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopHumanLoopInput) GoString() string {
 	return s.String()
 }
@@ -1430,12 +1565,20 @@ type StopHumanLoopOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopHumanLoopOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopHumanLoopOutput) GoString() string {
 	return s.String()
 }
@@ -1448,12 +1591,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -1504,12 +1655,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }

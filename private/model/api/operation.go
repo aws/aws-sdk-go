@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 package api
@@ -16,7 +17,7 @@ type Operation struct {
 	API                 *API `json:"-"`
 	ExportedName        string
 	Name                string
-	Documentation       string
+	Documentation       string `json:"-"`
 	HTTP                HTTPInfo
 	Host                string     `json:"host"`
 	InputRef            ShapeRef   `json:"input"`
@@ -31,10 +32,26 @@ type Operation struct {
 
 	EventStreamAPI *EventStreamAPI
 
-	IsEndpointDiscoveryOp  bool               `json:"endpointoperation"`
-	EndpointDiscovery      *EndpointDiscovery `json:"endpointdiscovery"`
-	Endpoint               *EndpointTrait     `json:"endpoint"`
-	IsHttpChecksumRequired bool               `json:"httpChecksumRequired"`
+	IsEndpointDiscoveryOp bool               `json:"endpointoperation"`
+	EndpointDiscovery     *EndpointDiscovery `json:"endpointdiscovery"`
+	Endpoint              *EndpointTrait     `json:"endpoint"`
+
+	// HTTPChecksum replaces usage of httpChecksumRequired, but some APIs
+	// (s3control) still uses old trait.
+	HTTPChecksum           HTTPChecksum `json:"httpChecksum"`
+	IsHttpChecksumRequired bool         `json:"httpChecksumRequired"`
+}
+
+type HTTPChecksum struct {
+	RequestAlgorithmMember      string `json:"requestAlgorithmMember"`
+	RequestValidationModeMember string `json:"requestValidationModeMember"`
+	RequestChecksumRequired     bool   `json:"requestChecksumRequired"`
+}
+
+// RequestChecksumRequired returns if the request requires the Content-MD5
+// checksum to be computed.
+func (o *Operation) RequestChecksumRequired() bool {
+	return o.HTTPChecksum.RequestChecksumRequired || o.IsHttpChecksumRequired
 }
 
 // EndpointTrait provides the structure of the modeled endpoint trait, and its
@@ -262,6 +279,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 					"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
 				}))
 				req.Handlers.Build.Swap({{ .API.ProtocolPackage }}.BuildHandler.Name, rest.BuildHandler)
+				eventstreamapi.ApplyHTTPTransportFixes(req)
 				req.Handlers.Send.Swap(client.LogHTTPRequestHandler.Name, client.LogHTTPRequestHeaderHandler)
 				req.Handlers.Unmarshal.PushBack(es.runInputStream)
 
@@ -332,7 +350,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		req.Handlers.Build.PushBackNamed({{ $handler }})
 	{{- end }}
 
-	{{- if .IsHttpChecksumRequired }}
+	{{- if .RequestChecksumRequired }}
 		{{- $_ := .API.AddSDKImport "private/checksum" }}
 		req.Handlers.Build.PushBackNamed(request.NamedHandler{
 			Name: "contentMd5Handler",

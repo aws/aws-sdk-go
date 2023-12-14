@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // Amazon Lookout for Vision.
-//    func myFunc(svc lookoutforvisioniface.LookoutForVisionAPI) bool {
-//        // Make svc.CreateDataset request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// Amazon Lookout for Vision.
+//	func myFunc(svc lookoutforvisioniface.LookoutForVisionAPI) bool {
+//	    // Make svc.CreateDataset request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := lookoutforvision.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := lookoutforvision.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockLookoutForVisionClient struct {
-//        lookoutforvisioniface.LookoutForVisionAPI
-//    }
-//    func (m *mockLookoutForVisionClient) CreateDataset(input *lookoutforvision.CreateDatasetInput) (*lookoutforvision.CreateDatasetOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockLookoutForVisionClient struct {
+//	    lookoutforvisioniface.LookoutForVisionAPI
+//	}
+//	func (m *mockLookoutForVisionClient) CreateDataset(input *lookoutforvision.CreateDatasetInput) (*lookoutforvision.CreateDatasetOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockLookoutForVisionClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockLookoutForVisionClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -92,6 +92,10 @@ type LookoutForVisionAPI interface {
 	DescribeModelWithContext(aws.Context, *lookoutforvision.DescribeModelInput, ...request.Option) (*lookoutforvision.DescribeModelOutput, error)
 	DescribeModelRequest(*lookoutforvision.DescribeModelInput) (*request.Request, *lookoutforvision.DescribeModelOutput)
 
+	DescribeModelPackagingJob(*lookoutforvision.DescribeModelPackagingJobInput) (*lookoutforvision.DescribeModelPackagingJobOutput, error)
+	DescribeModelPackagingJobWithContext(aws.Context, *lookoutforvision.DescribeModelPackagingJobInput, ...request.Option) (*lookoutforvision.DescribeModelPackagingJobOutput, error)
+	DescribeModelPackagingJobRequest(*lookoutforvision.DescribeModelPackagingJobInput) (*request.Request, *lookoutforvision.DescribeModelPackagingJobOutput)
+
 	DescribeProject(*lookoutforvision.DescribeProjectInput) (*lookoutforvision.DescribeProjectOutput, error)
 	DescribeProjectWithContext(aws.Context, *lookoutforvision.DescribeProjectInput, ...request.Option) (*lookoutforvision.DescribeProjectOutput, error)
 	DescribeProjectRequest(*lookoutforvision.DescribeProjectInput) (*request.Request, *lookoutforvision.DescribeProjectOutput)
@@ -106,6 +110,13 @@ type LookoutForVisionAPI interface {
 
 	ListDatasetEntriesPages(*lookoutforvision.ListDatasetEntriesInput, func(*lookoutforvision.ListDatasetEntriesOutput, bool) bool) error
 	ListDatasetEntriesPagesWithContext(aws.Context, *lookoutforvision.ListDatasetEntriesInput, func(*lookoutforvision.ListDatasetEntriesOutput, bool) bool, ...request.Option) error
+
+	ListModelPackagingJobs(*lookoutforvision.ListModelPackagingJobsInput) (*lookoutforvision.ListModelPackagingJobsOutput, error)
+	ListModelPackagingJobsWithContext(aws.Context, *lookoutforvision.ListModelPackagingJobsInput, ...request.Option) (*lookoutforvision.ListModelPackagingJobsOutput, error)
+	ListModelPackagingJobsRequest(*lookoutforvision.ListModelPackagingJobsInput) (*request.Request, *lookoutforvision.ListModelPackagingJobsOutput)
+
+	ListModelPackagingJobsPages(*lookoutforvision.ListModelPackagingJobsInput, func(*lookoutforvision.ListModelPackagingJobsOutput, bool) bool) error
+	ListModelPackagingJobsPagesWithContext(aws.Context, *lookoutforvision.ListModelPackagingJobsInput, func(*lookoutforvision.ListModelPackagingJobsOutput, bool) bool, ...request.Option) error
 
 	ListModels(*lookoutforvision.ListModelsInput) (*lookoutforvision.ListModelsOutput, error)
 	ListModelsWithContext(aws.Context, *lookoutforvision.ListModelsInput, ...request.Option) (*lookoutforvision.ListModelsOutput, error)
@@ -128,6 +139,10 @@ type LookoutForVisionAPI interface {
 	StartModel(*lookoutforvision.StartModelInput) (*lookoutforvision.StartModelOutput, error)
 	StartModelWithContext(aws.Context, *lookoutforvision.StartModelInput, ...request.Option) (*lookoutforvision.StartModelOutput, error)
 	StartModelRequest(*lookoutforvision.StartModelInput) (*request.Request, *lookoutforvision.StartModelOutput)
+
+	StartModelPackagingJob(*lookoutforvision.StartModelPackagingJobInput) (*lookoutforvision.StartModelPackagingJobOutput, error)
+	StartModelPackagingJobWithContext(aws.Context, *lookoutforvision.StartModelPackagingJobInput, ...request.Option) (*lookoutforvision.StartModelPackagingJobOutput, error)
+	StartModelPackagingJobRequest(*lookoutforvision.StartModelPackagingJobInput) (*request.Request, *lookoutforvision.StartModelPackagingJobOutput)
 
 	StopModel(*lookoutforvision.StopModelInput) (*lookoutforvision.StopModelOutput, error)
 	StopModelWithContext(aws.Context, *lookoutforvision.StopModelInput, ...request.Option) (*lookoutforvision.StopModelOutput, error)

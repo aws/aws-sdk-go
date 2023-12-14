@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS IoT SiteWise.
-//    func myFunc(svc iotsitewiseiface.IoTSiteWiseAPI) bool {
-//        // Make svc.AssociateAssets request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS IoT SiteWise.
+//	func myFunc(svc iotsitewiseiface.IoTSiteWiseAPI) bool {
+//	    // Make svc.AssociateAssets request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := iotsitewise.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := iotsitewise.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockIoTSiteWiseClient struct {
-//        iotsitewiseiface.IoTSiteWiseAPI
-//    }
-//    func (m *mockIoTSiteWiseClient) AssociateAssets(input *iotsitewise.AssociateAssetsInput) (*iotsitewise.AssociateAssetsOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockIoTSiteWiseClient struct {
+//	    iotsitewiseiface.IoTSiteWiseAPI
+//	}
+//	func (m *mockIoTSiteWiseClient) AssociateAssets(input *iotsitewise.AssociateAssetsInput) (*iotsitewise.AssociateAssetsOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockIoTSiteWiseClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockIoTSiteWiseClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -64,6 +64,10 @@ type IoTSiteWiseAPI interface {
 	AssociateAssetsWithContext(aws.Context, *iotsitewise.AssociateAssetsInput, ...request.Option) (*iotsitewise.AssociateAssetsOutput, error)
 	AssociateAssetsRequest(*iotsitewise.AssociateAssetsInput) (*request.Request, *iotsitewise.AssociateAssetsOutput)
 
+	AssociateTimeSeriesToAssetProperty(*iotsitewise.AssociateTimeSeriesToAssetPropertyInput) (*iotsitewise.AssociateTimeSeriesToAssetPropertyOutput, error)
+	AssociateTimeSeriesToAssetPropertyWithContext(aws.Context, *iotsitewise.AssociateTimeSeriesToAssetPropertyInput, ...request.Option) (*iotsitewise.AssociateTimeSeriesToAssetPropertyOutput, error)
+	AssociateTimeSeriesToAssetPropertyRequest(*iotsitewise.AssociateTimeSeriesToAssetPropertyInput) (*request.Request, *iotsitewise.AssociateTimeSeriesToAssetPropertyOutput)
+
 	BatchAssociateProjectAssets(*iotsitewise.BatchAssociateProjectAssetsInput) (*iotsitewise.BatchAssociateProjectAssetsOutput, error)
 	BatchAssociateProjectAssetsWithContext(aws.Context, *iotsitewise.BatchAssociateProjectAssetsInput, ...request.Option) (*iotsitewise.BatchAssociateProjectAssetsOutput, error)
 	BatchAssociateProjectAssetsRequest(*iotsitewise.BatchAssociateProjectAssetsInput) (*request.Request, *iotsitewise.BatchAssociateProjectAssetsOutput)
@@ -71,6 +75,27 @@ type IoTSiteWiseAPI interface {
 	BatchDisassociateProjectAssets(*iotsitewise.BatchDisassociateProjectAssetsInput) (*iotsitewise.BatchDisassociateProjectAssetsOutput, error)
 	BatchDisassociateProjectAssetsWithContext(aws.Context, *iotsitewise.BatchDisassociateProjectAssetsInput, ...request.Option) (*iotsitewise.BatchDisassociateProjectAssetsOutput, error)
 	BatchDisassociateProjectAssetsRequest(*iotsitewise.BatchDisassociateProjectAssetsInput) (*request.Request, *iotsitewise.BatchDisassociateProjectAssetsOutput)
+
+	BatchGetAssetPropertyAggregates(*iotsitewise.BatchGetAssetPropertyAggregatesInput) (*iotsitewise.BatchGetAssetPropertyAggregatesOutput, error)
+	BatchGetAssetPropertyAggregatesWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyAggregatesInput, ...request.Option) (*iotsitewise.BatchGetAssetPropertyAggregatesOutput, error)
+	BatchGetAssetPropertyAggregatesRequest(*iotsitewise.BatchGetAssetPropertyAggregatesInput) (*request.Request, *iotsitewise.BatchGetAssetPropertyAggregatesOutput)
+
+	BatchGetAssetPropertyAggregatesPages(*iotsitewise.BatchGetAssetPropertyAggregatesInput, func(*iotsitewise.BatchGetAssetPropertyAggregatesOutput, bool) bool) error
+	BatchGetAssetPropertyAggregatesPagesWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyAggregatesInput, func(*iotsitewise.BatchGetAssetPropertyAggregatesOutput, bool) bool, ...request.Option) error
+
+	BatchGetAssetPropertyValue(*iotsitewise.BatchGetAssetPropertyValueInput) (*iotsitewise.BatchGetAssetPropertyValueOutput, error)
+	BatchGetAssetPropertyValueWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyValueInput, ...request.Option) (*iotsitewise.BatchGetAssetPropertyValueOutput, error)
+	BatchGetAssetPropertyValueRequest(*iotsitewise.BatchGetAssetPropertyValueInput) (*request.Request, *iotsitewise.BatchGetAssetPropertyValueOutput)
+
+	BatchGetAssetPropertyValuePages(*iotsitewise.BatchGetAssetPropertyValueInput, func(*iotsitewise.BatchGetAssetPropertyValueOutput, bool) bool) error
+	BatchGetAssetPropertyValuePagesWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyValueInput, func(*iotsitewise.BatchGetAssetPropertyValueOutput, bool) bool, ...request.Option) error
+
+	BatchGetAssetPropertyValueHistory(*iotsitewise.BatchGetAssetPropertyValueHistoryInput) (*iotsitewise.BatchGetAssetPropertyValueHistoryOutput, error)
+	BatchGetAssetPropertyValueHistoryWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyValueHistoryInput, ...request.Option) (*iotsitewise.BatchGetAssetPropertyValueHistoryOutput, error)
+	BatchGetAssetPropertyValueHistoryRequest(*iotsitewise.BatchGetAssetPropertyValueHistoryInput) (*request.Request, *iotsitewise.BatchGetAssetPropertyValueHistoryOutput)
+
+	BatchGetAssetPropertyValueHistoryPages(*iotsitewise.BatchGetAssetPropertyValueHistoryInput, func(*iotsitewise.BatchGetAssetPropertyValueHistoryOutput, bool) bool) error
+	BatchGetAssetPropertyValueHistoryPagesWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyValueHistoryInput, func(*iotsitewise.BatchGetAssetPropertyValueHistoryOutput, bool) bool, ...request.Option) error
 
 	BatchPutAssetPropertyValue(*iotsitewise.BatchPutAssetPropertyValueInput) (*iotsitewise.BatchPutAssetPropertyValueOutput, error)
 	BatchPutAssetPropertyValueWithContext(aws.Context, *iotsitewise.BatchPutAssetPropertyValueInput, ...request.Option) (*iotsitewise.BatchPutAssetPropertyValueOutput, error)
@@ -87,6 +112,14 @@ type IoTSiteWiseAPI interface {
 	CreateAssetModel(*iotsitewise.CreateAssetModelInput) (*iotsitewise.CreateAssetModelOutput, error)
 	CreateAssetModelWithContext(aws.Context, *iotsitewise.CreateAssetModelInput, ...request.Option) (*iotsitewise.CreateAssetModelOutput, error)
 	CreateAssetModelRequest(*iotsitewise.CreateAssetModelInput) (*request.Request, *iotsitewise.CreateAssetModelOutput)
+
+	CreateAssetModelCompositeModel(*iotsitewise.CreateAssetModelCompositeModelInput) (*iotsitewise.CreateAssetModelCompositeModelOutput, error)
+	CreateAssetModelCompositeModelWithContext(aws.Context, *iotsitewise.CreateAssetModelCompositeModelInput, ...request.Option) (*iotsitewise.CreateAssetModelCompositeModelOutput, error)
+	CreateAssetModelCompositeModelRequest(*iotsitewise.CreateAssetModelCompositeModelInput) (*request.Request, *iotsitewise.CreateAssetModelCompositeModelOutput)
+
+	CreateBulkImportJob(*iotsitewise.CreateBulkImportJobInput) (*iotsitewise.CreateBulkImportJobOutput, error)
+	CreateBulkImportJobWithContext(aws.Context, *iotsitewise.CreateBulkImportJobInput, ...request.Option) (*iotsitewise.CreateBulkImportJobOutput, error)
+	CreateBulkImportJobRequest(*iotsitewise.CreateBulkImportJobInput) (*request.Request, *iotsitewise.CreateBulkImportJobOutput)
 
 	CreateDashboard(*iotsitewise.CreateDashboardInput) (*iotsitewise.CreateDashboardOutput, error)
 	CreateDashboardWithContext(aws.Context, *iotsitewise.CreateDashboardInput, ...request.Option) (*iotsitewise.CreateDashboardOutput, error)
@@ -116,6 +149,10 @@ type IoTSiteWiseAPI interface {
 	DeleteAssetModelWithContext(aws.Context, *iotsitewise.DeleteAssetModelInput, ...request.Option) (*iotsitewise.DeleteAssetModelOutput, error)
 	DeleteAssetModelRequest(*iotsitewise.DeleteAssetModelInput) (*request.Request, *iotsitewise.DeleteAssetModelOutput)
 
+	DeleteAssetModelCompositeModel(*iotsitewise.DeleteAssetModelCompositeModelInput) (*iotsitewise.DeleteAssetModelCompositeModelOutput, error)
+	DeleteAssetModelCompositeModelWithContext(aws.Context, *iotsitewise.DeleteAssetModelCompositeModelInput, ...request.Option) (*iotsitewise.DeleteAssetModelCompositeModelOutput, error)
+	DeleteAssetModelCompositeModelRequest(*iotsitewise.DeleteAssetModelCompositeModelInput) (*request.Request, *iotsitewise.DeleteAssetModelCompositeModelOutput)
+
 	DeleteDashboard(*iotsitewise.DeleteDashboardInput) (*iotsitewise.DeleteDashboardOutput, error)
 	DeleteDashboardWithContext(aws.Context, *iotsitewise.DeleteDashboardInput, ...request.Option) (*iotsitewise.DeleteDashboardOutput, error)
 	DeleteDashboardRequest(*iotsitewise.DeleteDashboardInput) (*request.Request, *iotsitewise.DeleteDashboardOutput)
@@ -132,21 +169,41 @@ type IoTSiteWiseAPI interface {
 	DeleteProjectWithContext(aws.Context, *iotsitewise.DeleteProjectInput, ...request.Option) (*iotsitewise.DeleteProjectOutput, error)
 	DeleteProjectRequest(*iotsitewise.DeleteProjectInput) (*request.Request, *iotsitewise.DeleteProjectOutput)
 
+	DeleteTimeSeries(*iotsitewise.DeleteTimeSeriesInput) (*iotsitewise.DeleteTimeSeriesOutput, error)
+	DeleteTimeSeriesWithContext(aws.Context, *iotsitewise.DeleteTimeSeriesInput, ...request.Option) (*iotsitewise.DeleteTimeSeriesOutput, error)
+	DeleteTimeSeriesRequest(*iotsitewise.DeleteTimeSeriesInput) (*request.Request, *iotsitewise.DeleteTimeSeriesOutput)
+
 	DescribeAccessPolicy(*iotsitewise.DescribeAccessPolicyInput) (*iotsitewise.DescribeAccessPolicyOutput, error)
 	DescribeAccessPolicyWithContext(aws.Context, *iotsitewise.DescribeAccessPolicyInput, ...request.Option) (*iotsitewise.DescribeAccessPolicyOutput, error)
 	DescribeAccessPolicyRequest(*iotsitewise.DescribeAccessPolicyInput) (*request.Request, *iotsitewise.DescribeAccessPolicyOutput)
+
+	DescribeAction(*iotsitewise.DescribeActionInput) (*iotsitewise.DescribeActionOutput, error)
+	DescribeActionWithContext(aws.Context, *iotsitewise.DescribeActionInput, ...request.Option) (*iotsitewise.DescribeActionOutput, error)
+	DescribeActionRequest(*iotsitewise.DescribeActionInput) (*request.Request, *iotsitewise.DescribeActionOutput)
 
 	DescribeAsset(*iotsitewise.DescribeAssetInput) (*iotsitewise.DescribeAssetOutput, error)
 	DescribeAssetWithContext(aws.Context, *iotsitewise.DescribeAssetInput, ...request.Option) (*iotsitewise.DescribeAssetOutput, error)
 	DescribeAssetRequest(*iotsitewise.DescribeAssetInput) (*request.Request, *iotsitewise.DescribeAssetOutput)
 
+	DescribeAssetCompositeModel(*iotsitewise.DescribeAssetCompositeModelInput) (*iotsitewise.DescribeAssetCompositeModelOutput, error)
+	DescribeAssetCompositeModelWithContext(aws.Context, *iotsitewise.DescribeAssetCompositeModelInput, ...request.Option) (*iotsitewise.DescribeAssetCompositeModelOutput, error)
+	DescribeAssetCompositeModelRequest(*iotsitewise.DescribeAssetCompositeModelInput) (*request.Request, *iotsitewise.DescribeAssetCompositeModelOutput)
+
 	DescribeAssetModel(*iotsitewise.DescribeAssetModelInput) (*iotsitewise.DescribeAssetModelOutput, error)
 	DescribeAssetModelWithContext(aws.Context, *iotsitewise.DescribeAssetModelInput, ...request.Option) (*iotsitewise.DescribeAssetModelOutput, error)
 	DescribeAssetModelRequest(*iotsitewise.DescribeAssetModelInput) (*request.Request, *iotsitewise.DescribeAssetModelOutput)
 
+	DescribeAssetModelCompositeModel(*iotsitewise.DescribeAssetModelCompositeModelInput) (*iotsitewise.DescribeAssetModelCompositeModelOutput, error)
+	DescribeAssetModelCompositeModelWithContext(aws.Context, *iotsitewise.DescribeAssetModelCompositeModelInput, ...request.Option) (*iotsitewise.DescribeAssetModelCompositeModelOutput, error)
+	DescribeAssetModelCompositeModelRequest(*iotsitewise.DescribeAssetModelCompositeModelInput) (*request.Request, *iotsitewise.DescribeAssetModelCompositeModelOutput)
+
 	DescribeAssetProperty(*iotsitewise.DescribeAssetPropertyInput) (*iotsitewise.DescribeAssetPropertyOutput, error)
 	DescribeAssetPropertyWithContext(aws.Context, *iotsitewise.DescribeAssetPropertyInput, ...request.Option) (*iotsitewise.DescribeAssetPropertyOutput, error)
 	DescribeAssetPropertyRequest(*iotsitewise.DescribeAssetPropertyInput) (*request.Request, *iotsitewise.DescribeAssetPropertyOutput)
+
+	DescribeBulkImportJob(*iotsitewise.DescribeBulkImportJobInput) (*iotsitewise.DescribeBulkImportJobOutput, error)
+	DescribeBulkImportJobWithContext(aws.Context, *iotsitewise.DescribeBulkImportJobInput, ...request.Option) (*iotsitewise.DescribeBulkImportJobOutput, error)
+	DescribeBulkImportJobRequest(*iotsitewise.DescribeBulkImportJobInput) (*request.Request, *iotsitewise.DescribeBulkImportJobOutput)
 
 	DescribeDashboard(*iotsitewise.DescribeDashboardInput) (*iotsitewise.DescribeDashboardOutput, error)
 	DescribeDashboardWithContext(aws.Context, *iotsitewise.DescribeDashboardInput, ...request.Option) (*iotsitewise.DescribeDashboardOutput, error)
@@ -180,9 +237,28 @@ type IoTSiteWiseAPI interface {
 	DescribeStorageConfigurationWithContext(aws.Context, *iotsitewise.DescribeStorageConfigurationInput, ...request.Option) (*iotsitewise.DescribeStorageConfigurationOutput, error)
 	DescribeStorageConfigurationRequest(*iotsitewise.DescribeStorageConfigurationInput) (*request.Request, *iotsitewise.DescribeStorageConfigurationOutput)
 
+	DescribeTimeSeries(*iotsitewise.DescribeTimeSeriesInput) (*iotsitewise.DescribeTimeSeriesOutput, error)
+	DescribeTimeSeriesWithContext(aws.Context, *iotsitewise.DescribeTimeSeriesInput, ...request.Option) (*iotsitewise.DescribeTimeSeriesOutput, error)
+	DescribeTimeSeriesRequest(*iotsitewise.DescribeTimeSeriesInput) (*request.Request, *iotsitewise.DescribeTimeSeriesOutput)
+
 	DisassociateAssets(*iotsitewise.DisassociateAssetsInput) (*iotsitewise.DisassociateAssetsOutput, error)
 	DisassociateAssetsWithContext(aws.Context, *iotsitewise.DisassociateAssetsInput, ...request.Option) (*iotsitewise.DisassociateAssetsOutput, error)
 	DisassociateAssetsRequest(*iotsitewise.DisassociateAssetsInput) (*request.Request, *iotsitewise.DisassociateAssetsOutput)
+
+	DisassociateTimeSeriesFromAssetProperty(*iotsitewise.DisassociateTimeSeriesFromAssetPropertyInput) (*iotsitewise.DisassociateTimeSeriesFromAssetPropertyOutput, error)
+	DisassociateTimeSeriesFromAssetPropertyWithContext(aws.Context, *iotsitewise.DisassociateTimeSeriesFromAssetPropertyInput, ...request.Option) (*iotsitewise.DisassociateTimeSeriesFromAssetPropertyOutput, error)
+	DisassociateTimeSeriesFromAssetPropertyRequest(*iotsitewise.DisassociateTimeSeriesFromAssetPropertyInput) (*request.Request, *iotsitewise.DisassociateTimeSeriesFromAssetPropertyOutput)
+
+	ExecuteAction(*iotsitewise.ExecuteActionInput) (*iotsitewise.ExecuteActionOutput, error)
+	ExecuteActionWithContext(aws.Context, *iotsitewise.ExecuteActionInput, ...request.Option) (*iotsitewise.ExecuteActionOutput, error)
+	ExecuteActionRequest(*iotsitewise.ExecuteActionInput) (*request.Request, *iotsitewise.ExecuteActionOutput)
+
+	ExecuteQuery(*iotsitewise.ExecuteQueryInput) (*iotsitewise.ExecuteQueryOutput, error)
+	ExecuteQueryWithContext(aws.Context, *iotsitewise.ExecuteQueryInput, ...request.Option) (*iotsitewise.ExecuteQueryOutput, error)
+	ExecuteQueryRequest(*iotsitewise.ExecuteQueryInput) (*request.Request, *iotsitewise.ExecuteQueryOutput)
+
+	ExecuteQueryPages(*iotsitewise.ExecuteQueryInput, func(*iotsitewise.ExecuteQueryOutput, bool) bool) error
+	ExecuteQueryPagesWithContext(aws.Context, *iotsitewise.ExecuteQueryInput, func(*iotsitewise.ExecuteQueryOutput, bool) bool, ...request.Option) error
 
 	GetAssetPropertyAggregates(*iotsitewise.GetAssetPropertyAggregatesInput) (*iotsitewise.GetAssetPropertyAggregatesOutput, error)
 	GetAssetPropertyAggregatesWithContext(aws.Context, *iotsitewise.GetAssetPropertyAggregatesInput, ...request.Option) (*iotsitewise.GetAssetPropertyAggregatesOutput, error)
@@ -216,12 +292,40 @@ type IoTSiteWiseAPI interface {
 	ListAccessPoliciesPages(*iotsitewise.ListAccessPoliciesInput, func(*iotsitewise.ListAccessPoliciesOutput, bool) bool) error
 	ListAccessPoliciesPagesWithContext(aws.Context, *iotsitewise.ListAccessPoliciesInput, func(*iotsitewise.ListAccessPoliciesOutput, bool) bool, ...request.Option) error
 
+	ListActions(*iotsitewise.ListActionsInput) (*iotsitewise.ListActionsOutput, error)
+	ListActionsWithContext(aws.Context, *iotsitewise.ListActionsInput, ...request.Option) (*iotsitewise.ListActionsOutput, error)
+	ListActionsRequest(*iotsitewise.ListActionsInput) (*request.Request, *iotsitewise.ListActionsOutput)
+
+	ListActionsPages(*iotsitewise.ListActionsInput, func(*iotsitewise.ListActionsOutput, bool) bool) error
+	ListActionsPagesWithContext(aws.Context, *iotsitewise.ListActionsInput, func(*iotsitewise.ListActionsOutput, bool) bool, ...request.Option) error
+
+	ListAssetModelCompositeModels(*iotsitewise.ListAssetModelCompositeModelsInput) (*iotsitewise.ListAssetModelCompositeModelsOutput, error)
+	ListAssetModelCompositeModelsWithContext(aws.Context, *iotsitewise.ListAssetModelCompositeModelsInput, ...request.Option) (*iotsitewise.ListAssetModelCompositeModelsOutput, error)
+	ListAssetModelCompositeModelsRequest(*iotsitewise.ListAssetModelCompositeModelsInput) (*request.Request, *iotsitewise.ListAssetModelCompositeModelsOutput)
+
+	ListAssetModelCompositeModelsPages(*iotsitewise.ListAssetModelCompositeModelsInput, func(*iotsitewise.ListAssetModelCompositeModelsOutput, bool) bool) error
+	ListAssetModelCompositeModelsPagesWithContext(aws.Context, *iotsitewise.ListAssetModelCompositeModelsInput, func(*iotsitewise.ListAssetModelCompositeModelsOutput, bool) bool, ...request.Option) error
+
+	ListAssetModelProperties(*iotsitewise.ListAssetModelPropertiesInput) (*iotsitewise.ListAssetModelPropertiesOutput, error)
+	ListAssetModelPropertiesWithContext(aws.Context, *iotsitewise.ListAssetModelPropertiesInput, ...request.Option) (*iotsitewise.ListAssetModelPropertiesOutput, error)
+	ListAssetModelPropertiesRequest(*iotsitewise.ListAssetModelPropertiesInput) (*request.Request, *iotsitewise.ListAssetModelPropertiesOutput)
+
+	ListAssetModelPropertiesPages(*iotsitewise.ListAssetModelPropertiesInput, func(*iotsitewise.ListAssetModelPropertiesOutput, bool) bool) error
+	ListAssetModelPropertiesPagesWithContext(aws.Context, *iotsitewise.ListAssetModelPropertiesInput, func(*iotsitewise.ListAssetModelPropertiesOutput, bool) bool, ...request.Option) error
+
 	ListAssetModels(*iotsitewise.ListAssetModelsInput) (*iotsitewise.ListAssetModelsOutput, error)
 	ListAssetModelsWithContext(aws.Context, *iotsitewise.ListAssetModelsInput, ...request.Option) (*iotsitewise.ListAssetModelsOutput, error)
 	ListAssetModelsRequest(*iotsitewise.ListAssetModelsInput) (*request.Request, *iotsitewise.ListAssetModelsOutput)
 
 	ListAssetModelsPages(*iotsitewise.ListAssetModelsInput, func(*iotsitewise.ListAssetModelsOutput, bool) bool) error
 	ListAssetModelsPagesWithContext(aws.Context, *iotsitewise.ListAssetModelsInput, func(*iotsitewise.ListAssetModelsOutput, bool) bool, ...request.Option) error
+
+	ListAssetProperties(*iotsitewise.ListAssetPropertiesInput) (*iotsitewise.ListAssetPropertiesOutput, error)
+	ListAssetPropertiesWithContext(aws.Context, *iotsitewise.ListAssetPropertiesInput, ...request.Option) (*iotsitewise.ListAssetPropertiesOutput, error)
+	ListAssetPropertiesRequest(*iotsitewise.ListAssetPropertiesInput) (*request.Request, *iotsitewise.ListAssetPropertiesOutput)
+
+	ListAssetPropertiesPages(*iotsitewise.ListAssetPropertiesInput, func(*iotsitewise.ListAssetPropertiesOutput, bool) bool) error
+	ListAssetPropertiesPagesWithContext(aws.Context, *iotsitewise.ListAssetPropertiesInput, func(*iotsitewise.ListAssetPropertiesOutput, bool) bool, ...request.Option) error
 
 	ListAssetRelationships(*iotsitewise.ListAssetRelationshipsInput) (*iotsitewise.ListAssetRelationshipsOutput, error)
 	ListAssetRelationshipsWithContext(aws.Context, *iotsitewise.ListAssetRelationshipsInput, ...request.Option) (*iotsitewise.ListAssetRelationshipsOutput, error)
@@ -243,6 +347,20 @@ type IoTSiteWiseAPI interface {
 
 	ListAssociatedAssetsPages(*iotsitewise.ListAssociatedAssetsInput, func(*iotsitewise.ListAssociatedAssetsOutput, bool) bool) error
 	ListAssociatedAssetsPagesWithContext(aws.Context, *iotsitewise.ListAssociatedAssetsInput, func(*iotsitewise.ListAssociatedAssetsOutput, bool) bool, ...request.Option) error
+
+	ListBulkImportJobs(*iotsitewise.ListBulkImportJobsInput) (*iotsitewise.ListBulkImportJobsOutput, error)
+	ListBulkImportJobsWithContext(aws.Context, *iotsitewise.ListBulkImportJobsInput, ...request.Option) (*iotsitewise.ListBulkImportJobsOutput, error)
+	ListBulkImportJobsRequest(*iotsitewise.ListBulkImportJobsInput) (*request.Request, *iotsitewise.ListBulkImportJobsOutput)
+
+	ListBulkImportJobsPages(*iotsitewise.ListBulkImportJobsInput, func(*iotsitewise.ListBulkImportJobsOutput, bool) bool) error
+	ListBulkImportJobsPagesWithContext(aws.Context, *iotsitewise.ListBulkImportJobsInput, func(*iotsitewise.ListBulkImportJobsOutput, bool) bool, ...request.Option) error
+
+	ListCompositionRelationships(*iotsitewise.ListCompositionRelationshipsInput) (*iotsitewise.ListCompositionRelationshipsOutput, error)
+	ListCompositionRelationshipsWithContext(aws.Context, *iotsitewise.ListCompositionRelationshipsInput, ...request.Option) (*iotsitewise.ListCompositionRelationshipsOutput, error)
+	ListCompositionRelationshipsRequest(*iotsitewise.ListCompositionRelationshipsInput) (*request.Request, *iotsitewise.ListCompositionRelationshipsOutput)
+
+	ListCompositionRelationshipsPages(*iotsitewise.ListCompositionRelationshipsInput, func(*iotsitewise.ListCompositionRelationshipsOutput, bool) bool) error
+	ListCompositionRelationshipsPagesWithContext(aws.Context, *iotsitewise.ListCompositionRelationshipsInput, func(*iotsitewise.ListCompositionRelationshipsOutput, bool) bool, ...request.Option) error
 
 	ListDashboards(*iotsitewise.ListDashboardsInput) (*iotsitewise.ListDashboardsOutput, error)
 	ListDashboardsWithContext(aws.Context, *iotsitewise.ListDashboardsInput, ...request.Option) (*iotsitewise.ListDashboardsOutput, error)
@@ -283,6 +401,13 @@ type IoTSiteWiseAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *iotsitewise.ListTagsForResourceInput, ...request.Option) (*iotsitewise.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*iotsitewise.ListTagsForResourceInput) (*request.Request, *iotsitewise.ListTagsForResourceOutput)
 
+	ListTimeSeries(*iotsitewise.ListTimeSeriesInput) (*iotsitewise.ListTimeSeriesOutput, error)
+	ListTimeSeriesWithContext(aws.Context, *iotsitewise.ListTimeSeriesInput, ...request.Option) (*iotsitewise.ListTimeSeriesOutput, error)
+	ListTimeSeriesRequest(*iotsitewise.ListTimeSeriesInput) (*request.Request, *iotsitewise.ListTimeSeriesOutput)
+
+	ListTimeSeriesPages(*iotsitewise.ListTimeSeriesInput, func(*iotsitewise.ListTimeSeriesOutput, bool) bool) error
+	ListTimeSeriesPagesWithContext(aws.Context, *iotsitewise.ListTimeSeriesInput, func(*iotsitewise.ListTimeSeriesOutput, bool) bool, ...request.Option) error
+
 	PutDefaultEncryptionConfiguration(*iotsitewise.PutDefaultEncryptionConfigurationInput) (*iotsitewise.PutDefaultEncryptionConfigurationOutput, error)
 	PutDefaultEncryptionConfigurationWithContext(aws.Context, *iotsitewise.PutDefaultEncryptionConfigurationInput, ...request.Option) (*iotsitewise.PutDefaultEncryptionConfigurationOutput, error)
 	PutDefaultEncryptionConfigurationRequest(*iotsitewise.PutDefaultEncryptionConfigurationInput) (*request.Request, *iotsitewise.PutDefaultEncryptionConfigurationOutput)
@@ -314,6 +439,10 @@ type IoTSiteWiseAPI interface {
 	UpdateAssetModel(*iotsitewise.UpdateAssetModelInput) (*iotsitewise.UpdateAssetModelOutput, error)
 	UpdateAssetModelWithContext(aws.Context, *iotsitewise.UpdateAssetModelInput, ...request.Option) (*iotsitewise.UpdateAssetModelOutput, error)
 	UpdateAssetModelRequest(*iotsitewise.UpdateAssetModelInput) (*request.Request, *iotsitewise.UpdateAssetModelOutput)
+
+	UpdateAssetModelCompositeModel(*iotsitewise.UpdateAssetModelCompositeModelInput) (*iotsitewise.UpdateAssetModelCompositeModelOutput, error)
+	UpdateAssetModelCompositeModelWithContext(aws.Context, *iotsitewise.UpdateAssetModelCompositeModelInput, ...request.Option) (*iotsitewise.UpdateAssetModelCompositeModelOutput, error)
+	UpdateAssetModelCompositeModelRequest(*iotsitewise.UpdateAssetModelCompositeModelInput) (*request.Request, *iotsitewise.UpdateAssetModelCompositeModelOutput)
 
 	UpdateAssetProperty(*iotsitewise.UpdateAssetPropertyInput) (*iotsitewise.UpdateAssetPropertyOutput, error)
 	UpdateAssetPropertyWithContext(aws.Context, *iotsitewise.UpdateAssetPropertyInput, ...request.Option) (*iotsitewise.UpdateAssetPropertyOutput, error)

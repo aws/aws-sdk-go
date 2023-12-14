@@ -51,6 +51,19 @@
         {"shape":"ServerException"}
       ]
     },
+    "CreateSchedulingPolicy":{
+      "name":"CreateSchedulingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/createschedulingpolicy"
+      },
+      "input":{"shape":"CreateSchedulingPolicyRequest"},
+      "output":{"shape":"CreateSchedulingPolicyResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
     "DeleteComputeEnvironment":{
       "name":"DeleteComputeEnvironment",
       "http":{
@@ -72,6 +85,19 @@
       },
       "input":{"shape":"DeleteJobQueueRequest"},
       "output":{"shape":"DeleteJobQueueResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
+    "DeleteSchedulingPolicy":{
+      "name":"DeleteSchedulingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/deleteschedulingpolicy"
+      },
+      "input":{"shape":"DeleteSchedulingPolicyRequest"},
+      "output":{"shape":"DeleteSchedulingPolicyResponse"},
       "errors":[
         {"shape":"ClientException"},
         {"shape":"ServerException"}
@@ -142,6 +168,19 @@
         {"shape":"ServerException"}
       ]
     },
+    "DescribeSchedulingPolicies":{
+      "name":"DescribeSchedulingPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/describeschedulingpolicies"
+      },
+      "input":{"shape":"DescribeSchedulingPoliciesRequest"},
+      "output":{"shape":"DescribeSchedulingPoliciesResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
     "ListJobs":{
       "name":"ListJobs",
       "http":{
@@ -150,6 +189,19 @@
       },
       "input":{"shape":"ListJobsRequest"},
       "output":{"shape":"ListJobsResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
+    "ListSchedulingPolicies":{
+      "name":"ListSchedulingPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/listschedulingpolicies"
+      },
+      "input":{"shape":"ListSchedulingPoliciesRequest"},
+      "output":{"shape":"ListSchedulingPoliciesResponse"},
       "errors":[
         {"shape":"ClientException"},
         {"shape":"ServerException"}
@@ -258,6 +310,19 @@
         {"shape":"ClientException"},
         {"shape":"ServerException"}
       ]
+    },
+    "UpdateSchedulingPolicy":{
+      "name":"UpdateSchedulingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/updateschedulingpolicy"
+      },
+      "input":{"shape":"UpdateSchedulingPolicyRequest"},
+      "output":{"shape":"UpdateSchedulingPolicyResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
     }
   },
   "shapes":{
@@ -356,7 +421,8 @@
       "enum":[
         "BEST_FIT",
         "BEST_FIT_PROGRESSIVE",
-        "SPOT_CAPACITY_OPTIMIZED"
+        "SPOT_CAPACITY_OPTIMIZED",
+        "SPOT_PRICE_CAPACITY_OPTIMIZED"
       ]
     },
     "CRType":{
@@ -366,6 +432,14 @@
         "SPOT",
         "FARGATE",
         "FARGATE_SPOT"
+      ]
+    },
+    "CRUpdateAllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "BEST_FIT_PROGRESSIVE",
+        "SPOT_CAPACITY_OPTIMIZED",
+        "SPOT_PRICE_CAPACITY_OPTIMIZED"
       ]
     },
     "CancelJobRequest":{
@@ -396,12 +470,12 @@
       "type":"structure",
       "required":[
         "computeEnvironmentName",
-        "computeEnvironmentArn",
-        "ecsClusterArn"
+        "computeEnvironmentArn"
       ],
       "members":{
         "computeEnvironmentName":{"shape":"String"},
         "computeEnvironmentArn":{"shape":"String"},
+        "unmanagedvCpus":{"shape":"Integer"},
         "ecsClusterArn":{"shape":"String"},
         "tags":{"shape":"TagrisTagsMap"},
         "type":{"shape":"CEType"},
@@ -409,7 +483,11 @@
         "status":{"shape":"CEStatus"},
         "statusReason":{"shape":"String"},
         "computeResources":{"shape":"ComputeResource"},
-        "serviceRole":{"shape":"String"}
+        "serviceRole":{"shape":"String"},
+        "updatePolicy":{"shape":"UpdatePolicy"},
+        "eksConfiguration":{"shape":"EksConfiguration"},
+        "containerOrchestrationType":{"shape":"OrchestrationType"},
+        "uuid":{"shape":"String"}
       }
     },
     "ComputeEnvironmentDetailList":{
@@ -469,7 +547,19 @@
         "maxvCpus":{"shape":"Integer"},
         "desiredvCpus":{"shape":"Integer"},
         "subnets":{"shape":"StringList"},
-        "securityGroupIds":{"shape":"StringList"}
+        "securityGroupIds":{"shape":"StringList"},
+        "allocationStrategy":{"shape":"CRUpdateAllocationStrategy"},
+        "instanceTypes":{"shape":"StringList"},
+        "ec2KeyPair":{"shape":"String"},
+        "instanceRole":{"shape":"String"},
+        "tags":{"shape":"TagsMap"},
+        "placementGroup":{"shape":"String"},
+        "bidPercentage":{"shape":"Integer"},
+        "launchTemplate":{"shape":"LaunchTemplateSpecification"},
+        "ec2Configuration":{"shape":"Ec2ConfigurationList"},
+        "updateToLatestImageVersion":{"shape":"Boolean"},
+        "type":{"shape":"CRType"},
+        "imageId":{"shape":"String"}
       }
     },
     "ContainerDetail":{
@@ -500,7 +590,9 @@
         "logConfiguration":{"shape":"LogConfiguration"},
         "secrets":{"shape":"SecretList"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
-        "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"}
+        "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"},
+        "ephemeralStorage":{"shape":"EphemeralStorage"},
+        "runtimePlatform":{"shape":"RuntimePlatform"}
       }
     },
     "ContainerOverrides":{
@@ -552,7 +644,9 @@
         "logConfiguration":{"shape":"LogConfiguration"},
         "secrets":{"shape":"SecretList"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
-        "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"}
+        "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"},
+        "ephemeralStorage":{"shape":"EphemeralStorage"},
+        "runtimePlatform":{"shape":"RuntimePlatform"}
       }
     },
     "ContainerSummary":{
@@ -572,9 +666,11 @@
         "computeEnvironmentName":{"shape":"String"},
         "type":{"shape":"CEType"},
         "state":{"shape":"CEState"},
+        "unmanagedvCpus":{"shape":"Integer"},
         "computeResources":{"shape":"ComputeResource"},
         "serviceRole":{"shape":"String"},
-        "tags":{"shape":"TagrisTagsMap"}
+        "tags":{"shape":"TagrisTagsMap"},
+        "eksConfiguration":{"shape":"EksConfiguration"}
       }
     },
     "CreateComputeEnvironmentResponse":{
@@ -594,6 +690,7 @@
       "members":{
         "jobQueueName":{"shape":"String"},
         "state":{"shape":"JQState"},
+        "schedulingPolicyArn":{"shape":"String"},
         "priority":{"shape":"Integer"},
         "computeEnvironmentOrder":{"shape":"ComputeEnvironmentOrders"},
         "tags":{"shape":"TagrisTagsMap"}
@@ -608,6 +705,26 @@
       "members":{
         "jobQueueName":{"shape":"String"},
         "jobQueueArn":{"shape":"String"}
+      }
+    },
+    "CreateSchedulingPolicyRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"String"},
+        "fairsharePolicy":{"shape":"FairsharePolicy"},
+        "tags":{"shape":"TagrisTagsMap"}
+      }
+    },
+    "CreateSchedulingPolicyResponse":{
+      "type":"structure",
+      "required":[
+        "name",
+        "arn"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "arn":{"shape":"String"}
       }
     },
     "DeleteComputeEnvironmentRequest":{
@@ -630,6 +747,18 @@
       }
     },
     "DeleteJobQueueResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteSchedulingPolicyRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"String"}
+      }
+    },
+    "DeleteSchedulingPolicyResponse":{
       "type":"structure",
       "members":{
       }
@@ -706,6 +835,19 @@
         "jobs":{"shape":"JobDetailList"}
       }
     },
+    "DescribeSchedulingPoliciesRequest":{
+      "type":"structure",
+      "required":["arns"],
+      "members":{
+        "arns":{"shape":"StringList"}
+      }
+    },
+    "DescribeSchedulingPoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "schedulingPolicies":{"shape":"SchedulingPolicyDetailList"}
+      }
+    },
     "Device":{
       "type":"structure",
       "required":["hostPath"],
@@ -768,16 +910,260 @@
       "required":["imageType"],
       "members":{
         "imageType":{"shape":"ImageType"},
-        "imageIdOverride":{"shape":"ImageIdOverride"}
+        "imageIdOverride":{"shape":"ImageIdOverride"},
+        "imageKubernetesVersion":{"shape":"KubernetesVersion"}
       }
     },
     "Ec2ConfigurationList":{
       "type":"list",
       "member":{"shape":"Ec2Configuration"}
     },
+    "EksAttemptContainerDetail":{
+      "type":"structure",
+      "members":{
+        "exitCode":{"shape":"Integer"},
+        "reason":{"shape":"String"}
+      }
+    },
+    "EksAttemptContainerDetails":{
+      "type":"list",
+      "member":{"shape":"EksAttemptContainerDetail"}
+    },
+    "EksAttemptDetail":{
+      "type":"structure",
+      "members":{
+        "containers":{"shape":"EksAttemptContainerDetails"},
+        "podName":{"shape":"String"},
+        "nodeName":{"shape":"String"},
+        "startedAt":{"shape":"Long"},
+        "stoppedAt":{"shape":"Long"},
+        "statusReason":{"shape":"String"}
+      }
+    },
+    "EksAttemptDetails":{
+      "type":"list",
+      "member":{"shape":"EksAttemptDetail"}
+    },
+    "EksConfiguration":{
+      "type":"structure",
+      "required":[
+        "eksClusterArn",
+        "kubernetesNamespace"
+      ],
+      "members":{
+        "eksClusterArn":{"shape":"String"},
+        "kubernetesNamespace":{"shape":"String"}
+      }
+    },
+    "EksContainer":{
+      "type":"structure",
+      "required":["image"],
+      "members":{
+        "name":{"shape":"String"},
+        "image":{"shape":"String"},
+        "imagePullPolicy":{"shape":"String"},
+        "command":{"shape":"StringList"},
+        "args":{"shape":"StringList"},
+        "env":{"shape":"EksContainerEnvironmentVariables"},
+        "resources":{"shape":"EksContainerResourceRequirements"},
+        "volumeMounts":{"shape":"EksContainerVolumeMounts"},
+        "securityContext":{"shape":"EksContainerSecurityContext"}
+      }
+    },
+    "EksContainerDetail":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "image":{"shape":"String"},
+        "imagePullPolicy":{"shape":"String"},
+        "command":{"shape":"StringList"},
+        "args":{"shape":"StringList"},
+        "env":{"shape":"EksContainerEnvironmentVariables"},
+        "resources":{"shape":"EksContainerResourceRequirements"},
+        "exitCode":{"shape":"Integer"},
+        "reason":{"shape":"String"},
+        "volumeMounts":{"shape":"EksContainerVolumeMounts"},
+        "securityContext":{"shape":"EksContainerSecurityContext"}
+      }
+    },
+    "EksContainerDetails":{
+      "type":"list",
+      "member":{"shape":"EksContainerDetail"}
+    },
+    "EksContainerEnvironmentVariable":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"String"},
+        "value":{"shape":"String"}
+      }
+    },
+    "EksContainerEnvironmentVariables":{
+      "type":"list",
+      "member":{"shape":"EksContainerEnvironmentVariable"}
+    },
+    "EksContainerOverride":{
+      "type":"structure",
+      "members":{
+        "image":{"shape":"String"},
+        "command":{"shape":"StringList"},
+        "args":{"shape":"StringList"},
+        "env":{"shape":"EksContainerEnvironmentVariables"},
+        "resources":{"shape":"EksContainerResourceRequirements"}
+      }
+    },
+    "EksContainerOverrideList":{
+      "type":"list",
+      "member":{"shape":"EksContainerOverride"}
+    },
+    "EksContainerResourceRequirements":{
+      "type":"structure",
+      "members":{
+        "limits":{"shape":"EksLimits"},
+        "requests":{"shape":"EksRequests"}
+      }
+    },
+    "EksContainerSecurityContext":{
+      "type":"structure",
+      "members":{
+        "runAsUser":{"shape":"Long"},
+        "runAsGroup":{"shape":"Long"},
+        "privileged":{"shape":"Boolean"},
+        "readOnlyRootFilesystem":{"shape":"Boolean"},
+        "runAsNonRoot":{"shape":"Boolean"}
+      }
+    },
+    "EksContainerVolumeMount":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "mountPath":{"shape":"String"},
+        "readOnly":{"shape":"Boolean"}
+      }
+    },
+    "EksContainerVolumeMounts":{
+      "type":"list",
+      "member":{"shape":"EksContainerVolumeMount"}
+    },
+    "EksContainers":{
+      "type":"list",
+      "member":{"shape":"EksContainer"}
+    },
+    "EksEmptyDir":{
+      "type":"structure",
+      "members":{
+        "medium":{"shape":"String"},
+        "sizeLimit":{"shape":"Quantity"}
+      }
+    },
+    "EksHostPath":{
+      "type":"structure",
+      "members":{
+        "path":{"shape":"String"}
+      }
+    },
+    "EksLabelsMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
+    "EksLimits":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"Quantity"}
+    },
+    "EksMetadata":{
+      "type":"structure",
+      "members":{
+        "labels":{"shape":"EksLabelsMap"}
+      }
+    },
+    "EksPodProperties":{
+      "type":"structure",
+      "members":{
+        "serviceAccountName":{"shape":"String"},
+        "hostNetwork":{"shape":"Boolean"},
+        "dnsPolicy":{"shape":"String"},
+        "containers":{"shape":"EksContainers"},
+        "volumes":{"shape":"EksVolumes"},
+        "metadata":{"shape":"EksMetadata"}
+      }
+    },
+    "EksPodPropertiesDetail":{
+      "type":"structure",
+      "members":{
+        "serviceAccountName":{"shape":"String"},
+        "hostNetwork":{"shape":"Boolean"},
+        "dnsPolicy":{"shape":"String"},
+        "containers":{"shape":"EksContainerDetails"},
+        "volumes":{"shape":"EksVolumes"},
+        "podName":{"shape":"String"},
+        "nodeName":{"shape":"String"},
+        "metadata":{"shape":"EksMetadata"}
+      }
+    },
+    "EksPodPropertiesOverride":{
+      "type":"structure",
+      "members":{
+        "containers":{"shape":"EksContainerOverrideList"},
+        "metadata":{"shape":"EksMetadata"}
+      }
+    },
+    "EksProperties":{
+      "type":"structure",
+      "members":{
+        "podProperties":{"shape":"EksPodProperties"}
+      }
+    },
+    "EksPropertiesDetail":{
+      "type":"structure",
+      "members":{
+        "podProperties":{"shape":"EksPodPropertiesDetail"}
+      }
+    },
+    "EksPropertiesOverride":{
+      "type":"structure",
+      "members":{
+        "podProperties":{"shape":"EksPodPropertiesOverride"}
+      }
+    },
+    "EksRequests":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"Quantity"}
+    },
+    "EksSecret":{
+      "type":"structure",
+      "required":["secretName"],
+      "members":{
+        "secretName":{"shape":"String"},
+        "optional":{"shape":"Boolean"}
+      }
+    },
+    "EksVolume":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"String"},
+        "hostPath":{"shape":"EksHostPath"},
+        "emptyDir":{"shape":"EksEmptyDir"},
+        "secret":{"shape":"EksSecret"}
+      }
+    },
+    "EksVolumes":{
+      "type":"list",
+      "member":{"shape":"EksVolume"}
+    },
     "EnvironmentVariables":{
       "type":"list",
       "member":{"shape":"KeyValuePair"}
+    },
+    "EphemeralStorage":{
+      "type":"structure",
+      "required":["sizeInGiB"],
+      "members":{
+        "sizeInGiB":{"shape":"Integer"}
+      }
     },
     "EvaluateOnExit":{
       "type":"structure",
@@ -793,12 +1179,21 @@
       "type":"list",
       "member":{"shape":"EvaluateOnExit"}
     },
+    "FairsharePolicy":{
+      "type":"structure",
+      "members":{
+        "shareDecaySeconds":{"shape":"Integer"},
+        "computeReservation":{"shape":"Integer"},
+        "shareDistribution":{"shape":"ShareAttributesList"}
+      }
+    },
     "FargatePlatformConfiguration":{
       "type":"structure",
       "members":{
         "platformVersion":{"shape":"String"}
       }
     },
+    "Float":{"type":"float"},
     "Host":{
       "type":"structure",
       "members":{
@@ -848,6 +1243,7 @@
         "revision":{"shape":"Integer"},
         "status":{"shape":"String"},
         "type":{"shape":"String"},
+        "schedulingPriority":{"shape":"Integer"},
         "parameters":{"shape":"ParametersMap"},
         "retryStrategy":{"shape":"RetryStrategy"},
         "containerProperties":{"shape":"ContainerProperties"},
@@ -855,7 +1251,9 @@
         "nodeProperties":{"shape":"NodeProperties"},
         "tags":{"shape":"TagrisTagsMap"},
         "propagateTags":{"shape":"Boolean"},
-        "platformCapabilities":{"shape":"PlatformCapabilityList"}
+        "platformCapabilities":{"shape":"PlatformCapabilityList"},
+        "eksProperties":{"shape":"EksProperties"},
+        "containerOrchestrationType":{"shape":"OrchestrationType"}
       }
     },
     "JobDefinitionList":{
@@ -896,6 +1294,8 @@
         "jobId":{"shape":"String"},
         "jobQueue":{"shape":"String"},
         "status":{"shape":"JobStatus"},
+        "shareIdentifier":{"shape":"String"},
+        "schedulingPriority":{"shape":"Integer"},
         "attempts":{"shape":"AttemptDetails"},
         "statusReason":{"shape":"String"},
         "createdAt":{"shape":"Long"},
@@ -912,12 +1312,21 @@
         "timeout":{"shape":"JobTimeout"},
         "tags":{"shape":"TagrisTagsMap"},
         "propagateTags":{"shape":"Boolean"},
-        "platformCapabilities":{"shape":"PlatformCapabilityList"}
+        "platformCapabilities":{"shape":"PlatformCapabilityList"},
+        "eksProperties":{"shape":"EksPropertiesDetail"},
+        "eksAttempts":{"shape":"EksAttemptDetails"},
+        "isCancelled":{"shape":"Boolean"},
+        "isTerminated":{"shape":"Boolean"}
       }
     },
     "JobDetailList":{
       "type":"list",
       "member":{"shape":"JobDetail"}
+    },
+    "JobExecutionTimeoutMinutes":{
+      "type":"long",
+      "max":360,
+      "min":1
     },
     "JobQueueDetail":{
       "type":"structure",
@@ -932,6 +1341,7 @@
         "jobQueueName":{"shape":"String"},
         "jobQueueArn":{"shape":"String"},
         "state":{"shape":"JQState"},
+        "schedulingPolicyArn":{"shape":"String"},
         "status":{"shape":"JQStatus"},
         "statusReason":{"shape":"String"},
         "priority":{"shape":"Integer"},
@@ -972,7 +1382,8 @@
         "stoppedAt":{"shape":"Long"},
         "container":{"shape":"ContainerSummary"},
         "arrayProperties":{"shape":"ArrayPropertiesSummary"},
-        "nodeProperties":{"shape":"NodePropertiesSummary"}
+        "nodeProperties":{"shape":"NodePropertiesSummary"},
+        "jobDefinition":{"shape":"String"}
       }
     },
     "JobSummaryList":{
@@ -991,6 +1402,18 @@
         "name":{"shape":"String"},
         "value":{"shape":"String"}
       }
+    },
+    "KeyValuesPair":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "values":{"shape":"StringList"}
+      }
+    },
+    "KubernetesVersion":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "LaunchTemplateSpecification":{
       "type":"structure",
@@ -1011,6 +1434,10 @@
         "swappiness":{"shape":"Integer"}
       }
     },
+    "ListJobsFilterList":{
+      "type":"list",
+      "member":{"shape":"KeyValuesPair"}
+    },
     "ListJobsRequest":{
       "type":"structure",
       "members":{
@@ -1019,7 +1446,8 @@
         "multiNodeJobId":{"shape":"String"},
         "jobStatus":{"shape":"JobStatus"},
         "maxResults":{"shape":"Integer"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"String"},
+        "filters":{"shape":"ListJobsFilterList"}
       }
     },
     "ListJobsResponse":{
@@ -1027,6 +1455,20 @@
       "required":["jobSummaryList"],
       "members":{
         "jobSummaryList":{"shape":"JobSummaryList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListSchedulingPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{"shape":"Integer"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListSchedulingPoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "schedulingPolicies":{"shape":"SchedulingPolicyListingDetailList"},
         "nextToken":{"shape":"String"}
       }
     },
@@ -1163,6 +1605,13 @@
         "container":{"shape":"ContainerProperties"}
       }
     },
+    "OrchestrationType":{
+      "type":"string",
+      "enum":[
+        "ECS",
+        "EKS"
+      ]
+    },
     "ParametersMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -1179,6 +1628,11 @@
       "type":"list",
       "member":{"shape":"PlatformCapability"}
     },
+    "Quantity":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "RegisterJobDefinitionRequest":{
       "type":"structure",
       "required":[
@@ -1189,13 +1643,15 @@
         "jobDefinitionName":{"shape":"String"},
         "type":{"shape":"JobDefinitionType"},
         "parameters":{"shape":"ParametersMap"},
+        "schedulingPriority":{"shape":"Integer"},
         "containerProperties":{"shape":"ContainerProperties"},
         "nodeProperties":{"shape":"NodeProperties"},
         "retryStrategy":{"shape":"RetryStrategy"},
         "propagateTags":{"shape":"Boolean"},
         "timeout":{"shape":"JobTimeout"},
         "tags":{"shape":"TagrisTagsMap"},
-        "platformCapabilities":{"shape":"PlatformCapabilityList"}
+        "platformCapabilities":{"shape":"PlatformCapabilityList"},
+        "eksProperties":{"shape":"EksProperties"}
       }
     },
     "RegisterJobDefinitionResponse":{
@@ -1248,6 +1704,41 @@
         "evaluateOnExit":{"shape":"EvaluateOnExitList"}
       }
     },
+    "RuntimePlatform":{
+      "type":"structure",
+      "members":{
+        "operatingSystemFamily":{"shape":"String"},
+        "cpuArchitecture":{"shape":"String"}
+      }
+    },
+    "SchedulingPolicyDetail":{
+      "type":"structure",
+      "required":[
+        "name",
+        "arn"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "arn":{"shape":"String"},
+        "fairsharePolicy":{"shape":"FairsharePolicy"},
+        "tags":{"shape":"TagrisTagsMap"}
+      }
+    },
+    "SchedulingPolicyDetailList":{
+      "type":"list",
+      "member":{"shape":"SchedulingPolicyDetail"}
+    },
+    "SchedulingPolicyListingDetail":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"String"}
+      }
+    },
+    "SchedulingPolicyListingDetailList":{
+      "type":"list",
+      "member":{"shape":"SchedulingPolicyListingDetail"}
+    },
     "Secret":{
       "type":"structure",
       "required":[
@@ -1272,6 +1763,18 @@
       "exception":true,
       "fault":true
     },
+    "ShareAttributes":{
+      "type":"structure",
+      "required":["shareIdentifier"],
+      "members":{
+        "shareIdentifier":{"shape":"String"},
+        "weightFactor":{"shape":"Float"}
+      }
+    },
+    "ShareAttributesList":{
+      "type":"list",
+      "member":{"shape":"ShareAttributes"}
+    },
     "String":{"type":"string"},
     "StringList":{
       "type":"list",
@@ -1287,6 +1790,8 @@
       "members":{
         "jobName":{"shape":"String"},
         "jobQueue":{"shape":"String"},
+        "shareIdentifier":{"shape":"String"},
+        "schedulingPriorityOverride":{"shape":"Integer"},
         "arrayProperties":{"shape":"ArrayProperties"},
         "dependsOn":{"shape":"JobDependencyList"},
         "jobDefinition":{"shape":"String"},
@@ -1296,7 +1801,8 @@
         "retryStrategy":{"shape":"RetryStrategy"},
         "propagateTags":{"shape":"Boolean"},
         "timeout":{"shape":"JobTimeout"},
-        "tags":{"shape":"TagrisTagsMap"}
+        "tags":{"shape":"TagrisTagsMap"},
+        "eksPropertiesOverride":{"shape":"EksPropertiesOverride"}
       }
     },
     "SubmitJobResponse":{
@@ -1437,8 +1943,10 @@
       "members":{
         "computeEnvironment":{"shape":"String"},
         "state":{"shape":"CEState"},
+        "unmanagedvCpus":{"shape":"Integer"},
         "computeResources":{"shape":"ComputeResourceUpdate"},
-        "serviceRole":{"shape":"String"}
+        "serviceRole":{"shape":"String"},
+        "updatePolicy":{"shape":"UpdatePolicy"}
       }
     },
     "UpdateComputeEnvironmentResponse":{
@@ -1454,6 +1962,7 @@
       "members":{
         "jobQueue":{"shape":"String"},
         "state":{"shape":"JQState"},
+        "schedulingPolicyArn":{"shape":"String"},
         "priority":{"shape":"Integer"},
         "computeEnvironmentOrder":{"shape":"ComputeEnvironmentOrders"}
       }
@@ -1463,6 +1972,26 @@
       "members":{
         "jobQueueName":{"shape":"String"},
         "jobQueueArn":{"shape":"String"}
+      }
+    },
+    "UpdatePolicy":{
+      "type":"structure",
+      "members":{
+        "terminateJobsOnUpdate":{"shape":"Boolean"},
+        "jobExecutionTimeoutMinutes":{"shape":"JobExecutionTimeoutMinutes"}
+      }
+    },
+    "UpdateSchedulingPolicyRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"String"},
+        "fairsharePolicy":{"shape":"FairsharePolicy"}
+      }
+    },
+    "UpdateSchedulingPolicyResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "Volume":{

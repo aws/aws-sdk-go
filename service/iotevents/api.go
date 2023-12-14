@@ -29,14 +29,13 @@ const opCreateAlarmModel = "CreateAlarmModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAlarmModelRequest method.
+//	req, resp := client.CreateAlarmModelRequest(params)
 //
-//    // Example sending a request using the CreateAlarmModelRequest method.
-//    req, resp := client.CreateAlarmModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/CreateAlarmModel
 func (c *IoTEvents) CreateAlarmModelRequest(input *CreateAlarmModelInput) (req *request.Request, output *CreateAlarmModelOutput) {
@@ -70,26 +69,27 @@ func (c *IoTEvents) CreateAlarmModelRequest(input *CreateAlarmModelInput) (req *
 // API operation CreateAlarmModel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceAlreadyExistsException
-//   The resource already exists.
+//   - ResourceInUseException
+//     The resource is in use.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - ResourceAlreadyExistsException
+//     The resource already exists.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - LimitExceededException
+//     A limit was exceeded.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/CreateAlarmModel
 func (c *IoTEvents) CreateAlarmModel(input *CreateAlarmModelInput) (*CreateAlarmModelOutput, error) {
@@ -129,14 +129,13 @@ const opCreateDetectorModel = "CreateDetectorModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDetectorModelRequest method.
+//	req, resp := client.CreateDetectorModelRequest(params)
 //
-//    // Example sending a request using the CreateDetectorModelRequest method.
-//    req, resp := client.CreateDetectorModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/CreateDetectorModel
 func (c *IoTEvents) CreateDetectorModelRequest(input *CreateDetectorModelInput) (req *request.Request, output *CreateDetectorModelOutput) {
@@ -167,26 +166,27 @@ func (c *IoTEvents) CreateDetectorModelRequest(input *CreateDetectorModelInput) 
 // API operation CreateDetectorModel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceAlreadyExistsException
-//   The resource already exists.
+//   - ResourceInUseException
+//     The resource is in use.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - ResourceAlreadyExistsException
+//     The resource already exists.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - LimitExceededException
+//     A limit was exceeded.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/CreateDetectorModel
 func (c *IoTEvents) CreateDetectorModel(input *CreateDetectorModelInput) (*CreateDetectorModelOutput, error) {
@@ -226,14 +226,13 @@ const opCreateInput = "CreateInput"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateInputRequest method.
+//	req, resp := client.CreateInputRequest(params)
 //
-//    // Example sending a request using the CreateInputRequest method.
-//    req, resp := client.CreateInputRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/CreateInput
 func (c *IoTEvents) CreateInputRequest(input *CreateInputInput) (req *request.Request, output *CreateInputOutput) {
@@ -264,20 +263,21 @@ func (c *IoTEvents) CreateInputRequest(input *CreateInputInput) (req *request.Re
 // API operation CreateInput for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ResourceAlreadyExistsException
-//   The resource already exists.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ResourceAlreadyExistsException
+//     The resource already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/CreateInput
 func (c *IoTEvents) CreateInput(input *CreateInputInput) (*CreateInputOutput, error) {
@@ -317,14 +317,13 @@ const opDeleteAlarmModel = "DeleteAlarmModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAlarmModelRequest method.
+//	req, resp := client.DeleteAlarmModelRequest(params)
 //
-//    // Example sending a request using the DeleteAlarmModelRequest method.
-//    req, resp := client.DeleteAlarmModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DeleteAlarmModel
 func (c *IoTEvents) DeleteAlarmModelRequest(input *DeleteAlarmModelInput) (req *request.Request, output *DeleteAlarmModelOutput) {
@@ -357,23 +356,24 @@ func (c *IoTEvents) DeleteAlarmModelRequest(input *DeleteAlarmModelInput) (req *
 // API operation DeleteAlarmModel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - ResourceInUseException
+//     The resource is in use.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DeleteAlarmModel
 func (c *IoTEvents) DeleteAlarmModel(input *DeleteAlarmModelInput) (*DeleteAlarmModelOutput, error) {
@@ -413,14 +413,13 @@ const opDeleteDetectorModel = "DeleteDetectorModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDetectorModelRequest method.
+//	req, resp := client.DeleteDetectorModelRequest(params)
 //
-//    // Example sending a request using the DeleteDetectorModelRequest method.
-//    req, resp := client.DeleteDetectorModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DeleteDetectorModel
 func (c *IoTEvents) DeleteDetectorModelRequest(input *DeleteDetectorModelInput) (req *request.Request, output *DeleteDetectorModelOutput) {
@@ -453,23 +452,24 @@ func (c *IoTEvents) DeleteDetectorModelRequest(input *DeleteDetectorModelInput) 
 // API operation DeleteDetectorModel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - ResourceInUseException
+//     The resource is in use.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DeleteDetectorModel
 func (c *IoTEvents) DeleteDetectorModel(input *DeleteDetectorModelInput) (*DeleteDetectorModelOutput, error) {
@@ -509,14 +509,13 @@ const opDeleteInput = "DeleteInput"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteInputRequest method.
+//	req, resp := client.DeleteInputRequest(params)
 //
-//    // Example sending a request using the DeleteInputRequest method.
-//    req, resp := client.DeleteInputRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DeleteInput
 func (c *IoTEvents) DeleteInputRequest(input *DeleteInputInput) (req *request.Request, output *DeleteInputOutput) {
@@ -548,23 +547,24 @@ func (c *IoTEvents) DeleteInputRequest(input *DeleteInputInput) (req *request.Re
 // API operation DeleteInput for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ResourceInUseException
+//     The resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DeleteInput
 func (c *IoTEvents) DeleteInput(input *DeleteInputInput) (*DeleteInputOutput, error) {
@@ -604,14 +604,13 @@ const opDescribeAlarmModel = "DescribeAlarmModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAlarmModelRequest method.
+//	req, resp := client.DescribeAlarmModelRequest(params)
 //
-//    // Example sending a request using the DescribeAlarmModelRequest method.
-//    req, resp := client.DescribeAlarmModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeAlarmModel
 func (c *IoTEvents) DescribeAlarmModelRequest(input *DescribeAlarmModelInput) (req *request.Request, output *DescribeAlarmModelOutput) {
@@ -643,20 +642,21 @@ func (c *IoTEvents) DescribeAlarmModelRequest(input *DescribeAlarmModelInput) (r
 // API operation DescribeAlarmModel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeAlarmModel
 func (c *IoTEvents) DescribeAlarmModel(input *DescribeAlarmModelInput) (*DescribeAlarmModelOutput, error) {
@@ -696,14 +696,13 @@ const opDescribeDetectorModel = "DescribeDetectorModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDetectorModelRequest method.
+//	req, resp := client.DescribeDetectorModelRequest(params)
 //
-//    // Example sending a request using the DescribeDetectorModelRequest method.
-//    req, resp := client.DescribeDetectorModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeDetectorModel
 func (c *IoTEvents) DescribeDetectorModelRequest(input *DescribeDetectorModelInput) (req *request.Request, output *DescribeDetectorModelOutput) {
@@ -735,20 +734,21 @@ func (c *IoTEvents) DescribeDetectorModelRequest(input *DescribeDetectorModelInp
 // API operation DescribeDetectorModel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeDetectorModel
 func (c *IoTEvents) DescribeDetectorModel(input *DescribeDetectorModelInput) (*DescribeDetectorModelOutput, error) {
@@ -788,14 +788,13 @@ const opDescribeDetectorModelAnalysis = "DescribeDetectorModelAnalysis"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDetectorModelAnalysisRequest method.
+//	req, resp := client.DescribeDetectorModelAnalysisRequest(params)
 //
-//    // Example sending a request using the DescribeDetectorModelAnalysisRequest method.
-//    req, resp := client.DescribeDetectorModelAnalysisRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeDetectorModelAnalysis
 func (c *IoTEvents) DescribeDetectorModelAnalysisRequest(input *DescribeDetectorModelAnalysisInput) (req *request.Request, output *DescribeDetectorModelAnalysisOutput) {
@@ -829,20 +828,21 @@ func (c *IoTEvents) DescribeDetectorModelAnalysisRequest(input *DescribeDetector
 // API operation DescribeDetectorModelAnalysis for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeDetectorModelAnalysis
 func (c *IoTEvents) DescribeDetectorModelAnalysis(input *DescribeDetectorModelAnalysisInput) (*DescribeDetectorModelAnalysisOutput, error) {
@@ -882,14 +882,13 @@ const opDescribeInput = "DescribeInput"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeInputRequest method.
+//	req, resp := client.DescribeInputRequest(params)
 //
-//    // Example sending a request using the DescribeInputRequest method.
-//    req, resp := client.DescribeInputRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeInput
 func (c *IoTEvents) DescribeInputRequest(input *DescribeInputInput) (req *request.Request, output *DescribeInputOutput) {
@@ -920,20 +919,21 @@ func (c *IoTEvents) DescribeInputRequest(input *DescribeInputInput) (req *reques
 // API operation DescribeInput for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeInput
 func (c *IoTEvents) DescribeInput(input *DescribeInputInput) (*DescribeInputOutput, error) {
@@ -973,14 +973,13 @@ const opDescribeLoggingOptions = "DescribeLoggingOptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLoggingOptionsRequest method.
+//	req, resp := client.DescribeLoggingOptionsRequest(params)
 //
-//    // Example sending a request using the DescribeLoggingOptionsRequest method.
-//    req, resp := client.DescribeLoggingOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeLoggingOptions
 func (c *IoTEvents) DescribeLoggingOptionsRequest(input *DescribeLoggingOptionsInput) (req *request.Request, output *DescribeLoggingOptionsOutput) {
@@ -1011,23 +1010,24 @@ func (c *IoTEvents) DescribeLoggingOptionsRequest(input *DescribeLoggingOptionsI
 // API operation DescribeLoggingOptions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * UnsupportedOperationException
-//   The requested operation is not supported.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - UnsupportedOperationException
+//     The requested operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeLoggingOptions
 func (c *IoTEvents) DescribeLoggingOptions(input *DescribeLoggingOptionsInput) (*DescribeLoggingOptionsOutput, error) {
@@ -1067,14 +1067,13 @@ const opGetDetectorModelAnalysisResults = "GetDetectorModelAnalysisResults"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDetectorModelAnalysisResultsRequest method.
+//	req, resp := client.GetDetectorModelAnalysisResultsRequest(params)
 //
-//    // Example sending a request using the GetDetectorModelAnalysisResultsRequest method.
-//    req, resp := client.GetDetectorModelAnalysisResultsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/GetDetectorModelAnalysisResults
 func (c *IoTEvents) GetDetectorModelAnalysisResultsRequest(input *GetDetectorModelAnalysisResultsInput) (req *request.Request, output *GetDetectorModelAnalysisResultsOutput) {
@@ -1108,20 +1107,21 @@ func (c *IoTEvents) GetDetectorModelAnalysisResultsRequest(input *GetDetectorMod
 // API operation GetDetectorModelAnalysisResults for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/GetDetectorModelAnalysisResults
 func (c *IoTEvents) GetDetectorModelAnalysisResults(input *GetDetectorModelAnalysisResultsInput) (*GetDetectorModelAnalysisResultsOutput, error) {
@@ -1161,14 +1161,13 @@ const opListAlarmModelVersions = "ListAlarmModelVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAlarmModelVersionsRequest method.
+//	req, resp := client.ListAlarmModelVersionsRequest(params)
 //
-//    // Example sending a request using the ListAlarmModelVersionsRequest method.
-//    req, resp := client.ListAlarmModelVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListAlarmModelVersions
 func (c *IoTEvents) ListAlarmModelVersionsRequest(input *ListAlarmModelVersionsInput) (req *request.Request, output *ListAlarmModelVersionsOutput) {
@@ -1200,20 +1199,21 @@ func (c *IoTEvents) ListAlarmModelVersionsRequest(input *ListAlarmModelVersionsI
 // API operation ListAlarmModelVersions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListAlarmModelVersions
 func (c *IoTEvents) ListAlarmModelVersions(input *ListAlarmModelVersionsInput) (*ListAlarmModelVersionsOutput, error) {
@@ -1253,14 +1253,13 @@ const opListAlarmModels = "ListAlarmModels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAlarmModelsRequest method.
+//	req, resp := client.ListAlarmModelsRequest(params)
 //
-//    // Example sending a request using the ListAlarmModelsRequest method.
-//    req, resp := client.ListAlarmModelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListAlarmModels
 func (c *IoTEvents) ListAlarmModelsRequest(input *ListAlarmModelsInput) (req *request.Request, output *ListAlarmModelsOutput) {
@@ -1292,17 +1291,18 @@ func (c *IoTEvents) ListAlarmModelsRequest(input *ListAlarmModelsInput) (req *re
 // API operation ListAlarmModels for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListAlarmModels
 func (c *IoTEvents) ListAlarmModels(input *ListAlarmModelsInput) (*ListAlarmModelsOutput, error) {
@@ -1342,14 +1342,13 @@ const opListDetectorModelVersions = "ListDetectorModelVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDetectorModelVersionsRequest method.
+//	req, resp := client.ListDetectorModelVersionsRequest(params)
 //
-//    // Example sending a request using the ListDetectorModelVersionsRequest method.
-//    req, resp := client.ListDetectorModelVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListDetectorModelVersions
 func (c *IoTEvents) ListDetectorModelVersionsRequest(input *ListDetectorModelVersionsInput) (req *request.Request, output *ListDetectorModelVersionsOutput) {
@@ -1381,20 +1380,21 @@ func (c *IoTEvents) ListDetectorModelVersionsRequest(input *ListDetectorModelVer
 // API operation ListDetectorModelVersions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListDetectorModelVersions
 func (c *IoTEvents) ListDetectorModelVersions(input *ListDetectorModelVersionsInput) (*ListDetectorModelVersionsOutput, error) {
@@ -1434,14 +1434,13 @@ const opListDetectorModels = "ListDetectorModels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDetectorModelsRequest method.
+//	req, resp := client.ListDetectorModelsRequest(params)
 //
-//    // Example sending a request using the ListDetectorModelsRequest method.
-//    req, resp := client.ListDetectorModelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListDetectorModels
 func (c *IoTEvents) ListDetectorModelsRequest(input *ListDetectorModelsInput) (req *request.Request, output *ListDetectorModelsOutput) {
@@ -1473,17 +1472,18 @@ func (c *IoTEvents) ListDetectorModelsRequest(input *ListDetectorModelsInput) (r
 // API operation ListDetectorModels for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListDetectorModels
 func (c *IoTEvents) ListDetectorModels(input *ListDetectorModelsInput) (*ListDetectorModelsOutput, error) {
@@ -1523,14 +1523,13 @@ const opListInputRoutings = "ListInputRoutings"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInputRoutingsRequest method.
+//	req, resp := client.ListInputRoutingsRequest(params)
 //
-//    // Example sending a request using the ListInputRoutingsRequest method.
-//    req, resp := client.ListInputRoutingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListInputRoutings
 func (c *IoTEvents) ListInputRoutingsRequest(input *ListInputRoutingsInput) (req *request.Request, output *ListInputRoutingsOutput) {
@@ -1561,20 +1560,21 @@ func (c *IoTEvents) ListInputRoutingsRequest(input *ListInputRoutingsInput) (req
 // API operation ListInputRoutings for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListInputRoutings
 func (c *IoTEvents) ListInputRoutings(input *ListInputRoutingsInput) (*ListInputRoutingsOutput, error) {
@@ -1614,14 +1614,13 @@ const opListInputs = "ListInputs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInputsRequest method.
+//	req, resp := client.ListInputsRequest(params)
 //
-//    // Example sending a request using the ListInputsRequest method.
-//    req, resp := client.ListInputsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListInputs
 func (c *IoTEvents) ListInputsRequest(input *ListInputsInput) (req *request.Request, output *ListInputsOutput) {
@@ -1652,17 +1651,18 @@ func (c *IoTEvents) ListInputsRequest(input *ListInputsInput) (req *request.Requ
 // API operation ListInputs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListInputs
 func (c *IoTEvents) ListInputs(input *ListInputsInput) (*ListInputsOutput, error) {
@@ -1702,14 +1702,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListTagsForResource
 func (c *IoTEvents) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1740,20 +1739,21 @@ func (c *IoTEvents) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceInUseException
+//     The resource is in use.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/ListTagsForResource
 func (c *IoTEvents) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1793,14 +1793,13 @@ const opPutLoggingOptions = "PutLoggingOptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutLoggingOptionsRequest method.
+//	req, resp := client.PutLoggingOptionsRequest(params)
 //
-//    // Example sending a request using the PutLoggingOptionsRequest method.
-//    req, resp := client.PutLoggingOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/PutLoggingOptions
 func (c *IoTEvents) PutLoggingOptionsRequest(input *PutLoggingOptionsInput) (req *request.Request, output *PutLoggingOptionsOutput) {
@@ -1837,23 +1836,24 @@ func (c *IoTEvents) PutLoggingOptionsRequest(input *PutLoggingOptionsInput) (req
 // API operation PutLoggingOptions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * UnsupportedOperationException
-//   The requested operation is not supported.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - UnsupportedOperationException
+//     The requested operation is not supported.
+//
+//   - ResourceInUseException
+//     The resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/PutLoggingOptions
 func (c *IoTEvents) PutLoggingOptions(input *PutLoggingOptionsInput) (*PutLoggingOptionsOutput, error) {
@@ -1893,14 +1893,13 @@ const opStartDetectorModelAnalysis = "StartDetectorModelAnalysis"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartDetectorModelAnalysisRequest method.
+//	req, resp := client.StartDetectorModelAnalysisRequest(params)
 //
-//    // Example sending a request using the StartDetectorModelAnalysisRequest method.
-//    req, resp := client.StartDetectorModelAnalysisRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/StartDetectorModelAnalysis
 func (c *IoTEvents) StartDetectorModelAnalysisRequest(input *StartDetectorModelAnalysisInput) (req *request.Request, output *StartDetectorModelAnalysisOutput) {
@@ -1933,20 +1932,21 @@ func (c *IoTEvents) StartDetectorModelAnalysisRequest(input *StartDetectorModelA
 // API operation StartDetectorModelAnalysis for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - LimitExceededException
+//     A limit was exceeded.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/StartDetectorModelAnalysis
 func (c *IoTEvents) StartDetectorModelAnalysis(input *StartDetectorModelAnalysisInput) (*StartDetectorModelAnalysisOutput, error) {
@@ -1986,14 +1986,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/TagResource
 func (c *IoTEvents) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2026,23 +2025,24 @@ func (c *IoTEvents) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceInUseException
+//     The resource is in use.
 //
-//   * LimitExceededException
-//   A limit was exceeded.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - LimitExceededException
+//     A limit was exceeded.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/TagResource
 func (c *IoTEvents) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2082,14 +2082,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/UntagResource
 func (c *IoTEvents) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2121,20 +2120,21 @@ func (c *IoTEvents) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceInUseException
+//     The resource is in use.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/UntagResource
 func (c *IoTEvents) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2174,14 +2174,13 @@ const opUpdateAlarmModel = "UpdateAlarmModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateAlarmModelRequest method.
+//	req, resp := client.UpdateAlarmModelRequest(params)
 //
-//    // Example sending a request using the UpdateAlarmModelRequest method.
-//    req, resp := client.UpdateAlarmModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/UpdateAlarmModel
 func (c *IoTEvents) UpdateAlarmModelRequest(input *UpdateAlarmModelInput) (req *request.Request, output *UpdateAlarmModelOutput) {
@@ -2213,23 +2212,24 @@ func (c *IoTEvents) UpdateAlarmModelRequest(input *UpdateAlarmModelInput) (req *
 // API operation UpdateAlarmModel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - ResourceInUseException
+//     The resource is in use.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/UpdateAlarmModel
 func (c *IoTEvents) UpdateAlarmModel(input *UpdateAlarmModelInput) (*UpdateAlarmModelOutput, error) {
@@ -2269,14 +2269,13 @@ const opUpdateDetectorModel = "UpdateDetectorModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDetectorModelRequest method.
+//	req, resp := client.UpdateDetectorModelRequest(params)
 //
-//    // Example sending a request using the UpdateDetectorModelRequest method.
-//    req, resp := client.UpdateDetectorModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/UpdateDetectorModel
 func (c *IoTEvents) UpdateDetectorModelRequest(input *UpdateDetectorModelInput) (req *request.Request, output *UpdateDetectorModelOutput) {
@@ -2308,23 +2307,24 @@ func (c *IoTEvents) UpdateDetectorModelRequest(input *UpdateDetectorModelInput) 
 // API operation UpdateDetectorModel for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - ResourceInUseException
+//     The resource is in use.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/UpdateDetectorModel
 func (c *IoTEvents) UpdateDetectorModel(input *UpdateDetectorModelInput) (*UpdateDetectorModelOutput, error) {
@@ -2364,14 +2364,13 @@ const opUpdateInput = "UpdateInput"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateInputRequest method.
+//	req, resp := client.UpdateInputRequest(params)
 //
-//    // Example sending a request using the UpdateInputRequest method.
-//    req, resp := client.UpdateInputRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/UpdateInput
 func (c *IoTEvents) UpdateInputRequest(input *UpdateInputInput) (req *request.Request, output *UpdateInputOutput) {
@@ -2402,23 +2401,24 @@ func (c *IoTEvents) UpdateInputRequest(input *UpdateInputInput) (req *request.Re
 // API operation UpdateInput for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request was invalid.
 //
-//   * ThrottlingException
-//   The request could not be completed due to throttling.
+//   - InvalidRequestException
+//     The request was invalid.
 //
-//   * ResourceNotFoundException
-//   The resource was not found.
+//   - ThrottlingException
+//     The request could not be completed due to throttling.
 //
-//   * InternalFailureException
-//   An internal failure occurred.
+//   - ResourceNotFoundException
+//     The resource was not found.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   - InternalFailureException
+//     An internal failure occurred.
 //
-//   * ResourceInUseException
-//   The resource is in use.
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ResourceInUseException
+//     The resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/UpdateInput
 func (c *IoTEvents) UpdateInput(input *UpdateInputInput) (*UpdateInputOutput, error) {
@@ -2456,12 +2456,20 @@ type AcknowledgeFlow struct {
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeFlow) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcknowledgeFlow) GoString() string {
 	return s.String()
 }
@@ -2500,12 +2508,20 @@ type Action struct {
 	Payload *Payload `locationName:"payload" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Action) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Action) GoString() string {
 	return s.String()
 }
@@ -2604,12 +2620,20 @@ type ActionData struct {
 	Sqs *SqsAction `locationName:"sqs" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionData) GoString() string {
 	return s.String()
 }
@@ -2900,12 +2924,20 @@ type AlarmAction struct {
 	Sqs *SqsAction `locationName:"sqs" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmAction) GoString() string {
 	return s.String()
 }
@@ -3031,12 +3063,20 @@ type AlarmCapabilities struct {
 	InitializationConfiguration *InitializationConfiguration `locationName:"initializationConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmCapabilities) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmCapabilities) GoString() string {
 	return s.String()
 }
@@ -3082,12 +3122,20 @@ type AlarmEventActions struct {
 	AlarmActions []*AlarmAction `locationName:"alarmActions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmEventActions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmEventActions) GoString() string {
 	return s.String()
 }
@@ -3132,12 +3180,20 @@ type AlarmModelSummary struct {
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmModelSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmModelSummary) GoString() string {
 	return s.String()
 }
@@ -3204,12 +3260,20 @@ type AlarmModelVersionSummary struct {
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmModelVersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmModelVersionSummary) GoString() string {
 	return s.String()
 }
@@ -3271,12 +3335,20 @@ type AlarmNotification struct {
 	NotificationActions []*NotificationAction `locationName:"notificationActions" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmNotification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmNotification) GoString() string {
 	return s.String()
 }
@@ -3319,12 +3391,20 @@ type AlarmRule struct {
 	SimpleRule *SimpleRule `locationName:"simpleRule" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlarmRule) GoString() string {
 	return s.String()
 }
@@ -3405,12 +3485,20 @@ type AnalysisResult struct {
 	Type *string `locationName:"type" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisResult) GoString() string {
 	return s.String()
 }
@@ -3449,12 +3537,20 @@ type AnalysisResultLocation struct {
 	Path *string `locationName:"path" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisResultLocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisResultLocation) GoString() string {
 	return s.String()
 }
@@ -3475,18 +3571,18 @@ func (s *AnalysisResultLocation) SetPath(v string) *AnalysisResultLocation {
 //
 // Examples
 //
-//    * For literal values, the expressions must contain single quotes. For
-//    example, the value for the timeInSeconds parameter can be '1586400675'.
+//   - For literal values, the expressions must contain single quotes. For
+//     example, the value for the timeInSeconds parameter can be '1586400675'.
 //
-//    * For references, you must specify either variables or input values. For
-//    example, the value for the offsetInNanos parameter can be $variable.time.
+//   - For references, you must specify either variables or input values. For
+//     example, the value for the offsetInNanos parameter can be $variable.time.
 //
-//    * For a substitution template, you must use ${}, and the template must
-//    be in single quotes. A substitution template can also contain a combination
-//    of literals, operators, functions, references, and substitution templates.
-//    In the following example, the value for the timeInSeconds parameter uses
-//    a substitution template. '${$input.TemperatureInput.sensorData.timestamp
-//    / 1000}'
+//   - For a substitution template, you must use ${}, and the template must
+//     be in single quotes. A substitution template can also contain a combination
+//     of literals, operators, functions, references, and substitution templates.
+//     In the following example, the value for the timeInSeconds parameter uses
+//     a substitution template. '${$input.TemperatureInput.sensorData.timestamp
+//     / 1000}'
 //
 // For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
 // in the AWS IoT Events Developer Guide.
@@ -3504,12 +3600,20 @@ type AssetPropertyTimestamp struct {
 	TimeInSeconds *string `locationName:"timeInSeconds" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetPropertyTimestamp) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetPropertyTimestamp) GoString() string {
 	return s.String()
 }
@@ -3548,11 +3652,11 @@ func (s *AssetPropertyTimestamp) SetTimeInSeconds(v string) *AssetPropertyTimest
 //
 // Examples
 //
-//    * For literal values, the expressions must contain single quotes. For
-//    example, the value for the quality parameter can be 'GOOD'.
+//   - For literal values, the expressions must contain single quotes. For
+//     example, the value for the quality parameter can be 'GOOD'.
 //
-//    * For references, you must specify either variables or input values. For
-//    example, the value for the quality parameter can be $input.TemperatureInput.sensorData.quality.
+//   - For references, you must specify either variables or input values. For
+//     example, the value for the quality parameter can be $input.TemperatureInput.sensorData.quality.
 //
 // For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
 // in the AWS IoT Events Developer Guide.
@@ -3571,12 +3675,20 @@ type AssetPropertyValue struct {
 	Value *AssetPropertyVariant `locationName:"value" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetPropertyValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetPropertyValue) GoString() string {
 	return s.String()
 }
@@ -3624,18 +3736,19 @@ func (s *AssetPropertyValue) SetValue(v *AssetPropertyVariant) *AssetPropertyVal
 //
 // Examples
 //
-//    * For literal values, the expressions must contain single quotes. For
-//    example, the value for the integerValue parameter can be '100'.
+//   - For literal values, the expressions must contain single quotes. For
+//     example, the value for the integerValue parameter can be '100'.
 //
-//    * For references, you must specify either variables or parameters. For
-//    example, the value for the booleanValue parameter can be $variable.offline.
+//   - For references, you must specify either variables or parameters. For
+//     example, the value for the booleanValue parameter can be $variable.offline.
 //
-//    * For a substitution template, you must use ${}, and the template must
-//    be in single quotes. A substitution template can also contain a combination
-//    of literals, operators, functions, references, and substitution templates.
-//    In the following example, the value for the doubleValue parameter uses
-//    a substitution template. '${$input.TemperatureInput.sensorData.temperature
-//    * 6 / 5 + 32}'
+//   - For a substitution template, you must use ${}, and the template must
+//     be in single quotes. A substitution template can also contain a combination
+//     of literals, operators, functions, references, and substitution templates.
+//     In the following example, the value for the doubleValue parameter uses
+//     a substitution template. '${$input.TemperatureInput.sensorData.temperature
+//
+//   - 6 / 5 + 32}'
 //
 // For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
 // in the AWS IoT Events Developer Guide.
@@ -3665,12 +3778,20 @@ type AssetPropertyVariant struct {
 	StringValue *string `locationName:"stringValue" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetPropertyVariant) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssetPropertyVariant) GoString() string {
 	return s.String()
 }
@@ -3720,12 +3841,20 @@ type Attribute struct {
 	JsonPath *string `locationName:"jsonPath" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Attribute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Attribute) GoString() string {
 	return s.String()
 }
@@ -3762,12 +3891,20 @@ type ClearTimerAction struct {
 	TimerName *string `locationName:"timerName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClearTimerAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClearTimerAction) GoString() string {
 	return s.String()
 }
@@ -3844,12 +3981,20 @@ type CreateAlarmModelInput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAlarmModelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAlarmModelInput) GoString() string {
 	return s.String()
 }
@@ -4004,12 +4149,20 @@ type CreateAlarmModelOutput struct {
 	Status *string `locationName:"status" type:"string" enum:"AlarmModelVersionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAlarmModelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAlarmModelOutput) GoString() string {
 	return s.String()
 }
@@ -4081,12 +4234,20 @@ type CreateDetectorModelInput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDetectorModelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDetectorModelInput) GoString() string {
 	return s.String()
 }
@@ -4183,12 +4344,20 @@ type CreateDetectorModelOutput struct {
 	DetectorModelConfiguration *DetectorModelConfiguration `locationName:"detectorModelConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDetectorModelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDetectorModelOutput) GoString() string {
 	return s.String()
 }
@@ -4219,12 +4388,20 @@ type CreateInputInput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInputInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInputInput) GoString() string {
 	return s.String()
 }
@@ -4294,12 +4471,20 @@ type CreateInputOutput struct {
 	InputConfiguration *InputConfiguration `locationName:"inputConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInputOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInputOutput) GoString() string {
 	return s.String()
 }
@@ -4311,7 +4496,7 @@ func (s *CreateInputOutput) SetInputConfiguration(v *InputConfiguration) *Create
 }
 
 type DeleteAlarmModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -4319,12 +4504,20 @@ type DeleteAlarmModelInput struct {
 	AlarmModelName *string `location:"uri" locationName:"alarmModelName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAlarmModelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAlarmModelInput) GoString() string {
 	return s.String()
 }
@@ -4355,18 +4548,26 @@ type DeleteAlarmModelOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAlarmModelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAlarmModelOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteDetectorModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model to be deleted.
 	//
@@ -4374,12 +4575,20 @@ type DeleteDetectorModelInput struct {
 	DetectorModelName *string `location:"uri" locationName:"detectorModelName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDetectorModelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDetectorModelInput) GoString() string {
 	return s.String()
 }
@@ -4410,18 +4619,26 @@ type DeleteDetectorModelOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDetectorModelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDetectorModelOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteInputInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the input to delete.
 	//
@@ -4429,12 +4646,20 @@ type DeleteInputInput struct {
 	InputName *string `location:"uri" locationName:"inputName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInputInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInputInput) GoString() string {
 	return s.String()
 }
@@ -4465,18 +4690,26 @@ type DeleteInputOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInputOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInputOutput) GoString() string {
 	return s.String()
 }
 
 type DescribeAlarmModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -4487,12 +4720,20 @@ type DescribeAlarmModelInput struct {
 	AlarmModelVersion *string `location:"querystring" locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlarmModelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlarmModelInput) GoString() string {
 	return s.String()
 }
@@ -4594,12 +4835,20 @@ type DescribeAlarmModelOutput struct {
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlarmModelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlarmModelOutput) GoString() string {
 	return s.String()
 }
@@ -4695,7 +4944,7 @@ func (s *DescribeAlarmModelOutput) SetStatusMessage(v string) *DescribeAlarmMode
 }
 
 type DescribeDetectorModelAnalysisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis result that you want to retrieve.
 	//
@@ -4703,12 +4952,20 @@ type DescribeDetectorModelAnalysisInput struct {
 	AnalysisId *string `location:"uri" locationName:"analysisId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorModelAnalysisInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorModelAnalysisInput) GoString() string {
 	return s.String()
 }
@@ -4751,12 +5008,20 @@ type DescribeDetectorModelAnalysisOutput struct {
 	Status *string `locationName:"status" type:"string" enum:"AnalysisStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorModelAnalysisOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorModelAnalysisOutput) GoString() string {
 	return s.String()
 }
@@ -4768,7 +5033,7 @@ func (s *DescribeDetectorModelAnalysisOutput) SetStatus(v string) *DescribeDetec
 }
 
 type DescribeDetectorModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model.
 	//
@@ -4779,12 +5044,20 @@ type DescribeDetectorModelInput struct {
 	DetectorModelVersion *string `location:"querystring" locationName:"version" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorModelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorModelInput) GoString() string {
 	return s.String()
 }
@@ -4827,12 +5100,20 @@ type DescribeDetectorModelOutput struct {
 	DetectorModel *DetectorModel `locationName:"detectorModel" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorModelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDetectorModelOutput) GoString() string {
 	return s.String()
 }
@@ -4844,7 +5125,7 @@ func (s *DescribeDetectorModelOutput) SetDetectorModel(v *DetectorModel) *Descri
 }
 
 type DescribeInputInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the input.
 	//
@@ -4852,12 +5133,20 @@ type DescribeInputInput struct {
 	InputName *string `location:"uri" locationName:"inputName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInputInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInputInput) GoString() string {
 	return s.String()
 }
@@ -4891,12 +5180,20 @@ type DescribeInputOutput struct {
 	Input *Input `locationName:"input" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInputOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInputOutput) GoString() string {
 	return s.String()
 }
@@ -4908,15 +5205,23 @@ func (s *DescribeInputOutput) SetInput(v *Input) *DescribeInputOutput {
 }
 
 type DescribeLoggingOptionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLoggingOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLoggingOptionsInput) GoString() string {
 	return s.String()
 }
@@ -4928,12 +5233,20 @@ type DescribeLoggingOptionsOutput struct {
 	LoggingOptions *LoggingOptions `locationName:"loggingOptions" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLoggingOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLoggingOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -4959,12 +5272,20 @@ type DetectorDebugOption struct {
 	KeyValue *string `locationName:"keyValue" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorDebugOption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorDebugOption) GoString() string {
 	return s.String()
 }
@@ -5011,12 +5332,20 @@ type DetectorModel struct {
 	DetectorModelDefinition *DetectorModelDefinition `locationName:"detectorModelDefinition" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModel) GoString() string {
 	return s.String()
 }
@@ -5078,12 +5407,20 @@ type DetectorModelConfiguration struct {
 	Status *string `locationName:"status" type:"string" enum:"DetectorModelVersionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModelConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModelConfiguration) GoString() string {
 	return s.String()
 }
@@ -5163,12 +5500,20 @@ type DetectorModelDefinition struct {
 	States []*State `locationName:"states" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModelDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModelDefinition) GoString() string {
 	return s.String()
 }
@@ -5231,12 +5576,20 @@ type DetectorModelSummary struct {
 	DetectorModelName *string `locationName:"detectorModelName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModelSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModelSummary) GoString() string {
 	return s.String()
 }
@@ -5290,12 +5643,20 @@ type DetectorModelVersionSummary struct {
 	Status *string `locationName:"status" type:"string" enum:"DetectorModelVersionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModelVersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DetectorModelVersionSummary) GoString() string {
 	return s.String()
 }
@@ -5360,24 +5721,25 @@ func (s *DetectorModelVersionSummary) SetStatus(v string) *DetectorModelVersionS
 //
 // Examples
 //
-//    * For literal values, the expressions must contain single quotes. For
-//    example, the value for the hashKeyType parameter can be 'STRING'.
+//   - For literal values, the expressions must contain single quotes. For
+//     example, the value for the hashKeyType parameter can be 'STRING'.
 //
-//    * For references, you must specify either variables or input values. For
-//    example, the value for the hashKeyField parameter can be $input.GreenhouseInput.name.
+//   - For references, you must specify either variables or input values. For
+//     example, the value for the hashKeyField parameter can be $input.GreenhouseInput.name.
 //
-//    * For a substitution template, you must use ${}, and the template must
-//    be in single quotes. A substitution template can also contain a combination
-//    of literals, operators, functions, references, and substitution templates.
-//    In the following example, the value for the hashKeyValue parameter uses
-//    a substitution template. '${$input.GreenhouseInput.temperature * 6 / 5
-//    + 32} in Fahrenheit'
+//   - For a substitution template, you must use ${}, and the template must
+//     be in single quotes. A substitution template can also contain a combination
+//     of literals, operators, functions, references, and substitution templates.
+//     In the following example, the value for the hashKeyValue parameter uses
+//     a substitution template. '${$input.GreenhouseInput.temperature * 6 / 5
 //
-//    * For a string concatenation, you must use +. A string concatenation can
-//    also contain a combination of literals, operators, functions, references,
-//    and substitution templates. In the following example, the value for the
-//    tableName parameter uses a string concatenation. 'GreenhouseTemperatureTable
-//    ' + $input.GreenhouseInput.date
+//   - 32} in Fahrenheit'
+//
+//   - For a string concatenation, you must use +. A string concatenation can
+//     also contain a combination of literals, operators, functions, references,
+//     and substitution templates. In the following example, the value for the
+//     tableName parameter uses a string concatenation. 'GreenhouseTemperatureTable
+//     ' + $input.GreenhouseInput.date
 //
 // For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
 // in the AWS IoT Events Developer Guide.
@@ -5464,12 +5826,20 @@ type DynamoDBAction struct {
 	TableName *string `locationName:"tableName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DynamoDBAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DynamoDBAction) GoString() string {
 	return s.String()
 }
@@ -5570,24 +5940,24 @@ func (s *DynamoDBAction) SetTableName(v string) *DynamoDBAction {
 //
 // Examples
 //
-//    * For literal values, the expressions must contain single quotes. For
-//    example, the value for the tableName parameter can be 'GreenhouseTemperatureTable'.
+//   - For literal values, the expressions must contain single quotes. For
+//     example, the value for the tableName parameter can be 'GreenhouseTemperatureTable'.
 //
-//    * For references, you must specify either variables or input values. For
-//    example, the value for the tableName parameter can be $variable.ddbtableName.
+//   - For references, you must specify either variables or input values. For
+//     example, the value for the tableName parameter can be $variable.ddbtableName.
 //
-//    * For a substitution template, you must use ${}, and the template must
-//    be in single quotes. A substitution template can also contain a combination
-//    of literals, operators, functions, references, and substitution templates.
-//    In the following example, the value for the contentExpression parameter
-//    in Payload uses a substitution template. '{\"sensorID\": \"${$input.GreenhouseInput.sensor_id}\",
-//    \"temperature\": \"${$input.GreenhouseInput.temperature * 9 / 5 + 32}\"}'
+//   - For a substitution template, you must use ${}, and the template must
+//     be in single quotes. A substitution template can also contain a combination
+//     of literals, operators, functions, references, and substitution templates.
+//     In the following example, the value for the contentExpression parameter
+//     in Payload uses a substitution template. '{\"sensorID\": \"${$input.GreenhouseInput.sensor_id}\",
+//     \"temperature\": \"${$input.GreenhouseInput.temperature * 9 / 5 + 32}\"}'
 //
-//    * For a string concatenation, you must use +. A string concatenation can
-//    also contain a combination of literals, operators, functions, references,
-//    and substitution templates. In the following example, the value for the
-//    tableName parameter uses a string concatenation. 'GreenhouseTemperatureTable
-//    ' + $input.GreenhouseInput.date
+//   - For a string concatenation, you must use +. A string concatenation can
+//     also contain a combination of literals, operators, functions, references,
+//     and substitution templates. In the following example, the value for the
+//     tableName parameter uses a string concatenation. 'GreenhouseTemperatureTable
+//     ' + $input.GreenhouseInput.date
 //
 // For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
 // in the AWS IoT Events Developer Guide.
@@ -5610,12 +5980,20 @@ type DynamoDBv2Action struct {
 	TableName *string `locationName:"tableName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DynamoDBv2Action) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DynamoDBv2Action) GoString() string {
 	return s.String()
 }
@@ -5674,12 +6052,20 @@ type EmailConfiguration struct {
 	Recipients *EmailRecipients `locationName:"recipients" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailConfiguration) GoString() string {
 	return s.String()
 }
@@ -5734,12 +6120,20 @@ type EmailContent struct {
 	Subject *string `locationName:"subject" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailContent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailContent) GoString() string {
 	return s.String()
 }
@@ -5766,12 +6160,20 @@ type EmailRecipients struct {
 	To []*RecipientDetail `locationName:"to" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailRecipients) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailRecipients) GoString() string {
 	return s.String()
 }
@@ -5823,12 +6225,20 @@ type Event struct {
 	EventName *string `locationName:"eventName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Event) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Event) GoString() string {
 	return s.String()
 }
@@ -5894,12 +6304,20 @@ type FirehoseAction struct {
 	Separator *string `locationName:"separator" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirehoseAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirehoseAction) GoString() string {
 	return s.String()
 }
@@ -5941,7 +6359,7 @@ func (s *FirehoseAction) SetSeparator(v string) *FirehoseAction {
 }
 
 type GetDetectorModelAnalysisResultsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis result that you want to retrieve.
 	//
@@ -5955,12 +6373,20 @@ type GetDetectorModelAnalysisResultsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDetectorModelAnalysisResultsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDetectorModelAnalysisResultsInput) GoString() string {
 	return s.String()
 }
@@ -6010,12 +6436,20 @@ type GetDetectorModelAnalysisResultsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDetectorModelAnalysisResultsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDetectorModelAnalysisResultsOutput) GoString() string {
 	return s.String()
 }
@@ -6044,12 +6478,20 @@ type InitializationConfiguration struct {
 	DisabledOnInitialization *bool `locationName:"disabledOnInitialization" type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InitializationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InitializationConfiguration) GoString() string {
 	return s.String()
 }
@@ -6084,12 +6526,20 @@ type Input struct {
 	InputDefinition *InputDefinition `locationName:"inputDefinition" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Input) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Input) GoString() string {
 	return s.String()
 }
@@ -6139,12 +6589,20 @@ type InputConfiguration struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"InputStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputConfiguration) GoString() string {
 	return s.String()
 }
@@ -6199,12 +6657,20 @@ type InputDefinition struct {
 	Attributes []*Attribute `locationName:"attributes" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputDefinition) GoString() string {
 	return s.String()
 }
@@ -6252,12 +6718,20 @@ type InputIdentifier struct {
 	IotSiteWiseInputIdentifier *IotSiteWiseInputIdentifier `locationName:"iotSiteWiseInputIdentifier" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputIdentifier) GoString() string {
 	return s.String()
 }
@@ -6317,12 +6791,20 @@ type InputSummary struct {
 	Status *string `locationName:"status" type:"string" enum:"InputStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputSummary) GoString() string {
 	return s.String()
 }
@@ -6372,12 +6854,20 @@ type InternalFailureException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) GoString() string {
 	return s.String()
 }
@@ -6429,12 +6919,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -6487,12 +6985,20 @@ type IotEventsInputIdentifier struct {
 	InputName *string `locationName:"inputName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotEventsInputIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotEventsInputIdentifier) GoString() string {
 	return s.String()
 }
@@ -6527,18 +7033,18 @@ func (s *IotEventsInputIdentifier) SetInputName(v string) *IotEventsInputIdentif
 //
 // Examples
 //
-//    * For literal values, the expressions must contain single quotes. For
-//    example, the value for the propertyAlias parameter can be '/company/windfarm/3/turbine/7/temperature'.
+//   - For literal values, the expressions must contain single quotes. For
+//     example, the value for the propertyAlias parameter can be '/company/windfarm/3/turbine/7/temperature'.
 //
-//    * For references, you must specify either variables or input values. For
-//    example, the value for the assetId parameter can be $input.TurbineInput.assetId1.
+//   - For references, you must specify either variables or input values. For
+//     example, the value for the assetId parameter can be $input.TurbineInput.assetId1.
 //
-//    * For a substitution template, you must use ${}, and the template must
-//    be in single quotes. A substitution template can also contain a combination
-//    of literals, operators, functions, references, and substitution templates.
-//    In the following example, the value for the propertyAlias parameter uses
-//    a substitution template. 'company/windfarm/${$input.TemperatureInput.sensorData.windfarmID}/turbine/
-//    ${$input.TemperatureInput.sensorData.turbineID}/temperature'
+//   - For a substitution template, you must use ${}, and the template must
+//     be in single quotes. A substitution template can also contain a combination
+//     of literals, operators, functions, references, and substitution templates.
+//     In the following example, the value for the propertyAlias parameter uses
+//     a substitution template. 'company/windfarm/${$input.TemperatureInput.sensorData.windfarmID}/turbine/
+//     ${$input.TemperatureInput.sensorData.turbineID}/temperature'
 //
 // You must specify either propertyAlias or both assetId and propertyId to identify
 // the target asset property in AWS IoT SiteWise.
@@ -6567,12 +7073,20 @@ type IotSiteWiseAction struct {
 	PropertyValue *AssetPropertyValue `locationName:"propertyValue" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotSiteWiseAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotSiteWiseAction) GoString() string {
 	return s.String()
 }
@@ -6637,12 +7151,20 @@ type IotSiteWiseAssetModelPropertyIdentifier struct {
 	PropertyId *string `locationName:"propertyId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotSiteWiseAssetModelPropertyIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotSiteWiseAssetModelPropertyIdentifier) GoString() string {
 	return s.String()
 }
@@ -6683,12 +7205,20 @@ type IotSiteWiseInputIdentifier struct {
 	IotSiteWiseAssetModelPropertyIdentifier *IotSiteWiseAssetModelPropertyIdentifier `locationName:"iotSiteWiseAssetModelPropertyIdentifier" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotSiteWiseInputIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotSiteWiseInputIdentifier) GoString() string {
 	return s.String()
 }
@@ -6731,12 +7261,20 @@ type IotTopicPublishAction struct {
 	Payload *Payload `locationName:"payload" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotTopicPublishAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IotTopicPublishAction) GoString() string {
 	return s.String()
 }
@@ -6789,12 +7327,20 @@ type LambdaAction struct {
 	Payload *Payload `locationName:"payload" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LambdaAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LambdaAction) GoString() string {
 	return s.String()
 }
@@ -6841,12 +7387,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -6890,7 +7444,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListAlarmModelVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -6904,12 +7458,20 @@ type ListAlarmModelVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmModelVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmModelVersionsInput) GoString() string {
 	return s.String()
 }
@@ -6962,12 +7524,20 @@ type ListAlarmModelVersionsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmModelVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmModelVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -6985,7 +7555,7 @@ func (s *ListAlarmModelVersionsOutput) SetNextToken(v string) *ListAlarmModelVer
 }
 
 type ListAlarmModelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -6994,12 +7564,20 @@ type ListAlarmModelsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmModelsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmModelsInput) GoString() string {
 	return s.String()
 }
@@ -7040,12 +7618,20 @@ type ListAlarmModelsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmModelsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAlarmModelsOutput) GoString() string {
 	return s.String()
 }
@@ -7063,7 +7649,7 @@ func (s *ListAlarmModelsOutput) SetNextToken(v string) *ListAlarmModelsOutput {
 }
 
 type ListDetectorModelVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model whose versions are returned.
 	//
@@ -7077,12 +7663,20 @@ type ListDetectorModelVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorModelVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorModelVersionsInput) GoString() string {
 	return s.String()
 }
@@ -7135,12 +7729,20 @@ type ListDetectorModelVersionsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorModelVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorModelVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -7158,7 +7760,7 @@ func (s *ListDetectorModelVersionsOutput) SetNextToken(v string) *ListDetectorMo
 }
 
 type ListDetectorModelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -7167,12 +7769,20 @@ type ListDetectorModelsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorModelsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorModelsInput) GoString() string {
 	return s.String()
 }
@@ -7213,12 +7823,20 @@ type ListDetectorModelsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorModelsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDetectorModelsOutput) GoString() string {
 	return s.String()
 }
@@ -7250,12 +7868,20 @@ type ListInputRoutingsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInputRoutingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInputRoutingsInput) GoString() string {
 	return s.String()
 }
@@ -7310,12 +7936,20 @@ type ListInputRoutingsOutput struct {
 	RoutedResources []*RoutedResource `locationName:"routedResources" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInputRoutingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInputRoutingsOutput) GoString() string {
 	return s.String()
 }
@@ -7333,7 +7967,7 @@ func (s *ListInputRoutingsOutput) SetRoutedResources(v []*RoutedResource) *ListI
 }
 
 type ListInputsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -7342,12 +7976,20 @@ type ListInputsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInputsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInputsInput) GoString() string {
 	return s.String()
 }
@@ -7388,12 +8030,20 @@ type ListInputsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInputsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInputsOutput) GoString() string {
 	return s.String()
 }
@@ -7411,7 +8061,7 @@ func (s *ListInputsOutput) SetNextToken(v string) *ListInputsOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource.
 	//
@@ -7419,12 +8069,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"querystring" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -7458,12 +8116,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -7498,12 +8164,20 @@ type LoggingOptions struct {
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingOptions) GoString() string {
 	return s.String()
 }
@@ -7585,12 +8259,20 @@ type NotificationAction struct {
 	SmsConfigurations []*SMSConfiguration `locationName:"smsConfigurations" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationAction) GoString() string {
 	return s.String()
 }
@@ -7667,12 +8349,20 @@ type NotificationTargetActions struct {
 	LambdaAction *LambdaAction `locationName:"lambdaAction" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationTargetActions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotificationTargetActions) GoString() string {
 	return s.String()
 }
@@ -7707,12 +8397,20 @@ type OnEnterLifecycle struct {
 	Events []*Event `locationName:"events" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnEnterLifecycle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnEnterLifecycle) GoString() string {
 	return s.String()
 }
@@ -7753,12 +8451,20 @@ type OnExitLifecycle struct {
 	Events []*Event `locationName:"events" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnExitLifecycle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnExitLifecycle) GoString() string {
 	return s.String()
 }
@@ -7801,12 +8507,20 @@ type OnInputLifecycle struct {
 	TransitionEvents []*TransitionEvent `locationName:"transitionEvents" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnInputLifecycle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnInputLifecycle) GoString() string {
 	return s.String()
 }
@@ -7877,12 +8591,20 @@ type Payload struct {
 	Type *string `locationName:"type" type:"string" required:"true" enum:"PayloadType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Payload) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Payload) GoString() string {
 	return s.String()
 }
@@ -7927,12 +8649,20 @@ type PutLoggingOptionsInput struct {
 	LoggingOptions *LoggingOptions `locationName:"loggingOptions" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingOptionsInput) GoString() string {
 	return s.String()
 }
@@ -7965,12 +8695,20 @@ type PutLoggingOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -7983,12 +8721,20 @@ type RecipientDetail struct {
 	SsoIdentity *SSOIdentity `locationName:"ssoIdentity" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecipientDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecipientDetail) GoString() string {
 	return s.String()
 }
@@ -8026,12 +8772,20 @@ type ResetTimerAction struct {
 	TimerName *string `locationName:"timerName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetTimerAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetTimerAction) GoString() string {
 	return s.String()
 }
@@ -8073,12 +8827,20 @@ type ResourceAlreadyExistsException struct {
 	ResourceId *string `locationName:"resourceId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) GoString() string {
 	return s.String()
 }
@@ -8130,12 +8892,20 @@ type ResourceInUseException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -8187,12 +8957,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -8248,12 +9026,20 @@ type RoutedResource struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutedResource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutedResource) GoString() string {
 	return s.String()
 }
@@ -8288,12 +9074,20 @@ type SMSConfiguration struct {
 	SenderId *string `locationName:"senderId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SMSConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SMSConfiguration) GoString() string {
 	return s.String()
 }
@@ -8356,12 +9150,20 @@ type SNSTopicPublishAction struct {
 	TargetArn *string `locationName:"targetArn" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSTopicPublishAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSTopicPublishAction) GoString() string {
 	return s.String()
 }
@@ -8413,12 +9215,20 @@ type SSOIdentity struct {
 	UserId *string `locationName:"userId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSOIdentity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSOIdentity) GoString() string {
 	return s.String()
 }
@@ -8457,12 +9267,20 @@ type ServiceUnavailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -8529,12 +9347,20 @@ type SetTimerAction struct {
 	TimerName *string `locationName:"timerName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetTimerAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetTimerAction) GoString() string {
 	return s.String()
 }
@@ -8594,12 +9420,20 @@ type SetVariableAction struct {
 	VariableName *string `locationName:"variableName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetVariableAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetVariableAction) GoString() string {
 	return s.String()
 }
@@ -8661,12 +9495,20 @@ type SimpleRule struct {
 	Threshold *string `locationName:"threshold" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimpleRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimpleRule) GoString() string {
 	return s.String()
 }
@@ -8733,12 +9575,20 @@ type SqsAction struct {
 	UseBase64 *bool `locationName:"useBase64" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqsAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqsAction) GoString() string {
 	return s.String()
 }
@@ -8788,12 +9638,20 @@ type StartDetectorModelAnalysisInput struct {
 	DetectorModelDefinition *DetectorModelDefinition `locationName:"detectorModelDefinition" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDetectorModelAnalysisInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDetectorModelAnalysisInput) GoString() string {
 	return s.String()
 }
@@ -8829,12 +9687,20 @@ type StartDetectorModelAnalysisOutput struct {
 	AnalysisId *string `locationName:"analysisId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDetectorModelAnalysisOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDetectorModelAnalysisOutput) GoString() string {
 	return s.String()
 }
@@ -8866,12 +9732,20 @@ type State struct {
 	StateName *string `locationName:"stateName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s State) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s State) GoString() string {
 	return s.String()
 }
@@ -8946,12 +9820,20 @@ type Tag struct {
 	Value *string `locationName:"value" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -9001,12 +9883,20 @@ type TagResourceInput struct {
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -9056,12 +9946,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -9075,12 +9973,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -9148,12 +10054,20 @@ type TransitionEvent struct {
 	NextState *string `locationName:"nextState" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TransitionEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TransitionEvent) GoString() string {
 	return s.String()
 }
@@ -9223,12 +10137,20 @@ type UnsupportedOperationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedOperationException) GoString() string {
 	return s.String()
 }
@@ -9272,7 +10194,7 @@ func (s *UnsupportedOperationException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource.
 	//
@@ -9285,12 +10207,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -9330,12 +10260,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -9376,12 +10314,20 @@ type UpdateAlarmModelInput struct {
 	Severity *int64 `locationName:"severity" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAlarmModelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAlarmModelInput) GoString() string {
 	return s.String()
 }
@@ -9511,12 +10457,20 @@ type UpdateAlarmModelOutput struct {
 	Status *string `locationName:"status" type:"string" enum:"AlarmModelVersionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAlarmModelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAlarmModelOutput) GoString() string {
 	return s.String()
 }
@@ -9578,12 +10532,20 @@ type UpdateDetectorModelInput struct {
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDetectorModelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDetectorModelInput) GoString() string {
 	return s.String()
 }
@@ -9655,12 +10617,20 @@ type UpdateDetectorModelOutput struct {
 	DetectorModelConfiguration *DetectorModelConfiguration `locationName:"detectorModelConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDetectorModelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDetectorModelOutput) GoString() string {
 	return s.String()
 }
@@ -9688,12 +10658,20 @@ type UpdateInputInput struct {
 	InputName *string `location:"uri" locationName:"inputName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInputInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInputInput) GoString() string {
 	return s.String()
 }
@@ -9747,12 +10725,20 @@ type UpdateInputOutput struct {
 	InputConfiguration *InputConfiguration `locationName:"inputConfiguration" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInputOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInputOutput) GoString() string {
 	return s.String()
 }

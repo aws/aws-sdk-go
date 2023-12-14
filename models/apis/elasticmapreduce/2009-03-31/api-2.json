@@ -6,7 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceAbbreviation":"Amazon EMR",
-    "serviceFullName":"Amazon Elastic MapReduce",
+    "serviceFullName":"Amazon EMR",
     "serviceId":"EMR",
     "signatureVersion":"v4",
     "targetPrefix":"ElasticMapReduce",
@@ -190,6 +190,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "DescribeReleaseLabel":{
+      "name":"DescribeReleaseLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeReleaseLabelInput"},
+      "output":{"shape":"DescribeReleaseLabelOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "DescribeSecurityConfiguration":{
       "name":"DescribeSecurityConfiguration",
       "http":{
@@ -229,6 +242,15 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "GetAutoTerminationPolicy":{
+      "name":"GetAutoTerminationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAutoTerminationPolicyInput"},
+      "output":{"shape":"GetAutoTerminationPolicyOutput"}
+    },
     "GetBlockPublicAccessConfiguration":{
       "name":"GetBlockPublicAccessConfiguration",
       "http":{
@@ -239,6 +261,19 @@
       "output":{"shape":"GetBlockPublicAccessConfigurationOutput"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
+    "GetClusterSessionCredentials":{
+      "name":"GetClusterSessionCredentials",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetClusterSessionCredentialsInput"},
+      "output":{"shape":"GetClusterSessionCredentialsOutput"},
+      "errors":[
+        {"shape":"InternalServerError"},
         {"shape":"InvalidRequestException"}
       ]
     },
@@ -342,6 +377,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "ListReleaseLabels":{
+      "name":"ListReleaseLabels",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReleaseLabelsInput"},
+      "output":{"shape":"ListReleaseLabelsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "ListSecurityConfigurations":{
       "name":"ListSecurityConfigurations",
       "http":{
@@ -394,6 +442,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "ListSupportedInstanceTypes":{
+      "name":"ListSupportedInstanceTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSupportedInstanceTypesInput"},
+      "output":{"shape":"ListSupportedInstanceTypesOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "ModifyCluster":{
       "name":"ModifyCluster",
       "http":{
@@ -439,6 +500,15 @@
       "input":{"shape":"PutAutoScalingPolicyInput"},
       "output":{"shape":"PutAutoScalingPolicyOutput"}
     },
+    "PutAutoTerminationPolicy":{
+      "name":"PutAutoTerminationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAutoTerminationPolicyInput"},
+      "output":{"shape":"PutAutoTerminationPolicyOutput"}
+    },
     "PutBlockPublicAccessConfiguration":{
       "name":"PutBlockPublicAccessConfiguration",
       "http":{
@@ -469,6 +539,15 @@
       },
       "input":{"shape":"RemoveAutoScalingPolicyInput"},
       "output":{"shape":"RemoveAutoScalingPolicyOutput"}
+    },
+    "RemoveAutoTerminationPolicy":{
+      "name":"RemoveAutoTerminationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveAutoTerminationPolicyInput"},
+      "output":{"shape":"RemoveAutoTerminationPolicyOutput"}
     },
     "RemoveManagedScalingPolicy":{
       "name":"RemoveManagedScalingPolicy",
@@ -643,7 +722,8 @@
       ],
       "members":{
         "JobFlowId":{"shape":"XmlStringMaxLen256"},
-        "Steps":{"shape":"StepConfigList"}
+        "Steps":{"shape":"StepConfigList"},
+        "ExecutionRoleArn":{"shape":"ArnType"}
       }
     },
     "AddJobFlowStepsOutput":{
@@ -751,6 +831,12 @@
       "members":{
         "State":{"shape":"AutoScalingPolicyState"},
         "StateChangeReason":{"shape":"AutoScalingPolicyStateChangeReason"}
+      }
+    },
+    "AutoTerminationPolicy":{
+      "type":"structure",
+      "members":{
+        "IdleTimeout":{"shape":"Long"}
       }
     },
     "BlockPublicAccessConfiguration":{
@@ -888,7 +974,10 @@
         "ClusterArn":{"shape":"ArnType"},
         "OutpostArn":{"shape":"OptionalArnType"},
         "StepConcurrencyLevel":{"shape":"Integer"},
-        "PlacementGroups":{"shape":"PlacementGroupConfigList"}
+        "PlacementGroups":{"shape":"PlacementGroupConfigList"},
+        "OSReleaseLabel":{"shape":"String"},
+        "EbsRootVolumeIops":{"shape":"Integer"},
+        "EbsRootVolumeThroughput":{"shape":"Integer"}
       }
     },
     "ClusterId":{"type":"string"},
@@ -933,7 +1022,8 @@
       "members":{
         "State":{"shape":"ClusterState"},
         "StateChangeReason":{"shape":"ClusterStateChangeReason"},
-        "Timeline":{"shape":"ClusterTimeline"}
+        "Timeline":{"shape":"ClusterTimeline"},
+        "ErrorDetails":{"shape":"ErrorDetailList"}
       }
     },
     "ClusterSummary":{
@@ -1045,7 +1135,6 @@
         "VpcId",
         "SubnetIds",
         "ServiceRole",
-        "UserRole",
         "WorkspaceSecurityGroupId",
         "EngineSecurityGroupId",
         "DefaultS3Location"
@@ -1061,7 +1150,13 @@
         "WorkspaceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
         "EngineSecurityGroupId":{"shape":"XmlStringMaxLen256"},
         "DefaultS3Location":{"shape":"XmlString"},
-        "Tags":{"shape":"TagList"}
+        "IdpAuthUrl":{"shape":"XmlString"},
+        "IdpRelayStateParameterName":{"shape":"XmlStringMaxLen256"},
+        "Tags":{"shape":"TagList"},
+        "TrustedIdentityPropagationEnabled":{"shape":"BooleanObject"},
+        "IdcUserAssignment":{"shape":"IdcUserAssignment"},
+        "IdcInstanceArn":{"shape":"ArnType"},
+        "EncryptionKeyArn":{"shape":"XmlString"}
       }
     },
     "CreateStudioOutput":{
@@ -1085,6 +1180,13 @@
         "IdentityType":{"shape":"IdentityType"},
         "SessionPolicyArn":{"shape":"XmlStringMaxLen256"}
       }
+    },
+    "Credentials":{
+      "type":"structure",
+      "members":{
+        "UsernamePassword":{"shape":"UsernamePassword"}
+      },
+      "union":true
     },
     "Date":{"type":"timestamp"},
     "DeleteSecurityConfigurationInput":{
@@ -1158,6 +1260,23 @@
       "type":"structure",
       "members":{
         "NotebookExecution":{"shape":"NotebookExecution"}
+      }
+    },
+    "DescribeReleaseLabelInput":{
+      "type":"structure",
+      "members":{
+        "ReleaseLabel":{"shape":"String"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsNumber"}
+      }
+    },
+    "DescribeReleaseLabelOutput":{
+      "type":"structure",
+      "members":{
+        "ReleaseLabel":{"shape":"String"},
+        "Applications":{"shape":"SimplifiedApplicationList"},
+        "NextToken":{"shape":"String"},
+        "AvailableOSReleases":{"shape":"OSReleaseList"}
       }
     },
     "DescribeSecurityConfigurationInput":{
@@ -1270,10 +1389,31 @@
         "AdditionalSlaveSecurityGroups":{"shape":"StringList"}
       }
     },
+    "EnvironmentVariablesMap":{
+      "type":"map",
+      "key":{"shape":"XmlStringMaxLen256"},
+      "value":{"shape":"XmlString"}
+    },
     "ErrorCode":{
       "type":"string",
       "max":256,
       "min":1
+    },
+    "ErrorData":{
+      "type":"list",
+      "member":{"shape":"StringMap"}
+    },
+    "ErrorDetail":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "ErrorData":{"shape":"ErrorData"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "ErrorDetailList":{
+      "type":"list",
+      "member":{"shape":"ErrorDetail"}
     },
     "ErrorMessage":{"type":"string"},
     "ExecutionEngineConfig":{
@@ -1282,7 +1422,8 @@
       "members":{
         "Id":{"shape":"XmlStringMaxLen256"},
         "Type":{"shape":"ExecutionEngineType"},
-        "MasterInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"}
+        "MasterInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
+        "ExecutionRoleArn":{"shape":"IAMRoleArn"}
       }
     },
     "ExecutionEngineType":{
@@ -1295,6 +1436,20 @@
         "Reason":{"shape":"String"},
         "Message":{"shape":"String"},
         "LogFile":{"shape":"String"}
+      }
+    },
+    "Float":{"type":"float"},
+    "GetAutoTerminationPolicyInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"ClusterId"}
+      }
+    },
+    "GetAutoTerminationPolicyOutput":{
+      "type":"structure",
+      "members":{
+        "AutoTerminationPolicy":{"shape":"AutoTerminationPolicy"}
       }
     },
     "GetBlockPublicAccessConfigurationInput":{
@@ -1311,6 +1466,21 @@
       "members":{
         "BlockPublicAccessConfiguration":{"shape":"BlockPublicAccessConfiguration"},
         "BlockPublicAccessConfigurationMetadata":{"shape":"BlockPublicAccessConfigurationMetadata"}
+      }
+    },
+    "GetClusterSessionCredentialsInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"XmlStringMaxLen256"},
+        "ExecutionRoleArn":{"shape":"ArnType"}
+      }
+    },
+    "GetClusterSessionCredentialsOutput":{
+      "type":"structure",
+      "members":{
+        "Credentials":{"shape":"Credentials"},
+        "ExpiresAt":{"shape":"Date"}
       }
     },
     "GetManagedScalingPolicyInput":{
@@ -1364,6 +1534,19 @@
         "Args":{"shape":"StringList"}
       }
     },
+    "IAMRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$"
+    },
+    "IdcUserAssignment":{
+      "type":"string",
+      "enum":[
+        "REQUIRED",
+        "OPTIONAL"
+      ]
+    },
     "IdentityType":{
       "type":"string",
       "enum":[
@@ -1407,7 +1590,8 @@
         "ProvisionedOnDemandCapacity":{"shape":"WholeNumber"},
         "ProvisionedSpotCapacity":{"shape":"WholeNumber"},
         "InstanceTypeSpecifications":{"shape":"InstanceTypeSpecificationList"},
-        "LaunchSpecifications":{"shape":"InstanceFleetProvisioningSpecifications"}
+        "LaunchSpecifications":{"shape":"InstanceFleetProvisioningSpecifications"},
+        "ResizeSpecifications":{"shape":"InstanceFleetResizingSpecifications"}
       }
     },
     "InstanceFleetConfig":{
@@ -1419,7 +1603,8 @@
         "TargetOnDemandCapacity":{"shape":"WholeNumber"},
         "TargetSpotCapacity":{"shape":"WholeNumber"},
         "InstanceTypeConfigs":{"shape":"InstanceTypeConfigList"},
-        "LaunchSpecifications":{"shape":"InstanceFleetProvisioningSpecifications"}
+        "LaunchSpecifications":{"shape":"InstanceFleetProvisioningSpecifications"},
+        "ResizeSpecifications":{"shape":"InstanceFleetResizingSpecifications"}
       }
     },
     "InstanceFleetConfigList":{
@@ -1437,7 +1622,8 @@
       "members":{
         "InstanceFleetId":{"shape":"InstanceFleetId"},
         "TargetOnDemandCapacity":{"shape":"WholeNumber"},
-        "TargetSpotCapacity":{"shape":"WholeNumber"}
+        "TargetSpotCapacity":{"shape":"WholeNumber"},
+        "ResizeSpecifications":{"shape":"InstanceFleetResizingSpecifications"}
       }
     },
     "InstanceFleetProvisioningSpecifications":{
@@ -1445,6 +1631,13 @@
       "members":{
         "SpotSpecification":{"shape":"SpotProvisioningSpecification"},
         "OnDemandSpecification":{"shape":"OnDemandProvisioningSpecification"}
+      }
+    },
+    "InstanceFleetResizingSpecifications":{
+      "type":"structure",
+      "members":{
+        "SpotResizeSpecification":{"shape":"SpotResizingSpecification"},
+        "OnDemandResizeSpecification":{"shape":"OnDemandResizingSpecification"}
       }
     },
     "InstanceFleetState":{
@@ -1518,7 +1711,8 @@
         "EbsBlockDevices":{"shape":"EbsBlockDeviceList"},
         "EbsOptimized":{"shape":"BooleanObject"},
         "ShrinkPolicy":{"shape":"ShrinkPolicy"},
-        "AutoScalingPolicy":{"shape":"AutoScalingPolicyDescription"}
+        "AutoScalingPolicy":{"shape":"AutoScalingPolicyDescription"},
+        "CustomAmiId":{"shape":"XmlStringMaxLen256"}
       }
     },
     "InstanceGroupConfig":{
@@ -1537,7 +1731,8 @@
         "InstanceCount":{"shape":"Integer"},
         "Configurations":{"shape":"ConfigurationList"},
         "EbsConfiguration":{"shape":"EbsConfiguration"},
-        "AutoScalingPolicy":{"shape":"AutoScalingPolicy"}
+        "AutoScalingPolicy":{"shape":"AutoScalingPolicy"},
+        "CustomAmiId":{"shape":"XmlStringMaxLen256"}
       }
     },
     "InstanceGroupConfigList":{
@@ -1569,7 +1764,8 @@
         "CreationDateTime":{"shape":"Date"},
         "StartDateTime":{"shape":"Date"},
         "ReadyDateTime":{"shape":"Date"},
-        "EndDateTime":{"shape":"Date"}
+        "EndDateTime":{"shape":"Date"},
+        "CustomAmiId":{"shape":"XmlStringMaxLen256"}
       }
     },
     "InstanceGroupDetailList":{
@@ -1593,6 +1789,7 @@
         "InstanceCount":{"shape":"Integer"},
         "EC2InstanceIdsToTerminate":{"shape":"EC2InstanceIdsToTerminateList"},
         "ShrinkPolicy":{"shape":"ShrinkPolicy"},
+        "ReconfigurationType":{"shape":"ReconfigurationType"},
         "Configurations":{"shape":"ConfigurationList"}
       }
     },
@@ -1743,7 +1940,8 @@
         "BidPrice":{"shape":"XmlStringMaxLen256"},
         "BidPriceAsPercentageOfOnDemandPrice":{"shape":"NonNegativeDouble"},
         "EbsConfiguration":{"shape":"EbsConfiguration"},
-        "Configurations":{"shape":"ConfigurationList"}
+        "Configurations":{"shape":"ConfigurationList"},
+        "CustomAmiId":{"shape":"XmlStringMaxLen256"}
       }
     },
     "InstanceTypeConfigList":{
@@ -1759,7 +1957,8 @@
         "BidPriceAsPercentageOfOnDemandPrice":{"shape":"NonNegativeDouble"},
         "Configurations":{"shape":"ConfigurationList"},
         "EbsBlockDevices":{"shape":"EbsBlockDeviceList"},
-        "EbsOptimized":{"shape":"BooleanObject"}
+        "EbsOptimized":{"shape":"BooleanObject"},
+        "CustomAmiId":{"shape":"XmlStringMaxLen256"}
       }
     },
     "InstanceTypeSpecificationList":{
@@ -2009,7 +2208,8 @@
         "Status":{"shape":"NotebookExecutionStatus"},
         "From":{"shape":"Date"},
         "To":{"shape":"Date"},
-        "Marker":{"shape":"Marker"}
+        "Marker":{"shape":"Marker"},
+        "ExecutionEngineId":{"shape":"XmlString"}
       }
     },
     "ListNotebookExecutionsOutput":{
@@ -2017,6 +2217,21 @@
       "members":{
         "NotebookExecutions":{"shape":"NotebookExecutionSummaryList"},
         "Marker":{"shape":"Marker"}
+      }
+    },
+    "ListReleaseLabelsInput":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"ReleaseLabelFilter"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsNumber"}
+      }
+    },
+    "ListReleaseLabelsOutput":{
+      "type":"structure",
+      "members":{
+        "ReleaseLabels":{"shape":"StringList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "ListSecurityConfigurationsInput":{
@@ -2077,6 +2292,21 @@
         "Marker":{"shape":"Marker"}
       }
     },
+    "ListSupportedInstanceTypesInput":{
+      "type":"structure",
+      "required":["ReleaseLabel"],
+      "members":{
+        "ReleaseLabel":{"shape":"String"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "ListSupportedInstanceTypesOutput":{
+      "type":"structure",
+      "members":{
+        "SupportedInstanceTypes":{"shape":"SupportedInstanceTypesList"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "Long":{"type":"long"},
     "ManagedScalingPolicy":{
       "type":"structure",
@@ -2091,6 +2321,11 @@
         "ON_DEMAND",
         "SPOT"
       ]
+    },
+    "MaxResultsNumber":{
+      "type":"integer",
+      "max":100,
+      "min":1
     },
     "MetricDimension":{
       "type":"structure",
@@ -2158,7 +2393,11 @@
         "OutputNotebookURI":{"shape":"XmlString"},
         "LastStateChangeReason":{"shape":"XmlString"},
         "NotebookInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "NotebookS3Location":{"shape":"NotebookS3LocationForOutput"},
+        "OutputNotebookS3Location":{"shape":"OutputNotebookS3LocationForOutput"},
+        "OutputNotebookFormat":{"shape":"OutputNotebookFormat"},
+        "EnvironmentVariables":{"shape":"EnvironmentVariablesMap"}
       }
     },
     "NotebookExecutionStatus":{
@@ -2184,12 +2423,38 @@
         "NotebookExecutionName":{"shape":"XmlStringMaxLen256"},
         "Status":{"shape":"NotebookExecutionStatus"},
         "StartTime":{"shape":"Date"},
-        "EndTime":{"shape":"Date"}
+        "EndTime":{"shape":"Date"},
+        "NotebookS3Location":{"shape":"NotebookS3LocationForOutput"},
+        "ExecutionEngineId":{"shape":"XmlString"}
       }
     },
     "NotebookExecutionSummaryList":{
       "type":"list",
       "member":{"shape":"NotebookExecutionSummary"}
+    },
+    "NotebookS3LocationForOutput":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"XmlStringMaxLen256"},
+        "Key":{"shape":"UriString"}
+      }
+    },
+    "NotebookS3LocationFromInput":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"XmlStringMaxLen256"},
+        "Key":{"shape":"UriString"}
+      }
+    },
+    "OSRelease":{
+      "type":"structure",
+      "members":{
+        "Label":{"shape":"String"}
+      }
+    },
+    "OSReleaseList":{
+      "type":"list",
+      "member":{"shape":"OSRelease"}
     },
     "OnDemandCapacityReservationOptions":{
       "type":"structure",
@@ -2222,10 +2487,35 @@
         "CapacityReservationOptions":{"shape":"OnDemandCapacityReservationOptions"}
       }
     },
+    "OnDemandResizingSpecification":{
+      "type":"structure",
+      "required":["TimeoutDurationMinutes"],
+      "members":{
+        "TimeoutDurationMinutes":{"shape":"WholeNumber"}
+      }
+    },
     "OptionalArnType":{
       "type":"string",
       "max":2048,
       "min":0
+    },
+    "OutputNotebookFormat":{
+      "type":"string",
+      "enum":["HTML"]
+    },
+    "OutputNotebookS3LocationForOutput":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"XmlStringMaxLen256"},
+        "Key":{"shape":"UriString"}
+      }
+    },
+    "OutputNotebookS3LocationFromInput":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"XmlStringMaxLen256"},
+        "Key":{"shape":"UriString"}
+      }
     },
     "PlacementGroupConfig":{
       "type":"structure",
@@ -2294,6 +2584,19 @@
         "ClusterArn":{"shape":"ArnType"}
       }
     },
+    "PutAutoTerminationPolicyInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"ClusterId"},
+        "AutoTerminationPolicy":{"shape":"AutoTerminationPolicy"}
+      }
+    },
+    "PutAutoTerminationPolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "PutBlockPublicAccessConfigurationInput":{
       "type":"structure",
       "required":["BlockPublicAccessConfiguration"],
@@ -2322,6 +2625,20 @@
       "members":{
       }
     },
+    "ReconfigurationType":{
+      "type":"string",
+      "enum":[
+        "OVERWRITE",
+        "MERGE"
+      ]
+    },
+    "ReleaseLabelFilter":{
+      "type":"structure",
+      "members":{
+        "Prefix":{"shape":"String"},
+        "Application":{"shape":"String"}
+      }
+    },
     "RemoveAutoScalingPolicyInput":{
       "type":"structure",
       "required":[
@@ -2334,6 +2651,18 @@
       }
     },
     "RemoveAutoScalingPolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RemoveAutoTerminationPolicyInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"ClusterId"}
+      }
+    },
+    "RemoveAutoTerminationPolicyOutput":{
       "type":"structure",
       "members":{
       }
@@ -2407,7 +2736,11 @@
         "KerberosAttributes":{"shape":"KerberosAttributes"},
         "StepConcurrencyLevel":{"shape":"Integer"},
         "ManagedScalingPolicy":{"shape":"ManagedScalingPolicy"},
-        "PlacementGroupConfigs":{"shape":"PlacementGroupConfigList"}
+        "PlacementGroupConfigs":{"shape":"PlacementGroupConfigList"},
+        "AutoTerminationPolicy":{"shape":"AutoTerminationPolicy"},
+        "OSReleaseLabel":{"shape":"XmlStringMaxLen256"},
+        "EbsRootVolumeIops":{"shape":"Integer"},
+        "EbsRootVolumeThroughput":{"shape":"Integer"}
       }
     },
     "RunJobFlowOutput":{
@@ -2556,9 +2889,25 @@
         "CoolDown":{"shape":"Integer"}
       }
     },
+    "SimplifiedApplication":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Version":{"shape":"String"}
+      }
+    },
+    "SimplifiedApplicationList":{
+      "type":"list",
+      "member":{"shape":"SimplifiedApplication"}
+    },
     "SpotProvisioningAllocationStrategy":{
       "type":"string",
-      "enum":["capacity-optimized"]
+      "enum":[
+        "capacity-optimized",
+        "price-capacity-optimized",
+        "lowest-price",
+        "diversified"
+      ]
     },
     "SpotProvisioningSpecification":{
       "type":"structure",
@@ -2580,11 +2929,16 @@
         "TERMINATE_CLUSTER"
       ]
     },
+    "SpotResizingSpecification":{
+      "type":"structure",
+      "required":["TimeoutDurationMinutes"],
+      "members":{
+        "TimeoutDurationMinutes":{"shape":"WholeNumber"}
+      }
+    },
     "StartNotebookExecutionInput":{
       "type":"structure",
       "required":[
-        "EditorId",
-        "RelativePath",
         "ExecutionEngine",
         "ServiceRole"
       ],
@@ -2596,7 +2950,11 @@
         "ExecutionEngine":{"shape":"ExecutionEngineConfig"},
         "ServiceRole":{"shape":"XmlString"},
         "NotebookInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "NotebookS3Location":{"shape":"NotebookS3LocationFromInput"},
+        "OutputNotebookS3Location":{"shape":"OutputNotebookS3LocationFromInput"},
+        "OutputNotebookFormat":{"shape":"OutputNotebookFormat"},
+        "EnvironmentVariables":{"shape":"EnvironmentVariablesMap"}
       }
     },
     "StartNotebookExecutionOutput":{
@@ -2622,7 +2980,8 @@
         "Name":{"shape":"String"},
         "Config":{"shape":"HadoopStepConfig"},
         "ActionOnFailure":{"shape":"ActionOnFailure"},
-        "Status":{"shape":"StepStatus"}
+        "Status":{"shape":"StepStatus"},
+        "ExecutionRoleArn":{"shape":"OptionalArnType"}
       }
     },
     "StepCancellationOption":{
@@ -2786,7 +3145,13 @@
         "Url":{"shape":"XmlString"},
         "CreationTime":{"shape":"Date"},
         "DefaultS3Location":{"shape":"XmlString"},
-        "Tags":{"shape":"TagList"}
+        "IdpAuthUrl":{"shape":"XmlString"},
+        "IdpRelayStateParameterName":{"shape":"XmlStringMaxLen256"},
+        "Tags":{"shape":"TagList"},
+        "IdcInstanceArn":{"shape":"ArnType"},
+        "TrustedIdentityPropagationEnabled":{"shape":"BooleanObject"},
+        "IdcUserAssignment":{"shape":"IdcUserAssignment"},
+        "EncryptionKeyArn":{"shape":"XmlString"}
       }
     },
     "StudioSummary":{
@@ -2797,6 +3162,7 @@
         "VpcId":{"shape":"XmlStringMaxLen256"},
         "Description":{"shape":"XmlStringMaxLen256"},
         "Url":{"shape":"XmlStringMaxLen256"},
+        "AuthMode":{"shape":"AuthMode"},
         "CreationTime":{"shape":"Date"}
       }
     },
@@ -2807,6 +3173,26 @@
     "SubnetIdList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "SupportedInstanceType":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "MemoryGB":{"shape":"Float"},
+        "StorageGB":{"shape":"Integer"},
+        "VCPU":{"shape":"Integer"},
+        "Is64BitsOnly":{"shape":"Boolean"},
+        "InstanceFamilyId":{"shape":"String"},
+        "EbsOptimizedAvailable":{"shape":"Boolean"},
+        "EbsOptimizedByDefault":{"shape":"Boolean"},
+        "NumberOfDisks":{"shape":"Integer"},
+        "EbsStorageOnly":{"shape":"Boolean"},
+        "Architecture":{"shape":"String"}
+      }
+    },
+    "SupportedInstanceTypesList":{
+      "type":"list",
+      "member":{"shape":"SupportedInstanceType"}
     },
     "SupportedProductConfig":{
       "type":"structure",
@@ -2836,6 +3222,10 @@
       "members":{
         "JobFlowIds":{"shape":"XmlStringList"}
       }
+    },
+    "ThroughputVal":{
+      "type":"integer",
+      "min":0
     },
     "Unit":{
       "type":"string",
@@ -2877,7 +3267,8 @@
         "Name":{"shape":"XmlStringMaxLen256"},
         "Description":{"shape":"XmlStringMaxLen256"},
         "SubnetIds":{"shape":"SubnetIdList"},
-        "DefaultS3Location":{"shape":"XmlString"}
+        "DefaultS3Location":{"shape":"XmlString"},
+        "EncryptionKeyArn":{"shape":"XmlString"}
       }
     },
     "UpdateStudioSessionMappingInput":{
@@ -2895,6 +3286,20 @@
         "SessionPolicyArn":{"shape":"XmlStringMaxLen256"}
       }
     },
+    "UriString":{
+      "type":"string",
+      "max":10280,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\r\\n\\t]*"
+    },
+    "UsernamePassword":{
+      "type":"structure",
+      "members":{
+        "Username":{"shape":"XmlStringMaxLen256"},
+        "Password":{"shape":"XmlStringMaxLen256"}
+      },
+      "sensitive":true
+    },
     "VolumeSpecification":{
       "type":"structure",
       "required":[
@@ -2904,7 +3309,8 @@
       "members":{
         "VolumeType":{"shape":"String"},
         "Iops":{"shape":"Integer"},
-        "SizeInGB":{"shape":"Integer"}
+        "SizeInGB":{"shape":"Integer"},
+        "Throughput":{"shape":"ThroughputVal"}
       }
     },
     "WholeNumber":{

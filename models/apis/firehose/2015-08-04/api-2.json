@@ -88,6 +88,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"InvalidKMSResourceException"},
+        {"shape":"InvalidSourceException"},
         {"shape":"ServiceUnavailableException"}
       ]
     },
@@ -103,6 +104,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"InvalidKMSResourceException"},
+        {"shape":"InvalidSourceException"},
         {"shape":"ServiceUnavailableException"}
       ]
     },
@@ -190,6 +192,241 @@
       "min":1,
       "pattern":"arn:.*"
     },
+    "AmazonOpenSearchServerlessBufferingHints":{
+      "type":"structure",
+      "members":{
+        "IntervalInSeconds":{"shape":"AmazonOpenSearchServerlessBufferingIntervalInSeconds"},
+        "SizeInMBs":{"shape":"AmazonOpenSearchServerlessBufferingSizeInMBs"}
+      }
+    },
+    "AmazonOpenSearchServerlessBufferingIntervalInSeconds":{
+      "type":"integer",
+      "max":900,
+      "min":0
+    },
+    "AmazonOpenSearchServerlessBufferingSizeInMBs":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "AmazonOpenSearchServerlessCollectionEndpoint":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"https:.*"
+    },
+    "AmazonOpenSearchServerlessDestinationConfiguration":{
+      "type":"structure",
+      "required":[
+        "RoleARN",
+        "IndexName",
+        "S3Configuration"
+      ],
+      "members":{
+        "RoleARN":{"shape":"RoleARN"},
+        "CollectionEndpoint":{"shape":"AmazonOpenSearchServerlessCollectionEndpoint"},
+        "IndexName":{"shape":"AmazonOpenSearchServerlessIndexName"},
+        "BufferingHints":{"shape":"AmazonOpenSearchServerlessBufferingHints"},
+        "RetryOptions":{"shape":"AmazonOpenSearchServerlessRetryOptions"},
+        "S3BackupMode":{"shape":"AmazonOpenSearchServerlessS3BackupMode"},
+        "S3Configuration":{"shape":"S3DestinationConfiguration"},
+        "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"}
+      }
+    },
+    "AmazonOpenSearchServerlessDestinationDescription":{
+      "type":"structure",
+      "members":{
+        "RoleARN":{"shape":"RoleARN"},
+        "CollectionEndpoint":{"shape":"AmazonOpenSearchServerlessCollectionEndpoint"},
+        "IndexName":{"shape":"AmazonOpenSearchServerlessIndexName"},
+        "BufferingHints":{"shape":"AmazonOpenSearchServerlessBufferingHints"},
+        "RetryOptions":{"shape":"AmazonOpenSearchServerlessRetryOptions"},
+        "S3BackupMode":{"shape":"AmazonOpenSearchServerlessS3BackupMode"},
+        "S3DestinationDescription":{"shape":"S3DestinationDescription"},
+        "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "VpcConfigurationDescription":{"shape":"VpcConfigurationDescription"}
+      }
+    },
+    "AmazonOpenSearchServerlessDestinationUpdate":{
+      "type":"structure",
+      "members":{
+        "RoleARN":{"shape":"RoleARN"},
+        "CollectionEndpoint":{"shape":"AmazonOpenSearchServerlessCollectionEndpoint"},
+        "IndexName":{"shape":"AmazonOpenSearchServerlessIndexName"},
+        "BufferingHints":{"shape":"AmazonOpenSearchServerlessBufferingHints"},
+        "RetryOptions":{"shape":"AmazonOpenSearchServerlessRetryOptions"},
+        "S3Update":{"shape":"S3DestinationUpdate"},
+        "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+      }
+    },
+    "AmazonOpenSearchServerlessIndexName":{
+      "type":"string",
+      "max":80,
+      "min":1,
+      "pattern":".*"
+    },
+    "AmazonOpenSearchServerlessRetryDurationInSeconds":{
+      "type":"integer",
+      "max":7200,
+      "min":0
+    },
+    "AmazonOpenSearchServerlessRetryOptions":{
+      "type":"structure",
+      "members":{
+        "DurationInSeconds":{"shape":"AmazonOpenSearchServerlessRetryDurationInSeconds"}
+      }
+    },
+    "AmazonOpenSearchServerlessS3BackupMode":{
+      "type":"string",
+      "enum":[
+        "FailedDocumentsOnly",
+        "AllDocuments"
+      ]
+    },
+    "AmazonopensearchserviceBufferingHints":{
+      "type":"structure",
+      "members":{
+        "IntervalInSeconds":{"shape":"AmazonopensearchserviceBufferingIntervalInSeconds"},
+        "SizeInMBs":{"shape":"AmazonopensearchserviceBufferingSizeInMBs"}
+      }
+    },
+    "AmazonopensearchserviceBufferingIntervalInSeconds":{
+      "type":"integer",
+      "max":900,
+      "min":0
+    },
+    "AmazonopensearchserviceBufferingSizeInMBs":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "AmazonopensearchserviceClusterEndpoint":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"https:.*"
+    },
+    "AmazonopensearchserviceDestinationConfiguration":{
+      "type":"structure",
+      "required":[
+        "RoleARN",
+        "IndexName",
+        "S3Configuration"
+      ],
+      "members":{
+        "RoleARN":{"shape":"RoleARN"},
+        "DomainARN":{"shape":"AmazonopensearchserviceDomainARN"},
+        "ClusterEndpoint":{"shape":"AmazonopensearchserviceClusterEndpoint"},
+        "IndexName":{"shape":"AmazonopensearchserviceIndexName"},
+        "TypeName":{"shape":"AmazonopensearchserviceTypeName"},
+        "IndexRotationPeriod":{"shape":"AmazonopensearchserviceIndexRotationPeriod"},
+        "BufferingHints":{"shape":"AmazonopensearchserviceBufferingHints"},
+        "RetryOptions":{"shape":"AmazonopensearchserviceRetryOptions"},
+        "S3BackupMode":{"shape":"AmazonopensearchserviceS3BackupMode"},
+        "S3Configuration":{"shape":"S3DestinationConfiguration"},
+        "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"},
+        "DocumentIdOptions":{"shape":"DocumentIdOptions"}
+      }
+    },
+    "AmazonopensearchserviceDestinationDescription":{
+      "type":"structure",
+      "members":{
+        "RoleARN":{"shape":"RoleARN"},
+        "DomainARN":{"shape":"AmazonopensearchserviceDomainARN"},
+        "ClusterEndpoint":{"shape":"AmazonopensearchserviceClusterEndpoint"},
+        "IndexName":{"shape":"AmazonopensearchserviceIndexName"},
+        "TypeName":{"shape":"AmazonopensearchserviceTypeName"},
+        "IndexRotationPeriod":{"shape":"AmazonopensearchserviceIndexRotationPeriod"},
+        "BufferingHints":{"shape":"AmazonopensearchserviceBufferingHints"},
+        "RetryOptions":{"shape":"AmazonopensearchserviceRetryOptions"},
+        "S3BackupMode":{"shape":"AmazonopensearchserviceS3BackupMode"},
+        "S3DestinationDescription":{"shape":"S3DestinationDescription"},
+        "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "VpcConfigurationDescription":{"shape":"VpcConfigurationDescription"},
+        "DocumentIdOptions":{"shape":"DocumentIdOptions"}
+      }
+    },
+    "AmazonopensearchserviceDestinationUpdate":{
+      "type":"structure",
+      "members":{
+        "RoleARN":{"shape":"RoleARN"},
+        "DomainARN":{"shape":"AmazonopensearchserviceDomainARN"},
+        "ClusterEndpoint":{"shape":"AmazonopensearchserviceClusterEndpoint"},
+        "IndexName":{"shape":"AmazonopensearchserviceIndexName"},
+        "TypeName":{"shape":"AmazonopensearchserviceTypeName"},
+        "IndexRotationPeriod":{"shape":"AmazonopensearchserviceIndexRotationPeriod"},
+        "BufferingHints":{"shape":"AmazonopensearchserviceBufferingHints"},
+        "RetryOptions":{"shape":"AmazonopensearchserviceRetryOptions"},
+        "S3Update":{"shape":"S3DestinationUpdate"},
+        "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "DocumentIdOptions":{"shape":"DocumentIdOptions"}
+      }
+    },
+    "AmazonopensearchserviceDomainARN":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"arn:.*"
+    },
+    "AmazonopensearchserviceIndexName":{
+      "type":"string",
+      "max":80,
+      "min":1,
+      "pattern":".*"
+    },
+    "AmazonopensearchserviceIndexRotationPeriod":{
+      "type":"string",
+      "enum":[
+        "NoRotation",
+        "OneHour",
+        "OneDay",
+        "OneWeek",
+        "OneMonth"
+      ]
+    },
+    "AmazonopensearchserviceRetryDurationInSeconds":{
+      "type":"integer",
+      "max":7200,
+      "min":0
+    },
+    "AmazonopensearchserviceRetryOptions":{
+      "type":"structure",
+      "members":{
+        "DurationInSeconds":{"shape":"AmazonopensearchserviceRetryDurationInSeconds"}
+      }
+    },
+    "AmazonopensearchserviceS3BackupMode":{
+      "type":"string",
+      "enum":[
+        "FailedDocumentsOnly",
+        "AllDocuments"
+      ]
+    },
+    "AmazonopensearchserviceTypeName":{
+      "type":"string",
+      "max":100,
+      "min":0,
+      "pattern":".*"
+    },
+    "AuthenticationConfiguration":{
+      "type":"structure",
+      "required":[
+        "RoleARN",
+        "Connectivity"
+      ],
+      "members":{
+        "RoleARN":{"shape":"RoleARN"},
+        "Connectivity":{"shape":"Connectivity"}
+      }
+    },
     "BlockSizeBytes":{
       "type":"integer",
       "min":67108864
@@ -220,7 +457,7 @@
       "type":"string",
       "max":512,
       "min":1,
-      "pattern":"jdbc:(redshift|postgresql)://((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+redshift\\.([a-zA-Z0-9\\.]+):\\d{1,5}/[a-zA-Z0-9_$]+"
+      "pattern":"jdbc:(redshift|postgresql)://((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+(redshift(-serverless)?)\\.([a-zA-Z0-9\\.]+):\\d{1,5}/[a-zA-Z0-9_$-]+"
     },
     "ColumnToJsonKeyMappings":{
       "type":"map",
@@ -243,6 +480,13 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "Connectivity":{
+      "type":"string",
+      "enum":[
+        "PUBLIC",
+        "PRIVATE"
+      ]
     },
     "ContentEncoding":{
       "type":"string",
@@ -281,9 +525,12 @@
         "ExtendedS3DestinationConfiguration":{"shape":"ExtendedS3DestinationConfiguration"},
         "RedshiftDestinationConfiguration":{"shape":"RedshiftDestinationConfiguration"},
         "ElasticsearchDestinationConfiguration":{"shape":"ElasticsearchDestinationConfiguration"},
+        "AmazonopensearchserviceDestinationConfiguration":{"shape":"AmazonopensearchserviceDestinationConfiguration"},
         "SplunkDestinationConfiguration":{"shape":"SplunkDestinationConfiguration"},
         "HttpEndpointDestinationConfiguration":{"shape":"HttpEndpointDestinationConfiguration"},
-        "Tags":{"shape":"TagDeliveryStreamInputTagList"}
+        "Tags":{"shape":"TagDeliveryStreamInputTagList"},
+        "AmazonOpenSearchServerlessDestinationConfiguration":{"shape":"AmazonOpenSearchServerlessDestinationConfiguration"},
+        "MSKSourceConfiguration":{"shape":"MSKSourceConfiguration"}
       }
     },
     "CreateDeliveryStreamOutput":{
@@ -317,6 +564,13 @@
       "max":512,
       "min":1,
       "pattern":".*"
+    },
+    "DefaultDocumentIdFormat":{
+      "type":"string",
+      "enum":[
+        "FIREHOSE_DEFAULT",
+        "NO_DOCUMENT_ID"
+      ]
     },
     "DeleteDeliveryStreamInput":{
       "type":"structure",
@@ -436,7 +690,8 @@
       "type":"string",
       "enum":[
         "DirectPut",
-        "KinesisStreamAsSource"
+        "KinesisStreamAsSource",
+        "MSKAsSource"
       ]
     },
     "DeliveryStreamVersionId":{
@@ -482,8 +737,10 @@
         "ExtendedS3DestinationDescription":{"shape":"ExtendedS3DestinationDescription"},
         "RedshiftDestinationDescription":{"shape":"RedshiftDestinationDescription"},
         "ElasticsearchDestinationDescription":{"shape":"ElasticsearchDestinationDescription"},
+        "AmazonopensearchserviceDestinationDescription":{"shape":"AmazonopensearchserviceDestinationDescription"},
         "SplunkDestinationDescription":{"shape":"SplunkDestinationDescription"},
-        "HttpEndpointDestinationDescription":{"shape":"HttpEndpointDestinationDescription"}
+        "HttpEndpointDestinationDescription":{"shape":"HttpEndpointDestinationDescription"},
+        "AmazonOpenSearchServerlessDestinationDescription":{"shape":"AmazonOpenSearchServerlessDestinationDescription"}
       }
     },
     "DestinationDescriptionList":{
@@ -496,6 +753,20 @@
       "min":1,
       "pattern":"[a-zA-Z0-9-]+"
     },
+    "DocumentIdOptions":{
+      "type":"structure",
+      "required":["DefaultDocumentIdFormat"],
+      "members":{
+        "DefaultDocumentIdFormat":{"shape":"DefaultDocumentIdFormat"}
+      }
+    },
+    "DynamicPartitioningConfiguration":{
+      "type":"structure",
+      "members":{
+        "RetryOptions":{"shape":"RetryOptions"},
+        "Enabled":{"shape":"BooleanObject"}
+      }
+    },
     "ElasticsearchBufferingHints":{
       "type":"structure",
       "members":{
@@ -506,7 +777,7 @@
     "ElasticsearchBufferingIntervalInSeconds":{
       "type":"integer",
       "max":900,
-      "min":60
+      "min":0
     },
     "ElasticsearchBufferingSizeInMBs":{
       "type":"integer",
@@ -539,7 +810,8 @@
         "S3Configuration":{"shape":"S3DestinationConfiguration"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
-        "VpcConfiguration":{"shape":"VpcConfiguration"}
+        "VpcConfiguration":{"shape":"VpcConfiguration"},
+        "DocumentIdOptions":{"shape":"DocumentIdOptions"}
       }
     },
     "ElasticsearchDestinationDescription":{
@@ -557,7 +829,8 @@
         "S3DestinationDescription":{"shape":"S3DestinationDescription"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
-        "VpcConfigurationDescription":{"shape":"VpcConfigurationDescription"}
+        "VpcConfigurationDescription":{"shape":"VpcConfigurationDescription"},
+        "DocumentIdOptions":{"shape":"DocumentIdOptions"}
       }
     },
     "ElasticsearchDestinationUpdate":{
@@ -573,7 +846,8 @@
         "RetryOptions":{"shape":"ElasticsearchRetryOptions"},
         "S3Update":{"shape":"S3DestinationUpdate"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "DocumentIdOptions":{"shape":"DocumentIdOptions"}
       }
     },
     "ElasticsearchDomainARN":{
@@ -655,7 +929,8 @@
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "S3BackupMode":{"shape":"S3BackupMode"},
         "S3BackupConfiguration":{"shape":"S3DestinationConfiguration"},
-        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"}
+        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"},
+        "DynamicPartitioningConfiguration":{"shape":"DynamicPartitioningConfiguration"}
       }
     },
     "ExtendedS3DestinationDescription":{
@@ -679,7 +954,8 @@
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "S3BackupMode":{"shape":"S3BackupMode"},
         "S3BackupDescription":{"shape":"S3DestinationDescription"},
-        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"}
+        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"},
+        "DynamicPartitioningConfiguration":{"shape":"DynamicPartitioningConfiguration"}
       }
     },
     "ExtendedS3DestinationUpdate":{
@@ -696,7 +972,8 @@
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "S3BackupMode":{"shape":"S3BackupMode"},
         "S3BackupUpdate":{"shape":"S3DestinationUpdate"},
-        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"}
+        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"},
+        "DynamicPartitioningConfiguration":{"shape":"DynamicPartitioningConfiguration"}
       }
     },
     "FailureDescription":{
@@ -771,7 +1048,7 @@
     "HttpEndpointBufferingIntervalInSeconds":{
       "type":"integer",
       "max":900,
-      "min":60
+      "min":0
     },
     "HttpEndpointBufferingSizeInMBs":{
       "type":"integer",
@@ -904,7 +1181,7 @@
     "IntervalInSeconds":{
       "type":"integer",
       "max":900,
-      "min":60
+      "min":0
     },
     "InvalidArgumentException":{
       "type":"structure",
@@ -914,6 +1191,14 @@
       "exception":true
     },
     "InvalidKMSResourceException":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"ErrorCode"},
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "InvalidSourceException":{
       "type":"structure",
       "members":{
         "code":{"shape":"ErrorCode"},
@@ -1041,6 +1326,34 @@
       "max":512,
       "min":0,
       "pattern":"[^:*]*"
+    },
+    "MSKClusterARN":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"arn:.*"
+    },
+    "MSKSourceConfiguration":{
+      "type":"structure",
+      "required":[
+        "MSKClusterARN",
+        "TopicName",
+        "AuthenticationConfiguration"
+      ],
+      "members":{
+        "MSKClusterARN":{"shape":"MSKClusterARN"},
+        "TopicName":{"shape":"TopicName"},
+        "AuthenticationConfiguration":{"shape":"AuthenticationConfiguration"}
+      }
+    },
+    "MSKSourceDescription":{
+      "type":"structure",
+      "members":{
+        "MSKClusterARN":{"shape":"MSKClusterARN"},
+        "TopicName":{"shape":"TopicName"},
+        "AuthenticationConfiguration":{"shape":"AuthenticationConfiguration"},
+        "DeliveryStartTimestamp":{"shape":"DeliveryStartTimestamp"}
+      }
     },
     "NoEncryptionConfig":{
       "type":"string",
@@ -1196,20 +1509,31 @@
       "enum":[
         "LambdaArn",
         "NumberOfRetries",
+        "MetadataExtractionQuery",
+        "JsonParsingEngine",
         "RoleArn",
         "BufferSizeInMBs",
-        "BufferIntervalInSeconds"
+        "BufferIntervalInSeconds",
+        "SubRecordType",
+        "Delimiter",
+        "CompressionFormat"
       ]
     },
     "ProcessorParameterValue":{
       "type":"string",
-      "max":512,
+      "max":5120,
       "min":1,
       "pattern":"^(?!\\s*$).+"
     },
     "ProcessorType":{
       "type":"string",
-      "enum":["Lambda"]
+      "enum":[
+        "RecordDeAggregation",
+        "Decompression",
+        "Lambda",
+        "MetadataExtraction",
+        "AppendDelimiterToRecord"
+      ]
     },
     "Proportion":{
       "type":"double",
@@ -1383,6 +1707,17 @@
       },
       "exception":true
     },
+    "RetryDurationInSeconds":{
+      "type":"integer",
+      "max":7200,
+      "min":0
+    },
+    "RetryOptions":{
+      "type":"structure",
+      "members":{
+        "DurationInSeconds":{"shape":"RetryDurationInSeconds"}
+      }
+    },
     "RoleARN":{
       "type":"string",
       "max":512,
@@ -1486,8 +1821,26 @@
     "SourceDescription":{
       "type":"structure",
       "members":{
-        "KinesisStreamSourceDescription":{"shape":"KinesisStreamSourceDescription"}
+        "KinesisStreamSourceDescription":{"shape":"KinesisStreamSourceDescription"},
+        "MSKSourceDescription":{"shape":"MSKSourceDescription"}
       }
+    },
+    "SplunkBufferingHints":{
+      "type":"structure",
+      "members":{
+        "IntervalInSeconds":{"shape":"SplunkBufferingIntervalInSeconds"},
+        "SizeInMBs":{"shape":"SplunkBufferingSizeInMBs"}
+      }
+    },
+    "SplunkBufferingIntervalInSeconds":{
+      "type":"integer",
+      "max":60,
+      "min":0
+    },
+    "SplunkBufferingSizeInMBs":{
+      "type":"integer",
+      "max":5,
+      "min":1
     },
     "SplunkDestinationConfiguration":{
       "type":"structure",
@@ -1506,7 +1859,8 @@
         "S3BackupMode":{"shape":"SplunkS3BackupMode"},
         "S3Configuration":{"shape":"S3DestinationConfiguration"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "BufferingHints":{"shape":"SplunkBufferingHints"}
       }
     },
     "SplunkDestinationDescription":{
@@ -1520,7 +1874,8 @@
         "S3BackupMode":{"shape":"SplunkS3BackupMode"},
         "S3DestinationDescription":{"shape":"S3DestinationDescription"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "BufferingHints":{"shape":"SplunkBufferingHints"}
       }
     },
     "SplunkDestinationUpdate":{
@@ -1534,7 +1889,8 @@
         "S3BackupMode":{"shape":"SplunkS3BackupMode"},
         "S3Update":{"shape":"S3DestinationUpdate"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "BufferingHints":{"shape":"SplunkBufferingHints"}
       }
     },
     "SplunkRetryDurationInSeconds":{
@@ -1635,6 +1991,12 @@
       "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@%]*$"
     },
     "Timestamp":{"type":"timestamp"},
+    "TopicName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\\\._\\\\-]+"
+    },
     "UntagDeliveryStreamInput":{
       "type":"structure",
       "required":[
@@ -1669,8 +2031,10 @@
         "ExtendedS3DestinationUpdate":{"shape":"ExtendedS3DestinationUpdate"},
         "RedshiftDestinationUpdate":{"shape":"RedshiftDestinationUpdate"},
         "ElasticsearchDestinationUpdate":{"shape":"ElasticsearchDestinationUpdate"},
+        "AmazonopensearchserviceDestinationUpdate":{"shape":"AmazonopensearchserviceDestinationUpdate"},
         "SplunkDestinationUpdate":{"shape":"SplunkDestinationUpdate"},
-        "HttpEndpointDestinationUpdate":{"shape":"HttpEndpointDestinationUpdate"}
+        "HttpEndpointDestinationUpdate":{"shape":"HttpEndpointDestinationUpdate"},
+        "AmazonOpenSearchServerlessDestinationUpdate":{"shape":"AmazonOpenSearchServerlessDestinationUpdate"}
       }
     },
     "UpdateDestinationOutput":{

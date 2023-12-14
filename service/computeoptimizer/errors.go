@@ -23,7 +23,7 @@ const (
 	// ErrCodeInvalidParameterValueException for service response error code
 	// "InvalidParameterValueException".
 	//
-	// An invalid or out-of-range value was supplied for the input parameter.
+	// The value supplied for the input parameter is out of range or not valid.
 	ErrCodeInvalidParameterValueException = "InvalidParameterValueException"
 
 	// ErrCodeLimitExceededException for service response error code
@@ -35,14 +35,14 @@ const (
 	// ErrCodeMissingAuthenticationToken for service response error code
 	// "MissingAuthenticationToken".
 	//
-	// The request must contain either a valid (registered) AWS access key ID or
-	// X.509 certificate.
+	// The request must contain either a valid (registered) Amazon Web Services
+	// access key ID or X.509 certificate.
 	ErrCodeMissingAuthenticationToken = "MissingAuthenticationToken"
 
 	// ErrCodeOptInRequiredException for service response error code
 	// "OptInRequiredException".
 	//
-	// The account is not opted in to AWS Compute Optimizer.
+	// The account is not opted in to Compute Optimizer.
 	ErrCodeOptInRequiredException = "OptInRequiredException"
 
 	// ErrCodeResourceNotFoundException for service response error code

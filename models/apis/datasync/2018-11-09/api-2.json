@@ -14,6 +14,20 @@
     "uid":"datasync-2018-11-09"
   },
   "operations":{
+    "AddStorageSystem":{
+      "name":"AddStorageSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddStorageSystemRequest"},
+      "output":{"shape":"AddStorageSystemResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "CancelTaskExecution":{
       "name":"CancelTaskExecution",
       "http":{
@@ -40,6 +54,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationAzureBlob":{
+      "name":"CreateLocationAzureBlob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationAzureBlobRequest"},
+      "output":{"shape":"CreateLocationAzureBlobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateLocationEfs":{
       "name":"CreateLocationEfs",
       "http":{
@@ -53,6 +80,45 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationFsxLustre":{
+      "name":"CreateLocationFsxLustre",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationFsxLustreRequest"},
+      "output":{"shape":"CreateLocationFsxLustreResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "CreateLocationFsxOntap":{
+      "name":"CreateLocationFsxOntap",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationFsxOntapRequest"},
+      "output":{"shape":"CreateLocationFsxOntapResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "CreateLocationFsxOpenZfs":{
+      "name":"CreateLocationFsxOpenZfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationFsxOpenZfsRequest"},
+      "output":{"shape":"CreateLocationFsxOpenZfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateLocationFsxWindows":{
       "name":"CreateLocationFsxWindows",
       "http":{
@@ -61,6 +127,19 @@
       },
       "input":{"shape":"CreateLocationFsxWindowsRequest"},
       "output":{"shape":"CreateLocationFsxWindowsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "CreateLocationHdfs":{
+      "name":"CreateLocationHdfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationHdfsRequest"},
+      "output":{"shape":"CreateLocationHdfsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -183,6 +262,33 @@
         {"shape":"InternalException"}
       ]
     },
+    "DescribeDiscoveryJob":{
+      "name":"DescribeDiscoveryJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDiscoveryJobRequest"},
+      "output":{"shape":"DescribeDiscoveryJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
+    "DescribeLocationAzureBlob":{
+      "name":"DescribeLocationAzureBlob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationAzureBlobRequest"},
+      "output":{"shape":"DescribeLocationAzureBlobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "DescribeLocationEfs":{
       "name":"DescribeLocationEfs",
       "http":{
@@ -196,6 +302,45 @@
         {"shape":"InternalException"}
       ]
     },
+    "DescribeLocationFsxLustre":{
+      "name":"DescribeLocationFsxLustre",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationFsxLustreRequest"},
+      "output":{"shape":"DescribeLocationFsxLustreResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationFsxOntap":{
+      "name":"DescribeLocationFsxOntap",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationFsxOntapRequest"},
+      "output":{"shape":"DescribeLocationFsxOntapResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationFsxOpenZfs":{
+      "name":"DescribeLocationFsxOpenZfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationFsxOpenZfsRequest"},
+      "output":{"shape":"DescribeLocationFsxOpenZfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "DescribeLocationFsxWindows":{
       "name":"DescribeLocationFsxWindows",
       "http":{
@@ -204,6 +349,19 @@
       },
       "input":{"shape":"DescribeLocationFsxWindowsRequest"},
       "output":{"shape":"DescribeLocationFsxWindowsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationHdfs":{
+      "name":"DescribeLocationHdfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationHdfsRequest"},
+      "output":{"shape":"DescribeLocationHdfsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -261,6 +419,48 @@
         {"shape":"InternalException"}
       ]
     },
+    "DescribeStorageSystem":{
+      "name":"DescribeStorageSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStorageSystemRequest"},
+      "output":{"shape":"DescribeStorageSystemResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
+    "DescribeStorageSystemResourceMetrics":{
+      "name":"DescribeStorageSystemResourceMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStorageSystemResourceMetricsRequest"},
+      "output":{"shape":"DescribeStorageSystemResourceMetricsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
+    "DescribeStorageSystemResources":{
+      "name":"DescribeStorageSystemResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStorageSystemResourcesRequest"},
+      "output":{"shape":"DescribeStorageSystemResourcesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "DescribeTask":{
       "name":"DescribeTask",
       "http":{
@@ -287,6 +487,20 @@
         {"shape":"InternalException"}
       ]
     },
+    "GenerateRecommendations":{
+      "name":"GenerateRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GenerateRecommendationsRequest"},
+      "output":{"shape":"GenerateRecommendationsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "ListAgents":{
       "name":"ListAgents",
       "http":{
@@ -300,6 +514,20 @@
         {"shape":"InternalException"}
       ]
     },
+    "ListDiscoveryJobs":{
+      "name":"ListDiscoveryJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDiscoveryJobsRequest"},
+      "output":{"shape":"ListDiscoveryJobsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "ListLocations":{
       "name":"ListLocations",
       "http":{
@@ -312,6 +540,20 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
       ]
+    },
+    "ListStorageSystems":{
+      "name":"ListStorageSystems",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStorageSystemsRequest"},
+      "output":{"shape":"ListStorageSystemsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -352,6 +594,34 @@
         {"shape":"InternalException"}
       ]
     },
+    "RemoveStorageSystem":{
+      "name":"RemoveStorageSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveStorageSystemRequest"},
+      "output":{"shape":"RemoveStorageSystemResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
+    "StartDiscoveryJob":{
+      "name":"StartDiscoveryJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartDiscoveryJobRequest"},
+      "output":{"shape":"StartDiscoveryJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "StartTaskExecution":{
       "name":"StartTaskExecution",
       "http":{
@@ -364,6 +634,20 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
       ]
+    },
+    "StopDiscoveryJob":{
+      "name":"StopDiscoveryJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopDiscoveryJobRequest"},
+      "output":{"shape":"StopDiscoveryJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
     },
     "TagResource":{
       "name":"TagResource",
@@ -399,6 +683,46 @@
       },
       "input":{"shape":"UpdateAgentRequest"},
       "output":{"shape":"UpdateAgentResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "UpdateDiscoveryJob":{
+      "name":"UpdateDiscoveryJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDiscoveryJobRequest"},
+      "output":{"shape":"UpdateDiscoveryJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
+    "UpdateLocationAzureBlob":{
+      "name":"UpdateLocationAzureBlob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationAzureBlobRequest"},
+      "output":{"shape":"UpdateLocationAzureBlobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "UpdateLocationHdfs":{
+      "name":"UpdateLocationHdfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationHdfsRequest"},
+      "output":{"shape":"UpdateLocationHdfsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -443,6 +767,20 @@
         {"shape":"InternalException"}
       ]
     },
+    "UpdateStorageSystem":{
+      "name":"UpdateStorageSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateStorageSystemRequest"},
+      "output":{"shape":"UpdateStorageSystemResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "UpdateTask":{
       "name":"UpdateTask",
       "http":{
@@ -476,6 +814,36 @@
       "max":29,
       "pattern":"[A-Z0-9]{5}(-[A-Z0-9]{5}){4}"
     },
+    "AddStorageSystemRequest":{
+      "type":"structure",
+      "required":[
+        "ServerConfiguration",
+        "SystemType",
+        "AgentArns",
+        "ClientToken",
+        "Credentials"
+      ],
+      "members":{
+        "ServerConfiguration":{"shape":"DiscoveryServerConfiguration"},
+        "SystemType":{"shape":"DiscoverySystemType"},
+        "AgentArns":{"shape":"DiscoveryAgentArnList"},
+        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "Tags":{"shape":"InputTagList"},
+        "Name":{"shape":"Name"},
+        "ClientToken":{
+          "shape":"PtolemyUUID",
+          "idempotencyToken":true
+        },
+        "Credentials":{"shape":"Credentials"}
+      }
+    },
+    "AddStorageSystemResponse":{
+      "type":"structure",
+      "required":["StorageSystemArn"],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"}
+      }
+    },
     "AgentArn":{
       "type":"string",
       "max":128,
@@ -496,7 +864,8 @@
       "members":{
         "AgentArn":{"shape":"AgentArn"},
         "Name":{"shape":"TagValue"},
-        "Status":{"shape":"AgentStatus"}
+        "Status":{"shape":"AgentStatus"},
+        "Platform":{"shape":"Platform"}
       }
     },
     "AgentStatus":{
@@ -506,12 +875,58 @@
         "OFFLINE"
       ]
     },
+    "AgentVersion":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\s+=._:@/-]+$"
+    },
     "Atime":{
       "type":"string",
       "enum":[
         "NONE",
         "BEST_EFFORT"
       ]
+    },
+    "AzureAccessTier":{
+      "type":"string",
+      "enum":[
+        "HOT",
+        "COOL",
+        "ARCHIVE"
+      ]
+    },
+    "AzureBlobAuthenticationType":{
+      "type":"string",
+      "enum":["SAS"]
+    },
+    "AzureBlobContainerUrl":{
+      "type":"string",
+      "max":325,
+      "pattern":"^https:\\/\\/[A-Za-z0-9]((\\.|-+)?[A-Za-z0-9]){0,252}\\/[a-z0-9](-?[a-z0-9]){2,62}$"
+    },
+    "AzureBlobSasConfiguration":{
+      "type":"structure",
+      "required":["Token"],
+      "members":{
+        "Token":{"shape":"AzureBlobSasToken"}
+      }
+    },
+    "AzureBlobSasToken":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^.+$",
+      "sensitive":true
+    },
+    "AzureBlobSubdirectory":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}\\p{C}]*$"
+    },
+    "AzureBlobType":{
+      "type":"string",
+      "enum":["BLOCK"]
     },
     "BytesPerSecond":{
       "type":"long",
@@ -528,6 +943,20 @@
       "type":"structure",
       "members":{
       }
+    },
+    "Capacity":{
+      "type":"structure",
+      "members":{
+        "Used":{"shape":"NonNegativeLong"},
+        "Provisioned":{"shape":"NonNegativeLong"},
+        "LogicalUsed":{"shape":"NonNegativeLong"},
+        "ClusterCloudStorageUsed":{"shape":"NonNegativeLong"}
+      }
+    },
+    "CollectionDurationMinutes":{
+      "type":"integer",
+      "max":44640,
+      "min":60
     },
     "CreateAgentRequest":{
       "type":"structure",
@@ -547,6 +976,30 @@
         "AgentArn":{"shape":"AgentArn"}
       }
     },
+    "CreateLocationAzureBlobRequest":{
+      "type":"structure",
+      "required":[
+        "ContainerUrl",
+        "AuthenticationType",
+        "AgentArns"
+      ],
+      "members":{
+        "ContainerUrl":{"shape":"AzureBlobContainerUrl"},
+        "AuthenticationType":{"shape":"AzureBlobAuthenticationType"},
+        "SasConfiguration":{"shape":"AzureBlobSasConfiguration"},
+        "BlobType":{"shape":"AzureBlobType"},
+        "AccessTier":{"shape":"AzureAccessTier"},
+        "Subdirectory":{"shape":"AzureBlobSubdirectory"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationAzureBlobResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
     "CreateLocationEfsRequest":{
       "type":"structure",
       "required":[
@@ -557,10 +1010,74 @@
         "Subdirectory":{"shape":"EfsSubdirectory"},
         "EfsFilesystemArn":{"shape":"EfsFilesystemArn"},
         "Ec2Config":{"shape":"Ec2Config"},
-        "Tags":{"shape":"InputTagList"}
+        "Tags":{"shape":"InputTagList"},
+        "AccessPointArn":{"shape":"EfsAccessPointArn"},
+        "FileSystemAccessRoleArn":{"shape":"IamRoleArn"},
+        "InTransitEncryption":{"shape":"EfsInTransitEncryption"}
       }
     },
     "CreateLocationEfsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "CreateLocationFsxLustreRequest":{
+      "type":"structure",
+      "required":[
+        "FsxFilesystemArn",
+        "SecurityGroupArns"
+      ],
+      "members":{
+        "FsxFilesystemArn":{"shape":"FsxFilesystemArn"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "Subdirectory":{"shape":"FsxLustreSubdirectory"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationFsxLustreResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "CreateLocationFsxOntapRequest":{
+      "type":"structure",
+      "required":[
+        "Protocol",
+        "SecurityGroupArns",
+        "StorageVirtualMachineArn"
+      ],
+      "members":{
+        "Protocol":{"shape":"FsxProtocol"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "StorageVirtualMachineArn":{"shape":"StorageVirtualMachineArn"},
+        "Subdirectory":{"shape":"FsxOntapSubdirectory"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationFsxOntapResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "CreateLocationFsxOpenZfsRequest":{
+      "type":"structure",
+      "required":[
+        "FsxFilesystemArn",
+        "Protocol",
+        "SecurityGroupArns"
+      ],
+      "members":{
+        "FsxFilesystemArn":{"shape":"FsxFilesystemArn"},
+        "Protocol":{"shape":"FsxProtocol"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "Subdirectory":{"shape":"FsxOpenZfsSubdirectory"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationFsxOpenZfsResponse":{
       "type":"structure",
       "members":{
         "LocationArn":{"shape":"LocationArn"}
@@ -585,6 +1102,35 @@
       }
     },
     "CreateLocationFsxWindowsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "CreateLocationHdfsRequest":{
+      "type":"structure",
+      "required":[
+        "NameNodes",
+        "AuthenticationType",
+        "AgentArns"
+      ],
+      "members":{
+        "Subdirectory":{"shape":"HdfsSubdirectory"},
+        "NameNodes":{"shape":"HdfsNameNodeList"},
+        "BlockSize":{"shape":"HdfsBlockSize"},
+        "ReplicationFactor":{"shape":"HdfsReplicationFactor"},
+        "KmsKeyProviderUri":{"shape":"KmsKeyProviderUri"},
+        "QopConfiguration":{"shape":"QopConfiguration"},
+        "AuthenticationType":{"shape":"HdfsAuthenticationType"},
+        "SimpleUser":{"shape":"HdfsUser"},
+        "KerberosPrincipal":{"shape":"KerberosPrincipal"},
+        "KerberosKeytab":{"shape":"KerberosKeytabFile"},
+        "KerberosKrb5Conf":{"shape":"KerberosKrb5ConfFile"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationHdfsResponse":{
       "type":"structure",
       "members":{
         "LocationArn":{"shape":"LocationArn"}
@@ -627,7 +1173,8 @@
         "AccessKey":{"shape":"ObjectStorageAccessKey"},
         "SecretKey":{"shape":"ObjectStorageSecretKey"},
         "AgentArns":{"shape":"AgentArnList"},
-        "Tags":{"shape":"InputTagList"}
+        "Tags":{"shape":"InputTagList"},
+        "ServerCertificate":{"shape":"ObjectStorageCertificate"}
       }
     },
     "CreateLocationObjectStorageResponse":{
@@ -697,13 +1244,26 @@
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
         "Schedule":{"shape":"TaskSchedule"},
-        "Tags":{"shape":"InputTagList"}
+        "Tags":{"shape":"InputTagList"},
+        "Includes":{"shape":"FilterList"},
+        "TaskReportConfig":{"shape":"TaskReportConfig"}
       }
     },
     "CreateTaskResponse":{
       "type":"structure",
       "members":{
         "TaskArn":{"shape":"TaskArn"}
+      }
+    },
+    "Credentials":{
+      "type":"structure",
+      "required":[
+        "Username",
+        "Password"
+      ],
+      "members":{
+        "Username":{"shape":"PtolemyUsername"},
+        "Password":{"shape":"PtolemyPassword"}
       }
     },
     "DeleteAgentRequest":{
@@ -758,7 +1318,45 @@
         "LastConnectionTime":{"shape":"Time"},
         "CreationTime":{"shape":"Time"},
         "EndpointType":{"shape":"EndpointType"},
-        "PrivateLinkConfig":{"shape":"PrivateLinkConfig"}
+        "PrivateLinkConfig":{"shape":"PrivateLinkConfig"},
+        "Platform":{"shape":"Platform"}
+      }
+    },
+    "DescribeDiscoveryJobRequest":{
+      "type":"structure",
+      "required":["DiscoveryJobArn"],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"}
+      }
+    },
+    "DescribeDiscoveryJobResponse":{
+      "type":"structure",
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "CollectionDurationMinutes":{"shape":"CollectionDurationMinutes"},
+        "Status":{"shape":"DiscoveryJobStatus"},
+        "JobStartTime":{"shape":"DiscoveryTime"},
+        "JobEndTime":{"shape":"DiscoveryTime"}
+      }
+    },
+    "DescribeLocationAzureBlobRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationAzureBlobResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "AuthenticationType":{"shape":"AzureBlobAuthenticationType"},
+        "BlobType":{"shape":"AzureBlobType"},
+        "AccessTier":{"shape":"AzureAccessTier"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "CreationTime":{"shape":"Time"}
       }
     },
     "DescribeLocationEfsRequest":{
@@ -774,6 +1372,61 @@
         "LocationArn":{"shape":"LocationArn"},
         "LocationUri":{"shape":"LocationUri"},
         "Ec2Config":{"shape":"Ec2Config"},
+        "CreationTime":{"shape":"Time"},
+        "AccessPointArn":{"shape":"EfsAccessPointArn"},
+        "FileSystemAccessRoleArn":{"shape":"IamRoleArn"},
+        "InTransitEncryption":{"shape":"EfsInTransitEncryption"}
+      }
+    },
+    "DescribeLocationFsxLustreRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationFsxLustreResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "CreationTime":{"shape":"Time"}
+      }
+    },
+    "DescribeLocationFsxOntapRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationFsxOntapResponse":{
+      "type":"structure",
+      "members":{
+        "CreationTime":{"shape":"Time"},
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "Protocol":{"shape":"FsxProtocol"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "StorageVirtualMachineArn":{"shape":"StorageVirtualMachineArn"},
+        "FsxFilesystemArn":{"shape":"FsxFilesystemArn"}
+      }
+    },
+    "DescribeLocationFsxOpenZfsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationFsxOpenZfsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "Protocol":{"shape":"FsxProtocol"},
         "CreationTime":{"shape":"Time"}
       }
     },
@@ -793,6 +1446,30 @@
         "CreationTime":{"shape":"Time"},
         "User":{"shape":"SmbUser"},
         "Domain":{"shape":"SmbDomain"}
+      }
+    },
+    "DescribeLocationHdfsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationHdfsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "NameNodes":{"shape":"HdfsNameNodeList"},
+        "BlockSize":{"shape":"HdfsBlockSize"},
+        "ReplicationFactor":{"shape":"HdfsReplicationFactor"},
+        "KmsKeyProviderUri":{"shape":"KmsKeyProviderUri"},
+        "QopConfiguration":{"shape":"QopConfiguration"},
+        "AuthenticationType":{"shape":"HdfsAuthenticationType"},
+        "SimpleUser":{"shape":"HdfsUser"},
+        "KerberosPrincipal":{"shape":"KerberosPrincipal"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "CreationTime":{"shape":"Time"}
       }
     },
     "DescribeLocationNfsRequest":{
@@ -828,7 +1505,8 @@
         "ServerPort":{"shape":"ObjectStorageServerPort"},
         "ServerProtocol":{"shape":"ObjectStorageServerProtocol"},
         "AgentArns":{"shape":"AgentArnList"},
-        "CreationTime":{"shape":"Time"}
+        "CreationTime":{"shape":"Time"},
+        "ServerCertificate":{"shape":"ObjectStorageCertificate"}
       }
     },
     "DescribeLocationS3Request":{
@@ -868,6 +1546,74 @@
         "CreationTime":{"shape":"Time"}
       }
     },
+    "DescribeStorageSystemRequest":{
+      "type":"structure",
+      "required":["StorageSystemArn"],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"}
+      }
+    },
+    "DescribeStorageSystemResourceMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "DiscoveryJobArn",
+        "ResourceType",
+        "ResourceId"
+      ],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "ResourceType":{"shape":"DiscoveryResourceType"},
+        "ResourceId":{"shape":"ResourceId"},
+        "StartTime":{"shape":"DiscoveryTime"},
+        "EndTime":{"shape":"DiscoveryTime"},
+        "MaxResults":{"shape":"DiscoveryMaxResults"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "DescribeStorageSystemResourceMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "Metrics":{"shape":"Metrics"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "DescribeStorageSystemResourcesRequest":{
+      "type":"structure",
+      "required":[
+        "DiscoveryJobArn",
+        "ResourceType"
+      ],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "ResourceType":{"shape":"DiscoveryResourceType"},
+        "ResourceIds":{"shape":"ResourceIds"},
+        "Filter":{"shape":"ResourceFilters"},
+        "MaxResults":{"shape":"DiscoveryMaxResults"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "DescribeStorageSystemResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceDetails":{"shape":"ResourceDetails"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "DescribeStorageSystemResponse":{
+      "type":"structure",
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "ServerConfiguration":{"shape":"DiscoveryServerConfiguration"},
+        "SystemType":{"shape":"DiscoverySystemType"},
+        "AgentArns":{"shape":"DiscoveryAgentArnList"},
+        "Name":{"shape":"Name"},
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "ConnectivityStatus":{"shape":"StorageSystemConnectivityStatus"},
+        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "CreationTime":{"shape":"Timestamp"},
+        "SecretsManagerArn":{"shape":"SecretsManagerArn"}
+      }
+    },
     "DescribeTaskExecutionRequest":{
       "type":"structure",
       "required":["TaskExecutionArn"],
@@ -889,7 +1635,14 @@
         "FilesTransferred":{"shape":"long"},
         "BytesWritten":{"shape":"long"},
         "BytesTransferred":{"shape":"long"},
-        "Result":{"shape":"TaskExecutionResultDetail"}
+        "Result":{"shape":"TaskExecutionResultDetail"},
+        "BytesCompressed":{"shape":"long"},
+        "TaskReportConfig":{"shape":"TaskReportConfig"},
+        "FilesDeleted":{"shape":"long"},
+        "FilesSkipped":{"shape":"long"},
+        "FilesVerified":{"shape":"long"},
+        "ReportResult":{"shape":"ReportResult"},
+        "EstimatedFilesToDelete":{"shape":"long"}
       }
     },
     "DescribeTaskRequest":{
@@ -916,13 +1669,95 @@
         "Schedule":{"shape":"TaskSchedule"},
         "ErrorCode":{"shape":"string"},
         "ErrorDetail":{"shape":"string"},
-        "CreationTime":{"shape":"Time"}
+        "CreationTime":{"shape":"Time"},
+        "Includes":{"shape":"FilterList"},
+        "TaskReportConfig":{"shape":"TaskReportConfig"}
       }
     },
     "DestinationNetworkInterfaceArns":{
       "type":"list",
       "member":{"shape":"NetworkInterfaceArn"}
     },
+    "DiscoveryAgentArnList":{
+      "type":"list",
+      "member":{"shape":"AgentArn"},
+      "max":1,
+      "min":1
+    },
+    "DiscoveryJobArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:system/storage-system-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/job/discovery-job-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "DiscoveryJobList":{
+      "type":"list",
+      "member":{"shape":"DiscoveryJobListEntry"}
+    },
+    "DiscoveryJobListEntry":{
+      "type":"structure",
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "Status":{"shape":"DiscoveryJobStatus"}
+      }
+    },
+    "DiscoveryJobStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "WARNING",
+        "TERMINATED",
+        "FAILED",
+        "STOPPED",
+        "COMPLETED",
+        "COMPLETED_WITH_ISSUES"
+      ]
+    },
+    "DiscoveryMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "DiscoveryNextToken":{
+      "type":"string",
+      "max":65535,
+      "pattern":"[a-zA-Z0-9=_-]+"
+    },
+    "DiscoveryResourceFilter":{
+      "type":"string",
+      "enum":["SVM"]
+    },
+    "DiscoveryResourceType":{
+      "type":"string",
+      "enum":[
+        "SVM",
+        "VOLUME",
+        "CLUSTER"
+      ]
+    },
+    "DiscoveryServerConfiguration":{
+      "type":"structure",
+      "required":["ServerHostname"],
+      "members":{
+        "ServerHostname":{"shape":"DiscoveryServerHostname"},
+        "ServerPort":{"shape":"DiscoveryServerPort"}
+      }
+    },
+    "DiscoveryServerHostname":{
+      "type":"string",
+      "max":255,
+      "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$"
+    },
+    "DiscoveryServerPort":{
+      "type":"integer",
+      "box":true,
+      "max":65535,
+      "min":1
+    },
+    "DiscoverySystemType":{
+      "type":"string",
+      "enum":["NetAppONTAP"]
+    },
+    "DiscoveryTime":{"type":"timestamp"},
     "Duration":{
       "type":"long",
       "min":0
@@ -941,7 +1776,7 @@
     "Ec2SecurityGroupArn":{
       "type":"string",
       "max":128,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):ec2:[a-z\\-0-9]*:[0-9]{12}:security-group/.*$"
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):ec2:[a-z\\-0-9]*:[0-9]{12}:security-group/sg-[a-f0-9]+$"
     },
     "Ec2SecurityGroupArnList":{
       "type":"list",
@@ -954,15 +1789,31 @@
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):ec2:[a-z\\-0-9]*:[0-9]{12}:subnet/.*$"
     },
+    "EfsAccessPointArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):elasticfilesystem:[a-z\\-0-9]+:[0-9]{12}:access-point/fsap-[0-9a-f]{8,40}$"
+    },
     "EfsFilesystemArn":{
       "type":"string",
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):elasticfilesystem:[a-z\\-0-9]*:[0-9]{12}:file-system/fs-.*$"
     },
+    "EfsInTransitEncryption":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "TLS1_2"
+      ]
+    },
     "EfsSubdirectory":{
       "type":"string",
       "max":4096,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
+    },
+    "EnabledProtocols":{
+      "type":"list",
+      "member":{"shape":"PtolemyString"}
     },
     "Endpoint":{
       "type":"string",
@@ -978,6 +1829,11 @@
         "FIPS"
       ]
     },
+    "ErrorMessage":{
+      "type":"string",
+      "max":128,
+      "pattern":".*"
+    },
     "FilterAttributeValue":{
       "type":"string",
       "max":255,
@@ -989,6 +1845,10 @@
       "member":{"shape":"FilterRule"},
       "max":1,
       "min":0
+    },
+    "FilterMembers":{
+      "type":"list",
+      "member":{"shape":"PtolemyString"}
     },
     "FilterRule":{
       "type":"structure",
@@ -1005,7 +1865,7 @@
     },
     "FilterValue":{
       "type":"string",
-      "max":409600,
+      "max":102400,
       "pattern":"^[^\\x00]+$"
     },
     "FilterValues":{
@@ -1017,10 +1877,69 @@
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):fsx:[a-z\\-0-9]*:[0-9]{12}:file-system/fs-.*$"
     },
+    "FsxLustreSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
+    },
+    "FsxOntapSubdirectory":{
+      "type":"string",
+      "max":255,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,255}$"
+    },
+    "FsxOpenZfsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,4096}$"
+    },
+    "FsxProtocol":{
+      "type":"structure",
+      "members":{
+        "NFS":{"shape":"FsxProtocolNfs"},
+        "SMB":{"shape":"FsxProtocolSmb"}
+      }
+    },
+    "FsxProtocolNfs":{
+      "type":"structure",
+      "members":{
+        "MountOptions":{"shape":"NfsMountOptions"}
+      }
+    },
+    "FsxProtocolSmb":{
+      "type":"structure",
+      "required":[
+        "Password",
+        "User"
+      ],
+      "members":{
+        "Domain":{"shape":"SmbDomain"},
+        "MountOptions":{"shape":"SmbMountOptions"},
+        "Password":{"shape":"SmbPassword"},
+        "User":{"shape":"SmbUser"}
+      }
+    },
     "FsxWindowsSubdirectory":{
       "type":"string",
       "max":4096,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
+    },
+    "GenerateRecommendationsRequest":{
+      "type":"structure",
+      "required":[
+        "DiscoveryJobArn",
+        "ResourceIds",
+        "ResourceType"
+      ],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "ResourceIds":{"shape":"ResourceIds"},
+        "ResourceType":{"shape":"DiscoveryResourceType"}
+      }
+    },
+    "GenerateRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Gid":{
       "type":"string",
@@ -1030,6 +1949,91 @@
         "NAME",
         "BOTH"
       ]
+    },
+    "HdfsAuthenticationType":{
+      "type":"string",
+      "enum":[
+        "SIMPLE",
+        "KERBEROS"
+      ]
+    },
+    "HdfsBlockSize":{
+      "type":"integer",
+      "box":true,
+      "max":1073741824,
+      "min":1048576
+    },
+    "HdfsDataTransferProtection":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "AUTHENTICATION",
+        "INTEGRITY",
+        "PRIVACY"
+      ]
+    },
+    "HdfsNameNode":{
+      "type":"structure",
+      "required":[
+        "Hostname",
+        "Port"
+      ],
+      "members":{
+        "Hostname":{"shape":"HdfsServerHostname"},
+        "Port":{"shape":"HdfsServerPort"}
+      }
+    },
+    "HdfsNameNodeList":{
+      "type":"list",
+      "member":{"shape":"HdfsNameNode"},
+      "min":1
+    },
+    "HdfsReplicationFactor":{
+      "type":"integer",
+      "box":true,
+      "max":512,
+      "min":1
+    },
+    "HdfsRpcProtection":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "AUTHENTICATION",
+        "INTEGRITY",
+        "PRIVACY"
+      ]
+    },
+    "HdfsServerHostname":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$"
+    },
+    "HdfsServerPort":{
+      "type":"integer",
+      "box":true,
+      "max":65536,
+      "min":1
+    },
+    "HdfsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
+    },
+    "HdfsUser":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[_.A-Za-z0-9][-_.A-Za-z0-9]*$"
+    },
+    "IOPS":{
+      "type":"structure",
+      "members":{
+        "Read":{"shape":"NonNegativeDouble"},
+        "Write":{"shape":"NonNegativeDouble"},
+        "Other":{"shape":"NonNegativeDouble"},
+        "Total":{"shape":"NonNegativeDouble"}
+      }
     },
     "IamRoleArn":{
       "type":"string",
@@ -1055,9 +2059,38 @@
       "type":"structure",
       "members":{
         "message":{"shape":"string"},
-        "errorCode":{"shape":"string"}
+        "errorCode":{"shape":"string"},
+        "datasyncErrorCode":{"shape":"string"}
       },
       "exception":true
+    },
+    "KerberosKeytabFile":{
+      "type":"blob",
+      "max":65536
+    },
+    "KerberosKrb5ConfFile":{
+      "type":"blob",
+      "max":131072
+    },
+    "KerberosPrincipal":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^.+$"
+    },
+    "KmsKeyProviderUri":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^kms:\\/\\/http[s]?@(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])(;(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9]))*:[0-9]{1,5}\\/kms$"
+    },
+    "Latency":{
+      "type":"structure",
+      "members":{
+        "Read":{"shape":"NonNegativeDouble"},
+        "Write":{"shape":"NonNegativeDouble"},
+        "Other":{"shape":"NonNegativeDouble"}
+      }
     },
     "ListAgentsRequest":{
       "type":"structure",
@@ -1073,6 +2106,21 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListDiscoveryJobsRequest":{
+      "type":"structure",
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "MaxResults":{"shape":"DiscoveryMaxResults"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "ListDiscoveryJobsResponse":{
+      "type":"structure",
+      "members":{
+        "DiscoveryJobs":{"shape":"DiscoveryJobList"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
     "ListLocationsRequest":{
       "type":"structure",
       "members":{
@@ -1086,6 +2134,20 @@
       "members":{
         "Locations":{"shape":"LocationList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListStorageSystemsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"DiscoveryMaxResults"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "ListStorageSystemsResponse":{
+      "type":"structure",
+      "members":{
+        "StorageSystems":{"shape":"StorageSystemList"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -1177,13 +2239,13 @@
     },
     "LocationUri":{
       "type":"string",
-      "max":4356,
-      "pattern":"^(efs|nfs|s3|smb|fsxw)://[a-zA-Z0-9.\\-]+$"
+      "max":4360,
+      "pattern":"^(efs|nfs|s3|smb|hdfs|fsx[a-z0-9-]+)://[a-zA-Z0-9.:/\\-]+$"
     },
     "LogGroupArn":{
       "type":"string",
       "max":562,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):logs:[a-z\\-0-9]*:[0-9]{12}:log-group:([^:\\*]*)(:\\*)?$"
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):logs:[a-z\\-0-9]+:[0-9]{12}:log-group:([^:\\*]*)(:\\*)?$"
     },
     "LogLevel":{
       "type":"string",
@@ -1193,10 +2255,30 @@
         "TRANSFER"
       ]
     },
+    "MaxP95Performance":{
+      "type":"structure",
+      "members":{
+        "IopsRead":{"shape":"NonNegativeDouble"},
+        "IopsWrite":{"shape":"NonNegativeDouble"},
+        "IopsOther":{"shape":"NonNegativeDouble"},
+        "IopsTotal":{"shape":"NonNegativeDouble"},
+        "ThroughputRead":{"shape":"NonNegativeDouble"},
+        "ThroughputWrite":{"shape":"NonNegativeDouble"},
+        "ThroughputOther":{"shape":"NonNegativeDouble"},
+        "ThroughputTotal":{"shape":"NonNegativeDouble"},
+        "LatencyRead":{"shape":"NonNegativeDouble"},
+        "LatencyWrite":{"shape":"NonNegativeDouble"},
+        "LatencyOther":{"shape":"NonNegativeDouble"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":100,
       "min":0
+    },
+    "Metrics":{
+      "type":"list",
+      "member":{"shape":"ResourceMetrics"}
     },
     "Mtime":{
       "type":"string",
@@ -1204,6 +2286,80 @@
         "NONE",
         "PRESERVE"
       ]
+    },
+    "Name":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[\\p{L}\\p{M}\\p{N}\\s+=._:@\\/-]+$"
+    },
+    "NetAppONTAPCluster":{
+      "type":"structure",
+      "members":{
+        "CifsShareCount":{"shape":"NonNegativeLong"},
+        "NfsExportedVolumes":{"shape":"NonNegativeLong"},
+        "ResourceId":{"shape":"PtolemyUUID"},
+        "ClusterName":{"shape":"PtolemyString"},
+        "MaxP95Performance":{"shape":"MaxP95Performance"},
+        "ClusterBlockStorageSize":{"shape":"NonNegativeLong"},
+        "ClusterBlockStorageUsed":{"shape":"NonNegativeLong"},
+        "ClusterBlockStorageLogicalUsed":{"shape":"NonNegativeLong"},
+        "Recommendations":{"shape":"Recommendations"},
+        "RecommendationStatus":{"shape":"RecommendationStatus"},
+        "LunCount":{"shape":"NonNegativeLong"},
+        "ClusterCloudStorageUsed":{"shape":"NonNegativeLong"}
+      }
+    },
+    "NetAppONTAPClusters":{
+      "type":"list",
+      "member":{"shape":"NetAppONTAPCluster"}
+    },
+    "NetAppONTAPSVM":{
+      "type":"structure",
+      "members":{
+        "ClusterUuid":{"shape":"PtolemyUUID"},
+        "ResourceId":{"shape":"PtolemyUUID"},
+        "SvmName":{"shape":"PtolemyString"},
+        "CifsShareCount":{"shape":"NonNegativeLong"},
+        "EnabledProtocols":{"shape":"EnabledProtocols"},
+        "TotalCapacityUsed":{"shape":"NonNegativeLong"},
+        "TotalCapacityProvisioned":{"shape":"NonNegativeLong"},
+        "TotalLogicalCapacityUsed":{"shape":"NonNegativeLong"},
+        "MaxP95Performance":{"shape":"MaxP95Performance"},
+        "Recommendations":{"shape":"Recommendations"},
+        "NfsExportedVolumes":{"shape":"NonNegativeLong"},
+        "RecommendationStatus":{"shape":"RecommendationStatus"},
+        "TotalSnapshotCapacityUsed":{"shape":"NonNegativeLong"},
+        "LunCount":{"shape":"NonNegativeLong"}
+      }
+    },
+    "NetAppONTAPSVMs":{
+      "type":"list",
+      "member":{"shape":"NetAppONTAPSVM"}
+    },
+    "NetAppONTAPVolume":{
+      "type":"structure",
+      "members":{
+        "VolumeName":{"shape":"PtolemyString"},
+        "ResourceId":{"shape":"PtolemyUUID"},
+        "CifsShareCount":{"shape":"NonNegativeLong"},
+        "SecurityStyle":{"shape":"PtolemyString"},
+        "SvmUuid":{"shape":"PtolemyUUID"},
+        "SvmName":{"shape":"PtolemyString"},
+        "CapacityUsed":{"shape":"NonNegativeLong"},
+        "CapacityProvisioned":{"shape":"NonNegativeLong"},
+        "LogicalCapacityUsed":{"shape":"NonNegativeLong"},
+        "NfsExported":{"shape":"PtolemyBoolean"},
+        "SnapshotCapacityUsed":{"shape":"NonNegativeLong"},
+        "MaxP95Performance":{"shape":"MaxP95Performance"},
+        "Recommendations":{"shape":"Recommendations"},
+        "RecommendationStatus":{"shape":"RecommendationStatus"},
+        "LunCount":{"shape":"NonNegativeLong"}
+      }
+    },
+    "NetAppONTAPVolumes":{
+      "type":"list",
+      "member":{"shape":"NetAppONTAPVolume"}
     },
     "NetworkInterfaceArn":{
       "type":"string",
@@ -1235,11 +2391,21 @@
         "NFS4_1"
       ]
     },
+    "NonNegativeDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "NonNegativeLong":{
+      "type":"long",
+      "box":true,
+      "min":0
+    },
     "ObjectStorageAccessKey":{
       "type":"string",
       "max":200,
-      "min":8,
-      "pattern":"^.+$"
+      "min":0,
+      "pattern":"^.*$"
     },
     "ObjectStorageBucketName":{
       "type":"string",
@@ -1247,11 +2413,15 @@
       "min":3,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
     },
+    "ObjectStorageCertificate":{
+      "type":"blob",
+      "max":32768
+    },
     "ObjectStorageSecretKey":{
       "type":"string",
       "max":200,
-      "min":8,
-      "pattern":"^.+$",
+      "min":0,
+      "pattern":"^.*$",
       "sensitive":true
     },
     "ObjectStorageServerPort":{
@@ -1265,6 +2435,20 @@
       "enum":[
         "HTTPS",
         "HTTP"
+      ]
+    },
+    "ObjectTags":{
+      "type":"string",
+      "enum":[
+        "PRESERVE",
+        "NONE"
+      ]
+    },
+    "ObjectVersionIds":{
+      "type":"string",
+      "enum":[
+        "INCLUDE",
+        "NONE"
       ]
     },
     "OnPremConfig":{
@@ -1305,7 +2489,8 @@
         "TaskQueueing":{"shape":"TaskQueueing"},
         "LogLevel":{"shape":"LogLevel"},
         "TransferMode":{"shape":"TransferMode"},
-        "SecurityDescriptorCopyFlags":{"shape":"SmbSecurityDescriptorCopyFlags"}
+        "SecurityDescriptorCopyFlags":{"shape":"SmbSecurityDescriptorCopyFlags"},
+        "ObjectTags":{"shape":"ObjectTags"}
       }
     },
     "OutputTagList":{
@@ -1320,6 +2505,14 @@
         "ALWAYS",
         "NEVER"
       ]
+    },
+    "P95Metrics":{
+      "type":"structure",
+      "members":{
+        "IOPS":{"shape":"IOPS"},
+        "Throughput":{"shape":"Throughput"},
+        "Latency":{"shape":"Latency"}
+      }
     },
     "PLSecurityGroupArnList":{
       "type":"list",
@@ -1340,6 +2533,12 @@
         "SUCCESS",
         "ERROR"
       ]
+    },
+    "Platform":{
+      "type":"structure",
+      "members":{
+        "Version":{"shape":"AgentVersion"}
+      }
     },
     "PosixPermissions":{
       "type":"string",
@@ -1371,6 +2570,161 @@
         "SecurityGroupArns":{"shape":"PLSecurityGroupArnList"}
       }
     },
+    "PtolemyBoolean":{"type":"boolean"},
+    "PtolemyPassword":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^(?!.*[:\\\"][^:\"]*$).+$",
+      "sensitive":true
+    },
+    "PtolemyString":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^.{0,1024}$"
+    },
+    "PtolemyUUID":{
+      "type":"string",
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
+    "PtolemyUsername":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^(?!.*[:\\\"][^:\"]*$).+$",
+      "sensitive":true
+    },
+    "QopConfiguration":{
+      "type":"structure",
+      "members":{
+        "RpcProtection":{"shape":"HdfsRpcProtection"},
+        "DataTransferProtection":{"shape":"HdfsDataTransferProtection"}
+      }
+    },
+    "Recommendation":{
+      "type":"structure",
+      "members":{
+        "StorageType":{"shape":"PtolemyString"},
+        "StorageConfiguration":{"shape":"RecommendationsConfigMap"},
+        "EstimatedMonthlyStorageCost":{"shape":"PtolemyString"}
+      }
+    },
+    "RecommendationStatus":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "Recommendations":{
+      "type":"list",
+      "member":{"shape":"Recommendation"}
+    },
+    "RecommendationsConfigMap":{
+      "type":"map",
+      "key":{"shape":"PtolemyString"},
+      "value":{"shape":"PtolemyString"}
+    },
+    "RemoveStorageSystemRequest":{
+      "type":"structure",
+      "required":["StorageSystemArn"],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"}
+      }
+    },
+    "RemoveStorageSystemResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ReportDestination":{
+      "type":"structure",
+      "members":{
+        "S3":{"shape":"ReportDestinationS3"}
+      }
+    },
+    "ReportDestinationS3":{
+      "type":"structure",
+      "required":[
+        "S3BucketArn",
+        "BucketAccessRoleArn"
+      ],
+      "members":{
+        "Subdirectory":{"shape":"S3Subdirectory"},
+        "S3BucketArn":{"shape":"S3BucketArn"},
+        "BucketAccessRoleArn":{"shape":"IamRoleArn"}
+      }
+    },
+    "ReportLevel":{
+      "type":"string",
+      "enum":[
+        "ERRORS_ONLY",
+        "SUCCESSES_AND_ERRORS"
+      ]
+    },
+    "ReportOutputType":{
+      "type":"string",
+      "enum":[
+        "SUMMARY_ONLY",
+        "STANDARD"
+      ]
+    },
+    "ReportOverride":{
+      "type":"structure",
+      "members":{
+        "ReportLevel":{"shape":"ReportLevel"}
+      }
+    },
+    "ReportOverrides":{
+      "type":"structure",
+      "members":{
+        "Transferred":{"shape":"ReportOverride"},
+        "Verified":{"shape":"ReportOverride"},
+        "Deleted":{"shape":"ReportOverride"},
+        "Skipped":{"shape":"ReportOverride"}
+      }
+    },
+    "ReportResult":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"PhaseStatus"},
+        "ErrorCode":{"shape":"string"},
+        "ErrorDetail":{"shape":"string"}
+      }
+    },
+    "ResourceDetails":{
+      "type":"structure",
+      "members":{
+        "NetAppONTAPSVMs":{"shape":"NetAppONTAPSVMs"},
+        "NetAppONTAPVolumes":{"shape":"NetAppONTAPVolumes"},
+        "NetAppONTAPClusters":{"shape":"NetAppONTAPClusters"}
+      }
+    },
+    "ResourceFilters":{
+      "type":"map",
+      "key":{"shape":"DiscoveryResourceFilter"},
+      "value":{"shape":"FilterMembers"}
+    },
+    "ResourceId":{
+      "type":"string",
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
+    "ResourceIds":{
+      "type":"list",
+      "member":{"shape":"ResourceId"},
+      "max":100,
+      "min":1
+    },
+    "ResourceMetrics":{
+      "type":"structure",
+      "members":{
+        "Timestamp":{"shape":"Timestamp"},
+        "P95Metrics":{"shape":"P95Metrics"},
+        "Capacity":{"shape":"Capacity"},
+        "ResourceId":{"shape":"ResourceId"},
+        "ResourceType":{"shape":"DiscoveryResourceType"}
+      }
+    },
     "S3BucketArn":{
       "type":"string",
       "max":156,
@@ -1392,7 +2746,8 @@
         "INTELLIGENT_TIERING",
         "GLACIER",
         "DEEP_ARCHIVE",
-        "OUTPOSTS"
+        "OUTPOSTS",
+        "GLACIER_INSTANT_RETRIEVAL"
       ]
     },
     "S3Subdirectory":{
@@ -1405,6 +2760,11 @@
       "max":256,
       "pattern":"^[a-zA-Z0-9\\ \\_\\*\\?\\,\\|\\^\\-\\/\\#\\s\\(\\)\\+]*$"
     },
+    "SecretsManagerArn":{
+      "type":"string",
+      "max":2048,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):secretsmanager:[a-z\\-0-9]+:[0-9]{12}:secret:.*"
+    },
     "ServerHostname":{
       "type":"string",
       "max":255,
@@ -1413,7 +2773,7 @@
     "SmbDomain":{
       "type":"string",
       "max":253,
-      "pattern":"^([A-Za-z0-9]+[A-Za-z0-9-.]*)*[A-Za-z0-9-]*[A-Za-z0-9]$"
+      "pattern":"^[A-Za-z0-9]((\\.|-+)?[A-Za-z0-9]){0,252}$"
     },
     "SmbMountOptions":{
       "type":"structure",
@@ -1450,12 +2810,37 @@
       "enum":[
         "AUTOMATIC",
         "SMB2",
-        "SMB3"
+        "SMB3",
+        "SMB1",
+        "SMB2_0"
       ]
     },
     "SourceNetworkInterfaceArns":{
       "type":"list",
       "member":{"shape":"NetworkInterfaceArn"}
+    },
+    "StartDiscoveryJobRequest":{
+      "type":"structure",
+      "required":[
+        "StorageSystemArn",
+        "CollectionDurationMinutes",
+        "ClientToken"
+      ],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "CollectionDurationMinutes":{"shape":"CollectionDurationMinutes"},
+        "ClientToken":{
+          "shape":"PtolemyUUID",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "StartDiscoveryJobResponse":{
+      "type":"structure",
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"}
+      }
     },
     "StartTaskExecutionRequest":{
       "type":"structure",
@@ -1463,7 +2848,10 @@
       "members":{
         "TaskArn":{"shape":"TaskArn"},
         "OverrideOptions":{"shape":"Options"},
-        "Includes":{"shape":"FilterList"}
+        "Includes":{"shape":"FilterList"},
+        "Excludes":{"shape":"FilterList"},
+        "Tags":{"shape":"InputTagList"},
+        "TaskReportConfig":{"shape":"TaskReportConfig"}
       }
     },
     "StartTaskExecutionResponse":{
@@ -1471,6 +2859,47 @@
       "members":{
         "TaskExecutionArn":{"shape":"TaskExecutionArn"}
       }
+    },
+    "StopDiscoveryJobRequest":{
+      "type":"structure",
+      "required":["DiscoveryJobArn"],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"}
+      }
+    },
+    "StopDiscoveryJobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "StorageSystemArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:system/storage-system-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "StorageSystemConnectivityStatus":{
+      "type":"string",
+      "enum":[
+        "PASS",
+        "FAIL",
+        "UNKNOWN"
+      ]
+    },
+    "StorageSystemList":{
+      "type":"list",
+      "member":{"shape":"StorageSystemListEntry"}
+    },
+    "StorageSystemListEntry":{
+      "type":"structure",
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "Name":{"shape":"Name"}
+      }
+    },
+    "StorageVirtualMachineArn":{
+      "type":"string",
+      "max":162,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):fsx:[a-z\\-0-9]+:[0-9]{12}:storage-virtual-machine/fs-[0-9a-f]+/svm-[0-9a-f]{17,}$"
     },
     "TagKey":{
       "type":"string",
@@ -1517,7 +2946,7 @@
     "TaggableResourceArn":{
       "type":"string",
       "max":128,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:(agent|task|location)/(agent|task|loc)-[0-9a-z]{17}$"
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:(agent|task|location|system)/((agent|task|loc)-[a-f0-9]{17}|storage-system-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})(/execution/exec-[a-f0-9]{17})?$"
     },
     "TaskArn":{
       "type":"string",
@@ -1609,6 +3038,16 @@
         "DISABLED"
       ]
     },
+    "TaskReportConfig":{
+      "type":"structure",
+      "members":{
+        "Destination":{"shape":"ReportDestination"},
+        "OutputType":{"shape":"ReportOutputType"},
+        "ReportLevel":{"shape":"ReportLevel"},
+        "ObjectVersionIds":{"shape":"ObjectVersionIds"},
+        "Overrides":{"shape":"ReportOverrides"}
+      }
+    },
     "TaskSchedule":{
       "type":"structure",
       "required":["ScheduleExpression"],
@@ -1626,7 +3065,17 @@
         "UNAVAILABLE"
       ]
     },
+    "Throughput":{
+      "type":"structure",
+      "members":{
+        "Read":{"shape":"NonNegativeDouble"},
+        "Write":{"shape":"NonNegativeDouble"},
+        "Other":{"shape":"NonNegativeDouble"},
+        "Total":{"shape":"NonNegativeDouble"}
+      }
+    },
     "Time":{"type":"timestamp"},
+    "Timestamp":{"type":"timestamp"},
     "TransferMode":{
       "type":"string",
       "enum":[
@@ -1672,6 +3121,64 @@
       "members":{
       }
     },
+    "UpdateDiscoveryJobRequest":{
+      "type":"structure",
+      "required":[
+        "DiscoveryJobArn",
+        "CollectionDurationMinutes"
+      ],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "CollectionDurationMinutes":{"shape":"CollectionDurationMinutes"}
+      }
+    },
+    "UpdateDiscoveryJobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationAzureBlobRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"AzureBlobSubdirectory"},
+        "AuthenticationType":{"shape":"AzureBlobAuthenticationType"},
+        "SasConfiguration":{"shape":"AzureBlobSasConfiguration"},
+        "BlobType":{"shape":"AzureBlobType"},
+        "AccessTier":{"shape":"AzureAccessTier"},
+        "AgentArns":{"shape":"AgentArnList"}
+      }
+    },
+    "UpdateLocationAzureBlobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationHdfsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"HdfsSubdirectory"},
+        "NameNodes":{"shape":"HdfsNameNodeList"},
+        "BlockSize":{"shape":"HdfsBlockSize"},
+        "ReplicationFactor":{"shape":"HdfsReplicationFactor"},
+        "KmsKeyProviderUri":{"shape":"KmsKeyProviderUri"},
+        "QopConfiguration":{"shape":"QopConfiguration"},
+        "AuthenticationType":{"shape":"HdfsAuthenticationType"},
+        "SimpleUser":{"shape":"HdfsUser"},
+        "KerberosPrincipal":{"shape":"KerberosPrincipal"},
+        "KerberosKeytab":{"shape":"KerberosKeytabFile"},
+        "KerberosKrb5Conf":{"shape":"KerberosKrb5ConfFile"},
+        "AgentArns":{"shape":"AgentArnList"}
+      }
+    },
+    "UpdateLocationHdfsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateLocationNfsRequest":{
       "type":"structure",
       "required":["LocationArn"],
@@ -1697,7 +3204,8 @@
         "Subdirectory":{"shape":"S3Subdirectory"},
         "AccessKey":{"shape":"ObjectStorageAccessKey"},
         "SecretKey":{"shape":"ObjectStorageSecretKey"},
-        "AgentArns":{"shape":"AgentArnList"}
+        "AgentArns":{"shape":"AgentArnList"},
+        "ServerCertificate":{"shape":"ObjectStorageCertificate"}
       }
     },
     "UpdateLocationObjectStorageResponse":{
@@ -1719,6 +3227,23 @@
       }
     },
     "UpdateLocationSmbResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateStorageSystemRequest":{
+      "type":"structure",
+      "required":["StorageSystemArn"],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "ServerConfiguration":{"shape":"DiscoveryServerConfiguration"},
+        "AgentArns":{"shape":"DiscoveryAgentArnList"},
+        "Name":{"shape":"Name"},
+        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "Credentials":{"shape":"Credentials"}
+      }
+    },
+    "UpdateStorageSystemResponse":{
       "type":"structure",
       "members":{
       }
@@ -1748,7 +3273,9 @@
         "Excludes":{"shape":"FilterList"},
         "Schedule":{"shape":"TaskSchedule"},
         "Name":{"shape":"TagValue"},
-        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"}
+        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "Includes":{"shape":"FilterList"},
+        "TaskReportConfig":{"shape":"TaskReportConfig"}
       }
     },
     "UpdateTaskResponse":{

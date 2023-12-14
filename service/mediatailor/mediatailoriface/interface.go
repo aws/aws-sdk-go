@@ -23,46 +23,62 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS MediaTailor.
-//    func myFunc(svc mediatailoriface.MediaTailorAPI) bool {
-//        // Make svc.CreateChannel request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS MediaTailor.
+//	func myFunc(svc mediatailoriface.MediaTailorAPI) bool {
+//	    // Make svc.ConfigureLogsForChannel request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := mediatailor.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := mediatailor.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockMediaTailorClient struct {
-//        mediatailoriface.MediaTailorAPI
-//    }
-//    func (m *mockMediaTailorClient) CreateChannel(input *mediatailor.CreateChannelInput) (*mediatailor.CreateChannelOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockMediaTailorClient struct {
+//	    mediatailoriface.MediaTailorAPI
+//	}
+//	func (m *mockMediaTailorClient) ConfigureLogsForChannel(input *mediatailor.ConfigureLogsForChannelInput) (*mediatailor.ConfigureLogsForChannelOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockMediaTailorClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockMediaTailorClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MediaTailorAPI interface {
+	ConfigureLogsForChannel(*mediatailor.ConfigureLogsForChannelInput) (*mediatailor.ConfigureLogsForChannelOutput, error)
+	ConfigureLogsForChannelWithContext(aws.Context, *mediatailor.ConfigureLogsForChannelInput, ...request.Option) (*mediatailor.ConfigureLogsForChannelOutput, error)
+	ConfigureLogsForChannelRequest(*mediatailor.ConfigureLogsForChannelInput) (*request.Request, *mediatailor.ConfigureLogsForChannelOutput)
+
+	ConfigureLogsForPlaybackConfiguration(*mediatailor.ConfigureLogsForPlaybackConfigurationInput) (*mediatailor.ConfigureLogsForPlaybackConfigurationOutput, error)
+	ConfigureLogsForPlaybackConfigurationWithContext(aws.Context, *mediatailor.ConfigureLogsForPlaybackConfigurationInput, ...request.Option) (*mediatailor.ConfigureLogsForPlaybackConfigurationOutput, error)
+	ConfigureLogsForPlaybackConfigurationRequest(*mediatailor.ConfigureLogsForPlaybackConfigurationInput) (*request.Request, *mediatailor.ConfigureLogsForPlaybackConfigurationOutput)
+
 	CreateChannel(*mediatailor.CreateChannelInput) (*mediatailor.CreateChannelOutput, error)
 	CreateChannelWithContext(aws.Context, *mediatailor.CreateChannelInput, ...request.Option) (*mediatailor.CreateChannelOutput, error)
 	CreateChannelRequest(*mediatailor.CreateChannelInput) (*request.Request, *mediatailor.CreateChannelOutput)
+
+	CreateLiveSource(*mediatailor.CreateLiveSourceInput) (*mediatailor.CreateLiveSourceOutput, error)
+	CreateLiveSourceWithContext(aws.Context, *mediatailor.CreateLiveSourceInput, ...request.Option) (*mediatailor.CreateLiveSourceOutput, error)
+	CreateLiveSourceRequest(*mediatailor.CreateLiveSourceInput) (*request.Request, *mediatailor.CreateLiveSourceOutput)
+
+	CreatePrefetchSchedule(*mediatailor.CreatePrefetchScheduleInput) (*mediatailor.CreatePrefetchScheduleOutput, error)
+	CreatePrefetchScheduleWithContext(aws.Context, *mediatailor.CreatePrefetchScheduleInput, ...request.Option) (*mediatailor.CreatePrefetchScheduleOutput, error)
+	CreatePrefetchScheduleRequest(*mediatailor.CreatePrefetchScheduleInput) (*request.Request, *mediatailor.CreatePrefetchScheduleOutput)
 
 	CreateProgram(*mediatailor.CreateProgramInput) (*mediatailor.CreateProgramOutput, error)
 	CreateProgramWithContext(aws.Context, *mediatailor.CreateProgramInput, ...request.Option) (*mediatailor.CreateProgramOutput, error)
@@ -84,9 +100,17 @@ type MediaTailorAPI interface {
 	DeleteChannelPolicyWithContext(aws.Context, *mediatailor.DeleteChannelPolicyInput, ...request.Option) (*mediatailor.DeleteChannelPolicyOutput, error)
 	DeleteChannelPolicyRequest(*mediatailor.DeleteChannelPolicyInput) (*request.Request, *mediatailor.DeleteChannelPolicyOutput)
 
+	DeleteLiveSource(*mediatailor.DeleteLiveSourceInput) (*mediatailor.DeleteLiveSourceOutput, error)
+	DeleteLiveSourceWithContext(aws.Context, *mediatailor.DeleteLiveSourceInput, ...request.Option) (*mediatailor.DeleteLiveSourceOutput, error)
+	DeleteLiveSourceRequest(*mediatailor.DeleteLiveSourceInput) (*request.Request, *mediatailor.DeleteLiveSourceOutput)
+
 	DeletePlaybackConfiguration(*mediatailor.DeletePlaybackConfigurationInput) (*mediatailor.DeletePlaybackConfigurationOutput, error)
 	DeletePlaybackConfigurationWithContext(aws.Context, *mediatailor.DeletePlaybackConfigurationInput, ...request.Option) (*mediatailor.DeletePlaybackConfigurationOutput, error)
 	DeletePlaybackConfigurationRequest(*mediatailor.DeletePlaybackConfigurationInput) (*request.Request, *mediatailor.DeletePlaybackConfigurationOutput)
+
+	DeletePrefetchSchedule(*mediatailor.DeletePrefetchScheduleInput) (*mediatailor.DeletePrefetchScheduleOutput, error)
+	DeletePrefetchScheduleWithContext(aws.Context, *mediatailor.DeletePrefetchScheduleInput, ...request.Option) (*mediatailor.DeletePrefetchScheduleOutput, error)
+	DeletePrefetchScheduleRequest(*mediatailor.DeletePrefetchScheduleInput) (*request.Request, *mediatailor.DeletePrefetchScheduleOutput)
 
 	DeleteProgram(*mediatailor.DeleteProgramInput) (*mediatailor.DeleteProgramOutput, error)
 	DeleteProgramWithContext(aws.Context, *mediatailor.DeleteProgramInput, ...request.Option) (*mediatailor.DeleteProgramOutput, error)
@@ -103,6 +127,10 @@ type MediaTailorAPI interface {
 	DescribeChannel(*mediatailor.DescribeChannelInput) (*mediatailor.DescribeChannelOutput, error)
 	DescribeChannelWithContext(aws.Context, *mediatailor.DescribeChannelInput, ...request.Option) (*mediatailor.DescribeChannelOutput, error)
 	DescribeChannelRequest(*mediatailor.DescribeChannelInput) (*request.Request, *mediatailor.DescribeChannelOutput)
+
+	DescribeLiveSource(*mediatailor.DescribeLiveSourceInput) (*mediatailor.DescribeLiveSourceOutput, error)
+	DescribeLiveSourceWithContext(aws.Context, *mediatailor.DescribeLiveSourceInput, ...request.Option) (*mediatailor.DescribeLiveSourceOutput, error)
+	DescribeLiveSourceRequest(*mediatailor.DescribeLiveSourceInput) (*request.Request, *mediatailor.DescribeLiveSourceOutput)
 
 	DescribeProgram(*mediatailor.DescribeProgramInput) (*mediatailor.DescribeProgramOutput, error)
 	DescribeProgramWithContext(aws.Context, *mediatailor.DescribeProgramInput, ...request.Option) (*mediatailor.DescribeProgramOutput, error)
@@ -131,6 +159,10 @@ type MediaTailorAPI interface {
 	GetPlaybackConfigurationWithContext(aws.Context, *mediatailor.GetPlaybackConfigurationInput, ...request.Option) (*mediatailor.GetPlaybackConfigurationOutput, error)
 	GetPlaybackConfigurationRequest(*mediatailor.GetPlaybackConfigurationInput) (*request.Request, *mediatailor.GetPlaybackConfigurationOutput)
 
+	GetPrefetchSchedule(*mediatailor.GetPrefetchScheduleInput) (*mediatailor.GetPrefetchScheduleOutput, error)
+	GetPrefetchScheduleWithContext(aws.Context, *mediatailor.GetPrefetchScheduleInput, ...request.Option) (*mediatailor.GetPrefetchScheduleOutput, error)
+	GetPrefetchScheduleRequest(*mediatailor.GetPrefetchScheduleInput) (*request.Request, *mediatailor.GetPrefetchScheduleOutput)
+
 	ListAlerts(*mediatailor.ListAlertsInput) (*mediatailor.ListAlertsOutput, error)
 	ListAlertsWithContext(aws.Context, *mediatailor.ListAlertsInput, ...request.Option) (*mediatailor.ListAlertsOutput, error)
 	ListAlertsRequest(*mediatailor.ListAlertsInput) (*request.Request, *mediatailor.ListAlertsOutput)
@@ -145,12 +177,26 @@ type MediaTailorAPI interface {
 	ListChannelsPages(*mediatailor.ListChannelsInput, func(*mediatailor.ListChannelsOutput, bool) bool) error
 	ListChannelsPagesWithContext(aws.Context, *mediatailor.ListChannelsInput, func(*mediatailor.ListChannelsOutput, bool) bool, ...request.Option) error
 
+	ListLiveSources(*mediatailor.ListLiveSourcesInput) (*mediatailor.ListLiveSourcesOutput, error)
+	ListLiveSourcesWithContext(aws.Context, *mediatailor.ListLiveSourcesInput, ...request.Option) (*mediatailor.ListLiveSourcesOutput, error)
+	ListLiveSourcesRequest(*mediatailor.ListLiveSourcesInput) (*request.Request, *mediatailor.ListLiveSourcesOutput)
+
+	ListLiveSourcesPages(*mediatailor.ListLiveSourcesInput, func(*mediatailor.ListLiveSourcesOutput, bool) bool) error
+	ListLiveSourcesPagesWithContext(aws.Context, *mediatailor.ListLiveSourcesInput, func(*mediatailor.ListLiveSourcesOutput, bool) bool, ...request.Option) error
+
 	ListPlaybackConfigurations(*mediatailor.ListPlaybackConfigurationsInput) (*mediatailor.ListPlaybackConfigurationsOutput, error)
 	ListPlaybackConfigurationsWithContext(aws.Context, *mediatailor.ListPlaybackConfigurationsInput, ...request.Option) (*mediatailor.ListPlaybackConfigurationsOutput, error)
 	ListPlaybackConfigurationsRequest(*mediatailor.ListPlaybackConfigurationsInput) (*request.Request, *mediatailor.ListPlaybackConfigurationsOutput)
 
 	ListPlaybackConfigurationsPages(*mediatailor.ListPlaybackConfigurationsInput, func(*mediatailor.ListPlaybackConfigurationsOutput, bool) bool) error
 	ListPlaybackConfigurationsPagesWithContext(aws.Context, *mediatailor.ListPlaybackConfigurationsInput, func(*mediatailor.ListPlaybackConfigurationsOutput, bool) bool, ...request.Option) error
+
+	ListPrefetchSchedules(*mediatailor.ListPrefetchSchedulesInput) (*mediatailor.ListPrefetchSchedulesOutput, error)
+	ListPrefetchSchedulesWithContext(aws.Context, *mediatailor.ListPrefetchSchedulesInput, ...request.Option) (*mediatailor.ListPrefetchSchedulesOutput, error)
+	ListPrefetchSchedulesRequest(*mediatailor.ListPrefetchSchedulesInput) (*request.Request, *mediatailor.ListPrefetchSchedulesOutput)
+
+	ListPrefetchSchedulesPages(*mediatailor.ListPrefetchSchedulesInput, func(*mediatailor.ListPrefetchSchedulesOutput, bool) bool) error
+	ListPrefetchSchedulesPagesWithContext(aws.Context, *mediatailor.ListPrefetchSchedulesInput, func(*mediatailor.ListPrefetchSchedulesOutput, bool) bool, ...request.Option) error
 
 	ListSourceLocations(*mediatailor.ListSourceLocationsInput) (*mediatailor.ListSourceLocationsOutput, error)
 	ListSourceLocationsWithContext(aws.Context, *mediatailor.ListSourceLocationsInput, ...request.Option) (*mediatailor.ListSourceLocationsOutput, error)
@@ -197,6 +243,14 @@ type MediaTailorAPI interface {
 	UpdateChannel(*mediatailor.UpdateChannelInput) (*mediatailor.UpdateChannelOutput, error)
 	UpdateChannelWithContext(aws.Context, *mediatailor.UpdateChannelInput, ...request.Option) (*mediatailor.UpdateChannelOutput, error)
 	UpdateChannelRequest(*mediatailor.UpdateChannelInput) (*request.Request, *mediatailor.UpdateChannelOutput)
+
+	UpdateLiveSource(*mediatailor.UpdateLiveSourceInput) (*mediatailor.UpdateLiveSourceOutput, error)
+	UpdateLiveSourceWithContext(aws.Context, *mediatailor.UpdateLiveSourceInput, ...request.Option) (*mediatailor.UpdateLiveSourceOutput, error)
+	UpdateLiveSourceRequest(*mediatailor.UpdateLiveSourceInput) (*request.Request, *mediatailor.UpdateLiveSourceOutput)
+
+	UpdateProgram(*mediatailor.UpdateProgramInput) (*mediatailor.UpdateProgramOutput, error)
+	UpdateProgramWithContext(aws.Context, *mediatailor.UpdateProgramInput, ...request.Option) (*mediatailor.UpdateProgramOutput, error)
+	UpdateProgramRequest(*mediatailor.UpdateProgramInput) (*request.Request, *mediatailor.UpdateProgramOutput)
 
 	UpdateSourceLocation(*mediatailor.UpdateSourceLocationInput) (*mediatailor.UpdateSourceLocationOutput, error)
 	UpdateSourceLocationWithContext(aws.Context, *mediatailor.UpdateSourceLocationInput, ...request.Option) (*mediatailor.UpdateSourceLocationOutput, error)

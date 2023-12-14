@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To retrieve a list of services and service codes
-//
 // Retrieves the service for the given Service Code.
 func ExamplePricing_DescribeServices_shared00() {
 	svc := pricing.New(session.New())
@@ -65,7 +64,6 @@ func ExamplePricing_DescribeServices_shared00() {
 }
 
 // To retrieve a list of attribute values
-//
 // This operation returns a list of values available for the given attribute.
 func ExamplePricing_GetAttributeValues_shared00() {
 	svc := pricing.New(session.New())

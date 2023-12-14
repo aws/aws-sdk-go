@@ -28,14 +28,13 @@ const opCreateApplication = "CreateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateApplicationRequest method.
+//	req, resp := client.CreateApplicationRequest(params)
 //
-//    // Example sending a request using the CreateApplicationRequest method.
-//    req, resp := client.CreateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateApplication
 func (c *ServerlessApplicationRepository) CreateApplicationRequest(input *CreateApplicationRequest) (req *request.Request, output *CreateApplicationOutput) {
@@ -67,22 +66,23 @@ func (c *ServerlessApplicationRepository) CreateApplicationRequest(input *Create
 // API operation CreateApplication for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ConflictException
-//   The resource already exists.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - ConflictException
+//     The resource already exists.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateApplication
 func (c *ServerlessApplicationRepository) CreateApplication(input *CreateApplicationRequest) (*CreateApplicationOutput, error) {
@@ -122,14 +122,13 @@ const opCreateApplicationVersion = "CreateApplicationVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateApplicationVersionRequest method.
+//	req, resp := client.CreateApplicationVersionRequest(params)
 //
-//    // Example sending a request using the CreateApplicationVersionRequest method.
-//    req, resp := client.CreateApplicationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateApplicationVersion
 func (c *ServerlessApplicationRepository) CreateApplicationVersionRequest(input *CreateApplicationVersionRequest) (req *request.Request, output *CreateApplicationVersionOutput) {
@@ -160,22 +159,23 @@ func (c *ServerlessApplicationRepository) CreateApplicationVersionRequest(input 
 // API operation CreateApplicationVersion for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ConflictException
-//   The resource already exists.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - ConflictException
+//     The resource already exists.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateApplicationVersion
 func (c *ServerlessApplicationRepository) CreateApplicationVersion(input *CreateApplicationVersionRequest) (*CreateApplicationVersionOutput, error) {
@@ -215,14 +215,13 @@ const opCreateCloudFormationChangeSet = "CreateCloudFormationChangeSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCloudFormationChangeSetRequest method.
+//	req, resp := client.CreateCloudFormationChangeSetRequest(params)
 //
-//    // Example sending a request using the CreateCloudFormationChangeSetRequest method.
-//    req, resp := client.CreateCloudFormationChangeSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateCloudFormationChangeSet
 func (c *ServerlessApplicationRepository) CreateCloudFormationChangeSetRequest(input *CreateCloudFormationChangeSetRequest) (req *request.Request, output *CreateCloudFormationChangeSetOutput) {
@@ -253,19 +252,20 @@ func (c *ServerlessApplicationRepository) CreateCloudFormationChangeSetRequest(i
 // API operation CreateCloudFormationChangeSet for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateCloudFormationChangeSet
 func (c *ServerlessApplicationRepository) CreateCloudFormationChangeSet(input *CreateCloudFormationChangeSetRequest) (*CreateCloudFormationChangeSetOutput, error) {
@@ -305,14 +305,13 @@ const opCreateCloudFormationTemplate = "CreateCloudFormationTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCloudFormationTemplateRequest method.
+//	req, resp := client.CreateCloudFormationTemplateRequest(params)
 //
-//    // Example sending a request using the CreateCloudFormationTemplateRequest method.
-//    req, resp := client.CreateCloudFormationTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateCloudFormationTemplate
 func (c *ServerlessApplicationRepository) CreateCloudFormationTemplateRequest(input *CreateCloudFormationTemplateInput) (req *request.Request, output *CreateCloudFormationTemplateOutput) {
@@ -343,23 +342,24 @@ func (c *ServerlessApplicationRepository) CreateCloudFormationTemplateRequest(in
 // API operation CreateCloudFormationTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateCloudFormationTemplate
 func (c *ServerlessApplicationRepository) CreateCloudFormationTemplate(input *CreateCloudFormationTemplateInput) (*CreateCloudFormationTemplateOutput, error) {
@@ -399,14 +399,13 @@ const opDeleteApplication = "DeleteApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteApplicationRequest method.
+//	req, resp := client.DeleteApplicationRequest(params)
 //
-//    // Example sending a request using the DeleteApplicationRequest method.
-//    req, resp := client.DeleteApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/DeleteApplication
 func (c *ServerlessApplicationRepository) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
@@ -438,26 +437,27 @@ func (c *ServerlessApplicationRepository) DeleteApplicationRequest(input *Delete
 // API operation DeleteApplication for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
 //
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
+//   - ForbiddenException
+//     The client is not authenticated.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * ConflictException
-//   The resource already exists.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
+//
+//   - ConflictException
+//     The resource already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/DeleteApplication
 func (c *ServerlessApplicationRepository) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
@@ -497,14 +497,13 @@ const opGetApplication = "GetApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetApplicationRequest method.
+//	req, resp := client.GetApplicationRequest(params)
 //
-//    // Example sending a request using the GetApplicationRequest method.
-//    req, resp := client.GetApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetApplication
 func (c *ServerlessApplicationRepository) GetApplicationRequest(input *GetApplicationInput) (req *request.Request, output *GetApplicationOutput) {
@@ -535,23 +534,24 @@ func (c *ServerlessApplicationRepository) GetApplicationRequest(input *GetApplic
 // API operation GetApplication for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetApplication
 func (c *ServerlessApplicationRepository) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
@@ -591,14 +591,13 @@ const opGetApplicationPolicy = "GetApplicationPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetApplicationPolicyRequest method.
+//	req, resp := client.GetApplicationPolicyRequest(params)
 //
-//    // Example sending a request using the GetApplicationPolicyRequest method.
-//    req, resp := client.GetApplicationPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetApplicationPolicy
 func (c *ServerlessApplicationRepository) GetApplicationPolicyRequest(input *GetApplicationPolicyInput) (req *request.Request, output *GetApplicationPolicyOutput) {
@@ -629,23 +628,24 @@ func (c *ServerlessApplicationRepository) GetApplicationPolicyRequest(input *Get
 // API operation GetApplicationPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetApplicationPolicy
 func (c *ServerlessApplicationRepository) GetApplicationPolicy(input *GetApplicationPolicyInput) (*GetApplicationPolicyOutput, error) {
@@ -685,14 +685,13 @@ const opGetCloudFormationTemplate = "GetCloudFormationTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCloudFormationTemplateRequest method.
+//	req, resp := client.GetCloudFormationTemplateRequest(params)
 //
-//    // Example sending a request using the GetCloudFormationTemplateRequest method.
-//    req, resp := client.GetCloudFormationTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetCloudFormationTemplate
 func (c *ServerlessApplicationRepository) GetCloudFormationTemplateRequest(input *GetCloudFormationTemplateInput) (req *request.Request, output *GetCloudFormationTemplateOutput) {
@@ -723,23 +722,24 @@ func (c *ServerlessApplicationRepository) GetCloudFormationTemplateRequest(input
 // API operation GetCloudFormationTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetCloudFormationTemplate
 func (c *ServerlessApplicationRepository) GetCloudFormationTemplate(input *GetCloudFormationTemplateInput) (*GetCloudFormationTemplateOutput, error) {
@@ -779,14 +779,13 @@ const opListApplicationDependencies = "ListApplicationDependencies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListApplicationDependenciesRequest method.
+//	req, resp := client.ListApplicationDependenciesRequest(params)
 //
-//    // Example sending a request using the ListApplicationDependenciesRequest method.
-//    req, resp := client.ListApplicationDependenciesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplicationDependencies
 func (c *ServerlessApplicationRepository) ListApplicationDependenciesRequest(input *ListApplicationDependenciesInput) (req *request.Request, output *ListApplicationDependenciesOutput) {
@@ -823,23 +822,24 @@ func (c *ServerlessApplicationRepository) ListApplicationDependenciesRequest(inp
 // API operation ListApplicationDependencies for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplicationDependencies
 func (c *ServerlessApplicationRepository) ListApplicationDependencies(input *ListApplicationDependenciesInput) (*ListApplicationDependenciesOutput, error) {
@@ -871,15 +871,14 @@ func (c *ServerlessApplicationRepository) ListApplicationDependenciesWithContext
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApplicationDependencies operation.
-//    pageNum := 0
-//    err := client.ListApplicationDependenciesPages(params,
-//        func(page *serverlessapplicationrepository.ListApplicationDependenciesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApplicationDependencies operation.
+//	pageNum := 0
+//	err := client.ListApplicationDependenciesPages(params,
+//	    func(page *serverlessapplicationrepository.ListApplicationDependenciesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServerlessApplicationRepository) ListApplicationDependenciesPages(input *ListApplicationDependenciesInput, fn func(*ListApplicationDependenciesOutput, bool) bool) error {
 	return c.ListApplicationDependenciesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -931,14 +930,13 @@ const opListApplicationVersions = "ListApplicationVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListApplicationVersionsRequest method.
+//	req, resp := client.ListApplicationVersionsRequest(params)
 //
-//    // Example sending a request using the ListApplicationVersionsRequest method.
-//    req, resp := client.ListApplicationVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplicationVersions
 func (c *ServerlessApplicationRepository) ListApplicationVersionsRequest(input *ListApplicationVersionsInput) (req *request.Request, output *ListApplicationVersionsOutput) {
@@ -975,23 +973,24 @@ func (c *ServerlessApplicationRepository) ListApplicationVersionsRequest(input *
 // API operation ListApplicationVersions for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplicationVersions
 func (c *ServerlessApplicationRepository) ListApplicationVersions(input *ListApplicationVersionsInput) (*ListApplicationVersionsOutput, error) {
@@ -1023,15 +1022,14 @@ func (c *ServerlessApplicationRepository) ListApplicationVersionsWithContext(ctx
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApplicationVersions operation.
-//    pageNum := 0
-//    err := client.ListApplicationVersionsPages(params,
-//        func(page *serverlessapplicationrepository.ListApplicationVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApplicationVersions operation.
+//	pageNum := 0
+//	err := client.ListApplicationVersionsPages(params,
+//	    func(page *serverlessapplicationrepository.ListApplicationVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServerlessApplicationRepository) ListApplicationVersionsPages(input *ListApplicationVersionsInput, fn func(*ListApplicationVersionsOutput, bool) bool) error {
 	return c.ListApplicationVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1083,14 +1081,13 @@ const opListApplications = "ListApplications"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListApplicationsRequest method.
+//	req, resp := client.ListApplicationsRequest(params)
 //
-//    // Example sending a request using the ListApplicationsRequest method.
-//    req, resp := client.ListApplicationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplications
 func (c *ServerlessApplicationRepository) ListApplicationsRequest(input *ListApplicationsInput) (req *request.Request, output *ListApplicationsOutput) {
@@ -1127,19 +1124,20 @@ func (c *ServerlessApplicationRepository) ListApplicationsRequest(input *ListApp
 // API operation ListApplications for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplications
 func (c *ServerlessApplicationRepository) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
@@ -1171,15 +1169,14 @@ func (c *ServerlessApplicationRepository) ListApplicationsWithContext(ctx aws.Co
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApplications operation.
-//    pageNum := 0
-//    err := client.ListApplicationsPages(params,
-//        func(page *serverlessapplicationrepository.ListApplicationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApplications operation.
+//	pageNum := 0
+//	err := client.ListApplicationsPages(params,
+//	    func(page *serverlessapplicationrepository.ListApplicationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ServerlessApplicationRepository) ListApplicationsPages(input *ListApplicationsInput, fn func(*ListApplicationsOutput, bool) bool) error {
 	return c.ListApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1231,14 +1228,13 @@ const opPutApplicationPolicy = "PutApplicationPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutApplicationPolicyRequest method.
+//	req, resp := client.PutApplicationPolicyRequest(params)
 //
-//    // Example sending a request using the PutApplicationPolicyRequest method.
-//    req, resp := client.PutApplicationPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/PutApplicationPolicy
 func (c *ServerlessApplicationRepository) PutApplicationPolicyRequest(input *PutApplicationPolicyInput) (req *request.Request, output *PutApplicationPolicyOutput) {
@@ -1270,23 +1266,24 @@ func (c *ServerlessApplicationRepository) PutApplicationPolicyRequest(input *Put
 // API operation PutApplicationPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/PutApplicationPolicy
 func (c *ServerlessApplicationRepository) PutApplicationPolicy(input *PutApplicationPolicyInput) (*PutApplicationPolicyOutput, error) {
@@ -1326,14 +1323,13 @@ const opUnshareApplication = "UnshareApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UnshareApplicationRequest method.
+//	req, resp := client.UnshareApplicationRequest(params)
 //
-//    // Example sending a request using the UnshareApplicationRequest method.
-//    req, resp := client.UnshareApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/UnshareApplication
 func (c *ServerlessApplicationRepository) UnshareApplicationRequest(input *UnshareApplicationInput) (req *request.Request, output *UnshareApplicationOutput) {
@@ -1367,23 +1363,24 @@ func (c *ServerlessApplicationRepository) UnshareApplicationRequest(input *Unsha
 // API operation UnshareApplication for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
+//
+//   - ForbiddenException
+//     The client is not authenticated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/UnshareApplication
 func (c *ServerlessApplicationRepository) UnshareApplication(input *UnshareApplicationInput) (*UnshareApplicationOutput, error) {
@@ -1423,14 +1420,13 @@ const opUpdateApplication = "UpdateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApplicationRequest method.
+//	req, resp := client.UpdateApplicationRequest(params)
 //
-//    // Example sending a request using the UpdateApplicationRequest method.
-//    req, resp := client.UpdateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/UpdateApplication
 func (c *ServerlessApplicationRepository) UpdateApplicationRequest(input *UpdateApplicationRequest) (req *request.Request, output *UpdateApplicationOutput) {
@@ -1461,26 +1457,27 @@ func (c *ServerlessApplicationRepository) UpdateApplicationRequest(input *Update
 // API operation UpdateApplication for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   One of the parameters in the request is invalid.
 //
-//   * InternalServerErrorException
-//   The AWS Serverless Application Repository service encountered an internal
-//   error.
+//   - BadRequestException
+//     One of the parameters in the request is invalid.
 //
-//   * ForbiddenException
-//   The client is not authenticated.
+//   - InternalServerErrorException
+//     The AWS Serverless Application Repository service encountered an internal
+//     error.
 //
-//   * NotFoundException
-//   The resource (for example, an access policy statement) specified in the request
-//   doesn't exist.
+//   - ForbiddenException
+//     The client is not authenticated.
 //
-//   * TooManyRequestsException
-//   The client is sending more than the allowed number of requests per unit of
-//   time.
+//   - NotFoundException
+//     The resource (for example, an access policy statement) specified in the request
+//     doesn't exist.
 //
-//   * ConflictException
-//   The resource already exists.
+//   - TooManyRequestsException
+//     The client is sending more than the allowed number of requests per unit of
+//     time.
+//
+//   - ConflictException
+//     The resource already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/UpdateApplication
 func (c *ServerlessApplicationRepository) UpdateApplication(input *UpdateApplicationRequest) (*UpdateApplicationOutput, error) {
@@ -1519,12 +1516,20 @@ type ApplicationDependencySummary struct {
 	SemanticVersion *string `locationName:"semanticVersion" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationDependencySummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationDependencySummary) GoString() string {
 	return s.String()
 }
@@ -1565,12 +1570,20 @@ type ApplicationPolicyStatement struct {
 	StatementId *string `locationName:"statementId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationPolicyStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationPolicyStatement) GoString() string {
 	return s.String()
 }
@@ -1667,12 +1680,20 @@ type ApplicationSummary struct {
 	SpdxLicenseId *string `locationName:"spdxLicenseId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationSummary) GoString() string {
 	return s.String()
 }
@@ -1737,12 +1758,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -1797,12 +1826,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -1876,12 +1913,20 @@ type CreateApplicationOutput struct {
 	Version *Version `locationName:"version" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -2001,12 +2046,20 @@ type CreateApplicationRequest struct {
 	TemplateUrl *string `locationName:"templateUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationRequest) GoString() string {
 	return s.String()
 }
@@ -2129,7 +2182,7 @@ type CreateApplicationVersionOutput struct {
 
 	ParameterDefinitions []*ParameterDefinition `locationName:"parameterDefinitions" type:"list"`
 
-	RequiredCapabilities []*string `locationName:"requiredCapabilities" type:"list"`
+	RequiredCapabilities []*string `locationName:"requiredCapabilities" type:"list" enum:"Capability"`
 
 	ResourcesSupported *bool `locationName:"resourcesSupported" type:"boolean"`
 
@@ -2142,12 +2195,20 @@ type CreateApplicationVersionOutput struct {
 	TemplateUrl *string `locationName:"templateUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationVersionOutput) GoString() string {
 	return s.String()
 }
@@ -2224,12 +2285,20 @@ type CreateApplicationVersionRequest struct {
 	TemplateUrl *string `locationName:"templateUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationVersionRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationVersionRequest) GoString() string {
 	return s.String()
 }
@@ -2304,12 +2373,20 @@ type CreateCloudFormationChangeSetOutput struct {
 	StackId *string `locationName:"stackId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCloudFormationChangeSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCloudFormationChangeSetOutput) GoString() string {
 	return s.String()
 }
@@ -2373,12 +2450,20 @@ type CreateCloudFormationChangeSetRequest struct {
 	TemplateId *string `locationName:"templateId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCloudFormationChangeSetRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCloudFormationChangeSetRequest) GoString() string {
 	return s.String()
 }
@@ -2514,12 +2599,20 @@ type CreateCloudFormationTemplateInput struct {
 	SemanticVersion *string `locationName:"semanticVersion" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCloudFormationTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCloudFormationTemplateInput) GoString() string {
 	return s.String()
 }
@@ -2570,12 +2663,20 @@ type CreateCloudFormationTemplateOutput struct {
 	TemplateUrl *string `locationName:"templateUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCloudFormationTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCloudFormationTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -2623,18 +2724,26 @@ func (s *CreateCloudFormationTemplateOutput) SetTemplateUrl(v string) *CreateClo
 }
 
 type DeleteApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationInput) GoString() string {
 	return s.String()
 }
@@ -2665,12 +2774,20 @@ type DeleteApplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -2687,12 +2804,20 @@ type ForbiddenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) GoString() string {
 	return s.String()
 }
@@ -2736,7 +2861,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -2744,12 +2869,20 @@ type GetApplicationInput struct {
 	SemanticVersion *string `location:"querystring" locationName:"semanticVersion" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationInput) GoString() string {
 	return s.String()
 }
@@ -2813,12 +2946,20 @@ type GetApplicationOutput struct {
 	Version *Version `locationName:"version" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -2902,18 +3043,26 @@ func (s *GetApplicationOutput) SetVersion(v *Version) *GetApplicationOutput {
 }
 
 type GetApplicationPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationPolicyInput) GoString() string {
 	return s.String()
 }
@@ -2946,12 +3095,20 @@ type GetApplicationPolicyOutput struct {
 	Statements []*ApplicationPolicyStatement `locationName:"statements" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -2963,7 +3120,7 @@ func (s *GetApplicationPolicyOutput) SetStatements(v []*ApplicationPolicyStateme
 }
 
 type GetCloudFormationTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -2972,12 +3129,20 @@ type GetCloudFormationTemplateInput struct {
 	TemplateId *string `location:"uri" locationName:"templateId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCloudFormationTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCloudFormationTemplateInput) GoString() string {
 	return s.String()
 }
@@ -3034,12 +3199,20 @@ type GetCloudFormationTemplateOutput struct {
 	TemplateUrl *string `locationName:"templateUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCloudFormationTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCloudFormationTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -3100,12 +3273,20 @@ type InternalServerErrorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) GoString() string {
 	return s.String()
 }
@@ -3149,7 +3330,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListApplicationDependenciesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -3161,12 +3342,20 @@ type ListApplicationDependenciesInput struct {
 	SemanticVersion *string `location:"querystring" locationName:"semanticVersion" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationDependenciesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationDependenciesInput) GoString() string {
 	return s.String()
 }
@@ -3222,12 +3411,20 @@ type ListApplicationDependenciesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationDependenciesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationDependenciesOutput) GoString() string {
 	return s.String()
 }
@@ -3245,7 +3442,7 @@ func (s *ListApplicationDependenciesOutput) SetNextToken(v string) *ListApplicat
 }
 
 type ListApplicationVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -3255,12 +3452,20 @@ type ListApplicationVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationVersionsInput) GoString() string {
 	return s.String()
 }
@@ -3310,12 +3515,20 @@ type ListApplicationVersionsOutput struct {
 	Versions []*VersionSummary `locationName:"versions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -3333,19 +3546,27 @@ func (s *ListApplicationVersionsOutput) SetVersions(v []*VersionSummary) *ListAp
 }
 
 type ListApplicationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxItems *int64 `location:"querystring" locationName:"maxItems" min:"1" type:"integer"`
 
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsInput) GoString() string {
 	return s.String()
 }
@@ -3383,12 +3604,20 @@ type ListApplicationsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsOutput) GoString() string {
 	return s.String()
 }
@@ -3419,12 +3648,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -3562,12 +3799,20 @@ type ParameterDefinition struct {
 	Type *string `locationName:"type" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParameterDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParameterDefinition) GoString() string {
 	return s.String()
 }
@@ -3667,12 +3912,20 @@ type ParameterValue struct {
 	Value *string `locationName:"value" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParameterValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParameterValue) GoString() string {
 	return s.String()
 }
@@ -3715,12 +3968,20 @@ type PutApplicationPolicyInput struct {
 	Statements []*ApplicationPolicyStatement `locationName:"statements" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutApplicationPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutApplicationPolicyInput) GoString() string {
 	return s.String()
 }
@@ -3772,12 +4033,20 @@ type PutApplicationPolicyOutput struct {
 	Statements []*ApplicationPolicyStatement `locationName:"statements" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutApplicationPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutApplicationPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -3805,12 +4074,20 @@ type RollbackConfiguration struct {
 	RollbackTriggers []*RollbackTrigger `locationName:"rollbackTriggers" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RollbackConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RollbackConfiguration) GoString() string {
 	return s.String()
 }
@@ -3867,12 +4144,20 @@ type RollbackTrigger struct {
 	Type *string `locationName:"type" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RollbackTrigger) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RollbackTrigger) GoString() string {
 	return s.String()
 }
@@ -3925,12 +4210,20 @@ type Tag struct {
 	Value *string `locationName:"value" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -3977,12 +4270,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -4035,12 +4336,20 @@ type UnshareApplicationInput struct {
 	OrganizationId *string `locationName:"organizationId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnshareApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnshareApplicationInput) GoString() string {
 	return s.String()
 }
@@ -4080,12 +4389,20 @@ type UnshareApplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnshareApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnshareApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -4121,12 +4438,20 @@ type UpdateApplicationOutput struct {
 	Version *Version `locationName:"version" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -4228,12 +4553,20 @@ type UpdateApplicationRequest struct {
 	ReadmeUrl *string `locationName:"readmeUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationRequest) GoString() string {
 	return s.String()
 }
@@ -4350,7 +4683,7 @@ type Version struct {
 	// the call will fail.
 	//
 	// RequiredCapabilities is a required field
-	RequiredCapabilities []*string `locationName:"requiredCapabilities" type:"list" required:"true"`
+	RequiredCapabilities []*string `locationName:"requiredCapabilities" type:"list" required:"true" enum:"Capability"`
 
 	// Whether all of the AWS resources contained in this application are supported
 	// in the region in which it is being retrieved.
@@ -4381,12 +4714,20 @@ type Version struct {
 	TemplateUrl *string `locationName:"templateUrl" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Version) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Version) GoString() string {
 	return s.String()
 }
@@ -4471,12 +4812,20 @@ type VersionSummary struct {
 	SourceCodeUrl *string `locationName:"sourceCodeUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VersionSummary) GoString() string {
 	return s.String()
 }

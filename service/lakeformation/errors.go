@@ -29,8 +29,14 @@ const (
 	// ErrCodeEntityNotFoundException for service response error code
 	// "EntityNotFoundException".
 	//
-	// A specified entity does not exist
+	// A specified entity does not exist.
 	ErrCodeEntityNotFoundException = "EntityNotFoundException"
+
+	// ErrCodeExpiredException for service response error code
+	// "ExpiredException".
+	//
+	// Contains details about an error where the query request expired.
+	ErrCodeExpiredException = "ExpiredException"
 
 	// ErrCodeGlueEncryptionException for service response error code
 	// "GlueEncryptionException".
@@ -56,11 +62,65 @@ const (
 	// The operation timed out.
 	ErrCodeOperationTimeoutException = "OperationTimeoutException"
 
+	// ErrCodePermissionTypeMismatchException for service response error code
+	// "PermissionTypeMismatchException".
+	//
+	// The engine does not support filtering data based on the enforced permissions.
+	// For example, if you call the GetTemporaryGlueTableCredentials operation with
+	// SupportedPermissionType equal to ColumnPermission, but cell-level permissions
+	// exist on the table, this exception is thrown.
+	ErrCodePermissionTypeMismatchException = "PermissionTypeMismatchException"
+
+	// ErrCodeResourceNotReadyException for service response error code
+	// "ResourceNotReadyException".
+	//
+	// Contains details about an error related to a resource which is not ready
+	// for a transaction.
+	ErrCodeResourceNotReadyException = "ResourceNotReadyException"
+
 	// ErrCodeResourceNumberLimitExceededException for service response error code
 	// "ResourceNumberLimitExceededException".
 	//
 	// A resource numerical limit was exceeded.
 	ErrCodeResourceNumberLimitExceededException = "ResourceNumberLimitExceededException"
+
+	// ErrCodeStatisticsNotReadyYetException for service response error code
+	// "StatisticsNotReadyYetException".
+	//
+	// Contains details about an error related to statistics not being ready.
+	ErrCodeStatisticsNotReadyYetException = "StatisticsNotReadyYetException"
+
+	// ErrCodeThrottledException for service response error code
+	// "ThrottledException".
+	//
+	// Contains details about an error where the query request was throttled.
+	ErrCodeThrottledException = "ThrottledException"
+
+	// ErrCodeTransactionCanceledException for service response error code
+	// "TransactionCanceledException".
+	//
+	// Contains details about an error related to a transaction that was cancelled.
+	ErrCodeTransactionCanceledException = "TransactionCanceledException"
+
+	// ErrCodeTransactionCommitInProgressException for service response error code
+	// "TransactionCommitInProgressException".
+	//
+	// Contains details about an error related to a transaction commit that was
+	// in progress.
+	ErrCodeTransactionCommitInProgressException = "TransactionCommitInProgressException"
+
+	// ErrCodeTransactionCommittedException for service response error code
+	// "TransactionCommittedException".
+	//
+	// Contains details about an error where the specified transaction has already
+	// been committed and cannot be used for UpdateTableObjects.
+	ErrCodeTransactionCommittedException = "TransactionCommittedException"
+
+	// ErrCodeWorkUnitsNotReadyYetException for service response error code
+	// "WorkUnitsNotReadyYetException".
+	//
+	// Contains details about an error related to work units not being ready.
+	ErrCodeWorkUnitsNotReadyYetException = "WorkUnitsNotReadyYetException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -68,9 +128,18 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AlreadyExistsException":               newErrorAlreadyExistsException,
 	"ConcurrentModificationException":      newErrorConcurrentModificationException,
 	"EntityNotFoundException":              newErrorEntityNotFoundException,
+	"ExpiredException":                     newErrorExpiredException,
 	"GlueEncryptionException":              newErrorGlueEncryptionException,
 	"InternalServiceException":             newErrorInternalServiceException,
 	"InvalidInputException":                newErrorInvalidInputException,
 	"OperationTimeoutException":            newErrorOperationTimeoutException,
+	"PermissionTypeMismatchException":      newErrorPermissionTypeMismatchException,
+	"ResourceNotReadyException":            newErrorResourceNotReadyException,
 	"ResourceNumberLimitExceededException": newErrorResourceNumberLimitExceededException,
+	"StatisticsNotReadyYetException":       newErrorStatisticsNotReadyYetException,
+	"ThrottledException":                   newErrorThrottledException,
+	"TransactionCanceledException":         newErrorTransactionCanceledException,
+	"TransactionCommitInProgressException": newErrorTransactionCommitInProgressException,
+	"TransactionCommittedException":        newErrorTransactionCommittedException,
+	"WorkUnitsNotReadyYetException":        newErrorWorkUnitsNotReadyYetException,
 }

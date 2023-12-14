@@ -27,14 +27,13 @@ const opCloneBackend = "CloneBackend"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CloneBackendRequest method.
+//	req, resp := client.CloneBackendRequest(params)
 //
-//    // Example sending a request using the CloneBackendRequest method.
-//    req, resp := client.CloneBackendRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CloneBackend
 func (c *AmplifyBackend) CloneBackendRequest(input *CloneBackendInput) (req *request.Request, output *CloneBackendOutput) {
@@ -65,17 +64,18 @@ func (c *AmplifyBackend) CloneBackendRequest(input *CloneBackendInput) (req *req
 // API operation CloneBackend for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CloneBackend
 func (c *AmplifyBackend) CloneBackend(input *CloneBackendInput) (*CloneBackendOutput, error) {
@@ -115,14 +115,13 @@ const opCreateBackend = "CreateBackend"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBackendRequest method.
+//	req, resp := client.CreateBackendRequest(params)
 //
-//    // Example sending a request using the CreateBackendRequest method.
-//    req, resp := client.CreateBackendRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackend
 func (c *AmplifyBackend) CreateBackendRequest(input *CreateBackendInput) (req *request.Request, output *CreateBackendOutput) {
@@ -154,17 +153,18 @@ func (c *AmplifyBackend) CreateBackendRequest(input *CreateBackendInput) (req *r
 // API operation CreateBackend for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackend
 func (c *AmplifyBackend) CreateBackend(input *CreateBackendInput) (*CreateBackendOutput, error) {
@@ -204,14 +204,13 @@ const opCreateBackendAPI = "CreateBackendAPI"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBackendAPIRequest method.
+//	req, resp := client.CreateBackendAPIRequest(params)
 //
-//    // Example sending a request using the CreateBackendAPIRequest method.
-//    req, resp := client.CreateBackendAPIRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackendAPI
 func (c *AmplifyBackend) CreateBackendAPIRequest(input *CreateBackendAPIInput) (req *request.Request, output *CreateBackendAPIOutput) {
@@ -242,17 +241,18 @@ func (c *AmplifyBackend) CreateBackendAPIRequest(input *CreateBackendAPIInput) (
 // API operation CreateBackendAPI for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackendAPI
 func (c *AmplifyBackend) CreateBackendAPI(input *CreateBackendAPIInput) (*CreateBackendAPIOutput, error) {
@@ -292,14 +292,13 @@ const opCreateBackendAuth = "CreateBackendAuth"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBackendAuthRequest method.
+//	req, resp := client.CreateBackendAuthRequest(params)
 //
-//    // Example sending a request using the CreateBackendAuthRequest method.
-//    req, resp := client.CreateBackendAuthRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackendAuth
 func (c *AmplifyBackend) CreateBackendAuthRequest(input *CreateBackendAuthInput) (req *request.Request, output *CreateBackendAuthOutput) {
@@ -330,17 +329,18 @@ func (c *AmplifyBackend) CreateBackendAuthRequest(input *CreateBackendAuthInput)
 // API operation CreateBackendAuth for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackendAuth
 func (c *AmplifyBackend) CreateBackendAuth(input *CreateBackendAuthInput) (*CreateBackendAuthOutput, error) {
@@ -380,14 +380,13 @@ const opCreateBackendConfig = "CreateBackendConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBackendConfigRequest method.
+//	req, resp := client.CreateBackendConfigRequest(params)
 //
-//    // Example sending a request using the CreateBackendConfigRequest method.
-//    req, resp := client.CreateBackendConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackendConfig
 func (c *AmplifyBackend) CreateBackendConfigRequest(input *CreateBackendConfigInput) (req *request.Request, output *CreateBackendConfigOutput) {
@@ -418,17 +417,18 @@ func (c *AmplifyBackend) CreateBackendConfigRequest(input *CreateBackendConfigIn
 // API operation CreateBackendConfig for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackendConfig
 func (c *AmplifyBackend) CreateBackendConfig(input *CreateBackendConfigInput) (*CreateBackendConfigOutput, error) {
@@ -452,6 +452,94 @@ func (c *AmplifyBackend) CreateBackendConfigWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opCreateBackendStorage = "CreateBackendStorage"
+
+// CreateBackendStorageRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBackendStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBackendStorage for more information on using the CreateBackendStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateBackendStorageRequest method.
+//	req, resp := client.CreateBackendStorageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackendStorage
+func (c *AmplifyBackend) CreateBackendStorageRequest(input *CreateBackendStorageInput) (req *request.Request, output *CreateBackendStorageOutput) {
+	op := &request.Operation{
+		Name:       opCreateBackendStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/backend/{appId}/storage",
+	}
+
+	if input == nil {
+		input = &CreateBackendStorageInput{}
+	}
+
+	output = &CreateBackendStorageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateBackendStorage API operation for AmplifyBackend.
+//
+// Creates a backend storage resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AmplifyBackend's
+// API operation CreateBackendStorage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
+//
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
+//
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateBackendStorage
+func (c *AmplifyBackend) CreateBackendStorage(input *CreateBackendStorageInput) (*CreateBackendStorageOutput, error) {
+	req, out := c.CreateBackendStorageRequest(input)
+	return out, req.Send()
+}
+
+// CreateBackendStorageWithContext is the same as CreateBackendStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBackendStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyBackend) CreateBackendStorageWithContext(ctx aws.Context, input *CreateBackendStorageInput, opts ...request.Option) (*CreateBackendStorageOutput, error) {
+	req, out := c.CreateBackendStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateToken = "CreateToken"
 
 // CreateTokenRequest generates a "aws/request.Request" representing the
@@ -468,14 +556,13 @@ const opCreateToken = "CreateToken"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTokenRequest method.
+//	req, resp := client.CreateTokenRequest(params)
 //
-//    // Example sending a request using the CreateTokenRequest method.
-//    req, resp := client.CreateTokenRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateToken
 func (c *AmplifyBackend) CreateTokenRequest(input *CreateTokenInput) (req *request.Request, output *CreateTokenOutput) {
@@ -507,17 +594,18 @@ func (c *AmplifyBackend) CreateTokenRequest(input *CreateTokenInput) (req *reque
 // API operation CreateToken for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/CreateToken
 func (c *AmplifyBackend) CreateToken(input *CreateTokenInput) (*CreateTokenOutput, error) {
@@ -557,14 +645,13 @@ const opDeleteBackend = "DeleteBackend"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBackendRequest method.
+//	req, resp := client.DeleteBackendRequest(params)
 //
-//    // Example sending a request using the DeleteBackendRequest method.
-//    req, resp := client.DeleteBackendRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteBackend
 func (c *AmplifyBackend) DeleteBackendRequest(input *DeleteBackendInput) (req *request.Request, output *DeleteBackendOutput) {
@@ -595,17 +682,18 @@ func (c *AmplifyBackend) DeleteBackendRequest(input *DeleteBackendInput) (req *r
 // API operation DeleteBackend for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteBackend
 func (c *AmplifyBackend) DeleteBackend(input *DeleteBackendInput) (*DeleteBackendOutput, error) {
@@ -645,14 +733,13 @@ const opDeleteBackendAPI = "DeleteBackendAPI"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBackendAPIRequest method.
+//	req, resp := client.DeleteBackendAPIRequest(params)
 //
-//    // Example sending a request using the DeleteBackendAPIRequest method.
-//    req, resp := client.DeleteBackendAPIRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteBackendAPI
 func (c *AmplifyBackend) DeleteBackendAPIRequest(input *DeleteBackendAPIInput) (req *request.Request, output *DeleteBackendAPIOutput) {
@@ -683,17 +770,18 @@ func (c *AmplifyBackend) DeleteBackendAPIRequest(input *DeleteBackendAPIInput) (
 // API operation DeleteBackendAPI for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteBackendAPI
 func (c *AmplifyBackend) DeleteBackendAPI(input *DeleteBackendAPIInput) (*DeleteBackendAPIOutput, error) {
@@ -733,14 +821,13 @@ const opDeleteBackendAuth = "DeleteBackendAuth"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBackendAuthRequest method.
+//	req, resp := client.DeleteBackendAuthRequest(params)
 //
-//    // Example sending a request using the DeleteBackendAuthRequest method.
-//    req, resp := client.DeleteBackendAuthRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteBackendAuth
 func (c *AmplifyBackend) DeleteBackendAuthRequest(input *DeleteBackendAuthInput) (req *request.Request, output *DeleteBackendAuthOutput) {
@@ -771,17 +858,18 @@ func (c *AmplifyBackend) DeleteBackendAuthRequest(input *DeleteBackendAuthInput)
 // API operation DeleteBackendAuth for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteBackendAuth
 func (c *AmplifyBackend) DeleteBackendAuth(input *DeleteBackendAuthInput) (*DeleteBackendAuthOutput, error) {
@@ -805,6 +893,94 @@ func (c *AmplifyBackend) DeleteBackendAuthWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDeleteBackendStorage = "DeleteBackendStorage"
+
+// DeleteBackendStorageRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBackendStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBackendStorage for more information on using the DeleteBackendStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteBackendStorageRequest method.
+//	req, resp := client.DeleteBackendStorageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteBackendStorage
+func (c *AmplifyBackend) DeleteBackendStorageRequest(input *DeleteBackendStorageInput) (req *request.Request, output *DeleteBackendStorageOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBackendStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/backend/{appId}/storage/{backendEnvironmentName}/remove",
+	}
+
+	if input == nil {
+		input = &DeleteBackendStorageInput{}
+	}
+
+	output = &DeleteBackendStorageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteBackendStorage API operation for AmplifyBackend.
+//
+// Removes the specified backend storage resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AmplifyBackend's
+// API operation DeleteBackendStorage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
+//
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
+//
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteBackendStorage
+func (c *AmplifyBackend) DeleteBackendStorage(input *DeleteBackendStorageInput) (*DeleteBackendStorageOutput, error) {
+	req, out := c.DeleteBackendStorageRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBackendStorageWithContext is the same as DeleteBackendStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBackendStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyBackend) DeleteBackendStorageWithContext(ctx aws.Context, input *DeleteBackendStorageInput, opts ...request.Option) (*DeleteBackendStorageOutput, error) {
+	req, out := c.DeleteBackendStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteToken = "DeleteToken"
 
 // DeleteTokenRequest generates a "aws/request.Request" representing the
@@ -821,14 +997,13 @@ const opDeleteToken = "DeleteToken"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTokenRequest method.
+//	req, resp := client.DeleteTokenRequest(params)
 //
-//    // Example sending a request using the DeleteTokenRequest method.
-//    req, resp := client.DeleteTokenRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteToken
 func (c *AmplifyBackend) DeleteTokenRequest(input *DeleteTokenInput) (req *request.Request, output *DeleteTokenOutput) {
@@ -859,17 +1034,18 @@ func (c *AmplifyBackend) DeleteTokenRequest(input *DeleteTokenInput) (req *reque
 // API operation DeleteToken for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/DeleteToken
 func (c *AmplifyBackend) DeleteToken(input *DeleteTokenInput) (*DeleteTokenOutput, error) {
@@ -909,14 +1085,13 @@ const opGenerateBackendAPIModels = "GenerateBackendAPIModels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GenerateBackendAPIModelsRequest method.
+//	req, resp := client.GenerateBackendAPIModelsRequest(params)
 //
-//    // Example sending a request using the GenerateBackendAPIModelsRequest method.
-//    req, resp := client.GenerateBackendAPIModelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GenerateBackendAPIModels
 func (c *AmplifyBackend) GenerateBackendAPIModelsRequest(input *GenerateBackendAPIModelsInput) (req *request.Request, output *GenerateBackendAPIModelsOutput) {
@@ -947,17 +1122,18 @@ func (c *AmplifyBackend) GenerateBackendAPIModelsRequest(input *GenerateBackendA
 // API operation GenerateBackendAPIModels for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GenerateBackendAPIModels
 func (c *AmplifyBackend) GenerateBackendAPIModels(input *GenerateBackendAPIModelsInput) (*GenerateBackendAPIModelsOutput, error) {
@@ -997,14 +1173,13 @@ const opGetBackend = "GetBackend"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBackendRequest method.
+//	req, resp := client.GetBackendRequest(params)
 //
-//    // Example sending a request using the GetBackendRequest method.
-//    req, resp := client.GetBackendRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackend
 func (c *AmplifyBackend) GetBackendRequest(input *GetBackendInput) (req *request.Request, output *GetBackendOutput) {
@@ -1035,17 +1210,18 @@ func (c *AmplifyBackend) GetBackendRequest(input *GetBackendInput) (req *request
 // API operation GetBackend for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackend
 func (c *AmplifyBackend) GetBackend(input *GetBackendInput) (*GetBackendOutput, error) {
@@ -1085,14 +1261,13 @@ const opGetBackendAPI = "GetBackendAPI"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBackendAPIRequest method.
+//	req, resp := client.GetBackendAPIRequest(params)
 //
-//    // Example sending a request using the GetBackendAPIRequest method.
-//    req, resp := client.GetBackendAPIRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendAPI
 func (c *AmplifyBackend) GetBackendAPIRequest(input *GetBackendAPIInput) (req *request.Request, output *GetBackendAPIOutput) {
@@ -1123,17 +1298,18 @@ func (c *AmplifyBackend) GetBackendAPIRequest(input *GetBackendAPIInput) (req *r
 // API operation GetBackendAPI for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendAPI
 func (c *AmplifyBackend) GetBackendAPI(input *GetBackendAPIInput) (*GetBackendAPIOutput, error) {
@@ -1173,14 +1349,13 @@ const opGetBackendAPIModels = "GetBackendAPIModels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBackendAPIModelsRequest method.
+//	req, resp := client.GetBackendAPIModelsRequest(params)
 //
-//    // Example sending a request using the GetBackendAPIModelsRequest method.
-//    req, resp := client.GetBackendAPIModelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendAPIModels
 func (c *AmplifyBackend) GetBackendAPIModelsRequest(input *GetBackendAPIModelsInput) (req *request.Request, output *GetBackendAPIModelsOutput) {
@@ -1201,7 +1376,7 @@ func (c *AmplifyBackend) GetBackendAPIModelsRequest(input *GetBackendAPIModelsIn
 
 // GetBackendAPIModels API operation for AmplifyBackend.
 //
-// Generates a model schema for existing backend API resource.
+// Gets a model introspection schema for an existing backend API resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1211,17 +1386,18 @@ func (c *AmplifyBackend) GetBackendAPIModelsRequest(input *GetBackendAPIModelsIn
 // API operation GetBackendAPIModels for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendAPIModels
 func (c *AmplifyBackend) GetBackendAPIModels(input *GetBackendAPIModelsInput) (*GetBackendAPIModelsOutput, error) {
@@ -1261,14 +1437,13 @@ const opGetBackendAuth = "GetBackendAuth"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBackendAuthRequest method.
+//	req, resp := client.GetBackendAuthRequest(params)
 //
-//    // Example sending a request using the GetBackendAuthRequest method.
-//    req, resp := client.GetBackendAuthRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendAuth
 func (c *AmplifyBackend) GetBackendAuthRequest(input *GetBackendAuthInput) (req *request.Request, output *GetBackendAuthOutput) {
@@ -1299,17 +1474,18 @@ func (c *AmplifyBackend) GetBackendAuthRequest(input *GetBackendAuthInput) (req 
 // API operation GetBackendAuth for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendAuth
 func (c *AmplifyBackend) GetBackendAuth(input *GetBackendAuthInput) (*GetBackendAuthOutput, error) {
@@ -1349,14 +1525,13 @@ const opGetBackendJob = "GetBackendJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBackendJobRequest method.
+//	req, resp := client.GetBackendJobRequest(params)
 //
-//    // Example sending a request using the GetBackendJobRequest method.
-//    req, resp := client.GetBackendJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendJob
 func (c *AmplifyBackend) GetBackendJobRequest(input *GetBackendJobInput) (req *request.Request, output *GetBackendJobOutput) {
@@ -1387,17 +1562,18 @@ func (c *AmplifyBackend) GetBackendJobRequest(input *GetBackendJobInput) (req *r
 // API operation GetBackendJob for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendJob
 func (c *AmplifyBackend) GetBackendJob(input *GetBackendJobInput) (*GetBackendJobOutput, error) {
@@ -1421,6 +1597,94 @@ func (c *AmplifyBackend) GetBackendJobWithContext(ctx aws.Context, input *GetBac
 	return out, req.Send()
 }
 
+const opGetBackendStorage = "GetBackendStorage"
+
+// GetBackendStorageRequest generates a "aws/request.Request" representing the
+// client's request for the GetBackendStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBackendStorage for more information on using the GetBackendStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetBackendStorageRequest method.
+//	req, resp := client.GetBackendStorageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendStorage
+func (c *AmplifyBackend) GetBackendStorageRequest(input *GetBackendStorageInput) (req *request.Request, output *GetBackendStorageOutput) {
+	op := &request.Operation{
+		Name:       opGetBackendStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/backend/{appId}/storage/{backendEnvironmentName}/details",
+	}
+
+	if input == nil {
+		input = &GetBackendStorageInput{}
+	}
+
+	output = &GetBackendStorageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBackendStorage API operation for AmplifyBackend.
+//
+// Gets details for a backend storage resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AmplifyBackend's
+// API operation GetBackendStorage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
+//
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
+//
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetBackendStorage
+func (c *AmplifyBackend) GetBackendStorage(input *GetBackendStorageInput) (*GetBackendStorageOutput, error) {
+	req, out := c.GetBackendStorageRequest(input)
+	return out, req.Send()
+}
+
+// GetBackendStorageWithContext is the same as GetBackendStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBackendStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyBackend) GetBackendStorageWithContext(ctx aws.Context, input *GetBackendStorageInput, opts ...request.Option) (*GetBackendStorageOutput, error) {
+	req, out := c.GetBackendStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetToken = "GetToken"
 
 // GetTokenRequest generates a "aws/request.Request" representing the
@@ -1437,14 +1701,13 @@ const opGetToken = "GetToken"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetTokenRequest method.
+//	req, resp := client.GetTokenRequest(params)
 //
-//    // Example sending a request using the GetTokenRequest method.
-//    req, resp := client.GetTokenRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetToken
 func (c *AmplifyBackend) GetTokenRequest(input *GetTokenInput) (req *request.Request, output *GetTokenOutput) {
@@ -1475,17 +1738,18 @@ func (c *AmplifyBackend) GetTokenRequest(input *GetTokenInput) (req *request.Req
 // API operation GetToken for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/GetToken
 func (c *AmplifyBackend) GetToken(input *GetTokenInput) (*GetTokenOutput, error) {
@@ -1525,14 +1789,13 @@ const opImportBackendAuth = "ImportBackendAuth"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ImportBackendAuthRequest method.
+//	req, resp := client.ImportBackendAuthRequest(params)
 //
-//    // Example sending a request using the ImportBackendAuthRequest method.
-//    req, resp := client.ImportBackendAuthRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/ImportBackendAuth
 func (c *AmplifyBackend) ImportBackendAuthRequest(input *ImportBackendAuthInput) (req *request.Request, output *ImportBackendAuthOutput) {
@@ -1563,17 +1826,18 @@ func (c *AmplifyBackend) ImportBackendAuthRequest(input *ImportBackendAuthInput)
 // API operation ImportBackendAuth for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/ImportBackendAuth
 func (c *AmplifyBackend) ImportBackendAuth(input *ImportBackendAuthInput) (*ImportBackendAuthOutput, error) {
@@ -1597,6 +1861,94 @@ func (c *AmplifyBackend) ImportBackendAuthWithContext(ctx aws.Context, input *Im
 	return out, req.Send()
 }
 
+const opImportBackendStorage = "ImportBackendStorage"
+
+// ImportBackendStorageRequest generates a "aws/request.Request" representing the
+// client's request for the ImportBackendStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportBackendStorage for more information on using the ImportBackendStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ImportBackendStorageRequest method.
+//	req, resp := client.ImportBackendStorageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/ImportBackendStorage
+func (c *AmplifyBackend) ImportBackendStorageRequest(input *ImportBackendStorageInput) (req *request.Request, output *ImportBackendStorageOutput) {
+	op := &request.Operation{
+		Name:       opImportBackendStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/backend/{appId}/storage/{backendEnvironmentName}/import",
+	}
+
+	if input == nil {
+		input = &ImportBackendStorageInput{}
+	}
+
+	output = &ImportBackendStorageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportBackendStorage API operation for AmplifyBackend.
+//
+// Imports an existing backend storage resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AmplifyBackend's
+// API operation ImportBackendStorage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
+//
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
+//
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/ImportBackendStorage
+func (c *AmplifyBackend) ImportBackendStorage(input *ImportBackendStorageInput) (*ImportBackendStorageOutput, error) {
+	req, out := c.ImportBackendStorageRequest(input)
+	return out, req.Send()
+}
+
+// ImportBackendStorageWithContext is the same as ImportBackendStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportBackendStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyBackend) ImportBackendStorageWithContext(ctx aws.Context, input *ImportBackendStorageInput, opts ...request.Option) (*ImportBackendStorageOutput, error) {
+	req, out := c.ImportBackendStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListBackendJobs = "ListBackendJobs"
 
 // ListBackendJobsRequest generates a "aws/request.Request" representing the
@@ -1613,14 +1965,13 @@ const opListBackendJobs = "ListBackendJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBackendJobsRequest method.
+//	req, resp := client.ListBackendJobsRequest(params)
 //
-//    // Example sending a request using the ListBackendJobsRequest method.
-//    req, resp := client.ListBackendJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/ListBackendJobs
 func (c *AmplifyBackend) ListBackendJobsRequest(input *ListBackendJobsInput) (req *request.Request, output *ListBackendJobsOutput) {
@@ -1657,17 +2008,18 @@ func (c *AmplifyBackend) ListBackendJobsRequest(input *ListBackendJobsInput) (re
 // API operation ListBackendJobs for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/ListBackendJobs
 func (c *AmplifyBackend) ListBackendJobs(input *ListBackendJobsInput) (*ListBackendJobsOutput, error) {
@@ -1699,15 +2051,14 @@ func (c *AmplifyBackend) ListBackendJobsWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBackendJobs operation.
-//    pageNum := 0
-//    err := client.ListBackendJobsPages(params,
-//        func(page *amplifybackend.ListBackendJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBackendJobs operation.
+//	pageNum := 0
+//	err := client.ListBackendJobsPages(params,
+//	    func(page *amplifybackend.ListBackendJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AmplifyBackend) ListBackendJobsPages(input *ListBackendJobsInput, fn func(*ListBackendJobsOutput, bool) bool) error {
 	return c.ListBackendJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1743,6 +2094,94 @@ func (c *AmplifyBackend) ListBackendJobsPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opListS3Buckets = "ListS3Buckets"
+
+// ListS3BucketsRequest generates a "aws/request.Request" representing the
+// client's request for the ListS3Buckets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListS3Buckets for more information on using the ListS3Buckets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListS3BucketsRequest method.
+//	req, resp := client.ListS3BucketsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/ListS3Buckets
+func (c *AmplifyBackend) ListS3BucketsRequest(input *ListS3BucketsInput) (req *request.Request, output *ListS3BucketsOutput) {
+	op := &request.Operation{
+		Name:       opListS3Buckets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/s3Buckets",
+	}
+
+	if input == nil {
+		input = &ListS3BucketsInput{}
+	}
+
+	output = &ListS3BucketsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListS3Buckets API operation for AmplifyBackend.
+//
+// The list of S3 buckets in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AmplifyBackend's
+// API operation ListS3Buckets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
+//
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
+//
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/ListS3Buckets
+func (c *AmplifyBackend) ListS3Buckets(input *ListS3BucketsInput) (*ListS3BucketsOutput, error) {
+	req, out := c.ListS3BucketsRequest(input)
+	return out, req.Send()
+}
+
+// ListS3BucketsWithContext is the same as ListS3Buckets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListS3Buckets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyBackend) ListS3BucketsWithContext(ctx aws.Context, input *ListS3BucketsInput, opts ...request.Option) (*ListS3BucketsOutput, error) {
+	req, out := c.ListS3BucketsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRemoveAllBackends = "RemoveAllBackends"
 
 // RemoveAllBackendsRequest generates a "aws/request.Request" representing the
@@ -1759,14 +2198,13 @@ const opRemoveAllBackends = "RemoveAllBackends"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveAllBackendsRequest method.
+//	req, resp := client.RemoveAllBackendsRequest(params)
 //
-//    // Example sending a request using the RemoveAllBackendsRequest method.
-//    req, resp := client.RemoveAllBackendsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/RemoveAllBackends
 func (c *AmplifyBackend) RemoveAllBackendsRequest(input *RemoveAllBackendsInput) (req *request.Request, output *RemoveAllBackendsOutput) {
@@ -1797,17 +2235,18 @@ func (c *AmplifyBackend) RemoveAllBackendsRequest(input *RemoveAllBackendsInput)
 // API operation RemoveAllBackends for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/RemoveAllBackends
 func (c *AmplifyBackend) RemoveAllBackends(input *RemoveAllBackendsInput) (*RemoveAllBackendsOutput, error) {
@@ -1847,14 +2286,13 @@ const opRemoveBackendConfig = "RemoveBackendConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveBackendConfigRequest method.
+//	req, resp := client.RemoveBackendConfigRequest(params)
 //
-//    // Example sending a request using the RemoveBackendConfigRequest method.
-//    req, resp := client.RemoveBackendConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/RemoveBackendConfig
 func (c *AmplifyBackend) RemoveBackendConfigRequest(input *RemoveBackendConfigInput) (req *request.Request, output *RemoveBackendConfigOutput) {
@@ -1885,17 +2323,18 @@ func (c *AmplifyBackend) RemoveBackendConfigRequest(input *RemoveBackendConfigIn
 // API operation RemoveBackendConfig for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/RemoveBackendConfig
 func (c *AmplifyBackend) RemoveBackendConfig(input *RemoveBackendConfigInput) (*RemoveBackendConfigOutput, error) {
@@ -1935,14 +2374,13 @@ const opUpdateBackendAPI = "UpdateBackendAPI"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateBackendAPIRequest method.
+//	req, resp := client.UpdateBackendAPIRequest(params)
 //
-//    // Example sending a request using the UpdateBackendAPIRequest method.
-//    req, resp := client.UpdateBackendAPIRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendAPI
 func (c *AmplifyBackend) UpdateBackendAPIRequest(input *UpdateBackendAPIInput) (req *request.Request, output *UpdateBackendAPIOutput) {
@@ -1973,17 +2411,18 @@ func (c *AmplifyBackend) UpdateBackendAPIRequest(input *UpdateBackendAPIInput) (
 // API operation UpdateBackendAPI for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendAPI
 func (c *AmplifyBackend) UpdateBackendAPI(input *UpdateBackendAPIInput) (*UpdateBackendAPIOutput, error) {
@@ -2023,14 +2462,13 @@ const opUpdateBackendAuth = "UpdateBackendAuth"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateBackendAuthRequest method.
+//	req, resp := client.UpdateBackendAuthRequest(params)
 //
-//    // Example sending a request using the UpdateBackendAuthRequest method.
-//    req, resp := client.UpdateBackendAuthRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendAuth
 func (c *AmplifyBackend) UpdateBackendAuthRequest(input *UpdateBackendAuthInput) (req *request.Request, output *UpdateBackendAuthOutput) {
@@ -2061,17 +2499,18 @@ func (c *AmplifyBackend) UpdateBackendAuthRequest(input *UpdateBackendAuthInput)
 // API operation UpdateBackendAuth for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendAuth
 func (c *AmplifyBackend) UpdateBackendAuth(input *UpdateBackendAuthInput) (*UpdateBackendAuthOutput, error) {
@@ -2111,14 +2550,13 @@ const opUpdateBackendConfig = "UpdateBackendConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateBackendConfigRequest method.
+//	req, resp := client.UpdateBackendConfigRequest(params)
 //
-//    // Example sending a request using the UpdateBackendConfigRequest method.
-//    req, resp := client.UpdateBackendConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendConfig
 func (c *AmplifyBackend) UpdateBackendConfigRequest(input *UpdateBackendConfigInput) (req *request.Request, output *UpdateBackendConfigOutput) {
@@ -2149,17 +2587,18 @@ func (c *AmplifyBackend) UpdateBackendConfigRequest(input *UpdateBackendConfigIn
 // API operation UpdateBackendConfig for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendConfig
 func (c *AmplifyBackend) UpdateBackendConfig(input *UpdateBackendConfigInput) (*UpdateBackendConfigOutput, error) {
@@ -2199,14 +2638,13 @@ const opUpdateBackendJob = "UpdateBackendJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateBackendJobRequest method.
+//	req, resp := client.UpdateBackendJobRequest(params)
 //
-//    // Example sending a request using the UpdateBackendJobRequest method.
-//    req, resp := client.UpdateBackendJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendJob
 func (c *AmplifyBackend) UpdateBackendJobRequest(input *UpdateBackendJobInput) (req *request.Request, output *UpdateBackendJobOutput) {
@@ -2237,17 +2675,18 @@ func (c *AmplifyBackend) UpdateBackendJobRequest(input *UpdateBackendJobInput) (
 // API operation UpdateBackendJob for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   An error returned when a specific resource type is not found.
 //
-//   * GatewayTimeoutException
-//   An error returned if there's a temporary issue with the service.
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
 //
-//   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
 //
-//   * BadRequestException
-//   An error returned if a request is not formed properly.
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendJob
 func (c *AmplifyBackend) UpdateBackendJob(input *UpdateBackendJobInput) (*UpdateBackendJobOutput, error) {
@@ -2266,6 +2705,94 @@ func (c *AmplifyBackend) UpdateBackendJob(input *UpdateBackendJobInput) (*Update
 // for more information on using Contexts.
 func (c *AmplifyBackend) UpdateBackendJobWithContext(ctx aws.Context, input *UpdateBackendJobInput, opts ...request.Option) (*UpdateBackendJobOutput, error) {
 	req, out := c.UpdateBackendJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateBackendStorage = "UpdateBackendStorage"
+
+// UpdateBackendStorageRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateBackendStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateBackendStorage for more information on using the UpdateBackendStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateBackendStorageRequest method.
+//	req, resp := client.UpdateBackendStorageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendStorage
+func (c *AmplifyBackend) UpdateBackendStorageRequest(input *UpdateBackendStorageInput) (req *request.Request, output *UpdateBackendStorageOutput) {
+	op := &request.Operation{
+		Name:       opUpdateBackendStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/backend/{appId}/storage/{backendEnvironmentName}",
+	}
+
+	if input == nil {
+		input = &UpdateBackendStorageInput{}
+	}
+
+	output = &UpdateBackendStorageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateBackendStorage API operation for AmplifyBackend.
+//
+// Updates an existing backend storage resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AmplifyBackend's
+// API operation UpdateBackendStorage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     An error returned when a specific resource type is not found.
+//
+//   - GatewayTimeoutException
+//     An error returned if there's a temporary issue with the service.
+//
+//   - TooManyRequestsException
+//     An error that is returned when a limit of a specific type has been exceeded.
+//
+//   - BadRequestException
+//     An error returned if a request is not formed properly.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amplifybackend-2020-08-11/UpdateBackendStorage
+func (c *AmplifyBackend) UpdateBackendStorage(input *UpdateBackendStorageInput) (*UpdateBackendStorageOutput, error) {
+	req, out := c.UpdateBackendStorageRequest(input)
+	return out, req.Send()
+}
+
+// UpdateBackendStorageWithContext is the same as UpdateBackendStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateBackendStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyBackend) UpdateBackendStorageWithContext(ctx aws.Context, input *UpdateBackendStorageInput, opts ...request.Option) (*UpdateBackendStorageOutput, error) {
+	req, out := c.UpdateBackendStorageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2307,12 +2834,20 @@ type BackendAPIAppSyncAuthSettings struct {
 	OpenIDProviderName *string `locationName:"openIDProviderName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAPIAppSyncAuthSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAPIAppSyncAuthSettings) GoString() string {
 	return s.String()
 }
@@ -2376,12 +2911,20 @@ type BackendAPIAuthType struct {
 	Settings *BackendAPIAppSyncAuthSettings `locationName:"settings" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAPIAuthType) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAPIAuthType) GoString() string {
 	return s.String()
 }
@@ -2407,12 +2950,20 @@ type BackendAPIConflictResolution struct {
 	ResolutionStrategy *string `locationName:"resolutionStrategy" type:"string" enum:"ResolutionStrategy"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAPIConflictResolution) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAPIConflictResolution) GoString() string {
 	return s.String()
 }
@@ -2450,12 +3001,20 @@ type BackendAPIResourceConfig struct {
 	TransformSchema *string `locationName:"transformSchema" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAPIResourceConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAPIResourceConfig) GoString() string {
 	return s.String()
 }
@@ -2499,7 +3058,7 @@ func (s *BackendAPIResourceConfig) SetTransformSchema(v string) *BackendAPIResou
 // Describes Apple social federation configurations for allowing your app users
 // to sign in using OAuth.
 type BackendAuthAppleProviderConfig struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Describes the client_id (also called Services ID) that comes from Apple.
 	ClientId *string `locationName:"client_id" type:"string"`
@@ -2514,12 +3073,20 @@ type BackendAuthAppleProviderConfig struct {
 	TeamId *string `locationName:"team_id" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAuthAppleProviderConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAuthAppleProviderConfig) GoString() string {
 	return s.String()
 }
@@ -2551,7 +3118,7 @@ func (s *BackendAuthAppleProviderConfig) SetTeamId(v string) *BackendAuthApplePr
 // Describes third-party social federation configurations for allowing your
 // app users to sign in using OAuth.
 type BackendAuthSocialProviderConfig struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Describes the client_id, which can be obtained from the third-party social
 	// federation provider.
@@ -2562,12 +3129,20 @@ type BackendAuthSocialProviderConfig struct {
 	ClientSecret *string `locationName:"client_secret" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAuthSocialProviderConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendAuthSocialProviderConfig) GoString() string {
 	return s.String()
 }
@@ -2617,12 +3192,20 @@ type BackendJobRespObj struct {
 	UpdateTime *string `locationName:"updateTime" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendJobRespObj) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackendJobRespObj) GoString() string {
 	return s.String()
 }
@@ -2675,6 +3258,65 @@ func (s *BackendJobRespObj) SetUpdateTime(v string) *BackendJobRespObj {
 	return s
 }
 
+// Describes the read, write, and delete permissions users have against your
+// storage S3 bucket.
+type BackendStoragePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// Lists all authenticated user read, write, and delete permissions for your
+	// S3 bucket.
+	//
+	// Authenticated is a required field
+	Authenticated []*string `locationName:"authenticated" type:"list" required:"true" enum:"AuthenticatedElement"`
+
+	// Lists all unauthenticated user read, write, and delete permissions for your
+	// S3 bucket.
+	UnAuthenticated []*string `locationName:"unAuthenticated" type:"list" enum:"UnAuthenticatedElement"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackendStoragePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackendStoragePermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BackendStoragePermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BackendStoragePermissions"}
+	if s.Authenticated == nil {
+		invalidParams.Add(request.NewErrParamRequired("Authenticated"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticated sets the Authenticated field's value.
+func (s *BackendStoragePermissions) SetAuthenticated(v []*string) *BackendStoragePermissions {
+	s.Authenticated = v
+	return s
+}
+
+// SetUnAuthenticated sets the UnAuthenticated field's value.
+func (s *BackendStoragePermissions) SetUnAuthenticated(v []*string) *BackendStoragePermissions {
+	s.UnAuthenticated = v
+	return s
+}
+
 // An error returned if a request is not formed properly.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
@@ -2684,12 +3326,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -2745,12 +3395,20 @@ type CloneBackendInput struct {
 	TargetEnvironmentName *string `locationName:"targetEnvironmentName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloneBackendInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloneBackendInput) GoString() string {
 	return s.String()
 }
@@ -2814,12 +3472,20 @@ type CloneBackendOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloneBackendOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloneBackendOutput) GoString() string {
 	return s.String()
 }
@@ -2879,12 +3545,20 @@ type CreateBackendAPIInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAPIInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAPIInput) GoString() string {
 	return s.String()
 }
@@ -2954,12 +3628,20 @@ type CreateBackendAPIOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAPIOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAPIOutput) GoString() string {
 	return s.String()
 }
@@ -3000,31 +3682,48 @@ func (s *CreateBackendAPIOutput) SetStatus(v string) *CreateBackendAPIOutput {
 	return s
 }
 
-// Describes the forgot password policy for authenticating into the Amplify
-// app.
+// (DEPRECATED) Describes the forgot password policy for authenticating into
+// the Amplify app.
 type CreateBackendAuthForgotPasswordConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes which mode to use (either SMS or email) to deliver messages to
-	// app users who want to recover their password.
+	// (DEPRECATED) Describes which mode to use (either SMS or email) to deliver
+	// messages to app users who want to recover their password.
 	//
 	// DeliveryMethod is a required field
 	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" required:"true" enum:"DeliveryMethod"`
 
-	// The configuration for the email sent when an app user forgets their password.
-	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
+	// (DEPRECATED) The configuration for the email sent when an app user forgets
+	// their password.
+	//
+	// EmailSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBackendAuthForgotPasswordConfig's
+	// String and GoString methods.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure" sensitive:"true"`
 
-	// The configuration for the SMS message sent when an app user forgets their
-	// password.
-	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
+	// (DEPRECATED) The configuration for the SMS message sent when an app user
+	// forgets their password.
+	//
+	// SmsSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBackendAuthForgotPasswordConfig's
+	// String and GoString methods.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthForgotPasswordConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthForgotPasswordConfig) GoString() string {
 	return s.String()
 }
@@ -3077,12 +3776,20 @@ type CreateBackendAuthIdentityPoolConfig struct {
 	UnauthenticatedLogin *bool `locationName:"unauthenticatedLogin" type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthIdentityPoolConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthIdentityPoolConfig) GoString() string {
 	return s.String()
 }
@@ -3134,12 +3841,20 @@ type CreateBackendAuthInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthInput) GoString() string {
 	return s.String()
 }
@@ -3214,12 +3929,20 @@ type CreateBackendAuthMFAConfig struct {
 	Settings *Settings `locationName:"settings" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthMFAConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthMFAConfig) GoString() string {
 	return s.String()
 }
@@ -3266,7 +3989,7 @@ type CreateBackendAuthOAuthConfig struct {
 	// from your Amplify app.
 	//
 	// OAuthScopes is a required field
-	OAuthScopes []*string `locationName:"oAuthScopes" type:"list" required:"true"`
+	OAuthScopes []*string `locationName:"oAuthScopes" type:"list" required:"true" enum:"OAuthScopesElement"`
 
 	// The redirected URI for signing in to your Amplify app.
 	//
@@ -3282,12 +4005,20 @@ type CreateBackendAuthOAuthConfig struct {
 	SocialProviderSettings *SocialProviderSettings `locationName:"socialProviderSettings" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthOAuthConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthOAuthConfig) GoString() string {
 	return s.String()
 }
@@ -3366,12 +4097,20 @@ type CreateBackendAuthOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthOutput) GoString() string {
 	return s.String()
 }
@@ -3418,7 +4157,7 @@ type CreateBackendAuthPasswordPolicyConfig struct {
 
 	// Additional constraints for the password used to access the backend of your
 	// Amplify project.
-	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list"`
+	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list" enum:"AdditionalConstraintsElement"`
 
 	// The minimum length of the password used to access the backend of your Amplify
 	// project.
@@ -3427,12 +4166,20 @@ type CreateBackendAuthPasswordPolicyConfig struct {
 	MinimumLength *float64 `locationName:"minimumLength" type:"double" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthPasswordPolicyConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthPasswordPolicyConfig) GoString() string {
 	return s.String()
 }
@@ -3490,12 +4237,20 @@ type CreateBackendAuthResourceConfig struct {
 	UserPoolConfigs *CreateBackendAuthUserPoolConfig `locationName:"userPoolConfigs" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthResourceConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthResourceConfig) GoString() string {
 	return s.String()
 }
@@ -3558,8 +4313,8 @@ func (s *CreateBackendAuthResourceConfig) SetUserPoolConfigs(v *CreateBackendAut
 type CreateBackendAuthUserPoolConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the forgotten password policy for your Amazon Cognito user pool,
-	// configured as a part of your Amplify project.
+	// (DEPRECATED) Describes the forgotten password policy for your Amazon Cognito
+	// user pool, configured as a part of your Amplify project.
 	ForgotPassword *CreateBackendAuthForgotPasswordConfig `locationName:"forgotPassword" type:"structure"`
 
 	// Describes whether to apply multi-factor authentication policies for your
@@ -3577,7 +4332,7 @@ type CreateBackendAuthUserPoolConfig struct {
 	// The required attributes to sign up new users in the user pool.
 	//
 	// RequiredSignUpAttributes is a required field
-	RequiredSignUpAttributes []*string `locationName:"requiredSignUpAttributes" type:"list" required:"true"`
+	RequiredSignUpAttributes []*string `locationName:"requiredSignUpAttributes" type:"list" required:"true" enum:"RequiredSignUpAttributesElement"`
 
 	// Describes the sign-in methods that your Amplify app users use to log in using
 	// the Amazon Cognito user pool, configured as a part of your Amplify project.
@@ -3589,14 +4344,26 @@ type CreateBackendAuthUserPoolConfig struct {
 	//
 	// UserPoolName is a required field
 	UserPoolName *string `locationName:"userPoolName" type:"string" required:"true"`
+
+	// Describes the email or SMS verification message for your Amazon Cognito user
+	// pool, configured as a part of your Amplify project.
+	VerificationMessage *CreateBackendAuthVerificationMessageConfig `locationName:"verificationMessage" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthUserPoolConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendAuthUserPoolConfig) GoString() string {
 	return s.String()
 }
@@ -3631,6 +4398,11 @@ func (s *CreateBackendAuthUserPoolConfig) Validate() error {
 	if s.PasswordPolicy != nil {
 		if err := s.PasswordPolicy.Validate(); err != nil {
 			invalidParams.AddNested("PasswordPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VerificationMessage != nil {
+		if err := s.VerificationMessage.Validate(); err != nil {
+			invalidParams.AddNested("VerificationMessage", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -3682,6 +4454,86 @@ func (s *CreateBackendAuthUserPoolConfig) SetUserPoolName(v string) *CreateBacke
 	return s
 }
 
+// SetVerificationMessage sets the VerificationMessage field's value.
+func (s *CreateBackendAuthUserPoolConfig) SetVerificationMessage(v *CreateBackendAuthVerificationMessageConfig) *CreateBackendAuthUserPoolConfig {
+	s.VerificationMessage = v
+	return s
+}
+
+// Creates an email or SMS verification message for the auth resource configured
+// for your Amplify project.
+type CreateBackendAuthVerificationMessageConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The type of verification message to send.
+	//
+	// DeliveryMethod is a required field
+	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" required:"true" enum:"DeliveryMethod"`
+
+	// The settings for the email message.
+	//
+	// EmailSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBackendAuthVerificationMessageConfig's
+	// String and GoString methods.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure" sensitive:"true"`
+
+	// The settings for the SMS message.
+	//
+	// SmsSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBackendAuthVerificationMessageConfig's
+	// String and GoString methods.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendAuthVerificationMessageConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendAuthVerificationMessageConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBackendAuthVerificationMessageConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBackendAuthVerificationMessageConfig"}
+	if s.DeliveryMethod == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryMethod"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeliveryMethod sets the DeliveryMethod field's value.
+func (s *CreateBackendAuthVerificationMessageConfig) SetDeliveryMethod(v string) *CreateBackendAuthVerificationMessageConfig {
+	s.DeliveryMethod = &v
+	return s
+}
+
+// SetEmailSettings sets the EmailSettings field's value.
+func (s *CreateBackendAuthVerificationMessageConfig) SetEmailSettings(v *EmailSettings) *CreateBackendAuthVerificationMessageConfig {
+	s.EmailSettings = v
+	return s
+}
+
+// SetSmsSettings sets the SmsSettings field's value.
+func (s *CreateBackendAuthVerificationMessageConfig) SetSmsSettings(v *SmsSettings) *CreateBackendAuthVerificationMessageConfig {
+	s.SmsSettings = v
+	return s
+}
+
 type CreateBackendConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3691,12 +4543,20 @@ type CreateBackendConfigInput struct {
 	BackendManagerAppId *string `locationName:"backendManagerAppId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendConfigInput) GoString() string {
 	return s.String()
 }
@@ -3741,12 +4601,20 @@ type CreateBackendConfigOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendConfigOutput) GoString() string {
 	return s.String()
 }
@@ -3792,12 +4660,20 @@ type CreateBackendInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendInput) GoString() string {
 	return s.String()
 }
@@ -3867,12 +4743,20 @@ type CreateBackendOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackendOutput) GoString() string {
 	return s.String()
 }
@@ -3913,19 +4797,246 @@ func (s *CreateBackendOutput) SetStatus(v string) *CreateBackendOutput {
 	return s
 }
 
-type CreateTokenInput struct {
+type CreateBackendStorageInput struct {
 	_ struct{} `type:"structure"`
+
+	// AppId is a required field
+	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
+
+	// BackendEnvironmentName is a required field
+	BackendEnvironmentName *string `locationName:"backendEnvironmentName" type:"string" required:"true"`
+
+	// The resource configuration for creating backend storage.
+	//
+	// ResourceConfig is a required field
+	ResourceConfig *CreateBackendStorageResourceConfig `locationName:"resourceConfig" type:"structure" required:"true"`
+
+	// ResourceName is a required field
+	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBackendStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBackendStorageInput"}
+	if s.AppId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppId"))
+	}
+	if s.AppId != nil && len(*s.AppId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
+	}
+	if s.BackendEnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackendEnvironmentName"))
+	}
+	if s.ResourceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceConfig"))
+	}
+	if s.ResourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceName"))
+	}
+	if s.ResourceConfig != nil {
+		if err := s.ResourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("ResourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppId sets the AppId field's value.
+func (s *CreateBackendStorageInput) SetAppId(v string) *CreateBackendStorageInput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *CreateBackendStorageInput) SetBackendEnvironmentName(v string) *CreateBackendStorageInput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetResourceConfig sets the ResourceConfig field's value.
+func (s *CreateBackendStorageInput) SetResourceConfig(v *CreateBackendStorageResourceConfig) *CreateBackendStorageInput {
+	s.ResourceConfig = v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *CreateBackendStorageInput) SetResourceName(v string) *CreateBackendStorageInput {
+	s.ResourceName = &v
+	return s
+}
+
+type CreateBackendStorageOutput struct {
+	_ struct{} `type:"structure"`
+
+	AppId *string `locationName:"appId" type:"string"`
+
+	BackendEnvironmentName *string `locationName:"backendEnvironmentName" type:"string"`
+
+	JobId *string `locationName:"jobId" type:"string"`
+
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendStorageOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppId sets the AppId field's value.
+func (s *CreateBackendStorageOutput) SetAppId(v string) *CreateBackendStorageOutput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *CreateBackendStorageOutput) SetBackendEnvironmentName(v string) *CreateBackendStorageOutput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CreateBackendStorageOutput) SetJobId(v string) *CreateBackendStorageOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateBackendStorageOutput) SetStatus(v string) *CreateBackendStorageOutput {
+	s.Status = &v
+	return s
+}
+
+// The resource configuration for creating backend storage.
+type CreateBackendStorageResourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the S3 bucket.
+	BucketName *string `locationName:"bucketName" type:"string"`
+
+	// The authorization configuration for the storage S3 bucket.
+	//
+	// Permissions is a required field
+	Permissions *BackendStoragePermissions `locationName:"permissions" type:"structure" required:"true"`
+
+	// The name of the storage service.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" type:"string" required:"true" enum:"ServiceName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendStorageResourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendStorageResourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBackendStorageResourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBackendStorageResourceConfig"}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.Permissions != nil {
+		if err := s.Permissions.Validate(); err != nil {
+			invalidParams.AddNested("Permissions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *CreateBackendStorageResourceConfig) SetBucketName(v string) *CreateBackendStorageResourceConfig {
+	s.BucketName = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *CreateBackendStorageResourceConfig) SetPermissions(v *BackendStoragePermissions) *CreateBackendStorageResourceConfig {
+	s.Permissions = v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *CreateBackendStorageResourceConfig) SetServiceName(v string) *CreateBackendStorageResourceConfig {
+	s.ServiceName = &v
+	return s
+}
+
+type CreateTokenInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTokenInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTokenInput) GoString() string {
 	return s.String()
 }
@@ -3964,12 +5075,20 @@ type CreateTokenOutput struct {
 	Ttl *string `locationName:"ttl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTokenOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTokenOutput) GoString() string {
 	return s.String()
 }
@@ -4015,12 +5134,20 @@ type DeleteBackendAPIInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendAPIInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendAPIInput) GoString() string {
 	return s.String()
 }
@@ -4090,12 +5217,20 @@ type DeleteBackendAPIOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendAPIOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendAPIOutput) GoString() string {
 	return s.String()
 }
@@ -4149,12 +5284,20 @@ type DeleteBackendAuthInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendAuthInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendAuthInput) GoString() string {
 	return s.String()
 }
@@ -4218,12 +5361,20 @@ type DeleteBackendAuthOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendAuthOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendAuthOutput) GoString() string {
 	return s.String()
 }
@@ -4265,7 +5416,7 @@ func (s *DeleteBackendAuthOutput) SetStatus(v string) *DeleteBackendAuthOutput {
 }
 
 type DeleteBackendInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -4274,12 +5425,20 @@ type DeleteBackendInput struct {
 	BackendEnvironmentName *string `location:"uri" locationName:"backendEnvironmentName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendInput) GoString() string {
 	return s.String()
 }
@@ -4334,12 +5493,20 @@ type DeleteBackendOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackendOutput) GoString() string {
 	return s.String()
 }
@@ -4380,8 +5547,148 @@ func (s *DeleteBackendOutput) SetStatus(v string) *DeleteBackendOutput {
 	return s
 }
 
-type DeleteTokenInput struct {
+type DeleteBackendStorageInput struct {
 	_ struct{} `type:"structure"`
+
+	// AppId is a required field
+	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
+
+	// BackendEnvironmentName is a required field
+	BackendEnvironmentName *string `location:"uri" locationName:"backendEnvironmentName" type:"string" required:"true"`
+
+	// ResourceName is a required field
+	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
+
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" type:"string" required:"true" enum:"ServiceName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBackendStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBackendStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBackendStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBackendStorageInput"}
+	if s.AppId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppId"))
+	}
+	if s.AppId != nil && len(*s.AppId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
+	}
+	if s.BackendEnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackendEnvironmentName"))
+	}
+	if s.BackendEnvironmentName != nil && len(*s.BackendEnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackendEnvironmentName", 1))
+	}
+	if s.ResourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceName"))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppId sets the AppId field's value.
+func (s *DeleteBackendStorageInput) SetAppId(v string) *DeleteBackendStorageInput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *DeleteBackendStorageInput) SetBackendEnvironmentName(v string) *DeleteBackendStorageInput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *DeleteBackendStorageInput) SetResourceName(v string) *DeleteBackendStorageInput {
+	s.ResourceName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *DeleteBackendStorageInput) SetServiceName(v string) *DeleteBackendStorageInput {
+	s.ServiceName = &v
+	return s
+}
+
+type DeleteBackendStorageOutput struct {
+	_ struct{} `type:"structure"`
+
+	AppId *string `locationName:"appId" type:"string"`
+
+	BackendEnvironmentName *string `locationName:"backendEnvironmentName" type:"string"`
+
+	JobId *string `locationName:"jobId" type:"string"`
+
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBackendStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBackendStorageOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppId sets the AppId field's value.
+func (s *DeleteBackendStorageOutput) SetAppId(v string) *DeleteBackendStorageOutput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *DeleteBackendStorageOutput) SetBackendEnvironmentName(v string) *DeleteBackendStorageOutput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DeleteBackendStorageOutput) SetJobId(v string) *DeleteBackendStorageOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteBackendStorageOutput) SetStatus(v string) *DeleteBackendStorageOutput {
+	s.Status = &v
+	return s
+}
+
+type DeleteTokenInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -4390,12 +5697,20 @@ type DeleteTokenInput struct {
 	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTokenInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTokenInput) GoString() string {
 	return s.String()
 }
@@ -4440,12 +5755,20 @@ type DeleteTokenOutput struct {
 	IsSuccess *bool `locationName:"isSuccess" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTokenOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTokenOutput) GoString() string {
 	return s.String()
 }
@@ -4456,22 +5779,31 @@ func (s *DeleteTokenOutput) SetIsSuccess(v bool) *DeleteTokenOutput {
 	return s
 }
 
+// The settings for the email message.
 type EmailSettings struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
-	// The body of the email.
+	// The contents of the email message.
 	EmailMessage *string `locationName:"emailMessage" type:"string"`
 
-	// The subject of the email.
+	// The contents of the subject line of the email message.
 	EmailSubject *string `locationName:"emailSubject" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailSettings) GoString() string {
 	return s.String()
 }
@@ -4496,12 +5828,20 @@ type GatewayTimeoutException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayTimeoutException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayTimeoutException) GoString() string {
 	return s.String()
 }
@@ -4557,12 +5897,20 @@ type GenerateBackendAPIModelsInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateBackendAPIModelsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateBackendAPIModelsInput) GoString() string {
 	return s.String()
 }
@@ -4626,12 +5974,20 @@ type GenerateBackendAPIModelsOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateBackendAPIModelsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateBackendAPIModelsOutput) GoString() string {
 	return s.String()
 }
@@ -4689,12 +6045,20 @@ type GetBackendAPIInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAPIInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAPIInput) GoString() string {
 	return s.String()
 }
@@ -4761,12 +6125,20 @@ type GetBackendAPIModelsInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAPIModelsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAPIModelsInput) GoString() string {
 	return s.String()
 }
@@ -4814,22 +6186,43 @@ func (s *GetBackendAPIModelsInput) SetResourceName(v string) *GetBackendAPIModel
 	return s
 }
 
+// The response object for this operation.
 type GetBackendAPIModelsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Stringified JSON of the model introspection schema for an existing backend
+	// API resource.
+	ModelIntrospectionSchema *string `locationName:"modelIntrospectionSchema" type:"string"`
+
+	// Stringified JSON of the datastore model.
 	Models *string `locationName:"models" type:"string"`
 
+	// The current status of the request.
 	Status *string `locationName:"status" type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAPIModelsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAPIModelsOutput) GoString() string {
 	return s.String()
+}
+
+// SetModelIntrospectionSchema sets the ModelIntrospectionSchema field's value.
+func (s *GetBackendAPIModelsOutput) SetModelIntrospectionSchema(v string) *GetBackendAPIModelsOutput {
+	s.ModelIntrospectionSchema = &v
+	return s
 }
 
 // SetModels sets the Models field's value.
@@ -4860,12 +6253,20 @@ type GetBackendAPIOutput struct {
 	ResourceName *string `locationName:"resourceName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAPIOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAPIOutput) GoString() string {
 	return s.String()
 }
@@ -4913,12 +6314,20 @@ type GetBackendAuthInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAuthInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAuthInput) GoString() string {
 	return s.String()
 }
@@ -4982,12 +6391,20 @@ type GetBackendAuthOutput struct {
 	ResourceName *string `locationName:"resourceName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAuthOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendAuthOutput) GoString() string {
 	return s.String()
 }
@@ -5031,12 +6448,20 @@ type GetBackendInput struct {
 	BackendEnvironmentName *string `locationName:"backendEnvironmentName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendInput) GoString() string {
 	return s.String()
 }
@@ -5070,7 +6495,7 @@ func (s *GetBackendInput) SetBackendEnvironmentName(v string) *GetBackendInput {
 }
 
 type GetBackendJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -5082,12 +6507,20 @@ type GetBackendJobInput struct {
 	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendJobInput) GoString() string {
 	return s.String()
 }
@@ -5158,12 +6591,20 @@ type GetBackendJobOutput struct {
 	UpdateTime *string `locationName:"updateTime" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendJobOutput) GoString() string {
 	return s.String()
 }
@@ -5219,6 +6660,8 @@ func (s *GetBackendJobOutput) SetUpdateTime(v string) *GetBackendJobOutput {
 type GetBackendOutput struct {
 	_ struct{} `type:"structure"`
 
+	AmplifyFeatureFlags *string `locationName:"amplifyFeatureFlags" type:"string"`
+
 	AmplifyMetaConfig *string `locationName:"amplifyMetaConfig" type:"string"`
 
 	AppId *string `locationName:"appId" type:"string"`
@@ -5232,14 +6675,28 @@ type GetBackendOutput struct {
 	Error *string `locationName:"error" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBackendOutput) GoString() string {
 	return s.String()
+}
+
+// SetAmplifyFeatureFlags sets the AmplifyFeatureFlags field's value.
+func (s *GetBackendOutput) SetAmplifyFeatureFlags(v string) *GetBackendOutput {
+	s.AmplifyFeatureFlags = &v
+	return s
 }
 
 // SetAmplifyMetaConfig sets the AmplifyMetaConfig field's value.
@@ -5278,8 +6735,200 @@ func (s *GetBackendOutput) SetError(v string) *GetBackendOutput {
 	return s
 }
 
-type GetTokenInput struct {
+type GetBackendStorageInput struct {
 	_ struct{} `type:"structure"`
+
+	// AppId is a required field
+	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
+
+	// BackendEnvironmentName is a required field
+	BackendEnvironmentName *string `location:"uri" locationName:"backendEnvironmentName" type:"string" required:"true"`
+
+	// ResourceName is a required field
+	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBackendStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBackendStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBackendStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBackendStorageInput"}
+	if s.AppId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppId"))
+	}
+	if s.AppId != nil && len(*s.AppId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
+	}
+	if s.BackendEnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackendEnvironmentName"))
+	}
+	if s.BackendEnvironmentName != nil && len(*s.BackendEnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackendEnvironmentName", 1))
+	}
+	if s.ResourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppId sets the AppId field's value.
+func (s *GetBackendStorageInput) SetAppId(v string) *GetBackendStorageInput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *GetBackendStorageInput) SetBackendEnvironmentName(v string) *GetBackendStorageInput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *GetBackendStorageInput) SetResourceName(v string) *GetBackendStorageInput {
+	s.ResourceName = &v
+	return s
+}
+
+type GetBackendStorageOutput struct {
+	_ struct{} `type:"structure"`
+
+	AppId *string `locationName:"appId" type:"string"`
+
+	BackendEnvironmentName *string `locationName:"backendEnvironmentName" type:"string"`
+
+	// The details for a backend storage resource.
+	ResourceConfig *GetBackendStorageResourceConfig `locationName:"resourceConfig" type:"structure"`
+
+	ResourceName *string `locationName:"resourceName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBackendStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBackendStorageOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppId sets the AppId field's value.
+func (s *GetBackendStorageOutput) SetAppId(v string) *GetBackendStorageOutput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *GetBackendStorageOutput) SetBackendEnvironmentName(v string) *GetBackendStorageOutput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetResourceConfig sets the ResourceConfig field's value.
+func (s *GetBackendStorageOutput) SetResourceConfig(v *GetBackendStorageResourceConfig) *GetBackendStorageOutput {
+	s.ResourceConfig = v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *GetBackendStorageOutput) SetResourceName(v string) *GetBackendStorageOutput {
+	s.ResourceName = &v
+	return s
+}
+
+// The details for a backend storage resource.
+type GetBackendStorageResourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the S3 bucket.
+	BucketName *string `locationName:"bucketName" type:"string"`
+
+	// Returns True if the storage resource has been imported.
+	//
+	// Imported is a required field
+	Imported *bool `locationName:"imported" type:"boolean" required:"true"`
+
+	// The authorization configuration for the storage S3 bucket.
+	Permissions *BackendStoragePermissions `locationName:"permissions" type:"structure"`
+
+	// The name of the storage service.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" type:"string" required:"true" enum:"ServiceName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBackendStorageResourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBackendStorageResourceConfig) GoString() string {
+	return s.String()
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *GetBackendStorageResourceConfig) SetBucketName(v string) *GetBackendStorageResourceConfig {
+	s.BucketName = &v
+	return s
+}
+
+// SetImported sets the Imported field's value.
+func (s *GetBackendStorageResourceConfig) SetImported(v bool) *GetBackendStorageResourceConfig {
+	s.Imported = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *GetBackendStorageResourceConfig) SetPermissions(v *BackendStoragePermissions) *GetBackendStorageResourceConfig {
+	s.Permissions = v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *GetBackendStorageResourceConfig) SetServiceName(v string) *GetBackendStorageResourceConfig {
+	s.ServiceName = &v
+	return s
+}
+
+type GetTokenInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -5288,12 +6937,20 @@ type GetTokenInput struct {
 	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTokenInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTokenInput) GoString() string {
 	return s.String()
 }
@@ -5344,12 +7001,20 @@ type GetTokenOutput struct {
 	Ttl *string `locationName:"ttl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTokenOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTokenOutput) GoString() string {
 	return s.String()
 }
@@ -5399,12 +7064,20 @@ type ImportBackendAuthInput struct {
 	WebClientId *string `locationName:"webClientId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportBackendAuthInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportBackendAuthInput) GoString() string {
 	return s.String()
 }
@@ -5492,12 +7165,20 @@ type ImportBackendAuthOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportBackendAuthOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportBackendAuthOutput) GoString() string {
 	return s.String()
 }
@@ -5538,6 +7219,142 @@ func (s *ImportBackendAuthOutput) SetStatus(v string) *ImportBackendAuthOutput {
 	return s
 }
 
+type ImportBackendStorageInput struct {
+	_ struct{} `type:"structure"`
+
+	// AppId is a required field
+	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
+
+	// BackendEnvironmentName is a required field
+	BackendEnvironmentName *string `location:"uri" locationName:"backendEnvironmentName" type:"string" required:"true"`
+
+	BucketName *string `locationName:"bucketName" type:"string"`
+
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" type:"string" required:"true" enum:"ServiceName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportBackendStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportBackendStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportBackendStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportBackendStorageInput"}
+	if s.AppId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppId"))
+	}
+	if s.AppId != nil && len(*s.AppId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
+	}
+	if s.BackendEnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackendEnvironmentName"))
+	}
+	if s.BackendEnvironmentName != nil && len(*s.BackendEnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackendEnvironmentName", 1))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppId sets the AppId field's value.
+func (s *ImportBackendStorageInput) SetAppId(v string) *ImportBackendStorageInput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *ImportBackendStorageInput) SetBackendEnvironmentName(v string) *ImportBackendStorageInput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *ImportBackendStorageInput) SetBucketName(v string) *ImportBackendStorageInput {
+	s.BucketName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ImportBackendStorageInput) SetServiceName(v string) *ImportBackendStorageInput {
+	s.ServiceName = &v
+	return s
+}
+
+type ImportBackendStorageOutput struct {
+	_ struct{} `type:"structure"`
+
+	AppId *string `locationName:"appId" type:"string"`
+
+	BackendEnvironmentName *string `locationName:"backendEnvironmentName" type:"string"`
+
+	JobId *string `locationName:"jobId" type:"string"`
+
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportBackendStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportBackendStorageOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppId sets the AppId field's value.
+func (s *ImportBackendStorageOutput) SetAppId(v string) *ImportBackendStorageOutput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *ImportBackendStorageOutput) SetBackendEnvironmentName(v string) *ImportBackendStorageOutput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ImportBackendStorageOutput) SetJobId(v string) *ImportBackendStorageOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImportBackendStorageOutput) SetStatus(v string) *ImportBackendStorageOutput {
+	s.Status = &v
+	return s
+}
+
 type ListBackendJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5558,12 +7375,20 @@ type ListBackendJobsInput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBackendJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBackendJobsInput) GoString() string {
 	return s.String()
 }
@@ -5643,12 +7468,20 @@ type ListBackendJobsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBackendJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBackendJobsOutput) GoString() string {
 	return s.String()
 }
@@ -5661,6 +7494,74 @@ func (s *ListBackendJobsOutput) SetJobs(v []*BackendJobRespObj) *ListBackendJobs
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListBackendJobsOutput) SetNextToken(v string) *ListBackendJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListS3BucketsInput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListS3BucketsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListS3BucketsInput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListS3BucketsInput) SetNextToken(v string) *ListS3BucketsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListS3BucketsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Buckets []*S3BucketInfo `locationName:"buckets" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListS3BucketsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListS3BucketsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBuckets sets the Buckets field's value.
+func (s *ListS3BucketsOutput) SetBuckets(v []*S3BucketInfo) *ListS3BucketsOutput {
+	s.Buckets = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListS3BucketsOutput) SetNextToken(v string) *ListS3BucketsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -5682,12 +7583,20 @@ type LoginAuthConfigReqObj struct {
 	AwsUserPoolsWebClientId *string `locationName:"aws_user_pools_web_client_id" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoginAuthConfigReqObj) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoginAuthConfigReqObj) GoString() string {
 	return s.String()
 }
@@ -5728,12 +7637,20 @@ type NotFoundException struct {
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -5785,12 +7702,20 @@ type RemoveAllBackendsInput struct {
 	CleanAmplifyApp *bool `locationName:"cleanAmplifyApp" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveAllBackendsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveAllBackendsInput) GoString() string {
 	return s.String()
 }
@@ -5837,12 +7762,20 @@ type RemoveAllBackendsOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveAllBackendsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveAllBackendsOutput) GoString() string {
 	return s.String()
 }
@@ -5878,18 +7811,26 @@ func (s *RemoveAllBackendsOutput) SetStatus(v string) *RemoveAllBackendsOutput {
 }
 
 type RemoveBackendConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveBackendConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveBackendConfigInput) GoString() string {
 	return s.String()
 }
@@ -5922,12 +7863,20 @@ type RemoveBackendConfigOutput struct {
 	Error *string `locationName:"error" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveBackendConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveBackendConfigOutput) GoString() string {
 	return s.String()
 }
@@ -5942,31 +7891,88 @@ type ResourceConfig struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceConfig) GoString() string {
 	return s.String()
+}
+
+// Describes the metadata of the S3 bucket.
+type S3BucketInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date of the S3 bucket.
+	CreationDate *string `locationName:"creationDate" type:"string"`
+
+	// The name of the S3 bucket.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BucketInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BucketInfo) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *S3BucketInfo) SetCreationDate(v string) *S3BucketInfo {
+	s.CreationDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *S3BucketInfo) SetName(v string) *S3BucketInfo {
+	s.Name = &v
+	return s
 }
 
 type Settings struct {
 	_ struct{} `type:"structure"`
 
-	MfaTypes []*string `locationName:"mfaTypes" type:"list"`
+	MfaTypes []*string `locationName:"mfaTypes" type:"list" enum:"MfaTypesElement"`
 
 	// The body of the SMS message.
 	SmsMessage *string `locationName:"smsMessage" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Settings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Settings) GoString() string {
 	return s.String()
 }
@@ -5983,19 +7989,28 @@ func (s *Settings) SetSmsMessage(v string) *Settings {
 	return s
 }
 
+// The settings for the SMS message.
 type SmsSettings struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
-	// The body of the SMS message.
+	// The contents of the SMS message.
 	SmsMessage *string `locationName:"smsMessage" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SmsSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SmsSettings) GoString() string {
 	return s.String()
 }
@@ -6011,27 +8026,51 @@ type SocialProviderSettings struct {
 
 	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
-	Facebook *BackendAuthSocialProviderConfig `type:"structure"`
+	//
+	// Facebook is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SocialProviderSettings's
+	// String and GoString methods.
+	Facebook *BackendAuthSocialProviderConfig `type:"structure" sensitive:"true"`
 
 	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
-	Google *BackendAuthSocialProviderConfig `type:"structure"`
+	//
+	// Google is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SocialProviderSettings's
+	// String and GoString methods.
+	Google *BackendAuthSocialProviderConfig `type:"structure" sensitive:"true"`
 
 	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
-	LoginWithAmazon *BackendAuthSocialProviderConfig `type:"structure"`
+	//
+	// LoginWithAmazon is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SocialProviderSettings's
+	// String and GoString methods.
+	LoginWithAmazon *BackendAuthSocialProviderConfig `type:"structure" sensitive:"true"`
 
 	// Describes Apple social federation configurations for allowing your app users
 	// to sign in using OAuth.
-	SignInWithApple *BackendAuthAppleProviderConfig `type:"structure"`
+	//
+	// SignInWithApple is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SocialProviderSettings's
+	// String and GoString methods.
+	SignInWithApple *BackendAuthAppleProviderConfig `type:"structure" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SocialProviderSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SocialProviderSettings) GoString() string {
 	return s.String()
 }
@@ -6070,12 +8109,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -6135,12 +8182,20 @@ type UpdateBackendAPIInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAPIInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAPIInput) GoString() string {
 	return s.String()
 }
@@ -6210,12 +8265,20 @@ type UpdateBackendAPIOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAPIOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAPIOutput) GoString() string {
 	return s.String()
 }
@@ -6256,29 +8319,46 @@ func (s *UpdateBackendAPIOutput) SetStatus(v string) *UpdateBackendAPIOutput {
 	return s
 }
 
-// Describes the forgot password policy for authenticating into the Amplify
-// app.
+// (DEPRECATED) Describes the forgot password policy for authenticating into
+// the Amplify app.
 type UpdateBackendAuthForgotPasswordConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes which mode to use (either SMS or email) to deliver messages to
-	// app users that want to recover their password.
+	// (DEPRECATED) Describes which mode to use (either SMS or email) to deliver
+	// messages to app users that want to recover their password.
 	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" enum:"DeliveryMethod"`
 
-	// The configuration for the email sent when an app user forgets their password.
-	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
-
-	// The configuration for the SMS message sent when an Amplify app user forgets
+	// (DEPRECATED) The configuration for the email sent when an app user forgets
 	// their password.
-	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
+	//
+	// EmailSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBackendAuthForgotPasswordConfig's
+	// String and GoString methods.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure" sensitive:"true"`
+
+	// (DEPRECATED) The configuration for the SMS message sent when an Amplify app
+	// user forgets their password.
+	//
+	// SmsSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBackendAuthForgotPasswordConfig's
+	// String and GoString methods.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthForgotPasswordConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthForgotPasswordConfig) GoString() string {
 	return s.String()
 }
@@ -6311,12 +8391,20 @@ type UpdateBackendAuthIdentityPoolConfig struct {
 	UnauthenticatedLogin *bool `locationName:"unauthenticatedLogin" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthIdentityPoolConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthIdentityPoolConfig) GoString() string {
 	return s.String()
 }
@@ -6346,12 +8434,20 @@ type UpdateBackendAuthInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthInput) GoString() string {
 	return s.String()
 }
@@ -6425,12 +8521,20 @@ type UpdateBackendAuthMFAConfig struct {
 	Settings *Settings `locationName:"settings" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthMFAConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthMFAConfig) GoString() string {
 	return s.String()
 }
@@ -6460,7 +8564,7 @@ type UpdateBackendAuthOAuthConfig struct {
 
 	// The list of OAuth-related flows that can allow users to authenticate from
 	// your Amplify app.
-	OAuthScopes []*string `locationName:"oAuthScopes" type:"list"`
+	OAuthScopes []*string `locationName:"oAuthScopes" type:"list" enum:"OAuthScopesElement"`
 
 	// Redirect URLs that OAuth uses when a user signs in to an Amplify app.
 	RedirectSignInURIs []*string `locationName:"redirectSignInURIs" type:"list"`
@@ -6473,12 +8577,20 @@ type UpdateBackendAuthOAuthConfig struct {
 	SocialProviderSettings *SocialProviderSettings `locationName:"socialProviderSettings" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthOAuthConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthOAuthConfig) GoString() string {
 	return s.String()
 }
@@ -6535,12 +8647,20 @@ type UpdateBackendAuthOutput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthOutput) GoString() string {
 	return s.String()
 }
@@ -6588,19 +8708,27 @@ type UpdateBackendAuthPasswordPolicyConfig struct {
 
 	// Describes additional constraints on password requirements to sign in to the
 	// auth resource, configured as a part of your Amplify project.
-	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list"`
+	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list" enum:"AdditionalConstraintsElement"`
 
 	// Describes the minimum length of the password required to sign in to the auth
 	// resource, configured as a part of your Amplify project.
 	MinimumLength *float64 `locationName:"minimumLength" type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthPasswordPolicyConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthPasswordPolicyConfig) GoString() string {
 	return s.String()
 }
@@ -6645,12 +8773,20 @@ type UpdateBackendAuthResourceConfig struct {
 	UserPoolConfigs *UpdateBackendAuthUserPoolConfig `locationName:"userPoolConfigs" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthResourceConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthResourceConfig) GoString() string {
 	return s.String()
 }
@@ -6666,6 +8802,11 @@ func (s *UpdateBackendAuthResourceConfig) Validate() error {
 	}
 	if s.UserPoolConfigs == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserPoolConfigs"))
+	}
+	if s.UserPoolConfigs != nil {
+		if err := s.UserPoolConfigs.Validate(); err != nil {
+			invalidParams.AddNested("UserPoolConfigs", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6703,8 +8844,8 @@ func (s *UpdateBackendAuthResourceConfig) SetUserPoolConfigs(v *UpdateBackendAut
 type UpdateBackendAuthUserPoolConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the forgot password policy for your Amazon Cognito user pool, configured
-	// as a part of your Amplify project.
+	// (DEPRECATED) Describes the forgot password policy for your Amazon Cognito
+	// user pool, configured as a part of your Amplify project.
 	ForgotPassword *UpdateBackendAuthForgotPasswordConfig `locationName:"forgotPassword" type:"structure"`
 
 	// Describes whether to apply multi-factor authentication policies for your
@@ -6718,16 +8859,43 @@ type UpdateBackendAuthUserPoolConfig struct {
 	// Describes the password policy for your Amazon Cognito user pool, configured
 	// as a part of your Amplify project.
 	PasswordPolicy *UpdateBackendAuthPasswordPolicyConfig `locationName:"passwordPolicy" type:"structure"`
+
+	// Describes the email or SMS verification message for your Amazon Cognito user
+	// pool, configured as a part of your Amplify project.
+	VerificationMessage *UpdateBackendAuthVerificationMessageConfig `locationName:"verificationMessage" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthUserPoolConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendAuthUserPoolConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBackendAuthUserPoolConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBackendAuthUserPoolConfig"}
+	if s.VerificationMessage != nil {
+		if err := s.VerificationMessage.Validate(); err != nil {
+			invalidParams.AddNested("VerificationMessage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetForgotPassword sets the ForgotPassword field's value.
@@ -6754,6 +8922,86 @@ func (s *UpdateBackendAuthUserPoolConfig) SetPasswordPolicy(v *UpdateBackendAuth
 	return s
 }
 
+// SetVerificationMessage sets the VerificationMessage field's value.
+func (s *UpdateBackendAuthUserPoolConfig) SetVerificationMessage(v *UpdateBackendAuthVerificationMessageConfig) *UpdateBackendAuthUserPoolConfig {
+	s.VerificationMessage = v
+	return s
+}
+
+// Updates the configuration of the email or SMS message for the auth resource
+// configured for your Amplify project.
+type UpdateBackendAuthVerificationMessageConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The type of verification message to send.
+	//
+	// DeliveryMethod is a required field
+	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" required:"true" enum:"DeliveryMethod"`
+
+	// The settings for the email message.
+	//
+	// EmailSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBackendAuthVerificationMessageConfig's
+	// String and GoString methods.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure" sensitive:"true"`
+
+	// The settings for the SMS message.
+	//
+	// SmsSettings is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBackendAuthVerificationMessageConfig's
+	// String and GoString methods.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendAuthVerificationMessageConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendAuthVerificationMessageConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBackendAuthVerificationMessageConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBackendAuthVerificationMessageConfig"}
+	if s.DeliveryMethod == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryMethod"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeliveryMethod sets the DeliveryMethod field's value.
+func (s *UpdateBackendAuthVerificationMessageConfig) SetDeliveryMethod(v string) *UpdateBackendAuthVerificationMessageConfig {
+	s.DeliveryMethod = &v
+	return s
+}
+
+// SetEmailSettings sets the EmailSettings field's value.
+func (s *UpdateBackendAuthVerificationMessageConfig) SetEmailSettings(v *EmailSettings) *UpdateBackendAuthVerificationMessageConfig {
+	s.EmailSettings = v
+	return s
+}
+
+// SetSmsSettings sets the SmsSettings field's value.
+func (s *UpdateBackendAuthVerificationMessageConfig) SetSmsSettings(v *SmsSettings) *UpdateBackendAuthVerificationMessageConfig {
+	s.SmsSettings = v
+	return s
+}
+
 type UpdateBackendConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6764,12 +9012,20 @@ type UpdateBackendConfigInput struct {
 	LoginAuthConfig *LoginAuthConfigReqObj `locationName:"loginAuthConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendConfigInput) GoString() string {
 	return s.String()
 }
@@ -6815,12 +9071,20 @@ type UpdateBackendConfigOutput struct {
 	LoginAuthConfig *LoginAuthConfigReqObj `locationName:"loginAuthConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendConfigOutput) GoString() string {
 	return s.String()
 }
@@ -6866,12 +9130,20 @@ type UpdateBackendJobInput struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendJobInput) GoString() string {
 	return s.String()
 }
@@ -6954,12 +9226,20 @@ type UpdateBackendJobOutput struct {
 	UpdateTime *string `locationName:"updateTime" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBackendJobOutput) GoString() string {
 	return s.String()
 }
@@ -7012,6 +9292,219 @@ func (s *UpdateBackendJobOutput) SetUpdateTime(v string) *UpdateBackendJobOutput
 	return s
 }
 
+type UpdateBackendStorageInput struct {
+	_ struct{} `type:"structure"`
+
+	// AppId is a required field
+	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
+
+	// BackendEnvironmentName is a required field
+	BackendEnvironmentName *string `location:"uri" locationName:"backendEnvironmentName" type:"string" required:"true"`
+
+	// The resource configuration for updating backend storage.
+	//
+	// ResourceConfig is a required field
+	ResourceConfig *UpdateBackendStorageResourceConfig `locationName:"resourceConfig" type:"structure" required:"true"`
+
+	// ResourceName is a required field
+	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBackendStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBackendStorageInput"}
+	if s.AppId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppId"))
+	}
+	if s.AppId != nil && len(*s.AppId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppId", 1))
+	}
+	if s.BackendEnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackendEnvironmentName"))
+	}
+	if s.BackendEnvironmentName != nil && len(*s.BackendEnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackendEnvironmentName", 1))
+	}
+	if s.ResourceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceConfig"))
+	}
+	if s.ResourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceName"))
+	}
+	if s.ResourceConfig != nil {
+		if err := s.ResourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("ResourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppId sets the AppId field's value.
+func (s *UpdateBackendStorageInput) SetAppId(v string) *UpdateBackendStorageInput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *UpdateBackendStorageInput) SetBackendEnvironmentName(v string) *UpdateBackendStorageInput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetResourceConfig sets the ResourceConfig field's value.
+func (s *UpdateBackendStorageInput) SetResourceConfig(v *UpdateBackendStorageResourceConfig) *UpdateBackendStorageInput {
+	s.ResourceConfig = v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *UpdateBackendStorageInput) SetResourceName(v string) *UpdateBackendStorageInput {
+	s.ResourceName = &v
+	return s
+}
+
+type UpdateBackendStorageOutput struct {
+	_ struct{} `type:"structure"`
+
+	AppId *string `locationName:"appId" type:"string"`
+
+	BackendEnvironmentName *string `locationName:"backendEnvironmentName" type:"string"`
+
+	JobId *string `locationName:"jobId" type:"string"`
+
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendStorageOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppId sets the AppId field's value.
+func (s *UpdateBackendStorageOutput) SetAppId(v string) *UpdateBackendStorageOutput {
+	s.AppId = &v
+	return s
+}
+
+// SetBackendEnvironmentName sets the BackendEnvironmentName field's value.
+func (s *UpdateBackendStorageOutput) SetBackendEnvironmentName(v string) *UpdateBackendStorageOutput {
+	s.BackendEnvironmentName = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *UpdateBackendStorageOutput) SetJobId(v string) *UpdateBackendStorageOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateBackendStorageOutput) SetStatus(v string) *UpdateBackendStorageOutput {
+	s.Status = &v
+	return s
+}
+
+// The resource configuration for updating backend storage.
+type UpdateBackendStorageResourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The authorization configuration for the storage S3 bucket.
+	//
+	// Permissions is a required field
+	Permissions *BackendStoragePermissions `locationName:"permissions" type:"structure" required:"true"`
+
+	// The name of the storage service.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" type:"string" required:"true" enum:"ServiceName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendStorageResourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendStorageResourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBackendStorageResourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBackendStorageResourceConfig"}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.Permissions != nil {
+		if err := s.Permissions.Validate(); err != nil {
+			invalidParams.AddNested("Permissions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *UpdateBackendStorageResourceConfig) SetPermissions(v *BackendStoragePermissions) *UpdateBackendStorageResourceConfig {
+	s.Permissions = v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *UpdateBackendStorageResourceConfig) SetServiceName(v string) *UpdateBackendStorageResourceConfig {
+	s.ServiceName = &v
+	return s
+}
+
 const (
 	// AdditionalConstraintsElementRequireDigit is a AdditionalConstraintsElement enum value
 	AdditionalConstraintsElementRequireDigit = "REQUIRE_DIGIT"
@@ -7052,6 +9545,27 @@ func AuthResources_Values() []string {
 	}
 }
 
+const (
+	// AuthenticatedElementRead is a AuthenticatedElement enum value
+	AuthenticatedElementRead = "READ"
+
+	// AuthenticatedElementCreateAndUpdate is a AuthenticatedElement enum value
+	AuthenticatedElementCreateAndUpdate = "CREATE_AND_UPDATE"
+
+	// AuthenticatedElementDelete is a AuthenticatedElement enum value
+	AuthenticatedElementDelete = "DELETE"
+)
+
+// AuthenticatedElement_Values returns all elements of the AuthenticatedElement enum
+func AuthenticatedElement_Values() []string {
+	return []string{
+		AuthenticatedElementRead,
+		AuthenticatedElementCreateAndUpdate,
+		AuthenticatedElementDelete,
+	}
+}
+
+// The type of verification message to send.
 const (
 	// DeliveryMethodEmail is a DeliveryMethod enum value
 	DeliveryMethodEmail = "EMAIL"
@@ -7285,6 +9799,18 @@ func Service_Values() []string {
 }
 
 const (
+	// ServiceNameS3 is a ServiceName enum value
+	ServiceNameS3 = "S3"
+)
+
+// ServiceName_Values returns all elements of the ServiceName enum
+func ServiceName_Values() []string {
+	return []string{
+		ServiceNameS3,
+	}
+}
+
+const (
 	// SignInMethodEmail is a SignInMethod enum value
 	SignInMethodEmail = "EMAIL"
 
@@ -7321,5 +9847,25 @@ func Status_Values() []string {
 	return []string{
 		StatusLatest,
 		StatusStale,
+	}
+}
+
+const (
+	// UnAuthenticatedElementRead is a UnAuthenticatedElement enum value
+	UnAuthenticatedElementRead = "READ"
+
+	// UnAuthenticatedElementCreateAndUpdate is a UnAuthenticatedElement enum value
+	UnAuthenticatedElementCreateAndUpdate = "CREATE_AND_UPDATE"
+
+	// UnAuthenticatedElementDelete is a UnAuthenticatedElement enum value
+	UnAuthenticatedElementDelete = "DELETE"
+)
+
+// UnAuthenticatedElement_Values returns all elements of the UnAuthenticatedElement enum
+func UnAuthenticatedElement_Values() []string {
+	return []string{
+		UnAuthenticatedElementRead,
+		UnAuthenticatedElementCreateAndUpdate,
+		UnAuthenticatedElementDelete,
 	}
 }

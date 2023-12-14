@@ -392,7 +392,8 @@
         "GivenName":{"shape":"String16"},
         "Initials":{"shape":"String5"},
         "Pseudonym":{"shape":"String128"},
-        "GenerationQualifier":{"shape":"String3"}
+        "GenerationQualifier":{"shape":"String3"},
+        "CustomAttributes":{"shape":"CustomAttributeList"}
       }
     },
     "AWSPolicy":{
@@ -486,6 +487,12 @@
         "FAILED"
       ]
     },
+    "Base64String1To4096":{
+      "type":"string",
+      "max":4096,
+      "min":1,
+      "pattern":"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+    },
     "Boolean":{"type":"boolean"},
     "CertificateAuthorities":{
       "type":"list",
@@ -507,7 +514,8 @@
         "CertificateAuthorityConfiguration":{"shape":"CertificateAuthorityConfiguration"},
         "RevocationConfiguration":{"shape":"RevocationConfiguration"},
         "RestorableUntil":{"shape":"TStamp"},
-        "KeyStorageSecurityStandard":{"shape":"KeyStorageSecurityStandard"}
+        "KeyStorageSecurityStandard":{"shape":"KeyStorageSecurityStandard"},
+        "UsageMode":{"shape":"CertificateAuthorityUsageMode"}
       }
     },
     "CertificateAuthorityConfiguration":{
@@ -543,6 +551,13 @@
         "SUBORDINATE"
       ]
     },
+    "CertificateAuthorityUsageMode":{
+      "type":"string",
+      "enum":[
+        "GENERAL_PURPOSE",
+        "SHORT_LIVED_CERTIFICATE"
+      ]
+    },
     "CertificateBody":{"type":"string"},
     "CertificateBodyBlob":{
       "type":"blob",
@@ -567,6 +582,12 @@
       "member":{"shape":"PolicyInformation"},
       "max":20,
       "min":1
+    },
+    "CnameString":{
+      "type":"string",
+      "max":253,
+      "min":0,
+      "pattern":"^[-a-zA-Z0-9;/?:@&=+$,%_.!~*()']*$"
     },
     "ConcurrentModificationException":{
       "type":"structure",
@@ -613,7 +634,8 @@
         "CertificateAuthorityType":{"shape":"CertificateAuthorityType"},
         "IdempotencyToken":{"shape":"IdempotencyToken"},
         "KeyStorageSecurityStandard":{"shape":"KeyStorageSecurityStandard"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "UsageMode":{"shape":"CertificateAuthorityUsageMode"}
       }
     },
     "CreateCertificateAuthorityResponse":{
@@ -648,8 +670,8 @@
           "shape":"Integer1To5000",
           "box":true
         },
-        "CustomCname":{"shape":"String253"},
-        "S3BucketName":{"shape":"String3To255"},
+        "CustomCname":{"shape":"CnameString"},
+        "S3BucketName":{"shape":"S3BucketName3To255"},
         "S3ObjectAcl":{"shape":"S3ObjectAcl"}
       }
     },
@@ -665,6 +687,44 @@
         "KeyUsage":{"shape":"KeyUsage"},
         "SubjectInformationAccess":{"shape":"AccessDescriptionList"}
       }
+    },
+    "CustomAttribute":{
+      "type":"structure",
+      "required":[
+        "ObjectIdentifier",
+        "Value"
+      ],
+      "members":{
+        "ObjectIdentifier":{"shape":"CustomObjectIdentifier"},
+        "Value":{"shape":"String1To256"}
+      }
+    },
+    "CustomAttributeList":{
+      "type":"list",
+      "member":{"shape":"CustomAttribute"},
+      "max":30,
+      "min":1
+    },
+    "CustomExtension":{
+      "type":"structure",
+      "required":[
+        "ObjectIdentifier",
+        "Value"
+      ],
+      "members":{
+        "ObjectIdentifier":{"shape":"CustomObjectIdentifier"},
+        "Value":{"shape":"Base64String1To4096"},
+        "Critical":{
+          "shape":"Boolean",
+          "box":true
+        }
+      }
+    },
+    "CustomExtensionList":{
+      "type":"list",
+      "member":{"shape":"CustomExtension"},
+      "max":20,
+      "min":1
     },
     "CustomObjectIdentifier":{
       "type":"string",
@@ -773,7 +833,8 @@
         "CertificatePolicies":{"shape":"CertificatePolicyList"},
         "ExtendedKeyUsage":{"shape":"ExtendedKeyUsageList"},
         "KeyUsage":{"shape":"KeyUsage"},
-        "SubjectAlternativeNames":{"shape":"GeneralNameList"}
+        "SubjectAlternativeNames":{"shape":"GeneralNameList"},
+        "CustomExtensions":{"shape":"CustomExtensionList"}
       }
     },
     "FailureReason":{
@@ -1073,6 +1134,17 @@
       "max":500,
       "min":1
     },
+    "OcspConfiguration":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "box":true
+        },
+        "OcspCustomCname":{"shape":"CnameString"}
+      }
+    },
     "OtherName":{
       "type":"structure",
       "required":[
@@ -1214,7 +1286,8 @@
     "RevocationConfiguration":{
       "type":"structure",
       "members":{
-        "CrlConfiguration":{"shape":"CrlConfiguration"}
+        "CrlConfiguration":{"shape":"CrlConfiguration"},
+        "OcspConfiguration":{"shape":"OcspConfiguration"}
       }
     },
     "RevocationReason":{
@@ -1247,6 +1320,12 @@
       "type":"string",
       "max":63,
       "min":3
+    },
+    "S3BucketName3To255":{
+      "type":"string",
+      "max":255,
+      "min":3,
+      "pattern":"^[-a-zA-Z0-9._/]+$"
     },
     "S3Key":{
       "type":"string",
@@ -1281,6 +1360,11 @@
       "max":16,
       "min":0
     },
+    "String1To256":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "String253":{
       "type":"string",
       "max":253,
@@ -1300,11 +1384,6 @@
       "type":"string",
       "max":39,
       "min":0
-    },
-    "String3To255":{
-      "type":"string",
-      "max":255,
-      "min":3
     },
     "String40":{
       "type":"string",

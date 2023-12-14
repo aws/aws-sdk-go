@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To activate the gateway
-//
 // Activates the gateway you previously deployed on your host.
 func ExampleStorageGateway_ActivateGateway_shared00() {
 	svc := storagegateway.New(session.New())
@@ -63,7 +62,6 @@ func ExampleStorageGateway_ActivateGateway_shared00() {
 }
 
 // To add a cache
-//
 // The following example shows a request that activates a gateway-stored volume.
 func ExampleStorageGateway_AddCache_shared00() {
 	svc := storagegateway.New(session.New())
@@ -98,7 +96,6 @@ func ExampleStorageGateway_AddCache_shared00() {
 }
 
 // To add tags to resource
-//
 // Adds one or more tags to the specified resource.
 func ExampleStorageGateway_AddTagsToResource_shared00() {
 	svc := storagegateway.New(session.New())
@@ -135,7 +132,6 @@ func ExampleStorageGateway_AddTagsToResource_shared00() {
 }
 
 // To add upload buffer on local disk
-//
 // Configures one or more gateway local disks as upload buffer for a specified gateway.
 func ExampleStorageGateway_AddUploadBuffer_shared00() {
 	svc := storagegateway.New(session.New())
@@ -170,7 +166,6 @@ func ExampleStorageGateway_AddUploadBuffer_shared00() {
 }
 
 // To add storage on local disk
-//
 // Configures one or more gateway local disks as working storage for a gateway. (Working
 // storage is also referred to as upload buffer.)
 func ExampleStorageGateway_AddWorkingStorage_shared00() {
@@ -206,7 +201,6 @@ func ExampleStorageGateway_AddWorkingStorage_shared00() {
 }
 
 // To cancel virtual tape archiving
-//
 // Cancels archiving of a virtual tape to the virtual tape shelf (VTS) after the archiving
 // process is initiated.
 func ExampleStorageGateway_CancelArchival_shared00() {
@@ -239,7 +233,6 @@ func ExampleStorageGateway_CancelArchival_shared00() {
 }
 
 // To cancel virtual tape retrieval
-//
 // Cancels retrieval of a virtual tape from the virtual tape shelf (VTS) to a gateway
 // after the retrieval process is initiated.
 func ExampleStorageGateway_CancelRetrieval_shared00() {
@@ -272,7 +265,6 @@ func ExampleStorageGateway_CancelRetrieval_shared00() {
 }
 
 // To create a cached iSCSI volume
-//
 // Creates a cached volume on a specified cached gateway.
 func ExampleStorageGateway_CreateCachediSCSIVolume_shared00() {
 	svc := storagegateway.New(session.New())
@@ -308,7 +300,6 @@ func ExampleStorageGateway_CreateCachediSCSIVolume_shared00() {
 }
 
 // To create a snapshot of a gateway volume
-//
 // Initiates an ad-hoc snapshot of a gateway volume.
 func ExampleStorageGateway_CreateSnapshot_shared00() {
 	svc := storagegateway.New(session.New())
@@ -342,7 +333,6 @@ func ExampleStorageGateway_CreateSnapshot_shared00() {
 }
 
 // To create a snapshot of a gateway volume
-//
 // Initiates a snapshot of a gateway from a volume recovery point.
 func ExampleStorageGateway_CreateSnapshotFromVolumeRecoveryPoint_shared00() {
 	svc := storagegateway.New(session.New())
@@ -376,7 +366,6 @@ func ExampleStorageGateway_CreateSnapshotFromVolumeRecoveryPoint_shared00() {
 }
 
 // To create a stored iSCSI volume
-//
 // Creates a stored volume on a specified stored gateway.
 func ExampleStorageGateway_CreateStorediSCSIVolume_shared00() {
 	svc := storagegateway.New(session.New())
@@ -412,7 +401,6 @@ func ExampleStorageGateway_CreateStorediSCSIVolume_shared00() {
 }
 
 // To create a virtual tape using a barcode
-//
 // Creates a virtual tape by using your own barcode.
 func ExampleStorageGateway_CreateTapeWithBarcode_shared00() {
 	svc := storagegateway.New(session.New())
@@ -445,7 +433,6 @@ func ExampleStorageGateway_CreateTapeWithBarcode_shared00() {
 }
 
 // To create a virtual tape
-//
 // Creates one or more virtual tapes.
 func ExampleStorageGateway_CreateTapes_shared00() {
 	svc := storagegateway.New(session.New())
@@ -480,7 +467,6 @@ func ExampleStorageGateway_CreateTapes_shared00() {
 }
 
 // To delete bandwidth rate limits of gateway
-//
 // Deletes the bandwidth rate limits of a gateway; either the upload or download limit,
 // or both.
 func ExampleStorageGateway_DeleteBandwidthRateLimit_shared00() {
@@ -513,7 +499,6 @@ func ExampleStorageGateway_DeleteBandwidthRateLimit_shared00() {
 }
 
 // To delete CHAP credentials
-//
 // Deletes Challenge-Handshake Authentication Protocol (CHAP) credentials for a specified
 // iSCSI target and initiator pair.
 func ExampleStorageGateway_DeleteChapCredentials_shared00() {
@@ -546,7 +531,6 @@ func ExampleStorageGateway_DeleteChapCredentials_shared00() {
 }
 
 // To delete a gatgeway
-//
 // This operation deletes the gateway, but not the gateway's VM from the host computer.
 func ExampleStorageGateway_DeleteGateway_shared00() {
 	svc := storagegateway.New(session.New())
@@ -577,7 +561,6 @@ func ExampleStorageGateway_DeleteGateway_shared00() {
 }
 
 // To delete a snapshot of a volume
-//
 // This action enables you to delete a snapshot schedule for a volume.
 func ExampleStorageGateway_DeleteSnapshotSchedule_shared00() {
 	svc := storagegateway.New(session.New())
@@ -608,7 +591,6 @@ func ExampleStorageGateway_DeleteSnapshotSchedule_shared00() {
 }
 
 // To delete a virtual tape
-//
 // This example deletes the specified virtual tape.
 func ExampleStorageGateway_DeleteTape_shared00() {
 	svc := storagegateway.New(session.New())
@@ -640,7 +622,6 @@ func ExampleStorageGateway_DeleteTape_shared00() {
 }
 
 // To delete a virtual tape from the shelf (VTS)
-//
 // Deletes the specified virtual tape from the virtual tape shelf (VTS).
 func ExampleStorageGateway_DeleteTapeArchive_shared00() {
 	svc := storagegateway.New(session.New())
@@ -671,7 +652,6 @@ func ExampleStorageGateway_DeleteTapeArchive_shared00() {
 }
 
 // To delete a gateway volume
-//
 // Deletes the specified gateway volume that you previously created using the CreateCachediSCSIVolume
 // or CreateStorediSCSIVolume API.
 func ExampleStorageGateway_DeleteVolume_shared00() {
@@ -703,7 +683,6 @@ func ExampleStorageGateway_DeleteVolume_shared00() {
 }
 
 // To describe the bandwidth rate limits of a gateway
-//
 // Returns a value for a bandwidth rate limit if set. If not set, then only the gateway
 // ARN is returned.
 func ExampleStorageGateway_DescribeBandwidthRateLimit_shared00() {
@@ -735,7 +714,6 @@ func ExampleStorageGateway_DescribeBandwidthRateLimit_shared00() {
 }
 
 // To describe cache information
-//
 // Returns information about the cache of a gateway.
 func ExampleStorageGateway_DescribeCache_shared00() {
 	svc := storagegateway.New(session.New())
@@ -766,7 +744,6 @@ func ExampleStorageGateway_DescribeCache_shared00() {
 }
 
 // To describe gateway cached iSCSI volumes
-//
 // Returns a description of the gateway cached iSCSI volumes specified in the request.
 func ExampleStorageGateway_DescribeCachediSCSIVolumes_shared00() {
 	svc := storagegateway.New(session.New())
@@ -799,7 +776,6 @@ func ExampleStorageGateway_DescribeCachediSCSIVolumes_shared00() {
 }
 
 // To describe CHAP credetnitals for an iSCSI
-//
 // Returns an array of Challenge-Handshake Authentication Protocol (CHAP) credentials
 // information for a specified iSCSI target, one for each target-initiator pair.
 func ExampleStorageGateway_DescribeChapCredentials_shared00() {
@@ -831,7 +807,6 @@ func ExampleStorageGateway_DescribeChapCredentials_shared00() {
 }
 
 // To describe metadata about the gateway
-//
 // Returns metadata about a gateway such as its name, network interfaces, configured
 // time zone, and the state (whether the gateway is running or not).
 func ExampleStorageGateway_DescribeGatewayInformation_shared00() {
@@ -863,7 +838,6 @@ func ExampleStorageGateway_DescribeGatewayInformation_shared00() {
 }
 
 // To describe gateway's maintenance start time
-//
 // Returns your gateway's weekly maintenance start time including the day and time of
 // the week.
 func ExampleStorageGateway_DescribeMaintenanceStartTime_shared00() {
@@ -895,7 +869,6 @@ func ExampleStorageGateway_DescribeMaintenanceStartTime_shared00() {
 }
 
 // To describe snapshot schedule for gateway volume
-//
 // Describes the snapshot schedule for the specified gateway volume including intervals
 // at which snapshots are automatically initiated.
 func ExampleStorageGateway_DescribeSnapshotSchedule_shared00() {
@@ -927,7 +900,6 @@ func ExampleStorageGateway_DescribeSnapshotSchedule_shared00() {
 }
 
 // To describe the volumes of a gateway
-//
 // Returns the description of the gateway volumes specified in the request belonging
 // to the same gateway.
 func ExampleStorageGateway_DescribeStorediSCSIVolumes_shared00() {
@@ -961,7 +933,6 @@ func ExampleStorageGateway_DescribeStorediSCSIVolumes_shared00() {
 }
 
 // To describe virtual tapes in the VTS
-//
 // Returns a description of specified virtual tapes in the virtual tape shelf (VTS).
 func ExampleStorageGateway_DescribeTapeArchives_shared00() {
 	svc := storagegateway.New(session.New())
@@ -997,7 +968,6 @@ func ExampleStorageGateway_DescribeTapeArchives_shared00() {
 }
 
 // To describe virtual tape recovery points
-//
 // Returns a list of virtual tape recovery points that are available for the specified
 // gateway-VTL.
 func ExampleStorageGateway_DescribeTapeRecoveryPoints_shared00() {
@@ -1031,7 +1001,6 @@ func ExampleStorageGateway_DescribeTapeRecoveryPoints_shared00() {
 }
 
 // To describe virtual tape(s) associated with gateway
-//
 // Returns a description of the specified Amazon Resource Name (ARN) of virtual tapes.
 // If a TapeARN is not specified, returns a description of all virtual tapes.
 func ExampleStorageGateway_DescribeTapes_shared00() {
@@ -1069,7 +1038,6 @@ func ExampleStorageGateway_DescribeTapes_shared00() {
 }
 
 // To describe upload buffer of gateway
-//
 // Returns information about the upload buffer of a gateway including disk IDs and the
 // amount of upload buffer space allocated/used.
 func ExampleStorageGateway_DescribeUploadBuffer_shared00() {
@@ -1101,7 +1069,6 @@ func ExampleStorageGateway_DescribeUploadBuffer_shared00() {
 }
 
 // To describe upload buffer of a gateway
-//
 // Returns information about the upload buffer of a gateway including disk IDs and the
 // amount of upload buffer space allocated and used.
 func ExampleStorageGateway_DescribeUploadBuffer_shared01() {
@@ -1133,7 +1100,6 @@ func ExampleStorageGateway_DescribeUploadBuffer_shared01() {
 }
 
 // To describe virtual tape library (VTL) devices of a single gateway
-//
 // Returns a description of virtual tape library (VTL) devices for the specified gateway.
 func ExampleStorageGateway_DescribeVTLDevices_shared00() {
 	svc := storagegateway.New(session.New())
@@ -1166,7 +1132,6 @@ func ExampleStorageGateway_DescribeVTLDevices_shared00() {
 }
 
 // To describe the working storage of a gateway [Depreciated]
-//
 // This operation is supported only for the gateway-stored volume architecture. This
 // operation is deprecated in cached-volumes API version (20120630). Use DescribeUploadBuffer
 // instead.
@@ -1199,7 +1164,6 @@ func ExampleStorageGateway_DescribeWorkingStorage_shared00() {
 }
 
 // To disable a gateway when it is no longer functioning
-//
 // Disables a gateway when the gateway is no longer functioning. Use this operation
 // for a gateway-VTL that is not reachable or not functioning.
 func ExampleStorageGateway_DisableGateway_shared00() {
@@ -1231,7 +1195,6 @@ func ExampleStorageGateway_DisableGateway_shared00() {
 }
 
 // To lists region specific gateways per AWS account
-//
 // Lists gateways owned by an AWS account in a specified region as requested. Results
 // are sorted by gateway ARN up to a maximum of 100 gateways.
 func ExampleStorageGateway_ListGateways_shared00() {
@@ -1264,7 +1227,6 @@ func ExampleStorageGateway_ListGateways_shared00() {
 }
 
 // To list the gateway's local disks
-//
 // The request returns a list of all disks, specifying which are configured as working
 // storage, cache storage, or stored volume or not configured at all.
 func ExampleStorageGateway_ListLocalDisks_shared00() {
@@ -1296,7 +1258,6 @@ func ExampleStorageGateway_ListLocalDisks_shared00() {
 }
 
 // To list tags that have been added to a resource
-//
 // Lists the tags that have been added to the specified resource.
 func ExampleStorageGateway_ListTagsForResource_shared00() {
 	svc := storagegateway.New(session.New())
@@ -1329,7 +1290,6 @@ func ExampleStorageGateway_ListTagsForResource_shared00() {
 }
 
 // To list recovery points for a gateway
-//
 // Lists the recovery points for a specified gateway in which all data of the volume
 // is consistent and can be used to create a snapshot.
 func ExampleStorageGateway_ListVolumeRecoveryPoints_shared00() {
@@ -1361,7 +1321,6 @@ func ExampleStorageGateway_ListVolumeRecoveryPoints_shared00() {
 }
 
 // To list the iSCSI stored volumes of a gateway
-//
 // Lists the iSCSI stored volumes of a gateway. Results are sorted by volume ARN up
 // to a maximum of 100 volumes.
 func ExampleStorageGateway_ListVolumes_shared00() {
@@ -1395,7 +1354,6 @@ func ExampleStorageGateway_ListVolumes_shared00() {
 }
 
 // To remove tags from a resource
-//
 // Lists the iSCSI stored volumes of a gateway. Removes one or more tags from the specified
 // resource.
 func ExampleStorageGateway_RemoveTagsFromResource_shared00() {
@@ -1431,7 +1389,6 @@ func ExampleStorageGateway_RemoveTagsFromResource_shared00() {
 }
 
 // To reset cache disks in error status
-//
 // Resets all cache disks that have encountered a error and makes the disks available
 // for reconfiguration as cache storage.
 func ExampleStorageGateway_ResetCache_shared00() {
@@ -1463,7 +1420,6 @@ func ExampleStorageGateway_ResetCache_shared00() {
 }
 
 // To retrieve an archived tape from the VTS
-//
 // Retrieves an archived virtual tape from the virtual tape shelf (VTS) to a gateway-VTL.
 // Virtual tapes archived in the VTS are not associated with any gateway.
 func ExampleStorageGateway_RetrieveTapeArchive_shared00() {
@@ -1496,7 +1452,6 @@ func ExampleStorageGateway_RetrieveTapeArchive_shared00() {
 }
 
 // To retrieve the recovery point of a virtual tape
-//
 // Retrieves the recovery point for the specified virtual tape.
 func ExampleStorageGateway_RetrieveTapeRecoveryPoint_shared00() {
 	svc := storagegateway.New(session.New())
@@ -1528,7 +1483,6 @@ func ExampleStorageGateway_RetrieveTapeRecoveryPoint_shared00() {
 }
 
 // To set a password for your VM
-//
 // Sets the password for your VM local console.
 func ExampleStorageGateway_SetLocalConsolePassword_shared00() {
 	svc := storagegateway.New(session.New())
@@ -1560,7 +1514,6 @@ func ExampleStorageGateway_SetLocalConsolePassword_shared00() {
 }
 
 // To shut down a gateway service
-//
 // This operation shuts down the gateway service component running in the storage gateway's
 // virtual machine (VM) and not the VM.
 func ExampleStorageGateway_ShutdownGateway_shared00() {
@@ -1592,7 +1545,6 @@ func ExampleStorageGateway_ShutdownGateway_shared00() {
 }
 
 // To start a gateway service
-//
 // Starts a gateway service that was previously shut down.
 func ExampleStorageGateway_StartGateway_shared00() {
 	svc := storagegateway.New(session.New())
@@ -1623,7 +1575,6 @@ func ExampleStorageGateway_StartGateway_shared00() {
 }
 
 // To update the bandwidth rate limits of a gateway
-//
 // Updates the bandwidth rate limits of a gateway. Both the upload and download bandwidth
 // rate limit can be set, or either one of the two. If a new limit is not set, the existing
 // rate limit remains.
@@ -1658,7 +1609,6 @@ func ExampleStorageGateway_UpdateBandwidthRateLimit_shared00() {
 }
 
 // To update CHAP credentials for an iSCSI target
-//
 // Updates the Challenge-Handshake Authentication Protocol (CHAP) credentials for a
 // specified iSCSI target.
 func ExampleStorageGateway_UpdateChapCredentials_shared00() {
@@ -1693,7 +1643,6 @@ func ExampleStorageGateway_UpdateChapCredentials_shared00() {
 }
 
 // To update a gateway's metadata
-//
 // Updates a gateway's metadata, which includes the gateway's name and time zone.
 func ExampleStorageGateway_UpdateGatewayInformation_shared00() {
 	svc := storagegateway.New(session.New())
@@ -1726,7 +1675,6 @@ func ExampleStorageGateway_UpdateGatewayInformation_shared00() {
 }
 
 // To update a gateway's VM software
-//
 // Updates the gateway virtual machine (VM) software. The request immediately triggers
 // the software update.
 func ExampleStorageGateway_UpdateGatewaySoftwareNow_shared00() {
@@ -1758,7 +1706,6 @@ func ExampleStorageGateway_UpdateGatewaySoftwareNow_shared00() {
 }
 
 // To update a gateway's maintenance start time
-//
 // Updates a gateway's weekly maintenance start time information, including day and
 // time of the week. The maintenance time is in your gateway's time zone.
 func ExampleStorageGateway_UpdateMaintenanceStartTime_shared00() {
@@ -1793,7 +1740,6 @@ func ExampleStorageGateway_UpdateMaintenanceStartTime_shared00() {
 }
 
 // To update a volume snapshot schedule
-//
 // Updates a snapshot schedule configured for a gateway volume.
 func ExampleStorageGateway_UpdateSnapshotSchedule_shared00() {
 	svc := storagegateway.New(session.New())
@@ -1827,7 +1773,6 @@ func ExampleStorageGateway_UpdateSnapshotSchedule_shared00() {
 }
 
 // To update a VTL device type
-//
 // Updates the type of medium changer in a gateway-VTL after a gateway-VTL is activated.
 func ExampleStorageGateway_UpdateVTLDeviceType_shared00() {
 	svc := storagegateway.New(session.New())

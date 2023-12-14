@@ -29,14 +29,13 @@ const opCreateSavingsPlan = "CreateSavingsPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSavingsPlanRequest method.
+//	req, resp := client.CreateSavingsPlanRequest(params)
 //
-//    // Example sending a request using the CreateSavingsPlanRequest method.
-//    req, resp := client.CreateSavingsPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/CreateSavingsPlan
 func (c *SavingsPlans) CreateSavingsPlanRequest(input *CreateSavingsPlanInput) (req *request.Request, output *CreateSavingsPlanOutput) {
@@ -67,17 +66,18 @@ func (c *SavingsPlans) CreateSavingsPlanRequest(input *CreateSavingsPlanInput) (
 // API operation CreateSavingsPlan for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ValidationException
-//   One of the input parameters is not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServerException
-//   An unexpected error occurred.
+//   - ValidationException
+//     One of the input parameters is not valid.
 //
-//   * ServiceQuotaExceededException
-//   A service quota has been exceeded.
+//   - InternalServerException
+//     An unexpected error occurred.
+//
+//   - ServiceQuotaExceededException
+//     A service quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/CreateSavingsPlan
 func (c *SavingsPlans) CreateSavingsPlan(input *CreateSavingsPlanInput) (*CreateSavingsPlanOutput, error) {
@@ -117,14 +117,13 @@ const opDeleteQueuedSavingsPlan = "DeleteQueuedSavingsPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteQueuedSavingsPlanRequest method.
+//	req, resp := client.DeleteQueuedSavingsPlanRequest(params)
 //
-//    // Example sending a request using the DeleteQueuedSavingsPlanRequest method.
-//    req, resp := client.DeleteQueuedSavingsPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DeleteQueuedSavingsPlan
 func (c *SavingsPlans) DeleteQueuedSavingsPlanRequest(input *DeleteQueuedSavingsPlanInput) (req *request.Request, output *DeleteQueuedSavingsPlanOutput) {
@@ -156,17 +155,18 @@ func (c *SavingsPlans) DeleteQueuedSavingsPlanRequest(input *DeleteQueuedSavings
 // API operation DeleteQueuedSavingsPlan for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One of the input parameters is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ValidationException
+//     One of the input parameters is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ServiceQuotaExceededException
-//   A service quota has been exceeded.
+//   - InternalServerException
+//     An unexpected error occurred.
+//
+//   - ServiceQuotaExceededException
+//     A service quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DeleteQueuedSavingsPlan
 func (c *SavingsPlans) DeleteQueuedSavingsPlan(input *DeleteQueuedSavingsPlanInput) (*DeleteQueuedSavingsPlanOutput, error) {
@@ -206,14 +206,13 @@ const opDescribeSavingsPlanRates = "DescribeSavingsPlanRates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSavingsPlanRatesRequest method.
+//	req, resp := client.DescribeSavingsPlanRatesRequest(params)
 //
-//    // Example sending a request using the DescribeSavingsPlanRatesRequest method.
-//    req, resp := client.DescribeSavingsPlanRatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DescribeSavingsPlanRates
 func (c *SavingsPlans) DescribeSavingsPlanRatesRequest(input *DescribeSavingsPlanRatesInput) (req *request.Request, output *DescribeSavingsPlanRatesOutput) {
@@ -244,11 +243,12 @@ func (c *SavingsPlans) DescribeSavingsPlanRatesRequest(input *DescribeSavingsPla
 // API operation DescribeSavingsPlanRates for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ValidationException
-//   One of the input parameters is not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ValidationException
+//     One of the input parameters is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DescribeSavingsPlanRates
 func (c *SavingsPlans) DescribeSavingsPlanRates(input *DescribeSavingsPlanRatesInput) (*DescribeSavingsPlanRatesOutput, error) {
@@ -288,14 +288,13 @@ const opDescribeSavingsPlans = "DescribeSavingsPlans"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSavingsPlansRequest method.
+//	req, resp := client.DescribeSavingsPlansRequest(params)
 //
-//    // Example sending a request using the DescribeSavingsPlansRequest method.
-//    req, resp := client.DescribeSavingsPlansRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DescribeSavingsPlans
 func (c *SavingsPlans) DescribeSavingsPlansRequest(input *DescribeSavingsPlansInput) (req *request.Request, output *DescribeSavingsPlansOutput) {
@@ -326,11 +325,12 @@ func (c *SavingsPlans) DescribeSavingsPlansRequest(input *DescribeSavingsPlansIn
 // API operation DescribeSavingsPlans for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unexpected error occurred.
 //
-//   * ValidationException
-//   One of the input parameters is not valid.
+//   - InternalServerException
+//     An unexpected error occurred.
+//
+//   - ValidationException
+//     One of the input parameters is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DescribeSavingsPlans
 func (c *SavingsPlans) DescribeSavingsPlans(input *DescribeSavingsPlansInput) (*DescribeSavingsPlansOutput, error) {
@@ -370,14 +370,13 @@ const opDescribeSavingsPlansOfferingRates = "DescribeSavingsPlansOfferingRates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSavingsPlansOfferingRatesRequest method.
+//	req, resp := client.DescribeSavingsPlansOfferingRatesRequest(params)
 //
-//    // Example sending a request using the DescribeSavingsPlansOfferingRatesRequest method.
-//    req, resp := client.DescribeSavingsPlansOfferingRatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DescribeSavingsPlansOfferingRates
 func (c *SavingsPlans) DescribeSavingsPlansOfferingRatesRequest(input *DescribeSavingsPlansOfferingRatesInput) (req *request.Request, output *DescribeSavingsPlansOfferingRatesOutput) {
@@ -408,11 +407,12 @@ func (c *SavingsPlans) DescribeSavingsPlansOfferingRatesRequest(input *DescribeS
 // API operation DescribeSavingsPlansOfferingRates for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One of the input parameters is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred.
+//   - ValidationException
+//     One of the input parameters is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DescribeSavingsPlansOfferingRates
 func (c *SavingsPlans) DescribeSavingsPlansOfferingRates(input *DescribeSavingsPlansOfferingRatesInput) (*DescribeSavingsPlansOfferingRatesOutput, error) {
@@ -452,14 +452,13 @@ const opDescribeSavingsPlansOfferings = "DescribeSavingsPlansOfferings"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSavingsPlansOfferingsRequest method.
+//	req, resp := client.DescribeSavingsPlansOfferingsRequest(params)
 //
-//    // Example sending a request using the DescribeSavingsPlansOfferingsRequest method.
-//    req, resp := client.DescribeSavingsPlansOfferingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DescribeSavingsPlansOfferings
 func (c *SavingsPlans) DescribeSavingsPlansOfferingsRequest(input *DescribeSavingsPlansOfferingsInput) (req *request.Request, output *DescribeSavingsPlansOfferingsOutput) {
@@ -490,11 +489,12 @@ func (c *SavingsPlans) DescribeSavingsPlansOfferingsRequest(input *DescribeSavin
 // API operation DescribeSavingsPlansOfferings for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One of the input parameters is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred.
+//   - ValidationException
+//     One of the input parameters is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DescribeSavingsPlansOfferings
 func (c *SavingsPlans) DescribeSavingsPlansOfferings(input *DescribeSavingsPlansOfferingsInput) (*DescribeSavingsPlansOfferingsOutput, error) {
@@ -534,14 +534,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/ListTagsForResource
 func (c *SavingsPlans) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -572,14 +571,15 @@ func (c *SavingsPlans) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ValidationException
-//   One of the input parameters is not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServerException
-//   An unexpected error occurred.
+//   - ValidationException
+//     One of the input parameters is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/ListTagsForResource
 func (c *SavingsPlans) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -619,14 +619,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/TagResource
 func (c *SavingsPlans) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -658,17 +657,18 @@ func (c *SavingsPlans) TagResourceRequest(input *TagResourceInput) (req *request
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ServiceQuotaExceededException
-//   A service quota has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ValidationException
-//   One of the input parameters is not valid.
+//   - ServiceQuotaExceededException
+//     A service quota has been exceeded.
 //
-//   * InternalServerException
-//   An unexpected error occurred.
+//   - ValidationException
+//     One of the input parameters is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/TagResource
 func (c *SavingsPlans) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -708,14 +708,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/UntagResource
 func (c *SavingsPlans) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -747,14 +746,15 @@ func (c *SavingsPlans) UntagResourceRequest(input *UntagResourceInput) (req *req
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ValidationException
-//   One of the input parameters is not valid.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServerException
-//   An unexpected error occurred.
+//   - ValidationException
+//     One of the input parameters is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/UntagResource
 func (c *SavingsPlans) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -786,7 +786,7 @@ type CreateSavingsPlanInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// The hourly commitment, in USD. This is a value between 0.001 and 1 million.
-	// You cannot specify more than three digits after the decimal point.
+	// You cannot specify more than five digits after the decimal point.
 	//
 	// Commitment is a required field
 	Commitment *string `locationName:"commitment" type:"string" required:"true"`
@@ -808,12 +808,20 @@ type CreateSavingsPlanInput struct {
 	UpfrontPaymentAmount *string `locationName:"upfrontPaymentAmount" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSavingsPlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSavingsPlanInput) GoString() string {
 	return s.String()
 }
@@ -877,12 +885,20 @@ type CreateSavingsPlanOutput struct {
 	SavingsPlanId *string `locationName:"savingsPlanId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSavingsPlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSavingsPlanOutput) GoString() string {
 	return s.String()
 }
@@ -902,12 +918,20 @@ type DeleteQueuedSavingsPlanInput struct {
 	SavingsPlanId *string `locationName:"savingsPlanId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteQueuedSavingsPlanInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteQueuedSavingsPlanInput) GoString() string {
 	return s.String()
 }
@@ -935,12 +959,20 @@ type DeleteQueuedSavingsPlanOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteQueuedSavingsPlanOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteQueuedSavingsPlanOutput) GoString() string {
 	return s.String()
 }
@@ -964,12 +996,20 @@ type DescribeSavingsPlanRatesInput struct {
 	SavingsPlanId *string `locationName:"savingsPlanId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlanRatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlanRatesInput) GoString() string {
 	return s.String()
 }
@@ -1028,12 +1068,20 @@ type DescribeSavingsPlanRatesOutput struct {
 	SearchResults []*SavingsPlanRate `locationName:"searchResults" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlanRatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlanRatesOutput) GoString() string {
 	return s.String()
 }
@@ -1076,15 +1124,23 @@ type DescribeSavingsPlansInput struct {
 	SavingsPlanIds []*string `locationName:"savingsPlanIds" type:"list"`
 
 	// The states.
-	States []*string `locationName:"states" type:"list"`
+	States []*string `locationName:"states" type:"list" enum:"SavingsPlanState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansInput) GoString() string {
 	return s.String()
 }
@@ -1155,30 +1211,38 @@ type DescribeSavingsPlansOfferingRatesInput struct {
 	Operations []*string `locationName:"operations" type:"list"`
 
 	// The AWS products.
-	Products []*string `locationName:"products" type:"list"`
+	Products []*string `locationName:"products" type:"list" enum:"SavingsPlanProductType"`
 
 	// The IDs of the offerings.
 	SavingsPlanOfferingIds []*string `locationName:"savingsPlanOfferingIds" type:"list"`
 
 	// The payment options.
-	SavingsPlanPaymentOptions []*string `locationName:"savingsPlanPaymentOptions" type:"list"`
+	SavingsPlanPaymentOptions []*string `locationName:"savingsPlanPaymentOptions" type:"list" enum:"SavingsPlanPaymentOption"`
 
 	// The plan types.
-	SavingsPlanTypes []*string `locationName:"savingsPlanTypes" type:"list"`
+	SavingsPlanTypes []*string `locationName:"savingsPlanTypes" type:"list" enum:"SavingsPlanType"`
 
 	// The services.
-	ServiceCodes []*string `locationName:"serviceCodes" type:"list"`
+	ServiceCodes []*string `locationName:"serviceCodes" type:"list" enum:"SavingsPlanRateServiceCode"`
 
 	// The usage details of the line item in the billing report.
 	UsageTypes []*string `locationName:"usageTypes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOfferingRatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOfferingRatesInput) GoString() string {
 	return s.String()
 }
@@ -1254,12 +1318,20 @@ type DescribeSavingsPlansOfferingRatesOutput struct {
 	SearchResults []*SavingsPlanOfferingRate `locationName:"searchResults" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOfferingRatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOfferingRatesOutput) GoString() string {
 	return s.String()
 }
@@ -1280,7 +1352,7 @@ type DescribeSavingsPlansOfferingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The currencies.
-	Currencies []*string `locationName:"currencies" type:"list"`
+	Currencies []*string `locationName:"currencies" type:"list" enum:"CurrencyCode"`
 
 	// The descriptions.
 	Descriptions []*string `locationName:"descriptions" type:"list"`
@@ -1305,10 +1377,10 @@ type DescribeSavingsPlansOfferingsInput struct {
 	Operations []*string `locationName:"operations" type:"list"`
 
 	// The payment options.
-	PaymentOptions []*string `locationName:"paymentOptions" type:"list"`
+	PaymentOptions []*string `locationName:"paymentOptions" type:"list" enum:"SavingsPlanPaymentOption"`
 
 	// The plan type.
-	PlanTypes []*string `locationName:"planTypes" type:"list"`
+	PlanTypes []*string `locationName:"planTypes" type:"list" enum:"SavingsPlanType"`
 
 	// The product type.
 	ProductType *string `locationName:"productType" type:"string" enum:"SavingsPlanProductType"`
@@ -1320,12 +1392,20 @@ type DescribeSavingsPlansOfferingsInput struct {
 	UsageTypes []*string `locationName:"usageTypes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOfferingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOfferingsInput) GoString() string {
 	return s.String()
 }
@@ -1419,12 +1499,20 @@ type DescribeSavingsPlansOfferingsOutput struct {
 	SearchResults []*SavingsPlanOffering `locationName:"searchResults" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOfferingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOfferingsOutput) GoString() string {
 	return s.String()
 }
@@ -1452,12 +1540,20 @@ type DescribeSavingsPlansOutput struct {
 	SavingsPlans []*SavingsPlan `locationName:"savingsPlans" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSavingsPlansOutput) GoString() string {
 	return s.String()
 }
@@ -1482,12 +1578,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -1539,12 +1643,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -1575,12 +1687,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -1614,12 +1734,20 @@ type ParentSavingsPlanOffering struct {
 	PlanType *string `locationName:"planType" type:"string" enum:"SavingsPlanType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParentSavingsPlanOffering) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParentSavingsPlanOffering) GoString() string {
 	return s.String()
 }
@@ -1668,12 +1796,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -1742,7 +1878,7 @@ type SavingsPlan struct {
 	PaymentOption *string `locationName:"paymentOption" type:"string" enum:"SavingsPlanPaymentOption"`
 
 	// The product types.
-	ProductTypes []*string `locationName:"productTypes" type:"list"`
+	ProductTypes []*string `locationName:"productTypes" type:"list" enum:"SavingsPlanProductType"`
 
 	// The recurring payment amount.
 	RecurringPaymentAmount *string `locationName:"recurringPaymentAmount" type:"string"`
@@ -1775,12 +1911,20 @@ type SavingsPlan struct {
 	UpfrontPaymentAmount *string `locationName:"upfrontPaymentAmount" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlan) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlan) GoString() string {
 	return s.String()
 }
@@ -1904,12 +2048,20 @@ type SavingsPlanFilter struct {
 	Values []*string `locationName:"values" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanFilter) GoString() string {
 	return s.String()
 }
@@ -1952,7 +2104,7 @@ type SavingsPlanOffering struct {
 	PlanType *string `locationName:"planType" type:"string" enum:"SavingsPlanType"`
 
 	// The product type.
-	ProductTypes []*string `locationName:"productTypes" type:"list"`
+	ProductTypes []*string `locationName:"productTypes" type:"list" enum:"SavingsPlanProductType"`
 
 	// The properties.
 	Properties []*SavingsPlanOfferingProperty `locationName:"properties" type:"list"`
@@ -1964,12 +2116,20 @@ type SavingsPlanOffering struct {
 	UsageType *string `locationName:"usageType" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOffering) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOffering) GoString() string {
 	return s.String()
 }
@@ -2051,12 +2211,20 @@ type SavingsPlanOfferingFilterElement struct {
 	Values []*string `locationName:"values" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingFilterElement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingFilterElement) GoString() string {
 	return s.String()
 }
@@ -2084,12 +2252,20 @@ type SavingsPlanOfferingProperty struct {
 	Value *string `locationName:"value" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingProperty) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingProperty) GoString() string {
 	return s.String()
 }
@@ -2135,12 +2311,20 @@ type SavingsPlanOfferingRate struct {
 	UsageType *string `locationName:"usageType" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingRate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingRate) GoString() string {
 	return s.String()
 }
@@ -2204,12 +2388,20 @@ type SavingsPlanOfferingRateFilterElement struct {
 	Values []*string `locationName:"values" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingRateFilterElement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingRateFilterElement) GoString() string {
 	return s.String()
 }
@@ -2237,12 +2429,20 @@ type SavingsPlanOfferingRateProperty struct {
 	Value *string `locationName:"value" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingRateProperty) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanOfferingRateProperty) GoString() string {
 	return s.String()
 }
@@ -2288,12 +2488,20 @@ type SavingsPlanRate struct {
 	UsageType *string `locationName:"usageType" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanRate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanRate) GoString() string {
 	return s.String()
 }
@@ -2357,12 +2565,20 @@ type SavingsPlanRateFilter struct {
 	Values []*string `locationName:"values" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanRateFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanRateFilter) GoString() string {
 	return s.String()
 }
@@ -2390,12 +2606,20 @@ type SavingsPlanRateProperty struct {
 	Value *string `locationName:"value" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanRateProperty) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SavingsPlanRateProperty) GoString() string {
 	return s.String()
 }
@@ -2420,12 +2644,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -2483,12 +2715,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -2525,12 +2765,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -2549,12 +2797,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -2591,12 +2847,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -2609,12 +2873,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }

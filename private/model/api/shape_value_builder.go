@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 package api
@@ -202,6 +203,10 @@ func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, par
 			},
 			`, memName, b.GoType(ref, true), b.BuildShape(ref, v, true))
 		} else {
+			// Don't try to generate for members not actually modeled in the API
+			if _, ok := parent.MemberRefs[memName]; !ok {
+				return ""
+			}
 			return fmt.Sprintf(`%s: &%s{
 				%s
 			},

@@ -29,14 +29,13 @@ const opCreateSuiteDefinition = "CreateSuiteDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSuiteDefinitionRequest method.
+//	req, resp := client.CreateSuiteDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateSuiteDefinitionRequest method.
-//    req, resp := client.CreateSuiteDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/CreateSuiteDefinition
 func (c *IoTDeviceAdvisor) CreateSuiteDefinitionRequest(input *CreateSuiteDefinitionInput) (req *request.Request, output *CreateSuiteDefinitionOutput) {
@@ -59,6 +58,9 @@ func (c *IoTDeviceAdvisor) CreateSuiteDefinitionRequest(input *CreateSuiteDefini
 //
 // Creates a Device Advisor test suite.
 //
+// Requires permission to access the CreateSuiteDefinition (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -67,11 +69,12 @@ func (c *IoTDeviceAdvisor) CreateSuiteDefinitionRequest(input *CreateSuiteDefini
 // API operation CreateSuiteDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ValidationException
+//     Sends a validation exception.
+//
+//   - InternalServerException
+//     Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/CreateSuiteDefinition
 func (c *IoTDeviceAdvisor) CreateSuiteDefinition(input *CreateSuiteDefinitionInput) (*CreateSuiteDefinitionOutput, error) {
@@ -111,14 +114,13 @@ const opDeleteSuiteDefinition = "DeleteSuiteDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSuiteDefinitionRequest method.
+//	req, resp := client.DeleteSuiteDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteSuiteDefinitionRequest method.
-//    req, resp := client.DeleteSuiteDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/DeleteSuiteDefinition
 func (c *IoTDeviceAdvisor) DeleteSuiteDefinitionRequest(input *DeleteSuiteDefinitionInput) (req *request.Request, output *DeleteSuiteDefinitionOutput) {
@@ -142,6 +144,9 @@ func (c *IoTDeviceAdvisor) DeleteSuiteDefinitionRequest(input *DeleteSuiteDefini
 //
 // Deletes a Device Advisor test suite.
 //
+// Requires permission to access the DeleteSuiteDefinition (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -150,11 +155,12 @@ func (c *IoTDeviceAdvisor) DeleteSuiteDefinitionRequest(input *DeleteSuiteDefini
 // API operation DeleteSuiteDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ValidationException
+//     Sends a validation exception.
+//
+//   - InternalServerException
+//     Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/DeleteSuiteDefinition
 func (c *IoTDeviceAdvisor) DeleteSuiteDefinition(input *DeleteSuiteDefinitionInput) (*DeleteSuiteDefinitionOutput, error) {
@@ -178,6 +184,91 @@ func (c *IoTDeviceAdvisor) DeleteSuiteDefinitionWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opGetEndpoint = "GetEndpoint"
+
+// GetEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the GetEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEndpoint for more information on using the GetEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEndpointRequest method.
+//	req, resp := client.GetEndpointRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetEndpoint
+func (c *IoTDeviceAdvisor) GetEndpointRequest(input *GetEndpointInput) (req *request.Request, output *GetEndpointOutput) {
+	op := &request.Operation{
+		Name:       opGetEndpoint,
+		HTTPMethod: "GET",
+		HTTPPath:   "/endpoint",
+	}
+
+	if input == nil {
+		input = &GetEndpointInput{}
+	}
+
+	output = &GetEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEndpoint API operation for AWS IoT Core Device Advisor.
+//
+// Gets information about an Device Advisor endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Core Device Advisor's
+// API operation GetEndpoint for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Sends a validation exception.
+//
+//   - InternalServerException
+//     Sends an Internal Failure exception.
+//
+//   - ResourceNotFoundException
+//     Sends a Resource Not Found exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetEndpoint
+func (c *IoTDeviceAdvisor) GetEndpoint(input *GetEndpointInput) (*GetEndpointOutput, error) {
+	req, out := c.GetEndpointRequest(input)
+	return out, req.Send()
+}
+
+// GetEndpointWithContext is the same as GetEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTDeviceAdvisor) GetEndpointWithContext(ctx aws.Context, input *GetEndpointInput, opts ...request.Option) (*GetEndpointOutput, error) {
+	req, out := c.GetEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetSuiteDefinition = "GetSuiteDefinition"
 
 // GetSuiteDefinitionRequest generates a "aws/request.Request" representing the
@@ -194,14 +285,13 @@ const opGetSuiteDefinition = "GetSuiteDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSuiteDefinitionRequest method.
+//	req, resp := client.GetSuiteDefinitionRequest(params)
 //
-//    // Example sending a request using the GetSuiteDefinitionRequest method.
-//    req, resp := client.GetSuiteDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetSuiteDefinition
 func (c *IoTDeviceAdvisor) GetSuiteDefinitionRequest(input *GetSuiteDefinitionInput) (req *request.Request, output *GetSuiteDefinitionOutput) {
@@ -224,6 +314,9 @@ func (c *IoTDeviceAdvisor) GetSuiteDefinitionRequest(input *GetSuiteDefinitionIn
 //
 // Gets information about a Device Advisor test suite.
 //
+// Requires permission to access the GetSuiteDefinition (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -232,14 +325,15 @@ func (c *IoTDeviceAdvisor) GetSuiteDefinitionRequest(input *GetSuiteDefinitionIn
 // API operation GetSuiteDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ValidationException
+//     Sends a validation exception.
 //
-//   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   - InternalServerException
+//     Sends an Internal Failure exception.
+//
+//   - ResourceNotFoundException
+//     Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetSuiteDefinition
 func (c *IoTDeviceAdvisor) GetSuiteDefinition(input *GetSuiteDefinitionInput) (*GetSuiteDefinitionOutput, error) {
@@ -279,14 +373,13 @@ const opGetSuiteRun = "GetSuiteRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSuiteRunRequest method.
+//	req, resp := client.GetSuiteRunRequest(params)
 //
-//    // Example sending a request using the GetSuiteRunRequest method.
-//    req, resp := client.GetSuiteRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetSuiteRun
 func (c *IoTDeviceAdvisor) GetSuiteRunRequest(input *GetSuiteRunInput) (req *request.Request, output *GetSuiteRunOutput) {
@@ -309,6 +402,9 @@ func (c *IoTDeviceAdvisor) GetSuiteRunRequest(input *GetSuiteRunInput) (req *req
 //
 // Gets information about a Device Advisor test suite run.
 //
+// Requires permission to access the GetSuiteRun (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -317,14 +413,15 @@ func (c *IoTDeviceAdvisor) GetSuiteRunRequest(input *GetSuiteRunInput) (req *req
 // API operation GetSuiteRun for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ValidationException
+//     Sends a validation exception.
 //
-//   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   - InternalServerException
+//     Sends an Internal Failure exception.
+//
+//   - ResourceNotFoundException
+//     Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetSuiteRun
 func (c *IoTDeviceAdvisor) GetSuiteRun(input *GetSuiteRunInput) (*GetSuiteRunOutput, error) {
@@ -364,14 +461,13 @@ const opGetSuiteRunReport = "GetSuiteRunReport"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSuiteRunReportRequest method.
+//	req, resp := client.GetSuiteRunReportRequest(params)
 //
-//    // Example sending a request using the GetSuiteRunReportRequest method.
-//    req, resp := client.GetSuiteRunReportRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetSuiteRunReport
 func (c *IoTDeviceAdvisor) GetSuiteRunReportRequest(input *GetSuiteRunReportInput) (req *request.Request, output *GetSuiteRunReportOutput) {
@@ -395,6 +491,9 @@ func (c *IoTDeviceAdvisor) GetSuiteRunReportRequest(input *GetSuiteRunReportInpu
 // Gets a report download link for a successful Device Advisor qualifying test
 // suite run.
 //
+// Requires permission to access the GetSuiteRunReport (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -403,14 +502,15 @@ func (c *IoTDeviceAdvisor) GetSuiteRunReportRequest(input *GetSuiteRunReportInpu
 // API operation GetSuiteRunReport for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ValidationException
+//     Sends a validation exception.
 //
-//   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   - InternalServerException
+//     Sends an Internal Failure exception.
+//
+//   - ResourceNotFoundException
+//     Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetSuiteRunReport
 func (c *IoTDeviceAdvisor) GetSuiteRunReport(input *GetSuiteRunReportInput) (*GetSuiteRunReportOutput, error) {
@@ -450,14 +550,13 @@ const opListSuiteDefinitions = "ListSuiteDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSuiteDefinitionsRequest method.
+//	req, resp := client.ListSuiteDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListSuiteDefinitionsRequest method.
-//    req, resp := client.ListSuiteDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/ListSuiteDefinitions
 func (c *IoTDeviceAdvisor) ListSuiteDefinitionsRequest(input *ListSuiteDefinitionsInput) (req *request.Request, output *ListSuiteDefinitionsOutput) {
@@ -486,6 +585,9 @@ func (c *IoTDeviceAdvisor) ListSuiteDefinitionsRequest(input *ListSuiteDefinitio
 //
 // Lists the Device Advisor test suites you have created.
 //
+// Requires permission to access the ListSuiteDefinitions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -494,11 +596,12 @@ func (c *IoTDeviceAdvisor) ListSuiteDefinitionsRequest(input *ListSuiteDefinitio
 // API operation ListSuiteDefinitions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ValidationException
+//     Sends a validation exception.
+//
+//   - InternalServerException
+//     Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/ListSuiteDefinitions
 func (c *IoTDeviceAdvisor) ListSuiteDefinitions(input *ListSuiteDefinitionsInput) (*ListSuiteDefinitionsOutput, error) {
@@ -530,15 +633,14 @@ func (c *IoTDeviceAdvisor) ListSuiteDefinitionsWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSuiteDefinitions operation.
-//    pageNum := 0
-//    err := client.ListSuiteDefinitionsPages(params,
-//        func(page *iotdeviceadvisor.ListSuiteDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSuiteDefinitions operation.
+//	pageNum := 0
+//	err := client.ListSuiteDefinitionsPages(params,
+//	    func(page *iotdeviceadvisor.ListSuiteDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *IoTDeviceAdvisor) ListSuiteDefinitionsPages(input *ListSuiteDefinitionsInput, fn func(*ListSuiteDefinitionsOutput, bool) bool) error {
 	return c.ListSuiteDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -590,14 +692,13 @@ const opListSuiteRuns = "ListSuiteRuns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSuiteRunsRequest method.
+//	req, resp := client.ListSuiteRunsRequest(params)
 //
-//    // Example sending a request using the ListSuiteRunsRequest method.
-//    req, resp := client.ListSuiteRunsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/ListSuiteRuns
 func (c *IoTDeviceAdvisor) ListSuiteRunsRequest(input *ListSuiteRunsInput) (req *request.Request, output *ListSuiteRunsOutput) {
@@ -624,8 +725,11 @@ func (c *IoTDeviceAdvisor) ListSuiteRunsRequest(input *ListSuiteRunsInput) (req 
 
 // ListSuiteRuns API operation for AWS IoT Core Device Advisor.
 //
-// Lists the runs of the specified Device Advisor test suite. You can list all
-// runs of the test suite, or the runs of a specific version of the test suite.
+// Lists runs of the specified Device Advisor test suite. You can list all runs
+// of the test suite, or the runs of a specific version of the test suite.
+//
+// Requires permission to access the ListSuiteRuns (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -635,11 +739,12 @@ func (c *IoTDeviceAdvisor) ListSuiteRunsRequest(input *ListSuiteRunsInput) (req 
 // API operation ListSuiteRuns for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ValidationException
+//     Sends a validation exception.
+//
+//   - InternalServerException
+//     Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/ListSuiteRuns
 func (c *IoTDeviceAdvisor) ListSuiteRuns(input *ListSuiteRunsInput) (*ListSuiteRunsOutput, error) {
@@ -671,15 +776,14 @@ func (c *IoTDeviceAdvisor) ListSuiteRunsWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSuiteRuns operation.
-//    pageNum := 0
-//    err := client.ListSuiteRunsPages(params,
-//        func(page *iotdeviceadvisor.ListSuiteRunsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSuiteRuns operation.
+//	pageNum := 0
+//	err := client.ListSuiteRunsPages(params,
+//	    func(page *iotdeviceadvisor.ListSuiteRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *IoTDeviceAdvisor) ListSuiteRunsPages(input *ListSuiteRunsInput, fn func(*ListSuiteRunsOutput, bool) bool) error {
 	return c.ListSuiteRunsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -731,14 +835,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/ListTagsForResource
 func (c *IoTDeviceAdvisor) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -761,6 +864,9 @@ func (c *IoTDeviceAdvisor) ListTagsForResourceRequest(input *ListTagsForResource
 //
 // Lists the tags attached to an IoT Device Advisor resource.
 //
+// Requires permission to access the ListTagsForResource (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -769,14 +875,15 @@ func (c *IoTDeviceAdvisor) ListTagsForResourceRequest(input *ListTagsForResource
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Sends Internal Failure Exception.
 //
-//   * ValidationException
-//   Sends invalid request exception.
+//   - InternalServerException
+//     Sends an Internal Failure exception.
 //
-//   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   - ValidationException
+//     Sends a validation exception.
+//
+//   - ResourceNotFoundException
+//     Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/ListTagsForResource
 func (c *IoTDeviceAdvisor) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -816,14 +923,13 @@ const opStartSuiteRun = "StartSuiteRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartSuiteRunRequest method.
+//	req, resp := client.StartSuiteRunRequest(params)
 //
-//    // Example sending a request using the StartSuiteRunRequest method.
-//    req, resp := client.StartSuiteRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/StartSuiteRun
 func (c *IoTDeviceAdvisor) StartSuiteRunRequest(input *StartSuiteRunInput) (req *request.Request, output *StartSuiteRunOutput) {
@@ -846,6 +952,9 @@ func (c *IoTDeviceAdvisor) StartSuiteRunRequest(input *StartSuiteRunInput) (req 
 //
 // Starts a Device Advisor test suite run.
 //
+// Requires permission to access the StartSuiteRun (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -854,14 +963,15 @@ func (c *IoTDeviceAdvisor) StartSuiteRunRequest(input *StartSuiteRunInput) (req 
 // API operation StartSuiteRun for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ValidationException
+//     Sends a validation exception.
 //
-//   * ConflictException
-//   Sends Conflict Exception.
+//   - InternalServerException
+//     Sends an Internal Failure exception.
+//
+//   - ConflictException
+//     Sends a Conflict Exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/StartSuiteRun
 func (c *IoTDeviceAdvisor) StartSuiteRun(input *StartSuiteRunInput) (*StartSuiteRunOutput, error) {
@@ -901,14 +1011,13 @@ const opStopSuiteRun = "StopSuiteRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopSuiteRunRequest method.
+//	req, resp := client.StopSuiteRunRequest(params)
 //
-//    // Example sending a request using the StopSuiteRunRequest method.
-//    req, resp := client.StopSuiteRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/StopSuiteRun
 func (c *IoTDeviceAdvisor) StopSuiteRunRequest(input *StopSuiteRunInput) (req *request.Request, output *StopSuiteRunOutput) {
@@ -932,6 +1041,9 @@ func (c *IoTDeviceAdvisor) StopSuiteRunRequest(input *StopSuiteRunInput) (req *r
 //
 // Stops a Device Advisor test suite run that is currently running.
 //
+// Requires permission to access the StopSuiteRun (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -940,14 +1052,15 @@ func (c *IoTDeviceAdvisor) StopSuiteRunRequest(input *StopSuiteRunInput) (req *r
 // API operation StopSuiteRun for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   - ValidationException
+//     Sends a validation exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ResourceNotFoundException
+//     Sends a Resource Not Found exception.
+//
+//   - InternalServerException
+//     Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/StopSuiteRun
 func (c *IoTDeviceAdvisor) StopSuiteRun(input *StopSuiteRunInput) (*StopSuiteRunOutput, error) {
@@ -987,14 +1100,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/TagResource
 func (c *IoTDeviceAdvisor) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1018,6 +1130,9 @@ func (c *IoTDeviceAdvisor) TagResourceRequest(input *TagResourceInput) (req *req
 //
 // Adds to and modifies existing tags of an IoT Device Advisor resource.
 //
+// Requires permission to access the TagResource (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1026,14 +1141,15 @@ func (c *IoTDeviceAdvisor) TagResourceRequest(input *TagResourceInput) (req *req
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Sends Internal Failure Exception.
 //
-//   * ValidationException
-//   Sends invalid request exception.
+//   - InternalServerException
+//     Sends an Internal Failure exception.
 //
-//   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   - ValidationException
+//     Sends a validation exception.
+//
+//   - ResourceNotFoundException
+//     Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/TagResource
 func (c *IoTDeviceAdvisor) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1073,14 +1189,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/UntagResource
 func (c *IoTDeviceAdvisor) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1104,6 +1219,9 @@ func (c *IoTDeviceAdvisor) UntagResourceRequest(input *UntagResourceInput) (req 
 //
 // Removes tags from an IoT Device Advisor resource.
 //
+// Requires permission to access the UntagResource (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1112,14 +1230,15 @@ func (c *IoTDeviceAdvisor) UntagResourceRequest(input *UntagResourceInput) (req 
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Sends Internal Failure Exception.
 //
-//   * ValidationException
-//   Sends invalid request exception.
+//   - InternalServerException
+//     Sends an Internal Failure exception.
 //
-//   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   - ValidationException
+//     Sends a validation exception.
+//
+//   - ResourceNotFoundException
+//     Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/UntagResource
 func (c *IoTDeviceAdvisor) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1159,14 +1278,13 @@ const opUpdateSuiteDefinition = "UpdateSuiteDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSuiteDefinitionRequest method.
+//	req, resp := client.UpdateSuiteDefinitionRequest(params)
 //
-//    // Example sending a request using the UpdateSuiteDefinitionRequest method.
-//    req, resp := client.UpdateSuiteDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/UpdateSuiteDefinition
 func (c *IoTDeviceAdvisor) UpdateSuiteDefinitionRequest(input *UpdateSuiteDefinitionInput) (req *request.Request, output *UpdateSuiteDefinitionOutput) {
@@ -1189,6 +1307,9 @@ func (c *IoTDeviceAdvisor) UpdateSuiteDefinitionRequest(input *UpdateSuiteDefini
 //
 // Updates a Device Advisor test suite.
 //
+// Requires permission to access the UpdateSuiteDefinition (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1197,11 +1318,12 @@ func (c *IoTDeviceAdvisor) UpdateSuiteDefinitionRequest(input *UpdateSuiteDefini
 // API operation UpdateSuiteDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Sends invalid request exception.
 //
-//   * InternalServerException
-//   Sends Internal Failure Exception.
+//   - ValidationException
+//     Sends a validation exception.
+//
+//   - InternalServerException
+//     Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/UpdateSuiteDefinition
 func (c *IoTDeviceAdvisor) UpdateSuiteDefinition(input *UpdateSuiteDefinitionInput) (*UpdateSuiteDefinitionOutput, error) {
@@ -1225,21 +1347,29 @@ func (c *IoTDeviceAdvisor) UpdateSuiteDefinitionWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
-// Sends Conflict Exception.
+// Sends a Conflict Exception.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Sends Conflict Exception message.
+	// Sends a Conflict Exception message.
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -1286,18 +1416,28 @@ type CreateSuiteDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
 	// Creates a Device Advisor test suite with suite definition configuration.
-	SuiteDefinitionConfiguration *SuiteDefinitionConfiguration `locationName:"suiteDefinitionConfiguration" type:"structure"`
+	//
+	// SuiteDefinitionConfiguration is a required field
+	SuiteDefinitionConfiguration *SuiteDefinitionConfiguration `locationName:"suiteDefinitionConfiguration" type:"structure" required:"true"`
 
 	// The tags to be attached to the suite definition.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSuiteDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSuiteDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -1305,6 +1445,9 @@ func (s CreateSuiteDefinitionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateSuiteDefinitionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateSuiteDefinitionInput"}
+	if s.SuiteDefinitionConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("SuiteDefinitionConfiguration"))
+	}
 	if s.SuiteDefinitionConfiguration != nil {
 		if err := s.SuiteDefinitionConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("SuiteDefinitionConfiguration", err.(request.ErrInvalidParams))
@@ -1332,25 +1475,33 @@ func (s *CreateSuiteDefinitionInput) SetTags(v map[string]*string) *CreateSuiteD
 type CreateSuiteDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Creates a Device Advisor test suite with TimeStamp of when it was created.
+	// The timestamp of when the test suite was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// Creates a Device Advisor test suite with Amazon Resource name.
+	// The Amazon Resource Name (ARN) of the test suite.
 	SuiteDefinitionArn *string `locationName:"suiteDefinitionArn" min:"20" type:"string"`
 
-	// Creates a Device Advisor test suite with suite UUID.
+	// The UUID of the test suite created.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
-	// Creates a Device Advisor test suite with suite definition name.
+	// The suite definition name of the test suite. This is a required parameter.
 	SuiteDefinitionName *string `locationName:"suiteDefinitionName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSuiteDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSuiteDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -1380,20 +1531,28 @@ func (s *CreateSuiteDefinitionOutput) SetSuiteDefinitionName(v string) *CreateSu
 }
 
 type DeleteSuiteDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Suite definition Id of the test suite to be deleted.
+	// Suite definition ID of the test suite to be deleted.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSuiteDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSuiteDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -1424,33 +1583,53 @@ type DeleteSuiteDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSuiteDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSuiteDefinitionOutput) GoString() string {
 	return s.String()
 }
 
-// Lists all the devices under test
+// Information of a test device. A thing ARN, certificate ARN or device role
+// ARN is required.
 type DeviceUnderTest struct {
 	_ struct{} `type:"structure"`
 
-	// Lists devices certificate arn
+	// Lists device's certificate ARN.
 	CertificateArn *string `locationName:"certificateArn" min:"20" type:"string"`
 
-	// Lists devices thing arn
+	// Lists device's role ARN.
+	DeviceRoleArn *string `locationName:"deviceRoleArn" min:"20" type:"string"`
+
+	// Lists device's thing ARN.
 	ThingArn *string `locationName:"thingArn" min:"20" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceUnderTest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceUnderTest) GoString() string {
 	return s.String()
 }
@@ -1460,6 +1639,9 @@ func (s *DeviceUnderTest) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeviceUnderTest"}
 	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+	if s.DeviceRoleArn != nil && len(*s.DeviceRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceRoleArn", 20))
 	}
 	if s.ThingArn != nil && len(*s.ThingArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ThingArn", 20))
@@ -1477,16 +1659,130 @@ func (s *DeviceUnderTest) SetCertificateArn(v string) *DeviceUnderTest {
 	return s
 }
 
+// SetDeviceRoleArn sets the DeviceRoleArn field's value.
+func (s *DeviceUnderTest) SetDeviceRoleArn(v string) *DeviceUnderTest {
+	s.DeviceRoleArn = &v
+	return s
+}
+
 // SetThingArn sets the ThingArn field's value.
 func (s *DeviceUnderTest) SetThingArn(v string) *DeviceUnderTest {
 	s.ThingArn = &v
 	return s
 }
 
-type GetSuiteDefinitionInput struct {
+type GetEndpointInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The authentication method used during the device connection.
+	AuthenticationMethod *string `location:"querystring" locationName:"authenticationMethod" type:"string" enum:"AuthenticationMethod"`
+
+	// The certificate ARN of the device. This is an optional parameter.
+	CertificateArn *string `location:"querystring" locationName:"certificateArn" min:"20" type:"string"`
+
+	// The device role ARN of the device. This is an optional parameter.
+	DeviceRoleArn *string `location:"querystring" locationName:"deviceRoleArn" min:"20" type:"string"`
+
+	// The thing ARN of the device. This is an optional parameter.
+	ThingArn *string `location:"querystring" locationName:"thingArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEndpointInput"}
+	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+	if s.DeviceRoleArn != nil && len(*s.DeviceRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceRoleArn", 20))
+	}
+	if s.ThingArn != nil && len(*s.ThingArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationMethod sets the AuthenticationMethod field's value.
+func (s *GetEndpointInput) SetAuthenticationMethod(v string) *GetEndpointInput {
+	s.AuthenticationMethod = &v
+	return s
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *GetEndpointInput) SetCertificateArn(v string) *GetEndpointInput {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetDeviceRoleArn sets the DeviceRoleArn field's value.
+func (s *GetEndpointInput) SetDeviceRoleArn(v string) *GetEndpointInput {
+	s.DeviceRoleArn = &v
+	return s
+}
+
+// SetThingArn sets the ThingArn field's value.
+func (s *GetEndpointInput) SetThingArn(v string) *GetEndpointInput {
+	s.ThingArn = &v
+	return s
+}
+
+type GetEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Suite definition Id of the test suite to get.
+	// The response of an Device Advisor endpoint.
+	Endpoint *string `locationName:"endpoint" min:"45" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *GetEndpointOutput) SetEndpoint(v string) *GetEndpointOutput {
+	s.Endpoint = &v
+	return s
+}
+
+type GetSuiteDefinitionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Suite definition ID of the test suite to get.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
@@ -1495,12 +1791,20 @@ type GetSuiteDefinitionInput struct {
 	SuiteDefinitionVersion *string `location:"querystring" locationName:"suiteDefinitionVersion" min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -1554,7 +1858,7 @@ type GetSuiteDefinitionOutput struct {
 	// Suite configuration of the suite definition.
 	SuiteDefinitionConfiguration *SuiteDefinitionConfiguration `locationName:"suiteDefinitionConfiguration" type:"structure"`
 
-	// Suite definition Id of the suite definition.
+	// Suite definition ID of the suite definition.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Suite definition version of the suite definition.
@@ -1564,12 +1868,20 @@ type GetSuiteDefinitionOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -1623,25 +1935,33 @@ func (s *GetSuiteDefinitionOutput) SetTags(v map[string]*string) *GetSuiteDefini
 }
 
 type GetSuiteRunInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Suite definition Id for the test suite run.
+	// Suite definition ID for the test suite run.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
 
-	// Suite run Id for the test suite run.
+	// Suite run ID for the test suite run.
 	//
 	// SuiteRunId is a required field
 	SuiteRunId *string `location:"uri" locationName:"suiteRunId" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteRunInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteRunInput) GoString() string {
 	return s.String()
 }
@@ -1689,13 +2009,13 @@ type GetSuiteRunOutput struct {
 	// Error reason for any test suite run failure.
 	ErrorReason *string `locationName:"errorReason" type:"string"`
 
-	// Date (in Unix epoch time) when the test suite run was started.
+	// Date (in Unix epoch time) when the test suite run started.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// Status for the test suite run.
 	Status *string `locationName:"status" type:"string" enum:"SuiteRunStatus"`
 
-	// Suite definition Id for the test suite run.
+	// Suite definition ID for the test suite run.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Suite definition version for the test suite run.
@@ -1707,7 +2027,7 @@ type GetSuiteRunOutput struct {
 	// Suite run configuration for the test suite run.
 	SuiteRunConfiguration *SuiteRunConfiguration `locationName:"suiteRunConfiguration" type:"structure"`
 
-	// Suite run Id for the test suite run.
+	// Suite run ID for the test suite run.
 	SuiteRunId *string `locationName:"suiteRunId" min:"12" type:"string"`
 
 	// The tags attached to the suite run.
@@ -1717,12 +2037,20 @@ type GetSuiteRunOutput struct {
 	TestResult *TestResult `locationName:"testResult" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteRunOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteRunOutput) GoString() string {
 	return s.String()
 }
@@ -1794,25 +2122,33 @@ func (s *GetSuiteRunOutput) SetTestResult(v *TestResult) *GetSuiteRunOutput {
 }
 
 type GetSuiteRunReportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Suite definition Id of the test suite.
+	// Suite definition ID of the test suite.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
 
-	// Suite run Id of the test suite run.
+	// Suite run ID of the test suite run.
 	//
 	// SuiteRunId is a required field
 	SuiteRunId *string `location:"uri" locationName:"suiteRunId" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteRunReportInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteRunReportInput) GoString() string {
 	return s.String()
 }
@@ -1858,12 +2194,20 @@ type GetSuiteRunReportOutput struct {
 	QualificationReportDownloadUrl *string `locationName:"qualificationReportDownloadUrl" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteRunReportOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSuiteRunReportOutput) GoString() string {
 	return s.String()
 }
@@ -1878,7 +2222,7 @@ func (s *GetSuiteRunReportOutput) SetQualificationReportDownloadUrl(v string) *G
 type GroupResult struct {
 	_ struct{} `type:"structure"`
 
-	// Group result Id.
+	// Group result ID.
 	GroupId *string `locationName:"groupId" min:"12" type:"string"`
 
 	// Group Result Name.
@@ -1888,12 +2232,20 @@ type GroupResult struct {
 	Tests []*TestCaseRun `locationName:"tests" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupResult) GoString() string {
 	return s.String()
 }
@@ -1916,21 +2268,29 @@ func (s *GroupResult) SetTests(v []*TestCaseRun) *GroupResult {
 	return s
 }
 
-// Sends Internal Failure Exception.
+// Sends an Internal Failure exception.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Sends Internal Failure Exception message.
+	// Sends an Internal Failure Exception message.
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -1974,7 +2334,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListSuiteDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return at once.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -1983,12 +2343,20 @@ type ListSuiteDefinitionsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuiteDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuiteDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -2029,12 +2397,20 @@ type ListSuiteDefinitionsOutput struct {
 	SuiteDefinitionInformationList []*SuiteDefinitionInformation `locationName:"suiteDefinitionInformationList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuiteDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuiteDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -2052,7 +2428,7 @@ func (s *ListSuiteDefinitionsOutput) SetSuiteDefinitionInformationList(v []*Suit
 }
 
 type ListSuiteRunsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return at once.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -2061,7 +2437,7 @@ type ListSuiteRunsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// Lists the test suite runs of the specified test suite based on suite definition
-	// Id.
+	// ID.
 	SuiteDefinitionId *string `location:"querystring" locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Must be passed along with suiteDefinitionId. Lists the test suite runs of
@@ -2069,12 +2445,20 @@ type ListSuiteRunsInput struct {
 	SuiteDefinitionVersion *string `location:"querystring" locationName:"suiteDefinitionVersion" min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuiteRunsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuiteRunsInput) GoString() string {
 	return s.String()
 }
@@ -2133,12 +2517,20 @@ type ListSuiteRunsOutput struct {
 	SuiteRunsList []*SuiteRunInformation `locationName:"suiteRunsList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuiteRunsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSuiteRunsOutput) GoString() string {
 	return s.String()
 }
@@ -2156,20 +2548,29 @@ func (s *ListSuiteRunsOutput) SetSuiteRunsList(v []*SuiteRunInformation) *ListSu
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN of the IoT Device Advisor resource.
+	// The resource ARN of the IoT Device Advisor resource. This can be SuiteDefinition
+	// ARN or SuiteRun ARN.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -2203,12 +2604,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -2219,21 +2628,29 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Sends Resource Not Found Exception.
+// Sends a Resource Not Found exception.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Sends Resource Not Found Exception message.
+	// Sends a Resource Not Found Exception message.
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -2279,7 +2696,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 type StartSuiteRunInput struct {
 	_ struct{} `type:"structure"`
 
-	// Suite definition Id of the test suite.
+	// Suite definition ID of the test suite.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
@@ -2288,18 +2705,28 @@ type StartSuiteRunInput struct {
 	SuiteDefinitionVersion *string `locationName:"suiteDefinitionVersion" min:"2" type:"string"`
 
 	// Suite run configuration.
-	SuiteRunConfiguration *SuiteRunConfiguration `locationName:"suiteRunConfiguration" type:"structure"`
+	//
+	// SuiteRunConfiguration is a required field
+	SuiteRunConfiguration *SuiteRunConfiguration `locationName:"suiteRunConfiguration" type:"structure" required:"true"`
 
 	// The tags to be attached to the suite run.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSuiteRunInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSuiteRunInput) GoString() string {
 	return s.String()
 }
@@ -2315,6 +2742,9 @@ func (s *StartSuiteRunInput) Validate() error {
 	}
 	if s.SuiteDefinitionVersion != nil && len(*s.SuiteDefinitionVersion) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("SuiteDefinitionVersion", 2))
+	}
+	if s.SuiteRunConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("SuiteRunConfiguration"))
 	}
 	if s.SuiteRunConfiguration != nil {
 		if err := s.SuiteRunConfiguration.Validate(); err != nil {
@@ -2355,22 +2785,33 @@ func (s *StartSuiteRunInput) SetTags(v map[string]*string) *StartSuiteRunInput {
 type StartSuiteRunOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Date (in Unix epoch time) when the suite run was created.
+	// Starts a Device Advisor test suite run based on suite create time.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// Amazon resource name of the started suite run.
+	// The response of an Device Advisor test endpoint.
+	Endpoint *string `locationName:"endpoint" min:"45" type:"string"`
+
+	// Amazon Resource Name (ARN) of the started suite run.
 	SuiteRunArn *string `locationName:"suiteRunArn" min:"20" type:"string"`
 
-	// Suite Run Id of the started suite run.
+	// Suite Run ID of the started suite run.
 	SuiteRunId *string `locationName:"suiteRunId" min:"12" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSuiteRunOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartSuiteRunOutput) GoString() string {
 	return s.String()
 }
@@ -2378,6 +2819,12 @@ func (s StartSuiteRunOutput) GoString() string {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *StartSuiteRunOutput) SetCreatedAt(v time.Time) *StartSuiteRunOutput {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *StartSuiteRunOutput) SetEndpoint(v string) *StartSuiteRunOutput {
+	s.Endpoint = &v
 	return s
 }
 
@@ -2394,25 +2841,33 @@ func (s *StartSuiteRunOutput) SetSuiteRunId(v string) *StartSuiteRunOutput {
 }
 
 type StopSuiteRunInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Suite definition Id of the test suite run to be stopped.
+	// Suite definition ID of the test suite run to be stopped.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
 
-	// Suite run Id of the test suite run to be stopped.
+	// Suite run ID of the test suite run to be stopped.
 	//
 	// SuiteRunId is a required field
 	SuiteRunId *string `location:"uri" locationName:"suiteRunId" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopSuiteRunInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopSuiteRunInput) GoString() string {
 	return s.String()
 }
@@ -2455,22 +2910,32 @@ type StopSuiteRunOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopSuiteRunOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopSuiteRunOutput) GoString() string {
 	return s.String()
 }
 
-// Gets Suite Definition Configuration.
+// Gets the suite definition configuration.
 type SuiteDefinitionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Gets device permission arn.
-	DevicePermissionRoleArn *string `locationName:"devicePermissionRoleArn" min:"20" type:"string"`
+	// Gets the device permission ARN. This is a required parameter.
+	//
+	// DevicePermissionRoleArn is a required field
+	DevicePermissionRoleArn *string `locationName:"devicePermissionRoleArn" min:"20" type:"string" required:"true"`
 
 	// Gets the devices configured.
 	Devices []*DeviceUnderTest `locationName:"devices" type:"list"`
@@ -2478,19 +2943,46 @@ type SuiteDefinitionConfiguration struct {
 	// Gets the tests intended for qualification in a suite.
 	IntendedForQualification *bool `locationName:"intendedForQualification" type:"boolean"`
 
-	// Gets test suite root group.
-	RootGroup *string `locationName:"rootGroup" min:"1" type:"string"`
+	// Verifies if the test suite is a long duration test.
+	IsLongDurationTest *bool `locationName:"isLongDurationTest" type:"boolean"`
 
-	// Gets Suite Definition Configuration name.
-	SuiteDefinitionName *string `locationName:"suiteDefinitionName" min:"1" type:"string"`
+	// Sets the MQTT protocol that is configured in the suite definition.
+	Protocol *string `locationName:"protocol" type:"string" enum:"Protocol"`
+
+	// Gets the test suite root group. This is a required parameter. For updating
+	// or creating the latest qualification suite, if intendedForQualification is
+	// set to true, rootGroup can be an empty string. If intendedForQualification
+	// is false, rootGroup cannot be an empty string. If rootGroup is empty, and
+	// intendedForQualification is set to true, all the qualification tests are
+	// included, and the configuration is default.
+	//
+	// For a qualification suite, the minimum length is 0, and the maximum is 2048.
+	// For a non-qualification suite, the minimum length is 1, and the maximum is
+	// 2048.
+	//
+	// RootGroup is a required field
+	RootGroup *string `locationName:"rootGroup" type:"string" required:"true"`
+
+	// Gets the suite definition name. This is a required parameter.
+	//
+	// SuiteDefinitionName is a required field
+	SuiteDefinitionName *string `locationName:"suiteDefinitionName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuiteDefinitionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuiteDefinitionConfiguration) GoString() string {
 	return s.String()
 }
@@ -2498,11 +2990,17 @@ func (s SuiteDefinitionConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SuiteDefinitionConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SuiteDefinitionConfiguration"}
+	if s.DevicePermissionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DevicePermissionRoleArn"))
+	}
 	if s.DevicePermissionRoleArn != nil && len(*s.DevicePermissionRoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("DevicePermissionRoleArn", 20))
 	}
-	if s.RootGroup != nil && len(*s.RootGroup) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RootGroup", 1))
+	if s.RootGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("RootGroup"))
+	}
+	if s.SuiteDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SuiteDefinitionName"))
 	}
 	if s.SuiteDefinitionName != nil && len(*s.SuiteDefinitionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SuiteDefinitionName", 1))
@@ -2542,6 +3040,18 @@ func (s *SuiteDefinitionConfiguration) SetIntendedForQualification(v bool) *Suit
 	return s
 }
 
+// SetIsLongDurationTest sets the IsLongDurationTest field's value.
+func (s *SuiteDefinitionConfiguration) SetIsLongDurationTest(v bool) *SuiteDefinitionConfiguration {
+	s.IsLongDurationTest = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *SuiteDefinitionConfiguration) SetProtocol(v string) *SuiteDefinitionConfiguration {
+	s.Protocol = &v
+	return s
+}
+
 // SetRootGroup sets the RootGroup field's value.
 func (s *SuiteDefinitionConfiguration) SetRootGroup(v string) *SuiteDefinitionConfiguration {
 	s.RootGroup = &v
@@ -2561,25 +3071,39 @@ type SuiteDefinitionInformation struct {
 	// Date (in Unix epoch time) when the test suite was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// Specifies the devices under test for the test suite.
+	// Specifies the devices that are under test for the test suite.
 	DefaultDevices []*DeviceUnderTest `locationName:"defaultDevices" type:"list"`
 
 	// Specifies if the test suite is intended for qualification.
 	IntendedForQualification *bool `locationName:"intendedForQualification" type:"boolean"`
 
-	// Suite definition Id of the test suite.
+	// Verifies if the test suite is a long duration test.
+	IsLongDurationTest *bool `locationName:"isLongDurationTest" type:"boolean"`
+
+	// Gets the MQTT protocol that is configured in the suite definition.
+	Protocol *string `locationName:"protocol" type:"string" enum:"Protocol"`
+
+	// Suite definition ID of the test suite.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Suite name of the test suite.
 	SuiteDefinitionName *string `locationName:"suiteDefinitionName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuiteDefinitionInformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuiteDefinitionInformation) GoString() string {
 	return s.String()
 }
@@ -2602,6 +3126,18 @@ func (s *SuiteDefinitionInformation) SetIntendedForQualification(v bool) *SuiteD
 	return s
 }
 
+// SetIsLongDurationTest sets the IsLongDurationTest field's value.
+func (s *SuiteDefinitionInformation) SetIsLongDurationTest(v bool) *SuiteDefinitionInformation {
+	s.IsLongDurationTest = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *SuiteDefinitionInformation) SetProtocol(v string) *SuiteDefinitionInformation {
+	s.Protocol = &v
+	return s
+}
+
 // SetSuiteDefinitionId sets the SuiteDefinitionId field's value.
 func (s *SuiteDefinitionInformation) SetSuiteDefinitionId(v string) *SuiteDefinitionInformation {
 	s.SuiteDefinitionId = &v
@@ -2618,19 +3154,33 @@ func (s *SuiteDefinitionInformation) SetSuiteDefinitionName(v string) *SuiteDefi
 type SuiteRunConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Gets the primary device for suite run.
-	PrimaryDevice *DeviceUnderTest `locationName:"primaryDevice" type:"structure"`
+	// TRUE if multiple test suites run in parallel.
+	ParallelRun *bool `locationName:"parallelRun" type:"boolean"`
 
-	// Gets test case list.
+	// Sets the primary device for the test suite run. This requires a thing ARN
+	// or a certificate ARN.
+	//
+	// PrimaryDevice is a required field
+	PrimaryDevice *DeviceUnderTest `locationName:"primaryDevice" type:"structure" required:"true"`
+
+	// Sets test case list.
 	SelectedTestList []*string `locationName:"selectedTestList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuiteRunConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuiteRunConfiguration) GoString() string {
 	return s.String()
 }
@@ -2638,6 +3188,9 @@ func (s SuiteRunConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SuiteRunConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SuiteRunConfiguration"}
+	if s.PrimaryDevice == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrimaryDevice"))
+	}
 	if s.PrimaryDevice != nil {
 		if err := s.PrimaryDevice.Validate(); err != nil {
 			invalidParams.AddNested("PrimaryDevice", err.(request.ErrInvalidParams))
@@ -2648,6 +3201,12 @@ func (s *SuiteRunConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetParallelRun sets the ParallelRun field's value.
+func (s *SuiteRunConfiguration) SetParallelRun(v bool) *SuiteRunConfiguration {
+	s.ParallelRun = &v
+	return s
 }
 
 // SetPrimaryDevice sets the PrimaryDevice field's value.
@@ -2663,6 +3222,9 @@ func (s *SuiteRunConfiguration) SetSelectedTestList(v []*string) *SuiteRunConfig
 }
 
 // Information about the suite run.
+//
+// Requires permission to access the SuiteRunInformation (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 type SuiteRunInformation struct {
 	_ struct{} `type:"structure"`
 
@@ -2684,7 +3246,7 @@ type SuiteRunInformation struct {
 	// Status of the suite run.
 	Status *string `locationName:"status" type:"string" enum:"SuiteRunStatus"`
 
-	// Suite definition Id of the suite run.
+	// Suite definition ID of the suite run.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Suite definition name of the suite run.
@@ -2693,16 +3255,24 @@ type SuiteRunInformation struct {
 	// Suite definition version of the suite run.
 	SuiteDefinitionVersion *string `locationName:"suiteDefinitionVersion" min:"2" type:"string"`
 
-	// Suite run Id of the suite run.
+	// Suite run ID of the suite run.
 	SuiteRunId *string `locationName:"suiteRunId" min:"12" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuiteRunInformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuiteRunInformation) GoString() string {
 	return s.String()
 }
@@ -2770,7 +3340,8 @@ func (s *SuiteRunInformation) SetSuiteRunId(v string) *SuiteRunInformation {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource ARN of an IoT Device Advisor resource.
+	// The resource ARN of an IoT Device Advisor resource. This can be SuiteDefinition
+	// ARN or SuiteRun ARN.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -2781,12 +3352,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -2826,17 +3405,25 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Provides test case run.
+// Provides the test case run.
 type TestCaseRun struct {
 	_ struct{} `type:"structure"`
 
@@ -2846,34 +3433,63 @@ type TestCaseRun struct {
 	// Provides test case run failure result.
 	Failure *string `locationName:"failure" type:"string"`
 
-	// Provides test case run log Url.
+	// Provides test case run log URL.
 	LogUrl *string `locationName:"logUrl" type:"string"`
 
 	// Provides test case run start time.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
-	// Provides test case run status.
+	// Provides the test case run status. Status is one of the following:
+	//
+	//    * PASS: Test passed.
+	//
+	//    * FAIL: Test failed.
+	//
+	//    * PENDING: Test has not started running but is scheduled.
+	//
+	//    * RUNNING: Test is running.
+	//
+	//    * STOPPING: Test is performing cleanup steps. You will see this status
+	//    only if you stop a suite run.
+	//
+	//    * STOPPED Test is stopped. You will see this status only if you stop a
+	//    suite run.
+	//
+	//    * PASS_WITH_WARNINGS: Test passed with warnings.
+	//
+	//    * ERORR: Test faced an error when running due to an internal issue.
 	Status *string `locationName:"status" type:"string" enum:"Status"`
 
-	// Provides test case run definition Id.
+	// Provides the test case run definition ID.
 	TestCaseDefinitionId *string `locationName:"testCaseDefinitionId" min:"12" type:"string"`
 
-	// Provides test case run definition Name.
+	// Provides the test case run definition name.
 	TestCaseDefinitionName *string `locationName:"testCaseDefinitionName" type:"string"`
 
-	// Provides test case run Id.
+	// Provides the test case run ID.
 	TestCaseRunId *string `locationName:"testCaseRunId" min:"12" type:"string"`
+
+	// Provides the test scenarios for the test case run.
+	TestScenarios []*TestCaseScenario `locationName:"testScenarios" type:"list"`
 
 	// Provides test case run warnings.
 	Warnings *string `locationName:"warnings" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestCaseRun) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestCaseRun) GoString() string {
 	return s.String()
 }
@@ -2926,9 +3542,105 @@ func (s *TestCaseRun) SetTestCaseRunId(v string) *TestCaseRun {
 	return s
 }
 
+// SetTestScenarios sets the TestScenarios field's value.
+func (s *TestCaseRun) SetTestScenarios(v []*TestCaseScenario) *TestCaseRun {
+	s.TestScenarios = v
+	return s
+}
+
 // SetWarnings sets the Warnings field's value.
 func (s *TestCaseRun) SetWarnings(v string) *TestCaseRun {
 	s.Warnings = &v
+	return s
+}
+
+// Provides test case scenario.
+type TestCaseScenario struct {
+	_ struct{} `type:"structure"`
+
+	// Provides test case scenario failure result.
+	Failure *string `locationName:"failure" type:"string"`
+
+	// Provides the test case scenario status. Status is one of the following:
+	//
+	//    * PASS: Test passed.
+	//
+	//    * FAIL: Test failed.
+	//
+	//    * PENDING: Test has not started running but is scheduled.
+	//
+	//    * RUNNING: Test is running.
+	//
+	//    * STOPPING: Test is performing cleanup steps. You will see this status
+	//    only if you stop a suite run.
+	//
+	//    * STOPPED Test is stopped. You will see this status only if you stop a
+	//    suite run.
+	//
+	//    * PASS_WITH_WARNINGS: Test passed with warnings.
+	//
+	//    * ERORR: Test faced an error when running due to an internal issue.
+	Status *string `locationName:"status" type:"string" enum:"TestCaseScenarioStatus"`
+
+	// Provides test case scenario system messages if any.
+	SystemMessage *string `locationName:"systemMessage" type:"string"`
+
+	// Provides test case scenario ID.
+	TestCaseScenarioId *string `locationName:"testCaseScenarioId" type:"string"`
+
+	// Provides test case scenario type. Type is one of the following:
+	//
+	//    * Advanced
+	//
+	//    * Basic
+	TestCaseScenarioType *string `locationName:"testCaseScenarioType" type:"string" enum:"TestCaseScenarioType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestCaseScenario) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestCaseScenario) GoString() string {
+	return s.String()
+}
+
+// SetFailure sets the Failure field's value.
+func (s *TestCaseScenario) SetFailure(v string) *TestCaseScenario {
+	s.Failure = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TestCaseScenario) SetStatus(v string) *TestCaseScenario {
+	s.Status = &v
+	return s
+}
+
+// SetSystemMessage sets the SystemMessage field's value.
+func (s *TestCaseScenario) SetSystemMessage(v string) *TestCaseScenario {
+	s.SystemMessage = &v
+	return s
+}
+
+// SetTestCaseScenarioId sets the TestCaseScenarioId field's value.
+func (s *TestCaseScenario) SetTestCaseScenarioId(v string) *TestCaseScenario {
+	s.TestCaseScenarioId = &v
+	return s
+}
+
+// SetTestCaseScenarioType sets the TestCaseScenarioType field's value.
+func (s *TestCaseScenario) SetTestCaseScenarioType(v string) *TestCaseScenario {
+	s.TestCaseScenarioType = &v
 	return s
 }
 
@@ -2940,12 +3652,20 @@ type TestResult struct {
 	Groups []*GroupResult `locationName:"groups" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestResult) GoString() string {
 	return s.String()
 }
@@ -2957,9 +3677,10 @@ func (s *TestResult) SetGroups(v []*GroupResult) *TestResult {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The resource ARN of an IoT Device Advisor resource.
+	// The resource ARN of an IoT Device Advisor resource. This can be SuiteDefinition
+	// ARN or SuiteRun ARN.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -2970,12 +3691,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -3015,12 +3744,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -3029,20 +3766,30 @@ type UpdateSuiteDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
 	// Updates a Device Advisor test suite with suite definition configuration.
-	SuiteDefinitionConfiguration *SuiteDefinitionConfiguration `locationName:"suiteDefinitionConfiguration" type:"structure"`
+	//
+	// SuiteDefinitionConfiguration is a required field
+	SuiteDefinitionConfiguration *SuiteDefinitionConfiguration `locationName:"suiteDefinitionConfiguration" type:"structure" required:"true"`
 
-	// Suite definition Id of the test suite to be updated.
+	// Suite definition ID of the test suite to be updated.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSuiteDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSuiteDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -3050,6 +3797,9 @@ func (s UpdateSuiteDefinitionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateSuiteDefinitionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateSuiteDefinitionInput"}
+	if s.SuiteDefinitionConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("SuiteDefinitionConfiguration"))
+	}
 	if s.SuiteDefinitionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SuiteDefinitionId"))
 	}
@@ -3089,25 +3839,33 @@ type UpdateSuiteDefinitionOutput struct {
 	// Timestamp of when the test suite was updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// Amazon Resource name of the updated test suite.
+	// Amazon Resource Name (ARN) of the updated test suite.
 	SuiteDefinitionArn *string `locationName:"suiteDefinitionArn" min:"20" type:"string"`
 
-	// Suite definition Id of the updated test suite.
+	// Suite definition ID of the updated test suite.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
-	// Suite definition name of the updated test suite.
+	// Updates the suite definition name. This is a required parameter.
 	SuiteDefinitionName *string `locationName:"suiteDefinitionName" min:"1" type:"string"`
 
 	// Suite definition version of the updated test suite.
 	SuiteDefinitionVersion *string `locationName:"suiteDefinitionVersion" min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSuiteDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSuiteDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -3148,21 +3906,29 @@ func (s *UpdateSuiteDefinitionOutput) SetSuiteDefinitionVersion(v string) *Updat
 	return s
 }
 
-// Sends invalid request exception.
+// Sends a validation exception.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Sends invalid request exception message.
+	// Sends a Validation Exception message.
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -3203,6 +3969,46 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// AuthenticationMethodX509clientCertificate is a AuthenticationMethod enum value
+	AuthenticationMethodX509clientCertificate = "X509ClientCertificate"
+
+	// AuthenticationMethodSignatureVersion4 is a AuthenticationMethod enum value
+	AuthenticationMethodSignatureVersion4 = "SignatureVersion4"
+)
+
+// AuthenticationMethod_Values returns all elements of the AuthenticationMethod enum
+func AuthenticationMethod_Values() []string {
+	return []string{
+		AuthenticationMethodX509clientCertificate,
+		AuthenticationMethodSignatureVersion4,
+	}
+}
+
+const (
+	// ProtocolMqttV311 is a Protocol enum value
+	ProtocolMqttV311 = "MqttV3_1_1"
+
+	// ProtocolMqttV5 is a Protocol enum value
+	ProtocolMqttV5 = "MqttV5"
+
+	// ProtocolMqttV311OverWebSocket is a Protocol enum value
+	ProtocolMqttV311OverWebSocket = "MqttV3_1_1_OverWebSocket"
+
+	// ProtocolMqttV5OverWebSocket is a Protocol enum value
+	ProtocolMqttV5OverWebSocket = "MqttV5_OverWebSocket"
+)
+
+// Protocol_Values returns all elements of the Protocol enum
+func Protocol_Values() []string {
+	return []string{
+		ProtocolMqttV311,
+		ProtocolMqttV5,
+		ProtocolMqttV311OverWebSocket,
+		ProtocolMqttV5OverWebSocket,
+	}
 }
 
 const (
@@ -3290,5 +4096,65 @@ func SuiteRunStatus_Values() []string {
 		SuiteRunStatusStopped,
 		SuiteRunStatusPassWithWarnings,
 		SuiteRunStatusError,
+	}
+}
+
+const (
+	// TestCaseScenarioStatusPass is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusPass = "PASS"
+
+	// TestCaseScenarioStatusFail is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusFail = "FAIL"
+
+	// TestCaseScenarioStatusCanceled is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusCanceled = "CANCELED"
+
+	// TestCaseScenarioStatusPending is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusPending = "PENDING"
+
+	// TestCaseScenarioStatusRunning is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusRunning = "RUNNING"
+
+	// TestCaseScenarioStatusStopping is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusStopping = "STOPPING"
+
+	// TestCaseScenarioStatusStopped is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusStopped = "STOPPED"
+
+	// TestCaseScenarioStatusPassWithWarnings is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusPassWithWarnings = "PASS_WITH_WARNINGS"
+
+	// TestCaseScenarioStatusError is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusError = "ERROR"
+)
+
+// TestCaseScenarioStatus_Values returns all elements of the TestCaseScenarioStatus enum
+func TestCaseScenarioStatus_Values() []string {
+	return []string{
+		TestCaseScenarioStatusPass,
+		TestCaseScenarioStatusFail,
+		TestCaseScenarioStatusCanceled,
+		TestCaseScenarioStatusPending,
+		TestCaseScenarioStatusRunning,
+		TestCaseScenarioStatusStopping,
+		TestCaseScenarioStatusStopped,
+		TestCaseScenarioStatusPassWithWarnings,
+		TestCaseScenarioStatusError,
+	}
+}
+
+const (
+	// TestCaseScenarioTypeAdvanced is a TestCaseScenarioType enum value
+	TestCaseScenarioTypeAdvanced = "Advanced"
+
+	// TestCaseScenarioTypeBasic is a TestCaseScenarioType enum value
+	TestCaseScenarioTypeBasic = "Basic"
+)
+
+// TestCaseScenarioType_Values returns all elements of the TestCaseScenarioType enum
+func TestCaseScenarioType_Values() []string {
+	return []string{
+		TestCaseScenarioTypeAdvanced,
+		TestCaseScenarioTypeBasic,
 	}
 }

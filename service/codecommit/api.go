@@ -29,14 +29,13 @@ const opAssociateApprovalRuleTemplateWithRepository = "AssociateApprovalRuleTemp
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateApprovalRuleTemplateWithRepositoryRequest method.
+//	req, resp := client.AssociateApprovalRuleTemplateWithRepositoryRequest(params)
 //
-//    // Example sending a request using the AssociateApprovalRuleTemplateWithRepositoryRequest method.
-//    req, resp := client.AssociateApprovalRuleTemplateWithRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/AssociateApprovalRuleTemplateWithRepository
 func (c *CodeCommit) AssociateApprovalRuleTemplateWithRepositoryRequest(input *AssociateApprovalRuleTemplateWithRepositoryInput) (req *request.Request, output *AssociateApprovalRuleTemplateWithRepositoryOutput) {
@@ -74,50 +73,52 @@ func (c *CodeCommit) AssociateApprovalRuleTemplateWithRepositoryRequest(input *A
 // API operation AssociateApprovalRuleTemplateWithRepository for usage and error information.
 //
 // Returned Error Types:
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * ApprovalRuleTemplateDoesNotExistException
-//   The specified approval rule template does not exist. Verify that the name
-//   is correct and that you are signed in to the AWS Region where the template
-//   was created, and then try again.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
-//   * MaximumRuleTemplatesAssociatedWithRepositoryException
-//   The maximum number of approval rule templates for a repository has been exceeded.
-//   You cannot associate more than 25 approval rule templates with a repository.
+//   - ApprovalRuleTemplateDoesNotExistException
+//     The specified approval rule template does not exist. Verify that the name
+//     is correct and that you are signed in to the Amazon Web Services Region where
+//     the template was created, and then try again.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - MaximumRuleTemplatesAssociatedWithRepositoryException
+//     The maximum number of approval rule templates for a repository has been exceeded.
+//     You cannot associate more than 25 approval rule templates with a repository.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/AssociateApprovalRuleTemplateWithRepository
 func (c *CodeCommit) AssociateApprovalRuleTemplateWithRepository(input *AssociateApprovalRuleTemplateWithRepositoryInput) (*AssociateApprovalRuleTemplateWithRepositoryOutput, error) {
@@ -157,14 +158,13 @@ const opBatchAssociateApprovalRuleTemplateWithRepositories = "BatchAssociateAppr
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchAssociateApprovalRuleTemplateWithRepositoriesRequest method.
+//	req, resp := client.BatchAssociateApprovalRuleTemplateWithRepositoriesRequest(params)
 //
-//    // Example sending a request using the BatchAssociateApprovalRuleTemplateWithRepositoriesRequest method.
-//    req, resp := client.BatchAssociateApprovalRuleTemplateWithRepositoriesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchAssociateApprovalRuleTemplateWithRepositories
 func (c *CodeCommit) BatchAssociateApprovalRuleTemplateWithRepositoriesRequest(input *BatchAssociateApprovalRuleTemplateWithRepositoriesInput) (req *request.Request, output *BatchAssociateApprovalRuleTemplateWithRepositoriesOutput) {
@@ -196,40 +196,42 @@ func (c *CodeCommit) BatchAssociateApprovalRuleTemplateWithRepositoriesRequest(i
 // API operation BatchAssociateApprovalRuleTemplateWithRepositories for usage and error information.
 //
 // Returned Error Types:
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * ApprovalRuleTemplateDoesNotExistException
-//   The specified approval rule template does not exist. Verify that the name
-//   is correct and that you are signed in to the AWS Region where the template
-//   was created, and then try again.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
-//   * RepositoryNamesRequiredException
-//   At least one repository name object is required, but was not specified.
+//   - ApprovalRuleTemplateDoesNotExistException
+//     The specified approval rule template does not exist. Verify that the name
+//     is correct and that you are signed in to the Amazon Web Services Region where
+//     the template was created, and then try again.
 //
-//   * MaximumRepositoryNamesExceededException
-//   The maximum number of allowed repository names was exceeded. Currently, this
-//   number is 100.
+//   - RepositoryNamesRequiredException
+//     At least one repository name object is required, but was not specified.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - MaximumRepositoryNamesExceededException
+//     The maximum number of allowed repository names was exceeded. Currently, this
+//     number is 100.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchAssociateApprovalRuleTemplateWithRepositories
 func (c *CodeCommit) BatchAssociateApprovalRuleTemplateWithRepositories(input *BatchAssociateApprovalRuleTemplateWithRepositoriesInput) (*BatchAssociateApprovalRuleTemplateWithRepositoriesOutput, error) {
@@ -269,14 +271,13 @@ const opBatchDescribeMergeConflicts = "BatchDescribeMergeConflicts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDescribeMergeConflictsRequest method.
+//	req, resp := client.BatchDescribeMergeConflictsRequest(params)
 //
-//    // Example sending a request using the BatchDescribeMergeConflictsRequest method.
-//    req, resp := client.BatchDescribeMergeConflictsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchDescribeMergeConflicts
 func (c *CodeCommit) BatchDescribeMergeConflictsRequest(input *BatchDescribeMergeConflictsInput) (req *request.Request, output *BatchDescribeMergeConflictsOutput) {
@@ -308,77 +309,78 @@ func (c *CodeCommit) BatchDescribeMergeConflictsRequest(input *BatchDescribeMerg
 // API operation BatchDescribeMergeConflicts for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * MergeOptionRequiredException
-//   A merge option or stategy is required, and none was provided.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidMergeOptionException
-//   The specified merge option is not valid for this operation. Not all merge
-//   strategies are supported for all operations.
+//   - MergeOptionRequiredException
+//     A merge option or stategy is required, and none was provided.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMergeOptionException
+//     The specified merge option is not valid for this operation. Not all merge
+//     strategies are supported for all operations.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * InvalidMaxConflictFilesException
-//   The specified value for the number of conflict files to return is not valid.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidMaxMergeHunksException
-//   The specified value for the number of merge hunks to return is not valid.
+//   - InvalidMaxConflictFilesException
+//     The specified value for the number of conflict files to return is not valid.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - InvalidMaxMergeHunksException
+//     The specified value for the number of merge hunks to return is not valid.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * MaximumFileContentToLoadExceededException
-//   The number of files to load exceeds the allowed limit.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * MaximumItemsToCompareExceededException
-//   The number of items to compare between the source or destination branches
-//   and the merge base has exceeded the maximum allowed.
+//   - MaximumFileContentToLoadExceededException
+//     The number of files to load exceeds the allowed limit.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - MaximumItemsToCompareExceededException
+//     The number of items to compare between the source or destination branches
+//     and the merge base has exceeded the maximum allowed.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchDescribeMergeConflicts
 func (c *CodeCommit) BatchDescribeMergeConflicts(input *BatchDescribeMergeConflictsInput) (*BatchDescribeMergeConflictsOutput, error) {
@@ -418,14 +420,13 @@ const opBatchDisassociateApprovalRuleTemplateFromRepositories = "BatchDisassocia
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDisassociateApprovalRuleTemplateFromRepositoriesRequest method.
+//	req, resp := client.BatchDisassociateApprovalRuleTemplateFromRepositoriesRequest(params)
 //
-//    // Example sending a request using the BatchDisassociateApprovalRuleTemplateFromRepositoriesRequest method.
-//    req, resp := client.BatchDisassociateApprovalRuleTemplateFromRepositoriesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchDisassociateApprovalRuleTemplateFromRepositories
 func (c *CodeCommit) BatchDisassociateApprovalRuleTemplateFromRepositoriesRequest(input *BatchDisassociateApprovalRuleTemplateFromRepositoriesInput) (req *request.Request, output *BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput) {
@@ -457,40 +458,42 @@ func (c *CodeCommit) BatchDisassociateApprovalRuleTemplateFromRepositoriesReques
 // API operation BatchDisassociateApprovalRuleTemplateFromRepositories for usage and error information.
 //
 // Returned Error Types:
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * ApprovalRuleTemplateDoesNotExistException
-//   The specified approval rule template does not exist. Verify that the name
-//   is correct and that you are signed in to the AWS Region where the template
-//   was created, and then try again.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
-//   * RepositoryNamesRequiredException
-//   At least one repository name object is required, but was not specified.
+//   - ApprovalRuleTemplateDoesNotExistException
+//     The specified approval rule template does not exist. Verify that the name
+//     is correct and that you are signed in to the Amazon Web Services Region where
+//     the template was created, and then try again.
 //
-//   * MaximumRepositoryNamesExceededException
-//   The maximum number of allowed repository names was exceeded. Currently, this
-//   number is 100.
+//   - RepositoryNamesRequiredException
+//     At least one repository name object is required, but was not specified.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - MaximumRepositoryNamesExceededException
+//     The maximum number of allowed repository names was exceeded. Currently, this
+//     number is 100.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchDisassociateApprovalRuleTemplateFromRepositories
 func (c *CodeCommit) BatchDisassociateApprovalRuleTemplateFromRepositories(input *BatchDisassociateApprovalRuleTemplateFromRepositoriesInput) (*BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput, error) {
@@ -530,14 +533,13 @@ const opBatchGetCommits = "BatchGetCommits"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchGetCommitsRequest method.
+//	req, resp := client.BatchGetCommitsRequest(params)
 //
-//    // Example sending a request using the BatchGetCommitsRequest method.
-//    req, resp := client.BatchGetCommitsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchGetCommits
 func (c *CodeCommit) BatchGetCommitsRequest(input *BatchGetCommitsInput) (req *request.Request, output *BatchGetCommitsOutput) {
@@ -568,42 +570,43 @@ func (c *CodeCommit) BatchGetCommitsRequest(input *BatchGetCommitsInput) (req *r
 // API operation BatchGetCommits for usage and error information.
 //
 // Returned Error Types:
-//   * CommitIdsListRequiredException
-//   A list of commit IDs is required, but was either not specified or the list
-//   was empty.
 //
-//   * CommitIdsLimitExceededException
-//   The maximum number of allowed commit IDs in a batch request is 100. Verify
-//   that your batch requests contains no more than 100 commit IDs, and then try
-//   again.
+//   - CommitIdsListRequiredException
+//     A list of commit IDs is required, but was either not specified or the list
+//     was empty.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - CommitIdsLimitExceededException
+//     The maximum number of allowed commit IDs in a batch request is 100. Verify
+//     that your batch requests contains no more than 100 commit IDs, and then try
+//     again.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchGetCommits
 func (c *CodeCommit) BatchGetCommits(input *BatchGetCommitsInput) (*BatchGetCommitsOutput, error) {
@@ -643,14 +646,13 @@ const opBatchGetRepositories = "BatchGetRepositories"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchGetRepositoriesRequest method.
+//	req, resp := client.BatchGetRepositoriesRequest(params)
 //
-//    // Example sending a request using the BatchGetRepositoriesRequest method.
-//    req, resp := client.BatchGetRepositoriesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchGetRepositories
 func (c *CodeCommit) BatchGetRepositoriesRequest(input *BatchGetRepositoriesInput) (req *request.Request, output *BatchGetRepositoriesOutput) {
@@ -687,34 +689,35 @@ func (c *CodeCommit) BatchGetRepositoriesRequest(input *BatchGetRepositoriesInpu
 // API operation BatchGetRepositories for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNamesRequiredException
-//   At least one repository name object is required, but was not specified.
 //
-//   * MaximumRepositoryNamesExceededException
-//   The maximum number of allowed repository names was exceeded. Currently, this
-//   number is 100.
+//   - RepositoryNamesRequiredException
+//     At least one repository name object is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - MaximumRepositoryNamesExceededException
+//     The maximum number of allowed repository names was exceeded. Currently, this
+//     number is 100.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchGetRepositories
 func (c *CodeCommit) BatchGetRepositories(input *BatchGetRepositoriesInput) (*BatchGetRepositoriesOutput, error) {
@@ -754,14 +757,13 @@ const opCreateApprovalRuleTemplate = "CreateApprovalRuleTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateApprovalRuleTemplateRequest method.
+//	req, resp := client.CreateApprovalRuleTemplateRequest(params)
 //
-//    // Example sending a request using the CreateApprovalRuleTemplateRequest method.
-//    req, resp := client.CreateApprovalRuleTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateApprovalRuleTemplate
 func (c *CodeCommit) CreateApprovalRuleTemplateRequest(input *CreateApprovalRuleTemplateInput) (req *request.Request, output *CreateApprovalRuleTemplateOutput) {
@@ -783,10 +785,10 @@ func (c *CodeCommit) CreateApprovalRuleTemplateRequest(input *CreateApprovalRule
 // CreateApprovalRuleTemplate API operation for AWS CodeCommit.
 //
 // Creates a template for approval rules that can then be associated with one
-// or more repositories in your AWS account. When you associate a template with
-// a repository, AWS CodeCommit creates an approval rule that matches the conditions
-// of the template for all pull requests that meet the conditions of the template.
-// For more information, see AssociateApprovalRuleTemplateWithRepository.
+// or more repositories in your Amazon Web Services account. When you associate
+// a template with a repository, CodeCommit creates an approval rule that matches
+// the conditions of the template for all pull requests that meet the conditions
+// of the template. For more information, see AssociateApprovalRuleTemplateWithRepository.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -796,34 +798,37 @@ func (c *CodeCommit) CreateApprovalRuleTemplateRequest(input *CreateApprovalRule
 // API operation CreateApprovalRuleTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * ApprovalRuleTemplateNameAlreadyExistsException
-//   You cannot create an approval rule template with that name because a template
-//   with that name already exists in this AWS Region for your AWS account. Approval
-//   rule template names must be unique.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
-//   * ApprovalRuleTemplateContentRequiredException
-//   The content for the approval rule template is empty. You must provide some
-//   content for an approval rule template. The content cannot be null.
+//   - ApprovalRuleTemplateNameAlreadyExistsException
+//     You cannot create an approval rule template with that name because a template
+//     with that name already exists in this Amazon Web Services Region for your
+//     Amazon Web Services account. Approval rule template names must be unique.
 //
-//   * InvalidApprovalRuleTemplateContentException
-//   The content of the approval rule template is not valid.
+//   - ApprovalRuleTemplateContentRequiredException
+//     The content for the approval rule template is empty. You must provide some
+//     content for an approval rule template. The content cannot be null.
 //
-//   * InvalidApprovalRuleTemplateDescriptionException
-//   The description for the approval rule template is not valid because it exceeds
-//   the maximum characters allowed for a description. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - InvalidApprovalRuleTemplateContentException
+//     The content of the approval rule template is not valid.
 //
-//   * NumberOfRuleTemplatesExceededException
-//   The maximum number of approval rule templates has been exceeded for this
-//   AWS Region.
+//   - InvalidApprovalRuleTemplateDescriptionException
+//     The description for the approval rule template is not valid because it exceeds
+//     the maximum characters allowed for a description. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
+//
+//   - NumberOfRuleTemplatesExceededException
+//     The maximum number of approval rule templates has been exceeded for this
+//     Amazon Web Services Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateApprovalRuleTemplate
 func (c *CodeCommit) CreateApprovalRuleTemplate(input *CreateApprovalRuleTemplateInput) (*CreateApprovalRuleTemplateOutput, error) {
@@ -863,14 +868,13 @@ const opCreateBranch = "CreateBranch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBranchRequest method.
+//	req, resp := client.CreateBranchRequest(params)
 //
-//    // Example sending a request using the CreateBranchRequest method.
-//    req, resp := client.CreateBranchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateBranch
 func (c *CodeCommit) CreateBranchRequest(input *CreateBranchInput) (req *request.Request, output *CreateBranchOutput) {
@@ -905,53 +909,54 @@ func (c *CodeCommit) CreateBranchRequest(input *CreateBranchInput) (req *request
 // API operation CreateBranch for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * BranchNameExistsException
-//   Cannot create the branch with the specified name because the commit conflicts
-//   with an existing branch with the same name. Branch names must be unique.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - BranchNameExistsException
+//     Cannot create the branch with the specified name because the commit conflicts
+//     with an existing branch with the same name. Branch names must be unique.
 //
-//   * CommitIdRequiredException
-//   A commit ID was not specified.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - CommitIdRequiredException
+//     A commit ID was not specified.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateBranch
 func (c *CodeCommit) CreateBranch(input *CreateBranchInput) (*CreateBranchOutput, error) {
@@ -991,14 +996,13 @@ const opCreateCommit = "CreateCommit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCommitRequest method.
+//	req, resp := client.CreateCommitRequest(params)
 //
-//    // Example sending a request using the CreateCommitRequest method.
-//    req, resp := client.CreateCommitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateCommit
 func (c *CodeCommit) CreateCommitRequest(input *CreateCommitInput) (req *request.Request, output *CreateCommitOutput) {
@@ -1029,163 +1033,164 @@ func (c *CodeCommit) CreateCommitRequest(input *CreateCommitInput) (req *request
 // API operation CreateCommit for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * ParentCommitIdRequiredException
-//   A parent commit ID is required. To view the full commit ID of a branch in
-//   a repository, use GetBranch or a Git command (for example, git pull or git
-//   log).
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidParentCommitIdException
-//   The parent commit ID is not valid. The commit ID cannot be empty, and must
-//   match the head commit ID for the branch of the repository where you want
-//   to add or update a file.
+//   - ParentCommitIdRequiredException
+//     A parent commit ID is required. To view the full commit ID of a branch in
+//     a repository, use GetBranch or a Git command (for example, git pull or git
+//     log).
 //
-//   * ParentCommitDoesNotExistException
-//   The parent commit ID is not valid because it does not exist. The specified
-//   parent commit ID does not exist in the specified branch of the repository.
+//   - InvalidParentCommitIdException
+//     The parent commit ID is not valid. The commit ID cannot be empty, and must
+//     match the head commit ID for the branch of the repository where you want
+//     to add or update a file.
 //
-//   * ParentCommitIdOutdatedException
-//   The file could not be added because the provided parent commit ID is not
-//   the current tip of the specified branch. To view the full commit ID of the
-//   current head of the branch, use GetBranch.
+//   - ParentCommitDoesNotExistException
+//     The parent commit ID is not valid because it does not exist. The specified
+//     parent commit ID does not exist in the specified branch of the repository.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//   - ParentCommitIdOutdatedException
+//     The file could not be added because the provided parent commit ID is not
+//     the current tip of the specified branch. To view the full commit ID of the
+//     current head of the branch, use GetBranch.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * BranchDoesNotExistException
-//   The specified branch does not exist.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * BranchNameIsTagNameException
-//   The specified branch name is not valid because it is a tag name. Enter the
-//   name of a branch in the repository. For a list of valid branch names, use
-//   ListBranches.
+//   - BranchDoesNotExistException
+//     The specified branch does not exist.
 //
-//   * FileEntryRequiredException
-//   The commit cannot be created because no files have been specified as added,
-//   updated, or changed (PutFile or DeleteFile) for the commit.
+//   - BranchNameIsTagNameException
+//     The specified branch name is not valid because it is a tag name. Enter the
+//     name of a branch in the repository. For a list of valid branch names, use
+//     ListBranches.
 //
-//   * MaximumFileEntriesExceededException
-//   The number of specified files to change as part of this commit exceeds the
-//   maximum number of files that can be changed in a single commit. Consider
-//   using a Git client for these changes.
+//   - FileEntryRequiredException
+//     The commit cannot be created because no files have been specified as added,
+//     updated, or changed (PutFile or DeleteFile) for the commit.
 //
-//   * PutFileEntryConflictException
-//   The commit cannot be created because one or more files specified in the commit
-//   reference both a file and a folder.
+//   - MaximumFileEntriesExceededException
+//     The number of specified files to change as part of this commit exceeds the
+//     maximum number of files that can be changed in a single commit. Consider
+//     using a Git client for these changes.
 //
-//   * SourceFileOrContentRequiredException
-//   The commit cannot be created because no source files or file content have
-//   been specified for the commit.
+//   - PutFileEntryConflictException
+//     The commit cannot be created because one or more files specified in the commit
+//     reference both a file and a folder.
 //
-//   * FileContentAndSourceFileSpecifiedException
-//   The commit cannot be created because both a source file and file content
-//   have been specified for the same file. You cannot provide both. Either specify
-//   a source file or provide the file content directly.
+//   - SourceFileOrContentRequiredException
+//     The commit cannot be created because no source files or file content have
+//     been specified for the commit.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - FileContentAndSourceFileSpecifiedException
+//     The commit cannot be created because both a source file and file content
+//     have been specified for the same file. You cannot provide both. Either specify
+//     a source file or provide the file content directly.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * SamePathRequestException
-//   The commit cannot be created because one or more changes in this commit duplicate
-//   actions in the same file path. For example, you cannot make the same delete
-//   request to the same file in the same file path twice, or make a delete request
-//   and a move request to the same file as part of the same commit.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * FileDoesNotExistException
-//   The specified file does not exist. Verify that you have used the correct
-//   file name, full path, and extension.
+//   - SamePathRequestException
+//     The commit cannot be created because one or more changes in this commit duplicate
+//     actions in the same file path. For example, you cannot make the same delete
+//     request to the same file in the same file path twice, or make a delete request
+//     and a move request to the same file as part of the same commit.
 //
-//   * FileContentSizeLimitExceededException
-//   The file cannot be added because it is too large. The maximum file size is
-//   6 MB, and the combined file content change size is 7 MB. Consider making
-//   these changes using a Git client.
+//   - FileDoesNotExistException
+//     The specified file does not exist. Verify that you have used the correct
+//     file name, full path, and extension.
 //
-//   * FolderContentSizeLimitExceededException
-//   The commit cannot be created because at least one of the overall changes
-//   in the commit results in a folder whose contents exceed the limit of 6 MB.
-//   Either reduce the number and size of your changes, or split the changes across
-//   multiple folders.
+//   - FileContentSizeLimitExceededException
+//     The file cannot be added because it is too large. The maximum file size is
+//     6 MB, and the combined file content change size is 7 MB. Consider making
+//     these changes using a Git client.
 //
-//   * InvalidDeletionParameterException
-//   The specified deletion parameter is not valid.
+//   - FolderContentSizeLimitExceededException
+//     The commit cannot be created because at least one of the overall changes
+//     in the commit results in a folder whose contents exceed the limit of 6 MB.
+//     Either reduce the number and size of your changes, or split the changes across
+//     multiple folders.
 //
-//   * RestrictedSourceFileException
-//   The commit cannot be created because one of the changes specifies copying
-//   or moving a .gitkeep file.
+//   - InvalidDeletionParameterException
+//     The specified deletion parameter is not valid.
 //
-//   * FileModeRequiredException
-//   The commit cannot be created because no file mode has been specified. A file
-//   mode is required to update mode permissions for a file.
+//   - RestrictedSourceFileException
+//     The commit cannot be created because one of the changes specifies copying
+//     or moving a .gitkeep file.
 //
-//   * InvalidFileModeException
-//   The specified file mode permission is not valid. For a list of valid file
-//   mode permissions, see PutFile.
+//   - FileModeRequiredException
+//     The commit cannot be created because no file mode has been specified. A file
+//     mode is required to update mode permissions for a file.
 //
-//   * NameLengthExceededException
-//   The user name is not valid because it has exceeded the character limit for
-//   author names.
+//   - InvalidFileModeException
+//     The specified file mode permission is not valid. For a list of valid file
+//     mode permissions, see PutFile.
 //
-//   * InvalidEmailException
-//   The specified email address either contains one or more characters that are
-//   not allowed, or it exceeds the maximum number of characters allowed for an
-//   email address.
+//   - NameLengthExceededException
+//     The user name is not valid because it has exceeded the character limit for
+//     author names.
 //
-//   * CommitMessageLengthExceededException
-//   The commit message is too long. Provide a shorter string.
+//   - InvalidEmailException
+//     The specified email address either contains one or more characters that are
+//     not allowed, or it exceeds the maximum number of characters allowed for an
+//     email address.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - CommitMessageLengthExceededException
+//     The commit message is too long. Provide a shorter string.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
 //
-//   * NoChangeException
-//   The commit cannot be created because no changes will be made to the repository
-//   as a result of this commit. A commit must contain at least one change.
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
-//   * FileNameConflictsWithDirectoryNameException
-//   A file cannot be added to the repository because the specified file name
-//   has the same name as a directory in this repository. Either provide another
-//   name for the file, or add the file in a directory that does not match the
-//   file name.
+//   - NoChangeException
+//     The commit cannot be created because no changes will be made to the repository
+//     as a result of this commit. A commit must contain at least one change.
 //
-//   * DirectoryNameConflictsWithFileNameException
-//   A file cannot be added to the repository because the specified path name
-//   has the same name as a file that already exists in this repository. Either
-//   provide a different name for the file, or specify a different path for the
-//   file.
+//   - FileNameConflictsWithDirectoryNameException
+//     A file cannot be added to the repository because the specified file name
+//     has the same name as a directory in this repository. Either provide another
+//     name for the file, or add the file in a directory that does not match the
+//     file name.
 //
-//   * FilePathConflictsWithSubmodulePathException
-//   The commit cannot be created because a specified file path points to a submodule.
-//   Verify that the destination files have valid file paths that do not point
-//   to a submodule.
+//   - DirectoryNameConflictsWithFileNameException
+//     A file cannot be added to the repository because the specified path name
+//     has the same name as a file that already exists in this repository. Either
+//     provide a different name for the file, or specify a different path for the
+//     file.
+//
+//   - FilePathConflictsWithSubmodulePathException
+//     The commit cannot be created because a specified file path points to a submodule.
+//     Verify that the destination files have valid file paths that do not point
+//     to a submodule.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateCommit
 func (c *CodeCommit) CreateCommit(input *CreateCommitInput) (*CreateCommitOutput, error) {
@@ -1225,14 +1230,13 @@ const opCreatePullRequest = "CreatePullRequest"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePullRequestRequest method.
+//	req, resp := client.CreatePullRequestRequest(params)
 //
-//    // Example sending a request using the CreatePullRequestRequest method.
-//    req, resp := client.CreatePullRequestRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreatePullRequest
 func (c *CodeCommit) CreatePullRequestRequest(input *CreatePullRequestInput) (req *request.Request, output *CreatePullRequestOutput) {
@@ -1263,106 +1267,107 @@ func (c *CodeCommit) CreatePullRequestRequest(input *CreatePullRequestInput) (re
 // API operation CreatePullRequest for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
 //
-//   * ClientRequestTokenRequiredException
-//   A client request token is required. A client request token is an unique,
-//   client-generated idempotency token that, when provided in a request, ensures
-//   the request cannot be repeated with a changed parameter. If a request is
-//   received with the same parameters and a token is included, the request returns
-//   information about the initial request that used that token.
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
-//   * InvalidClientRequestTokenException
-//   The client request token is not valid.
+//   - ClientRequestTokenRequiredException
+//     A client request token is required. A client request token is an unique,
+//     client-generated idempotency token that, when provided in a request, ensures
+//     the request cannot be repeated with a changed parameter. If a request is
+//     received with the same parameters and a token is included, the request returns
+//     information about the initial request that used that token.
 //
-//   * IdempotencyParameterMismatchException
-//   The client request token is not valid. Either the token is not in a valid
-//   format, or the token has been used in a previous request and cannot be reused.
+//   - InvalidClientRequestTokenException
+//     The client request token is not valid.
 //
-//   * ReferenceNameRequiredException
-//   A reference name is required, but none was provided.
+//   - IdempotencyParameterMismatchException
+//     The client request token is not valid. Either the token is not in a valid
+//     format, or the token has been used in a previous request and cannot be reused.
 //
-//   * InvalidReferenceNameException
-//   The specified reference name format is not valid. Reference names must conform
-//   to the Git references format (for example, refs/heads/master). For more information,
-//   see Git Internals - Git References (https://git-scm.com/book/en/v2/Git-Internals-Git-References)
-//   or consult your Git documentation.
+//   - ReferenceNameRequiredException
+//     A reference name is required, but none was provided.
 //
-//   * ReferenceDoesNotExistException
-//   The specified reference does not exist. You must provide a full commit ID.
+//   - InvalidReferenceNameException
+//     The specified reference name format is not valid. Reference names must conform
+//     to the Git references format (for example, refs/heads/main). For more information,
+//     see Git Internals - Git References (https://git-scm.com/book/en/v2/Git-Internals-Git-References)
+//     or consult your Git documentation.
 //
-//   * ReferenceTypeNotSupportedException
-//   The specified reference is not a supported type.
+//   - ReferenceDoesNotExistException
+//     The specified reference does not exist. You must provide a full commit ID.
 //
-//   * TitleRequiredException
-//   A pull request title is required. It cannot be empty or null.
+//   - ReferenceTypeNotSupportedException
+//     The specified reference is not a supported type.
 //
-//   * InvalidTitleException
-//   The title of the pull request is not valid. Pull request titles cannot exceed
-//   100 characters in length.
+//   - TitleRequiredException
+//     A pull request title is required. It cannot be empty or null.
 //
-//   * InvalidDescriptionException
-//   The pull request description is not valid. Descriptions cannot be more than
-//   1,000 characters.
+//   - InvalidTitleException
+//     The title of the pull request is not valid. Pull request titles cannot exceed
+//     100 characters in length.
 //
-//   * TargetsRequiredException
-//   An array of target objects is required. It cannot be empty or null.
+//   - InvalidDescriptionException
+//     The pull request description is not valid. Descriptions cannot be more than
+//     1,000 characters.
 //
-//   * InvalidTargetsException
-//   The targets for the pull request is not valid or not in a valid format. Targets
-//   are a list of target objects. Each target object must contain the full values
-//   for the repository name, source branch, and destination branch for a pull
-//   request.
+//   - TargetsRequiredException
+//     An array of target objects is required. It cannot be empty or null.
 //
-//   * TargetRequiredException
-//   A pull request target is required. It cannot be empty or null. A pull request
-//   target must contain the full values for the repository name, source branch,
-//   and destination branch for the pull request.
+//   - InvalidTargetsException
+//     The targets for the pull request is not valid or not in a valid format. Targets
+//     are a list of target objects. Each target object must contain the full values
+//     for the repository name, source branch, and destination branch for a pull
+//     request.
 //
-//   * InvalidTargetException
-//   The target for the pull request is not valid. A target must contain the full
-//   values for the repository name, source branch, and destination branch for
-//   the pull request.
+//   - TargetRequiredException
+//     A pull request target is required. It cannot be empty or null. A pull request
+//     target must contain the full values for the repository name, source branch,
+//     and destination branch for the pull request.
 //
-//   * MultipleRepositoriesInPullRequestException
-//   You cannot include more than one repository in a pull request. Make sure
-//   you have specified only one repository name in your request, and then try
-//   again.
+//   - InvalidTargetException
+//     The target for the pull request is not valid. A target must contain the full
+//     values for the repository name, source branch, and destination branch for
+//     the pull request.
 //
-//   * MaximumOpenPullRequestsExceededException
-//   You cannot create the pull request because the repository has too many open
-//   pull requests. The maximum number of open pull requests for a repository
-//   is 1,000. Close one or more open pull requests, and then try again.
+//   - MultipleRepositoriesInPullRequestException
+//     You cannot include more than one repository in a pull request. Make sure
+//     you have specified only one repository name in your request, and then try
+//     again.
 //
-//   * SourceAndDestinationAreSameException
-//   The source branch and destination branch for the pull request are the same.
-//   You must specify different branches for the source and destination.
+//   - MaximumOpenPullRequestsExceededException
+//     You cannot create the pull request because the repository has too many open
+//     pull requests. The maximum number of open pull requests for a repository
+//     is 1,000. Close one or more open pull requests, and then try again.
+//
+//   - SourceAndDestinationAreSameException
+//     The source branch and destination branch for the pull request are the same.
+//     You must specify different branches for the source and destination.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreatePullRequest
 func (c *CodeCommit) CreatePullRequest(input *CreatePullRequestInput) (*CreatePullRequestOutput, error) {
@@ -1402,14 +1407,13 @@ const opCreatePullRequestApprovalRule = "CreatePullRequestApprovalRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePullRequestApprovalRuleRequest method.
+//	req, resp := client.CreatePullRequestApprovalRuleRequest(params)
 //
-//    // Example sending a request using the CreatePullRequestApprovalRuleRequest method.
-//    req, resp := client.CreatePullRequestApprovalRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreatePullRequestApprovalRule
 func (c *CodeCommit) CreatePullRequestApprovalRuleRequest(input *CreatePullRequestApprovalRuleInput) (req *request.Request, output *CreatePullRequestApprovalRuleOutput) {
@@ -1440,56 +1444,57 @@ func (c *CodeCommit) CreatePullRequestApprovalRuleRequest(input *CreatePullReque
 // API operation CreatePullRequestApprovalRule for usage and error information.
 //
 // Returned Error Types:
-//   * ApprovalRuleNameRequiredException
-//   An approval rule name is required, but was not specified.
 //
-//   * InvalidApprovalRuleNameException
-//   The name for the approval rule is not valid.
+//   - ApprovalRuleNameRequiredException
+//     An approval rule name is required, but was not specified.
 //
-//   * ApprovalRuleNameAlreadyExistsException
-//   An approval rule with that name already exists. Approval rule names must
-//   be unique within the scope of a pull request.
+//   - InvalidApprovalRuleNameException
+//     The name for the approval rule is not valid.
 //
-//   * ApprovalRuleContentRequiredException
-//   The content for the approval rule is empty. You must provide some content
-//   for an approval rule. The content cannot be null.
+//   - ApprovalRuleNameAlreadyExistsException
+//     An approval rule with that name already exists. Approval rule names must
+//     be unique within the scope of a pull request.
 //
-//   * InvalidApprovalRuleContentException
-//   The content for the approval rule is not valid.
+//   - ApprovalRuleContentRequiredException
+//     The content for the approval rule is empty. You must provide some content
+//     for an approval rule. The content cannot be null.
 //
-//   * NumberOfRulesExceededException
-//   The approval rule cannot be added. The pull request has the maximum number
-//   of approval rules associated with it.
+//   - InvalidApprovalRuleContentException
+//     The content for the approval rule is not valid.
 //
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
+//   - NumberOfRulesExceededException
+//     The approval rule cannot be added. The pull request has the maximum number
+//     of approval rules associated with it.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreatePullRequestApprovalRule
 func (c *CodeCommit) CreatePullRequestApprovalRule(input *CreatePullRequestApprovalRuleInput) (*CreatePullRequestApprovalRuleOutput, error) {
@@ -1529,14 +1534,13 @@ const opCreateRepository = "CreateRepository"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRepositoryRequest method.
+//	req, resp := client.CreateRepositoryRequest(params)
 //
-//    // Example sending a request using the CreateRepositoryRequest method.
-//    req, resp := client.CreateRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateRepository
 func (c *CodeCommit) CreateRepositoryRequest(input *CreateRepositoryInput) (req *request.Request, output *CreateRepositoryOutput) {
@@ -1567,51 +1571,52 @@ func (c *CodeCommit) CreateRepositoryRequest(input *CreateRepositoryInput) (req 
 // API operation CreateRepository for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameExistsException
-//   The specified repository name already exists.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - RepositoryNameExistsException
+//     The specified repository name already exists.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * InvalidRepositoryDescriptionException
-//   The specified repository description is not valid.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * RepositoryLimitExceededException
-//   A repository resource limit was exceeded.
+//   - InvalidRepositoryDescriptionException
+//     The specified repository description is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RepositoryLimitExceededException
+//     A repository resource limit was exceeded.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
 //
-//   * InvalidTagsMapException
-//   The map of tags is not valid.
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
-//   * TooManyTagsException
-//   The maximum number of tags for an AWS CodeCommit resource has been exceeded.
+//   - InvalidTagsMapException
+//     The map of tags is not valid.
 //
-//   * InvalidSystemTagUsageException
-//   The specified tag is not valid. Key names cannot be prefixed with aws:.
+//   - TooManyTagsException
+//     The maximum number of tags for an CodeCommit resource has been exceeded.
 //
-//   * TagPolicyException
-//   The tag policy is not valid.
+//   - InvalidSystemTagUsageException
+//     The specified tag is not valid. Key names cannot be prefixed with aws:.
+//
+//   - TagPolicyException
+//     The tag policy is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateRepository
 func (c *CodeCommit) CreateRepository(input *CreateRepositoryInput) (*CreateRepositoryOutput, error) {
@@ -1651,14 +1656,13 @@ const opCreateUnreferencedMergeCommit = "CreateUnreferencedMergeCommit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUnreferencedMergeCommitRequest method.
+//	req, resp := client.CreateUnreferencedMergeCommitRequest(params)
 //
-//    // Example sending a request using the CreateUnreferencedMergeCommitRequest method.
-//    req, resp := client.CreateUnreferencedMergeCommitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateUnreferencedMergeCommit
 func (c *CodeCommit) CreateUnreferencedMergeCommitRequest(input *CreateUnreferencedMergeCommitInput) (req *request.Request, output *CreateUnreferencedMergeCommitOutput) {
@@ -1696,138 +1700,139 @@ func (c *CodeCommit) CreateUnreferencedMergeCommitRequest(input *CreateUnreferen
 // API operation CreateUnreferencedMergeCommit for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * MergeOptionRequiredException
-//   A merge option or stategy is required, and none was provided.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * InvalidMergeOptionException
-//   The specified merge option is not valid for this operation. Not all merge
-//   strategies are supported for all operations.
+//   - MergeOptionRequiredException
+//     A merge option or stategy is required, and none was provided.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - InvalidMergeOptionException
+//     The specified merge option is not valid for this operation. Not all merge
+//     strategies are supported for all operations.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * InvalidConflictResolutionException
-//   The specified conflict resolution list is not valid.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * ManualMergeRequiredException
-//   The pull request cannot be merged automatically into the destination branch.
-//   You must manually merge the branches and resolve any conflicts.
+//   - InvalidConflictResolutionException
+//     The specified conflict resolution list is not valid.
 //
-//   * MaximumConflictResolutionEntriesExceededException
-//   The number of allowed conflict resolution entries was exceeded.
+//   - ManualMergeRequiredException
+//     The pull request cannot be merged automatically into the destination branch.
+//     You must manually merge the branches and resolve any conflicts.
 //
-//   * MultipleConflictResolutionEntriesException
-//   More than one conflict resolution entries exists for the conflict. A conflict
-//   can have only one conflict resolution entry.
+//   - MaximumConflictResolutionEntriesExceededException
+//     The number of allowed conflict resolution entries was exceeded.
 //
-//   * ReplacementTypeRequiredException
-//   A replacement type is required.
+//   - MultipleConflictResolutionEntriesException
+//     More than one conflict resolution entries exists for the conflict. A conflict
+//     can have only one conflict resolution entry.
 //
-//   * InvalidReplacementTypeException
-//   Automerge was specified for resolving the conflict, but the specified replacement
-//   type is not valid.
+//   - ReplacementTypeRequiredException
+//     A replacement type is required.
 //
-//   * ReplacementContentRequiredException
-//   USE_NEW_CONTENT was specified, but no replacement content has been provided.
+//   - InvalidReplacementTypeException
+//     Automerge was specified for resolving the conflict, but the specified replacement
+//     type is not valid.
 //
-//   * InvalidReplacementContentException
-//   Automerge was specified for resolving the conflict, but the replacement type
-//   is not valid or content is missing.
+//   - ReplacementContentRequiredException
+//     USE_NEW_CONTENT was specified, but no replacement content has been provided.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - InvalidReplacementContentException
+//     Automerge was specified for resolving the conflict, but the replacement type
+//     is not valid or content is missing.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * FileContentSizeLimitExceededException
-//   The file cannot be added because it is too large. The maximum file size is
-//   6 MB, and the combined file content change size is 7 MB. Consider making
-//   these changes using a Git client.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * FolderContentSizeLimitExceededException
-//   The commit cannot be created because at least one of the overall changes
-//   in the commit results in a folder whose contents exceed the limit of 6 MB.
-//   Either reduce the number and size of your changes, or split the changes across
-//   multiple folders.
+//   - FileContentSizeLimitExceededException
+//     The file cannot be added because it is too large. The maximum file size is
+//     6 MB, and the combined file content change size is 7 MB. Consider making
+//     these changes using a Git client.
 //
-//   * MaximumFileContentToLoadExceededException
-//   The number of files to load exceeds the allowed limit.
+//   - FolderContentSizeLimitExceededException
+//     The commit cannot be created because at least one of the overall changes
+//     in the commit results in a folder whose contents exceed the limit of 6 MB.
+//     Either reduce the number and size of your changes, or split the changes across
+//     multiple folders.
 //
-//   * MaximumItemsToCompareExceededException
-//   The number of items to compare between the source or destination branches
-//   and the merge base has exceeded the maximum allowed.
+//   - MaximumFileContentToLoadExceededException
+//     The number of files to load exceeds the allowed limit.
 //
-//   * ConcurrentReferenceUpdateException
-//   The merge cannot be completed because the target branch has been modified.
-//   Another user might have modified the target branch while the merge was in
-//   progress. Wait a few minutes, and then try again.
+//   - MaximumItemsToCompareExceededException
+//     The number of items to compare between the source or destination branches
+//     and the merge base has exceeded the maximum allowed.
 //
-//   * FileModeRequiredException
-//   The commit cannot be created because no file mode has been specified. A file
-//   mode is required to update mode permissions for a file.
+//   - ConcurrentReferenceUpdateException
+//     The merge cannot be completed because the target branch has been modified.
+//     Another user might have modified the target branch while the merge was in
+//     progress. Wait a few minutes, and then try again.
 //
-//   * InvalidFileModeException
-//   The specified file mode permission is not valid. For a list of valid file
-//   mode permissions, see PutFile.
+//   - FileModeRequiredException
+//     The commit cannot be created because no file mode has been specified. A file
+//     mode is required to update mode permissions for a file.
 //
-//   * NameLengthExceededException
-//   The user name is not valid because it has exceeded the character limit for
-//   author names.
+//   - InvalidFileModeException
+//     The specified file mode permission is not valid. For a list of valid file
+//     mode permissions, see PutFile.
 //
-//   * InvalidEmailException
-//   The specified email address either contains one or more characters that are
-//   not allowed, or it exceeds the maximum number of characters allowed for an
-//   email address.
+//   - NameLengthExceededException
+//     The user name is not valid because it has exceeded the character limit for
+//     author names.
 //
-//   * CommitMessageLengthExceededException
-//   The commit message is too long. Provide a shorter string.
+//   - InvalidEmailException
+//     The specified email address either contains one or more characters that are
+//     not allowed, or it exceeds the maximum number of characters allowed for an
+//     email address.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - CommitMessageLengthExceededException
+//     The commit message is too long. Provide a shorter string.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateUnreferencedMergeCommit
 func (c *CodeCommit) CreateUnreferencedMergeCommit(input *CreateUnreferencedMergeCommitInput) (*CreateUnreferencedMergeCommitOutput, error) {
@@ -1867,14 +1872,13 @@ const opDeleteApprovalRuleTemplate = "DeleteApprovalRuleTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteApprovalRuleTemplateRequest method.
+//	req, resp := client.DeleteApprovalRuleTemplateRequest(params)
 //
-//    // Example sending a request using the DeleteApprovalRuleTemplateRequest method.
-//    req, resp := client.DeleteApprovalRuleTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteApprovalRuleTemplate
 func (c *CodeCommit) DeleteApprovalRuleTemplateRequest(input *DeleteApprovalRuleTemplateInput) (req *request.Request, output *DeleteApprovalRuleTemplateOutput) {
@@ -1906,18 +1910,20 @@ func (c *CodeCommit) DeleteApprovalRuleTemplateRequest(input *DeleteApprovalRule
 // API operation DeleteApprovalRuleTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * ApprovalRuleTemplateInUseException
-//   The approval rule template is associated with one or more repositories. You
-//   cannot delete a template that is associated with a repository. Remove all
-//   associations, and then try again.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
+//
+//   - ApprovalRuleTemplateInUseException
+//     The approval rule template is associated with one or more repositories. You
+//     cannot delete a template that is associated with a repository. Remove all
+//     associations, and then try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteApprovalRuleTemplate
 func (c *CodeCommit) DeleteApprovalRuleTemplate(input *DeleteApprovalRuleTemplateInput) (*DeleteApprovalRuleTemplateOutput, error) {
@@ -1957,14 +1963,13 @@ const opDeleteBranch = "DeleteBranch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBranchRequest method.
+//	req, resp := client.DeleteBranchRequest(params)
 //
-//    // Example sending a request using the DeleteBranchRequest method.
-//    req, resp := client.DeleteBranchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteBranch
 func (c *CodeCommit) DeleteBranchRequest(input *DeleteBranchInput) (req *request.Request, output *DeleteBranchOutput) {
@@ -1996,44 +2001,45 @@ func (c *CodeCommit) DeleteBranchRequest(input *DeleteBranchInput) (req *request
 // API operation DeleteBranch for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * DefaultBranchCannotBeDeletedException
-//   The specified branch is the default branch for the repository, and cannot
-//   be deleted. To delete this branch, you must first set another branch as the
-//   default branch.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - DefaultBranchCannotBeDeletedException
+//     The specified branch is the default branch for the repository, and cannot
+//     be deleted. To delete this branch, you must first set another branch as the
+//     default branch.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteBranch
 func (c *CodeCommit) DeleteBranch(input *DeleteBranchInput) (*DeleteBranchOutput, error) {
@@ -2073,14 +2079,13 @@ const opDeleteCommentContent = "DeleteCommentContent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCommentContentRequest method.
+//	req, resp := client.DeleteCommentContentRequest(params)
 //
-//    // Example sending a request using the DeleteCommentContentRequest method.
-//    req, resp := client.DeleteCommentContentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteCommentContent
 func (c *CodeCommit) DeleteCommentContentRequest(input *DeleteCommentContentInput) (req *request.Request, output *DeleteCommentContentOutput) {
@@ -2111,20 +2116,21 @@ func (c *CodeCommit) DeleteCommentContentRequest(input *DeleteCommentContentInpu
 // API operation DeleteCommentContent for usage and error information.
 //
 // Returned Error Types:
-//   * CommentDoesNotExistException
-//   No comment exists with the provided ID. Verify that you have used the correct
-//   ID, and then try again.
 //
-//   * CommentIdRequiredException
-//   The comment ID is missing or null. A comment ID is required.
+//   - CommentDoesNotExistException
+//     No comment exists with the provided ID. Verify that you have used the correct
+//     ID, and then try again.
 //
-//   * InvalidCommentIdException
-//   The comment ID is not in a valid format. Make sure that you have provided
-//   the full comment ID.
+//   - CommentIdRequiredException
+//     The comment ID is missing or null. A comment ID is required.
 //
-//   * CommentDeletedException
-//   This comment has already been deleted. You cannot edit or delete a deleted
-//   comment.
+//   - InvalidCommentIdException
+//     The comment ID is not in a valid format. Make sure that you have provided
+//     the full comment ID.
+//
+//   - CommentDeletedException
+//     This comment has already been deleted. You cannot edit or delete a deleted
+//     comment.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteCommentContent
 func (c *CodeCommit) DeleteCommentContent(input *DeleteCommentContentInput) (*DeleteCommentContentOutput, error) {
@@ -2164,14 +2170,13 @@ const opDeleteFile = "DeleteFile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFileRequest method.
+//	req, resp := client.DeleteFileRequest(params)
 //
-//    // Example sending a request using the DeleteFileRequest method.
-//    req, resp := client.DeleteFileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteFile
 func (c *CodeCommit) DeleteFileRequest(input *DeleteFileInput) (req *request.Request, output *DeleteFileOutput) {
@@ -2204,88 +2209,89 @@ func (c *CodeCommit) DeleteFileRequest(input *DeleteFileInput) (req *request.Req
 // API operation DeleteFile for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * ParentCommitIdRequiredException
-//   A parent commit ID is required. To view the full commit ID of a branch in
-//   a repository, use GetBranch or a Git command (for example, git pull or git
-//   log).
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidParentCommitIdException
-//   The parent commit ID is not valid. The commit ID cannot be empty, and must
-//   match the head commit ID for the branch of the repository where you want
-//   to add or update a file.
+//   - ParentCommitIdRequiredException
+//     A parent commit ID is required. To view the full commit ID of a branch in
+//     a repository, use GetBranch or a Git command (for example, git pull or git
+//     log).
 //
-//   * ParentCommitDoesNotExistException
-//   The parent commit ID is not valid because it does not exist. The specified
-//   parent commit ID does not exist in the specified branch of the repository.
+//   - InvalidParentCommitIdException
+//     The parent commit ID is not valid. The commit ID cannot be empty, and must
+//     match the head commit ID for the branch of the repository where you want
+//     to add or update a file.
 //
-//   * ParentCommitIdOutdatedException
-//   The file could not be added because the provided parent commit ID is not
-//   the current tip of the specified branch. To view the full commit ID of the
-//   current head of the branch, use GetBranch.
+//   - ParentCommitDoesNotExistException
+//     The parent commit ID is not valid because it does not exist. The specified
+//     parent commit ID does not exist in the specified branch of the repository.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - ParentCommitIdOutdatedException
+//     The file could not be added because the provided parent commit ID is not
+//     the current tip of the specified branch. To view the full commit ID of the
+//     current head of the branch, use GetBranch.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * FileDoesNotExistException
-//   The specified file does not exist. Verify that you have used the correct
-//   file name, full path, and extension.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//   - FileDoesNotExistException
+//     The specified file does not exist. Verify that you have used the correct
+//     file name, full path, and extension.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * BranchDoesNotExistException
-//   The specified branch does not exist.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * BranchNameIsTagNameException
-//   The specified branch name is not valid because it is a tag name. Enter the
-//   name of a branch in the repository. For a list of valid branch names, use
-//   ListBranches.
+//   - BranchDoesNotExistException
+//     The specified branch does not exist.
 //
-//   * NameLengthExceededException
-//   The user name is not valid because it has exceeded the character limit for
-//   author names.
+//   - BranchNameIsTagNameException
+//     The specified branch name is not valid because it is a tag name. Enter the
+//     name of a branch in the repository. For a list of valid branch names, use
+//     ListBranches.
 //
-//   * InvalidEmailException
-//   The specified email address either contains one or more characters that are
-//   not allowed, or it exceeds the maximum number of characters allowed for an
-//   email address.
+//   - NameLengthExceededException
+//     The user name is not valid because it has exceeded the character limit for
+//     author names.
 //
-//   * CommitMessageLengthExceededException
-//   The commit message is too long. Provide a shorter string.
+//   - InvalidEmailException
+//     The specified email address either contains one or more characters that are
+//     not allowed, or it exceeds the maximum number of characters allowed for an
+//     email address.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - CommitMessageLengthExceededException
+//     The commit message is too long. Provide a shorter string.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteFile
 func (c *CodeCommit) DeleteFile(input *DeleteFileInput) (*DeleteFileOutput, error) {
@@ -2325,14 +2331,13 @@ const opDeletePullRequestApprovalRule = "DeletePullRequestApprovalRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePullRequestApprovalRuleRequest method.
+//	req, resp := client.DeletePullRequestApprovalRuleRequest(params)
 //
-//    // Example sending a request using the DeletePullRequestApprovalRuleRequest method.
-//    req, resp := client.DeletePullRequestApprovalRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeletePullRequestApprovalRule
 func (c *CodeCommit) DeletePullRequestApprovalRuleRequest(input *DeletePullRequestApprovalRuleInput) (req *request.Request, output *DeletePullRequestApprovalRuleOutput) {
@@ -2368,45 +2373,46 @@ func (c *CodeCommit) DeletePullRequestApprovalRuleRequest(input *DeletePullReque
 // API operation DeletePullRequestApprovalRule for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * ApprovalRuleNameRequiredException
-//   An approval rule name is required, but was not specified.
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
-//   * InvalidApprovalRuleNameException
-//   The name for the approval rule is not valid.
+//   - ApprovalRuleNameRequiredException
+//     An approval rule name is required, but was not specified.
 //
-//   * CannotDeleteApprovalRuleFromTemplateException
-//   The approval rule cannot be deleted from the pull request because it was
-//   created by an approval rule template and applied to the pull request automatically.
+//   - InvalidApprovalRuleNameException
+//     The name for the approval rule is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - CannotDeleteApprovalRuleFromTemplateException
+//     The approval rule cannot be deleted from the pull request because it was
+//     created by an approval rule template and applied to the pull request automatically.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeletePullRequestApprovalRule
 func (c *CodeCommit) DeletePullRequestApprovalRule(input *DeletePullRequestApprovalRuleInput) (*DeletePullRequestApprovalRuleOutput, error) {
@@ -2446,14 +2452,13 @@ const opDeleteRepository = "DeleteRepository"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRepositoryRequest method.
+//	req, resp := client.DeleteRepositoryRequest(params)
 //
-//    // Example sending a request using the DeleteRepositoryRequest method.
-//    req, resp := client.DeleteRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteRepository
 func (c *CodeCommit) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req *request.Request, output *DeleteRepositoryOutput) {
@@ -2489,30 +2494,31 @@ func (c *CodeCommit) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req 
 // API operation DeleteRepository for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DeleteRepository
 func (c *CodeCommit) DeleteRepository(input *DeleteRepositoryInput) (*DeleteRepositoryOutput, error) {
@@ -2552,14 +2558,13 @@ const opDescribeMergeConflicts = "DescribeMergeConflicts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeMergeConflictsRequest method.
+//	req, resp := client.DescribeMergeConflictsRequest(params)
 //
-//    // Example sending a request using the DescribeMergeConflictsRequest method.
-//    req, resp := client.DescribeMergeConflictsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DescribeMergeConflicts
 func (c *CodeCommit) DescribeMergeConflictsRequest(input *DescribeMergeConflictsInput) (req *request.Request, output *DescribeMergeConflictsOutput) {
@@ -2599,84 +2604,85 @@ func (c *CodeCommit) DescribeMergeConflictsRequest(input *DescribeMergeConflicts
 // API operation DescribeMergeConflicts for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * MergeOptionRequiredException
-//   A merge option or stategy is required, and none was provided.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidMergeOptionException
-//   The specified merge option is not valid for this operation. Not all merge
-//   strategies are supported for all operations.
+//   - MergeOptionRequiredException
+//     A merge option or stategy is required, and none was provided.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMergeOptionException
+//     The specified merge option is not valid for this operation. Not all merge
+//     strategies are supported for all operations.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * FileDoesNotExistException
-//   The specified file does not exist. Verify that you have used the correct
-//   file name, full path, and extension.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * InvalidMaxMergeHunksException
-//   The specified value for the number of merge hunks to return is not valid.
+//   - FileDoesNotExistException
+//     The specified file does not exist. Verify that you have used the correct
+//     file name, full path, and extension.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - InvalidMaxMergeHunksException
+//     The specified value for the number of merge hunks to return is not valid.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * MaximumFileContentToLoadExceededException
-//   The number of files to load exceeds the allowed limit.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * MaximumItemsToCompareExceededException
-//   The number of items to compare between the source or destination branches
-//   and the merge base has exceeded the maximum allowed.
+//   - MaximumFileContentToLoadExceededException
+//     The number of files to load exceeds the allowed limit.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - MaximumItemsToCompareExceededException
+//     The number of items to compare between the source or destination branches
+//     and the merge base has exceeded the maximum allowed.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DescribeMergeConflicts
 func (c *CodeCommit) DescribeMergeConflicts(input *DescribeMergeConflictsInput) (*DescribeMergeConflictsOutput, error) {
@@ -2708,15 +2714,14 @@ func (c *CodeCommit) DescribeMergeConflictsWithContext(ctx aws.Context, input *D
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeMergeConflicts operation.
-//    pageNum := 0
-//    err := client.DescribeMergeConflictsPages(params,
-//        func(page *codecommit.DescribeMergeConflictsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeMergeConflicts operation.
+//	pageNum := 0
+//	err := client.DescribeMergeConflictsPages(params,
+//	    func(page *codecommit.DescribeMergeConflictsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) DescribeMergeConflictsPages(input *DescribeMergeConflictsInput, fn func(*DescribeMergeConflictsOutput, bool) bool) error {
 	return c.DescribeMergeConflictsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2768,14 +2773,13 @@ const opDescribePullRequestEvents = "DescribePullRequestEvents"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePullRequestEventsRequest method.
+//	req, resp := client.DescribePullRequestEventsRequest(params)
 //
-//    // Example sending a request using the DescribePullRequestEventsRequest method.
-//    req, resp := client.DescribePullRequestEventsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DescribePullRequestEvents
 func (c *CodeCommit) DescribePullRequestEventsRequest(input *DescribePullRequestEventsInput) (req *request.Request, output *DescribePullRequestEventsOutput) {
@@ -2812,49 +2816,51 @@ func (c *CodeCommit) DescribePullRequestEventsRequest(input *DescribePullRequest
 // API operation DescribePullRequestEvents for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * InvalidPullRequestEventTypeException
-//   The pull request event type is not valid.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * InvalidActorArnException
-//   The Amazon Resource Name (ARN) is not valid. Make sure that you have provided
-//   the full ARN for the user who initiated the change for the pull request,
-//   and then try again.
+//   - InvalidPullRequestEventTypeException
+//     The pull request event type is not valid.
 //
-//   * ActorDoesNotExistException
-//   The specified Amazon Resource Name (ARN) does not exist in the AWS account.
+//   - InvalidActorArnException
+//     The Amazon Resource Name (ARN) is not valid. Make sure that you have provided
+//     the full ARN for the user who initiated the change for the pull request,
+//     and then try again.
 //
-//   * InvalidMaxResultsException
-//   The specified number of maximum results is not valid.
+//   - ActorDoesNotExistException
+//     The specified Amazon Resource Name (ARN) does not exist in the Amazon Web
+//     Services account.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DescribePullRequestEvents
 func (c *CodeCommit) DescribePullRequestEvents(input *DescribePullRequestEventsInput) (*DescribePullRequestEventsOutput, error) {
@@ -2886,15 +2892,14 @@ func (c *CodeCommit) DescribePullRequestEventsWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribePullRequestEvents operation.
-//    pageNum := 0
-//    err := client.DescribePullRequestEventsPages(params,
-//        func(page *codecommit.DescribePullRequestEventsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribePullRequestEvents operation.
+//	pageNum := 0
+//	err := client.DescribePullRequestEventsPages(params,
+//	    func(page *codecommit.DescribePullRequestEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) DescribePullRequestEventsPages(input *DescribePullRequestEventsInput, fn func(*DescribePullRequestEventsOutput, bool) bool) error {
 	return c.DescribePullRequestEventsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2946,14 +2951,13 @@ const opDisassociateApprovalRuleTemplateFromRepository = "DisassociateApprovalRu
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateApprovalRuleTemplateFromRepositoryRequest method.
+//	req, resp := client.DisassociateApprovalRuleTemplateFromRepositoryRequest(params)
 //
-//    // Example sending a request using the DisassociateApprovalRuleTemplateFromRepositoryRequest method.
-//    req, resp := client.DisassociateApprovalRuleTemplateFromRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DisassociateApprovalRuleTemplateFromRepository
 func (c *CodeCommit) DisassociateApprovalRuleTemplateFromRepositoryRequest(input *DisassociateApprovalRuleTemplateFromRepositoryInput) (req *request.Request, output *DisassociateApprovalRuleTemplateFromRepositoryOutput) {
@@ -2988,46 +2992,48 @@ func (c *CodeCommit) DisassociateApprovalRuleTemplateFromRepositoryRequest(input
 // API operation DisassociateApprovalRuleTemplateFromRepository for usage and error information.
 //
 // Returned Error Types:
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * ApprovalRuleTemplateDoesNotExistException
-//   The specified approval rule template does not exist. Verify that the name
-//   is correct and that you are signed in to the AWS Region where the template
-//   was created, and then try again.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - ApprovalRuleTemplateDoesNotExistException
+//     The specified approval rule template does not exist. Verify that the name
+//     is correct and that you are signed in to the Amazon Web Services Region where
+//     the template was created, and then try again.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DisassociateApprovalRuleTemplateFromRepository
 func (c *CodeCommit) DisassociateApprovalRuleTemplateFromRepository(input *DisassociateApprovalRuleTemplateFromRepositoryInput) (*DisassociateApprovalRuleTemplateFromRepositoryOutput, error) {
@@ -3067,14 +3073,13 @@ const opEvaluatePullRequestApprovalRules = "EvaluatePullRequestApprovalRules"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EvaluatePullRequestApprovalRulesRequest method.
+//	req, resp := client.EvaluatePullRequestApprovalRulesRequest(params)
 //
-//    // Example sending a request using the EvaluatePullRequestApprovalRulesRequest method.
-//    req, resp := client.EvaluatePullRequestApprovalRulesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/EvaluatePullRequestApprovalRules
 func (c *CodeCommit) EvaluatePullRequestApprovalRulesRequest(input *EvaluatePullRequestApprovalRulesInput) (req *request.Request, output *EvaluatePullRequestApprovalRulesOutput) {
@@ -3106,42 +3111,43 @@ func (c *CodeCommit) EvaluatePullRequestApprovalRulesRequest(input *EvaluatePull
 // API operation EvaluatePullRequestApprovalRules for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * InvalidRevisionIdException
-//   The revision ID is not valid. Use GetPullRequest to determine the value.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * RevisionIdRequiredException
-//   A revision ID is required, but was not provided.
+//   - InvalidRevisionIdException
+//     The revision ID is not valid. Use GetPullRequest to determine the value.
 //
-//   * RevisionNotCurrentException
-//   The revision ID provided in the request does not match the current revision
-//   ID. Use GetPullRequest to retrieve the current revision ID.
+//   - RevisionIdRequiredException
+//     A revision ID is required, but was not provided.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RevisionNotCurrentException
+//     The revision ID provided in the request does not match the current revision
+//     ID. Use GetPullRequest to retrieve the current revision ID.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/EvaluatePullRequestApprovalRules
 func (c *CodeCommit) EvaluatePullRequestApprovalRules(input *EvaluatePullRequestApprovalRulesInput) (*EvaluatePullRequestApprovalRulesOutput, error) {
@@ -3181,14 +3187,13 @@ const opGetApprovalRuleTemplate = "GetApprovalRuleTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetApprovalRuleTemplateRequest method.
+//	req, resp := client.GetApprovalRuleTemplateRequest(params)
 //
-//    // Example sending a request using the GetApprovalRuleTemplateRequest method.
-//    req, resp := client.GetApprovalRuleTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetApprovalRuleTemplate
 func (c *CodeCommit) GetApprovalRuleTemplateRequest(input *GetApprovalRuleTemplateInput) (req *request.Request, output *GetApprovalRuleTemplateOutput) {
@@ -3219,18 +3224,20 @@ func (c *CodeCommit) GetApprovalRuleTemplateRequest(input *GetApprovalRuleTempla
 // API operation GetApprovalRuleTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * ApprovalRuleTemplateDoesNotExistException
-//   The specified approval rule template does not exist. Verify that the name
-//   is correct and that you are signed in to the AWS Region where the template
-//   was created, and then try again.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
+//
+//   - ApprovalRuleTemplateDoesNotExistException
+//     The specified approval rule template does not exist. Verify that the name
+//     is correct and that you are signed in to the Amazon Web Services Region where
+//     the template was created, and then try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetApprovalRuleTemplate
 func (c *CodeCommit) GetApprovalRuleTemplate(input *GetApprovalRuleTemplateInput) (*GetApprovalRuleTemplateOutput, error) {
@@ -3270,14 +3277,13 @@ const opGetBlob = "GetBlob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBlobRequest method.
+//	req, resp := client.GetBlobRequest(params)
 //
-//    // Example sending a request using the GetBlobRequest method.
-//    req, resp := client.GetBlobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetBlob
 func (c *CodeCommit) GetBlobRequest(input *GetBlobInput) (req *request.Request, output *GetBlobOutput) {
@@ -3308,47 +3314,48 @@ func (c *CodeCommit) GetBlobRequest(input *GetBlobInput) (req *request.Request, 
 // API operation GetBlob for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * BlobIdRequiredException
-//   A blob ID is required, but was not specified.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidBlobIdException
-//   The specified blob is not valid.
+//   - BlobIdRequiredException
+//     A blob ID is required, but was not specified.
 //
-//   * BlobIdDoesNotExistException
-//   The specified blob does not exist.
+//   - InvalidBlobIdException
+//     The specified blob is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - BlobIdDoesNotExistException
+//     The specified blob does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
 //
-//   * FileTooLargeException
-//   The specified file exceeds the file size limit for AWS CodeCommit. For more
-//   information about limits in AWS CodeCommit, see AWS CodeCommit User Guide
-//   (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
+//
+//   - FileTooLargeException
+//     The specified file exceeds the file size limit for CodeCommit. For more information
+//     about limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetBlob
 func (c *CodeCommit) GetBlob(input *GetBlobInput) (*GetBlobOutput, error) {
@@ -3388,14 +3395,13 @@ const opGetBranch = "GetBranch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBranchRequest method.
+//	req, resp := client.GetBranchRequest(params)
 //
-//    // Example sending a request using the GetBranchRequest method.
-//    req, resp := client.GetBranchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetBranch
 func (c *CodeCommit) GetBranchRequest(input *GetBranchInput) (req *request.Request, output *GetBranchOutput) {
@@ -3427,42 +3433,43 @@ func (c *CodeCommit) GetBranchRequest(input *GetBranchInput) (req *request.Reque
 // API operation GetBranch for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * BranchDoesNotExistException
-//   The specified branch does not exist.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - BranchDoesNotExistException
+//     The specified branch does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetBranch
 func (c *CodeCommit) GetBranch(input *GetBranchInput) (*GetBranchOutput, error) {
@@ -3502,14 +3509,13 @@ const opGetComment = "GetComment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCommentRequest method.
+//	req, resp := client.GetCommentRequest(params)
 //
-//    // Example sending a request using the GetCommentRequest method.
-//    req, resp := client.GetCommentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetComment
 func (c *CodeCommit) GetCommentRequest(input *GetCommentInput) (req *request.Request, output *GetCommentOutput) {
@@ -3544,35 +3550,36 @@ func (c *CodeCommit) GetCommentRequest(input *GetCommentInput) (req *request.Req
 // API operation GetComment for usage and error information.
 //
 // Returned Error Types:
-//   * CommentDoesNotExistException
-//   No comment exists with the provided ID. Verify that you have used the correct
-//   ID, and then try again.
 //
-//   * CommentDeletedException
-//   This comment has already been deleted. You cannot edit or delete a deleted
-//   comment.
+//   - CommentDoesNotExistException
+//     No comment exists with the provided ID. Verify that you have used the correct
+//     ID, and then try again.
 //
-//   * CommentIdRequiredException
-//   The comment ID is missing or null. A comment ID is required.
+//   - CommentDeletedException
+//     This comment has already been deleted. You cannot edit or delete a deleted
+//     comment.
 //
-//   * InvalidCommentIdException
-//   The comment ID is not in a valid format. Make sure that you have provided
-//   the full comment ID.
+//   - CommentIdRequiredException
+//     The comment ID is missing or null. A comment ID is required.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidCommentIdException
+//     The comment ID is not in a valid format. Make sure that you have provided
+//     the full comment ID.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetComment
 func (c *CodeCommit) GetComment(input *GetCommentInput) (*GetCommentOutput, error) {
@@ -3612,14 +3619,13 @@ const opGetCommentReactions = "GetCommentReactions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCommentReactionsRequest method.
+//	req, resp := client.GetCommentReactionsRequest(params)
 //
-//    // Example sending a request using the GetCommentReactionsRequest method.
-//    req, resp := client.GetCommentReactionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetCommentReactions
 func (c *CodeCommit) GetCommentReactionsRequest(input *GetCommentReactionsInput) (req *request.Request, output *GetCommentReactionsOutput) {
@@ -3657,29 +3663,30 @@ func (c *CodeCommit) GetCommentReactionsRequest(input *GetCommentReactionsInput)
 // API operation GetCommentReactions for usage and error information.
 //
 // Returned Error Types:
-//   * CommentDoesNotExistException
-//   No comment exists with the provided ID. Verify that you have used the correct
-//   ID, and then try again.
 //
-//   * CommentIdRequiredException
-//   The comment ID is missing or null. A comment ID is required.
+//   - CommentDoesNotExistException
+//     No comment exists with the provided ID. Verify that you have used the correct
+//     ID, and then try again.
 //
-//   * InvalidCommentIdException
-//   The comment ID is not in a valid format. Make sure that you have provided
-//   the full comment ID.
+//   - CommentIdRequiredException
+//     The comment ID is missing or null. A comment ID is required.
 //
-//   * InvalidReactionUserArnException
-//   The Amazon Resource Name (ARN) of the user or identity is not valid.
+//   - InvalidCommentIdException
+//     The comment ID is not in a valid format. Make sure that you have provided
+//     the full comment ID.
 //
-//   * InvalidMaxResultsException
-//   The specified number of maximum results is not valid.
+//   - InvalidReactionUserArnException
+//     The Amazon Resource Name (ARN) of the user or identity is not valid.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
 //
-//   * CommentDeletedException
-//   This comment has already been deleted. You cannot edit or delete a deleted
-//   comment.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
+//
+//   - CommentDeletedException
+//     This comment has already been deleted. You cannot edit or delete a deleted
+//     comment.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetCommentReactions
 func (c *CodeCommit) GetCommentReactions(input *GetCommentReactionsInput) (*GetCommentReactionsOutput, error) {
@@ -3711,15 +3718,14 @@ func (c *CodeCommit) GetCommentReactionsWithContext(ctx aws.Context, input *GetC
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetCommentReactions operation.
-//    pageNum := 0
-//    err := client.GetCommentReactionsPages(params,
-//        func(page *codecommit.GetCommentReactionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetCommentReactions operation.
+//	pageNum := 0
+//	err := client.GetCommentReactionsPages(params,
+//	    func(page *codecommit.GetCommentReactionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) GetCommentReactionsPages(input *GetCommentReactionsInput, fn func(*GetCommentReactionsOutput, bool) bool) error {
 	return c.GetCommentReactionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3771,14 +3777,13 @@ const opGetCommentsForComparedCommit = "GetCommentsForComparedCommit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCommentsForComparedCommitRequest method.
+//	req, resp := client.GetCommentsForComparedCommitRequest(params)
 //
-//    // Example sending a request using the GetCommentsForComparedCommitRequest method.
-//    req, resp := client.GetCommentsForComparedCommitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetCommentsForComparedCommit
 func (c *CodeCommit) GetCommentsForComparedCommitRequest(input *GetCommentsForComparedCommitInput) (req *request.Request, output *GetCommentsForComparedCommitOutput) {
@@ -3819,49 +3824,50 @@ func (c *CodeCommit) GetCommentsForComparedCommitRequest(input *GetCommentsForCo
 // API operation GetCommentsForComparedCommit for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * CommitIdRequiredException
-//   A commit ID was not specified.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - CommitIdRequiredException
+//     A commit ID was not specified.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * InvalidMaxResultsException
-//   The specified number of maximum results is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetCommentsForComparedCommit
 func (c *CodeCommit) GetCommentsForComparedCommit(input *GetCommentsForComparedCommitInput) (*GetCommentsForComparedCommitOutput, error) {
@@ -3893,15 +3899,14 @@ func (c *CodeCommit) GetCommentsForComparedCommitWithContext(ctx aws.Context, in
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetCommentsForComparedCommit operation.
-//    pageNum := 0
-//    err := client.GetCommentsForComparedCommitPages(params,
-//        func(page *codecommit.GetCommentsForComparedCommitOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetCommentsForComparedCommit operation.
+//	pageNum := 0
+//	err := client.GetCommentsForComparedCommitPages(params,
+//	    func(page *codecommit.GetCommentsForComparedCommitOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) GetCommentsForComparedCommitPages(input *GetCommentsForComparedCommitInput, fn func(*GetCommentsForComparedCommitOutput, bool) bool) error {
 	return c.GetCommentsForComparedCommitPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3953,14 +3958,13 @@ const opGetCommentsForPullRequest = "GetCommentsForPullRequest"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCommentsForPullRequestRequest method.
+//	req, resp := client.GetCommentsForPullRequestRequest(params)
 //
-//    // Example sending a request using the GetCommentsForPullRequestRequest method.
-//    req, resp := client.GetCommentsForPullRequestRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetCommentsForPullRequest
 func (c *CodeCommit) GetCommentsForPullRequestRequest(input *GetCommentsForPullRequestInput) (req *request.Request, output *GetCommentsForPullRequestOutput) {
@@ -4001,66 +4005,67 @@ func (c *CodeCommit) GetCommentsForPullRequestRequest(input *GetCommentsForPullR
 // API operation GetCommentsForPullRequest for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
 //
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * CommitIdRequiredException
-//   A commit ID was not specified.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - CommitIdRequiredException
+//     A commit ID was not specified.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * InvalidMaxResultsException
-//   The specified number of maximum results is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
 //
-//   * RepositoryNotAssociatedWithPullRequestException
-//   The repository does not contain any pull requests with that pull request
-//   ID. Use GetPullRequest to verify the correct repository name for the pull
-//   request ID.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RepositoryNotAssociatedWithPullRequestException
+//     The repository does not contain any pull requests with that pull request
+//     ID. Use GetPullRequest to verify the correct repository name for the pull
+//     request ID.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetCommentsForPullRequest
 func (c *CodeCommit) GetCommentsForPullRequest(input *GetCommentsForPullRequestInput) (*GetCommentsForPullRequestOutput, error) {
@@ -4092,15 +4097,14 @@ func (c *CodeCommit) GetCommentsForPullRequestWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetCommentsForPullRequest operation.
-//    pageNum := 0
-//    err := client.GetCommentsForPullRequestPages(params,
-//        func(page *codecommit.GetCommentsForPullRequestOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetCommentsForPullRequest operation.
+//	pageNum := 0
+//	err := client.GetCommentsForPullRequestPages(params,
+//	    func(page *codecommit.GetCommentsForPullRequestOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) GetCommentsForPullRequestPages(input *GetCommentsForPullRequestInput, fn func(*GetCommentsForPullRequestOutput, bool) bool) error {
 	return c.GetCommentsForPullRequestPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4152,14 +4156,13 @@ const opGetCommit = "GetCommit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCommitRequest method.
+//	req, resp := client.GetCommitRequest(params)
 //
-//    // Example sending a request using the GetCommitRequest method.
-//    req, resp := client.GetCommitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetCommit
 func (c *CodeCommit) GetCommitRequest(input *GetCommitInput) (req *request.Request, output *GetCommitOutput) {
@@ -4191,42 +4194,43 @@ func (c *CodeCommit) GetCommitRequest(input *GetCommitInput) (req *request.Reque
 // API operation GetCommit for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * CommitIdRequiredException
-//   A commit ID was not specified.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - CommitIdRequiredException
+//     A commit ID was not specified.
 //
-//   * CommitIdDoesNotExistException
-//   The specified commit ID does not exist.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - CommitIdDoesNotExistException
+//     The specified commit ID does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetCommit
 func (c *CodeCommit) GetCommit(input *GetCommitInput) (*GetCommitOutput, error) {
@@ -4266,14 +4270,13 @@ const opGetDifferences = "GetDifferences"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDifferencesRequest method.
+//	req, resp := client.GetDifferencesRequest(params)
 //
-//    // Example sending a request using the GetDifferencesRequest method.
-//    req, resp := client.GetDifferencesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetDifferences
 func (c *CodeCommit) GetDifferencesRequest(input *GetDifferencesInput) (req *request.Request, output *GetDifferencesOutput) {
@@ -4312,58 +4315,59 @@ func (c *CodeCommit) GetDifferencesRequest(input *GetDifferencesInput) (req *req
 // API operation GetDifferences for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidMaxResultsException
-//   The specified number of maximum results is not valid.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * PathDoesNotExistException
-//   The specified path does not exist.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - PathDoesNotExistException
+//     The specified path does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetDifferences
 func (c *CodeCommit) GetDifferences(input *GetDifferencesInput) (*GetDifferencesOutput, error) {
@@ -4395,15 +4399,14 @@ func (c *CodeCommit) GetDifferencesWithContext(ctx aws.Context, input *GetDiffer
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetDifferences operation.
-//    pageNum := 0
-//    err := client.GetDifferencesPages(params,
-//        func(page *codecommit.GetDifferencesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetDifferences operation.
+//	pageNum := 0
+//	err := client.GetDifferencesPages(params,
+//	    func(page *codecommit.GetDifferencesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) GetDifferencesPages(input *GetDifferencesInput, fn func(*GetDifferencesOutput, bool) bool) error {
 	return c.GetDifferencesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4455,14 +4458,13 @@ const opGetFile = "GetFile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFileRequest method.
+//	req, resp := client.GetFileRequest(params)
 //
-//    // Example sending a request using the GetFileRequest method.
-//    req, resp := client.GetFileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetFile
 func (c *CodeCommit) GetFileRequest(input *GetFileInput) (req *request.Request, output *GetFileOutput) {
@@ -4493,55 +4495,56 @@ func (c *CodeCommit) GetFileRequest(input *GetFileInput) (req *request.Request, 
 // API operation GetFile for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * FileDoesNotExistException
-//   The specified file does not exist. Verify that you have used the correct
-//   file name, full path, and extension.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - FileDoesNotExistException
+//     The specified file does not exist. Verify that you have used the correct
+//     file name, full path, and extension.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
 //
-//   * FileTooLargeException
-//   The specified file exceeds the file size limit for AWS CodeCommit. For more
-//   information about limits in AWS CodeCommit, see AWS CodeCommit User Guide
-//   (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
+//
+//   - FileTooLargeException
+//     The specified file exceeds the file size limit for CodeCommit. For more information
+//     about limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetFile
 func (c *CodeCommit) GetFile(input *GetFileInput) (*GetFileOutput, error) {
@@ -4581,14 +4584,13 @@ const opGetFolder = "GetFolder"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFolderRequest method.
+//	req, resp := client.GetFolderRequest(params)
 //
-//    // Example sending a request using the GetFolderRequest method.
-//    req, resp := client.GetFolderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetFolder
 func (c *CodeCommit) GetFolderRequest(input *GetFolderInput) (req *request.Request, output *GetFolderOutput) {
@@ -4619,50 +4621,51 @@ func (c *CodeCommit) GetFolderRequest(input *GetFolderInput) (req *request.Reque
 // API operation GetFolder for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * FolderDoesNotExistException
-//   The specified folder does not exist. Either the folder name is not correct,
-//   or you did not enter the full path to the folder.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - FolderDoesNotExistException
+//     The specified folder does not exist. Either the folder name is not correct,
+//     or you did not enter the full path to the folder.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetFolder
 func (c *CodeCommit) GetFolder(input *GetFolderInput) (*GetFolderOutput, error) {
@@ -4702,14 +4705,13 @@ const opGetMergeCommit = "GetMergeCommit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetMergeCommitRequest method.
+//	req, resp := client.GetMergeCommitRequest(params)
 //
-//    // Example sending a request using the GetMergeCommitRequest method.
-//    req, resp := client.GetMergeCommitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetMergeCommit
 func (c *CodeCommit) GetMergeCommitRequest(input *GetMergeCommitInput) (req *request.Request, output *GetMergeCommitOutput) {
@@ -4740,49 +4742,50 @@ func (c *CodeCommit) GetMergeCommitRequest(input *GetMergeCommitInput) (req *req
 // API operation GetMergeCommit for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetMergeCommit
 func (c *CodeCommit) GetMergeCommit(input *GetMergeCommitInput) (*GetMergeCommitOutput, error) {
@@ -4822,14 +4825,13 @@ const opGetMergeConflicts = "GetMergeConflicts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetMergeConflictsRequest method.
+//	req, resp := client.GetMergeConflictsRequest(params)
 //
-//    // Example sending a request using the GetMergeConflictsRequest method.
-//    req, resp := client.GetMergeConflictsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetMergeConflicts
 func (c *CodeCommit) GetMergeConflictsRequest(input *GetMergeConflictsInput) (req *request.Request, output *GetMergeConflictsOutput) {
@@ -4867,82 +4869,83 @@ func (c *CodeCommit) GetMergeConflictsRequest(input *GetMergeConflictsInput) (re
 // API operation GetMergeConflicts for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * MergeOptionRequiredException
-//   A merge option or stategy is required, and none was provided.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidMergeOptionException
-//   The specified merge option is not valid for this operation. Not all merge
-//   strategies are supported for all operations.
+//   - MergeOptionRequiredException
+//     A merge option or stategy is required, and none was provided.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMergeOptionException
+//     The specified merge option is not valid for this operation. Not all merge
+//     strategies are supported for all operations.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * InvalidMaxConflictFilesException
-//   The specified value for the number of conflict files to return is not valid.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - InvalidMaxConflictFilesException
+//     The specified value for the number of conflict files to return is not valid.
 //
-//   * InvalidDestinationCommitSpecifierException
-//   The destination commit specifier is not valid. You must provide a valid branch
-//   name, tag, or full commit ID.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * InvalidSourceCommitSpecifierException
-//   The source commit specifier is not valid. You must provide a valid branch
-//   name, tag, or full commit ID.
+//   - InvalidDestinationCommitSpecifierException
+//     The destination commit specifier is not valid. You must provide a valid branch
+//     name, tag, or full commit ID.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidSourceCommitSpecifierException
+//     The source commit specifier is not valid. You must provide a valid branch
+//     name, tag, or full commit ID.
 //
-//   * MaximumFileContentToLoadExceededException
-//   The number of files to load exceeds the allowed limit.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * MaximumItemsToCompareExceededException
-//   The number of items to compare between the source or destination branches
-//   and the merge base has exceeded the maximum allowed.
+//   - MaximumFileContentToLoadExceededException
+//     The number of files to load exceeds the allowed limit.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - MaximumItemsToCompareExceededException
+//     The number of items to compare between the source or destination branches
+//     and the merge base has exceeded the maximum allowed.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetMergeConflicts
 func (c *CodeCommit) GetMergeConflicts(input *GetMergeConflictsInput) (*GetMergeConflictsOutput, error) {
@@ -4974,15 +4977,14 @@ func (c *CodeCommit) GetMergeConflictsWithContext(ctx aws.Context, input *GetMer
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetMergeConflicts operation.
-//    pageNum := 0
-//    err := client.GetMergeConflictsPages(params,
-//        func(page *codecommit.GetMergeConflictsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetMergeConflicts operation.
+//	pageNum := 0
+//	err := client.GetMergeConflictsPages(params,
+//	    func(page *codecommit.GetMergeConflictsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) GetMergeConflictsPages(input *GetMergeConflictsInput, fn func(*GetMergeConflictsOutput, bool) bool) error {
 	return c.GetMergeConflictsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5034,14 +5036,13 @@ const opGetMergeOptions = "GetMergeOptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetMergeOptionsRequest method.
+//	req, resp := client.GetMergeOptionsRequest(params)
 //
-//    // Example sending a request using the GetMergeOptionsRequest method.
-//    req, resp := client.GetMergeOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetMergeOptions
 func (c *CodeCommit) GetMergeOptionsRequest(input *GetMergeOptionsInput) (req *request.Request, output *GetMergeOptionsOutput) {
@@ -5074,61 +5075,62 @@ func (c *CodeCommit) GetMergeOptionsRequest(input *GetMergeOptionsInput) (req *r
 // API operation GetMergeOptions for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * MaximumFileContentToLoadExceededException
-//   The number of files to load exceeds the allowed limit.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * MaximumItemsToCompareExceededException
-//   The number of items to compare between the source or destination branches
-//   and the merge base has exceeded the maximum allowed.
+//   - MaximumFileContentToLoadExceededException
+//     The number of files to load exceeds the allowed limit.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - MaximumItemsToCompareExceededException
+//     The number of items to compare between the source or destination branches
+//     and the merge base has exceeded the maximum allowed.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetMergeOptions
 func (c *CodeCommit) GetMergeOptions(input *GetMergeOptionsInput) (*GetMergeOptionsOutput, error) {
@@ -5168,14 +5170,13 @@ const opGetPullRequest = "GetPullRequest"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPullRequestRequest method.
+//	req, resp := client.GetPullRequestRequest(params)
 //
-//    // Example sending a request using the GetPullRequestRequest method.
-//    req, resp := client.GetPullRequestRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetPullRequest
 func (c *CodeCommit) GetPullRequestRequest(input *GetPullRequestInput) (req *request.Request, output *GetPullRequestOutput) {
@@ -5206,32 +5207,33 @@ func (c *CodeCommit) GetPullRequestRequest(input *GetPullRequestInput) (req *req
 // API operation GetPullRequest for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetPullRequest
 func (c *CodeCommit) GetPullRequest(input *GetPullRequestInput) (*GetPullRequestOutput, error) {
@@ -5271,14 +5273,13 @@ const opGetPullRequestApprovalStates = "GetPullRequestApprovalStates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPullRequestApprovalStatesRequest method.
+//	req, resp := client.GetPullRequestApprovalStatesRequest(params)
 //
-//    // Example sending a request using the GetPullRequestApprovalStatesRequest method.
-//    req, resp := client.GetPullRequestApprovalStatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetPullRequestApprovalStates
 func (c *CodeCommit) GetPullRequestApprovalStatesRequest(input *GetPullRequestApprovalStatesInput) (req *request.Request, output *GetPullRequestApprovalStatesOutput) {
@@ -5311,38 +5312,39 @@ func (c *CodeCommit) GetPullRequestApprovalStatesRequest(input *GetPullRequestAp
 // API operation GetPullRequestApprovalStates for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * InvalidRevisionIdException
-//   The revision ID is not valid. Use GetPullRequest to determine the value.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * RevisionIdRequiredException
-//   A revision ID is required, but was not provided.
+//   - InvalidRevisionIdException
+//     The revision ID is not valid. Use GetPullRequest to determine the value.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RevisionIdRequiredException
+//     A revision ID is required, but was not provided.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetPullRequestApprovalStates
 func (c *CodeCommit) GetPullRequestApprovalStates(input *GetPullRequestApprovalStatesInput) (*GetPullRequestApprovalStatesOutput, error) {
@@ -5382,14 +5384,13 @@ const opGetPullRequestOverrideState = "GetPullRequestOverrideState"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPullRequestOverrideStateRequest method.
+//	req, resp := client.GetPullRequestOverrideStateRequest(params)
 //
-//    // Example sending a request using the GetPullRequestOverrideStateRequest method.
-//    req, resp := client.GetPullRequestOverrideStateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetPullRequestOverrideState
 func (c *CodeCommit) GetPullRequestOverrideStateRequest(input *GetPullRequestOverrideStateInput) (req *request.Request, output *GetPullRequestOverrideStateOutput) {
@@ -5422,38 +5423,39 @@ func (c *CodeCommit) GetPullRequestOverrideStateRequest(input *GetPullRequestOve
 // API operation GetPullRequestOverrideState for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * InvalidRevisionIdException
-//   The revision ID is not valid. Use GetPullRequest to determine the value.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * RevisionIdRequiredException
-//   A revision ID is required, but was not provided.
+//   - InvalidRevisionIdException
+//     The revision ID is not valid. Use GetPullRequest to determine the value.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RevisionIdRequiredException
+//     A revision ID is required, but was not provided.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetPullRequestOverrideState
 func (c *CodeCommit) GetPullRequestOverrideState(input *GetPullRequestOverrideStateInput) (*GetPullRequestOverrideStateOutput, error) {
@@ -5493,14 +5495,13 @@ const opGetRepository = "GetRepository"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRepositoryRequest method.
+//	req, resp := client.GetRepositoryRequest(params)
 //
-//    // Example sending a request using the GetRepositoryRequest method.
-//    req, resp := client.GetRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetRepository
 func (c *CodeCommit) GetRepositoryRequest(input *GetRepositoryInput) (req *request.Request, output *GetRepositoryOutput) {
@@ -5537,33 +5538,34 @@ func (c *CodeCommit) GetRepositoryRequest(input *GetRepositoryInput) (req *reque
 // API operation GetRepository for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetRepository
 func (c *CodeCommit) GetRepository(input *GetRepositoryInput) (*GetRepositoryOutput, error) {
@@ -5603,14 +5605,13 @@ const opGetRepositoryTriggers = "GetRepositoryTriggers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRepositoryTriggersRequest method.
+//	req, resp := client.GetRepositoryTriggersRequest(params)
 //
-//    // Example sending a request using the GetRepositoryTriggersRequest method.
-//    req, resp := client.GetRepositoryTriggersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetRepositoryTriggers
 func (c *CodeCommit) GetRepositoryTriggersRequest(input *GetRepositoryTriggersInput) (req *request.Request, output *GetRepositoryTriggersOutput) {
@@ -5641,33 +5642,34 @@ func (c *CodeCommit) GetRepositoryTriggersRequest(input *GetRepositoryTriggersIn
 // API operation GetRepositoryTriggers for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetRepositoryTriggers
 func (c *CodeCommit) GetRepositoryTriggers(input *GetRepositoryTriggersInput) (*GetRepositoryTriggersOutput, error) {
@@ -5707,14 +5709,13 @@ const opListApprovalRuleTemplates = "ListApprovalRuleTemplates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListApprovalRuleTemplatesRequest method.
+//	req, resp := client.ListApprovalRuleTemplatesRequest(params)
 //
-//    // Example sending a request using the ListApprovalRuleTemplatesRequest method.
-//    req, resp := client.ListApprovalRuleTemplatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListApprovalRuleTemplates
 func (c *CodeCommit) ListApprovalRuleTemplatesRequest(input *ListApprovalRuleTemplatesInput) (req *request.Request, output *ListApprovalRuleTemplatesOutput) {
@@ -5741,9 +5742,10 @@ func (c *CodeCommit) ListApprovalRuleTemplatesRequest(input *ListApprovalRuleTem
 
 // ListApprovalRuleTemplates API operation for AWS CodeCommit.
 //
-// Lists all approval rule templates in the specified AWS Region in your AWS
-// account. If an AWS Region is not specified, the AWS Region where you are
-// signed in is used.
+// Lists all approval rule templates in the specified Amazon Web Services Region
+// in your Amazon Web Services account. If an Amazon Web Services Region is
+// not specified, the Amazon Web Services Region where you are signed in is
+// used.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5753,11 +5755,12 @@ func (c *CodeCommit) ListApprovalRuleTemplatesRequest(input *ListApprovalRuleTem
 // API operation ListApprovalRuleTemplates for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidMaxResultsException
-//   The specified number of maximum results is not valid.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
+//
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListApprovalRuleTemplates
 func (c *CodeCommit) ListApprovalRuleTemplates(input *ListApprovalRuleTemplatesInput) (*ListApprovalRuleTemplatesOutput, error) {
@@ -5789,15 +5792,14 @@ func (c *CodeCommit) ListApprovalRuleTemplatesWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApprovalRuleTemplates operation.
-//    pageNum := 0
-//    err := client.ListApprovalRuleTemplatesPages(params,
-//        func(page *codecommit.ListApprovalRuleTemplatesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApprovalRuleTemplates operation.
+//	pageNum := 0
+//	err := client.ListApprovalRuleTemplatesPages(params,
+//	    func(page *codecommit.ListApprovalRuleTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) ListApprovalRuleTemplatesPages(input *ListApprovalRuleTemplatesInput, fn func(*ListApprovalRuleTemplatesOutput, bool) bool) error {
 	return c.ListApprovalRuleTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5849,14 +5851,13 @@ const opListAssociatedApprovalRuleTemplatesForRepository = "ListAssociatedApprov
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAssociatedApprovalRuleTemplatesForRepositoryRequest method.
+//	req, resp := client.ListAssociatedApprovalRuleTemplatesForRepositoryRequest(params)
 //
-//    // Example sending a request using the ListAssociatedApprovalRuleTemplatesForRepositoryRequest method.
-//    req, resp := client.ListAssociatedApprovalRuleTemplatesForRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListAssociatedApprovalRuleTemplatesForRepository
 func (c *CodeCommit) ListAssociatedApprovalRuleTemplatesForRepositoryRequest(input *ListAssociatedApprovalRuleTemplatesForRepositoryInput) (req *request.Request, output *ListAssociatedApprovalRuleTemplatesForRepositoryOutput) {
@@ -5893,39 +5894,40 @@ func (c *CodeCommit) ListAssociatedApprovalRuleTemplatesForRepositoryRequest(inp
 // API operation ListAssociatedApprovalRuleTemplatesForRepository for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidMaxResultsException
-//   The specified number of maximum results is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListAssociatedApprovalRuleTemplatesForRepository
 func (c *CodeCommit) ListAssociatedApprovalRuleTemplatesForRepository(input *ListAssociatedApprovalRuleTemplatesForRepositoryInput) (*ListAssociatedApprovalRuleTemplatesForRepositoryOutput, error) {
@@ -5957,15 +5959,14 @@ func (c *CodeCommit) ListAssociatedApprovalRuleTemplatesForRepositoryWithContext
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAssociatedApprovalRuleTemplatesForRepository operation.
-//    pageNum := 0
-//    err := client.ListAssociatedApprovalRuleTemplatesForRepositoryPages(params,
-//        func(page *codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAssociatedApprovalRuleTemplatesForRepository operation.
+//	pageNum := 0
+//	err := client.ListAssociatedApprovalRuleTemplatesForRepositoryPages(params,
+//	    func(page *codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) ListAssociatedApprovalRuleTemplatesForRepositoryPages(input *ListAssociatedApprovalRuleTemplatesForRepositoryInput, fn func(*ListAssociatedApprovalRuleTemplatesForRepositoryOutput, bool) bool) error {
 	return c.ListAssociatedApprovalRuleTemplatesForRepositoryPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6017,14 +6018,13 @@ const opListBranches = "ListBranches"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBranchesRequest method.
+//	req, resp := client.ListBranchesRequest(params)
 //
-//    // Example sending a request using the ListBranchesRequest method.
-//    req, resp := client.ListBranchesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListBranches
 func (c *CodeCommit) ListBranchesRequest(input *ListBranchesInput) (req *request.Request, output *ListBranchesOutput) {
@@ -6061,36 +6061,37 @@ func (c *CodeCommit) ListBranchesRequest(input *ListBranchesInput) (req *request
 // API operation ListBranches for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
+//
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListBranches
 func (c *CodeCommit) ListBranches(input *ListBranchesInput) (*ListBranchesOutput, error) {
@@ -6122,15 +6123,14 @@ func (c *CodeCommit) ListBranchesWithContext(ctx aws.Context, input *ListBranche
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBranches operation.
-//    pageNum := 0
-//    err := client.ListBranchesPages(params,
-//        func(page *codecommit.ListBranchesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBranches operation.
+//	pageNum := 0
+//	err := client.ListBranchesPages(params,
+//	    func(page *codecommit.ListBranchesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) ListBranchesPages(input *ListBranchesInput, fn func(*ListBranchesOutput, bool) bool) error {
 	return c.ListBranchesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6166,6 +6166,188 @@ func (c *CodeCommit) ListBranchesPagesWithContext(ctx aws.Context, input *ListBr
 	return p.Err()
 }
 
+const opListFileCommitHistory = "ListFileCommitHistory"
+
+// ListFileCommitHistoryRequest generates a "aws/request.Request" representing the
+// client's request for the ListFileCommitHistory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFileCommitHistory for more information on using the ListFileCommitHistory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListFileCommitHistoryRequest method.
+//	req, resp := client.ListFileCommitHistoryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListFileCommitHistory
+func (c *CodeCommit) ListFileCommitHistoryRequest(input *ListFileCommitHistoryInput) (req *request.Request, output *ListFileCommitHistoryOutput) {
+	op := &request.Operation{
+		Name:       opListFileCommitHistory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFileCommitHistoryInput{}
+	}
+
+	output = &ListFileCommitHistoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFileCommitHistory API operation for AWS CodeCommit.
+//
+// Retrieves a list of commits and changes to a specified file.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeCommit's
+// API operation ListFileCommitHistory for usage and error information.
+//
+// Returned Error Types:
+//
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
+//
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
+//
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
+//
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
+//
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
+//
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
+//
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
+//
+//   - CommitRequiredException
+//     A commit was not specified.
+//
+//   - InvalidCommitException
+//     The specified commit is not valid.
+//
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
+//
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
+//
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
+//
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
+//
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListFileCommitHistory
+func (c *CodeCommit) ListFileCommitHistory(input *ListFileCommitHistoryInput) (*ListFileCommitHistoryOutput, error) {
+	req, out := c.ListFileCommitHistoryRequest(input)
+	return out, req.Send()
+}
+
+// ListFileCommitHistoryWithContext is the same as ListFileCommitHistory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFileCommitHistory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeCommit) ListFileCommitHistoryWithContext(ctx aws.Context, input *ListFileCommitHistoryInput, opts ...request.Option) (*ListFileCommitHistoryOutput, error) {
+	req, out := c.ListFileCommitHistoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFileCommitHistoryPages iterates over the pages of a ListFileCommitHistory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFileCommitHistory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFileCommitHistory operation.
+//	pageNum := 0
+//	err := client.ListFileCommitHistoryPages(params,
+//	    func(page *codecommit.ListFileCommitHistoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CodeCommit) ListFileCommitHistoryPages(input *ListFileCommitHistoryInput, fn func(*ListFileCommitHistoryOutput, bool) bool) error {
+	return c.ListFileCommitHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFileCommitHistoryPagesWithContext same as ListFileCommitHistoryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeCommit) ListFileCommitHistoryPagesWithContext(ctx aws.Context, input *ListFileCommitHistoryInput, fn func(*ListFileCommitHistoryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFileCommitHistoryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFileCommitHistoryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFileCommitHistoryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListPullRequests = "ListPullRequests"
 
 // ListPullRequestsRequest generates a "aws/request.Request" representing the
@@ -6182,14 +6364,13 @@ const opListPullRequests = "ListPullRequests"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPullRequestsRequest method.
+//	req, resp := client.ListPullRequestsRequest(params)
 //
-//    // Example sending a request using the ListPullRequestsRequest method.
-//    req, resp := client.ListPullRequestsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListPullRequests
 func (c *CodeCommit) ListPullRequestsRequest(input *ListPullRequestsInput) (req *request.Request, output *ListPullRequestsOutput) {
@@ -6227,50 +6408,52 @@ func (c *CodeCommit) ListPullRequestsRequest(input *ListPullRequestsInput) (req 
 // API operation ListPullRequests for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidPullRequestStatusException
-//   The pull request status is not valid. The only valid values are OPEN and
-//   CLOSED.
 //
-//   * InvalidAuthorArnException
-//   The Amazon Resource Name (ARN) is not valid. Make sure that you have provided
-//   the full ARN for the author of the pull request, and then try again.
+//   - InvalidPullRequestStatusException
+//     The pull request status is not valid. The only valid values are OPEN and
+//     CLOSED.
 //
-//   * AuthorDoesNotExistException
-//   The specified Amazon Resource Name (ARN) does not exist in the AWS account.
+//   - InvalidAuthorArnException
+//     The Amazon Resource Name (ARN) is not valid. Make sure that you have provided
+//     the full ARN for the author of the pull request, and then try again.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - AuthorDoesNotExistException
+//     The specified Amazon Resource Name (ARN) does not exist in the Amazon Web
+//     Services account.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidMaxResultsException
-//   The specified number of maximum results is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListPullRequests
 func (c *CodeCommit) ListPullRequests(input *ListPullRequestsInput) (*ListPullRequestsOutput, error) {
@@ -6302,15 +6485,14 @@ func (c *CodeCommit) ListPullRequestsWithContext(ctx aws.Context, input *ListPul
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPullRequests operation.
-//    pageNum := 0
-//    err := client.ListPullRequestsPages(params,
-//        func(page *codecommit.ListPullRequestsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPullRequests operation.
+//	pageNum := 0
+//	err := client.ListPullRequestsPages(params,
+//	    func(page *codecommit.ListPullRequestsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) ListPullRequestsPages(input *ListPullRequestsInput, fn func(*ListPullRequestsOutput, bool) bool) error {
 	return c.ListPullRequestsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6362,14 +6544,13 @@ const opListRepositories = "ListRepositories"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRepositoriesRequest method.
+//	req, resp := client.ListRepositoriesRequest(params)
 //
-//    // Example sending a request using the ListRepositoriesRequest method.
-//    req, resp := client.ListRepositoriesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListRepositories
 func (c *CodeCommit) ListRepositoriesRequest(input *ListRepositoriesInput) (req *request.Request, output *ListRepositoriesOutput) {
@@ -6406,14 +6587,15 @@ func (c *CodeCommit) ListRepositoriesRequest(input *ListRepositoriesInput) (req 
 // API operation ListRepositories for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidSortByException
-//   The specified sort by value is not valid.
 //
-//   * InvalidOrderException
-//   The specified sort order is not valid.
+//   - InvalidSortByException
+//     The specified sort by value is not valid.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidOrderException
+//     The specified sort order is not valid.
+//
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListRepositories
 func (c *CodeCommit) ListRepositories(input *ListRepositoriesInput) (*ListRepositoriesOutput, error) {
@@ -6445,15 +6627,14 @@ func (c *CodeCommit) ListRepositoriesWithContext(ctx aws.Context, input *ListRep
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRepositories operation.
-//    pageNum := 0
-//    err := client.ListRepositoriesPages(params,
-//        func(page *codecommit.ListRepositoriesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRepositories operation.
+//	pageNum := 0
+//	err := client.ListRepositoriesPages(params,
+//	    func(page *codecommit.ListRepositoriesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) ListRepositoriesPages(input *ListRepositoriesInput, fn func(*ListRepositoriesOutput, bool) bool) error {
 	return c.ListRepositoriesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6505,14 +6686,13 @@ const opListRepositoriesForApprovalRuleTemplate = "ListRepositoriesForApprovalRu
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRepositoriesForApprovalRuleTemplateRequest method.
+//	req, resp := client.ListRepositoriesForApprovalRuleTemplateRequest(params)
 //
-//    // Example sending a request using the ListRepositoriesForApprovalRuleTemplateRequest method.
-//    req, resp := client.ListRepositoriesForApprovalRuleTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListRepositoriesForApprovalRuleTemplate
 func (c *CodeCommit) ListRepositoriesForApprovalRuleTemplateRequest(input *ListRepositoriesForApprovalRuleTemplateInput) (req *request.Request, output *ListRepositoriesForApprovalRuleTemplateOutput) {
@@ -6549,39 +6729,41 @@ func (c *CodeCommit) ListRepositoriesForApprovalRuleTemplateRequest(input *ListR
 // API operation ListRepositoriesForApprovalRuleTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * ApprovalRuleTemplateDoesNotExistException
-//   The specified approval rule template does not exist. Verify that the name
-//   is correct and that you are signed in to the AWS Region where the template
-//   was created, and then try again.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
-//   * InvalidMaxResultsException
-//   The specified number of maximum results is not valid.
+//   - ApprovalRuleTemplateDoesNotExistException
+//     The specified approval rule template does not exist. Verify that the name
+//     is correct and that you are signed in to the Amazon Web Services Region where
+//     the template was created, and then try again.
 //
-//   * InvalidContinuationTokenException
-//   The specified continuation token is not valid.
+//   - InvalidMaxResultsException
+//     The specified number of maximum results is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidContinuationTokenException
+//     The specified continuation token is not valid.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListRepositoriesForApprovalRuleTemplate
 func (c *CodeCommit) ListRepositoriesForApprovalRuleTemplate(input *ListRepositoriesForApprovalRuleTemplateInput) (*ListRepositoriesForApprovalRuleTemplateOutput, error) {
@@ -6613,15 +6795,14 @@ func (c *CodeCommit) ListRepositoriesForApprovalRuleTemplateWithContext(ctx aws.
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRepositoriesForApprovalRuleTemplate operation.
-//    pageNum := 0
-//    err := client.ListRepositoriesForApprovalRuleTemplatePages(params,
-//        func(page *codecommit.ListRepositoriesForApprovalRuleTemplateOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRepositoriesForApprovalRuleTemplate operation.
+//	pageNum := 0
+//	err := client.ListRepositoriesForApprovalRuleTemplatePages(params,
+//	    func(page *codecommit.ListRepositoriesForApprovalRuleTemplateOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CodeCommit) ListRepositoriesForApprovalRuleTemplatePages(input *ListRepositoriesForApprovalRuleTemplateInput, fn func(*ListRepositoriesForApprovalRuleTemplateOutput, bool) bool) error {
 	return c.ListRepositoriesForApprovalRuleTemplatePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6673,14 +6854,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListTagsForResource
 func (c *CodeCommit) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -6701,10 +6881,10 @@ func (c *CodeCommit) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 
 // ListTagsForResource API operation for AWS CodeCommit.
 //
-// Gets information about AWS tags for a specified Amazon Resource Name (ARN)
-// in AWS CodeCommit. For a list of valid resources in AWS CodeCommit, see CodeCommit
-// Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-// in the AWS CodeCommit User Guide.
+// Gets information about Amazon Web Servicestags for a specified Amazon Resource
+// Name (ARN) in CodeCommit. For a list of valid resources in CodeCommit, see
+// CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+// in the CodeCommit User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6714,26 +6894,27 @@ func (c *CodeCommit) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * ResourceArnRequiredException
-//   A valid Amazon Resource Name (ARN) for an AWS CodeCommit resource is required.
-//   For a list of valid resources in AWS CodeCommit, see CodeCommit Resources
-//   and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-//   in the AWS CodeCommit User Guide.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidResourceArnException
-//   The value for the resource ARN is not valid. For more information about resources
-//   in AWS CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-//   in the AWS CodeCommit User Guide.
+//   - ResourceArnRequiredException
+//     A valid Amazon Resource Name (ARN) for an CodeCommit resource is required.
+//     For a list of valid resources in CodeCommit, see CodeCommit Resources and
+//     Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+//     in the CodeCommit User Guide.
+//
+//   - InvalidResourceArnException
+//     The value for the resource ARN is not valid. For more information about resources
+//     in CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+//     in the CodeCommit User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListTagsForResource
 func (c *CodeCommit) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -6773,14 +6954,13 @@ const opMergeBranchesByFastForward = "MergeBranchesByFastForward"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the MergeBranchesByFastForwardRequest method.
+//	req, resp := client.MergeBranchesByFastForwardRequest(params)
 //
-//    // Example sending a request using the MergeBranchesByFastForwardRequest method.
-//    req, resp := client.MergeBranchesByFastForwardRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergeBranchesByFastForward
 func (c *CodeCommit) MergeBranchesByFastForwardRequest(input *MergeBranchesByFastForwardInput) (req *request.Request, output *MergeBranchesByFastForwardOutput) {
@@ -6811,74 +6991,75 @@ func (c *CodeCommit) MergeBranchesByFastForwardRequest(input *MergeBranchesByFas
 // API operation MergeBranchesByFastForward for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * InvalidTargetBranchException
-//   The specified target branch is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - InvalidTargetBranchException
+//     The specified target branch is not valid.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * BranchNameIsTagNameException
-//   The specified branch name is not valid because it is a tag name. Enter the
-//   name of a branch in the repository. For a list of valid branch names, use
-//   ListBranches.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * BranchDoesNotExistException
-//   The specified branch does not exist.
+//   - BranchNameIsTagNameException
+//     The specified branch name is not valid because it is a tag name. Enter the
+//     name of a branch in the repository. For a list of valid branch names, use
+//     ListBranches.
 //
-//   * ManualMergeRequiredException
-//   The pull request cannot be merged automatically into the destination branch.
-//   You must manually merge the branches and resolve any conflicts.
+//   - BranchDoesNotExistException
+//     The specified branch does not exist.
 //
-//   * ConcurrentReferenceUpdateException
-//   The merge cannot be completed because the target branch has been modified.
-//   Another user might have modified the target branch while the merge was in
-//   progress. Wait a few minutes, and then try again.
+//   - ManualMergeRequiredException
+//     The pull request cannot be merged automatically into the destination branch.
+//     You must manually merge the branches and resolve any conflicts.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - ConcurrentReferenceUpdateException
+//     The merge cannot be completed because the target branch has been modified.
+//     Another user might have modified the target branch while the merge was in
+//     progress. Wait a few minutes, and then try again.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergeBranchesByFastForward
 func (c *CodeCommit) MergeBranchesByFastForward(input *MergeBranchesByFastForwardInput) (*MergeBranchesByFastForwardOutput, error) {
@@ -6918,14 +7099,13 @@ const opMergeBranchesBySquash = "MergeBranchesBySquash"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the MergeBranchesBySquashRequest method.
+//	req, resp := client.MergeBranchesBySquashRequest(params)
 //
-//    // Example sending a request using the MergeBranchesBySquashRequest method.
-//    req, resp := client.MergeBranchesBySquashRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergeBranchesBySquash
 func (c *CodeCommit) MergeBranchesBySquashRequest(input *MergeBranchesBySquashInput) (req *request.Request, output *MergeBranchesBySquashOutput) {
@@ -6956,148 +7136,149 @@ func (c *CodeCommit) MergeBranchesBySquashRequest(input *MergeBranchesBySquashIn
 // API operation MergeBranchesBySquash for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * InvalidTargetBranchException
-//   The specified target branch is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - InvalidTargetBranchException
+//     The specified target branch is not valid.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * BranchNameIsTagNameException
-//   The specified branch name is not valid because it is a tag name. Enter the
-//   name of a branch in the repository. For a list of valid branch names, use
-//   ListBranches.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * BranchDoesNotExistException
-//   The specified branch does not exist.
+//   - BranchNameIsTagNameException
+//     The specified branch name is not valid because it is a tag name. Enter the
+//     name of a branch in the repository. For a list of valid branch names, use
+//     ListBranches.
 //
-//   * ManualMergeRequiredException
-//   The pull request cannot be merged automatically into the destination branch.
-//   You must manually merge the branches and resolve any conflicts.
+//   - BranchDoesNotExistException
+//     The specified branch does not exist.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - ManualMergeRequiredException
+//     The pull request cannot be merged automatically into the destination branch.
+//     You must manually merge the branches and resolve any conflicts.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * InvalidConflictResolutionException
-//   The specified conflict resolution list is not valid.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * MaximumConflictResolutionEntriesExceededException
-//   The number of allowed conflict resolution entries was exceeded.
+//   - InvalidConflictResolutionException
+//     The specified conflict resolution list is not valid.
 //
-//   * MultipleConflictResolutionEntriesException
-//   More than one conflict resolution entries exists for the conflict. A conflict
-//   can have only one conflict resolution entry.
+//   - MaximumConflictResolutionEntriesExceededException
+//     The number of allowed conflict resolution entries was exceeded.
 //
-//   * ReplacementTypeRequiredException
-//   A replacement type is required.
+//   - MultipleConflictResolutionEntriesException
+//     More than one conflict resolution entries exists for the conflict. A conflict
+//     can have only one conflict resolution entry.
 //
-//   * InvalidReplacementTypeException
-//   Automerge was specified for resolving the conflict, but the specified replacement
-//   type is not valid.
+//   - ReplacementTypeRequiredException
+//     A replacement type is required.
 //
-//   * ReplacementContentRequiredException
-//   USE_NEW_CONTENT was specified, but no replacement content has been provided.
+//   - InvalidReplacementTypeException
+//     Automerge was specified for resolving the conflict, but the specified replacement
+//     type is not valid.
 //
-//   * InvalidReplacementContentException
-//   Automerge was specified for resolving the conflict, but the replacement type
-//   is not valid or content is missing.
+//   - ReplacementContentRequiredException
+//     USE_NEW_CONTENT was specified, but no replacement content has been provided.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - InvalidReplacementContentException
+//     Automerge was specified for resolving the conflict, but the replacement type
+//     is not valid or content is missing.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * FileContentSizeLimitExceededException
-//   The file cannot be added because it is too large. The maximum file size is
-//   6 MB, and the combined file content change size is 7 MB. Consider making
-//   these changes using a Git client.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * FolderContentSizeLimitExceededException
-//   The commit cannot be created because at least one of the overall changes
-//   in the commit results in a folder whose contents exceed the limit of 6 MB.
-//   Either reduce the number and size of your changes, or split the changes across
-//   multiple folders.
+//   - FileContentSizeLimitExceededException
+//     The file cannot be added because it is too large. The maximum file size is
+//     6 MB, and the combined file content change size is 7 MB. Consider making
+//     these changes using a Git client.
 //
-//   * MaximumFileContentToLoadExceededException
-//   The number of files to load exceeds the allowed limit.
+//   - FolderContentSizeLimitExceededException
+//     The commit cannot be created because at least one of the overall changes
+//     in the commit results in a folder whose contents exceed the limit of 6 MB.
+//     Either reduce the number and size of your changes, or split the changes across
+//     multiple folders.
 //
-//   * MaximumItemsToCompareExceededException
-//   The number of items to compare between the source or destination branches
-//   and the merge base has exceeded the maximum allowed.
+//   - MaximumFileContentToLoadExceededException
+//     The number of files to load exceeds the allowed limit.
 //
-//   * FileModeRequiredException
-//   The commit cannot be created because no file mode has been specified. A file
-//   mode is required to update mode permissions for a file.
+//   - MaximumItemsToCompareExceededException
+//     The number of items to compare between the source or destination branches
+//     and the merge base has exceeded the maximum allowed.
 //
-//   * InvalidFileModeException
-//   The specified file mode permission is not valid. For a list of valid file
-//   mode permissions, see PutFile.
+//   - FileModeRequiredException
+//     The commit cannot be created because no file mode has been specified. A file
+//     mode is required to update mode permissions for a file.
 //
-//   * NameLengthExceededException
-//   The user name is not valid because it has exceeded the character limit for
-//   author names.
+//   - InvalidFileModeException
+//     The specified file mode permission is not valid. For a list of valid file
+//     mode permissions, see PutFile.
 //
-//   * InvalidEmailException
-//   The specified email address either contains one or more characters that are
-//   not allowed, or it exceeds the maximum number of characters allowed for an
-//   email address.
+//   - NameLengthExceededException
+//     The user name is not valid because it has exceeded the character limit for
+//     author names.
 //
-//   * CommitMessageLengthExceededException
-//   The commit message is too long. Provide a shorter string.
+//   - InvalidEmailException
+//     The specified email address either contains one or more characters that are
+//     not allowed, or it exceeds the maximum number of characters allowed for an
+//     email address.
 //
-//   * ConcurrentReferenceUpdateException
-//   The merge cannot be completed because the target branch has been modified.
-//   Another user might have modified the target branch while the merge was in
-//   progress. Wait a few minutes, and then try again.
+//   - CommitMessageLengthExceededException
+//     The commit message is too long. Provide a shorter string.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - ConcurrentReferenceUpdateException
+//     The merge cannot be completed because the target branch has been modified.
+//     Another user might have modified the target branch while the merge was in
+//     progress. Wait a few minutes, and then try again.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergeBranchesBySquash
 func (c *CodeCommit) MergeBranchesBySquash(input *MergeBranchesBySquashInput) (*MergeBranchesBySquashOutput, error) {
@@ -7137,14 +7318,13 @@ const opMergeBranchesByThreeWay = "MergeBranchesByThreeWay"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the MergeBranchesByThreeWayRequest method.
+//	req, resp := client.MergeBranchesByThreeWayRequest(params)
 //
-//    // Example sending a request using the MergeBranchesByThreeWayRequest method.
-//    req, resp := client.MergeBranchesByThreeWayRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergeBranchesByThreeWay
 func (c *CodeCommit) MergeBranchesByThreeWayRequest(input *MergeBranchesByThreeWayInput) (req *request.Request, output *MergeBranchesByThreeWayOutput) {
@@ -7175,148 +7355,149 @@ func (c *CodeCommit) MergeBranchesByThreeWayRequest(input *MergeBranchesByThreeW
 // API operation MergeBranchesByThreeWay for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * CommitRequiredException
-//   A commit was not specified.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidCommitException
-//   The specified commit is not valid.
+//   - CommitRequiredException
+//     A commit was not specified.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - InvalidCommitException
+//     The specified commit is not valid.
 //
-//   * InvalidTargetBranchException
-//   The specified target branch is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - InvalidTargetBranchException
+//     The specified target branch is not valid.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * BranchNameIsTagNameException
-//   The specified branch name is not valid because it is a tag name. Enter the
-//   name of a branch in the repository. For a list of valid branch names, use
-//   ListBranches.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * BranchDoesNotExistException
-//   The specified branch does not exist.
+//   - BranchNameIsTagNameException
+//     The specified branch name is not valid because it is a tag name. Enter the
+//     name of a branch in the repository. For a list of valid branch names, use
+//     ListBranches.
 //
-//   * ManualMergeRequiredException
-//   The pull request cannot be merged automatically into the destination branch.
-//   You must manually merge the branches and resolve any conflicts.
+//   - BranchDoesNotExistException
+//     The specified branch does not exist.
 //
-//   * ConcurrentReferenceUpdateException
-//   The merge cannot be completed because the target branch has been modified.
-//   Another user might have modified the target branch while the merge was in
-//   progress. Wait a few minutes, and then try again.
+//   - ManualMergeRequiredException
+//     The pull request cannot be merged automatically into the destination branch.
+//     You must manually merge the branches and resolve any conflicts.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - ConcurrentReferenceUpdateException
+//     The merge cannot be completed because the target branch has been modified.
+//     Another user might have modified the target branch while the merge was in
+//     progress. Wait a few minutes, and then try again.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * InvalidConflictResolutionException
-//   The specified conflict resolution list is not valid.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * MaximumConflictResolutionEntriesExceededException
-//   The number of allowed conflict resolution entries was exceeded.
+//   - InvalidConflictResolutionException
+//     The specified conflict resolution list is not valid.
 //
-//   * MultipleConflictResolutionEntriesException
-//   More than one conflict resolution entries exists for the conflict. A conflict
-//   can have only one conflict resolution entry.
+//   - MaximumConflictResolutionEntriesExceededException
+//     The number of allowed conflict resolution entries was exceeded.
 //
-//   * ReplacementTypeRequiredException
-//   A replacement type is required.
+//   - MultipleConflictResolutionEntriesException
+//     More than one conflict resolution entries exists for the conflict. A conflict
+//     can have only one conflict resolution entry.
 //
-//   * InvalidReplacementTypeException
-//   Automerge was specified for resolving the conflict, but the specified replacement
-//   type is not valid.
+//   - ReplacementTypeRequiredException
+//     A replacement type is required.
 //
-//   * ReplacementContentRequiredException
-//   USE_NEW_CONTENT was specified, but no replacement content has been provided.
+//   - InvalidReplacementTypeException
+//     Automerge was specified for resolving the conflict, but the specified replacement
+//     type is not valid.
 //
-//   * InvalidReplacementContentException
-//   Automerge was specified for resolving the conflict, but the replacement type
-//   is not valid or content is missing.
+//   - ReplacementContentRequiredException
+//     USE_NEW_CONTENT was specified, but no replacement content has been provided.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - InvalidReplacementContentException
+//     Automerge was specified for resolving the conflict, but the replacement type
+//     is not valid or content is missing.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * FileContentSizeLimitExceededException
-//   The file cannot be added because it is too large. The maximum file size is
-//   6 MB, and the combined file content change size is 7 MB. Consider making
-//   these changes using a Git client.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * FolderContentSizeLimitExceededException
-//   The commit cannot be created because at least one of the overall changes
-//   in the commit results in a folder whose contents exceed the limit of 6 MB.
-//   Either reduce the number and size of your changes, or split the changes across
-//   multiple folders.
+//   - FileContentSizeLimitExceededException
+//     The file cannot be added because it is too large. The maximum file size is
+//     6 MB, and the combined file content change size is 7 MB. Consider making
+//     these changes using a Git client.
 //
-//   * MaximumFileContentToLoadExceededException
-//   The number of files to load exceeds the allowed limit.
+//   - FolderContentSizeLimitExceededException
+//     The commit cannot be created because at least one of the overall changes
+//     in the commit results in a folder whose contents exceed the limit of 6 MB.
+//     Either reduce the number and size of your changes, or split the changes across
+//     multiple folders.
 //
-//   * MaximumItemsToCompareExceededException
-//   The number of items to compare between the source or destination branches
-//   and the merge base has exceeded the maximum allowed.
+//   - MaximumFileContentToLoadExceededException
+//     The number of files to load exceeds the allowed limit.
 //
-//   * FileModeRequiredException
-//   The commit cannot be created because no file mode has been specified. A file
-//   mode is required to update mode permissions for a file.
+//   - MaximumItemsToCompareExceededException
+//     The number of items to compare between the source or destination branches
+//     and the merge base has exceeded the maximum allowed.
 //
-//   * InvalidFileModeException
-//   The specified file mode permission is not valid. For a list of valid file
-//   mode permissions, see PutFile.
+//   - FileModeRequiredException
+//     The commit cannot be created because no file mode has been specified. A file
+//     mode is required to update mode permissions for a file.
 //
-//   * NameLengthExceededException
-//   The user name is not valid because it has exceeded the character limit for
-//   author names.
+//   - InvalidFileModeException
+//     The specified file mode permission is not valid. For a list of valid file
+//     mode permissions, see PutFile.
 //
-//   * InvalidEmailException
-//   The specified email address either contains one or more characters that are
-//   not allowed, or it exceeds the maximum number of characters allowed for an
-//   email address.
+//   - NameLengthExceededException
+//     The user name is not valid because it has exceeded the character limit for
+//     author names.
 //
-//   * CommitMessageLengthExceededException
-//   The commit message is too long. Provide a shorter string.
+//   - InvalidEmailException
+//     The specified email address either contains one or more characters that are
+//     not allowed, or it exceeds the maximum number of characters allowed for an
+//     email address.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - CommitMessageLengthExceededException
+//     The commit message is too long. Provide a shorter string.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergeBranchesByThreeWay
 func (c *CodeCommit) MergeBranchesByThreeWay(input *MergeBranchesByThreeWayInput) (*MergeBranchesByThreeWayOutput, error) {
@@ -7356,14 +7537,13 @@ const opMergePullRequestByFastForward = "MergePullRequestByFastForward"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the MergePullRequestByFastForwardRequest method.
+//	req, resp := client.MergePullRequestByFastForwardRequest(params)
 //
-//    // Example sending a request using the MergePullRequestByFastForwardRequest method.
-//    req, resp := client.MergePullRequestByFastForwardRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergePullRequestByFastForward
 func (c *CodeCommit) MergePullRequestByFastForwardRequest(input *MergePullRequestByFastForwardInput) (req *request.Request, output *MergePullRequestByFastForwardOutput) {
@@ -7397,77 +7577,78 @@ func (c *CodeCommit) MergePullRequestByFastForwardRequest(input *MergePullReques
 // API operation MergePullRequestByFastForward for usage and error information.
 //
 // Returned Error Types:
-//   * ManualMergeRequiredException
-//   The pull request cannot be merged automatically into the destination branch.
-//   You must manually merge the branches and resolve any conflicts.
 //
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
+//   - ManualMergeRequiredException
+//     The pull request cannot be merged automatically into the destination branch.
+//     You must manually merge the branches and resolve any conflicts.
 //
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * TipOfSourceReferenceIsDifferentException
-//   The tip of the source branch in the destination repository does not match
-//   the tip of the source branch specified in your request. The pull request
-//   might have been updated. Make sure that you have the latest changes.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * ReferenceDoesNotExistException
-//   The specified reference does not exist. You must provide a full commit ID.
+//   - TipOfSourceReferenceIsDifferentException
+//     The tip of the source branch in the destination repository does not match
+//     the tip of the source branch specified in your request. The pull request
+//     might have been updated. Make sure that you have the latest changes.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - ReferenceDoesNotExistException
+//     The specified reference does not exist. You must provide a full commit ID.
 //
-//   * RepositoryNotAssociatedWithPullRequestException
-//   The repository does not contain any pull requests with that pull request
-//   ID. Use GetPullRequest to verify the correct repository name for the pull
-//   request ID.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - RepositoryNotAssociatedWithPullRequestException
+//     The repository does not contain any pull requests with that pull request
+//     ID. Use GetPullRequest to verify the correct repository name for the pull
+//     request ID.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * ConcurrentReferenceUpdateException
-//   The merge cannot be completed because the target branch has been modified.
-//   Another user might have modified the target branch while the merge was in
-//   progress. Wait a few minutes, and then try again.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * PullRequestApprovalRulesNotSatisfiedException
-//   The pull request cannot be merged because one or more approval rules applied
-//   to the pull request have conditions that have not been met.
+//   - ConcurrentReferenceUpdateException
+//     The merge cannot be completed because the target branch has been modified.
+//     Another user might have modified the target branch while the merge was in
+//     progress. Wait a few minutes, and then try again.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - PullRequestApprovalRulesNotSatisfiedException
+//     The pull request cannot be merged because one or more approval rules applied
+//     to the pull request have conditions that have not been met.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergePullRequestByFastForward
 func (c *CodeCommit) MergePullRequestByFastForward(input *MergePullRequestByFastForwardInput) (*MergePullRequestByFastForwardOutput, error) {
@@ -7507,14 +7688,13 @@ const opMergePullRequestBySquash = "MergePullRequestBySquash"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the MergePullRequestBySquashRequest method.
+//	req, resp := client.MergePullRequestBySquashRequest(params)
 //
-//    // Example sending a request using the MergePullRequestBySquashRequest method.
-//    req, resp := client.MergePullRequestBySquashRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergePullRequestBySquash
 func (c *CodeCommit) MergePullRequestBySquashRequest(input *MergePullRequestBySquashInput) (req *request.Request, output *MergePullRequestBySquashOutput) {
@@ -7547,149 +7727,150 @@ func (c *CodeCommit) MergePullRequestBySquashRequest(input *MergePullRequestBySq
 // API operation MergePullRequestBySquash for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
 //
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * ManualMergeRequiredException
-//   The pull request cannot be merged automatically into the destination branch.
-//   You must manually merge the branches and resolve any conflicts.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * TipOfSourceReferenceIsDifferentException
-//   The tip of the source branch in the destination repository does not match
-//   the tip of the source branch specified in your request. The pull request
-//   might have been updated. Make sure that you have the latest changes.
+//   - ManualMergeRequiredException
+//     The pull request cannot be merged automatically into the destination branch.
+//     You must manually merge the branches and resolve any conflicts.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - TipOfSourceReferenceIsDifferentException
+//     The tip of the source branch in the destination repository does not match
+//     the tip of the source branch specified in your request. The pull request
+//     might have been updated. Make sure that you have the latest changes.
 //
-//   * NameLengthExceededException
-//   The user name is not valid because it has exceeded the character limit for
-//   author names.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidEmailException
-//   The specified email address either contains one or more characters that are
-//   not allowed, or it exceeds the maximum number of characters allowed for an
-//   email address.
+//   - NameLengthExceededException
+//     The user name is not valid because it has exceeded the character limit for
+//     author names.
 //
-//   * CommitMessageLengthExceededException
-//   The commit message is too long. Provide a shorter string.
+//   - InvalidEmailException
+//     The specified email address either contains one or more characters that are
+//     not allowed, or it exceeds the maximum number of characters allowed for an
+//     email address.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - CommitMessageLengthExceededException
+//     The commit message is too long. Provide a shorter string.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * InvalidConflictResolutionException
-//   The specified conflict resolution list is not valid.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * ReplacementTypeRequiredException
-//   A replacement type is required.
+//   - InvalidConflictResolutionException
+//     The specified conflict resolution list is not valid.
 //
-//   * InvalidReplacementTypeException
-//   Automerge was specified for resolving the conflict, but the specified replacement
-//   type is not valid.
+//   - ReplacementTypeRequiredException
+//     A replacement type is required.
 //
-//   * MultipleConflictResolutionEntriesException
-//   More than one conflict resolution entries exists for the conflict. A conflict
-//   can have only one conflict resolution entry.
+//   - InvalidReplacementTypeException
+//     Automerge was specified for resolving the conflict, but the specified replacement
+//     type is not valid.
 //
-//   * ReplacementContentRequiredException
-//   USE_NEW_CONTENT was specified, but no replacement content has been provided.
+//   - MultipleConflictResolutionEntriesException
+//     More than one conflict resolution entries exists for the conflict. A conflict
+//     can have only one conflict resolution entry.
 //
-//   * MaximumConflictResolutionEntriesExceededException
-//   The number of allowed conflict resolution entries was exceeded.
+//   - ReplacementContentRequiredException
+//     USE_NEW_CONTENT was specified, but no replacement content has been provided.
 //
-//   * ConcurrentReferenceUpdateException
-//   The merge cannot be completed because the target branch has been modified.
-//   Another user might have modified the target branch while the merge was in
-//   progress. Wait a few minutes, and then try again.
+//   - MaximumConflictResolutionEntriesExceededException
+//     The number of allowed conflict resolution entries was exceeded.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - ConcurrentReferenceUpdateException
+//     The merge cannot be completed because the target branch has been modified.
+//     Another user might have modified the target branch while the merge was in
+//     progress. Wait a few minutes, and then try again.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * InvalidFileModeException
-//   The specified file mode permission is not valid. For a list of valid file
-//   mode permissions, see PutFile.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * InvalidReplacementContentException
-//   Automerge was specified for resolving the conflict, but the replacement type
-//   is not valid or content is missing.
+//   - InvalidFileModeException
+//     The specified file mode permission is not valid. For a list of valid file
+//     mode permissions, see PutFile.
 //
-//   * FileContentSizeLimitExceededException
-//   The file cannot be added because it is too large. The maximum file size is
-//   6 MB, and the combined file content change size is 7 MB. Consider making
-//   these changes using a Git client.
+//   - InvalidReplacementContentException
+//     Automerge was specified for resolving the conflict, but the replacement type
+//     is not valid or content is missing.
 //
-//   * FolderContentSizeLimitExceededException
-//   The commit cannot be created because at least one of the overall changes
-//   in the commit results in a folder whose contents exceed the limit of 6 MB.
-//   Either reduce the number and size of your changes, or split the changes across
-//   multiple folders.
+//   - FileContentSizeLimitExceededException
+//     The file cannot be added because it is too large. The maximum file size is
+//     6 MB, and the combined file content change size is 7 MB. Consider making
+//     these changes using a Git client.
 //
-//   * MaximumFileContentToLoadExceededException
-//   The number of files to load exceeds the allowed limit.
+//   - FolderContentSizeLimitExceededException
+//     The commit cannot be created because at least one of the overall changes
+//     in the commit results in a folder whose contents exceed the limit of 6 MB.
+//     Either reduce the number and size of your changes, or split the changes across
+//     multiple folders.
 //
-//   * MaximumItemsToCompareExceededException
-//   The number of items to compare between the source or destination branches
-//   and the merge base has exceeded the maximum allowed.
+//   - MaximumFileContentToLoadExceededException
+//     The number of files to load exceeds the allowed limit.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - MaximumItemsToCompareExceededException
+//     The number of items to compare between the source or destination branches
+//     and the merge base has exceeded the maximum allowed.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * RepositoryNotAssociatedWithPullRequestException
-//   The repository does not contain any pull requests with that pull request
-//   ID. Use GetPullRequest to verify the correct repository name for the pull
-//   request ID.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * PullRequestApprovalRulesNotSatisfiedException
-//   The pull request cannot be merged because one or more approval rules applied
-//   to the pull request have conditions that have not been met.
+//   - RepositoryNotAssociatedWithPullRequestException
+//     The repository does not contain any pull requests with that pull request
+//     ID. Use GetPullRequest to verify the correct repository name for the pull
+//     request ID.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - PullRequestApprovalRulesNotSatisfiedException
+//     The pull request cannot be merged because one or more approval rules applied
+//     to the pull request have conditions that have not been met.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergePullRequestBySquash
 func (c *CodeCommit) MergePullRequestBySquash(input *MergePullRequestBySquashInput) (*MergePullRequestBySquashOutput, error) {
@@ -7729,14 +7910,13 @@ const opMergePullRequestByThreeWay = "MergePullRequestByThreeWay"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the MergePullRequestByThreeWayRequest method.
+//	req, resp := client.MergePullRequestByThreeWayRequest(params)
 //
-//    // Example sending a request using the MergePullRequestByThreeWayRequest method.
-//    req, resp := client.MergePullRequestByThreeWayRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergePullRequestByThreeWay
 func (c *CodeCommit) MergePullRequestByThreeWayRequest(input *MergePullRequestByThreeWayInput) (req *request.Request, output *MergePullRequestByThreeWayOutput) {
@@ -7770,149 +7950,150 @@ func (c *CodeCommit) MergePullRequestByThreeWayRequest(input *MergePullRequestBy
 // API operation MergePullRequestByThreeWay for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
 //
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * ManualMergeRequiredException
-//   The pull request cannot be merged automatically into the destination branch.
-//   You must manually merge the branches and resolve any conflicts.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * TipOfSourceReferenceIsDifferentException
-//   The tip of the source branch in the destination repository does not match
-//   the tip of the source branch specified in your request. The pull request
-//   might have been updated. Make sure that you have the latest changes.
+//   - ManualMergeRequiredException
+//     The pull request cannot be merged automatically into the destination branch.
+//     You must manually merge the branches and resolve any conflicts.
 //
-//   * TipsDivergenceExceededException
-//   The divergence between the tips of the provided commit specifiers is too
-//   great to determine whether there might be any merge conflicts. Locally compare
-//   the specifiers using git diff or a diff tool.
+//   - TipOfSourceReferenceIsDifferentException
+//     The tip of the source branch in the destination repository does not match
+//     the tip of the source branch specified in your request. The pull request
+//     might have been updated. Make sure that you have the latest changes.
 //
-//   * NameLengthExceededException
-//   The user name is not valid because it has exceeded the character limit for
-//   author names.
+//   - TipsDivergenceExceededException
+//     The divergence between the tips of the provided commit specifiers is too
+//     great to determine whether there might be any merge conflicts. Locally compare
+//     the specifiers using git diff or a diff tool.
 //
-//   * InvalidEmailException
-//   The specified email address either contains one or more characters that are
-//   not allowed, or it exceeds the maximum number of characters allowed for an
-//   email address.
+//   - NameLengthExceededException
+//     The user name is not valid because it has exceeded the character limit for
+//     author names.
 //
-//   * CommitMessageLengthExceededException
-//   The commit message is too long. Provide a shorter string.
+//   - InvalidEmailException
+//     The specified email address either contains one or more characters that are
+//     not allowed, or it exceeds the maximum number of characters allowed for an
+//     email address.
 //
-//   * InvalidConflictDetailLevelException
-//   The specified conflict detail level is not valid.
+//   - CommitMessageLengthExceededException
+//     The commit message is too long. Provide a shorter string.
 //
-//   * InvalidConflictResolutionStrategyException
-//   The specified conflict resolution strategy is not valid.
+//   - InvalidConflictDetailLevelException
+//     The specified conflict detail level is not valid.
 //
-//   * InvalidConflictResolutionException
-//   The specified conflict resolution list is not valid.
+//   - InvalidConflictResolutionStrategyException
+//     The specified conflict resolution strategy is not valid.
 //
-//   * ReplacementTypeRequiredException
-//   A replacement type is required.
+//   - InvalidConflictResolutionException
+//     The specified conflict resolution list is not valid.
 //
-//   * InvalidReplacementTypeException
-//   Automerge was specified for resolving the conflict, but the specified replacement
-//   type is not valid.
+//   - ReplacementTypeRequiredException
+//     A replacement type is required.
 //
-//   * MultipleConflictResolutionEntriesException
-//   More than one conflict resolution entries exists for the conflict. A conflict
-//   can have only one conflict resolution entry.
+//   - InvalidReplacementTypeException
+//     Automerge was specified for resolving the conflict, but the specified replacement
+//     type is not valid.
 //
-//   * ReplacementContentRequiredException
-//   USE_NEW_CONTENT was specified, but no replacement content has been provided.
+//   - MultipleConflictResolutionEntriesException
+//     More than one conflict resolution entries exists for the conflict. A conflict
+//     can have only one conflict resolution entry.
 //
-//   * MaximumConflictResolutionEntriesExceededException
-//   The number of allowed conflict resolution entries was exceeded.
+//   - ReplacementContentRequiredException
+//     USE_NEW_CONTENT was specified, but no replacement content has been provided.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - MaximumConflictResolutionEntriesExceededException
+//     The number of allowed conflict resolution entries was exceeded.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * InvalidFileModeException
-//   The specified file mode permission is not valid. For a list of valid file
-//   mode permissions, see PutFile.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * InvalidReplacementContentException
-//   Automerge was specified for resolving the conflict, but the replacement type
-//   is not valid or content is missing.
+//   - InvalidFileModeException
+//     The specified file mode permission is not valid. For a list of valid file
+//     mode permissions, see PutFile.
 //
-//   * FileContentSizeLimitExceededException
-//   The file cannot be added because it is too large. The maximum file size is
-//   6 MB, and the combined file content change size is 7 MB. Consider making
-//   these changes using a Git client.
+//   - InvalidReplacementContentException
+//     Automerge was specified for resolving the conflict, but the replacement type
+//     is not valid or content is missing.
 //
-//   * FolderContentSizeLimitExceededException
-//   The commit cannot be created because at least one of the overall changes
-//   in the commit results in a folder whose contents exceed the limit of 6 MB.
-//   Either reduce the number and size of your changes, or split the changes across
-//   multiple folders.
+//   - FileContentSizeLimitExceededException
+//     The file cannot be added because it is too large. The maximum file size is
+//     6 MB, and the combined file content change size is 7 MB. Consider making
+//     these changes using a Git client.
 //
-//   * MaximumFileContentToLoadExceededException
-//   The number of files to load exceeds the allowed limit.
+//   - FolderContentSizeLimitExceededException
+//     The commit cannot be created because at least one of the overall changes
+//     in the commit results in a folder whose contents exceed the limit of 6 MB.
+//     Either reduce the number and size of your changes, or split the changes across
+//     multiple folders.
 //
-//   * MaximumItemsToCompareExceededException
-//   The number of items to compare between the source or destination branches
-//   and the merge base has exceeded the maximum allowed.
+//   - MaximumFileContentToLoadExceededException
+//     The number of files to load exceeds the allowed limit.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - MaximumItemsToCompareExceededException
+//     The number of items to compare between the source or destination branches
+//     and the merge base has exceeded the maximum allowed.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * RepositoryNotAssociatedWithPullRequestException
-//   The repository does not contain any pull requests with that pull request
-//   ID. Use GetPullRequest to verify the correct repository name for the pull
-//   request ID.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * ConcurrentReferenceUpdateException
-//   The merge cannot be completed because the target branch has been modified.
-//   Another user might have modified the target branch while the merge was in
-//   progress. Wait a few minutes, and then try again.
+//   - RepositoryNotAssociatedWithPullRequestException
+//     The repository does not contain any pull requests with that pull request
+//     ID. Use GetPullRequest to verify the correct repository name for the pull
+//     request ID.
 //
-//   * PullRequestApprovalRulesNotSatisfiedException
-//   The pull request cannot be merged because one or more approval rules applied
-//   to the pull request have conditions that have not been met.
+//   - ConcurrentReferenceUpdateException
+//     The merge cannot be completed because the target branch has been modified.
+//     Another user might have modified the target branch while the merge was in
+//     progress. Wait a few minutes, and then try again.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - PullRequestApprovalRulesNotSatisfiedException
+//     The pull request cannot be merged because one or more approval rules applied
+//     to the pull request have conditions that have not been met.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergePullRequestByThreeWay
 func (c *CodeCommit) MergePullRequestByThreeWay(input *MergePullRequestByThreeWayInput) (*MergePullRequestByThreeWayOutput, error) {
@@ -7952,14 +8133,13 @@ const opOverridePullRequestApprovalRules = "OverridePullRequestApprovalRules"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OverridePullRequestApprovalRulesRequest method.
+//	req, resp := client.OverridePullRequestApprovalRulesRequest(params)
 //
-//    // Example sending a request using the OverridePullRequestApprovalRulesRequest method.
-//    req, resp := client.OverridePullRequestApprovalRulesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/OverridePullRequestApprovalRules
 func (c *CodeCommit) OverridePullRequestApprovalRulesRequest(input *OverridePullRequestApprovalRulesInput) (req *request.Request, output *OverridePullRequestApprovalRulesOutput) {
@@ -7992,55 +8172,56 @@ func (c *CodeCommit) OverridePullRequestApprovalRulesRequest(input *OverridePull
 // API operation OverridePullRequestApprovalRules for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * InvalidRevisionIdException
-//   The revision ID is not valid. Use GetPullRequest to determine the value.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * RevisionIdRequiredException
-//   A revision ID is required, but was not provided.
+//   - InvalidRevisionIdException
+//     The revision ID is not valid. Use GetPullRequest to determine the value.
 //
-//   * InvalidOverrideStatusException
-//   The override status is not valid. Valid statuses are OVERRIDE and REVOKE.
+//   - RevisionIdRequiredException
+//     A revision ID is required, but was not provided.
 //
-//   * OverrideStatusRequiredException
-//   An override status is required, but no value was provided. Valid values include
-//   OVERRIDE and REVOKE.
+//   - InvalidOverrideStatusException
+//     The override status is not valid. Valid statuses are OVERRIDE and REVOKE.
 //
-//   * OverrideAlreadySetException
-//   The pull request has already had its approval rules set to override.
+//   - OverrideStatusRequiredException
+//     An override status is required, but no value was provided. Valid values include
+//     OVERRIDE and REVOKE.
 //
-//   * RevisionNotCurrentException
-//   The revision ID provided in the request does not match the current revision
-//   ID. Use GetPullRequest to retrieve the current revision ID.
+//   - OverrideAlreadySetException
+//     The pull request has already had its approval rules set to override.
 //
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
+//   - RevisionNotCurrentException
+//     The revision ID provided in the request does not match the current revision
+//     ID. Use GetPullRequest to retrieve the current revision ID.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/OverridePullRequestApprovalRules
 func (c *CodeCommit) OverridePullRequestApprovalRules(input *OverridePullRequestApprovalRulesInput) (*OverridePullRequestApprovalRulesOutput, error) {
@@ -8080,14 +8261,13 @@ const opPostCommentForComparedCommit = "PostCommentForComparedCommit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PostCommentForComparedCommitRequest method.
+//	req, resp := client.PostCommentForComparedCommitRequest(params)
 //
-//    // Example sending a request using the PostCommentForComparedCommitRequest method.
-//    req, resp := client.PostCommentForComparedCommitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PostCommentForComparedCommit
 func (c *CodeCommit) PostCommentForComparedCommitRequest(input *PostCommentForComparedCommitInput) (req *request.Request, output *PostCommentForComparedCommitOutput) {
@@ -8118,92 +8298,93 @@ func (c *CodeCommit) PostCommentForComparedCommitRequest(input *PostCommentForCo
 // API operation PostCommentForComparedCommit for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * ClientRequestTokenRequiredException
-//   A client request token is required. A client request token is an unique,
-//   client-generated idempotency token that, when provided in a request, ensures
-//   the request cannot be repeated with a changed parameter. If a request is
-//   received with the same parameters and a token is included, the request returns
-//   information about the initial request that used that token.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidClientRequestTokenException
-//   The client request token is not valid.
+//   - ClientRequestTokenRequiredException
+//     A client request token is required. A client request token is an unique,
+//     client-generated idempotency token that, when provided in a request, ensures
+//     the request cannot be repeated with a changed parameter. If a request is
+//     received with the same parameters and a token is included, the request returns
+//     information about the initial request that used that token.
 //
-//   * IdempotencyParameterMismatchException
-//   The client request token is not valid. Either the token is not in a valid
-//   format, or the token has been used in a previous request and cannot be reused.
+//   - InvalidClientRequestTokenException
+//     The client request token is not valid.
 //
-//   * CommentContentRequiredException
-//   The comment is empty. You must provide some content for a comment. The content
-//   cannot be null.
+//   - IdempotencyParameterMismatchException
+//     The client request token is not valid. Either the token is not in a valid
+//     format, or the token has been used in a previous request and cannot be reused.
 //
-//   * CommentContentSizeLimitExceededException
-//   The comment is too large. Comments are limited to 1,000 characters.
+//   - CommentContentRequiredException
+//     The comment is empty. You must provide some content for a comment. The content
+//     cannot be null.
 //
-//   * InvalidFileLocationException
-//   The location of the file is not valid. Make sure that you include the file
-//   name and extension.
+//   - CommentContentSizeLimitExceededException
+//     The comment is too large. Comments are limited to 10,240 characters.
 //
-//   * InvalidRelativeFileVersionEnumException
-//   Either the enum is not in a valid format, or the specified file version enum
-//   is not valid in respect to the current file version.
+//   - InvalidFileLocationException
+//     The location of the file is not valid. Make sure that you include the file
+//     name and extension.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - InvalidRelativeFileVersionEnumException
+//     Either the enum is not in a valid format, or the specified file version enum
+//     is not valid in respect to the current file version.
 //
-//   * InvalidFilePositionException
-//   The position is not valid. Make sure that the line number exists in the version
-//   of the file you want to comment on.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * CommitIdRequiredException
-//   A commit ID was not specified.
+//   - InvalidFilePositionException
+//     The position is not valid. Make sure that the line number exists in the version
+//     of the file you want to comment on.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - CommitIdRequiredException
+//     A commit ID was not specified.
 //
-//   * BeforeCommitIdAndAfterCommitIdAreSameException
-//   The before commit ID and the after commit ID are the same, which is not valid.
-//   The before commit ID and the after commit ID must be different commit IDs.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - BeforeCommitIdAndAfterCommitIdAreSameException
+//     The before commit ID and the after commit ID are the same, which is not valid.
+//     The before commit ID and the after commit ID must be different commit IDs.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * PathDoesNotExistException
-//   The specified path does not exist.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - PathDoesNotExistException
+//     The specified path does not exist.
+//
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PostCommentForComparedCommit
 func (c *CodeCommit) PostCommentForComparedCommit(input *PostCommentForComparedCommitInput) (*PostCommentForComparedCommitOutput, error) {
@@ -8243,14 +8424,13 @@ const opPostCommentForPullRequest = "PostCommentForPullRequest"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PostCommentForPullRequestRequest method.
+//	req, resp := client.PostCommentForPullRequestRequest(params)
 //
-//    // Example sending a request using the PostCommentForPullRequestRequest method.
-//    req, resp := client.PostCommentForPullRequestRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PostCommentForPullRequest
 func (c *CodeCommit) PostCommentForPullRequestRequest(input *PostCommentForPullRequestInput) (req *request.Request, output *PostCommentForPullRequestOutput) {
@@ -8281,109 +8461,110 @@ func (c *CodeCommit) PostCommentForPullRequestRequest(input *PostCommentForPullR
 // API operation PostCommentForPullRequest for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * RepositoryNotAssociatedWithPullRequestException
-//   The repository does not contain any pull requests with that pull request
-//   ID. Use GetPullRequest to verify the correct repository name for the pull
-//   request ID.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - RepositoryNotAssociatedWithPullRequestException
+//     The repository does not contain any pull requests with that pull request
+//     ID. Use GetPullRequest to verify the correct repository name for the pull
+//     request ID.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * ClientRequestTokenRequiredException
-//   A client request token is required. A client request token is an unique,
-//   client-generated idempotency token that, when provided in a request, ensures
-//   the request cannot be repeated with a changed parameter. If a request is
-//   received with the same parameters and a token is included, the request returns
-//   information about the initial request that used that token.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidClientRequestTokenException
-//   The client request token is not valid.
+//   - ClientRequestTokenRequiredException
+//     A client request token is required. A client request token is an unique,
+//     client-generated idempotency token that, when provided in a request, ensures
+//     the request cannot be repeated with a changed parameter. If a request is
+//     received with the same parameters and a token is included, the request returns
+//     information about the initial request that used that token.
 //
-//   * IdempotencyParameterMismatchException
-//   The client request token is not valid. Either the token is not in a valid
-//   format, or the token has been used in a previous request and cannot be reused.
+//   - InvalidClientRequestTokenException
+//     The client request token is not valid.
 //
-//   * CommentContentRequiredException
-//   The comment is empty. You must provide some content for a comment. The content
-//   cannot be null.
+//   - IdempotencyParameterMismatchException
+//     The client request token is not valid. Either the token is not in a valid
+//     format, or the token has been used in a previous request and cannot be reused.
 //
-//   * CommentContentSizeLimitExceededException
-//   The comment is too large. Comments are limited to 1,000 characters.
+//   - CommentContentRequiredException
+//     The comment is empty. You must provide some content for a comment. The content
+//     cannot be null.
 //
-//   * InvalidFileLocationException
-//   The location of the file is not valid. Make sure that you include the file
-//   name and extension.
+//   - CommentContentSizeLimitExceededException
+//     The comment is too large. Comments are limited to 10,240 characters.
 //
-//   * InvalidRelativeFileVersionEnumException
-//   Either the enum is not in a valid format, or the specified file version enum
-//   is not valid in respect to the current file version.
+//   - InvalidFileLocationException
+//     The location of the file is not valid. Make sure that you include the file
+//     name and extension.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - InvalidRelativeFileVersionEnumException
+//     Either the enum is not in a valid format, or the specified file version enum
+//     is not valid in respect to the current file version.
 //
-//   * InvalidFilePositionException
-//   The position is not valid. Make sure that the line number exists in the version
-//   of the file you want to comment on.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * CommitIdRequiredException
-//   A commit ID was not specified.
+//   - InvalidFilePositionException
+//     The position is not valid. Make sure that the line number exists in the version
+//     of the file you want to comment on.
 //
-//   * InvalidCommitIdException
-//   The specified commit ID is not valid.
+//   - CommitIdRequiredException
+//     A commit ID was not specified.
 //
-//   * BeforeCommitIdAndAfterCommitIdAreSameException
-//   The before commit ID and the after commit ID are the same, which is not valid.
-//   The before commit ID and the after commit ID must be different commit IDs.
+//   - InvalidCommitIdException
+//     The specified commit ID is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - BeforeCommitIdAndAfterCommitIdAreSameException
+//     The before commit ID and the after commit ID are the same, which is not valid.
+//     The before commit ID and the after commit ID must be different commit IDs.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
 //
-//   * CommitDoesNotExistException
-//   The specified commit does not exist or no commit was specified, and the specified
-//   repository has no default branch.
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - CommitDoesNotExistException
+//     The specified commit does not exist or no commit was specified, and the specified
+//     repository has no default branch.
 //
-//   * PathDoesNotExistException
-//   The specified path does not exist.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - PathDoesNotExistException
+//     The specified path does not exist.
+//
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PostCommentForPullRequest
 func (c *CodeCommit) PostCommentForPullRequest(input *PostCommentForPullRequestInput) (*PostCommentForPullRequestOutput, error) {
@@ -8423,14 +8604,13 @@ const opPostCommentReply = "PostCommentReply"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PostCommentReplyRequest method.
+//	req, resp := client.PostCommentReplyRequest(params)
 //
-//    // Example sending a request using the PostCommentReplyRequest method.
-//    req, resp := client.PostCommentReplyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PostCommentReply
 func (c *CodeCommit) PostCommentReplyRequest(input *PostCommentReplyInput) (req *request.Request, output *PostCommentReplyOutput) {
@@ -8462,37 +8642,38 @@ func (c *CodeCommit) PostCommentReplyRequest(input *PostCommentReplyInput) (req 
 // API operation PostCommentReply for usage and error information.
 //
 // Returned Error Types:
-//   * ClientRequestTokenRequiredException
-//   A client request token is required. A client request token is an unique,
-//   client-generated idempotency token that, when provided in a request, ensures
-//   the request cannot be repeated with a changed parameter. If a request is
-//   received with the same parameters and a token is included, the request returns
-//   information about the initial request that used that token.
 //
-//   * InvalidClientRequestTokenException
-//   The client request token is not valid.
+//   - ClientRequestTokenRequiredException
+//     A client request token is required. A client request token is an unique,
+//     client-generated idempotency token that, when provided in a request, ensures
+//     the request cannot be repeated with a changed parameter. If a request is
+//     received with the same parameters and a token is included, the request returns
+//     information about the initial request that used that token.
 //
-//   * IdempotencyParameterMismatchException
-//   The client request token is not valid. Either the token is not in a valid
-//   format, or the token has been used in a previous request and cannot be reused.
+//   - InvalidClientRequestTokenException
+//     The client request token is not valid.
 //
-//   * CommentContentRequiredException
-//   The comment is empty. You must provide some content for a comment. The content
-//   cannot be null.
+//   - IdempotencyParameterMismatchException
+//     The client request token is not valid. Either the token is not in a valid
+//     format, or the token has been used in a previous request and cannot be reused.
 //
-//   * CommentContentSizeLimitExceededException
-//   The comment is too large. Comments are limited to 1,000 characters.
+//   - CommentContentRequiredException
+//     The comment is empty. You must provide some content for a comment. The content
+//     cannot be null.
 //
-//   * CommentDoesNotExistException
-//   No comment exists with the provided ID. Verify that you have used the correct
-//   ID, and then try again.
+//   - CommentContentSizeLimitExceededException
+//     The comment is too large. Comments are limited to 10,240 characters.
 //
-//   * CommentIdRequiredException
-//   The comment ID is missing or null. A comment ID is required.
+//   - CommentDoesNotExistException
+//     No comment exists with the provided ID. Verify that you have used the correct
+//     ID, and then try again.
 //
-//   * InvalidCommentIdException
-//   The comment ID is not in a valid format. Make sure that you have provided
-//   the full comment ID.
+//   - CommentIdRequiredException
+//     The comment ID is missing or null. A comment ID is required.
+//
+//   - InvalidCommentIdException
+//     The comment ID is not in a valid format. Make sure that you have provided
+//     the full comment ID.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PostCommentReply
 func (c *CodeCommit) PostCommentReply(input *PostCommentReplyInput) (*PostCommentReplyOutput, error) {
@@ -8532,14 +8713,13 @@ const opPutCommentReaction = "PutCommentReaction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutCommentReactionRequest method.
+//	req, resp := client.PutCommentReactionRequest(params)
 //
-//    // Example sending a request using the PutCommentReactionRequest method.
-//    req, resp := client.PutCommentReactionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PutCommentReaction
 func (c *CodeCommit) PutCommentReactionRequest(input *PutCommentReactionInput) (req *request.Request, output *PutCommentReactionOutput) {
@@ -8573,31 +8753,32 @@ func (c *CodeCommit) PutCommentReactionRequest(input *PutCommentReactionInput) (
 // API operation PutCommentReaction for usage and error information.
 //
 // Returned Error Types:
-//   * CommentDoesNotExistException
-//   No comment exists with the provided ID. Verify that you have used the correct
-//   ID, and then try again.
 //
-//   * CommentIdRequiredException
-//   The comment ID is missing or null. A comment ID is required.
+//   - CommentDoesNotExistException
+//     No comment exists with the provided ID. Verify that you have used the correct
+//     ID, and then try again.
 //
-//   * InvalidCommentIdException
-//   The comment ID is not in a valid format. Make sure that you have provided
-//   the full comment ID.
+//   - CommentIdRequiredException
+//     The comment ID is missing or null. A comment ID is required.
 //
-//   * InvalidReactionValueException
-//   The value of the reaction is not valid. For more information, see the AWS
-//   CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html).
+//   - InvalidCommentIdException
+//     The comment ID is not in a valid format. Make sure that you have provided
+//     the full comment ID.
 //
-//   * ReactionValueRequiredException
-//   A reaction value is required.
+//   - InvalidReactionValueException
+//     The value of the reaction is not valid. For more information, see the CodeCommit
+//     User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html).
 //
-//   * ReactionLimitExceededException
-//   The number of reactions has been exceeded. Reactions are limited to one reaction
-//   per user for each individual comment ID.
+//   - ReactionValueRequiredException
+//     A reaction value is required.
 //
-//   * CommentDeletedException
-//   This comment has already been deleted. You cannot edit or delete a deleted
-//   comment.
+//   - ReactionLimitExceededException
+//     The number of reactions has been exceeded. Reactions are limited to one reaction
+//     per user for each individual comment ID.
+//
+//   - CommentDeletedException
+//     This comment has already been deleted. You cannot edit or delete a deleted
+//     comment.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PutCommentReaction
 func (c *CodeCommit) PutCommentReaction(input *PutCommentReactionInput) (*PutCommentReactionOutput, error) {
@@ -8637,14 +8818,13 @@ const opPutFile = "PutFile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutFileRequest method.
+//	req, resp := client.PutFileRequest(params)
 //
-//    // Example sending a request using the PutFileRequest method.
-//    req, resp := client.PutFileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PutFile
 func (c *CodeCommit) PutFileRequest(input *PutFileInput) (req *request.Request, output *PutFileOutput) {
@@ -8665,7 +8845,7 @@ func (c *CodeCommit) PutFileRequest(input *PutFileInput) (req *request.Request, 
 
 // PutFile API operation for AWS CodeCommit.
 //
-// Adds or updates a file in a branch in an AWS CodeCommit repository, and generates
+// Adds or updates a file in a branch in an CodeCommit repository, and generates
 // a commit for the addition in the specified branch.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8676,128 +8856,129 @@ func (c *CodeCommit) PutFileRequest(input *PutFileInput) (req *request.Request, 
 // API operation PutFile for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * ParentCommitIdRequiredException
-//   A parent commit ID is required. To view the full commit ID of a branch in
-//   a repository, use GetBranch or a Git command (for example, git pull or git
-//   log).
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidParentCommitIdException
-//   The parent commit ID is not valid. The commit ID cannot be empty, and must
-//   match the head commit ID for the branch of the repository where you want
-//   to add or update a file.
+//   - ParentCommitIdRequiredException
+//     A parent commit ID is required. To view the full commit ID of a branch in
+//     a repository, use GetBranch or a Git command (for example, git pull or git
+//     log).
 //
-//   * ParentCommitDoesNotExistException
-//   The parent commit ID is not valid because it does not exist. The specified
-//   parent commit ID does not exist in the specified branch of the repository.
+//   - InvalidParentCommitIdException
+//     The parent commit ID is not valid. The commit ID cannot be empty, and must
+//     match the head commit ID for the branch of the repository where you want
+//     to add or update a file.
 //
-//   * ParentCommitIdOutdatedException
-//   The file could not be added because the provided parent commit ID is not
-//   the current tip of the specified branch. To view the full commit ID of the
-//   current head of the branch, use GetBranch.
+//   - ParentCommitDoesNotExistException
+//     The parent commit ID is not valid because it does not exist. The specified
+//     parent commit ID does not exist in the specified branch of the repository.
 //
-//   * FileContentRequiredException
-//   The file cannot be added because it is empty. Empty files cannot be added
-//   to the repository with this API.
+//   - ParentCommitIdOutdatedException
+//     The file could not be added because the provided parent commit ID is not
+//     the current tip of the specified branch. To view the full commit ID of the
+//     current head of the branch, use GetBranch.
 //
-//   * FileContentSizeLimitExceededException
-//   The file cannot be added because it is too large. The maximum file size is
-//   6 MB, and the combined file content change size is 7 MB. Consider making
-//   these changes using a Git client.
+//   - FileContentRequiredException
+//     The file cannot be added because it is empty. Empty files cannot be added
+//     to the repository with this API.
 //
-//   * FolderContentSizeLimitExceededException
-//   The commit cannot be created because at least one of the overall changes
-//   in the commit results in a folder whose contents exceed the limit of 6 MB.
-//   Either reduce the number and size of your changes, or split the changes across
-//   multiple folders.
+//   - FileContentSizeLimitExceededException
+//     The file cannot be added because it is too large. The maximum file size is
+//     6 MB, and the combined file content change size is 7 MB. Consider making
+//     these changes using a Git client.
 //
-//   * PathRequiredException
-//   The folderPath for a location cannot be null.
+//   - FolderContentSizeLimitExceededException
+//     The commit cannot be created because at least one of the overall changes
+//     in the commit results in a folder whose contents exceed the limit of 6 MB.
+//     Either reduce the number and size of your changes, or split the changes across
+//     multiple folders.
 //
-//   * InvalidPathException
-//   The specified path is not valid.
+//   - PathRequiredException
+//     The folderPath for a location cannot be null.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//   - InvalidPathException
+//     The specified path is not valid.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * BranchDoesNotExistException
-//   The specified branch does not exist.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * BranchNameIsTagNameException
-//   The specified branch name is not valid because it is a tag name. Enter the
-//   name of a branch in the repository. For a list of valid branch names, use
-//   ListBranches.
+//   - BranchDoesNotExistException
+//     The specified branch does not exist.
 //
-//   * InvalidFileModeException
-//   The specified file mode permission is not valid. For a list of valid file
-//   mode permissions, see PutFile.
+//   - BranchNameIsTagNameException
+//     The specified branch name is not valid because it is a tag name. Enter the
+//     name of a branch in the repository. For a list of valid branch names, use
+//     ListBranches.
 //
-//   * NameLengthExceededException
-//   The user name is not valid because it has exceeded the character limit for
-//   author names.
+//   - InvalidFileModeException
+//     The specified file mode permission is not valid. For a list of valid file
+//     mode permissions, see PutFile.
 //
-//   * InvalidEmailException
-//   The specified email address either contains one or more characters that are
-//   not allowed, or it exceeds the maximum number of characters allowed for an
-//   email address.
+//   - NameLengthExceededException
+//     The user name is not valid because it has exceeded the character limit for
+//     author names.
 //
-//   * CommitMessageLengthExceededException
-//   The commit message is too long. Provide a shorter string.
+//   - InvalidEmailException
+//     The specified email address either contains one or more characters that are
+//     not allowed, or it exceeds the maximum number of characters allowed for an
+//     email address.
 //
-//   * InvalidDeletionParameterException
-//   The specified deletion parameter is not valid.
+//   - CommitMessageLengthExceededException
+//     The commit message is too long. Provide a shorter string.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidDeletionParameterException
+//     The specified deletion parameter is not valid.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
 //
-//   * SameFileContentException
-//   The file was not added or updated because the content of the file is exactly
-//   the same as the content of that file in the repository and branch that you
-//   specified.
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
-//   * FileNameConflictsWithDirectoryNameException
-//   A file cannot be added to the repository because the specified file name
-//   has the same name as a directory in this repository. Either provide another
-//   name for the file, or add the file in a directory that does not match the
-//   file name.
+//   - SameFileContentException
+//     The file was not added or updated because the content of the file is exactly
+//     the same as the content of that file in the repository and branch that you
+//     specified.
 //
-//   * DirectoryNameConflictsWithFileNameException
-//   A file cannot be added to the repository because the specified path name
-//   has the same name as a file that already exists in this repository. Either
-//   provide a different name for the file, or specify a different path for the
-//   file.
+//   - FileNameConflictsWithDirectoryNameException
+//     A file cannot be added to the repository because the specified file name
+//     has the same name as a directory in this repository. Either provide another
+//     name for the file, or add the file in a directory that does not match the
+//     file name.
 //
-//   * FilePathConflictsWithSubmodulePathException
-//   The commit cannot be created because a specified file path points to a submodule.
-//   Verify that the destination files have valid file paths that do not point
-//   to a submodule.
+//   - DirectoryNameConflictsWithFileNameException
+//     A file cannot be added to the repository because the specified path name
+//     has the same name as a file that already exists in this repository. Either
+//     provide a different name for the file, or specify a different path for the
+//     file.
+//
+//   - FilePathConflictsWithSubmodulePathException
+//     The commit cannot be created because a specified file path points to a submodule.
+//     Verify that the destination files have valid file paths that do not point
+//     to a submodule.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PutFile
 func (c *CodeCommit) PutFile(input *PutFileInput) (*PutFileOutput, error) {
@@ -8837,14 +9018,13 @@ const opPutRepositoryTriggers = "PutRepositoryTriggers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutRepositoryTriggersRequest method.
+//	req, resp := client.PutRepositoryTriggersRequest(params)
 //
-//    // Example sending a request using the PutRepositoryTriggersRequest method.
-//    req, resp := client.PutRepositoryTriggersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PutRepositoryTriggers
 func (c *CodeCommit) PutRepositoryTriggersRequest(input *PutRepositoryTriggersInput) (req *request.Request, output *PutRepositoryTriggersOutput) {
@@ -8875,79 +9055,80 @@ func (c *CodeCommit) PutRepositoryTriggersRequest(input *PutRepositoryTriggersIn
 // API operation PutRepositoryTriggers for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryTriggersListRequiredException
-//   The list of triggers for the repository is required, but was not specified.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * MaximumRepositoryTriggersExceededException
-//   The number of triggers allowed for the repository was exceeded.
+//   - RepositoryTriggersListRequiredException
+//     The list of triggers for the repository is required, but was not specified.
 //
-//   * InvalidRepositoryTriggerNameException
-//   The name of the trigger is not valid.
+//   - MaximumRepositoryTriggersExceededException
+//     The number of triggers allowed for the repository was exceeded.
 //
-//   * InvalidRepositoryTriggerDestinationArnException
-//   The Amazon Resource Name (ARN) for the trigger is not valid for the specified
-//   destination. The most common reason for this error is that the ARN does not
-//   meet the requirements for the service type.
+//   - InvalidRepositoryTriggerNameException
+//     The name of the trigger is not valid.
 //
-//   * InvalidRepositoryTriggerRegionException
-//   The AWS Region for the trigger target does not match the AWS Region for the
-//   repository. Triggers must be created in the same Region as the target for
-//   the trigger.
+//   - InvalidRepositoryTriggerDestinationArnException
+//     The Amazon Resource Name (ARN) for the trigger is not valid for the specified
+//     destination. The most common reason for this error is that the ARN does not
+//     meet the requirements for the service type.
 //
-//   * InvalidRepositoryTriggerCustomDataException
-//   The custom data provided for the trigger is not valid.
+//   - InvalidRepositoryTriggerRegionException
+//     The Amazon Web Services Region for the trigger target does not match the
+//     Amazon Web Services Region for the repository. Triggers must be created in
+//     the same Amazon Web Services Region as the target for the trigger.
 //
-//   * MaximumBranchesExceededException
-//   The number of branches for the trigger was exceeded.
+//   - InvalidRepositoryTriggerCustomDataException
+//     The custom data provided for the trigger is not valid.
 //
-//   * InvalidRepositoryTriggerBranchNameException
-//   One or more branch names specified for the trigger is not valid.
+//   - MaximumBranchesExceededException
+//     The number of branches for the trigger was exceeded.
 //
-//   * InvalidRepositoryTriggerEventsException
-//   One or more events specified for the trigger is not valid. Check to make
-//   sure that all events specified match the requirements for allowed events.
+//   - InvalidRepositoryTriggerBranchNameException
+//     One or more branch names specified for the trigger is not valid.
 //
-//   * RepositoryTriggerNameRequiredException
-//   A name for the trigger is required, but was not specified.
+//   - InvalidRepositoryTriggerEventsException
+//     One or more events specified for the trigger is not valid. Check to make
+//     sure that all events specified match the requirements for allowed events.
 //
-//   * RepositoryTriggerDestinationArnRequiredException
-//   A destination ARN for the target service for the trigger is required, but
-//   was not specified.
+//   - RepositoryTriggerNameRequiredException
+//     A name for the trigger is required, but was not specified.
 //
-//   * RepositoryTriggerBranchNameListRequiredException
-//   At least one branch name is required, but was not specified in the trigger
-//   configuration.
+//   - RepositoryTriggerDestinationArnRequiredException
+//     A destination ARN for the target service for the trigger is required, but
+//     was not specified.
 //
-//   * RepositoryTriggerEventsListRequiredException
-//   At least one event for the trigger is required, but was not specified.
+//   - RepositoryTriggerBranchNameListRequiredException
+//     At least one branch name is required, but was not specified in the trigger
+//     configuration.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RepositoryTriggerEventsListRequiredException
+//     At least one event for the trigger is required, but was not specified.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/PutRepositoryTriggers
 func (c *CodeCommit) PutRepositoryTriggers(input *PutRepositoryTriggersInput) (*PutRepositoryTriggersOutput, error) {
@@ -8987,14 +9168,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/TagResource
 func (c *CodeCommit) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -9016,9 +9196,9 @@ func (c *CodeCommit) TagResourceRequest(input *TagResourceInput) (req *request.R
 
 // TagResource API operation for AWS CodeCommit.
 //
-// Adds or updates tags for a resource in AWS CodeCommit. For a list of valid
-// resources in AWS CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-// in the AWS CodeCommit User Guide.
+// Adds or updates tags for a resource in CodeCommit. For a list of valid resources
+// in CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+// in the CodeCommit User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9028,41 +9208,42 @@ func (c *CodeCommit) TagResourceRequest(input *TagResourceInput) (req *request.R
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * ResourceArnRequiredException
-//   A valid Amazon Resource Name (ARN) for an AWS CodeCommit resource is required.
-//   For a list of valid resources in AWS CodeCommit, see CodeCommit Resources
-//   and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-//   in the AWS CodeCommit User Guide.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidResourceArnException
-//   The value for the resource ARN is not valid. For more information about resources
-//   in AWS CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-//   in the AWS CodeCommit User Guide.
+//   - ResourceArnRequiredException
+//     A valid Amazon Resource Name (ARN) for an CodeCommit resource is required.
+//     For a list of valid resources in CodeCommit, see CodeCommit Resources and
+//     Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+//     in the CodeCommit User Guide.
 //
-//   * TagsMapRequiredException
-//   A map of tags is required.
+//   - InvalidResourceArnException
+//     The value for the resource ARN is not valid. For more information about resources
+//     in CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+//     in the CodeCommit User Guide.
 //
-//   * InvalidTagsMapException
-//   The map of tags is not valid.
+//   - TagsMapRequiredException
+//     A map of tags is required.
 //
-//   * TooManyTagsException
-//   The maximum number of tags for an AWS CodeCommit resource has been exceeded.
+//   - InvalidTagsMapException
+//     The map of tags is not valid.
 //
-//   * InvalidSystemTagUsageException
-//   The specified tag is not valid. Key names cannot be prefixed with aws:.
+//   - TooManyTagsException
+//     The maximum number of tags for an CodeCommit resource has been exceeded.
 //
-//   * TagPolicyException
-//   The tag policy is not valid.
+//   - InvalidSystemTagUsageException
+//     The specified tag is not valid. Key names cannot be prefixed with aws:.
+//
+//   - TagPolicyException
+//     The tag policy is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/TagResource
 func (c *CodeCommit) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -9102,14 +9283,13 @@ const opTestRepositoryTriggers = "TestRepositoryTriggers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TestRepositoryTriggersRequest method.
+//	req, resp := client.TestRepositoryTriggersRequest(params)
 //
-//    // Example sending a request using the TestRepositoryTriggersRequest method.
-//    req, resp := client.TestRepositoryTriggersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/TestRepositoryTriggers
 func (c *CodeCommit) TestRepositoryTriggersRequest(input *TestRepositoryTriggersInput) (req *request.Request, output *TestRepositoryTriggersOutput) {
@@ -9143,79 +9323,80 @@ func (c *CodeCommit) TestRepositoryTriggersRequest(input *TestRepositoryTriggers
 // API operation TestRepositoryTriggers for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * RepositoryTriggersListRequiredException
-//   The list of triggers for the repository is required, but was not specified.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * MaximumRepositoryTriggersExceededException
-//   The number of triggers allowed for the repository was exceeded.
+//   - RepositoryTriggersListRequiredException
+//     The list of triggers for the repository is required, but was not specified.
 //
-//   * InvalidRepositoryTriggerNameException
-//   The name of the trigger is not valid.
+//   - MaximumRepositoryTriggersExceededException
+//     The number of triggers allowed for the repository was exceeded.
 //
-//   * InvalidRepositoryTriggerDestinationArnException
-//   The Amazon Resource Name (ARN) for the trigger is not valid for the specified
-//   destination. The most common reason for this error is that the ARN does not
-//   meet the requirements for the service type.
+//   - InvalidRepositoryTriggerNameException
+//     The name of the trigger is not valid.
 //
-//   * InvalidRepositoryTriggerRegionException
-//   The AWS Region for the trigger target does not match the AWS Region for the
-//   repository. Triggers must be created in the same Region as the target for
-//   the trigger.
+//   - InvalidRepositoryTriggerDestinationArnException
+//     The Amazon Resource Name (ARN) for the trigger is not valid for the specified
+//     destination. The most common reason for this error is that the ARN does not
+//     meet the requirements for the service type.
 //
-//   * InvalidRepositoryTriggerCustomDataException
-//   The custom data provided for the trigger is not valid.
+//   - InvalidRepositoryTriggerRegionException
+//     The Amazon Web Services Region for the trigger target does not match the
+//     Amazon Web Services Region for the repository. Triggers must be created in
+//     the same Amazon Web Services Region as the target for the trigger.
 //
-//   * MaximumBranchesExceededException
-//   The number of branches for the trigger was exceeded.
+//   - InvalidRepositoryTriggerCustomDataException
+//     The custom data provided for the trigger is not valid.
 //
-//   * InvalidRepositoryTriggerBranchNameException
-//   One or more branch names specified for the trigger is not valid.
+//   - MaximumBranchesExceededException
+//     The number of branches for the trigger was exceeded.
 //
-//   * InvalidRepositoryTriggerEventsException
-//   One or more events specified for the trigger is not valid. Check to make
-//   sure that all events specified match the requirements for allowed events.
+//   - InvalidRepositoryTriggerBranchNameException
+//     One or more branch names specified for the trigger is not valid.
 //
-//   * RepositoryTriggerNameRequiredException
-//   A name for the trigger is required, but was not specified.
+//   - InvalidRepositoryTriggerEventsException
+//     One or more events specified for the trigger is not valid. Check to make
+//     sure that all events specified match the requirements for allowed events.
 //
-//   * RepositoryTriggerDestinationArnRequiredException
-//   A destination ARN for the target service for the trigger is required, but
-//   was not specified.
+//   - RepositoryTriggerNameRequiredException
+//     A name for the trigger is required, but was not specified.
 //
-//   * RepositoryTriggerBranchNameListRequiredException
-//   At least one branch name is required, but was not specified in the trigger
-//   configuration.
+//   - RepositoryTriggerDestinationArnRequiredException
+//     A destination ARN for the target service for the trigger is required, but
+//     was not specified.
 //
-//   * RepositoryTriggerEventsListRequiredException
-//   At least one event for the trigger is required, but was not specified.
+//   - RepositoryTriggerBranchNameListRequiredException
+//     At least one branch name is required, but was not specified in the trigger
+//     configuration.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - RepositoryTriggerEventsListRequiredException
+//     At least one event for the trigger is required, but was not specified.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/TestRepositoryTriggers
 func (c *CodeCommit) TestRepositoryTriggers(input *TestRepositoryTriggersInput) (*TestRepositoryTriggersOutput, error) {
@@ -9255,14 +9436,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UntagResource
 func (c *CodeCommit) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -9284,9 +9464,9 @@ func (c *CodeCommit) UntagResourceRequest(input *UntagResourceInput) (req *reque
 
 // UntagResource API operation for AWS CodeCommit.
 //
-// Removes tags for a resource in AWS CodeCommit. For a list of valid resources
-// in AWS CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-// in the AWS CodeCommit User Guide.
+// Removes tags for a resource in CodeCommit. For a list of valid resources
+// in CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+// in the CodeCommit User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9296,41 +9476,42 @@ func (c *CodeCommit) UntagResourceRequest(input *UntagResourceInput) (req *reque
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * ResourceArnRequiredException
-//   A valid Amazon Resource Name (ARN) for an AWS CodeCommit resource is required.
-//   For a list of valid resources in AWS CodeCommit, see CodeCommit Resources
-//   and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-//   in the AWS CodeCommit User Guide.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidResourceArnException
-//   The value for the resource ARN is not valid. For more information about resources
-//   in AWS CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-//   in the AWS CodeCommit User Guide.
+//   - ResourceArnRequiredException
+//     A valid Amazon Resource Name (ARN) for an CodeCommit resource is required.
+//     For a list of valid resources in CodeCommit, see CodeCommit Resources and
+//     Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+//     in the CodeCommit User Guide.
 //
-//   * TagKeysListRequiredException
-//   A list of tag keys is required. The list cannot be empty or null.
+//   - InvalidResourceArnException
+//     The value for the resource ARN is not valid. For more information about resources
+//     in CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+//     in the CodeCommit User Guide.
 //
-//   * InvalidTagKeysListException
-//   The list of tags is not valid.
+//   - TagKeysListRequiredException
+//     A list of tag keys is required. The list cannot be empty or null.
 //
-//   * TooManyTagsException
-//   The maximum number of tags for an AWS CodeCommit resource has been exceeded.
+//   - InvalidTagKeysListException
+//     The list of tags is not valid.
 //
-//   * InvalidSystemTagUsageException
-//   The specified tag is not valid. Key names cannot be prefixed with aws:.
+//   - TooManyTagsException
+//     The maximum number of tags for an CodeCommit resource has been exceeded.
 //
-//   * TagPolicyException
-//   The tag policy is not valid.
+//   - InvalidSystemTagUsageException
+//     The specified tag is not valid. Key names cannot be prefixed with aws:.
+//
+//   - TagPolicyException
+//     The tag policy is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UntagResource
 func (c *CodeCommit) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -9370,14 +9551,13 @@ const opUpdateApprovalRuleTemplateContent = "UpdateApprovalRuleTemplateContent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApprovalRuleTemplateContentRequest method.
+//	req, resp := client.UpdateApprovalRuleTemplateContentRequest(params)
 //
-//    // Example sending a request using the UpdateApprovalRuleTemplateContentRequest method.
-//    req, resp := client.UpdateApprovalRuleTemplateContentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateApprovalRuleTemplateContent
 func (c *CodeCommit) UpdateApprovalRuleTemplateContentRequest(input *UpdateApprovalRuleTemplateContentInput) (req *request.Request, output *UpdateApprovalRuleTemplateContentOutput) {
@@ -9410,28 +9590,30 @@ func (c *CodeCommit) UpdateApprovalRuleTemplateContentRequest(input *UpdateAppro
 // API operation UpdateApprovalRuleTemplateContent for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
 //
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
-//   * ApprovalRuleTemplateDoesNotExistException
-//   The specified approval rule template does not exist. Verify that the name
-//   is correct and that you are signed in to the AWS Region where the template
-//   was created, and then try again.
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateContentException
-//   The content of the approval rule template is not valid.
+//   - ApprovalRuleTemplateDoesNotExistException
+//     The specified approval rule template does not exist. Verify that the name
+//     is correct and that you are signed in to the Amazon Web Services Region where
+//     the template was created, and then try again.
 //
-//   * InvalidRuleContentSha256Exception
-//   The SHA-256 hash signature for the rule content is not valid.
+//   - InvalidApprovalRuleTemplateContentException
+//     The content of the approval rule template is not valid.
 //
-//   * ApprovalRuleTemplateContentRequiredException
-//   The content for the approval rule template is empty. You must provide some
-//   content for an approval rule template. The content cannot be null.
+//   - InvalidRuleContentSha256Exception
+//     The SHA-256 hash signature for the rule content is not valid.
+//
+//   - ApprovalRuleTemplateContentRequiredException
+//     The content for the approval rule template is empty. You must provide some
+//     content for an approval rule template. The content cannot be null.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateApprovalRuleTemplateContent
 func (c *CodeCommit) UpdateApprovalRuleTemplateContent(input *UpdateApprovalRuleTemplateContentInput) (*UpdateApprovalRuleTemplateContentOutput, error) {
@@ -9471,14 +9653,13 @@ const opUpdateApprovalRuleTemplateDescription = "UpdateApprovalRuleTemplateDescr
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApprovalRuleTemplateDescriptionRequest method.
+//	req, resp := client.UpdateApprovalRuleTemplateDescriptionRequest(params)
 //
-//    // Example sending a request using the UpdateApprovalRuleTemplateDescriptionRequest method.
-//    req, resp := client.UpdateApprovalRuleTemplateDescriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateApprovalRuleTemplateDescription
 func (c *CodeCommit) UpdateApprovalRuleTemplateDescriptionRequest(input *UpdateApprovalRuleTemplateDescriptionInput) (req *request.Request, output *UpdateApprovalRuleTemplateDescriptionOutput) {
@@ -9509,23 +9690,26 @@ func (c *CodeCommit) UpdateApprovalRuleTemplateDescriptionRequest(input *UpdateA
 // API operation UpdateApprovalRuleTemplateDescription for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
 //
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
-//   * ApprovalRuleTemplateDoesNotExistException
-//   The specified approval rule template does not exist. Verify that the name
-//   is correct and that you are signed in to the AWS Region where the template
-//   was created, and then try again.
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * InvalidApprovalRuleTemplateDescriptionException
-//   The description for the approval rule template is not valid because it exceeds
-//   the maximum characters allowed for a description. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+//   - ApprovalRuleTemplateDoesNotExistException
+//     The specified approval rule template does not exist. Verify that the name
+//     is correct and that you are signed in to the Amazon Web Services Region where
+//     the template was created, and then try again.
+//
+//   - InvalidApprovalRuleTemplateDescriptionException
+//     The description for the approval rule template is not valid because it exceeds
+//     the maximum characters allowed for a description. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateApprovalRuleTemplateDescription
 func (c *CodeCommit) UpdateApprovalRuleTemplateDescription(input *UpdateApprovalRuleTemplateDescriptionInput) (*UpdateApprovalRuleTemplateDescriptionOutput, error) {
@@ -9565,14 +9749,13 @@ const opUpdateApprovalRuleTemplateName = "UpdateApprovalRuleTemplateName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApprovalRuleTemplateNameRequest method.
+//	req, resp := client.UpdateApprovalRuleTemplateNameRequest(params)
 //
-//    // Example sending a request using the UpdateApprovalRuleTemplateNameRequest method.
-//    req, resp := client.UpdateApprovalRuleTemplateNameRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateApprovalRuleTemplateName
 func (c *CodeCommit) UpdateApprovalRuleTemplateNameRequest(input *UpdateApprovalRuleTemplateNameInput) (req *request.Request, output *UpdateApprovalRuleTemplateNameOutput) {
@@ -9603,23 +9786,25 @@ func (c *CodeCommit) UpdateApprovalRuleTemplateNameRequest(input *UpdateApproval
 // API operation UpdateApprovalRuleTemplateName for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidApprovalRuleTemplateNameException
-//   The name of the approval rule template is not valid. Template names must
-//   be between 1 and 100 valid characters in length. For more information about
-//   limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
 //
-//   * ApprovalRuleTemplateNameRequiredException
-//   An approval rule template name is required, but was not specified.
+//   - InvalidApprovalRuleTemplateNameException
+//     The name of the approval rule template is not valid. Template names must
+//     be between 1 and 100 valid characters in length. For more information about
+//     limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+//     in the CodeCommit User Guide.
 //
-//   * ApprovalRuleTemplateDoesNotExistException
-//   The specified approval rule template does not exist. Verify that the name
-//   is correct and that you are signed in to the AWS Region where the template
-//   was created, and then try again.
+//   - ApprovalRuleTemplateNameRequiredException
+//     An approval rule template name is required, but was not specified.
 //
-//   * ApprovalRuleTemplateNameAlreadyExistsException
-//   You cannot create an approval rule template with that name because a template
-//   with that name already exists in this AWS Region for your AWS account. Approval
-//   rule template names must be unique.
+//   - ApprovalRuleTemplateDoesNotExistException
+//     The specified approval rule template does not exist. Verify that the name
+//     is correct and that you are signed in to the Amazon Web Services Region where
+//     the template was created, and then try again.
+//
+//   - ApprovalRuleTemplateNameAlreadyExistsException
+//     You cannot create an approval rule template with that name because a template
+//     with that name already exists in this Amazon Web Services Region for your
+//     Amazon Web Services account. Approval rule template names must be unique.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateApprovalRuleTemplateName
 func (c *CodeCommit) UpdateApprovalRuleTemplateName(input *UpdateApprovalRuleTemplateNameInput) (*UpdateApprovalRuleTemplateNameOutput, error) {
@@ -9659,14 +9844,13 @@ const opUpdateComment = "UpdateComment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCommentRequest method.
+//	req, resp := client.UpdateCommentRequest(params)
 //
-//    // Example sending a request using the UpdateCommentRequest method.
-//    req, resp := client.UpdateCommentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateComment
 func (c *CodeCommit) UpdateCommentRequest(input *UpdateCommentInput) (req *request.Request, output *UpdateCommentOutput) {
@@ -9697,31 +9881,32 @@ func (c *CodeCommit) UpdateCommentRequest(input *UpdateCommentInput) (req *reque
 // API operation UpdateComment for usage and error information.
 //
 // Returned Error Types:
-//   * CommentContentRequiredException
-//   The comment is empty. You must provide some content for a comment. The content
-//   cannot be null.
 //
-//   * CommentContentSizeLimitExceededException
-//   The comment is too large. Comments are limited to 1,000 characters.
+//   - CommentContentRequiredException
+//     The comment is empty. You must provide some content for a comment. The content
+//     cannot be null.
 //
-//   * CommentDoesNotExistException
-//   No comment exists with the provided ID. Verify that you have used the correct
-//   ID, and then try again.
+//   - CommentContentSizeLimitExceededException
+//     The comment is too large. Comments are limited to 10,240 characters.
 //
-//   * CommentIdRequiredException
-//   The comment ID is missing or null. A comment ID is required.
+//   - CommentDoesNotExistException
+//     No comment exists with the provided ID. Verify that you have used the correct
+//     ID, and then try again.
 //
-//   * InvalidCommentIdException
-//   The comment ID is not in a valid format. Make sure that you have provided
-//   the full comment ID.
+//   - CommentIdRequiredException
+//     The comment ID is missing or null. A comment ID is required.
 //
-//   * CommentNotCreatedByCallerException
-//   You cannot modify or delete this comment. Only comment authors can modify
-//   or delete their comments.
+//   - InvalidCommentIdException
+//     The comment ID is not in a valid format. Make sure that you have provided
+//     the full comment ID.
 //
-//   * CommentDeletedException
-//   This comment has already been deleted. You cannot edit or delete a deleted
-//   comment.
+//   - CommentNotCreatedByCallerException
+//     You cannot modify or delete this comment. Only comment authors can modify
+//     or delete their comments.
+//
+//   - CommentDeletedException
+//     This comment has already been deleted. You cannot edit or delete a deleted
+//     comment.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateComment
 func (c *CodeCommit) UpdateComment(input *UpdateCommentInput) (*UpdateCommentOutput, error) {
@@ -9761,14 +9946,13 @@ const opUpdateDefaultBranch = "UpdateDefaultBranch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDefaultBranchRequest method.
+//	req, resp := client.UpdateDefaultBranchRequest(params)
 //
-//    // Example sending a request using the UpdateDefaultBranchRequest method.
-//    req, resp := client.UpdateDefaultBranchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateDefaultBranch
 func (c *CodeCommit) UpdateDefaultBranchRequest(input *UpdateDefaultBranchInput) (req *request.Request, output *UpdateDefaultBranchOutput) {
@@ -9804,42 +9988,43 @@ func (c *CodeCommit) UpdateDefaultBranchRequest(input *UpdateDefaultBranchInput)
 // API operation UpdateDefaultBranch for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * BranchNameRequiredException
-//   A branch name is required, but was not specified.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * InvalidBranchNameException
-//   The specified reference name is not valid.
+//   - BranchNameRequiredException
+//     A branch name is required, but was not specified.
 //
-//   * BranchDoesNotExistException
-//   The specified branch does not exist.
+//   - InvalidBranchNameException
+//     The specified reference name is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - BranchDoesNotExistException
+//     The specified branch does not exist.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateDefaultBranch
 func (c *CodeCommit) UpdateDefaultBranch(input *UpdateDefaultBranchInput) (*UpdateDefaultBranchOutput, error) {
@@ -9879,14 +10064,13 @@ const opUpdatePullRequestApprovalRuleContent = "UpdatePullRequestApprovalRuleCon
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePullRequestApprovalRuleContentRequest method.
+//	req, resp := client.UpdatePullRequestApprovalRuleContentRequest(params)
 //
-//    // Example sending a request using the UpdatePullRequestApprovalRuleContentRequest method.
-//    req, resp := client.UpdatePullRequestApprovalRuleContentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestApprovalRuleContent
 func (c *CodeCommit) UpdatePullRequestApprovalRuleContentRequest(input *UpdatePullRequestApprovalRuleContentInput) (req *request.Request, output *UpdatePullRequestApprovalRuleContentOutput) {
@@ -9919,58 +10103,59 @@ func (c *CodeCommit) UpdatePullRequestApprovalRuleContentRequest(input *UpdatePu
 // API operation UpdatePullRequestApprovalRuleContent for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * ApprovalRuleNameRequiredException
-//   An approval rule name is required, but was not specified.
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
-//   * InvalidApprovalRuleNameException
-//   The name for the approval rule is not valid.
+//   - ApprovalRuleNameRequiredException
+//     An approval rule name is required, but was not specified.
 //
-//   * ApprovalRuleDoesNotExistException
-//   The specified approval rule does not exist.
+//   - InvalidApprovalRuleNameException
+//     The name for the approval rule is not valid.
 //
-//   * InvalidRuleContentSha256Exception
-//   The SHA-256 hash signature for the rule content is not valid.
+//   - ApprovalRuleDoesNotExistException
+//     The specified approval rule does not exist.
 //
-//   * ApprovalRuleContentRequiredException
-//   The content for the approval rule is empty. You must provide some content
-//   for an approval rule. The content cannot be null.
+//   - InvalidRuleContentSha256Exception
+//     The SHA-256 hash signature for the rule content is not valid.
 //
-//   * InvalidApprovalRuleContentException
-//   The content for the approval rule is not valid.
+//   - ApprovalRuleContentRequiredException
+//     The content for the approval rule is empty. You must provide some content
+//     for an approval rule. The content cannot be null.
 //
-//   * CannotModifyApprovalRuleFromTemplateException
-//   The approval rule cannot be modified for the pull request because it was
-//   created by an approval rule template and applied to the pull request automatically.
+//   - InvalidApprovalRuleContentException
+//     The content for the approval rule is not valid.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - CannotModifyApprovalRuleFromTemplateException
+//     The approval rule cannot be modified for the pull request because it was
+//     created by an approval rule template and applied to the pull request automatically.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestApprovalRuleContent
 func (c *CodeCommit) UpdatePullRequestApprovalRuleContent(input *UpdatePullRequestApprovalRuleContentInput) (*UpdatePullRequestApprovalRuleContentOutput, error) {
@@ -10010,14 +10195,13 @@ const opUpdatePullRequestApprovalState = "UpdatePullRequestApprovalState"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePullRequestApprovalStateRequest method.
+//	req, resp := client.UpdatePullRequestApprovalStateRequest(params)
 //
-//    // Example sending a request using the UpdatePullRequestApprovalStateRequest method.
-//    req, resp := client.UpdatePullRequestApprovalStateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestApprovalState
 func (c *CodeCommit) UpdatePullRequestApprovalStateRequest(input *UpdatePullRequestApprovalStateInput) (req *request.Request, output *UpdatePullRequestApprovalStateOutput) {
@@ -10050,61 +10234,62 @@ func (c *CodeCommit) UpdatePullRequestApprovalStateRequest(input *UpdatePullRequ
 // API operation UpdatePullRequestApprovalState for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * InvalidRevisionIdException
-//   The revision ID is not valid. Use GetPullRequest to determine the value.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * RevisionIdRequiredException
-//   A revision ID is required, but was not provided.
+//   - InvalidRevisionIdException
+//     The revision ID is not valid. Use GetPullRequest to determine the value.
 //
-//   * InvalidApprovalStateException
-//   The state for the approval is not valid. Valid values include APPROVE and
-//   REVOKE.
+//   - RevisionIdRequiredException
+//     A revision ID is required, but was not provided.
 //
-//   * ApprovalStateRequiredException
-//   An approval state is required, but was not specified.
+//   - InvalidApprovalStateException
+//     The state for the approval is not valid. Valid values include APPROVE and
+//     REVOKE.
 //
-//   * PullRequestCannotBeApprovedByAuthorException
-//   The approval cannot be applied because the user approving the pull request
-//   matches the user who created the pull request. You cannot approve a pull
-//   request that you created.
+//   - ApprovalStateRequiredException
+//     An approval state is required, but was not specified.
 //
-//   * RevisionNotCurrentException
-//   The revision ID provided in the request does not match the current revision
-//   ID. Use GetPullRequest to retrieve the current revision ID.
+//   - PullRequestCannotBeApprovedByAuthorException
+//     The approval cannot be applied because the user approving the pull request
+//     matches the user who created the pull request. You cannot approve a pull
+//     request that you created.
 //
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
+//   - RevisionNotCurrentException
+//     The revision ID provided in the request does not match the current revision
+//     ID. Use GetPullRequest to retrieve the current revision ID.
 //
-//   * MaximumNumberOfApprovalsExceededException
-//   The number of approvals required for the approval rule exceeds the maximum
-//   number allowed.
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - MaximumNumberOfApprovalsExceededException
+//     The number of approvals required for the approval rule exceeds the maximum
+//     number allowed.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestApprovalState
 func (c *CodeCommit) UpdatePullRequestApprovalState(input *UpdatePullRequestApprovalStateInput) (*UpdatePullRequestApprovalStateOutput, error) {
@@ -10144,14 +10329,13 @@ const opUpdatePullRequestDescription = "UpdatePullRequestDescription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePullRequestDescriptionRequest method.
+//	req, resp := client.UpdatePullRequestDescriptionRequest(params)
 //
-//    // Example sending a request using the UpdatePullRequestDescriptionRequest method.
-//    req, resp := client.UpdatePullRequestDescriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestDescription
 func (c *CodeCommit) UpdatePullRequestDescriptionRequest(input *UpdatePullRequestDescriptionInput) (req *request.Request, output *UpdatePullRequestDescriptionOutput) {
@@ -10182,24 +10366,25 @@ func (c *CodeCommit) UpdatePullRequestDescriptionRequest(input *UpdatePullReques
 // API operation UpdatePullRequestDescription for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * InvalidDescriptionException
-//   The pull request description is not valid. Descriptions cannot be more than
-//   1,000 characters.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
+//   - InvalidDescriptionException
+//     The pull request description is not valid. Descriptions cannot be more than
+//     1,000 characters.
+//
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestDescription
 func (c *CodeCommit) UpdatePullRequestDescription(input *UpdatePullRequestDescriptionInput) (*UpdatePullRequestDescriptionOutput, error) {
@@ -10239,14 +10424,13 @@ const opUpdatePullRequestStatus = "UpdatePullRequestStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePullRequestStatusRequest method.
+//	req, resp := client.UpdatePullRequestStatusRequest(params)
 //
-//    // Example sending a request using the UpdatePullRequestStatusRequest method.
-//    req, resp := client.UpdatePullRequestStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestStatus
 func (c *CodeCommit) UpdatePullRequestStatusRequest(input *UpdatePullRequestStatusInput) (req *request.Request, output *UpdatePullRequestStatusOutput) {
@@ -10277,43 +10461,44 @@ func (c *CodeCommit) UpdatePullRequestStatusRequest(input *UpdatePullRequestStat
 // API operation UpdatePullRequestStatus for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * InvalidPullRequestStatusUpdateException
-//   The pull request status update is not valid. The only valid update is from
-//   OPEN to CLOSED.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * InvalidPullRequestStatusException
-//   The pull request status is not valid. The only valid values are OPEN and
-//   CLOSED.
+//   - InvalidPullRequestStatusUpdateException
+//     The pull request status update is not valid. The only valid update is from
+//     OPEN to CLOSED.
 //
-//   * PullRequestStatusRequiredException
-//   A pull request status is required, but none was provided.
+//   - InvalidPullRequestStatusException
+//     The pull request status is not valid. The only valid values are OPEN and
+//     CLOSED.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - PullRequestStatusRequiredException
+//     A pull request status is required, but none was provided.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestStatus
 func (c *CodeCommit) UpdatePullRequestStatus(input *UpdatePullRequestStatusInput) (*UpdatePullRequestStatusOutput, error) {
@@ -10353,14 +10538,13 @@ const opUpdatePullRequestTitle = "UpdatePullRequestTitle"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePullRequestTitleRequest method.
+//	req, resp := client.UpdatePullRequestTitleRequest(params)
 //
-//    // Example sending a request using the UpdatePullRequestTitleRequest method.
-//    req, resp := client.UpdatePullRequestTitleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestTitle
 func (c *CodeCommit) UpdatePullRequestTitleRequest(input *UpdatePullRequestTitleInput) (req *request.Request, output *UpdatePullRequestTitleOutput) {
@@ -10391,27 +10575,28 @@ func (c *CodeCommit) UpdatePullRequestTitleRequest(input *UpdatePullRequestTitle
 // API operation UpdatePullRequestTitle for usage and error information.
 //
 // Returned Error Types:
-//   * PullRequestDoesNotExistException
-//   The pull request ID could not be found. Make sure that you have specified
-//   the correct repository name and pull request ID, and then try again.
 //
-//   * InvalidPullRequestIdException
-//   The pull request ID is not valid. Make sure that you have provided the full
-//   ID and that the pull request is in the specified repository, and then try
-//   again.
+//   - PullRequestDoesNotExistException
+//     The pull request ID could not be found. Make sure that you have specified
+//     the correct repository name and pull request ID, and then try again.
 //
-//   * PullRequestIdRequiredException
-//   A pull request ID is required, but none was provided.
+//   - InvalidPullRequestIdException
+//     The pull request ID is not valid. Make sure that you have provided the full
+//     ID and that the pull request is in the specified repository, and then try
+//     again.
 //
-//   * TitleRequiredException
-//   A pull request title is required. It cannot be empty or null.
+//   - PullRequestIdRequiredException
+//     A pull request ID is required, but none was provided.
 //
-//   * InvalidTitleException
-//   The title of the pull request is not valid. Pull request titles cannot exceed
-//   100 characters in length.
+//   - TitleRequiredException
+//     A pull request title is required. It cannot be empty or null.
 //
-//   * PullRequestAlreadyClosedException
-//   The pull request status cannot be updated because it is already closed.
+//   - InvalidTitleException
+//     The title of the pull request is not valid. Pull request titles cannot exceed
+//     100 characters in length.
+//
+//   - PullRequestAlreadyClosedException
+//     The pull request status cannot be updated because it is already closed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdatePullRequestTitle
 func (c *CodeCommit) UpdatePullRequestTitle(input *UpdatePullRequestTitleInput) (*UpdatePullRequestTitleOutput, error) {
@@ -10451,14 +10636,13 @@ const opUpdateRepositoryDescription = "UpdateRepositoryDescription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRepositoryDescriptionRequest method.
+//	req, resp := client.UpdateRepositoryDescriptionRequest(params)
 //
-//    // Example sending a request using the UpdateRepositoryDescriptionRequest method.
-//    req, resp := client.UpdateRepositoryDescriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryDescription
 func (c *CodeCommit) UpdateRepositoryDescriptionRequest(input *UpdateRepositoryDescriptionInput) (req *request.Request, output *UpdateRepositoryDescriptionOutput) {
@@ -10496,36 +10680,37 @@ func (c *CodeCommit) UpdateRepositoryDescriptionRequest(input *UpdateRepositoryD
 // API operation UpdateRepositoryDescription for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
 //
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
 //
-//   * InvalidRepositoryDescriptionException
-//   The specified repository description is not valid.
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
-//   * EncryptionIntegrityChecksFailedException
-//   An encryption integrity check failed.
+//   - InvalidRepositoryDescriptionException
+//     The specified repository description is not valid.
 //
-//   * EncryptionKeyAccessDeniedException
-//   An encryption key could not be accessed.
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
 //
-//   * EncryptionKeyDisabledException
-//   The encryption key is disabled.
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
 //
-//   * EncryptionKeyNotFoundException
-//   No encryption key was found.
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
 //
-//   * EncryptionKeyUnavailableException
-//   The encryption key is not available.
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryDescription
 func (c *CodeCommit) UpdateRepositoryDescription(input *UpdateRepositoryDescriptionInput) (*UpdateRepositoryDescriptionOutput, error) {
@@ -10565,14 +10750,13 @@ const opUpdateRepositoryName = "UpdateRepositoryName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRepositoryNameRequest method.
+//	req, resp := client.UpdateRepositoryNameRequest(params)
 //
-//    // Example sending a request using the UpdateRepositoryNameRequest method.
-//    req, resp := client.UpdateRepositoryNameRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryName
 func (c *CodeCommit) UpdateRepositoryNameRequest(input *UpdateRepositoryNameInput) (req *request.Request, output *UpdateRepositoryNameOutput) {
@@ -10595,11 +10779,11 @@ func (c *CodeCommit) UpdateRepositoryNameRequest(input *UpdateRepositoryNameInpu
 // UpdateRepositoryName API operation for AWS CodeCommit.
 //
 // Renames a repository. The repository name must be unique across the calling
-// AWS account. Repository names are limited to 100 alphanumeric, dash, and
-// underscore characters, and cannot include certain characters. The suffix
-// .git is prohibited. For more information about the limits on repository names,
-// see Limits (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
-// in the AWS CodeCommit User Guide.
+// Amazon Web Services account. Repository names are limited to 100 alphanumeric,
+// dash, and underscore characters, and cannot include certain characters. The
+// suffix .git is prohibited. For more information about the limits on repository
+// names, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+// in the CodeCommit User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10609,21 +10793,22 @@ func (c *CodeCommit) UpdateRepositoryNameRequest(input *UpdateRepositoryNameInpu
 // API operation UpdateRepositoryName for usage and error information.
 //
 // Returned Error Types:
-//   * RepositoryDoesNotExistException
-//   The specified repository does not exist.
 //
-//   * RepositoryNameExistsException
-//   The specified repository name already exists.
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
 //
-//   * RepositoryNameRequiredException
-//   A repository name is required, but was not specified.
+//   - RepositoryNameExistsException
+//     The specified repository name already exists.
 //
-//   * InvalidRepositoryNameException
-//   A specified repository name is not valid.
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
 //
-//   This exception occurs only when a specified repository name is not valid.
-//   Other exceptions occur when a required repository parameter is missing, or
-//   when a specified repository does not exist.
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
+//
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryName
 func (c *CodeCommit) UpdateRepositoryName(input *UpdateRepositoryNameInput) (*UpdateRepositoryNameOutput, error) {
@@ -10647,7 +10832,8 @@ func (c *CodeCommit) UpdateRepositoryNameWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
-// The specified Amazon Resource Name (ARN) does not exist in the AWS account.
+// The specified Amazon Resource Name (ARN) does not exist in the Amazon Web
+// Services account.
 type ActorDoesNotExistException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10655,12 +10841,20 @@ type ActorDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActorDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActorDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -10714,12 +10908,20 @@ type Approval struct {
 	UserArn *string `locationName:"userArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Approval) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Approval) GoString() string {
 	return s.String()
 }
@@ -10766,12 +10968,20 @@ type ApprovalRule struct {
 	RuleContentSha256 *string `locationName:"ruleContentSha256" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRule) GoString() string {
 	return s.String()
 }
@@ -10833,12 +11043,20 @@ type ApprovalRuleContentRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleContentRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleContentRequiredException) GoString() string {
 	return s.String()
 }
@@ -10889,12 +11107,20 @@ type ApprovalRuleDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -10951,12 +11177,20 @@ type ApprovalRuleEventMetadata struct {
 	ApprovalRuleName *string `locationName:"approvalRuleName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleEventMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleEventMetadata) GoString() string {
 	return s.String()
 }
@@ -10988,12 +11222,20 @@ type ApprovalRuleNameAlreadyExistsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleNameAlreadyExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleNameAlreadyExistsException) GoString() string {
 	return s.String()
 }
@@ -11044,12 +11286,20 @@ type ApprovalRuleNameRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleNameRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleNameRequiredException) GoString() string {
 	return s.String()
 }
@@ -11104,12 +11354,20 @@ type ApprovalRuleOverriddenEventMetadata struct {
 	RevisionId *string `locationName:"revisionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleOverriddenEventMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleOverriddenEventMetadata) GoString() string {
 	return s.String()
 }
@@ -11157,12 +11415,20 @@ type ApprovalRuleTemplate struct {
 	RuleContentSha256 *string `locationName:"ruleContentSha256" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplate) GoString() string {
 	return s.String()
 }
@@ -11224,12 +11490,20 @@ type ApprovalRuleTemplateContentRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateContentRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateContentRequiredException) GoString() string {
 	return s.String()
 }
@@ -11273,8 +11547,8 @@ func (s *ApprovalRuleTemplateContentRequiredException) RequestID() string {
 }
 
 // The specified approval rule template does not exist. Verify that the name
-// is correct and that you are signed in to the AWS Region where the template
-// was created, and then try again.
+// is correct and that you are signed in to the Amazon Web Services Region where
+// the template was created, and then try again.
 type ApprovalRuleTemplateDoesNotExistException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11282,12 +11556,20 @@ type ApprovalRuleTemplateDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -11340,12 +11622,20 @@ type ApprovalRuleTemplateInUseException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateInUseException) GoString() string {
 	return s.String()
 }
@@ -11389,8 +11679,8 @@ func (s *ApprovalRuleTemplateInUseException) RequestID() string {
 }
 
 // You cannot create an approval rule template with that name because a template
-// with that name already exists in this AWS Region for your AWS account. Approval
-// rule template names must be unique.
+// with that name already exists in this Amazon Web Services Region for your
+// Amazon Web Services account. Approval rule template names must be unique.
 type ApprovalRuleTemplateNameAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11398,12 +11688,20 @@ type ApprovalRuleTemplateNameAlreadyExistsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateNameAlreadyExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateNameAlreadyExistsException) GoString() string {
 	return s.String()
 }
@@ -11454,12 +11752,20 @@ type ApprovalRuleTemplateNameRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateNameRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalRuleTemplateNameRequiredException) GoString() string {
 	return s.String()
 }
@@ -11513,12 +11819,20 @@ type ApprovalStateChangedEventMetadata struct {
 	RevisionId *string `locationName:"revisionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalStateChangedEventMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalStateChangedEventMetadata) GoString() string {
 	return s.String()
 }
@@ -11543,12 +11857,20 @@ type ApprovalStateRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalStateRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApprovalStateRequiredException) GoString() string {
 	return s.String()
 }
@@ -11605,12 +11927,20 @@ type AssociateApprovalRuleTemplateWithRepositoryInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateApprovalRuleTemplateWithRepositoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateApprovalRuleTemplateWithRepositoryInput) GoString() string {
 	return s.String()
 }
@@ -11653,17 +11983,26 @@ type AssociateApprovalRuleTemplateWithRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateApprovalRuleTemplateWithRepositoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateApprovalRuleTemplateWithRepositoryOutput) GoString() string {
 	return s.String()
 }
 
-// The specified Amazon Resource Name (ARN) does not exist in the AWS account.
+// The specified Amazon Resource Name (ARN) does not exist in the Amazon Web
+// Services account.
 type AuthorDoesNotExistException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11671,12 +12010,20 @@ type AuthorDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuthorDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuthorDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -11736,12 +12083,20 @@ type BatchAssociateApprovalRuleTemplateWithRepositoriesError struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateApprovalRuleTemplateWithRepositoriesError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateApprovalRuleTemplateWithRepositoriesError) GoString() string {
 	return s.String()
 }
@@ -11781,12 +12136,20 @@ type BatchAssociateApprovalRuleTemplateWithRepositoriesInput struct {
 	RepositoryNames []*string `locationName:"repositoryNames" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateApprovalRuleTemplateWithRepositoriesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateApprovalRuleTemplateWithRepositoriesInput) GoString() string {
 	return s.String()
 }
@@ -11837,12 +12200,20 @@ type BatchAssociateApprovalRuleTemplateWithRepositoriesOutput struct {
 	Errors []*BatchAssociateApprovalRuleTemplateWithRepositoriesError `locationName:"errors" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateApprovalRuleTemplateWithRepositoriesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateApprovalRuleTemplateWithRepositoriesOutput) GoString() string {
 	return s.String()
 }
@@ -11879,12 +12250,20 @@ type BatchDescribeMergeConflictsError struct {
 	Message *string `locationName:"message" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeMergeConflictsError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeMergeConflictsError) GoString() string {
 	return s.String()
 }
@@ -11960,12 +12339,20 @@ type BatchDescribeMergeConflictsInput struct {
 	SourceCommitSpecifier *string `locationName:"sourceCommitSpecifier" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeMergeConflictsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeMergeConflictsInput) GoString() string {
 	return s.String()
 }
@@ -12087,12 +12474,20 @@ type BatchDescribeMergeConflictsOutput struct {
 	SourceCommitId *string `locationName:"sourceCommitId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeMergeConflictsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDescribeMergeConflictsOutput) GoString() string {
 	return s.String()
 }
@@ -12151,12 +12546,20 @@ type BatchDisassociateApprovalRuleTemplateFromRepositoriesError struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateApprovalRuleTemplateFromRepositoriesError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateApprovalRuleTemplateFromRepositoriesError) GoString() string {
 	return s.String()
 }
@@ -12197,12 +12600,20 @@ type BatchDisassociateApprovalRuleTemplateFromRepositoriesInput struct {
 	RepositoryNames []*string `locationName:"repositoryNames" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateApprovalRuleTemplateFromRepositoriesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateApprovalRuleTemplateFromRepositoriesInput) GoString() string {
 	return s.String()
 }
@@ -12254,12 +12665,20 @@ type BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput struct {
 	Errors []*BatchDisassociateApprovalRuleTemplateFromRepositoriesError `locationName:"errors" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput) GoString() string {
 	return s.String()
 }
@@ -12291,12 +12710,20 @@ type BatchGetCommitsError struct {
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetCommitsError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetCommitsError) GoString() string {
 	return s.String()
 }
@@ -12336,12 +12763,20 @@ type BatchGetCommitsInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetCommitsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetCommitsInput) GoString() string {
 	return s.String()
 }
@@ -12390,12 +12825,20 @@ type BatchGetCommitsOutput struct {
 	Errors []*BatchGetCommitsError `locationName:"errors" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetCommitsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetCommitsOutput) GoString() string {
 	return s.String()
 }
@@ -12425,12 +12868,20 @@ type BatchGetRepositoriesInput struct {
 	RepositoryNames []*string `locationName:"repositoryNames" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetRepositoriesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetRepositoriesInput) GoString() string {
 	return s.String()
 }
@@ -12465,12 +12916,20 @@ type BatchGetRepositoriesOutput struct {
 	RepositoriesNotFound []*string `locationName:"repositoriesNotFound" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetRepositoriesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetRepositoriesOutput) GoString() string {
 	return s.String()
 }
@@ -12496,12 +12955,20 @@ type BeforeCommitIdAndAfterCommitIdAreSameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BeforeCommitIdAndAfterCommitIdAreSameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BeforeCommitIdAndAfterCommitIdAreSameException) GoString() string {
 	return s.String()
 }
@@ -12552,12 +13019,20 @@ type BlobIdDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlobIdDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlobIdDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -12608,12 +13083,20 @@ type BlobIdRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlobIdRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlobIdRequiredException) GoString() string {
 	return s.String()
 }
@@ -12678,12 +13161,20 @@ type BlobMetadata struct {
 	Path *string `locationName:"path" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlobMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlobMetadata) GoString() string {
 	return s.String()
 }
@@ -12714,12 +13205,20 @@ type BranchDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -12773,12 +13272,20 @@ type BranchInfo struct {
 	CommitId *string `locationName:"commitId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchInfo) GoString() string {
 	return s.String()
 }
@@ -12804,12 +13311,20 @@ type BranchNameExistsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchNameExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchNameExistsException) GoString() string {
 	return s.String()
 }
@@ -12862,12 +13377,20 @@ type BranchNameIsTagNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchNameIsTagNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchNameIsTagNameException) GoString() string {
 	return s.String()
 }
@@ -12918,12 +13441,20 @@ type BranchNameRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchNameRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BranchNameRequiredException) GoString() string {
 	return s.String()
 }
@@ -12975,12 +13506,20 @@ type CannotDeleteApprovalRuleFromTemplateException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CannotDeleteApprovalRuleFromTemplateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CannotDeleteApprovalRuleFromTemplateException) GoString() string {
 	return s.String()
 }
@@ -13032,12 +13571,20 @@ type CannotModifyApprovalRuleFromTemplateException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CannotModifyApprovalRuleFromTemplateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CannotModifyApprovalRuleFromTemplateException) GoString() string {
 	return s.String()
 }
@@ -13092,12 +13639,20 @@ type ClientRequestTokenRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientRequestTokenRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientRequestTokenRequiredException) GoString() string {
 	return s.String()
 }
@@ -13180,12 +13735,20 @@ type Comment struct {
 	ReactionCounts map[string]*int64 `locationName:"reactionCounts" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Comment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Comment) GoString() string {
 	return s.String()
 }
@@ -13259,12 +13822,20 @@ type CommentContentRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentContentRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentContentRequiredException) GoString() string {
 	return s.String()
 }
@@ -13307,7 +13878,7 @@ func (s *CommentContentRequiredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The comment is too large. Comments are limited to 1,000 characters.
+// The comment is too large. Comments are limited to 10,240 characters.
 type CommentContentSizeLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13315,12 +13886,20 @@ type CommentContentSizeLimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentContentSizeLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentContentSizeLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -13372,12 +13951,20 @@ type CommentDeletedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentDeletedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentDeletedException) GoString() string {
 	return s.String()
 }
@@ -13429,12 +14016,20 @@ type CommentDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -13485,12 +14080,20 @@ type CommentIdRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentIdRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentIdRequiredException) GoString() string {
 	return s.String()
 }
@@ -13542,12 +14145,20 @@ type CommentNotCreatedByCallerException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentNotCreatedByCallerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentNotCreatedByCallerException) GoString() string {
 	return s.String()
 }
@@ -13619,12 +14230,20 @@ type CommentsForComparedCommit struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentsForComparedCommit) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentsForComparedCommit) GoString() string {
 	return s.String()
 }
@@ -13708,12 +14327,20 @@ type CommentsForPullRequest struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentsForPullRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommentsForPullRequest) GoString() string {
 	return s.String()
 }
@@ -13802,12 +14429,20 @@ type Commit struct {
 	TreeId *string `locationName:"treeId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Commit) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Commit) GoString() string {
 	return s.String()
 }
@@ -13863,12 +14498,20 @@ type CommitDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -13919,12 +14562,20 @@ type CommitIdDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitIdDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitIdDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -13975,12 +14626,20 @@ type CommitIdRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitIdRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitIdRequiredException) GoString() string {
 	return s.String()
 }
@@ -14033,12 +14692,20 @@ type CommitIdsLimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitIdsLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitIdsLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -14090,12 +14757,20 @@ type CommitIdsListRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitIdsListRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitIdsListRequiredException) GoString() string {
 	return s.String()
 }
@@ -14146,12 +14821,20 @@ type CommitMessageLengthExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitMessageLengthExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitMessageLengthExceededException) GoString() string {
 	return s.String()
 }
@@ -14202,12 +14885,20 @@ type CommitRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CommitRequiredException) GoString() string {
 	return s.String()
 }
@@ -14260,12 +14951,20 @@ type ConcurrentReferenceUpdateException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentReferenceUpdateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentReferenceUpdateException) GoString() string {
 	return s.String()
 }
@@ -14320,12 +15019,20 @@ type Conflict struct {
 	MergeHunks []*MergeHunk `locationName:"mergeHunks" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Conflict) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Conflict) GoString() string {
 	return s.String()
 }
@@ -14382,12 +15089,20 @@ type ConflictMetadata struct {
 	ObjectTypes *ObjectTypes `locationName:"objectTypes" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictMetadata) GoString() string {
 	return s.String()
 }
@@ -14467,12 +15182,20 @@ type ConflictResolution struct {
 	SetFileModes []*SetFileModeEntry `locationName:"setFileModes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictResolution) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictResolution) GoString() string {
 	return s.String()
 }
@@ -14546,14 +15269,14 @@ type CreateApprovalRuleTemplateInput struct {
 	// When you create the content of the approval rule template, you can specify
 	// approvers in an approval pool in one of two ways:
 	//
-	//    * CodeCommitApprovers: This option only requires an AWS account and a
-	//    resource. It can be used for both IAM users and federated access users
-	//    whose name matches the provided resource name. This is a very powerful
-	//    option that offers a great deal of flexibility. For example, if you specify
-	//    the AWS account 123456789012 and Mary_Major, all of the following are
-	//    counted as approvals coming from that user: An IAM user in the account
-	//    (arn:aws:iam::123456789012:user/Mary_Major) A federated user identified
-	//    in IAM as Mary_Major (arn:aws:sts::123456789012:federated-user/Mary_Major)
+	//    * CodeCommitApprovers: This option only requires an Amazon Web Services
+	//    account and a resource. It can be used for both IAM users and federated
+	//    access users whose name matches the provided resource name. This is a
+	//    very powerful option that offers a great deal of flexibility. For example,
+	//    if you specify the Amazon Web Services account 123456789012 and Mary_Major,
+	//    all of the following are counted as approvals coming from that user: An
+	//    IAM user in the account (arn:aws:iam::123456789012:user/Mary_Major) A
+	//    federated user identified in IAM as Mary_Major (arn:aws:sts::123456789012:federated-user/Mary_Major)
 	//    This option does not recognize an active session of someone assuming the
 	//    role of CodeCommitReview with a role session name of Mary_Major (arn:aws:sts::123456789012:assumed-role/CodeCommitReview/Mary_Major)
 	//    unless you include a wildcard (*Mary_Major).
@@ -14581,12 +15304,20 @@ type CreateApprovalRuleTemplateInput struct {
 	ApprovalRuleTemplateName *string `locationName:"approvalRuleTemplateName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApprovalRuleTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApprovalRuleTemplateInput) GoString() string {
 	return s.String()
 }
@@ -14640,12 +15371,20 @@ type CreateApprovalRuleTemplateOutput struct {
 	ApprovalRuleTemplate *ApprovalRuleTemplate `locationName:"approvalRuleTemplate" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApprovalRuleTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApprovalRuleTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -14676,12 +15415,20 @@ type CreateBranchInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBranchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBranchInput) GoString() string {
 	return s.String()
 }
@@ -14733,12 +15480,20 @@ type CreateBranchOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBranchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBranchOutput) GoString() string {
 	return s.String()
 }
@@ -14786,12 +15541,20 @@ type CreateCommitInput struct {
 	SetFileModes []*SetFileModeEntry `locationName:"setFileModes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCommitInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCommitInput) GoString() string {
 	return s.String()
 }
@@ -14928,12 +15691,20 @@ type CreateCommitOutput struct {
 	TreeId *string `locationName:"treeId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCommitOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCommitOutput) GoString() string {
 	return s.String()
 }
@@ -14973,19 +15744,19 @@ type CreatePullRequestApprovalRuleInput struct {
 
 	// The content of the approval rule, including the number of approvals needed
 	// and the structure of an approval pool defined for approvals, if any. For
-	// more information about approval pools, see the AWS CodeCommit User Guide.
+	// more information about approval pools, see the CodeCommit User Guide.
 	//
 	// When you create the content of the approval rule, you can specify approvers
 	// in an approval pool in one of two ways:
 	//
-	//    * CodeCommitApprovers: This option only requires an AWS account and a
-	//    resource. It can be used for both IAM users and federated access users
-	//    whose name matches the provided resource name. This is a very powerful
-	//    option that offers a great deal of flexibility. For example, if you specify
-	//    the AWS account 123456789012 and Mary_Major, all of the following would
-	//    be counted as approvals coming from that user: An IAM user in the account
-	//    (arn:aws:iam::123456789012:user/Mary_Major) A federated user identified
-	//    in IAM as Mary_Major (arn:aws:sts::123456789012:federated-user/Mary_Major)
+	//    * CodeCommitApprovers: This option only requires an Amazon Web Services
+	//    account and a resource. It can be used for both IAM users and federated
+	//    access users whose name matches the provided resource name. This is a
+	//    very powerful option that offers a great deal of flexibility. For example,
+	//    if you specify the Amazon Web Services account 123456789012 and Mary_Major,
+	//    all of the following would be counted as approvals coming from that user:
+	//    An IAM user in the account (arn:aws:iam::123456789012:user/Mary_Major)
+	//    A federated user identified in IAM as Mary_Major (arn:aws:sts::123456789012:federated-user/Mary_Major)
 	//    This option does not recognize an active session of someone assuming the
 	//    role of CodeCommitReview with a role session name of Mary_Major (arn:aws:sts::123456789012:assumed-role/CodeCommitReview/Mary_Major)
 	//    unless you include a wildcard (*Mary_Major).
@@ -15012,12 +15783,20 @@ type CreatePullRequestApprovalRuleInput struct {
 	PullRequestId *string `locationName:"pullRequestId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePullRequestApprovalRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePullRequestApprovalRuleInput) GoString() string {
 	return s.String()
 }
@@ -15074,12 +15853,20 @@ type CreatePullRequestApprovalRuleOutput struct {
 	ApprovalRule *ApprovalRule `locationName:"approvalRule" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePullRequestApprovalRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePullRequestApprovalRuleOutput) GoString() string {
 	return s.String()
 }
@@ -15098,8 +15885,8 @@ type CreatePullRequestInput struct {
 	// is received with the same parameters and a token is included, the request
 	// returns information about the initial request that used that token.
 	//
-	// The AWS SDKs prepopulate client request tokens. If you are using an AWS SDK,
-	// an idempotency token is created for you.
+	// The Amazon Web ServicesSDKs prepopulate client request tokens. If you are
+	// using an Amazon Web ServicesSDK, an idempotency token is created for you.
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
 
 	// A description of the pull request.
@@ -15120,12 +15907,20 @@ type CreatePullRequestInput struct {
 	Title *string `locationName:"title" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePullRequestInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePullRequestInput) GoString() string {
 	return s.String()
 }
@@ -15189,12 +15984,20 @@ type CreatePullRequestOutput struct {
 	PullRequest *PullRequest `locationName:"pullRequest" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePullRequestOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePullRequestOutput) GoString() string {
 	return s.String()
 }
@@ -15220,11 +16023,11 @@ type CreateRepositoryInput struct {
 
 	// The name of the new repository to be created.
 	//
-	// The repository name must be unique across the calling AWS account. Repository
-	// names are limited to 100 alphanumeric, dash, and underscore characters, and
-	// cannot include certain characters. For more information about the limits
-	// on repository names, see Limits (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
-	// in the AWS CodeCommit User Guide. The suffix .git is prohibited.
+	// The repository name must be unique across the calling Amazon Web Services
+	// account. Repository names are limited to 100 alphanumeric, dash, and underscore
+	// characters, and cannot include certain characters. For more information about
+	// the limits on repository names, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+	// in the CodeCommit User Guide. The suffix .git is prohibited.
 	//
 	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
@@ -15233,12 +16036,20 @@ type CreateRepositoryInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRepositoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRepositoryInput) GoString() string {
 	return s.String()
 }
@@ -15285,12 +16096,20 @@ type CreateRepositoryOutput struct {
 	RepositoryMetadata *RepositoryMetadata `locationName:"repositoryMetadata" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRepositoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRepositoryOutput) GoString() string {
 	return s.String()
 }
@@ -15359,12 +16178,20 @@ type CreateUnreferencedMergeCommitInput struct {
 	SourceCommitSpecifier *string `locationName:"sourceCommitSpecifier" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUnreferencedMergeCommitInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUnreferencedMergeCommitInput) GoString() string {
 	return s.String()
 }
@@ -15476,12 +16303,20 @@ type CreateUnreferencedMergeCommitOutput struct {
 	TreeId *string `locationName:"treeId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUnreferencedMergeCommitOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUnreferencedMergeCommitOutput) GoString() string {
 	return s.String()
 }
@@ -15508,12 +16343,20 @@ type DefaultBranchCannotBeDeletedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultBranchCannotBeDeletedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultBranchCannotBeDeletedException) GoString() string {
 	return s.String()
 }
@@ -15565,12 +16408,20 @@ type DeleteApprovalRuleTemplateInput struct {
 	ApprovalRuleTemplateName *string `locationName:"approvalRuleTemplateName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApprovalRuleTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApprovalRuleTemplateInput) GoString() string {
 	return s.String()
 }
@@ -15607,12 +16458,20 @@ type DeleteApprovalRuleTemplateOutput struct {
 	ApprovalRuleTemplateId *string `locationName:"approvalRuleTemplateId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApprovalRuleTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApprovalRuleTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -15638,12 +16497,20 @@ type DeleteBranchInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBranchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBranchInput) GoString() string {
 	return s.String()
 }
@@ -15691,12 +16558,20 @@ type DeleteBranchOutput struct {
 	DeletedBranch *BranchInfo `locationName:"deletedBranch" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBranchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBranchOutput) GoString() string {
 	return s.String()
 }
@@ -15717,12 +16592,20 @@ type DeleteCommentContentInput struct {
 	CommentId *string `locationName:"commentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCommentContentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCommentContentInput) GoString() string {
 	return s.String()
 }
@@ -15753,12 +16636,20 @@ type DeleteCommentContentOutput struct {
 	Comment *Comment `locationName:"comment" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCommentContentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCommentContentOutput) GoString() string {
 	return s.String()
 }
@@ -15779,12 +16670,20 @@ type DeleteFileEntry struct {
 	FilePath *string `locationName:"filePath" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileEntry) GoString() string {
 	return s.String()
 }
@@ -15857,12 +16756,20 @@ type DeleteFileInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileInput) GoString() string {
 	return s.String()
 }
@@ -15970,12 +16877,20 @@ type DeleteFileOutput struct {
 	TreeId *string `locationName:"treeId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileOutput) GoString() string {
 	return s.String()
 }
@@ -16019,12 +16934,20 @@ type DeletePullRequestApprovalRuleInput struct {
 	PullRequestId *string `locationName:"pullRequestId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePullRequestApprovalRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePullRequestApprovalRuleInput) GoString() string {
 	return s.String()
 }
@@ -16072,12 +16995,20 @@ type DeletePullRequestApprovalRuleOutput struct {
 	ApprovalRuleId *string `locationName:"approvalRuleId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePullRequestApprovalRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePullRequestApprovalRuleOutput) GoString() string {
 	return s.String()
 }
@@ -16098,12 +17029,20 @@ type DeleteRepositoryInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRepositoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRepositoryInput) GoString() string {
 	return s.String()
 }
@@ -16138,12 +17077,20 @@ type DeleteRepositoryOutput struct {
 	RepositoryId *string `locationName:"repositoryId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRepositoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRepositoryOutput) GoString() string {
 	return s.String()
 }
@@ -16205,12 +17152,20 @@ type DescribeMergeConflictsInput struct {
 	SourceCommitSpecifier *string `locationName:"sourceCommitSpecifier" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMergeConflictsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMergeConflictsInput) GoString() string {
 	return s.String()
 }
@@ -16329,12 +17284,20 @@ type DescribeMergeConflictsOutput struct {
 	SourceCommitId *string `locationName:"sourceCommitId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMergeConflictsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeMergeConflictsOutput) GoString() string {
 	return s.String()
 }
@@ -16401,12 +17364,20 @@ type DescribePullRequestEventsInput struct {
 	PullRequestId *string `locationName:"pullRequestId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePullRequestEventsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePullRequestEventsInput) GoString() string {
 	return s.String()
 }
@@ -16467,12 +17438,20 @@ type DescribePullRequestEventsOutput struct {
 	PullRequestEvents []*PullRequestEvent `locationName:"pullRequestEvents" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePullRequestEventsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePullRequestEventsOutput) GoString() string {
 	return s.String()
 }
@@ -16506,12 +17485,20 @@ type Difference struct {
 	ChangeType *string `locationName:"changeType" type:"string" enum:"ChangeTypeEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Difference) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Difference) GoString() string {
 	return s.String()
 }
@@ -16545,12 +17532,20 @@ type DirectoryNameConflictsWithFileNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DirectoryNameConflictsWithFileNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DirectoryNameConflictsWithFileNameException) GoString() string {
 	return s.String()
 }
@@ -16607,12 +17602,20 @@ type DisassociateApprovalRuleTemplateFromRepositoryInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateApprovalRuleTemplateFromRepositoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateApprovalRuleTemplateFromRepositoryInput) GoString() string {
 	return s.String()
 }
@@ -16655,12 +17658,20 @@ type DisassociateApprovalRuleTemplateFromRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateApprovalRuleTemplateFromRepositoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateApprovalRuleTemplateFromRepositoryOutput) GoString() string {
 	return s.String()
 }
@@ -16673,12 +17684,20 @@ type EncryptionIntegrityChecksFailedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionIntegrityChecksFailedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionIntegrityChecksFailedException) GoString() string {
 	return s.String()
 }
@@ -16729,12 +17748,20 @@ type EncryptionKeyAccessDeniedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKeyAccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKeyAccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -16785,12 +17812,20 @@ type EncryptionKeyDisabledException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKeyDisabledException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKeyDisabledException) GoString() string {
 	return s.String()
 }
@@ -16841,12 +17876,20 @@ type EncryptionKeyNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKeyNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKeyNotFoundException) GoString() string {
 	return s.String()
 }
@@ -16897,12 +17940,20 @@ type EncryptionKeyUnavailableException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKeyUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionKeyUnavailableException) GoString() string {
 	return s.String()
 }
@@ -16960,12 +18011,20 @@ type EvaluatePullRequestApprovalRulesInput struct {
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluatePullRequestApprovalRulesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluatePullRequestApprovalRulesInput) GoString() string {
 	return s.String()
 }
@@ -17010,12 +18069,20 @@ type EvaluatePullRequestApprovalRulesOutput struct {
 	Evaluation *Evaluation `locationName:"evaluation" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluatePullRequestApprovalRulesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluatePullRequestApprovalRulesOutput) GoString() string {
 	return s.String()
 }
@@ -17045,12 +18112,20 @@ type Evaluation struct {
 	Overridden *bool `locationName:"overridden" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Evaluation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Evaluation) GoString() string {
 	return s.String()
 }
@@ -17097,12 +18172,20 @@ type File struct {
 	RelativePath *string `locationName:"relativePath" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s File) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s File) GoString() string {
 	return s.String()
 }
@@ -17141,12 +18224,20 @@ type FileContentAndSourceFileSpecifiedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileContentAndSourceFileSpecifiedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileContentAndSourceFileSpecifiedException) GoString() string {
 	return s.String()
 }
@@ -17198,12 +18289,20 @@ type FileContentRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileContentRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileContentRequiredException) GoString() string {
 	return s.String()
 }
@@ -17256,12 +18355,20 @@ type FileContentSizeLimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileContentSizeLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileContentSizeLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -17313,12 +18420,20 @@ type FileDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -17370,12 +18485,20 @@ type FileEntryRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileEntryRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileEntryRequiredException) GoString() string {
 	return s.String()
 }
@@ -17434,12 +18557,20 @@ type FileMetadata struct {
 	FileMode *string `locationName:"fileMode" type:"string" enum:"FileModeTypeEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileMetadata) GoString() string {
 	return s.String()
 }
@@ -17471,12 +18602,20 @@ type FileModeRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileModeRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileModeRequiredException) GoString() string {
 	return s.String()
 }
@@ -17533,12 +18672,20 @@ type FileModes struct {
 	Source *string `locationName:"source" type:"string" enum:"FileModeTypeEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileModes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileModes) GoString() string {
 	return s.String()
 }
@@ -17572,12 +18719,20 @@ type FileNameConflictsWithDirectoryNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileNameConflictsWithDirectoryNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileNameConflictsWithDirectoryNameException) GoString() string {
 	return s.String()
 }
@@ -17630,12 +18785,20 @@ type FilePathConflictsWithSubmodulePathException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilePathConflictsWithSubmodulePathException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilePathConflictsWithSubmodulePathException) GoString() string {
 	return s.String()
 }
@@ -17692,12 +18855,20 @@ type FileSizes struct {
 	Source *int64 `locationName:"source" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSizes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSizes) GoString() string {
 	return s.String()
 }
@@ -17720,9 +18891,9 @@ func (s *FileSizes) SetSource(v int64) *FileSizes {
 	return s
 }
 
-// The specified file exceeds the file size limit for AWS CodeCommit. For more
-// information about limits in AWS CodeCommit, see AWS CodeCommit User Guide
-// (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+// The specified file exceeds the file size limit for CodeCommit. For more information
+// about limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+// in the CodeCommit User Guide.
 type FileTooLargeException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -17730,12 +18901,20 @@ type FileTooLargeException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileTooLargeException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileTooLargeException) GoString() string {
 	return s.String()
 }
@@ -17778,6 +18957,69 @@ func (s *FileTooLargeException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about a version of a file.
+type FileVersion struct {
+	_ struct{} `type:"structure"`
+
+	// The blob ID of the object that represents the content of the file in this
+	// version.
+	BlobId *string `locationName:"blobId" type:"string"`
+
+	// Returns information about a specific commit.
+	Commit *Commit `locationName:"commit" type:"structure"`
+
+	// The name and path of the file at which this blob is indexed which contains
+	// the data for this version of the file. This value will vary between file
+	// versions if a file is renamed or if its path changes.
+	Path *string `locationName:"path" type:"string"`
+
+	// An array of commit IDs that contain more recent versions of this file. If
+	// there are no additional versions of the file, this array will be empty.
+	RevisionChildren []*string `locationName:"revisionChildren" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileVersion) GoString() string {
+	return s.String()
+}
+
+// SetBlobId sets the BlobId field's value.
+func (s *FileVersion) SetBlobId(v string) *FileVersion {
+	s.BlobId = &v
+	return s
+}
+
+// SetCommit sets the Commit field's value.
+func (s *FileVersion) SetCommit(v *Commit) *FileVersion {
+	s.Commit = v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *FileVersion) SetPath(v string) *FileVersion {
+	s.Path = &v
+	return s
+}
+
+// SetRevisionChildren sets the RevisionChildren field's value.
+func (s *FileVersion) SetRevisionChildren(v []*string) *FileVersion {
+	s.RevisionChildren = v
+	return s
+}
+
 // Returns information about a folder in a repository.
 type Folder struct {
 	_ struct{} `type:"structure"`
@@ -17794,12 +19036,20 @@ type Folder struct {
 	TreeId *string `locationName:"treeId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Folder) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Folder) GoString() string {
 	return s.String()
 }
@@ -17833,12 +19083,20 @@ type FolderContentSizeLimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderContentSizeLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderContentSizeLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -17890,12 +19148,20 @@ type FolderDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -17947,12 +19213,20 @@ type GetApprovalRuleTemplateInput struct {
 	ApprovalRuleTemplateName *string `locationName:"approvalRuleTemplateName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApprovalRuleTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApprovalRuleTemplateInput) GoString() string {
 	return s.String()
 }
@@ -17988,12 +19262,20 @@ type GetApprovalRuleTemplateOutput struct {
 	ApprovalRuleTemplate *ApprovalRuleTemplate `locationName:"approvalRuleTemplate" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApprovalRuleTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApprovalRuleTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -18019,12 +19301,20 @@ type GetBlobInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlobInput) GoString() string {
 	return s.String()
 }
@@ -18065,19 +19355,26 @@ type GetBlobOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The content of the blob, usually a file.
-	//
 	// Content is automatically base64 encoded/decoded by the SDK.
 	//
 	// Content is a required field
 	Content []byte `locationName:"content" type:"blob" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlobOutput) GoString() string {
 	return s.String()
 }
@@ -18100,12 +19397,20 @@ type GetBranchInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBranchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBranchInput) GoString() string {
 	return s.String()
 }
@@ -18146,12 +19451,20 @@ type GetBranchOutput struct {
 	Branch *BranchInfo `locationName:"branch" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBranchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBranchOutput) GoString() string {
 	return s.String()
 }
@@ -18172,12 +19485,20 @@ type GetCommentInput struct {
 	CommentId *string `locationName:"commentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentInput) GoString() string {
 	return s.String()
 }
@@ -18208,12 +19529,20 @@ type GetCommentOutput struct {
 	Comment *Comment `locationName:"comment" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentOutput) GoString() string {
 	return s.String()
 }
@@ -18245,12 +19574,20 @@ type GetCommentReactionsInput struct {
 	ReactionUserArn *string `locationName:"reactionUserArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentReactionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentReactionsInput) GoString() string {
 	return s.String()
 }
@@ -18305,12 +19642,20 @@ type GetCommentReactionsOutput struct {
 	ReactionsForComment []*ReactionForComment `locationName:"reactionsForComment" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentReactionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentReactionsOutput) GoString() string {
 	return s.String()
 }
@@ -18354,12 +19699,20 @@ type GetCommentsForComparedCommitInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentsForComparedCommitInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentsForComparedCommitInput) GoString() string {
 	return s.String()
 }
@@ -18424,12 +19777,20 @@ type GetCommentsForComparedCommitOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentsForComparedCommitOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentsForComparedCommitOutput) GoString() string {
 	return s.String()
 }
@@ -18450,11 +19811,13 @@ type GetCommentsForPullRequestInput struct {
 	_ struct{} `type:"structure"`
 
 	// The full commit ID of the commit in the source branch that was the tip of
-	// the branch at the time the comment was made.
+	// the branch at the time the comment was made. Requirement is conditional:
+	// afterCommitId must be specified when repositoryName is included.
 	AfterCommitId *string `locationName:"afterCommitId" type:"string"`
 
 	// The full commit ID of the commit in the destination branch that was the tip
-	// of the branch at the time the pull request was created.
+	// of the branch at the time the pull request was created. Requirement is conditional:
+	// beforeCommitId must be specified when repositoryName is included.
 	BeforeCommitId *string `locationName:"beforeCommitId" type:"string"`
 
 	// A non-zero, non-negative integer used to limit the number of returned results.
@@ -18471,16 +19834,26 @@ type GetCommentsForPullRequestInput struct {
 	// PullRequestId is a required field
 	PullRequestId *string `locationName:"pullRequestId" type:"string" required:"true"`
 
-	// The name of the repository that contains the pull request.
+	// The name of the repository that contains the pull request. Requirement is
+	// conditional: repositoryName must be specified when beforeCommitId and afterCommitId
+	// are included.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentsForPullRequestInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentsForPullRequestInput) GoString() string {
 	return s.String()
 }
@@ -18548,12 +19921,20 @@ type GetCommentsForPullRequestOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentsForPullRequestOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommentsForPullRequestOutput) GoString() string {
 	return s.String()
 }
@@ -18585,12 +19966,20 @@ type GetCommitInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommitInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommitInput) GoString() string {
 	return s.String()
 }
@@ -18636,12 +20025,20 @@ type GetCommitOutput struct {
 	Commit *Commit `locationName:"commit" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommitOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCommitOutput) GoString() string {
 	return s.String()
 }
@@ -18692,12 +20089,20 @@ type GetDifferencesInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDifferencesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDifferencesInput) GoString() string {
 	return s.String()
 }
@@ -18775,12 +20180,20 @@ type GetDifferencesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDifferencesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDifferencesOutput) GoString() string {
 	return s.String()
 }
@@ -18802,7 +20215,7 @@ type GetFileInput struct {
 
 	// The fully quaified reference that identifies the commit that contains the
 	// file. For example, you can specify a full commit ID, a tag, a branch name,
-	// or a reference such as refs/heads/master. If none is provided, the head commit
+	// or a reference such as refs/heads/main. If none is provided, the head commit
 	// is used.
 	CommitSpecifier *string `locationName:"commitSpecifier" type:"string"`
 
@@ -18819,12 +20232,20 @@ type GetFileInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFileInput) GoString() string {
 	return s.String()
 }
@@ -18881,7 +20302,6 @@ type GetFileOutput struct {
 
 	// The base-64 encoded binary data object that represents the content of the
 	// file.
-	//
 	// FileContent is automatically base64 encoded/decoded by the SDK.
 	//
 	// FileContent is a required field
@@ -18909,12 +20329,20 @@ type GetFileOutput struct {
 	FileSize *int64 `locationName:"fileSize" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFileOutput) GoString() string {
 	return s.String()
 }
@@ -18977,12 +20405,20 @@ type GetFolderInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFolderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFolderInput) GoString() string {
 	return s.String()
 }
@@ -19056,12 +20492,20 @@ type GetFolderOutput struct {
 	TreeId *string `locationName:"treeId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFolderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFolderOutput) GoString() string {
 	return s.String()
 }
@@ -19142,12 +20586,20 @@ type GetMergeCommitInput struct {
 	SourceCommitSpecifier *string `locationName:"sourceCommitSpecifier" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeCommitInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeCommitInput) GoString() string {
 	return s.String()
 }
@@ -19223,12 +20675,20 @@ type GetMergeCommitOutput struct {
 	SourceCommitId *string `locationName:"sourceCommitId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeCommitOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeCommitOutput) GoString() string {
 	return s.String()
 }
@@ -19302,12 +20762,20 @@ type GetMergeConflictsInput struct {
 	SourceCommitSpecifier *string `locationName:"sourceCommitSpecifier" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeConflictsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeConflictsInput) GoString() string {
 	return s.String()
 }
@@ -19419,12 +20887,20 @@ type GetMergeConflictsOutput struct {
 	SourceCommitId *string `locationName:"sourceCommitId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeConflictsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeConflictsOutput) GoString() string {
 	return s.String()
 }
@@ -19499,12 +20975,20 @@ type GetMergeOptionsInput struct {
 	SourceCommitSpecifier *string `locationName:"sourceCommitSpecifier" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeOptionsInput) GoString() string {
 	return s.String()
 }
@@ -19578,7 +21062,7 @@ type GetMergeOptionsOutput struct {
 	// The merge option or strategy used to merge the code.
 	//
 	// MergeOptions is a required field
-	MergeOptions []*string `locationName:"mergeOptions" type:"list" required:"true"`
+	MergeOptions []*string `locationName:"mergeOptions" type:"list" required:"true" enum:"MergeOptionTypeEnum"`
 
 	// The commit ID of the source commit specifier that was used in the merge evaluation.
 	//
@@ -19586,12 +21070,20 @@ type GetMergeOptionsOutput struct {
 	SourceCommitId *string `locationName:"sourceCommitId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMergeOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -19634,12 +21126,20 @@ type GetPullRequestApprovalStatesInput struct {
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestApprovalStatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestApprovalStatesInput) GoString() string {
 	return s.String()
 }
@@ -19679,12 +21179,20 @@ type GetPullRequestApprovalStatesOutput struct {
 	Approvals []*Approval `locationName:"approvals" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestApprovalStatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestApprovalStatesOutput) GoString() string {
 	return s.String()
 }
@@ -19704,12 +21212,20 @@ type GetPullRequestInput struct {
 	PullRequestId *string `locationName:"pullRequestId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestInput) GoString() string {
 	return s.String()
 }
@@ -19742,12 +21258,20 @@ type GetPullRequestOutput struct {
 	PullRequest *PullRequest `locationName:"pullRequest" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestOutput) GoString() string {
 	return s.String()
 }
@@ -19774,12 +21298,20 @@ type GetPullRequestOverrideStateInput struct {
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestOverrideStateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestOverrideStateInput) GoString() string {
 	return s.String()
 }
@@ -19824,12 +21356,20 @@ type GetPullRequestOverrideStateOutput struct {
 	Overrider *string `locationName:"overrider" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestOverrideStateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPullRequestOverrideStateOutput) GoString() string {
 	return s.String()
 }
@@ -19856,12 +21396,20 @@ type GetRepositoryInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRepositoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRepositoryInput) GoString() string {
 	return s.String()
 }
@@ -19896,12 +21444,20 @@ type GetRepositoryOutput struct {
 	RepositoryMetadata *RepositoryMetadata `locationName:"repositoryMetadata" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRepositoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRepositoryOutput) GoString() string {
 	return s.String()
 }
@@ -19922,12 +21478,20 @@ type GetRepositoryTriggersInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRepositoryTriggersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRepositoryTriggersInput) GoString() string {
 	return s.String()
 }
@@ -19965,12 +21529,20 @@ type GetRepositoryTriggersOutput struct {
 	Triggers []*RepositoryTrigger `locationName:"triggers" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRepositoryTriggersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRepositoryTriggersOutput) GoString() string {
 	return s.String()
 }
@@ -19996,12 +21568,20 @@ type IdempotencyParameterMismatchException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdempotencyParameterMismatchException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdempotencyParameterMismatchException) GoString() string {
 	return s.String()
 }
@@ -20054,12 +21634,20 @@ type InvalidActorArnException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidActorArnException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidActorArnException) GoString() string {
 	return s.String()
 }
@@ -20110,12 +21698,20 @@ type InvalidApprovalRuleContentException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleContentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleContentException) GoString() string {
 	return s.String()
 }
@@ -20166,12 +21762,20 @@ type InvalidApprovalRuleNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleNameException) GoString() string {
 	return s.String()
 }
@@ -20222,12 +21826,20 @@ type InvalidApprovalRuleTemplateContentException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleTemplateContentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleTemplateContentException) GoString() string {
 	return s.String()
 }
@@ -20272,7 +21884,8 @@ func (s *InvalidApprovalRuleTemplateContentException) RequestID() string {
 
 // The description for the approval rule template is not valid because it exceeds
 // the maximum characters allowed for a description. For more information about
-// limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+// limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+// in the CodeCommit User Guide.
 type InvalidApprovalRuleTemplateDescriptionException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -20280,12 +21893,20 @@ type InvalidApprovalRuleTemplateDescriptionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleTemplateDescriptionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleTemplateDescriptionException) GoString() string {
 	return s.String()
 }
@@ -20330,7 +21951,8 @@ func (s *InvalidApprovalRuleTemplateDescriptionException) RequestID() string {
 
 // The name of the approval rule template is not valid. Template names must
 // be between 1 and 100 valid characters in length. For more information about
-// limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
+// limits in CodeCommit, see Quotas (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
+// in the CodeCommit User Guide.
 type InvalidApprovalRuleTemplateNameException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -20338,12 +21960,20 @@ type InvalidApprovalRuleTemplateNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleTemplateNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalRuleTemplateNameException) GoString() string {
 	return s.String()
 }
@@ -20395,12 +22025,20 @@ type InvalidApprovalStateException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalStateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidApprovalStateException) GoString() string {
 	return s.String()
 }
@@ -20452,12 +22090,20 @@ type InvalidAuthorArnException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidAuthorArnException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidAuthorArnException) GoString() string {
 	return s.String()
 }
@@ -20508,12 +22154,20 @@ type InvalidBlobIdException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidBlobIdException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidBlobIdException) GoString() string {
 	return s.String()
 }
@@ -20564,12 +22218,20 @@ type InvalidBranchNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidBranchNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidBranchNameException) GoString() string {
 	return s.String()
 }
@@ -20620,12 +22282,20 @@ type InvalidClientRequestTokenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidClientRequestTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidClientRequestTokenException) GoString() string {
 	return s.String()
 }
@@ -20677,12 +22347,20 @@ type InvalidCommentIdException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidCommentIdException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidCommentIdException) GoString() string {
 	return s.String()
 }
@@ -20733,12 +22411,20 @@ type InvalidCommitException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidCommitException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidCommitException) GoString() string {
 	return s.String()
 }
@@ -20789,12 +22475,20 @@ type InvalidCommitIdException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidCommitIdException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidCommitIdException) GoString() string {
 	return s.String()
 }
@@ -20845,12 +22539,20 @@ type InvalidConflictDetailLevelException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidConflictDetailLevelException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidConflictDetailLevelException) GoString() string {
 	return s.String()
 }
@@ -20901,12 +22603,20 @@ type InvalidConflictResolutionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidConflictResolutionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidConflictResolutionException) GoString() string {
 	return s.String()
 }
@@ -20957,12 +22667,20 @@ type InvalidConflictResolutionStrategyException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidConflictResolutionStrategyException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidConflictResolutionStrategyException) GoString() string {
 	return s.String()
 }
@@ -21013,12 +22731,20 @@ type InvalidContinuationTokenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidContinuationTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidContinuationTokenException) GoString() string {
 	return s.String()
 }
@@ -21069,12 +22795,20 @@ type InvalidDeletionParameterException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDeletionParameterException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDeletionParameterException) GoString() string {
 	return s.String()
 }
@@ -21126,12 +22860,20 @@ type InvalidDescriptionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDescriptionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDescriptionException) GoString() string {
 	return s.String()
 }
@@ -21183,12 +22925,20 @@ type InvalidDestinationCommitSpecifierException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDestinationCommitSpecifierException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDestinationCommitSpecifierException) GoString() string {
 	return s.String()
 }
@@ -21241,12 +22991,20 @@ type InvalidEmailException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidEmailException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidEmailException) GoString() string {
 	return s.String()
 }
@@ -21298,12 +23056,20 @@ type InvalidFileLocationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidFileLocationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidFileLocationException) GoString() string {
 	return s.String()
 }
@@ -21355,12 +23121,20 @@ type InvalidFileModeException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidFileModeException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidFileModeException) GoString() string {
 	return s.String()
 }
@@ -21412,12 +23186,20 @@ type InvalidFilePositionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidFilePositionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidFilePositionException) GoString() string {
 	return s.String()
 }
@@ -21468,12 +23250,20 @@ type InvalidMaxConflictFilesException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidMaxConflictFilesException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidMaxConflictFilesException) GoString() string {
 	return s.String()
 }
@@ -21524,12 +23314,20 @@ type InvalidMaxMergeHunksException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidMaxMergeHunksException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidMaxMergeHunksException) GoString() string {
 	return s.String()
 }
@@ -21580,12 +23378,20 @@ type InvalidMaxResultsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidMaxResultsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidMaxResultsException) GoString() string {
 	return s.String()
 }
@@ -21637,12 +23443,20 @@ type InvalidMergeOptionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidMergeOptionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidMergeOptionException) GoString() string {
 	return s.String()
 }
@@ -21693,12 +23507,20 @@ type InvalidOrderException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidOrderException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidOrderException) GoString() string {
 	return s.String()
 }
@@ -21749,12 +23571,20 @@ type InvalidOverrideStatusException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidOverrideStatusException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidOverrideStatusException) GoString() string {
 	return s.String()
 }
@@ -21807,12 +23637,20 @@ type InvalidParentCommitIdException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParentCommitIdException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParentCommitIdException) GoString() string {
 	return s.String()
 }
@@ -21863,12 +23701,20 @@ type InvalidPathException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPathException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPathException) GoString() string {
 	return s.String()
 }
@@ -21919,12 +23765,20 @@ type InvalidPullRequestEventTypeException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPullRequestEventTypeException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPullRequestEventTypeException) GoString() string {
 	return s.String()
 }
@@ -21977,12 +23831,20 @@ type InvalidPullRequestIdException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPullRequestIdException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPullRequestIdException) GoString() string {
 	return s.String()
 }
@@ -22034,12 +23896,20 @@ type InvalidPullRequestStatusException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPullRequestStatusException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPullRequestStatusException) GoString() string {
 	return s.String()
 }
@@ -22091,12 +23961,20 @@ type InvalidPullRequestStatusUpdateException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPullRequestStatusUpdateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPullRequestStatusUpdateException) GoString() string {
 	return s.String()
 }
@@ -22147,12 +24025,20 @@ type InvalidReactionUserArnException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReactionUserArnException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReactionUserArnException) GoString() string {
 	return s.String()
 }
@@ -22195,8 +24081,8 @@ func (s *InvalidReactionUserArnException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The value of the reaction is not valid. For more information, see the AWS
-// CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html).
+// The value of the reaction is not valid. For more information, see the CodeCommit
+// User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html).
 type InvalidReactionValueException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22204,12 +24090,20 @@ type InvalidReactionValueException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReactionValueException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReactionValueException) GoString() string {
 	return s.String()
 }
@@ -22253,7 +24147,7 @@ func (s *InvalidReactionValueException) RequestID() string {
 }
 
 // The specified reference name format is not valid. Reference names must conform
-// to the Git references format (for example, refs/heads/master). For more information,
+// to the Git references format (for example, refs/heads/main). For more information,
 // see Git Internals - Git References (https://git-scm.com/book/en/v2/Git-Internals-Git-References)
 // or consult your Git documentation.
 type InvalidReferenceNameException struct {
@@ -22263,12 +24157,20 @@ type InvalidReferenceNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReferenceNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReferenceNameException) GoString() string {
 	return s.String()
 }
@@ -22320,12 +24222,20 @@ type InvalidRelativeFileVersionEnumException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRelativeFileVersionEnumException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRelativeFileVersionEnumException) GoString() string {
 	return s.String()
 }
@@ -22377,12 +24287,20 @@ type InvalidReplacementContentException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReplacementContentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReplacementContentException) GoString() string {
 	return s.String()
 }
@@ -22434,12 +24352,20 @@ type InvalidReplacementTypeException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReplacementTypeException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidReplacementTypeException) GoString() string {
 	return s.String()
 }
@@ -22490,12 +24416,20 @@ type InvalidRepositoryDescriptionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryDescriptionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryDescriptionException) GoString() string {
 	return s.String()
 }
@@ -22550,12 +24484,20 @@ type InvalidRepositoryNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryNameException) GoString() string {
 	return s.String()
 }
@@ -22606,12 +24548,20 @@ type InvalidRepositoryTriggerBranchNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerBranchNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerBranchNameException) GoString() string {
 	return s.String()
 }
@@ -22662,12 +24612,20 @@ type InvalidRepositoryTriggerCustomDataException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerCustomDataException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerCustomDataException) GoString() string {
 	return s.String()
 }
@@ -22720,12 +24678,20 @@ type InvalidRepositoryTriggerDestinationArnException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerDestinationArnException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerDestinationArnException) GoString() string {
 	return s.String()
 }
@@ -22777,12 +24743,20 @@ type InvalidRepositoryTriggerEventsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerEventsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerEventsException) GoString() string {
 	return s.String()
 }
@@ -22833,12 +24807,20 @@ type InvalidRepositoryTriggerNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerNameException) GoString() string {
 	return s.String()
 }
@@ -22881,9 +24863,9 @@ func (s *InvalidRepositoryTriggerNameException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The AWS Region for the trigger target does not match the AWS Region for the
-// repository. Triggers must be created in the same Region as the target for
-// the trigger.
+// The Amazon Web Services Region for the trigger target does not match the
+// Amazon Web Services Region for the repository. Triggers must be created in
+// the same Amazon Web Services Region as the target for the trigger.
 type InvalidRepositoryTriggerRegionException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22891,12 +24873,20 @@ type InvalidRepositoryTriggerRegionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerRegionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRepositoryTriggerRegionException) GoString() string {
 	return s.String()
 }
@@ -22940,8 +24930,8 @@ func (s *InvalidRepositoryTriggerRegionException) RequestID() string {
 }
 
 // The value for the resource ARN is not valid. For more information about resources
-// in AWS CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-// in the AWS CodeCommit User Guide.
+// in CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+// in the CodeCommit User Guide.
 type InvalidResourceArnException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22949,12 +24939,20 @@ type InvalidResourceArnException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResourceArnException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResourceArnException) GoString() string {
 	return s.String()
 }
@@ -23005,12 +25003,20 @@ type InvalidRevisionIdException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRevisionIdException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRevisionIdException) GoString() string {
 	return s.String()
 }
@@ -23061,12 +25067,20 @@ type InvalidRuleContentSha256Exception struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRuleContentSha256Exception) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRuleContentSha256Exception) GoString() string {
 	return s.String()
 }
@@ -23117,12 +25131,20 @@ type InvalidSortByException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSortByException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSortByException) GoString() string {
 	return s.String()
 }
@@ -23174,12 +25196,20 @@ type InvalidSourceCommitSpecifierException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSourceCommitSpecifierException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSourceCommitSpecifierException) GoString() string {
 	return s.String()
 }
@@ -23230,12 +25260,20 @@ type InvalidSystemTagUsageException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSystemTagUsageException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSystemTagUsageException) GoString() string {
 	return s.String()
 }
@@ -23286,12 +25324,20 @@ type InvalidTagKeysListException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTagKeysListException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTagKeysListException) GoString() string {
 	return s.String()
 }
@@ -23342,12 +25388,20 @@ type InvalidTagsMapException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTagsMapException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTagsMapException) GoString() string {
 	return s.String()
 }
@@ -23398,12 +25452,20 @@ type InvalidTargetBranchException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTargetBranchException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTargetBranchException) GoString() string {
 	return s.String()
 }
@@ -23456,12 +25518,20 @@ type InvalidTargetException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTargetException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTargetException) GoString() string {
 	return s.String()
 }
@@ -23515,12 +25585,20 @@ type InvalidTargetsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTargetsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTargetsException) GoString() string {
 	return s.String()
 }
@@ -23572,12 +25650,20 @@ type InvalidTitleException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTitleException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTitleException) GoString() string {
 	return s.String()
 }
@@ -23638,12 +25724,20 @@ type IsBinaryFile struct {
 	Source *bool `locationName:"source" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IsBinaryFile) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IsBinaryFile) GoString() string {
 	return s.String()
 }
@@ -23677,12 +25771,20 @@ type ListApprovalRuleTemplatesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApprovalRuleTemplatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApprovalRuleTemplatesInput) GoString() string {
 	return s.String()
 }
@@ -23702,8 +25804,8 @@ func (s *ListApprovalRuleTemplatesInput) SetNextToken(v string) *ListApprovalRul
 type ListApprovalRuleTemplatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The names of all the approval rule templates found in the AWS Region for
-	// your AWS account.
+	// The names of all the approval rule templates found in the Amazon Web Services
+	// Region for your Amazon Web Services account.
 	ApprovalRuleTemplateNames []*string `locationName:"approvalRuleTemplateNames" type:"list"`
 
 	// An enumeration token that allows the operation to batch the next results
@@ -23711,12 +25813,20 @@ type ListApprovalRuleTemplatesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApprovalRuleTemplatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApprovalRuleTemplatesOutput) GoString() string {
 	return s.String()
 }
@@ -23750,12 +25860,20 @@ type ListAssociatedApprovalRuleTemplatesForRepositoryInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedApprovalRuleTemplatesForRepositoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedApprovalRuleTemplatesForRepositoryInput) GoString() string {
 	return s.String()
 }
@@ -23805,12 +25923,20 @@ type ListAssociatedApprovalRuleTemplatesForRepositoryOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedApprovalRuleTemplatesForRepositoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedApprovalRuleTemplatesForRepositoryOutput) GoString() string {
 	return s.String()
 }
@@ -23840,12 +25966,20 @@ type ListBranchesInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBranchesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBranchesInput) GoString() string {
 	return s.String()
 }
@@ -23889,12 +26023,20 @@ type ListBranchesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBranchesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBranchesOutput) GoString() string {
 	return s.String()
 }
@@ -23908,6 +26050,143 @@ func (s *ListBranchesOutput) SetBranches(v []*string) *ListBranchesOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListBranchesOutput) SetNextToken(v string) *ListBranchesOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListFileCommitHistoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The fully quaified reference that identifies the commit that contains the
+	// file. For example, you can specify a full commit ID, a tag, a branch name,
+	// or a reference such as refs/heads/main. If none is provided, the head commit
+	// is used.
+	CommitSpecifier *string `locationName:"commitSpecifier" type:"string"`
+
+	// The full path of the file whose history you want to retrieve, including the
+	// name of the file.
+	//
+	// FilePath is a required field
+	FilePath *string `locationName:"filePath" type:"string" required:"true"`
+
+	// A non-zero, non-negative integer used to limit the number of returned results.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// An enumeration token that allows the operation to batch the results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The name of the repository that contains the file.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFileCommitHistoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFileCommitHistoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFileCommitHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFileCommitHistoryInput"}
+	if s.FilePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilePath"))
+	}
+	if s.RepositoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryName"))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCommitSpecifier sets the CommitSpecifier field's value.
+func (s *ListFileCommitHistoryInput) SetCommitSpecifier(v string) *ListFileCommitHistoryInput {
+	s.CommitSpecifier = &v
+	return s
+}
+
+// SetFilePath sets the FilePath field's value.
+func (s *ListFileCommitHistoryInput) SetFilePath(v string) *ListFileCommitHistoryInput {
+	s.FilePath = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFileCommitHistoryInput) SetMaxResults(v int64) *ListFileCommitHistoryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFileCommitHistoryInput) SetNextToken(v string) *ListFileCommitHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *ListFileCommitHistoryInput) SetRepositoryName(v string) *ListFileCommitHistoryInput {
+	s.RepositoryName = &v
+	return s
+}
+
+type ListFileCommitHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An enumeration token that can be used to return the next batch of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of FileVersion objects that form a directed acyclic graph (DAG)
+	// of the changes to the file made by the commits that changed the file.
+	//
+	// RevisionDag is a required field
+	RevisionDag []*FileVersion `locationName:"revisionDag" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFileCommitHistoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFileCommitHistoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFileCommitHistoryOutput) SetNextToken(v string) *ListFileCommitHistoryOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRevisionDag sets the RevisionDag field's value.
+func (s *ListFileCommitHistoryOutput) SetRevisionDag(v []*FileVersion) *ListFileCommitHistoryOutput {
+	s.RevisionDag = v
 	return s
 }
 
@@ -23936,12 +26215,20 @@ type ListPullRequestsInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPullRequestsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPullRequestsInput) GoString() string {
 	return s.String()
 }
@@ -24005,12 +26292,20 @@ type ListPullRequestsOutput struct {
 	PullRequestIds []*string `locationName:"pullRequestIds" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPullRequestsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPullRequestsOutput) GoString() string {
 	return s.String()
 }
@@ -24044,12 +26339,20 @@ type ListRepositoriesForApprovalRuleTemplateInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRepositoriesForApprovalRuleTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRepositoriesForApprovalRuleTemplateInput) GoString() string {
 	return s.String()
 }
@@ -24100,12 +26403,20 @@ type ListRepositoriesForApprovalRuleTemplateOutput struct {
 	RepositoryNames []*string `locationName:"repositoryNames" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRepositoriesForApprovalRuleTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRepositoriesForApprovalRuleTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -24128,7 +26439,7 @@ type ListRepositoriesInput struct {
 
 	// An enumeration token that allows the operation to batch the results of the
 	// operation. Batch sizes are 1,000 for list repository operations. When the
-	// client sends the token back to AWS CodeCommit, another page of 1,000 records
+	// client sends the token back to CodeCommit, another page of 1,000 records
 	// is retrieved.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -24139,12 +26450,20 @@ type ListRepositoriesInput struct {
 	SortBy *string `locationName:"sortBy" type:"string" enum:"SortByEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRepositoriesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRepositoriesInput) GoString() string {
 	return s.String()
 }
@@ -24173,7 +26492,7 @@ type ListRepositoriesOutput struct {
 
 	// An enumeration token that allows the operation to batch the results of the
 	// operation. Batch sizes are 1,000 for list repository operations. When the
-	// client sends the token back to AWS CodeCommit, another page of 1,000 records
+	// client sends the token back to CodeCommit, another page of 1,000 records
 	// is retrieved.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -24181,12 +26500,20 @@ type ListRepositoriesOutput struct {
 	Repositories []*RepositoryNameIdPair `locationName:"repositories" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRepositoriesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRepositoriesOutput) GoString() string {
 	return s.String()
 }
@@ -24217,12 +26544,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -24263,12 +26598,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -24302,12 +26645,20 @@ type Location struct {
 	RelativeFileVersion *string `locationName:"relativeFileVersion" type:"string" enum:"RelativeFileVersionEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Location) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Location) GoString() string {
 	return s.String()
 }
@@ -24339,12 +26690,20 @@ type ManualMergeRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManualMergeRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManualMergeRequiredException) GoString() string {
 	return s.String()
 }
@@ -24395,12 +26754,20 @@ type MaximumBranchesExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumBranchesExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumBranchesExceededException) GoString() string {
 	return s.String()
 }
@@ -24451,12 +26818,20 @@ type MaximumConflictResolutionEntriesExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumConflictResolutionEntriesExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumConflictResolutionEntriesExceededException) GoString() string {
 	return s.String()
 }
@@ -24507,12 +26882,20 @@ type MaximumFileContentToLoadExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumFileContentToLoadExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumFileContentToLoadExceededException) GoString() string {
 	return s.String()
 }
@@ -24565,12 +26948,20 @@ type MaximumFileEntriesExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumFileEntriesExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumFileEntriesExceededException) GoString() string {
 	return s.String()
 }
@@ -24622,12 +27013,20 @@ type MaximumItemsToCompareExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumItemsToCompareExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumItemsToCompareExceededException) GoString() string {
 	return s.String()
 }
@@ -24679,12 +27078,20 @@ type MaximumNumberOfApprovalsExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumNumberOfApprovalsExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumNumberOfApprovalsExceededException) GoString() string {
 	return s.String()
 }
@@ -24737,12 +27144,20 @@ type MaximumOpenPullRequestsExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumOpenPullRequestsExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumOpenPullRequestsExceededException) GoString() string {
 	return s.String()
 }
@@ -24794,12 +27209,20 @@ type MaximumRepositoryNamesExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumRepositoryNamesExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumRepositoryNamesExceededException) GoString() string {
 	return s.String()
 }
@@ -24850,12 +27273,20 @@ type MaximumRepositoryTriggersExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumRepositoryTriggersExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumRepositoryTriggersExceededException) GoString() string {
 	return s.String()
 }
@@ -24907,12 +27338,20 @@ type MaximumRuleTemplatesAssociatedWithRepositoryException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumRuleTemplatesAssociatedWithRepositoryException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaximumRuleTemplatesAssociatedWithRepositoryException) GoString() string {
 	return s.String()
 }
@@ -24979,12 +27418,20 @@ type MergeBranchesByFastForwardInput struct {
 	TargetBranch *string `locationName:"targetBranch" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesByFastForwardInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesByFastForwardInput) GoString() string {
 	return s.String()
 }
@@ -25048,12 +27495,20 @@ type MergeBranchesByFastForwardOutput struct {
 	TreeId *string `locationName:"treeId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesByFastForwardOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesByFastForwardOutput) GoString() string {
 	return s.String()
 }
@@ -25126,12 +27581,20 @@ type MergeBranchesBySquashInput struct {
 	TargetBranch *string `locationName:"targetBranch" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesBySquashInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesBySquashInput) GoString() string {
 	return s.String()
 }
@@ -25242,12 +27705,20 @@ type MergeBranchesBySquashOutput struct {
 	TreeId *string `locationName:"treeId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesBySquashOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesBySquashOutput) GoString() string {
 	return s.String()
 }
@@ -25320,12 +27791,20 @@ type MergeBranchesByThreeWayInput struct {
 	TargetBranch *string `locationName:"targetBranch" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesByThreeWayInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesByThreeWayInput) GoString() string {
 	return s.String()
 }
@@ -25436,12 +27915,20 @@ type MergeBranchesByThreeWayOutput struct {
 	TreeId *string `locationName:"treeId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesByThreeWayOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeBranchesByThreeWayOutput) GoString() string {
 	return s.String()
 }
@@ -25480,12 +27967,20 @@ type MergeHunk struct {
 	Source *MergeHunkDetail `locationName:"source" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeHunk) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeHunk) GoString() string {
 	return s.String()
 }
@@ -25530,12 +28025,20 @@ type MergeHunkDetail struct {
 	StartLine *int64 `locationName:"startLine" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeHunkDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeHunkDetail) GoString() string {
 	return s.String()
 }
@@ -25576,12 +28079,20 @@ type MergeMetadata struct {
 	MergedBy *string `locationName:"mergedBy" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeMetadata) GoString() string {
 	return s.String()
 }
@@ -25622,12 +28133,20 @@ type MergeOperations struct {
 	Source *string `locationName:"source" type:"string" enum:"ChangeTypeEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeOperations) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeOperations) GoString() string {
 	return s.String()
 }
@@ -25652,12 +28171,20 @@ type MergeOptionRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeOptionRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergeOptionRequiredException) GoString() string {
 	return s.String()
 }
@@ -25719,12 +28246,20 @@ type MergePullRequestByFastForwardInput struct {
 	SourceCommitId *string `locationName:"sourceCommitId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestByFastForwardInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestByFastForwardInput) GoString() string {
 	return s.String()
 }
@@ -25773,12 +28308,20 @@ type MergePullRequestByFastForwardOutput struct {
 	PullRequest *PullRequest `locationName:"pullRequest" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestByFastForwardOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestByFastForwardOutput) GoString() string {
 	return s.String()
 }
@@ -25840,12 +28383,20 @@ type MergePullRequestBySquashInput struct {
 	SourceCommitId *string `locationName:"sourceCommitId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestBySquashInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestBySquashInput) GoString() string {
 	return s.String()
 }
@@ -25941,12 +28492,20 @@ type MergePullRequestBySquashOutput struct {
 	PullRequest *PullRequest `locationName:"pullRequest" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestBySquashOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestBySquashOutput) GoString() string {
 	return s.String()
 }
@@ -26008,12 +28567,20 @@ type MergePullRequestByThreeWayInput struct {
 	SourceCommitId *string `locationName:"sourceCommitId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestByThreeWayInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestByThreeWayInput) GoString() string {
 	return s.String()
 }
@@ -26109,12 +28676,20 @@ type MergePullRequestByThreeWayOutput struct {
 	PullRequest *PullRequest `locationName:"pullRequest" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestByThreeWayOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MergePullRequestByThreeWayOutput) GoString() string {
 	return s.String()
 }
@@ -26134,12 +28709,20 @@ type MultipleConflictResolutionEntriesException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MultipleConflictResolutionEntriesException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MultipleConflictResolutionEntriesException) GoString() string {
 	return s.String()
 }
@@ -26192,12 +28775,20 @@ type MultipleRepositoriesInPullRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MultipleRepositoriesInPullRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MultipleRepositoriesInPullRequestException) GoString() string {
 	return s.String()
 }
@@ -26249,12 +28840,20 @@ type NameLengthExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NameLengthExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NameLengthExceededException) GoString() string {
 	return s.String()
 }
@@ -26306,12 +28905,20 @@ type NoChangeException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoChangeException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoChangeException) GoString() string {
 	return s.String()
 }
@@ -26355,7 +28962,7 @@ func (s *NoChangeException) RequestID() string {
 }
 
 // The maximum number of approval rule templates has been exceeded for this
-// AWS Region.
+// Amazon Web Services Region.
 type NumberOfRuleTemplatesExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -26363,12 +28970,20 @@ type NumberOfRuleTemplatesExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NumberOfRuleTemplatesExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NumberOfRuleTemplatesExceededException) GoString() string {
 	return s.String()
 }
@@ -26420,12 +29035,20 @@ type NumberOfRulesExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NumberOfRulesExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NumberOfRulesExceededException) GoString() string {
 	return s.String()
 }
@@ -26482,12 +29105,20 @@ type ObjectTypes struct {
 	Source *string `locationName:"source" type:"string" enum:"ObjectTypeEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectTypes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectTypes) GoString() string {
 	return s.String()
 }
@@ -26522,12 +29153,20 @@ type OriginApprovalRuleTemplate struct {
 	ApprovalRuleTemplateName *string `locationName:"approvalRuleTemplateName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OriginApprovalRuleTemplate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OriginApprovalRuleTemplate) GoString() string {
 	return s.String()
 }
@@ -26552,12 +29191,20 @@ type OverrideAlreadySetException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverrideAlreadySetException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverrideAlreadySetException) GoString() string {
 	return s.String()
 }
@@ -26624,12 +29271,20 @@ type OverridePullRequestApprovalRulesInput struct {
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverridePullRequestApprovalRulesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverridePullRequestApprovalRulesInput) GoString() string {
 	return s.String()
 }
@@ -26675,12 +29330,20 @@ type OverridePullRequestApprovalRulesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverridePullRequestApprovalRulesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverridePullRequestApprovalRulesOutput) GoString() string {
 	return s.String()
 }
@@ -26694,12 +29357,20 @@ type OverrideStatusRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverrideStatusRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverrideStatusRequiredException) GoString() string {
 	return s.String()
 }
@@ -26751,12 +29422,20 @@ type ParentCommitDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParentCommitDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParentCommitDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -26809,12 +29488,20 @@ type ParentCommitIdOutdatedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParentCommitIdOutdatedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParentCommitIdOutdatedException) GoString() string {
 	return s.String()
 }
@@ -26867,12 +29554,20 @@ type ParentCommitIdRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParentCommitIdRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParentCommitIdRequiredException) GoString() string {
 	return s.String()
 }
@@ -26923,12 +29618,20 @@ type PathDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PathDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PathDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -26979,12 +29682,20 @@ type PathRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PathRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PathRequiredException) GoString() string {
 	return s.String()
 }
@@ -27062,12 +29773,20 @@ type PostCommentForComparedCommitInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentForComparedCommitInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentForComparedCommitInput) GoString() string {
 	return s.String()
 }
@@ -27156,12 +29875,20 @@ type PostCommentForComparedCommitOutput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentForComparedCommitOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentForComparedCommitOutput) GoString() string {
 	return s.String()
 }
@@ -27250,12 +29977,20 @@ type PostCommentForPullRequestInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentForPullRequestInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentForPullRequestInput) GoString() string {
 	return s.String()
 }
@@ -27361,12 +30096,20 @@ type PostCommentForPullRequestOutput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentForPullRequestOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentForPullRequestOutput) GoString() string {
 	return s.String()
 }
@@ -27440,12 +30183,20 @@ type PostCommentReplyInput struct {
 	InReplyTo *string `locationName:"inReplyTo" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentReplyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentReplyInput) GoString() string {
 	return s.String()
 }
@@ -27491,12 +30242,20 @@ type PostCommentReplyOutput struct {
 	Comment *Comment `locationName:"comment" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentReplyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostCommentReplyOutput) GoString() string {
 	return s.String()
 }
@@ -27553,12 +30312,20 @@ type PullRequest struct {
 	Title *string `locationName:"title" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequest) GoString() string {
 	return s.String()
 }
@@ -27637,12 +30404,20 @@ type PullRequestAlreadyClosedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestAlreadyClosedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestAlreadyClosedException) GoString() string {
 	return s.String()
 }
@@ -27694,12 +30469,20 @@ type PullRequestApprovalRulesNotSatisfiedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestApprovalRulesNotSatisfiedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestApprovalRulesNotSatisfiedException) GoString() string {
 	return s.String()
 }
@@ -27752,12 +30535,20 @@ type PullRequestCannotBeApprovedByAuthorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestCannotBeApprovedByAuthorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestCannotBeApprovedByAuthorException) GoString() string {
 	return s.String()
 }
@@ -27820,12 +30611,20 @@ type PullRequestCreatedEventMetadata struct {
 	SourceCommitId *string `locationName:"sourceCommitId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestCreatedEventMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestCreatedEventMetadata) GoString() string {
 	return s.String()
 }
@@ -27863,12 +30662,20 @@ type PullRequestDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -27952,12 +30759,20 @@ type PullRequestEvent struct {
 	PullRequestStatusChangedEventMetadata *PullRequestStatusChangedEventMetadata `locationName:"pullRequestStatusChangedEventMetadata" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestEvent) GoString() string {
 	return s.String()
 }
@@ -28036,12 +30851,20 @@ type PullRequestIdRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestIdRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestIdRequiredException) GoString() string {
 	return s.String()
 }
@@ -28099,12 +30922,20 @@ type PullRequestMergedStateChangedEventMetadata struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestMergedStateChangedEventMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestMergedStateChangedEventMetadata) GoString() string {
 	return s.String()
 }
@@ -28147,12 +30978,20 @@ type PullRequestSourceReferenceUpdatedEventMetadata struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestSourceReferenceUpdatedEventMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestSourceReferenceUpdatedEventMetadata) GoString() string {
 	return s.String()
 }
@@ -28189,12 +31028,20 @@ type PullRequestStatusChangedEventMetadata struct {
 	PullRequestStatus *string `locationName:"pullRequestStatus" type:"string" enum:"PullRequestStatusEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestStatusChangedEventMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestStatusChangedEventMetadata) GoString() string {
 	return s.String()
 }
@@ -28213,12 +31060,20 @@ type PullRequestStatusRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestStatusRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestStatusRequiredException) GoString() string {
 	return s.String()
 }
@@ -28295,12 +31150,20 @@ type PullRequestTarget struct {
 	SourceReference *string `locationName:"sourceReference" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestTarget) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PullRequestTarget) GoString() string {
 	return s.String()
 }
@@ -28357,19 +31220,27 @@ type PutCommentReactionInput struct {
 
 	// The emoji reaction you want to add or update. To remove a reaction, provide
 	// a value of blank or null. You can also provide the value of none. For information
-	// about emoji reaction values supported in AWS CodeCommit, see the AWS CodeCommit
-	// User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-commit-comment.html#emoji-reaction-table).
+	// about emoji reaction values supported in CodeCommit, see the CodeCommit User
+	// Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-commit-comment.html#emoji-reaction-table).
 	//
 	// ReactionValue is a required field
 	ReactionValue *string `locationName:"reactionValue" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCommentReactionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCommentReactionInput) GoString() string {
 	return s.String()
 }
@@ -28406,12 +31277,20 @@ type PutCommentReactionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCommentReactionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutCommentReactionOutput) GoString() string {
 	return s.String()
 }
@@ -28421,7 +31300,6 @@ type PutFileEntry struct {
 	_ struct{} `type:"structure"`
 
 	// The content of the file, if a source file is not specified.
-	//
 	// FileContent is automatically base64 encoded/decoded by the SDK.
 	FileContent []byte `locationName:"fileContent" type:"blob"`
 
@@ -28439,12 +31317,20 @@ type PutFileEntry struct {
 	SourceFile *SourceFileSpecifier `locationName:"sourceFile" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileEntry) GoString() string {
 	return s.String()
 }
@@ -28500,12 +31386,20 @@ type PutFileEntryConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileEntryConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileEntryConflictException) GoString() string {
 	return s.String()
 }
@@ -28565,7 +31459,6 @@ type PutFileInput struct {
 	Email *string `locationName:"email" type:"string"`
 
 	// The content of the file, in binary object format.
-	//
 	// FileContent is automatically base64 encoded/decoded by the SDK.
 	//
 	// FileContent is a required field
@@ -28602,12 +31495,20 @@ type PutFileInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileInput) GoString() string {
 	return s.String()
 }
@@ -28714,12 +31615,20 @@ type PutFileOutput struct {
 	TreeId *string `locationName:"treeId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutFileOutput) GoString() string {
 	return s.String()
 }
@@ -28757,12 +31666,20 @@ type PutRepositoryTriggersInput struct {
 	Triggers []*RepositoryTrigger `locationName:"triggers" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRepositoryTriggersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRepositoryTriggersInput) GoString() string {
 	return s.String()
 }
@@ -28816,12 +31733,20 @@ type PutRepositoryTriggersOutput struct {
 	ConfigurationId *string `locationName:"configurationId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRepositoryTriggersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRepositoryTriggersOutput) GoString() string {
 	return s.String()
 }
@@ -28849,12 +31774,20 @@ type ReactionForComment struct {
 	ReactionsFromDeletedUsersCount *int64 `locationName:"reactionsFromDeletedUsersCount" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactionForComment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactionForComment) GoString() string {
 	return s.String()
 }
@@ -28886,12 +31819,20 @@ type ReactionLimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactionLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactionLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -28934,7 +31875,7 @@ func (s *ReactionLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about the values for reactions to a comment. AWS CodeCommit supports
+// Information about the values for reactions to a comment. CodeCommit supports
 // a limited set of reactions.
 type ReactionValueFormats struct {
 	_ struct{} `type:"structure"`
@@ -28951,12 +31892,20 @@ type ReactionValueFormats struct {
 	Unicode *string `locationName:"unicode" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactionValueFormats) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactionValueFormats) GoString() string {
 	return s.String()
 }
@@ -28987,12 +31936,20 @@ type ReactionValueRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactionValueRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReactionValueRequiredException) GoString() string {
 	return s.String()
 }
@@ -29043,12 +32000,20 @@ type ReferenceDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReferenceDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReferenceDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -29099,12 +32064,20 @@ type ReferenceNameRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReferenceNameRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReferenceNameRequiredException) GoString() string {
 	return s.String()
 }
@@ -29155,12 +32128,20 @@ type ReferenceTypeNotSupportedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReferenceTypeNotSupportedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReferenceTypeNotSupportedException) GoString() string {
 	return s.String()
 }
@@ -29209,7 +32190,6 @@ type ReplaceContentEntry struct {
 	_ struct{} `type:"structure"`
 
 	// The base-64 encoded content to use when the replacement type is USE_NEW_CONTENT.
-	//
 	// Content is automatically base64 encoded/decoded by the SDK.
 	Content []byte `locationName:"content" type:"blob"`
 
@@ -29227,12 +32207,20 @@ type ReplaceContentEntry struct {
 	ReplacementType *string `locationName:"replacementType" type:"string" required:"true" enum:"ReplacementTypeEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplaceContentEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplaceContentEntry) GoString() string {
 	return s.String()
 }
@@ -29285,12 +32273,20 @@ type ReplacementContentRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplacementContentRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplacementContentRequiredException) GoString() string {
 	return s.String()
 }
@@ -29341,12 +32337,20 @@ type ReplacementTypeRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplacementTypeRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplacementTypeRequiredException) GoString() string {
 	return s.String()
 }
@@ -29397,12 +32401,20 @@ type RepositoryDoesNotExistException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryDoesNotExistException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryDoesNotExistException) GoString() string {
 	return s.String()
 }
@@ -29453,12 +32465,20 @@ type RepositoryLimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -29505,7 +32525,7 @@ func (s *RepositoryLimitExceededException) RequestID() string {
 type RepositoryMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account associated with the repository.
+	// The ID of the Amazon Web Services account associated with the repository.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the repository.
@@ -29536,12 +32556,20 @@ type RepositoryMetadata struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryMetadata) GoString() string {
 	return s.String()
 }
@@ -29614,12 +32642,20 @@ type RepositoryNameExistsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNameExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNameExistsException) GoString() string {
 	return s.String()
 }
@@ -29673,12 +32709,20 @@ type RepositoryNameIdPair struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNameIdPair) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNameIdPair) GoString() string {
 	return s.String()
 }
@@ -29703,12 +32747,20 @@ type RepositoryNameRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNameRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNameRequiredException) GoString() string {
 	return s.String()
 }
@@ -29759,12 +32811,20 @@ type RepositoryNamesRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNamesRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNamesRequiredException) GoString() string {
 	return s.String()
 }
@@ -29817,12 +32877,20 @@ type RepositoryNotAssociatedWithPullRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNotAssociatedWithPullRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryNotAssociatedWithPullRequestException) GoString() string {
 	return s.String()
 }
@@ -29866,6 +32934,10 @@ func (s *RepositoryNotAssociatedWithPullRequestException) RequestID() string {
 }
 
 // Information about a trigger for a repository.
+//
+// If you want to receive notifications about repository events, consider using
+// notifications instead of triggers. For more information, see Configuring
+// notifications for repository events (https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-repository-email.html).
 type RepositoryTrigger struct {
 	_ struct{} `type:"structure"`
 
@@ -29892,7 +32964,7 @@ type RepositoryTrigger struct {
 	// The valid value "all" cannot be used with any other values.
 	//
 	// Events is a required field
-	Events []*string `locationName:"events" type:"list" required:"true"`
+	Events []*string `locationName:"events" type:"list" required:"true" enum:"RepositoryTriggerEventEnum"`
 
 	// The name of the trigger.
 	//
@@ -29900,12 +32972,20 @@ type RepositoryTrigger struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTrigger) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTrigger) GoString() string {
 	return s.String()
 }
@@ -29968,12 +33048,20 @@ type RepositoryTriggerBranchNameListRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerBranchNameListRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerBranchNameListRequiredException) GoString() string {
 	return s.String()
 }
@@ -30025,12 +33113,20 @@ type RepositoryTriggerDestinationArnRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerDestinationArnRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerDestinationArnRequiredException) GoString() string {
 	return s.String()
 }
@@ -30081,12 +33177,20 @@ type RepositoryTriggerEventsListRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerEventsListRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerEventsListRequiredException) GoString() string {
 	return s.String()
 }
@@ -30140,12 +33244,20 @@ type RepositoryTriggerExecutionFailure struct {
 	Trigger *string `locationName:"trigger" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerExecutionFailure) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerExecutionFailure) GoString() string {
 	return s.String()
 }
@@ -30170,12 +33282,20 @@ type RepositoryTriggerNameRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerNameRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggerNameRequiredException) GoString() string {
 	return s.String()
 }
@@ -30226,12 +33346,20 @@ type RepositoryTriggersListRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggersListRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RepositoryTriggersListRequiredException) GoString() string {
 	return s.String()
 }
@@ -30274,10 +33402,10 @@ func (s *RepositoryTriggersListRequiredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A valid Amazon Resource Name (ARN) for an AWS CodeCommit resource is required.
-// For a list of valid resources in AWS CodeCommit, see CodeCommit Resources
-// and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
-// in the AWS CodeCommit User Guide.
+// A valid Amazon Resource Name (ARN) for an CodeCommit resource is required.
+// For a list of valid resources in CodeCommit, see CodeCommit Resources and
+// Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
+// in the CodeCommit User Guide.
 type ResourceArnRequiredException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -30285,12 +33413,20 @@ type ResourceArnRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceArnRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceArnRequiredException) GoString() string {
 	return s.String()
 }
@@ -30342,12 +33478,20 @@ type RestrictedSourceFileException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestrictedSourceFileException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestrictedSourceFileException) GoString() string {
 	return s.String()
 }
@@ -30398,12 +33542,20 @@ type RevisionIdRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevisionIdRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevisionIdRequiredException) GoString() string {
 	return s.String()
 }
@@ -30455,12 +33607,20 @@ type RevisionNotCurrentException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevisionNotCurrentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RevisionNotCurrentException) GoString() string {
 	return s.String()
 }
@@ -30513,12 +33673,20 @@ type SameFileContentException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SameFileContentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SameFileContentException) GoString() string {
 	return s.String()
 }
@@ -30572,12 +33740,20 @@ type SamePathRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SamePathRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SamePathRequestException) GoString() string {
 	return s.String()
 }
@@ -30635,12 +33811,20 @@ type SetFileModeEntry struct {
 	FilePath *string `locationName:"filePath" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetFileModeEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetFileModeEntry) GoString() string {
 	return s.String()
 }
@@ -30682,12 +33866,20 @@ type SourceAndDestinationAreSameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceAndDestinationAreSameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceAndDestinationAreSameException) GoString() string {
 	return s.String()
 }
@@ -30739,12 +33931,20 @@ type SourceFileOrContentRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceFileOrContentRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceFileOrContentRequiredException) GoString() string {
 	return s.String()
 }
@@ -30800,12 +34000,20 @@ type SourceFileSpecifier struct {
 	IsMove *bool `locationName:"isMove" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceFileSpecifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceFileSpecifier) GoString() string {
 	return s.String()
 }
@@ -30850,12 +34058,20 @@ type SubModule struct {
 	RelativePath *string `locationName:"relativePath" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubModule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubModule) GoString() string {
 	return s.String()
 }
@@ -30896,12 +34112,20 @@ type SymbolicLink struct {
 	RelativePath *string `locationName:"relativePath" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SymbolicLink) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SymbolicLink) GoString() string {
 	return s.String()
 }
@@ -30938,12 +34162,20 @@ type TagKeysListRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagKeysListRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagKeysListRequiredException) GoString() string {
 	return s.String()
 }
@@ -30994,12 +34226,20 @@ type TagPolicyException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagPolicyException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagPolicyException) GoString() string {
 	return s.String()
 }
@@ -31057,12 +34297,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -31099,12 +34347,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -31117,12 +34373,20 @@ type TagsMapRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagsMapRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagsMapRequiredException) GoString() string {
 	return s.String()
 }
@@ -31185,12 +34449,20 @@ type Target struct {
 	SourceReference *string `locationName:"sourceReference" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Target) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Target) GoString() string {
 	return s.String()
 }
@@ -31242,12 +34514,20 @@ type TargetRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetRequiredException) GoString() string {
 	return s.String()
 }
@@ -31298,12 +34578,20 @@ type TargetsRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetsRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TargetsRequiredException) GoString() string {
 	return s.String()
 }
@@ -31361,12 +34649,20 @@ type TestRepositoryTriggersInput struct {
 	Triggers []*RepositoryTrigger `locationName:"triggers" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestRepositoryTriggersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestRepositoryTriggersInput) GoString() string {
 	return s.String()
 }
@@ -31425,12 +34721,20 @@ type TestRepositoryTriggersOutput struct {
 	SuccessfulExecutions []*string `locationName:"successfulExecutions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestRepositoryTriggersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestRepositoryTriggersOutput) GoString() string {
 	return s.String()
 }
@@ -31457,12 +34761,20 @@ type TipOfSourceReferenceIsDifferentException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TipOfSourceReferenceIsDifferentException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TipOfSourceReferenceIsDifferentException) GoString() string {
 	return s.String()
 }
@@ -31515,12 +34827,20 @@ type TipsDivergenceExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TipsDivergenceExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TipsDivergenceExceededException) GoString() string {
 	return s.String()
 }
@@ -31571,12 +34891,20 @@ type TitleRequiredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TitleRequiredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TitleRequiredException) GoString() string {
 	return s.String()
 }
@@ -31619,7 +34947,7 @@ func (s *TitleRequiredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The maximum number of tags for an AWS CodeCommit resource has been exceeded.
+// The maximum number of tags for an CodeCommit resource has been exceeded.
 type TooManyTagsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -31627,12 +34955,20 @@ type TooManyTagsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) GoString() string {
 	return s.String()
 }
@@ -31690,12 +35026,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -31732,12 +35076,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -31762,12 +35114,20 @@ type UpdateApprovalRuleTemplateContentInput struct {
 	NewRuleContent *string `locationName:"newRuleContent" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateContentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateContentInput) GoString() string {
 	return s.String()
 }
@@ -31821,12 +35181,20 @@ type UpdateApprovalRuleTemplateContentOutput struct {
 	ApprovalRuleTemplate *ApprovalRuleTemplate `locationName:"approvalRuleTemplate" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateContentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateContentOutput) GoString() string {
 	return s.String()
 }
@@ -31851,12 +35219,20 @@ type UpdateApprovalRuleTemplateDescriptionInput struct {
 	ApprovalRuleTemplateName *string `locationName:"approvalRuleTemplateName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateDescriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateDescriptionInput) GoString() string {
 	return s.String()
 }
@@ -31901,12 +35277,20 @@ type UpdateApprovalRuleTemplateDescriptionOutput struct {
 	ApprovalRuleTemplate *ApprovalRuleTemplate `locationName:"approvalRuleTemplate" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateDescriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateDescriptionOutput) GoString() string {
 	return s.String()
 }
@@ -31931,12 +35315,20 @@ type UpdateApprovalRuleTemplateNameInput struct {
 	OldApprovalRuleTemplateName *string `locationName:"oldApprovalRuleTemplateName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateNameInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateNameInput) GoString() string {
 	return s.String()
 }
@@ -31984,12 +35376,20 @@ type UpdateApprovalRuleTemplateNameOutput struct {
 	ApprovalRuleTemplate *ApprovalRuleTemplate `locationName:"approvalRuleTemplate" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateNameOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApprovalRuleTemplateNameOutput) GoString() string {
 	return s.String()
 }
@@ -32015,12 +35415,20 @@ type UpdateCommentInput struct {
 	Content *string `locationName:"content" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCommentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCommentInput) GoString() string {
 	return s.String()
 }
@@ -32060,12 +35468,20 @@ type UpdateCommentOutput struct {
 	Comment *Comment `locationName:"comment" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCommentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCommentOutput) GoString() string {
 	return s.String()
 }
@@ -32080,23 +35496,32 @@ func (s *UpdateCommentOutput) SetComment(v *Comment) *UpdateCommentOutput {
 type UpdateDefaultBranchInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the branch to set as the default.
+	// The name of the branch to set as the default branch.
 	//
 	// DefaultBranchName is a required field
 	DefaultBranchName *string `locationName:"defaultBranchName" min:"1" type:"string" required:"true"`
 
-	// The name of the repository to set or change the default branch for.
+	// The name of the repository for which you want to set or change the default
+	// branch.
 	//
 	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDefaultBranchInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDefaultBranchInput) GoString() string {
 	return s.String()
 }
@@ -32139,12 +35564,20 @@ type UpdateDefaultBranchOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDefaultBranchOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDefaultBranchOutput) GoString() string {
 	return s.String()
 }
@@ -32166,14 +35599,14 @@ type UpdatePullRequestApprovalRuleContentInput struct {
 	// When you update the content of the approval rule, you can specify approvers
 	// in an approval pool in one of two ways:
 	//
-	//    * CodeCommitApprovers: This option only requires an AWS account and a
-	//    resource. It can be used for both IAM users and federated access users
-	//    whose name matches the provided resource name. This is a very powerful
-	//    option that offers a great deal of flexibility. For example, if you specify
-	//    the AWS account 123456789012 and Mary_Major, all of the following are
-	//    counted as approvals coming from that user: An IAM user in the account
-	//    (arn:aws:iam::123456789012:user/Mary_Major) A federated user identified
-	//    in IAM as Mary_Major (arn:aws:sts::123456789012:federated-user/Mary_Major)
+	//    * CodeCommitApprovers: This option only requires an Amazon Web Services
+	//    account and a resource. It can be used for both IAM users and federated
+	//    access users whose name matches the provided resource name. This is a
+	//    very powerful option that offers a great deal of flexibility. For example,
+	//    if you specify the Amazon Web Services account 123456789012 and Mary_Major,
+	//    all of the following are counted as approvals coming from that user: An
+	//    IAM user in the account (arn:aws:iam::123456789012:user/Mary_Major) A
+	//    federated user identified in IAM as Mary_Major (arn:aws:sts::123456789012:federated-user/Mary_Major)
 	//    This option does not recognize an active session of someone assuming the
 	//    role of CodeCommitReview with a role session name of Mary_Major (arn:aws:sts::123456789012:assumed-role/CodeCommitReview/Mary_Major)
 	//    unless you include a wildcard (*Mary_Major).
@@ -32194,12 +35627,20 @@ type UpdatePullRequestApprovalRuleContentInput struct {
 	PullRequestId *string `locationName:"pullRequestId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestApprovalRuleContentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestApprovalRuleContentInput) GoString() string {
 	return s.String()
 }
@@ -32262,12 +35703,20 @@ type UpdatePullRequestApprovalRuleContentOutput struct {
 	ApprovalRule *ApprovalRule `locationName:"approvalRule" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestApprovalRuleContentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestApprovalRuleContentOutput) GoString() string {
 	return s.String()
 }
@@ -32297,12 +35746,20 @@ type UpdatePullRequestApprovalStateInput struct {
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestApprovalStateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestApprovalStateInput) GoString() string {
 	return s.String()
 }
@@ -32348,12 +35805,20 @@ type UpdatePullRequestApprovalStateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestApprovalStateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestApprovalStateOutput) GoString() string {
 	return s.String()
 }
@@ -32373,12 +35838,20 @@ type UpdatePullRequestDescriptionInput struct {
 	PullRequestId *string `locationName:"pullRequestId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestDescriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestDescriptionInput) GoString() string {
 	return s.String()
 }
@@ -32420,12 +35893,20 @@ type UpdatePullRequestDescriptionOutput struct {
 	PullRequest *PullRequest `locationName:"pullRequest" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestDescriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestDescriptionOutput) GoString() string {
 	return s.String()
 }
@@ -32451,12 +35932,20 @@ type UpdatePullRequestStatusInput struct {
 	PullRequestStatus *string `locationName:"pullRequestStatus" type:"string" required:"true" enum:"PullRequestStatusEnum"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestStatusInput) GoString() string {
 	return s.String()
 }
@@ -32498,12 +35987,20 @@ type UpdatePullRequestStatusOutput struct {
 	PullRequest *PullRequest `locationName:"pullRequest" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestStatusOutput) GoString() string {
 	return s.String()
 }
@@ -32528,12 +36025,20 @@ type UpdatePullRequestTitleInput struct {
 	Title *string `locationName:"title" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestTitleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestTitleInput) GoString() string {
 	return s.String()
 }
@@ -32575,12 +36080,20 @@ type UpdatePullRequestTitleOutput struct {
 	PullRequest *PullRequest `locationName:"pullRequest" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestTitleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePullRequestTitleOutput) GoString() string {
 	return s.String()
 }
@@ -32605,12 +36118,20 @@ type UpdateRepositoryDescriptionInput struct {
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRepositoryDescriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRepositoryDescriptionInput) GoString() string {
 	return s.String()
 }
@@ -32647,12 +36168,20 @@ type UpdateRepositoryDescriptionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRepositoryDescriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRepositoryDescriptionOutput) GoString() string {
 	return s.String()
 }
@@ -32672,12 +36201,20 @@ type UpdateRepositoryNameInput struct {
 	OldName *string `locationName:"oldName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRepositoryNameInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRepositoryNameInput) GoString() string {
 	return s.String()
 }
@@ -32720,12 +36257,20 @@ type UpdateRepositoryNameOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRepositoryNameOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRepositoryNameOutput) GoString() string {
 	return s.String()
 }
@@ -32745,12 +36290,20 @@ type UserInfo struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserInfo) GoString() string {
 	return s.String()
 }

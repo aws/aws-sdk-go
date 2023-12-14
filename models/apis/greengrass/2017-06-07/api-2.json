@@ -2853,6 +2853,9 @@
         },
         "Timeout" : {
           "shape" : "__integer"
+        },
+        "FunctionRuntimeOverride" : {
+          "shape" : "__string"
         }
       }
     },

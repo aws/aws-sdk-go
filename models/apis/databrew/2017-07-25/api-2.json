@@ -102,6 +102,20 @@
         {"shape":"ValidationException"}
       ]
     },
+    "CreateRuleset":{
+      "name":"CreateRuleset",
+      "http":{
+        "method":"POST",
+        "requestUri":"/rulesets"
+      },
+      "input":{"shape":"CreateRulesetRequest"},
+      "output":{"shape":"CreateRulesetResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "CreateSchedule":{
       "name":"CreateSchedule",
       "http":{
@@ -170,6 +184,20 @@
         {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "DeleteRuleset":{
+      "name":"DeleteRuleset",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/rulesets/{name}"
+      },
+      "input":{"shape":"DeleteRulesetRequest"},
+      "output":{"shape":"DeleteRulesetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     },
     "DeleteSchedule":{
@@ -245,6 +273,19 @@
       },
       "input":{"shape":"DescribeRecipeRequest"},
       "output":{"shape":"DescribeRecipeResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "DescribeRuleset":{
+      "name":"DescribeRuleset",
+      "http":{
+        "method":"GET",
+        "requestUri":"/rulesets/{name}"
+      },
+      "input":{"shape":"DescribeRulesetRequest"},
+      "output":{"shape":"DescribeRulesetResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
@@ -333,6 +374,19 @@
       "input":{"shape":"ListRecipesRequest"},
       "output":{"shape":"ListRecipesResponse"},
       "errors":[
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListRulesets":{
+      "name":"ListRulesets",
+      "http":{
+        "method":"GET",
+        "requestUri":"/rulesets"
+      },
+      "input":{"shape":"ListRulesetsRequest"},
+      "output":{"shape":"ListRulesetsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ]
     },
@@ -529,6 +583,19 @@
         {"shape":"ValidationException"}
       ]
     },
+    "UpdateRuleset":{
+      "name":"UpdateRuleset",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/rulesets/{name}"
+      },
+      "input":{"shape":"UpdateRulesetRequest"},
+      "output":{"shape":"UpdateRulesetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateSchedule":{
       "name":"UpdateSchedule",
       "http":{
@@ -558,6 +625,25 @@
       "max":255
     },
     "ActionId":{"type":"integer"},
+    "AllowedStatisticList":{
+      "type":"list",
+      "member":{"shape":"AllowedStatistics"},
+      "min":1
+    },
+    "AllowedStatistics":{
+      "type":"structure",
+      "required":["Statistics"],
+      "members":{
+        "Statistics":{"shape":"StatisticList"}
+      }
+    },
+    "AnalyticsMode":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
+    },
     "Arn":{
       "type":"string",
       "max":2048,
@@ -593,6 +679,12 @@
       "max":63,
       "min":3
     },
+    "BucketOwner":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^[0-9]{12}$"
+    },
     "CatalogId":{
       "type":"string",
       "max":255,
@@ -602,7 +694,8 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"^[a-zA-Z0-9][a-zA-Z0-9-]*$"
+      "pattern":"^[a-zA-Z0-9][a-zA-Z0-9-]*$",
+      "sensitive":true
     },
     "ColumnName":{
       "type":"string",
@@ -618,6 +711,31 @@
       "type":"integer",
       "max":20,
       "min":0
+    },
+    "ColumnSelector":{
+      "type":"structure",
+      "members":{
+        "Regex":{"shape":"ColumnName"},
+        "Name":{"shape":"ColumnName"}
+      }
+    },
+    "ColumnSelectorList":{
+      "type":"list",
+      "member":{"shape":"ColumnSelector"},
+      "min":1
+    },
+    "ColumnStatisticsConfiguration":{
+      "type":"structure",
+      "required":["Statistics"],
+      "members":{
+        "Selectors":{"shape":"ColumnSelectorList"},
+        "Statistics":{"shape":"StatisticsConfiguration"}
+      }
+    },
+    "ColumnStatisticsConfigurationList":{
+      "type":"list",
+      "member":{"shape":"ColumnStatisticsConfiguration"},
+      "min":1
     },
     "CompressionFormat":{
       "type":"string",
@@ -707,6 +825,8 @@
         "MaxCapacity":{"shape":"MaxCapacity"},
         "MaxRetries":{"shape":"MaxRetries"},
         "OutputLocation":{"shape":"S3Location"},
+        "Configuration":{"shape":"ProfileConfiguration"},
+        "ValidationConfigurations":{"shape":"ValidationConfigurationList"},
         "RoleArn":{"shape":"Arn"},
         "Tags":{"shape":"TagMap"},
         "Timeout":{"shape":"Timeout"},
@@ -760,6 +880,7 @@
         "MaxRetries":{"shape":"MaxRetries"},
         "Outputs":{"shape":"OutputList"},
         "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
+        "DatabaseOutputs":{"shape":"DatabaseOutputList"},
         "ProjectName":{"shape":"ProjectName"},
         "RecipeReference":{"shape":"RecipeReference"},
         "RoleArn":{"shape":"Arn"},
@@ -792,6 +913,28 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"RecipeName"}
+      }
+    },
+    "CreateRulesetRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "TargetArn",
+        "Rules"
+      ],
+      "members":{
+        "Name":{"shape":"RulesetName"},
+        "Description":{"shape":"RulesetDescription"},
+        "TargetArn":{"shape":"Arn"},
+        "Rules":{"shape":"RuleList"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateRulesetResponse":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"RulesetName"}
       }
     },
     "CreateScheduleRequest":{
@@ -868,20 +1011,39 @@
     },
     "DatabaseInputDefinition":{
       "type":"structure",
-      "required":[
-        "GlueConnectionName",
-        "DatabaseTableName"
-      ],
+      "required":["GlueConnectionName"],
       "members":{
         "GlueConnectionName":{"shape":"GlueConnectionName"},
         "DatabaseTableName":{"shape":"DatabaseTableName"},
-        "TempDirectory":{"shape":"S3Location"}
+        "TempDirectory":{"shape":"S3Location"},
+        "QueryString":{"shape":"QueryString"}
       }
     },
     "DatabaseName":{
       "type":"string",
       "max":255,
       "min":1
+    },
+    "DatabaseOutput":{
+      "type":"structure",
+      "required":[
+        "GlueConnectionName",
+        "DatabaseOptions"
+      ],
+      "members":{
+        "GlueConnectionName":{"shape":"GlueConnectionName"},
+        "DatabaseOptions":{"shape":"DatabaseTableOutputOptions"},
+        "DatabaseOutputMode":{"shape":"DatabaseOutputMode"}
+      }
+    },
+    "DatabaseOutputList":{
+      "type":"list",
+      "member":{"shape":"DatabaseOutput"},
+      "min":1
+    },
+    "DatabaseOutputMode":{
+      "type":"string",
+      "enum":["NEW_TABLE"]
     },
     "DatabaseTableName":{
       "type":"string",
@@ -1040,6 +1202,24 @@
         "RecipeVersion":{"shape":"RecipeVersion"}
       }
     },
+    "DeleteRulesetRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"RulesetName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "DeleteRulesetResponse":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"RulesetName"}
+      }
+    },
     "DeleteScheduleRequest":{
       "type":"structure",
       "required":["Name"],
@@ -1124,7 +1304,10 @@
         "MaxRetries":{"shape":"MaxRetries"},
         "Outputs":{"shape":"OutputList"},
         "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
+        "DatabaseOutputs":{"shape":"DatabaseOutputList"},
         "ProjectName":{"shape":"ProjectName"},
+        "ProfileConfiguration":{"shape":"ProfileConfiguration"},
+        "ValidationConfigurations":{"shape":"ValidationConfigurationList"},
         "RecipeReference":{"shape":"RecipeReference"},
         "ResourceArn":{"shape":"Arn"},
         "RoleArn":{"shape":"Arn"},
@@ -1162,12 +1345,15 @@
         "ErrorMessage":{"shape":"JobRunErrorMessage"},
         "ExecutionTime":{"shape":"ExecutionTime"},
         "JobName":{"shape":"JobName"},
+        "ProfileConfiguration":{"shape":"ProfileConfiguration"},
+        "ValidationConfigurations":{"shape":"ValidationConfigurationList"},
         "RunId":{"shape":"JobRunId"},
         "State":{"shape":"JobRunState"},
         "LogSubscription":{"shape":"LogSubscription"},
         "LogGroupName":{"shape":"LogGroupName"},
         "Outputs":{"shape":"OutputList"},
         "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
+        "DatabaseOutputs":{"shape":"DatabaseOutputList"},
         "RecipeReference":{"shape":"RecipeReference"},
         "StartedBy":{"shape":"StartedBy"},
         "StartedOn":{"shape":"Date"},
@@ -1240,6 +1426,33 @@
         "RecipeVersion":{"shape":"RecipeVersion"}
       }
     },
+    "DescribeRulesetRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"RulesetName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "DescribeRulesetResponse":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"RulesetName"},
+        "Description":{"shape":"RulesetDescription"},
+        "TargetArn":{"shape":"Arn"},
+        "Rules":{"shape":"RuleList"},
+        "CreateDate":{"shape":"Date"},
+        "CreatedBy":{"shape":"CreatedBy"},
+        "LastModifiedBy":{"shape":"LastModifiedBy"},
+        "LastModifiedDate":{"shape":"Date"},
+        "ResourceArn":{"shape":"Arn"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
     "DescribeScheduleRequest":{
       "type":"structure",
       "required":["Name"],
@@ -1266,6 +1479,7 @@
         "Name":{"shape":"ScheduleName"}
       }
     },
+    "Disabled":{"type":"boolean"},
     "EncryptionKeyArn":{
       "type":"string",
       "max":2048,
@@ -1277,6 +1491,25 @@
         "SSE-KMS",
         "SSE-S3"
       ]
+    },
+    "EntityDetectorConfiguration":{
+      "type":"structure",
+      "required":["EntityTypes"],
+      "members":{
+        "EntityTypes":{"shape":"EntityTypeList"},
+        "AllowedStatistics":{"shape":"AllowedStatisticList"}
+      }
+    },
+    "EntityType":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[A-Z_][A-Z\\\\d_]*$"
+    },
+    "EntityTypeList":{
+      "type":"list",
+      "member":{"shape":"EntityType"},
+      "min":1
     },
     "ErrorCode":{
       "type":"string",
@@ -1295,7 +1528,7 @@
       "type":"string",
       "max":1024,
       "min":4,
-      "pattern":"^[<>0-9A-Za-z_:)(!= ]+$"
+      "pattern":"^[<>0-9A-Za-z_.,:)(!= ]+$"
     },
     "FilesLimit":{
       "type":"structure",
@@ -1340,7 +1573,8 @@
       "members":{
         "S3InputDefinition":{"shape":"S3Location"},
         "DataCatalogInputDefinition":{"shape":"DataCatalogInputDefinition"},
-        "DatabaseInputDefinition":{"shape":"DatabaseInputDefinition"}
+        "DatabaseInputDefinition":{"shape":"DatabaseInputDefinition"},
+        "Metadata":{"shape":"Metadata"}
       }
     },
     "InputFormat":{
@@ -1349,7 +1583,8 @@
         "CSV",
         "JSON",
         "PARQUET",
-        "EXCEL"
+        "EXCEL",
+        "ORC"
       ]
     },
     "InternalServerException":{
@@ -1379,13 +1614,15 @@
         "MaxRetries":{"shape":"MaxRetries"},
         "Outputs":{"shape":"OutputList"},
         "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
+        "DatabaseOutputs":{"shape":"DatabaseOutputList"},
         "ProjectName":{"shape":"ProjectName"},
         "RecipeReference":{"shape":"RecipeReference"},
         "ResourceArn":{"shape":"Arn"},
         "RoleArn":{"shape":"Arn"},
         "Timeout":{"shape":"Timeout"},
         "Tags":{"shape":"TagMap"},
-        "JobSample":{"shape":"JobSample"}
+        "JobSample":{"shape":"JobSample"},
+        "ValidationConfigurations":{"shape":"ValidationConfigurationList"}
       }
     },
     "JobList":{
@@ -1417,10 +1654,12 @@
         "LogGroupName":{"shape":"LogGroupName"},
         "Outputs":{"shape":"OutputList"},
         "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
+        "DatabaseOutputs":{"shape":"DatabaseOutputList"},
         "RecipeReference":{"shape":"RecipeReference"},
         "StartedBy":{"shape":"StartedBy"},
         "StartedOn":{"shape":"Date"},
-        "JobSample":{"shape":"JobSample"}
+        "JobSample":{"shape":"JobSample"},
+        "ValidationConfigurations":{"shape":"ValidationConfigurationList"}
       }
     },
     "JobRunErrorMessage":{"type":"string"},
@@ -1637,6 +1876,34 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListRulesetsRequest":{
+      "type":"structure",
+      "members":{
+        "TargetArn":{
+          "shape":"Arn",
+          "location":"querystring",
+          "locationName":"targetArn"
+        },
+        "MaxResults":{
+          "shape":"MaxResults100",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListRulesetsResponse":{
+      "type":"structure",
+      "required":["Rulesets"],
+      "members":{
+        "Rulesets":{"shape":"RulesetItemList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListSchedulesRequest":{
       "type":"structure",
       "members":{
@@ -1705,6 +1972,11 @@
       "type":"integer",
       "min":1
     },
+    "MaxOutputFiles":{
+      "type":"integer",
+      "max":999,
+      "min":1
+    },
     "MaxResults100":{
       "type":"integer",
       "max":100,
@@ -1715,6 +1987,12 @@
       "min":0
     },
     "Message":{"type":"string"},
+    "Metadata":{
+      "type":"structure",
+      "members":{
+        "SourceArn":{"shape":"Arn"}
+      }
+    },
     "MultiLine":{"type":"boolean"},
     "NextToken":{
       "type":"string",
@@ -1748,7 +2026,8 @@
         "PartitionColumns":{"shape":"ColumnNameList"},
         "Location":{"shape":"S3Location"},
         "Overwrite":{"shape":"OverwriteOutput"},
-        "FormatOptions":{"shape":"OutputFormatOptions"}
+        "FormatOptions":{"shape":"OutputFormatOptions"},
+        "MaxOutputFiles":{"shape":"MaxOutputFiles"}
       }
     },
     "OutputFormat":{
@@ -1760,7 +2039,8 @@
         "GLUEPARQUET",
         "AVRO",
         "ORC",
-        "XML"
+        "XML",
+        "TABLEAUHYPER"
       ]
     },
     "OutputFormatOptions":{
@@ -1796,7 +2076,7 @@
     },
     "ParameterValue":{
       "type":"string",
-      "max":12288,
+      "max":32768,
       "min":1
     },
     "PathOptions":{
@@ -1820,6 +2100,15 @@
       "min":1
     },
     "Preview":{"type":"boolean"},
+    "ProfileConfiguration":{
+      "type":"structure",
+      "members":{
+        "DatasetStatisticsConfiguration":{"shape":"StatisticsConfiguration"},
+        "ProfileColumns":{"shape":"ColumnSelectorList"},
+        "ColumnStatisticsConfigurations":{"shape":"ColumnStatisticsConfigurationList"},
+        "EntityDetectorConfiguration":{"shape":"EntityDetectorConfiguration"}
+      }
+    },
     "Project":{
       "type":"structure",
       "required":[
@@ -1872,6 +2161,11 @@
       }
     },
     "PublishedBy":{"type":"string"},
+    "QueryString":{
+      "type":"string",
+      "max":10000,
+      "min":1
+    },
     "Recipe":{
       "type":"structure",
       "required":["Name"],
@@ -1965,12 +2259,76 @@
       "exception":true
     },
     "Result":{"type":"string"},
+    "RowRange":{"type":"integer"},
+    "Rule":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "CheckExpression"
+      ],
+      "members":{
+        "Name":{"shape":"RuleName"},
+        "Disabled":{"shape":"Disabled"},
+        "CheckExpression":{"shape":"Expression"},
+        "SubstitutionMap":{"shape":"ValuesMap"},
+        "Threshold":{"shape":"Threshold"},
+        "ColumnSelectors":{"shape":"ColumnSelectorList"}
+      }
+    },
+    "RuleCount":{
+      "type":"integer",
+      "min":0
+    },
+    "RuleList":{
+      "type":"list",
+      "member":{"shape":"Rule"},
+      "min":1
+    },
+    "RuleName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "RulesetDescription":{
+      "type":"string",
+      "max":1024
+    },
+    "RulesetItem":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "TargetArn"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "CreatedBy":{"shape":"CreatedBy"},
+        "CreateDate":{"shape":"Date"},
+        "Description":{"shape":"RulesetDescription"},
+        "LastModifiedBy":{"shape":"LastModifiedBy"},
+        "LastModifiedDate":{"shape":"Date"},
+        "Name":{"shape":"RulesetName"},
+        "ResourceArn":{"shape":"Arn"},
+        "RuleCount":{"shape":"RuleCount"},
+        "Tags":{"shape":"TagMap"},
+        "TargetArn":{"shape":"Arn"}
+      }
+    },
+    "RulesetItemList":{
+      "type":"list",
+      "member":{"shape":"RulesetItem"}
+    },
+    "RulesetName":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "S3Location":{
       "type":"structure",
       "required":["Bucket"],
       "members":{
         "Bucket":{"shape":"Bucket"},
-        "Key":{"shape":"Key"}
+        "Key":{"shape":"Key"},
+        "BucketOwner":{"shape":"BucketOwner"}
       }
     },
     "S3TableOutputOptions":{
@@ -2153,7 +2511,45 @@
         "ClientSessionId":{"shape":"ClientSessionId"}
       }
     },
+    "StartRowIndex":{
+      "type":"integer",
+      "min":0
+    },
     "StartedBy":{"type":"string"},
+    "Statistic":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[A-Z\\_]+$"
+    },
+    "StatisticList":{
+      "type":"list",
+      "member":{"shape":"Statistic"},
+      "min":1
+    },
+    "StatisticOverride":{
+      "type":"structure",
+      "required":[
+        "Statistic",
+        "Parameters"
+      ],
+      "members":{
+        "Statistic":{"shape":"Statistic"},
+        "Parameters":{"shape":"ParameterMap"}
+      }
+    },
+    "StatisticOverrideList":{
+      "type":"list",
+      "member":{"shape":"StatisticOverride"},
+      "min":1
+    },
+    "StatisticsConfiguration":{
+      "type":"structure",
+      "members":{
+        "IncludedStatistics":{"shape":"StatisticList"},
+        "Overrides":{"shape":"StatisticOverrideList"}
+      }
+    },
     "StepIndex":{
       "type":"integer",
       "min":0
@@ -2236,6 +2632,35 @@
       "max":1024,
       "min":1
     },
+    "Threshold":{
+      "type":"structure",
+      "required":["Value"],
+      "members":{
+        "Value":{"shape":"ThresholdValue"},
+        "Type":{"shape":"ThresholdType"},
+        "Unit":{"shape":"ThresholdUnit"}
+      }
+    },
+    "ThresholdType":{
+      "type":"string",
+      "enum":[
+        "GREATER_THAN_OR_EQUAL",
+        "LESS_THAN_OR_EQUAL",
+        "GREATER_THAN",
+        "LESS_THAN"
+      ]
+    },
+    "ThresholdUnit":{
+      "type":"string",
+      "enum":[
+        "COUNT",
+        "PERCENTAGE"
+      ]
+    },
+    "ThresholdValue":{
+      "type":"double",
+      "min":0
+    },
     "Timeout":{
       "type":"integer",
       "min":0
@@ -2303,6 +2728,7 @@
         "RoleArn"
       ],
       "members":{
+        "Configuration":{"shape":"ProfileConfiguration"},
         "EncryptionKeyArn":{"shape":"EncryptionKeyArn"},
         "EncryptionMode":{"shape":"EncryptionMode"},
         "Name":{
@@ -2314,6 +2740,7 @@
         "MaxCapacity":{"shape":"MaxCapacity"},
         "MaxRetries":{"shape":"MaxRetries"},
         "OutputLocation":{"shape":"S3Location"},
+        "ValidationConfigurations":{"shape":"ValidationConfigurationList"},
         "RoleArn":{"shape":"Arn"},
         "Timeout":{"shape":"Timeout"},
         "JobSample":{"shape":"JobSample"}
@@ -2369,6 +2796,7 @@
         "MaxRetries":{"shape":"MaxRetries"},
         "Outputs":{"shape":"OutputList"},
         "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
+        "DatabaseOutputs":{"shape":"DatabaseOutputList"},
         "RoleArn":{"shape":"Arn"},
         "Timeout":{"shape":"Timeout"}
       }
@@ -2400,6 +2828,29 @@
         "Name":{"shape":"RecipeName"}
       }
     },
+    "UpdateRulesetRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Rules"
+      ],
+      "members":{
+        "Name":{
+          "shape":"RulesetName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "Description":{"shape":"RulesetDescription"},
+        "Rules":{"shape":"RuleList"}
+      }
+    },
+    "UpdateRulesetResponse":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"RulesetName"}
+      }
+    },
     "UpdateScheduleRequest":{
       "type":"structure",
       "required":[
@@ -2423,6 +2874,19 @@
         "Name":{"shape":"ScheduleName"}
       }
     },
+    "ValidationConfiguration":{
+      "type":"structure",
+      "required":["RulesetArn"],
+      "members":{
+        "RulesetArn":{"shape":"Arn"},
+        "ValidationMode":{"shape":"ValidationMode"}
+      }
+    },
+    "ValidationConfigurationList":{
+      "type":"list",
+      "member":{"shape":"ValidationConfiguration"},
+      "min":1
+    },
     "ValidationException":{
       "type":"structure",
       "members":{
@@ -2430,6 +2894,10 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ValidationMode":{
+      "type":"string",
+      "enum":["CHECK_ALL"]
     },
     "ValueReference":{
       "type":"string",
@@ -2448,7 +2916,10 @@
       "members":{
         "StartColumnIndex":{"shape":"StartColumnIndex"},
         "ColumnRange":{"shape":"ColumnRange"},
-        "HiddenColumns":{"shape":"HiddenColumnList"}
+        "HiddenColumns":{"shape":"HiddenColumnList"},
+        "StartRowIndex":{"shape":"StartRowIndex"},
+        "RowRange":{"shape":"RowRange"},
+        "Analytics":{"shape":"AnalyticsMode"}
       }
     }
   }

@@ -24,6 +24,7 @@
       "output":{"shape":"Application"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -39,7 +40,8 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateDeploymentStrategy":{
@@ -53,6 +55,7 @@
       "output":{"shape":"DeploymentStrategy"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"BadRequestException"}
       ]
     },
@@ -68,7 +71,40 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "CreateExtension":{
+      "name":"CreateExtension",
+      "http":{
+        "method":"POST",
+        "requestUri":"/extensions",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateExtensionRequest"},
+      "output":{"shape":"Extension"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "CreateExtensionAssociation":{
+      "name":"CreateExtensionAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/extensionassociations",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateExtensionAssociationRequest"},
+      "output":{"shape":"ExtensionAssociation"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateHostedConfigurationVersion":{
@@ -147,6 +183,34 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "DeleteExtension":{
+      "name":"DeleteExtension",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/extensions/{ExtensionIdentifier}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteExtensionRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "DeleteExtensionAssociation":{
+      "name":"DeleteExtensionAssociation",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/extensionassociations/{ExtensionAssociationId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteExtensionAssociationRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteHostedConfigurationVersion":{
       "name":"DeleteHostedConfigurationVersion",
       "http":{
@@ -189,7 +253,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"BadRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API has been deprecated in favor of the GetLatestConfiguration API used in conjunction with StartConfigurationSession."
     },
     "GetConfigurationProfile":{
       "name":"GetConfigurationProfile",
@@ -249,6 +315,36 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"BadRequestException"}
+      ]
+    },
+    "GetExtension":{
+      "name":"GetExtension",
+      "http":{
+        "method":"GET",
+        "requestUri":"/extensions/{ExtensionIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetExtensionRequest"},
+      "output":{"shape":"Extension"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "GetExtensionAssociation":{
+      "name":"GetExtensionAssociation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/extensionassociations/{ExtensionAssociationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetExtensionAssociationRequest"},
+      "output":{"shape":"ExtensionAssociation"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetHostedConfigurationVersion":{
@@ -335,6 +431,34 @@
       "output":{"shape":"Environments"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "ListExtensionAssociations":{
+      "name":"ListExtensionAssociations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/extensionassociations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListExtensionAssociationsRequest"},
+      "output":{"shape":"ExtensionAssociations"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "ListExtensions":{
+      "name":"ListExtensions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/extensions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListExtensionsRequest"},
+      "output":{"shape":"Extensions"},
+      "errors":[
         {"shape":"InternalServerException"},
         {"shape":"BadRequestException"}
       ]
@@ -488,6 +612,37 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "UpdateExtension":{
+      "name":"UpdateExtension",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/extensions/{ExtensionIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateExtensionRequest"},
+      "output":{"shape":"Extension"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateExtensionAssociation":{
+      "name":"UpdateExtensionAssociation",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/extensionassociations/{ExtensionAssociationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateExtensionAssociationRequest"},
+      "output":{"shape":"ExtensionAssociation"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ValidateConfiguration":{
       "name":"ValidateConfiguration",
       "http":{
@@ -504,6 +659,56 @@
     }
   },
   "shapes":{
+    "Action":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "Uri":{"shape":"Uri"},
+        "RoleArn":{"shape":"Arn"}
+      }
+    },
+    "ActionInvocation":{
+      "type":"structure",
+      "members":{
+        "ExtensionIdentifier":{"shape":"Identifier"},
+        "ActionName":{"shape":"Name"},
+        "Uri":{"shape":"Uri"},
+        "RoleArn":{"shape":"Arn"},
+        "ErrorMessage":{"shape":"String"},
+        "ErrorCode":{"shape":"String"},
+        "InvocationId":{"shape":"Id"}
+      }
+    },
+    "ActionInvocations":{
+      "type":"list",
+      "member":{"shape":"ActionInvocation"}
+    },
+    "ActionList":{
+      "type":"list",
+      "member":{"shape":"Action"},
+      "max":1,
+      "min":1
+    },
+    "ActionPoint":{
+      "type":"string",
+      "enum":[
+        "PRE_CREATE_HOSTED_CONFIGURATION_VERSION",
+        "PRE_START_DEPLOYMENT",
+        "ON_DEPLOYMENT_START",
+        "ON_DEPLOYMENT_STEP",
+        "ON_DEPLOYMENT_BAKING",
+        "ON_DEPLOYMENT_COMPLETE",
+        "ON_DEPLOYMENT_ROLLED_BACK"
+      ]
+    },
+    "ActionsMap":{
+      "type":"map",
+      "key":{"shape":"ActionPoint"},
+      "value":{"shape":"ActionList"},
+      "max":5,
+      "min":1
+    },
     "Application":{
       "type":"structure",
       "members":{
@@ -523,24 +728,51 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "AppliedExtension":{
+      "type":"structure",
+      "members":{
+        "ExtensionId":{"shape":"Id"},
+        "ExtensionAssociationId":{"shape":"Id"},
+        "VersionNumber":{"shape":"Integer"},
+        "Parameters":{"shape":"ParameterValueMap"}
+      }
+    },
+    "AppliedExtensions":{
+      "type":"list",
+      "member":{"shape":"AppliedExtension"}
+    },
     "Arn":{
       "type":"string",
       "max":2048,
       "min":20,
       "pattern":"arn:(aws[a-zA-Z-]*)?:[a-z]+:([a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1})?:(\\d{12})?:[a-zA-Z0-9-_/:.]+"
     },
+    "BadRequestDetails":{
+      "type":"structure",
+      "members":{
+        "InvalidConfiguration":{"shape":"InvalidConfigurationDetailList"}
+      },
+      "union":true
+    },
     "BadRequestException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"String"}
+        "Message":{"shape":"String"},
+        "Reason":{"shape":"BadRequestReason"},
+        "Details":{"shape":"BadRequestDetails"}
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "BadRequestReason":{
+      "type":"string",
+      "enum":["InvalidConfiguration"]
     },
     "Blob":{
       "type":"blob",
       "sensitive":true
     },
+    "Boolean":{"type":"boolean"},
     "BytesMeasure":{
       "type":"string",
       "enum":["KILOBYTES"]
@@ -567,11 +799,14 @@
       "members":{
         "ApplicationId":{"shape":"Id"},
         "Id":{"shape":"Id"},
-        "Name":{"shape":"Name"},
+        "Name":{"shape":"LongName"},
         "Description":{"shape":"Description"},
         "LocationUri":{"shape":"Uri"},
         "RetrievalRoleArn":{"shape":"RoleArn"},
-        "Validators":{"shape":"ValidatorList"}
+        "Validators":{"shape":"ValidatorList"},
+        "Type":{"shape":"ConfigurationProfileType"},
+        "KmsKeyArn":{"shape":"Arn"},
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"}
       }
     },
     "ConfigurationProfileSummary":{
@@ -579,14 +814,19 @@
       "members":{
         "ApplicationId":{"shape":"Id"},
         "Id":{"shape":"Id"},
-        "Name":{"shape":"Name"},
+        "Name":{"shape":"LongName"},
         "LocationUri":{"shape":"Uri"},
-        "ValidatorTypes":{"shape":"ValidatorTypeList"}
+        "ValidatorTypes":{"shape":"ValidatorTypeList"},
+        "Type":{"shape":"ConfigurationProfileType"}
       }
     },
     "ConfigurationProfileSummaryList":{
       "type":"list",
       "member":{"shape":"ConfigurationProfileSummary"}
+    },
+    "ConfigurationProfileType":{
+      "type":"string",
+      "pattern":"^[a-zA-Z\\.]+"
     },
     "ConfigurationProfiles":{
       "type":"structure",
@@ -625,12 +865,14 @@
           "location":"uri",
           "locationName":"ApplicationId"
         },
-        "Name":{"shape":"Name"},
+        "Name":{"shape":"LongName"},
         "Description":{"shape":"Description"},
         "LocationUri":{"shape":"Uri"},
         "RetrievalRoleArn":{"shape":"RoleArn"},
         "Validators":{"shape":"ValidatorList"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "Type":{"shape":"ConfigurationProfileType"},
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"}
       }
     },
     "CreateDeploymentStrategyRequest":{
@@ -638,8 +880,7 @@
       "required":[
         "Name",
         "DeploymentDurationInMinutes",
-        "GrowthFactor",
-        "ReplicateTo"
+        "GrowthFactor"
       ],
       "members":{
         "Name":{"shape":"Name"},
@@ -674,6 +915,43 @@
         "Description":{"shape":"Description"},
         "Monitors":{"shape":"MonitorList"},
         "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateExtensionAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "ExtensionIdentifier",
+        "ResourceIdentifier"
+      ],
+      "members":{
+        "ExtensionIdentifier":{"shape":"Identifier"},
+        "ExtensionVersionNumber":{
+          "shape":"Integer",
+          "box":true
+        },
+        "ResourceIdentifier":{"shape":"Identifier"},
+        "Parameters":{"shape":"ParameterValueMap"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateExtensionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Actions"
+      ],
+      "members":{
+        "Name":{"shape":"ExtensionOrParameterName"},
+        "Description":{"shape":"Description"},
+        "Actions":{"shape":"ActionsMap"},
+        "Parameters":{"shape":"ParameterMap"},
+        "Tags":{"shape":"TagMap"},
+        "LatestVersionNumber":{
+          "shape":"Integer",
+          "box":true,
+          "location":"header",
+          "locationName":"Latest-Version-Number"
+        }
       }
     },
     "CreateHostedConfigurationVersionRequest":{
@@ -711,6 +989,11 @@
           "box":true,
           "location":"header",
           "locationName":"Latest-Version-Number"
+        },
+        "VersionLabel":{
+          "shape":"VersionLabel",
+          "location":"header",
+          "locationName":"VersionLabel"
         }
       },
       "payload":"Content"
@@ -775,6 +1058,34 @@
         }
       }
     },
+    "DeleteExtensionAssociationRequest":{
+      "type":"structure",
+      "required":["ExtensionAssociationId"],
+      "members":{
+        "ExtensionAssociationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ExtensionAssociationId"
+        }
+      }
+    },
+    "DeleteExtensionRequest":{
+      "type":"structure",
+      "required":["ExtensionIdentifier"],
+      "members":{
+        "ExtensionIdentifier":{
+          "shape":"Identifier",
+          "location":"uri",
+          "locationName":"ExtensionIdentifier"
+        },
+        "VersionNumber":{
+          "shape":"Integer",
+          "box":true,
+          "location":"querystring",
+          "locationName":"version"
+        }
+      }
+    },
     "DeleteHostedConfigurationVersionRequest":{
       "type":"structure",
       "required":[
@@ -820,7 +1131,11 @@
         "EventLog":{"shape":"DeploymentEvents"},
         "PercentageComplete":{"shape":"Percentage"},
         "StartedAt":{"shape":"Iso8601DateTime"},
-        "CompletedAt":{"shape":"Iso8601DateTime"}
+        "CompletedAt":{"shape":"Iso8601DateTime"},
+        "AppliedExtensions":{"shape":"AppliedExtensions"},
+        "KmsKeyArn":{"shape":"Arn"},
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"},
+        "VersionLabel":{"shape":"VersionLabel"}
       }
     },
     "DeploymentEvent":{
@@ -829,6 +1144,7 @@
         "EventType":{"shape":"DeploymentEventType"},
         "TriggeredBy":{"shape":"TriggeredBy"},
         "Description":{"shape":"Description"},
+        "ActionInvocations":{"shape":"ActionInvocations"},
         "OccurredAt":{"shape":"Iso8601DateTime"}
       }
     },
@@ -903,7 +1219,8 @@
         "State":{"shape":"DeploymentState"},
         "PercentageComplete":{"shape":"Percentage"},
         "StartedAt":{"shape":"Iso8601DateTime"},
-        "CompletedAt":{"shape":"Iso8601DateTime"}
+        "CompletedAt":{"shape":"Iso8601DateTime"},
+        "VersionLabel":{"shape":"VersionLabel"}
       }
     },
     "Deployments":{
@@ -946,6 +1263,73 @@
       "type":"structure",
       "members":{
         "Items":{"shape":"EnvironmentList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "Extension":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"Id"},
+        "Name":{"shape":"Name"},
+        "VersionNumber":{"shape":"Integer"},
+        "Arn":{"shape":"Arn"},
+        "Description":{"shape":"Description"},
+        "Actions":{"shape":"ActionsMap"},
+        "Parameters":{"shape":"ParameterMap"}
+      }
+    },
+    "ExtensionAssociation":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"Identifier"},
+        "ExtensionArn":{"shape":"Arn"},
+        "ResourceArn":{"shape":"Arn"},
+        "Arn":{"shape":"Arn"},
+        "Parameters":{"shape":"ParameterValueMap"},
+        "ExtensionVersionNumber":{"shape":"Integer"}
+      }
+    },
+    "ExtensionAssociationSummaries":{
+      "type":"list",
+      "member":{"shape":"ExtensionAssociationSummary"}
+    },
+    "ExtensionAssociationSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"Identifier"},
+        "ExtensionArn":{"shape":"Arn"},
+        "ResourceArn":{"shape":"Arn"}
+      }
+    },
+    "ExtensionAssociations":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"ExtensionAssociationSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ExtensionOrParameterName":{
+      "type":"string",
+      "pattern":"^[^\\/#:\\n]{1,64}$"
+    },
+    "ExtensionSummaries":{
+      "type":"list",
+      "member":{"shape":"ExtensionSummary"}
+    },
+    "ExtensionSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"Id"},
+        "Name":{"shape":"Name"},
+        "VersionNumber":{"shape":"Integer"},
+        "Arn":{"shape":"Arn"},
+        "Description":{"shape":"Description"}
+      }
+    },
+    "Extensions":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"ExtensionSummaries"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1072,6 +1456,34 @@
         }
       }
     },
+    "GetExtensionAssociationRequest":{
+      "type":"structure",
+      "required":["ExtensionAssociationId"],
+      "members":{
+        "ExtensionAssociationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ExtensionAssociationId"
+        }
+      }
+    },
+    "GetExtensionRequest":{
+      "type":"structure",
+      "required":["ExtensionIdentifier"],
+      "members":{
+        "ExtensionIdentifier":{
+          "shape":"Identifier",
+          "location":"uri",
+          "locationName":"ExtensionIdentifier"
+        },
+        "VersionNumber":{
+          "shape":"Integer",
+          "box":true,
+          "location":"querystring",
+          "locationName":"version_number"
+        }
+      }
+    },
     "GetHostedConfigurationVersionRequest":{
       "type":"structure",
       "required":[
@@ -1137,6 +1549,16 @@
           "shape":"StringWithLengthBetween1And255",
           "location":"header",
           "locationName":"Content-Type"
+        },
+        "VersionLabel":{
+          "shape":"VersionLabel",
+          "location":"header",
+          "locationName":"VersionLabel"
+        },
+        "KmsKeyArn":{
+          "shape":"Arn",
+          "location":"header",
+          "locationName":"KmsKeyArn"
         }
       },
       "payload":"Content"
@@ -1148,7 +1570,9 @@
         "ConfigurationProfileId":{"shape":"Id"},
         "VersionNumber":{"shape":"Integer"},
         "Description":{"shape":"Description"},
-        "ContentType":{"shape":"StringWithLengthBetween1And255"}
+        "ContentType":{"shape":"StringWithLengthBetween1And255"},
+        "VersionLabel":{"shape":"VersionLabel"},
+        "KmsKeyArn":{"shape":"Arn"}
       }
     },
     "HostedConfigurationVersionSummaryList":{
@@ -1166,6 +1590,11 @@
       "type":"string",
       "pattern":"[a-z0-9]{4,7}"
     },
+    "Identifier":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "Integer":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
@@ -1176,9 +1605,33 @@
       "exception":true,
       "fault":true
     },
+    "InvalidConfigurationDetail":{
+      "type":"structure",
+      "members":{
+        "Constraint":{"shape":"String"},
+        "Location":{"shape":"String"},
+        "Reason":{"shape":"String"},
+        "Type":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "InvalidConfigurationDetailList":{
+      "type":"list",
+      "member":{"shape":"InvalidConfigurationDetail"}
+    },
     "Iso8601DateTime":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
+    },
+    "KmsKeyIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "KmsKeyIdentifierOrEmpty":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "ListApplicationsRequest":{
       "type":"structure",
@@ -1215,6 +1668,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next_token"
+        },
+        "Type":{
+          "shape":"ConfigurationProfileType",
+          "location":"querystring",
+          "locationName":"type"
         }
       }
     },
@@ -1286,6 +1744,59 @@
         }
       }
     },
+    "ListExtensionAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"Arn",
+          "location":"querystring",
+          "locationName":"resource_identifier"
+        },
+        "ExtensionIdentifier":{
+          "shape":"Identifier",
+          "location":"querystring",
+          "locationName":"extension_identifier"
+        },
+        "ExtensionVersionNumber":{
+          "shape":"Integer",
+          "box":true,
+          "location":"querystring",
+          "locationName":"extension_version_number"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max_results"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"next_token"
+        }
+      }
+    },
+    "ListExtensionsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max_results"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"next_token"
+        },
+        "Name":{
+          "shape":"QueryName",
+          "location":"querystring",
+          "locationName":"name"
+        }
+      }
+    },
     "ListHostedConfigurationVersionsRequest":{
       "type":"structure",
       "required":[
@@ -1313,6 +1824,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next_token"
+        },
+        "VersionLabel":{
+          "shape":"QueryName",
+          "location":"querystring",
+          "locationName":"version_label"
         }
       }
     },
@@ -1327,6 +1843,11 @@
         }
       }
     },
+    "LongName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "MaxResults":{
       "type":"integer",
       "max":50,
@@ -1339,8 +1860,9 @@
     },
     "Monitor":{
       "type":"structure",
+      "required":["AlarmArn"],
       "members":{
-        "AlarmArn":{"shape":"Arn"},
+        "AlarmArn":{"shape":"StringWithLengthBetween1And2048"},
         "AlarmRoleArn":{"shape":"RoleArn"}
       }
     },
@@ -1360,6 +1882,27 @@
       "max":2048,
       "min":1
     },
+    "Parameter":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"Description"},
+        "Required":{"shape":"Boolean"}
+      }
+    },
+    "ParameterMap":{
+      "type":"map",
+      "key":{"shape":"ExtensionOrParameterName"},
+      "value":{"shape":"Parameter"},
+      "max":5,
+      "min":1
+    },
+    "ParameterValueMap":{
+      "type":"map",
+      "key":{"shape":"ExtensionOrParameterName"},
+      "value":{"shape":"StringWithLengthBetween1And2048"},
+      "max":5,
+      "min":0
+    },
     "PayloadTooLargeException":{
       "type":"structure",
       "members":{
@@ -1375,6 +1918,11 @@
       "type":"float",
       "max":100.0,
       "min":1.0
+    },
+    "QueryName":{
+      "type":"string",
+      "max":64,
+      "min":1
     },
     "ReplicateTo":{
       "type":"string",
@@ -1436,7 +1984,8 @@
         "ConfigurationProfileId":{"shape":"Id"},
         "ConfigurationVersion":{"shape":"Version"},
         "Description":{"shape":"Description"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"}
       }
     },
     "StopDeploymentRequest":{
@@ -1471,6 +2020,11 @@
       "max":32768,
       "min":0,
       "sensitive":true
+    },
+    "StringWithLengthBetween1And2048":{
+      "type":"string",
+      "max":2048,
+      "min":1
     },
     "StringWithLengthBetween1And255":{
       "type":"string",
@@ -1580,7 +2134,8 @@
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
         "RetrievalRoleArn":{"shape":"RoleArn"},
-        "Validators":{"shape":"ValidatorList"}
+        "Validators":{"shape":"ValidatorList"},
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifierOrEmpty"}
       }
     },
     "UpdateDeploymentStrategyRequest":{
@@ -1628,6 +2183,36 @@
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
         "Monitors":{"shape":"MonitorList"}
+      }
+    },
+    "UpdateExtensionAssociationRequest":{
+      "type":"structure",
+      "required":["ExtensionAssociationId"],
+      "members":{
+        "ExtensionAssociationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ExtensionAssociationId"
+        },
+        "Parameters":{"shape":"ParameterValueMap"}
+      }
+    },
+    "UpdateExtensionRequest":{
+      "type":"structure",
+      "required":["ExtensionIdentifier"],
+      "members":{
+        "ExtensionIdentifier":{
+          "shape":"Identifier",
+          "location":"uri",
+          "locationName":"ExtensionIdentifier"
+        },
+        "Description":{"shape":"Description"},
+        "Actions":{"shape":"ActionsMap"},
+        "Parameters":{"shape":"ParameterMap"},
+        "VersionNumber":{
+          "shape":"Integer",
+          "box":true
+        }
       }
     },
     "Uri":{
@@ -1694,6 +2279,12 @@
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "VersionLabel":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*[^0-9].*"
     }
   }
 }

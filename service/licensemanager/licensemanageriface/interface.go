@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // AWS License Manager.
-//    func myFunc(svc licensemanageriface.LicenseManagerAPI) bool {
-//        // Make svc.AcceptGrant request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// AWS License Manager.
+//	func myFunc(svc licensemanageriface.LicenseManagerAPI) bool {
+//	    // Make svc.AcceptGrant request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := licensemanager.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := licensemanager.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockLicenseManagerClient struct {
-//        licensemanageriface.LicenseManagerAPI
-//    }
-//    func (m *mockLicenseManagerClient) AcceptGrant(input *licensemanager.AcceptGrantInput) (*licensemanager.AcceptGrantOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockLicenseManagerClient struct {
+//	    licensemanageriface.LicenseManagerAPI
+//	}
+//	func (m *mockLicenseManagerClient) AcceptGrant(input *licensemanager.AcceptGrantInput) (*licensemanager.AcceptGrantOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockLicenseManagerClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockLicenseManagerClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -91,6 +91,10 @@ type LicenseManagerAPI interface {
 	CreateLicenseConfiguration(*licensemanager.CreateLicenseConfigurationInput) (*licensemanager.CreateLicenseConfigurationOutput, error)
 	CreateLicenseConfigurationWithContext(aws.Context, *licensemanager.CreateLicenseConfigurationInput, ...request.Option) (*licensemanager.CreateLicenseConfigurationOutput, error)
 	CreateLicenseConfigurationRequest(*licensemanager.CreateLicenseConfigurationInput) (*request.Request, *licensemanager.CreateLicenseConfigurationOutput)
+
+	CreateLicenseConversionTaskForResource(*licensemanager.CreateLicenseConversionTaskForResourceInput) (*licensemanager.CreateLicenseConversionTaskForResourceOutput, error)
+	CreateLicenseConversionTaskForResourceWithContext(aws.Context, *licensemanager.CreateLicenseConversionTaskForResourceInput, ...request.Option) (*licensemanager.CreateLicenseConversionTaskForResourceOutput, error)
+	CreateLicenseConversionTaskForResourceRequest(*licensemanager.CreateLicenseConversionTaskForResourceInput) (*request.Request, *licensemanager.CreateLicenseConversionTaskForResourceOutput)
 
 	CreateLicenseManagerReportGenerator(*licensemanager.CreateLicenseManagerReportGeneratorInput) (*licensemanager.CreateLicenseManagerReportGeneratorOutput, error)
 	CreateLicenseManagerReportGeneratorWithContext(aws.Context, *licensemanager.CreateLicenseManagerReportGeneratorInput, ...request.Option) (*licensemanager.CreateLicenseManagerReportGeneratorOutput, error)
@@ -144,6 +148,10 @@ type LicenseManagerAPI interface {
 	GetLicenseConfigurationWithContext(aws.Context, *licensemanager.GetLicenseConfigurationInput, ...request.Option) (*licensemanager.GetLicenseConfigurationOutput, error)
 	GetLicenseConfigurationRequest(*licensemanager.GetLicenseConfigurationInput) (*request.Request, *licensemanager.GetLicenseConfigurationOutput)
 
+	GetLicenseConversionTask(*licensemanager.GetLicenseConversionTaskInput) (*licensemanager.GetLicenseConversionTaskOutput, error)
+	GetLicenseConversionTaskWithContext(aws.Context, *licensemanager.GetLicenseConversionTaskInput, ...request.Option) (*licensemanager.GetLicenseConversionTaskOutput, error)
+	GetLicenseConversionTaskRequest(*licensemanager.GetLicenseConversionTaskInput) (*request.Request, *licensemanager.GetLicenseConversionTaskOutput)
+
 	GetLicenseManagerReportGenerator(*licensemanager.GetLicenseManagerReportGeneratorInput) (*licensemanager.GetLicenseManagerReportGeneratorOutput, error)
 	GetLicenseManagerReportGeneratorWithContext(aws.Context, *licensemanager.GetLicenseManagerReportGeneratorInput, ...request.Option) (*licensemanager.GetLicenseManagerReportGeneratorOutput, error)
 	GetLicenseManagerReportGeneratorRequest(*licensemanager.GetLicenseManagerReportGeneratorInput) (*request.Request, *licensemanager.GetLicenseManagerReportGeneratorOutput)
@@ -172,6 +180,10 @@ type LicenseManagerAPI interface {
 	ListLicenseConfigurationsWithContext(aws.Context, *licensemanager.ListLicenseConfigurationsInput, ...request.Option) (*licensemanager.ListLicenseConfigurationsOutput, error)
 	ListLicenseConfigurationsRequest(*licensemanager.ListLicenseConfigurationsInput) (*request.Request, *licensemanager.ListLicenseConfigurationsOutput)
 
+	ListLicenseConversionTasks(*licensemanager.ListLicenseConversionTasksInput) (*licensemanager.ListLicenseConversionTasksOutput, error)
+	ListLicenseConversionTasksWithContext(aws.Context, *licensemanager.ListLicenseConversionTasksInput, ...request.Option) (*licensemanager.ListLicenseConversionTasksOutput, error)
+	ListLicenseConversionTasksRequest(*licensemanager.ListLicenseConversionTasksInput) (*request.Request, *licensemanager.ListLicenseConversionTasksOutput)
+
 	ListLicenseManagerReportGenerators(*licensemanager.ListLicenseManagerReportGeneratorsInput) (*licensemanager.ListLicenseManagerReportGeneratorsOutput, error)
 	ListLicenseManagerReportGeneratorsWithContext(aws.Context, *licensemanager.ListLicenseManagerReportGeneratorsInput, ...request.Option) (*licensemanager.ListLicenseManagerReportGeneratorsOutput, error)
 	ListLicenseManagerReportGeneratorsRequest(*licensemanager.ListLicenseManagerReportGeneratorsInput) (*request.Request, *licensemanager.ListLicenseManagerReportGeneratorsOutput)
@@ -192,9 +204,17 @@ type LicenseManagerAPI interface {
 	ListReceivedGrantsWithContext(aws.Context, *licensemanager.ListReceivedGrantsInput, ...request.Option) (*licensemanager.ListReceivedGrantsOutput, error)
 	ListReceivedGrantsRequest(*licensemanager.ListReceivedGrantsInput) (*request.Request, *licensemanager.ListReceivedGrantsOutput)
 
+	ListReceivedGrantsForOrganization(*licensemanager.ListReceivedGrantsForOrganizationInput) (*licensemanager.ListReceivedGrantsForOrganizationOutput, error)
+	ListReceivedGrantsForOrganizationWithContext(aws.Context, *licensemanager.ListReceivedGrantsForOrganizationInput, ...request.Option) (*licensemanager.ListReceivedGrantsForOrganizationOutput, error)
+	ListReceivedGrantsForOrganizationRequest(*licensemanager.ListReceivedGrantsForOrganizationInput) (*request.Request, *licensemanager.ListReceivedGrantsForOrganizationOutput)
+
 	ListReceivedLicenses(*licensemanager.ListReceivedLicensesInput) (*licensemanager.ListReceivedLicensesOutput, error)
 	ListReceivedLicensesWithContext(aws.Context, *licensemanager.ListReceivedLicensesInput, ...request.Option) (*licensemanager.ListReceivedLicensesOutput, error)
 	ListReceivedLicensesRequest(*licensemanager.ListReceivedLicensesInput) (*request.Request, *licensemanager.ListReceivedLicensesOutput)
+
+	ListReceivedLicensesForOrganization(*licensemanager.ListReceivedLicensesForOrganizationInput) (*licensemanager.ListReceivedLicensesForOrganizationOutput, error)
+	ListReceivedLicensesForOrganizationWithContext(aws.Context, *licensemanager.ListReceivedLicensesForOrganizationInput, ...request.Option) (*licensemanager.ListReceivedLicensesForOrganizationOutput, error)
+	ListReceivedLicensesForOrganizationRequest(*licensemanager.ListReceivedLicensesForOrganizationInput) (*request.Request, *licensemanager.ListReceivedLicensesForOrganizationOutput)
 
 	ListResourceInventory(*licensemanager.ListResourceInventoryInput) (*licensemanager.ListResourceInventoryOutput, error)
 	ListResourceInventoryWithContext(aws.Context, *licensemanager.ListResourceInventoryInput, ...request.Option) (*licensemanager.ListResourceInventoryOutput, error)

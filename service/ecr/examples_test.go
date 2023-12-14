@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To delete multiple images
-//
 // This example deletes images with the tags precise and trusty in a repository called
 // ubuntu in the default registry for an account.
 func ExampleECR_BatchDeleteImage_shared00() {
@@ -65,7 +64,6 @@ func ExampleECR_BatchDeleteImage_shared00() {
 }
 
 // To obtain multiple images in a single request
-//
 // This example obtains information for an image with a specified image digest ID from
 // the repository named ubuntu in the current account.
 func ExampleECR_BatchGetImage_shared00() {
@@ -89,6 +87,10 @@ func ExampleECR_BatchGetImage_shared00() {
 				fmt.Println(ecr.ErrCodeInvalidParameterException, aerr.Error())
 			case ecr.ErrCodeRepositoryNotFoundException:
 				fmt.Println(ecr.ErrCodeRepositoryNotFoundException, aerr.Error())
+			case ecr.ErrCodeLimitExceededException:
+				fmt.Println(ecr.ErrCodeLimitExceededException, aerr.Error())
+			case ecr.ErrCodeUnableToGetUpstreamImageException:
+				fmt.Println(ecr.ErrCodeUnableToGetUpstreamImageException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -104,7 +106,6 @@ func ExampleECR_BatchGetImage_shared00() {
 }
 
 // To create a new repository
-//
 // This example creates a repository called nginx-web-app inside the project-a namespace
 // in the default registry for an account.
 func ExampleECR_CreateRepository_shared00() {
@@ -146,7 +147,6 @@ func ExampleECR_CreateRepository_shared00() {
 }
 
 // To force delete a repository
-//
 // This example force deletes a repository named ubuntu in the default registry for
 // an account. The force parameter is required if the repository contains images.
 func ExampleECR_DeleteRepository_shared00() {
@@ -185,7 +185,6 @@ func ExampleECR_DeleteRepository_shared00() {
 }
 
 // To delete the policy associated with a repository
-//
 // This example deletes the policy associated with the repository named ubuntu in the
 // current account.
 func ExampleECR_DeleteRepositoryPolicy_shared00() {
@@ -221,7 +220,6 @@ func ExampleECR_DeleteRepositoryPolicy_shared00() {
 }
 
 // To describe all repositories in the current account
-//
 // The following example obtains a list and description of all repositories in the default
 // registry to which the current user has access.
 func ExampleECR_DescribeRepositories_shared00() {
@@ -253,7 +251,6 @@ func ExampleECR_DescribeRepositories_shared00() {
 }
 
 // To obtain an authorization token
-//
 // This example gets an authorization token for your default registry.
 func ExampleECR_GetAuthorizationToken_shared00() {
 	svc := ecr.New(session.New())
@@ -282,7 +279,6 @@ func ExampleECR_GetAuthorizationToken_shared00() {
 }
 
 // To get the current policy for a repository
-//
 // This example obtains the repository policy for the repository named ubuntu.
 func ExampleECR_GetRepositoryPolicy_shared00() {
 	svc := ecr.New(session.New())
@@ -317,7 +313,6 @@ func ExampleECR_GetRepositoryPolicy_shared00() {
 }
 
 // To list all images in a repository
-//
 // This example lists all of the images in the repository named ubuntu in the default
 // registry in the current account.
 func ExampleECR_ListImages_shared00() {

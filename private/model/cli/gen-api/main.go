@@ -1,9 +1,10 @@
+//go:build codegen
 // +build codegen
 
 // Command aws-gen-gocli parses a JSON description of an AWS API and generates a
 // Go file containing a client for the API.
 //
-//     aws-gen-gocli apis/s3/2006-03-03/api-2.json
+//	aws-gen-gocli apis/s3/2006-03-03/api-2.json
 package main
 
 import (
@@ -43,7 +44,8 @@ Flags:`)
 // -path alternative service path to write generated files to for each service.
 //
 // Env:
-//  SERVICES comma separated list of services to generate.
+//
+//	SERVICES comma separated list of services to generate.
 func main() {
 	var svcPath, svcImportPath string
 	flag.StringVar(&svcPath, "path", "service",
@@ -58,6 +60,10 @@ func main() {
 		true,
 		"Ignores API models that use unsupported features",
 	)
+
+	var strictServiceId bool
+	flag.BoolVar(&strictServiceId, "use-service-id", false, "enforce strict usage of the serviceId from the model")
+
 	flag.Usage = usage
 	flag.Parse()
 
@@ -82,6 +88,7 @@ func main() {
 	loader := api.Loader{
 		BaseImport:            svcImportPath,
 		IgnoreUnsupportedAPIs: ignoreUnsupportedAPIs,
+		StrictServiceId:       strictServiceId,
 	}
 
 	apis, err := loader.Load(modelPaths)
@@ -157,7 +164,7 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Fprintf(os.Stderr, "Error generating %s\n%s\n%s\n",
-				pkgDir, r, debug.Stack())
+				pkgDir, r, string(debug.Stack()))
 			os.Exit(1)
 		}
 	}()
@@ -175,14 +182,19 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 	Must(writeExamplesFile(g))
 
 	if g.API.HasEventStream {
-		Must(writeAPIEventStreamTestFile(g))
+		// has stream APIs with host prefix, which our tests break on, skip codegen for now
+		if g.API.PackageName() != "cloudwatchlogs" {
+			Must(writeAPIEventStreamTestFile(g))
+		}
 	}
 
 	if g.API.PackageName() == "s3" {
 		Must(writeS3ManagerUploadInputFile(g))
 	}
 
-	if len(g.API.SmokeTests.TestCases) > 0 {
+	// SMS service is deprecated and endpoints are turned off, so dont generate
+	// integration tests for that service.
+	if len(g.API.SmokeTests.TestCases) > 0 && g.API.PackageName() != "sms" {
 		Must(writeAPISmokeTestsFile(g))
 	}
 }
@@ -293,7 +305,7 @@ func writeAPIErrorsFile(g *generateInfo) error {
 func writeAPIEventStreamTestFile(g *generateInfo) error {
 	return writeGoFile(filepath.Join(g.PackageDir, "eventstream_test.go"),
 		codeLayout,
-		"// +build go1.15\n",
+		"//go:build go1.16\n// +build go1.16\n",
 		g.API.PackageName(),
 		g.API.APIEventStreamTestGoCode(),
 	)
@@ -311,7 +323,7 @@ func writeS3ManagerUploadInputFile(g *generateInfo) error {
 func writeAPISmokeTestsFile(g *generateInfo) error {
 	return writeGoFile(filepath.Join(g.PackageDir, "integ_test.go"),
 		codeLayout,
-		"// +build go1.15,integration\n",
+		"//go:build go1.16 && integration\n// +build go1.16,integration\n",
 		g.API.PackageName()+"_test",
 		g.API.APISmokeTestsGoCode(),
 	)

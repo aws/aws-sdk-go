@@ -13,6 +13,24 @@
     "uid":"managedblockchain-2018-09-24"
   },
   "operations":{
+    "CreateAccessor":{
+      "name":"CreateAccessor",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accessors"
+      },
+      "input":{"shape":"CreateAccessorInput"},
+      "output":{"shape":"CreateAccessorOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"TooManyTagsException"}
+      ]
+    },
     "CreateMember":{
       "name":"CreateMember",
       "http":{
@@ -89,6 +107,22 @@
         {"shape":"TooManyTagsException"}
       ]
     },
+    "DeleteAccessor":{
+      "name":"DeleteAccessor",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accessors/{AccessorId}"
+      },
+      "input":{"shape":"DeleteAccessorInput"},
+      "output":{"shape":"DeleteAccessorOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
     "DeleteMember":{
       "name":"DeleteMember",
       "http":{
@@ -119,6 +153,22 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceNotReadyException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "GetAccessor":{
+      "name":"GetAccessor",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accessors/{AccessorId}"
+      },
+      "input":{"shape":"GetAccessorInput"},
+      "output":{"shape":"GetAccessorOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceErrorException"}
       ]
@@ -183,6 +233,21 @@
         {"shape":"InvalidRequestException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "ListAccessors":{
+      "name":"ListAccessors",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accessors"
+      },
+      "input":{"shape":"ListAccessorsInput"},
+      "output":{"shape":"ListAccessorsOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceErrorException"}
       ]
@@ -402,6 +467,67 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "Accessor":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResourceIdString"},
+        "Type":{"shape":"AccessorType"},
+        "BillingToken":{"shape":"AccessorBillingTokenString"},
+        "Status":{"shape":"AccessorStatus"},
+        "CreationDate":{"shape":"Timestamp"},
+        "Arn":{"shape":"ArnString"},
+        "Tags":{"shape":"OutputTagMap"},
+        "NetworkType":{"shape":"AccessorNetworkType"}
+      }
+    },
+    "AccessorBillingTokenString":{
+      "type":"string",
+      "max":42,
+      "min":42
+    },
+    "AccessorListMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
+    },
+    "AccessorNetworkType":{
+      "type":"string",
+      "enum":[
+        "ETHEREUM_GOERLI",
+        "ETHEREUM_MAINNET",
+        "ETHEREUM_MAINNET_AND_GOERLI",
+        "POLYGON_MAINNET",
+        "POLYGON_MUMBAI"
+      ]
+    },
+    "AccessorStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "PENDING_DELETION",
+        "DELETED"
+      ]
+    },
+    "AccessorSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResourceIdString"},
+        "Type":{"shape":"AccessorType"},
+        "Status":{"shape":"AccessorStatus"},
+        "CreationDate":{"shape":"Timestamp"},
+        "Arn":{"shape":"ArnString"},
+        "NetworkType":{"shape":"AccessorNetworkType"}
+      }
+    },
+    "AccessorSummaryList":{
+      "type":"list",
+      "member":{"shape":"AccessorSummary"}
+    },
+    "AccessorType":{
+      "type":"string",
+      "enum":["BILLING_TOKEN"]
+    },
     "ApprovalThresholdPolicy":{
       "type":"structure",
       "members":{
@@ -421,6 +547,30 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "CreateAccessorInput":{
+      "type":"structure",
+      "required":[
+        "ClientRequestToken",
+        "AccessorType"
+      ],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestTokenString",
+          "idempotencyToken":true
+        },
+        "AccessorType":{"shape":"AccessorType"},
+        "Tags":{"shape":"InputTagMap"},
+        "NetworkType":{"shape":"AccessorNetworkType"}
+      }
+    },
+    "CreateAccessorOutput":{
+      "type":"structure",
+      "members":{
+        "AccessorId":{"shape":"ResourceIdString"},
+        "BillingToken":{"shape":"AccessorBillingTokenString"},
+        "NetworkType":{"shape":"AccessorNetworkType"}
+      }
     },
     "CreateMemberInput":{
       "type":"structure",
@@ -540,6 +690,22 @@
         "ProposalId":{"shape":"ResourceIdString"}
       }
     },
+    "DeleteAccessorInput":{
+      "type":"structure",
+      "required":["AccessorId"],
+      "members":{
+        "AccessorId":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"AccessorId"
+        }
+      }
+    },
+    "DeleteAccessorOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteMemberInput":{
       "type":"structure",
       "required":[
@@ -620,6 +786,23 @@
       "type":"string",
       "max":8,
       "min":1
+    },
+    "GetAccessorInput":{
+      "type":"structure",
+      "required":["AccessorId"],
+      "members":{
+        "AccessorId":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"AccessorId"
+        }
+      }
+    },
+    "GetAccessorOutput":{
+      "type":"structure",
+      "members":{
+        "Accessor":{"shape":"Accessor"}
+      }
     },
     "GetMemberInput":{
       "type":"structure",
@@ -788,6 +971,33 @@
     "IsOwned":{
       "type":"boolean",
       "box":true
+    },
+    "ListAccessorsInput":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"AccessorListMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "NetworkType":{
+          "shape":"AccessorNetworkType",
+          "location":"querystring",
+          "locationName":"networkType"
+        }
+      }
+    },
+    "ListAccessorsOutput":{
+      "type":"structure",
+      "members":{
+        "Accessors":{"shape":"AccessorSummaryList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
     },
     "ListInvitationsInput":{
       "type":"structure",

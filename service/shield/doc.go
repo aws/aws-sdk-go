@@ -3,18 +3,18 @@
 // Package shield provides the client and types for making API
 // requests to AWS Shield.
 //
-// This is the AWS Shield Advanced API Reference. This guide is for developers
-// who need detailed information about the AWS Shield Advanced API actions,
-// data types, and errors. For detailed information about AWS WAF and AWS Shield
-// Advanced features and an overview of how to use the AWS WAF and AWS Shield
-// Advanced APIs, see the AWS WAF and AWS Shield Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/).
+// This is the Shield Advanced API Reference. This guide is for developers who
+// need detailed information about the Shield Advanced API actions, data types,
+// and errors. For detailed information about WAF and Shield Advanced features
+// and an overview of how to use the WAF and Shield Advanced APIs, see the WAF
+// and Shield Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02 for more information on this service.
 //
 // See shield package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/shield/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS Shield with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

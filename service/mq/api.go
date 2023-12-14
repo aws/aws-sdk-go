@@ -29,14 +29,13 @@ const opCreateBroker = "CreateBroker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBrokerRequest method.
+//	req, resp := client.CreateBrokerRequest(params)
 //
-//    // Example sending a request using the CreateBrokerRequest method.
-//    req, resp := client.CreateBrokerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/CreateBroker
 func (c *MQ) CreateBrokerRequest(input *CreateBrokerRequest) (req *request.Request, output *CreateBrokerResponse) {
@@ -62,35 +61,35 @@ func (c *MQ) CreateBrokerRequest(input *CreateBrokerRequest) (req *request.Reque
 // To create a broker, you must either use the AmazonMQFullAccess IAM policy
 // or include the following EC2 permissions in your IAM policy.
 //
-//    * ec2:CreateNetworkInterface This permission is required to allow Amazon
-//    MQ to create an elastic network interface (ENI) on behalf of your account.
+//   - ec2:CreateNetworkInterface This permission is required to allow Amazon
+//     MQ to create an elastic network interface (ENI) on behalf of your account.
 //
-//    * ec2:CreateNetworkInterfacePermission This permission is required to
-//    attach the ENI to the broker instance.
+//   - ec2:CreateNetworkInterfacePermission This permission is required to
+//     attach the ENI to the broker instance.
 //
-//    * ec2:DeleteNetworkInterface
+//   - ec2:DeleteNetworkInterface
 //
-//    * ec2:DeleteNetworkInterfacePermission
+//   - ec2:DeleteNetworkInterfacePermission
 //
-//    * ec2:DetachNetworkInterface
+//   - ec2:DetachNetworkInterface
 //
-//    * ec2:DescribeInternetGateways
+//   - ec2:DescribeInternetGateways
 //
-//    * ec2:DescribeNetworkInterfaces
+//   - ec2:DescribeNetworkInterfaces
 //
-//    * ec2:DescribeNetworkInterfacePermissions
+//   - ec2:DescribeNetworkInterfacePermissions
 //
-//    * ec2:DescribeRouteTables
+//   - ec2:DescribeRouteTables
 //
-//    * ec2:DescribeSecurityGroups
+//   - ec2:DescribeSecurityGroups
 //
-//    * ec2:DescribeSubnets
+//   - ec2:DescribeSubnets
 //
-//    * ec2:DescribeVpcs
+//   - ec2:DescribeVpcs
 //
-// For more information, see Create an IAM User and Get Your AWS Credentials
-// (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/amazon-mq-setting-up.html#create-iam-user)
-// and Never Modify or Delete the Amazon MQ Elastic Network Interface (https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/connecting-to-amazon-mq.html#never-modify-delete-elastic-network-interface)
+// For more information, see Create an IAM User and Get Your Amazon Web Services
+// Credentials (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/amazon-mq-setting-up.html#create-iam-user)
+// and Never Modify or Delete the Amazon MQ Elastic Network Interface (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/connecting-to-amazon-mq.html#never-modify-delete-elastic-network-interface)
 // in the Amazon MQ Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -101,20 +100,21 @@ func (c *MQ) CreateBrokerRequest(input *CreateBrokerRequest) (req *request.Reque
 // API operation CreateBroker for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   Returns information about an error.
 //
-//   * UnauthorizedException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - UnauthorizedException
+//     Returns information about an error.
 //
-//   * ConflictException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - ConflictException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/CreateBroker
 func (c *MQ) CreateBroker(input *CreateBrokerRequest) (*CreateBrokerResponse, error) {
@@ -154,14 +154,13 @@ const opCreateConfiguration = "CreateConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConfigurationRequest method.
+//	req, resp := client.CreateConfigurationRequest(params)
 //
-//    // Example sending a request using the CreateConfigurationRequest method.
-//    req, resp := client.CreateConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/CreateConfiguration
 func (c *MQ) CreateConfigurationRequest(input *CreateConfigurationRequest) (req *request.Request, output *CreateConfigurationResponse) {
@@ -193,17 +192,18 @@ func (c *MQ) CreateConfigurationRequest(input *CreateConfigurationRequest) (req 
 // API operation CreateConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ConflictException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - ConflictException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/CreateConfiguration
 func (c *MQ) CreateConfiguration(input *CreateConfigurationRequest) (*CreateConfigurationResponse, error) {
@@ -243,14 +243,13 @@ const opCreateTags = "CreateTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTagsRequest method.
+//	req, resp := client.CreateTagsRequest(params)
 //
-//    // Example sending a request using the CreateTagsRequest method.
-//    req, resp := client.CreateTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/CreateTags
 func (c *MQ) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, output *CreateTagsOutput) {
@@ -282,17 +281,18 @@ func (c *MQ) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, ou
 // API operation CreateTags for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/CreateTags
 func (c *MQ) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
@@ -332,14 +332,13 @@ const opCreateUser = "CreateUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUserRequest method.
+//	req, resp := client.CreateUserRequest(params)
 //
-//    // Example sending a request using the CreateUserRequest method.
-//    req, resp := client.CreateUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/CreateUser
 func (c *MQ) CreateUserRequest(input *CreateUserRequest) (req *request.Request, output *CreateUserOutput) {
@@ -363,6 +362,11 @@ func (c *MQ) CreateUserRequest(input *CreateUserRequest) (req *request.Request, 
 //
 // Creates an ActiveMQ user.
 //
+// Do not add personally identifiable information (PII) or other confidential
+// or sensitive information in broker usernames. Broker usernames are accessible
+// to other Amazon Web Services services, including CloudWatch Logs. Broker
+// usernames are not intended to be used for private or sensitive data.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -371,20 +375,21 @@ func (c *MQ) CreateUserRequest(input *CreateUserRequest) (req *request.Request, 
 // API operation CreateUser for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ConflictException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - ConflictException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/CreateUser
 func (c *MQ) CreateUser(input *CreateUserRequest) (*CreateUserOutput, error) {
@@ -424,14 +429,13 @@ const opDeleteBroker = "DeleteBroker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBrokerRequest method.
+//	req, resp := client.DeleteBrokerRequest(params)
 //
-//    // Example sending a request using the DeleteBrokerRequest method.
-//    req, resp := client.DeleteBrokerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DeleteBroker
 func (c *MQ) DeleteBrokerRequest(input *DeleteBrokerInput) (req *request.Request, output *DeleteBrokerResponse) {
@@ -462,17 +466,18 @@ func (c *MQ) DeleteBrokerRequest(input *DeleteBrokerInput) (req *request.Request
 // API operation DeleteBroker for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DeleteBroker
 func (c *MQ) DeleteBroker(input *DeleteBrokerInput) (*DeleteBrokerResponse, error) {
@@ -512,14 +517,13 @@ const opDeleteTags = "DeleteTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTagsRequest method.
+//	req, resp := client.DeleteTagsRequest(params)
 //
-//    // Example sending a request using the DeleteTagsRequest method.
-//    req, resp := client.DeleteTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DeleteTags
 func (c *MQ) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, output *DeleteTagsOutput) {
@@ -551,17 +555,18 @@ func (c *MQ) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, ou
 // API operation DeleteTags for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DeleteTags
 func (c *MQ) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
@@ -601,14 +606,13 @@ const opDeleteUser = "DeleteUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteUserRequest method.
+//	req, resp := client.DeleteUserRequest(params)
 //
-//    // Example sending a request using the DeleteUserRequest method.
-//    req, resp := client.DeleteUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DeleteUser
 func (c *MQ) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, output *DeleteUserOutput) {
@@ -640,17 +644,18 @@ func (c *MQ) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, ou
 // API operation DeleteUser for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DeleteUser
 func (c *MQ) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
@@ -690,14 +695,13 @@ const opDescribeBroker = "DescribeBroker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBrokerRequest method.
+//	req, resp := client.DescribeBrokerRequest(params)
 //
-//    // Example sending a request using the DescribeBrokerRequest method.
-//    req, resp := client.DescribeBrokerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeBroker
 func (c *MQ) DescribeBrokerRequest(input *DescribeBrokerInput) (req *request.Request, output *DescribeBrokerResponse) {
@@ -728,17 +732,18 @@ func (c *MQ) DescribeBrokerRequest(input *DescribeBrokerInput) (req *request.Req
 // API operation DescribeBroker for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeBroker
 func (c *MQ) DescribeBroker(input *DescribeBrokerInput) (*DescribeBrokerResponse, error) {
@@ -778,14 +783,13 @@ const opDescribeBrokerEngineTypes = "DescribeBrokerEngineTypes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBrokerEngineTypesRequest method.
+//	req, resp := client.DescribeBrokerEngineTypesRequest(params)
 //
-//    // Example sending a request using the DescribeBrokerEngineTypesRequest method.
-//    req, resp := client.DescribeBrokerEngineTypesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeBrokerEngineTypes
 func (c *MQ) DescribeBrokerEngineTypesRequest(input *DescribeBrokerEngineTypesInput) (req *request.Request, output *DescribeBrokerEngineTypesOutput) {
@@ -816,14 +820,15 @@ func (c *MQ) DescribeBrokerEngineTypesRequest(input *DescribeBrokerEngineTypesIn
 // API operation DescribeBrokerEngineTypes for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeBrokerEngineTypes
 func (c *MQ) DescribeBrokerEngineTypes(input *DescribeBrokerEngineTypesInput) (*DescribeBrokerEngineTypesOutput, error) {
@@ -863,14 +868,13 @@ const opDescribeBrokerInstanceOptions = "DescribeBrokerInstanceOptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBrokerInstanceOptionsRequest method.
+//	req, resp := client.DescribeBrokerInstanceOptionsRequest(params)
 //
-//    // Example sending a request using the DescribeBrokerInstanceOptionsRequest method.
-//    req, resp := client.DescribeBrokerInstanceOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeBrokerInstanceOptions
 func (c *MQ) DescribeBrokerInstanceOptionsRequest(input *DescribeBrokerInstanceOptionsInput) (req *request.Request, output *DescribeBrokerInstanceOptionsOutput) {
@@ -901,14 +905,15 @@ func (c *MQ) DescribeBrokerInstanceOptionsRequest(input *DescribeBrokerInstanceO
 // API operation DescribeBrokerInstanceOptions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeBrokerInstanceOptions
 func (c *MQ) DescribeBrokerInstanceOptions(input *DescribeBrokerInstanceOptionsInput) (*DescribeBrokerInstanceOptionsOutput, error) {
@@ -948,14 +953,13 @@ const opDescribeConfiguration = "DescribeConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeConfigurationRequest method.
+//	req, resp := client.DescribeConfigurationRequest(params)
 //
-//    // Example sending a request using the DescribeConfigurationRequest method.
-//    req, resp := client.DescribeConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeConfiguration
 func (c *MQ) DescribeConfigurationRequest(input *DescribeConfigurationInput) (req *request.Request, output *DescribeConfigurationOutput) {
@@ -986,17 +990,18 @@ func (c *MQ) DescribeConfigurationRequest(input *DescribeConfigurationInput) (re
 // API operation DescribeConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeConfiguration
 func (c *MQ) DescribeConfiguration(input *DescribeConfigurationInput) (*DescribeConfigurationOutput, error) {
@@ -1036,14 +1041,13 @@ const opDescribeConfigurationRevision = "DescribeConfigurationRevision"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeConfigurationRevisionRequest method.
+//	req, resp := client.DescribeConfigurationRevisionRequest(params)
 //
-//    // Example sending a request using the DescribeConfigurationRevisionRequest method.
-//    req, resp := client.DescribeConfigurationRevisionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeConfigurationRevision
 func (c *MQ) DescribeConfigurationRevisionRequest(input *DescribeConfigurationRevisionInput) (req *request.Request, output *DescribeConfigurationRevisionResponse) {
@@ -1074,17 +1078,18 @@ func (c *MQ) DescribeConfigurationRevisionRequest(input *DescribeConfigurationRe
 // API operation DescribeConfigurationRevision for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeConfigurationRevision
 func (c *MQ) DescribeConfigurationRevision(input *DescribeConfigurationRevisionInput) (*DescribeConfigurationRevisionResponse, error) {
@@ -1124,14 +1129,13 @@ const opDescribeUser = "DescribeUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeUserRequest method.
+//	req, resp := client.DescribeUserRequest(params)
 //
-//    // Example sending a request using the DescribeUserRequest method.
-//    req, resp := client.DescribeUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeUser
 func (c *MQ) DescribeUserRequest(input *DescribeUserInput) (req *request.Request, output *DescribeUserResponse) {
@@ -1162,17 +1166,18 @@ func (c *MQ) DescribeUserRequest(input *DescribeUserInput) (req *request.Request
 // API operation DescribeUser for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/DescribeUser
 func (c *MQ) DescribeUser(input *DescribeUserInput) (*DescribeUserResponse, error) {
@@ -1212,14 +1217,13 @@ const opListBrokers = "ListBrokers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBrokersRequest method.
+//	req, resp := client.ListBrokersRequest(params)
 //
-//    // Example sending a request using the ListBrokersRequest method.
-//    req, resp := client.ListBrokersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListBrokers
 func (c *MQ) ListBrokersRequest(input *ListBrokersInput) (req *request.Request, output *ListBrokersResponse) {
@@ -1256,14 +1260,15 @@ func (c *MQ) ListBrokersRequest(input *ListBrokersInput) (req *request.Request, 
 // API operation ListBrokers for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListBrokers
 func (c *MQ) ListBrokers(input *ListBrokersInput) (*ListBrokersResponse, error) {
@@ -1295,15 +1300,14 @@ func (c *MQ) ListBrokersWithContext(ctx aws.Context, input *ListBrokersInput, op
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBrokers operation.
-//    pageNum := 0
-//    err := client.ListBrokersPages(params,
-//        func(page *mq.ListBrokersResponse, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBrokers operation.
+//	pageNum := 0
+//	err := client.ListBrokersPages(params,
+//	    func(page *mq.ListBrokersResponse, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *MQ) ListBrokersPages(input *ListBrokersInput, fn func(*ListBrokersResponse, bool) bool) error {
 	return c.ListBrokersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1355,14 +1359,13 @@ const opListConfigurationRevisions = "ListConfigurationRevisions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListConfigurationRevisionsRequest method.
+//	req, resp := client.ListConfigurationRevisionsRequest(params)
 //
-//    // Example sending a request using the ListConfigurationRevisionsRequest method.
-//    req, resp := client.ListConfigurationRevisionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListConfigurationRevisions
 func (c *MQ) ListConfigurationRevisionsRequest(input *ListConfigurationRevisionsInput) (req *request.Request, output *ListConfigurationRevisionsResponse) {
@@ -1393,17 +1396,18 @@ func (c *MQ) ListConfigurationRevisionsRequest(input *ListConfigurationRevisions
 // API operation ListConfigurationRevisions for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListConfigurationRevisions
 func (c *MQ) ListConfigurationRevisions(input *ListConfigurationRevisionsInput) (*ListConfigurationRevisionsResponse, error) {
@@ -1443,14 +1447,13 @@ const opListConfigurations = "ListConfigurations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListConfigurationsRequest method.
+//	req, resp := client.ListConfigurationsRequest(params)
 //
-//    // Example sending a request using the ListConfigurationsRequest method.
-//    req, resp := client.ListConfigurationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListConfigurations
 func (c *MQ) ListConfigurationsRequest(input *ListConfigurationsInput) (req *request.Request, output *ListConfigurationsResponse) {
@@ -1481,14 +1484,15 @@ func (c *MQ) ListConfigurationsRequest(input *ListConfigurationsInput) (req *req
 // API operation ListConfigurations for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListConfigurations
 func (c *MQ) ListConfigurations(input *ListConfigurationsInput) (*ListConfigurationsResponse, error) {
@@ -1528,14 +1532,13 @@ const opListTags = "ListTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsRequest method.
+//	req, resp := client.ListTagsRequest(params)
 //
-//    // Example sending a request using the ListTagsRequest method.
-//    req, resp := client.ListTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListTags
 func (c *MQ) ListTagsRequest(input *ListTagsInput) (req *request.Request, output *ListTagsOutput) {
@@ -1566,17 +1569,18 @@ func (c *MQ) ListTagsRequest(input *ListTagsInput) (req *request.Request, output
 // API operation ListTags for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListTags
 func (c *MQ) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
@@ -1616,14 +1620,13 @@ const opListUsers = "ListUsers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListUsersRequest method.
+//	req, resp := client.ListUsersRequest(params)
 //
-//    // Example sending a request using the ListUsersRequest method.
-//    req, resp := client.ListUsersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListUsers
 func (c *MQ) ListUsersRequest(input *ListUsersInput) (req *request.Request, output *ListUsersResponse) {
@@ -1654,17 +1657,18 @@ func (c *MQ) ListUsersRequest(input *ListUsersInput) (req *request.Request, outp
 // API operation ListUsers for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/ListUsers
 func (c *MQ) ListUsers(input *ListUsersInput) (*ListUsersResponse, error) {
@@ -1688,6 +1692,94 @@ func (c *MQ) ListUsersWithContext(ctx aws.Context, input *ListUsersInput, opts .
 	return out, req.Send()
 }
 
+const opPromote = "Promote"
+
+// PromoteRequest generates a "aws/request.Request" representing the
+// client's request for the Promote operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See Promote for more information on using the Promote
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PromoteRequest method.
+//	req, resp := client.PromoteRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/Promote
+func (c *MQ) PromoteRequest(input *PromoteInput) (req *request.Request, output *PromoteOutput) {
+	op := &request.Operation{
+		Name:       opPromote,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/brokers/{broker-id}/promote",
+	}
+
+	if input == nil {
+		input = &PromoteInput{}
+	}
+
+	output = &PromoteOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// Promote API operation for AmazonMQ.
+//
+// Promotes a data replication replica broker to the primary broker role.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AmazonMQ's
+// API operation Promote for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/Promote
+func (c *MQ) Promote(input *PromoteInput) (*PromoteOutput, error) {
+	req, out := c.PromoteRequest(input)
+	return out, req.Send()
+}
+
+// PromoteWithContext is the same as Promote with the addition of
+// the ability to pass a context and additional request options.
+//
+// See Promote for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MQ) PromoteWithContext(ctx aws.Context, input *PromoteInput, opts ...request.Option) (*PromoteOutput, error) {
+	req, out := c.PromoteRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRebootBroker = "RebootBroker"
 
 // RebootBrokerRequest generates a "aws/request.Request" representing the
@@ -1704,14 +1796,13 @@ const opRebootBroker = "RebootBroker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RebootBrokerRequest method.
+//	req, resp := client.RebootBrokerRequest(params)
 //
-//    // Example sending a request using the RebootBrokerRequest method.
-//    req, resp := client.RebootBrokerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/RebootBroker
 func (c *MQ) RebootBrokerRequest(input *RebootBrokerInput) (req *request.Request, output *RebootBrokerOutput) {
@@ -1743,17 +1834,18 @@ func (c *MQ) RebootBrokerRequest(input *RebootBrokerInput) (req *request.Request
 // API operation RebootBroker for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/RebootBroker
 func (c *MQ) RebootBroker(input *RebootBrokerInput) (*RebootBrokerOutput, error) {
@@ -1793,14 +1885,13 @@ const opUpdateBroker = "UpdateBroker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateBrokerRequest method.
+//	req, resp := client.UpdateBrokerRequest(params)
 //
-//    // Example sending a request using the UpdateBrokerRequest method.
-//    req, resp := client.UpdateBrokerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/UpdateBroker
 func (c *MQ) UpdateBrokerRequest(input *UpdateBrokerRequest) (req *request.Request, output *UpdateBrokerResponse) {
@@ -1831,20 +1922,21 @@ func (c *MQ) UpdateBrokerRequest(input *UpdateBrokerRequest) (req *request.Reque
 // API operation UpdateBroker for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ConflictException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - ConflictException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/UpdateBroker
 func (c *MQ) UpdateBroker(input *UpdateBrokerRequest) (*UpdateBrokerResponse, error) {
@@ -1884,14 +1976,13 @@ const opUpdateConfiguration = "UpdateConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConfigurationRequest method.
+//	req, resp := client.UpdateConfigurationRequest(params)
 //
-//    // Example sending a request using the UpdateConfigurationRequest method.
-//    req, resp := client.UpdateConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/UpdateConfiguration
 func (c *MQ) UpdateConfigurationRequest(input *UpdateConfigurationRequest) (req *request.Request, output *UpdateConfigurationResponse) {
@@ -1922,20 +2013,21 @@ func (c *MQ) UpdateConfigurationRequest(input *UpdateConfigurationRequest) (req 
 // API operation UpdateConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ConflictException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - ConflictException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/UpdateConfiguration
 func (c *MQ) UpdateConfiguration(input *UpdateConfigurationRequest) (*UpdateConfigurationResponse, error) {
@@ -1975,14 +2067,13 @@ const opUpdateUser = "UpdateUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUserRequest method.
+//	req, resp := client.UpdateUserRequest(params)
 //
-//    // Example sending a request using the UpdateUserRequest method.
-//    req, resp := client.UpdateUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/UpdateUser
 func (c *MQ) UpdateUserRequest(input *UpdateUserRequest) (req *request.Request, output *UpdateUserOutput) {
@@ -2014,20 +2105,21 @@ func (c *MQ) UpdateUserRequest(input *UpdateUserRequest) (req *request.Request, 
 // API operation UpdateUser for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   Returns information about an error.
 //
-//   * BadRequestException
-//   Returns information about an error.
+//   - NotFoundException
+//     Returns information about an error.
 //
-//   * InternalServerErrorException
-//   Returns information about an error.
+//   - BadRequestException
+//     Returns information about an error.
 //
-//   * ConflictException
-//   Returns information about an error.
+//   - InternalServerErrorException
+//     Returns information about an error.
 //
-//   * ForbiddenException
-//   Returns information about an error.
+//   - ConflictException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/UpdateUser
 func (c *MQ) UpdateUser(input *UpdateUserRequest) (*UpdateUserOutput, error) {
@@ -2051,6 +2143,48 @@ func (c *MQ) UpdateUserWithContext(ctx aws.Context, input *UpdateUserRequest, op
 	return out, req.Send()
 }
 
+// Action required for a broker.
+type ActionRequired struct {
+	_ struct{} `type:"structure"`
+
+	// The code you can use to find instructions on the action required to resolve
+	// your broker issue.
+	ActionRequiredCode *string `locationName:"actionRequiredCode" type:"string"`
+
+	// Information about the action required to resolve your broker issue.
+	ActionRequiredInfo *string `locationName:"actionRequiredInfo" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionRequired) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionRequired) GoString() string {
+	return s.String()
+}
+
+// SetActionRequiredCode sets the ActionRequiredCode field's value.
+func (s *ActionRequired) SetActionRequiredCode(v string) *ActionRequired {
+	s.ActionRequiredCode = &v
+	return s
+}
+
+// SetActionRequiredInfo sets the ActionRequiredInfo field's value.
+func (s *ActionRequired) SetActionRequiredInfo(v string) *ActionRequired {
+	s.ActionRequiredInfo = &v
+	return s
+}
+
 // Name of the availability zone.
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
@@ -2059,12 +2193,20 @@ type AvailabilityZone struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AvailabilityZone) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AvailabilityZone) GoString() string {
 	return s.String()
 }
@@ -2085,12 +2227,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -2144,12 +2294,20 @@ type BrokerEngineType struct {
 	EngineVersions []*EngineVersion `locationName:"engineVersions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BrokerEngineType) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BrokerEngineType) GoString() string {
 	return s.String()
 }
@@ -2181,12 +2339,20 @@ type BrokerInstance struct {
 	IpAddress *string `locationName:"ipAddress" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BrokerInstance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BrokerInstance) GoString() string {
 	return s.String()
 }
@@ -2226,18 +2392,26 @@ type BrokerInstanceOption struct {
 	StorageType *string `locationName:"storageType" type:"string" enum:"BrokerStorageType"`
 
 	// The list of supported deployment modes.
-	SupportedDeploymentModes []*string `locationName:"supportedDeploymentModes" type:"list"`
+	SupportedDeploymentModes []*string `locationName:"supportedDeploymentModes" type:"list" enum:"DeploymentMode"`
 
 	// The list of supported engine versions.
 	SupportedEngineVersions []*string `locationName:"supportedEngineVersions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BrokerInstanceOption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BrokerInstanceOption) GoString() string {
 	return s.String()
 }
@@ -2288,9 +2462,9 @@ type BrokerSummary struct {
 	// The unique ID that Amazon MQ generates for the broker.
 	BrokerId *string `locationName:"brokerId" type:"string"`
 
-	// The broker's name. This value is unique in your AWS account, 1-50 characters
-	// long, and containing only letters, numbers, dashes, and underscores, and
-	// must not contain white spaces, brackets, wildcard characters, or special
+	// The broker's name. This value is unique in your Amazon Web Services account,
+	// 1-50 characters long, and containing only letters, numbers, dashes, and underscores,
+	// and must not contain white spaces, brackets, wildcard characters, or special
 	// characters.
 	BrokerName *string `locationName:"brokerName" type:"string"`
 
@@ -2314,12 +2488,20 @@ type BrokerSummary struct {
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BrokerSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BrokerSummary) GoString() string {
 	return s.String()
 }
@@ -2430,12 +2612,20 @@ type Configuration struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Configuration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Configuration) GoString() string {
 	return s.String()
 }
@@ -2501,8 +2691,6 @@ func (s *Configuration) SetTags(v map[string]*string) *Configuration {
 }
 
 // A list of information about the configuration.
-//
-// Does not apply to RabbitMQ brokers.
 type ConfigurationId struct {
 	_ struct{} `type:"structure"`
 
@@ -2515,12 +2703,20 @@ type ConfigurationId struct {
 	Revision *int64 `locationName:"revision" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationId) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationId) GoString() string {
 	return s.String()
 }
@@ -2568,12 +2764,20 @@ type ConfigurationRevision struct {
 	Revision *int64 `locationName:"revision" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationRevision) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationRevision) GoString() string {
 	return s.String()
 }
@@ -2610,12 +2814,20 @@ type Configurations struct {
 	Pending *ConfigurationId `locationName:"pending" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Configurations) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Configurations) GoString() string {
 	return s.String()
 }
@@ -2648,12 +2860,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -2710,19 +2930,20 @@ type CreateBrokerRequest struct {
 	BrokerName *string `locationName:"brokerName" type:"string" required:"true"`
 
 	// A list of information about the configuration.
-	//
-	// Does not apply to RabbitMQ brokers.
 	Configuration *ConfigurationId `locationName:"configuration" type:"structure"`
 
 	CreatorRequestId *string `locationName:"creatorRequestId" type:"string" idempotencyToken:"true"`
+
+	// Specifies whether a broker is a part of a data replication pair.
+	DataReplicationMode *string `locationName:"dataReplicationMode" type:"string" enum:"DataReplicationMode"`
+
+	DataReplicationPrimaryBrokerArn *string `locationName:"dataReplicationPrimaryBrokerArn" type:"string"`
 
 	// The broker's deployment mode.
 	//
 	// DeploymentMode is a required field
 	DeploymentMode *string `locationName:"deploymentMode" type:"string" required:"true" enum:"DeploymentMode"`
 
-	// Does not apply to RabbitMQ brokers.
-	//
 	// Encryption options for the broker.
 	EncryptionOptions *EncryptionOptions `locationName:"encryptionOptions" type:"structure"`
 
@@ -2768,12 +2989,20 @@ type CreateBrokerRequest struct {
 	Users []*User `locationName:"users" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBrokerRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBrokerRequest) GoString() string {
 	return s.String()
 }
@@ -2872,6 +3101,18 @@ func (s *CreateBrokerRequest) SetCreatorRequestId(v string) *CreateBrokerRequest
 	return s
 }
 
+// SetDataReplicationMode sets the DataReplicationMode field's value.
+func (s *CreateBrokerRequest) SetDataReplicationMode(v string) *CreateBrokerRequest {
+	s.DataReplicationMode = &v
+	return s
+}
+
+// SetDataReplicationPrimaryBrokerArn sets the DataReplicationPrimaryBrokerArn field's value.
+func (s *CreateBrokerRequest) SetDataReplicationPrimaryBrokerArn(v string) *CreateBrokerRequest {
+	s.DataReplicationPrimaryBrokerArn = &v
+	return s
+}
+
 // SetDeploymentMode sets the DeploymentMode field's value.
 func (s *CreateBrokerRequest) SetDeploymentMode(v string) *CreateBrokerRequest {
 	s.DeploymentMode = &v
@@ -2964,12 +3205,20 @@ type CreateBrokerResponse struct {
 	BrokerId *string `locationName:"brokerId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBrokerResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBrokerResponse) GoString() string {
 	return s.String()
 }
@@ -3007,12 +3256,20 @@ type CreateConfigurationRequest struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationRequest) GoString() string {
 	return s.String()
 }
@@ -3085,12 +3342,20 @@ type CreateConfigurationResponse struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationResponse) GoString() string {
 	return s.String()
 }
@@ -3140,12 +3405,20 @@ type CreateTagsInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagsInput) GoString() string {
 	return s.String()
 }
@@ -3182,12 +3455,20 @@ type CreateTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTagsOutput) GoString() string {
 	return s.String()
 }
@@ -3196,12 +3477,20 @@ type CreateUserOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserOutput) GoString() string {
 	return s.String()
 }
@@ -3219,16 +3508,26 @@ type CreateUserRequest struct {
 	// Password is a required field
 	Password *string `locationName:"password" type:"string" required:"true"`
 
+	ReplicationUser *bool `locationName:"replicationUser" type:"boolean"`
+
 	// Username is a required field
 	Username *string `location:"uri" locationName:"username" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserRequest) GoString() string {
 	return s.String()
 }
@@ -3282,25 +3581,130 @@ func (s *CreateUserRequest) SetPassword(v string) *CreateUserRequest {
 	return s
 }
 
+// SetReplicationUser sets the ReplicationUser field's value.
+func (s *CreateUserRequest) SetReplicationUser(v bool) *CreateUserRequest {
+	s.ReplicationUser = &v
+	return s
+}
+
 // SetUsername sets the Username field's value.
 func (s *CreateUserRequest) SetUsername(v string) *CreateUserRequest {
 	s.Username = &v
 	return s
 }
 
-type DeleteBrokerInput struct {
+// Specifies a broker in a data replication pair.
+type DataReplicationCounterpart struct {
 	_ struct{} `type:"structure"`
+
+	// Required. The unique broker id generated by Amazon MQ.
+	//
+	// BrokerId is a required field
+	BrokerId *string `locationName:"brokerId" type:"string" required:"true"`
+
+	// Required. The region of the broker.
+	//
+	// Region is a required field
+	Region *string `locationName:"region" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataReplicationCounterpart) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataReplicationCounterpart) GoString() string {
+	return s.String()
+}
+
+// SetBrokerId sets the BrokerId field's value.
+func (s *DataReplicationCounterpart) SetBrokerId(v string) *DataReplicationCounterpart {
+	s.BrokerId = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *DataReplicationCounterpart) SetRegion(v string) *DataReplicationCounterpart {
+	s.Region = &v
+	return s
+}
+
+// The replication details of the data replication-enabled broker. Only returned
+// if dataReplicationMode or pendingDataReplicationMode is set to CRDR.
+type DataReplicationMetadataOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the replica/primary broker. Only returned if this broker is currently
+	// set as a primary or replica in the broker's dataReplicationRole property.
+	DataReplicationCounterpart *DataReplicationCounterpart `locationName:"dataReplicationCounterpart" type:"structure"`
+
+	// Defines the role of this broker in a data replication pair. When a replica
+	// broker is promoted to primary, this role is interchanged.
+	//
+	// DataReplicationRole is a required field
+	DataReplicationRole *string `locationName:"dataReplicationRole" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataReplicationMetadataOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataReplicationMetadataOutput_) GoString() string {
+	return s.String()
+}
+
+// SetDataReplicationCounterpart sets the DataReplicationCounterpart field's value.
+func (s *DataReplicationMetadataOutput_) SetDataReplicationCounterpart(v *DataReplicationCounterpart) *DataReplicationMetadataOutput_ {
+	s.DataReplicationCounterpart = v
+	return s
+}
+
+// SetDataReplicationRole sets the DataReplicationRole field's value.
+func (s *DataReplicationMetadataOutput_) SetDataReplicationRole(v string) *DataReplicationMetadataOutput_ {
+	s.DataReplicationRole = &v
+	return s
+}
+
+type DeleteBrokerInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBrokerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBrokerInput) GoString() string {
 	return s.String()
 }
@@ -3333,12 +3737,20 @@ type DeleteBrokerResponse struct {
 	BrokerId *string `locationName:"brokerId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBrokerResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBrokerResponse) GoString() string {
 	return s.String()
 }
@@ -3350,7 +3762,7 @@ func (s *DeleteBrokerResponse) SetBrokerId(v string) *DeleteBrokerResponse {
 }
 
 type DeleteTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -3359,12 +3771,20 @@ type DeleteTagsInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagsInput) GoString() string {
 	return s.String()
 }
@@ -3404,18 +3824,26 @@ type DeleteTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTagsOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
@@ -3424,12 +3852,20 @@ type DeleteUserInput struct {
 	Username *string `location:"uri" locationName:"username" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserInput) GoString() string {
 	return s.String()
 }
@@ -3472,18 +3908,26 @@ type DeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserOutput) GoString() string {
 	return s.String()
 }
 
 type DescribeBrokerEngineTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	EngineType *string `location:"querystring" locationName:"engineType" type:"string"`
 
@@ -3492,12 +3936,20 @@ type DescribeBrokerEngineTypesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerEngineTypesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerEngineTypesInput) GoString() string {
 	return s.String()
 }
@@ -3543,12 +3995,20 @@ type DescribeBrokerEngineTypesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerEngineTypesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerEngineTypesOutput) GoString() string {
 	return s.String()
 }
@@ -3572,18 +4032,26 @@ func (s *DescribeBrokerEngineTypesOutput) SetNextToken(v string) *DescribeBroker
 }
 
 type DescribeBrokerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerInput) GoString() string {
 	return s.String()
 }
@@ -3611,7 +4079,7 @@ func (s *DescribeBrokerInput) SetBrokerId(v string) *DescribeBrokerInput {
 }
 
 type DescribeBrokerInstanceOptionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	EngineType *string `location:"querystring" locationName:"engineType" type:"string"`
 
@@ -3624,12 +4092,20 @@ type DescribeBrokerInstanceOptionsInput struct {
 	StorageType *string `location:"querystring" locationName:"storageType" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerInstanceOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerInstanceOptionsInput) GoString() string {
 	return s.String()
 }
@@ -3687,12 +4163,20 @@ type DescribeBrokerInstanceOptionsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerInstanceOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerInstanceOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -3718,6 +4202,8 @@ func (s *DescribeBrokerInstanceOptionsOutput) SetNextToken(v string) *DescribeBr
 type DescribeBrokerResponse struct {
 	_ struct{} `type:"structure"`
 
+	ActionsRequired []*ActionRequired `locationName:"actionsRequired" type:"list"`
+
 	// Optional. The authentication strategy used to secure the broker. The default
 	// is SIMPLE.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
@@ -3740,11 +4226,16 @@ type DescribeBrokerResponse struct {
 
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The replication details of the data replication-enabled broker. Only returned
+	// if dataReplicationMode or pendingDataReplicationMode is set to CRDR.
+	DataReplicationMetadata *DataReplicationMetadataOutput_ `locationName:"dataReplicationMetadata" type:"structure"`
+
+	// Specifies whether a broker is a part of a data replication pair.
+	DataReplicationMode *string `locationName:"dataReplicationMode" type:"string" enum:"DataReplicationMode"`
+
 	// The broker's deployment mode.
 	DeploymentMode *string `locationName:"deploymentMode" type:"string" enum:"DeploymentMode"`
 
-	// Does not apply to RabbitMQ brokers.
-	//
 	// Encryption options for the broker.
 	EncryptionOptions *EncryptionOptions `locationName:"encryptionOptions" type:"structure"`
 
@@ -3770,6 +4261,13 @@ type DescribeBrokerResponse struct {
 	// Optional. The authentication strategy used to secure the broker. The default
 	// is SIMPLE.
 	PendingAuthenticationStrategy *string `locationName:"pendingAuthenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
+
+	// The replication details of the data replication-enabled broker. Only returned
+	// if dataReplicationMode or pendingDataReplicationMode is set to CRDR.
+	PendingDataReplicationMetadata *DataReplicationMetadataOutput_ `locationName:"pendingDataReplicationMetadata" type:"structure"`
+
+	// Specifies whether a broker is a part of a data replication pair.
+	PendingDataReplicationMode *string `locationName:"pendingDataReplicationMode" type:"string" enum:"DataReplicationMode"`
 
 	PendingEngineVersion *string `locationName:"pendingEngineVersion" type:"string"`
 
@@ -3797,14 +4295,28 @@ type DescribeBrokerResponse struct {
 	Users []*UserSummary `locationName:"users" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBrokerResponse) GoString() string {
 	return s.String()
+}
+
+// SetActionsRequired sets the ActionsRequired field's value.
+func (s *DescribeBrokerResponse) SetActionsRequired(v []*ActionRequired) *DescribeBrokerResponse {
+	s.ActionsRequired = v
+	return s
 }
 
 // SetAuthenticationStrategy sets the AuthenticationStrategy field's value.
@@ -3861,6 +4373,18 @@ func (s *DescribeBrokerResponse) SetCreated(v time.Time) *DescribeBrokerResponse
 	return s
 }
 
+// SetDataReplicationMetadata sets the DataReplicationMetadata field's value.
+func (s *DescribeBrokerResponse) SetDataReplicationMetadata(v *DataReplicationMetadataOutput_) *DescribeBrokerResponse {
+	s.DataReplicationMetadata = v
+	return s
+}
+
+// SetDataReplicationMode sets the DataReplicationMode field's value.
+func (s *DescribeBrokerResponse) SetDataReplicationMode(v string) *DescribeBrokerResponse {
+	s.DataReplicationMode = &v
+	return s
+}
+
 // SetDeploymentMode sets the DeploymentMode field's value.
 func (s *DescribeBrokerResponse) SetDeploymentMode(v string) *DescribeBrokerResponse {
 	s.DeploymentMode = &v
@@ -3912,6 +4436,18 @@ func (s *DescribeBrokerResponse) SetMaintenanceWindowStartTime(v *WeeklyStartTim
 // SetPendingAuthenticationStrategy sets the PendingAuthenticationStrategy field's value.
 func (s *DescribeBrokerResponse) SetPendingAuthenticationStrategy(v string) *DescribeBrokerResponse {
 	s.PendingAuthenticationStrategy = &v
+	return s
+}
+
+// SetPendingDataReplicationMetadata sets the PendingDataReplicationMetadata field's value.
+func (s *DescribeBrokerResponse) SetPendingDataReplicationMetadata(v *DataReplicationMetadataOutput_) *DescribeBrokerResponse {
+	s.PendingDataReplicationMetadata = v
+	return s
+}
+
+// SetPendingDataReplicationMode sets the PendingDataReplicationMode field's value.
+func (s *DescribeBrokerResponse) SetPendingDataReplicationMode(v string) *DescribeBrokerResponse {
+	s.PendingDataReplicationMode = &v
 	return s
 }
 
@@ -3976,18 +4512,26 @@ func (s *DescribeBrokerResponse) SetUsers(v []*UserSummary) *DescribeBrokerRespo
 }
 
 type DescribeConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConfigurationId is a required field
 	ConfigurationId *string `location:"uri" locationName:"configuration-id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -4042,12 +4586,20 @@ type DescribeConfigurationOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -4113,7 +4665,7 @@ func (s *DescribeConfigurationOutput) SetTags(v map[string]*string) *DescribeCon
 }
 
 type DescribeConfigurationRevisionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConfigurationId is a required field
 	ConfigurationId *string `location:"uri" locationName:"configuration-id" type:"string" required:"true"`
@@ -4122,12 +4674,20 @@ type DescribeConfigurationRevisionInput struct {
 	ConfigurationRevision *string `location:"uri" locationName:"configuration-revision" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRevisionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRevisionInput) GoString() string {
 	return s.String()
 }
@@ -4178,12 +4738,20 @@ type DescribeConfigurationRevisionResponse struct {
 	Description *string `locationName:"description" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRevisionResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRevisionResponse) GoString() string {
 	return s.String()
 }
@@ -4213,7 +4781,7 @@ func (s *DescribeConfigurationRevisionResponse) SetDescription(v string) *Descri
 }
 
 type DescribeUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
@@ -4222,12 +4790,20 @@ type DescribeUserInput struct {
 	Username *string `location:"uri" locationName:"username" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserInput) GoString() string {
 	return s.String()
 }
@@ -4279,15 +4855,25 @@ type DescribeUserResponse struct {
 	// user.
 	Pending *UserPendingChanges `locationName:"pending" type:"structure"`
 
+	ReplicationUser *bool `locationName:"replicationUser" type:"boolean"`
+
 	Username *string `locationName:"username" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserResponse) GoString() string {
 	return s.String()
 }
@@ -4316,37 +4902,48 @@ func (s *DescribeUserResponse) SetPending(v *UserPendingChanges) *DescribeUserRe
 	return s
 }
 
+// SetReplicationUser sets the ReplicationUser field's value.
+func (s *DescribeUserResponse) SetReplicationUser(v bool) *DescribeUserResponse {
+	s.ReplicationUser = &v
+	return s
+}
+
 // SetUsername sets the Username field's value.
 func (s *DescribeUserResponse) SetUsername(v string) *DescribeUserResponse {
 	s.Username = &v
 	return s
 }
 
-// Does not apply to RabbitMQ brokers.
-//
 // Encryption options for the broker.
 type EncryptionOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The customer master key (CMK) to use for the AWS Key Management Service (KMS).
-	// This key is used to encrypt your data at rest. If not provided, Amazon MQ
-	// will use a default CMK to encrypt your data.
+	// The customer master key (CMK) to use for the A KMS (KMS). This key is used
+	// to encrypt your data at rest. If not provided, Amazon MQ will use a default
+	// CMK to encrypt your data.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
-	// Enables the use of an AWS owned CMK using AWS Key Management Service (KMS).
-	// Set to true by default, if no value is provided, for example, for RabbitMQ
-	// brokers.
+	// Enables the use of an Amazon Web Services owned CMK using KMS (KMS). Set
+	// to true by default, if no value is provided, for example, for RabbitMQ brokers.
 	//
 	// UseAwsOwnedKey is a required field
 	UseAwsOwnedKey *bool `locationName:"useAwsOwnedKey" type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionOptions) GoString() string {
 	return s.String()
 }
@@ -4384,12 +4981,20 @@ type EngineVersion struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EngineVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EngineVersion) GoString() string {
 	return s.String()
 }
@@ -4410,12 +5015,20 @@ type ForbiddenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) GoString() string {
 	return s.String()
 }
@@ -4468,12 +5081,20 @@ type InternalServerErrorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) GoString() string {
 	return s.String()
 }
@@ -4523,8 +5144,8 @@ func (s *InternalServerErrorException) RequestID() string {
 type LdapServerMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the location of the LDAP server such as AWS Directory Service for
-	// Microsoft Active Directory . Optional failover server.
+	// Specifies the location of the LDAP server such as Directory Service for Microsoft
+	// Active Directory. Optional failover server.
 	//
 	// Hosts is a required field
 	Hosts []*string `locationName:"hosts" type:"list" required:"true"`
@@ -4596,12 +5217,20 @@ type LdapServerMetadataInput struct {
 	UserSearchSubtree *bool `locationName:"userSearchSubtree" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LdapServerMetadataInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LdapServerMetadataInput) GoString() string {
 	return s.String()
 }
@@ -4708,8 +5337,8 @@ func (s *LdapServerMetadataInput) SetUserSearchSubtree(v bool) *LdapServerMetada
 type LdapServerMetadataOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the location of the LDAP server such as AWS Directory Service for
-	// Microsoft Active Directory . Optional failover server.
+	// Specifies the location of the LDAP server such as Directory Service for Microsoft
+	// Active Directory. Optional failover server.
 	//
 	// Hosts is a required field
 	Hosts []*string `locationName:"hosts" type:"list" required:"true"`
@@ -4774,12 +5403,20 @@ type LdapServerMetadataOutput struct {
 	UserSearchSubtree *bool `locationName:"userSearchSubtree" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LdapServerMetadataOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LdapServerMetadataOutput) GoString() string {
 	return s.String()
 }
@@ -4845,19 +5482,27 @@ func (s *LdapServerMetadataOutput) SetUserSearchSubtree(v bool) *LdapServerMetad
 }
 
 type ListBrokersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBrokersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBrokersInput) GoString() string {
 	return s.String()
 }
@@ -4895,12 +5540,20 @@ type ListBrokersResponse struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBrokersResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBrokersResponse) GoString() string {
 	return s.String()
 }
@@ -4918,7 +5571,7 @@ func (s *ListBrokersResponse) SetNextToken(v string) *ListBrokersResponse {
 }
 
 type ListConfigurationRevisionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConfigurationId is a required field
 	ConfigurationId *string `location:"uri" locationName:"configuration-id" type:"string" required:"true"`
@@ -4928,12 +5581,20 @@ type ListConfigurationRevisionsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationRevisionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationRevisionsInput) GoString() string {
 	return s.String()
 }
@@ -4987,12 +5648,20 @@ type ListConfigurationRevisionsResponse struct {
 	Revisions []*ConfigurationRevision `locationName:"revisions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationRevisionsResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationRevisionsResponse) GoString() string {
 	return s.String()
 }
@@ -5022,19 +5691,27 @@ func (s *ListConfigurationRevisionsResponse) SetRevisions(v []*ConfigurationRevi
 }
 
 type ListConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -5074,12 +5751,20 @@ type ListConfigurationsResponse struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationsResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationsResponse) GoString() string {
 	return s.String()
 }
@@ -5103,18 +5788,26 @@ func (s *ListConfigurationsResponse) SetNextToken(v string) *ListConfigurationsR
 }
 
 type ListTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsInput) GoString() string {
 	return s.String()
 }
@@ -5147,12 +5840,20 @@ type ListTagsOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsOutput) GoString() string {
 	return s.String()
 }
@@ -5164,7 +5865,7 @@ func (s *ListTagsOutput) SetTags(v map[string]*string) *ListTagsOutput {
 }
 
 type ListUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
@@ -5174,12 +5875,20 @@ type ListUsersInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersInput) GoString() string {
 	return s.String()
 }
@@ -5233,12 +5942,20 @@ type ListUsersResponse struct {
 	Users []*UserSummary `locationName:"users" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersResponse) GoString() string {
 	return s.String()
 }
@@ -5279,12 +5996,20 @@ type Logs struct {
 	General *bool `locationName:"general" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Logs) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Logs) GoString() string {
 	return s.String()
 }
@@ -5328,12 +6053,20 @@ type LogsSummary struct {
 	Pending *PendingLogs `locationName:"pending" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogsSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogsSummary) GoString() string {
 	return s.String()
 }
@@ -5378,12 +6111,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -5438,12 +6179,20 @@ type PendingLogs struct {
 	General *bool `locationName:"general" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PendingLogs) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PendingLogs) GoString() string {
 	return s.String()
 }
@@ -5460,19 +6209,118 @@ func (s *PendingLogs) SetGeneral(v bool) *PendingLogs {
 	return s
 }
 
-type RebootBrokerInput struct {
+type PromoteInput struct {
 	_ struct{} `type:"structure"`
+
+	// BrokerId is a required field
+	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
+
+	// The Promote mode requested.
+	//
+	// Mode is a required field
+	Mode *string `locationName:"mode" type:"string" required:"true" enum:"PromoteMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromoteInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromoteInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromoteInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromoteInput"}
+	if s.BrokerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
+	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
+	}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBrokerId sets the BrokerId field's value.
+func (s *PromoteInput) SetBrokerId(v string) *PromoteInput {
+	s.BrokerId = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *PromoteInput) SetMode(v string) *PromoteInput {
+	s.Mode = &v
+	return s
+}
+
+type PromoteOutput struct {
+	_ struct{} `type:"structure"`
+
+	BrokerId *string `locationName:"brokerId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromoteOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromoteOutput) GoString() string {
+	return s.String()
+}
+
+// SetBrokerId sets the BrokerId field's value.
+func (s *PromoteOutput) SetBrokerId(v string) *PromoteOutput {
+	s.BrokerId = &v
+	return s
+}
+
+type RebootBrokerInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebootBrokerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebootBrokerInput) GoString() string {
 	return s.String()
 }
@@ -5503,39 +6351,55 @@ type RebootBrokerOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebootBrokerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebootBrokerOutput) GoString() string {
 	return s.String()
 }
 
-// Returns information about the XML element or attribute that was sanitized
-// in the configuration.
+// Returns information about the configuration element or attribute that was
+// sanitized in the configuration.
 type SanitizationWarning struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the XML attribute that has been sanitized.
+	// The name of the configuration attribute that has been sanitized.
 	AttributeName *string `locationName:"attributeName" type:"string"`
 
-	// The name of the XML element that has been sanitized.
+	// The name of the configuration element that has been sanitized.
 	ElementName *string `locationName:"elementName" type:"string"`
 
-	// Required. The reason for which the XML elements or attributes were sanitized.
+	// The reason for which the configuration elements or attributes were sanitized.
 	//
 	// Reason is a required field
 	Reason *string `locationName:"reason" type:"string" required:"true" enum:"SanitizationWarningReason"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SanitizationWarning) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SanitizationWarning) GoString() string {
 	return s.String()
 }
@@ -5568,12 +6432,20 @@ type UnauthorizedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) GoString() string {
 	return s.String()
 }
@@ -5629,9 +6501,10 @@ type UpdateBrokerRequest struct {
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
 
 	// A list of information about the configuration.
-	//
-	// Does not apply to RabbitMQ brokers.
 	Configuration *ConfigurationId `locationName:"configuration" type:"structure"`
+
+	// Specifies whether a broker is a part of a data replication pair.
+	DataReplicationMode *string `locationName:"dataReplicationMode" type:"string" enum:"DataReplicationMode"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
@@ -5653,12 +6526,20 @@ type UpdateBrokerRequest struct {
 	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBrokerRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBrokerRequest) GoString() string {
 	return s.String()
 }
@@ -5718,6 +6599,12 @@ func (s *UpdateBrokerRequest) SetConfiguration(v *ConfigurationId) *UpdateBroker
 	return s
 }
 
+// SetDataReplicationMode sets the DataReplicationMode field's value.
+func (s *UpdateBrokerRequest) SetDataReplicationMode(v string) *UpdateBrokerRequest {
+	s.DataReplicationMode = &v
+	return s
+}
+
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *UpdateBrokerRequest) SetEngineVersion(v string) *UpdateBrokerRequest {
 	s.EngineVersion = &v
@@ -5766,9 +6653,14 @@ type UpdateBrokerResponse struct {
 	BrokerId *string `locationName:"brokerId" type:"string"`
 
 	// A list of information about the configuration.
-	//
-	// Does not apply to RabbitMQ brokers.
 	Configuration *ConfigurationId `locationName:"configuration" type:"structure"`
+
+	// The replication details of the data replication-enabled broker. Only returned
+	// if dataReplicationMode or pendingDataReplicationMode is set to CRDR.
+	DataReplicationMetadata *DataReplicationMetadataOutput_ `locationName:"dataReplicationMetadata" type:"structure"`
+
+	// Specifies whether a broker is a part of a data replication pair.
+	DataReplicationMode *string `locationName:"dataReplicationMode" type:"string" enum:"DataReplicationMode"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
@@ -5785,15 +6677,30 @@ type UpdateBrokerResponse struct {
 	// apply pending updates or patches to the broker.
 	MaintenanceWindowStartTime *WeeklyStartTime `locationName:"maintenanceWindowStartTime" type:"structure"`
 
+	// The replication details of the data replication-enabled broker. Only returned
+	// if dataReplicationMode or pendingDataReplicationMode is set to CRDR.
+	PendingDataReplicationMetadata *DataReplicationMetadataOutput_ `locationName:"pendingDataReplicationMetadata" type:"structure"`
+
+	// Specifies whether a broker is a part of a data replication pair.
+	PendingDataReplicationMode *string `locationName:"pendingDataReplicationMode" type:"string" enum:"DataReplicationMode"`
+
 	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBrokerResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateBrokerResponse) GoString() string {
 	return s.String()
 }
@@ -5819,6 +6726,18 @@ func (s *UpdateBrokerResponse) SetBrokerId(v string) *UpdateBrokerResponse {
 // SetConfiguration sets the Configuration field's value.
 func (s *UpdateBrokerResponse) SetConfiguration(v *ConfigurationId) *UpdateBrokerResponse {
 	s.Configuration = v
+	return s
+}
+
+// SetDataReplicationMetadata sets the DataReplicationMetadata field's value.
+func (s *UpdateBrokerResponse) SetDataReplicationMetadata(v *DataReplicationMetadataOutput_) *UpdateBrokerResponse {
+	s.DataReplicationMetadata = v
+	return s
+}
+
+// SetDataReplicationMode sets the DataReplicationMode field's value.
+func (s *UpdateBrokerResponse) SetDataReplicationMode(v string) *UpdateBrokerResponse {
+	s.DataReplicationMode = &v
 	return s
 }
 
@@ -5852,6 +6771,18 @@ func (s *UpdateBrokerResponse) SetMaintenanceWindowStartTime(v *WeeklyStartTime)
 	return s
 }
 
+// SetPendingDataReplicationMetadata sets the PendingDataReplicationMetadata field's value.
+func (s *UpdateBrokerResponse) SetPendingDataReplicationMetadata(v *DataReplicationMetadataOutput_) *UpdateBrokerResponse {
+	s.PendingDataReplicationMetadata = v
+	return s
+}
+
+// SetPendingDataReplicationMode sets the PendingDataReplicationMode field's value.
+func (s *UpdateBrokerResponse) SetPendingDataReplicationMode(v string) *UpdateBrokerResponse {
+	s.PendingDataReplicationMode = &v
+	return s
+}
+
 // SetSecurityGroups sets the SecurityGroups field's value.
 func (s *UpdateBrokerResponse) SetSecurityGroups(v []*string) *UpdateBrokerResponse {
 	s.SecurityGroups = v
@@ -5870,12 +6801,20 @@ type UpdateConfigurationRequest struct {
 	Description *string `locationName:"description" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationRequest) GoString() string {
 	return s.String()
 }
@@ -5934,12 +6873,20 @@ type UpdateConfigurationResponse struct {
 	Warnings []*SanitizationWarning `locationName:"warnings" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationResponse) GoString() string {
 	return s.String()
 }
@@ -5984,12 +6931,20 @@ type UpdateUserOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserOutput) GoString() string {
 	return s.String()
 }
@@ -6006,16 +6961,26 @@ type UpdateUserRequest struct {
 
 	Password *string `locationName:"password" type:"string"`
 
+	ReplicationUser *bool `locationName:"replicationUser" type:"boolean"`
+
 	// Username is a required field
 	Username *string `location:"uri" locationName:"username" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserRequest) GoString() string {
 	return s.String()
 }
@@ -6066,16 +7031,22 @@ func (s *UpdateUserRequest) SetPassword(v string) *UpdateUserRequest {
 	return s
 }
 
+// SetReplicationUser sets the ReplicationUser field's value.
+func (s *UpdateUserRequest) SetReplicationUser(v bool) *UpdateUserRequest {
+	s.ReplicationUser = &v
+	return s
+}
+
 // SetUsername sets the Username field's value.
 func (s *UpdateUserRequest) SetUsername(v string) *UpdateUserRequest {
 	s.Username = &v
 	return s
 }
 
-// A user associated with the broker. For RabbitMQ brokers, one and only one
-// administrative user is accepted and created when a broker is first provisioned.
-// All subsequent broker users are created by making RabbitMQ API calls directly
-// to brokers or via the RabbitMQ web console.
+// A user associated with the broker. For Amazon MQ for RabbitMQ brokers, one
+// and only one administrative user is accepted and created when a broker is
+// first provisioned. All subsequent broker users are created by making RabbitMQ
+// API calls directly to brokers or via the RabbitMQ web console.
 type User struct {
 	_ struct{} `type:"structure"`
 
@@ -6096,25 +7067,44 @@ type User struct {
 	// Password is a required field
 	Password *string `locationName:"password" type:"string" required:"true"`
 
-	// important>Amazon MQ for ActiveMQ For ActiveMQ brokers, this value can contain
-	// only alphanumeric characters, dashes, periods, underscores, and tildes (-
-	// . _ ~). This value must be 2-100 characters long./important> Amazon MQ for
-	// RabbitMQ
-	// For RabbitMQ brokers, this value can contain only alphanumeric characters,
-	// dashes, periods, underscores (- . _). This value must not contain a tilde
-	// (~) character. Amazon MQ prohibts using guest as a valid usename. This value
-	// must be 2-100 characters long.
+	// Defines if this user is intended for CRDR replication purposes.
+	ReplicationUser *bool `locationName:"replicationUser" type:"boolean"`
+
+	// The username of the broker user. The following restrictions apply to broker
+	// usernames:
+	//
+	//    * For Amazon MQ for ActiveMQ brokers, this value can contain only alphanumeric
+	//    characters, dashes, periods, underscores, and tildes (- . _ ~). This value
+	//    must be 2-100 characters long.
+	//
+	//    * para>For Amazon MQ for RabbitMQ brokers, this value can contain only
+	//    alphanumeric characters, dashes, periods, underscores (- . _). This value
+	//    must not contain a tilde (~) character. Amazon MQ prohibts using guest
+	//    as a valid usename. This value must be 2-100 characters long.
+	//
+	// Do not add personally identifiable information (PII) or other confidential
+	// or sensitive information in broker usernames. Broker usernames are accessible
+	// to other Amazon Web Services services, including CloudWatch Logs. Broker
+	// usernames are not intended to be used for private or sensitive data.
 	//
 	// Username is a required field
 	Username *string `locationName:"username" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s User) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s User) GoString() string {
 	return s.String()
 }
@@ -6153,6 +7143,12 @@ func (s *User) SetPassword(v string) *User {
 	return s
 }
 
+// SetReplicationUser sets the ReplicationUser field's value.
+func (s *User) SetReplicationUser(v bool) *User {
+	s.ReplicationUser = &v
+	return s
+}
+
 // SetUsername sets the Username field's value.
 func (s *User) SetUsername(v string) *User {
 	s.Username = &v
@@ -6178,12 +7174,20 @@ type UserPendingChanges struct {
 	PendingChange *string `locationName:"pendingChange" type:"string" required:"true" enum:"ChangeType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserPendingChanges) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserPendingChanges) GoString() string {
 	return s.String()
 }
@@ -6221,12 +7225,20 @@ type UserSummary struct {
 	Username *string `locationName:"username" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserSummary) GoString() string {
 	return s.String()
 }
@@ -6263,12 +7275,20 @@ type WeeklyStartTime struct {
 	TimeZone *string `locationName:"timeZone" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WeeklyStartTime) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WeeklyStartTime) GoString() string {
 	return s.String()
 }
@@ -6341,6 +7361,12 @@ const (
 
 	// BrokerStateRebootInProgress is a BrokerState enum value
 	BrokerStateRebootInProgress = "REBOOT_IN_PROGRESS"
+
+	// BrokerStateCriticalActionRequired is a BrokerState enum value
+	BrokerStateCriticalActionRequired = "CRITICAL_ACTION_REQUIRED"
+
+	// BrokerStateReplica is a BrokerState enum value
+	BrokerStateReplica = "REPLICA"
 )
 
 // BrokerState_Values returns all elements of the BrokerState enum
@@ -6351,6 +7377,8 @@ func BrokerState_Values() []string {
 		BrokerStateDeletionInProgress,
 		BrokerStateRunning,
 		BrokerStateRebootInProgress,
+		BrokerStateCriticalActionRequired,
+		BrokerStateReplica,
 	}
 }
 
@@ -6391,6 +7419,23 @@ func ChangeType_Values() []string {
 		ChangeTypeCreate,
 		ChangeTypeUpdate,
 		ChangeTypeDelete,
+	}
+}
+
+// Specifies whether a broker is a part of a data replication pair.
+const (
+	// DataReplicationModeNone is a DataReplicationMode enum value
+	DataReplicationModeNone = "NONE"
+
+	// DataReplicationModeCrdr is a DataReplicationMode enum value
+	DataReplicationModeCrdr = "CRDR"
+)
+
+// DataReplicationMode_Values returns all elements of the DataReplicationMode enum
+func DataReplicationMode_Values() []string {
+	return []string{
+		DataReplicationModeNone,
+		DataReplicationModeCrdr,
 	}
 }
 
@@ -6468,7 +7513,24 @@ func EngineType_Values() []string {
 	}
 }
 
-// The reason for which the XML elements or attributes were sanitized.
+// The Promote mode requested.
+const (
+	// PromoteModeSwitchover is a PromoteMode enum value
+	PromoteModeSwitchover = "SWITCHOVER"
+
+	// PromoteModeFailover is a PromoteMode enum value
+	PromoteModeFailover = "FAILOVER"
+)
+
+// PromoteMode_Values returns all elements of the PromoteMode enum
+func PromoteMode_Values() []string {
+	return []string{
+		PromoteModeSwitchover,
+		PromoteModeFailover,
+	}
+}
+
+// The reason for which the configuration elements or attributes were sanitized.
 const (
 	// SanitizationWarningReasonDisallowedElementRemoved is a SanitizationWarningReason enum value
 	SanitizationWarningReasonDisallowedElementRemoved = "DISALLOWED_ELEMENT_REMOVED"

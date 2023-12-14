@@ -33,6 +33,7 @@ func ExampleCloud9_CreateEnvironmentEC2_shared00() {
 	input := &cloud9.CreateEnvironmentEC2Input{
 		AutomaticStopTimeMinutes: aws.Int64(60),
 		Description:              aws.String("This is my demonstration environment."),
+		ImageId:                  aws.String("amazonlinux-2-x86_64"),
 		InstanceType:             aws.String("t2.micro"),
 		Name:                     aws.String("my-demo-environment"),
 		OwnerArn:                 aws.String("arn:aws:iam::123456789012:user/MyDemoUser"),
@@ -198,7 +199,6 @@ func ExampleCloud9_DeleteEnvironmentMembership_shared00() {
 }
 
 // DescribeEnvironmentMemberships1
-//
 // The following example gets information about all of the environment members for the
 // specified development environment.
 func ExampleCloud9_DescribeEnvironmentMemberships_shared00() {
@@ -240,7 +240,6 @@ func ExampleCloud9_DescribeEnvironmentMemberships_shared00() {
 }
 
 // DescribeEnvironmentMemberships2
-//
 // The following example gets information about the owner of the specified development
 // environment.
 func ExampleCloud9_DescribeEnvironmentMemberships_shared01() {
@@ -285,7 +284,6 @@ func ExampleCloud9_DescribeEnvironmentMemberships_shared01() {
 }
 
 // DescribeEnvironmentMemberships3
-//
 // The following example gets development environment membership information for the
 // specified user.
 func ExampleCloud9_DescribeEnvironmentMemberships_shared02() {

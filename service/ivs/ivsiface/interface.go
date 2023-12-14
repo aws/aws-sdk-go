@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // Amazon Interactive Video Service.
-//    func myFunc(svc ivsiface.IVSAPI) bool {
-//        // Make svc.BatchGetChannel request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// Amazon Interactive Video Service.
+//	func myFunc(svc ivsiface.IVSAPI) bool {
+//	    // Make svc.BatchGetChannel request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := ivs.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := ivs.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockIVSClient struct {
-//        ivsiface.IVSAPI
-//    }
-//    func (m *mockIVSClient) BatchGetChannel(input *ivs.BatchGetChannelInput) (*ivs.BatchGetChannelOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockIVSClient struct {
+//	    ivsiface.IVSAPI
+//	}
+//	func (m *mockIVSClient) BatchGetChannel(input *ivs.BatchGetChannelInput) (*ivs.BatchGetChannelOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockIVSClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockIVSClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -67,6 +67,10 @@ type IVSAPI interface {
 	BatchGetStreamKey(*ivs.BatchGetStreamKeyInput) (*ivs.BatchGetStreamKeyOutput, error)
 	BatchGetStreamKeyWithContext(aws.Context, *ivs.BatchGetStreamKeyInput, ...request.Option) (*ivs.BatchGetStreamKeyOutput, error)
 	BatchGetStreamKeyRequest(*ivs.BatchGetStreamKeyInput) (*request.Request, *ivs.BatchGetStreamKeyOutput)
+
+	BatchStartViewerSessionRevocation(*ivs.BatchStartViewerSessionRevocationInput) (*ivs.BatchStartViewerSessionRevocationOutput, error)
+	BatchStartViewerSessionRevocationWithContext(aws.Context, *ivs.BatchStartViewerSessionRevocationInput, ...request.Option) (*ivs.BatchStartViewerSessionRevocationOutput, error)
+	BatchStartViewerSessionRevocationRequest(*ivs.BatchStartViewerSessionRevocationInput) (*request.Request, *ivs.BatchStartViewerSessionRevocationOutput)
 
 	CreateChannel(*ivs.CreateChannelInput) (*ivs.CreateChannelOutput, error)
 	CreateChannelWithContext(aws.Context, *ivs.CreateChannelInput, ...request.Option) (*ivs.CreateChannelOutput, error)
@@ -116,6 +120,10 @@ type IVSAPI interface {
 	GetStreamKeyWithContext(aws.Context, *ivs.GetStreamKeyInput, ...request.Option) (*ivs.GetStreamKeyOutput, error)
 	GetStreamKeyRequest(*ivs.GetStreamKeyInput) (*request.Request, *ivs.GetStreamKeyOutput)
 
+	GetStreamSession(*ivs.GetStreamSessionInput) (*ivs.GetStreamSessionOutput, error)
+	GetStreamSessionWithContext(aws.Context, *ivs.GetStreamSessionInput, ...request.Option) (*ivs.GetStreamSessionOutput, error)
+	GetStreamSessionRequest(*ivs.GetStreamSessionInput) (*request.Request, *ivs.GetStreamSessionOutput)
+
 	ImportPlaybackKeyPair(*ivs.ImportPlaybackKeyPairInput) (*ivs.ImportPlaybackKeyPairOutput, error)
 	ImportPlaybackKeyPairWithContext(aws.Context, *ivs.ImportPlaybackKeyPairInput, ...request.Option) (*ivs.ImportPlaybackKeyPairOutput, error)
 	ImportPlaybackKeyPairRequest(*ivs.ImportPlaybackKeyPairInput) (*request.Request, *ivs.ImportPlaybackKeyPairOutput)
@@ -148,6 +156,13 @@ type IVSAPI interface {
 	ListStreamKeysPages(*ivs.ListStreamKeysInput, func(*ivs.ListStreamKeysOutput, bool) bool) error
 	ListStreamKeysPagesWithContext(aws.Context, *ivs.ListStreamKeysInput, func(*ivs.ListStreamKeysOutput, bool) bool, ...request.Option) error
 
+	ListStreamSessions(*ivs.ListStreamSessionsInput) (*ivs.ListStreamSessionsOutput, error)
+	ListStreamSessionsWithContext(aws.Context, *ivs.ListStreamSessionsInput, ...request.Option) (*ivs.ListStreamSessionsOutput, error)
+	ListStreamSessionsRequest(*ivs.ListStreamSessionsInput) (*request.Request, *ivs.ListStreamSessionsOutput)
+
+	ListStreamSessionsPages(*ivs.ListStreamSessionsInput, func(*ivs.ListStreamSessionsOutput, bool) bool) error
+	ListStreamSessionsPagesWithContext(aws.Context, *ivs.ListStreamSessionsInput, func(*ivs.ListStreamSessionsOutput, bool) bool, ...request.Option) error
+
 	ListStreams(*ivs.ListStreamsInput) (*ivs.ListStreamsOutput, error)
 	ListStreamsWithContext(aws.Context, *ivs.ListStreamsInput, ...request.Option) (*ivs.ListStreamsOutput, error)
 	ListStreamsRequest(*ivs.ListStreamsInput) (*request.Request, *ivs.ListStreamsOutput)
@@ -159,12 +174,13 @@ type IVSAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *ivs.ListTagsForResourceInput, ...request.Option) (*ivs.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*ivs.ListTagsForResourceInput) (*request.Request, *ivs.ListTagsForResourceOutput)
 
-	ListTagsForResourcePages(*ivs.ListTagsForResourceInput, func(*ivs.ListTagsForResourceOutput, bool) bool) error
-	ListTagsForResourcePagesWithContext(aws.Context, *ivs.ListTagsForResourceInput, func(*ivs.ListTagsForResourceOutput, bool) bool, ...request.Option) error
-
 	PutMetadata(*ivs.PutMetadataInput) (*ivs.PutMetadataOutput, error)
 	PutMetadataWithContext(aws.Context, *ivs.PutMetadataInput, ...request.Option) (*ivs.PutMetadataOutput, error)
 	PutMetadataRequest(*ivs.PutMetadataInput) (*request.Request, *ivs.PutMetadataOutput)
+
+	StartViewerSessionRevocation(*ivs.StartViewerSessionRevocationInput) (*ivs.StartViewerSessionRevocationOutput, error)
+	StartViewerSessionRevocationWithContext(aws.Context, *ivs.StartViewerSessionRevocationInput, ...request.Option) (*ivs.StartViewerSessionRevocationOutput, error)
+	StartViewerSessionRevocationRequest(*ivs.StartViewerSessionRevocationInput) (*request.Request, *ivs.StartViewerSessionRevocationOutput)
 
 	StopStream(*ivs.StopStreamInput) (*ivs.StopStreamOutput, error)
 	StopStreamWithContext(aws.Context, *ivs.StopStreamInput, ...request.Option) (*ivs.StopStreamOutput, error)

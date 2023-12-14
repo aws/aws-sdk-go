@@ -40,34 +40,36 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a CodeGuruProfiler client from just a session.
-//     svc := codeguruprofiler.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a CodeGuruProfiler client with additional configuration
-//     svc := codeguruprofiler.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a CodeGuruProfiler client from just a session.
+//	svc := codeguruprofiler.New(mySession)
+//
+//	// Create a CodeGuruProfiler client with additional configuration
+//	svc := codeguruprofiler.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *CodeGuruProfiler {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "codeguru-profiler"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *CodeGuruProfiler {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *CodeGuruProfiler {
 	svc := &CodeGuruProfiler{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2019-07-18",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2019-07-18",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),

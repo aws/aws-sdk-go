@@ -2,6 +2,7 @@ package s3control
 
 import (
 	"fmt"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -119,21 +120,23 @@ func endpointHandler(req *request.Request) {
 // CreateBucket, ListRegionalBuckets which must resolve endpoint to s3-outposts.{region}.amazonaws.com
 // with region as client region and signed by s3-control if an outpost id is provided.
 func updateRequestOutpostIDEndpoint(request *request.Request) {
-	cfgRegion := aws.StringValue(request.Config.Region)
+	const s3Control = "s3-control"
+	const s3Outposts = "s3-outposts"
 
 	if !hasCustomEndpoint(request) {
-		serviceEndpointLabel := "s3-outposts."
+		// add url host as s3-outposts
+		cfgHost := request.HTTPRequest.URL.Host
 
-		// request url
-		request.HTTPRequest.URL.Host = serviceEndpointLabel + cfgRegion + ".amazonaws.com"
+		if strings.HasPrefix(cfgHost, s3Control) {
+			request.HTTPRequest.URL.Host = s3Outposts + cfgHost[len(s3Control):]
+		}
 
 		// disable the host prefix for outpost access points
 		request.Config.DisableEndpointHostPrefix = aws.Bool(true)
 	}
 
 	// signer redirection
-	request.ClientInfo.SigningName = "s3-outposts"
-	request.ClientInfo.SigningRegion = cfgRegion
+	request.ClientInfo.SigningName = s3Outposts
 }
 
 func updateRequestOutpostAccessPointEndpoint(req *request.Request, accessPoint arn.OutpostAccessPointARN) error {
@@ -192,25 +195,22 @@ func validateEndpointRequestResource(req *request.Request, resource arn.Resource
 
 // validations for fetching outpost endpoint
 func validateOutpostEndpoint(req *request.Request, resource arn.Resource) error {
-	resReq := s3shared.ResourceRequest{
-		Request:  req,
-		Resource: resource,
-	}
-
 	if err := validateEndpointRequestResource(req, resource); err != nil {
 		return err
 	}
 
-	// resource configured with FIPS as region is not supported by outposts
-	if resReq.UseFIPS() {
-		return s3shared.NewFIPSConfigurationError(resource, req.ClientInfo.PartitionID,
-			aws.StringValue(req.Config.Region), nil)
-	}
-
 	// DualStack not supported
-	if aws.BoolValue(req.Config.UseDualStack) {
+	if isUseDualStackEndpoint(req) {
 		return s3shared.NewClientConfiguredForDualStackError(resource,
 			req.ClientInfo.PartitionID, aws.StringValue(req.Config.Region), nil)
 	}
+
 	return nil
+}
+
+func isUseDualStackEndpoint(req *request.Request) bool {
+	if req.Config.UseDualStackEndpoint != endpoints.DualStackEndpointStateUnset {
+		return req.Config.UseDualStackEndpoint == endpoints.DualStackEndpointStateEnabled
+	}
+	return aws.BoolValue(req.Config.UseDualStack)
 }

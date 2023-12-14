@@ -29,14 +29,13 @@ const opCreateConfigurationSet = "CreateConfigurationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConfigurationSetRequest method.
+//	req, resp := client.CreateConfigurationSetRequest(params)
 //
-//    // Example sending a request using the CreateConfigurationSetRequest method.
-//    req, resp := client.CreateConfigurationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateConfigurationSet
 func (c *PinpointEmail) CreateConfigurationSetRequest(input *CreateConfigurationSetInput) (req *request.Request, output *CreateConfigurationSetOutput) {
@@ -72,23 +71,24 @@ func (c *PinpointEmail) CreateConfigurationSetRequest(input *CreateConfiguration
 // API operation CreateConfigurationSet for usage and error information.
 //
 // Returned Error Types:
-//   * AlreadyExistsException
-//   The resource specified in your request already exists.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - AlreadyExistsException
+//     The resource specified in your request already exists.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * LimitExceededException
-//   There are too many instances of the specified resource type.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - LimitExceededException
+//     There are too many instances of the specified resource type.
 //
-//   * ConcurrentModificationException
-//   The resource is being modified by another operation or thread.
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateConfigurationSet
 func (c *PinpointEmail) CreateConfigurationSet(input *CreateConfigurationSetInput) (*CreateConfigurationSetOutput, error) {
@@ -128,14 +128,13 @@ const opCreateConfigurationSetEventDestination = "CreateConfigurationSetEventDes
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConfigurationSetEventDestinationRequest method.
+//	req, resp := client.CreateConfigurationSetEventDestinationRequest(params)
 //
-//    // Example sending a request using the CreateConfigurationSetEventDestinationRequest method.
-//    req, resp := client.CreateConfigurationSetEventDestinationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateConfigurationSetEventDestination
 func (c *PinpointEmail) CreateConfigurationSetEventDestinationRequest(input *CreateConfigurationSetEventDestinationInput) (req *request.Request, output *CreateConfigurationSetEventDestinationOutput) {
@@ -174,20 +173,21 @@ func (c *PinpointEmail) CreateConfigurationSetEventDestinationRequest(input *Cre
 // API operation CreateConfigurationSetEventDestination for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * AlreadyExistsException
-//   The resource specified in your request already exists.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * LimitExceededException
-//   There are too many instances of the specified resource type.
+//   - AlreadyExistsException
+//     The resource specified in your request already exists.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - LimitExceededException
+//     There are too many instances of the specified resource type.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateConfigurationSetEventDestination
 func (c *PinpointEmail) CreateConfigurationSetEventDestination(input *CreateConfigurationSetEventDestinationInput) (*CreateConfigurationSetEventDestinationOutput, error) {
@@ -227,14 +227,13 @@ const opCreateDedicatedIpPool = "CreateDedicatedIpPool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDedicatedIpPoolRequest method.
+//	req, resp := client.CreateDedicatedIpPoolRequest(params)
 //
-//    // Example sending a request using the CreateDedicatedIpPoolRequest method.
-//    req, resp := client.CreateDedicatedIpPoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateDedicatedIpPool
 func (c *PinpointEmail) CreateDedicatedIpPoolRequest(input *CreateDedicatedIpPoolInput) (req *request.Request, output *CreateDedicatedIpPoolOutput) {
@@ -270,20 +269,21 @@ func (c *PinpointEmail) CreateDedicatedIpPoolRequest(input *CreateDedicatedIpPoo
 // API operation CreateDedicatedIpPool for usage and error information.
 //
 // Returned Error Types:
-//   * AlreadyExistsException
-//   The resource specified in your request already exists.
 //
-//   * LimitExceededException
-//   There are too many instances of the specified resource type.
+//   - AlreadyExistsException
+//     The resource specified in your request already exists.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - LimitExceededException
+//     There are too many instances of the specified resource type.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * ConcurrentModificationException
-//   The resource is being modified by another operation or thread.
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateDedicatedIpPool
 func (c *PinpointEmail) CreateDedicatedIpPool(input *CreateDedicatedIpPoolInput) (*CreateDedicatedIpPoolOutput, error) {
@@ -323,14 +323,13 @@ const opCreateDeliverabilityTestReport = "CreateDeliverabilityTestReport"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDeliverabilityTestReportRequest method.
+//	req, resp := client.CreateDeliverabilityTestReportRequest(params)
 //
-//    // Example sending a request using the CreateDeliverabilityTestReportRequest method.
-//    req, resp := client.CreateDeliverabilityTestReportRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateDeliverabilityTestReport
 func (c *PinpointEmail) CreateDeliverabilityTestReportRequest(input *CreateDeliverabilityTestReportInput) (req *request.Request, output *CreateDeliverabilityTestReportOutput) {
@@ -368,34 +367,35 @@ func (c *PinpointEmail) CreateDeliverabilityTestReportRequest(input *CreateDeliv
 // API operation CreateDeliverabilityTestReport for usage and error information.
 //
 // Returned Error Types:
-//   * AccountSuspendedException
-//   The message can't be sent because the account's ability to send email has
-//   been permanently restricted.
 //
-//   * SendingPausedException
-//   The message can't be sent because the account's ability to send email is
-//   currently paused.
+//   - AccountSuspendedException
+//     The message can't be sent because the account's ability to send email has
+//     been permanently restricted.
 //
-//   * MessageRejected
-//   The message can't be sent because it contains invalid content.
+//   - SendingPausedException
+//     The message can't be sent because the account's ability to send email is
+//     currently paused.
 //
-//   * MailFromDomainNotVerifiedException
-//   The message can't be sent because the sending domain isn't verified.
+//   - MessageRejected
+//     The message can't be sent because it contains invalid content.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - MailFromDomainNotVerifiedException
+//     The message can't be sent because the sending domain isn't verified.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * LimitExceededException
-//   There are too many instances of the specified resource type.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - LimitExceededException
+//     There are too many instances of the specified resource type.
 //
-//   * ConcurrentModificationException
-//   The resource is being modified by another operation or thread.
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateDeliverabilityTestReport
 func (c *PinpointEmail) CreateDeliverabilityTestReport(input *CreateDeliverabilityTestReportInput) (*CreateDeliverabilityTestReportOutput, error) {
@@ -435,14 +435,13 @@ const opCreateEmailIdentity = "CreateEmailIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEmailIdentityRequest method.
+//	req, resp := client.CreateEmailIdentityRequest(params)
 //
-//    // Example sending a request using the CreateEmailIdentityRequest method.
-//    req, resp := client.CreateEmailIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateEmailIdentity
 func (c *PinpointEmail) CreateEmailIdentityRequest(input *CreateEmailIdentityInput) (req *request.Request, output *CreateEmailIdentityOutput) {
@@ -488,17 +487,18 @@ func (c *PinpointEmail) CreateEmailIdentityRequest(input *CreateEmailIdentityInp
 // API operation CreateEmailIdentity for usage and error information.
 //
 // Returned Error Types:
-//   * LimitExceededException
-//   There are too many instances of the specified resource type.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - LimitExceededException
+//     There are too many instances of the specified resource type.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * ConcurrentModificationException
-//   The resource is being modified by another operation or thread.
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateEmailIdentity
 func (c *PinpointEmail) CreateEmailIdentity(input *CreateEmailIdentityInput) (*CreateEmailIdentityOutput, error) {
@@ -538,14 +538,13 @@ const opDeleteConfigurationSet = "DeleteConfigurationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConfigurationSetRequest method.
+//	req, resp := client.DeleteConfigurationSetRequest(params)
 //
-//    // Example sending a request using the DeleteConfigurationSetRequest method.
-//    req, resp := client.DeleteConfigurationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteConfigurationSet
 func (c *PinpointEmail) DeleteConfigurationSetRequest(input *DeleteConfigurationSetInput) (req *request.Request, output *DeleteConfigurationSetOutput) {
@@ -583,17 +582,18 @@ func (c *PinpointEmail) DeleteConfigurationSetRequest(input *DeleteConfiguration
 // API operation DeleteConfigurationSet for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * ConcurrentModificationException
-//   The resource is being modified by another operation or thread.
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteConfigurationSet
 func (c *PinpointEmail) DeleteConfigurationSet(input *DeleteConfigurationSetInput) (*DeleteConfigurationSetOutput, error) {
@@ -633,14 +633,13 @@ const opDeleteConfigurationSetEventDestination = "DeleteConfigurationSetEventDes
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConfigurationSetEventDestinationRequest method.
+//	req, resp := client.DeleteConfigurationSetEventDestinationRequest(params)
 //
-//    // Example sending a request using the DeleteConfigurationSetEventDestinationRequest method.
-//    req, resp := client.DeleteConfigurationSetEventDestinationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteConfigurationSetEventDestination
 func (c *PinpointEmail) DeleteConfigurationSetEventDestinationRequest(input *DeleteConfigurationSetEventDestinationInput) (req *request.Request, output *DeleteConfigurationSetEventDestinationOutput) {
@@ -679,14 +678,15 @@ func (c *PinpointEmail) DeleteConfigurationSetEventDestinationRequest(input *Del
 // API operation DeleteConfigurationSetEventDestination for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteConfigurationSetEventDestination
 func (c *PinpointEmail) DeleteConfigurationSetEventDestination(input *DeleteConfigurationSetEventDestinationInput) (*DeleteConfigurationSetEventDestinationOutput, error) {
@@ -726,14 +726,13 @@ const opDeleteDedicatedIpPool = "DeleteDedicatedIpPool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDedicatedIpPoolRequest method.
+//	req, resp := client.DeleteDedicatedIpPoolRequest(params)
 //
-//    // Example sending a request using the DeleteDedicatedIpPoolRequest method.
-//    req, resp := client.DeleteDedicatedIpPoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteDedicatedIpPool
 func (c *PinpointEmail) DeleteDedicatedIpPoolRequest(input *DeleteDedicatedIpPoolInput) (req *request.Request, output *DeleteDedicatedIpPoolOutput) {
@@ -765,17 +764,18 @@ func (c *PinpointEmail) DeleteDedicatedIpPoolRequest(input *DeleteDedicatedIpPoo
 // API operation DeleteDedicatedIpPool for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * ConcurrentModificationException
-//   The resource is being modified by another operation or thread.
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteDedicatedIpPool
 func (c *PinpointEmail) DeleteDedicatedIpPool(input *DeleteDedicatedIpPoolInput) (*DeleteDedicatedIpPoolOutput, error) {
@@ -815,14 +815,13 @@ const opDeleteEmailIdentity = "DeleteEmailIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEmailIdentityRequest method.
+//	req, resp := client.DeleteEmailIdentityRequest(params)
 //
-//    // Example sending a request using the DeleteEmailIdentityRequest method.
-//    req, resp := client.DeleteEmailIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteEmailIdentity
 func (c *PinpointEmail) DeleteEmailIdentityRequest(input *DeleteEmailIdentityInput) (req *request.Request, output *DeleteEmailIdentityOutput) {
@@ -855,17 +854,18 @@ func (c *PinpointEmail) DeleteEmailIdentityRequest(input *DeleteEmailIdentityInp
 // API operation DeleteEmailIdentity for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * ConcurrentModificationException
-//   The resource is being modified by another operation or thread.
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteEmailIdentity
 func (c *PinpointEmail) DeleteEmailIdentity(input *DeleteEmailIdentityInput) (*DeleteEmailIdentityOutput, error) {
@@ -905,14 +905,13 @@ const opGetAccount = "GetAccount"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAccountRequest method.
+//	req, resp := client.GetAccountRequest(params)
 //
-//    // Example sending a request using the GetAccountRequest method.
-//    req, resp := client.GetAccountRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetAccount
 func (c *PinpointEmail) GetAccountRequest(input *GetAccountInput) (req *request.Request, output *GetAccountOutput) {
@@ -944,11 +943,12 @@ func (c *PinpointEmail) GetAccountRequest(input *GetAccountInput) (req *request.
 // API operation GetAccount for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetAccount
 func (c *PinpointEmail) GetAccount(input *GetAccountInput) (*GetAccountOutput, error) {
@@ -988,14 +988,13 @@ const opGetBlacklistReports = "GetBlacklistReports"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBlacklistReportsRequest method.
+//	req, resp := client.GetBlacklistReportsRequest(params)
 //
-//    // Example sending a request using the GetBlacklistReportsRequest method.
-//    req, resp := client.GetBlacklistReportsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetBlacklistReports
 func (c *PinpointEmail) GetBlacklistReportsRequest(input *GetBlacklistReportsInput) (req *request.Request, output *GetBlacklistReportsOutput) {
@@ -1027,14 +1026,15 @@ func (c *PinpointEmail) GetBlacklistReportsRequest(input *GetBlacklistReportsInp
 // API operation GetBlacklistReports for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetBlacklistReports
 func (c *PinpointEmail) GetBlacklistReports(input *GetBlacklistReportsInput) (*GetBlacklistReportsOutput, error) {
@@ -1074,14 +1074,13 @@ const opGetConfigurationSet = "GetConfigurationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConfigurationSetRequest method.
+//	req, resp := client.GetConfigurationSetRequest(params)
 //
-//    // Example sending a request using the GetConfigurationSetRequest method.
-//    req, resp := client.GetConfigurationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetConfigurationSet
 func (c *PinpointEmail) GetConfigurationSetRequest(input *GetConfigurationSetInput) (req *request.Request, output *GetConfigurationSetOutput) {
@@ -1120,14 +1119,15 @@ func (c *PinpointEmail) GetConfigurationSetRequest(input *GetConfigurationSetInp
 // API operation GetConfigurationSet for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetConfigurationSet
 func (c *PinpointEmail) GetConfigurationSet(input *GetConfigurationSetInput) (*GetConfigurationSetOutput, error) {
@@ -1167,14 +1167,13 @@ const opGetConfigurationSetEventDestinations = "GetConfigurationSetEventDestinat
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConfigurationSetEventDestinationsRequest method.
+//	req, resp := client.GetConfigurationSetEventDestinationsRequest(params)
 //
-//    // Example sending a request using the GetConfigurationSetEventDestinationsRequest method.
-//    req, resp := client.GetConfigurationSetEventDestinationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetConfigurationSetEventDestinations
 func (c *PinpointEmail) GetConfigurationSetEventDestinationsRequest(input *GetConfigurationSetEventDestinationsInput) (req *request.Request, output *GetConfigurationSetEventDestinationsOutput) {
@@ -1213,14 +1212,15 @@ func (c *PinpointEmail) GetConfigurationSetEventDestinationsRequest(input *GetCo
 // API operation GetConfigurationSetEventDestinations for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetConfigurationSetEventDestinations
 func (c *PinpointEmail) GetConfigurationSetEventDestinations(input *GetConfigurationSetEventDestinationsInput) (*GetConfigurationSetEventDestinationsOutput, error) {
@@ -1260,14 +1260,13 @@ const opGetDedicatedIp = "GetDedicatedIp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDedicatedIpRequest method.
+//	req, resp := client.GetDedicatedIpRequest(params)
 //
-//    // Example sending a request using the GetDedicatedIpRequest method.
-//    req, resp := client.GetDedicatedIpRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDedicatedIp
 func (c *PinpointEmail) GetDedicatedIpRequest(input *GetDedicatedIpInput) (req *request.Request, output *GetDedicatedIpOutput) {
@@ -1300,14 +1299,15 @@ func (c *PinpointEmail) GetDedicatedIpRequest(input *GetDedicatedIpInput) (req *
 // API operation GetDedicatedIp for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDedicatedIp
 func (c *PinpointEmail) GetDedicatedIp(input *GetDedicatedIpInput) (*GetDedicatedIpOutput, error) {
@@ -1347,14 +1347,13 @@ const opGetDedicatedIps = "GetDedicatedIps"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDedicatedIpsRequest method.
+//	req, resp := client.GetDedicatedIpsRequest(params)
 //
-//    // Example sending a request using the GetDedicatedIpsRequest method.
-//    req, resp := client.GetDedicatedIpsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDedicatedIps
 func (c *PinpointEmail) GetDedicatedIpsRequest(input *GetDedicatedIpsInput) (req *request.Request, output *GetDedicatedIpsOutput) {
@@ -1392,14 +1391,15 @@ func (c *PinpointEmail) GetDedicatedIpsRequest(input *GetDedicatedIpsInput) (req
 // API operation GetDedicatedIps for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDedicatedIps
 func (c *PinpointEmail) GetDedicatedIps(input *GetDedicatedIpsInput) (*GetDedicatedIpsOutput, error) {
@@ -1431,15 +1431,14 @@ func (c *PinpointEmail) GetDedicatedIpsWithContext(ctx aws.Context, input *GetDe
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetDedicatedIps operation.
-//    pageNum := 0
-//    err := client.GetDedicatedIpsPages(params,
-//        func(page *pinpointemail.GetDedicatedIpsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetDedicatedIps operation.
+//	pageNum := 0
+//	err := client.GetDedicatedIpsPages(params,
+//	    func(page *pinpointemail.GetDedicatedIpsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *PinpointEmail) GetDedicatedIpsPages(input *GetDedicatedIpsInput, fn func(*GetDedicatedIpsOutput, bool) bool) error {
 	return c.GetDedicatedIpsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1491,14 +1490,13 @@ const opGetDeliverabilityDashboardOptions = "GetDeliverabilityDashboardOptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeliverabilityDashboardOptionsRequest method.
+//	req, resp := client.GetDeliverabilityDashboardOptionsRequest(params)
 //
-//    // Example sending a request using the GetDeliverabilityDashboardOptionsRequest method.
-//    req, resp := client.GetDeliverabilityDashboardOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDeliverabilityDashboardOptions
 func (c *PinpointEmail) GetDeliverabilityDashboardOptionsRequest(input *GetDeliverabilityDashboardOptionsInput) (req *request.Request, output *GetDeliverabilityDashboardOptionsOutput) {
@@ -1538,14 +1536,15 @@ func (c *PinpointEmail) GetDeliverabilityDashboardOptionsRequest(input *GetDeliv
 // API operation GetDeliverabilityDashboardOptions for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * LimitExceededException
-//   There are too many instances of the specified resource type.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - LimitExceededException
+//     There are too many instances of the specified resource type.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDeliverabilityDashboardOptions
 func (c *PinpointEmail) GetDeliverabilityDashboardOptions(input *GetDeliverabilityDashboardOptionsInput) (*GetDeliverabilityDashboardOptionsOutput, error) {
@@ -1585,14 +1584,13 @@ const opGetDeliverabilityTestReport = "GetDeliverabilityTestReport"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeliverabilityTestReportRequest method.
+//	req, resp := client.GetDeliverabilityTestReportRequest(params)
 //
-//    // Example sending a request using the GetDeliverabilityTestReportRequest method.
-//    req, resp := client.GetDeliverabilityTestReportRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDeliverabilityTestReport
 func (c *PinpointEmail) GetDeliverabilityTestReportRequest(input *GetDeliverabilityTestReportInput) (req *request.Request, output *GetDeliverabilityTestReportOutput) {
@@ -1623,14 +1621,15 @@ func (c *PinpointEmail) GetDeliverabilityTestReportRequest(input *GetDeliverabil
 // API operation GetDeliverabilityTestReport for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDeliverabilityTestReport
 func (c *PinpointEmail) GetDeliverabilityTestReport(input *GetDeliverabilityTestReportInput) (*GetDeliverabilityTestReportOutput, error) {
@@ -1670,14 +1669,13 @@ const opGetDomainDeliverabilityCampaign = "GetDomainDeliverabilityCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDomainDeliverabilityCampaignRequest method.
+//	req, resp := client.GetDomainDeliverabilityCampaignRequest(params)
 //
-//    // Example sending a request using the GetDomainDeliverabilityCampaignRequest method.
-//    req, resp := client.GetDomainDeliverabilityCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDomainDeliverabilityCampaign
 func (c *PinpointEmail) GetDomainDeliverabilityCampaignRequest(input *GetDomainDeliverabilityCampaignInput) (req *request.Request, output *GetDomainDeliverabilityCampaignOutput) {
@@ -1711,14 +1709,15 @@ func (c *PinpointEmail) GetDomainDeliverabilityCampaignRequest(input *GetDomainD
 // API operation GetDomainDeliverabilityCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDomainDeliverabilityCampaign
 func (c *PinpointEmail) GetDomainDeliverabilityCampaign(input *GetDomainDeliverabilityCampaignInput) (*GetDomainDeliverabilityCampaignOutput, error) {
@@ -1758,14 +1757,13 @@ const opGetDomainStatisticsReport = "GetDomainStatisticsReport"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDomainStatisticsReportRequest method.
+//	req, resp := client.GetDomainStatisticsReportRequest(params)
 //
-//    // Example sending a request using the GetDomainStatisticsReportRequest method.
-//    req, resp := client.GetDomainStatisticsReportRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDomainStatisticsReport
 func (c *PinpointEmail) GetDomainStatisticsReportRequest(input *GetDomainStatisticsReportInput) (req *request.Request, output *GetDomainStatisticsReportOutput) {
@@ -1797,14 +1795,15 @@ func (c *PinpointEmail) GetDomainStatisticsReportRequest(input *GetDomainStatist
 // API operation GetDomainStatisticsReport for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDomainStatisticsReport
 func (c *PinpointEmail) GetDomainStatisticsReport(input *GetDomainStatisticsReportInput) (*GetDomainStatisticsReportOutput, error) {
@@ -1844,14 +1843,13 @@ const opGetEmailIdentity = "GetEmailIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetEmailIdentityRequest method.
+//	req, resp := client.GetEmailIdentityRequest(params)
 //
-//    // Example sending a request using the GetEmailIdentityRequest method.
-//    req, resp := client.GetEmailIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetEmailIdentity
 func (c *PinpointEmail) GetEmailIdentityRequest(input *GetEmailIdentityInput) (req *request.Request, output *GetEmailIdentityOutput) {
@@ -1884,14 +1882,15 @@ func (c *PinpointEmail) GetEmailIdentityRequest(input *GetEmailIdentityInput) (r
 // API operation GetEmailIdentity for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetEmailIdentity
 func (c *PinpointEmail) GetEmailIdentity(input *GetEmailIdentityInput) (*GetEmailIdentityOutput, error) {
@@ -1931,14 +1930,13 @@ const opListConfigurationSets = "ListConfigurationSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListConfigurationSetsRequest method.
+//	req, resp := client.ListConfigurationSetsRequest(params)
 //
-//    // Example sending a request using the ListConfigurationSetsRequest method.
-//    req, resp := client.ListConfigurationSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListConfigurationSets
 func (c *PinpointEmail) ListConfigurationSetsRequest(input *ListConfigurationSetsInput) (req *request.Request, output *ListConfigurationSetsOutput) {
@@ -1982,11 +1980,12 @@ func (c *PinpointEmail) ListConfigurationSetsRequest(input *ListConfigurationSet
 // API operation ListConfigurationSets for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListConfigurationSets
 func (c *PinpointEmail) ListConfigurationSets(input *ListConfigurationSetsInput) (*ListConfigurationSetsOutput, error) {
@@ -2018,15 +2017,14 @@ func (c *PinpointEmail) ListConfigurationSetsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListConfigurationSets operation.
-//    pageNum := 0
-//    err := client.ListConfigurationSetsPages(params,
-//        func(page *pinpointemail.ListConfigurationSetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListConfigurationSets operation.
+//	pageNum := 0
+//	err := client.ListConfigurationSetsPages(params,
+//	    func(page *pinpointemail.ListConfigurationSetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *PinpointEmail) ListConfigurationSetsPages(input *ListConfigurationSetsInput, fn func(*ListConfigurationSetsOutput, bool) bool) error {
 	return c.ListConfigurationSetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2078,14 +2076,13 @@ const opListDedicatedIpPools = "ListDedicatedIpPools"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDedicatedIpPoolsRequest method.
+//	req, resp := client.ListDedicatedIpPoolsRequest(params)
 //
-//    // Example sending a request using the ListDedicatedIpPoolsRequest method.
-//    req, resp := client.ListDedicatedIpPoolsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListDedicatedIpPools
 func (c *PinpointEmail) ListDedicatedIpPoolsRequest(input *ListDedicatedIpPoolsInput) (req *request.Request, output *ListDedicatedIpPoolsOutput) {
@@ -2123,11 +2120,12 @@ func (c *PinpointEmail) ListDedicatedIpPoolsRequest(input *ListDedicatedIpPoolsI
 // API operation ListDedicatedIpPools for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListDedicatedIpPools
 func (c *PinpointEmail) ListDedicatedIpPools(input *ListDedicatedIpPoolsInput) (*ListDedicatedIpPoolsOutput, error) {
@@ -2159,15 +2157,14 @@ func (c *PinpointEmail) ListDedicatedIpPoolsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDedicatedIpPools operation.
-//    pageNum := 0
-//    err := client.ListDedicatedIpPoolsPages(params,
-//        func(page *pinpointemail.ListDedicatedIpPoolsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDedicatedIpPools operation.
+//	pageNum := 0
+//	err := client.ListDedicatedIpPoolsPages(params,
+//	    func(page *pinpointemail.ListDedicatedIpPoolsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *PinpointEmail) ListDedicatedIpPoolsPages(input *ListDedicatedIpPoolsInput, fn func(*ListDedicatedIpPoolsOutput, bool) bool) error {
 	return c.ListDedicatedIpPoolsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2219,14 +2216,13 @@ const opListDeliverabilityTestReports = "ListDeliverabilityTestReports"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeliverabilityTestReportsRequest method.
+//	req, resp := client.ListDeliverabilityTestReportsRequest(params)
 //
-//    // Example sending a request using the ListDeliverabilityTestReportsRequest method.
-//    req, resp := client.ListDeliverabilityTestReportsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListDeliverabilityTestReports
 func (c *PinpointEmail) ListDeliverabilityTestReportsRequest(input *ListDeliverabilityTestReportsInput) (req *request.Request, output *ListDeliverabilityTestReportsOutput) {
@@ -2266,14 +2262,15 @@ func (c *PinpointEmail) ListDeliverabilityTestReportsRequest(input *ListDelivera
 // API operation ListDeliverabilityTestReports for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListDeliverabilityTestReports
 func (c *PinpointEmail) ListDeliverabilityTestReports(input *ListDeliverabilityTestReportsInput) (*ListDeliverabilityTestReportsOutput, error) {
@@ -2305,15 +2302,14 @@ func (c *PinpointEmail) ListDeliverabilityTestReportsWithContext(ctx aws.Context
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDeliverabilityTestReports operation.
-//    pageNum := 0
-//    err := client.ListDeliverabilityTestReportsPages(params,
-//        func(page *pinpointemail.ListDeliverabilityTestReportsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDeliverabilityTestReports operation.
+//	pageNum := 0
+//	err := client.ListDeliverabilityTestReportsPages(params,
+//	    func(page *pinpointemail.ListDeliverabilityTestReportsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *PinpointEmail) ListDeliverabilityTestReportsPages(input *ListDeliverabilityTestReportsInput, fn func(*ListDeliverabilityTestReportsOutput, bool) bool) error {
 	return c.ListDeliverabilityTestReportsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2365,14 +2361,13 @@ const opListDomainDeliverabilityCampaigns = "ListDomainDeliverabilityCampaigns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDomainDeliverabilityCampaignsRequest method.
+//	req, resp := client.ListDomainDeliverabilityCampaignsRequest(params)
 //
-//    // Example sending a request using the ListDomainDeliverabilityCampaignsRequest method.
-//    req, resp := client.ListDomainDeliverabilityCampaignsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListDomainDeliverabilityCampaigns
 func (c *PinpointEmail) ListDomainDeliverabilityCampaignsRequest(input *ListDomainDeliverabilityCampaignsInput) (req *request.Request, output *ListDomainDeliverabilityCampaignsOutput) {
@@ -2412,14 +2407,15 @@ func (c *PinpointEmail) ListDomainDeliverabilityCampaignsRequest(input *ListDoma
 // API operation ListDomainDeliverabilityCampaigns for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListDomainDeliverabilityCampaigns
 func (c *PinpointEmail) ListDomainDeliverabilityCampaigns(input *ListDomainDeliverabilityCampaignsInput) (*ListDomainDeliverabilityCampaignsOutput, error) {
@@ -2451,15 +2447,14 @@ func (c *PinpointEmail) ListDomainDeliverabilityCampaignsWithContext(ctx aws.Con
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDomainDeliverabilityCampaigns operation.
-//    pageNum := 0
-//    err := client.ListDomainDeliverabilityCampaignsPages(params,
-//        func(page *pinpointemail.ListDomainDeliverabilityCampaignsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDomainDeliverabilityCampaigns operation.
+//	pageNum := 0
+//	err := client.ListDomainDeliverabilityCampaignsPages(params,
+//	    func(page *pinpointemail.ListDomainDeliverabilityCampaignsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *PinpointEmail) ListDomainDeliverabilityCampaignsPages(input *ListDomainDeliverabilityCampaignsInput, fn func(*ListDomainDeliverabilityCampaignsOutput, bool) bool) error {
 	return c.ListDomainDeliverabilityCampaignsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2511,14 +2506,13 @@ const opListEmailIdentities = "ListEmailIdentities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEmailIdentitiesRequest method.
+//	req, resp := client.ListEmailIdentitiesRequest(params)
 //
-//    // Example sending a request using the ListEmailIdentitiesRequest method.
-//    req, resp := client.ListEmailIdentitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListEmailIdentities
 func (c *PinpointEmail) ListEmailIdentitiesRequest(input *ListEmailIdentitiesInput) (req *request.Request, output *ListEmailIdentitiesOutput) {
@@ -2558,11 +2552,12 @@ func (c *PinpointEmail) ListEmailIdentitiesRequest(input *ListEmailIdentitiesInp
 // API operation ListEmailIdentities for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListEmailIdentities
 func (c *PinpointEmail) ListEmailIdentities(input *ListEmailIdentitiesInput) (*ListEmailIdentitiesOutput, error) {
@@ -2594,15 +2589,14 @@ func (c *PinpointEmail) ListEmailIdentitiesWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEmailIdentities operation.
-//    pageNum := 0
-//    err := client.ListEmailIdentitiesPages(params,
-//        func(page *pinpointemail.ListEmailIdentitiesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEmailIdentities operation.
+//	pageNum := 0
+//	err := client.ListEmailIdentitiesPages(params,
+//	    func(page *pinpointemail.ListEmailIdentitiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *PinpointEmail) ListEmailIdentitiesPages(input *ListEmailIdentitiesInput, fn func(*ListEmailIdentitiesOutput, bool) bool) error {
 	return c.ListEmailIdentitiesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2654,14 +2648,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListTagsForResource
 func (c *PinpointEmail) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2697,14 +2690,15 @@ func (c *PinpointEmail) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input you provided is invalid.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - BadRequestException
+//     The input you provided is invalid.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListTagsForResource
 func (c *PinpointEmail) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2744,14 +2738,13 @@ const opPutAccountDedicatedIpWarmupAttributes = "PutAccountDedicatedIpWarmupAttr
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutAccountDedicatedIpWarmupAttributesRequest method.
+//	req, resp := client.PutAccountDedicatedIpWarmupAttributesRequest(params)
 //
-//    // Example sending a request using the PutAccountDedicatedIpWarmupAttributesRequest method.
-//    req, resp := client.PutAccountDedicatedIpWarmupAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutAccountDedicatedIpWarmupAttributes
 func (c *PinpointEmail) PutAccountDedicatedIpWarmupAttributesRequest(input *PutAccountDedicatedIpWarmupAttributesInput) (req *request.Request, output *PutAccountDedicatedIpWarmupAttributesOutput) {
@@ -2783,11 +2776,12 @@ func (c *PinpointEmail) PutAccountDedicatedIpWarmupAttributesRequest(input *PutA
 // API operation PutAccountDedicatedIpWarmupAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutAccountDedicatedIpWarmupAttributes
 func (c *PinpointEmail) PutAccountDedicatedIpWarmupAttributes(input *PutAccountDedicatedIpWarmupAttributesInput) (*PutAccountDedicatedIpWarmupAttributesOutput, error) {
@@ -2827,14 +2821,13 @@ const opPutAccountSendingAttributes = "PutAccountSendingAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutAccountSendingAttributesRequest method.
+//	req, resp := client.PutAccountSendingAttributesRequest(params)
 //
-//    // Example sending a request using the PutAccountSendingAttributesRequest method.
-//    req, resp := client.PutAccountSendingAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutAccountSendingAttributes
 func (c *PinpointEmail) PutAccountSendingAttributesRequest(input *PutAccountSendingAttributesInput) (req *request.Request, output *PutAccountSendingAttributesOutput) {
@@ -2866,11 +2859,12 @@ func (c *PinpointEmail) PutAccountSendingAttributesRequest(input *PutAccountSend
 // API operation PutAccountSendingAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutAccountSendingAttributes
 func (c *PinpointEmail) PutAccountSendingAttributes(input *PutAccountSendingAttributesInput) (*PutAccountSendingAttributesOutput, error) {
@@ -2910,14 +2904,13 @@ const opPutConfigurationSetDeliveryOptions = "PutConfigurationSetDeliveryOptions
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutConfigurationSetDeliveryOptionsRequest method.
+//	req, resp := client.PutConfigurationSetDeliveryOptionsRequest(params)
 //
-//    // Example sending a request using the PutConfigurationSetDeliveryOptionsRequest method.
-//    req, resp := client.PutConfigurationSetDeliveryOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutConfigurationSetDeliveryOptions
 func (c *PinpointEmail) PutConfigurationSetDeliveryOptionsRequest(input *PutConfigurationSetDeliveryOptionsInput) (req *request.Request, output *PutConfigurationSetDeliveryOptionsOutput) {
@@ -2951,14 +2944,15 @@ func (c *PinpointEmail) PutConfigurationSetDeliveryOptionsRequest(input *PutConf
 // API operation PutConfigurationSetDeliveryOptions for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutConfigurationSetDeliveryOptions
 func (c *PinpointEmail) PutConfigurationSetDeliveryOptions(input *PutConfigurationSetDeliveryOptionsInput) (*PutConfigurationSetDeliveryOptionsOutput, error) {
@@ -2998,14 +2992,13 @@ const opPutConfigurationSetReputationOptions = "PutConfigurationSetReputationOpt
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutConfigurationSetReputationOptionsRequest method.
+//	req, resp := client.PutConfigurationSetReputationOptionsRequest(params)
 //
-//    // Example sending a request using the PutConfigurationSetReputationOptionsRequest method.
-//    req, resp := client.PutConfigurationSetReputationOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutConfigurationSetReputationOptions
 func (c *PinpointEmail) PutConfigurationSetReputationOptionsRequest(input *PutConfigurationSetReputationOptionsInput) (req *request.Request, output *PutConfigurationSetReputationOptionsOutput) {
@@ -3038,14 +3031,15 @@ func (c *PinpointEmail) PutConfigurationSetReputationOptionsRequest(input *PutCo
 // API operation PutConfigurationSetReputationOptions for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutConfigurationSetReputationOptions
 func (c *PinpointEmail) PutConfigurationSetReputationOptions(input *PutConfigurationSetReputationOptionsInput) (*PutConfigurationSetReputationOptionsOutput, error) {
@@ -3085,14 +3079,13 @@ const opPutConfigurationSetSendingOptions = "PutConfigurationSetSendingOptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutConfigurationSetSendingOptionsRequest method.
+//	req, resp := client.PutConfigurationSetSendingOptionsRequest(params)
 //
-//    // Example sending a request using the PutConfigurationSetSendingOptionsRequest method.
-//    req, resp := client.PutConfigurationSetSendingOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutConfigurationSetSendingOptions
 func (c *PinpointEmail) PutConfigurationSetSendingOptionsRequest(input *PutConfigurationSetSendingOptionsInput) (req *request.Request, output *PutConfigurationSetSendingOptionsOutput) {
@@ -3125,14 +3118,15 @@ func (c *PinpointEmail) PutConfigurationSetSendingOptionsRequest(input *PutConfi
 // API operation PutConfigurationSetSendingOptions for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutConfigurationSetSendingOptions
 func (c *PinpointEmail) PutConfigurationSetSendingOptions(input *PutConfigurationSetSendingOptionsInput) (*PutConfigurationSetSendingOptionsOutput, error) {
@@ -3172,14 +3166,13 @@ const opPutConfigurationSetTrackingOptions = "PutConfigurationSetTrackingOptions
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutConfigurationSetTrackingOptionsRequest method.
+//	req, resp := client.PutConfigurationSetTrackingOptionsRequest(params)
 //
-//    // Example sending a request using the PutConfigurationSetTrackingOptionsRequest method.
-//    req, resp := client.PutConfigurationSetTrackingOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutConfigurationSetTrackingOptions
 func (c *PinpointEmail) PutConfigurationSetTrackingOptionsRequest(input *PutConfigurationSetTrackingOptionsInput) (req *request.Request, output *PutConfigurationSetTrackingOptionsOutput) {
@@ -3212,14 +3205,15 @@ func (c *PinpointEmail) PutConfigurationSetTrackingOptionsRequest(input *PutConf
 // API operation PutConfigurationSetTrackingOptions for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutConfigurationSetTrackingOptions
 func (c *PinpointEmail) PutConfigurationSetTrackingOptions(input *PutConfigurationSetTrackingOptionsInput) (*PutConfigurationSetTrackingOptionsOutput, error) {
@@ -3259,14 +3253,13 @@ const opPutDedicatedIpInPool = "PutDedicatedIpInPool"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutDedicatedIpInPoolRequest method.
+//	req, resp := client.PutDedicatedIpInPoolRequest(params)
 //
-//    // Example sending a request using the PutDedicatedIpInPoolRequest method.
-//    req, resp := client.PutDedicatedIpInPoolRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutDedicatedIpInPool
 func (c *PinpointEmail) PutDedicatedIpInPoolRequest(input *PutDedicatedIpInPoolInput) (req *request.Request, output *PutDedicatedIpInPoolOutput) {
@@ -3304,14 +3297,15 @@ func (c *PinpointEmail) PutDedicatedIpInPoolRequest(input *PutDedicatedIpInPoolI
 // API operation PutDedicatedIpInPool for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutDedicatedIpInPool
 func (c *PinpointEmail) PutDedicatedIpInPool(input *PutDedicatedIpInPoolInput) (*PutDedicatedIpInPoolOutput, error) {
@@ -3351,14 +3345,13 @@ const opPutDedicatedIpWarmupAttributes = "PutDedicatedIpWarmupAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutDedicatedIpWarmupAttributesRequest method.
+//	req, resp := client.PutDedicatedIpWarmupAttributesRequest(params)
 //
-//    // Example sending a request using the PutDedicatedIpWarmupAttributesRequest method.
-//    req, resp := client.PutDedicatedIpWarmupAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutDedicatedIpWarmupAttributes
 func (c *PinpointEmail) PutDedicatedIpWarmupAttributesRequest(input *PutDedicatedIpWarmupAttributesInput) (req *request.Request, output *PutDedicatedIpWarmupAttributesOutput) {
@@ -3388,14 +3381,15 @@ func (c *PinpointEmail) PutDedicatedIpWarmupAttributesRequest(input *PutDedicate
 // API operation PutDedicatedIpWarmupAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutDedicatedIpWarmupAttributes
 func (c *PinpointEmail) PutDedicatedIpWarmupAttributes(input *PutDedicatedIpWarmupAttributesInput) (*PutDedicatedIpWarmupAttributesOutput, error) {
@@ -3435,14 +3429,13 @@ const opPutDeliverabilityDashboardOption = "PutDeliverabilityDashboardOption"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutDeliverabilityDashboardOptionRequest method.
+//	req, resp := client.PutDeliverabilityDashboardOptionRequest(params)
 //
-//    // Example sending a request using the PutDeliverabilityDashboardOptionRequest method.
-//    req, resp := client.PutDeliverabilityDashboardOptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutDeliverabilityDashboardOption
 func (c *PinpointEmail) PutDeliverabilityDashboardOptionRequest(input *PutDeliverabilityDashboardOptionInput) (req *request.Request, output *PutDeliverabilityDashboardOptionOutput) {
@@ -3483,20 +3476,21 @@ func (c *PinpointEmail) PutDeliverabilityDashboardOptionRequest(input *PutDelive
 // API operation PutDeliverabilityDashboardOption for usage and error information.
 //
 // Returned Error Types:
-//   * AlreadyExistsException
-//   The resource specified in your request already exists.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - AlreadyExistsException
+//     The resource specified in your request already exists.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * LimitExceededException
-//   There are too many instances of the specified resource type.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - LimitExceededException
+//     There are too many instances of the specified resource type.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutDeliverabilityDashboardOption
 func (c *PinpointEmail) PutDeliverabilityDashboardOption(input *PutDeliverabilityDashboardOptionInput) (*PutDeliverabilityDashboardOptionOutput, error) {
@@ -3536,14 +3530,13 @@ const opPutEmailIdentityDkimAttributes = "PutEmailIdentityDkimAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutEmailIdentityDkimAttributesRequest method.
+//	req, resp := client.PutEmailIdentityDkimAttributesRequest(params)
 //
-//    // Example sending a request using the PutEmailIdentityDkimAttributesRequest method.
-//    req, resp := client.PutEmailIdentityDkimAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutEmailIdentityDkimAttributes
 func (c *PinpointEmail) PutEmailIdentityDkimAttributesRequest(input *PutEmailIdentityDkimAttributesInput) (req *request.Request, output *PutEmailIdentityDkimAttributesOutput) {
@@ -3575,14 +3568,15 @@ func (c *PinpointEmail) PutEmailIdentityDkimAttributesRequest(input *PutEmailIde
 // API operation PutEmailIdentityDkimAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutEmailIdentityDkimAttributes
 func (c *PinpointEmail) PutEmailIdentityDkimAttributes(input *PutEmailIdentityDkimAttributesInput) (*PutEmailIdentityDkimAttributesOutput, error) {
@@ -3622,14 +3616,13 @@ const opPutEmailIdentityFeedbackAttributes = "PutEmailIdentityFeedbackAttributes
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutEmailIdentityFeedbackAttributesRequest method.
+//	req, resp := client.PutEmailIdentityFeedbackAttributesRequest(params)
 //
-//    // Example sending a request using the PutEmailIdentityFeedbackAttributesRequest method.
-//    req, resp := client.PutEmailIdentityFeedbackAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutEmailIdentityFeedbackAttributes
 func (c *PinpointEmail) PutEmailIdentityFeedbackAttributesRequest(input *PutEmailIdentityFeedbackAttributesInput) (req *request.Request, output *PutEmailIdentityFeedbackAttributesOutput) {
@@ -3675,14 +3668,15 @@ func (c *PinpointEmail) PutEmailIdentityFeedbackAttributesRequest(input *PutEmai
 // API operation PutEmailIdentityFeedbackAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutEmailIdentityFeedbackAttributes
 func (c *PinpointEmail) PutEmailIdentityFeedbackAttributes(input *PutEmailIdentityFeedbackAttributesInput) (*PutEmailIdentityFeedbackAttributesOutput, error) {
@@ -3722,14 +3716,13 @@ const opPutEmailIdentityMailFromAttributes = "PutEmailIdentityMailFromAttributes
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutEmailIdentityMailFromAttributesRequest method.
+//	req, resp := client.PutEmailIdentityMailFromAttributesRequest(params)
 //
-//    // Example sending a request using the PutEmailIdentityMailFromAttributesRequest method.
-//    req, resp := client.PutEmailIdentityMailFromAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutEmailIdentityMailFromAttributes
 func (c *PinpointEmail) PutEmailIdentityMailFromAttributesRequest(input *PutEmailIdentityMailFromAttributesInput) (req *request.Request, output *PutEmailIdentityMailFromAttributesOutput) {
@@ -3762,14 +3755,15 @@ func (c *PinpointEmail) PutEmailIdentityMailFromAttributesRequest(input *PutEmai
 // API operation PutEmailIdentityMailFromAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutEmailIdentityMailFromAttributes
 func (c *PinpointEmail) PutEmailIdentityMailFromAttributes(input *PutEmailIdentityMailFromAttributesInput) (*PutEmailIdentityMailFromAttributesOutput, error) {
@@ -3809,14 +3803,13 @@ const opSendEmail = "SendEmail"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendEmailRequest method.
+//	req, resp := client.SendEmailRequest(params)
 //
-//    // Example sending a request using the SendEmailRequest method.
-//    req, resp := client.SendEmailRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/SendEmail
 func (c *PinpointEmail) SendEmailRequest(input *SendEmailInput) (req *request.Request, output *SendEmailOutput) {
@@ -3840,14 +3833,14 @@ func (c *PinpointEmail) SendEmailRequest(input *SendEmailInput) (req *request.Re
 // Sends an email message. You can use the Amazon Pinpoint Email API to send
 // two types of messages:
 //
-//    * Simple – A standard email message. When you create this type of message,
-//    you specify the sender, the recipient, and the message body, and Amazon
-//    Pinpoint assembles the message for you.
+//   - Simple – A standard email message. When you create this type of message,
+//     you specify the sender, the recipient, and the message body, and Amazon
+//     Pinpoint assembles the message for you.
 //
-//    * Raw – A raw, MIME-formatted email message. When you send this type
-//    of email, you have to specify all of the message headers, as well as the
-//    message body. You can use this message type to send messages that contain
-//    attachments. The message that you specify has to be a valid MIME message.
+//   - Raw – A raw, MIME-formatted email message. When you send this type
+//     of email, you have to specify all of the message headers, as well as the
+//     message body. You can use this message type to send messages that contain
+//     attachments. The message that you specify has to be a valid MIME message.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3857,31 +3850,32 @@ func (c *PinpointEmail) SendEmailRequest(input *SendEmailInput) (req *request.Re
 // API operation SendEmail for usage and error information.
 //
 // Returned Error Types:
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
 //
-//   * LimitExceededException
-//   There are too many instances of the specified resource type.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
-//   * AccountSuspendedException
-//   The message can't be sent because the account's ability to send email has
-//   been permanently restricted.
+//   - LimitExceededException
+//     There are too many instances of the specified resource type.
 //
-//   * SendingPausedException
-//   The message can't be sent because the account's ability to send email is
-//   currently paused.
+//   - AccountSuspendedException
+//     The message can't be sent because the account's ability to send email has
+//     been permanently restricted.
 //
-//   * MessageRejected
-//   The message can't be sent because it contains invalid content.
+//   - SendingPausedException
+//     The message can't be sent because the account's ability to send email is
+//     currently paused.
 //
-//   * MailFromDomainNotVerifiedException
-//   The message can't be sent because the sending domain isn't verified.
+//   - MessageRejected
+//     The message can't be sent because it contains invalid content.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - MailFromDomainNotVerifiedException
+//     The message can't be sent because the sending domain isn't verified.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/SendEmail
 func (c *PinpointEmail) SendEmail(input *SendEmailInput) (*SendEmailOutput, error) {
@@ -3921,14 +3915,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/TagResource
 func (c *PinpointEmail) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -3969,17 +3962,18 @@ func (c *PinpointEmail) TagResourceRequest(input *TagResourceInput) (req *reques
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input you provided is invalid.
 //
-//   * ConcurrentModificationException
-//   The resource is being modified by another operation or thread.
+//   - BadRequestException
+//     The input you provided is invalid.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/TagResource
 func (c *PinpointEmail) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -4019,14 +4013,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/UntagResource
 func (c *PinpointEmail) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -4058,17 +4051,18 @@ func (c *PinpointEmail) UntagResourceRequest(input *UntagResourceInput) (req *re
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input you provided is invalid.
 //
-//   * ConcurrentModificationException
-//   The resource is being modified by another operation or thread.
+//   - BadRequestException
+//     The input you provided is invalid.
 //
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
+//   - ConcurrentModificationException
+//     The resource is being modified by another operation or thread.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/UntagResource
 func (c *PinpointEmail) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -4108,14 +4102,13 @@ const opUpdateConfigurationSetEventDestination = "UpdateConfigurationSetEventDes
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConfigurationSetEventDestinationRequest method.
+//	req, resp := client.UpdateConfigurationSetEventDestinationRequest(params)
 //
-//    // Example sending a request using the UpdateConfigurationSetEventDestinationRequest method.
-//    req, resp := client.UpdateConfigurationSetEventDestinationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/UpdateConfigurationSetEventDestination
 func (c *PinpointEmail) UpdateConfigurationSetEventDestinationRequest(input *UpdateConfigurationSetEventDestinationInput) (req *request.Request, output *UpdateConfigurationSetEventDestinationOutput) {
@@ -4154,14 +4147,15 @@ func (c *PinpointEmail) UpdateConfigurationSetEventDestinationRequest(input *Upd
 // API operation UpdateConfigurationSetEventDestination for usage and error information.
 //
 // Returned Error Types:
-//   * NotFoundException
-//   The resource you attempted to access doesn't exist.
 //
-//   * TooManyRequestsException
-//   Too many requests have been made to the operation.
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
 //
-//   * BadRequestException
-//   The input you provided is invalid.
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/UpdateConfigurationSetEventDestination
 func (c *PinpointEmail) UpdateConfigurationSetEventDestination(input *UpdateConfigurationSetEventDestinationInput) (*UpdateConfigurationSetEventDestinationOutput, error) {
@@ -4194,12 +4188,20 @@ type AccountSuspendedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountSuspendedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountSuspendedException) GoString() string {
 	return s.String()
 }
@@ -4250,12 +4252,20 @@ type AlreadyExistsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlreadyExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlreadyExistsException) GoString() string {
 	return s.String()
 }
@@ -4306,12 +4316,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -4370,12 +4388,20 @@ type BlacklistEntry struct {
 	RblName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlacklistEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlacklistEntry) GoString() string {
 	return s.String()
 }
@@ -4413,12 +4439,20 @@ type Body struct {
 	Text *Content `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Body) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Body) GoString() string {
 	return s.String()
 }
@@ -4468,12 +4502,20 @@ type CloudWatchDestination struct {
 	DimensionConfigurations []*CloudWatchDimensionConfiguration `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDestination) GoString() string {
 	return s.String()
 }
@@ -4546,12 +4588,20 @@ type CloudWatchDimensionConfiguration struct {
 	DimensionValueSource *string `type:"string" required:"true" enum:"DimensionValueSource"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDimensionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDimensionConfiguration) GoString() string {
 	return s.String()
 }
@@ -4601,12 +4651,20 @@ type ConcurrentModificationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentModificationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentModificationException) GoString() string {
 	return s.String()
 }
@@ -4666,12 +4724,20 @@ type Content struct {
 	Data *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Content) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Content) GoString() string {
 	return s.String()
 }
@@ -4722,12 +4788,20 @@ type CreateConfigurationSetEventDestinationInput struct {
 	EventDestinationName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetEventDestinationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetEventDestinationInput) GoString() string {
 	return s.String()
 }
@@ -4783,12 +4857,20 @@ type CreateConfigurationSetEventDestinationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetEventDestinationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetEventDestinationOutput) GoString() string {
 	return s.String()
 }
@@ -4823,12 +4905,20 @@ type CreateConfigurationSetInput struct {
 	TrackingOptions *TrackingOptions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetInput) GoString() string {
 	return s.String()
 }
@@ -4903,12 +4993,20 @@ type CreateConfigurationSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetOutput) GoString() string {
 	return s.String()
 }
@@ -4927,12 +5025,20 @@ type CreateDedicatedIpPoolInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDedicatedIpPoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDedicatedIpPoolInput) GoString() string {
 	return s.String()
 }
@@ -4978,12 +5084,20 @@ type CreateDedicatedIpPoolOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDedicatedIpPoolOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDedicatedIpPoolOutput) GoString() string {
 	return s.String()
 }
@@ -5020,12 +5134,20 @@ type CreateDeliverabilityTestReportInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeliverabilityTestReportInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeliverabilityTestReportInput) GoString() string {
 	return s.String()
 }
@@ -5104,12 +5226,20 @@ type CreateDeliverabilityTestReportOutput struct {
 	ReportId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeliverabilityTestReportOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeliverabilityTestReportOutput) GoString() string {
 	return s.String()
 }
@@ -5141,12 +5271,20 @@ type CreateEmailIdentityInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEmailIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEmailIdentityInput) GoString() string {
 	return s.String()
 }
@@ -5208,12 +5346,20 @@ type CreateEmailIdentityOutput struct {
 	VerifiedForSendingStatus *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEmailIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEmailIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -5253,12 +5399,20 @@ type DailyVolume struct {
 	VolumeStatistics *VolumeStatistics `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DailyVolume) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DailyVolume) GoString() string {
 	return s.String()
 }
@@ -5314,12 +5468,20 @@ type DedicatedIp struct {
 	WarmupStatus *string `type:"string" required:"true" enum:"WarmupStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DedicatedIp) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DedicatedIp) GoString() string {
 	return s.String()
 }
@@ -5350,7 +5512,7 @@ func (s *DedicatedIp) SetWarmupStatus(v string) *DedicatedIp {
 
 // A request to delete an event destination from a configuration set.
 type DeleteConfigurationSetEventDestinationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the configuration set that contains the event destination that
 	// you want to delete.
@@ -5364,12 +5526,20 @@ type DeleteConfigurationSetEventDestinationInput struct {
 	EventDestinationName *string `location:"uri" locationName:"EventDestinationName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetEventDestinationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetEventDestinationInput) GoString() string {
 	return s.String()
 }
@@ -5414,19 +5584,27 @@ type DeleteConfigurationSetEventDestinationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetEventDestinationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetEventDestinationOutput) GoString() string {
 	return s.String()
 }
 
 // A request to delete a configuration set.
 type DeleteConfigurationSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the configuration set that you want to delete.
 	//
@@ -5434,12 +5612,20 @@ type DeleteConfigurationSetInput struct {
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetInput) GoString() string {
 	return s.String()
 }
@@ -5472,19 +5658,27 @@ type DeleteConfigurationSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetOutput) GoString() string {
 	return s.String()
 }
 
 // A request to delete a dedicated IP pool.
 type DeleteDedicatedIpPoolInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the dedicated IP pool that you want to delete.
 	//
@@ -5492,12 +5686,20 @@ type DeleteDedicatedIpPoolInput struct {
 	PoolName *string `location:"uri" locationName:"PoolName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDedicatedIpPoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDedicatedIpPoolInput) GoString() string {
 	return s.String()
 }
@@ -5530,12 +5732,20 @@ type DeleteDedicatedIpPoolOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDedicatedIpPoolOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDedicatedIpPoolOutput) GoString() string {
 	return s.String()
 }
@@ -5545,7 +5755,7 @@ func (s DeleteDedicatedIpPoolOutput) GoString() string {
 // You can restore your ability to send email by completing the verification
 // process for the identity again.
 type DeleteEmailIdentityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identity (that is, the email address or domain) that you want to delete
 	// from your Amazon Pinpoint account.
@@ -5554,12 +5764,20 @@ type DeleteEmailIdentityInput struct {
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEmailIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEmailIdentityInput) GoString() string {
 	return s.String()
 }
@@ -5592,12 +5810,20 @@ type DeleteEmailIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEmailIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEmailIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -5633,12 +5859,20 @@ type DeliverabilityTestReport struct {
 	Subject *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliverabilityTestReport) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliverabilityTestReport) GoString() string {
 	return s.String()
 }
@@ -5694,12 +5928,20 @@ type DeliveryOptions struct {
 	TlsPolicy *string `type:"string" enum:"TlsPolicy"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliveryOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliveryOptions) GoString() string {
 	return s.String()
 }
@@ -5733,12 +5975,20 @@ type Destination struct {
 	ToAddresses []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Destination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Destination) GoString() string {
 	return s.String()
 }
@@ -5800,12 +6050,20 @@ type DkimAttributes struct {
 	Tokens []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DkimAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DkimAttributes) GoString() string {
 	return s.String()
 }
@@ -5895,12 +6153,20 @@ type DomainDeliverabilityCampaign struct {
 	Subject *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainDeliverabilityCampaign) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainDeliverabilityCampaign) GoString() string {
 	return s.String()
 }
@@ -6010,12 +6276,20 @@ type DomainDeliverabilityTrackingOption struct {
 	SubscriptionStartDate *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainDeliverabilityTrackingOption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainDeliverabilityTrackingOption) GoString() string {
 	return s.String()
 }
@@ -6063,12 +6337,20 @@ type DomainIspPlacement struct {
 	SpamRawCount *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainIspPlacement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainIspPlacement) GoString() string {
 	return s.String()
 }
@@ -6141,12 +6423,20 @@ type EmailContent struct {
 	Template *Template `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailContent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EmailContent) GoString() string {
 	return s.String()
 }
@@ -6218,7 +6508,7 @@ type EventDestination struct {
 	// The types of events that Amazon Pinpoint sends to the specified event destinations.
 	//
 	// MatchingEventTypes is a required field
-	MatchingEventTypes []*string `type:"list" required:"true"`
+	MatchingEventTypes []*string `type:"list" required:"true" enum:"EventType"`
 
 	// A name that identifies the event destination.
 	//
@@ -6235,12 +6525,20 @@ type EventDestination struct {
 	SnsDestination *SnsDestination `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventDestination) GoString() string {
 	return s.String()
 }
@@ -6313,7 +6611,7 @@ type EventDestinationDefinition struct {
 
 	// An array that specifies which events Amazon Pinpoint should send to the destinations
 	// in this EventDestinationDefinition.
-	MatchingEventTypes []*string `type:"list"`
+	MatchingEventTypes []*string `type:"list" enum:"EventType"`
 
 	// An object that defines a Amazon Pinpoint destination for email events. You
 	// can use Amazon Pinpoint events to create attributes in Amazon Pinpoint projects.
@@ -6325,12 +6623,20 @@ type EventDestinationDefinition struct {
 	SnsDestination *SnsDestination `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventDestinationDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventDestinationDefinition) GoString() string {
 	return s.String()
 }
@@ -6399,15 +6705,23 @@ func (s *EventDestinationDefinition) SetSnsDestination(v *SnsDestination) *Event
 // A request to obtain information about the email-sending capabilities of your
 // Amazon Pinpoint account.
 type GetAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountInput) GoString() string {
 	return s.String()
 }
@@ -6461,12 +6775,20 @@ type GetAccountOutput struct {
 	SendingEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountOutput) GoString() string {
 	return s.String()
 }
@@ -6504,7 +6826,7 @@ func (s *GetAccountOutput) SetSendingEnabled(v bool) *GetAccountOutput {
 // A request to retrieve a list of the blacklists that your dedicated IP addresses
 // appear on.
 type GetBlacklistReportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A list of IP addresses that you want to retrieve blacklist information about.
 	// You can only specify the dedicated IP addresses that you use to send email
@@ -6514,12 +6836,20 @@ type GetBlacklistReportsInput struct {
 	BlacklistItemNames []*string `location:"querystring" locationName:"BlacklistItemNames" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlacklistReportsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlacklistReportsInput) GoString() string {
 	return s.String()
 }
@@ -6554,12 +6884,20 @@ type GetBlacklistReportsOutput struct {
 	BlacklistReport map[string][]*BlacklistEntry `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlacklistReportsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlacklistReportsOutput) GoString() string {
 	return s.String()
 }
@@ -6573,7 +6911,7 @@ func (s *GetBlacklistReportsOutput) SetBlacklistReport(v map[string][]*Blacklist
 // A request to obtain information about the event destinations for a configuration
 // set.
 type GetConfigurationSetEventDestinationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the configuration set that contains the event destination.
 	//
@@ -6581,12 +6919,20 @@ type GetConfigurationSetEventDestinationsInput struct {
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationSetEventDestinationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationSetEventDestinationsInput) GoString() string {
 	return s.String()
 }
@@ -6622,12 +6968,20 @@ type GetConfigurationSetEventDestinationsOutput struct {
 	EventDestinations []*EventDestination `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationSetEventDestinationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationSetEventDestinationsOutput) GoString() string {
 	return s.String()
 }
@@ -6640,7 +6994,7 @@ func (s *GetConfigurationSetEventDestinationsOutput) SetEventDestinations(v []*E
 
 // A request to obtain information about a configuration set.
 type GetConfigurationSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the configuration set that you want to obtain more information
 	// about.
@@ -6649,12 +7003,20 @@ type GetConfigurationSetInput struct {
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationSetInput) GoString() string {
 	return s.String()
 }
@@ -6709,12 +7071,20 @@ type GetConfigurationSetOutput struct {
 	TrackingOptions *TrackingOptions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationSetOutput) GoString() string {
 	return s.String()
 }
@@ -6757,7 +7127,7 @@ func (s *GetConfigurationSetOutput) SetTrackingOptions(v *TrackingOptions) *GetC
 
 // A request to obtain more information about a dedicated IP address.
 type GetDedicatedIpInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The IP address that you want to obtain more information about. The value
 	// you specify has to be a dedicated IP address that's assocaited with your
@@ -6767,12 +7137,20 @@ type GetDedicatedIpInput struct {
 	Ip *string `location:"uri" locationName:"IP" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDedicatedIpInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDedicatedIpInput) GoString() string {
 	return s.String()
 }
@@ -6807,12 +7185,20 @@ type GetDedicatedIpOutput struct {
 	DedicatedIp *DedicatedIp `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDedicatedIpOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDedicatedIpOutput) GoString() string {
 	return s.String()
 }
@@ -6825,7 +7211,7 @@ func (s *GetDedicatedIpOutput) SetDedicatedIp(v *DedicatedIp) *GetDedicatedIpOut
 
 // A request to obtain more information about dedicated IP pools.
 type GetDedicatedIpsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to GetDedicatedIps to indicate the
 	// position of the dedicated IP pool in the list of IP pools.
@@ -6841,12 +7227,20 @@ type GetDedicatedIpsInput struct {
 	PoolName *string `location:"querystring" locationName:"PoolName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDedicatedIpsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDedicatedIpsInput) GoString() string {
 	return s.String()
 }
@@ -6884,12 +7278,20 @@ type GetDedicatedIpsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDedicatedIpsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDedicatedIpsOutput) GoString() string {
 	return s.String()
 }
@@ -6917,15 +7319,23 @@ func (s *GetDedicatedIpsOutput) SetNextToken(v string) *GetDedicatedIpsOutput {
 // For more information about the features and cost of a Deliverability dashboard
 // subscription, see Amazon Pinpoint Pricing (http://aws.amazon.com/pinpoint/pricing/).
 type GetDeliverabilityDashboardOptionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeliverabilityDashboardOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeliverabilityDashboardOptionsInput) GoString() string {
 	return s.String()
 }
@@ -6963,12 +7373,20 @@ type GetDeliverabilityDashboardOptionsOutput struct {
 	SubscriptionExpiryDate *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeliverabilityDashboardOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeliverabilityDashboardOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -7005,7 +7423,7 @@ func (s *GetDeliverabilityDashboardOptionsOutput) SetSubscriptionExpiryDate(v ti
 
 // A request to retrieve the results of a predictive inbox placement test.
 type GetDeliverabilityTestReportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique string that identifies the predictive inbox placement test.
 	//
@@ -7013,12 +7431,20 @@ type GetDeliverabilityTestReportInput struct {
 	ReportId *string `location:"uri" locationName:"ReportId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeliverabilityTestReportInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeliverabilityTestReportInput) GoString() string {
 	return s.String()
 }
@@ -7076,12 +7502,20 @@ type GetDeliverabilityTestReportOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeliverabilityTestReportOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeliverabilityTestReportOutput) GoString() string {
 	return s.String()
 }
@@ -7121,7 +7555,7 @@ func (s *GetDeliverabilityTestReportOutput) SetTags(v []*Tag) *GetDeliverability
 // that the Deliverability dashboard is enabled for (PutDeliverabilityDashboardOption
 // operation).
 type GetDomainDeliverabilityCampaignInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier for the campaign. Amazon Pinpoint automatically generates
 	// and assigns this identifier to a campaign. This value is not the same as
@@ -7133,12 +7567,20 @@ type GetDomainDeliverabilityCampaignInput struct {
 	CampaignId *string `location:"uri" locationName:"CampaignId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainDeliverabilityCampaignInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainDeliverabilityCampaignInput) GoString() string {
 	return s.String()
 }
@@ -7178,12 +7620,20 @@ type GetDomainDeliverabilityCampaignOutput struct {
 	DomainDeliverabilityCampaign *DomainDeliverabilityCampaign `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainDeliverabilityCampaignOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainDeliverabilityCampaignOutput) GoString() string {
 	return s.String()
 }
@@ -7196,7 +7646,7 @@ func (s *GetDomainDeliverabilityCampaignOutput) SetDomainDeliverabilityCampaign(
 
 // A request to obtain deliverability metrics for a domain.
 type GetDomainStatisticsReportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The domain that you want to obtain deliverability metrics for.
 	//
@@ -7217,12 +7667,20 @@ type GetDomainStatisticsReportInput struct {
 	StartDate *time.Time `location:"querystring" locationName:"StartDate" type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainStatisticsReportInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainStatisticsReportInput) GoString() string {
 	return s.String()
 }
@@ -7287,12 +7745,20 @@ type GetDomainStatisticsReportOutput struct {
 	OverallVolume *OverallVolume `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainStatisticsReportOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDomainStatisticsReportOutput) GoString() string {
 	return s.String()
 }
@@ -7311,7 +7777,7 @@ func (s *GetDomainStatisticsReportOutput) SetOverallVolume(v *OverallVolume) *Ge
 
 // A request to return details about an email identity.
 type GetEmailIdentityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The email identity that you want to retrieve details for.
 	//
@@ -7319,12 +7785,20 @@ type GetEmailIdentityInput struct {
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetEmailIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetEmailIdentityInput) GoString() string {
 	return s.String()
 }
@@ -7392,12 +7866,20 @@ type GetEmailIdentityOutput struct {
 	VerifiedForSendingStatus *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetEmailIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetEmailIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -7463,12 +7945,20 @@ type IdentityInfo struct {
 	SendingEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityInfo) GoString() string {
 	return s.String()
 }
@@ -7506,12 +7996,20 @@ type InboxPlacementTrackingOption struct {
 	TrackedIsps []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InboxPlacementTrackingOption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InboxPlacementTrackingOption) GoString() string {
 	return s.String()
 }
@@ -7540,12 +8038,20 @@ type IspPlacement struct {
 	PlacementStatistics *PlacementStatistics `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IspPlacement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IspPlacement) GoString() string {
 	return s.String()
 }
@@ -7581,12 +8087,20 @@ type KinesisFirehoseDestination struct {
 	IamRoleArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisFirehoseDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisFirehoseDestination) GoString() string {
 	return s.String()
 }
@@ -7627,12 +8141,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -7678,7 +8200,7 @@ func (s *LimitExceededException) RequestID() string {
 // A request to obtain a list of configuration sets for your Amazon Pinpoint
 // account in the current AWS Region.
 type ListConfigurationSetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to ListConfigurationSets to indicate
 	// the position in the list of configuration sets.
@@ -7691,12 +8213,20 @@ type ListConfigurationSetsInput struct {
 	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationSetsInput) GoString() string {
 	return s.String()
 }
@@ -7728,12 +8258,20 @@ type ListConfigurationSetsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationSetsOutput) GoString() string {
 	return s.String()
 }
@@ -7752,7 +8290,7 @@ func (s *ListConfigurationSetsOutput) SetNextToken(v string) *ListConfigurationS
 
 // A request to obtain a list of dedicated IP pools.
 type ListDedicatedIpPoolsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to ListDedicatedIpPools to indicate
 	// the position in the list of dedicated IP pools.
@@ -7765,12 +8303,20 @@ type ListDedicatedIpPoolsInput struct {
 	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDedicatedIpPoolsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDedicatedIpPoolsInput) GoString() string {
 	return s.String()
 }
@@ -7801,12 +8347,20 @@ type ListDedicatedIpPoolsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDedicatedIpPoolsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDedicatedIpPoolsOutput) GoString() string {
 	return s.String()
 }
@@ -7826,7 +8380,7 @@ func (s *ListDedicatedIpPoolsOutput) SetNextToken(v string) *ListDedicatedIpPool
 // A request to list all of the predictive inbox placement tests that you've
 // performed.
 type ListDeliverabilityTestReportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to ListDeliverabilityTestReports to
 	// indicate the position in the list of predictive inbox placement tests.
@@ -7841,12 +8395,20 @@ type ListDeliverabilityTestReportsInput struct {
 	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeliverabilityTestReportsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeliverabilityTestReportsInput) GoString() string {
 	return s.String()
 }
@@ -7881,12 +8443,20 @@ type ListDeliverabilityTestReportsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeliverabilityTestReportsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeliverabilityTestReportsOutput) GoString() string {
 	return s.String()
 }
@@ -7908,7 +8478,7 @@ func (s *ListDeliverabilityTestReportsOutput) SetNextToken(v string) *ListDelive
 // domain only if you enabled the Deliverability dashboard (PutDeliverabilityDashboardOption
 // operation) for the domain.
 type ListDomainDeliverabilityCampaignsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The last day, in Unix time format, that you want to obtain deliverability
 	// data for. This value has to be less than or equal to 30 days after the value
@@ -7940,12 +8510,20 @@ type ListDomainDeliverabilityCampaignsInput struct {
 	SubscribedDomain *string `location:"uri" locationName:"SubscribedDomain" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainDeliverabilityCampaignsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainDeliverabilityCampaignsInput) GoString() string {
 	return s.String()
 }
@@ -8021,12 +8599,20 @@ type ListDomainDeliverabilityCampaignsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainDeliverabilityCampaignsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainDeliverabilityCampaignsOutput) GoString() string {
 	return s.String()
 }
@@ -8048,7 +8634,7 @@ func (s *ListDomainDeliverabilityCampaignsOutput) SetNextToken(v string) *ListDo
 // identities that are unverified, and identities that were verified in the
 // past, but are no longer verified.
 type ListEmailIdentitiesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to ListEmailIdentities to indicate
 	// the position in the list of identities.
@@ -8063,12 +8649,20 @@ type ListEmailIdentitiesInput struct {
 	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEmailIdentitiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEmailIdentitiesInput) GoString() string {
 	return s.String()
 }
@@ -8101,12 +8695,20 @@ type ListEmailIdentitiesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEmailIdentitiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEmailIdentitiesOutput) GoString() string {
 	return s.String()
 }
@@ -8124,7 +8726,7 @@ func (s *ListEmailIdentitiesOutput) SetNextToken(v string) *ListEmailIdentitiesO
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want to retrieve
 	// tag information for.
@@ -8133,12 +8735,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"querystring" locationName:"ResourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -8172,12 +8782,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -8227,12 +8845,20 @@ type MailFromAttributes struct {
 	MailFromDomainStatus *string `type:"string" required:"true" enum:"MailFromDomainStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MailFromAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MailFromAttributes) GoString() string {
 	return s.String()
 }
@@ -8263,12 +8889,20 @@ type MailFromDomainNotVerifiedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MailFromDomainNotVerifiedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MailFromDomainNotVerifiedException) GoString() string {
 	return s.String()
 }
@@ -8330,12 +8964,20 @@ type Message struct {
 	Subject *Content `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Message) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Message) GoString() string {
 	return s.String()
 }
@@ -8386,12 +9028,20 @@ type MessageRejected struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MessageRejected) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MessageRejected) GoString() string {
 	return s.String()
 }
@@ -8462,12 +9112,20 @@ type MessageTag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MessageTag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MessageTag) GoString() string {
 	return s.String()
 }
@@ -8508,12 +9166,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -8574,12 +9240,20 @@ type OverallVolume struct {
 	VolumeStatistics *VolumeStatistics `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverallVolume) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverallVolume) GoString() string {
 	return s.String()
 }
@@ -8613,12 +9287,20 @@ type PinpointDestination struct {
 	ApplicationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PinpointDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PinpointDestination) GoString() string {
 	return s.String()
 }
@@ -8654,12 +9336,20 @@ type PlacementStatistics struct {
 	SpfPercentage *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlacementStatistics) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlacementStatistics) GoString() string {
 	return s.String()
 }
@@ -8705,12 +9395,20 @@ type PutAccountDedicatedIpWarmupAttributesInput struct {
 	AutoWarmupEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountDedicatedIpWarmupAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountDedicatedIpWarmupAttributesInput) GoString() string {
 	return s.String()
 }
@@ -8727,12 +9425,20 @@ type PutAccountDedicatedIpWarmupAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountDedicatedIpWarmupAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountDedicatedIpWarmupAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -8749,12 +9455,20 @@ type PutAccountSendingAttributesInput struct {
 	SendingEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountSendingAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountSendingAttributesInput) GoString() string {
 	return s.String()
 }
@@ -8771,12 +9485,20 @@ type PutAccountSendingAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountSendingAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccountSendingAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -8802,12 +9524,20 @@ type PutConfigurationSetDeliveryOptionsInput struct {
 	TlsPolicy *string `type:"string" enum:"TlsPolicy"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetDeliveryOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetDeliveryOptionsInput) GoString() string {
 	return s.String()
 }
@@ -8852,12 +9582,20 @@ type PutConfigurationSetDeliveryOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetDeliveryOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetDeliveryOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -8879,12 +9617,20 @@ type PutConfigurationSetReputationOptionsInput struct {
 	ReputationMetricsEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetReputationOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetReputationOptionsInput) GoString() string {
 	return s.String()
 }
@@ -8923,12 +9669,20 @@ type PutConfigurationSetReputationOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetReputationOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetReputationOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -8949,12 +9703,20 @@ type PutConfigurationSetSendingOptionsInput struct {
 	SendingEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetSendingOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetSendingOptionsInput) GoString() string {
 	return s.String()
 }
@@ -8993,12 +9755,20 @@ type PutConfigurationSetSendingOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetSendingOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetSendingOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -9018,12 +9788,20 @@ type PutConfigurationSetTrackingOptionsInput struct {
 	CustomRedirectDomain *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetTrackingOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetTrackingOptionsInput) GoString() string {
 	return s.String()
 }
@@ -9062,12 +9840,20 @@ type PutConfigurationSetTrackingOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetTrackingOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetTrackingOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -9090,12 +9876,20 @@ type PutDedicatedIpInPoolInput struct {
 	Ip *string `location:"uri" locationName:"IP" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDedicatedIpInPoolInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDedicatedIpInPoolInput) GoString() string {
 	return s.String()
 }
@@ -9137,12 +9931,20 @@ type PutDedicatedIpInPoolOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDedicatedIpInPoolOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDedicatedIpInPoolOutput) GoString() string {
 	return s.String()
 }
@@ -9164,12 +9966,20 @@ type PutDedicatedIpWarmupAttributesInput struct {
 	WarmupPercentage *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDedicatedIpWarmupAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDedicatedIpWarmupAttributesInput) GoString() string {
 	return s.String()
 }
@@ -9211,12 +10021,20 @@ type PutDedicatedIpWarmupAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDedicatedIpWarmupAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDedicatedIpWarmupAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -9245,12 +10063,20 @@ type PutDeliverabilityDashboardOptionInput struct {
 	SubscribedDomains []*DomainDeliverabilityTrackingOption `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDeliverabilityDashboardOptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDeliverabilityDashboardOptionInput) GoString() string {
 	return s.String()
 }
@@ -9286,12 +10112,20 @@ type PutDeliverabilityDashboardOptionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDeliverabilityDashboardOptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDeliverabilityDashboardOptionOutput) GoString() string {
 	return s.String()
 }
@@ -9314,12 +10148,20 @@ type PutEmailIdentityDkimAttributesInput struct {
 	SigningEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityDkimAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityDkimAttributesInput) GoString() string {
 	return s.String()
 }
@@ -9358,12 +10200,20 @@ type PutEmailIdentityDkimAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityDkimAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityDkimAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -9395,12 +10245,20 @@ type PutEmailIdentityFeedbackAttributesInput struct {
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityFeedbackAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityFeedbackAttributesInput) GoString() string {
 	return s.String()
 }
@@ -9439,12 +10297,20 @@ type PutEmailIdentityFeedbackAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityFeedbackAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityFeedbackAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -9481,12 +10347,20 @@ type PutEmailIdentityMailFromAttributesInput struct {
 	MailFromDomain *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityMailFromAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityMailFromAttributesInput) GoString() string {
 	return s.String()
 }
@@ -9531,12 +10405,20 @@ type PutEmailIdentityMailFromAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityMailFromAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEmailIdentityMailFromAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -9564,19 +10446,26 @@ type RawMessage struct {
 	//
 	//    * The length of any single line of text in the message can't exceed 1,000
 	//    characters. This restriction is defined in RFC 5321 (https://tools.ietf.org/html/rfc5321).
-	//
 	// Data is automatically base64 encoded/decoded by the SDK.
 	//
 	// Data is a required field
 	Data []byte `type:"blob" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RawMessage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RawMessage) GoString() string {
 	return s.String()
 }
@@ -9616,12 +10505,20 @@ type ReputationOptions struct {
 	ReputationMetricsEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReputationOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReputationOptions) GoString() string {
 	return s.String()
 }
@@ -9674,12 +10571,20 @@ type SendEmailInput struct {
 	ReplyToAddresses []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendEmailInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendEmailInput) GoString() string {
 	return s.String()
 }
@@ -9772,12 +10677,20 @@ type SendEmailOutput struct {
 	MessageId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendEmailOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendEmailOutput) GoString() string {
 	return s.String()
 }
@@ -9807,12 +10720,20 @@ type SendQuota struct {
 	SentLast24Hours *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendQuota) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendQuota) GoString() string {
 	return s.String()
 }
@@ -9845,12 +10766,20 @@ type SendingOptions struct {
 	SendingEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendingOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendingOptions) GoString() string {
 	return s.String()
 }
@@ -9870,12 +10799,20 @@ type SendingPausedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendingPausedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendingPausedException) GoString() string {
 	return s.String()
 }
@@ -9931,12 +10868,20 @@ type SnsDestination struct {
 	TopicArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnsDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnsDestination) GoString() string {
 	return s.String()
 }
@@ -9974,20 +10919,20 @@ func (s *SnsDestination) SetTopicArn(v string) *SnsDestination {
 // digits, white space, or one of the following symbols: _ . : / = + -. The
 // following additional restrictions apply to tags:
 //
-//    * Tag keys and values are case sensitive.
+//   - Tag keys and values are case sensitive.
 //
-//    * For each associated resource, each tag key must be unique and it can
-//    have only one value.
+//   - For each associated resource, each tag key must be unique and it can
+//     have only one value.
 //
-//    * The aws: prefix is reserved for use by AWS; you can’t use it in any
-//    tag keys or values that you define. In addition, you can't edit or remove
-//    tag keys or values that use this prefix. Tags that use this prefix don’t
-//    count against the limit of 50 tags per resource.
+//   - The aws: prefix is reserved for use by AWS; you can’t use it in any
+//     tag keys or values that you define. In addition, you can't edit or remove
+//     tag keys or values that use this prefix. Tags that use this prefix don’t
+//     count against the limit of 50 tags per resource.
 //
-//    * You can associate tags with public or shared resources, but the tags
-//    are available only for your AWS account, not any other accounts that share
-//    the resource. In addition, the tags are available only for resources that
-//    are located in the specified AWS Region for your AWS account.
+//   - You can associate tags with public or shared resources, but the tags
+//     are available only for your AWS account, not any other accounts that share
+//     the resource. In addition, the tags are available only for resources that
+//     are located in the specified AWS Region for your AWS account.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -10007,12 +10952,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -10063,12 +11016,20 @@ type TagResourceInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -10115,12 +11076,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -10138,12 +11107,20 @@ type Template struct {
 	TemplateData *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Template) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Template) GoString() string {
 	return s.String()
 }
@@ -10168,12 +11145,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -10234,12 +11219,20 @@ type TrackingOptions struct {
 	CustomRedirectDomain *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TrackingOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TrackingOptions) GoString() string {
 	return s.String()
 }
@@ -10264,7 +11257,7 @@ func (s *TrackingOptions) SetCustomRedirectDomain(v string) *TrackingOptions {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want to remove one
 	// or more tags from.
@@ -10283,12 +11276,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"TagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -10325,12 +11326,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -10357,12 +11366,20 @@ type UpdateConfigurationSetEventDestinationInput struct {
 	EventDestinationName *string `location:"uri" locationName:"EventDestinationName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetEventDestinationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetEventDestinationInput) GoString() string {
 	return s.String()
 }
@@ -10421,12 +11438,20 @@ type UpdateConfigurationSetEventDestinationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetEventDestinationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetEventDestinationOutput) GoString() string {
 	return s.String()
 }
@@ -10452,12 +11477,20 @@ type VolumeStatistics struct {
 	SpamRawCount *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VolumeStatistics) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VolumeStatistics) GoString() string {
 	return s.String()
 }
@@ -10583,21 +11616,21 @@ func DimensionValueSource_Values() []string {
 // The DKIM authentication status of the identity. The status can be one of
 // the following:
 //
-//    * PENDING – The DKIM verification process was initiated, and Amazon
-//    Pinpoint is still waiting for the required CNAME records to appear in
-//    the DNS configuration for the domain.
+//   - PENDING – The DKIM verification process was initiated, and Amazon
+//     Pinpoint is still waiting for the required CNAME records to appear in
+//     the DNS configuration for the domain.
 //
-//    * SUCCESS – The DKIM authentication process completed successfully.
+//   - SUCCESS – The DKIM authentication process completed successfully.
 //
-//    * FAILED – The DKIM authentication process failed. This can happen when
-//    Amazon Pinpoint fails to find the required CNAME records in the DNS configuration
-//    of the domain.
+//   - FAILED – The DKIM authentication process failed. This can happen when
+//     Amazon Pinpoint fails to find the required CNAME records in the DNS configuration
+//     of the domain.
 //
-//    * TEMPORARY_FAILURE – A temporary issue is preventing Amazon Pinpoint
-//    from determining the DKIM authentication status of the domain.
+//   - TEMPORARY_FAILURE – A temporary issue is preventing Amazon Pinpoint
+//     from determining the DKIM authentication status of the domain.
 //
-//    * NOT_STARTED – The DKIM verification process hasn't been initiated
-//    for the domain.
+//   - NOT_STARTED – The DKIM verification process hasn't been initiated
+//     for the domain.
 const (
 	// DkimStatusPending is a DkimStatus enum value
 	DkimStatusPending = "PENDING"
@@ -10670,9 +11703,9 @@ func EventType_Values() []string {
 
 // The email identity type. The identity type can be one of the following:
 //
-//    * EMAIL_ADDRESS – The identity is an email address.
+//   - EMAIL_ADDRESS – The identity is an email address.
 //
-//    * DOMAIN – The identity is a domain.
+//   - DOMAIN – The identity is a domain.
 const (
 	// IdentityTypeEmailAddress is a IdentityType enum value
 	IdentityTypeEmailAddress = "EMAIL_ADDRESS"
@@ -10695,17 +11728,17 @@ func IdentityType_Values() []string {
 
 // The status of the MAIL FROM domain. This status can have the following values:
 //
-//    * PENDING – Amazon Pinpoint hasn't started searching for the MX record
-//    yet.
+//   - PENDING – Amazon Pinpoint hasn't started searching for the MX record
+//     yet.
 //
-//    * SUCCESS – Amazon Pinpoint detected the required MX record for the
-//    MAIL FROM domain.
+//   - SUCCESS – Amazon Pinpoint detected the required MX record for the
+//     MAIL FROM domain.
 //
-//    * FAILED – Amazon Pinpoint can't find the required MX record, or the
-//    record no longer exists.
+//   - FAILED – Amazon Pinpoint can't find the required MX record, or the
+//     record no longer exists.
 //
-//    * TEMPORARY_FAILURE – A temporary issue occurred, which prevented Amazon
-//    Pinpoint from determining the status of the MAIL FROM domain.
+//   - TEMPORARY_FAILURE – A temporary issue occurred, which prevented Amazon
+//     Pinpoint from determining the status of the MAIL FROM domain.
 const (
 	// MailFromDomainStatusPending is a MailFromDomainStatus enum value
 	MailFromDomainStatusPending = "PENDING"

@@ -29,14 +29,13 @@ const opAssociateFileSystemAliases = "AssociateFileSystemAliases"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateFileSystemAliasesRequest method.
+//	req, resp := client.AssociateFileSystemAliasesRequest(params)
 //
-//    // Example sending a request using the AssociateFileSystemAliasesRequest method.
-//    req, resp := client.AssociateFileSystemAliasesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/AssociateFileSystemAliases
 func (c *FSx) AssociateFileSystemAliasesRequest(input *AssociateFileSystemAliasesInput) (req *request.Request, output *AssociateFileSystemAliasesOutput) {
@@ -58,7 +57,7 @@ func (c *FSx) AssociateFileSystemAliasesRequest(input *AssociateFileSystemAliase
 // AssociateFileSystemAliases API operation for Amazon FSx.
 //
 // Use this action to associate one or more Domain Name Server (DNS) aliases
-// with an existing Amazon FSx for Windows File Server file system. A file systen
+// with an existing Amazon FSx for Windows File Server file system. A file system
 // can have a maximum of 50 DNS aliases associated with it at any one time.
 // If you try to associate a DNS alias that is already associated with the file
 // system, FSx takes no action on that alias in the request. For more information,
@@ -79,14 +78,15 @@ func (c *FSx) AssociateFileSystemAliasesRequest(input *AssociateFileSystemAliase
 // API operation AssociateFileSystemAliases for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/AssociateFileSystemAliases
 func (c *FSx) AssociateFileSystemAliases(input *AssociateFileSystemAliasesInput) (*AssociateFileSystemAliasesOutput, error) {
@@ -126,14 +126,13 @@ const opCancelDataRepositoryTask = "CancelDataRepositoryTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelDataRepositoryTaskRequest method.
+//	req, resp := client.CancelDataRepositoryTaskRequest(params)
 //
-//    // Example sending a request using the CancelDataRepositoryTaskRequest method.
-//    req, resp := client.CancelDataRepositoryTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CancelDataRepositoryTask
 func (c *FSx) CancelDataRepositoryTaskRequest(input *CancelDataRepositoryTaskInput) (req *request.Request, output *CancelDataRepositoryTaskOutput) {
@@ -155,15 +154,18 @@ func (c *FSx) CancelDataRepositoryTaskRequest(input *CancelDataRepositoryTaskInp
 // CancelDataRepositoryTask API operation for Amazon FSx.
 //
 // Cancels an existing Amazon FSx for Lustre data repository task if that task
-// is in either the PENDING or EXECUTING state. When you cancel a task, Amazon
-// FSx does the following.
+// is in either the PENDING or EXECUTING state. When you cancel am export task,
+// Amazon FSx does the following.
 //
-//    * Any files that FSx has already exported are not reverted.
+//   - Any files that FSx has already exported are not reverted.
 //
-//    * FSx continues to export any files that are "in-flight" when the cancel
-//    operation is received.
+//   - FSx continues to export any files that are in-flight when the cancel
+//     operation is received.
 //
-//    * FSx does not export any files that have not yet been exported.
+//   - FSx does not export any files that have not yet been exported.
+//
+// For a release task, Amazon FSx will stop releasing files upon cancellation.
+// Any files that have already been released will remain in the released state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -173,21 +175,22 @@ func (c *FSx) CancelDataRepositoryTaskRequest(input *CancelDataRepositoryTaskInp
 // API operation CancelDataRepositoryTask for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * UnsupportedOperation
-//   The requested operation is not supported for this resource or API.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * DataRepositoryTaskNotFound
-//   The data repository task or tasks you specified could not be found.
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
 //
-//   * DataRepositoryTaskEnded
-//   The data repository task could not be canceled because the task has already
-//   ended.
+//   - DataRepositoryTaskNotFound
+//     The data repository task or tasks you specified could not be found.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - DataRepositoryTaskEnded
+//     The data repository task could not be canceled because the task has already
+//     ended.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CancelDataRepositoryTask
 func (c *FSx) CancelDataRepositoryTask(input *CancelDataRepositoryTaskInput) (*CancelDataRepositoryTaskOutput, error) {
@@ -227,14 +230,13 @@ const opCopyBackup = "CopyBackup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CopyBackupRequest method.
+//	req, resp := client.CopyBackupRequest(params)
 //
-//    // Example sending a request using the CopyBackupRequest method.
-//    req, resp := client.CopyBackupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CopyBackup
 func (c *FSx) CopyBackupRequest(input *CopyBackupInput) (req *request.Request, output *CopyBackupOutput) {
@@ -255,29 +257,34 @@ func (c *FSx) CopyBackupRequest(input *CopyBackupInput) (req *request.Request, o
 
 // CopyBackup API operation for Amazon FSx.
 //
-// Copies an existing backup within the same AWS account to another Region (cross-Region
-// copy) or within the same Region (in-Region copy). You can have up to five
-// backup copy requests in progress to a single destination Region per account.
+// Copies an existing backup within the same Amazon Web Services account to
+// another Amazon Web Services Region (cross-Region copy) or within the same
+// Amazon Web Services Region (in-Region copy). You can have up to five backup
+// copy requests in progress to a single destination Region per account.
 //
-// You can use cross-Region backup copies for cross-region disaster recovery.
-// You periodically take backups and copy them to another Region so that in
-// the event of a disaster in the primary Region, you can restore from backup
+// You can use cross-Region backup copies for cross-Region disaster recovery.
+// You can periodically take backups and copy them to another Region so that
+// in the event of a disaster in the primary Region, you can restore from backup
 // and recover availability quickly in the other Region. You can make cross-Region
-// copies only within your AWS partition.
+// copies only within your Amazon Web Services partition. A partition is a grouping
+// of Regions. Amazon Web Services currently has three partitions: aws (Standard
+// Regions), aws-cn (China Regions), and aws-us-gov (Amazon Web Services GovCloud
+// [US] Regions).
 //
-// You can also use backup copies to clone your file data set to another Region
+// You can also use backup copies to clone your file dataset to another Region
 // or within the same Region.
 //
-// You can use the SourceRegion parameter to specify the AWS Region from which
-// the backup will be copied. For example, if you make the call from the us-west-1
-// Region and want to copy a backup from the us-east-2 Region, you specify us-east-2
-// in the SourceRegion parameter to make a cross-Region copy. If you don't specify
-// a Region, the backup copy is created in the same Region where the request
-// is sent from (in-Region copy).
+// You can use the SourceRegion parameter to specify the Amazon Web Services
+// Region from which the backup will be copied. For example, if you make the
+// call from the us-west-1 Region and want to copy a backup from the us-east-2
+// Region, you specify us-east-2 in the SourceRegion parameter to make a cross-Region
+// copy. If you don't specify a Region, the backup copy is created in the same
+// Region where the request is sent from (in-Region copy).
 //
-// For more information on creating backup copies, see Copying backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html#copy-backups)
-// in the Amazon FSx for Windows User Guide and Copying backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html#copy-backups)
-// in the Amazon FSx for Lustre User Guide.
+// For more information about creating backup copies, see Copying backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html#copy-backups)
+// in the Amazon FSx for Windows User Guide, Copying backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html#copy-backups)
+// in the Amazon FSx for Lustre User Guide, and Copying backups (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/using-backups.html#copy-backups)
+// in the Amazon FSx for OpenZFS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -287,45 +294,45 @@ func (c *FSx) CopyBackupRequest(input *CopyBackupInput) (req *request.Request, o
 // API operation CopyBackup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * BackupNotFound
-//   No Amazon FSx backups were found based upon the supplied parameters.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * ServiceLimitExceeded
-//   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   - BackupNotFound
+//     No Amazon FSx backups were found based upon the supplied parameters.
 //
-//   * UnsupportedOperation
-//   The requested operation is not supported for this resource or API.
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
 //
-//   * IncompatibleParameterError
-//   The error returned when a second request is received with the same client
-//   request token but different parameters settings. A client request token should
-//   always uniquely identify a single request.
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
 //
-//   * InvalidSourceKmsKey
-//   The AWS Key Management Service (AWS KMS) key of the source backup is invalid.
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
-//   * InvalidDestinationKmsKey
-//   The AWS Key Management Service (AWS KMS) key of the destination backup is
-//   invalid.
+//   - InvalidSourceKmsKey
+//     The Key Management Service (KMS) key of the source backup is not valid.
 //
-//   * InvalidRegion
-//   The Region provided for Source Region is invalid or is in a different AWS
-//   partition.
+//   - InvalidDestinationKmsKey
+//     The Key Management Service (KMS) key of the destination backup is not valid.
 //
-//   * SourceBackupUnavailable
-//   The request was rejected because the lifecycle status of the source backup
-//   is not AVAILABLE.
+//   - InvalidRegion
+//     The Region provided for SourceRegion is not valid or is in a different Amazon
+//     Web Services partition.
 //
-//   * IncompatibleRegionForMultiAZ
-//   Amazon FSx doesn't support Multi-AZ Windows File Server copy backup in the
-//   destination Region, so the copied backup can't be restored.
+//   - SourceBackupUnavailable
+//     The request was rejected because the lifecycle status of the source backup
+//     isn't AVAILABLE.
+//
+//   - IncompatibleRegionForMultiAZ
+//     Amazon FSx doesn't support Multi-AZ Windows File Server copy backup in the
+//     destination Region, so the copied backup can't be restored.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CopyBackup
 func (c *FSx) CopyBackup(input *CopyBackupInput) (*CopyBackupOutput, error) {
@@ -349,6 +356,100 @@ func (c *FSx) CopyBackupWithContext(ctx aws.Context, input *CopyBackupInput, opt
 	return out, req.Send()
 }
 
+const opCopySnapshotAndUpdateVolume = "CopySnapshotAndUpdateVolume"
+
+// CopySnapshotAndUpdateVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the CopySnapshotAndUpdateVolume operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CopySnapshotAndUpdateVolume for more information on using the CopySnapshotAndUpdateVolume
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CopySnapshotAndUpdateVolumeRequest method.
+//	req, resp := client.CopySnapshotAndUpdateVolumeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CopySnapshotAndUpdateVolume
+func (c *FSx) CopySnapshotAndUpdateVolumeRequest(input *CopySnapshotAndUpdateVolumeInput) (req *request.Request, output *CopySnapshotAndUpdateVolumeOutput) {
+	op := &request.Operation{
+		Name:       opCopySnapshotAndUpdateVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CopySnapshotAndUpdateVolumeInput{}
+	}
+
+	output = &CopySnapshotAndUpdateVolumeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CopySnapshotAndUpdateVolume API operation for Amazon FSx.
+//
+// Updates an existing volume by using a snapshot from another Amazon FSx for
+// OpenZFS file system. For more information, see on-demand data replication
+// (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/on-demand-replication.html)
+// in the Amazon FSx for OpenZFS User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CopySnapshotAndUpdateVolume for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CopySnapshotAndUpdateVolume
+func (c *FSx) CopySnapshotAndUpdateVolume(input *CopySnapshotAndUpdateVolumeInput) (*CopySnapshotAndUpdateVolumeOutput, error) {
+	req, out := c.CopySnapshotAndUpdateVolumeRequest(input)
+	return out, req.Send()
+}
+
+// CopySnapshotAndUpdateVolumeWithContext is the same as CopySnapshotAndUpdateVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CopySnapshotAndUpdateVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CopySnapshotAndUpdateVolumeWithContext(ctx aws.Context, input *CopySnapshotAndUpdateVolumeInput, opts ...request.Option) (*CopySnapshotAndUpdateVolumeOutput, error) {
+	req, out := c.CopySnapshotAndUpdateVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateBackup = "CreateBackup"
 
 // CreateBackupRequest generates a "aws/request.Request" representing the
@@ -365,14 +466,13 @@ const opCreateBackup = "CreateBackup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBackupRequest method.
+//	req, resp := client.CreateBackupRequest(params)
 //
-//    // Example sending a request using the CreateBackupRequest method.
-//    req, resp := client.CreateBackupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateBackup
 func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Request, output *CreateBackupOutput) {
@@ -393,33 +493,43 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 
 // CreateBackup API operation for Amazon FSx.
 //
-// Creates a backup of an existing Amazon FSx file system. Creating regular
-// backups for your file system is a best practice, enabling you to restore
-// a file system from a backup if an issue arises with the original file system.
+// Creates a backup of an existing Amazon FSx for Windows File Server file system,
+// Amazon FSx for Lustre file system, Amazon FSx for NetApp ONTAP volume, or
+// Amazon FSx for OpenZFS file system. We recommend creating regular backups
+// so that you can restore a file system or volume from a backup if an issue
+// arises with the original file system or volume.
 //
 // For Amazon FSx for Lustre file systems, you can create a backup only for
-// file systems with the following configuration:
+// file systems that have the following configuration:
 //
-//    * a Persistent deployment type
+//   - A Persistent deployment type
 //
-//    * is not linked to a data respository.
+//   - Are not linked to a data repository
 //
-// For more information about backing up Amazon FSx for Lustre file systems,
-// see Working with FSx for Lustre backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html).
+// For more information about backups, see the following:
 //
-// For more information about backing up Amazon FSx for Windows file systems,
-// see Working with FSx for Windows backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html).
+//   - For Amazon FSx for Lustre, see Working with FSx for Lustre backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html).
 //
-// If a backup with the specified client request token exists, and the parameters
+//   - For Amazon FSx for Windows, see Working with FSx for Windows backups
+//     (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html).
+//
+//   - For Amazon FSx for NetApp ONTAP, see Working with FSx for NetApp ONTAP
+//     backups (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/using-backups.html).
+//
+//   - For Amazon FSx for OpenZFS, see Working with FSx for OpenZFS backups
+//     (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/using-backups.html).
+//
+// If a backup with the specified client request token exists and the parameters
 // match, this operation returns the description of the existing backup. If
-// a backup specified client request token exists, and the parameters don't
-// match, this operation returns IncompatibleParameterError. If a backup with
-// the specified client request token doesn't exist, CreateBackup does the following:
+// a backup with the specified client request token exists and the parameters
+// don't match, this operation returns IncompatibleParameterError. If a backup
+// with the specified client request token doesn't exist, CreateBackup does
+// the following:
 //
-//    * Creates a new Amazon FSx backup with an assigned ID, and an initial
-//    lifecycle state of CREATING.
+//   - Creates a new Amazon FSx backup with an assigned ID, and an initial
+//     lifecycle state of CREATING.
 //
-//    * Returns the description of the backup.
+//   - Returns the description of the backup.
 //
 // By using the idempotent operation, you can retry a CreateBackup operation
 // without the risk of creating an extra backup. This approach can be useful
@@ -430,6 +540,7 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 //
 // The CreateBackup operation returns while the backup's lifecycle state is
 // still CREATING. You can check the backup creation status by calling the DescribeBackups
+// (https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeBackups.html)
 // operation, which returns the backup state along with other information.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -440,30 +551,34 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 // API operation CreateBackup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * UnsupportedOperation
-//   The requested operation is not supported for this resource or API.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
 //
-//   * BackupInProgress
-//   Another backup is already under way. Wait for completion before initiating
-//   additional backups of this file system.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
 //
-//   * IncompatibleParameterError
-//   The error returned when a second request is received with the same client
-//   request token but different parameters settings. A client request token should
-//   always uniquely identify a single request.
+//   - VolumeNotFound
+//     No Amazon FSx volumes were found based upon the supplied parameters.
 //
-//   * ServiceLimitExceeded
-//   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   - BackupInProgress
+//     Another backup is already under way. Wait for completion before initiating
+//     additional backups of this file system.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateBackup
 func (c *FSx) CreateBackup(input *CreateBackupInput) (*CreateBackupOutput, error) {
@@ -487,6 +602,117 @@ func (c *FSx) CreateBackupWithContext(ctx aws.Context, input *CreateBackupInput,
 	return out, req.Send()
 }
 
+const opCreateDataRepositoryAssociation = "CreateDataRepositoryAssociation"
+
+// CreateDataRepositoryAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataRepositoryAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataRepositoryAssociation for more information on using the CreateDataRepositoryAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateDataRepositoryAssociationRequest method.
+//	req, resp := client.CreateDataRepositoryAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateDataRepositoryAssociation
+func (c *FSx) CreateDataRepositoryAssociationRequest(input *CreateDataRepositoryAssociationInput) (req *request.Request, output *CreateDataRepositoryAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataRepositoryAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDataRepositoryAssociationInput{}
+	}
+
+	output = &CreateDataRepositoryAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDataRepositoryAssociation API operation for Amazon FSx.
+//
+// Creates an Amazon FSx for Lustre data repository association (DRA). A data
+// repository association is a link between a directory on the file system and
+// an Amazon S3 bucket or prefix. You can have a maximum of 8 data repository
+// associations on a file system. Data repository associations are supported
+// on all FSx for Lustre 2.12 and 2.15 file systems, excluding scratch_1 deployment
+// type.
+//
+// Each data repository association must have a unique Amazon FSx file system
+// directory and a unique S3 bucket or prefix associated with it. You can configure
+// a data repository association for automatic import only, for automatic export
+// only, or for both. To learn more about linking a data repository to your
+// file system, see Linking your file system to an S3 bucket (https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html).
+//
+// CreateDataRepositoryAssociation isn't supported on Amazon File Cache resources.
+// To create a DRA on Amazon File Cache, use the CreateFileCache operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CreateDataRepositoryAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
+//
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateDataRepositoryAssociation
+func (c *FSx) CreateDataRepositoryAssociation(input *CreateDataRepositoryAssociationInput) (*CreateDataRepositoryAssociationOutput, error) {
+	req, out := c.CreateDataRepositoryAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreateDataRepositoryAssociationWithContext is the same as CreateDataRepositoryAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataRepositoryAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CreateDataRepositoryAssociationWithContext(ctx aws.Context, input *CreateDataRepositoryAssociationInput, opts ...request.Option) (*CreateDataRepositoryAssociationOutput, error) {
+	req, out := c.CreateDataRepositoryAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDataRepositoryTask = "CreateDataRepositoryTask"
 
 // CreateDataRepositoryTaskRequest generates a "aws/request.Request" representing the
@@ -503,14 +729,13 @@ const opCreateDataRepositoryTask = "CreateDataRepositoryTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDataRepositoryTaskRequest method.
+//	req, resp := client.CreateDataRepositoryTaskRequest(params)
 //
-//    // Example sending a request using the CreateDataRepositoryTaskRequest method.
-//    req, resp := client.CreateDataRepositoryTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateDataRepositoryTask
 func (c *FSx) CreateDataRepositoryTaskRequest(input *CreateDataRepositoryTaskInput) (req *request.Request, output *CreateDataRepositoryTaskOutput) {
@@ -531,16 +756,24 @@ func (c *FSx) CreateDataRepositoryTaskRequest(input *CreateDataRepositoryTaskInp
 
 // CreateDataRepositoryTask API operation for Amazon FSx.
 //
-// Creates an Amazon FSx for Lustre data repository task. You use data repository
-// tasks to perform bulk operations between your Amazon FSx file system and
-// its linked data repository. An example of a data repository task is exporting
-// any data and metadata changes, including POSIX metadata, to files, directories,
-// and symbolic links (symlinks) from your FSx file system to its linked data
-// repository. A CreateDataRepositoryTask operation will fail if a data repository
-// is not linked to the FSx file system. To learn more about data repository
-// tasks, see Data Repository Tasks (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html).
+// Creates an Amazon FSx for Lustre data repository task. A CreateDataRepositoryTask
+// operation will fail if a data repository is not linked to the FSx file system.
+//
+// You use import and export data repository tasks to perform bulk operations
+// between your FSx for Lustre file system and its linked data repositories.
+// An example of a data repository task is exporting any data and metadata changes,
+// including POSIX metadata, to files, directories, and symbolic links (symlinks)
+// from your FSx file system to a linked data repository.
+//
+// You use release data repository tasks to release data from your file system
+// for files that are exported to S3. The metadata of released files remains
+// on the file system so users or applications can still access released files
+// by reading the files again, which will restore data from Amazon S3 to the
+// FSx for Lustre file system.
+//
+// To learn more about data repository tasks, see Data Repository Tasks (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html).
 // To learn more about linking a data repository to your file system, see Linking
-// your file system to an S3 bucket (https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-fs-linked-data-repo.html).
+// your file system to an S3 bucket (https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -550,30 +783,31 @@ func (c *FSx) CreateDataRepositoryTaskRequest(input *CreateDataRepositoryTaskInp
 // API operation CreateDataRepositoryTask for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * UnsupportedOperation
-//   The requested operation is not supported for this resource or API.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
 //
-//   * IncompatibleParameterError
-//   The error returned when a second request is received with the same client
-//   request token but different parameters settings. A client request token should
-//   always uniquely identify a single request.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
 //
-//   * ServiceLimitExceeded
-//   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
 //
-//   * DataRepositoryTaskExecuting
-//   An existing data repository task is currently executing on the file system.
-//   Wait until the existing task has completed, then create the new task.
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - DataRepositoryTaskExecuting
+//     An existing data repository task is currently executing on the file system.
+//     Wait until the existing task has completed, then create the new task.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateDataRepositoryTask
 func (c *FSx) CreateDataRepositoryTask(input *CreateDataRepositoryTaskInput) (*CreateDataRepositoryTaskOutput, error) {
@@ -597,6 +831,125 @@ func (c *FSx) CreateDataRepositoryTaskWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateFileCache = "CreateFileCache"
+
+// CreateFileCacheRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFileCache operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFileCache for more information on using the CreateFileCache
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateFileCacheRequest method.
+//	req, resp := client.CreateFileCacheRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateFileCache
+func (c *FSx) CreateFileCacheRequest(input *CreateFileCacheInput) (req *request.Request, output *CreateFileCacheOutput) {
+	op := &request.Operation{
+		Name:       opCreateFileCache,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateFileCacheInput{}
+	}
+
+	output = &CreateFileCacheOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFileCache API operation for Amazon FSx.
+//
+// Creates a new Amazon File Cache resource.
+//
+// You can use this operation with a client request token in the request that
+// Amazon File Cache uses to ensure idempotent creation. If a cache with the
+// specified client request token exists and the parameters match, CreateFileCache
+// returns the description of the existing cache. If a cache with the specified
+// client request token exists and the parameters don't match, this call returns
+// IncompatibleParameterError. If a file cache with the specified client request
+// token doesn't exist, CreateFileCache does the following:
+//
+//   - Creates a new, empty Amazon File Cache resourcewith an assigned ID,
+//     and an initial lifecycle state of CREATING.
+//
+//   - Returns the description of the cache in JSON format.
+//
+// The CreateFileCache call returns while the cache's lifecycle state is still
+// CREATING. You can check the cache creation status by calling the DescribeFileCaches
+// (https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileCaches.html)
+// operation, which returns the cache state along with other information.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CreateFileCache for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InvalidNetworkSettings
+//     One or more network settings specified in the request are invalid.
+//
+//   - InvalidPerUnitStorageThroughput
+//     An invalid value for PerUnitStorageThroughput was provided. Please create
+//     your file system again, using a valid value.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - MissingFileCacheConfiguration
+//     A cache configuration is required for this operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateFileCache
+func (c *FSx) CreateFileCache(input *CreateFileCacheInput) (*CreateFileCacheOutput, error) {
+	req, out := c.CreateFileCacheRequest(input)
+	return out, req.Send()
+}
+
+// CreateFileCacheWithContext is the same as CreateFileCache with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFileCache for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CreateFileCacheWithContext(ctx aws.Context, input *CreateFileCacheInput, opts ...request.Option) (*CreateFileCacheOutput, error) {
+	req, out := c.CreateFileCacheRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateFileSystem = "CreateFileSystem"
 
 // CreateFileSystemRequest generates a "aws/request.Request" representing the
@@ -613,14 +966,13 @@ const opCreateFileSystem = "CreateFileSystem"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFileSystemRequest method.
+//	req, resp := client.CreateFileSystemRequest(params)
 //
-//    // Example sending a request using the CreateFileSystemRequest method.
-//    req, resp := client.CreateFileSystemRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateFileSystem
 func (c *FSx) CreateFileSystemRequest(input *CreateFileSystemInput) (req *request.Request, output *CreateFileSystemOutput) {
@@ -641,19 +993,16 @@ func (c *FSx) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 
 // CreateFileSystem API operation for Amazon FSx.
 //
-// Creates a new, empty Amazon FSx file system.
+// Creates a new, empty Amazon FSx file system. You can create the following
+// supported Amazon FSx file systems using the CreateFileSystem API operation:
 //
-// If a file system with the specified client request token exists and the parameters
-// match, CreateFileSystem returns the description of the existing file system.
-// If a file system specified client request token exists and the parameters
-// don't match, this call returns IncompatibleParameterError. If a file system
-// with the specified client request token doesn't exist, CreateFileSystem does
-// the following:
+//   - Amazon FSx for Lustre
 //
-//    * Creates a new, empty Amazon FSx file system with an assigned ID, and
-//    an initial lifecycle state of CREATING.
+//   - Amazon FSx for NetApp ONTAP
 //
-//    * Returns the description of the file system.
+//   - Amazon FSx for OpenZFS
+//
+//   - Amazon FSx for Windows File Server
 //
 // This operation requires a client request token in the request that Amazon
 // FSx uses to ensure idempotent creation. This means that calling the operation
@@ -666,10 +1015,22 @@ func (c *FSx) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // call created a file system, the client receives success as long as the parameters
 // are the same.
 //
+// If a file system with the specified client request token exists and the parameters
+// match, CreateFileSystem returns the description of the existing file system.
+// If a file system with the specified client request token exists and the parameters
+// don't match, this call returns IncompatibleParameterError. If a file system
+// with the specified client request token doesn't exist, CreateFileSystem does
+// the following:
+//
+//   - Creates a new, empty Amazon FSx file system with an assigned ID, and
+//     an initial lifecycle state of CREATING.
+//
+//   - Returns the description of the file system in JSON format.
+//
 // The CreateFileSystem call returns while the file system's lifecycle state
 // is still CREATING. You can check the file-system creation status by calling
-// the DescribeFileSystems operation, which returns the file system state along
-// with other information.
+// the DescribeFileSystems (https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html)
+// operation, which returns the file system state along with other information.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -679,44 +1040,40 @@ func (c *FSx) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // API operation CreateFileSystem for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * ActiveDirectoryError
-//   An Active Directory error.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * IncompatibleParameterError
-//   The error returned when a second request is received with the same client
-//   request token but different parameters settings. A client request token should
-//   always uniquely identify a single request.
+//   - ActiveDirectoryError
+//     An Active Directory error.
 //
-//   * InvalidImportPath
-//   The path provided for data repository import isn't valid.
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
 //
-//   * InvalidExportPath
-//   The path provided for data repository export isn't valid.
+//   - InvalidImportPath
+//     The path provided for data repository import isn't valid.
 //
-//   * InvalidNetworkSettings
-//   One or more network settings specified in the request are invalid. InvalidVpcId
-//   means that the ID passed for the virtual private cloud (VPC) is invalid.
-//   InvalidSubnetIds returns the list of IDs for subnets that are either invalid
-//   or not part of the VPC specified. InvalidSecurityGroupIds returns the list
-//   of IDs for security groups that are either invalid or not part of the VPC
-//   specified.
+//   - InvalidExportPath
+//     The path provided for data repository export isn't valid.
 //
-//   * InvalidPerUnitStorageThroughput
-//   An invalid value for PerUnitStorageThroughput was provided. Please create
-//   your file system again, using a valid value.
+//   - InvalidNetworkSettings
+//     One or more network settings specified in the request are invalid.
 //
-//   * ServiceLimitExceeded
-//   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   - InvalidPerUnitStorageThroughput
+//     An invalid value for PerUnitStorageThroughput was provided. Please create
+//     your file system again, using a valid value.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
 //
-//   * MissingFileSystemConfiguration
-//   A file system configuration is required for this operation.
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - MissingFileSystemConfiguration
+//     A file system configuration is required for this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateFileSystem
 func (c *FSx) CreateFileSystem(input *CreateFileSystemInput) (*CreateFileSystemOutput, error) {
@@ -756,14 +1113,13 @@ const opCreateFileSystemFromBackup = "CreateFileSystemFromBackup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFileSystemFromBackupRequest method.
+//	req, resp := client.CreateFileSystemFromBackupRequest(params)
 //
-//    // Example sending a request using the CreateFileSystemFromBackupRequest method.
-//    req, resp := client.CreateFileSystemFromBackupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateFileSystemFromBackup
 func (c *FSx) CreateFileSystemFromBackupRequest(input *CreateFileSystemFromBackupInput) (req *request.Request, output *CreateFileSystemFromBackupOutput) {
@@ -784,36 +1140,37 @@ func (c *FSx) CreateFileSystemFromBackupRequest(input *CreateFileSystemFromBacku
 
 // CreateFileSystemFromBackup API operation for Amazon FSx.
 //
-// Creates a new Amazon FSx file system from an existing Amazon FSx backup.
+// Creates a new Amazon FSx for Lustre, Amazon FSx for Windows File Server,
+// or Amazon FSx for OpenZFS file system from an existing Amazon FSx backup.
 //
 // If a file system with the specified client request token exists and the parameters
-// match, this operation returns the description of the file system. If a client
-// request token specified by the file system exists and the parameters don't
-// match, this call returns IncompatibleParameterError. If a file system with
-// the specified client request token doesn't exist, this operation does the
-// following:
+// match, this operation returns the description of the file system. If a file
+// system with the specified client request token exists but the parameters
+// don't match, this call returns IncompatibleParameterError. If a file system
+// with the specified client request token doesn't exist, this operation does
+// the following:
 //
-//    * Creates a new Amazon FSx file system from backup with an assigned ID,
-//    and an initial lifecycle state of CREATING.
+//   - Creates a new Amazon FSx file system from backup with an assigned ID,
+//     and an initial lifecycle state of CREATING.
 //
-//    * Returns the description of the file system.
+//   - Returns the description of the file system.
 //
-// Parameters like Active Directory, default share name, automatic backup, and
-// backup settings default to the parameters of the file system that was backed
-// up, unless overridden. You can explicitly supply other settings.
+// Parameters like the Active Directory, default share name, automatic backup,
+// and backup settings default to the parameters of the file system that was
+// backed up, unless overridden. You can explicitly supply other settings.
 //
 // By using the idempotent operation, you can retry a CreateFileSystemFromBackup
 // call without the risk of creating an extra file system. This approach can
 // be useful when an initial call fails in a way that makes it unclear whether
 // a file system was created. Examples are if a transport level timeout occurred,
 // or your connection was reset. If you use the same client request token and
-// the initial call created a file system, the client receives success as long
-// as the parameters are the same.
+// the initial call created a file system, the client receives a success message
+// as long as the parameters are the same.
 //
 // The CreateFileSystemFromBackup call returns while the file system's lifecycle
 // state is still CREATING. You can check the file-system creation status by
-// calling the DescribeFileSystems operation, which returns the file system
-// state along with other information.
+// calling the DescribeFileSystems (https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html)
+// operation, which returns the file system state along with other information.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -823,41 +1180,37 @@ func (c *FSx) CreateFileSystemFromBackupRequest(input *CreateFileSystemFromBacku
 // API operation CreateFileSystemFromBackup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * ActiveDirectoryError
-//   An Active Directory error.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * IncompatibleParameterError
-//   The error returned when a second request is received with the same client
-//   request token but different parameters settings. A client request token should
-//   always uniquely identify a single request.
+//   - ActiveDirectoryError
+//     An Active Directory error.
 //
-//   * InvalidNetworkSettings
-//   One or more network settings specified in the request are invalid. InvalidVpcId
-//   means that the ID passed for the virtual private cloud (VPC) is invalid.
-//   InvalidSubnetIds returns the list of IDs for subnets that are either invalid
-//   or not part of the VPC specified. InvalidSecurityGroupIds returns the list
-//   of IDs for security groups that are either invalid or not part of the VPC
-//   specified.
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
 //
-//   * InvalidPerUnitStorageThroughput
-//   An invalid value for PerUnitStorageThroughput was provided. Please create
-//   your file system again, using a valid value.
+//   - InvalidNetworkSettings
+//     One or more network settings specified in the request are invalid.
 //
-//   * ServiceLimitExceeded
-//   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   - InvalidPerUnitStorageThroughput
+//     An invalid value for PerUnitStorageThroughput was provided. Please create
+//     your file system again, using a valid value.
 //
-//   * BackupNotFound
-//   No Amazon FSx backups were found based upon the supplied parameters.
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - BackupNotFound
+//     No Amazon FSx backups were found based upon the supplied parameters.
 //
-//   * MissingFileSystemConfiguration
-//   A file system configuration is required for this operation.
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - MissingFileSystemConfiguration
+//     A file system configuration is required for this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateFileSystemFromBackup
 func (c *FSx) CreateFileSystemFromBackup(input *CreateFileSystemFromBackupInput) (*CreateFileSystemFromBackupOutput, error) {
@@ -881,6 +1234,429 @@ func (c *FSx) CreateFileSystemFromBackupWithContext(ctx aws.Context, input *Crea
 	return out, req.Send()
 }
 
+const opCreateSnapshot = "CreateSnapshot"
+
+// CreateSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSnapshot for more information on using the CreateSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateSnapshotRequest method.
+//	req, resp := client.CreateSnapshotRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateSnapshot
+func (c *FSx) CreateSnapshotRequest(input *CreateSnapshotInput) (req *request.Request, output *CreateSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opCreateSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateSnapshotInput{}
+	}
+
+	output = &CreateSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSnapshot API operation for Amazon FSx.
+//
+// Creates a snapshot of an existing Amazon FSx for OpenZFS volume. With snapshots,
+// you can easily undo file changes and compare file versions by restoring the
+// volume to a previous version.
+//
+// If a snapshot with the specified client request token exists, and the parameters
+// match, this operation returns the description of the existing snapshot. If
+// a snapshot with the specified client request token exists, and the parameters
+// don't match, this operation returns IncompatibleParameterError. If a snapshot
+// with the specified client request token doesn't exist, CreateSnapshot does
+// the following:
+//
+//   - Creates a new OpenZFS snapshot with an assigned ID, and an initial lifecycle
+//     state of CREATING.
+//
+//   - Returns the description of the snapshot.
+//
+// By using the idempotent operation, you can retry a CreateSnapshot operation
+// without the risk of creating an extra snapshot. This approach can be useful
+// when an initial call fails in a way that makes it unclear whether a snapshot
+// was created. If you use the same client request token and the initial call
+// created a snapshot, the operation returns a successful result because all
+// the parameters are the same.
+//
+// The CreateSnapshot operation returns while the snapshot's lifecycle state
+// is still CREATING. You can check the snapshot creation status by calling
+// the DescribeSnapshots (https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeSnapshots.html)
+// operation, which returns the snapshot state along with other information.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CreateSnapshot for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - VolumeNotFound
+//     No Amazon FSx volumes were found based upon the supplied parameters.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateSnapshot
+func (c *FSx) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
+	req, out := c.CreateSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// CreateSnapshotWithContext is the same as CreateSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CreateSnapshotWithContext(ctx aws.Context, input *CreateSnapshotInput, opts ...request.Option) (*CreateSnapshotOutput, error) {
+	req, out := c.CreateSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateStorageVirtualMachine = "CreateStorageVirtualMachine"
+
+// CreateStorageVirtualMachineRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStorageVirtualMachine operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateStorageVirtualMachine for more information on using the CreateStorageVirtualMachine
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateStorageVirtualMachineRequest method.
+//	req, resp := client.CreateStorageVirtualMachineRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateStorageVirtualMachine
+func (c *FSx) CreateStorageVirtualMachineRequest(input *CreateStorageVirtualMachineInput) (req *request.Request, output *CreateStorageVirtualMachineOutput) {
+	op := &request.Operation{
+		Name:       opCreateStorageVirtualMachine,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateStorageVirtualMachineInput{}
+	}
+
+	output = &CreateStorageVirtualMachineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateStorageVirtualMachine API operation for Amazon FSx.
+//
+// Creates a storage virtual machine (SVM) for an Amazon FSx for ONTAP file
+// system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CreateStorageVirtualMachine for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ActiveDirectoryError
+//     An Active Directory error.
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateStorageVirtualMachine
+func (c *FSx) CreateStorageVirtualMachine(input *CreateStorageVirtualMachineInput) (*CreateStorageVirtualMachineOutput, error) {
+	req, out := c.CreateStorageVirtualMachineRequest(input)
+	return out, req.Send()
+}
+
+// CreateStorageVirtualMachineWithContext is the same as CreateStorageVirtualMachine with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStorageVirtualMachine for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CreateStorageVirtualMachineWithContext(ctx aws.Context, input *CreateStorageVirtualMachineInput, opts ...request.Option) (*CreateStorageVirtualMachineOutput, error) {
+	req, out := c.CreateStorageVirtualMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateVolume = "CreateVolume"
+
+// CreateVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVolume operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVolume for more information on using the CreateVolume
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateVolumeRequest method.
+//	req, resp := client.CreateVolumeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateVolume
+func (c *FSx) CreateVolumeRequest(input *CreateVolumeInput) (req *request.Request, output *CreateVolumeOutput) {
+	op := &request.Operation{
+		Name:       opCreateVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateVolumeInput{}
+	}
+
+	output = &CreateVolumeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVolume API operation for Amazon FSx.
+//
+// Creates an FSx for ONTAP or Amazon FSx for OpenZFS storage volume.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CreateVolume for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - MissingVolumeConfiguration
+//     A volume configuration is required for this operation.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - StorageVirtualMachineNotFound
+//     No FSx for ONTAP SVMs were found based upon the supplied parameters.
+//
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateVolume
+func (c *FSx) CreateVolume(input *CreateVolumeInput) (*CreateVolumeOutput, error) {
+	req, out := c.CreateVolumeRequest(input)
+	return out, req.Send()
+}
+
+// CreateVolumeWithContext is the same as CreateVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CreateVolumeWithContext(ctx aws.Context, input *CreateVolumeInput, opts ...request.Option) (*CreateVolumeOutput, error) {
+	req, out := c.CreateVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateVolumeFromBackup = "CreateVolumeFromBackup"
+
+// CreateVolumeFromBackupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVolumeFromBackup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVolumeFromBackup for more information on using the CreateVolumeFromBackup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateVolumeFromBackupRequest method.
+//	req, resp := client.CreateVolumeFromBackupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateVolumeFromBackup
+func (c *FSx) CreateVolumeFromBackupRequest(input *CreateVolumeFromBackupInput) (req *request.Request, output *CreateVolumeFromBackupOutput) {
+	op := &request.Operation{
+		Name:       opCreateVolumeFromBackup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateVolumeFromBackupInput{}
+	}
+
+	output = &CreateVolumeFromBackupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVolumeFromBackup API operation for Amazon FSx.
+//
+// Creates a new Amazon FSx for NetApp ONTAP volume from an existing Amazon
+// FSx volume backup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CreateVolumeFromBackup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BackupNotFound
+//     No Amazon FSx backups were found based upon the supplied parameters.
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - MissingVolumeConfiguration
+//     A volume configuration is required for this operation.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - StorageVirtualMachineNotFound
+//     No FSx for ONTAP SVMs were found based upon the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateVolumeFromBackup
+func (c *FSx) CreateVolumeFromBackup(input *CreateVolumeFromBackupInput) (*CreateVolumeFromBackupOutput, error) {
+	req, out := c.CreateVolumeFromBackupRequest(input)
+	return out, req.Send()
+}
+
+// CreateVolumeFromBackupWithContext is the same as CreateVolumeFromBackup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVolumeFromBackup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CreateVolumeFromBackupWithContext(ctx aws.Context, input *CreateVolumeFromBackupInput, opts ...request.Option) (*CreateVolumeFromBackupOutput, error) {
+	req, out := c.CreateVolumeFromBackupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteBackup = "DeleteBackup"
 
 // DeleteBackupRequest generates a "aws/request.Request" representing the
@@ -897,14 +1673,13 @@ const opDeleteBackup = "DeleteBackup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBackupRequest method.
+//	req, resp := client.DeleteBackupRequest(params)
 //
-//    // Example sending a request using the DeleteBackupRequest method.
-//    req, resp := client.DeleteBackupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteBackup
 func (c *FSx) DeleteBackupRequest(input *DeleteBackupInput) (req *request.Request, output *DeleteBackupOutput) {
@@ -925,10 +1700,10 @@ func (c *FSx) DeleteBackupRequest(input *DeleteBackupInput) (req *request.Reques
 
 // DeleteBackup API operation for Amazon FSx.
 //
-// Deletes an Amazon FSx backup, deleting its contents. After deletion, the
-// backup no longer exists, and its data is gone.
+// Deletes an Amazon FSx backup. After deletion, the backup no longer exists,
+// and its data is gone.
 //
-// The DeleteBackup call returns instantly. The backup will not show up in later
+// The DeleteBackup call returns instantly. The backup won't show up in later
 // DescribeBackups calls.
 //
 // The data in a deleted backup is also deleted and can't be recovered by any
@@ -942,29 +1717,30 @@ func (c *FSx) DeleteBackupRequest(input *DeleteBackupInput) (req *request.Reques
 // API operation DeleteBackup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * BackupInProgress
-//   Another backup is already under way. Wait for completion before initiating
-//   additional backups of this file system.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * BackupNotFound
-//   No Amazon FSx backups were found based upon the supplied parameters.
+//   - BackupInProgress
+//     Another backup is already under way. Wait for completion before initiating
+//     additional backups of this file system.
 //
-//   * BackupRestoring
-//   You can't delete a backup while it's being used to restore a file system.
+//   - BackupNotFound
+//     No Amazon FSx backups were found based upon the supplied parameters.
 //
-//   * IncompatibleParameterError
-//   The error returned when a second request is received with the same client
-//   request token but different parameters settings. A client request token should
-//   always uniquely identify a single request.
+//   - BackupRestoring
+//     You can't delete a backup while it's being used to restore a file system.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
 //
-//   * BackupBeingCopied
-//   You can't delete a backup while it's being copied.
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - BackupBeingCopied
+//     You can't delete a backup while it's being copied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteBackup
 func (c *FSx) DeleteBackup(input *DeleteBackupInput) (*DeleteBackupOutput, error) {
@@ -988,6 +1764,211 @@ func (c *FSx) DeleteBackupWithContext(ctx aws.Context, input *DeleteBackupInput,
 	return out, req.Send()
 }
 
+const opDeleteDataRepositoryAssociation = "DeleteDataRepositoryAssociation"
+
+// DeleteDataRepositoryAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataRepositoryAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataRepositoryAssociation for more information on using the DeleteDataRepositoryAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteDataRepositoryAssociationRequest method.
+//	req, resp := client.DeleteDataRepositoryAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteDataRepositoryAssociation
+func (c *FSx) DeleteDataRepositoryAssociationRequest(input *DeleteDataRepositoryAssociationInput) (req *request.Request, output *DeleteDataRepositoryAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataRepositoryAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDataRepositoryAssociationInput{}
+	}
+
+	output = &DeleteDataRepositoryAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteDataRepositoryAssociation API operation for Amazon FSx.
+//
+// Deletes a data repository association on an Amazon FSx for Lustre file system.
+// Deleting the data repository association unlinks the file system from the
+// Amazon S3 bucket. When deleting a data repository association, you have the
+// option of deleting the data in the file system that corresponds to the data
+// repository association. Data repository associations are supported on all
+// FSx for Lustre 2.12 and 2.15 file systems, excluding scratch_1 deployment
+// type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DeleteDataRepositoryAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - DataRepositoryAssociationNotFound
+//     No data repository associations were found based upon the supplied parameters.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteDataRepositoryAssociation
+func (c *FSx) DeleteDataRepositoryAssociation(input *DeleteDataRepositoryAssociationInput) (*DeleteDataRepositoryAssociationOutput, error) {
+	req, out := c.DeleteDataRepositoryAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDataRepositoryAssociationWithContext is the same as DeleteDataRepositoryAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataRepositoryAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DeleteDataRepositoryAssociationWithContext(ctx aws.Context, input *DeleteDataRepositoryAssociationInput, opts ...request.Option) (*DeleteDataRepositoryAssociationOutput, error) {
+	req, out := c.DeleteDataRepositoryAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFileCache = "DeleteFileCache"
+
+// DeleteFileCacheRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFileCache operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFileCache for more information on using the DeleteFileCache
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteFileCacheRequest method.
+//	req, resp := client.DeleteFileCacheRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteFileCache
+func (c *FSx) DeleteFileCacheRequest(input *DeleteFileCacheInput) (req *request.Request, output *DeleteFileCacheOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFileCache,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFileCacheInput{}
+	}
+
+	output = &DeleteFileCacheOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFileCache API operation for Amazon FSx.
+//
+// Deletes an Amazon File Cache resource. After deletion, the cache no longer
+// exists, and its data is gone.
+//
+// The DeleteFileCache operation returns while the cache has the DELETING status.
+// You can check the cache deletion status by calling the DescribeFileCaches
+// (https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileCaches.html)
+// operation, which returns a list of caches in your account. If you pass the
+// cache ID for a deleted cache, the DescribeFileCaches operation returns a
+// FileCacheNotFound error.
+//
+// The data in a deleted cache is also deleted and can't be recovered by any
+// means.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DeleteFileCache for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - FileCacheNotFound
+//     No caches were found based upon supplied parameters.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteFileCache
+func (c *FSx) DeleteFileCache(input *DeleteFileCacheInput) (*DeleteFileCacheOutput, error) {
+	req, out := c.DeleteFileCacheRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFileCacheWithContext is the same as DeleteFileCache with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFileCache for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DeleteFileCacheWithContext(ctx aws.Context, input *DeleteFileCacheInput, opts ...request.Option) (*DeleteFileCacheOutput, error) {
+	req, out := c.DeleteFileCacheRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteFileSystem = "DeleteFileSystem"
 
 // DeleteFileSystemRequest generates a "aws/request.Request" representing the
@@ -1004,14 +1985,13 @@ const opDeleteFileSystem = "DeleteFileSystem"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFileSystemRequest method.
+//	req, resp := client.DeleteFileSystemRequest(params)
 //
-//    // Example sending a request using the DeleteFileSystemRequest method.
-//    req, resp := client.DeleteFileSystemRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteFileSystem
 func (c *FSx) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *request.Request, output *DeleteFileSystemOutput) {
@@ -1032,22 +2012,43 @@ func (c *FSx) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 
 // DeleteFileSystem API operation for Amazon FSx.
 //
-// Deletes a file system, deleting its contents. After deletion, the file system
-// no longer exists, and its data is gone. Any existing automatic backups will
-// also be deleted.
+// Deletes a file system. After deletion, the file system no longer exists,
+// and its data is gone. Any existing automatic backups and snapshots are also
+// deleted.
+//
+// To delete an Amazon FSx for NetApp ONTAP file system, first delete all the
+// volumes and storage virtual machines (SVMs) on the file system. Then provide
+// a FileSystemId value to the DeleFileSystem operation.
 //
 // By default, when you delete an Amazon FSx for Windows File Server file system,
-// a final backup is created upon deletion. This final backup is not subject
+// a final backup is created upon deletion. This final backup isn't subject
 // to the file system's retention policy, and must be manually deleted.
 //
-// The DeleteFileSystem action returns while the file system has the DELETING
-// status. You can check the file system deletion status by calling the DescribeFileSystems
-// action, which returns a list of file systems in your account. If you pass
-// the file system ID for a deleted file system, the DescribeFileSystems returns
-// a FileSystemNotFound error.
+// To delete an Amazon FSx for Lustre file system, first unmount (https://docs.aws.amazon.com/fsx/latest/LustreGuide/unmounting-fs.html)
+// it from every connected Amazon EC2 instance, then provide a FileSystemId
+// value to the DeleFileSystem operation. By default, Amazon FSx will not take
+// a final backup when the DeleteFileSystem operation is invoked. On file systems
+// not linked to an Amazon S3 bucket, set SkipFinalBackup to false to take a
+// final backup of the file system you are deleting. Backups cannot be enabled
+// on S3-linked file systems. To ensure all of your data is written back to
+// S3 before deleting your file system, you can either monitor for the AgeOfOldestQueuedMessage
+// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/monitoring-cloudwatch.html#auto-import-export-metrics)
+// metric to be zero (if using automatic export) or you can run an export data
+// repository task (https://docs.aws.amazon.com/fsx/latest/LustreGuide/export-data-repo-task-dra.html).
+// If you have automatic export enabled and want to use an export data repository
+// task, you have to disable automatic export before executing the export data
+// repository task.
 //
-// Deleting an Amazon FSx for Lustre file system will fail with a 400 BadRequest
-// if a data repository task is in a PENDING or EXECUTING state.
+// The DeleteFileSystem operation returns while the file system has the DELETING
+// status. You can check the file system deletion status by calling the DescribeFileSystems
+// (https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html)
+// operation, which returns a list of file systems in your account. If you pass
+// the file system ID for a deleted file system, the DescribeFileSystems operation
+// returns a FileSystemNotFound error.
+//
+// If a data repository task is in a PENDING or EXECUTING state, deleting an
+// Amazon FSx for Lustre file system will fail with an HTTP status code 400
+// (Bad Request).
 //
 // The data in a deleted file system is also deleted and can't be recovered
 // by any means.
@@ -1060,23 +2061,24 @@ func (c *FSx) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 // API operation DeleteFileSystem for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * IncompatibleParameterError
-//   The error returned when a second request is received with the same client
-//   request token but different parameters settings. A client request token should
-//   always uniquely identify a single request.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
 //
-//   * ServiceLimitExceeded
-//   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteFileSystem
 func (c *FSx) DeleteFileSystem(input *DeleteFileSystemInput) (*DeleteFileSystemOutput, error) {
@@ -1100,6 +2102,282 @@ func (c *FSx) DeleteFileSystemWithContext(ctx aws.Context, input *DeleteFileSyst
 	return out, req.Send()
 }
 
+const opDeleteSnapshot = "DeleteSnapshot"
+
+// DeleteSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSnapshot for more information on using the DeleteSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteSnapshotRequest method.
+//	req, resp := client.DeleteSnapshotRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteSnapshot
+func (c *FSx) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *request.Request, output *DeleteSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteSnapshotInput{}
+	}
+
+	output = &DeleteSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteSnapshot API operation for Amazon FSx.
+//
+// Deletes an Amazon FSx for OpenZFS snapshot. After deletion, the snapshot
+// no longer exists, and its data is gone. Deleting a snapshot doesn't affect
+// snapshots stored in a file system backup.
+//
+// The DeleteSnapshot operation returns instantly. The snapshot appears with
+// the lifecycle status of DELETING until the deletion is complete.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DeleteSnapshot for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - SnapshotNotFound
+//     No Amazon FSx snapshots were found based on the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteSnapshot
+func (c *FSx) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, error) {
+	req, out := c.DeleteSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSnapshotWithContext is the same as DeleteSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DeleteSnapshotWithContext(ctx aws.Context, input *DeleteSnapshotInput, opts ...request.Option) (*DeleteSnapshotOutput, error) {
+	req, out := c.DeleteSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteStorageVirtualMachine = "DeleteStorageVirtualMachine"
+
+// DeleteStorageVirtualMachineRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStorageVirtualMachine operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStorageVirtualMachine for more information on using the DeleteStorageVirtualMachine
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteStorageVirtualMachineRequest method.
+//	req, resp := client.DeleteStorageVirtualMachineRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteStorageVirtualMachine
+func (c *FSx) DeleteStorageVirtualMachineRequest(input *DeleteStorageVirtualMachineInput) (req *request.Request, output *DeleteStorageVirtualMachineOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStorageVirtualMachine,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteStorageVirtualMachineInput{}
+	}
+
+	output = &DeleteStorageVirtualMachineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteStorageVirtualMachine API operation for Amazon FSx.
+//
+// Deletes an existing Amazon FSx for ONTAP storage virtual machine (SVM). Prior
+// to deleting an SVM, you must delete all non-root volumes in the SVM, otherwise
+// the operation will fail.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DeleteStorageVirtualMachine for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - StorageVirtualMachineNotFound
+//     No FSx for ONTAP SVMs were found based upon the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteStorageVirtualMachine
+func (c *FSx) DeleteStorageVirtualMachine(input *DeleteStorageVirtualMachineInput) (*DeleteStorageVirtualMachineOutput, error) {
+	req, out := c.DeleteStorageVirtualMachineRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStorageVirtualMachineWithContext is the same as DeleteStorageVirtualMachine with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStorageVirtualMachine for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DeleteStorageVirtualMachineWithContext(ctx aws.Context, input *DeleteStorageVirtualMachineInput, opts ...request.Option) (*DeleteStorageVirtualMachineOutput, error) {
+	req, out := c.DeleteStorageVirtualMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVolume = "DeleteVolume"
+
+// DeleteVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVolume operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVolume for more information on using the DeleteVolume
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteVolumeRequest method.
+//	req, resp := client.DeleteVolumeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteVolume
+func (c *FSx) DeleteVolumeRequest(input *DeleteVolumeInput) (req *request.Request, output *DeleteVolumeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteVolumeInput{}
+	}
+
+	output = &DeleteVolumeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteVolume API operation for Amazon FSx.
+//
+// Deletes an Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS volume.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DeleteVolume for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - VolumeNotFound
+//     No Amazon FSx volumes were found based upon the supplied parameters.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteVolume
+func (c *FSx) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOutput, error) {
+	req, out := c.DeleteVolumeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVolumeWithContext is the same as DeleteVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DeleteVolumeWithContext(ctx aws.Context, input *DeleteVolumeInput, opts ...request.Option) (*DeleteVolumeOutput, error) {
+	req, out := c.DeleteVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeBackups = "DescribeBackups"
 
 // DescribeBackupsRequest generates a "aws/request.Request" representing the
@@ -1116,14 +2394,13 @@ const opDescribeBackups = "DescribeBackups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBackupsRequest method.
+//	req, resp := client.DescribeBackupsRequest(params)
 //
-//    // Example sending a request using the DescribeBackupsRequest method.
-//    req, resp := client.DescribeBackupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeBackups
 func (c *FSx) DescribeBackupsRequest(input *DescribeBackupsInput) (req *request.Request, output *DescribeBackupsOutput) {
@@ -1150,29 +2427,30 @@ func (c *FSx) DescribeBackupsRequest(input *DescribeBackupsInput) (req *request.
 
 // DescribeBackups API operation for Amazon FSx.
 //
-// Returns the description of specific Amazon FSx backups, if a BackupIds value
+// Returns the description of a specific Amazon FSx backup, if a BackupIds value
 // is provided for that backup. Otherwise, it returns all backups owned by your
-// AWS account in the AWS Region of the endpoint that you're calling.
+// Amazon Web Services account in the Amazon Web Services Region of the endpoint
+// that you're calling.
 //
 // When retrieving all backups, you can optionally specify the MaxResults parameter
 // to limit the number of backups in a response. If more backups remain, Amazon
 // FSx returns a NextToken value in the response. In this case, send a later
-// request with the NextToken request parameter set to the value of NextToken
-// from the last response.
+// request with the NextToken request parameter set to the value of the NextToken
+// value from the last response.
 //
-// This action is used in an iterative process to retrieve a list of your backups.
-// DescribeBackups is called first without a NextTokenvalue. Then the action
-// continues to be called with the NextToken parameter set to the value of the
-// last NextToken value until a response has no NextToken.
+// This operation is used in an iterative process to retrieve a list of your
+// backups. DescribeBackups is called first without a NextToken value. Then
+// the operation continues to be called with the NextToken parameter set to
+// the value of the last NextToken value until a response has no NextToken value.
 //
-// When using this action, keep the following in mind:
+// When using this operation, keep the following in mind:
 //
-//    * The implementation might return fewer than MaxResults file system descriptions
-//    while still including a NextToken value.
+//   - The operation might return fewer than the MaxResults value of backup
+//     descriptions while still including a NextToken value.
 //
-//    * The order of backups returned in the response of one DescribeBackups
-//    call and the order of backups returned across the responses of a multi-call
-//    iteration is unspecified.
+//   - The order of the backups returned in the response of one DescribeBackups
+//     call and the order of the backups returned across the responses of a multi-call
+//     iteration is unspecified.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1182,17 +2460,21 @@ func (c *FSx) DescribeBackupsRequest(input *DescribeBackupsInput) (req *request.
 // API operation DescribeBackups for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * BackupNotFound
-//   No Amazon FSx backups were found based upon the supplied parameters.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - VolumeNotFound
+//     No Amazon FSx volumes were found based upon the supplied parameters.
+//
+//   - BackupNotFound
+//     No Amazon FSx backups were found based upon the supplied parameters.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeBackups
 func (c *FSx) DescribeBackups(input *DescribeBackupsInput) (*DescribeBackupsOutput, error) {
@@ -1224,15 +2506,14 @@ func (c *FSx) DescribeBackupsWithContext(ctx aws.Context, input *DescribeBackups
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeBackups operation.
-//    pageNum := 0
-//    err := client.DescribeBackupsPages(params,
-//        func(page *fsx.DescribeBackupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeBackups operation.
+//	pageNum := 0
+//	err := client.DescribeBackupsPages(params,
+//	    func(page *fsx.DescribeBackupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FSx) DescribeBackupsPages(input *DescribeBackupsInput, fn func(*DescribeBackupsOutput, bool) bool) error {
 	return c.DescribeBackupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1268,6 +2549,175 @@ func (c *FSx) DescribeBackupsPagesWithContext(ctx aws.Context, input *DescribeBa
 	return p.Err()
 }
 
+const opDescribeDataRepositoryAssociations = "DescribeDataRepositoryAssociations"
+
+// DescribeDataRepositoryAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataRepositoryAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDataRepositoryAssociations for more information on using the DescribeDataRepositoryAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDataRepositoryAssociationsRequest method.
+//	req, resp := client.DescribeDataRepositoryAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeDataRepositoryAssociations
+func (c *FSx) DescribeDataRepositoryAssociationsRequest(input *DescribeDataRepositoryAssociationsInput) (req *request.Request, output *DescribeDataRepositoryAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDataRepositoryAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeDataRepositoryAssociationsInput{}
+	}
+
+	output = &DescribeDataRepositoryAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDataRepositoryAssociations API operation for Amazon FSx.
+//
+// Returns the description of specific Amazon FSx for Lustre or Amazon File
+// Cache data repository associations, if one or more AssociationIds values
+// are provided in the request, or if filters are used in the request. Data
+// repository associations are supported on Amazon File Cache resources and
+// all FSx for Lustre 2.12 and 2,15 file systems, excluding scratch_1 deployment
+// type.
+//
+// You can use filters to narrow the response to include just data repository
+// associations for specific file systems (use the file-system-id filter with
+// the ID of the file system) or caches (use the file-cache-id filter with the
+// ID of the cache), or data repository associations for a specific repository
+// type (use the data-repository-type filter with a value of S3 or NFS). If
+// you don't use filters, the response returns all data repository associations
+// owned by your Amazon Web Services account in the Amazon Web Services Region
+// of the endpoint that you're calling.
+//
+// When retrieving all data repository associations, you can paginate the response
+// by using the optional MaxResults parameter to limit the number of data repository
+// associations returned in a response. If more data repository associations
+// remain, a NextToken value is returned in the response. In this case, send
+// a later request with the NextToken request parameter set to the value of
+// NextToken from the last response.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DescribeDataRepositoryAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - DataRepositoryAssociationNotFound
+//     No data repository associations were found based upon the supplied parameters.
+//
+//   - InvalidDataRepositoryType
+//     You have filtered the response to a data repository type that is not supported.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeDataRepositoryAssociations
+func (c *FSx) DescribeDataRepositoryAssociations(input *DescribeDataRepositoryAssociationsInput) (*DescribeDataRepositoryAssociationsOutput, error) {
+	req, out := c.DescribeDataRepositoryAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDataRepositoryAssociationsWithContext is the same as DescribeDataRepositoryAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDataRepositoryAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeDataRepositoryAssociationsWithContext(ctx aws.Context, input *DescribeDataRepositoryAssociationsInput, opts ...request.Option) (*DescribeDataRepositoryAssociationsOutput, error) {
+	req, out := c.DescribeDataRepositoryAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeDataRepositoryAssociationsPages iterates over the pages of a DescribeDataRepositoryAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDataRepositoryAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeDataRepositoryAssociations operation.
+//	pageNum := 0
+//	err := client.DescribeDataRepositoryAssociationsPages(params,
+//	    func(page *fsx.DescribeDataRepositoryAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FSx) DescribeDataRepositoryAssociationsPages(input *DescribeDataRepositoryAssociationsInput, fn func(*DescribeDataRepositoryAssociationsOutput, bool) bool) error {
+	return c.DescribeDataRepositoryAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDataRepositoryAssociationsPagesWithContext same as DescribeDataRepositoryAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeDataRepositoryAssociationsPagesWithContext(ctx aws.Context, input *DescribeDataRepositoryAssociationsInput, fn func(*DescribeDataRepositoryAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDataRepositoryAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDataRepositoryAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDataRepositoryAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeDataRepositoryTasks = "DescribeDataRepositoryTasks"
 
 // DescribeDataRepositoryTasksRequest generates a "aws/request.Request" representing the
@@ -1284,14 +2734,13 @@ const opDescribeDataRepositoryTasks = "DescribeDataRepositoryTasks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDataRepositoryTasksRequest method.
+//	req, resp := client.DescribeDataRepositoryTasksRequest(params)
 //
-//    // Example sending a request using the DescribeDataRepositoryTasksRequest method.
-//    req, resp := client.DescribeDataRepositoryTasksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeDataRepositoryTasks
 func (c *FSx) DescribeDataRepositoryTasksRequest(input *DescribeDataRepositoryTasksInput) (req *request.Request, output *DescribeDataRepositoryTasksOutput) {
@@ -1318,18 +2767,19 @@ func (c *FSx) DescribeDataRepositoryTasksRequest(input *DescribeDataRepositoryTa
 
 // DescribeDataRepositoryTasks API operation for Amazon FSx.
 //
-// Returns the description of specific Amazon FSx for Lustre data repository
-// tasks, if one or more TaskIds values are provided in the request, or if filters
-// are used in the request. You can use filters to narrow the response to include
-// just tasks for specific file systems, or tasks in a specific lifecycle state.
-// Otherwise, it returns all data repository tasks owned by your AWS account
-// in the AWS Region of the endpoint that you're calling.
+// Returns the description of specific Amazon FSx for Lustre or Amazon File
+// Cache data repository tasks, if one or more TaskIds values are provided in
+// the request, or if filters are used in the request. You can use filters to
+// narrow the response to include just tasks for specific file systems or caches,
+// or tasks in a specific lifecycle state. Otherwise, it returns all data repository
+// tasks owned by your Amazon Web Services account in the Amazon Web Services
+// Region of the endpoint that you're calling.
 //
 // When retrieving all tasks, you can paginate the response by using the optional
 // MaxResults parameter to limit the number of tasks returned in a response.
-// If more tasks remain, Amazon FSx returns a NextToken value in the response.
-// In this case, send a later request with the NextToken request parameter set
-// to the value of NextToken from the last response.
+// If more tasks remain, a NextToken value is returned in the response. In this
+// case, send a later request with the NextToken request parameter set to the
+// value of NextToken from the last response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1339,17 +2789,18 @@ func (c *FSx) DescribeDataRepositoryTasksRequest(input *DescribeDataRepositoryTa
 // API operation DescribeDataRepositoryTasks for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * DataRepositoryTaskNotFound
-//   The data repository task or tasks you specified could not be found.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - DataRepositoryTaskNotFound
+//     The data repository task or tasks you specified could not be found.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeDataRepositoryTasks
 func (c *FSx) DescribeDataRepositoryTasks(input *DescribeDataRepositoryTasksInput) (*DescribeDataRepositoryTasksOutput, error) {
@@ -1381,15 +2832,14 @@ func (c *FSx) DescribeDataRepositoryTasksWithContext(ctx aws.Context, input *Des
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeDataRepositoryTasks operation.
-//    pageNum := 0
-//    err := client.DescribeDataRepositoryTasksPages(params,
-//        func(page *fsx.DescribeDataRepositoryTasksOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeDataRepositoryTasks operation.
+//	pageNum := 0
+//	err := client.DescribeDataRepositoryTasksPages(params,
+//	    func(page *fsx.DescribeDataRepositoryTasksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FSx) DescribeDataRepositoryTasksPages(input *DescribeDataRepositoryTasksInput, fn func(*DescribeDataRepositoryTasksOutput, bool) bool) error {
 	return c.DescribeDataRepositoryTasksPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1425,6 +2875,171 @@ func (c *FSx) DescribeDataRepositoryTasksPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opDescribeFileCaches = "DescribeFileCaches"
+
+// DescribeFileCachesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFileCaches operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFileCaches for more information on using the DescribeFileCaches
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFileCachesRequest method.
+//	req, resp := client.DescribeFileCachesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeFileCaches
+func (c *FSx) DescribeFileCachesRequest(input *DescribeFileCachesInput) (req *request.Request, output *DescribeFileCachesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFileCaches,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFileCachesInput{}
+	}
+
+	output = &DescribeFileCachesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFileCaches API operation for Amazon FSx.
+//
+// Returns the description of a specific Amazon File Cache resource, if a FileCacheIds
+// value is provided for that cache. Otherwise, it returns descriptions of all
+// caches owned by your Amazon Web Services account in the Amazon Web Services
+// Region of the endpoint that you're calling.
+//
+// When retrieving all cache descriptions, you can optionally specify the MaxResults
+// parameter to limit the number of descriptions in a response. If more cache
+// descriptions remain, the operation returns a NextToken value in the response.
+// In this case, send a later request with the NextToken request parameter set
+// to the value of NextToken from the last response.
+//
+// This operation is used in an iterative process to retrieve a list of your
+// cache descriptions. DescribeFileCaches is called first without a NextTokenvalue.
+// Then the operation continues to be called with the NextToken parameter set
+// to the value of the last NextToken value until a response has no NextToken.
+//
+// When using this operation, keep the following in mind:
+//
+//   - The implementation might return fewer than MaxResults cache descriptions
+//     while still including a NextToken value.
+//
+//   - The order of caches returned in the response of one DescribeFileCaches
+//     call and the order of caches returned across the responses of a multicall
+//     iteration is unspecified.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DescribeFileCaches for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - FileCacheNotFound
+//     No caches were found based upon supplied parameters.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeFileCaches
+func (c *FSx) DescribeFileCaches(input *DescribeFileCachesInput) (*DescribeFileCachesOutput, error) {
+	req, out := c.DescribeFileCachesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFileCachesWithContext is the same as DescribeFileCaches with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFileCaches for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeFileCachesWithContext(ctx aws.Context, input *DescribeFileCachesInput, opts ...request.Option) (*DescribeFileCachesOutput, error) {
+	req, out := c.DescribeFileCachesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFileCachesPages iterates over the pages of a DescribeFileCaches operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFileCaches method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeFileCaches operation.
+//	pageNum := 0
+//	err := client.DescribeFileCachesPages(params,
+//	    func(page *fsx.DescribeFileCachesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FSx) DescribeFileCachesPages(input *DescribeFileCachesInput, fn func(*DescribeFileCachesOutput, bool) bool) error {
+	return c.DescribeFileCachesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFileCachesPagesWithContext same as DescribeFileCachesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeFileCachesPagesWithContext(ctx aws.Context, input *DescribeFileCachesInput, fn func(*DescribeFileCachesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFileCachesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFileCachesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFileCachesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeFileSystemAliases = "DescribeFileSystemAliases"
 
 // DescribeFileSystemAliasesRequest generates a "aws/request.Request" representing the
@@ -1441,14 +3056,13 @@ const opDescribeFileSystemAliases = "DescribeFileSystemAliases"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFileSystemAliasesRequest method.
+//	req, resp := client.DescribeFileSystemAliasesRequest(params)
 //
-//    // Example sending a request using the DescribeFileSystemAliasesRequest method.
-//    req, resp := client.DescribeFileSystemAliasesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeFileSystemAliases
 func (c *FSx) DescribeFileSystemAliasesRequest(input *DescribeFileSystemAliasesInput) (req *request.Request, output *DescribeFileSystemAliasesOutput) {
@@ -1489,14 +3103,15 @@ func (c *FSx) DescribeFileSystemAliasesRequest(input *DescribeFileSystemAliasesI
 // API operation DescribeFileSystemAliases for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeFileSystemAliases
 func (c *FSx) DescribeFileSystemAliases(input *DescribeFileSystemAliasesInput) (*DescribeFileSystemAliasesOutput, error) {
@@ -1528,15 +3143,14 @@ func (c *FSx) DescribeFileSystemAliasesWithContext(ctx aws.Context, input *Descr
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeFileSystemAliases operation.
-//    pageNum := 0
-//    err := client.DescribeFileSystemAliasesPages(params,
-//        func(page *fsx.DescribeFileSystemAliasesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeFileSystemAliases operation.
+//	pageNum := 0
+//	err := client.DescribeFileSystemAliasesPages(params,
+//	    func(page *fsx.DescribeFileSystemAliasesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FSx) DescribeFileSystemAliasesPages(input *DescribeFileSystemAliasesInput, fn func(*DescribeFileSystemAliasesOutput, bool) bool) error {
 	return c.DescribeFileSystemAliasesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1588,14 +3202,13 @@ const opDescribeFileSystems = "DescribeFileSystems"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFileSystemsRequest method.
+//	req, resp := client.DescribeFileSystemsRequest(params)
 //
-//    // Example sending a request using the DescribeFileSystemsRequest method.
-//    req, resp := client.DescribeFileSystemsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeFileSystems
 func (c *FSx) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *request.Request, output *DescribeFileSystemsOutput) {
@@ -1624,8 +3237,8 @@ func (c *FSx) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 //
 // Returns the description of specific Amazon FSx file systems, if a FileSystemIds
 // value is provided for that file system. Otherwise, it returns descriptions
-// of all file systems owned by your AWS account in the AWS Region of the endpoint
-// that you're calling.
+// of all file systems owned by your Amazon Web Services account in the Amazon
+// Web Services Region of the endpoint that you're calling.
 //
 // When retrieving all file system descriptions, you can optionally specify
 // the MaxResults parameter to limit the number of descriptions in a response.
@@ -1633,19 +3246,19 @@ func (c *FSx) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 // in the response. In this case, send a later request with the NextToken request
 // parameter set to the value of NextToken from the last response.
 //
-// This action is used in an iterative process to retrieve a list of your file
-// system descriptions. DescribeFileSystems is called first without a NextTokenvalue.
-// Then the action continues to be called with the NextToken parameter set to
-// the value of the last NextToken value until a response has no NextToken.
+// This operation is used in an iterative process to retrieve a list of your
+// file system descriptions. DescribeFileSystems is called first without a NextTokenvalue.
+// Then the operation continues to be called with the NextToken parameter set
+// to the value of the last NextToken value until a response has no NextToken.
 //
-// When using this action, keep the following in mind:
+// When using this operation, keep the following in mind:
 //
-//    * The implementation might return fewer than MaxResults file system descriptions
-//    while still including a NextToken value.
+//   - The implementation might return fewer than MaxResults file system descriptions
+//     while still including a NextToken value.
 //
-//    * The order of file systems returned in the response of one DescribeFileSystems
-//    call and the order of file systems returned across the responses of a
-//    multicall iteration is unspecified.
+//   - The order of file systems returned in the response of one DescribeFileSystems
+//     call and the order of file systems returned across the responses of a
+//     multicall iteration is unspecified.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1655,14 +3268,15 @@ func (c *FSx) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 // API operation DescribeFileSystems for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeFileSystems
 func (c *FSx) DescribeFileSystems(input *DescribeFileSystemsInput) (*DescribeFileSystemsOutput, error) {
@@ -1694,15 +3308,14 @@ func (c *FSx) DescribeFileSystemsWithContext(ctx aws.Context, input *DescribeFil
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeFileSystems operation.
-//    pageNum := 0
-//    err := client.DescribeFileSystemsPages(params,
-//        func(page *fsx.DescribeFileSystemsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeFileSystems operation.
+//	pageNum := 0
+//	err := client.DescribeFileSystemsPages(params,
+//	    func(page *fsx.DescribeFileSystemsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FSx) DescribeFileSystemsPages(input *DescribeFileSystemsInput, fn func(*DescribeFileSystemsOutput, bool) bool) error {
 	return c.DescribeFileSystemsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1738,6 +3351,542 @@ func (c *FSx) DescribeFileSystemsPagesWithContext(ctx aws.Context, input *Descri
 	return p.Err()
 }
 
+const opDescribeSharedVpcConfiguration = "DescribeSharedVpcConfiguration"
+
+// DescribeSharedVpcConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSharedVpcConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSharedVpcConfiguration for more information on using the DescribeSharedVpcConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeSharedVpcConfigurationRequest method.
+//	req, resp := client.DescribeSharedVpcConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeSharedVpcConfiguration
+func (c *FSx) DescribeSharedVpcConfigurationRequest(input *DescribeSharedVpcConfigurationInput) (req *request.Request, output *DescribeSharedVpcConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSharedVpcConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeSharedVpcConfigurationInput{}
+	}
+
+	output = &DescribeSharedVpcConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSharedVpcConfiguration API operation for Amazon FSx.
+//
+// Indicates whether participant accounts in your organization can create Amazon
+// FSx for NetApp ONTAP Multi-AZ file systems in subnets that are shared by
+// a virtual private cloud (VPC) owner. For more information, see the Amazon
+// FSx for NetApp ONTAP User Guide (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/maz-shared-vpc.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DescribeSharedVpcConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeSharedVpcConfiguration
+func (c *FSx) DescribeSharedVpcConfiguration(input *DescribeSharedVpcConfigurationInput) (*DescribeSharedVpcConfigurationOutput, error) {
+	req, out := c.DescribeSharedVpcConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSharedVpcConfigurationWithContext is the same as DescribeSharedVpcConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSharedVpcConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeSharedVpcConfigurationWithContext(ctx aws.Context, input *DescribeSharedVpcConfigurationInput, opts ...request.Option) (*DescribeSharedVpcConfigurationOutput, error) {
+	req, out := c.DescribeSharedVpcConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeSnapshots = "DescribeSnapshots"
+
+// DescribeSnapshotsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSnapshots operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSnapshots for more information on using the DescribeSnapshots
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeSnapshotsRequest method.
+//	req, resp := client.DescribeSnapshotsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeSnapshots
+func (c *FSx) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *request.Request, output *DescribeSnapshotsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSnapshots,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeSnapshotsInput{}
+	}
+
+	output = &DescribeSnapshotsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSnapshots API operation for Amazon FSx.
+//
+// Returns the description of specific Amazon FSx for OpenZFS snapshots, if
+// a SnapshotIds value is provided. Otherwise, this operation returns all snapshots
+// owned by your Amazon Web Services account in the Amazon Web Services Region
+// of the endpoint that you're calling.
+//
+// When retrieving all snapshots, you can optionally specify the MaxResults
+// parameter to limit the number of snapshots in a response. If more backups
+// remain, Amazon FSx returns a NextToken value in the response. In this case,
+// send a later request with the NextToken request parameter set to the value
+// of NextToken from the last response.
+//
+// Use this operation in an iterative process to retrieve a list of your snapshots.
+// DescribeSnapshots is called first without a NextToken value. Then the operation
+// continues to be called with the NextToken parameter set to the value of the
+// last NextToken value until a response has no NextToken value.
+//
+// When using this operation, keep the following in mind:
+//
+//   - The operation might return fewer than the MaxResults value of snapshot
+//     descriptions while still including a NextToken value.
+//
+//   - The order of snapshots returned in the response of one DescribeSnapshots
+//     call and the order of backups returned across the responses of a multi-call
+//     iteration is unspecified.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DescribeSnapshots for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - SnapshotNotFound
+//     No Amazon FSx snapshots were found based on the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeSnapshots
+func (c *FSx) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapshotsOutput, error) {
+	req, out := c.DescribeSnapshotsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSnapshotsWithContext is the same as DescribeSnapshots with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSnapshots for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeSnapshotsWithContext(ctx aws.Context, input *DescribeSnapshotsInput, opts ...request.Option) (*DescribeSnapshotsOutput, error) {
+	req, out := c.DescribeSnapshotsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeSnapshotsPages iterates over the pages of a DescribeSnapshots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeSnapshots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeSnapshots operation.
+//	pageNum := 0
+//	err := client.DescribeSnapshotsPages(params,
+//	    func(page *fsx.DescribeSnapshotsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FSx) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(*DescribeSnapshotsOutput, bool) bool) error {
+	return c.DescribeSnapshotsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeSnapshotsPagesWithContext same as DescribeSnapshotsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeSnapshotsPagesWithContext(ctx aws.Context, input *DescribeSnapshotsInput, fn func(*DescribeSnapshotsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeSnapshotsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeSnapshotsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeSnapshotsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeStorageVirtualMachines = "DescribeStorageVirtualMachines"
+
+// DescribeStorageVirtualMachinesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStorageVirtualMachines operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStorageVirtualMachines for more information on using the DescribeStorageVirtualMachines
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeStorageVirtualMachinesRequest method.
+//	req, resp := client.DescribeStorageVirtualMachinesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeStorageVirtualMachines
+func (c *FSx) DescribeStorageVirtualMachinesRequest(input *DescribeStorageVirtualMachinesInput) (req *request.Request, output *DescribeStorageVirtualMachinesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStorageVirtualMachines,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeStorageVirtualMachinesInput{}
+	}
+
+	output = &DescribeStorageVirtualMachinesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeStorageVirtualMachines API operation for Amazon FSx.
+//
+// Describes one or more Amazon FSx for NetApp ONTAP storage virtual machines
+// (SVMs).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DescribeStorageVirtualMachines for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - StorageVirtualMachineNotFound
+//     No FSx for ONTAP SVMs were found based upon the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeStorageVirtualMachines
+func (c *FSx) DescribeStorageVirtualMachines(input *DescribeStorageVirtualMachinesInput) (*DescribeStorageVirtualMachinesOutput, error) {
+	req, out := c.DescribeStorageVirtualMachinesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStorageVirtualMachinesWithContext is the same as DescribeStorageVirtualMachines with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStorageVirtualMachines for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeStorageVirtualMachinesWithContext(ctx aws.Context, input *DescribeStorageVirtualMachinesInput, opts ...request.Option) (*DescribeStorageVirtualMachinesOutput, error) {
+	req, out := c.DescribeStorageVirtualMachinesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeStorageVirtualMachinesPages iterates over the pages of a DescribeStorageVirtualMachines operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeStorageVirtualMachines method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeStorageVirtualMachines operation.
+//	pageNum := 0
+//	err := client.DescribeStorageVirtualMachinesPages(params,
+//	    func(page *fsx.DescribeStorageVirtualMachinesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FSx) DescribeStorageVirtualMachinesPages(input *DescribeStorageVirtualMachinesInput, fn func(*DescribeStorageVirtualMachinesOutput, bool) bool) error {
+	return c.DescribeStorageVirtualMachinesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeStorageVirtualMachinesPagesWithContext same as DescribeStorageVirtualMachinesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeStorageVirtualMachinesPagesWithContext(ctx aws.Context, input *DescribeStorageVirtualMachinesInput, fn func(*DescribeStorageVirtualMachinesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeStorageVirtualMachinesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeStorageVirtualMachinesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeStorageVirtualMachinesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeVolumes = "DescribeVolumes"
+
+// DescribeVolumesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVolumes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVolumes for more information on using the DescribeVolumes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeVolumesRequest method.
+//	req, resp := client.DescribeVolumesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeVolumes
+func (c *FSx) DescribeVolumesRequest(input *DescribeVolumesInput) (req *request.Request, output *DescribeVolumesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVolumes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeVolumesInput{}
+	}
+
+	output = &DescribeVolumesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVolumes API operation for Amazon FSx.
+//
+// Describes one or more Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS
+// volumes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DescribeVolumes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - VolumeNotFound
+//     No Amazon FSx volumes were found based upon the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeVolumes
+func (c *FSx) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutput, error) {
+	req, out := c.DescribeVolumesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVolumesWithContext is the same as DescribeVolumes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVolumes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeVolumesWithContext(ctx aws.Context, input *DescribeVolumesInput, opts ...request.Option) (*DescribeVolumesOutput, error) {
+	req, out := c.DescribeVolumesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeVolumesPages iterates over the pages of a DescribeVolumes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeVolumes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeVolumes operation.
+//	pageNum := 0
+//	err := client.DescribeVolumesPages(params,
+//	    func(page *fsx.DescribeVolumesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FSx) DescribeVolumesPages(input *DescribeVolumesInput, fn func(*DescribeVolumesOutput, bool) bool) error {
+	return c.DescribeVolumesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeVolumesPagesWithContext same as DescribeVolumesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeVolumesPagesWithContext(ctx aws.Context, input *DescribeVolumesInput, fn func(*DescribeVolumesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeVolumesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeVolumesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeVolumesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDisassociateFileSystemAliases = "DisassociateFileSystemAliases"
 
 // DisassociateFileSystemAliasesRequest generates a "aws/request.Request" representing the
@@ -1754,14 +3903,13 @@ const opDisassociateFileSystemAliases = "DisassociateFileSystemAliases"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateFileSystemAliasesRequest method.
+//	req, resp := client.DisassociateFileSystemAliasesRequest(params)
 //
-//    // Example sending a request using the DisassociateFileSystemAliasesRequest method.
-//    req, resp := client.DisassociateFileSystemAliasesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DisassociateFileSystemAliases
 func (c *FSx) DisassociateFileSystemAliasesRequest(input *DisassociateFileSystemAliasesInput) (req *request.Request, output *DisassociateFileSystemAliasesOutput) {
@@ -1785,8 +3933,8 @@ func (c *FSx) DisassociateFileSystemAliasesRequest(input *DisassociateFileSystem
 // Use this action to disassociate, or remove, one or more Domain Name Service
 // (DNS) aliases from an Amazon FSx for Windows File Server file system. If
 // you attempt to disassociate a DNS alias that is not associated with the file
-// system, Amazon FSx responds with a 400 Bad Request. For more information,
-// see Working with DNS Aliases (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html).
+// system, Amazon FSx responds with an HTTP status code 400 (Bad Request). For
+// more information, see Working with DNS Aliases (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html).
 //
 // The system generated response showing the DNS aliases that Amazon FSx is
 // attempting to disassociate from the file system. Use the API operation to
@@ -1801,14 +3949,15 @@ func (c *FSx) DisassociateFileSystemAliasesRequest(input *DisassociateFileSystem
 // API operation DisassociateFileSystemAliases for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DisassociateFileSystemAliases
 func (c *FSx) DisassociateFileSystemAliases(input *DisassociateFileSystemAliasesInput) (*DisassociateFileSystemAliasesOutput, error) {
@@ -1848,14 +3997,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/ListTagsForResource
 func (c *FSx) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1863,6 +4011,12 @@ func (c *FSx) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 		Name:       opListTagsForResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1876,8 +4030,7 @@ func (c *FSx) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 
 // ListTagsForResource API operation for Amazon FSx.
 //
-// Lists tags for an Amazon FSx file systems and backups in the case of Amazon
-// FSx for Windows File Server.
+// Lists tags for Amazon FSx resources.
 //
 // When retrieving all tags, you can optionally specify the MaxResults parameter
 // to limit the number of tags in a response. If more tags remain, Amazon FSx
@@ -1892,12 +4045,12 @@ func (c *FSx) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //
 // When using this action, keep the following in mind:
 //
-//    * The implementation might return fewer than MaxResults file system descriptions
-//    while still including a NextToken value.
+//   - The implementation might return fewer than MaxResults file system descriptions
+//     while still including a NextToken value.
 //
-//    * The order of tags returned in the response of one ListTagsForResource
-//    call and the order of tags returned across the responses of a multi-call
-//    iteration is unspecified.
+//   - The order of tags returned in the response of one ListTagsForResource
+//     call and the order of tags returned across the responses of a multi-call
+//     iteration is unspecified.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1907,21 +4060,22 @@ func (c *FSx) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * ResourceNotFound
-//   The resource specified by the Amazon Resource Name (ARN) can't be found.
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
-//   * NotServiceResourceError
-//   The resource specified for the tagging operation is not a resource type owned
-//   by Amazon FSx. Use the API of the relevant service to perform the operation.
+//   - ResourceNotFound
+//     The resource specified by the Amazon Resource Name (ARN) can't be found.
 //
-//   * ResourceDoesNotSupportTagging
-//   The resource specified does not support tagging.
+//   - NotServiceResourceError
+//     The resource specified for the tagging operation is not a resource type owned
+//     by Amazon FSx. Use the API of the relevant service to perform the operation.
+//
+//   - ResourceDoesNotSupportTagging
+//     The resource specified does not support tagging.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/ListTagsForResource
 func (c *FSx) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1945,6 +4099,324 @@ func (c *FSx) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsFor
 	return out, req.Send()
 }
 
+// ListTagsForResourcePages iterates over the pages of a ListTagsForResource operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTagsForResource method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTagsForResource operation.
+//	pageNum := 0
+//	err := client.ListTagsForResourcePages(params,
+//	    func(page *fsx.ListTagsForResourceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FSx) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
+	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTagsForResourcePagesWithContext same as ListTagsForResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) ListTagsForResourcePagesWithContext(ctx aws.Context, input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTagsForResourceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTagsForResourceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opReleaseFileSystemNfsV3Locks = "ReleaseFileSystemNfsV3Locks"
+
+// ReleaseFileSystemNfsV3LocksRequest generates a "aws/request.Request" representing the
+// client's request for the ReleaseFileSystemNfsV3Locks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ReleaseFileSystemNfsV3Locks for more information on using the ReleaseFileSystemNfsV3Locks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ReleaseFileSystemNfsV3LocksRequest method.
+//	req, resp := client.ReleaseFileSystemNfsV3LocksRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/ReleaseFileSystemNfsV3Locks
+func (c *FSx) ReleaseFileSystemNfsV3LocksRequest(input *ReleaseFileSystemNfsV3LocksInput) (req *request.Request, output *ReleaseFileSystemNfsV3LocksOutput) {
+	op := &request.Operation{
+		Name:       opReleaseFileSystemNfsV3Locks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ReleaseFileSystemNfsV3LocksInput{}
+	}
+
+	output = &ReleaseFileSystemNfsV3LocksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ReleaseFileSystemNfsV3Locks API operation for Amazon FSx.
+//
+// Releases the file system lock from an Amazon FSx for OpenZFS file system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation ReleaseFileSystemNfsV3Locks for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/ReleaseFileSystemNfsV3Locks
+func (c *FSx) ReleaseFileSystemNfsV3Locks(input *ReleaseFileSystemNfsV3LocksInput) (*ReleaseFileSystemNfsV3LocksOutput, error) {
+	req, out := c.ReleaseFileSystemNfsV3LocksRequest(input)
+	return out, req.Send()
+}
+
+// ReleaseFileSystemNfsV3LocksWithContext is the same as ReleaseFileSystemNfsV3Locks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ReleaseFileSystemNfsV3Locks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) ReleaseFileSystemNfsV3LocksWithContext(ctx aws.Context, input *ReleaseFileSystemNfsV3LocksInput, opts ...request.Option) (*ReleaseFileSystemNfsV3LocksOutput, error) {
+	req, out := c.ReleaseFileSystemNfsV3LocksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRestoreVolumeFromSnapshot = "RestoreVolumeFromSnapshot"
+
+// RestoreVolumeFromSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the RestoreVolumeFromSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RestoreVolumeFromSnapshot for more information on using the RestoreVolumeFromSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RestoreVolumeFromSnapshotRequest method.
+//	req, resp := client.RestoreVolumeFromSnapshotRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/RestoreVolumeFromSnapshot
+func (c *FSx) RestoreVolumeFromSnapshotRequest(input *RestoreVolumeFromSnapshotInput) (req *request.Request, output *RestoreVolumeFromSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opRestoreVolumeFromSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RestoreVolumeFromSnapshotInput{}
+	}
+
+	output = &RestoreVolumeFromSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RestoreVolumeFromSnapshot API operation for Amazon FSx.
+//
+// Returns an Amazon FSx for OpenZFS volume to the state saved by the specified
+// snapshot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation RestoreVolumeFromSnapshot for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - VolumeNotFound
+//     No Amazon FSx volumes were found based upon the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/RestoreVolumeFromSnapshot
+func (c *FSx) RestoreVolumeFromSnapshot(input *RestoreVolumeFromSnapshotInput) (*RestoreVolumeFromSnapshotOutput, error) {
+	req, out := c.RestoreVolumeFromSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// RestoreVolumeFromSnapshotWithContext is the same as RestoreVolumeFromSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RestoreVolumeFromSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) RestoreVolumeFromSnapshotWithContext(ctx aws.Context, input *RestoreVolumeFromSnapshotInput, opts ...request.Option) (*RestoreVolumeFromSnapshotOutput, error) {
+	req, out := c.RestoreVolumeFromSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartMisconfiguredStateRecovery = "StartMisconfiguredStateRecovery"
+
+// StartMisconfiguredStateRecoveryRequest generates a "aws/request.Request" representing the
+// client's request for the StartMisconfiguredStateRecovery operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMisconfiguredStateRecovery for more information on using the StartMisconfiguredStateRecovery
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartMisconfiguredStateRecoveryRequest method.
+//	req, resp := client.StartMisconfiguredStateRecoveryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/StartMisconfiguredStateRecovery
+func (c *FSx) StartMisconfiguredStateRecoveryRequest(input *StartMisconfiguredStateRecoveryInput) (req *request.Request, output *StartMisconfiguredStateRecoveryOutput) {
+	op := &request.Operation{
+		Name:       opStartMisconfiguredStateRecovery,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartMisconfiguredStateRecoveryInput{}
+	}
+
+	output = &StartMisconfiguredStateRecoveryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartMisconfiguredStateRecovery API operation for Amazon FSx.
+//
+// After performing steps to repair the Active Directory configuration of an
+// FSx for Windows File Server file system, use this action to initiate the
+// process of Amazon FSx attempting to reconnect to the file system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation StartMisconfiguredStateRecovery for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/StartMisconfiguredStateRecovery
+func (c *FSx) StartMisconfiguredStateRecovery(input *StartMisconfiguredStateRecoveryInput) (*StartMisconfiguredStateRecoveryOutput, error) {
+	req, out := c.StartMisconfiguredStateRecoveryRequest(input)
+	return out, req.Send()
+}
+
+// StartMisconfiguredStateRecoveryWithContext is the same as StartMisconfiguredStateRecovery with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMisconfiguredStateRecovery for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) StartMisconfiguredStateRecoveryWithContext(ctx aws.Context, input *StartMisconfiguredStateRecoveryInput, opts ...request.Option) (*StartMisconfiguredStateRecoveryOutput, error) {
+	req, out := c.StartMisconfiguredStateRecoveryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -1961,14 +4433,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/TagResource
 func (c *FSx) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2000,21 +4471,22 @@ func (c *FSx) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * ResourceNotFound
-//   The resource specified by the Amazon Resource Name (ARN) can't be found.
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
-//   * NotServiceResourceError
-//   The resource specified for the tagging operation is not a resource type owned
-//   by Amazon FSx. Use the API of the relevant service to perform the operation.
+//   - ResourceNotFound
+//     The resource specified by the Amazon Resource Name (ARN) can't be found.
 //
-//   * ResourceDoesNotSupportTagging
-//   The resource specified does not support tagging.
+//   - NotServiceResourceError
+//     The resource specified for the tagging operation is not a resource type owned
+//     by Amazon FSx. Use the API of the relevant service to perform the operation.
+//
+//   - ResourceDoesNotSupportTagging
+//     The resource specified does not support tagging.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/TagResource
 func (c *FSx) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2054,14 +4526,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UntagResource
 func (c *FSx) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2093,21 +4564,22 @@ func (c *FSx) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * ResourceNotFound
-//   The resource specified by the Amazon Resource Name (ARN) can't be found.
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
-//   * NotServiceResourceError
-//   The resource specified for the tagging operation is not a resource type owned
-//   by Amazon FSx. Use the API of the relevant service to perform the operation.
+//   - ResourceNotFound
+//     The resource specified by the Amazon Resource Name (ARN) can't be found.
 //
-//   * ResourceDoesNotSupportTagging
-//   The resource specified does not support tagging.
+//   - NotServiceResourceError
+//     The resource specified for the tagging operation is not a resource type owned
+//     by Amazon FSx. Use the API of the relevant service to perform the operation.
+//
+//   - ResourceDoesNotSupportTagging
+//     The resource specified does not support tagging.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UntagResource
 func (c *FSx) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2131,6 +4603,204 @@ func (c *FSx) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInpu
 	return out, req.Send()
 }
 
+const opUpdateDataRepositoryAssociation = "UpdateDataRepositoryAssociation"
+
+// UpdateDataRepositoryAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDataRepositoryAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDataRepositoryAssociation for more information on using the UpdateDataRepositoryAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateDataRepositoryAssociationRequest method.
+//	req, resp := client.UpdateDataRepositoryAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateDataRepositoryAssociation
+func (c *FSx) UpdateDataRepositoryAssociationRequest(input *UpdateDataRepositoryAssociationInput) (req *request.Request, output *UpdateDataRepositoryAssociationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDataRepositoryAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDataRepositoryAssociationInput{}
+	}
+
+	output = &UpdateDataRepositoryAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDataRepositoryAssociation API operation for Amazon FSx.
+//
+// Updates the configuration of an existing data repository association on an
+// Amazon FSx for Lustre file system. Data repository associations are supported
+// on all FSx for Lustre 2.12 and 2.15 file systems, excluding scratch_1 deployment
+// type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation UpdateDataRepositoryAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - DataRepositoryAssociationNotFound
+//     No data repository associations were found based upon the supplied parameters.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateDataRepositoryAssociation
+func (c *FSx) UpdateDataRepositoryAssociation(input *UpdateDataRepositoryAssociationInput) (*UpdateDataRepositoryAssociationOutput, error) {
+	req, out := c.UpdateDataRepositoryAssociationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDataRepositoryAssociationWithContext is the same as UpdateDataRepositoryAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDataRepositoryAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) UpdateDataRepositoryAssociationWithContext(ctx aws.Context, input *UpdateDataRepositoryAssociationInput, opts ...request.Option) (*UpdateDataRepositoryAssociationOutput, error) {
+	req, out := c.UpdateDataRepositoryAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFileCache = "UpdateFileCache"
+
+// UpdateFileCacheRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFileCache operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFileCache for more information on using the UpdateFileCache
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateFileCacheRequest method.
+//	req, resp := client.UpdateFileCacheRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateFileCache
+func (c *FSx) UpdateFileCacheRequest(input *UpdateFileCacheInput) (req *request.Request, output *UpdateFileCacheOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFileCache,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFileCacheInput{}
+	}
+
+	output = &UpdateFileCacheOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFileCache API operation for Amazon FSx.
+//
+// Updates the configuration of an existing Amazon File Cache resource. You
+// can update multiple properties in a single request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation UpdateFileCache for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - FileCacheNotFound
+//     No caches were found based upon supplied parameters.
+//
+//   - MissingFileCacheConfiguration
+//     A cache configuration is required for this operation.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateFileCache
+func (c *FSx) UpdateFileCache(input *UpdateFileCacheInput) (*UpdateFileCacheOutput, error) {
+	req, out := c.UpdateFileCacheRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFileCacheWithContext is the same as UpdateFileCache with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFileCache for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) UpdateFileCacheWithContext(ctx aws.Context, input *UpdateFileCacheInput, opts ...request.Option) (*UpdateFileCacheOutput, error) {
+	req, out := c.UpdateFileCacheRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateFileSystem = "UpdateFileSystem"
 
 // UpdateFileSystemRequest generates a "aws/request.Request" representing the
@@ -2147,14 +4817,13 @@ const opUpdateFileSystem = "UpdateFileSystem"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFileSystemRequest method.
+//	req, resp := client.UpdateFileSystemRequest(params)
 //
-//    // Example sending a request using the UpdateFileSystemRequest method.
-//    req, resp := client.UpdateFileSystemRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateFileSystem
 func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *request.Request, output *UpdateFileSystemOutput) {
@@ -2178,36 +4847,92 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 // Use this operation to update the configuration of an existing Amazon FSx
 // file system. You can update multiple properties in a single request.
 //
-// For Amazon FSx for Windows File Server file systems, you can update the following
+// For FSx for Windows File Server file systems, you can update the following
 // properties:
 //
-//    * AuditLogConfiguration
+//   - AuditLogConfiguration
 //
-//    * AutomaticBackupRetentionDays
+//   - AutomaticBackupRetentionDays
 //
-//    * DailyAutomaticBackupStartTime
+//   - DailyAutomaticBackupStartTime
 //
-//    * SelfManagedActiveDirectoryConfiguration
+//   - SelfManagedActiveDirectoryConfiguration
 //
-//    * StorageCapacity
+//   - StorageCapacity
 //
-//    * ThroughputCapacity
+//   - StorageType
 //
-//    * WeeklyMaintenanceStartTime
+//   - ThroughputCapacity
 //
-// For Amazon FSx for Lustre file systems, you can update the following properties:
+//   - DiskIopsConfiguration
 //
-//    * AutoImportPolicy
+//   - WeeklyMaintenanceStartTime
 //
-//    * AutomaticBackupRetentionDays
+// For FSx for Lustre file systems, you can update the following properties:
 //
-//    * DailyAutomaticBackupStartTime
+//   - AutoImportPolicy
 //
-//    * DataCompressionType
+//   - AutomaticBackupRetentionDays
 //
-//    * StorageCapacity
+//   - DailyAutomaticBackupStartTime
 //
-//    * WeeklyMaintenanceStartTime
+//   - DataCompressionType
+//
+//   - LogConfiguration
+//
+//   - LustreRootSquashConfiguration
+//
+//   - PerUnitStorageThroughput
+//
+//   - StorageCapacity
+//
+//   - WeeklyMaintenanceStartTime
+//
+// For FSx for ONTAP file systems, you can update the following properties:
+//
+//   - AddRouteTableIds
+//
+//   - AutomaticBackupRetentionDays
+//
+//   - DailyAutomaticBackupStartTime
+//
+//   - DiskIopsConfiguration
+//
+//   - FsxAdminPassword
+//
+//   - HAPairs
+//
+//   - RemoveRouteTableIds
+//
+//   - StorageCapacity
+//
+//   - ThroughputCapacity
+//
+//   - ThroughputCapacityPerHAPair
+//
+//   - WeeklyMaintenanceStartTime
+//
+// For FSx for OpenZFS file systems, you can update the following properties:
+//
+//   - AddRouteTableIds
+//
+//   - AutomaticBackupRetentionDays
+//
+//   - CopyTagsToBackups
+//
+//   - CopyTagsToVolumes
+//
+//   - DailyAutomaticBackupStartTime
+//
+//   - DiskIopsConfiguration
+//
+//   - RemoveRouteTableIds
+//
+//   - StorageCapacity
+//
+//   - ThroughputCapacity
+//
+//   - WeeklyMaintenanceStartTime
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2217,29 +4942,33 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 // API operation UpdateFileSystem for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequest
-//   A generic error indicating a failure with a client request.
 //
-//   * UnsupportedOperation
-//   The requested operation is not supported for this resource or API.
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
 //
-//   * IncompatibleParameterError
-//   The error returned when a second request is received with the same client
-//   request token but different parameters settings. A client request token should
-//   always uniquely identify a single request.
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
 //
-//   * InternalServerError
-//   A generic error indicating a server-side failure.
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
 //
-//   * FileSystemNotFound
-//   No Amazon FSx file systems were found based upon supplied parameters.
+//   - InvalidNetworkSettings
+//     One or more network settings specified in the request are invalid.
 //
-//   * MissingFileSystemConfiguration
-//   A file system configuration is required for this operation.
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
 //
-//   * ServiceLimitExceeded
-//   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - MissingFileSystemConfiguration
+//     A file system configuration is required for this operation.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateFileSystem
 func (c *FSx) UpdateFileSystem(input *UpdateFileSystemInput) (*UpdateFileSystemOutput, error) {
@@ -2263,32 +4992,408 @@ func (c *FSx) UpdateFileSystemWithContext(ctx aws.Context, input *UpdateFileSyst
 	return out, req.Send()
 }
 
-// The Microsoft AD attributes of the Amazon FSx for Windows File Server file
-// system.
+const opUpdateSharedVpcConfiguration = "UpdateSharedVpcConfiguration"
+
+// UpdateSharedVpcConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSharedVpcConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSharedVpcConfiguration for more information on using the UpdateSharedVpcConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSharedVpcConfigurationRequest method.
+//	req, resp := client.UpdateSharedVpcConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateSharedVpcConfiguration
+func (c *FSx) UpdateSharedVpcConfigurationRequest(input *UpdateSharedVpcConfigurationInput) (req *request.Request, output *UpdateSharedVpcConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSharedVpcConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateSharedVpcConfigurationInput{}
+	}
+
+	output = &UpdateSharedVpcConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSharedVpcConfiguration API operation for Amazon FSx.
+//
+// Configures whether participant accounts in your organization can create Amazon
+// FSx for NetApp ONTAP Multi-AZ file systems in subnets that are shared by
+// a virtual private cloud (VPC) owner. For more information, see the Amazon
+// FSx for NetApp ONTAP User Guide (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/maz-shared-vpc.html).
+//
+// We strongly recommend that participant-created Multi-AZ file systems in the
+// shared VPC are deleted before you disable this feature. Once the feature
+// is disabled, these file systems will enter a MISCONFIGURED state and behave
+// like Single-AZ file systems. For more information, see Important considerations
+// before disabling shared VPC support for Multi-AZ file systems (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/maz-shared-vpc.html#disabling-maz-vpc-sharing).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation UpdateSharedVpcConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateSharedVpcConfiguration
+func (c *FSx) UpdateSharedVpcConfiguration(input *UpdateSharedVpcConfigurationInput) (*UpdateSharedVpcConfigurationOutput, error) {
+	req, out := c.UpdateSharedVpcConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSharedVpcConfigurationWithContext is the same as UpdateSharedVpcConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSharedVpcConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) UpdateSharedVpcConfigurationWithContext(ctx aws.Context, input *UpdateSharedVpcConfigurationInput, opts ...request.Option) (*UpdateSharedVpcConfigurationOutput, error) {
+	req, out := c.UpdateSharedVpcConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSnapshot = "UpdateSnapshot"
+
+// UpdateSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSnapshot for more information on using the UpdateSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSnapshotRequest method.
+//	req, resp := client.UpdateSnapshotRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateSnapshot
+func (c *FSx) UpdateSnapshotRequest(input *UpdateSnapshotInput) (req *request.Request, output *UpdateSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateSnapshotInput{}
+	}
+
+	output = &UpdateSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSnapshot API operation for Amazon FSx.
+//
+// Updates the name of an Amazon FSx for OpenZFS snapshot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation UpdateSnapshot for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - SnapshotNotFound
+//     No Amazon FSx snapshots were found based on the supplied parameters.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateSnapshot
+func (c *FSx) UpdateSnapshot(input *UpdateSnapshotInput) (*UpdateSnapshotOutput, error) {
+	req, out := c.UpdateSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSnapshotWithContext is the same as UpdateSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) UpdateSnapshotWithContext(ctx aws.Context, input *UpdateSnapshotInput, opts ...request.Option) (*UpdateSnapshotOutput, error) {
+	req, out := c.UpdateSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateStorageVirtualMachine = "UpdateStorageVirtualMachine"
+
+// UpdateStorageVirtualMachineRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStorageVirtualMachine operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStorageVirtualMachine for more information on using the UpdateStorageVirtualMachine
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateStorageVirtualMachineRequest method.
+//	req, resp := client.UpdateStorageVirtualMachineRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateStorageVirtualMachine
+func (c *FSx) UpdateStorageVirtualMachineRequest(input *UpdateStorageVirtualMachineInput) (req *request.Request, output *UpdateStorageVirtualMachineOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStorageVirtualMachine,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateStorageVirtualMachineInput{}
+	}
+
+	output = &UpdateStorageVirtualMachineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateStorageVirtualMachine API operation for Amazon FSx.
+//
+// Updates an FSx for ONTAP storage virtual machine (SVM).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation UpdateStorageVirtualMachine for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - StorageVirtualMachineNotFound
+//     No FSx for ONTAP SVMs were found based upon the supplied parameters.
+//
+//   - UnsupportedOperation
+//     The requested operation is not supported for this resource or API.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateStorageVirtualMachine
+func (c *FSx) UpdateStorageVirtualMachine(input *UpdateStorageVirtualMachineInput) (*UpdateStorageVirtualMachineOutput, error) {
+	req, out := c.UpdateStorageVirtualMachineRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStorageVirtualMachineWithContext is the same as UpdateStorageVirtualMachine with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStorageVirtualMachine for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) UpdateStorageVirtualMachineWithContext(ctx aws.Context, input *UpdateStorageVirtualMachineInput, opts ...request.Option) (*UpdateStorageVirtualMachineOutput, error) {
+	req, out := c.UpdateStorageVirtualMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateVolume = "UpdateVolume"
+
+// UpdateVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateVolume operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateVolume for more information on using the UpdateVolume
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateVolumeRequest method.
+//	req, resp := client.UpdateVolumeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateVolume
+func (c *FSx) UpdateVolumeRequest(input *UpdateVolumeInput) (req *request.Request, output *UpdateVolumeOutput) {
+	op := &request.Operation{
+		Name:       opUpdateVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateVolumeInput{}
+	}
+
+	output = &UpdateVolumeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateVolume API operation for Amazon FSx.
+//
+// Updates the configuration of an Amazon FSx for NetApp ONTAP or Amazon FSx
+// for OpenZFS volume.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation UpdateVolume for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - MissingVolumeConfiguration
+//     A volume configuration is required for this operation.
+//
+//   - VolumeNotFound
+//     No Amazon FSx volumes were found based upon the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateVolume
+func (c *FSx) UpdateVolume(input *UpdateVolumeInput) (*UpdateVolumeOutput, error) {
+	req, out := c.UpdateVolumeRequest(input)
+	return out, req.Send()
+}
+
+// UpdateVolumeWithContext is the same as UpdateVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) UpdateVolumeWithContext(ctx aws.Context, input *UpdateVolumeInput, opts ...request.Option) (*UpdateVolumeOutput, error) {
+	req, out := c.UpdateVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// The Microsoft Active Directory attributes of the Amazon FSx for Windows File
+// Server file system.
 type ActiveDirectoryBackupAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS Managed Microsoft Active Directory instance to which the
-	// file system is joined.
+	// The ID of the Amazon Web Services Managed Microsoft Active Directory instance
+	// to which the file system is joined.
 	ActiveDirectoryId *string `min:"12" type:"string"`
 
-	// The fully qualified domain name of the self-managed AD directory.
+	// The fully qualified domain name of the self-managed Active Directory directory.
 	DomainName *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
-	// AWS resources. We require an ARN when you need to specify a resource unambiguously
-	// across all of AWS. For more information, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	ResourceARN *string `min:"8" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveDirectoryBackupAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveDirectoryBackupAttributes) GoString() string {
 	return s.String()
 }
@@ -2328,12 +5433,20 @@ type ActiveDirectoryError struct {
 	Type *string `type:"string" enum:"ActiveDirectoryErrorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveDirectoryError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveDirectoryError) GoString() string {
 	return s.String()
 }
@@ -2376,48 +5489,101 @@ func (s *ActiveDirectoryError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a specific Amazon FSx administrative action for the current Windows
-// or Lustre file system.
+// Describes a specific Amazon FSx administrative action for the current Windows,
+// Lustre, OpenZFS, or ONTAP file system or volume.
 type AdministrativeAction struct {
 	_ struct{} `type:"structure"`
 
 	// Describes the type of administrative action, as follows:
 	//
 	//    * FILE_SYSTEM_UPDATE - A file system update administrative action initiated
-	//    by the user from the Amazon FSx console, API (UpdateFileSystem), or CLI
-	//    (update-file-system).
+	//    from the Amazon FSx console, API (UpdateFileSystem), or CLI (update-file-system).
 	//
-	//    * STORAGE_OPTIMIZATION - Once the FILE_SYSTEM_UPDATE task to increase
-	//    a file system's storage capacity completes successfully, a STORAGE_OPTIMIZATION
-	//    task starts. For Windows, storage optimization is the process of migrating
-	//    the file system data to the new, larger disks. For Lustre, storage optimization
-	//    consists of rebalancing the data across the existing and newly added file
-	//    servers. You can track the storage optimization progress using the ProgressPercent
-	//    property. When STORAGE_OPTIMIZATION completes successfully, the parent
-	//    FILE_SYSTEM_UPDATE action status changes to COMPLETED. For more information,
-	//    see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
-	//    in the Amazon FSx for Windows File Server User Guide and Managing storage
-	//    and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
-	//    in the Amazon FSx for Lustre User Guide.
+	//    * THROUGHPUT_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase
+	//    a file system's throughput capacity has been completed successfully, a
+	//    THROUGHPUT_OPTIMIZATION task starts. You can track the storage-optimization
+	//    progress using the ProgressPercent property. When THROUGHPUT_OPTIMIZATION
+	//    has been completed successfully, the parent FILE_SYSTEM_UPDATE action
+	//    status changes to COMPLETED. For more information, see Managing throughput
+	//    capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-throughput-capacity.html)
+	//    in the Amazon FSx for Windows File Server User Guide.
+	//
+	//    * STORAGE_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase
+	//    a file system's storage capacity has been completed successfully, a STORAGE_OPTIMIZATION
+	//    task starts. For Windows and ONTAP, storage optimization is the process
+	//    of migrating the file system data to newer larger disks. For Lustre, storage
+	//    optimization consists of rebalancing the data across the existing and
+	//    newly added file servers. You can track the storage-optimization progress
+	//    using the ProgressPercent property. When STORAGE_OPTIMIZATION has been
+	//    completed successfully, the parent FILE_SYSTEM_UPDATE action status changes
+	//    to COMPLETED. For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+	//    in the Amazon FSx for Windows File Server User Guide, Managing storage
+	//    capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+	//    in the Amazon FSx for Lustre User Guide, and Managing storage capacity
+	//    and provisioned IOPS (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html)
+	//    in the Amazon FSx for NetApp ONTAP User Guide.
 	//
 	//    * FILE_SYSTEM_ALIAS_ASSOCIATION - A file system update to associate a
-	//    new DNS alias with the file system. For more information, see .
+	//    new Domain Name System (DNS) alias with the file system. For more information,
+	//    see AssociateFileSystemAliases (https://docs.aws.amazon.com/fsx/latest/APIReference/API_AssociateFileSystemAliases.html).
 	//
 	//    * FILE_SYSTEM_ALIAS_DISASSOCIATION - A file system update to disassociate
-	//    a DNS alias from the file system. For more information, see .
+	//    a DNS alias from the file system. For more information, see DisassociateFileSystemAliases
+	//    (https://docs.aws.amazon.com/fsx/latest/APIReference/API_DisassociateFileSystemAliases.html).
+	//
+	//    * IOPS_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase a
+	//    file system's throughput capacity has been completed successfully, a IOPS_OPTIMIZATION
+	//    task starts. You can track the storage-optimization progress using the
+	//    ProgressPercent property. When IOPS_OPTIMIZATION has been completed successfully,
+	//    the parent FILE_SYSTEM_UPDATE action status changes to COMPLETED. For
+	//    more information, see Managing provisioned SSD IOPS (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-provisioned-ssd-iops.html)
+	//    in the Amazon FSx for Windows File Server User Guide.
+	//
+	//    * STORAGE_TYPE_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase
+	//    a file system's throughput capacity has been completed successfully, a
+	//    STORAGE_TYPE_OPTIMIZATION task starts. You can track the storage-optimization
+	//    progress using the ProgressPercent property. When STORAGE_TYPE_OPTIMIZATION
+	//    has been completed successfully, the parent FILE_SYSTEM_UPDATE action
+	//    status changes to COMPLETED.
+	//
+	//    * VOLUME_UPDATE - A volume update to an Amazon FSx for OpenZFS volume
+	//    initiated from the Amazon FSx console, API (UpdateVolume), or CLI (update-volume).
+	//
+	//    * VOLUME_RESTORE - An Amazon FSx for OpenZFS volume is returned to the
+	//    state saved by the specified snapshot, initiated from an API (RestoreVolumeFromSnapshot)
+	//    or CLI (restore-volume-from-snapshot).
+	//
+	//    * SNAPSHOT_UPDATE - A snapshot update to an Amazon FSx for OpenZFS volume
+	//    initiated from the Amazon FSx console, API (UpdateSnapshot), or CLI (update-snapshot).
+	//
+	//    * RELEASE_NFS_V3_LOCKS - Tracks the release of Network File System (NFS)
+	//    V3 locks on an Amazon FSx for OpenZFS file system.
+	//
+	//    * VOLUME_INITIALIZE_WITH_SNAPSHOT - A volume is being created from a snapshot
+	//    on a different FSx for OpenZFS file system. You can initiate this from
+	//    the Amazon FSx console, API (CreateVolume), or CLI (create-volume) when
+	//    using the using the FULL_COPY strategy.
+	//
+	//    * VOLUME_UPDATE_WITH_SNAPSHOT - A volume is being updated from a snapshot
+	//    on a different FSx for OpenZFS file system. You can initiate this from
+	//    the Amazon FSx console, API (CopySnapshotAndUpdateVolume), or CLI (copy-snapshot-and-update-volume).
 	AdministrativeActionType *string `type:"string" enum:"AdministrativeActionType"`
 
 	// Provides information about a failed administrative action.
 	FailureDetails *AdministrativeActionFailureDetails `type:"structure"`
 
-	// Provides the percent complete of a STORAGE_OPTIMIZATION administrative action.
+	// The percentage-complete status of a STORAGE_OPTIMIZATION administrative action.
 	// Does not apply to any other administrative action type.
 	ProgressPercent *int64 `type:"integer"`
 
-	// Time that the administrative action request was received.
+	// The remaining bytes to transfer for the FSx for OpenZFS snapshot that you're
+	// copying.
+	RemainingTransferBytes *int64 `type:"long"`
+
+	// The time that the administrative action request was received.
 	RequestTime *time.Time `type:"timestamp"`
 
-	// Describes the status of the administrative action, as follows:
+	// The status of the administrative action, as follows:
 	//
 	//    * FAILED - Amazon FSx failed to process the administrative action successfully.
 	//
@@ -2427,27 +5593,40 @@ type AdministrativeAction struct {
 	//
 	//    * COMPLETED - Amazon FSx has finished processing the administrative task.
 	//
-	//    * UPDATED_OPTIMIZING - For a storage capacity increase update, Amazon
+	//    * UPDATED_OPTIMIZING - For a storage-capacity increase update, Amazon
 	//    FSx has updated the file system with the new storage capacity, and is
-	//    now performing the storage optimization process. For more information,
-	//    see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
-	//    in the Amazon FSx for Windows File Server User Guide and Managing storage
-	//    and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
-	//    in the Amazon FSx for Lustre User Guide.
+	//    now performing the storage-optimization process.
 	Status *string `type:"string" enum:"Status"`
 
-	// Describes the target value for the administration action, provided in the
-	// UpdateFileSystem operation. Returned for FILE_SYSTEM_UPDATE administrative
-	// actions.
+	// The target value for the administration action, provided in the UpdateFileSystem
+	// operation. Returned for FILE_SYSTEM_UPDATE administrative actions.
 	TargetFileSystemValues *FileSystem `type:"structure"`
+
+	// A snapshot of an Amazon FSx for OpenZFS volume.
+	TargetSnapshotValues *Snapshot `type:"structure"`
+
+	// Describes an Amazon FSx volume.
+	TargetVolumeValues *Volume `type:"structure"`
+
+	// The number of bytes that have transferred for the FSx for OpenZFS snapshot
+	// that you're copying.
+	TotalTransferBytes *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdministrativeAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdministrativeAction) GoString() string {
 	return s.String()
 }
@@ -2470,6 +5649,12 @@ func (s *AdministrativeAction) SetProgressPercent(v int64) *AdministrativeAction
 	return s
 }
 
+// SetRemainingTransferBytes sets the RemainingTransferBytes field's value.
+func (s *AdministrativeAction) SetRemainingTransferBytes(v int64) *AdministrativeAction {
+	s.RemainingTransferBytes = &v
+	return s
+}
+
 // SetRequestTime sets the RequestTime field's value.
 func (s *AdministrativeAction) SetRequestTime(v time.Time) *AdministrativeAction {
 	s.RequestTime = &v
@@ -2488,6 +5673,24 @@ func (s *AdministrativeAction) SetTargetFileSystemValues(v *FileSystem) *Adminis
 	return s
 }
 
+// SetTargetSnapshotValues sets the TargetSnapshotValues field's value.
+func (s *AdministrativeAction) SetTargetSnapshotValues(v *Snapshot) *AdministrativeAction {
+	s.TargetSnapshotValues = v
+	return s
+}
+
+// SetTargetVolumeValues sets the TargetVolumeValues field's value.
+func (s *AdministrativeAction) SetTargetVolumeValues(v *Volume) *AdministrativeAction {
+	s.TargetVolumeValues = v
+	return s
+}
+
+// SetTotalTransferBytes sets the TotalTransferBytes field's value.
+func (s *AdministrativeAction) SetTotalTransferBytes(v int64) *AdministrativeAction {
+	s.TotalTransferBytes = &v
+	return s
+}
+
 // Provides information about a failed administrative action.
 type AdministrativeActionFailureDetails struct {
 	_ struct{} `type:"structure"`
@@ -2496,12 +5699,20 @@ type AdministrativeActionFailureDetails struct {
 	Message *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdministrativeActionFailureDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdministrativeActionFailureDetails) GoString() string {
 	return s.String()
 }
@@ -2509,6 +5720,64 @@ func (s AdministrativeActionFailureDetails) GoString() string {
 // SetMessage sets the Message field's value.
 func (s *AdministrativeActionFailureDetails) SetMessage(v string) *AdministrativeActionFailureDetails {
 	s.Message = &v
+	return s
+}
+
+// Used to specify configuration options for a volume’s storage aggregate
+// or aggregates.
+type AggregateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of aggregates that this volume resides on. Aggregates are storage
+	// pools which make up your primary storage tier. Each high-availability (HA)
+	// pair has one aggregate. The names of the aggregates map to the names of the
+	// aggregates in the ONTAP CLI and REST API. For FlexVols, there will always
+	// be a single entry.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The strings in the value of Aggregates are not are not formatted as
+	//    aggrX, where X is a number between 1 and 6.
+	//
+	//    * The value of Aggregates contains aggregates that are not present.
+	//
+	//    * One or more of the aggregates supplied are too close to the volume limit
+	//    to support adding more volumes.
+	Aggregates []*string `type:"list"`
+
+	// The total number of constituents this FlexGroup volume has. Not applicable
+	// for FlexVols.
+	TotalConstituents *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregateConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAggregates sets the Aggregates field's value.
+func (s *AggregateConfiguration) SetAggregates(v []*string) *AggregateConfiguration {
+	s.Aggregates = v
+	return s
+}
+
+// SetTotalConstituents sets the TotalConstituents field's value.
+func (s *AggregateConfiguration) SetTotalConstituents(v int64) *AggregateConfiguration {
+	s.TotalConstituents = &v
 	return s
 }
 
@@ -2533,8 +5802,8 @@ type Alias struct {
 	//    * DELETING - Amazon FSx is disassociating the DNS alias from the file
 	//    system and deleting it.
 	//
-	//    * DELETE_FAILED - Amazon FSx was unable to disassocate the DNS alias from
-	//    the file system.
+	//    * DELETE_FAILED - Amazon FSx was unable to disassociate the DNS alias
+	//    from the file system.
 	Lifecycle *string `type:"string" enum:"AliasLifecycle"`
 
 	// The name of the DNS alias. The alias name has to meet the following requirements:
@@ -2555,12 +5824,20 @@ type Alias struct {
 	Name *string `min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Alias) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Alias) GoString() string {
 	return s.String()
 }
@@ -2602,8 +5879,8 @@ type AssociateFileSystemAliasesInput struct {
 	Aliases []*string `type:"list" required:"true"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// Specifies the file system with which you want to associate one or more DNS
@@ -2613,12 +5890,20 @@ type AssociateFileSystemAliasesInput struct {
 	FileSystemId *string `min:"11" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFileSystemAliasesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFileSystemAliasesInput) GoString() string {
 	return s.String()
 }
@@ -2676,12 +5961,20 @@ type AssociateFileSystemAliasesOutput struct {
 	Aliases []*Alias `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFileSystemAliasesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFileSystemAliasesOutput) GoString() string {
 	return s.String()
 }
@@ -2692,7 +5985,184 @@ func (s *AssociateFileSystemAliasesOutput) SetAliases(v []*Alias) *AssociateFile
 	return s
 }
 
-// A backup of an Amazon FSx file system.
+// Describes a data repository association's automatic export policy. The AutoExportPolicy
+// defines the types of updated objects on the file system that will be automatically
+// exported to the data repository. As you create, modify, or delete files,
+// Amazon FSx for Lustre automatically exports the defined changes asynchronously
+// once your application finishes modifying the file.
+//
+// The AutoExportPolicy is only supported on Amazon FSx for Lustre file systems
+// with a data repository association.
+type AutoExportPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The AutoExportPolicy can have the following event values:
+	//
+	//    * NEW - New files and directories are automatically exported to the data
+	//    repository as they are added to the file system.
+	//
+	//    * CHANGED - Changes to files and directories on the file system are automatically
+	//    exported to the data repository.
+	//
+	//    * DELETED - Files and directories are automatically deleted on the data
+	//    repository when they are deleted on the file system.
+	//
+	// You can define any combination of event types for your AutoExportPolicy.
+	Events []*string `type:"list" enum:"EventType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportPolicy) GoString() string {
+	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *AutoExportPolicy) SetEvents(v []*string) *AutoExportPolicy {
+	s.Events = v
+	return s
+}
+
+// Describes the data repository association's automatic import policy. The
+// AutoImportPolicy defines how Amazon FSx keeps your file metadata and directory
+// listings up to date by importing changes to your Amazon FSx for Lustre file
+// system as you modify objects in a linked S3 bucket.
+//
+// The AutoImportPolicy is only supported on Amazon FSx for Lustre file systems
+// with a data repository association.
+type AutoImportPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The AutoImportPolicy can have the following event values:
+	//
+	//    * NEW - Amazon FSx automatically imports metadata of files added to the
+	//    linked S3 bucket that do not currently exist in the FSx file system.
+	//
+	//    * CHANGED - Amazon FSx automatically updates file metadata and invalidates
+	//    existing file content on the file system as files change in the data repository.
+	//
+	//    * DELETED - Amazon FSx automatically deletes files on the file system
+	//    as corresponding files are deleted in the data repository.
+	//
+	// You can define any combination of event types for your AutoImportPolicy.
+	Events []*string `type:"list" enum:"EventType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoImportPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoImportPolicy) GoString() string {
+	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *AutoImportPolicy) SetEvents(v []*string) *AutoImportPolicy {
+	s.Events = v
+	return s
+}
+
+// Sets the autocommit period of files in an FSx for ONTAP SnapLock volume,
+// which determines how long the files must remain unmodified before they're
+// automatically transitioned to the write once, read many (WORM) state.
+//
+// For more information, see Autocommit (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-autocommit).
+type AutocommitPeriod struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the type of time for the autocommit period of a file in an FSx for
+	// ONTAP SnapLock volume. Setting this value to NONE disables autocommit. The
+	// default value is NONE.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"AutocommitPeriodType"`
+
+	// Defines the amount of time for the autocommit period of a file in an FSx
+	// for ONTAP SnapLock volume. The following ranges are valid:
+	//
+	//    * Minutes: 5 - 65,535
+	//
+	//    * Hours: 1 - 65,535
+	//
+	//    * Days: 1 - 3,650
+	//
+	//    * Months: 1 - 120
+	//
+	//    * Years: 1 - 10
+	Value *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutocommitPeriod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutocommitPeriod) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutocommitPeriod) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutocommitPeriod"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Value != nil && *s.Value < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *AutocommitPeriod) SetType(v string) *AutocommitPeriod {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AutocommitPeriod) SetValue(v int64) *AutocommitPeriod {
+	s.Value = &v
+	return s
+}
+
+// A backup of an Amazon FSx for Windows File Server, Amazon FSx for Lustre
+// file system, Amazon FSx for NetApp ONTAP volume, or Amazon FSx for OpenZFS
+// file system.
 type Backup struct {
 	_ struct{} `type:"structure"`
 
@@ -2706,21 +6176,21 @@ type Backup struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// The configuration of the self-managed Microsoft Active Directory (AD) to
-	// which the Windows File Server instance is joined.
+	// The configuration of the self-managed Microsoft Active Directory directory
+	// to which the Windows File Server instance is joined.
 	DirectoryInformation *ActiveDirectoryBackupAttributes `type:"structure"`
 
-	// Details explaining any failures that occur when creating a backup.
+	// Details explaining any failures that occurred when creating a backup.
 	FailureDetails *BackupFailureDetails `type:"structure"`
 
-	// Metadata of the file system associated with the backup. This metadata is
-	// persisted even if the file system is deleted.
+	// The metadata of the file system associated with the backup. This metadata
+	// is persisted even if the file system is deleted.
 	//
 	// FileSystem is a required field
 	FileSystem *FileSystem `type:"structure" required:"true"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// backup of the Amazon FSx file system's data at rest.
+	// The ID of the Key Management Service (KMS) key used to encrypt the backup
+	// of the Amazon FSx file system's data at rest.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The lifecycle status of the backup.
@@ -2728,54 +6198,68 @@ type Backup struct {
 	//    * AVAILABLE - The backup is fully available.
 	//
 	//    * PENDING - For user-initiated backups on Lustre file systems only; Amazon
-	//    FSx has not started creating the backup.
+	//    FSx hasn't started creating the backup.
 	//
 	//    * CREATING - Amazon FSx is creating the backup.
 	//
 	//    * TRANSFERRING - For user-initiated backups on Lustre file systems only;
-	//    Amazon FSx is transferring the backup to S3.
+	//    Amazon FSx is transferring the backup to Amazon S3.
 	//
 	//    * COPYING - Amazon FSx is copying the backup.
 	//
-	//    * DELETED - Amazon FSx deleted the backup and it is no longer available.
+	//    * DELETED - Amazon FSx deleted the backup and it's no longer available.
 	//
-	//    * FAILED - Amazon FSx could not complete the backup.
+	//    * FAILED - Amazon FSx couldn't finish the backup.
 	//
 	// Lifecycle is a required field
 	Lifecycle *string `type:"string" required:"true" enum:"BackupLifecycle"`
 
-	// An AWS account ID. This ID is a 12-digit number that you use to construct
-	// Amazon Resource Names (ARNs) for resources.
+	// An Amazon Web Services account ID. This ID is a 12-digit number that you
+	// use to construct Amazon Resource Names (ARNs) for resources.
 	OwnerId *string `min:"12" type:"string"`
 
-	// The current percent of progress of an asynchronous task.
+	// Displays the current percent of progress of an asynchronous task.
 	ProgressPercent *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN) for the backup resource.
 	ResourceARN *string `min:"8" type:"string"`
 
-	// The ID of the source backup. Specifies the backup you are copying.
+	// Specifies the resource type that's backed up.
+	ResourceType *string `type:"string" enum:"ResourceType"`
+
+	// The ID of the source backup. Specifies the backup that you are copying.
 	SourceBackupId *string `min:"12" type:"string"`
 
 	// The source Region of the backup. Specifies the Region from where this backup
 	// is copied.
 	SourceBackupRegion *string `min:"1" type:"string"`
 
-	// Tags associated with a particular file system.
+	// The tags associated with a particular file system.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// The type of the file system backup.
+	// The type of the file-system backup.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"BackupType"`
+
+	// Describes an Amazon FSx volume.
+	Volume *Volume `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Backup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Backup) GoString() string {
 	return s.String()
 }
@@ -2840,6 +6324,12 @@ func (s *Backup) SetResourceARN(v string) *Backup {
 	return s
 }
 
+// SetResourceType sets the ResourceType field's value.
+func (s *Backup) SetResourceType(v string) *Backup {
+	s.ResourceType = &v
+	return s
+}
+
 // SetSourceBackupId sets the SourceBackupId field's value.
 func (s *Backup) SetSourceBackupId(v string) *Backup {
 	s.SourceBackupId = &v
@@ -2864,24 +6354,38 @@ func (s *Backup) SetType(v string) *Backup {
 	return s
 }
 
+// SetVolume sets the Volume field's value.
+func (s *Backup) SetVolume(v *Volume) *Backup {
+	s.Volume = v
+	return s
+}
+
 // You can't delete a backup while it's being copied.
 type BackupBeingCopied struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The ID of the source backup. Specifies the backup you are copying.
+	// The ID of the source backup. Specifies the backup that you are copying.
 	BackupId *string `min:"12" type:"string"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupBeingCopied) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupBeingCopied) GoString() string {
 	return s.String()
 }
@@ -2928,16 +6432,24 @@ func (s *BackupBeingCopied) RequestID() string {
 type BackupFailureDetails struct {
 	_ struct{} `type:"structure"`
 
-	// A message describing the backup creation failure.
+	// A message describing the backup-creation failure.
 	Message *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupFailureDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupFailureDetails) GoString() string {
 	return s.String()
 }
@@ -2958,12 +6470,20 @@ type BackupInProgress struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupInProgress) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupInProgress) GoString() string {
 	return s.String()
 }
@@ -3015,12 +6535,20 @@ type BackupNotFound struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupNotFound) GoString() string {
 	return s.String()
 }
@@ -3075,12 +6603,20 @@ type BackupRestoring struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupRestoring) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BackupRestoring) GoString() string {
 	return s.String()
 }
@@ -3132,12 +6668,20 @@ type BadRequest struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequest) GoString() string {
 	return s.String()
 }
@@ -3190,12 +6734,20 @@ type CancelDataRepositoryTaskInput struct {
 	TaskId *string `min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelDataRepositoryTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelDataRepositoryTaskInput) GoString() string {
 	return s.String()
 }
@@ -3246,12 +6798,20 @@ type CancelDataRepositoryTaskOutput struct {
 	TaskId *string `min:"12" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelDataRepositoryTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelDataRepositoryTaskOutput) GoString() string {
 	return s.String()
 }
@@ -3296,8 +6856,7 @@ type CompletionReport struct {
 	// Path you provide must be located within the file system’s ExportPath. An
 	// example Path value is "s3://myBucket/myExportPath/optionalPrefix". The report
 	// provides the following information for each file in the report: FilePath,
-	// FileStatus, and ErrorCode. To learn more about a file system's ExportPath,
-	// see .
+	// FileStatus, and ErrorCode.
 	Path *string `min:"3" type:"string"`
 
 	// Required if Enabled is set to true. Specifies the scope of the CompletionReport;
@@ -3307,12 +6866,20 @@ type CompletionReport struct {
 	Scope *string `type:"string" enum:"ReportScope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CompletionReport) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CompletionReport) GoString() string {
 	return s.String()
 }
@@ -3361,11 +6928,11 @@ type CopyBackupInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// A boolean flag indicating whether tags from the source backup should be copied
+	// A Boolean flag indicating whether tags from the source backup should be copied
 	// to the backup copy. This value defaults to false.
 	//
 	// If you set CopyTags to true and the source backup has existing tags, you
@@ -3376,37 +6943,55 @@ type CopyBackupInput struct {
 	// precedence.
 	CopyTags *bool `type:"boolean"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// file system's data for Amazon FSx for Windows File Server file systems and
-	// Amazon FSx for Lustre PERSISTENT_1 file systems at rest. In either case,
-	// if not specified, the Amazon FSx managed key is used. The Amazon FSx for
-	// Lustre SCRATCH_1 and SCRATCH_2 file systems are always encrypted at rest
-	// using Amazon FSx managed keys. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
-	// in the AWS Key Management Service API Reference.
+	// Specifies the ID of the Key Management Service (KMS) key to use for encrypting
+	// data on Amazon FSx file systems, as follows:
+	//
+	//    * Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2 deployment types
+	//    only. SCRATCH_1 and SCRATCH_2 types are encrypted using the Amazon FSx
+	//    service KMS key for your account.
+	//
+	//    * Amazon FSx for NetApp ONTAP
+	//
+	//    * Amazon FSx for OpenZFS
+	//
+	//    * Amazon FSx for Windows File Server
+	//
+	// If a KmsKeyId isn't specified, the Amazon FSx-managed KMS key for your account
+	// is used. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// in the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
-	// The ID of the source backup. Specifies the ID of the backup that is being
+	// The ID of the source backup. Specifies the ID of the backup that's being
 	// copied.
 	//
 	// SourceBackupId is a required field
 	SourceBackupId *string `min:"12" type:"string" required:"true"`
 
-	// The source AWS Region of the backup. Specifies the AWS Region from which
-	// the backup is being copied. The source and destination Regions must be in
-	// the same AWS partition. If you don't specify a Region, it defaults to the
-	// Region where the request is sent from (in-Region copy).
+	// The source Amazon Web Services Region of the backup. Specifies the Amazon
+	// Web Services Region from which the backup is being copied. The source and
+	// destination Regions must be in the same Amazon Web Services partition. If
+	// you don't specify a Region, SourceRegion defaults to the Region where the
+	// request is sent from (in-Region copy).
 	SourceRegion *string `min:"1" type:"string"`
 
 	// A list of Tag values, with a maximum of 50 elements.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyBackupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyBackupInput) GoString() string {
 	return s.String()
 }
@@ -3488,16 +7073,26 @@ func (s *CopyBackupInput) SetTags(v []*Tag) *CopyBackupInput {
 type CopyBackupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A backup of an Amazon FSx file system.
+	// A backup of an Amazon FSx for Windows File Server, Amazon FSx for Lustre
+	// file system, Amazon FSx for NetApp ONTAP volume, or Amazon FSx for OpenZFS
+	// file system.
 	Backup *Backup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyBackupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyBackupOutput) GoString() string {
 	return s.String()
 }
@@ -3508,34 +7103,277 @@ func (s *CopyBackupOutput) SetBackup(v *Backup) *CopyBackupOutput {
 	return s
 }
 
+type CopySnapshotAndUpdateVolumeInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Specifies the strategy to use when copying data from a snapshot to the volume.
+	//
+	//    * FULL_COPY - Copies all data from the snapshot to the volume.
+	//
+	//    * INCREMENTAL_COPY - Copies only the snapshot data that's changed since
+	//    the previous replication.
+	//
+	// CLONE isn't a valid copy strategy option for the CopySnapshotAndUpdateVolume
+	// operation.
+	CopyStrategy *string `type:"string" enum:"OpenZFSCopyStrategy"`
+
+	// Confirms that you want to delete data on the destination volume that wasn’t
+	// there during the previous snapshot replication.
+	//
+	// Your replication will fail if you don’t include an option for a specific
+	// type of data and that data is on your destination. For example, if you don’t
+	// include DELETE_INTERMEDIATE_SNAPSHOTS and there are intermediate snapshots
+	// on the destination, you can’t copy the snapshot.
+	//
+	//    * DELETE_INTERMEDIATE_SNAPSHOTS - Deletes snapshots on the destination
+	//    volume that aren’t on the source volume.
+	//
+	//    * DELETE_CLONED_VOLUMES - Deletes snapshot clones on the destination volume
+	//    that aren't on the source volume.
+	//
+	//    * DELETE_INTERMEDIATE_DATA - Overwrites snapshots on the destination volume
+	//    that don’t match the source snapshot that you’re copying.
+	Options []*string `type:"list" enum:"UpdateOpenZFSVolumeOption"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	//
+	// SourceSnapshotARN is a required field
+	SourceSnapshotARN *string `min:"8" type:"string" required:"true"`
+
+	// Specifies the ID of the volume that you are copying the snapshot to.
+	//
+	// VolumeId is a required field
+	VolumeId *string `min:"23" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopySnapshotAndUpdateVolumeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopySnapshotAndUpdateVolumeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CopySnapshotAndUpdateVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CopySnapshotAndUpdateVolumeInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.SourceSnapshotARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceSnapshotARN"))
+	}
+	if s.SourceSnapshotARN != nil && len(*s.SourceSnapshotARN) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceSnapshotARN", 8))
+	}
+	if s.VolumeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeId"))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetClientRequestToken(v string) *CopySnapshotAndUpdateVolumeInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCopyStrategy sets the CopyStrategy field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetCopyStrategy(v string) *CopySnapshotAndUpdateVolumeInput {
+	s.CopyStrategy = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetOptions(v []*string) *CopySnapshotAndUpdateVolumeInput {
+	s.Options = v
+	return s
+}
+
+// SetSourceSnapshotARN sets the SourceSnapshotARN field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetSourceSnapshotARN(v string) *CopySnapshotAndUpdateVolumeInput {
+	s.SourceSnapshotARN = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetVolumeId(v string) *CopySnapshotAndUpdateVolumeInput {
+	s.VolumeId = &v
+	return s
+}
+
+type CopySnapshotAndUpdateVolumeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of administrative actions for the file system that are in process
+	// or waiting to be processed. Administrative actions describe changes to the
+	// Amazon FSx system.
+	AdministrativeActions []*AdministrativeAction `type:"list"`
+
+	// The lifecycle state of the destination volume.
+	Lifecycle *string `type:"string" enum:"VolumeLifecycle"`
+
+	// The ID of the volume that you copied the snapshot to.
+	VolumeId *string `min:"23" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopySnapshotAndUpdateVolumeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopySnapshotAndUpdateVolumeOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdministrativeActions sets the AdministrativeActions field's value.
+func (s *CopySnapshotAndUpdateVolumeOutput) SetAdministrativeActions(v []*AdministrativeAction) *CopySnapshotAndUpdateVolumeOutput {
+	s.AdministrativeActions = v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *CopySnapshotAndUpdateVolumeOutput) SetLifecycle(v string) *CopySnapshotAndUpdateVolumeOutput {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *CopySnapshotAndUpdateVolumeOutput) SetVolumeId(v string) *CopySnapshotAndUpdateVolumeOutput {
+	s.VolumeId = &v
+	return s
+}
+
+// Used to specify the configuration options for a volume's storage aggregate
+// or aggregates.
+type CreateAggregateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Used to specify the names of aggregates on which the volume will be created.
+	Aggregates []*string `type:"list"`
+
+	// Used to explicitly set the number of constituents within the FlexGroup per
+	// storage aggregate. This field is optional when creating a FlexGroup volume.
+	// If unspecified, the default value will be 8. This field cannot be provided
+	// when creating a FlexVol volume.
+	ConstituentsPerAggregate *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAggregateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAggregateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAggregateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAggregateConfiguration"}
+	if s.ConstituentsPerAggregate != nil && *s.ConstituentsPerAggregate < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ConstituentsPerAggregate", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregates sets the Aggregates field's value.
+func (s *CreateAggregateConfiguration) SetAggregates(v []*string) *CreateAggregateConfiguration {
+	s.Aggregates = v
+	return s
+}
+
+// SetConstituentsPerAggregate sets the ConstituentsPerAggregate field's value.
+func (s *CreateAggregateConfiguration) SetConstituentsPerAggregate(v int64) *CreateAggregateConfiguration {
+	s.ConstituentsPerAggregate = &v
+	return s
+}
+
 // The request object for the CreateBackup operation.
 type CreateBackupInput struct {
 	_ struct{} `type:"structure"`
 
-	// (Optional) A string of up to 64 ASCII characters that Amazon FSx uses to
+	// (Optional) A string of up to 63 ASCII characters that Amazon FSx uses to
 	// ensure idempotent creation. This string is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The ID of the file system to back up.
-	//
-	// FileSystemId is a required field
-	FileSystemId *string `min:"11" type:"string" required:"true"`
+	FileSystemId *string `min:"11" type:"string"`
 
 	// (Optional) The tags to apply to the backup at backup creation. The key value
 	// of the Name tag appears in the console as the backup name. If you have set
 	// CopyTagsToBackups to true, and you specify one or more tags using the CreateBackup
-	// action, no existing file system tags are copied from the file system to the
-	// backup.
+	// operation, no existing file system tags are copied from the file system to
+	// the backup.
 	Tags []*Tag `min:"1" type:"list"`
+
+	// (Optional) The ID of the FSx for ONTAP volume to back up.
+	VolumeId *string `min:"23" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackupInput) GoString() string {
 	return s.String()
 }
@@ -3546,14 +7384,14 @@ func (s *CreateBackupInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
 	}
-	if s.FileSystemId == nil {
-		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
-	}
 	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
 		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -3590,6 +7428,12 @@ func (s *CreateBackupInput) SetTags(v []*Tag) *CreateBackupInput {
 	return s
 }
 
+// SetVolumeId sets the VolumeId field's value.
+func (s *CreateBackupInput) SetVolumeId(v string) *CreateBackupInput {
+	s.VolumeId = &v
+	return s
+}
+
 // The response object for the CreateBackup operation.
 type CreateBackupOutput struct {
 	_ struct{} `type:"structure"`
@@ -3598,12 +7442,20 @@ type CreateBackupOutput struct {
 	Backup *Backup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBackupOutput) GoString() string {
 	return s.String()
 }
@@ -3614,12 +7466,220 @@ func (s *CreateBackupOutput) SetBackup(v *Backup) *CreateBackupOutput {
 	return s
 }
 
+type CreateDataRepositoryAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Set to true to run an import data repository task to import metadata from
+	// the data repository to the file system after the data repository association
+	// is created. Default is false.
+	BatchImportMetaDataOnCreate *bool `type:"boolean"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The path to the Amazon S3 data repository that will be linked to the file
+	// system. The path can be an S3 bucket or prefix in the format s3://myBucket/myPrefix/.
+	// This path specifies where in the S3 data repository files will be imported
+	// from or exported to.
+	//
+	// DataRepositoryPath is a required field
+	DataRepositoryPath *string `min:"3" type:"string" required:"true"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `min:"11" type:"string" required:"true"`
+
+	// A path on the file system that points to a high-level directory (such as
+	// /ns1/) or subdirectory (such as /ns1/subdir/) that will be mapped 1-1 with
+	// DataRepositoryPath. The leading forward slash in the name is required. Two
+	// data repository associations cannot have overlapping file system paths. For
+	// example, if a data repository is associated with file system path /ns1/,
+	// then you cannot link another data repository with file system path /ns1/ns2.
+	//
+	// This path specifies where in your file system files will be exported from
+	// or imported to. This file system directory can be linked to only one Amazon
+	// S3 bucket, and no other S3 bucket can be linked to the directory.
+	//
+	// If you specify only a forward slash (/) as the file system path, you can
+	// link only one data repository to the file system. You can only specify "/"
+	// as the file system path for the first data repository associated with a file
+	// system.
+	FileSystemPath *string `min:"1" type:"string"`
+
+	// For files imported from a data repository, this value determines the stripe
+	// count and maximum amount of data per file (in MiB) stored on a single physical
+	// disk. The maximum number of disks that a single file can be striped across
+	// is limited by the total number of disks that make up the file system.
+	//
+	// The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000
+	// MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.
+	ImportedFileChunkSize *int64 `min:"1" type:"integer"`
+
+	// The configuration for an Amazon S3 data repository linked to an Amazon FSx
+	// Lustre file system with a data repository association. The configuration
+	// defines which file events (new, changed, or deleted files or directories)
+	// are automatically imported from the linked data repository to the file system
+	// or automatically exported from the file system to the data repository.
+	S3 *S3DataRepositoryConfiguration `type:"structure"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataRepositoryAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataRepositoryAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataRepositoryAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataRepositoryAssociationInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DataRepositoryPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataRepositoryPath"))
+	}
+	if s.DataRepositoryPath != nil && len(*s.DataRepositoryPath) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DataRepositoryPath", 3))
+	}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
+	}
+	if s.FileSystemPath != nil && len(*s.FileSystemPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemPath", 1))
+	}
+	if s.ImportedFileChunkSize != nil && *s.ImportedFileChunkSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ImportedFileChunkSize", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBatchImportMetaDataOnCreate sets the BatchImportMetaDataOnCreate field's value.
+func (s *CreateDataRepositoryAssociationInput) SetBatchImportMetaDataOnCreate(v bool) *CreateDataRepositoryAssociationInput {
+	s.BatchImportMetaDataOnCreate = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateDataRepositoryAssociationInput) SetClientRequestToken(v string) *CreateDataRepositoryAssociationInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDataRepositoryPath sets the DataRepositoryPath field's value.
+func (s *CreateDataRepositoryAssociationInput) SetDataRepositoryPath(v string) *CreateDataRepositoryAssociationInput {
+	s.DataRepositoryPath = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *CreateDataRepositoryAssociationInput) SetFileSystemId(v string) *CreateDataRepositoryAssociationInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetFileSystemPath sets the FileSystemPath field's value.
+func (s *CreateDataRepositoryAssociationInput) SetFileSystemPath(v string) *CreateDataRepositoryAssociationInput {
+	s.FileSystemPath = &v
+	return s
+}
+
+// SetImportedFileChunkSize sets the ImportedFileChunkSize field's value.
+func (s *CreateDataRepositoryAssociationInput) SetImportedFileChunkSize(v int64) *CreateDataRepositoryAssociationInput {
+	s.ImportedFileChunkSize = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *CreateDataRepositoryAssociationInput) SetS3(v *S3DataRepositoryConfiguration) *CreateDataRepositoryAssociationInput {
+	s.S3 = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDataRepositoryAssociationInput) SetTags(v []*Tag) *CreateDataRepositoryAssociationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateDataRepositoryAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The response object returned after the data repository association is created.
+	Association *DataRepositoryAssociation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataRepositoryAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataRepositoryAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociation sets the Association field's value.
+func (s *CreateDataRepositoryAssociationOutput) SetAssociation(v *DataRepositoryAssociation) *CreateDataRepositoryAssociationOutput {
+	s.Association = v
+	return s
+}
+
 type CreateDataRepositoryTaskInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the amount of data to release, in GiB, by an Amazon File Cache
+	// AUTO_RELEASE_DATA task that automatically releases files from the cache.
+	CapacityToRelease *int64 `min:"1" type:"long"`
+
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The globally unique ID of the file system, assigned by Amazon FSx.
@@ -3627,13 +7687,36 @@ type CreateDataRepositoryTaskInput struct {
 	// FileSystemId is a required field
 	FileSystemId *string `min:"11" type:"string" required:"true"`
 
-	// (Optional) The path or paths on the Amazon FSx file system to use when the
-	// data repository task is processed. The default path is the file system root
-	// directory. The paths you provide need to be relative to the mount point of
-	// the file system. If the mount point is /mnt/fsx and /mnt/fsx/path1 is a directory
-	// or file on the file system you want to export, then the path to provide is
-	// path1. If a path that you provide isn't valid, the task fails.
+	// A list of paths for the data repository task to use when the task is processed.
+	// If a path that you provide isn't valid, the task fails. If you don't provide
+	// paths, the default behavior is to export all files to S3 (for export tasks),
+	// import all files from S3 (for import tasks), or release all exported files
+	// that meet the last accessed time criteria (for release tasks).
+	//
+	//    * For export tasks, the list contains paths on the FSx for Lustre file
+	//    system from which the files are exported to the Amazon S3 bucket. The
+	//    default path is the file system root directory. The paths you provide
+	//    need to be relative to the mount point of the file system. If the mount
+	//    point is /mnt/fsx and /mnt/fsx/path1 is a directory or file on the file
+	//    system you want to export, then the path to provide is path1.
+	//
+	//    * For import tasks, the list contains paths in the Amazon S3 bucket from
+	//    which POSIX metadata changes are imported to the FSx for Lustre file system.
+	//    The path can be an S3 bucket or prefix in the format s3://myBucket/myPrefix
+	//    (where myPrefix is optional).
+	//
+	//    * For release tasks, the list contains directory or file paths on the
+	//    FSx for Lustre file system from which to release exported files. If a
+	//    directory is specified, files within the directory are released. If a
+	//    file path is specified, only that file is released. To release all exported
+	//    files in the file system, specify a forward slash (/) as the path. A file
+	//    must also meet the last accessed time criteria specified in for the file
+	//    to be released.
 	Paths []*string `type:"list"`
+
+	// The configuration that specifies the last accessed time criteria for files
+	// that will be released from an Amazon FSx for Lustre file system.
+	ReleaseConfiguration *ReleaseConfiguration `type:"structure"`
 
 	// Defines whether or not Amazon FSx provides a CompletionReport once the task
 	// has completed. A CompletionReport provides a detailed report on the files
@@ -3648,16 +7731,37 @@ type CreateDataRepositoryTaskInput struct {
 
 	// Specifies the type of data repository task to create.
 	//
+	//    * EXPORT_TO_REPOSITORY tasks export from your Amazon FSx for Lustre file
+	//    system to a linked data repository.
+	//
+	//    * IMPORT_METADATA_FROM_REPOSITORY tasks import metadata changes from a
+	//    linked S3 bucket to your Amazon FSx for Lustre file system.
+	//
+	//    * RELEASE_DATA_FROM_FILESYSTEM tasks release files in your Amazon FSx
+	//    for Lustre file system that have been exported to a linked S3 bucket and
+	//    that meet your specified release criteria.
+	//
+	//    * AUTO_RELEASE_DATA tasks automatically release files from an Amazon File
+	//    Cache resource.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataRepositoryTaskType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataRepositoryTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataRepositoryTaskInput) GoString() string {
 	return s.String()
 }
@@ -3665,6 +7769,9 @@ func (s CreateDataRepositoryTaskInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateDataRepositoryTaskInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDataRepositoryTaskInput"}
+	if s.CapacityToRelease != nil && *s.CapacityToRelease < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("CapacityToRelease", 1))
+	}
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
 	}
@@ -3705,6 +7812,12 @@ func (s *CreateDataRepositoryTaskInput) Validate() error {
 	return nil
 }
 
+// SetCapacityToRelease sets the CapacityToRelease field's value.
+func (s *CreateDataRepositoryTaskInput) SetCapacityToRelease(v int64) *CreateDataRepositoryTaskInput {
+	s.CapacityToRelease = &v
+	return s
+}
+
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateDataRepositoryTaskInput) SetClientRequestToken(v string) *CreateDataRepositoryTaskInput {
 	s.ClientRequestToken = &v
@@ -3720,6 +7833,12 @@ func (s *CreateDataRepositoryTaskInput) SetFileSystemId(v string) *CreateDataRep
 // SetPaths sets the Paths field's value.
 func (s *CreateDataRepositoryTaskInput) SetPaths(v []*string) *CreateDataRepositoryTaskInput {
 	s.Paths = v
+	return s
+}
+
+// SetReleaseConfiguration sets the ReleaseConfiguration field's value.
+func (s *CreateDataRepositoryTaskInput) SetReleaseConfiguration(v *ReleaseConfiguration) *CreateDataRepositoryTaskInput {
+	s.ReleaseConfiguration = v
 	return s
 }
 
@@ -3748,12 +7867,20 @@ type CreateDataRepositoryTaskOutput struct {
 	DataRepositoryTask *DataRepositoryTask `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataRepositoryTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataRepositoryTaskOutput) GoString() string {
 	return s.String()
 }
@@ -3764,31 +7891,419 @@ func (s *CreateDataRepositoryTaskOutput) SetDataRepositoryTask(v *DataRepository
 	return s
 }
 
+type CreateFileCacheInput struct {
+	_ struct{} `type:"structure"`
+
+	// An idempotency token for resource creation, in a string of up to 63 ASCII
+	// characters. This token is automatically filled on your behalf when you use
+	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	//
+	// By using the idempotent operation, you can retry a CreateFileCache operation
+	// without the risk of creating an extra cache. This approach can be useful
+	// when an initial call fails in a way that makes it unclear whether a cache
+	// was created. Examples are if a transport level timeout occurred, or your
+	// connection was reset. If you use the same client request token and the initial
+	// call created a cache, the client receives success as long as the parameters
+	// are the same.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// A boolean flag indicating whether tags for the cache should be copied to
+	// data repository associations. This value defaults to false.
+	CopyTagsToDataRepositoryAssociations *bool `type:"boolean"`
+
+	// A list of up to 8 configurations for data repository associations (DRAs)
+	// to be created during the cache creation. The DRAs link the cache to either
+	// an Amazon S3 data repository or a Network File System (NFS) data repository
+	// that supports the NFSv3 protocol.
+	//
+	// The DRA configurations must meet the following requirements:
+	//
+	//    * All configurations on the list must be of the same data repository type,
+	//    either all S3 or all NFS. A cache can't link to different data repository
+	//    types at the same time.
+	//
+	//    * An NFS DRA must link to an NFS file system that supports the NFSv3 protocol.
+	//
+	// DRA automatic import and automatic export is not supported.
+	DataRepositoryAssociations []*FileCacheDataRepositoryAssociation `type:"list"`
+
+	// The type of cache that you're creating, which must be LUSTRE.
+	//
+	// FileCacheType is a required field
+	FileCacheType *string `type:"string" required:"true" enum:"FileCacheType"`
+
+	// Sets the Lustre version for the cache that you're creating, which must be
+	// 2.12.
+	//
+	// FileCacheTypeVersion is a required field
+	FileCacheTypeVersion *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the ID of the Key Management Service (KMS) key to use for encrypting
+	// data on an Amazon File Cache. If a KmsKeyId isn't specified, the Amazon FSx-managed
+	// KMS key for your account is used. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// in the Key Management Service API Reference.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// The configuration for the Amazon File Cache resource being created.
+	LustreConfiguration *CreateFileCacheLustreConfiguration `type:"structure"`
+
+	// A list of IDs specifying the security groups to apply to all network interfaces
+	// created for Amazon File Cache access. This list isn't returned in later requests
+	// to describe the cache.
+	SecurityGroupIds []*string `type:"list"`
+
+	// The storage capacity of the cache in gibibytes (GiB). Valid values are 1200
+	// GiB, 2400 GiB, and increments of 2400 GiB.
+	//
+	// StorageCapacity is a required field
+	StorageCapacity *int64 `type:"integer" required:"true"`
+
+	// A list of subnet IDs that the cache will be accessible from. You can specify
+	// only one subnet ID in a call to the CreateFileCache operation.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `type:"list" required:"true"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileCacheInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileCacheInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFileCacheInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFileCacheInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FileCacheType == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileCacheType"))
+	}
+	if s.FileCacheTypeVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileCacheTypeVersion"))
+	}
+	if s.FileCacheTypeVersion != nil && len(*s.FileCacheTypeVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileCacheTypeVersion", 1))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.StorageCapacity == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageCapacity"))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.DataRepositoryAssociations != nil {
+		for i, v := range s.DataRepositoryAssociations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataRepositoryAssociations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LustreConfiguration != nil {
+		if err := s.LustreConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LustreConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateFileCacheInput) SetClientRequestToken(v string) *CreateFileCacheInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCopyTagsToDataRepositoryAssociations sets the CopyTagsToDataRepositoryAssociations field's value.
+func (s *CreateFileCacheInput) SetCopyTagsToDataRepositoryAssociations(v bool) *CreateFileCacheInput {
+	s.CopyTagsToDataRepositoryAssociations = &v
+	return s
+}
+
+// SetDataRepositoryAssociations sets the DataRepositoryAssociations field's value.
+func (s *CreateFileCacheInput) SetDataRepositoryAssociations(v []*FileCacheDataRepositoryAssociation) *CreateFileCacheInput {
+	s.DataRepositoryAssociations = v
+	return s
+}
+
+// SetFileCacheType sets the FileCacheType field's value.
+func (s *CreateFileCacheInput) SetFileCacheType(v string) *CreateFileCacheInput {
+	s.FileCacheType = &v
+	return s
+}
+
+// SetFileCacheTypeVersion sets the FileCacheTypeVersion field's value.
+func (s *CreateFileCacheInput) SetFileCacheTypeVersion(v string) *CreateFileCacheInput {
+	s.FileCacheTypeVersion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateFileCacheInput) SetKmsKeyId(v string) *CreateFileCacheInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLustreConfiguration sets the LustreConfiguration field's value.
+func (s *CreateFileCacheInput) SetLustreConfiguration(v *CreateFileCacheLustreConfiguration) *CreateFileCacheInput {
+	s.LustreConfiguration = v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *CreateFileCacheInput) SetSecurityGroupIds(v []*string) *CreateFileCacheInput {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetStorageCapacity sets the StorageCapacity field's value.
+func (s *CreateFileCacheInput) SetStorageCapacity(v int64) *CreateFileCacheInput {
+	s.StorageCapacity = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *CreateFileCacheInput) SetSubnetIds(v []*string) *CreateFileCacheInput {
+	s.SubnetIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFileCacheInput) SetTags(v []*Tag) *CreateFileCacheInput {
+	s.Tags = v
+	return s
+}
+
+// The Amazon File Cache configuration for the cache that you are creating.
+type CreateFileCacheLustreConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the cache deployment type, which must be CACHE_1.
+	//
+	// DeploymentType is a required field
+	DeploymentType *string `type:"string" required:"true" enum:"FileCacheLustreDeploymentType"`
+
+	// The configuration for a Lustre MDT (Metadata Target) storage volume.
+	//
+	// MetadataConfiguration is a required field
+	MetadataConfiguration *FileCacheLustreMetadataConfiguration `type:"structure" required:"true"`
+
+	// Provisions the amount of read and write throughput for each 1 tebibyte (TiB)
+	// of cache storage capacity, in MB/s/TiB. The only supported value is 1000.
+	//
+	// PerUnitStorageThroughput is a required field
+	PerUnitStorageThroughput *int64 `min:"12" type:"integer" required:"true"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileCacheLustreConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileCacheLustreConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFileCacheLustreConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFileCacheLustreConfiguration"}
+	if s.DeploymentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentType"))
+	}
+	if s.MetadataConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetadataConfiguration"))
+	}
+	if s.PerUnitStorageThroughput == nil {
+		invalidParams.Add(request.NewErrParamRequired("PerUnitStorageThroughput"))
+	}
+	if s.PerUnitStorageThroughput != nil && *s.PerUnitStorageThroughput < 12 {
+		invalidParams.Add(request.NewErrParamMinValue("PerUnitStorageThroughput", 12))
+	}
+	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+	if s.MetadataConfiguration != nil {
+		if err := s.MetadataConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MetadataConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *CreateFileCacheLustreConfiguration) SetDeploymentType(v string) *CreateFileCacheLustreConfiguration {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetMetadataConfiguration sets the MetadataConfiguration field's value.
+func (s *CreateFileCacheLustreConfiguration) SetMetadataConfiguration(v *FileCacheLustreMetadataConfiguration) *CreateFileCacheLustreConfiguration {
+	s.MetadataConfiguration = v
+	return s
+}
+
+// SetPerUnitStorageThroughput sets the PerUnitStorageThroughput field's value.
+func (s *CreateFileCacheLustreConfiguration) SetPerUnitStorageThroughput(v int64) *CreateFileCacheLustreConfiguration {
+	s.PerUnitStorageThroughput = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *CreateFileCacheLustreConfiguration) SetWeeklyMaintenanceStartTime(v string) *CreateFileCacheLustreConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+type CreateFileCacheOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the cache that was created.
+	FileCache *FileCacheCreating `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileCacheOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileCacheOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileCache sets the FileCache field's value.
+func (s *CreateFileCacheOutput) SetFileCache(v *FileCacheCreating) *CreateFileCacheOutput {
+	s.FileCache = v
+	return s
+}
+
 // The request object for the CreateFileSystemFromBackup operation.
 type CreateFileSystemFromBackupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the source backup. Specifies the backup you are copying.
+	// The ID of the source backup. Specifies the backup that you are copying.
 	//
 	// BackupId is a required field
 	BackupId *string `min:"12" type:"string" required:"true"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
 	// creation. This string is automatically filled on your behalf when you use
-	// the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// file system's data for Amazon FSx for Windows File Server file systems and
-	// Amazon FSx for Lustre PERSISTENT_1 file systems at rest. In either case,
-	// if not specified, the Amazon FSx managed key is used. The Amazon FSx for
-	// Lustre SCRATCH_1 and SCRATCH_2 file systems are always encrypted at rest
-	// using Amazon FSx managed keys. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
-	// in the AWS Key Management Service API Reference.
+	// Sets the version for the Amazon FSx for Lustre file system that you're creating
+	// from a backup. Valid values are 2.10, 2.12, and 2.15.
+	//
+	// You don't need to specify FileSystemTypeVersion because it will be applied
+	// using the backup's FileSystemTypeVersion setting. If you choose to specify
+	// FileSystemTypeVersion when creating from backup, the value must match the
+	// backup's FileSystemTypeVersion setting.
+	FileSystemTypeVersion *string `min:"1" type:"string"`
+
+	// Specifies the ID of the Key Management Service (KMS) key to use for encrypting
+	// data on Amazon FSx file systems, as follows:
+	//
+	//    * Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2 deployment types
+	//    only. SCRATCH_1 and SCRATCH_2 types are encrypted using the Amazon FSx
+	//    service KMS key for your account.
+	//
+	//    * Amazon FSx for NetApp ONTAP
+	//
+	//    * Amazon FSx for OpenZFS
+	//
+	//    * Amazon FSx for Windows File Server
+	//
+	// If a KmsKeyId isn't specified, the Amazon FSx-managed KMS key for your account
+	// is used. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// in the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The Lustre configuration for the file system being created.
+	//
+	// The following parameters are not supported for file systems with a data repository
+	// association created with .
+	//
+	//    * AutoImportPolicy
+	//
+	//    * ExportPath
+	//
+	//    * ImportedFileChunkSize
+	//
+	//    * ImportPath
 	LustreConfiguration *CreateFileSystemLustreConfiguration `type:"structure"`
+
+	// The OpenZFS configuration for the file system that's being created.
+	OpenZFSConfiguration *CreateFileSystemOpenZFSConfiguration `type:"structure"`
 
 	// A list of IDs for the security groups that apply to the specified network
 	// interfaces created for file system access. These security groups apply to
@@ -3796,22 +8311,33 @@ type CreateFileSystemFromBackupInput struct {
 	// requests.
 	SecurityGroupIds []*string `type:"list"`
 
-	// Sets the storage type for the Windows file system you're creating from a
-	// backup. Valid values are SSD and HDD.
+	// Sets the storage capacity of the OpenZFS file system that you're creating
+	// from a backup, in gibibytes (GiB). Valid values are from 64 GiB up to 524,288
+	// GiB (512 TiB). However, the value that you specify must be equal to or greater
+	// than the backup's storage capacity value. If you don't use the StorageCapacity
+	// parameter, the default is the backup's StorageCapacity value.
 	//
-	//    * Set to SSD to use solid state drive storage. Supported on all Windows
-	//    deployment types.
+	// If used to create a file system other than OpenZFS, you must provide a value
+	// that matches the backup's StorageCapacity value. If you provide any other
+	// value, Amazon FSx responds with with an HTTP status code 400 Bad Request.
+	StorageCapacity *int64 `type:"integer"`
+
+	// Sets the storage type for the Windows or OpenZFS file system that you're
+	// creating from a backup. Valid values are SSD and HDD.
 	//
-	//    * Set to HDD to use hard disk drive storage. Supported on SINGLE_AZ_2
-	//    and MULTI_AZ_1 Windows file system deployment types.
+	//    * Set to SSD to use solid state drive storage. SSD is supported on all
+	//    Windows and OpenZFS deployment types.
 	//
-	// Default value is SSD.
+	//    * Set to HDD to use hard disk drive storage. HDD is supported on SINGLE_AZ_2
+	//    and MULTI_AZ_1 FSx for Windows File Server file system deployment types.
+	//
+	// The default value is SSD.
 	//
 	// HDD and SSD storage types have different minimum storage capacity requirements.
 	// A restored file system's storage capacity is tied to the file system that
 	// was backed up. You can create a file system that uses HDD storage from a
-	// backup of a file system that used SSD storage only if the original SSD file
-	// system had a storage capacity of at least 2000 GiB.
+	// backup of a file system that used SSD storage if the original SSD file system
+	// had a storage capacity of at least 2000 GiB.
 	StorageType *string `type:"string" enum:"StorageType"`
 
 	// Specifies the IDs of the subnets that the file system will be accessible
@@ -3820,9 +8346,9 @@ type CreateFileSystemFromBackupInput struct {
 	// file server. You specify one of these subnets as the preferred subnet using
 	// the WindowsConfiguration > PreferredSubnetID property.
 	//
-	// For Windows SINGLE_AZ_1 and SINGLE_AZ_2 deployment types and Lustre file
-	// systems, provide exactly one subnet ID. The file server is launched in that
-	// subnet's Availability Zone.
+	// Windows SINGLE_AZ_1 and SINGLE_AZ_2 file system deployment types, Lustre
+	// file systems, and OpenZFS file systems provide exactly one subnet ID. The
+	// file server is launched in that subnet's Availability Zone.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `type:"list" required:"true"`
@@ -3835,12 +8361,20 @@ type CreateFileSystemFromBackupInput struct {
 	WindowsConfiguration *CreateFileSystemWindowsConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemFromBackupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemFromBackupInput) GoString() string {
 	return s.String()
 }
@@ -3857,6 +8391,9 @@ func (s *CreateFileSystemFromBackupInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
 	}
+	if s.FileSystemTypeVersion != nil && len(*s.FileSystemTypeVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemTypeVersion", 1))
+	}
 	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
 	}
@@ -3869,6 +8406,11 @@ func (s *CreateFileSystemFromBackupInput) Validate() error {
 	if s.LustreConfiguration != nil {
 		if err := s.LustreConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("LustreConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OpenZFSConfiguration != nil {
+		if err := s.OpenZFSConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OpenZFSConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -3905,6 +8447,12 @@ func (s *CreateFileSystemFromBackupInput) SetClientRequestToken(v string) *Creat
 	return s
 }
 
+// SetFileSystemTypeVersion sets the FileSystemTypeVersion field's value.
+func (s *CreateFileSystemFromBackupInput) SetFileSystemTypeVersion(v string) *CreateFileSystemFromBackupInput {
+	s.FileSystemTypeVersion = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateFileSystemFromBackupInput) SetKmsKeyId(v string) *CreateFileSystemFromBackupInput {
 	s.KmsKeyId = &v
@@ -3917,9 +8465,21 @@ func (s *CreateFileSystemFromBackupInput) SetLustreConfiguration(v *CreateFileSy
 	return s
 }
 
+// SetOpenZFSConfiguration sets the OpenZFSConfiguration field's value.
+func (s *CreateFileSystemFromBackupInput) SetOpenZFSConfiguration(v *CreateFileSystemOpenZFSConfiguration) *CreateFileSystemFromBackupInput {
+	s.OpenZFSConfiguration = v
+	return s
+}
+
 // SetSecurityGroupIds sets the SecurityGroupIds field's value.
 func (s *CreateFileSystemFromBackupInput) SetSecurityGroupIds(v []*string) *CreateFileSystemFromBackupInput {
 	s.SecurityGroupIds = v
+	return s
+}
+
+// SetStorageCapacity sets the StorageCapacity field's value.
+func (s *CreateFileSystemFromBackupInput) SetStorageCapacity(v int64) *CreateFileSystemFromBackupInput {
+	s.StorageCapacity = &v
 	return s
 }
 
@@ -3955,12 +8515,20 @@ type CreateFileSystemFromBackupOutput struct {
 	FileSystem *FileSystem `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemFromBackupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemFromBackupOutput) GoString() string {
 	return s.String()
 }
@@ -3975,99 +8543,170 @@ func (s *CreateFileSystemFromBackupOutput) SetFileSystem(v *FileSystem) *CreateF
 type CreateFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
 	// creation. This string is automatically filled on your behalf when you use
-	// the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The type of Amazon FSx file system to create, either WINDOWS or LUSTRE.
+	// The type of Amazon FSx file system to create. Valid values are WINDOWS, LUSTRE,
+	// ONTAP, and OPENZFS.
 	//
 	// FileSystemType is a required field
 	FileSystemType *string `type:"string" required:"true" enum:"FileSystemType"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// file system's data for Amazon FSx for Windows File Server file systems and
-	// Amazon FSx for Lustre PERSISTENT_1 file systems at rest. In either case,
-	// if not specified, the Amazon FSx managed key is used. The Amazon FSx for
-	// Lustre SCRATCH_1 and SCRATCH_2 file systems are always encrypted at rest
-	// using Amazon FSx managed keys. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
-	// in the AWS Key Management Service API Reference.
+	// (Optional) For FSx for Lustre file systems, sets the Lustre version for the
+	// file system that you're creating. Valid values are 2.10, 2.12, and 2.15:
+	//
+	//    * 2.10 is supported by the Scratch and Persistent_1 Lustre deployment
+	//    types.
+	//
+	//    * 2.12 and 2.15 are supported by all Lustre deployment types. 2.12 or
+	//    2.15 is required when setting FSx for Lustre DeploymentType to PERSISTENT_2.
+	//
+	// Default value = 2.10, except when DeploymentType is set to PERSISTENT_2,
+	// then the default is 2.12.
+	//
+	// If you set FileSystemTypeVersion to 2.10 for a PERSISTENT_2 Lustre deployment
+	// type, the CreateFileSystem operation fails.
+	FileSystemTypeVersion *string `min:"1" type:"string"`
+
+	// Specifies the ID of the Key Management Service (KMS) key to use for encrypting
+	// data on Amazon FSx file systems, as follows:
+	//
+	//    * Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2 deployment types
+	//    only. SCRATCH_1 and SCRATCH_2 types are encrypted using the Amazon FSx
+	//    service KMS key for your account.
+	//
+	//    * Amazon FSx for NetApp ONTAP
+	//
+	//    * Amazon FSx for OpenZFS
+	//
+	//    * Amazon FSx for Windows File Server
+	//
+	// If a KmsKeyId isn't specified, the Amazon FSx-managed KMS key for your account
+	// is used. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// in the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The Lustre configuration for the file system being created.
+	//
+	// The following parameters are not supported for file systems with a data repository
+	// association created with .
+	//
+	//    * AutoImportPolicy
+	//
+	//    * ExportPath
+	//
+	//    * ImportedFileChunkSize
+	//
+	//    * ImportPath
 	LustreConfiguration *CreateFileSystemLustreConfiguration `type:"structure"`
+
+	// The ONTAP configuration properties of the FSx for ONTAP file system that
+	// you are creating.
+	OntapConfiguration *CreateFileSystemOntapConfiguration `type:"structure"`
+
+	// The OpenZFS configuration for the file system that's being created.
+	OpenZFSConfiguration *CreateFileSystemOpenZFSConfiguration `type:"structure"`
 
 	// A list of IDs specifying the security groups to apply to all network interfaces
 	// created for file system access. This list isn't returned in later requests
 	// to describe the file system.
 	SecurityGroupIds []*string `type:"list"`
 
-	// Sets the storage capacity of the file system that you're creating.
+	// Sets the storage capacity of the file system that you're creating, in gibibytes
+	// (GiB).
 	//
-	// For Lustre file systems:
+	// FSx for Lustre file systems - The amount of storage capacity that you can
+	// configure depends on the value that you set for StorageType and the Lustre
+	// DeploymentType, as follows:
 	//
-	//    * For SCRATCH_2 and PERSISTENT_1 SSD deployment types, valid values are
-	//    1200 GiB, 2400 GiB, and increments of 2400 GiB.
+	//    * For SCRATCH_2, PERSISTENT_2 and PERSISTENT_1 deployment types using
+	//    SSD storage type, the valid values are 1200 GiB, 2400 GiB, and increments
+	//    of 2400 GiB.
 	//
-	//    * For PERSISTENT HDD file systems, valid values are increments of 6000
+	//    * For PERSISTENT_1 HDD file systems, valid values are increments of 6000
 	//    GiB for 12 MB/s/TiB file systems and increments of 1800 GiB for 40 MB/s/TiB
 	//    file systems.
 	//
 	//    * For SCRATCH_1 deployment type, valid values are 1200 GiB, 2400 GiB,
 	//    and increments of 3600 GiB.
 	//
-	// For Windows file systems:
+	// FSx for ONTAP file systems - The amount of storage capacity that you can
+	// configure depends on the value of the HAPairs property. The minimum value
+	// is calculated as 1,024 * HAPairs and the maxium is calculated as 524,288
+	// * HAPairs..
 	//
-	//    * If StorageType=SSD, valid values are 32 GiB - 65,536 GiB (64 TiB).
+	// FSx for OpenZFS file systems - The amount of storage capacity that you can
+	// configure is from 64 GiB up to 524,288 GiB (512 TiB).
 	//
-	//    * If StorageType=HDD, valid values are 2000 GiB - 65,536 GiB (64 TiB).
+	// FSx for Windows File Server file systems - The amount of storage capacity
+	// that you can configure depends on the value that you set for StorageType
+	// as follows:
+	//
+	//    * For SSD storage, valid values are 32 GiB-65,536 GiB (64 TiB).
+	//
+	//    * For HDD storage, valid values are 2000 GiB-65,536 GiB (64 TiB).
 	//
 	// StorageCapacity is a required field
 	StorageCapacity *int64 `type:"integer" required:"true"`
 
-	// Sets the storage type for the file system you're creating. Valid values are
-	// SSD and HDD.
+	// Sets the storage type for the file system that you're creating. Valid values
+	// are SSD and HDD.
 	//
 	//    * Set to SSD to use solid state drive storage. SSD is supported on all
-	//    Windows and Lustre deployment types.
+	//    Windows, Lustre, ONTAP, and OpenZFS deployment types.
 	//
 	//    * Set to HDD to use hard disk drive storage. HDD is supported on SINGLE_AZ_2
-	//    and MULTI_AZ_1 Windows file system deployment types, and on PERSISTENT
+	//    and MULTI_AZ_1 Windows file system deployment types, and on PERSISTENT_1
 	//    Lustre file system deployment types.
 	//
-	// Default value is SSD. For more information, see Storage Type Options (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/optimize-fsx-costs.html#storage-type-options)
-	// in the Amazon FSx for Windows User Guide and Multiple Storage Options (https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html#storage-options)
-	// in the Amazon FSx for Lustre User Guide.
+	// Default value is SSD. For more information, see Storage type options (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/optimize-fsx-costs.html#storage-type-options)
+	// in the FSx for Windows File Server User Guide and Multiple storage options
+	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html#storage-options)
+	// in the FSx for Lustre User Guide.
 	StorageType *string `type:"string" enum:"StorageType"`
 
 	// Specifies the IDs of the subnets that the file system will be accessible
-	// from. For Windows MULTI_AZ_1 file system deployment types, provide exactly
-	// two subnet IDs, one for the preferred file server and one for the standby
-	// file server. You specify one of these subnets as the preferred subnet using
-	// the WindowsConfiguration > PreferredSubnetID property. For more information,
-	// see Availability and durability: Single-AZ and Multi-AZ file systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html).
+	// from. For Windows and ONTAP MULTI_AZ_1 deployment types,provide exactly two
+	// subnet IDs, one for the preferred file server and one for the standby file
+	// server. You specify one of these subnets as the preferred subnet using the
+	// WindowsConfiguration > PreferredSubnetID or OntapConfiguration > PreferredSubnetID
+	// properties. For more information about Multi-AZ file system configuration,
+	// see Availability and durability: Single-AZ and Multi-AZ file systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html)
+	// in the Amazon FSx for Windows User Guide and Availability and durability
+	// (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-multiAZ.html)
+	// in the Amazon FSx for ONTAP User Guide.
 	//
-	// For Windows SINGLE_AZ_1 and SINGLE_AZ_2 file system deployment types and
-	// Lustre file systems, provide exactly one subnet ID. The file server is launched
-	// in that subnet's Availability Zone.
+	// For Windows SINGLE_AZ_1 and SINGLE_AZ_2 and all Lustre deployment types,
+	// provide exactly one subnet ID. The file server is launched in that subnet's
+	// Availability Zone.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `type:"list" required:"true"`
 
-	// The tags to apply to the file system being created. The key value of the
-	// Name tag appears in the console as the file system name.
+	// The tags to apply to the file system that's being created. The key value
+	// of the Name tag appears in the console as the file system name.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// The Microsoft Windows configuration for the file system being created.
+	// The Microsoft Windows configuration for the file system that's being created.
 	WindowsConfiguration *CreateFileSystemWindowsConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemInput) GoString() string {
 	return s.String()
 }
@@ -4080,6 +8719,9 @@ func (s *CreateFileSystemInput) Validate() error {
 	}
 	if s.FileSystemType == nil {
 		invalidParams.Add(request.NewErrParamRequired("FileSystemType"))
+	}
+	if s.FileSystemTypeVersion != nil && len(*s.FileSystemTypeVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemTypeVersion", 1))
 	}
 	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
@@ -4096,6 +8738,16 @@ func (s *CreateFileSystemInput) Validate() error {
 	if s.LustreConfiguration != nil {
 		if err := s.LustreConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("LustreConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OpenZFSConfiguration != nil {
+		if err := s.OpenZFSConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OpenZFSConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -4132,6 +8784,12 @@ func (s *CreateFileSystemInput) SetFileSystemType(v string) *CreateFileSystemInp
 	return s
 }
 
+// SetFileSystemTypeVersion sets the FileSystemTypeVersion field's value.
+func (s *CreateFileSystemInput) SetFileSystemTypeVersion(v string) *CreateFileSystemInput {
+	s.FileSystemTypeVersion = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateFileSystemInput) SetKmsKeyId(v string) *CreateFileSystemInput {
 	s.KmsKeyId = &v
@@ -4141,6 +8799,18 @@ func (s *CreateFileSystemInput) SetKmsKeyId(v string) *CreateFileSystemInput {
 // SetLustreConfiguration sets the LustreConfiguration field's value.
 func (s *CreateFileSystemInput) SetLustreConfiguration(v *CreateFileSystemLustreConfiguration) *CreateFileSystemInput {
 	s.LustreConfiguration = v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *CreateFileSystemInput) SetOntapConfiguration(v *CreateFileSystemOntapConfiguration) *CreateFileSystemInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetOpenZFSConfiguration sets the OpenZFSConfiguration field's value.
+func (s *CreateFileSystemInput) SetOpenZFSConfiguration(v *CreateFileSystemOpenZFSConfiguration) *CreateFileSystemInput {
+	s.OpenZFSConfiguration = v
 	return s
 }
 
@@ -4181,11 +8851,22 @@ func (s *CreateFileSystemInput) SetWindowsConfiguration(v *CreateFileSystemWindo
 }
 
 // The Lustre configuration for the file system being created.
+//
+// The following parameters are not supported for file systems with a data repository
+// association created with .
+//
+//   - AutoImportPolicy
+//
+//   - ExportPath
+//
+//   - ImportedFileChunkSize
+//
+//   - ImportPath
 type CreateFileSystemLustreConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) When you create your file system, your existing S3 objects appear
-	// as file and directory listings. Use this property to choose how Amazon FSx
+	// as file and directory listings. Use this parameter to choose how Amazon FSx
 	// keeps your file and directory listings up to date as you add or modify objects
 	// in your linked S3 bucket. AutoImportPolicy can have the following values:
 	//
@@ -4203,25 +8884,36 @@ type CreateFileSystemLustreConfiguration struct {
 	//    existing objects that are changed in the S3 bucket after you choose this
 	//    option.
 	//
+	//    * NEW_CHANGED_DELETED - AutoImport is on. Amazon FSx automatically imports
+	//    file and directory listings of any new objects added to the S3 bucket,
+	//    any existing objects that are changed in the S3 bucket, and any objects
+	//    that were deleted in the S3 bucket.
+	//
 	// For more information, see Automatically import updates from your S3 bucket
-	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/autoimport-data-repo.html).
+	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/older-deployment-types.html#legacy-auto-import-from-s3).
+	//
+	// This parameter is not supported for file systems with a data repository association.
 	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
 
-	// The number of days to retain automatic backups. Setting this to 0 disables
-	// automatic backups. You can retain automatic backups for a maximum of 90 days.
-	// The default is 0.
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 0.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
-	// (Optional) Not available to use with file systems that are linked to a data
+	// (Optional) Not available for use with file systems that are linked to a data
 	// repository. A boolean flag indicating whether tags for the file system should
-	// be copied to backups. The default value is false. If it's set to true, all
-	// file system tags are copied to all automatic and user-initiated backups when
-	// the user doesn't specify any backup-specific tags. If this value is true,
-	// and you specify one or more backup tags, only the specified tags are copied
-	// to backups. If you specify one or more tags when creating a user-initiated
-	// backup, no tags are copied from the file system, regardless of this value.
+	// be copied to backups. The default value is false. If CopyTagsToBackups is
+	// set to true, all file system tags are copied to all automatic and user-initiated
+	// backups when the user doesn't specify any backup-specific tags. If CopyTagsToBackups
+	// is set to true and you specify one or more backup tags, only the specified
+	// tags are copied to backups. If you specify one or more tags when creating
+	// a user-initiated backup, no tags are copied from the file system, regardless
+	// of this value.
 	//
-	// For more information, see Working with backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html).
+	// (Default = false)
+	//
+	// For more information, see Working with backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html)
+	// in the Amazon FSx for Lustre User Guide.
 	CopyTagsToBackups *bool `type:"boolean"`
 
 	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
@@ -4237,49 +8929,68 @@ type CreateFileSystemLustreConfiguration struct {
 	//
 	//    * LZ4 - Data compression is turned on with the LZ4 algorithm.
 	//
-	// For more information, see Lustre data compression (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-compression.html).
+	// For more information, see Lustre data compression (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-compression.html)
+	// in the Amazon FSx for Lustre User Guide.
 	DataCompressionType *string `type:"string" enum:"DataCompressionType"`
 
-	// Choose SCRATCH_1 and SCRATCH_2 deployment types when you need temporary storage
-	// and shorter-term processing of data. The SCRATCH_2 deployment type provides
-	// in-transit encryption of data and higher burst throughput capacity than SCRATCH_1.
+	// (Optional) Choose SCRATCH_1 and SCRATCH_2 deployment types when you need
+	// temporary storage and shorter-term processing of data. The SCRATCH_2 deployment
+	// type provides in-transit encryption of data and higher burst throughput capacity
+	// than SCRATCH_1.
 	//
-	// Choose PERSISTENT_1 deployment type for longer-term storage and workloads
-	// and encryption of data in transit. To learn more about deployment types,
-	// see FSx for Lustre Deployment Options (https://docs.aws.amazon.com/fsx/latest/LustreGuide/lustre-deployment-types.html).
+	// Choose PERSISTENT_1 for longer-term storage and for throughput-focused workloads
+	// that aren’t latency-sensitive. PERSISTENT_1 supports encryption of data
+	// in transit, and is available in all Amazon Web Services Regions in which
+	// FSx for Lustre is available.
 	//
-	// Encryption of data in-transit is automatically enabled when you access a
-	// SCRATCH_2 or PERSISTENT_1 file system from Amazon EC2 instances that support
-	// this feature (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/data- protection.html).
+	// Choose PERSISTENT_2 for longer-term storage and for latency-sensitive workloads
+	// that require the highest levels of IOPS/throughput. PERSISTENT_2 supports
+	// SSD storage, and offers higher PerUnitStorageThroughput (up to 1000 MB/s/TiB).
+	// PERSISTENT_2 is available in a limited number of Amazon Web Services Regions.
+	// For more information, and an up-to-date list of Amazon Web Services Regions
+	// in which PERSISTENT_2 is available, see File system deployment options for
+	// FSx for Lustre (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-fsx-lustre.html#lustre-deployment-types)
+	// in the Amazon FSx for Lustre User Guide.
+	//
+	// If you choose PERSISTENT_2, and you set FileSystemTypeVersion to 2.10, the
+	// CreateFileSystem operation fails.
+	//
+	// Encryption of data in transit is automatically turned on when you access
+	// SCRATCH_2, PERSISTENT_1 and PERSISTENT_2 file systems from Amazon EC2 instances
+	// that support automatic encryption in the Amazon Web Services Regions where
+	// they are available. For more information about encryption in transit for
+	// FSx for Lustre file systems, see Encrypting data in transit (https://docs.aws.amazon.com/fsx/latest/LustreGuide/encryption-in-transit-fsxl.html)
+	// in the Amazon FSx for Lustre User Guide.
+	//
 	// (Default = SCRATCH_1)
-	//
-	// Encryption of data in-transit for SCRATCH_2 and PERSISTENT_1 deployment types
-	// is supported when accessed from supported instance types in supported AWS
-	// Regions. To learn more, Encrypting Data in Transit (https://docs.aws.amazon.com/fsx/latest/LustreGuide/encryption-in-transit-fsxl.html).
 	DeploymentType *string `type:"string" enum:"LustreDeploymentType"`
 
 	// The type of drive cache used by PERSISTENT_1 file systems that are provisioned
 	// with HDD storage devices. This parameter is required when storage type is
-	// HDD. Set to READ, improve the performance for frequently accessed files and
-	// allows 20% of the total storage capacity of the file system to be cached.
+	// HDD. Set this property to READ to improve the performance for frequently
+	// accessed files by caching up to 20% of the total storage capacity of the
+	// file system.
 	//
 	// This parameter is required when StorageType is set to HDD.
 	DriveCacheType *string `type:"string" enum:"DriveCacheType"`
 
-	// (Optional) The path in Amazon S3 where the root of your Amazon FSx file system
-	// is exported. The path must use the same Amazon S3 bucket as specified in
-	// ImportPath. You can provide an optional prefix to which new and changed data
-	// is to be exported from your Amazon FSx for Lustre file system. If an ExportPath
-	// value is not provided, Amazon FSx sets a default export path, s3://import-bucket/FSxLustre[creation-timestamp].
-	// The timestamp is in UTC format, for example s3://import-bucket/FSxLustre20181105T222312Z.
+	// (Optional) Specifies the path in the Amazon S3 bucket where the root of your
+	// Amazon FSx file system is exported. The path must use the same Amazon S3
+	// bucket as specified in ImportPath. You can provide an optional prefix to
+	// which new and changed data is to be exported from your Amazon FSx for Lustre
+	// file system. If an ExportPath value is not provided, Amazon FSx sets a default
+	// export path, s3://import-bucket/FSxLustre[creation-timestamp]. The timestamp
+	// is in UTC format, for example s3://import-bucket/FSxLustre20181105T222312Z.
 	//
 	// The Amazon S3 export bucket must be the same as the import bucket specified
-	// by ImportPath. If you only specify a bucket name, such as s3://import-bucket,
+	// by ImportPath. If you specify only a bucket name, such as s3://import-bucket,
 	// you get a 1:1 mapping of file system objects to S3 bucket objects. This mapping
 	// means that the input data in S3 is overwritten on export. If you provide
 	// a custom prefix in the export path, such as s3://import-bucket/[custom-optional-prefix],
 	// Amazon FSx exports the contents of your file system to that export prefix
 	// in the Amazon S3 bucket.
+	//
+	// This parameter is not supported for file systems with a data repository association.
 	ExportPath *string `min:"3" type:"string"`
 
 	// (Optional) The path to the Amazon S3 bucket (including the optional prefix)
@@ -4288,6 +8999,8 @@ type CreateFileSystemLustreConfiguration struct {
 	// root of the Amazon S3 bucket you select. An example is s3://import-bucket/optional-prefix.
 	// If you specify a prefix after the Amazon S3 bucket name, only object keys
 	// with that prefix are loaded into the file system.
+	//
+	// This parameter is not supported for file systems with a data repository association.
 	ImportPath *string `min:"3" type:"string"`
 
 	// (Optional) For files imported from a data repository, this value determines
@@ -4298,18 +9011,37 @@ type CreateFileSystemLustreConfiguration struct {
 	//
 	// The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000
 	// MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.
+	//
+	// This parameter is not supported for file systems with a data repository association.
 	ImportedFileChunkSize *int64 `min:"1" type:"integer"`
 
-	// Required for the PERSISTENT_1 deployment type, describes the amount of read
-	// and write throughput for each 1 tebibyte of storage, in MB/s/TiB. File system
-	// throughput capacity is calculated by multiplying ﬁle system storage capacity
-	// (TiB) by the PerUnitStorageThroughput (MB/s/TiB). For a 2.4 TiB ﬁle system,
-	// provisioning 50 MB/s/TiB of PerUnitStorageThroughput yields 120 MB/s of ﬁle
-	// system throughput. You pay for the amount of throughput that you provision.
+	// The Lustre logging configuration used when creating an Amazon FSx for Lustre
+	// file system. When logging is enabled, Lustre logs error and warning events
+	// for data repositories associated with your file system to Amazon CloudWatch
+	// Logs.
+	LogConfiguration *LustreLogCreateConfiguration `type:"structure"`
+
+	// Required with PERSISTENT_1 and PERSISTENT_2 deployment types, provisions
+	// the amount of read and write throughput for each 1 tebibyte (TiB) of file
+	// system storage capacity, in MB/s/TiB. File system throughput capacity is
+	// calculated by multiplying ﬁle system storage capacity (TiB) by the PerUnitStorageThroughput
+	// (MB/s/TiB). For a 2.4-TiB ﬁle system, provisioning 50 MB/s/TiB of PerUnitStorageThroughput
+	// yields 120 MB/s of ﬁle system throughput. You pay for the amount of throughput
+	// that you provision.
 	//
-	// Valid values for SSD storage: 50, 100, 200. Valid values for HDD storage:
-	// 12, 40.
+	// Valid values:
+	//
+	//    * For PERSISTENT_1 SSD storage: 50, 100, 200 MB/s/TiB.
+	//
+	//    * For PERSISTENT_1 HDD storage: 12, 40 MB/s/TiB.
+	//
+	//    * For PERSISTENT_2 SSD storage: 125, 250, 500, 1000 MB/s/TiB.
 	PerUnitStorageThroughput *int64 `min:"12" type:"integer"`
+
+	// The Lustre root squash configuration used when creating an Amazon FSx for
+	// Lustre file system. When enabled, root squash restricts root-level access
+	// from clients that try to access your file system as a root user.
+	RootSquashConfiguration *LustreRootSquashConfiguration `type:"structure"`
 
 	// (Optional) The preferred start time to perform weekly maintenance, formatted
 	// d:HH:MM in the UTC time zone, where d is the weekday number, from 1 through
@@ -4317,12 +9049,20 @@ type CreateFileSystemLustreConfiguration struct {
 	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemLustreConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemLustreConfiguration) GoString() string {
 	return s.String()
 }
@@ -4347,6 +9087,16 @@ func (s *CreateFileSystemLustreConfiguration) Validate() error {
 	}
 	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+	if s.LogConfiguration != nil {
+		if err := s.LogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RootSquashConfiguration != nil {
+		if err := s.RootSquashConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RootSquashConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4415,14 +9165,526 @@ func (s *CreateFileSystemLustreConfiguration) SetImportedFileChunkSize(v int64) 
 	return s
 }
 
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *CreateFileSystemLustreConfiguration) SetLogConfiguration(v *LustreLogCreateConfiguration) *CreateFileSystemLustreConfiguration {
+	s.LogConfiguration = v
+	return s
+}
+
 // SetPerUnitStorageThroughput sets the PerUnitStorageThroughput field's value.
 func (s *CreateFileSystemLustreConfiguration) SetPerUnitStorageThroughput(v int64) *CreateFileSystemLustreConfiguration {
 	s.PerUnitStorageThroughput = &v
 	return s
 }
 
+// SetRootSquashConfiguration sets the RootSquashConfiguration field's value.
+func (s *CreateFileSystemLustreConfiguration) SetRootSquashConfiguration(v *LustreRootSquashConfiguration) *CreateFileSystemLustreConfiguration {
+	s.RootSquashConfiguration = v
+	return s
+}
+
 // SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
 func (s *CreateFileSystemLustreConfiguration) SetWeeklyMaintenanceStartTime(v string) *CreateFileSystemLustreConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// The ONTAP configuration properties of the FSx for ONTAP file system that
+// you are creating.
+type CreateFileSystemOntapConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30.
+	AutomaticBackupRetentionDays *int64 `type:"integer"`
+
+	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
+	// the day (0-23), and MM is the zero-padded minute of the hour. For example,
+	// 05:00 specifies 5 AM daily.
+	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// Specifies the FSx for ONTAP file system deployment type to use in creating
+	// the file system.
+	//
+	//    * MULTI_AZ_1 - (Default) A high availability file system configured for
+	//    Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability.
+	//
+	//    * SINGLE_AZ_1 - A file system configured for Single-AZ redundancy.
+	//
+	//    * SINGLE_AZ_2 - A file system configured with multiple high-availability
+	//    (HA) pairs for Single-AZ redundancy.
+	//
+	// For information about the use cases for Multi-AZ and Single-AZ deployments,
+	// refer to Choosing a file system deployment type (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-AZ.html).
+	//
+	// DeploymentType is a required field
+	DeploymentType *string `type:"string" required:"true" enum:"OntapDeploymentType"`
+
+	// The SSD IOPS configuration for the FSx for ONTAP file system.
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
+	// (Multi-AZ only) Specifies the IP address range in which the endpoints to
+	// access your file system will be created. By default in the Amazon FSx API,
+	// Amazon FSx selects an unused IP address range for you from the 198.19.* range.
+	// By default in the Amazon FSx console, Amazon FSx chooses the last 64 IP addresses
+	// from the VPC’s primary CIDR range to use as the endpoint IP address range
+	// for the file system. You can have overlapping endpoint IP addresses for file
+	// systems deployed in the same VPC/route tables, as long as they don't overlap
+	// with any subnet.
+	EndpointIpAddressRange *string `min:"9" type:"string"`
+
+	// The ONTAP administrative password for the fsxadmin user with which you administer
+	// your file system using the NetApp ONTAP CLI and REST API.
+	//
+	// FsxAdminPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateFileSystemOntapConfiguration's
+	// String and GoString methods.
+	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
+
+	// Specifies how many high-availability (HA) pairs the file system will have.
+	// The default value is 1. The value of this property affects the values of
+	// StorageCapacity, Iops, and ThroughputCapacity. For more information, see
+	// High-availability (HA) pairs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/HA-pairs.html)
+	// in the FSx for ONTAP user guide.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of HAPairs is less than 1 or greater than 6.
+	//
+	//    * The value of HAPairs is greater than 1 and the value of DeploymentType
+	//    is SINGLE_AZ_1 or MULTI_AZ_1.
+	HAPairs *int64 `min:"1" type:"integer"`
+
+	// Required when DeploymentType is set to MULTI_AZ_1. This specifies the subnet
+	// in which you want the preferred file server to be located.
+	PreferredSubnetId *string `min:"15" type:"string"`
+
+	// (Multi-AZ only) Specifies the route tables in which Amazon FSx creates the
+	// rules for routing traffic to the correct file server. You should specify
+	// all virtual private cloud (VPC) route tables associated with the subnets
+	// in which your clients are located. By default, Amazon FSx selects your VPC's
+	// default route table.
+	RouteTableIds []*string `type:"list"`
+
+	// Sets the throughput capacity for the file system that you're creating in
+	// megabytes per second (MBps). For more information, see Managing throughput
+	// capacity (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-throughput-capacity.html)
+	// in the FSx for ONTAP User Guide.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
+	//    not the same value.
+	//
+	//    * The value of ThroughputCapacity when divided by the value of HAPairs
+	//    is outside of the valid range for ThroughputCapacity.
+	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
+	// Use to choose the throughput capacity per HA pair, rather than the total
+	// throughput for the file system.
+	//
+	// This field and ThroughputCapacity cannot be defined in the same API call,
+	// but one is required.
+	//
+	// This field and ThroughputCapacity are the same for file systems with one
+	// HA pair.
+	//
+	//    * For SINGLE_AZ_1 and MULTI_AZ_1, valid values are 128, 256, 512, 1024,
+	//    2048, or 4096 MBps.
+	//
+	//    * For SINGLE_AZ_2, valid values are 3072 or 6144 MBps.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
+	//    not the same value
+	//
+	//    * The value of ThroughputCapacityPerHAPair is not a valid value.
+	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileSystemOntapConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileSystemOntapConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFileSystemOntapConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFileSystemOntapConfiguration"}
+	if s.DailyAutomaticBackupStartTime != nil && len(*s.DailyAutomaticBackupStartTime) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("DailyAutomaticBackupStartTime", 5))
+	}
+	if s.DeploymentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentType"))
+	}
+	if s.EndpointIpAddressRange != nil && len(*s.EndpointIpAddressRange) < 9 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointIpAddressRange", 9))
+	}
+	if s.FsxAdminPassword != nil && len(*s.FsxAdminPassword) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("FsxAdminPassword", 8))
+	}
+	if s.HAPairs != nil && *s.HAPairs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("HAPairs", 1))
+	}
+	if s.PreferredSubnetId != nil && len(*s.PreferredSubnetId) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredSubnetId", 15))
+	}
+	if s.ThroughputCapacity != nil && *s.ThroughputCapacity < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacity", 8))
+	}
+	if s.ThroughputCapacityPerHAPair != nil && *s.ThroughputCapacityPerHAPair < 128 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacityPerHAPair", 128))
+	}
+	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
+func (s *CreateFileSystemOntapConfiguration) SetAutomaticBackupRetentionDays(v int64) *CreateFileSystemOntapConfiguration {
+	s.AutomaticBackupRetentionDays = &v
+	return s
+}
+
+// SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
+func (s *CreateFileSystemOntapConfiguration) SetDailyAutomaticBackupStartTime(v string) *CreateFileSystemOntapConfiguration {
+	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *CreateFileSystemOntapConfiguration) SetDeploymentType(v string) *CreateFileSystemOntapConfiguration {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *CreateFileSystemOntapConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *CreateFileSystemOntapConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
+// SetEndpointIpAddressRange sets the EndpointIpAddressRange field's value.
+func (s *CreateFileSystemOntapConfiguration) SetEndpointIpAddressRange(v string) *CreateFileSystemOntapConfiguration {
+	s.EndpointIpAddressRange = &v
+	return s
+}
+
+// SetFsxAdminPassword sets the FsxAdminPassword field's value.
+func (s *CreateFileSystemOntapConfiguration) SetFsxAdminPassword(v string) *CreateFileSystemOntapConfiguration {
+	s.FsxAdminPassword = &v
+	return s
+}
+
+// SetHAPairs sets the HAPairs field's value.
+func (s *CreateFileSystemOntapConfiguration) SetHAPairs(v int64) *CreateFileSystemOntapConfiguration {
+	s.HAPairs = &v
+	return s
+}
+
+// SetPreferredSubnetId sets the PreferredSubnetId field's value.
+func (s *CreateFileSystemOntapConfiguration) SetPreferredSubnetId(v string) *CreateFileSystemOntapConfiguration {
+	s.PreferredSubnetId = &v
+	return s
+}
+
+// SetRouteTableIds sets the RouteTableIds field's value.
+func (s *CreateFileSystemOntapConfiguration) SetRouteTableIds(v []*string) *CreateFileSystemOntapConfiguration {
+	s.RouteTableIds = v
+	return s
+}
+
+// SetThroughputCapacity sets the ThroughputCapacity field's value.
+func (s *CreateFileSystemOntapConfiguration) SetThroughputCapacity(v int64) *CreateFileSystemOntapConfiguration {
+	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetThroughputCapacityPerHAPair sets the ThroughputCapacityPerHAPair field's value.
+func (s *CreateFileSystemOntapConfiguration) SetThroughputCapacityPerHAPair(v int64) *CreateFileSystemOntapConfiguration {
+	s.ThroughputCapacityPerHAPair = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *CreateFileSystemOntapConfiguration) SetWeeklyMaintenanceStartTime(v string) *CreateFileSystemOntapConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// The Amazon FSx for OpenZFS configuration properties for the file system that
+// you are creating.
+type CreateFileSystemOpenZFSConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30.
+	AutomaticBackupRetentionDays *int64 `type:"integer"`
+
+	// A Boolean value indicating whether tags for the file system should be copied
+	// to backups. This value defaults to false. If it's set to true, all tags for
+	// the file system are copied to all automatic and user-initiated backups where
+	// the user doesn't specify tags. If this value is true, and you specify one
+	// or more tags, only the specified tags are copied to backups. If you specify
+	// one or more tags when creating a user-initiated backup, no tags are copied
+	// from the file system, regardless of this value.
+	CopyTagsToBackups *bool `type:"boolean"`
+
+	// A Boolean value indicating whether tags for the file system should be copied
+	// to volumes. This value defaults to false. If it's set to true, all tags for
+	// the file system are copied to volumes where the user doesn't specify tags.
+	// If this value is true, and you specify one or more tags, only the specified
+	// tags are copied to volumes. If you specify one or more tags when creating
+	// the volume, no tags are copied from the file system, regardless of this value.
+	CopyTagsToVolumes *bool `type:"boolean"`
+
+	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
+	// the day (0-23), and MM is the zero-padded minute of the hour. For example,
+	// 05:00 specifies 5 AM daily.
+	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// Specifies the file system deployment type. Single AZ deployment types are
+	// configured for redundancy within a single Availability Zone in an Amazon
+	// Web Services Region . Valid values are the following:
+	//
+	//    * MULTI_AZ_1- Creates file systems with high availability that are configured
+	//    for Multi-AZ redundancy to tolerate temporary unavailability in Availability
+	//    Zones (AZs). Multi_AZ_1 is available only in the US East (N. Virginia),
+	//    US East (Ohio), US West (Oregon), Asia Pacific (Singapore), Asia Pacific
+	//    (Tokyo), and Europe (Ireland) Amazon Web Services Regions.
+	//
+	//    * SINGLE_AZ_1- Creates file systems with throughput capacities of 64 -
+	//    4,096 MB/s. Single_AZ_1 is available in all Amazon Web Services Regions
+	//    where Amazon FSx for OpenZFS is available.
+	//
+	//    * SINGLE_AZ_2- Creates file systems with throughput capacities of 160
+	//    - 10,240 MB/s using an NVMe L2ARC cache. Single_AZ_2 is available only
+	//    in the US East (N. Virginia), US East (Ohio), US West (Oregon), Asia Pacific
+	//    (Singapore), Asia Pacific (Tokyo), and Europe (Ireland) Amazon Web Services
+	//    Regions.
+	//
+	// For more information, see Deployment type availability (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/availability-durability.html#available-aws-regions)
+	// and File system performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#zfs-fs-performance)
+	// in the Amazon FSx for OpenZFS User Guide.
+	//
+	// DeploymentType is a required field
+	DeploymentType *string `type:"string" required:"true" enum:"OpenZFSDeploymentType"`
+
+	// The SSD IOPS (input/output operations per second) configuration for an Amazon
+	// FSx for NetApp ONTAP, Amazon FSx for Windows File Server, or FSx for OpenZFS
+	// file system. By default, Amazon FSx automatically provisions 3 IOPS per GB
+	// of storage capacity. You can provision additional IOPS per GB of storage.
+	// The configuration consists of the total number of provisioned SSD IOPS and
+	// how it is was provisioned, or the mode (by the customer or by Amazon FSx).
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
+	// (Multi-AZ only) Specifies the IP address range in which the endpoints to
+	// access your file system will be created. By default in the Amazon FSx API
+	// and Amazon FSx console, Amazon FSx selects an available /28 IP address range
+	// for you from one of the VPC's CIDR ranges. You can have overlapping endpoint
+	// IP addresses for file systems deployed in the same VPC/route tables.
+	EndpointIpAddressRange *string `min:"9" type:"string"`
+
+	// Required when DeploymentType is set to MULTI_AZ_1. This specifies the subnet
+	// in which you want the preferred file server to be located.
+	PreferredSubnetId *string `min:"15" type:"string"`
+
+	// The configuration Amazon FSx uses when creating the root value of the Amazon
+	// FSx for OpenZFS file system. All volumes are children of the root volume.
+	RootVolumeConfiguration *OpenZFSCreateRootVolumeConfiguration `type:"structure"`
+
+	// (Multi-AZ only) Specifies the route tables in which Amazon FSx creates the
+	// rules for routing traffic to the correct file server. You should specify
+	// all virtual private cloud (VPC) route tables associated with the subnets
+	// in which your clients are located. By default, Amazon FSx selects your VPC's
+	// default route table.
+	RouteTableIds []*string `type:"list"`
+
+	// Specifies the throughput of an Amazon FSx for OpenZFS file system, measured
+	// in megabytes per second (MBps). Valid values depend on the DeploymentType
+	// you choose, as follows:
+	//
+	//    * For MULTI_AZ_1 and SINGLE_AZ_2, valid values are 160, 320, 640, 1280,
+	//    2560, 3840, 5120, 7680, or 10240 MBps.
+	//
+	//    * For SINGLE_AZ_1, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
+	//    or 4096 MBps.
+	//
+	// You pay for additional throughput capacity that you provision.
+	//
+	// ThroughputCapacity is a required field
+	ThroughputCapacity *int64 `min:"8" type:"integer" required:"true"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileSystemOpenZFSConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFileSystemOpenZFSConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFileSystemOpenZFSConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFileSystemOpenZFSConfiguration"}
+	if s.DailyAutomaticBackupStartTime != nil && len(*s.DailyAutomaticBackupStartTime) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("DailyAutomaticBackupStartTime", 5))
+	}
+	if s.DeploymentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentType"))
+	}
+	if s.EndpointIpAddressRange != nil && len(*s.EndpointIpAddressRange) < 9 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointIpAddressRange", 9))
+	}
+	if s.PreferredSubnetId != nil && len(*s.PreferredSubnetId) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredSubnetId", 15))
+	}
+	if s.ThroughputCapacity == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThroughputCapacity"))
+	}
+	if s.ThroughputCapacity != nil && *s.ThroughputCapacity < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacity", 8))
+	}
+	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+	if s.RootVolumeConfiguration != nil {
+		if err := s.RootVolumeConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RootVolumeConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetAutomaticBackupRetentionDays(v int64) *CreateFileSystemOpenZFSConfiguration {
+	s.AutomaticBackupRetentionDays = &v
+	return s
+}
+
+// SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetCopyTagsToBackups(v bool) *CreateFileSystemOpenZFSConfiguration {
+	s.CopyTagsToBackups = &v
+	return s
+}
+
+// SetCopyTagsToVolumes sets the CopyTagsToVolumes field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetCopyTagsToVolumes(v bool) *CreateFileSystemOpenZFSConfiguration {
+	s.CopyTagsToVolumes = &v
+	return s
+}
+
+// SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetDailyAutomaticBackupStartTime(v string) *CreateFileSystemOpenZFSConfiguration {
+	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetDeploymentType(v string) *CreateFileSystemOpenZFSConfiguration {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *CreateFileSystemOpenZFSConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
+// SetEndpointIpAddressRange sets the EndpointIpAddressRange field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetEndpointIpAddressRange(v string) *CreateFileSystemOpenZFSConfiguration {
+	s.EndpointIpAddressRange = &v
+	return s
+}
+
+// SetPreferredSubnetId sets the PreferredSubnetId field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetPreferredSubnetId(v string) *CreateFileSystemOpenZFSConfiguration {
+	s.PreferredSubnetId = &v
+	return s
+}
+
+// SetRootVolumeConfiguration sets the RootVolumeConfiguration field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetRootVolumeConfiguration(v *OpenZFSCreateRootVolumeConfiguration) *CreateFileSystemOpenZFSConfiguration {
+	s.RootVolumeConfiguration = v
+	return s
+}
+
+// SetRouteTableIds sets the RouteTableIds field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetRouteTableIds(v []*string) *CreateFileSystemOpenZFSConfiguration {
+	s.RouteTableIds = v
+	return s
+}
+
+// SetThroughputCapacity sets the ThroughputCapacity field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetThroughputCapacity(v int64) *CreateFileSystemOpenZFSConfiguration {
+	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *CreateFileSystemOpenZFSConfiguration) SetWeeklyMaintenanceStartTime(v string) *CreateFileSystemOpenZFSConfiguration {
 	s.WeeklyMaintenanceStartTime = &v
 	return s
 }
@@ -4435,12 +9697,20 @@ type CreateFileSystemOutput struct {
 	FileSystem *FileSystem `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemOutput) GoString() string {
 	return s.String()
 }
@@ -4456,8 +9726,8 @@ func (s *CreateFileSystemOutput) SetFileSystem(v *FileSystem) *CreateFileSystemO
 type CreateFileSystemWindowsConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for an existing AWS Managed Microsoft Active Directory (AD) instance
-	// that the file system should join when it's created.
+	// The ID for an existing Amazon Web Services Managed Microsoft Active Directory
+	// (AD) instance that the file system should join when it's created.
 	ActiveDirectoryId *string `min:"12" type:"string"`
 
 	// An array of one or more DNS alias names that you want to associate with the
@@ -4496,9 +9766,9 @@ type CreateFileSystemWindowsConfiguration struct {
 	// Windows File Server file system.
 	AuditLogConfiguration *WindowsAuditLogCreateConfiguration `type:"structure"`
 
-	// The number of days to retain automatic backups. The default is to retain
-	// backups for 7 days. Setting this value to 0 disables the creation of automatic
-	// backups. The maximum retention period for backups is 90 days.
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A boolean flag indicating whether tags for the file system should be copied
@@ -4518,8 +9788,9 @@ type CreateFileSystemWindowsConfiguration struct {
 	//
 	//    * MULTI_AZ_1 - Deploys a high availability file system that is configured
 	//    for Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability.
-	//    You can only deploy a Multi-AZ file system in AWS Regions that have a
-	//    minimum of three Availability Zones. Also supports HDD storage type
+	//    You can only deploy a Multi-AZ file system in Amazon Web Services Regions
+	//    that have a minimum of three Availability Zones. Also supports HDD storage
+	//    type
 	//
 	//    * SINGLE_AZ_1 - (Default) Choose to deploy a file system that is configured
 	//    for single AZ redundancy.
@@ -4532,21 +9803,30 @@ type CreateFileSystemWindowsConfiguration struct {
 	// File Systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html).
 	DeploymentType *string `type:"string" enum:"WindowsDeploymentType"`
 
+	// The SSD IOPS (input/output operations per second) configuration for an Amazon
+	// FSx for Windows file system. By default, Amazon FSx automatically provisions
+	// 3 IOPS per GiB of storage capacity. You can provision additional IOPS per
+	// GiB of storage, up to the maximum limit associated with your chosen throughput
+	// capacity.
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
 	// Required when DeploymentType is set to MULTI_AZ_1. This specifies the subnet
-	// in which you want the preferred file server to be located. For in-AWS applications,
-	// we recommend that you launch your clients in the same Availability Zone (AZ)
-	// as your preferred file server to reduce cross-AZ data transfer costs and
-	// minimize latency.
+	// in which you want the preferred file server to be located. For in-Amazon
+	// Web Services applications, we recommend that you launch your clients in the
+	// same Availability Zone (AZ) as your preferred file server to reduce cross-AZ
+	// data transfer costs and minimize latency.
 	PreferredSubnetId *string `min:"15" type:"string"`
 
-	// The configuration that Amazon FSx uses to join the Windows File Server instance
-	// to your self-managed (including on-premises) Microsoft Active Directory (AD)
-	// directory. For more information, see Using Amazon FSx with your self-managed
-	// Microsoft Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html).
+	// The configuration that Amazon FSx uses to join a FSx for Windows File Server
+	// file system or an FSx for ONTAP storage virtual machine (SVM) to a self-managed
+	// (including on-premises) Microsoft Active Directory (AD) directory. For more
+	// information, see Using Amazon FSx for Windows with your self-managed Microsoft
+	// Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
+	// or Managing FSx for ONTAP SVMs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html).
 	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryConfiguration `type:"structure"`
 
-	// The throughput of an Amazon FSx file system, measured in megabytes per second,
-	// in 2 to the nth increments, between 2^3 (8) and 2^11 (2048).
+	// Sets the throughput capacity of an Amazon FSx file system, measured in megabytes
+	// per second (MB/s), in 2 to the nth increments, between 2^3 (8) and 2^11 (2048).
 	//
 	// ThroughputCapacity is a required field
 	ThroughputCapacity *int64 `min:"8" type:"integer" required:"true"`
@@ -4557,12 +9837,20 @@ type CreateFileSystemWindowsConfiguration struct {
 	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemWindowsConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFileSystemWindowsConfiguration) GoString() string {
 	return s.String()
 }
@@ -4647,6 +9935,12 @@ func (s *CreateFileSystemWindowsConfiguration) SetDeploymentType(v string) *Crea
 	return s
 }
 
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *CreateFileSystemWindowsConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *CreateFileSystemWindowsConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
 // SetPreferredSubnetId sets the PreferredSubnetId field's value.
 func (s *CreateFileSystemWindowsConfiguration) SetPreferredSubnetId(v string) *CreateFileSystemWindowsConfiguration {
 	s.PreferredSubnetId = &v
@@ -4671,8 +9965,1734 @@ func (s *CreateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v s
 	return s
 }
 
+// Specifies the configuration of the ONTAP volume that you are creating.
+type CreateOntapVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Use to specify configuration options for a volume’s storage aggregate or
+	// aggregates.
+	AggregateConfiguration *CreateAggregateConfiguration `type:"structure"`
+
+	// A boolean flag indicating whether tags for the volume should be copied to
+	// backups. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to all automatic and user-initiated backups where the
+	// user doesn't specify tags. If this value is true, and you specify one or
+	// more tags, only the specified tags are copied to backups. If you specify
+	// one or more tags when creating a user-initiated backup, no tags are copied
+	// from the volume, regardless of this value.
+	CopyTagsToBackups *bool `type:"boolean"`
+
+	// Specifies the location in the SVM's namespace where the volume is mounted.
+	// This parameter is required. The JunctionPath must have a leading forward
+	// slash, such as /vol3.
+	JunctionPath *string `min:"1" type:"string"`
+
+	// Specifies the type of volume you are creating. Valid values are the following:
+	//
+	//    * RW specifies a read/write volume. RW is the default.
+	//
+	//    * DP specifies a data-protection volume. A DP volume is read-only and
+	//    can be used as the destination of a NetApp SnapMirror relationship.
+	//
+	// For more information, see Volume types (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-types)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	OntapVolumeType *string `type:"string" enum:"InputOntapVolumeType"`
+
+	// Specifies the security style for the volume. If a volume's security style
+	// is not specified, it is automatically set to the root volume's security style.
+	// The security style determines the type of permissions that FSx for ONTAP
+	// uses to control data access. For more information, see Volume security style
+	// (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#volume-security-style)
+	// in the Amazon FSx for NetApp ONTAP User Guide. Specify one of the following
+	// values:
+	//
+	//    * UNIX if the file system is managed by a UNIX administrator, the majority
+	//    of users are NFS clients, and an application accessing the data uses a
+	//    UNIX user as the service account.
+	//
+	//    * NTFS if the file system is managed by a Windows administrator, the majority
+	//    of users are SMB clients, and an application accessing the data uses a
+	//    Windows user as the service account.
+	//
+	//    * MIXED if the file system is managed by both UNIX and Windows administrators
+	//    and users consist of both NFS and SMB clients.
+	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
+
+	// The configured size of the volume, in bytes.
+	SizeInBytes *int64 `type:"long"`
+
+	// Specifies the size of the volume, in megabytes (MB), that you are creating.
+	//
+	// Deprecated: This property is deprecated, use SizeInBytes instead
+	SizeInMegabytes *int64 `deprecated:"true" type:"integer"`
+
+	// Specifies the SnapLock configuration for an FSx for ONTAP volume.
+	SnaplockConfiguration *CreateSnaplockConfiguration `type:"structure"`
+
+	// Specifies the snapshot policy for the volume. There are three built-in snapshot
+	// policies:
+	//
+	//    * default: This is the default policy. A maximum of six hourly snapshots
+	//    taken five minutes past the hour. A maximum of two daily snapshots taken
+	//    Monday through Saturday at 10 minutes after midnight. A maximum of two
+	//    weekly snapshots taken every Sunday at 15 minutes after midnight.
+	//
+	//    * default-1weekly: This policy is the same as the default policy except
+	//    that it only retains one snapshot from the weekly schedule.
+	//
+	//    * none: This policy does not take any snapshots. This policy can be assigned
+	//    to volumes to prevent automatic snapshots from being taken.
+	//
+	// You can also provide the name of a custom policy that you created with the
+	// ONTAP CLI or REST API.
+	//
+	// For more information, see Snapshot policies (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snapshots-ontap.html#snapshot-policies)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	SnapshotPolicy *string `min:"1" type:"string"`
+
+	// Set to true to enable deduplication, compression, and compaction storage
+	// efficiency features on the volume, or set to false to disable them. This
+	// parameter is required.
+	StorageEfficiencyEnabled *bool `type:"boolean"`
+
+	// Specifies the ONTAP SVM in which to create the volume.
+	//
+	// StorageVirtualMachineId is a required field
+	StorageVirtualMachineId *string `min:"21" type:"string" required:"true"`
+
+	// Describes the data tiering policy for an ONTAP volume. When enabled, Amazon
+	// FSx for ONTAP's intelligent tiering automatically transitions a volume's
+	// data between the file system's primary storage and capacity pool storage
+	// based on your access patterns.
+	//
+	// Valid tiering policies are the following:
+	//
+	//    * SNAPSHOT_ONLY - (Default value) moves cold snapshots to the capacity
+	//    pool storage tier.
+	//
+	//    * AUTO - moves cold user data and snapshots to the capacity pool storage
+	//    tier based on your access patterns.
+	//
+	//    * ALL - moves all user data blocks in both the active file system and
+	//    Snapshot copies to the storage pool tier.
+	//
+	//    * NONE - keeps a volume's data in the primary storage tier, preventing
+	//    it from being moved to the capacity pool tier.
+	TieringPolicy *TieringPolicy `type:"structure"`
+
+	// Use to specify the style of an ONTAP volume. For more information about FlexVols
+	// and FlexGroups, see Volume types (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-types.html)
+	// in Amazon FSx for NetApp ONTAP User Guide.
+	VolumeStyle *string `type:"string" enum:"VolumeStyle"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOntapVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOntapVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateOntapVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateOntapVolumeConfiguration"}
+	if s.JunctionPath != nil && len(*s.JunctionPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JunctionPath", 1))
+	}
+	if s.SnapshotPolicy != nil && len(*s.SnapshotPolicy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotPolicy", 1))
+	}
+	if s.StorageVirtualMachineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageVirtualMachineId"))
+	}
+	if s.StorageVirtualMachineId != nil && len(*s.StorageVirtualMachineId) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageVirtualMachineId", 21))
+	}
+	if s.AggregateConfiguration != nil {
+		if err := s.AggregateConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AggregateConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SnaplockConfiguration != nil {
+		if err := s.SnaplockConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnaplockConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TieringPolicy != nil {
+		if err := s.TieringPolicy.Validate(); err != nil {
+			invalidParams.AddNested("TieringPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregateConfiguration sets the AggregateConfiguration field's value.
+func (s *CreateOntapVolumeConfiguration) SetAggregateConfiguration(v *CreateAggregateConfiguration) *CreateOntapVolumeConfiguration {
+	s.AggregateConfiguration = v
+	return s
+}
+
+// SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
+func (s *CreateOntapVolumeConfiguration) SetCopyTagsToBackups(v bool) *CreateOntapVolumeConfiguration {
+	s.CopyTagsToBackups = &v
+	return s
+}
+
+// SetJunctionPath sets the JunctionPath field's value.
+func (s *CreateOntapVolumeConfiguration) SetJunctionPath(v string) *CreateOntapVolumeConfiguration {
+	s.JunctionPath = &v
+	return s
+}
+
+// SetOntapVolumeType sets the OntapVolumeType field's value.
+func (s *CreateOntapVolumeConfiguration) SetOntapVolumeType(v string) *CreateOntapVolumeConfiguration {
+	s.OntapVolumeType = &v
+	return s
+}
+
+// SetSecurityStyle sets the SecurityStyle field's value.
+func (s *CreateOntapVolumeConfiguration) SetSecurityStyle(v string) *CreateOntapVolumeConfiguration {
+	s.SecurityStyle = &v
+	return s
+}
+
+// SetSizeInBytes sets the SizeInBytes field's value.
+func (s *CreateOntapVolumeConfiguration) SetSizeInBytes(v int64) *CreateOntapVolumeConfiguration {
+	s.SizeInBytes = &v
+	return s
+}
+
+// SetSizeInMegabytes sets the SizeInMegabytes field's value.
+func (s *CreateOntapVolumeConfiguration) SetSizeInMegabytes(v int64) *CreateOntapVolumeConfiguration {
+	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetSnaplockConfiguration sets the SnaplockConfiguration field's value.
+func (s *CreateOntapVolumeConfiguration) SetSnaplockConfiguration(v *CreateSnaplockConfiguration) *CreateOntapVolumeConfiguration {
+	s.SnaplockConfiguration = v
+	return s
+}
+
+// SetSnapshotPolicy sets the SnapshotPolicy field's value.
+func (s *CreateOntapVolumeConfiguration) SetSnapshotPolicy(v string) *CreateOntapVolumeConfiguration {
+	s.SnapshotPolicy = &v
+	return s
+}
+
+// SetStorageEfficiencyEnabled sets the StorageEfficiencyEnabled field's value.
+func (s *CreateOntapVolumeConfiguration) SetStorageEfficiencyEnabled(v bool) *CreateOntapVolumeConfiguration {
+	s.StorageEfficiencyEnabled = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *CreateOntapVolumeConfiguration) SetStorageVirtualMachineId(v string) *CreateOntapVolumeConfiguration {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+// SetTieringPolicy sets the TieringPolicy field's value.
+func (s *CreateOntapVolumeConfiguration) SetTieringPolicy(v *TieringPolicy) *CreateOntapVolumeConfiguration {
+	s.TieringPolicy = v
+	return s
+}
+
+// SetVolumeStyle sets the VolumeStyle field's value.
+func (s *CreateOntapVolumeConfiguration) SetVolumeStyle(v string) *CreateOntapVolumeConfiguration {
+	s.VolumeStyle = &v
+	return s
+}
+
+// The snapshot configuration to use when creating an Amazon FSx for OpenZFS
+// volume from a snapshot.
+type CreateOpenZFSOriginSnapshotConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the strategy used when copying data from the snapshot to the new
+	// volume.
+	//
+	//    * CLONE - The new volume references the data in the origin snapshot. Cloning
+	//    a snapshot is faster than copying data from the snapshot to a new volume
+	//    and doesn't consume disk throughput. However, the origin snapshot can't
+	//    be deleted if there is a volume using its copied data.
+	//
+	//    * FULL_COPY - Copies all data from the snapshot to the new volume. Specify
+	//    this option to create the volume from a snapshot on another FSx for OpenZFS
+	//    file system.
+	//
+	// The INCREMENTAL_COPY option is only for updating an existing volume by using
+	// a snapshot from another FSx for OpenZFS file system. For more information,
+	// see CopySnapshotAndUpdateVolume (https://docs.aws.amazon.com/fsx/latest/APIReference/API_CopySnapshotAndUpdateVolume.html).
+	//
+	// CopyStrategy is a required field
+	CopyStrategy *string `type:"string" required:"true" enum:"OpenZFSCopyStrategy"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	//
+	// SnapshotARN is a required field
+	SnapshotARN *string `min:"8" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOpenZFSOriginSnapshotConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOpenZFSOriginSnapshotConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateOpenZFSOriginSnapshotConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateOpenZFSOriginSnapshotConfiguration"}
+	if s.CopyStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("CopyStrategy"))
+	}
+	if s.SnapshotARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotARN"))
+	}
+	if s.SnapshotARN != nil && len(*s.SnapshotARN) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotARN", 8))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCopyStrategy sets the CopyStrategy field's value.
+func (s *CreateOpenZFSOriginSnapshotConfiguration) SetCopyStrategy(v string) *CreateOpenZFSOriginSnapshotConfiguration {
+	s.CopyStrategy = &v
+	return s
+}
+
+// SetSnapshotARN sets the SnapshotARN field's value.
+func (s *CreateOpenZFSOriginSnapshotConfiguration) SetSnapshotARN(v string) *CreateOpenZFSOriginSnapshotConfiguration {
+	s.SnapshotARN = &v
+	return s
+}
+
+// Specifies the configuration of the Amazon FSx for OpenZFS volume that you
+// are creating.
+type CreateOpenZFSVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value indicating whether tags for the volume should be copied to
+	// snapshots. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to snapshots where the user doesn't specify tags. If
+	// this value is true, and you specify one or more tags, only the specified
+	// tags are copied to snapshots. If you specify one or more tags when creating
+	// the snapshot, no tags are copied from the volume, regardless of this value.
+	CopyTagsToSnapshots *bool `type:"boolean"`
+
+	// Specifies the method used to compress the data on the volume. The compression
+	// type is NONE by default.
+	//
+	//    * NONE - Doesn't compress the data on the volume. NONE is the default.
+	//
+	//    * ZSTD - Compresses the data in the volume using the Zstandard (ZSTD)
+	//    compression algorithm. ZSTD compression provides a higher level of data
+	//    compression and higher read throughput performance than LZ4 compression.
+	//
+	//    * LZ4 - Compresses the data in the volume using the LZ4 compression algorithm.
+	//    LZ4 compression provides a lower level of compression and higher write
+	//    throughput performance than ZSTD compression.
+	//
+	// For more information about volume compression types and the performance of
+	// your Amazon FSx for OpenZFS file system, see Tips for maximizing performance
+	// (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#performance-tips-zfs)
+	// File system and volume settings in the Amazon FSx for OpenZFS User Guide.
+	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
+
+	// The configuration object for mounting a Network File System (NFS) file system.
+	NfsExports []*OpenZFSNfsExport `type:"list"`
+
+	// The configuration object that specifies the snapshot to use as the origin
+	// of the data for the volume.
+	OriginSnapshot *CreateOpenZFSOriginSnapshotConfiguration `type:"structure"`
+
+	// The ID of the volume to use as the parent volume of the volume that you are
+	// creating.
+	//
+	// ParentVolumeId is a required field
+	ParentVolumeId *string `min:"23" type:"string" required:"true"`
+
+	// A Boolean value indicating whether the volume is read-only.
+	ReadOnly *bool `type:"boolean"`
+
+	// Specifies the suggested block size for a volume in a ZFS dataset, in kibibytes
+	// (KiB). Valid values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The
+	// default is 128 KiB. We recommend using the default setting for the majority
+	// of use cases. Generally, workloads that write in fixed small or large record
+	// sizes may benefit from setting a custom record size, like database workloads
+	// (small record size) or media streaming workloads (large record size). For
+	// additional guidance on when to set a custom record size, see ZFS Record size
+	// (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#record-size-performance)
+	// in the Amazon FSx for OpenZFS User Guide.
+	RecordSizeKiB *int64 `min:"4" type:"integer"`
+
+	// Sets the maximum storage size in gibibytes (GiB) for the volume. You can
+	// specify a quota that is larger than the storage on the parent volume. A volume
+	// quota limits the amount of storage that the volume can consume to the configured
+	// amount, but does not guarantee the space will be available on the parent
+	// volume. To guarantee quota space, you must also set StorageCapacityReservationGiB.
+	// To not specify a storage capacity quota, set this to -1.
+	//
+	// For more information, see Volume properties (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-volumes.html#volume-properties)
+	// in the Amazon FSx for OpenZFS User Guide.
+	StorageCapacityQuotaGiB *int64 `type:"integer"`
+
+	// Specifies the amount of storage in gibibytes (GiB) to reserve from the parent
+	// volume. Setting StorageCapacityReservationGiB guarantees that the specified
+	// amount of storage space on the parent volume will always be available for
+	// the volume. You can't reserve more storage than the parent volume has. To
+	// not specify a storage capacity reservation, set this to 0 or -1. For more
+	// information, see Volume properties (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-volumes.html#volume-properties)
+	// in the Amazon FSx for OpenZFS User Guide.
+	StorageCapacityReservationGiB *int64 `type:"integer"`
+
+	// An object specifying how much storage users or groups can use on the volume.
+	UserAndGroupQuotas []*OpenZFSUserOrGroupQuota `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOpenZFSVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOpenZFSVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateOpenZFSVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateOpenZFSVolumeConfiguration"}
+	if s.ParentVolumeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParentVolumeId"))
+	}
+	if s.ParentVolumeId != nil && len(*s.ParentVolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("ParentVolumeId", 23))
+	}
+	if s.RecordSizeKiB != nil && *s.RecordSizeKiB < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("RecordSizeKiB", 4))
+	}
+	if s.StorageCapacityQuotaGiB != nil && *s.StorageCapacityQuotaGiB < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("StorageCapacityQuotaGiB", -1))
+	}
+	if s.StorageCapacityReservationGiB != nil && *s.StorageCapacityReservationGiB < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("StorageCapacityReservationGiB", -1))
+	}
+	if s.NfsExports != nil {
+		for i, v := range s.NfsExports {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NfsExports", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.OriginSnapshot != nil {
+		if err := s.OriginSnapshot.Validate(); err != nil {
+			invalidParams.AddNested("OriginSnapshot", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UserAndGroupQuotas != nil {
+		for i, v := range s.UserAndGroupQuotas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserAndGroupQuotas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCopyTagsToSnapshots sets the CopyTagsToSnapshots field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetCopyTagsToSnapshots(v bool) *CreateOpenZFSVolumeConfiguration {
+	s.CopyTagsToSnapshots = &v
+	return s
+}
+
+// SetDataCompressionType sets the DataCompressionType field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetDataCompressionType(v string) *CreateOpenZFSVolumeConfiguration {
+	s.DataCompressionType = &v
+	return s
+}
+
+// SetNfsExports sets the NfsExports field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetNfsExports(v []*OpenZFSNfsExport) *CreateOpenZFSVolumeConfiguration {
+	s.NfsExports = v
+	return s
+}
+
+// SetOriginSnapshot sets the OriginSnapshot field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetOriginSnapshot(v *CreateOpenZFSOriginSnapshotConfiguration) *CreateOpenZFSVolumeConfiguration {
+	s.OriginSnapshot = v
+	return s
+}
+
+// SetParentVolumeId sets the ParentVolumeId field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetParentVolumeId(v string) *CreateOpenZFSVolumeConfiguration {
+	s.ParentVolumeId = &v
+	return s
+}
+
+// SetReadOnly sets the ReadOnly field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetReadOnly(v bool) *CreateOpenZFSVolumeConfiguration {
+	s.ReadOnly = &v
+	return s
+}
+
+// SetRecordSizeKiB sets the RecordSizeKiB field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetRecordSizeKiB(v int64) *CreateOpenZFSVolumeConfiguration {
+	s.RecordSizeKiB = &v
+	return s
+}
+
+// SetStorageCapacityQuotaGiB sets the StorageCapacityQuotaGiB field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetStorageCapacityQuotaGiB(v int64) *CreateOpenZFSVolumeConfiguration {
+	s.StorageCapacityQuotaGiB = &v
+	return s
+}
+
+// SetStorageCapacityReservationGiB sets the StorageCapacityReservationGiB field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetStorageCapacityReservationGiB(v int64) *CreateOpenZFSVolumeConfiguration {
+	s.StorageCapacityReservationGiB = &v
+	return s
+}
+
+// SetUserAndGroupQuotas sets the UserAndGroupQuotas field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetUserAndGroupQuotas(v []*OpenZFSUserOrGroupQuota) *CreateOpenZFSVolumeConfiguration {
+	s.UserAndGroupQuotas = v
+	return s
+}
+
+// Defines the SnapLock configuration when creating an FSx for ONTAP SnapLock
+// volume.
+type CreateSnaplockConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the audit log volume for an FSx for ONTAP SnapLock volume.
+	// The default value is false. If you set AuditLogVolume to true, the SnapLock
+	// volume is created as an audit log volume. The minimum retention period for
+	// an audit log volume is six months.
+	//
+	// For more information, see SnapLock audit log volumes (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#snaplock-audit-log-volume).
+	AuditLogVolume *bool `type:"boolean"`
+
+	// The configuration object for setting the autocommit period of files in an
+	// FSx for ONTAP SnapLock volume.
+	AutocommitPeriod *AutocommitPeriod `type:"structure"`
+
+	// Enables, disables, or permanently disables privileged delete on an FSx for
+	// ONTAP SnapLock Enterprise volume. Enabling privileged delete allows SnapLock
+	// administrators to delete WORM files even if they have active retention periods.
+	// PERMANENTLY_DISABLED is a terminal state. If privileged delete is permanently
+	// disabled on a SnapLock volume, you can't re-enable it. The default value
+	// is DISABLED.
+	//
+	// For more information, see Privileged delete (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-enterprise.html#privileged-delete).
+	PrivilegedDelete *string `type:"string" enum:"PrivilegedDelete"`
+
+	// Specifies the retention period of an FSx for ONTAP SnapLock volume.
+	RetentionPeriod *SnaplockRetentionPeriod `type:"structure"`
+
+	// Specifies the retention mode of an FSx for ONTAP SnapLock volume. After it
+	// is set, it can't be changed. You can choose one of the following retention
+	// modes:
+	//
+	//    * COMPLIANCE: Files transitioned to write once, read many (WORM) on a
+	//    Compliance volume can't be deleted until their retention periods expire.
+	//    This retention mode is used to address government or industry-specific
+	//    mandates or to protect against ransomware attacks. For more information,
+	//    see SnapLock Compliance (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-compliance.html).
+	//
+	//    * ENTERPRISE: Files transitioned to WORM on an Enterprise volume can be
+	//    deleted by authorized users before their retention periods expire using
+	//    privileged delete. This retention mode is used to advance an organization's
+	//    data integrity and internal compliance or to test retention settings before
+	//    using SnapLock Compliance. For more information, see SnapLock Enterprise
+	//    (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-enterprise.html).
+	//
+	// SnaplockType is a required field
+	SnaplockType *string `type:"string" required:"true" enum:"SnaplockType"`
+
+	// Enables or disables volume-append mode on an FSx for ONTAP SnapLock volume.
+	// Volume-append mode allows you to create WORM-appendable files and write data
+	// to them incrementally. The default value is false.
+	//
+	// For more information, see Volume-append mode (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append).
+	VolumeAppendModeEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnaplockConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnaplockConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSnaplockConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSnaplockConfiguration"}
+	if s.SnaplockType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnaplockType"))
+	}
+	if s.AutocommitPeriod != nil {
+		if err := s.AutocommitPeriod.Validate(); err != nil {
+			invalidParams.AddNested("AutocommitPeriod", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RetentionPeriod != nil {
+		if err := s.RetentionPeriod.Validate(); err != nil {
+			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditLogVolume sets the AuditLogVolume field's value.
+func (s *CreateSnaplockConfiguration) SetAuditLogVolume(v bool) *CreateSnaplockConfiguration {
+	s.AuditLogVolume = &v
+	return s
+}
+
+// SetAutocommitPeriod sets the AutocommitPeriod field's value.
+func (s *CreateSnaplockConfiguration) SetAutocommitPeriod(v *AutocommitPeriod) *CreateSnaplockConfiguration {
+	s.AutocommitPeriod = v
+	return s
+}
+
+// SetPrivilegedDelete sets the PrivilegedDelete field's value.
+func (s *CreateSnaplockConfiguration) SetPrivilegedDelete(v string) *CreateSnaplockConfiguration {
+	s.PrivilegedDelete = &v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *CreateSnaplockConfiguration) SetRetentionPeriod(v *SnaplockRetentionPeriod) *CreateSnaplockConfiguration {
+	s.RetentionPeriod = v
+	return s
+}
+
+// SetSnaplockType sets the SnaplockType field's value.
+func (s *CreateSnaplockConfiguration) SetSnaplockType(v string) *CreateSnaplockConfiguration {
+	s.SnaplockType = &v
+	return s
+}
+
+// SetVolumeAppendModeEnabled sets the VolumeAppendModeEnabled field's value.
+func (s *CreateSnaplockConfiguration) SetVolumeAppendModeEnabled(v bool) *CreateSnaplockConfiguration {
+	s.VolumeAppendModeEnabled = &v
+	return s
+}
+
+type CreateSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the snapshot.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The ID of the volume that you are taking a snapshot of.
+	//
+	// VolumeId is a required field
+	VolumeId *string `min:"23" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSnapshotInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VolumeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeId"))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateSnapshotInput) SetClientRequestToken(v string) *CreateSnapshotInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSnapshotInput) SetName(v string) *CreateSnapshotInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSnapshotInput) SetTags(v []*Tag) *CreateSnapshotInput {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *CreateSnapshotInput) SetVolumeId(v string) *CreateSnapshotInput {
+	s.VolumeId = &v
+	return s
+}
+
+type CreateSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the snapshot.
+	Snapshot *Snapshot `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetSnapshot sets the Snapshot field's value.
+func (s *CreateSnapshotOutput) SetSnapshot(v *Snapshot) *CreateSnapshotOutput {
+	s.Snapshot = v
+	return s
+}
+
+type CreateStorageVirtualMachineInput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the self-managed Microsoft Active Directory to which you want to
+	// join the SVM. Joining an Active Directory provides user authentication and
+	// access control for SMB clients, including Microsoft Windows and macOS client
+	// accessing the file system.
+	ActiveDirectoryConfiguration *CreateSvmActiveDirectoryConfiguration `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `min:"11" type:"string" required:"true"`
+
+	// The name of the SVM.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The security style of the root volume of the SVM. Specify one of the following
+	// values:
+	//
+	//    * UNIX if the file system is managed by a UNIX administrator, the majority
+	//    of users are NFS clients, and an application accessing the data uses a
+	//    UNIX user as the service account.
+	//
+	//    * NTFS if the file system is managed by a Windows administrator, the majority
+	//    of users are SMB clients, and an application accessing the data uses a
+	//    Windows user as the service account.
+	//
+	//    * MIXED if the file system is managed by both UNIX and Windows administrators
+	//    and users consist of both NFS and SMB clients.
+	RootVolumeSecurityStyle *string `type:"string" enum:"StorageVirtualMachineRootVolumeSecurityStyle"`
+
+	// The password to use when managing the SVM using the NetApp ONTAP CLI or REST
+	// API. If you do not specify a password, you can still use the file system's
+	// fsxadmin user to manage the SVM.
+	//
+	// SvmAdminPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateStorageVirtualMachineInput's
+	// String and GoString methods.
+	SvmAdminPassword *string `min:"8" type:"string" sensitive:"true"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageVirtualMachineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageVirtualMachineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStorageVirtualMachineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStorageVirtualMachineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SvmAdminPassword != nil && len(*s.SvmAdminPassword) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SvmAdminPassword", 8))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.ActiveDirectoryConfiguration != nil {
+		if err := s.ActiveDirectoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActiveDirectoryConfiguration sets the ActiveDirectoryConfiguration field's value.
+func (s *CreateStorageVirtualMachineInput) SetActiveDirectoryConfiguration(v *CreateSvmActiveDirectoryConfiguration) *CreateStorageVirtualMachineInput {
+	s.ActiveDirectoryConfiguration = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateStorageVirtualMachineInput) SetClientRequestToken(v string) *CreateStorageVirtualMachineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *CreateStorageVirtualMachineInput) SetFileSystemId(v string) *CreateStorageVirtualMachineInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateStorageVirtualMachineInput) SetName(v string) *CreateStorageVirtualMachineInput {
+	s.Name = &v
+	return s
+}
+
+// SetRootVolumeSecurityStyle sets the RootVolumeSecurityStyle field's value.
+func (s *CreateStorageVirtualMachineInput) SetRootVolumeSecurityStyle(v string) *CreateStorageVirtualMachineInput {
+	s.RootVolumeSecurityStyle = &v
+	return s
+}
+
+// SetSvmAdminPassword sets the SvmAdminPassword field's value.
+func (s *CreateStorageVirtualMachineInput) SetSvmAdminPassword(v string) *CreateStorageVirtualMachineInput {
+	s.SvmAdminPassword = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStorageVirtualMachineInput) SetTags(v []*Tag) *CreateStorageVirtualMachineInput {
+	s.Tags = v
+	return s
+}
+
+type CreateStorageVirtualMachineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returned after a successful CreateStorageVirtualMachine operation; describes
+	// the SVM just created.
+	StorageVirtualMachine *StorageVirtualMachine `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageVirtualMachineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageVirtualMachineOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageVirtualMachine sets the StorageVirtualMachine field's value.
+func (s *CreateStorageVirtualMachineOutput) SetStorageVirtualMachine(v *StorageVirtualMachine) *CreateStorageVirtualMachineOutput {
+	s.StorageVirtualMachine = v
+	return s
+}
+
+// The configuration that Amazon FSx uses to join the ONTAP storage virtual
+// machine (SVM) to your self-managed (including on-premises) Microsoft Active
+// Directory (AD) directory.
+type CreateSvmActiveDirectoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The NetBIOS name of the Active Directory computer object that will be created
+	// for your SVM.
+	//
+	// NetBiosName is a required field
+	NetBiosName *string `min:"1" type:"string" required:"true"`
+
+	// The configuration that Amazon FSx uses to join a FSx for Windows File Server
+	// file system or an FSx for ONTAP storage virtual machine (SVM) to a self-managed
+	// (including on-premises) Microsoft Active Directory (AD) directory. For more
+	// information, see Using Amazon FSx for Windows with your self-managed Microsoft
+	// Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
+	// or Managing FSx for ONTAP SVMs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html).
+	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSvmActiveDirectoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSvmActiveDirectoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSvmActiveDirectoryConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSvmActiveDirectoryConfiguration"}
+	if s.NetBiosName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetBiosName"))
+	}
+	if s.NetBiosName != nil && len(*s.NetBiosName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NetBiosName", 1))
+	}
+	if s.SelfManagedActiveDirectoryConfiguration != nil {
+		if err := s.SelfManagedActiveDirectoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SelfManagedActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNetBiosName sets the NetBiosName field's value.
+func (s *CreateSvmActiveDirectoryConfiguration) SetNetBiosName(v string) *CreateSvmActiveDirectoryConfiguration {
+	s.NetBiosName = &v
+	return s
+}
+
+// SetSelfManagedActiveDirectoryConfiguration sets the SelfManagedActiveDirectoryConfiguration field's value.
+func (s *CreateSvmActiveDirectoryConfiguration) SetSelfManagedActiveDirectoryConfiguration(v *SelfManagedActiveDirectoryConfiguration) *CreateSvmActiveDirectoryConfiguration {
+	s.SelfManagedActiveDirectoryConfiguration = v
+	return s
+}
+
+type CreateVolumeFromBackupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the source backup. Specifies the backup that you are copying.
+	//
+	// BackupId is a required field
+	BackupId *string `min:"12" type:"string" required:"true"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the new volume you're creating.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the configuration of the ONTAP volume that you are creating.
+	OntapConfiguration *CreateOntapVolumeConfiguration `type:"structure"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVolumeFromBackupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVolumeFromBackupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVolumeFromBackupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVolumeFromBackupInput"}
+	if s.BackupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackupId"))
+	}
+	if s.BackupId != nil && len(*s.BackupId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("BackupId", 12))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackupId sets the BackupId field's value.
+func (s *CreateVolumeFromBackupInput) SetBackupId(v string) *CreateVolumeFromBackupInput {
+	s.BackupId = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateVolumeFromBackupInput) SetClientRequestToken(v string) *CreateVolumeFromBackupInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateVolumeFromBackupInput) SetName(v string) *CreateVolumeFromBackupInput {
+	s.Name = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *CreateVolumeFromBackupInput) SetOntapConfiguration(v *CreateOntapVolumeConfiguration) *CreateVolumeFromBackupInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVolumeFromBackupInput) SetTags(v []*Tag) *CreateVolumeFromBackupInput {
+	s.Tags = v
+	return s
+}
+
+type CreateVolumeFromBackupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returned after a successful CreateVolumeFromBackup API operation, describing
+	// the volume just created.
+	Volume *Volume `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVolumeFromBackupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVolumeFromBackupOutput) GoString() string {
+	return s.String()
+}
+
+// SetVolume sets the Volume field's value.
+func (s *CreateVolumeFromBackupOutput) SetVolume(v *Volume) *CreateVolumeFromBackupOutput {
+	s.Volume = v
+	return s
+}
+
+type CreateVolumeInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Specifies the name of the volume that you're creating.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the configuration to use when creating the ONTAP volume.
+	OntapConfiguration *CreateOntapVolumeConfiguration `type:"structure"`
+
+	// Specifies the configuration to use when creating the OpenZFS volume.
+	OpenZFSConfiguration *CreateOpenZFSVolumeConfiguration `type:"structure"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// Specifies the type of volume to create; ONTAP and OPENZFS are the only valid
+	// volume types.
+	//
+	// VolumeType is a required field
+	VolumeType *string `type:"string" required:"true" enum:"VolumeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVolumeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVolumeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVolumeInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VolumeType == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeType"))
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OpenZFSConfiguration != nil {
+		if err := s.OpenZFSConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OpenZFSConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateVolumeInput) SetClientRequestToken(v string) *CreateVolumeInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateVolumeInput) SetName(v string) *CreateVolumeInput {
+	s.Name = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *CreateVolumeInput) SetOntapConfiguration(v *CreateOntapVolumeConfiguration) *CreateVolumeInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetOpenZFSConfiguration sets the OpenZFSConfiguration field's value.
+func (s *CreateVolumeInput) SetOpenZFSConfiguration(v *CreateOpenZFSVolumeConfiguration) *CreateVolumeInput {
+	s.OpenZFSConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVolumeInput) SetTags(v []*Tag) *CreateVolumeInput {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *CreateVolumeInput) SetVolumeType(v string) *CreateVolumeInput {
+	s.VolumeType = &v
+	return s
+}
+
+type CreateVolumeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returned after a successful CreateVolume API operation, describing the volume
+	// just created.
+	Volume *Volume `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVolumeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVolumeOutput) GoString() string {
+	return s.String()
+}
+
+// SetVolume sets the Volume field's value.
+func (s *CreateVolumeOutput) SetVolume(v *Volume) *CreateVolumeOutput {
+	s.Volume = v
+	return s
+}
+
+// The configuration of a data repository association that links an Amazon FSx
+// for Lustre file system to an Amazon S3 bucket or an Amazon File Cache resource
+// to an Amazon S3 bucket or an NFS file system. The data repository association
+// configuration object is returned in the response of the following operations:
+//
+//   - CreateDataRepositoryAssociation
+//
+//   - UpdateDataRepositoryAssociation
+//
+//   - DescribeDataRepositoryAssociations
+//
+// Data repository associations are supported on Amazon File Cache resources
+// and all FSx for Lustre 2.12 and 2.15 file systems, excluding scratch_1 deployment
+// type.
+type DataRepositoryAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated, unique ID of the data repository association.
+	AssociationId *string `min:"13" type:"string"`
+
+	// A boolean flag indicating whether an import data repository task to import
+	// metadata should run after the data repository association is created. The
+	// task runs if this flag is set to true.
+	//
+	// BatchImportMetaDataOnCreate is not supported for data repositories linked
+	// to an Amazon File Cache resource.
+	BatchImportMetaDataOnCreate *bool `type:"boolean"`
+
+	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
+	// also known as Unix time.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The path to the data repository that will be linked to the cache or file
+	// system.
+	//
+	//    * For Amazon File Cache, the path can be an NFS data repository that will
+	//    be linked to the cache. The path can be in one of two formats: If you
+	//    are not using the DataRepositorySubdirectories parameter, the path is
+	//    to an NFS Export directory (or one of its subdirectories) in the format
+	//    nsf://nfs-domain-name/exportpath. You can therefore link a single NFS
+	//    Export to a single data repository association. If you are using the DataRepositorySubdirectories
+	//    parameter, the path is the domain name of the NFS file system in the format
+	//    nfs://filer-domain-name, which indicates the root of the subdirectories
+	//    specified with the DataRepositorySubdirectories parameter.
+	//
+	//    * For Amazon File Cache, the path can be an S3 bucket or prefix in the
+	//    format s3://myBucket/myPrefix/.
+	//
+	//    * For Amazon FSx for Lustre, the path can be an S3 bucket or prefix in
+	//    the format s3://myBucket/myPrefix/.
+	DataRepositoryPath *string `min:"3" type:"string"`
+
+	// For Amazon File Cache, a list of NFS Exports that will be linked with an
+	// NFS data repository association. All the subdirectories must be on a single
+	// NFS file system. The Export paths are in the format /exportpath1. To use
+	// this parameter, you must configure DataRepositoryPath as the domain name
+	// of the NFS file system. The NFS file system domain name in effect is the
+	// root of the subdirectories. Note that DataRepositorySubdirectories is not
+	// supported for S3 data repositories.
+	DataRepositorySubdirectories []*string `type:"list"`
+
+	// Provides detailed information about the data repository if its Lifecycle
+	// is set to MISCONFIGURED or FAILED.
+	FailureDetails *DataRepositoryFailureDetails `type:"structure"`
+
+	// The globally unique ID of the Amazon File Cache resource.
+	FileCacheId *string `min:"11" type:"string"`
+
+	// A path on the Amazon File Cache that points to a high-level directory (such
+	// as /ns1/) or subdirectory (such as /ns1/subdir/) that will be mapped 1-1
+	// with DataRepositoryPath. The leading forward slash in the path is required.
+	// Two data repository associations cannot have overlapping cache paths. For
+	// example, if a data repository is associated with cache path /ns1/, then you
+	// cannot link another data repository with cache path /ns1/ns2.
+	//
+	// This path specifies the directory in your cache where files will be exported
+	// from. This cache directory can be linked to only one data repository (S3
+	// or NFS) and no other data repository can be linked to the directory.
+	//
+	// The cache path can only be set to root (/) on an NFS DRA when DataRepositorySubdirectories
+	// is specified. If you specify root (/) as the cache path, you can create only
+	// one DRA on the cache.
+	//
+	// The cache path cannot be set to root (/) for an S3 DRA.
+	FileCachePath *string `min:"1" type:"string"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	FileSystemId *string `min:"11" type:"string"`
+
+	// A path on the Amazon FSx for Lustre file system that points to a high-level
+	// directory (such as /ns1/) or subdirectory (such as /ns1/subdir/) that will
+	// be mapped 1-1 with DataRepositoryPath. The leading forward slash in the name
+	// is required. Two data repository associations cannot have overlapping file
+	// system paths. For example, if a data repository is associated with file system
+	// path /ns1/, then you cannot link another data repository with file system
+	// path /ns1/ns2.
+	//
+	// This path specifies where in your file system files will be exported from
+	// or imported to. This file system directory can be linked to only one Amazon
+	// S3 bucket, and no other S3 bucket can be linked to the directory.
+	//
+	// If you specify only a forward slash (/) as the file system path, you can
+	// link only one data repository to the file system. You can only specify "/"
+	// as the file system path for the first data repository associated with a file
+	// system.
+	FileSystemPath *string `min:"1" type:"string"`
+
+	// For files imported from a data repository, this value determines the stripe
+	// count and maximum amount of data per file (in MiB) stored on a single physical
+	// disk. The maximum number of disks that a single file can be striped across
+	// is limited by the total number of disks that make up the file system or cache.
+	//
+	// The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000
+	// MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.
+	ImportedFileChunkSize *int64 `min:"1" type:"integer"`
+
+	// Describes the state of a data repository association. The lifecycle can have
+	// the following values:
+	//
+	//    * CREATING - The data repository association between the file system or
+	//    cache and the data repository is being created. The data repository is
+	//    unavailable.
+	//
+	//    * AVAILABLE - The data repository association is available for use.
+	//
+	//    * MISCONFIGURED - The data repository association is misconfigured. Until
+	//    the configuration is corrected, automatic import and automatic export
+	//    will not work (only for Amazon FSx for Lustre).
+	//
+	//    * UPDATING - The data repository association is undergoing a customer
+	//    initiated update that might affect its availability.
+	//
+	//    * DELETING - The data repository association is undergoing a customer
+	//    initiated deletion.
+	//
+	//    * FAILED - The data repository association is in a terminal state that
+	//    cannot be recovered.
+	Lifecycle *string `type:"string" enum:"DataRepositoryLifecycle"`
+
+	// The configuration for an NFS data repository linked to an Amazon File Cache
+	// resource with a data repository association.
+	NFS *NFSDataRepositoryConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ResourceARN *string `min:"8" type:"string"`
+
+	// The configuration for an Amazon S3 data repository linked to an Amazon FSx
+	// for Lustre file system with a data repository association.
+	S3 *S3DataRepositoryConfiguration `type:"structure"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataRepositoryAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataRepositoryAssociation) GoString() string {
+	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DataRepositoryAssociation) SetAssociationId(v string) *DataRepositoryAssociation {
+	s.AssociationId = &v
+	return s
+}
+
+// SetBatchImportMetaDataOnCreate sets the BatchImportMetaDataOnCreate field's value.
+func (s *DataRepositoryAssociation) SetBatchImportMetaDataOnCreate(v bool) *DataRepositoryAssociation {
+	s.BatchImportMetaDataOnCreate = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DataRepositoryAssociation) SetCreationTime(v time.Time) *DataRepositoryAssociation {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDataRepositoryPath sets the DataRepositoryPath field's value.
+func (s *DataRepositoryAssociation) SetDataRepositoryPath(v string) *DataRepositoryAssociation {
+	s.DataRepositoryPath = &v
+	return s
+}
+
+// SetDataRepositorySubdirectories sets the DataRepositorySubdirectories field's value.
+func (s *DataRepositoryAssociation) SetDataRepositorySubdirectories(v []*string) *DataRepositoryAssociation {
+	s.DataRepositorySubdirectories = v
+	return s
+}
+
+// SetFailureDetails sets the FailureDetails field's value.
+func (s *DataRepositoryAssociation) SetFailureDetails(v *DataRepositoryFailureDetails) *DataRepositoryAssociation {
+	s.FailureDetails = v
+	return s
+}
+
+// SetFileCacheId sets the FileCacheId field's value.
+func (s *DataRepositoryAssociation) SetFileCacheId(v string) *DataRepositoryAssociation {
+	s.FileCacheId = &v
+	return s
+}
+
+// SetFileCachePath sets the FileCachePath field's value.
+func (s *DataRepositoryAssociation) SetFileCachePath(v string) *DataRepositoryAssociation {
+	s.FileCachePath = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DataRepositoryAssociation) SetFileSystemId(v string) *DataRepositoryAssociation {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetFileSystemPath sets the FileSystemPath field's value.
+func (s *DataRepositoryAssociation) SetFileSystemPath(v string) *DataRepositoryAssociation {
+	s.FileSystemPath = &v
+	return s
+}
+
+// SetImportedFileChunkSize sets the ImportedFileChunkSize field's value.
+func (s *DataRepositoryAssociation) SetImportedFileChunkSize(v int64) *DataRepositoryAssociation {
+	s.ImportedFileChunkSize = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *DataRepositoryAssociation) SetLifecycle(v string) *DataRepositoryAssociation {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetNFS sets the NFS field's value.
+func (s *DataRepositoryAssociation) SetNFS(v *NFSDataRepositoryConfiguration) *DataRepositoryAssociation {
+	s.NFS = v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *DataRepositoryAssociation) SetResourceARN(v string) *DataRepositoryAssociation {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *DataRepositoryAssociation) SetS3(v *S3DataRepositoryConfiguration) *DataRepositoryAssociation {
+	s.S3 = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DataRepositoryAssociation) SetTags(v []*Tag) *DataRepositoryAssociation {
+	s.Tags = v
+	return s
+}
+
+// No data repository associations were found based upon the supplied parameters.
+type DataRepositoryAssociationNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataRepositoryAssociationNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataRepositoryAssociationNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorDataRepositoryAssociationNotFound(v protocol.ResponseMetadata) error {
+	return &DataRepositoryAssociationNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DataRepositoryAssociationNotFound) Code() string {
+	return "DataRepositoryAssociationNotFound"
+}
+
+// Message returns the exception's message.
+func (s *DataRepositoryAssociationNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DataRepositoryAssociationNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *DataRepositoryAssociationNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DataRepositoryAssociationNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DataRepositoryAssociationNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The data repository configuration object for Lustre file systems returned
 // in the response of the CreateFileSystem operation.
+//
+// This data type is not supported on file systems with a data repository association.
+// For file systems with a data repository association, see .
 type DataRepositoryConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4695,16 +11715,18 @@ type DataRepositoryConfiguration struct {
 	//    existing objects that are changed in the S3 bucket after you choose this
 	//    option.
 	//
-	// For more information, see Automatically import updates from your S3 bucket
-	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/autoimport-data-repo.html).
+	//    * NEW_CHANGED_DELETED - AutoImport is on. Amazon FSx automatically imports
+	//    file and directory listings of any new objects added to the S3 bucket,
+	//    any existing objects that are changed in the S3 bucket, and any objects
+	//    that were deleted in the S3 bucket.
 	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
 
 	// The export path to the Amazon S3 bucket (and prefix) that you are using to
 	// store new and changed Lustre file system files in S3.
 	ExportPath *string `min:"3" type:"string"`
 
-	// Provides detailed information about the data respository if its Lifecycle
-	// is set to MISCONFIGURED.
+	// Provides detailed information about the data repository if its Lifecycle
+	// is set to MISCONFIGURED or FAILED.
 	FailureDetails *DataRepositoryFailureDetails `type:"structure"`
 
 	// The import path to the Amazon S3 bucket (and optional prefix) that you're
@@ -4740,15 +11762,25 @@ type DataRepositoryConfiguration struct {
 	//
 	//    * UPDATING - The data repository is undergoing a customer initiated update
 	//    and availability may be impacted.
+	//
+	//    * FAILED - The data repository is in a terminal state that cannot be recovered.
 	Lifecycle *string `type:"string" enum:"DataRepositoryLifecycle"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryConfiguration) GoString() string {
 	return s.String()
 }
@@ -4789,8 +11821,8 @@ func (s *DataRepositoryConfiguration) SetLifecycle(v string) *DataRepositoryConf
 	return s
 }
 
-// Provides detailed information about the data respository if its Lifecycle
-// is set to MISCONFIGURED.
+// Provides detailed information about the data repository if its Lifecycle
+// is set to MISCONFIGURED or FAILED.
 type DataRepositoryFailureDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -4798,12 +11830,20 @@ type DataRepositoryFailureDetails struct {
 	Message *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryFailureDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryFailureDetails) GoString() string {
 	return s.String()
 }
@@ -4814,11 +11854,25 @@ func (s *DataRepositoryFailureDetails) SetMessage(v string) *DataRepositoryFailu
 	return s
 }
 
-// A description of the data repository task. You use data repository tasks
-// to perform bulk transfer operations between your Amazon FSx file system and
-// its linked data repository.
+// A description of the data repository task.
+//
+//   - You use import and export data repository tasks to perform bulk transfer
+//     operations between an Amazon FSx for Lustre file system and a linked data
+//     repository.
+//
+//   - You use release data repository tasks to release files that have been
+//     exported to a linked S3 bucket from your Amazon FSx for Lustre file system.
+//
+//   - An Amazon File Cache resource uses a task to automatically release files
+//     from the cache.
+//
+// To learn more about data repository tasks, see Data Repository Tasks (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html).
 type DataRepositoryTask struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies the amount of data to release, in GiB, by an Amazon File Cache
+	// AUTO_RELEASE_DATA task that automatically releases files from the cache.
+	CapacityToRelease *int64 `min:"1" type:"long"`
 
 	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
 	// also known as Unix time.
@@ -4826,34 +11880,35 @@ type DataRepositoryTask struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// The time that Amazon FSx completed processing the task, populated after the
-	// task is complete.
+	// The time the system completed processing the task, populated after the task
+	// is complete.
 	EndTime *time.Time `type:"timestamp"`
 
 	// Failure message describing why the task failed, it is populated only when
 	// Lifecycle is set to FAILED.
 	FailureDetails *DataRepositoryTaskFailureDetails `type:"structure"`
 
-	// The globally unique ID of the file system, assigned by Amazon FSx.
-	//
-	// FileSystemId is a required field
-	FileSystemId *string `min:"11" type:"string" required:"true"`
+	// The system-generated, unique ID of the cache.
+	FileCacheId *string `min:"11" type:"string"`
+
+	// The globally unique ID of the file system.
+	FileSystemId *string `min:"11" type:"string"`
 
 	// The lifecycle status of the data repository task, as follows:
 	//
-	//    * PENDING - Amazon FSx has not started the task.
+	//    * PENDING - The task has not started.
 	//
-	//    * EXECUTING - Amazon FSx is processing the task.
+	//    * EXECUTING - The task is in process.
 	//
-	//    * FAILED - Amazon FSx was not able to complete the task. For example,
-	//    there may be files the task failed to process. The DataRepositoryTaskFailureDetails
+	//    * FAILED - The task was not able to be completed. For example, there may
+	//    be files the task failed to process. The DataRepositoryTaskFailureDetails
 	//    property provides more information about task failures.
 	//
-	//    * SUCCEEDED - FSx completed the task successfully.
+	//    * SUCCEEDED - The task has completed successfully.
 	//
-	//    * CANCELED - Amazon FSx canceled the task and it did not complete.
+	//    * CANCELED - The task was canceled and it did not complete.
 	//
-	//    * CANCELING - FSx is in process of canceling the task.
+	//    * CANCELING - The task is in process of being canceled.
 	//
 	// You cannot delete an FSx for Lustre file system if there are data repository
 	// tasks for the file system in the PENDING or EXECUTING states. Please retry
@@ -4865,13 +11920,17 @@ type DataRepositoryTask struct {
 	// Lifecycle is a required field
 	Lifecycle *string `type:"string" required:"true" enum:"DataRepositoryTaskLifecycle"`
 
-	// An array of paths on the Amazon FSx for Lustre file system that specify the
-	// data for the data repository task to process. For example, in an EXPORT_TO_REPOSITORY
-	// task, the paths specify which data to export to the linked data repository.
+	// An array of paths that specify the data for the data repository task to process.
+	// For example, in an EXPORT_TO_REPOSITORY task, the paths specify which data
+	// to export to the linked data repository.
 	//
 	// (Default) If Paths is not specified, Amazon FSx uses the file system root
 	// directory.
 	Paths []*string `type:"list"`
+
+	// The configuration that specifies the last accessed time criteria for files
+	// that will be released from an Amazon FSx for Lustre file system.
+	ReleaseConfiguration *ReleaseConfiguration `type:"structure"`
 
 	// Provides a report detailing the data repository task results of the files
 	// processed that match the criteria specified in the report Scope parameter.
@@ -4881,13 +11940,13 @@ type DataRepositoryTask struct {
 	Report *CompletionReport `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
-	// AWS resources. We require an ARN when you need to specify a resource unambiguously
-	// across all of AWS. For more information, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	ResourceARN *string `min:"8" type:"string"`
 
-	// The time that Amazon FSx began processing the task.
+	// The time the system began processing the task.
 	StartTime *time.Time `type:"timestamp"`
 
 	// Provides the status of the number of files that the task has processed successfully
@@ -4902,21 +11961,47 @@ type DataRepositoryTask struct {
 	// TaskId is a required field
 	TaskId *string `min:"12" type:"string" required:"true"`
 
-	// The type of data repository task; EXPORT_TO_REPOSITORY is the only type currently
-	// supported.
+	// The type of data repository task.
+	//
+	//    * EXPORT_TO_REPOSITORY tasks export from your Amazon FSx for Lustre file
+	//    system to a linked data repository.
+	//
+	//    * IMPORT_METADATA_FROM_REPOSITORY tasks import metadata changes from a
+	//    linked S3 bucket to your Amazon FSx for Lustre file system.
+	//
+	//    * RELEASE_DATA_FROM_FILESYSTEM tasks release files in your Amazon FSx
+	//    for Lustre file system that have been exported to a linked S3 bucket and
+	//    that meet your specified release criteria.
+	//
+	//    * AUTO_RELEASE_DATA tasks automatically release files from an Amazon File
+	//    Cache resource.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataRepositoryTaskType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTask) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTask) GoString() string {
 	return s.String()
+}
+
+// SetCapacityToRelease sets the CapacityToRelease field's value.
+func (s *DataRepositoryTask) SetCapacityToRelease(v int64) *DataRepositoryTask {
+	s.CapacityToRelease = &v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.
@@ -4937,6 +12022,12 @@ func (s *DataRepositoryTask) SetFailureDetails(v *DataRepositoryTaskFailureDetai
 	return s
 }
 
+// SetFileCacheId sets the FileCacheId field's value.
+func (s *DataRepositoryTask) SetFileCacheId(v string) *DataRepositoryTask {
+	s.FileCacheId = &v
+	return s
+}
+
 // SetFileSystemId sets the FileSystemId field's value.
 func (s *DataRepositoryTask) SetFileSystemId(v string) *DataRepositoryTask {
 	s.FileSystemId = &v
@@ -4952,6 +12043,12 @@ func (s *DataRepositoryTask) SetLifecycle(v string) *DataRepositoryTask {
 // SetPaths sets the Paths field's value.
 func (s *DataRepositoryTask) SetPaths(v []*string) *DataRepositoryTask {
 	s.Paths = v
+	return s
+}
+
+// SetReleaseConfiguration sets the ReleaseConfiguration field's value.
+func (s *DataRepositoryTask) SetReleaseConfiguration(v *ReleaseConfiguration) *DataRepositoryTask {
+	s.ReleaseConfiguration = v
 	return s
 }
 
@@ -5007,12 +12104,20 @@ type DataRepositoryTaskEnded struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskEnded) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskEnded) GoString() string {
 	return s.String()
 }
@@ -5065,12 +12170,20 @@ type DataRepositoryTaskExecuting struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskExecuting) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskExecuting) GoString() string {
 	return s.String()
 }
@@ -5122,12 +12235,20 @@ type DataRepositoryTaskFailureDetails struct {
 	Message *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskFailureDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskFailureDetails) GoString() string {
 	return s.String()
 }
@@ -5161,12 +12282,20 @@ type DataRepositoryTaskFilter struct {
 	Values []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskFilter) GoString() string {
 	return s.String()
 }
@@ -5192,12 +12321,20 @@ type DataRepositoryTaskNotFound struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskNotFound) GoString() string {
 	return s.String()
 }
@@ -5252,6 +12389,10 @@ type DataRepositoryTaskStatus struct {
 	// The time at which the task status was last updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
 
+	// The total amount of data, in GiB, released by an Amazon File Cache AUTO_RELEASE_DATA
+	// task that automatically releases files from the cache.
+	ReleasedCapacity *int64 `type:"long"`
+
 	// A running total of the number of files that the task has successfully processed.
 	SucceededCount *int64 `type:"long"`
 
@@ -5261,12 +12402,20 @@ type DataRepositoryTaskStatus struct {
 	TotalCount *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataRepositoryTaskStatus) GoString() string {
 	return s.String()
 }
@@ -5283,6 +12432,12 @@ func (s *DataRepositoryTaskStatus) SetLastUpdatedTime(v time.Time) *DataReposito
 	return s
 }
 
+// SetReleasedCapacity sets the ReleasedCapacity field's value.
+func (s *DataRepositoryTaskStatus) SetReleasedCapacity(v int64) *DataRepositoryTaskStatus {
+	s.ReleasedCapacity = &v
+	return s
+}
+
 // SetSucceededCount sets the SucceededCount field's value.
 func (s *DataRepositoryTaskStatus) SetSucceededCount(v int64) *DataRepositoryTaskStatus {
 	s.SucceededCount = &v
@@ -5295,27 +12450,35 @@ func (s *DataRepositoryTaskStatus) SetTotalCount(v int64) *DataRepositoryTaskSta
 	return s
 }
 
-// The request object for DeleteBackup operation.
+// The request object for the DeleteBackup operation.
 type DeleteBackupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the backup you want to delete.
+	// The ID of the backup that you want to delete.
 	//
 	// BackupId is a required field
 	BackupId *string `min:"12" type:"string" required:"true"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
-	// deletion. This is automatically filled on your behalf when using the AWS
-	// CLI or SDK.
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
+	// deletion. This parameter is automatically filled on your behalf when using
+	// the CLI or SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackupInput) GoString() string {
 	return s.String()
 }
@@ -5351,23 +12514,32 @@ func (s *DeleteBackupInput) SetClientRequestToken(v string) *DeleteBackupInput {
 	return s
 }
 
-// The response object for DeleteBackup operation.
+// The response object for the DeleteBackup operation.
 type DeleteBackupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the backup deleted.
+	// The ID of the backup that was deleted.
 	BackupId *string `min:"12" type:"string"`
 
-	// The lifecycle of the backup. Should be DELETED.
+	// The lifecycle status of the backup. If the DeleteBackup operation is successful,
+	// the status is DELETED.
 	Lifecycle *string `type:"string" enum:"BackupLifecycle"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBackupOutput) GoString() string {
 	return s.String()
 }
@@ -5384,16 +12556,243 @@ func (s *DeleteBackupOutput) SetLifecycle(v string) *DeleteBackupOutput {
 	return s
 }
 
+type DeleteDataRepositoryAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the data repository association that you want to delete.
+	//
+	// AssociationId is a required field
+	AssociationId *string `min:"13" type:"string" required:"true"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Set to true to delete the data in the file system that corresponds to the
+	// data repository association.
+	DeleteDataInFileSystem *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataRepositoryAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataRepositoryAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDataRepositoryAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataRepositoryAssociationInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 13 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 13))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DeleteDataRepositoryAssociationInput) SetAssociationId(v string) *DeleteDataRepositoryAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DeleteDataRepositoryAssociationInput) SetClientRequestToken(v string) *DeleteDataRepositoryAssociationInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDeleteDataInFileSystem sets the DeleteDataInFileSystem field's value.
+func (s *DeleteDataRepositoryAssociationInput) SetDeleteDataInFileSystem(v bool) *DeleteDataRepositoryAssociationInput {
+	s.DeleteDataInFileSystem = &v
+	return s
+}
+
+type DeleteDataRepositoryAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the data repository association being deleted.
+	AssociationId *string `min:"13" type:"string"`
+
+	// Indicates whether data in the file system that corresponds to the data repository
+	// association is being deleted. Default is false.
+	DeleteDataInFileSystem *bool `type:"boolean"`
+
+	// Describes the lifecycle state of the data repository association being deleted.
+	Lifecycle *string `type:"string" enum:"DataRepositoryLifecycle"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataRepositoryAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataRepositoryAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DeleteDataRepositoryAssociationOutput) SetAssociationId(v string) *DeleteDataRepositoryAssociationOutput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetDeleteDataInFileSystem sets the DeleteDataInFileSystem field's value.
+func (s *DeleteDataRepositoryAssociationOutput) SetDeleteDataInFileSystem(v bool) *DeleteDataRepositoryAssociationOutput {
+	s.DeleteDataInFileSystem = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *DeleteDataRepositoryAssociationOutput) SetLifecycle(v string) *DeleteDataRepositoryAssociationOutput {
+	s.Lifecycle = &v
+	return s
+}
+
+type DeleteFileCacheInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the cache that's being deleted.
+	//
+	// FileCacheId is a required field
+	FileCacheId *string `min:"11" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFileCacheInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFileCacheInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFileCacheInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFileCacheInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FileCacheId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileCacheId"))
+	}
+	if s.FileCacheId != nil && len(*s.FileCacheId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileCacheId", 11))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DeleteFileCacheInput) SetClientRequestToken(v string) *DeleteFileCacheInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFileCacheId sets the FileCacheId field's value.
+func (s *DeleteFileCacheInput) SetFileCacheId(v string) *DeleteFileCacheInput {
+	s.FileCacheId = &v
+	return s
+}
+
+type DeleteFileCacheOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the cache that's being deleted.
+	FileCacheId *string `min:"11" type:"string"`
+
+	// The cache lifecycle for the deletion request. If the DeleteFileCache operation
+	// is successful, this status is DELETING.
+	Lifecycle *string `type:"string" enum:"FileCacheLifecycle"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFileCacheOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFileCacheOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileCacheId sets the FileCacheId field's value.
+func (s *DeleteFileCacheOutput) SetFileCacheId(v string) *DeleteFileCacheOutput {
+	s.FileCacheId = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *DeleteFileCacheOutput) SetLifecycle(v string) *DeleteFileCacheOutput {
+	s.Lifecycle = &v
+	return s
+}
+
 // The request object for DeleteFileSystem operation.
 type DeleteFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
-	// deletion. This is automatically filled on your behalf when using the AWS
-	// CLI or SDK.
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
+	// deletion. This token is automatically filled on your behalf when using the
+	// Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The ID of the file system you want to delete.
+	// The ID of the file system that you want to delete.
 	//
 	// FileSystemId is a required field
 	FileSystemId *string `min:"11" type:"string" required:"true"`
@@ -5402,17 +12801,29 @@ type DeleteFileSystemInput struct {
 	// deleted in the DeleteFileSystem operation.
 	LustreConfiguration *DeleteFileSystemLustreConfiguration `type:"structure"`
 
+	// The configuration object for the OpenZFS file system used in the DeleteFileSystem
+	// operation.
+	OpenZFSConfiguration *DeleteFileSystemOpenZFSConfiguration `type:"structure"`
+
 	// The configuration object for the Microsoft Windows file system used in the
 	// DeleteFileSystem operation.
 	WindowsConfiguration *DeleteFileSystemWindowsConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemInput) GoString() string {
 	return s.String()
 }
@@ -5432,6 +12843,11 @@ func (s *DeleteFileSystemInput) Validate() error {
 	if s.LustreConfiguration != nil {
 		if err := s.LustreConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("LustreConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OpenZFSConfiguration != nil {
+		if err := s.OpenZFSConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OpenZFSConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.WindowsConfiguration != nil {
@@ -5464,6 +12880,12 @@ func (s *DeleteFileSystemInput) SetLustreConfiguration(v *DeleteFileSystemLustre
 	return s
 }
 
+// SetOpenZFSConfiguration sets the OpenZFSConfiguration field's value.
+func (s *DeleteFileSystemInput) SetOpenZFSConfiguration(v *DeleteFileSystemOpenZFSConfiguration) *DeleteFileSystemInput {
+	s.OpenZFSConfiguration = v
+	return s
+}
+
 // SetWindowsConfiguration sets the WindowsConfiguration field's value.
 func (s *DeleteFileSystemInput) SetWindowsConfiguration(v *DeleteFileSystemWindowsConfiguration) *DeleteFileSystemInput {
 	s.WindowsConfiguration = v
@@ -5485,15 +12907,26 @@ type DeleteFileSystemLustreConfiguration struct {
 	// system you are deleting. By default, Amazon FSx will not take a final backup
 	// on your behalf when the DeleteFileSystem operation is invoked. (Default =
 	// true)
+	//
+	// The fsx:CreateBackup permission is required if you set SkipFinalBackup to
+	// false in order to delete the file system and take a final backup.
 	SkipFinalBackup *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemLustreConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemLustreConfiguration) GoString() string {
 	return s.String()
 }
@@ -5545,12 +12978,20 @@ type DeleteFileSystemLustreResponse struct {
 	FinalBackupTags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemLustreResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemLustreResponse) GoString() string {
 	return s.String()
 }
@@ -5567,31 +13008,166 @@ func (s *DeleteFileSystemLustreResponse) SetFinalBackupTags(v []*Tag) *DeleteFil
 	return s
 }
 
+// The configuration object for the Amazon FSx for OpenZFS file system used
+// in the DeleteFileSystem operation.
+type DeleteFileSystemOpenZFSConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags to apply to the file system's final backup.
+	FinalBackupTags []*Tag `min:"1" type:"list"`
+
+	// To delete a file system if there are child volumes present below the root
+	// volume, use the string DELETE_CHILD_VOLUMES_AND_SNAPSHOTS. If your file system
+	// has child volumes and you don't use this option, the delete request will
+	// fail.
+	Options []*string `type:"list" enum:"DeleteFileSystemOpenZFSOption"`
+
+	// By default, Amazon FSx for OpenZFS takes a final backup on your behalf when
+	// the DeleteFileSystem operation is invoked. Doing this helps protect you from
+	// data loss, and we highly recommend taking the final backup. If you want to
+	// skip taking a final backup, set this value to true.
+	SkipFinalBackup *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFileSystemOpenZFSConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFileSystemOpenZFSConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFileSystemOpenZFSConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFileSystemOpenZFSConfiguration"}
+	if s.FinalBackupTags != nil && len(s.FinalBackupTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FinalBackupTags", 1))
+	}
+	if s.FinalBackupTags != nil {
+		for i, v := range s.FinalBackupTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FinalBackupTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFinalBackupTags sets the FinalBackupTags field's value.
+func (s *DeleteFileSystemOpenZFSConfiguration) SetFinalBackupTags(v []*Tag) *DeleteFileSystemOpenZFSConfiguration {
+	s.FinalBackupTags = v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *DeleteFileSystemOpenZFSConfiguration) SetOptions(v []*string) *DeleteFileSystemOpenZFSConfiguration {
+	s.Options = v
+	return s
+}
+
+// SetSkipFinalBackup sets the SkipFinalBackup field's value.
+func (s *DeleteFileSystemOpenZFSConfiguration) SetSkipFinalBackup(v bool) *DeleteFileSystemOpenZFSConfiguration {
+	s.SkipFinalBackup = &v
+	return s
+}
+
+// The response object for the Amazon FSx for OpenZFS file system that's being
+// deleted in the DeleteFileSystem operation.
+type DeleteFileSystemOpenZFSResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the source backup. Specifies the backup that you are copying.
+	FinalBackupId *string `min:"12" type:"string"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	FinalBackupTags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFileSystemOpenZFSResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFileSystemOpenZFSResponse) GoString() string {
+	return s.String()
+}
+
+// SetFinalBackupId sets the FinalBackupId field's value.
+func (s *DeleteFileSystemOpenZFSResponse) SetFinalBackupId(v string) *DeleteFileSystemOpenZFSResponse {
+	s.FinalBackupId = &v
+	return s
+}
+
+// SetFinalBackupTags sets the FinalBackupTags field's value.
+func (s *DeleteFileSystemOpenZFSResponse) SetFinalBackupTags(v []*Tag) *DeleteFileSystemOpenZFSResponse {
+	s.FinalBackupTags = v
+	return s
+}
+
 // The response object for the DeleteFileSystem operation.
 type DeleteFileSystemOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the file system being deleted.
+	// The ID of the file system that's being deleted.
 	FileSystemId *string `min:"11" type:"string"`
 
-	// The file system lifecycle for the deletion request. Should be DELETING.
+	// The file system lifecycle for the deletion request. If the DeleteFileSystem
+	// operation is successful, this status is DELETING.
 	Lifecycle *string `type:"string" enum:"FileSystemLifecycle"`
 
 	// The response object for the Amazon FSx for Lustre file system being deleted
 	// in the DeleteFileSystem operation.
 	LustreResponse *DeleteFileSystemLustreResponse `type:"structure"`
 
+	// The response object for the OpenZFS file system that's being deleted in the
+	// DeleteFileSystem operation.
+	OpenZFSResponse *DeleteFileSystemOpenZFSResponse `type:"structure"`
+
 	// The response object for the Microsoft Windows file system used in the DeleteFileSystem
 	// operation.
 	WindowsResponse *DeleteFileSystemWindowsResponse `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemOutput) GoString() string {
 	return s.String()
 }
@@ -5611,6 +13187,12 @@ func (s *DeleteFileSystemOutput) SetLifecycle(v string) *DeleteFileSystemOutput 
 // SetLustreResponse sets the LustreResponse field's value.
 func (s *DeleteFileSystemOutput) SetLustreResponse(v *DeleteFileSystemLustreResponse) *DeleteFileSystemOutput {
 	s.LustreResponse = v
+	return s
+}
+
+// SetOpenZFSResponse sets the OpenZFSResponse field's value.
+func (s *DeleteFileSystemOutput) SetOpenZFSResponse(v *DeleteFileSystemOpenZFSResponse) *DeleteFileSystemOutput {
+	s.OpenZFSResponse = v
 	return s
 }
 
@@ -5635,12 +13217,20 @@ type DeleteFileSystemWindowsConfiguration struct {
 	SkipFinalBackup *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemWindowsConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemWindowsConfiguration) GoString() string {
 	return s.String()
 }
@@ -5692,12 +13282,20 @@ type DeleteFileSystemWindowsResponse struct {
 	FinalBackupTags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemWindowsResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFileSystemWindowsResponse) GoString() string {
 	return s.String()
 }
@@ -5714,35 +13312,547 @@ func (s *DeleteFileSystemWindowsResponse) SetFinalBackupTags(v []*Tag) *DeleteFi
 	return s
 }
 
-// The request object for DescribeBackups operation.
+type DeleteSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the snapshot that you want to delete.
+	//
+	// SnapshotId is a required field
+	SnapshotId *string `min:"11" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSnapshotInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.SnapshotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotId"))
+	}
+	if s.SnapshotId != nil && len(*s.SnapshotId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotId", 11))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DeleteSnapshotInput) SetClientRequestToken(v string) *DeleteSnapshotInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *DeleteSnapshotInput) SetSnapshotId(v string) *DeleteSnapshotInput {
+	s.SnapshotId = &v
+	return s
+}
+
+type DeleteSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The lifecycle status of the snapshot. If the DeleteSnapshot operation is
+	// successful, this status is DELETING.
+	Lifecycle *string `type:"string" enum:"SnapshotLifecycle"`
+
+	// The ID of the deleted snapshot.
+	SnapshotId *string `min:"11" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *DeleteSnapshotOutput) SetLifecycle(v string) *DeleteSnapshotOutput {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *DeleteSnapshotOutput) SetSnapshotId(v string) *DeleteSnapshotOutput {
+	s.SnapshotId = &v
+	return s
+}
+
+type DeleteStorageVirtualMachineInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the SVM that you want to delete.
+	//
+	// StorageVirtualMachineId is a required field
+	StorageVirtualMachineId *string `min:"21" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageVirtualMachineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageVirtualMachineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStorageVirtualMachineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStorageVirtualMachineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.StorageVirtualMachineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageVirtualMachineId"))
+	}
+	if s.StorageVirtualMachineId != nil && len(*s.StorageVirtualMachineId) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageVirtualMachineId", 21))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DeleteStorageVirtualMachineInput) SetClientRequestToken(v string) *DeleteStorageVirtualMachineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *DeleteStorageVirtualMachineInput) SetStorageVirtualMachineId(v string) *DeleteStorageVirtualMachineInput {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+type DeleteStorageVirtualMachineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the lifecycle state of the SVM being deleted.
+	Lifecycle *string `type:"string" enum:"StorageVirtualMachineLifecycle"`
+
+	// The ID of the SVM Amazon FSx is deleting.
+	StorageVirtualMachineId *string `min:"21" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageVirtualMachineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageVirtualMachineOutput) GoString() string {
+	return s.String()
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *DeleteStorageVirtualMachineOutput) SetLifecycle(v string) *DeleteStorageVirtualMachineOutput {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *DeleteStorageVirtualMachineOutput) SetStorageVirtualMachineId(v string) *DeleteStorageVirtualMachineOutput {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+type DeleteVolumeInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// For Amazon FSx for ONTAP volumes, specify whether to take a final backup
+	// of the volume and apply tags to the backup. To apply tags to the backup,
+	// you must have the fsx:TagResource permission.
+	OntapConfiguration *DeleteVolumeOntapConfiguration `type:"structure"`
+
+	// For Amazon FSx for OpenZFS volumes, specify whether to delete all child volumes
+	// and snapshots.
+	OpenZFSConfiguration *DeleteVolumeOpenZFSConfiguration `type:"structure"`
+
+	// The ID of the volume that you are deleting.
+	//
+	// VolumeId is a required field
+	VolumeId *string `min:"23" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVolumeInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.VolumeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeId"))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DeleteVolumeInput) SetClientRequestToken(v string) *DeleteVolumeInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *DeleteVolumeInput) SetOntapConfiguration(v *DeleteVolumeOntapConfiguration) *DeleteVolumeInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetOpenZFSConfiguration sets the OpenZFSConfiguration field's value.
+func (s *DeleteVolumeInput) SetOpenZFSConfiguration(v *DeleteVolumeOpenZFSConfiguration) *DeleteVolumeInput {
+	s.OpenZFSConfiguration = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *DeleteVolumeInput) SetVolumeId(v string) *DeleteVolumeInput {
+	s.VolumeId = &v
+	return s
+}
+
+// Use to specify skipping a final backup, adding tags to a final backup, or
+// bypassing the retention period of an FSx for ONTAP SnapLock Enterprise volume
+// when deleting an FSx for ONTAP volume.
+type DeleteVolumeOntapConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Setting this to true allows a SnapLock administrator to delete an FSx for
+	// ONTAP SnapLock Enterprise volume with unexpired write once, read many (WORM)
+	// files. The IAM permission fsx:BypassSnaplockEnterpriseRetention is also required
+	// to delete SnapLock Enterprise volumes with unexpired WORM files. The default
+	// value is false.
+	//
+	// For more information, see Deleting a SnapLock volume (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-delete-volume.html).
+	BypassSnaplockEnterpriseRetention *bool `type:"boolean"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	FinalBackupTags []*Tag `min:"1" type:"list"`
+
+	// Set to true if you want to skip taking a final backup of the volume you are
+	// deleting.
+	SkipFinalBackup *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeOntapConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeOntapConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVolumeOntapConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVolumeOntapConfiguration"}
+	if s.FinalBackupTags != nil && len(s.FinalBackupTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FinalBackupTags", 1))
+	}
+	if s.FinalBackupTags != nil {
+		for i, v := range s.FinalBackupTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FinalBackupTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBypassSnaplockEnterpriseRetention sets the BypassSnaplockEnterpriseRetention field's value.
+func (s *DeleteVolumeOntapConfiguration) SetBypassSnaplockEnterpriseRetention(v bool) *DeleteVolumeOntapConfiguration {
+	s.BypassSnaplockEnterpriseRetention = &v
+	return s
+}
+
+// SetFinalBackupTags sets the FinalBackupTags field's value.
+func (s *DeleteVolumeOntapConfiguration) SetFinalBackupTags(v []*Tag) *DeleteVolumeOntapConfiguration {
+	s.FinalBackupTags = v
+	return s
+}
+
+// SetSkipFinalBackup sets the SkipFinalBackup field's value.
+func (s *DeleteVolumeOntapConfiguration) SetSkipFinalBackup(v bool) *DeleteVolumeOntapConfiguration {
+	s.SkipFinalBackup = &v
+	return s
+}
+
+// The response object for the Amazon FSx for NetApp ONTAP volume being deleted
+// in the DeleteVolume operation.
+type DeleteVolumeOntapResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the source backup. Specifies the backup that you are copying.
+	FinalBackupId *string `min:"12" type:"string"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	FinalBackupTags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeOntapResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeOntapResponse) GoString() string {
+	return s.String()
+}
+
+// SetFinalBackupId sets the FinalBackupId field's value.
+func (s *DeleteVolumeOntapResponse) SetFinalBackupId(v string) *DeleteVolumeOntapResponse {
+	s.FinalBackupId = &v
+	return s
+}
+
+// SetFinalBackupTags sets the FinalBackupTags field's value.
+func (s *DeleteVolumeOntapResponse) SetFinalBackupTags(v []*Tag) *DeleteVolumeOntapResponse {
+	s.FinalBackupTags = v
+	return s
+}
+
+// A value that specifies whether to delete all child volumes and snapshots.
+type DeleteVolumeOpenZFSConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// To delete the volume's child volumes, snapshots, and clones, use the string
+	// DELETE_CHILD_VOLUMES_AND_SNAPSHOTS.
+	Options []*string `type:"list" enum:"DeleteOpenZFSVolumeOption"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeOpenZFSConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeOpenZFSConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetOptions sets the Options field's value.
+func (s *DeleteVolumeOpenZFSConfiguration) SetOptions(v []*string) *DeleteVolumeOpenZFSConfiguration {
+	s.Options = v
+	return s
+}
+
+type DeleteVolumeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The lifecycle state of the volume being deleted. If the DeleteVolume operation
+	// is successful, this value is DELETING.
+	Lifecycle *string `type:"string" enum:"VolumeLifecycle"`
+
+	// Returned after a DeleteVolume request, showing the status of the delete request.
+	OntapResponse *DeleteVolumeOntapResponse `type:"structure"`
+
+	// The ID of the volume that's being deleted.
+	VolumeId *string `min:"23" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVolumeOutput) GoString() string {
+	return s.String()
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *DeleteVolumeOutput) SetLifecycle(v string) *DeleteVolumeOutput {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetOntapResponse sets the OntapResponse field's value.
+func (s *DeleteVolumeOutput) SetOntapResponse(v *DeleteVolumeOntapResponse) *DeleteVolumeOutput {
+	s.OntapResponse = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *DeleteVolumeOutput) SetVolumeId(v string) *DeleteVolumeOutput {
+	s.VolumeId = &v
+	return s
+}
+
+// The request object for the DescribeBackups operation.
 type DescribeBackupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// IDs of the backups you want to retrieve (String). This overrides any filters.
-	// If any IDs are not found, BackupNotFound will be thrown.
+	// The IDs of the backups that you want to retrieve. This parameter value overrides
+	// any filters. If any IDs aren't found, a BackupNotFound error occurs.
 	BackupIds []*string `type:"list"`
 
-	// Filters structure. Supported names are file-system-id and backup-type.
+	// The filters structure. The supported names are file-system-id, backup-type,
+	// file-system-type, and volume-id.
 	Filters []*Filter `type:"list"`
 
-	// Maximum number of backups to return in the response (integer). This parameter
-	// value must be greater than 0. The number of items that Amazon FSx returns
-	// is the minimum of the MaxResults parameter specified in the request and the
-	// service's internal maximum number of items per page.
+	// Maximum number of backups to return in the response. This parameter value
+	// must be greater than 0. The number of items that Amazon FSx returns is the
+	// minimum of the MaxResults parameter specified in the request and the service's
+	// internal maximum number of items per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Opaque pagination token returned from a previous DescribeBackups operation
-	// (String). If a token present, the action continues the list from where the
-	// returning call left off.
+	// An opaque pagination token returned from a previous DescribeBackups operation.
+	// If a token is present, the operation continues the list from where the returning
+	// call left off.
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupsInput) GoString() string {
 	return s.String()
 }
@@ -5787,24 +13897,33 @@ func (s *DescribeBackupsInput) SetNextToken(v string) *DescribeBackupsInput {
 	return s
 }
 
-// Response object for DescribeBackups operation.
+// Response object for the DescribeBackups operation.
 type DescribeBackupsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of backups.
 	Backups []*Backup `type:"list"`
 
-	// This is present if there are more backups than returned in the response (String).
-	// You can use the NextToken value in the later request to fetch the backups.
+	// A NextToken value is present if there are more backups than returned in the
+	// response. You can use the NextToken value in the subsequent request to fetch
+	// the backups.
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBackupsOutput) GoString() string {
 	return s.String()
 }
@@ -5817,6 +13936,126 @@ func (s *DescribeBackupsOutput) SetBackups(v []*Backup) *DescribeBackupsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeBackupsOutput) SetNextToken(v string) *DescribeBackupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeDataRepositoryAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// IDs of the data repository associations whose descriptions you want to retrieve
+	// (String).
+	AssociationIds []*string `type:"list"`
+
+	// A list of Filter elements.
+	Filters []*Filter `type:"list"`
+
+	// The maximum number of resources to return in the response. This value must
+	// be an integer greater than zero.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataRepositoryAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataRepositoryAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDataRepositoryAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDataRepositoryAssociationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationIds sets the AssociationIds field's value.
+func (s *DescribeDataRepositoryAssociationsInput) SetAssociationIds(v []*string) *DescribeDataRepositoryAssociationsInput {
+	s.AssociationIds = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDataRepositoryAssociationsInput) SetFilters(v []*Filter) *DescribeDataRepositoryAssociationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeDataRepositoryAssociationsInput) SetMaxResults(v int64) *DescribeDataRepositoryAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDataRepositoryAssociationsInput) SetNextToken(v string) *DescribeDataRepositoryAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeDataRepositoryAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of one or more data repository association descriptions.
+	Associations []*DataRepositoryAssociation `type:"list"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataRepositoryAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataRepositoryAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociations sets the Associations field's value.
+func (s *DescribeDataRepositoryAssociationsOutput) SetAssociations(v []*DataRepositoryAssociation) *DescribeDataRepositoryAssociationsOutput {
+	s.Associations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDataRepositoryAssociationsOutput) SetNextToken(v string) *DescribeDataRepositoryAssociationsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -5842,12 +14081,20 @@ type DescribeDataRepositoryTasksInput struct {
 	TaskIds []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataRepositoryTasksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataRepositoryTasksInput) GoString() string {
 	return s.String()
 }
@@ -5904,12 +14151,20 @@ type DescribeDataRepositoryTasksOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataRepositoryTasksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataRepositoryTasksOutput) GoString() string {
 	return s.String()
 }
@@ -5926,13 +14181,123 @@ func (s *DescribeDataRepositoryTasksOutput) SetNextToken(v string) *DescribeData
 	return s
 }
 
+type DescribeFileCachesInput struct {
+	_ struct{} `type:"structure"`
+
+	// IDs of the caches whose descriptions you want to retrieve (String).
+	FileCacheIds []*string `type:"list"`
+
+	// The maximum number of resources to return in the response. This value must
+	// be an integer greater than zero.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFileCachesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFileCachesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFileCachesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFileCachesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileCacheIds sets the FileCacheIds field's value.
+func (s *DescribeFileCachesInput) SetFileCacheIds(v []*string) *DescribeFileCachesInput {
+	s.FileCacheIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeFileCachesInput) SetMaxResults(v int64) *DescribeFileCachesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFileCachesInput) SetNextToken(v string) *DescribeFileCachesInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFileCachesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The response object for the DescribeFileCaches operation.
+	FileCaches []*FileCache `type:"list"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFileCachesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFileCachesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileCaches sets the FileCaches field's value.
+func (s *DescribeFileCachesOutput) SetFileCaches(v []*FileCache) *DescribeFileCachesOutput {
+	s.FileCaches = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFileCachesOutput) SetNextToken(v string) *DescribeFileCachesOutput {
+	s.NextToken = &v
+	return s
+}
+
 // The request object for DescribeFileSystemAliases operation.
 type DescribeFileSystemAliasesInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The ID of the file system to return the associated DNS aliases for (String).
@@ -5952,12 +14317,20 @@ type DescribeFileSystemAliasesInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemAliasesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemAliasesInput) GoString() string {
 	return s.String()
 }
@@ -6024,12 +14397,20 @@ type DescribeFileSystemAliasesOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemAliasesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemAliasesOutput) GoString() string {
 	return s.String()
 }
@@ -6060,17 +14441,25 @@ type DescribeFileSystemsInput struct {
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// Opaque pagination token returned from a previous DescribeFileSystems operation
-	// (String). If a token present, the action continues the list from where the
-	// returning call left off.
+	// (String). If a token present, the operation continues the list from where
+	// the returning call left off.
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemsInput) GoString() string {
 	return s.String()
 }
@@ -6121,12 +14510,20 @@ type DescribeFileSystemsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFileSystemsOutput) GoString() string {
 	return s.String()
 }
@@ -6143,6 +14540,420 @@ func (s *DescribeFileSystemsOutput) SetNextToken(v string) *DescribeFileSystemsO
 	return s
 }
 
+type DescribeSharedVpcConfigurationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSharedVpcConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSharedVpcConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type DescribeSharedVpcConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether participant accounts can create FSx for ONTAP Multi-AZ
+	// file systems in shared subnets.
+	EnableFsxRouteTableUpdatesFromParticipantAccounts *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSharedVpcConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSharedVpcConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnableFsxRouteTableUpdatesFromParticipantAccounts sets the EnableFsxRouteTableUpdatesFromParticipantAccounts field's value.
+func (s *DescribeSharedVpcConfigurationOutput) SetEnableFsxRouteTableUpdatesFromParticipantAccounts(v string) *DescribeSharedVpcConfigurationOutput {
+	s.EnableFsxRouteTableUpdatesFromParticipantAccounts = &v
+	return s
+}
+
+type DescribeSnapshotsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filters structure. The supported names are file-system-id or volume-id.
+	Filters []*SnapshotFilter `type:"list"`
+
+	// The maximum number of resources to return in the response. This value must
+	// be an integer greater than zero.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// The IDs of the snapshots that you want to retrieve. This parameter value
+	// overrides any filters. If any IDs aren't found, a SnapshotNotFound error
+	// occurs.
+	SnapshotIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSnapshotsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSnapshotsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSnapshotsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSnapshotsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeSnapshotsInput) SetFilters(v []*SnapshotFilter) *DescribeSnapshotsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeSnapshotsInput) SetMaxResults(v int64) *DescribeSnapshotsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSnapshotsInput) SetNextToken(v string) *DescribeSnapshotsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSnapshotIds sets the SnapshotIds field's value.
+func (s *DescribeSnapshotsInput) SetSnapshotIds(v []*string) *DescribeSnapshotsInput {
+	s.SnapshotIds = v
+	return s
+}
+
+type DescribeSnapshotsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of snapshots.
+	Snapshots []*Snapshot `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSnapshotsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSnapshotsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSnapshotsOutput) SetNextToken(v string) *DescribeSnapshotsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSnapshots sets the Snapshots field's value.
+func (s *DescribeSnapshotsOutput) SetSnapshots(v []*Snapshot) *DescribeSnapshotsOutput {
+	s.Snapshots = v
+	return s
+}
+
+type DescribeStorageVirtualMachinesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Enter a filter name:value pair to view a select set of SVMs.
+	Filters []*StorageVirtualMachineFilter `type:"list"`
+
+	// The maximum number of resources to return in the response. This value must
+	// be an integer greater than zero.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// Enter the ID of one or more SVMs that you want to view.
+	StorageVirtualMachineIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageVirtualMachinesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageVirtualMachinesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStorageVirtualMachinesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStorageVirtualMachinesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeStorageVirtualMachinesInput) SetFilters(v []*StorageVirtualMachineFilter) *DescribeStorageVirtualMachinesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeStorageVirtualMachinesInput) SetMaxResults(v int64) *DescribeStorageVirtualMachinesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStorageVirtualMachinesInput) SetNextToken(v string) *DescribeStorageVirtualMachinesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageVirtualMachineIds sets the StorageVirtualMachineIds field's value.
+func (s *DescribeStorageVirtualMachinesInput) SetStorageVirtualMachineIds(v []*string) *DescribeStorageVirtualMachinesInput {
+	s.StorageVirtualMachineIds = v
+	return s
+}
+
+type DescribeStorageVirtualMachinesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returned after a successful DescribeStorageVirtualMachines operation, describing
+	// each SVM.
+	StorageVirtualMachines []*StorageVirtualMachine `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageVirtualMachinesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageVirtualMachinesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStorageVirtualMachinesOutput) SetNextToken(v string) *DescribeStorageVirtualMachinesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageVirtualMachines sets the StorageVirtualMachines field's value.
+func (s *DescribeStorageVirtualMachinesOutput) SetStorageVirtualMachines(v []*StorageVirtualMachine) *DescribeStorageVirtualMachinesOutput {
+	s.StorageVirtualMachines = v
+	return s
+}
+
+type DescribeVolumesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Enter a filter Name and Values pair to view a select set of volumes.
+	Filters []*VolumeFilter `type:"list"`
+
+	// The maximum number of resources to return in the response. This value must
+	// be an integer greater than zero.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// The IDs of the volumes whose descriptions you want to retrieve.
+	VolumeIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVolumesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVolumesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVolumesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVolumesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVolumesInput) SetFilters(v []*VolumeFilter) *DescribeVolumesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeVolumesInput) SetMaxResults(v int64) *DescribeVolumesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVolumesInput) SetNextToken(v string) *DescribeVolumesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVolumeIds sets the VolumeIds field's value.
+func (s *DescribeVolumesInput) SetVolumeIds(v []*string) *DescribeVolumesInput {
+	s.VolumeIds = v
+	return s
+}
+
+type DescribeVolumesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returned after a successful DescribeVolumes operation, describing each volume.
+	Volumes []*Volume `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVolumesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVolumesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVolumesOutput) SetNextToken(v string) *DescribeVolumesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVolumes sets the Volumes field's value.
+func (s *DescribeVolumesOutput) SetVolumes(v []*Volume) *DescribeVolumesOutput {
+	s.Volumes = v
+	return s
+}
+
 // The request object of DNS aliases to disassociate from an Amazon FSx for
 // Windows File Server file system.
 type DisassociateFileSystemAliasesInput struct {
@@ -6155,8 +14966,8 @@ type DisassociateFileSystemAliasesInput struct {
 	Aliases []*string `type:"list" required:"true"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// Specifies the file system from which to disassociate the DNS aliases.
@@ -6165,12 +14976,20 @@ type DisassociateFileSystemAliasesInput struct {
 	FileSystemId *string `min:"11" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFileSystemAliasesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFileSystemAliasesInput) GoString() string {
 	return s.String()
 }
@@ -6226,12 +15045,20 @@ type DisassociateFileSystemAliasesOutput struct {
 	Aliases []*Alias `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFileSystemAliasesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFileSystemAliasesOutput) GoString() string {
 	return s.String()
 }
@@ -6242,42 +15069,997 @@ func (s *DisassociateFileSystemAliasesOutput) SetAliases(v []*Alias) *Disassocia
 	return s
 }
 
+// The SSD IOPS (input/output operations per second) configuration for an Amazon
+// FSx for NetApp ONTAP, Amazon FSx for Windows File Server, or FSx for OpenZFS
+// file system. By default, Amazon FSx automatically provisions 3 IOPS per GB
+// of storage capacity. You can provision additional IOPS per GB of storage.
+// The configuration consists of the total number of provisioned SSD IOPS and
+// how it is was provisioned, or the mode (by the customer or by Amazon FSx).
+type DiskIopsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of SSD IOPS provisioned for the file system.
+	//
+	// The minimum and maximum values for this property depend on the value of HAPairs
+	// and StorageCapacity. The minimum value is calculated as StorageCapacity *
+	// 3 * HAPairs (3 IOPS per GB of StorageCapacity). The maximum value is calculated
+	// as 200,000 * HAPairs.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) if the value
+	// of Iops is outside of the minimum or maximum values.
+	Iops *int64 `type:"long"`
+
+	// Specifies whether the file system is using the AUTOMATIC setting of SSD IOPS
+	// of 3 IOPS per GB of storage capacity, , or if it using a USER_PROVISIONED
+	// value.
+	Mode *string `type:"string" enum:"DiskIopsConfigurationMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiskIopsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiskIopsConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetIops sets the Iops field's value.
+func (s *DiskIopsConfiguration) SetIops(v int64) *DiskIopsConfiguration {
+	s.Iops = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *DiskIopsConfiguration) SetMode(v string) *DiskIopsConfiguration {
+	s.Mode = &v
+	return s
+}
+
+// Defines the minimum amount of time since last access for a file to be eligible
+// for release. Only files that have been exported to S3 and that were last
+// accessed or modified before this point-in-time are eligible to be released
+// from the Amazon FSx for Lustre file system.
+type DurationSinceLastAccess struct {
+	_ struct{} `type:"structure"`
+
+	// The unit of time used by the Value parameter to determine if a file can be
+	// released, based on when it was last accessed. DAYS is the only supported
+	// value. This is a required parameter.
+	Unit *string `type:"string" enum:"Unit"`
+
+	// An integer that represents the minimum amount of time (in days) since a file
+	// was last accessed in the file system. Only exported files with a MAX(atime,
+	// ctime, mtime) timestamp that is more than this amount of time in the past
+	// (relative to the task create time) will be released. The default of Value
+	// is 0. This is a required parameter.
+	//
+	// If an exported file meets the last accessed time criteria, its file or directory
+	// path must also be specified in the Paths parameter of the operation in order
+	// for the file to be released.
+	Value *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DurationSinceLastAccess) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DurationSinceLastAccess) GoString() string {
+	return s.String()
+}
+
+// SetUnit sets the Unit field's value.
+func (s *DurationSinceLastAccess) SetUnit(v string) *DurationSinceLastAccess {
+	s.Unit = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *DurationSinceLastAccess) SetValue(v int64) *DurationSinceLastAccess {
+	s.Value = &v
+	return s
+}
+
+// A description of a specific Amazon File Cache resource, which is a response
+// object from the DescribeFileCaches operation.
+type FileCache struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
+	// also known as Unix time.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Domain Name System (DNS) name for the cache.
+	DNSName *string `min:"16" type:"string"`
+
+	// A list of IDs of data repository associations that are associated with this
+	// cache.
+	DataRepositoryAssociationIds []*string `type:"list"`
+
+	// A structure providing details of any failures that occurred.
+	FailureDetails *FileCacheFailureDetails `type:"structure"`
+
+	// The system-generated, unique ID of the cache.
+	FileCacheId *string `min:"11" type:"string"`
+
+	// The type of cache, which must be LUSTRE.
+	FileCacheType *string `type:"string" enum:"FileCacheType"`
+
+	// The Lustre version of the cache, which must be 2.12.
+	FileCacheTypeVersion *string `min:"1" type:"string"`
+
+	// Specifies the ID of the Key Management Service (KMS) key to use for encrypting
+	// data on an Amazon File Cache. If a KmsKeyId isn't specified, the Amazon FSx-managed
+	// KMS key for your account is used. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// in the Key Management Service API Reference.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// The lifecycle status of the cache. The following are the possible values
+	// and what they mean:
+	//
+	//    * AVAILABLE - The cache is in a healthy state, and is reachable and available
+	//    for use.
+	//
+	//    * CREATING - The new cache is being created.
+	//
+	//    * DELETING - An existing cache is being deleted.
+	//
+	//    * UPDATING - The cache is undergoing a customer-initiated update.
+	//
+	//    * FAILED - An existing cache has experienced an unrecoverable failure.
+	//    When creating a new cache, the cache was unable to be created.
+	Lifecycle *string `type:"string" enum:"FileCacheLifecycle"`
+
+	// The configuration for the Amazon File Cache resource.
+	LustreConfiguration *FileCacheLustreConfiguration `type:"structure"`
+
+	// A list of network interface IDs.
+	NetworkInterfaceIds []*string `type:"list"`
+
+	// An Amazon Web Services account ID. This ID is a 12-digit number that you
+	// use to construct Amazon Resource Names (ARNs) for resources.
+	OwnerId *string `min:"12" type:"string"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ResourceARN *string `min:"8" type:"string"`
+
+	// The storage capacity of the cache in gibibytes (GiB).
+	StorageCapacity *int64 `type:"integer"`
+
+	// A list of subnet IDs that the cache will be accessible from. You can specify
+	// only one subnet ID in a call to the CreateFileCache operation.
+	SubnetIds []*string `type:"list"`
+
+	// The ID of your virtual private cloud (VPC). For more information, see VPC
+	// and subnets (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
+	// in the Amazon VPC User Guide.
+	VpcId *string `min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCache) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCache) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FileCache) SetCreationTime(v time.Time) *FileCache {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDNSName sets the DNSName field's value.
+func (s *FileCache) SetDNSName(v string) *FileCache {
+	s.DNSName = &v
+	return s
+}
+
+// SetDataRepositoryAssociationIds sets the DataRepositoryAssociationIds field's value.
+func (s *FileCache) SetDataRepositoryAssociationIds(v []*string) *FileCache {
+	s.DataRepositoryAssociationIds = v
+	return s
+}
+
+// SetFailureDetails sets the FailureDetails field's value.
+func (s *FileCache) SetFailureDetails(v *FileCacheFailureDetails) *FileCache {
+	s.FailureDetails = v
+	return s
+}
+
+// SetFileCacheId sets the FileCacheId field's value.
+func (s *FileCache) SetFileCacheId(v string) *FileCache {
+	s.FileCacheId = &v
+	return s
+}
+
+// SetFileCacheType sets the FileCacheType field's value.
+func (s *FileCache) SetFileCacheType(v string) *FileCache {
+	s.FileCacheType = &v
+	return s
+}
+
+// SetFileCacheTypeVersion sets the FileCacheTypeVersion field's value.
+func (s *FileCache) SetFileCacheTypeVersion(v string) *FileCache {
+	s.FileCacheTypeVersion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *FileCache) SetKmsKeyId(v string) *FileCache {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *FileCache) SetLifecycle(v string) *FileCache {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetLustreConfiguration sets the LustreConfiguration field's value.
+func (s *FileCache) SetLustreConfiguration(v *FileCacheLustreConfiguration) *FileCache {
+	s.LustreConfiguration = v
+	return s
+}
+
+// SetNetworkInterfaceIds sets the NetworkInterfaceIds field's value.
+func (s *FileCache) SetNetworkInterfaceIds(v []*string) *FileCache {
+	s.NetworkInterfaceIds = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *FileCache) SetOwnerId(v string) *FileCache {
+	s.OwnerId = &v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *FileCache) SetResourceARN(v string) *FileCache {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetStorageCapacity sets the StorageCapacity field's value.
+func (s *FileCache) SetStorageCapacity(v int64) *FileCache {
+	s.StorageCapacity = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *FileCache) SetSubnetIds(v []*string) *FileCache {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *FileCache) SetVpcId(v string) *FileCache {
+	s.VpcId = &v
+	return s
+}
+
+// The response object for the Amazon File Cache resource being created in the
+// CreateFileCache operation.
+type FileCacheCreating struct {
+	_ struct{} `type:"structure"`
+
+	// A boolean flag indicating whether tags for the cache should be copied to
+	// data repository associations.
+	CopyTagsToDataRepositoryAssociations *bool `type:"boolean"`
+
+	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
+	// also known as Unix time.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Domain Name System (DNS) name for the cache.
+	DNSName *string `min:"16" type:"string"`
+
+	// A list of IDs of data repository associations that are associated with this
+	// cache.
+	DataRepositoryAssociationIds []*string `type:"list"`
+
+	// A structure providing details of any failures that occurred.
+	FailureDetails *FileCacheFailureDetails `type:"structure"`
+
+	// The system-generated, unique ID of the cache.
+	FileCacheId *string `min:"11" type:"string"`
+
+	// The type of cache, which must be LUSTRE.
+	FileCacheType *string `type:"string" enum:"FileCacheType"`
+
+	// The Lustre version of the cache, which must be 2.12.
+	FileCacheTypeVersion *string `min:"1" type:"string"`
+
+	// Specifies the ID of the Key Management Service (KMS) key to use for encrypting
+	// data on an Amazon File Cache. If a KmsKeyId isn't specified, the Amazon FSx-managed
+	// KMS key for your account is used. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// in the Key Management Service API Reference.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// The lifecycle status of the cache. The following are the possible values
+	// and what they mean:
+	//
+	//    * AVAILABLE - The cache is in a healthy state, and is reachable and available
+	//    for use.
+	//
+	//    * CREATING - The new cache is being created.
+	//
+	//    * DELETING - An existing cache is being deleted.
+	//
+	//    * UPDATING - The cache is undergoing a customer-initiated update.
+	//
+	//    * FAILED - An existing cache has experienced an unrecoverable failure.
+	//    When creating a new cache, the cache was unable to be created.
+	Lifecycle *string `type:"string" enum:"FileCacheLifecycle"`
+
+	// The configuration for the Amazon File Cache resource.
+	LustreConfiguration *FileCacheLustreConfiguration `type:"structure"`
+
+	// A list of network interface IDs.
+	NetworkInterfaceIds []*string `type:"list"`
+
+	// An Amazon Web Services account ID. This ID is a 12-digit number that you
+	// use to construct Amazon Resource Names (ARNs) for resources.
+	OwnerId *string `min:"12" type:"string"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ResourceARN *string `min:"8" type:"string"`
+
+	// The storage capacity of the cache in gibibytes (GiB).
+	StorageCapacity *int64 `type:"integer"`
+
+	// A list of subnet IDs that the cache will be accessible from. You can specify
+	// only one subnet ID in a call to the CreateFileCache operation.
+	SubnetIds []*string `type:"list"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The ID of your virtual private cloud (VPC). For more information, see VPC
+	// and subnets (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
+	// in the Amazon VPC User Guide.
+	VpcId *string `min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheCreating) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheCreating) GoString() string {
+	return s.String()
+}
+
+// SetCopyTagsToDataRepositoryAssociations sets the CopyTagsToDataRepositoryAssociations field's value.
+func (s *FileCacheCreating) SetCopyTagsToDataRepositoryAssociations(v bool) *FileCacheCreating {
+	s.CopyTagsToDataRepositoryAssociations = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FileCacheCreating) SetCreationTime(v time.Time) *FileCacheCreating {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDNSName sets the DNSName field's value.
+func (s *FileCacheCreating) SetDNSName(v string) *FileCacheCreating {
+	s.DNSName = &v
+	return s
+}
+
+// SetDataRepositoryAssociationIds sets the DataRepositoryAssociationIds field's value.
+func (s *FileCacheCreating) SetDataRepositoryAssociationIds(v []*string) *FileCacheCreating {
+	s.DataRepositoryAssociationIds = v
+	return s
+}
+
+// SetFailureDetails sets the FailureDetails field's value.
+func (s *FileCacheCreating) SetFailureDetails(v *FileCacheFailureDetails) *FileCacheCreating {
+	s.FailureDetails = v
+	return s
+}
+
+// SetFileCacheId sets the FileCacheId field's value.
+func (s *FileCacheCreating) SetFileCacheId(v string) *FileCacheCreating {
+	s.FileCacheId = &v
+	return s
+}
+
+// SetFileCacheType sets the FileCacheType field's value.
+func (s *FileCacheCreating) SetFileCacheType(v string) *FileCacheCreating {
+	s.FileCacheType = &v
+	return s
+}
+
+// SetFileCacheTypeVersion sets the FileCacheTypeVersion field's value.
+func (s *FileCacheCreating) SetFileCacheTypeVersion(v string) *FileCacheCreating {
+	s.FileCacheTypeVersion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *FileCacheCreating) SetKmsKeyId(v string) *FileCacheCreating {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *FileCacheCreating) SetLifecycle(v string) *FileCacheCreating {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetLustreConfiguration sets the LustreConfiguration field's value.
+func (s *FileCacheCreating) SetLustreConfiguration(v *FileCacheLustreConfiguration) *FileCacheCreating {
+	s.LustreConfiguration = v
+	return s
+}
+
+// SetNetworkInterfaceIds sets the NetworkInterfaceIds field's value.
+func (s *FileCacheCreating) SetNetworkInterfaceIds(v []*string) *FileCacheCreating {
+	s.NetworkInterfaceIds = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *FileCacheCreating) SetOwnerId(v string) *FileCacheCreating {
+	s.OwnerId = &v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *FileCacheCreating) SetResourceARN(v string) *FileCacheCreating {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetStorageCapacity sets the StorageCapacity field's value.
+func (s *FileCacheCreating) SetStorageCapacity(v int64) *FileCacheCreating {
+	s.StorageCapacity = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *FileCacheCreating) SetSubnetIds(v []*string) *FileCacheCreating {
+	s.SubnetIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *FileCacheCreating) SetTags(v []*Tag) *FileCacheCreating {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *FileCacheCreating) SetVpcId(v string) *FileCacheCreating {
+	s.VpcId = &v
+	return s
+}
+
+// The configuration for a data repository association (DRA) to be created during
+// the Amazon File Cache resource creation. The DRA links the cache to either
+// an Amazon S3 bucket or prefix, or a Network File System (NFS) data repository
+// that supports the NFSv3 protocol.
+//
+// The DRA does not support automatic import or automatic export.
+type FileCacheDataRepositoryAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The path to the S3 or NFS data repository that links to the cache. You must
+	// provide one of the following paths:
+	//
+	//    * The path can be an NFS data repository that links to the cache. The
+	//    path can be in one of two formats: If you are not using the DataRepositorySubdirectories
+	//    parameter, the path is to an NFS Export directory (or one of its subdirectories)
+	//    in the format nsf://nfs-domain-name/exportpath. You can therefore link
+	//    a single NFS Export to a single data repository association. If you are
+	//    using the DataRepositorySubdirectories parameter, the path is the domain
+	//    name of the NFS file system in the format nfs://filer-domain-name, which
+	//    indicates the root of the subdirectories specified with the DataRepositorySubdirectories
+	//    parameter.
+	//
+	//    * The path can be an S3 bucket or prefix in the format s3://myBucket/myPrefix/.
+	//
+	// DataRepositoryPath is a required field
+	DataRepositoryPath *string `min:"3" type:"string" required:"true"`
+
+	// A list of NFS Exports that will be linked with this data repository association.
+	// The Export paths are in the format /exportpath1. To use this parameter, you
+	// must configure DataRepositoryPath as the domain name of the NFS file system.
+	// The NFS file system domain name in effect is the root of the subdirectories.
+	// Note that DataRepositorySubdirectories is not supported for S3 data repositories.
+	DataRepositorySubdirectories []*string `type:"list"`
+
+	// A path on the cache that points to a high-level directory (such as /ns1/)
+	// or subdirectory (such as /ns1/subdir/) that will be mapped 1-1 with DataRepositoryPath.
+	// The leading forward slash in the name is required. Two data repository associations
+	// cannot have overlapping cache paths. For example, if a data repository is
+	// associated with cache path /ns1/, then you cannot link another data repository
+	// with cache path /ns1/ns2.
+	//
+	// This path specifies where in your cache files will be exported from. This
+	// cache directory can be linked to only one data repository, and no data repository
+	// other can be linked to the directory.
+	//
+	// The cache path can only be set to root (/) on an NFS DRA when DataRepositorySubdirectories
+	// is specified. If you specify root (/) as the cache path, you can create only
+	// one DRA on the cache.
+	//
+	// The cache path cannot be set to root (/) for an S3 DRA.
+	//
+	// FileCachePath is a required field
+	FileCachePath *string `min:"1" type:"string" required:"true"`
+
+	// The configuration for a data repository association that links an Amazon
+	// File Cache resource to an NFS data repository.
+	NFS *FileCacheNFSConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheDataRepositoryAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheDataRepositoryAssociation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileCacheDataRepositoryAssociation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileCacheDataRepositoryAssociation"}
+	if s.DataRepositoryPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataRepositoryPath"))
+	}
+	if s.DataRepositoryPath != nil && len(*s.DataRepositoryPath) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DataRepositoryPath", 3))
+	}
+	if s.FileCachePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileCachePath"))
+	}
+	if s.FileCachePath != nil && len(*s.FileCachePath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileCachePath", 1))
+	}
+	if s.NFS != nil {
+		if err := s.NFS.Validate(); err != nil {
+			invalidParams.AddNested("NFS", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataRepositoryPath sets the DataRepositoryPath field's value.
+func (s *FileCacheDataRepositoryAssociation) SetDataRepositoryPath(v string) *FileCacheDataRepositoryAssociation {
+	s.DataRepositoryPath = &v
+	return s
+}
+
+// SetDataRepositorySubdirectories sets the DataRepositorySubdirectories field's value.
+func (s *FileCacheDataRepositoryAssociation) SetDataRepositorySubdirectories(v []*string) *FileCacheDataRepositoryAssociation {
+	s.DataRepositorySubdirectories = v
+	return s
+}
+
+// SetFileCachePath sets the FileCachePath field's value.
+func (s *FileCacheDataRepositoryAssociation) SetFileCachePath(v string) *FileCacheDataRepositoryAssociation {
+	s.FileCachePath = &v
+	return s
+}
+
+// SetNFS sets the NFS field's value.
+func (s *FileCacheDataRepositoryAssociation) SetNFS(v *FileCacheNFSConfiguration) *FileCacheDataRepositoryAssociation {
+	s.NFS = v
+	return s
+}
+
+// A structure providing details of any failures that occurred.
+type FileCacheFailureDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A message describing any failures that occurred.
+	Message *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheFailureDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheFailureDetails) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *FileCacheFailureDetails) SetMessage(v string) *FileCacheFailureDetails {
+	s.Message = &v
+	return s
+}
+
+// The configuration for the Amazon File Cache resource.
+type FileCacheLustreConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The deployment type of the Amazon File Cache resource, which must be CACHE_1.
+	DeploymentType *string `type:"string" enum:"FileCacheLustreDeploymentType"`
+
+	// The configuration for Lustre logging used to write the enabled logging events
+	// for your Amazon File Cache resource to Amazon CloudWatch Logs.
+	LogConfiguration *LustreLogConfiguration `type:"structure"`
+
+	// The configuration for a Lustre MDT (Metadata Target) storage volume.
+	MetadataConfiguration *FileCacheLustreMetadataConfiguration `type:"structure"`
+
+	// You use the MountName value when mounting the cache. If you pass a cache
+	// ID to the DescribeFileCaches operation, it returns the the MountName value
+	// as part of the cache's description.
+	MountName *string `min:"1" type:"string"`
+
+	// Per unit storage throughput represents the megabytes per second of read or
+	// write throughput per 1 tebibyte of storage provisioned. Cache throughput
+	// capacity is equal to Storage capacity (TiB) * PerUnitStorageThroughput (MB/s/TiB).
+	// The only supported value is 1000.
+	PerUnitStorageThroughput *int64 `min:"12" type:"integer"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheLustreConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheLustreConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *FileCacheLustreConfiguration) SetDeploymentType(v string) *FileCacheLustreConfiguration {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *FileCacheLustreConfiguration) SetLogConfiguration(v *LustreLogConfiguration) *FileCacheLustreConfiguration {
+	s.LogConfiguration = v
+	return s
+}
+
+// SetMetadataConfiguration sets the MetadataConfiguration field's value.
+func (s *FileCacheLustreConfiguration) SetMetadataConfiguration(v *FileCacheLustreMetadataConfiguration) *FileCacheLustreConfiguration {
+	s.MetadataConfiguration = v
+	return s
+}
+
+// SetMountName sets the MountName field's value.
+func (s *FileCacheLustreConfiguration) SetMountName(v string) *FileCacheLustreConfiguration {
+	s.MountName = &v
+	return s
+}
+
+// SetPerUnitStorageThroughput sets the PerUnitStorageThroughput field's value.
+func (s *FileCacheLustreConfiguration) SetPerUnitStorageThroughput(v int64) *FileCacheLustreConfiguration {
+	s.PerUnitStorageThroughput = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *FileCacheLustreConfiguration) SetWeeklyMaintenanceStartTime(v string) *FileCacheLustreConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// The configuration for a Lustre MDT (Metadata Target) storage volume. The
+// metadata on Amazon File Cache is managed by a Lustre Metadata Server (MDS)
+// while the actual metadata is persisted on an MDT.
+type FileCacheLustreMetadataConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The storage capacity of the Lustre MDT (Metadata Target) storage volume in
+	// gibibytes (GiB). The only supported value is 2400 GiB.
+	//
+	// StorageCapacity is a required field
+	StorageCapacity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheLustreMetadataConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheLustreMetadataConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileCacheLustreMetadataConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileCacheLustreMetadataConfiguration"}
+	if s.StorageCapacity == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageCapacity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStorageCapacity sets the StorageCapacity field's value.
+func (s *FileCacheLustreMetadataConfiguration) SetStorageCapacity(v int64) *FileCacheLustreMetadataConfiguration {
+	s.StorageCapacity = &v
+	return s
+}
+
+// The configuration for an NFS data repository association (DRA) created during
+// the creation of the Amazon File Cache resource.
+type FileCacheNFSConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of up to 2 IP addresses of DNS servers used to resolve the NFS file
+	// system domain name. The provided IP addresses can either be the IP addresses
+	// of a DNS forwarder or resolver that the customer manages and runs inside
+	// the customer VPC, or the IP addresses of the on-premises DNS servers.
+	DnsIps []*string `type:"list"`
+
+	// The version of the NFS (Network File System) protocol of the NFS data repository.
+	// The only supported value is NFS3, which indicates that the data repository
+	// must support the NFSv3 protocol.
+	//
+	// Version is a required field
+	Version *string `type:"string" required:"true" enum:"NfsVersion"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheNFSConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheNFSConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileCacheNFSConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileCacheNFSConfiguration"}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDnsIps sets the DnsIps field's value.
+func (s *FileCacheNFSConfiguration) SetDnsIps(v []*string) *FileCacheNFSConfiguration {
+	s.DnsIps = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *FileCacheNFSConfiguration) SetVersion(v string) *FileCacheNFSConfiguration {
+	s.Version = &v
+	return s
+}
+
+// No caches were found based upon supplied parameters.
+type FileCacheNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileCacheNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorFileCacheNotFound(v protocol.ResponseMetadata) error {
+	return &FileCacheNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *FileCacheNotFound) Code() string {
+	return "FileCacheNotFound"
+}
+
+// Message returns the exception's message.
+func (s *FileCacheNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *FileCacheNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *FileCacheNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *FileCacheNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *FileCacheNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // A description of a specific Amazon FSx file system.
 type FileSystem struct {
 	_ struct{} `type:"structure"`
 
 	// A list of administrative actions for the file system that are in process
 	// or waiting to be processed. Administrative actions describe changes to the
-	// Windows file system that you have initiated using the UpdateFileSystem action.
+	// Amazon FSx system that you have initiated using the UpdateFileSystem operation.
 	AdministrativeActions []*AdministrativeAction `type:"list"`
 
 	// The time that the file system was created, in seconds (since 1970-01-01T00:00:00Z),
 	// also known as Unix time.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The DNS name for the file system.
+	// The Domain Name System (DNS) name for the file system.
 	DNSName *string `min:"16" type:"string"`
 
-	// A structure providing details of any failures that occur when creating the
-	// file system has failed.
+	// A structure providing details of any failures that occurred.
 	FailureDetails *FileSystemFailureDetails `type:"structure"`
 
 	// The system-generated, unique 17-digit ID of the file system.
 	FileSystemId *string `min:"11" type:"string"`
 
-	// The type of Amazon FSx file system, either LUSTRE or WINDOWS.
+	// The type of Amazon FSx file system, which can be LUSTRE, WINDOWS, ONTAP,
+	// or OPENZFS.
 	FileSystemType *string `type:"string" enum:"FileSystemType"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// file system's data for Amazon FSx for Windows File Server file systems and
-	// persistent Amazon FSx for Lustre file systems at rest. In either case, if
-	// not specified, the Amazon FSx managed key is used. The scratch Amazon FSx
-	// for Lustre file systems are always encrypted at rest using Amazon FSx managed
-	// keys. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
-	// in the AWS Key Management Service API Reference.
+	// The Lustre version of the Amazon FSx for Lustre file system, which can be
+	// 2.10, 2.12, or 2.15.
+	FileSystemTypeVersion *string `min:"1" type:"string"`
+
+	// The ID of the Key Management Service (KMS) key used to encrypt Amazon FSx
+	// file system data. Used as follows with Amazon FSx file system types:
+	//
+	//    * Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2 deployment types
+	//    only. SCRATCH_1 and SCRATCH_2 types are encrypted using the Amazon FSx
+	//    service KMS key for your account.
+	//
+	//    * Amazon FSx for NetApp ONTAP
+	//
+	//    * Amazon FSx for OpenZFS
+	//
+	//    * Amazon FSx for Windows File Server
 	KmsKeyId *string `min:"1" type:"string"`
 
-	// The lifecycle status of the file system, following are the possible values
+	// The lifecycle status of the file system. The following are the possible values
 	// and what they mean:
 	//
 	//    * AVAILABLE - The file system is in a healthy state, and is reachable
@@ -6291,20 +16073,22 @@ type FileSystem struct {
 	//    When creating a new file system, Amazon FSx was unable to create the file
 	//    system.
 	//
-	//    * MISCONFIGURED indicates that the file system is in a failed but recoverable
-	//    state.
+	//    * MISCONFIGURED - The file system is in a failed but recoverable state.
 	//
-	//    * UPDATING indicates that the file system is undergoing a customer initiated
-	//    update.
+	//    * MISCONFIGURED_UNAVAILABLE - (Amazon FSx for Windows File Server only)
+	//    The file system is currently unavailable due to a change in your Active
+	//    Directory configuration.
+	//
+	//    * UPDATING - The file system is undergoing a customer-initiated update.
 	Lifecycle *string `type:"string" enum:"FileSystemLifecycle"`
 
 	// The configuration for the Amazon FSx for Lustre file system.
 	LustreConfiguration *LustreFileSystemConfiguration `type:"structure"`
 
-	// The IDs of the elastic network interface from which a specific file system
+	// The IDs of the elastic network interfaces from which a specific file system
 	// is accessible. The elastic network interface is automatically created in
-	// the same VPC that the Amazon FSx file system was created in. For more information,
-	// see Elastic Network Interfaces (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html)
+	// the same virtual private cloud (VPC) that the Amazon FSx file system was
+	// created in. For more information, see Elastic Network Interfaces (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html)
 	// in the Amazon EC2 User Guide.
 	//
 	// For an Amazon FSx for Windows File Server file system, you can have one network
@@ -6312,52 +16096,69 @@ type FileSystem struct {
 	// than one.
 	NetworkInterfaceIds []*string `type:"list"`
 
-	// The AWS account that created the file system. If the file system was created
-	// by an AWS Identity and Access Management (IAM) user, the AWS account to which
-	// the IAM user belongs is the owner.
+	// The configuration for this Amazon FSx for NetApp ONTAP file system.
+	OntapConfiguration *OntapFileSystemConfiguration `type:"structure"`
+
+	// The configuration for this Amazon FSx for OpenZFS file system.
+	OpenZFSConfiguration *OpenZFSFileSystemConfiguration `type:"structure"`
+
+	// The Amazon Web Services account that created the file system. If the file
+	// system was created by a user in IAM Identity Center, the Amazon Web Services
+	// account to which the IAM user belongs is the owner.
 	OwnerId *string `min:"12" type:"string"`
 
-	// The Amazon Resource Name (ARN) for the file system resource.
+	// The Amazon Resource Name (ARN) of the file system resource.
 	ResourceARN *string `min:"8" type:"string"`
 
 	// The storage capacity of the file system in gibibytes (GiB).
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) if the value
+	// of StorageCapacity is outside of the minimum or maximum values.
 	StorageCapacity *int64 `type:"integer"`
 
-	// The storage type of the file system. Valid values are SSD and HDD. If set
-	// to SSD, the file system uses solid state drive storage. If set to HDD, the
-	// file system uses hard disk drive storage.
+	// The type of storage the file system is using. If set to SSD, the file system
+	// uses solid state drive storage. If set to HDD, the file system uses hard
+	// disk drive storage.
 	StorageType *string `type:"string" enum:"StorageType"`
 
 	// Specifies the IDs of the subnets that the file system is accessible from.
-	// For Windows MULTI_AZ_1 file system deployment type, there are two subnet
-	// IDs, one for the preferred file server and one for the standby file server.
-	// The preferred file server subnet identified in the PreferredSubnetID property.
-	// All other file systems have only one subnet ID.
+	// For the Amazon FSx Windows and ONTAP MULTI_AZ_1 file system deployment type,
+	// there are two subnet IDs, one for the preferred file server and one for the
+	// standby file server. The preferred file server subnet identified in the PreferredSubnetID
+	// property. All other file systems have only one subnet ID.
 	//
-	// For Lustre file systems, and Single-AZ Windows file systems, this is the
-	// ID of the subnet that contains the endpoint for the file system. For MULTI_AZ_1
-	// Windows file systems, the endpoint for the file system is available in the
-	// PreferredSubnetID.
+	// For FSx for Lustre file systems, and Single-AZ Windows file systems, this
+	// is the ID of the subnet that contains the file system's endpoint. For MULTI_AZ_1
+	// Windows and ONTAP file systems, the file system endpoint is available in
+	// the PreferredSubnetID.
 	SubnetIds []*string `type:"list"`
 
 	// The tags to associate with the file system. For more information, see Tagging
-	// Your Amazon EC2 Resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
+	// your Amazon EC2 resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
 	// in the Amazon EC2 User Guide.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// The ID of the primary VPC for the file system.
+	// The ID of the primary virtual private cloud (VPC) for the file system.
 	VpcId *string `min:"12" type:"string"`
 
-	// The configuration for this Microsoft Windows file system.
+	// The configuration for this Amazon FSx for Windows File Server file system.
 	WindowsConfiguration *WindowsFileSystemConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystem) GoString() string {
 	return s.String()
 }
@@ -6398,6 +16199,12 @@ func (s *FileSystem) SetFileSystemType(v string) *FileSystem {
 	return s
 }
 
+// SetFileSystemTypeVersion sets the FileSystemTypeVersion field's value.
+func (s *FileSystem) SetFileSystemTypeVersion(v string) *FileSystem {
+	s.FileSystemTypeVersion = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *FileSystem) SetKmsKeyId(v string) *FileSystem {
 	s.KmsKeyId = &v
@@ -6419,6 +16226,18 @@ func (s *FileSystem) SetLustreConfiguration(v *LustreFileSystemConfiguration) *F
 // SetNetworkInterfaceIds sets the NetworkInterfaceIds field's value.
 func (s *FileSystem) SetNetworkInterfaceIds(v []*string) *FileSystem {
 	s.NetworkInterfaceIds = v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *FileSystem) SetOntapConfiguration(v *OntapFileSystemConfiguration) *FileSystem {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetOpenZFSConfiguration sets the OpenZFSConfiguration field's value.
+func (s *FileSystem) SetOpenZFSConfiguration(v *OpenZFSFileSystemConfiguration) *FileSystem {
+	s.OpenZFSConfiguration = v
 	return s
 }
 
@@ -6470,21 +16289,117 @@ func (s *FileSystem) SetWindowsConfiguration(v *WindowsFileSystemConfiguration) 
 	return s
 }
 
-// A structure providing details of any failures that occur when creating the
-// file system has failed.
+// An Amazon FSx for NetApp ONTAP file system has two endpoints that are used
+// to access data or to manage the file system using the NetApp ONTAP CLI, REST
+// API, or NetApp SnapMirror. They are the Management and Intercluster endpoints.
+type FileSystemEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The file system's DNS name. You can mount your file system using its DNS
+	// name.
+	DNSName *string `min:"16" type:"string"`
+
+	// IP addresses of the file system endpoint.
+	IpAddresses []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSystemEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSystemEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetDNSName sets the DNSName field's value.
+func (s *FileSystemEndpoint) SetDNSName(v string) *FileSystemEndpoint {
+	s.DNSName = &v
+	return s
+}
+
+// SetIpAddresses sets the IpAddresses field's value.
+func (s *FileSystemEndpoint) SetIpAddresses(v []*string) *FileSystemEndpoint {
+	s.IpAddresses = v
+	return s
+}
+
+// An Amazon FSx for NetApp ONTAP file system has the following endpoints that
+// are used to access data or to manage the file system using the NetApp ONTAP
+// CLI, REST API, or NetApp SnapMirror.
+type FileSystemEndpoints struct {
+	_ struct{} `type:"structure"`
+
+	// An endpoint for managing your file system by setting up NetApp SnapMirror
+	// with other ONTAP systems.
+	Intercluster *FileSystemEndpoint `type:"structure"`
+
+	// An endpoint for managing your file system using the NetApp ONTAP CLI and
+	// NetApp ONTAP API.
+	Management *FileSystemEndpoint `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSystemEndpoints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSystemEndpoints) GoString() string {
+	return s.String()
+}
+
+// SetIntercluster sets the Intercluster field's value.
+func (s *FileSystemEndpoints) SetIntercluster(v *FileSystemEndpoint) *FileSystemEndpoints {
+	s.Intercluster = v
+	return s
+}
+
+// SetManagement sets the Management field's value.
+func (s *FileSystemEndpoints) SetManagement(v *FileSystemEndpoint) *FileSystemEndpoints {
+	s.Management = v
+	return s
+}
+
+// A structure providing details of any failures that occurred.
 type FileSystemFailureDetails struct {
 	_ struct{} `type:"structure"`
 
-	// A message describing any failures that occurred during file system creation.
+	// A message describing any failures that occurred.
 	Message *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemFailureDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemFailureDetails) GoString() string {
 	return s.String()
 }
@@ -6504,12 +16419,20 @@ type FileSystemNotFound struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FileSystemNotFound) GoString() string {
 	return s.String()
 }
@@ -6565,12 +16488,20 @@ type Filter struct {
 	Values []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -6603,12 +16534,20 @@ type IncompatibleParameterError struct {
 	Parameter *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncompatibleParameterError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncompatibleParameterError) GoString() string {
 	return s.String()
 }
@@ -6661,12 +16600,20 @@ type IncompatibleRegionForMultiAZ struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncompatibleRegionForMultiAZ) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncompatibleRegionForMultiAZ) GoString() string {
 	return s.String()
 }
@@ -6718,12 +16665,20 @@ type InternalServerError struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerError) GoString() string {
 	return s.String()
 }
@@ -6766,8 +16721,72 @@ func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The AWS Key Management Service (AWS KMS) key of the destination backup is
-// invalid.
+// You have filtered the response to a data repository type that is not supported.
+type InvalidDataRepositoryType struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidDataRepositoryType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidDataRepositoryType) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidDataRepositoryType(v protocol.ResponseMetadata) error {
+	return &InvalidDataRepositoryType{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidDataRepositoryType) Code() string {
+	return "InvalidDataRepositoryType"
+}
+
+// Message returns the exception's message.
+func (s *InvalidDataRepositoryType) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidDataRepositoryType) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidDataRepositoryType) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidDataRepositoryType) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidDataRepositoryType) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The Key Management Service (KMS) key of the destination backup is not valid.
 type InvalidDestinationKmsKey struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6776,12 +16795,20 @@ type InvalidDestinationKmsKey struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDestinationKmsKey) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDestinationKmsKey) GoString() string {
 	return s.String()
 }
@@ -6833,12 +16860,20 @@ type InvalidExportPath struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidExportPath) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidExportPath) GoString() string {
 	return s.String()
 }
@@ -6890,12 +16925,20 @@ type InvalidImportPath struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidImportPath) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidImportPath) GoString() string {
 	return s.String()
 }
@@ -6938,38 +16981,38 @@ func (s *InvalidImportPath) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// One or more network settings specified in the request are invalid. InvalidVpcId
-// means that the ID passed for the virtual private cloud (VPC) is invalid.
-// InvalidSubnetIds returns the list of IDs for subnets that are either invalid
-// or not part of the VPC specified. InvalidSecurityGroupIds returns the list
-// of IDs for security groups that are either invalid or not part of the VPC
-// specified.
+// One or more network settings specified in the request are invalid.
 type InvalidNetworkSettings struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The ID of your Amazon EC2 security group. This ID is used to control network
-	// access to the endpoint that Amazon FSx creates on your behalf in each subnet.
-	// For more information, see Amazon EC2 Security Groups for Linux Instances
-	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
-	// in the Amazon EC2 User Guide.
+	// The route table ID is either invalid or not part of the VPC specified.
+	InvalidRouteTableId *string `min:"12" type:"string"`
+
+	// The security group ID is either invalid or not part of the VPC specified.
 	InvalidSecurityGroupId *string `min:"11" type:"string"`
 
-	// The ID for a subnet. A subnet is a range of IP addresses in your virtual
-	// private cloud (VPC). For more information, see VPC and Subnets (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
-	// in the Amazon VPC User Guide.
+	// The subnet ID that is either invalid or not part of the VPC specified.
 	InvalidSubnetId *string `min:"15" type:"string"`
 
-	// A detailed error message.
+	// Error message explaining what's wrong with network settings.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNetworkSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNetworkSettings) GoString() string {
 	return s.String()
 }
@@ -7022,12 +17065,20 @@ type InvalidPerUnitStorageThroughput struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPerUnitStorageThroughput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPerUnitStorageThroughput) GoString() string {
 	return s.String()
 }
@@ -7070,8 +17121,8 @@ func (s *InvalidPerUnitStorageThroughput) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Region provided for Source Region is invalid or is in a different AWS
-// partition.
+// The Region provided for SourceRegion is not valid or is in a different Amazon
+// Web Services partition.
 type InvalidRegion struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7080,12 +17131,20 @@ type InvalidRegion struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRegion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRegion) GoString() string {
 	return s.String()
 }
@@ -7128,7 +17187,7 @@ func (s *InvalidRegion) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The AWS Key Management Service (AWS KMS) key of the source backup is invalid.
+// The Key Management Service (KMS) key of the source backup is not valid.
 type InvalidSourceKmsKey struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7137,12 +17196,20 @@ type InvalidSourceKmsKey struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSourceKmsKey) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSourceKmsKey) GoString() string {
 	return s.String()
 }
@@ -7185,6 +17252,38 @@ func (s *InvalidSourceKmsKey) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes why a resource lifecycle state changed.
+type LifecycleTransitionReason struct {
+	_ struct{} `type:"structure"`
+
+	// A detailed error message.
+	Message *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecycleTransitionReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecycleTransitionReason) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *LifecycleTransitionReason) SetMessage(v string) *LifecycleTransitionReason {
+	s.Message = &v
+	return s
+}
+
 // The request object for ListTagsForResource operation.
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
@@ -7206,12 +17305,20 @@ type ListTagsForResourceInput struct {
 	ResourceARN *string `min:"8" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -7268,12 +17375,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -7294,18 +17409,18 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type LustreFileSystemConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The number of days to retain automatic backups. Setting this to 0 disables
-	// automatic backups. You can retain automatic backups for a maximum of 90 days.
-	// The default is 0.
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
-	// A boolean flag indicating whether tags on the file system should be copied
-	// to backups. If it's set to true, all tags on the file system are copied to
-	// all automatic backups and any user-initiated backups where the user doesn't
-	// specify any tags. If this value is true, and you specify one or more tags,
-	// only the specified tags are copied to backups. If you specify one or more
-	// tags when creating a user-initiated backup, no tags are copied from the file
-	// system, regardless of this value. (Default = false)
+	// A boolean flag indicating whether tags on the file system are copied to backups.
+	// If it's set to true, all tags on the file system are copied to all automatic
+	// backups and any user-initiated backups where the user doesn't specify any
+	// tags. If this value is true, and you specify one or more tags, only the specified
+	// tags are copied to backups. If you specify one or more tags when creating
+	// a user-initiated backup, no tags are copied from the file system, regardless
+	// of this value. (Default = false)
 	CopyTagsToBackups *bool `type:"boolean"`
 
 	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
@@ -7325,9 +17440,12 @@ type LustreFileSystemConfiguration struct {
 
 	// The data repository configuration object for Lustre file systems returned
 	// in the response of the CreateFileSystem operation.
+	//
+	// This data type is not supported on file systems with a data repository association.
+	// For file systems with a data repository association, see .
 	DataRepositoryConfiguration *DataRepositoryConfiguration `type:"structure"`
 
-	// The deployment type of the FSX for Lustre file system. Scratch deployment
+	// The deployment type of the FSx for Lustre file system. Scratch deployment
 	// type is designed for temporary storage and shorter-term processing of data.
 	//
 	// SCRATCH_1 and SCRATCH_2 deployment types are best suited for when you need
@@ -7335,48 +17453,74 @@ type LustreFileSystemConfiguration struct {
 	// type provides in-transit encryption of data and higher burst throughput capacity
 	// than SCRATCH_1.
 	//
-	// The PERSISTENT_1 deployment type is used for longer-term storage and workloads
-	// and encryption of data in transit. To learn more about deployment types,
-	// see FSx for Lustre Deployment Options (https://docs.aws.amazon.com/fsx/latest/LustreGuide/lustre-deployment-types.html).
-	// (Default = SCRATCH_1)
+	// The PERSISTENT_1 and PERSISTENT_2 deployment type is used for longer-term
+	// storage and workloads and encryption of data in transit. PERSISTENT_2 offers
+	// higher PerUnitStorageThroughput (up to 1000 MB/s/TiB) along with a lower
+	// minimum storage capacity requirement (600 GiB). To learn more about FSx for
+	// Lustre deployment types, see FSx for Lustre deployment options (https://docs.aws.amazon.com/fsx/latest/LustreGuide/lustre-deployment-types.html).
+	//
+	// The default is SCRATCH_1.
 	DeploymentType *string `type:"string" enum:"LustreDeploymentType"`
 
 	// The type of drive cache used by PERSISTENT_1 file systems that are provisioned
-	// with HDD storage devices. This parameter is required when storage type is
-	// HDD. Set to READ, improve the performance for frequently accessed files and
-	// allows 20% of the total storage capacity of the file system to be cached.
+	// with HDD storage devices. This parameter is required when StorageType is
+	// HDD. When set to READ the file system has an SSD storage cache that is sized
+	// to 20% of the file system's storage capacity. This improves the performance
+	// for frequently accessed files by caching up to 20% of the total storage capacity.
 	//
 	// This parameter is required when StorageType is set to HDD.
 	DriveCacheType *string `type:"string" enum:"DriveCacheType"`
 
+	// The Lustre logging configuration. Lustre logging writes the enabled log events
+	// for your file system to Amazon CloudWatch Logs.
+	LogConfiguration *LustreLogConfiguration `type:"structure"`
+
 	// You use the MountName value when mounting the file system.
 	//
-	// For the SCRATCH_1 deployment type, this value is always "fsx". For SCRATCH_2
-	// and PERSISTENT_1 deployment types, this value is a string that is unique
-	// within an AWS Region.
+	// For the SCRATCH_1 deployment type, this value is always "fsx". For SCRATCH_2,
+	// PERSISTENT_1, and PERSISTENT_2 deployment types, this value is a string that
+	// is unique within an Amazon Web Services Region.
 	MountName *string `min:"1" type:"string"`
 
 	// Per unit storage throughput represents the megabytes per second of read or
 	// write throughput per 1 tebibyte of storage provisioned. File system throughput
 	// capacity is equal to Storage capacity (TiB) * PerUnitStorageThroughput (MB/s/TiB).
-	// This option is only valid for PERSISTENT_1 deployment types.
+	// This option is only valid for PERSISTENT_1 and PERSISTENT_2 deployment types.
 	//
-	// Valid values for SSD storage: 50, 100, 200. Valid values for HDD storage:
-	// 12, 40.
+	// Valid values:
+	//
+	//    * For PERSISTENT_1 SSD storage: 50, 100, 200.
+	//
+	//    * For PERSISTENT_1 HDD storage: 12, 40.
+	//
+	//    * For PERSISTENT_2 SSD storage: 125, 250, 500, 1000.
 	PerUnitStorageThroughput *int64 `min:"12" type:"integer"`
 
+	// The Lustre root squash configuration for an Amazon FSx for Lustre file system.
+	// When enabled, root squash restricts root-level access from clients that try
+	// to access your file system as a root user.
+	RootSquashConfiguration *LustreRootSquashConfiguration `type:"structure"`
+
 	// The preferred start time to perform weekly maintenance, formatted d:HH:MM
-	// in the UTC time zone. d is the weekday number, from 1 through 7, beginning
+	// in the UTC time zone. Here, d is the weekday number, from 1 through 7, beginning
 	// with Monday and ending with Sunday.
 	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LustreFileSystemConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LustreFileSystemConfiguration) GoString() string {
 	return s.String()
 }
@@ -7423,6 +17567,12 @@ func (s *LustreFileSystemConfiguration) SetDriveCacheType(v string) *LustreFileS
 	return s
 }
 
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *LustreFileSystemConfiguration) SetLogConfiguration(v *LustreLogConfiguration) *LustreFileSystemConfiguration {
+	s.LogConfiguration = v
+	return s
+}
+
 // SetMountName sets the MountName field's value.
 func (s *LustreFileSystemConfiguration) SetMountName(v string) *LustreFileSystemConfiguration {
 	s.MountName = &v
@@ -7435,10 +17585,314 @@ func (s *LustreFileSystemConfiguration) SetPerUnitStorageThroughput(v int64) *Lu
 	return s
 }
 
+// SetRootSquashConfiguration sets the RootSquashConfiguration field's value.
+func (s *LustreFileSystemConfiguration) SetRootSquashConfiguration(v *LustreRootSquashConfiguration) *LustreFileSystemConfiguration {
+	s.RootSquashConfiguration = v
+	return s
+}
+
 // SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
 func (s *LustreFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string) *LustreFileSystemConfiguration {
 	s.WeeklyMaintenanceStartTime = &v
 	return s
+}
+
+// The configuration for Lustre logging used to write the enabled logging events
+// for your Amazon FSx for Lustre file system or Amazon File Cache resource
+// to Amazon CloudWatch Logs.
+type LustreLogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that specifies the destination of the logs.
+	// The destination can be any Amazon CloudWatch Logs log group ARN. The destination
+	// ARN must be in the same Amazon Web Services partition, Amazon Web Services
+	// Region, and Amazon Web Services account as your Amazon FSx file system.
+	Destination *string `min:"8" type:"string"`
+
+	// The data repository events that are logged by Amazon FSx.
+	//
+	//    * WARN_ONLY - only warning events are logged.
+	//
+	//    * ERROR_ONLY - only error events are logged.
+	//
+	//    * WARN_ERROR - both warning events and error events are logged.
+	//
+	//    * DISABLED - logging of data repository events is turned off.
+	//
+	// Note that Amazon File Cache uses a default setting of WARN_ERROR, which can't
+	// be changed.
+	//
+	// Level is a required field
+	Level *string `type:"string" required:"true" enum:"LustreAccessAuditLogLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LustreLogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LustreLogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *LustreLogConfiguration) SetDestination(v string) *LustreLogConfiguration {
+	s.Destination = &v
+	return s
+}
+
+// SetLevel sets the Level field's value.
+func (s *LustreLogConfiguration) SetLevel(v string) *LustreLogConfiguration {
+	s.Level = &v
+	return s
+}
+
+// The Lustre logging configuration used when creating or updating an Amazon
+// FSx for Lustre file system. An Amazon File Cache is created with Lustre logging
+// enabled by default, with a setting of WARN_ERROR for the logging events.
+// which can't be changed.
+//
+// Lustre logging writes the enabled logging events for your file system or
+// cache to Amazon CloudWatch Logs.
+type LustreLogCreateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that specifies the destination of the logs.
+	//
+	// The destination can be any Amazon CloudWatch Logs log group ARN, with the
+	// following requirements:
+	//
+	//    * The destination ARN that you provide must be in the same Amazon Web
+	//    Services partition, Amazon Web Services Region, and Amazon Web Services
+	//    account as your Amazon FSx file system.
+	//
+	//    * The name of the Amazon CloudWatch Logs log group must begin with the
+	//    /aws/fsx prefix.
+	//
+	//    * If you do not provide a destination, Amazon FSx will create and use
+	//    a log stream in the CloudWatch Logs /aws/fsx/lustre log group (for Amazon
+	//    FSx for Lustre) or /aws/fsx/filecache (for Amazon File Cache).
+	//
+	//    * If Destination is provided and the resource does not exist, the request
+	//    will fail with a BadRequest error.
+	//
+	//    * If Level is set to DISABLED, you cannot specify a destination in Destination.
+	Destination *string `min:"8" type:"string"`
+
+	// Sets which data repository events are logged by Amazon FSx.
+	//
+	//    * WARN_ONLY - only warning events are logged.
+	//
+	//    * ERROR_ONLY - only error events are logged.
+	//
+	//    * WARN_ERROR - both warning events and error events are logged.
+	//
+	//    * DISABLED - logging of data repository events is turned off.
+	//
+	// Level is a required field
+	Level *string `type:"string" required:"true" enum:"LustreAccessAuditLogLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LustreLogCreateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LustreLogCreateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LustreLogCreateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LustreLogCreateConfiguration"}
+	if s.Destination != nil && len(*s.Destination) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("Destination", 8))
+	}
+	if s.Level == nil {
+		invalidParams.Add(request.NewErrParamRequired("Level"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestination sets the Destination field's value.
+func (s *LustreLogCreateConfiguration) SetDestination(v string) *LustreLogCreateConfiguration {
+	s.Destination = &v
+	return s
+}
+
+// SetLevel sets the Level field's value.
+func (s *LustreLogCreateConfiguration) SetLevel(v string) *LustreLogCreateConfiguration {
+	s.Level = &v
+	return s
+}
+
+// The configuration for Lustre root squash used to restrict root-level access
+// from clients that try to access your FSx for Lustre file system as root.
+// Use the RootSquash parameter to enable root squash. To learn more about Lustre
+// root squash, see Lustre root squash (https://docs.aws.amazon.com/fsx/latest/LustreGuide/root-squash.html).
+//
+// You can also use the NoSquashNids parameter to provide an array of clients
+// who are not affected by the root squash setting. These clients will access
+// the file system as root, with unrestricted privileges.
+type LustreRootSquashConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// When root squash is enabled, you can optionally specify an array of NIDs
+	// of clients for which root squash does not apply. A client NID is a Lustre
+	// Network Identifier used to uniquely identify a client. You can specify the
+	// NID as either a single address or a range of addresses:
+	//
+	//    * A single address is described in standard Lustre NID format by specifying
+	//    the client’s IP address followed by the Lustre network ID (for example,
+	//    10.0.1.6@tcp).
+	//
+	//    * An address range is described using a dash to separate the range (for
+	//    example, 10.0.[2-10].[1-255]@tcp).
+	NoSquashNids []*string `type:"list"`
+
+	// You enable root squash by setting a user ID (UID) and group ID (GID) for
+	// the file system in the format UID:GID (for example, 365534:65534). The UID
+	// and GID values can range from 0 to 4294967294:
+	//
+	//    * A non-zero value for UID and GID enables root squash. The UID and GID
+	//    values can be different, but each must be a non-zero value.
+	//
+	//    * A value of 0 (zero) for UID and GID indicates root, and therefore disables
+	//    root squash.
+	//
+	// When root squash is enabled, the user ID and group ID of a root user accessing
+	// the file system are re-mapped to the UID and GID you provide.
+	RootSquash *string `min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LustreRootSquashConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LustreRootSquashConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LustreRootSquashConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LustreRootSquashConfiguration"}
+	if s.RootSquash != nil && len(*s.RootSquash) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("RootSquash", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNoSquashNids sets the NoSquashNids field's value.
+func (s *LustreRootSquashConfiguration) SetNoSquashNids(v []*string) *LustreRootSquashConfiguration {
+	s.NoSquashNids = v
+	return s
+}
+
+// SetRootSquash sets the RootSquash field's value.
+func (s *LustreRootSquashConfiguration) SetRootSquash(v string) *LustreRootSquashConfiguration {
+	s.RootSquash = &v
+	return s
+}
+
+// A cache configuration is required for this operation.
+type MissingFileCacheConfiguration struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MissingFileCacheConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MissingFileCacheConfiguration) GoString() string {
+	return s.String()
+}
+
+func newErrorMissingFileCacheConfiguration(v protocol.ResponseMetadata) error {
+	return &MissingFileCacheConfiguration{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *MissingFileCacheConfiguration) Code() string {
+	return "MissingFileCacheConfiguration"
+}
+
+// Message returns the exception's message.
+func (s *MissingFileCacheConfiguration) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *MissingFileCacheConfiguration) OrigErr() error {
+	return nil
+}
+
+func (s *MissingFileCacheConfiguration) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *MissingFileCacheConfiguration) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *MissingFileCacheConfiguration) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // A file system configuration is required for this operation.
@@ -7450,12 +17904,20 @@ type MissingFileSystemConfiguration struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MissingFileSystemConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MissingFileSystemConfiguration) GoString() string {
 	return s.String()
 }
@@ -7498,6 +17960,129 @@ func (s *MissingFileSystemConfiguration) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A volume configuration is required for this operation.
+type MissingVolumeConfiguration struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MissingVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MissingVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+func newErrorMissingVolumeConfiguration(v protocol.ResponseMetadata) error {
+	return &MissingVolumeConfiguration{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *MissingVolumeConfiguration) Code() string {
+	return "MissingVolumeConfiguration"
+}
+
+// Message returns the exception's message.
+func (s *MissingVolumeConfiguration) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *MissingVolumeConfiguration) OrigErr() error {
+	return nil
+}
+
+func (s *MissingVolumeConfiguration) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *MissingVolumeConfiguration) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *MissingVolumeConfiguration) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The configuration for a data repository association that links an Amazon
+// File Cache resource to an NFS data repository.
+type NFSDataRepositoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// This parameter is not supported for Amazon File Cache.
+	AutoExportPolicy *AutoExportPolicy `type:"structure"`
+
+	// A list of up to 2 IP addresses of DNS servers used to resolve the NFS file
+	// system domain name. The provided IP addresses can either be the IP addresses
+	// of a DNS forwarder or resolver that the customer manages and runs inside
+	// the customer VPC, or the IP addresses of the on-premises DNS servers.
+	DnsIps []*string `type:"list"`
+
+	// The version of the NFS (Network File System) protocol of the NFS data repository.
+	// Currently, the only supported value is NFS3, which indicates that the data
+	// repository must support the NFSv3 protocol.
+	//
+	// Version is a required field
+	Version *string `type:"string" required:"true" enum:"NfsVersion"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NFSDataRepositoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NFSDataRepositoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAutoExportPolicy sets the AutoExportPolicy field's value.
+func (s *NFSDataRepositoryConfiguration) SetAutoExportPolicy(v *AutoExportPolicy) *NFSDataRepositoryConfiguration {
+	s.AutoExportPolicy = v
+	return s
+}
+
+// SetDnsIps sets the DnsIps field's value.
+func (s *NFSDataRepositoryConfiguration) SetDnsIps(v []*string) *NFSDataRepositoryConfiguration {
+	s.DnsIps = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *NFSDataRepositoryConfiguration) SetVersion(v string) *NFSDataRepositoryConfiguration {
+	s.Version = &v
+	return s
+}
+
 // The resource specified for the tagging operation is not a resource type owned
 // by Amazon FSx. Use the API of the relevant service to perform the operation.
 type NotServiceResourceError struct {
@@ -7513,12 +18098,20 @@ type NotServiceResourceError struct {
 	ResourceARN *string `min:"8" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotServiceResourceError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotServiceResourceError) GoString() string {
 	return s.String()
 }
@@ -7561,6 +18154,1387 @@ func (s *NotServiceResourceError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Configuration for the FSx for NetApp ONTAP file system.
+type OntapFileSystemConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30.
+	AutomaticBackupRetentionDays *int64 `type:"integer"`
+
+	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
+	// the day (0-23), and MM is the zero-padded minute of the hour. For example,
+	// 05:00 specifies 5 AM daily.
+	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// Specifies the FSx for ONTAP file system deployment type in use in the file
+	// system.
+	//
+	//    * MULTI_AZ_1 - (Default) A high availability file system configured for
+	//    Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability.
+	//
+	//    * SINGLE_AZ_1 - A file system configured for Single-AZ redundancy.
+	//
+	//    * SINGLE_AZ_2 - A file system configured with multiple high-availability
+	//    (HA) pairs for Single-AZ redundancy.
+	//
+	// For information about the use cases for Multi-AZ and Single-AZ deployments,
+	// refer to Choosing Multi-AZ or Single-AZ file system deployment (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-multiAZ.html).
+	DeploymentType *string `type:"string" enum:"OntapDeploymentType"`
+
+	// The SSD IOPS configuration for the ONTAP file system, specifying the number
+	// of provisioned IOPS and the provision mode.
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
+	// (Multi-AZ only) Specifies the IP address range in which the endpoints to
+	// access your file system will be created. By default in the Amazon FSx API,
+	// Amazon FSx selects an unused IP address range for you from the 198.19.* range.
+	// By default in the Amazon FSx console, Amazon FSx chooses the last 64 IP addresses
+	// from the VPC’s primary CIDR range to use as the endpoint IP address range
+	// for the file system. You can have overlapping endpoint IP addresses for file
+	// systems deployed in the same VPC/route tables.
+	EndpointIpAddressRange *string `min:"9" type:"string"`
+
+	// The Management and Intercluster endpoints that are used to access data or
+	// to manage the file system using the NetApp ONTAP CLI, REST API, or NetApp
+	// SnapMirror.
+	Endpoints *FileSystemEndpoints `type:"structure"`
+
+	// You can use the fsxadmin user account to access the NetApp ONTAP CLI and
+	// REST API. The password value is always redacted in the response.
+	//
+	// FsxAdminPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OntapFileSystemConfiguration's
+	// String and GoString methods.
+	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
+
+	// Specifies how many high-availability (HA) file server pairs the file system
+	// will have. The default value is 1. The value of this property affects the
+	// values of StorageCapacity, Iops, and ThroughputCapacity. For more information,
+	// see High-availability (HA) pairs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/HA-pairs.html)
+	// in the FSx for ONTAP user guide.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of HAPairs is less than 1 or greater than 6.
+	//
+	//    * The value of HAPairs is greater than 1 and the value of DeploymentType
+	//    is SINGLE_AZ_1 or MULTI_AZ_1.
+	HAPairs *int64 `min:"1" type:"integer"`
+
+	// The ID for a subnet. A subnet is a range of IP addresses in your virtual
+	// private cloud (VPC). For more information, see VPC and subnets (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
+	// in the Amazon VPC User Guide.
+	PreferredSubnetId *string `min:"15" type:"string"`
+
+	// (Multi-AZ only) The VPC route tables in which your file system's endpoints
+	// are created.
+	RouteTableIds []*string `type:"list"`
+
+	// The sustained throughput of an Amazon FSx file system in Megabytes per second
+	// (MBps).
+	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
+	// Use to choose the throughput capacity per HA pair. When the value of HAPairs
+	// is equal to 1, the value of ThroughputCapacityPerHAPair is the total throughput
+	// for the file system.
+	//
+	// This field and ThroughputCapacity cannot be defined in the same API call,
+	// but one is required.
+	//
+	// This field and ThroughputCapacity are the same for file systems with one
+	// HA pair.
+	//
+	//    * For SINGLE_AZ_1 and MULTI_AZ_1, valid values are 128, 256, 512, 1024,
+	//    2048, or 4096 MBps.
+	//
+	//    * For SINGLE_AZ_2, valid values are 3072 or 6144 MBps.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
+	//    not the same value.
+	//
+	//    * The value of deployment type is SINGLE_AZ_2 and ThroughputCapacity /
+	//    ThroughputCapacityPerHAPair is a valid HA pair (a value between 2 and
+	//    6).
+	//
+	//    * The value of ThroughputCapacityPerHAPair is not a valid value.
+	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OntapFileSystemConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OntapFileSystemConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
+func (s *OntapFileSystemConfiguration) SetAutomaticBackupRetentionDays(v int64) *OntapFileSystemConfiguration {
+	s.AutomaticBackupRetentionDays = &v
+	return s
+}
+
+// SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
+func (s *OntapFileSystemConfiguration) SetDailyAutomaticBackupStartTime(v string) *OntapFileSystemConfiguration {
+	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *OntapFileSystemConfiguration) SetDeploymentType(v string) *OntapFileSystemConfiguration {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *OntapFileSystemConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *OntapFileSystemConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
+// SetEndpointIpAddressRange sets the EndpointIpAddressRange field's value.
+func (s *OntapFileSystemConfiguration) SetEndpointIpAddressRange(v string) *OntapFileSystemConfiguration {
+	s.EndpointIpAddressRange = &v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *OntapFileSystemConfiguration) SetEndpoints(v *FileSystemEndpoints) *OntapFileSystemConfiguration {
+	s.Endpoints = v
+	return s
+}
+
+// SetFsxAdminPassword sets the FsxAdminPassword field's value.
+func (s *OntapFileSystemConfiguration) SetFsxAdminPassword(v string) *OntapFileSystemConfiguration {
+	s.FsxAdminPassword = &v
+	return s
+}
+
+// SetHAPairs sets the HAPairs field's value.
+func (s *OntapFileSystemConfiguration) SetHAPairs(v int64) *OntapFileSystemConfiguration {
+	s.HAPairs = &v
+	return s
+}
+
+// SetPreferredSubnetId sets the PreferredSubnetId field's value.
+func (s *OntapFileSystemConfiguration) SetPreferredSubnetId(v string) *OntapFileSystemConfiguration {
+	s.PreferredSubnetId = &v
+	return s
+}
+
+// SetRouteTableIds sets the RouteTableIds field's value.
+func (s *OntapFileSystemConfiguration) SetRouteTableIds(v []*string) *OntapFileSystemConfiguration {
+	s.RouteTableIds = v
+	return s
+}
+
+// SetThroughputCapacity sets the ThroughputCapacity field's value.
+func (s *OntapFileSystemConfiguration) SetThroughputCapacity(v int64) *OntapFileSystemConfiguration {
+	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetThroughputCapacityPerHAPair sets the ThroughputCapacityPerHAPair field's value.
+func (s *OntapFileSystemConfiguration) SetThroughputCapacityPerHAPair(v int64) *OntapFileSystemConfiguration {
+	s.ThroughputCapacityPerHAPair = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *OntapFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string) *OntapFileSystemConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// The configuration of an Amazon FSx for NetApp ONTAP volume.
+type OntapVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// This structure specifies configuration options for a volume’s storage aggregate
+	// or aggregates.
+	AggregateConfiguration *AggregateConfiguration `type:"structure"`
+
+	// A boolean flag indicating whether tags for the volume should be copied to
+	// backups. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to all automatic and user-initiated backups where the
+	// user doesn't specify tags. If this value is true, and you specify one or
+	// more tags, only the specified tags are copied to backups. If you specify
+	// one or more tags when creating a user-initiated backup, no tags are copied
+	// from the volume, regardless of this value.
+	CopyTagsToBackups *bool `type:"boolean"`
+
+	// Specifies the FlexCache endpoint type of the volume. Valid values are the
+	// following:
+	//
+	//    * NONE specifies that the volume doesn't have a FlexCache configuration.
+	//    NONE is the default.
+	//
+	//    * ORIGIN specifies that the volume is the origin volume for a FlexCache
+	//    volume.
+	//
+	//    * CACHE specifies that the volume is a FlexCache volume.
+	FlexCacheEndpointType *string `type:"string" enum:"FlexCacheEndpointType"`
+
+	// Specifies the directory that network-attached storage (NAS) clients use to
+	// mount the volume, along with the storage virtual machine (SVM) Domain Name
+	// System (DNS) name or IP address. You can create a JunctionPath directly below
+	// a parent volume junction or on a directory within a volume. A JunctionPath
+	// for a volume named vol3 might be /vol1/vol2/vol3, or /vol1/dir2/vol3, or
+	// even /dir1/dir2/vol3.
+	JunctionPath *string `min:"1" type:"string"`
+
+	// Specifies the type of volume. Valid values are the following:
+	//
+	//    * RW specifies a read/write volume. RW is the default.
+	//
+	//    * DP specifies a data-protection volume. You can protect data by replicating
+	//    it to data-protection mirror copies. If a disaster occurs, you can use
+	//    these data-protection mirror copies to recover data.
+	//
+	//    * LS specifies a load-sharing mirror volume. A load-sharing mirror reduces
+	//    the network traffic to a FlexVol volume by providing additional read-only
+	//    access to clients.
+	OntapVolumeType *string `type:"string" enum:"OntapVolumeType"`
+
+	// The security style for the volume, which can be UNIX, NTFS, or MIXED.
+	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
+
+	// The configured size of the volume, in bytes.
+	SizeInBytes *int64 `type:"long"`
+
+	// The configured size of the volume, in megabytes (MBs).
+	SizeInMegabytes *int64 `type:"integer"`
+
+	// The SnapLock configuration object for an FSx for ONTAP SnapLock volume.
+	SnaplockConfiguration *SnaplockConfiguration `type:"structure"`
+
+	// Specifies the snapshot policy for the volume. There are three built-in snapshot
+	// policies:
+	//
+	//    * default: This is the default policy. A maximum of six hourly snapshots
+	//    taken five minutes past the hour. A maximum of two daily snapshots taken
+	//    Monday through Saturday at 10 minutes after midnight. A maximum of two
+	//    weekly snapshots taken every Sunday at 15 minutes after midnight.
+	//
+	//    * default-1weekly: This policy is the same as the default policy except
+	//    that it only retains one snapshot from the weekly schedule.
+	//
+	//    * none: This policy does not take any snapshots. This policy can be assigned
+	//    to volumes to prevent automatic snapshots from being taken.
+	//
+	// You can also provide the name of a custom policy that you created with the
+	// ONTAP CLI or REST API.
+	//
+	// For more information, see Snapshot policies (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snapshots-ontap.html#snapshot-policies)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	SnapshotPolicy *string `min:"1" type:"string"`
+
+	// The volume's storage efficiency setting.
+	StorageEfficiencyEnabled *bool `type:"boolean"`
+
+	// The ID of the volume's storage virtual machine.
+	StorageVirtualMachineId *string `min:"21" type:"string"`
+
+	// A Boolean flag indicating whether this volume is the root volume for its
+	// storage virtual machine (SVM). Only one volume on an SVM can be the root
+	// volume. This value defaults to false. If this value is true, then this is
+	// the SVM root volume.
+	//
+	// This flag is useful when you're deleting an SVM, because you must first delete
+	// all non-root volumes. This flag, when set to false, helps you identify which
+	// volumes to delete before you can delete the SVM.
+	StorageVirtualMachineRoot *bool `type:"boolean"`
+
+	// The volume's TieringPolicy setting.
+	TieringPolicy *TieringPolicy `type:"structure"`
+
+	// The volume's universally unique identifier (UUID).
+	UUID *string `type:"string"`
+
+	// Use to specify the style of an ONTAP volume. For more information about FlexVols
+	// and FlexGroups, see Volume types (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-types.html)
+	// in Amazon FSx for NetApp ONTAP User Guide.
+	VolumeStyle *string `type:"string" enum:"VolumeStyle"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OntapVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OntapVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAggregateConfiguration sets the AggregateConfiguration field's value.
+func (s *OntapVolumeConfiguration) SetAggregateConfiguration(v *AggregateConfiguration) *OntapVolumeConfiguration {
+	s.AggregateConfiguration = v
+	return s
+}
+
+// SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
+func (s *OntapVolumeConfiguration) SetCopyTagsToBackups(v bool) *OntapVolumeConfiguration {
+	s.CopyTagsToBackups = &v
+	return s
+}
+
+// SetFlexCacheEndpointType sets the FlexCacheEndpointType field's value.
+func (s *OntapVolumeConfiguration) SetFlexCacheEndpointType(v string) *OntapVolumeConfiguration {
+	s.FlexCacheEndpointType = &v
+	return s
+}
+
+// SetJunctionPath sets the JunctionPath field's value.
+func (s *OntapVolumeConfiguration) SetJunctionPath(v string) *OntapVolumeConfiguration {
+	s.JunctionPath = &v
+	return s
+}
+
+// SetOntapVolumeType sets the OntapVolumeType field's value.
+func (s *OntapVolumeConfiguration) SetOntapVolumeType(v string) *OntapVolumeConfiguration {
+	s.OntapVolumeType = &v
+	return s
+}
+
+// SetSecurityStyle sets the SecurityStyle field's value.
+func (s *OntapVolumeConfiguration) SetSecurityStyle(v string) *OntapVolumeConfiguration {
+	s.SecurityStyle = &v
+	return s
+}
+
+// SetSizeInBytes sets the SizeInBytes field's value.
+func (s *OntapVolumeConfiguration) SetSizeInBytes(v int64) *OntapVolumeConfiguration {
+	s.SizeInBytes = &v
+	return s
+}
+
+// SetSizeInMegabytes sets the SizeInMegabytes field's value.
+func (s *OntapVolumeConfiguration) SetSizeInMegabytes(v int64) *OntapVolumeConfiguration {
+	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetSnaplockConfiguration sets the SnaplockConfiguration field's value.
+func (s *OntapVolumeConfiguration) SetSnaplockConfiguration(v *SnaplockConfiguration) *OntapVolumeConfiguration {
+	s.SnaplockConfiguration = v
+	return s
+}
+
+// SetSnapshotPolicy sets the SnapshotPolicy field's value.
+func (s *OntapVolumeConfiguration) SetSnapshotPolicy(v string) *OntapVolumeConfiguration {
+	s.SnapshotPolicy = &v
+	return s
+}
+
+// SetStorageEfficiencyEnabled sets the StorageEfficiencyEnabled field's value.
+func (s *OntapVolumeConfiguration) SetStorageEfficiencyEnabled(v bool) *OntapVolumeConfiguration {
+	s.StorageEfficiencyEnabled = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *OntapVolumeConfiguration) SetStorageVirtualMachineId(v string) *OntapVolumeConfiguration {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+// SetStorageVirtualMachineRoot sets the StorageVirtualMachineRoot field's value.
+func (s *OntapVolumeConfiguration) SetStorageVirtualMachineRoot(v bool) *OntapVolumeConfiguration {
+	s.StorageVirtualMachineRoot = &v
+	return s
+}
+
+// SetTieringPolicy sets the TieringPolicy field's value.
+func (s *OntapVolumeConfiguration) SetTieringPolicy(v *TieringPolicy) *OntapVolumeConfiguration {
+	s.TieringPolicy = v
+	return s
+}
+
+// SetUUID sets the UUID field's value.
+func (s *OntapVolumeConfiguration) SetUUID(v string) *OntapVolumeConfiguration {
+	s.UUID = &v
+	return s
+}
+
+// SetVolumeStyle sets the VolumeStyle field's value.
+func (s *OntapVolumeConfiguration) SetVolumeStyle(v string) *OntapVolumeConfiguration {
+	s.VolumeStyle = &v
+	return s
+}
+
+// Specifies who can mount an OpenZFS file system and the options available
+// while mounting the file system.
+type OpenZFSClientConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A value that specifies who can mount the file system. You can provide a wildcard
+	// character (*), an IP address (0.0.0.0), or a CIDR address (192.0.2.0/24).
+	// By default, Amazon FSx uses the wildcard character when specifying the client.
+	//
+	// Clients is a required field
+	Clients *string `min:"1" type:"string" required:"true"`
+
+	// The options to use when mounting the file system. For a list of options that
+	// you can use with Network File System (NFS), see the exports(5) - Linux man
+	// page (https://linux.die.net/man/5/exports). When choosing your options, consider
+	// the following:
+	//
+	//    * crossmnt is used by default. If you don't specify crossmnt when changing
+	//    the client configuration, you won't be able to see or access snapshots
+	//    in your file system's snapshot directory.
+	//
+	//    * sync is used by default. If you instead specify async, the system acknowledges
+	//    writes before writing to disk. If the system crashes before the writes
+	//    are finished, you lose the unwritten data.
+	//
+	// Options is a required field
+	Options []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSClientConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSClientConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenZFSClientConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenZFSClientConfiguration"}
+	if s.Clients == nil {
+		invalidParams.Add(request.NewErrParamRequired("Clients"))
+	}
+	if s.Clients != nil && len(*s.Clients) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Clients", 1))
+	}
+	if s.Options == nil {
+		invalidParams.Add(request.NewErrParamRequired("Options"))
+	}
+	if s.Options != nil && len(s.Options) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Options", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClients sets the Clients field's value.
+func (s *OpenZFSClientConfiguration) SetClients(v string) *OpenZFSClientConfiguration {
+	s.Clients = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *OpenZFSClientConfiguration) SetOptions(v []*string) *OpenZFSClientConfiguration {
+	s.Options = v
+	return s
+}
+
+// The configuration of an Amazon FSx for OpenZFS root volume.
+type OpenZFSCreateRootVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value indicating whether tags for the volume should be copied to
+	// snapshots of the volume. This value defaults to false. If it's set to true,
+	// all tags for the volume are copied to snapshots where the user doesn't specify
+	// tags. If this value is true and you specify one or more tags, only the specified
+	// tags are copied to snapshots. If you specify one or more tags when creating
+	// the snapshot, no tags are copied from the volume, regardless of this value.
+	CopyTagsToSnapshots *bool `type:"boolean"`
+
+	// Specifies the method used to compress the data on the volume. The compression
+	// type is NONE by default.
+	//
+	//    * NONE - Doesn't compress the data on the volume. NONE is the default.
+	//
+	//    * ZSTD - Compresses the data in the volume using the Zstandard (ZSTD)
+	//    compression algorithm. Compared to LZ4, Z-Standard provides a better compression
+	//    ratio to minimize on-disk storage utilization.
+	//
+	//    * LZ4 - Compresses the data in the volume using the LZ4 compression algorithm.
+	//    Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher
+	//    write throughput speeds.
+	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
+
+	// The configuration object for mounting a file system.
+	NfsExports []*OpenZFSNfsExport `type:"list"`
+
+	// A Boolean value indicating whether the volume is read-only. Setting this
+	// value to true can be useful after you have completed changes to a volume
+	// and no longer want changes to occur.
+	ReadOnly *bool `type:"boolean"`
+
+	// Specifies the record size of an OpenZFS root volume, in kibibytes (KiB).
+	// Valid values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The default
+	// is 128 KiB. Most workloads should use the default record size. Database workflows
+	// can benefit from a smaller record size, while streaming workflows can benefit
+	// from a larger record size. For additional guidance on setting a custom record
+	// size, see Tips for maximizing performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#performance-tips-zfs)
+	// in the Amazon FSx for OpenZFS User Guide.
+	RecordSizeKiB *int64 `min:"4" type:"integer"`
+
+	// An object specifying how much storage users or groups can use on the volume.
+	UserAndGroupQuotas []*OpenZFSUserOrGroupQuota `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSCreateRootVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSCreateRootVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenZFSCreateRootVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenZFSCreateRootVolumeConfiguration"}
+	if s.RecordSizeKiB != nil && *s.RecordSizeKiB < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("RecordSizeKiB", 4))
+	}
+	if s.NfsExports != nil {
+		for i, v := range s.NfsExports {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NfsExports", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.UserAndGroupQuotas != nil {
+		for i, v := range s.UserAndGroupQuotas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserAndGroupQuotas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCopyTagsToSnapshots sets the CopyTagsToSnapshots field's value.
+func (s *OpenZFSCreateRootVolumeConfiguration) SetCopyTagsToSnapshots(v bool) *OpenZFSCreateRootVolumeConfiguration {
+	s.CopyTagsToSnapshots = &v
+	return s
+}
+
+// SetDataCompressionType sets the DataCompressionType field's value.
+func (s *OpenZFSCreateRootVolumeConfiguration) SetDataCompressionType(v string) *OpenZFSCreateRootVolumeConfiguration {
+	s.DataCompressionType = &v
+	return s
+}
+
+// SetNfsExports sets the NfsExports field's value.
+func (s *OpenZFSCreateRootVolumeConfiguration) SetNfsExports(v []*OpenZFSNfsExport) *OpenZFSCreateRootVolumeConfiguration {
+	s.NfsExports = v
+	return s
+}
+
+// SetReadOnly sets the ReadOnly field's value.
+func (s *OpenZFSCreateRootVolumeConfiguration) SetReadOnly(v bool) *OpenZFSCreateRootVolumeConfiguration {
+	s.ReadOnly = &v
+	return s
+}
+
+// SetRecordSizeKiB sets the RecordSizeKiB field's value.
+func (s *OpenZFSCreateRootVolumeConfiguration) SetRecordSizeKiB(v int64) *OpenZFSCreateRootVolumeConfiguration {
+	s.RecordSizeKiB = &v
+	return s
+}
+
+// SetUserAndGroupQuotas sets the UserAndGroupQuotas field's value.
+func (s *OpenZFSCreateRootVolumeConfiguration) SetUserAndGroupQuotas(v []*OpenZFSUserOrGroupQuota) *OpenZFSCreateRootVolumeConfiguration {
+	s.UserAndGroupQuotas = v
+	return s
+}
+
+// The configuration for the Amazon FSx for OpenZFS file system.
+type OpenZFSFileSystemConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30.
+	AutomaticBackupRetentionDays *int64 `type:"integer"`
+
+	// A Boolean value indicating whether tags on the file system should be copied
+	// to backups. If it's set to true, all tags on the file system are copied to
+	// all automatic backups and any user-initiated backups where the user doesn't
+	// specify any tags. If this value is true and you specify one or more tags,
+	// only the specified tags are copied to backups. If you specify one or more
+	// tags when creating a user-initiated backup, no tags are copied from the file
+	// system, regardless of this value.
+	CopyTagsToBackups *bool `type:"boolean"`
+
+	// A Boolean value indicating whether tags for the volume should be copied to
+	// snapshots. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to snapshots where the user doesn't specify tags. If
+	// this value is true and you specify one or more tags, only the specified tags
+	// are copied to snapshots. If you specify one or more tags when creating the
+	// snapshot, no tags are copied from the volume, regardless of this value.
+	CopyTagsToVolumes *bool `type:"boolean"`
+
+	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
+	// the day (0-23), and MM is the zero-padded minute of the hour. For example,
+	// 05:00 specifies 5 AM daily.
+	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// Specifies the file-system deployment type. Amazon FSx for OpenZFS supports
+	// MULTI_AZ_1, SINGLE_AZ_1, and SINGLE_AZ_2.
+	DeploymentType *string `type:"string" enum:"OpenZFSDeploymentType"`
+
+	// The SSD IOPS (input/output operations per second) configuration for an Amazon
+	// FSx for NetApp ONTAP, Amazon FSx for Windows File Server, or FSx for OpenZFS
+	// file system. By default, Amazon FSx automatically provisions 3 IOPS per GB
+	// of storage capacity. You can provision additional IOPS per GB of storage.
+	// The configuration consists of the total number of provisioned SSD IOPS and
+	// how it is was provisioned, or the mode (by the customer or by Amazon FSx).
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
+	// The IP address of the endpoint that is used to access data or to manage the
+	// file system.
+	EndpointIpAddress *string `min:"7" type:"string"`
+
+	// (Multi-AZ only) Specifies the IP address range in which the endpoints to
+	// access your file system will be created. By default in the Amazon FSx API
+	// and Amazon FSx console, Amazon FSx selects an available /28 IP address range
+	// for you from one of the VPC's CIDR ranges. You can have overlapping endpoint
+	// IP addresses for file systems deployed in the same VPC/route tables.
+	EndpointIpAddressRange *string `min:"9" type:"string"`
+
+	// Required when DeploymentType is set to MULTI_AZ_1. This specifies the subnet
+	// in which you want the preferred file server to be located.
+	PreferredSubnetId *string `min:"15" type:"string"`
+
+	// The ID of the root volume of the OpenZFS file system.
+	RootVolumeId *string `min:"23" type:"string"`
+
+	// (Multi-AZ only) The VPC route tables in which your file system's endpoints
+	// are created.
+	RouteTableIds []*string `type:"list"`
+
+	// The throughput of an Amazon FSx file system, measured in megabytes per second
+	// (MBps).
+	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSFileSystemConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSFileSystemConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
+func (s *OpenZFSFileSystemConfiguration) SetAutomaticBackupRetentionDays(v int64) *OpenZFSFileSystemConfiguration {
+	s.AutomaticBackupRetentionDays = &v
+	return s
+}
+
+// SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
+func (s *OpenZFSFileSystemConfiguration) SetCopyTagsToBackups(v bool) *OpenZFSFileSystemConfiguration {
+	s.CopyTagsToBackups = &v
+	return s
+}
+
+// SetCopyTagsToVolumes sets the CopyTagsToVolumes field's value.
+func (s *OpenZFSFileSystemConfiguration) SetCopyTagsToVolumes(v bool) *OpenZFSFileSystemConfiguration {
+	s.CopyTagsToVolumes = &v
+	return s
+}
+
+// SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
+func (s *OpenZFSFileSystemConfiguration) SetDailyAutomaticBackupStartTime(v string) *OpenZFSFileSystemConfiguration {
+	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *OpenZFSFileSystemConfiguration) SetDeploymentType(v string) *OpenZFSFileSystemConfiguration {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *OpenZFSFileSystemConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *OpenZFSFileSystemConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
+// SetEndpointIpAddress sets the EndpointIpAddress field's value.
+func (s *OpenZFSFileSystemConfiguration) SetEndpointIpAddress(v string) *OpenZFSFileSystemConfiguration {
+	s.EndpointIpAddress = &v
+	return s
+}
+
+// SetEndpointIpAddressRange sets the EndpointIpAddressRange field's value.
+func (s *OpenZFSFileSystemConfiguration) SetEndpointIpAddressRange(v string) *OpenZFSFileSystemConfiguration {
+	s.EndpointIpAddressRange = &v
+	return s
+}
+
+// SetPreferredSubnetId sets the PreferredSubnetId field's value.
+func (s *OpenZFSFileSystemConfiguration) SetPreferredSubnetId(v string) *OpenZFSFileSystemConfiguration {
+	s.PreferredSubnetId = &v
+	return s
+}
+
+// SetRootVolumeId sets the RootVolumeId field's value.
+func (s *OpenZFSFileSystemConfiguration) SetRootVolumeId(v string) *OpenZFSFileSystemConfiguration {
+	s.RootVolumeId = &v
+	return s
+}
+
+// SetRouteTableIds sets the RouteTableIds field's value.
+func (s *OpenZFSFileSystemConfiguration) SetRouteTableIds(v []*string) *OpenZFSFileSystemConfiguration {
+	s.RouteTableIds = v
+	return s
+}
+
+// SetThroughputCapacity sets the ThroughputCapacity field's value.
+func (s *OpenZFSFileSystemConfiguration) SetThroughputCapacity(v int64) *OpenZFSFileSystemConfiguration {
+	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *OpenZFSFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string) *OpenZFSFileSystemConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// The Network File System (NFS) configurations for mounting an Amazon FSx for
+// OpenZFS file system.
+type OpenZFSNfsExport struct {
+	_ struct{} `type:"structure"`
+
+	// A list of configuration objects that contain the client and options for mounting
+	// the OpenZFS file system.
+	//
+	// ClientConfigurations is a required field
+	ClientConfigurations []*OpenZFSClientConfiguration `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSNfsExport) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSNfsExport) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenZFSNfsExport) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenZFSNfsExport"}
+	if s.ClientConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientConfigurations"))
+	}
+	if s.ClientConfigurations != nil {
+		for i, v := range s.ClientConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ClientConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientConfigurations sets the ClientConfigurations field's value.
+func (s *OpenZFSNfsExport) SetClientConfigurations(v []*OpenZFSClientConfiguration) *OpenZFSNfsExport {
+	s.ClientConfigurations = v
+	return s
+}
+
+// The snapshot configuration used when creating an Amazon FSx for OpenZFS volume
+// from a snapshot.
+type OpenZFSOriginSnapshotConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The strategy used when copying data from the snapshot to the new volume.
+	//
+	//    * CLONE - The new volume references the data in the origin snapshot. Cloning
+	//    a snapshot is faster than copying the data from a snapshot to a new volume
+	//    and doesn't consume disk throughput. However, the origin snapshot can't
+	//    be deleted if there is a volume using its copied data.
+	//
+	//    * FULL_COPY - Copies all data from the snapshot to the new volume.
+	//
+	// The INCREMENTAL_COPY option is only for updating an existing volume by using
+	// a snapshot from another FSx for OpenZFS file system. For more information,
+	// see CopySnapshotAndUpdateVolume (https://docs.aws.amazon.com/fsx/latest/APIReference/API_CopySnapshotAndUpdateVolume.html).
+	CopyStrategy *string `type:"string" enum:"OpenZFSCopyStrategy"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	SnapshotARN *string `min:"8" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSOriginSnapshotConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSOriginSnapshotConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetCopyStrategy sets the CopyStrategy field's value.
+func (s *OpenZFSOriginSnapshotConfiguration) SetCopyStrategy(v string) *OpenZFSOriginSnapshotConfiguration {
+	s.CopyStrategy = &v
+	return s
+}
+
+// SetSnapshotARN sets the SnapshotARN field's value.
+func (s *OpenZFSOriginSnapshotConfiguration) SetSnapshotARN(v string) *OpenZFSOriginSnapshotConfiguration {
+	s.SnapshotARN = &v
+	return s
+}
+
+// The configuration for how much storage a user or group can use on the volume.
+type OpenZFSUserOrGroupQuota struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the user or group.
+	//
+	// Id is a required field
+	Id *int64 `type:"integer" required:"true"`
+
+	// The amount of storage that the user or group can use in gibibytes (GiB).
+	//
+	// StorageCapacityQuotaGiB is a required field
+	StorageCapacityQuotaGiB *int64 `type:"integer" required:"true"`
+
+	// A value that specifies whether the quota applies to a user or group.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"OpenZFSQuotaType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSUserOrGroupQuota) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSUserOrGroupQuota) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenZFSUserOrGroupQuota) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenZFSUserOrGroupQuota"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.StorageCapacityQuotaGiB == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageCapacityQuotaGiB"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *OpenZFSUserOrGroupQuota) SetId(v int64) *OpenZFSUserOrGroupQuota {
+	s.Id = &v
+	return s
+}
+
+// SetStorageCapacityQuotaGiB sets the StorageCapacityQuotaGiB field's value.
+func (s *OpenZFSUserOrGroupQuota) SetStorageCapacityQuotaGiB(v int64) *OpenZFSUserOrGroupQuota {
+	s.StorageCapacityQuotaGiB = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *OpenZFSUserOrGroupQuota) SetType(v string) *OpenZFSUserOrGroupQuota {
+	s.Type = &v
+	return s
+}
+
+// The configuration of an Amazon FSx for OpenZFS volume.
+type OpenZFSVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value indicating whether tags for the volume should be copied to
+	// snapshots. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to snapshots where the user doesn't specify tags. If
+	// this value is true and you specify one or more tags, only the specified tags
+	// are copied to snapshots. If you specify one or more tags when creating the
+	// snapshot, no tags are copied from the volume, regardless of this value.
+	CopyTagsToSnapshots *bool `type:"boolean"`
+
+	// Specifies the method used to compress the data on the volume. The compression
+	// type is NONE by default.
+	//
+	//    * NONE - Doesn't compress the data on the volume. NONE is the default.
+	//
+	//    * ZSTD - Compresses the data in the volume using the Zstandard (ZSTD)
+	//    compression algorithm. Compared to LZ4, Z-Standard provides a better compression
+	//    ratio to minimize on-disk storage utilization.
+	//
+	//    * LZ4 - Compresses the data in the volume using the LZ4 compression algorithm.
+	//    Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher
+	//    write throughput speeds.
+	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
+
+	// A Boolean value indicating whether dependent clone volumes created from intermediate
+	// snapshots should be deleted when a volume is restored from snapshot.
+	DeleteClonedVolumes *bool `type:"boolean"`
+
+	// A Boolean value indicating whether snapshot data that differs between the
+	// current state and the specified snapshot should be overwritten when a volume
+	// is restored from a snapshot.
+	DeleteIntermediateData *bool `type:"boolean"`
+
+	// A Boolean value indicating whether snapshots between the current state and
+	// the specified snapshot should be deleted when a volume is restored from snapshot.
+	DeleteIntermediateSnaphots *bool `type:"boolean"`
+
+	// The ID of the snapshot that's being copied or was most recently copied to
+	// the destination volume.
+	DestinationSnapshot *string `min:"11" type:"string"`
+
+	// The configuration object for mounting a Network File System (NFS) file system.
+	NfsExports []*OpenZFSNfsExport `type:"list"`
+
+	// The configuration object that specifies the snapshot to use as the origin
+	// of the data for the volume.
+	OriginSnapshot *OpenZFSOriginSnapshotConfiguration `type:"structure"`
+
+	// The ID of the parent volume.
+	ParentVolumeId *string `min:"23" type:"string"`
+
+	// A Boolean value indicating whether the volume is read-only.
+	ReadOnly *bool `type:"boolean"`
+
+	// The record size of an OpenZFS volume, in kibibytes (KiB). Valid values are
+	// 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The default is 128 KiB. Most
+	// workloads should use the default record size. For guidance on when to set
+	// a custom record size, see the Amazon FSx for OpenZFS User Guide.
+	RecordSizeKiB *int64 `min:"4" type:"integer"`
+
+	// Specifies the ID of the snapshot to which the volume was restored.
+	RestoreToSnapshot *string `min:"11" type:"string"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	SourceSnapshotARN *string `min:"8" type:"string"`
+
+	// The maximum amount of storage in gibibtyes (GiB) that the volume can use
+	// from its parent. You can specify a quota larger than the storage on the parent
+	// volume.
+	StorageCapacityQuotaGiB *int64 `type:"integer"`
+
+	// The amount of storage in gibibytes (GiB) to reserve from the parent volume.
+	// You can't reserve more storage than the parent volume has reserved.
+	StorageCapacityReservationGiB *int64 `type:"integer"`
+
+	// An object specifying how much storage users or groups can use on the volume.
+	UserAndGroupQuotas []*OpenZFSUserOrGroupQuota `type:"list"`
+
+	// The path to the volume from the root volume. For example, fsx/parentVolume/volume1.
+	VolumePath *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenZFSVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetCopyTagsToSnapshots sets the CopyTagsToSnapshots field's value.
+func (s *OpenZFSVolumeConfiguration) SetCopyTagsToSnapshots(v bool) *OpenZFSVolumeConfiguration {
+	s.CopyTagsToSnapshots = &v
+	return s
+}
+
+// SetDataCompressionType sets the DataCompressionType field's value.
+func (s *OpenZFSVolumeConfiguration) SetDataCompressionType(v string) *OpenZFSVolumeConfiguration {
+	s.DataCompressionType = &v
+	return s
+}
+
+// SetDeleteClonedVolumes sets the DeleteClonedVolumes field's value.
+func (s *OpenZFSVolumeConfiguration) SetDeleteClonedVolumes(v bool) *OpenZFSVolumeConfiguration {
+	s.DeleteClonedVolumes = &v
+	return s
+}
+
+// SetDeleteIntermediateData sets the DeleteIntermediateData field's value.
+func (s *OpenZFSVolumeConfiguration) SetDeleteIntermediateData(v bool) *OpenZFSVolumeConfiguration {
+	s.DeleteIntermediateData = &v
+	return s
+}
+
+// SetDeleteIntermediateSnaphots sets the DeleteIntermediateSnaphots field's value.
+func (s *OpenZFSVolumeConfiguration) SetDeleteIntermediateSnaphots(v bool) *OpenZFSVolumeConfiguration {
+	s.DeleteIntermediateSnaphots = &v
+	return s
+}
+
+// SetDestinationSnapshot sets the DestinationSnapshot field's value.
+func (s *OpenZFSVolumeConfiguration) SetDestinationSnapshot(v string) *OpenZFSVolumeConfiguration {
+	s.DestinationSnapshot = &v
+	return s
+}
+
+// SetNfsExports sets the NfsExports field's value.
+func (s *OpenZFSVolumeConfiguration) SetNfsExports(v []*OpenZFSNfsExport) *OpenZFSVolumeConfiguration {
+	s.NfsExports = v
+	return s
+}
+
+// SetOriginSnapshot sets the OriginSnapshot field's value.
+func (s *OpenZFSVolumeConfiguration) SetOriginSnapshot(v *OpenZFSOriginSnapshotConfiguration) *OpenZFSVolumeConfiguration {
+	s.OriginSnapshot = v
+	return s
+}
+
+// SetParentVolumeId sets the ParentVolumeId field's value.
+func (s *OpenZFSVolumeConfiguration) SetParentVolumeId(v string) *OpenZFSVolumeConfiguration {
+	s.ParentVolumeId = &v
+	return s
+}
+
+// SetReadOnly sets the ReadOnly field's value.
+func (s *OpenZFSVolumeConfiguration) SetReadOnly(v bool) *OpenZFSVolumeConfiguration {
+	s.ReadOnly = &v
+	return s
+}
+
+// SetRecordSizeKiB sets the RecordSizeKiB field's value.
+func (s *OpenZFSVolumeConfiguration) SetRecordSizeKiB(v int64) *OpenZFSVolumeConfiguration {
+	s.RecordSizeKiB = &v
+	return s
+}
+
+// SetRestoreToSnapshot sets the RestoreToSnapshot field's value.
+func (s *OpenZFSVolumeConfiguration) SetRestoreToSnapshot(v string) *OpenZFSVolumeConfiguration {
+	s.RestoreToSnapshot = &v
+	return s
+}
+
+// SetSourceSnapshotARN sets the SourceSnapshotARN field's value.
+func (s *OpenZFSVolumeConfiguration) SetSourceSnapshotARN(v string) *OpenZFSVolumeConfiguration {
+	s.SourceSnapshotARN = &v
+	return s
+}
+
+// SetStorageCapacityQuotaGiB sets the StorageCapacityQuotaGiB field's value.
+func (s *OpenZFSVolumeConfiguration) SetStorageCapacityQuotaGiB(v int64) *OpenZFSVolumeConfiguration {
+	s.StorageCapacityQuotaGiB = &v
+	return s
+}
+
+// SetStorageCapacityReservationGiB sets the StorageCapacityReservationGiB field's value.
+func (s *OpenZFSVolumeConfiguration) SetStorageCapacityReservationGiB(v int64) *OpenZFSVolumeConfiguration {
+	s.StorageCapacityReservationGiB = &v
+	return s
+}
+
+// SetUserAndGroupQuotas sets the UserAndGroupQuotas field's value.
+func (s *OpenZFSVolumeConfiguration) SetUserAndGroupQuotas(v []*OpenZFSUserOrGroupQuota) *OpenZFSVolumeConfiguration {
+	s.UserAndGroupQuotas = v
+	return s
+}
+
+// SetVolumePath sets the VolumePath field's value.
+func (s *OpenZFSVolumeConfiguration) SetVolumePath(v string) *OpenZFSVolumeConfiguration {
+	s.VolumePath = &v
+	return s
+}
+
+// The configuration that specifies a minimum amount of time since last access
+// for an exported file to be eligible for release from an Amazon FSx for Lustre
+// file system. Only files that were last accessed before this point-in-time
+// can be released. For example, if you specify a last accessed time criteria
+// of 9 days, only files that were last accessed 9.00001 or more days ago can
+// be released.
+//
+// Only file data that has been exported to S3 can be released. Files that have
+// not yet been exported to S3, such as new or changed files that have not been
+// exported, are not eligible for release. When files are released, their metadata
+// stays on the file system, so they can still be accessed later. Users and
+// applications can access a released file by reading the file again, which
+// restores data from Amazon S3 to the FSx for Lustre file system.
+//
+// If a file meets the last accessed time criteria, its file or directory path
+// must also be specified with the Paths parameter of the operation in order
+// for the file to be released.
+type ReleaseConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the point-in-time since an exported file was last accessed, in order
+	// for that file to be eligible for release. Only files that were last accessed
+	// before this point-in-time are eligible to be released from the file system.
+	DurationSinceLastAccess *DurationSinceLastAccess `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDurationSinceLastAccess sets the DurationSinceLastAccess field's value.
+func (s *ReleaseConfiguration) SetDurationSinceLastAccess(v *DurationSinceLastAccess) *ReleaseConfiguration {
+	s.DurationSinceLastAccess = v
+	return s
+}
+
+type ReleaseFileSystemNfsV3LocksInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `min:"11" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseFileSystemNfsV3LocksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseFileSystemNfsV3LocksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReleaseFileSystemNfsV3LocksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReleaseFileSystemNfsV3LocksInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *ReleaseFileSystemNfsV3LocksInput) SetClientRequestToken(v string) *ReleaseFileSystemNfsV3LocksInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *ReleaseFileSystemNfsV3LocksInput) SetFileSystemId(v string) *ReleaseFileSystemNfsV3LocksInput {
+	s.FileSystemId = &v
+	return s
+}
+
+type ReleaseFileSystemNfsV3LocksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of a specific Amazon FSx file system.
+	FileSystem *FileSystem `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseFileSystemNfsV3LocksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseFileSystemNfsV3LocksOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileSystem sets the FileSystem field's value.
+func (s *ReleaseFileSystemNfsV3LocksOutput) SetFileSystem(v *FileSystem) *ReleaseFileSystemNfsV3LocksOutput {
+	s.FileSystem = v
+	return s
+}
+
 // The resource specified does not support tagging.
 type ResourceDoesNotSupportTagging struct {
 	_            struct{}                  `type:"structure"`
@@ -7575,12 +19549,20 @@ type ResourceDoesNotSupportTagging struct {
 	ResourceARN *string `min:"8" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDoesNotSupportTagging) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDoesNotSupportTagging) GoString() string {
 	return s.String()
 }
@@ -7637,12 +19619,20 @@ type ResourceNotFound struct {
 	ResourceARN *string `min:"8" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFound) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFound) GoString() string {
 	return s.String()
 }
@@ -7685,12 +19675,291 @@ func (s *ResourceNotFound) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type RestoreVolumeFromSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The settings used when restoring the specified volume from snapshot.
+	//
+	//    * DELETE_INTERMEDIATE_SNAPSHOTS - Deletes snapshots between the current
+	//    state and the specified snapshot. If there are intermediate snapshots
+	//    and this option isn't used, RestoreVolumeFromSnapshot fails.
+	//
+	//    * DELETE_CLONED_VOLUMES - Deletes any dependent clone volumes created
+	//    from intermediate snapshots. If there are any dependent clone volumes
+	//    and this option isn't used, RestoreVolumeFromSnapshot fails.
+	Options []*string `type:"list" enum:"RestoreOpenZFSVolumeOption"`
+
+	// The ID of the source snapshot. Specifies the snapshot that you are restoring
+	// from.
+	//
+	// SnapshotId is a required field
+	SnapshotId *string `min:"11" type:"string" required:"true"`
+
+	// The ID of the volume that you are restoring.
+	//
+	// VolumeId is a required field
+	VolumeId *string `min:"23" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreVolumeFromSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreVolumeFromSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RestoreVolumeFromSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RestoreVolumeFromSnapshotInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.SnapshotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotId"))
+	}
+	if s.SnapshotId != nil && len(*s.SnapshotId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotId", 11))
+	}
+	if s.VolumeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeId"))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *RestoreVolumeFromSnapshotInput) SetClientRequestToken(v string) *RestoreVolumeFromSnapshotInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *RestoreVolumeFromSnapshotInput) SetOptions(v []*string) *RestoreVolumeFromSnapshotInput {
+	s.Options = v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *RestoreVolumeFromSnapshotInput) SetSnapshotId(v string) *RestoreVolumeFromSnapshotInput {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *RestoreVolumeFromSnapshotInput) SetVolumeId(v string) *RestoreVolumeFromSnapshotInput {
+	s.VolumeId = &v
+	return s
+}
+
+type RestoreVolumeFromSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of administrative actions for the file system that are in process
+	// or waiting to be processed. Administrative actions describe changes to the
+	// Amazon FSx system.
+	AdministrativeActions []*AdministrativeAction `type:"list"`
+
+	// The lifecycle state of the volume being restored.
+	Lifecycle *string `type:"string" enum:"VolumeLifecycle"`
+
+	// The ID of the volume that you restored.
+	VolumeId *string `min:"23" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreVolumeFromSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreVolumeFromSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdministrativeActions sets the AdministrativeActions field's value.
+func (s *RestoreVolumeFromSnapshotOutput) SetAdministrativeActions(v []*AdministrativeAction) *RestoreVolumeFromSnapshotOutput {
+	s.AdministrativeActions = v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *RestoreVolumeFromSnapshotOutput) SetLifecycle(v string) *RestoreVolumeFromSnapshotOutput {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *RestoreVolumeFromSnapshotOutput) SetVolumeId(v string) *RestoreVolumeFromSnapshotOutput {
+	s.VolumeId = &v
+	return s
+}
+
+// Specifies the retention period of an FSx for ONTAP SnapLock volume. After
+// it is set, it can't be changed. Files can't be deleted or modified during
+// the retention period.
+//
+// For more information, see Working with the retention period in SnapLock (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-retention.html).
+type RetentionPeriod struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the type of time for the retention period of an FSx for ONTAP SnapLock
+	// volume. Set it to one of the valid types. If you set it to INFINITE, the
+	// files are retained forever. If you set it to UNSPECIFIED, the files are retained
+	// until you set an explicit retention period.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"RetentionPeriodType"`
+
+	// Defines the amount of time for the retention period of an FSx for ONTAP SnapLock
+	// volume. You can't set a value for INFINITE or UNSPECIFIED. For all other
+	// options, the following ranges are valid:
+	//
+	//    * Seconds: 0 - 65,535
+	//
+	//    * Minutes: 0 - 65,535
+	//
+	//    * Hours: 0 - 24
+	//
+	//    * Days: 0 - 365
+	//
+	//    * Months: 0 - 12
+	//
+	//    * Years: 0 - 100
+	Value *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetentionPeriod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetentionPeriod) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetentionPeriod) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetentionPeriod"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *RetentionPeriod) SetType(v string) *RetentionPeriod {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *RetentionPeriod) SetValue(v int64) *RetentionPeriod {
+	s.Value = &v
+	return s
+}
+
+// The configuration for an Amazon S3 data repository linked to an Amazon FSx
+// for Lustre file system with a data repository association. The configuration
+// consists of an AutoImportPolicy that defines which file events on the data
+// repository are automatically imported to the file system and an AutoExportPolicy
+// that defines which file events on the file system are automatically exported
+// to the data repository. File events are when files or directories are added,
+// changed, or deleted on the file system or the data repository.
+//
+// Data repository associations on Amazon File Cache don't use S3DataRepositoryConfiguration
+// because they don't support automatic import or automatic export.
+type S3DataRepositoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the type of updated objects (new, changed, deleted) that will be
+	// automatically exported from your file system to the linked S3 bucket.
+	AutoExportPolicy *AutoExportPolicy `type:"structure"`
+
+	// Specifies the type of updated objects (new, changed, deleted) that will be
+	// automatically imported from the linked S3 bucket to your file system.
+	AutoImportPolicy *AutoImportPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataRepositoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataRepositoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAutoExportPolicy sets the AutoExportPolicy field's value.
+func (s *S3DataRepositoryConfiguration) SetAutoExportPolicy(v *AutoExportPolicy) *S3DataRepositoryConfiguration {
+	s.AutoExportPolicy = v
+	return s
+}
+
+// SetAutoImportPolicy sets the AutoImportPolicy field's value.
+func (s *S3DataRepositoryConfiguration) SetAutoImportPolicy(v *AutoImportPolicy) *S3DataRepositoryConfiguration {
+	s.AutoImportPolicy = v
+	return s
+}
+
 // The configuration of the self-managed Microsoft Active Directory (AD) directory
-// to which the Windows File Server instance is joined.
+// to which the Windows File Server or ONTAP storage virtual machine (SVM) instance
+// is joined.
 type SelfManagedActiveDirectoryAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// A list of up to two IP addresses of DNS servers or domain controllers in
+	// A list of up to three IP addresses of DNS servers or domain controllers in
 	// the self-managed AD directory.
 	DnsIps []*string `min:"1" type:"list"`
 
@@ -7702,8 +19971,8 @@ type SelfManagedActiveDirectoryAttributes struct {
 	FileSystemAdministratorsGroup *string `min:"1" type:"string"`
 
 	// The fully qualified distinguished name of the organizational unit within
-	// the self-managed AD directory to which the Windows File Server instance is
-	// joined.
+	// the self-managed AD directory to which the Windows File Server or ONTAP storage
+	// virtual machine (SVM) instance is joined.
 	OrganizationalUnitDistinguishedName *string `min:"1" type:"string"`
 
 	// The user name for the service account on your self-managed AD domain that
@@ -7711,12 +19980,20 @@ type SelfManagedActiveDirectoryAttributes struct {
 	UserName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelfManagedActiveDirectoryAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelfManagedActiveDirectoryAttributes) GoString() string {
 	return s.String()
 }
@@ -7751,14 +20028,16 @@ func (s *SelfManagedActiveDirectoryAttributes) SetUserName(v string) *SelfManage
 	return s
 }
 
-// The configuration that Amazon FSx uses to join the Windows File Server instance
-// to your self-managed (including on-premises) Microsoft Active Directory (AD)
-// directory. For more information, see Using Amazon FSx with your self-managed
-// Microsoft Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html).
+// The configuration that Amazon FSx uses to join a FSx for Windows File Server
+// file system or an FSx for ONTAP storage virtual machine (SVM) to a self-managed
+// (including on-premises) Microsoft Active Directory (AD) directory. For more
+// information, see Using Amazon FSx for Windows with your self-managed Microsoft
+// Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
+// or Managing FSx for ONTAP SVMs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html).
 type SelfManagedActiveDirectoryConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A list of up to two IP addresses of DNS servers or domain controllers in
+	// A list of up to three IP addresses of DNS servers or domain controllers in
 	// the self-managed AD directory.
 	//
 	// DnsIps is a required field
@@ -7780,11 +20059,11 @@ type SelfManagedActiveDirectoryConfiguration struct {
 	FileSystemAdministratorsGroup *string `min:"1" type:"string"`
 
 	// (Optional) The fully qualified distinguished name of the organizational unit
-	// within your self-managed AD directory that the Windows File Server instance
-	// will join. Amazon FSx only accepts OU as the direct parent of the file system.
-	// An example is OU=FSx,DC=yourdomain,DC=corp,DC=com. To learn more, see RFC
-	// 2253 (https://tools.ietf.org/html/rfc2253). If none is provided, the FSx
-	// file system is created in the default location of your self-managed AD directory.
+	// within your self-managed AD directory. Amazon FSx only accepts OU as the
+	// direct parent of the file system. An example is OU=FSx,DC=yourdomain,DC=corp,DC=com.
+	// To learn more, see RFC 2253 (https://tools.ietf.org/html/rfc2253). If none
+	// is provided, the FSx file system is created in the default location of your
+	// self-managed AD directory.
 	//
 	// Only Organizational Unit (OU) objects can be the direct parent of the file
 	// system that you're creating.
@@ -7792,6 +20071,10 @@ type SelfManagedActiveDirectoryConfiguration struct {
 
 	// The password for the service account on your self-managed AD domain that
 	// Amazon FSx will use to join to your AD domain.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SelfManagedActiveDirectoryConfiguration's
+	// String and GoString methods.
 	//
 	// Password is a required field
 	Password *string `min:"1" type:"string" required:"true" sensitive:"true"`
@@ -7806,12 +20089,20 @@ type SelfManagedActiveDirectoryConfiguration struct {
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelfManagedActiveDirectoryConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelfManagedActiveDirectoryConfiguration) GoString() string {
 	return s.String()
 }
@@ -7892,32 +20183,58 @@ func (s *SelfManagedActiveDirectoryConfiguration) SetUserName(v string) *SelfMan
 	return s
 }
 
-// The configuration that Amazon FSx uses to join the Windows File Server instance
-// to a self-managed Microsoft Active Directory (AD) directory.
+// Specifies changes you are making to the self-managed Microsoft Active Directory
+// (AD) configuration to which an FSx for Windows File Server file system or
+// an FSx for ONTAP SVM is joined.
 type SelfManagedActiveDirectoryConfigurationUpdates struct {
 	_ struct{} `type:"structure"`
 
-	// A list of up to two IP addresses of DNS servers or domain controllers in
-	// the self-managed AD directory.
+	// A list of up to three DNS server or domain controller IP addresses in your
+	// self-managed AD domain.
 	DnsIps []*string `min:"1" type:"list"`
 
-	// The password for the service account on your self-managed AD domain that
-	// Amazon FSx will use to join to your AD domain.
+	// Specifies an updated fully qualified domain name of your self-managed AD
+	// configuration.
+	DomainName *string `min:"1" type:"string"`
+
+	// Specifies the updated name of the self-managed AD domain group whose members
+	// are granted administrative privileges for the Amazon FSx resource.
+	FileSystemAdministratorsGroup *string `min:"1" type:"string"`
+
+	// Specifies an updated fully qualified distinguished name of the organization
+	// unit within your self-managed AD.
+	OrganizationalUnitDistinguishedName *string `min:"1" type:"string"`
+
+	// Specifies the updated password for the service account on your self-managed
+	// AD domain. Amazon FSx uses this account to join to your self-managed AD domain.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SelfManagedActiveDirectoryConfigurationUpdates's
+	// String and GoString methods.
 	Password *string `min:"1" type:"string" sensitive:"true"`
 
-	// The user name for the service account on your self-managed AD domain that
-	// Amazon FSx will use to join to your AD domain. This account must have the
-	// permission to join computers to the domain in the organizational unit provided
-	// in OrganizationalUnitDistinguishedName.
+	// Specifies the updated user name for the service account on your self-managed
+	// AD domain. Amazon FSx uses this account to join to your self-managed AD domain.
+	//
+	// This account must have the permissions required to join computers to the
+	// domain in the organizational unit provided in OrganizationalUnitDistinguishedName.
 	UserName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelfManagedActiveDirectoryConfigurationUpdates) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelfManagedActiveDirectoryConfigurationUpdates) GoString() string {
 	return s.String()
 }
@@ -7927,6 +20244,15 @@ func (s *SelfManagedActiveDirectoryConfigurationUpdates) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SelfManagedActiveDirectoryConfigurationUpdates"}
 	if s.DnsIps != nil && len(s.DnsIps) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DnsIps", 1))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.FileSystemAdministratorsGroup != nil && len(*s.FileSystemAdministratorsGroup) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemAdministratorsGroup", 1))
+	}
+	if s.OrganizationalUnitDistinguishedName != nil && len(*s.OrganizationalUnitDistinguishedName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationalUnitDistinguishedName", 1))
 	}
 	if s.Password != nil && len(*s.Password) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Password", 1))
@@ -7947,6 +20273,24 @@ func (s *SelfManagedActiveDirectoryConfigurationUpdates) SetDnsIps(v []*string) 
 	return s
 }
 
+// SetDomainName sets the DomainName field's value.
+func (s *SelfManagedActiveDirectoryConfigurationUpdates) SetDomainName(v string) *SelfManagedActiveDirectoryConfigurationUpdates {
+	s.DomainName = &v
+	return s
+}
+
+// SetFileSystemAdministratorsGroup sets the FileSystemAdministratorsGroup field's value.
+func (s *SelfManagedActiveDirectoryConfigurationUpdates) SetFileSystemAdministratorsGroup(v string) *SelfManagedActiveDirectoryConfigurationUpdates {
+	s.FileSystemAdministratorsGroup = &v
+	return s
+}
+
+// SetOrganizationalUnitDistinguishedName sets the OrganizationalUnitDistinguishedName field's value.
+func (s *SelfManagedActiveDirectoryConfigurationUpdates) SetOrganizationalUnitDistinguishedName(v string) *SelfManagedActiveDirectoryConfigurationUpdates {
+	s.OrganizationalUnitDistinguishedName = &v
+	return s
+}
+
 // SetPassword sets the Password field's value.
 func (s *SelfManagedActiveDirectoryConfigurationUpdates) SetPassword(v string) *SelfManagedActiveDirectoryConfigurationUpdates {
 	s.Password = &v
@@ -7960,7 +20304,7 @@ func (s *SelfManagedActiveDirectoryConfigurationUpdates) SetUserName(v string) *
 }
 
 // An error indicating that a particular service limit was exceeded. You can
-// increase some service limits by contacting AWS Support.
+// increase some service limits by contacting Amazon Web Services Support.
 type ServiceLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7974,12 +20318,20 @@ type ServiceLimitExceeded struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceLimitExceeded) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceLimitExceeded) GoString() string {
 	return s.String()
 }
@@ -8022,25 +20374,467 @@ func (s *ServiceLimitExceeded) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies the SnapLock configuration for an FSx for ONTAP SnapLock volume.
+type SnaplockConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the audit log volume for an FSx for ONTAP SnapLock volume.
+	// The default value is false. If you set AuditLogVolume to true, the SnapLock
+	// volume is created as an audit log volume. The minimum retention period for
+	// an audit log volume is six months.
+	//
+	// For more information, see SnapLock audit log volumes (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#snaplock-audit-log-volume).
+	AuditLogVolume *bool `type:"boolean"`
+
+	// The configuration object for setting the autocommit period of files in an
+	// FSx for ONTAP SnapLock volume.
+	AutocommitPeriod *AutocommitPeriod `type:"structure"`
+
+	// Enables, disables, or permanently disables privileged delete on an FSx for
+	// ONTAP SnapLock Enterprise volume. Enabling privileged delete allows SnapLock
+	// administrators to delete write once, read many (WORM) files even if they
+	// have active retention periods. PERMANENTLY_DISABLED is a terminal state.
+	// If privileged delete is permanently disabled on a SnapLock volume, you can't
+	// re-enable it. The default value is DISABLED.
+	//
+	// For more information, see Privileged delete (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-enterprise.html#privileged-delete).
+	PrivilegedDelete *string `type:"string" enum:"PrivilegedDelete"`
+
+	// Specifies the retention period of an FSx for ONTAP SnapLock volume.
+	RetentionPeriod *SnaplockRetentionPeriod `type:"structure"`
+
+	// Specifies the retention mode of an FSx for ONTAP SnapLock volume. After it
+	// is set, it can't be changed. You can choose one of the following retention
+	// modes:
+	//
+	//    * COMPLIANCE: Files transitioned to write once, read many (WORM) on a
+	//    Compliance volume can't be deleted until their retention periods expire.
+	//    This retention mode is used to address government or industry-specific
+	//    mandates or to protect against ransomware attacks. For more information,
+	//    see SnapLock Compliance (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-compliance.html).
+	//
+	//    * ENTERPRISE: Files transitioned to WORM on an Enterprise volume can be
+	//    deleted by authorized users before their retention periods expire using
+	//    privileged delete. This retention mode is used to advance an organization's
+	//    data integrity and internal compliance or to test retention settings before
+	//    using SnapLock Compliance. For more information, see SnapLock Enterprise
+	//    (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-enterprise.html).
+	SnaplockType *string `type:"string" enum:"SnaplockType"`
+
+	// Enables or disables volume-append mode on an FSx for ONTAP SnapLock volume.
+	// Volume-append mode allows you to create WORM-appendable files and write data
+	// to them incrementally. The default value is false.
+	//
+	// For more information, see Volume-append mode (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append).
+	VolumeAppendModeEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnaplockConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnaplockConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAuditLogVolume sets the AuditLogVolume field's value.
+func (s *SnaplockConfiguration) SetAuditLogVolume(v bool) *SnaplockConfiguration {
+	s.AuditLogVolume = &v
+	return s
+}
+
+// SetAutocommitPeriod sets the AutocommitPeriod field's value.
+func (s *SnaplockConfiguration) SetAutocommitPeriod(v *AutocommitPeriod) *SnaplockConfiguration {
+	s.AutocommitPeriod = v
+	return s
+}
+
+// SetPrivilegedDelete sets the PrivilegedDelete field's value.
+func (s *SnaplockConfiguration) SetPrivilegedDelete(v string) *SnaplockConfiguration {
+	s.PrivilegedDelete = &v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *SnaplockConfiguration) SetRetentionPeriod(v *SnaplockRetentionPeriod) *SnaplockConfiguration {
+	s.RetentionPeriod = v
+	return s
+}
+
+// SetSnaplockType sets the SnaplockType field's value.
+func (s *SnaplockConfiguration) SetSnaplockType(v string) *SnaplockConfiguration {
+	s.SnaplockType = &v
+	return s
+}
+
+// SetVolumeAppendModeEnabled sets the VolumeAppendModeEnabled field's value.
+func (s *SnaplockConfiguration) SetVolumeAppendModeEnabled(v bool) *SnaplockConfiguration {
+	s.VolumeAppendModeEnabled = &v
+	return s
+}
+
+// The configuration to set the retention period of an FSx for ONTAP SnapLock
+// volume. The retention period includes default, maximum, and minimum settings.
+// For more information, see Working with the retention period in SnapLock (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-retention.html).
+type SnaplockRetentionPeriod struct {
+	_ struct{} `type:"structure"`
+
+	// The retention period assigned to a write once, read many (WORM) file by default
+	// if an explicit retention period is not set for an FSx for ONTAP SnapLock
+	// volume. The default retention period must be greater than or equal to the
+	// minimum retention period and less than or equal to the maximum retention
+	// period.
+	//
+	// DefaultRetention is a required field
+	DefaultRetention *RetentionPeriod `type:"structure" required:"true"`
+
+	// The longest retention period that can be assigned to a WORM file on an FSx
+	// for ONTAP SnapLock volume.
+	//
+	// MaximumRetention is a required field
+	MaximumRetention *RetentionPeriod `type:"structure" required:"true"`
+
+	// The shortest retention period that can be assigned to a WORM file on an FSx
+	// for ONTAP SnapLock volume.
+	//
+	// MinimumRetention is a required field
+	MinimumRetention *RetentionPeriod `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnaplockRetentionPeriod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnaplockRetentionPeriod) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnaplockRetentionPeriod) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnaplockRetentionPeriod"}
+	if s.DefaultRetention == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultRetention"))
+	}
+	if s.MaximumRetention == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaximumRetention"))
+	}
+	if s.MinimumRetention == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinimumRetention"))
+	}
+	if s.DefaultRetention != nil {
+		if err := s.DefaultRetention.Validate(); err != nil {
+			invalidParams.AddNested("DefaultRetention", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MaximumRetention != nil {
+		if err := s.MaximumRetention.Validate(); err != nil {
+			invalidParams.AddNested("MaximumRetention", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MinimumRetention != nil {
+		if err := s.MinimumRetention.Validate(); err != nil {
+			invalidParams.AddNested("MinimumRetention", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultRetention sets the DefaultRetention field's value.
+func (s *SnaplockRetentionPeriod) SetDefaultRetention(v *RetentionPeriod) *SnaplockRetentionPeriod {
+	s.DefaultRetention = v
+	return s
+}
+
+// SetMaximumRetention sets the MaximumRetention field's value.
+func (s *SnaplockRetentionPeriod) SetMaximumRetention(v *RetentionPeriod) *SnaplockRetentionPeriod {
+	s.MaximumRetention = v
+	return s
+}
+
+// SetMinimumRetention sets the MinimumRetention field's value.
+func (s *SnaplockRetentionPeriod) SetMinimumRetention(v *RetentionPeriod) *SnaplockRetentionPeriod {
+	s.MinimumRetention = v
+	return s
+}
+
+// A snapshot of an Amazon FSx for OpenZFS volume.
+type Snapshot struct {
+	_ struct{} `type:"structure"`
+
+	// A list of administrative actions for the file system that are in process
+	// or waiting to be processed. Administrative actions describe changes to the
+	// Amazon FSx system.
+	AdministrativeActions []*AdministrativeAction `type:"list"`
+
+	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
+	// also known as Unix time.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The lifecycle status of the snapshot.
+	//
+	//    * PENDING - Amazon FSx hasn't started creating the snapshot.
+	//
+	//    * CREATING - Amazon FSx is creating the snapshot.
+	//
+	//    * DELETING - Amazon FSx is deleting the snapshot.
+	//
+	//    * AVAILABLE - The snapshot is fully available.
+	Lifecycle *string `type:"string" enum:"SnapshotLifecycle"`
+
+	// Describes why a resource lifecycle state changed.
+	LifecycleTransitionReason *LifecycleTransitionReason `type:"structure"`
+
+	// The name of the snapshot.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ResourceARN *string `min:"8" type:"string"`
+
+	// The ID of the snapshot.
+	SnapshotId *string `min:"11" type:"string"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The ID of the volume that the snapshot is of.
+	VolumeId *string `min:"23" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Snapshot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Snapshot) GoString() string {
+	return s.String()
+}
+
+// SetAdministrativeActions sets the AdministrativeActions field's value.
+func (s *Snapshot) SetAdministrativeActions(v []*AdministrativeAction) *Snapshot {
+	s.AdministrativeActions = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Snapshot) SetCreationTime(v time.Time) *Snapshot {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *Snapshot) SetLifecycle(v string) *Snapshot {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetLifecycleTransitionReason sets the LifecycleTransitionReason field's value.
+func (s *Snapshot) SetLifecycleTransitionReason(v *LifecycleTransitionReason) *Snapshot {
+	s.LifecycleTransitionReason = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Snapshot) SetName(v string) *Snapshot {
+	s.Name = &v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *Snapshot) SetResourceARN(v string) *Snapshot {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *Snapshot) SetSnapshotId(v string) *Snapshot {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Snapshot) SetTags(v []*Tag) *Snapshot {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *Snapshot) SetVolumeId(v string) *Snapshot {
+	s.VolumeId = &v
+	return s
+}
+
+// A filter used to restrict the results of DescribeSnapshots calls. You can
+// use multiple filters to return results that meet all applied filter requirements.
+type SnapshotFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter to use. You can filter by the file-system-id or by
+	// volume-id.
+	Name *string `type:"string" enum:"SnapshotFilterName"`
+
+	// The file-system-id or volume-id that you are filtering for.
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *SnapshotFilter) SetName(v string) *SnapshotFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *SnapshotFilter) SetValues(v []*string) *SnapshotFilter {
+	s.Values = v
+	return s
+}
+
+// No Amazon FSx snapshots were found based on the supplied parameters.
+type SnapshotNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnapshotNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorSnapshotNotFound(v protocol.ResponseMetadata) error {
+	return &SnapshotNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *SnapshotNotFound) Code() string {
+	return "SnapshotNotFound"
+}
+
+// Message returns the exception's message.
+func (s *SnapshotNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *SnapshotNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *SnapshotNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *SnapshotNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *SnapshotNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The request was rejected because the lifecycle status of the source backup
-// is not AVAILABLE.
+// isn't AVAILABLE.
 type SourceBackupUnavailable struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The ID of the source backup. Specifies the backup you are copying.
+	// The ID of the source backup. Specifies the backup that you are copying.
 	BackupId *string `min:"12" type:"string"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceBackupUnavailable) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceBackupUnavailable) GoString() string {
 	return s.String()
 }
@@ -8083,6 +20877,522 @@ func (s *SourceBackupUnavailable) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type StartMisconfiguredStateRecoveryInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `min:"11" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMisconfiguredStateRecoveryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMisconfiguredStateRecoveryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMisconfiguredStateRecoveryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMisconfiguredStateRecoveryInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartMisconfiguredStateRecoveryInput) SetClientRequestToken(v string) *StartMisconfiguredStateRecoveryInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *StartMisconfiguredStateRecoveryInput) SetFileSystemId(v string) *StartMisconfiguredStateRecoveryInput {
+	s.FileSystemId = &v
+	return s
+}
+
+type StartMisconfiguredStateRecoveryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of a specific Amazon FSx file system.
+	FileSystem *FileSystem `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMisconfiguredStateRecoveryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMisconfiguredStateRecoveryOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileSystem sets the FileSystem field's value.
+func (s *StartMisconfiguredStateRecoveryOutput) SetFileSystem(v *FileSystem) *StartMisconfiguredStateRecoveryOutput {
+	s.FileSystem = v
+	return s
+}
+
+// Describes the Amazon FSx for NetApp ONTAP storage virtual machine (SVM) configuration.
+type StorageVirtualMachine struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the Microsoft Active Directory configuration to which the SVM is
+	// joined, if applicable.
+	ActiveDirectoryConfiguration *SvmActiveDirectoryConfiguration `type:"structure"`
+
+	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
+	// also known as Unix time.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The endpoints that are used to access data or to manage the SVM using the
+	// NetApp ONTAP CLI, REST API, or NetApp CloudManager. They are the Iscsi, Management,
+	// Nfs, and Smb endpoints.
+	Endpoints *SvmEndpoints `type:"structure"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	FileSystemId *string `min:"11" type:"string"`
+
+	// Describes the SVM's lifecycle status.
+	//
+	//    * CREATED - The SVM is fully available for use.
+	//
+	//    * CREATING - Amazon FSx is creating the new SVM.
+	//
+	//    * DELETING - Amazon FSx is deleting an existing SVM.
+	//
+	//    * FAILED - Amazon FSx was unable to create the SVM.
+	//
+	//    * MISCONFIGURED - The SVM is in a failed but recoverable state.
+	//
+	//    * PENDING - Amazon FSx has not started creating the SVM.
+	Lifecycle *string `type:"string" enum:"StorageVirtualMachineLifecycle"`
+
+	// Describes why the SVM lifecycle state changed.
+	LifecycleTransitionReason *LifecycleTransitionReason `type:"structure"`
+
+	// The name of the SVM, if provisioned.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ResourceARN *string `min:"8" type:"string"`
+
+	// The security style of the root volume of the SVM.
+	RootVolumeSecurityStyle *string `type:"string" enum:"StorageVirtualMachineRootVolumeSecurityStyle"`
+
+	// The SVM's system generated unique ID.
+	StorageVirtualMachineId *string `min:"21" type:"string"`
+
+	// Describes the SVM's subtype.
+	Subtype *string `type:"string" enum:"StorageVirtualMachineSubtype"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The SVM's UUID (universally unique identifier).
+	UUID *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageVirtualMachine) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageVirtualMachine) GoString() string {
+	return s.String()
+}
+
+// SetActiveDirectoryConfiguration sets the ActiveDirectoryConfiguration field's value.
+func (s *StorageVirtualMachine) SetActiveDirectoryConfiguration(v *SvmActiveDirectoryConfiguration) *StorageVirtualMachine {
+	s.ActiveDirectoryConfiguration = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *StorageVirtualMachine) SetCreationTime(v time.Time) *StorageVirtualMachine {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *StorageVirtualMachine) SetEndpoints(v *SvmEndpoints) *StorageVirtualMachine {
+	s.Endpoints = v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *StorageVirtualMachine) SetFileSystemId(v string) *StorageVirtualMachine {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *StorageVirtualMachine) SetLifecycle(v string) *StorageVirtualMachine {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetLifecycleTransitionReason sets the LifecycleTransitionReason field's value.
+func (s *StorageVirtualMachine) SetLifecycleTransitionReason(v *LifecycleTransitionReason) *StorageVirtualMachine {
+	s.LifecycleTransitionReason = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StorageVirtualMachine) SetName(v string) *StorageVirtualMachine {
+	s.Name = &v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *StorageVirtualMachine) SetResourceARN(v string) *StorageVirtualMachine {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRootVolumeSecurityStyle sets the RootVolumeSecurityStyle field's value.
+func (s *StorageVirtualMachine) SetRootVolumeSecurityStyle(v string) *StorageVirtualMachine {
+	s.RootVolumeSecurityStyle = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *StorageVirtualMachine) SetStorageVirtualMachineId(v string) *StorageVirtualMachine {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+// SetSubtype sets the Subtype field's value.
+func (s *StorageVirtualMachine) SetSubtype(v string) *StorageVirtualMachine {
+	s.Subtype = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StorageVirtualMachine) SetTags(v []*Tag) *StorageVirtualMachine {
+	s.Tags = v
+	return s
+}
+
+// SetUUID sets the UUID field's value.
+func (s *StorageVirtualMachine) SetUUID(v string) *StorageVirtualMachine {
+	s.UUID = &v
+	return s
+}
+
+// A filter used to restrict the results of describe calls for Amazon FSx for
+// NetApp ONTAP storage virtual machines (SVMs). You can use multiple filters
+// to return results that meet all applied filter requirements.
+type StorageVirtualMachineFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name for this filter.
+	Name *string `type:"string" enum:"StorageVirtualMachineFilterName"`
+
+	// The values of the filter. These are all the values for any of the applied
+	// filters.
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageVirtualMachineFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageVirtualMachineFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *StorageVirtualMachineFilter) SetName(v string) *StorageVirtualMachineFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *StorageVirtualMachineFilter) SetValues(v []*string) *StorageVirtualMachineFilter {
+	s.Values = v
+	return s
+}
+
+// No FSx for ONTAP SVMs were found based upon the supplied parameters.
+type StorageVirtualMachineNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageVirtualMachineNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageVirtualMachineNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorStorageVirtualMachineNotFound(v protocol.ResponseMetadata) error {
+	return &StorageVirtualMachineNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *StorageVirtualMachineNotFound) Code() string {
+	return "StorageVirtualMachineNotFound"
+}
+
+// Message returns the exception's message.
+func (s *StorageVirtualMachineNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *StorageVirtualMachineNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *StorageVirtualMachineNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *StorageVirtualMachineNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *StorageVirtualMachineNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Describes the Microsoft Active Directory (AD) directory configuration to
+// which the FSx for ONTAP storage virtual machine (SVM) is joined. Note that
+// account credentials are not returned in the response payload.
+type SvmActiveDirectoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The NetBIOS name of the AD computer object to which the SVM is joined.
+	NetBiosName *string `min:"1" type:"string"`
+
+	// The configuration of the self-managed Microsoft Active Directory (AD) directory
+	// to which the Windows File Server or ONTAP storage virtual machine (SVM) instance
+	// is joined.
+	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryAttributes `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SvmActiveDirectoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SvmActiveDirectoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetNetBiosName sets the NetBiosName field's value.
+func (s *SvmActiveDirectoryConfiguration) SetNetBiosName(v string) *SvmActiveDirectoryConfiguration {
+	s.NetBiosName = &v
+	return s
+}
+
+// SetSelfManagedActiveDirectoryConfiguration sets the SelfManagedActiveDirectoryConfiguration field's value.
+func (s *SvmActiveDirectoryConfiguration) SetSelfManagedActiveDirectoryConfiguration(v *SelfManagedActiveDirectoryAttributes) *SvmActiveDirectoryConfiguration {
+	s.SelfManagedActiveDirectoryConfiguration = v
+	return s
+}
+
+// An Amazon FSx for NetApp ONTAP storage virtual machine (SVM) has four endpoints
+// that are used to access data or to manage the SVM using the NetApp ONTAP
+// CLI, REST API, or NetApp CloudManager. They are the Iscsi, Management, Nfs,
+// and Smb endpoints.
+type SvmEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The file system's DNS name. You can mount your file system using its DNS
+	// name.
+	DNSName *string `min:"16" type:"string"`
+
+	// The SVM endpoint's IP addresses.
+	IpAddresses []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SvmEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SvmEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetDNSName sets the DNSName field's value.
+func (s *SvmEndpoint) SetDNSName(v string) *SvmEndpoint {
+	s.DNSName = &v
+	return s
+}
+
+// SetIpAddresses sets the IpAddresses field's value.
+func (s *SvmEndpoint) SetIpAddresses(v []*string) *SvmEndpoint {
+	s.IpAddresses = v
+	return s
+}
+
+// An Amazon FSx for NetApp ONTAP storage virtual machine (SVM) has the following
+// endpoints that are used to access data or to manage the SVM using the NetApp
+// ONTAP CLI, REST API, or NetApp CloudManager.
+type SvmEndpoints struct {
+	_ struct{} `type:"structure"`
+
+	// An endpoint for connecting using the Internet Small Computer Systems Interface
+	// (iSCSI) protocol.
+	Iscsi *SvmEndpoint `type:"structure"`
+
+	// An endpoint for managing SVMs using the NetApp ONTAP CLI, NetApp ONTAP API,
+	// or NetApp CloudManager.
+	Management *SvmEndpoint `type:"structure"`
+
+	// An endpoint for connecting using the Network File System (NFS) protocol.
+	Nfs *SvmEndpoint `type:"structure"`
+
+	// An endpoint for connecting using the Server Message Block (SMB) protocol.
+	Smb *SvmEndpoint `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SvmEndpoints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SvmEndpoints) GoString() string {
+	return s.String()
+}
+
+// SetIscsi sets the Iscsi field's value.
+func (s *SvmEndpoints) SetIscsi(v *SvmEndpoint) *SvmEndpoints {
+	s.Iscsi = v
+	return s
+}
+
+// SetManagement sets the Management field's value.
+func (s *SvmEndpoints) SetManagement(v *SvmEndpoint) *SvmEndpoints {
+	s.Management = v
+	return s
+}
+
+// SetNfs sets the Nfs field's value.
+func (s *SvmEndpoints) SetNfs(v *SvmEndpoint) *SvmEndpoints {
+	s.Nfs = v
+	return s
+}
+
+// SetSmb sets the Smb field's value.
+func (s *SvmEndpoints) SetSmb(v *SvmEndpoint) *SvmEndpoints {
+	s.Smb = v
+	return s
+}
+
 // Specifies a key-value pair for a resource tag.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -8102,12 +21412,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -8160,12 +21478,20 @@ type TagResourceInput struct {
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -8219,14 +21545,107 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// Describes the data tiering policy for an ONTAP volume. When enabled, Amazon
+// FSx for ONTAP's intelligent tiering automatically transitions a volume's
+// data between the file system's primary storage and capacity pool storage
+// based on your access patterns.
+//
+// Valid tiering policies are the following:
+//
+//   - SNAPSHOT_ONLY - (Default value) moves cold snapshots to the capacity
+//     pool storage tier.
+//
+//   - AUTO - moves cold user data and snapshots to the capacity pool storage
+//     tier based on your access patterns.
+//
+//   - ALL - moves all user data blocks in both the active file system and
+//     Snapshot copies to the storage pool tier.
+//
+//   - NONE - keeps a volume's data in the primary storage tier, preventing
+//     it from being moved to the capacity pool tier.
+type TieringPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of days that user data in a volume must remain inactive
+	// before it is considered "cold" and moved to the capacity pool. Used with
+	// the AUTO and SNAPSHOT_ONLY tiering policies. Enter a whole number between
+	// 2 and 183. Default values are 31 days for AUTO and 2 days for SNAPSHOT_ONLY.
+	CoolingPeriod *int64 `min:"2" type:"integer"`
+
+	// Specifies the tiering policy used to transition data. Default value is SNAPSHOT_ONLY.
+	//
+	//    * SNAPSHOT_ONLY - moves cold snapshots to the capacity pool storage tier.
+	//
+	//    * AUTO - moves cold user data and snapshots to the capacity pool storage
+	//    tier based on your access patterns.
+	//
+	//    * ALL - moves all user data blocks in both the active file system and
+	//    Snapshot copies to the storage pool tier.
+	//
+	//    * NONE - keeps a volume's data in the primary storage tier, preventing
+	//    it from being moved to the capacity pool tier.
+	Name *string `type:"string" enum:"TieringPolicyName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TieringPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TieringPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TieringPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TieringPolicy"}
+	if s.CoolingPeriod != nil && *s.CoolingPeriod < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("CoolingPeriod", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCoolingPeriod sets the CoolingPeriod field's value.
+func (s *TieringPolicy) SetCoolingPeriod(v int64) *TieringPolicy {
+	s.CoolingPeriod = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TieringPolicy) SetName(v string) *TieringPolicy {
+	s.Name = &v
+	return s
 }
 
 // The requested operation is not supported for this resource or API.
@@ -8238,12 +21657,20 @@ type UnsupportedOperation struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedOperation) GoString() string {
 	return s.String()
 }
@@ -8302,12 +21729,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -8351,26 +21786,321 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateDataRepositoryAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the data repository association that you are updating.
+	//
+	// AssociationId is a required field
+	AssociationId *string `min:"13" type:"string" required:"true"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// For files imported from a data repository, this value determines the stripe
+	// count and maximum amount of data per file (in MiB) stored on a single physical
+	// disk. The maximum number of disks that a single file can be striped across
+	// is limited by the total number of disks that make up the file system.
+	//
+	// The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000
+	// MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.
+	ImportedFileChunkSize *int64 `min:"1" type:"integer"`
+
+	// The configuration for an Amazon S3 data repository linked to an Amazon FSx
+	// Lustre file system with a data repository association. The configuration
+	// defines which file events (new, changed, or deleted files or directories)
+	// are automatically imported from the linked data repository to the file system
+	// or automatically exported from the file system to the data repository.
+	S3 *S3DataRepositoryConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataRepositoryAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataRepositoryAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDataRepositoryAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDataRepositoryAssociationInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 13 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 13))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.ImportedFileChunkSize != nil && *s.ImportedFileChunkSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ImportedFileChunkSize", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *UpdateDataRepositoryAssociationInput) SetAssociationId(v string) *UpdateDataRepositoryAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateDataRepositoryAssociationInput) SetClientRequestToken(v string) *UpdateDataRepositoryAssociationInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetImportedFileChunkSize sets the ImportedFileChunkSize field's value.
+func (s *UpdateDataRepositoryAssociationInput) SetImportedFileChunkSize(v int64) *UpdateDataRepositoryAssociationInput {
+	s.ImportedFileChunkSize = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *UpdateDataRepositoryAssociationInput) SetS3(v *S3DataRepositoryConfiguration) *UpdateDataRepositoryAssociationInput {
+	s.S3 = v
+	return s
+}
+
+type UpdateDataRepositoryAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The response object returned after the data repository association is updated.
+	Association *DataRepositoryAssociation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataRepositoryAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataRepositoryAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociation sets the Association field's value.
+func (s *UpdateDataRepositoryAssociationOutput) SetAssociation(v *DataRepositoryAssociation) *UpdateDataRepositoryAssociationOutput {
+	s.Association = v
+	return s
+}
+
+type UpdateFileCacheInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the cache that you are updating.
+	//
+	// FileCacheId is a required field
+	FileCacheId *string `min:"11" type:"string" required:"true"`
+
+	// The configuration updates for an Amazon File Cache resource.
+	LustreConfiguration *UpdateFileCacheLustreConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileCacheInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileCacheInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFileCacheInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFileCacheInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FileCacheId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileCacheId"))
+	}
+	if s.FileCacheId != nil && len(*s.FileCacheId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileCacheId", 11))
+	}
+	if s.LustreConfiguration != nil {
+		if err := s.LustreConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LustreConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateFileCacheInput) SetClientRequestToken(v string) *UpdateFileCacheInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFileCacheId sets the FileCacheId field's value.
+func (s *UpdateFileCacheInput) SetFileCacheId(v string) *UpdateFileCacheInput {
+	s.FileCacheId = &v
+	return s
+}
+
+// SetLustreConfiguration sets the LustreConfiguration field's value.
+func (s *UpdateFileCacheInput) SetLustreConfiguration(v *UpdateFileCacheLustreConfiguration) *UpdateFileCacheInput {
+	s.LustreConfiguration = v
+	return s
+}
+
+// The configuration update for an Amazon File Cache resource.
+type UpdateFileCacheLustreConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileCacheLustreConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileCacheLustreConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFileCacheLustreConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFileCacheLustreConfiguration"}
+	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *UpdateFileCacheLustreConfiguration) SetWeeklyMaintenanceStartTime(v string) *UpdateFileCacheLustreConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+type UpdateFileCacheOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the cache that was updated.
+	FileCache *FileCache `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileCacheOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileCacheOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileCache sets the FileCache field's value.
+func (s *UpdateFileCacheOutput) SetFileCache(v *FileCache) *UpdateFileCacheOutput {
+	s.FileCache = v
+	return s
 }
 
 // The request object for the UpdateFileSystem operation.
 type UpdateFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
 	// updates. This string is automatically filled on your behalf when you use
-	// the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// Identifies the file system that you are updating.
+	// The ID of the file system that you are updating.
 	//
 	// FileSystemId is a required field
 	FileSystemId *string `min:"11" type:"string" required:"true"`
@@ -8379,46 +22109,75 @@ type UpdateFileSystemInput struct {
 	// UpdateFileSystem operation.
 	LustreConfiguration *UpdateFileSystemLustreConfiguration `type:"structure"`
 
-	// Use this parameter to increase the storage capacity of an Amazon FSx file
-	// system. Specifies the storage capacity target value, GiB, to increase the
-	// storage capacity for the file system that you're updating. You cannot make
-	// a storage capacity increase request if there is an existing storage capacity
-	// increase request in progress.
+	// The configuration updates for an Amazon FSx for NetApp ONTAP file system.
+	OntapConfiguration *UpdateFileSystemOntapConfiguration `type:"structure"`
+
+	// The configuration updates for an FSx for OpenZFS file system.
+	OpenZFSConfiguration *UpdateFileSystemOpenZFSConfiguration `type:"structure"`
+
+	// Use this parameter to increase the storage capacity of an FSx for Windows
+	// File Server, FSx for Lustre, FSx for OpenZFS, or FSx for ONTAP file system.
+	// Specifies the storage capacity target value, in GiB, to increase the storage
+	// capacity for the file system that you're updating.
 	//
-	// For Windows file systems, the storage capacity target value must be at least
-	// 10 percent (%) greater than the current storage capacity value. In order
-	// to increase storage capacity, the file system must have at least 16 MB/s
-	// of throughput capacity.
+	// You can't make a storage capacity increase request if there is an existing
+	// storage capacity increase request in progress.
 	//
 	// For Lustre file systems, the storage capacity target value can be the following:
 	//
-	//    * For SCRATCH_2 and PERSISTENT_1 SSD deployment types, valid values are
-	//    in multiples of 2400 GiB. The value must be greater than the current storage
-	//    capacity.
+	//    * For SCRATCH_2, PERSISTENT_1, and PERSISTENT_2 SSD deployment types,
+	//    valid values are in multiples of 2400 GiB. The value must be greater than
+	//    the current storage capacity.
 	//
 	//    * For PERSISTENT HDD file systems, valid values are multiples of 6000
-	//    GiB for 12 MB/s/TiB file systems and multiples of 1800 GiB for 40 MB/s/TiB
-	//    file systems. The values must be greater than the current storage capacity.
+	//    GiB for 12-MBps throughput per TiB file systems and multiples of 1800
+	//    GiB for 40-MBps throughput per TiB file systems. The values must be greater
+	//    than the current storage capacity.
 	//
-	//    * For SCRATCH_1 file systems, you cannot increase the storage capacity.
+	//    * For SCRATCH_1 file systems, you can't increase the storage capacity.
 	//
+	// For more information, see Managing storage and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+	// in the FSx for Lustre User Guide.
+	//
+	// For FSx for OpenZFS file systems, the storage capacity target value must
+	// be at least 10 percent greater than the current storage capacity value. For
+	// more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-storage-capacity.html)
+	// in the FSx for OpenZFS User Guide.
+	//
+	// For Windows file systems, the storage capacity target value must be at least
+	// 10 percent greater than the current storage capacity value. To increase storage
+	// capacity, the file system must have at least 16 MBps of throughput capacity.
 	// For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
-	// in the Amazon FSx for Windows File Server User Guide and Managing storage
-	// and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
-	// in the Amazon FSx for Lustre User Guide.
+	// in the Amazon FSxfor Windows File Server User Guide.
+	//
+	// For ONTAP file systems, the storage capacity target value must be at least
+	// 10 percent greater than the current storage capacity value. For more information,
+	// see Managing storage capacity and provisioned IOPS (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
 	StorageCapacity *int64 `type:"integer"`
+
+	// Specifies the file system's storage type.
+	StorageType *string `type:"string" enum:"StorageType"`
 
 	// The configuration updates for an Amazon FSx for Windows File Server file
 	// system.
 	WindowsConfiguration *UpdateFileSystemWindowsConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemInput) GoString() string {
 	return s.String()
 }
@@ -8438,6 +22197,16 @@ func (s *UpdateFileSystemInput) Validate() error {
 	if s.LustreConfiguration != nil {
 		if err := s.LustreConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("LustreConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OpenZFSConfiguration != nil {
+		if err := s.OpenZFSConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OpenZFSConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.WindowsConfiguration != nil {
@@ -8470,9 +22239,27 @@ func (s *UpdateFileSystemInput) SetLustreConfiguration(v *UpdateFileSystemLustre
 	return s
 }
 
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *UpdateFileSystemInput) SetOntapConfiguration(v *UpdateFileSystemOntapConfiguration) *UpdateFileSystemInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetOpenZFSConfiguration sets the OpenZFSConfiguration field's value.
+func (s *UpdateFileSystemInput) SetOpenZFSConfiguration(v *UpdateFileSystemOpenZFSConfiguration) *UpdateFileSystemInput {
+	s.OpenZFSConfiguration = v
+	return s
+}
+
 // SetStorageCapacity sets the StorageCapacity field's value.
 func (s *UpdateFileSystemInput) SetStorageCapacity(v int64) *UpdateFileSystemInput {
 	s.StorageCapacity = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *UpdateFileSystemInput) SetStorageType(v string) *UpdateFileSystemInput {
+	s.StorageType = &v
 	return s
 }
 
@@ -8506,13 +22293,17 @@ type UpdateFileSystemLustreConfiguration struct {
 	//    existing objects that are changed in the S3 bucket after you choose this
 	//    option.
 	//
-	// For more information, see Automatically import updates from your S3 bucket
-	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/autoimport-data-repo.html).
+	//    * NEW_CHANGED_DELETED - AutoImport is on. Amazon FSx automatically imports
+	//    file and directory listings of any new objects added to the S3 bucket,
+	//    any existing objects that are changed in the S3 bucket, and any objects
+	//    that were deleted in the S3 bucket.
+	//
+	// This parameter is not supported for file systems with a data repository association.
 	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
 
-	// The number of days to retain automatic backups. Setting this to 0 disables
-	// automatic backups. You can retain automatic backups for a maximum of 90 days.
-	// The default is 0.
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 0.
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
@@ -8533,18 +22324,51 @@ type UpdateFileSystemLustreConfiguration struct {
 	// For more information, see Lustre data compression (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-compression.html).
 	DataCompressionType *string `type:"string" enum:"DataCompressionType"`
 
+	// The Lustre logging configuration used when updating an Amazon FSx for Lustre
+	// file system. When logging is enabled, Lustre logs error and warning events
+	// for data repositories associated with your file system to Amazon CloudWatch
+	// Logs.
+	LogConfiguration *LustreLogCreateConfiguration `type:"structure"`
+
+	// The throughput of an Amazon FSx for Lustre Persistent SSD-based file system,
+	// measured in megabytes per second per tebibyte (MB/s/TiB). You can increase
+	// or decrease your file system's throughput. Valid values depend on the deployment
+	// type of the file system, as follows:
+	//
+	//    * For PERSISTENT_1 SSD-based deployment types, valid values are 50, 100,
+	//    and 200 MB/s/TiB.
+	//
+	//    * For PERSISTENT_2 SSD-based deployment types, valid values are 125, 250,
+	//    500, and 1000 MB/s/TiB.
+	//
+	// For more information, see Managing throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-throughput-capacity.html).
+	PerUnitStorageThroughput *int64 `min:"12" type:"integer"`
+
+	// The Lustre root squash configuration used when updating an Amazon FSx for
+	// Lustre file system. When enabled, root squash restricts root-level access
+	// from clients that try to access your file system as a root user.
+	RootSquashConfiguration *LustreRootSquashConfiguration `type:"structure"`
+
 	// (Optional) The preferred start time to perform weekly maintenance, formatted
 	// d:HH:MM in the UTC time zone. d is the weekday number, from 1 through 7,
 	// beginning with Monday and ending with Sunday.
 	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemLustreConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemLustreConfiguration) GoString() string {
 	return s.String()
 }
@@ -8555,8 +22379,21 @@ func (s *UpdateFileSystemLustreConfiguration) Validate() error {
 	if s.DailyAutomaticBackupStartTime != nil && len(*s.DailyAutomaticBackupStartTime) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("DailyAutomaticBackupStartTime", 5))
 	}
+	if s.PerUnitStorageThroughput != nil && *s.PerUnitStorageThroughput < 12 {
+		invalidParams.Add(request.NewErrParamMinValue("PerUnitStorageThroughput", 12))
+	}
 	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+	if s.LogConfiguration != nil {
+		if err := s.LogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RootSquashConfiguration != nil {
+		if err := s.RootSquashConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RootSquashConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8589,8 +22426,380 @@ func (s *UpdateFileSystemLustreConfiguration) SetDataCompressionType(v string) *
 	return s
 }
 
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *UpdateFileSystemLustreConfiguration) SetLogConfiguration(v *LustreLogCreateConfiguration) *UpdateFileSystemLustreConfiguration {
+	s.LogConfiguration = v
+	return s
+}
+
+// SetPerUnitStorageThroughput sets the PerUnitStorageThroughput field's value.
+func (s *UpdateFileSystemLustreConfiguration) SetPerUnitStorageThroughput(v int64) *UpdateFileSystemLustreConfiguration {
+	s.PerUnitStorageThroughput = &v
+	return s
+}
+
+// SetRootSquashConfiguration sets the RootSquashConfiguration field's value.
+func (s *UpdateFileSystemLustreConfiguration) SetRootSquashConfiguration(v *LustreRootSquashConfiguration) *UpdateFileSystemLustreConfiguration {
+	s.RootSquashConfiguration = v
+	return s
+}
+
 // SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
 func (s *UpdateFileSystemLustreConfiguration) SetWeeklyMaintenanceStartTime(v string) *UpdateFileSystemLustreConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// The configuration updates for an Amazon FSx for NetApp ONTAP file system.
+type UpdateFileSystemOntapConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// (Multi-AZ only) A list of IDs of new virtual private cloud (VPC) route tables
+	// to associate (add) with your Amazon FSx for NetApp ONTAP file system.
+	AddRouteTableIds []*string `type:"list"`
+
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30.
+	AutomaticBackupRetentionDays *int64 `type:"integer"`
+
+	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
+	// the day (0-23), and MM is the zero-padded minute of the hour. For example,
+	// 05:00 specifies 5 AM daily.
+	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// The SSD IOPS (input output operations per second) configuration for an Amazon
+	// FSx for NetApp ONTAP file system. The default is 3 IOPS per GB of storage
+	// capacity, but you can provision additional IOPS per GB of storage. The configuration
+	// consists of an IOPS mode (AUTOMATIC or USER_PROVISIONED), and in the case
+	// of USER_PROVISIONED IOPS, the total number of SSD IOPS provisioned. For more
+	// information, see Updating SSD storage capacity and IOPS (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/increase-primary-storage.html).
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
+	// Update the password for the fsxadmin user by entering a new password. You
+	// use the fsxadmin user to access the NetApp ONTAP CLI and REST API to manage
+	// your file system resources. For more information, see Managing resources
+	// using NetApp Applicaton (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-resources-ontap-apps.html).
+	//
+	// FsxAdminPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateFileSystemOntapConfiguration's
+	// String and GoString methods.
+	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
+
+	// (Multi-AZ only) A list of IDs of existing virtual private cloud (VPC) route
+	// tables to disassociate (remove) from your Amazon FSx for NetApp ONTAP file
+	// system. You can use the API operation to retrieve the list of VPC route table
+	// IDs for a file system.
+	RemoveRouteTableIds []*string `type:"list"`
+
+	// Enter a new value to change the amount of throughput capacity for the file
+	// system in megabytes per second (MBps). For more information, see Managing
+	// throughput capacity (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-throughput-capacity.html)
+	// in the FSx for ONTAP User Guide.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
+	//    not the same value.
+	//
+	//    * The value of ThroughputCapacity when divided by the value of HAPairs
+	//    is outside of the valid range for ThroughputCapacity.
+	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
+	// Use to choose the throughput capacity per HA pair, rather than the total
+	// throughput for the file system.
+	//
+	// This field and ThroughputCapacity cannot be defined in the same API call,
+	// but one is required.
+	//
+	// This field and ThroughputCapacity are the same for file systems with one
+	// HA pair.
+	//
+	//    * For SINGLE_AZ_1 and MULTI_AZ_1, valid values are 128, 256, 512, 1024,
+	//    2048, or 4096 MBps.
+	//
+	//    * For SINGLE_AZ_2, valid values are 3072 or 6144 MBps.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	// The value of ThroughputCapacity and ThroughputCapacityPerHAPair are not the
+	// same value.
+	//
+	// The value of ThroughputCapacityPerHAPair is not a valid value.
+	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemOntapConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemOntapConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFileSystemOntapConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFileSystemOntapConfiguration"}
+	if s.DailyAutomaticBackupStartTime != nil && len(*s.DailyAutomaticBackupStartTime) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("DailyAutomaticBackupStartTime", 5))
+	}
+	if s.FsxAdminPassword != nil && len(*s.FsxAdminPassword) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("FsxAdminPassword", 8))
+	}
+	if s.ThroughputCapacity != nil && *s.ThroughputCapacity < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacity", 8))
+	}
+	if s.ThroughputCapacityPerHAPair != nil && *s.ThroughputCapacityPerHAPair < 128 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacityPerHAPair", 128))
+	}
+	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddRouteTableIds sets the AddRouteTableIds field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetAddRouteTableIds(v []*string) *UpdateFileSystemOntapConfiguration {
+	s.AddRouteTableIds = v
+	return s
+}
+
+// SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetAutomaticBackupRetentionDays(v int64) *UpdateFileSystemOntapConfiguration {
+	s.AutomaticBackupRetentionDays = &v
+	return s
+}
+
+// SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetDailyAutomaticBackupStartTime(v string) *UpdateFileSystemOntapConfiguration {
+	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *UpdateFileSystemOntapConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
+// SetFsxAdminPassword sets the FsxAdminPassword field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetFsxAdminPassword(v string) *UpdateFileSystemOntapConfiguration {
+	s.FsxAdminPassword = &v
+	return s
+}
+
+// SetRemoveRouteTableIds sets the RemoveRouteTableIds field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetRemoveRouteTableIds(v []*string) *UpdateFileSystemOntapConfiguration {
+	s.RemoveRouteTableIds = v
+	return s
+}
+
+// SetThroughputCapacity sets the ThroughputCapacity field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetThroughputCapacity(v int64) *UpdateFileSystemOntapConfiguration {
+	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetThroughputCapacityPerHAPair sets the ThroughputCapacityPerHAPair field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetThroughputCapacityPerHAPair(v int64) *UpdateFileSystemOntapConfiguration {
+	s.ThroughputCapacityPerHAPair = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetWeeklyMaintenanceStartTime(v string) *UpdateFileSystemOntapConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// The configuration updates for an Amazon FSx for OpenZFS file system.
+type UpdateFileSystemOpenZFSConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// (Multi-AZ only) A list of IDs of new virtual private cloud (VPC) route tables
+	// to associate (add) with your Amazon FSx for OpenZFS file system.
+	AddRouteTableIds []*string `type:"list"`
+
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30.
+	AutomaticBackupRetentionDays *int64 `type:"integer"`
+
+	// A Boolean value indicating whether tags for the file system should be copied
+	// to backups. This value defaults to false. If it's set to true, all tags for
+	// the file system are copied to all automatic and user-initiated backups where
+	// the user doesn't specify tags. If this value is true and you specify one
+	// or more tags, only the specified tags are copied to backups. If you specify
+	// one or more tags when creating a user-initiated backup, no tags are copied
+	// from the file system, regardless of this value.
+	CopyTagsToBackups *bool `type:"boolean"`
+
+	// A Boolean value indicating whether tags for the volume should be copied to
+	// snapshots. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to snapshots where the user doesn't specify tags. If
+	// this value is true and you specify one or more tags, only the specified tags
+	// are copied to snapshots. If you specify one or more tags when creating the
+	// snapshot, no tags are copied from the volume, regardless of this value.
+	CopyTagsToVolumes *bool `type:"boolean"`
+
+	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
+	// the day (0-23), and MM is the zero-padded minute of the hour. For example,
+	// 05:00 specifies 5 AM daily.
+	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// The SSD IOPS (input/output operations per second) configuration for an Amazon
+	// FSx for NetApp ONTAP, Amazon FSx for Windows File Server, or FSx for OpenZFS
+	// file system. By default, Amazon FSx automatically provisions 3 IOPS per GB
+	// of storage capacity. You can provision additional IOPS per GB of storage.
+	// The configuration consists of the total number of provisioned SSD IOPS and
+	// how it is was provisioned, or the mode (by the customer or by Amazon FSx).
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
+	// (Multi-AZ only) A list of IDs of existing virtual private cloud (VPC) route
+	// tables to disassociate (remove) from your Amazon FSx for OpenZFS file system.
+	// You can use the API operation to retrieve the list of VPC route table IDs
+	// for a file system.
+	RemoveRouteTableIds []*string `type:"list"`
+
+	// The throughput of an Amazon FSx for OpenZFS file system, measured in megabytes
+	// per second (MB/s). Valid values depend on the DeploymentType you choose,
+	// as follows:
+	//
+	//    * For MULTI_AZ_1 and SINGLE_AZ_2, valid values are 160, 320, 640, 1280,
+	//    2560, 3840, 5120, 7680, or 10240 MB/s.
+	//
+	//    * For SINGLE_AZ_1, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
+	//    or 4096 MB/s.
+	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemOpenZFSConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemOpenZFSConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFileSystemOpenZFSConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFileSystemOpenZFSConfiguration"}
+	if s.DailyAutomaticBackupStartTime != nil && len(*s.DailyAutomaticBackupStartTime) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("DailyAutomaticBackupStartTime", 5))
+	}
+	if s.ThroughputCapacity != nil && *s.ThroughputCapacity < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacity", 8))
+	}
+	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddRouteTableIds sets the AddRouteTableIds field's value.
+func (s *UpdateFileSystemOpenZFSConfiguration) SetAddRouteTableIds(v []*string) *UpdateFileSystemOpenZFSConfiguration {
+	s.AddRouteTableIds = v
+	return s
+}
+
+// SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
+func (s *UpdateFileSystemOpenZFSConfiguration) SetAutomaticBackupRetentionDays(v int64) *UpdateFileSystemOpenZFSConfiguration {
+	s.AutomaticBackupRetentionDays = &v
+	return s
+}
+
+// SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
+func (s *UpdateFileSystemOpenZFSConfiguration) SetCopyTagsToBackups(v bool) *UpdateFileSystemOpenZFSConfiguration {
+	s.CopyTagsToBackups = &v
+	return s
+}
+
+// SetCopyTagsToVolumes sets the CopyTagsToVolumes field's value.
+func (s *UpdateFileSystemOpenZFSConfiguration) SetCopyTagsToVolumes(v bool) *UpdateFileSystemOpenZFSConfiguration {
+	s.CopyTagsToVolumes = &v
+	return s
+}
+
+// SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
+func (s *UpdateFileSystemOpenZFSConfiguration) SetDailyAutomaticBackupStartTime(v string) *UpdateFileSystemOpenZFSConfiguration {
+	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *UpdateFileSystemOpenZFSConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *UpdateFileSystemOpenZFSConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
+// SetRemoveRouteTableIds sets the RemoveRouteTableIds field's value.
+func (s *UpdateFileSystemOpenZFSConfiguration) SetRemoveRouteTableIds(v []*string) *UpdateFileSystemOpenZFSConfiguration {
+	s.RemoveRouteTableIds = v
+	return s
+}
+
+// SetThroughputCapacity sets the ThroughputCapacity field's value.
+func (s *UpdateFileSystemOpenZFSConfiguration) SetThroughputCapacity(v int64) *UpdateFileSystemOpenZFSConfiguration {
+	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *UpdateFileSystemOpenZFSConfiguration) SetWeeklyMaintenanceStartTime(v string) *UpdateFileSystemOpenZFSConfiguration {
 	s.WeeklyMaintenanceStartTime = &v
 	return s
 }
@@ -8603,12 +22812,20 @@ type UpdateFileSystemOutput struct {
 	FileSystem *FileSystem `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemOutput) GoString() string {
 	return s.String()
 }
@@ -8630,15 +22847,22 @@ type UpdateFileSystemWindowsConfiguration struct {
 	// Windows File Server file system..
 	AuditLogConfiguration *WindowsAuditLogCreateConfiguration `type:"structure"`
 
-	// The number of days to retain automatic daily backups. Setting this to zero
-	// (0) disables automatic daily backups. You can retain automatic daily backups
-	// for a maximum of 90 days. For more information, see Working with Automatic
+	// The number of days to retain automatic backups. Setting this property to
+	// 0 disables automatic backups. You can retain automatic backups for a maximum
+	// of 90 days. The default is 30. For more information, see Working with Automatic
 	// Daily Backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html#automatic-backups).
 	AutomaticBackupRetentionDays *int64 `type:"integer"`
 
 	// The preferred time to start the daily automatic backup, in the UTC time zone,
 	// for example, 02:00
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// The SSD IOPS (input/output operations per second) configuration for an Amazon
+	// FSx for Windows file system. By default, Amazon FSx automatically provisions
+	// 3 IOPS per GiB of storage capacity. You can provision additional IOPS per
+	// GiB of storage, up to the maximum limit associated with your chosen throughput
+	// capacity.
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
 
 	// The configuration Amazon FSx uses to join the Windows File Server instance
 	// to the self-managed Microsoft AD directory. You cannot make a self-managed
@@ -8659,12 +22883,20 @@ type UpdateFileSystemWindowsConfiguration struct {
 	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemWindowsConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFileSystemWindowsConfiguration) GoString() string {
 	return s.String()
 }
@@ -8716,6 +22948,12 @@ func (s *UpdateFileSystemWindowsConfiguration) SetDailyAutomaticBackupStartTime(
 	return s
 }
 
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *UpdateFileSystemWindowsConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *UpdateFileSystemWindowsConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
 // SetSelfManagedActiveDirectoryConfiguration sets the SelfManagedActiveDirectoryConfiguration field's value.
 func (s *UpdateFileSystemWindowsConfiguration) SetSelfManagedActiveDirectoryConfiguration(v *SelfManagedActiveDirectoryConfigurationUpdates) *UpdateFileSystemWindowsConfiguration {
 	s.SelfManagedActiveDirectoryConfiguration = v
@@ -8734,6 +22972,1206 @@ func (s *UpdateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v s
 	return s
 }
 
+// Used to specify changes to the ONTAP configuration for the volume you are
+// updating.
+type UpdateOntapVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A boolean flag indicating whether tags for the volume should be copied to
+	// backups. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to all automatic and user-initiated backups where the
+	// user doesn't specify tags. If this value is true, and you specify one or
+	// more tags, only the specified tags are copied to backups. If you specify
+	// one or more tags when creating a user-initiated backup, no tags are copied
+	// from the volume, regardless of this value.
+	CopyTagsToBackups *bool `type:"boolean"`
+
+	// Specifies the location in the SVM's namespace where the volume is mounted.
+	// The JunctionPath must have a leading forward slash, such as /vol3.
+	JunctionPath *string `min:"1" type:"string"`
+
+	// The security style for the volume, which can be UNIX, NTFS, or MIXED.
+	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
+
+	// The configured size of the volume, in bytes.
+	SizeInBytes *int64 `type:"long"`
+
+	// Specifies the size of the volume in megabytes.
+	SizeInMegabytes *int64 `type:"integer"`
+
+	// The configuration object for updating the SnapLock configuration of an FSx
+	// for ONTAP SnapLock volume.
+	SnaplockConfiguration *UpdateSnaplockConfiguration `type:"structure"`
+
+	// Specifies the snapshot policy for the volume. There are three built-in snapshot
+	// policies:
+	//
+	//    * default: This is the default policy. A maximum of six hourly snapshots
+	//    taken five minutes past the hour. A maximum of two daily snapshots taken
+	//    Monday through Saturday at 10 minutes after midnight. A maximum of two
+	//    weekly snapshots taken every Sunday at 15 minutes after midnight.
+	//
+	//    * default-1weekly: This policy is the same as the default policy except
+	//    that it only retains one snapshot from the weekly schedule.
+	//
+	//    * none: This policy does not take any snapshots. This policy can be assigned
+	//    to volumes to prevent automatic snapshots from being taken.
+	//
+	// You can also provide the name of a custom policy that you created with the
+	// ONTAP CLI or REST API.
+	//
+	// For more information, see Snapshot policies (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snapshots-ontap.html#snapshot-policies)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	SnapshotPolicy *string `min:"1" type:"string"`
+
+	// Default is false. Set to true to enable the deduplication, compression, and
+	// compaction storage efficiency features on the volume.
+	StorageEfficiencyEnabled *bool `type:"boolean"`
+
+	// Update the volume's data tiering policy.
+	TieringPolicy *TieringPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOntapVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOntapVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOntapVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOntapVolumeConfiguration"}
+	if s.JunctionPath != nil && len(*s.JunctionPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JunctionPath", 1))
+	}
+	if s.SnapshotPolicy != nil && len(*s.SnapshotPolicy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotPolicy", 1))
+	}
+	if s.SnaplockConfiguration != nil {
+		if err := s.SnaplockConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnaplockConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TieringPolicy != nil {
+		if err := s.TieringPolicy.Validate(); err != nil {
+			invalidParams.AddNested("TieringPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
+func (s *UpdateOntapVolumeConfiguration) SetCopyTagsToBackups(v bool) *UpdateOntapVolumeConfiguration {
+	s.CopyTagsToBackups = &v
+	return s
+}
+
+// SetJunctionPath sets the JunctionPath field's value.
+func (s *UpdateOntapVolumeConfiguration) SetJunctionPath(v string) *UpdateOntapVolumeConfiguration {
+	s.JunctionPath = &v
+	return s
+}
+
+// SetSecurityStyle sets the SecurityStyle field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSecurityStyle(v string) *UpdateOntapVolumeConfiguration {
+	s.SecurityStyle = &v
+	return s
+}
+
+// SetSizeInBytes sets the SizeInBytes field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSizeInBytes(v int64) *UpdateOntapVolumeConfiguration {
+	s.SizeInBytes = &v
+	return s
+}
+
+// SetSizeInMegabytes sets the SizeInMegabytes field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSizeInMegabytes(v int64) *UpdateOntapVolumeConfiguration {
+	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetSnaplockConfiguration sets the SnaplockConfiguration field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSnaplockConfiguration(v *UpdateSnaplockConfiguration) *UpdateOntapVolumeConfiguration {
+	s.SnaplockConfiguration = v
+	return s
+}
+
+// SetSnapshotPolicy sets the SnapshotPolicy field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSnapshotPolicy(v string) *UpdateOntapVolumeConfiguration {
+	s.SnapshotPolicy = &v
+	return s
+}
+
+// SetStorageEfficiencyEnabled sets the StorageEfficiencyEnabled field's value.
+func (s *UpdateOntapVolumeConfiguration) SetStorageEfficiencyEnabled(v bool) *UpdateOntapVolumeConfiguration {
+	s.StorageEfficiencyEnabled = &v
+	return s
+}
+
+// SetTieringPolicy sets the TieringPolicy field's value.
+func (s *UpdateOntapVolumeConfiguration) SetTieringPolicy(v *TieringPolicy) *UpdateOntapVolumeConfiguration {
+	s.TieringPolicy = v
+	return s
+}
+
+// Used to specify changes to the OpenZFS configuration for the volume that
+// you are updating.
+type UpdateOpenZFSVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the method used to compress the data on the volume. The compression
+	// type is NONE by default.
+	//
+	//    * NONE - Doesn't compress the data on the volume. NONE is the default.
+	//
+	//    * ZSTD - Compresses the data in the volume using the Zstandard (ZSTD)
+	//    compression algorithm. Compared to LZ4, Z-Standard provides a better compression
+	//    ratio to minimize on-disk storage utilization.
+	//
+	//    * LZ4 - Compresses the data in the volume using the LZ4 compression algorithm.
+	//    Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher
+	//    write throughput speeds.
+	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
+
+	// The configuration object for mounting a Network File System (NFS) file system.
+	NfsExports []*OpenZFSNfsExport `type:"list"`
+
+	// A Boolean value indicating whether the volume is read-only.
+	ReadOnly *bool `type:"boolean"`
+
+	// Specifies the record size of an OpenZFS volume, in kibibytes (KiB). Valid
+	// values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The default is 128
+	// KiB. Most workloads should use the default record size. Database workflows
+	// can benefit from a smaller record size, while streaming workflows can benefit
+	// from a larger record size. For additional guidance on when to set a custom
+	// record size, see Tips for maximizing performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#performance-tips-zfs)
+	// in the Amazon FSx for OpenZFS User Guide.
+	RecordSizeKiB *int64 `min:"4" type:"integer"`
+
+	// The maximum amount of storage in gibibytes (GiB) that the volume can use
+	// from its parent. You can specify a quota larger than the storage on the parent
+	// volume. You can specify a value of -1 to unset a volume's storage capacity
+	// quota.
+	StorageCapacityQuotaGiB *int64 `type:"integer"`
+
+	// The amount of storage in gibibytes (GiB) to reserve from the parent volume.
+	// You can't reserve more storage than the parent volume has reserved. You can
+	// specify a value of -1 to unset a volume's storage capacity reservation.
+	StorageCapacityReservationGiB *int64 `type:"integer"`
+
+	// An object specifying how much storage users or groups can use on the volume.
+	UserAndGroupQuotas []*OpenZFSUserOrGroupQuota `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenZFSVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenZFSVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOpenZFSVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOpenZFSVolumeConfiguration"}
+	if s.RecordSizeKiB != nil && *s.RecordSizeKiB < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("RecordSizeKiB", 4))
+	}
+	if s.StorageCapacityQuotaGiB != nil && *s.StorageCapacityQuotaGiB < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("StorageCapacityQuotaGiB", -1))
+	}
+	if s.StorageCapacityReservationGiB != nil && *s.StorageCapacityReservationGiB < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("StorageCapacityReservationGiB", -1))
+	}
+	if s.NfsExports != nil {
+		for i, v := range s.NfsExports {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NfsExports", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.UserAndGroupQuotas != nil {
+		for i, v := range s.UserAndGroupQuotas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserAndGroupQuotas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataCompressionType sets the DataCompressionType field's value.
+func (s *UpdateOpenZFSVolumeConfiguration) SetDataCompressionType(v string) *UpdateOpenZFSVolumeConfiguration {
+	s.DataCompressionType = &v
+	return s
+}
+
+// SetNfsExports sets the NfsExports field's value.
+func (s *UpdateOpenZFSVolumeConfiguration) SetNfsExports(v []*OpenZFSNfsExport) *UpdateOpenZFSVolumeConfiguration {
+	s.NfsExports = v
+	return s
+}
+
+// SetReadOnly sets the ReadOnly field's value.
+func (s *UpdateOpenZFSVolumeConfiguration) SetReadOnly(v bool) *UpdateOpenZFSVolumeConfiguration {
+	s.ReadOnly = &v
+	return s
+}
+
+// SetRecordSizeKiB sets the RecordSizeKiB field's value.
+func (s *UpdateOpenZFSVolumeConfiguration) SetRecordSizeKiB(v int64) *UpdateOpenZFSVolumeConfiguration {
+	s.RecordSizeKiB = &v
+	return s
+}
+
+// SetStorageCapacityQuotaGiB sets the StorageCapacityQuotaGiB field's value.
+func (s *UpdateOpenZFSVolumeConfiguration) SetStorageCapacityQuotaGiB(v int64) *UpdateOpenZFSVolumeConfiguration {
+	s.StorageCapacityQuotaGiB = &v
+	return s
+}
+
+// SetStorageCapacityReservationGiB sets the StorageCapacityReservationGiB field's value.
+func (s *UpdateOpenZFSVolumeConfiguration) SetStorageCapacityReservationGiB(v int64) *UpdateOpenZFSVolumeConfiguration {
+	s.StorageCapacityReservationGiB = &v
+	return s
+}
+
+// SetUserAndGroupQuotas sets the UserAndGroupQuotas field's value.
+func (s *UpdateOpenZFSVolumeConfiguration) SetUserAndGroupQuotas(v []*OpenZFSUserOrGroupQuota) *UpdateOpenZFSVolumeConfiguration {
+	s.UserAndGroupQuotas = v
+	return s
+}
+
+type UpdateSharedVpcConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Specifies whether participant accounts can create FSx for ONTAP Multi-AZ
+	// file systems in shared subnets. Set to true to enable or false to disable.
+	EnableFsxRouteTableUpdatesFromParticipantAccounts *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSharedVpcConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSharedVpcConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSharedVpcConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSharedVpcConfigurationInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.EnableFsxRouteTableUpdatesFromParticipantAccounts != nil && len(*s.EnableFsxRouteTableUpdatesFromParticipantAccounts) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("EnableFsxRouteTableUpdatesFromParticipantAccounts", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateSharedVpcConfigurationInput) SetClientRequestToken(v string) *UpdateSharedVpcConfigurationInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetEnableFsxRouteTableUpdatesFromParticipantAccounts sets the EnableFsxRouteTableUpdatesFromParticipantAccounts field's value.
+func (s *UpdateSharedVpcConfigurationInput) SetEnableFsxRouteTableUpdatesFromParticipantAccounts(v string) *UpdateSharedVpcConfigurationInput {
+	s.EnableFsxRouteTableUpdatesFromParticipantAccounts = &v
+	return s
+}
+
+type UpdateSharedVpcConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether participant accounts can create FSx for ONTAP Multi-AZ
+	// file systems in shared subnets.
+	EnableFsxRouteTableUpdatesFromParticipantAccounts *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSharedVpcConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSharedVpcConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnableFsxRouteTableUpdatesFromParticipantAccounts sets the EnableFsxRouteTableUpdatesFromParticipantAccounts field's value.
+func (s *UpdateSharedVpcConfigurationOutput) SetEnableFsxRouteTableUpdatesFromParticipantAccounts(v string) *UpdateSharedVpcConfigurationOutput {
+	s.EnableFsxRouteTableUpdatesFromParticipantAccounts = &v
+	return s
+}
+
+// Updates the SnapLock configuration for an existing FSx for ONTAP volume.
+type UpdateSnaplockConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the audit log volume for an FSx for ONTAP SnapLock volume.
+	// The default value is false. If you set AuditLogVolume to true, the SnapLock
+	// volume is created as an audit log volume. The minimum retention period for
+	// an audit log volume is six months.
+	//
+	// For more information, see SnapLock audit log volumes (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html#snaplock-audit-log-volume).
+	AuditLogVolume *bool `type:"boolean"`
+
+	// The configuration object for setting the autocommit period of files in an
+	// FSx for ONTAP SnapLock volume.
+	AutocommitPeriod *AutocommitPeriod `type:"structure"`
+
+	// Enables, disables, or permanently disables privileged delete on an FSx for
+	// ONTAP SnapLock Enterprise volume. Enabling privileged delete allows SnapLock
+	// administrators to delete write once, read many (WORM) files even if they
+	// have active retention periods. PERMANENTLY_DISABLED is a terminal state.
+	// If privileged delete is permanently disabled on a SnapLock volume, you can't
+	// re-enable it. The default value is DISABLED.
+	//
+	// For more information, see Privileged delete (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snaplock-enterprise.html#privileged-delete).
+	PrivilegedDelete *string `type:"string" enum:"PrivilegedDelete"`
+
+	// Specifies the retention period of an FSx for ONTAP SnapLock volume.
+	RetentionPeriod *SnaplockRetentionPeriod `type:"structure"`
+
+	// Enables or disables volume-append mode on an FSx for ONTAP SnapLock volume.
+	// Volume-append mode allows you to create WORM-appendable files and write data
+	// to them incrementally. The default value is false.
+	//
+	// For more information, see Volume-append mode (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append).
+	VolumeAppendModeEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSnaplockConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSnaplockConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSnaplockConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSnaplockConfiguration"}
+	if s.AutocommitPeriod != nil {
+		if err := s.AutocommitPeriod.Validate(); err != nil {
+			invalidParams.AddNested("AutocommitPeriod", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RetentionPeriod != nil {
+		if err := s.RetentionPeriod.Validate(); err != nil {
+			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditLogVolume sets the AuditLogVolume field's value.
+func (s *UpdateSnaplockConfiguration) SetAuditLogVolume(v bool) *UpdateSnaplockConfiguration {
+	s.AuditLogVolume = &v
+	return s
+}
+
+// SetAutocommitPeriod sets the AutocommitPeriod field's value.
+func (s *UpdateSnaplockConfiguration) SetAutocommitPeriod(v *AutocommitPeriod) *UpdateSnaplockConfiguration {
+	s.AutocommitPeriod = v
+	return s
+}
+
+// SetPrivilegedDelete sets the PrivilegedDelete field's value.
+func (s *UpdateSnaplockConfiguration) SetPrivilegedDelete(v string) *UpdateSnaplockConfiguration {
+	s.PrivilegedDelete = &v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *UpdateSnaplockConfiguration) SetRetentionPeriod(v *SnaplockRetentionPeriod) *UpdateSnaplockConfiguration {
+	s.RetentionPeriod = v
+	return s
+}
+
+// SetVolumeAppendModeEnabled sets the VolumeAppendModeEnabled field's value.
+func (s *UpdateSnaplockConfiguration) SetVolumeAppendModeEnabled(v bool) *UpdateSnaplockConfiguration {
+	s.VolumeAppendModeEnabled = &v
+	return s
+}
+
+type UpdateSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the snapshot to update.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the snapshot that you want to update, in the format fsvolsnap-0123456789abcdef0.
+	//
+	// SnapshotId is a required field
+	SnapshotId *string `min:"11" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSnapshotInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SnapshotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotId"))
+	}
+	if s.SnapshotId != nil && len(*s.SnapshotId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotId", 11))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateSnapshotInput) SetClientRequestToken(v string) *UpdateSnapshotInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateSnapshotInput) SetName(v string) *UpdateSnapshotInput {
+	s.Name = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *UpdateSnapshotInput) SetSnapshotId(v string) *UpdateSnapshotInput {
+	s.SnapshotId = &v
+	return s
+}
+
+type UpdateSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returned after a successful UpdateSnapshot operation, describing the snapshot
+	// that you updated.
+	Snapshot *Snapshot `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetSnapshot sets the Snapshot field's value.
+func (s *UpdateSnapshotOutput) SetSnapshot(v *Snapshot) *UpdateSnapshotOutput {
+	s.Snapshot = v
+	return s
+}
+
+type UpdateStorageVirtualMachineInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies updates to an SVM's Microsoft Active Directory (AD) configuration.
+	ActiveDirectoryConfiguration *UpdateSvmActiveDirectoryConfiguration `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the SVM that you want to update, in the format svm-0123456789abcdef0.
+	//
+	// StorageVirtualMachineId is a required field
+	StorageVirtualMachineId *string `min:"21" type:"string" required:"true"`
+
+	// Specifies a new SvmAdminPassword.
+	//
+	// SvmAdminPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStorageVirtualMachineInput's
+	// String and GoString methods.
+	SvmAdminPassword *string `min:"8" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageVirtualMachineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageVirtualMachineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStorageVirtualMachineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStorageVirtualMachineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.StorageVirtualMachineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageVirtualMachineId"))
+	}
+	if s.StorageVirtualMachineId != nil && len(*s.StorageVirtualMachineId) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageVirtualMachineId", 21))
+	}
+	if s.SvmAdminPassword != nil && len(*s.SvmAdminPassword) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SvmAdminPassword", 8))
+	}
+	if s.ActiveDirectoryConfiguration != nil {
+		if err := s.ActiveDirectoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActiveDirectoryConfiguration sets the ActiveDirectoryConfiguration field's value.
+func (s *UpdateStorageVirtualMachineInput) SetActiveDirectoryConfiguration(v *UpdateSvmActiveDirectoryConfiguration) *UpdateStorageVirtualMachineInput {
+	s.ActiveDirectoryConfiguration = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateStorageVirtualMachineInput) SetClientRequestToken(v string) *UpdateStorageVirtualMachineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *UpdateStorageVirtualMachineInput) SetStorageVirtualMachineId(v string) *UpdateStorageVirtualMachineInput {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+// SetSvmAdminPassword sets the SvmAdminPassword field's value.
+func (s *UpdateStorageVirtualMachineInput) SetSvmAdminPassword(v string) *UpdateStorageVirtualMachineInput {
+	s.SvmAdminPassword = &v
+	return s
+}
+
+type UpdateStorageVirtualMachineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the Amazon FSx for NetApp ONTAP storage virtual machine (SVM) configuration.
+	StorageVirtualMachine *StorageVirtualMachine `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageVirtualMachineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageVirtualMachineOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageVirtualMachine sets the StorageVirtualMachine field's value.
+func (s *UpdateStorageVirtualMachineOutput) SetStorageVirtualMachine(v *StorageVirtualMachine) *UpdateStorageVirtualMachineOutput {
+	s.StorageVirtualMachine = v
+	return s
+}
+
+// Specifies updates to an FSx for ONTAP storage virtual machine's (SVM) Microsoft
+// Active Directory (AD) configuration. Note that account credentials are not
+// returned in the response payload.
+type UpdateSvmActiveDirectoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies an updated NetBIOS name of the AD computer object NetBiosName to
+	// which an SVM is joined.
+	NetBiosName *string `min:"1" type:"string"`
+
+	// Specifies changes you are making to the self-managed Microsoft Active Directory
+	// (AD) configuration to which an FSx for Windows File Server file system or
+	// an FSx for ONTAP SVM is joined.
+	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryConfigurationUpdates `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSvmActiveDirectoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSvmActiveDirectoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSvmActiveDirectoryConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSvmActiveDirectoryConfiguration"}
+	if s.NetBiosName != nil && len(*s.NetBiosName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NetBiosName", 1))
+	}
+	if s.SelfManagedActiveDirectoryConfiguration != nil {
+		if err := s.SelfManagedActiveDirectoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SelfManagedActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNetBiosName sets the NetBiosName field's value.
+func (s *UpdateSvmActiveDirectoryConfiguration) SetNetBiosName(v string) *UpdateSvmActiveDirectoryConfiguration {
+	s.NetBiosName = &v
+	return s
+}
+
+// SetSelfManagedActiveDirectoryConfiguration sets the SelfManagedActiveDirectoryConfiguration field's value.
+func (s *UpdateSvmActiveDirectoryConfiguration) SetSelfManagedActiveDirectoryConfiguration(v *SelfManagedActiveDirectoryConfigurationUpdates) *UpdateSvmActiveDirectoryConfiguration {
+	s.SelfManagedActiveDirectoryConfiguration = v
+	return s
+}
+
+type UpdateVolumeInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the OpenZFS volume. OpenZFS root volumes are automatically named
+	// FSX. Child volume names must be unique among their parent volume's children.
+	// The name of the volume is part of the mount string for the OpenZFS volume.
+	Name *string `min:"1" type:"string"`
+
+	// The configuration of the ONTAP volume that you are updating.
+	OntapConfiguration *UpdateOntapVolumeConfiguration `type:"structure"`
+
+	// The configuration of the OpenZFS volume that you are updating.
+	OpenZFSConfiguration *UpdateOpenZFSVolumeConfiguration `type:"structure"`
+
+	// The ID of the volume that you want to update, in the format fsvol-0123456789abcdef0.
+	//
+	// VolumeId is a required field
+	VolumeId *string `min:"23" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVolumeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVolumeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateVolumeInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.VolumeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeId"))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OpenZFSConfiguration != nil {
+		if err := s.OpenZFSConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OpenZFSConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateVolumeInput) SetClientRequestToken(v string) *UpdateVolumeInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateVolumeInput) SetName(v string) *UpdateVolumeInput {
+	s.Name = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *UpdateVolumeInput) SetOntapConfiguration(v *UpdateOntapVolumeConfiguration) *UpdateVolumeInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetOpenZFSConfiguration sets the OpenZFSConfiguration field's value.
+func (s *UpdateVolumeInput) SetOpenZFSConfiguration(v *UpdateOpenZFSVolumeConfiguration) *UpdateVolumeInput {
+	s.OpenZFSConfiguration = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *UpdateVolumeInput) SetVolumeId(v string) *UpdateVolumeInput {
+	s.VolumeId = &v
+	return s
+}
+
+type UpdateVolumeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the volume just updated. Returned after a successful UpdateVolume
+	// API operation.
+	Volume *Volume `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVolumeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVolumeOutput) GoString() string {
+	return s.String()
+}
+
+// SetVolume sets the Volume field's value.
+func (s *UpdateVolumeOutput) SetVolume(v *Volume) *UpdateVolumeOutput {
+	s.Volume = v
+	return s
+}
+
+// Describes an Amazon FSx volume.
+type Volume struct {
+	_ struct{} `type:"structure"`
+
+	// A list of administrative actions for the volume that are in process or waiting
+	// to be processed. Administrative actions describe changes to the volume that
+	// you have initiated using the UpdateVolume action.
+	AdministrativeActions []*AdministrativeAction `type:"list"`
+
+	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
+	// also known as Unix time.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	FileSystemId *string `min:"11" type:"string"`
+
+	// The lifecycle status of the volume.
+	//
+	//    * AVAILABLE - The volume is fully available for use.
+	//
+	//    * CREATED - The volume has been created.
+	//
+	//    * CREATING - Amazon FSx is creating the new volume.
+	//
+	//    * DELETING - Amazon FSx is deleting an existing volume.
+	//
+	//    * FAILED - Amazon FSx was unable to create the volume.
+	//
+	//    * MISCONFIGURED - The volume is in a failed but recoverable state.
+	//
+	//    * PENDING - Amazon FSx hasn't started creating the volume.
+	Lifecycle *string `type:"string" enum:"VolumeLifecycle"`
+
+	// The reason why the volume lifecycle status changed.
+	LifecycleTransitionReason *LifecycleTransitionReason `type:"structure"`
+
+	// The name of the volume.
+	Name *string `min:"1" type:"string"`
+
+	// The configuration of an Amazon FSx for NetApp ONTAP volume.
+	OntapConfiguration *OntapVolumeConfiguration `type:"structure"`
+
+	// The configuration of an Amazon FSx for OpenZFS volume.
+	OpenZFSConfiguration *OpenZFSVolumeConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ResourceARN *string `min:"8" type:"string"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The system-generated, unique ID of the volume.
+	VolumeId *string `min:"23" type:"string"`
+
+	// The type of the volume.
+	VolumeType *string `type:"string" enum:"VolumeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Volume) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Volume) GoString() string {
+	return s.String()
+}
+
+// SetAdministrativeActions sets the AdministrativeActions field's value.
+func (s *Volume) SetAdministrativeActions(v []*AdministrativeAction) *Volume {
+	s.AdministrativeActions = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Volume) SetCreationTime(v time.Time) *Volume {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *Volume) SetFileSystemId(v string) *Volume {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *Volume) SetLifecycle(v string) *Volume {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetLifecycleTransitionReason sets the LifecycleTransitionReason field's value.
+func (s *Volume) SetLifecycleTransitionReason(v *LifecycleTransitionReason) *Volume {
+	s.LifecycleTransitionReason = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Volume) SetName(v string) *Volume {
+	s.Name = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *Volume) SetOntapConfiguration(v *OntapVolumeConfiguration) *Volume {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetOpenZFSConfiguration sets the OpenZFSConfiguration field's value.
+func (s *Volume) SetOpenZFSConfiguration(v *OpenZFSVolumeConfiguration) *Volume {
+	s.OpenZFSConfiguration = v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *Volume) SetResourceARN(v string) *Volume {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Volume) SetTags(v []*Tag) *Volume {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *Volume) SetVolumeId(v string) *Volume {
+	s.VolumeId = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *Volume) SetVolumeType(v string) *Volume {
+	s.VolumeType = &v
+	return s
+}
+
+// A filter used to restrict the results of describe calls for Amazon FSx for
+// NetApp ONTAP or Amazon FSx for OpenZFS volumes. You can use multiple filters
+// to return results that meet all applied filter requirements.
+type VolumeFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name for this filter.
+	Name *string `type:"string" enum:"VolumeFilterName"`
+
+	// The values of the filter. These are all the values for any of the applied
+	// filters.
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VolumeFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VolumeFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *VolumeFilter) SetName(v string) *VolumeFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *VolumeFilter) SetValues(v []*string) *VolumeFilter {
+	s.Values = v
+	return s
+}
+
+// No Amazon FSx volumes were found based upon the supplied parameters.
+type VolumeNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VolumeNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VolumeNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorVolumeNotFound(v protocol.ResponseMetadata) error {
+	return &VolumeNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *VolumeNotFound) Code() string {
+	return "VolumeNotFound"
+}
+
+// Message returns the exception's message.
+func (s *VolumeNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *VolumeNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *VolumeNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *VolumeNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *VolumeNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The configuration that Amazon FSx for Windows File Server uses to audit and
 // log user accesses of files, folders, and file shares on the Amazon FSx for
 // Windows File Server file system. For more information, see File access auditing
@@ -8746,12 +24184,13 @@ type WindowsAuditLogConfiguration struct {
 	// Data Firehose delivery stream ARN.
 	//
 	// The name of the Amazon CloudWatch Logs log group must begin with the /aws/fsx
-	// prefix. The name of the Amazon Kinesis Data Firehouse delivery stream must
+	// prefix. The name of the Amazon Kinesis Data Firehose delivery stream must
 	// begin with the aws-fsx prefix.
 	//
 	// The destination ARN (either CloudWatch Logs log group or Kinesis Data Firehose
-	// delivery stream) must be in the same AWS partition, AWS region, and AWS account
-	// as your Amazon FSx file system.
+	// delivery stream) must be in the same Amazon Web Services partition, Amazon
+	// Web Services Region, and Amazon Web Services account as your Amazon FSx file
+	// system.
 	AuditLogDestination *string `min:"8" type:"string"`
 
 	// Sets which attempt type is logged by Amazon FSx for file and folder accesses.
@@ -8784,12 +24223,20 @@ type WindowsAuditLogConfiguration struct {
 	FileShareAccessAuditLogLevel *string `type:"string" required:"true" enum:"WindowsAccessAuditLogLevel"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WindowsAuditLogConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WindowsAuditLogConfiguration) GoString() string {
 	return s.String()
 }
@@ -8824,11 +24271,12 @@ type WindowsAuditLogCreateConfiguration struct {
 	// Kinesis Data Firehose delivery stream ARN, with the following requirements:
 	//
 	//    * The destination ARN that you provide (either CloudWatch Logs log group
-	//    or Kinesis Data Firehose delivery stream) must be in the same AWS partition,
-	//    AWS region, and AWS account as your Amazon FSx file system.
+	//    or Kinesis Data Firehose delivery stream) must be in the same Amazon Web
+	//    Services partition, Amazon Web Services Region, and Amazon Web Services
+	//    account as your Amazon FSx file system.
 	//
 	//    * The name of the Amazon CloudWatch Logs log group must begin with the
-	//    /aws/fsx prefix. The name of the Amazon Kinesis Data Firehouse delivery
+	//    /aws/fsx prefix. The name of the Amazon Kinesis Data Firehose delivery
 	//    stream must begin with the aws-fsx prefix.
 	//
 	//    * If you do not provide a destination in AuditLogDestination, Amazon FSx
@@ -8872,12 +24320,20 @@ type WindowsAuditLogCreateConfiguration struct {
 	FileShareAccessAuditLogLevel *string `type:"string" required:"true" enum:"WindowsAccessAuditLogLevel"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WindowsAuditLogCreateConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WindowsAuditLogCreateConfiguration) GoString() string {
 	return s.String()
 }
@@ -8923,8 +24379,8 @@ func (s *WindowsAuditLogCreateConfiguration) SetFileShareAccessAuditLogLevel(v s
 type WindowsFileSystemConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for an existing AWS Managed Microsoft Active Directory instance that
-	// the file system is joined to.
+	// The ID for an existing Amazon Web Services Managed Microsoft Active Directory
+	// instance that the file system is joined to.
 	ActiveDirectoryId *string `min:"12" type:"string"`
 
 	// An array of one or more DNS aliases that are currently associated with the
@@ -8975,8 +24431,15 @@ type WindowsFileSystemConfiguration struct {
 	// For more information, see Single-AZ and Multi-AZ File Systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html).
 	DeploymentType *string `type:"string" enum:"WindowsDeploymentType"`
 
+	// The SSD IOPS (input/output operations per second) configuration for an Amazon
+	// FSx for Windows file system. By default, Amazon FSx automatically provisions
+	// 3 IOPS per GiB of storage capacity. You can provision additional IOPS per
+	// GiB of storage, up to the maximum limit associated with your chosen throughput
+	// capacity.
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
 	// The list of maintenance operations in progress for this file system.
-	MaintenanceOperationsInProgress []*string `type:"list"`
+	MaintenanceOperationsInProgress []*string `type:"list" enum:"FileSystemMaintenanceOperation"`
 
 	// For MULTI_AZ_1 deployment types, the IP address of the primary, or preferred,
 	// file server.
@@ -9011,7 +24474,8 @@ type WindowsFileSystemConfiguration struct {
 	RemoteAdministrationEndpoint *string `min:"16" type:"string"`
 
 	// The configuration of the self-managed Microsoft Active Directory (AD) directory
-	// to which the Windows File Server instance is joined.
+	// to which the Windows File Server or ONTAP storage virtual machine (SVM) instance
+	// is joined.
 	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryAttributes `type:"structure"`
 
 	// The throughput of the Amazon FSx file system, measured in megabytes per second.
@@ -9023,12 +24487,20 @@ type WindowsFileSystemConfiguration struct {
 	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WindowsFileSystemConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WindowsFileSystemConfiguration) GoString() string {
 	return s.String()
 }
@@ -9072,6 +24544,12 @@ func (s *WindowsFileSystemConfiguration) SetDailyAutomaticBackupStartTime(v stri
 // SetDeploymentType sets the DeploymentType field's value.
 func (s *WindowsFileSystemConfiguration) SetDeploymentType(v string) *WindowsFileSystemConfiguration {
 	s.DeploymentType = &v
+	return s
+}
+
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *WindowsFileSystemConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *WindowsFileSystemConfiguration {
+	s.DiskIopsConfiguration = v
 	return s
 }
 
@@ -9149,28 +24627,77 @@ func ActiveDirectoryErrorType_Values() []string {
 
 // Describes the type of administrative action, as follows:
 //
-//    * FILE_SYSTEM_UPDATE - A file system update administrative action initiated
-//    by the user from the Amazon FSx console, API (UpdateFileSystem), or CLI
-//    (update-file-system).
+//   - FILE_SYSTEM_UPDATE - A file system update administrative action initiated
+//     from the Amazon FSx console, API (UpdateFileSystem), or CLI (update-file-system).
 //
-//    * STORAGE_OPTIMIZATION - Once the FILE_SYSTEM_UPDATE task to increase
-//    a file system's storage capacity completes successfully, a STORAGE_OPTIMIZATION
-//    task starts. For Windows, storage optimization is the process of migrating
-//    the file system data to the new, larger disks. For Lustre, storage optimization
-//    consists of rebalancing the data across the existing and newly added file
-//    servers. You can track the storage optimization progress using the ProgressPercent
-//    property. When STORAGE_OPTIMIZATION completes successfully, the parent
-//    FILE_SYSTEM_UPDATE action status changes to COMPLETED. For more information,
-//    see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
-//    in the Amazon FSx for Windows File Server User Guide and Managing storage
-//    and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
-//    in the Amazon FSx for Lustre User Guide.
+//   - THROUGHPUT_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase
+//     a file system's throughput capacity has been completed successfully, a
+//     THROUGHPUT_OPTIMIZATION task starts. You can track the storage-optimization
+//     progress using the ProgressPercent property. When THROUGHPUT_OPTIMIZATION
+//     has been completed successfully, the parent FILE_SYSTEM_UPDATE action
+//     status changes to COMPLETED. For more information, see Managing throughput
+//     capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-throughput-capacity.html)
+//     in the Amazon FSx for Windows File Server User Guide.
 //
-//    * FILE_SYSTEM_ALIAS_ASSOCIATION - A file system update to associate a
-//    new DNS alias with the file system. For more information, see .
+//   - STORAGE_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase
+//     a file system's storage capacity has been completed successfully, a STORAGE_OPTIMIZATION
+//     task starts. For Windows and ONTAP, storage optimization is the process
+//     of migrating the file system data to newer larger disks. For Lustre, storage
+//     optimization consists of rebalancing the data across the existing and
+//     newly added file servers. You can track the storage-optimization progress
+//     using the ProgressPercent property. When STORAGE_OPTIMIZATION has been
+//     completed successfully, the parent FILE_SYSTEM_UPDATE action status changes
+//     to COMPLETED. For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+//     in the Amazon FSx for Windows File Server User Guide, Managing storage
+//     capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+//     in the Amazon FSx for Lustre User Guide, and Managing storage capacity
+//     and provisioned IOPS (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html)
+//     in the Amazon FSx for NetApp ONTAP User Guide.
 //
-//    * FILE_SYSTEM_ALIAS_DISASSOCIATION - A file system update to disassociate
-//    a DNS alias from the file system. For more information, see .
+//   - FILE_SYSTEM_ALIAS_ASSOCIATION - A file system update to associate a
+//     new Domain Name System (DNS) alias with the file system. For more information,
+//     see AssociateFileSystemAliases (https://docs.aws.amazon.com/fsx/latest/APIReference/API_AssociateFileSystemAliases.html).
+//
+//   - FILE_SYSTEM_ALIAS_DISASSOCIATION - A file system update to disassociate
+//     a DNS alias from the file system. For more information, see DisassociateFileSystemAliases
+//     (https://docs.aws.amazon.com/fsx/latest/APIReference/API_DisassociateFileSystemAliases.html).
+//
+//   - IOPS_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase a
+//     file system's throughput capacity has been completed successfully, a IOPS_OPTIMIZATION
+//     task starts. You can track the storage-optimization progress using the
+//     ProgressPercent property. When IOPS_OPTIMIZATION has been completed successfully,
+//     the parent FILE_SYSTEM_UPDATE action status changes to COMPLETED. For
+//     more information, see Managing provisioned SSD IOPS (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-provisioned-ssd-iops.html)
+//     in the Amazon FSx for Windows File Server User Guide.
+//
+//   - STORAGE_TYPE_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase
+//     a file system's throughput capacity has been completed successfully, a
+//     STORAGE_TYPE_OPTIMIZATION task starts. You can track the storage-optimization
+//     progress using the ProgressPercent property. When STORAGE_TYPE_OPTIMIZATION
+//     has been completed successfully, the parent FILE_SYSTEM_UPDATE action
+//     status changes to COMPLETED.
+//
+//   - VOLUME_UPDATE - A volume update to an Amazon FSx for OpenZFS volume
+//     initiated from the Amazon FSx console, API (UpdateVolume), or CLI (update-volume).
+//
+//   - VOLUME_RESTORE - An Amazon FSx for OpenZFS volume is returned to the
+//     state saved by the specified snapshot, initiated from an API (RestoreVolumeFromSnapshot)
+//     or CLI (restore-volume-from-snapshot).
+//
+//   - SNAPSHOT_UPDATE - A snapshot update to an Amazon FSx for OpenZFS volume
+//     initiated from the Amazon FSx console, API (UpdateSnapshot), or CLI (update-snapshot).
+//
+//   - RELEASE_NFS_V3_LOCKS - Tracks the release of Network File System (NFS)
+//     V3 locks on an Amazon FSx for OpenZFS file system.
+//
+//   - VOLUME_INITIALIZE_WITH_SNAPSHOT - A volume is being created from a snapshot
+//     on a different FSx for OpenZFS file system. You can initiate this from
+//     the Amazon FSx console, API (CreateVolume), or CLI (create-volume) when
+//     using the using the FULL_COPY strategy.
+//
+//   - VOLUME_UPDATE_WITH_SNAPSHOT - A volume is being updated from a snapshot
+//     on a different FSx for OpenZFS file system. You can initiate this from
+//     the Amazon FSx console, API (CopySnapshotAndUpdateVolume), or CLI (copy-snapshot-and-update-volume).
 const (
 	// AdministrativeActionTypeFileSystemUpdate is a AdministrativeActionType enum value
 	AdministrativeActionTypeFileSystemUpdate = "FILE_SYSTEM_UPDATE"
@@ -9183,6 +24710,36 @@ const (
 
 	// AdministrativeActionTypeFileSystemAliasDisassociation is a AdministrativeActionType enum value
 	AdministrativeActionTypeFileSystemAliasDisassociation = "FILE_SYSTEM_ALIAS_DISASSOCIATION"
+
+	// AdministrativeActionTypeVolumeUpdate is a AdministrativeActionType enum value
+	AdministrativeActionTypeVolumeUpdate = "VOLUME_UPDATE"
+
+	// AdministrativeActionTypeSnapshotUpdate is a AdministrativeActionType enum value
+	AdministrativeActionTypeSnapshotUpdate = "SNAPSHOT_UPDATE"
+
+	// AdministrativeActionTypeReleaseNfsV3Locks is a AdministrativeActionType enum value
+	AdministrativeActionTypeReleaseNfsV3Locks = "RELEASE_NFS_V3_LOCKS"
+
+	// AdministrativeActionTypeVolumeRestore is a AdministrativeActionType enum value
+	AdministrativeActionTypeVolumeRestore = "VOLUME_RESTORE"
+
+	// AdministrativeActionTypeThroughputOptimization is a AdministrativeActionType enum value
+	AdministrativeActionTypeThroughputOptimization = "THROUGHPUT_OPTIMIZATION"
+
+	// AdministrativeActionTypeIopsOptimization is a AdministrativeActionType enum value
+	AdministrativeActionTypeIopsOptimization = "IOPS_OPTIMIZATION"
+
+	// AdministrativeActionTypeStorageTypeOptimization is a AdministrativeActionType enum value
+	AdministrativeActionTypeStorageTypeOptimization = "STORAGE_TYPE_OPTIMIZATION"
+
+	// AdministrativeActionTypeMisconfiguredStateRecovery is a AdministrativeActionType enum value
+	AdministrativeActionTypeMisconfiguredStateRecovery = "MISCONFIGURED_STATE_RECOVERY"
+
+	// AdministrativeActionTypeVolumeUpdateWithSnapshot is a AdministrativeActionType enum value
+	AdministrativeActionTypeVolumeUpdateWithSnapshot = "VOLUME_UPDATE_WITH_SNAPSHOT"
+
+	// AdministrativeActionTypeVolumeInitializeWithSnapshot is a AdministrativeActionType enum value
+	AdministrativeActionTypeVolumeInitializeWithSnapshot = "VOLUME_INITIALIZE_WITH_SNAPSHOT"
 )
 
 // AdministrativeActionType_Values returns all elements of the AdministrativeActionType enum
@@ -9192,6 +24749,16 @@ func AdministrativeActionType_Values() []string {
 		AdministrativeActionTypeStorageOptimization,
 		AdministrativeActionTypeFileSystemAliasAssociation,
 		AdministrativeActionTypeFileSystemAliasDisassociation,
+		AdministrativeActionTypeVolumeUpdate,
+		AdministrativeActionTypeSnapshotUpdate,
+		AdministrativeActionTypeReleaseNfsV3Locks,
+		AdministrativeActionTypeVolumeRestore,
+		AdministrativeActionTypeThroughputOptimization,
+		AdministrativeActionTypeIopsOptimization,
+		AdministrativeActionTypeStorageTypeOptimization,
+		AdministrativeActionTypeMisconfiguredStateRecovery,
+		AdministrativeActionTypeVolumeUpdateWithSnapshot,
+		AdministrativeActionTypeVolumeInitializeWithSnapshot,
 	}
 }
 
@@ -9232,6 +24799,9 @@ const (
 
 	// AutoImportPolicyTypeNewChanged is a AutoImportPolicyType enum value
 	AutoImportPolicyTypeNewChanged = "NEW_CHANGED"
+
+	// AutoImportPolicyTypeNewChangedDeleted is a AutoImportPolicyType enum value
+	AutoImportPolicyTypeNewChangedDeleted = "NEW_CHANGED_DELETED"
 )
 
 // AutoImportPolicyType_Values returns all elements of the AutoImportPolicyType enum
@@ -9240,26 +24810,59 @@ func AutoImportPolicyType_Values() []string {
 		AutoImportPolicyTypeNone,
 		AutoImportPolicyTypeNew,
 		AutoImportPolicyTypeNewChanged,
+		AutoImportPolicyTypeNewChangedDeleted,
+	}
+}
+
+const (
+	// AutocommitPeriodTypeMinutes is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeMinutes = "MINUTES"
+
+	// AutocommitPeriodTypeHours is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeHours = "HOURS"
+
+	// AutocommitPeriodTypeDays is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeDays = "DAYS"
+
+	// AutocommitPeriodTypeMonths is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeMonths = "MONTHS"
+
+	// AutocommitPeriodTypeYears is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeYears = "YEARS"
+
+	// AutocommitPeriodTypeNone is a AutocommitPeriodType enum value
+	AutocommitPeriodTypeNone = "NONE"
+)
+
+// AutocommitPeriodType_Values returns all elements of the AutocommitPeriodType enum
+func AutocommitPeriodType_Values() []string {
+	return []string{
+		AutocommitPeriodTypeMinutes,
+		AutocommitPeriodTypeHours,
+		AutocommitPeriodTypeDays,
+		AutocommitPeriodTypeMonths,
+		AutocommitPeriodTypeYears,
+		AutocommitPeriodTypeNone,
 	}
 }
 
 // The lifecycle status of the backup.
 //
-//    * AVAILABLE - The backup is fully available.
+//   - AVAILABLE - The backup is fully available.
 //
-//    * PENDING - For user-initiated backups on Lustre file systems only; Amazon
-//    FSx has not started creating the backup.
+//   - PENDING - For user-initiated backups on Lustre file systems only; Amazon
+//     FSx hasn't started creating the backup.
 //
-//    * CREATING - Amazon FSx is creating the new user-intiated backup
+//   - CREATING - Amazon FSx is creating the new user-initiated backup.
 //
-//    * TRANSFERRING - For user-initiated backups on Lustre file systems only;
-//    Amazon FSx is backing up the file system.
+//   - TRANSFERRING - For user-initiated backups on Lustre file systems only;
+//     Amazon FSx is backing up the file system.
 //
-//    * COPYING - Amazon FSx is copying the backup.
+//   - COPYING - Amazon FSx is copying the backup.
 //
-//    * DELETED - Amazon FSx deleted the backup and it is no longer available.
+//   - DELETED - Amazon FSx deleted the backup and it's no longer available.
 //
-//    * FAILED - Amazon FSx could not complete the backup.
+//   - FAILED - Amazon FSx couldn't finish the backup.
 const (
 	// BackupLifecycleAvailable is a BackupLifecycle enum value
 	BackupLifecycleAvailable = "AVAILABLE"
@@ -9348,6 +24951,9 @@ const (
 
 	// DataRepositoryLifecycleDeleting is a DataRepositoryLifecycle enum value
 	DataRepositoryLifecycleDeleting = "DELETING"
+
+	// DataRepositoryLifecycleFailed is a DataRepositoryLifecycle enum value
+	DataRepositoryLifecycleFailed = "FAILED"
 )
 
 // DataRepositoryLifecycle_Values returns all elements of the DataRepositoryLifecycle enum
@@ -9358,6 +24964,7 @@ func DataRepositoryLifecycle_Values() []string {
 		DataRepositoryLifecycleMisconfigured,
 		DataRepositoryLifecycleUpdating,
 		DataRepositoryLifecycleDeleting,
+		DataRepositoryLifecycleFailed,
 	}
 }
 
@@ -9367,6 +24974,12 @@ const (
 
 	// DataRepositoryTaskFilterNameTaskLifecycle is a DataRepositoryTaskFilterName enum value
 	DataRepositoryTaskFilterNameTaskLifecycle = "task-lifecycle"
+
+	// DataRepositoryTaskFilterNameDataRepositoryAssociationId is a DataRepositoryTaskFilterName enum value
+	DataRepositoryTaskFilterNameDataRepositoryAssociationId = "data-repository-association-id"
+
+	// DataRepositoryTaskFilterNameFileCacheId is a DataRepositoryTaskFilterName enum value
+	DataRepositoryTaskFilterNameFileCacheId = "file-cache-id"
 )
 
 // DataRepositoryTaskFilterName_Values returns all elements of the DataRepositoryTaskFilterName enum
@@ -9374,6 +24987,8 @@ func DataRepositoryTaskFilterName_Values() []string {
 	return []string{
 		DataRepositoryTaskFilterNameFileSystemId,
 		DataRepositoryTaskFilterNameTaskLifecycle,
+		DataRepositoryTaskFilterNameDataRepositoryAssociationId,
+		DataRepositoryTaskFilterNameFileCacheId,
 	}
 }
 
@@ -9412,12 +25027,64 @@ func DataRepositoryTaskLifecycle_Values() []string {
 const (
 	// DataRepositoryTaskTypeExportToRepository is a DataRepositoryTaskType enum value
 	DataRepositoryTaskTypeExportToRepository = "EXPORT_TO_REPOSITORY"
+
+	// DataRepositoryTaskTypeImportMetadataFromRepository is a DataRepositoryTaskType enum value
+	DataRepositoryTaskTypeImportMetadataFromRepository = "IMPORT_METADATA_FROM_REPOSITORY"
+
+	// DataRepositoryTaskTypeReleaseDataFromFilesystem is a DataRepositoryTaskType enum value
+	DataRepositoryTaskTypeReleaseDataFromFilesystem = "RELEASE_DATA_FROM_FILESYSTEM"
+
+	// DataRepositoryTaskTypeAutoReleaseData is a DataRepositoryTaskType enum value
+	DataRepositoryTaskTypeAutoReleaseData = "AUTO_RELEASE_DATA"
 )
 
 // DataRepositoryTaskType_Values returns all elements of the DataRepositoryTaskType enum
 func DataRepositoryTaskType_Values() []string {
 	return []string{
 		DataRepositoryTaskTypeExportToRepository,
+		DataRepositoryTaskTypeImportMetadataFromRepository,
+		DataRepositoryTaskTypeReleaseDataFromFilesystem,
+		DataRepositoryTaskTypeAutoReleaseData,
+	}
+}
+
+const (
+	// DeleteFileSystemOpenZFSOptionDeleteChildVolumesAndSnapshots is a DeleteFileSystemOpenZFSOption enum value
+	DeleteFileSystemOpenZFSOptionDeleteChildVolumesAndSnapshots = "DELETE_CHILD_VOLUMES_AND_SNAPSHOTS"
+)
+
+// DeleteFileSystemOpenZFSOption_Values returns all elements of the DeleteFileSystemOpenZFSOption enum
+func DeleteFileSystemOpenZFSOption_Values() []string {
+	return []string{
+		DeleteFileSystemOpenZFSOptionDeleteChildVolumesAndSnapshots,
+	}
+}
+
+const (
+	// DeleteOpenZFSVolumeOptionDeleteChildVolumesAndSnapshots is a DeleteOpenZFSVolumeOption enum value
+	DeleteOpenZFSVolumeOptionDeleteChildVolumesAndSnapshots = "DELETE_CHILD_VOLUMES_AND_SNAPSHOTS"
+)
+
+// DeleteOpenZFSVolumeOption_Values returns all elements of the DeleteOpenZFSVolumeOption enum
+func DeleteOpenZFSVolumeOption_Values() []string {
+	return []string{
+		DeleteOpenZFSVolumeOptionDeleteChildVolumesAndSnapshots,
+	}
+}
+
+const (
+	// DiskIopsConfigurationModeAutomatic is a DiskIopsConfigurationMode enum value
+	DiskIopsConfigurationModeAutomatic = "AUTOMATIC"
+
+	// DiskIopsConfigurationModeUserProvisioned is a DiskIopsConfigurationMode enum value
+	DiskIopsConfigurationModeUserProvisioned = "USER_PROVISIONED"
+)
+
+// DiskIopsConfigurationMode_Values returns all elements of the DiskIopsConfigurationMode enum
+func DiskIopsConfigurationMode_Values() []string {
+	return []string{
+		DiskIopsConfigurationModeAutomatic,
+		DiskIopsConfigurationModeUserProvisioned,
 	}
 }
 
@@ -9434,6 +25101,78 @@ func DriveCacheType_Values() []string {
 	return []string{
 		DriveCacheTypeNone,
 		DriveCacheTypeRead,
+	}
+}
+
+const (
+	// EventTypeNew is a EventType enum value
+	EventTypeNew = "NEW"
+
+	// EventTypeChanged is a EventType enum value
+	EventTypeChanged = "CHANGED"
+
+	// EventTypeDeleted is a EventType enum value
+	EventTypeDeleted = "DELETED"
+)
+
+// EventType_Values returns all elements of the EventType enum
+func EventType_Values() []string {
+	return []string{
+		EventTypeNew,
+		EventTypeChanged,
+		EventTypeDeleted,
+	}
+}
+
+const (
+	// FileCacheLifecycleAvailable is a FileCacheLifecycle enum value
+	FileCacheLifecycleAvailable = "AVAILABLE"
+
+	// FileCacheLifecycleCreating is a FileCacheLifecycle enum value
+	FileCacheLifecycleCreating = "CREATING"
+
+	// FileCacheLifecycleDeleting is a FileCacheLifecycle enum value
+	FileCacheLifecycleDeleting = "DELETING"
+
+	// FileCacheLifecycleUpdating is a FileCacheLifecycle enum value
+	FileCacheLifecycleUpdating = "UPDATING"
+
+	// FileCacheLifecycleFailed is a FileCacheLifecycle enum value
+	FileCacheLifecycleFailed = "FAILED"
+)
+
+// FileCacheLifecycle_Values returns all elements of the FileCacheLifecycle enum
+func FileCacheLifecycle_Values() []string {
+	return []string{
+		FileCacheLifecycleAvailable,
+		FileCacheLifecycleCreating,
+		FileCacheLifecycleDeleting,
+		FileCacheLifecycleUpdating,
+		FileCacheLifecycleFailed,
+	}
+}
+
+const (
+	// FileCacheLustreDeploymentTypeCache1 is a FileCacheLustreDeploymentType enum value
+	FileCacheLustreDeploymentTypeCache1 = "CACHE_1"
+)
+
+// FileCacheLustreDeploymentType_Values returns all elements of the FileCacheLustreDeploymentType enum
+func FileCacheLustreDeploymentType_Values() []string {
+	return []string{
+		FileCacheLustreDeploymentTypeCache1,
+	}
+}
+
+const (
+	// FileCacheTypeLustre is a FileCacheType enum value
+	FileCacheTypeLustre = "LUSTRE"
+)
+
+// FileCacheType_Values returns all elements of the FileCacheType enum
+func FileCacheType_Values() []string {
+	return []string{
+		FileCacheTypeLustre,
 	}
 }
 
@@ -9456,6 +25195,9 @@ const (
 
 	// FileSystemLifecycleUpdating is a FileSystemLifecycle enum value
 	FileSystemLifecycleUpdating = "UPDATING"
+
+	// FileSystemLifecycleMisconfiguredUnavailable is a FileSystemLifecycle enum value
+	FileSystemLifecycleMisconfiguredUnavailable = "MISCONFIGURED_UNAVAILABLE"
 )
 
 // FileSystemLifecycle_Values returns all elements of the FileSystemLifecycle enum
@@ -9467,6 +25209,7 @@ func FileSystemLifecycle_Values() []string {
 		FileSystemLifecycleDeleting,
 		FileSystemLifecycleMisconfigured,
 		FileSystemLifecycleUpdating,
+		FileSystemLifecycleMisconfiguredUnavailable,
 	}
 }
 
@@ -9494,6 +25237,12 @@ const (
 
 	// FileSystemTypeLustre is a FileSystemType enum value
 	FileSystemTypeLustre = "LUSTRE"
+
+	// FileSystemTypeOntap is a FileSystemType enum value
+	FileSystemTypeOntap = "ONTAP"
+
+	// FileSystemTypeOpenzfs is a FileSystemType enum value
+	FileSystemTypeOpenzfs = "OPENZFS"
 )
 
 // FileSystemType_Values returns all elements of the FileSystemType enum
@@ -9501,6 +25250,8 @@ func FileSystemType_Values() []string {
 	return []string{
 		FileSystemTypeWindows,
 		FileSystemTypeLustre,
+		FileSystemTypeOntap,
+		FileSystemTypeOpenzfs,
 	}
 }
 
@@ -9514,6 +25265,18 @@ const (
 
 	// FilterNameFileSystemType is a FilterName enum value
 	FilterNameFileSystemType = "file-system-type"
+
+	// FilterNameVolumeId is a FilterName enum value
+	FilterNameVolumeId = "volume-id"
+
+	// FilterNameDataRepositoryType is a FilterName enum value
+	FilterNameDataRepositoryType = "data-repository-type"
+
+	// FilterNameFileCacheId is a FilterName enum value
+	FilterNameFileCacheId = "file-cache-id"
+
+	// FilterNameFileCacheType is a FilterName enum value
+	FilterNameFileCacheType = "file-cache-type"
 )
 
 // FilterName_Values returns all elements of the FilterName enum
@@ -9522,6 +25285,70 @@ func FilterName_Values() []string {
 		FilterNameFileSystemId,
 		FilterNameBackupType,
 		FilterNameFileSystemType,
+		FilterNameVolumeId,
+		FilterNameDataRepositoryType,
+		FilterNameFileCacheId,
+		FilterNameFileCacheType,
+	}
+}
+
+const (
+	// FlexCacheEndpointTypeNone is a FlexCacheEndpointType enum value
+	FlexCacheEndpointTypeNone = "NONE"
+
+	// FlexCacheEndpointTypeOrigin is a FlexCacheEndpointType enum value
+	FlexCacheEndpointTypeOrigin = "ORIGIN"
+
+	// FlexCacheEndpointTypeCache is a FlexCacheEndpointType enum value
+	FlexCacheEndpointTypeCache = "CACHE"
+)
+
+// FlexCacheEndpointType_Values returns all elements of the FlexCacheEndpointType enum
+func FlexCacheEndpointType_Values() []string {
+	return []string{
+		FlexCacheEndpointTypeNone,
+		FlexCacheEndpointTypeOrigin,
+		FlexCacheEndpointTypeCache,
+	}
+}
+
+const (
+	// InputOntapVolumeTypeRw is a InputOntapVolumeType enum value
+	InputOntapVolumeTypeRw = "RW"
+
+	// InputOntapVolumeTypeDp is a InputOntapVolumeType enum value
+	InputOntapVolumeTypeDp = "DP"
+)
+
+// InputOntapVolumeType_Values returns all elements of the InputOntapVolumeType enum
+func InputOntapVolumeType_Values() []string {
+	return []string{
+		InputOntapVolumeTypeRw,
+		InputOntapVolumeTypeDp,
+	}
+}
+
+const (
+	// LustreAccessAuditLogLevelDisabled is a LustreAccessAuditLogLevel enum value
+	LustreAccessAuditLogLevelDisabled = "DISABLED"
+
+	// LustreAccessAuditLogLevelWarnOnly is a LustreAccessAuditLogLevel enum value
+	LustreAccessAuditLogLevelWarnOnly = "WARN_ONLY"
+
+	// LustreAccessAuditLogLevelErrorOnly is a LustreAccessAuditLogLevel enum value
+	LustreAccessAuditLogLevelErrorOnly = "ERROR_ONLY"
+
+	// LustreAccessAuditLogLevelWarnError is a LustreAccessAuditLogLevel enum value
+	LustreAccessAuditLogLevelWarnError = "WARN_ERROR"
+)
+
+// LustreAccessAuditLogLevel_Values returns all elements of the LustreAccessAuditLogLevel enum
+func LustreAccessAuditLogLevel_Values() []string {
+	return []string{
+		LustreAccessAuditLogLevelDisabled,
+		LustreAccessAuditLogLevelWarnOnly,
+		LustreAccessAuditLogLevelErrorOnly,
+		LustreAccessAuditLogLevelWarnError,
 	}
 }
 
@@ -9534,6 +25361,9 @@ const (
 
 	// LustreDeploymentTypePersistent1 is a LustreDeploymentType enum value
 	LustreDeploymentTypePersistent1 = "PERSISTENT_1"
+
+	// LustreDeploymentTypePersistent2 is a LustreDeploymentType enum value
+	LustreDeploymentTypePersistent2 = "PERSISTENT_2"
 )
 
 // LustreDeploymentType_Values returns all elements of the LustreDeploymentType enum
@@ -9542,6 +25372,155 @@ func LustreDeploymentType_Values() []string {
 		LustreDeploymentTypeScratch1,
 		LustreDeploymentTypeScratch2,
 		LustreDeploymentTypePersistent1,
+		LustreDeploymentTypePersistent2,
+	}
+}
+
+const (
+	// NfsVersionNfs3 is a NfsVersion enum value
+	NfsVersionNfs3 = "NFS3"
+)
+
+// NfsVersion_Values returns all elements of the NfsVersion enum
+func NfsVersion_Values() []string {
+	return []string{
+		NfsVersionNfs3,
+	}
+}
+
+const (
+	// OntapDeploymentTypeMultiAz1 is a OntapDeploymentType enum value
+	OntapDeploymentTypeMultiAz1 = "MULTI_AZ_1"
+
+	// OntapDeploymentTypeSingleAz1 is a OntapDeploymentType enum value
+	OntapDeploymentTypeSingleAz1 = "SINGLE_AZ_1"
+
+	// OntapDeploymentTypeSingleAz2 is a OntapDeploymentType enum value
+	OntapDeploymentTypeSingleAz2 = "SINGLE_AZ_2"
+)
+
+// OntapDeploymentType_Values returns all elements of the OntapDeploymentType enum
+func OntapDeploymentType_Values() []string {
+	return []string{
+		OntapDeploymentTypeMultiAz1,
+		OntapDeploymentTypeSingleAz1,
+		OntapDeploymentTypeSingleAz2,
+	}
+}
+
+const (
+	// OntapVolumeTypeRw is a OntapVolumeType enum value
+	OntapVolumeTypeRw = "RW"
+
+	// OntapVolumeTypeDp is a OntapVolumeType enum value
+	OntapVolumeTypeDp = "DP"
+
+	// OntapVolumeTypeLs is a OntapVolumeType enum value
+	OntapVolumeTypeLs = "LS"
+)
+
+// OntapVolumeType_Values returns all elements of the OntapVolumeType enum
+func OntapVolumeType_Values() []string {
+	return []string{
+		OntapVolumeTypeRw,
+		OntapVolumeTypeDp,
+		OntapVolumeTypeLs,
+	}
+}
+
+const (
+	// OpenZFSCopyStrategyClone is a OpenZFSCopyStrategy enum value
+	OpenZFSCopyStrategyClone = "CLONE"
+
+	// OpenZFSCopyStrategyFullCopy is a OpenZFSCopyStrategy enum value
+	OpenZFSCopyStrategyFullCopy = "FULL_COPY"
+
+	// OpenZFSCopyStrategyIncrementalCopy is a OpenZFSCopyStrategy enum value
+	OpenZFSCopyStrategyIncrementalCopy = "INCREMENTAL_COPY"
+)
+
+// OpenZFSCopyStrategy_Values returns all elements of the OpenZFSCopyStrategy enum
+func OpenZFSCopyStrategy_Values() []string {
+	return []string{
+		OpenZFSCopyStrategyClone,
+		OpenZFSCopyStrategyFullCopy,
+		OpenZFSCopyStrategyIncrementalCopy,
+	}
+}
+
+const (
+	// OpenZFSDataCompressionTypeNone is a OpenZFSDataCompressionType enum value
+	OpenZFSDataCompressionTypeNone = "NONE"
+
+	// OpenZFSDataCompressionTypeZstd is a OpenZFSDataCompressionType enum value
+	OpenZFSDataCompressionTypeZstd = "ZSTD"
+
+	// OpenZFSDataCompressionTypeLz4 is a OpenZFSDataCompressionType enum value
+	OpenZFSDataCompressionTypeLz4 = "LZ4"
+)
+
+// OpenZFSDataCompressionType_Values returns all elements of the OpenZFSDataCompressionType enum
+func OpenZFSDataCompressionType_Values() []string {
+	return []string{
+		OpenZFSDataCompressionTypeNone,
+		OpenZFSDataCompressionTypeZstd,
+		OpenZFSDataCompressionTypeLz4,
+	}
+}
+
+const (
+	// OpenZFSDeploymentTypeSingleAz1 is a OpenZFSDeploymentType enum value
+	OpenZFSDeploymentTypeSingleAz1 = "SINGLE_AZ_1"
+
+	// OpenZFSDeploymentTypeSingleAz2 is a OpenZFSDeploymentType enum value
+	OpenZFSDeploymentTypeSingleAz2 = "SINGLE_AZ_2"
+
+	// OpenZFSDeploymentTypeMultiAz1 is a OpenZFSDeploymentType enum value
+	OpenZFSDeploymentTypeMultiAz1 = "MULTI_AZ_1"
+)
+
+// OpenZFSDeploymentType_Values returns all elements of the OpenZFSDeploymentType enum
+func OpenZFSDeploymentType_Values() []string {
+	return []string{
+		OpenZFSDeploymentTypeSingleAz1,
+		OpenZFSDeploymentTypeSingleAz2,
+		OpenZFSDeploymentTypeMultiAz1,
+	}
+}
+
+const (
+	// OpenZFSQuotaTypeUser is a OpenZFSQuotaType enum value
+	OpenZFSQuotaTypeUser = "USER"
+
+	// OpenZFSQuotaTypeGroup is a OpenZFSQuotaType enum value
+	OpenZFSQuotaTypeGroup = "GROUP"
+)
+
+// OpenZFSQuotaType_Values returns all elements of the OpenZFSQuotaType enum
+func OpenZFSQuotaType_Values() []string {
+	return []string{
+		OpenZFSQuotaTypeUser,
+		OpenZFSQuotaTypeGroup,
+	}
+}
+
+const (
+	// PrivilegedDeleteDisabled is a PrivilegedDelete enum value
+	PrivilegedDeleteDisabled = "DISABLED"
+
+	// PrivilegedDeleteEnabled is a PrivilegedDelete enum value
+	PrivilegedDeleteEnabled = "ENABLED"
+
+	// PrivilegedDeletePermanentlyDisabled is a PrivilegedDelete enum value
+	PrivilegedDeletePermanentlyDisabled = "PERMANENTLY_DISABLED"
+)
+
+// PrivilegedDelete_Values returns all elements of the PrivilegedDelete enum
+func PrivilegedDelete_Values() []string {
+	return []string{
+		PrivilegedDeleteDisabled,
+		PrivilegedDeleteEnabled,
+		PrivilegedDeletePermanentlyDisabled,
 	}
 }
 
@@ -9569,10 +25548,103 @@ func ReportScope_Values() []string {
 	}
 }
 
+const (
+	// ResourceTypeFileSystem is a ResourceType enum value
+	ResourceTypeFileSystem = "FILE_SYSTEM"
+
+	// ResourceTypeVolume is a ResourceType enum value
+	ResourceTypeVolume = "VOLUME"
+)
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeFileSystem,
+		ResourceTypeVolume,
+	}
+}
+
+const (
+	// RestoreOpenZFSVolumeOptionDeleteIntermediateSnapshots is a RestoreOpenZFSVolumeOption enum value
+	RestoreOpenZFSVolumeOptionDeleteIntermediateSnapshots = "DELETE_INTERMEDIATE_SNAPSHOTS"
+
+	// RestoreOpenZFSVolumeOptionDeleteClonedVolumes is a RestoreOpenZFSVolumeOption enum value
+	RestoreOpenZFSVolumeOptionDeleteClonedVolumes = "DELETE_CLONED_VOLUMES"
+)
+
+// RestoreOpenZFSVolumeOption_Values returns all elements of the RestoreOpenZFSVolumeOption enum
+func RestoreOpenZFSVolumeOption_Values() []string {
+	return []string{
+		RestoreOpenZFSVolumeOptionDeleteIntermediateSnapshots,
+		RestoreOpenZFSVolumeOptionDeleteClonedVolumes,
+	}
+}
+
+const (
+	// RetentionPeriodTypeSeconds is a RetentionPeriodType enum value
+	RetentionPeriodTypeSeconds = "SECONDS"
+
+	// RetentionPeriodTypeMinutes is a RetentionPeriodType enum value
+	RetentionPeriodTypeMinutes = "MINUTES"
+
+	// RetentionPeriodTypeHours is a RetentionPeriodType enum value
+	RetentionPeriodTypeHours = "HOURS"
+
+	// RetentionPeriodTypeDays is a RetentionPeriodType enum value
+	RetentionPeriodTypeDays = "DAYS"
+
+	// RetentionPeriodTypeMonths is a RetentionPeriodType enum value
+	RetentionPeriodTypeMonths = "MONTHS"
+
+	// RetentionPeriodTypeYears is a RetentionPeriodType enum value
+	RetentionPeriodTypeYears = "YEARS"
+
+	// RetentionPeriodTypeInfinite is a RetentionPeriodType enum value
+	RetentionPeriodTypeInfinite = "INFINITE"
+
+	// RetentionPeriodTypeUnspecified is a RetentionPeriodType enum value
+	RetentionPeriodTypeUnspecified = "UNSPECIFIED"
+)
+
+// RetentionPeriodType_Values returns all elements of the RetentionPeriodType enum
+func RetentionPeriodType_Values() []string {
+	return []string{
+		RetentionPeriodTypeSeconds,
+		RetentionPeriodTypeMinutes,
+		RetentionPeriodTypeHours,
+		RetentionPeriodTypeDays,
+		RetentionPeriodTypeMonths,
+		RetentionPeriodTypeYears,
+		RetentionPeriodTypeInfinite,
+		RetentionPeriodTypeUnspecified,
+	}
+}
+
+const (
+	// SecurityStyleUnix is a SecurityStyle enum value
+	SecurityStyleUnix = "UNIX"
+
+	// SecurityStyleNtfs is a SecurityStyle enum value
+	SecurityStyleNtfs = "NTFS"
+
+	// SecurityStyleMixed is a SecurityStyle enum value
+	SecurityStyleMixed = "MIXED"
+)
+
+// SecurityStyle_Values returns all elements of the SecurityStyle enum
+func SecurityStyle_Values() []string {
+	return []string{
+		SecurityStyleUnix,
+		SecurityStyleNtfs,
+		SecurityStyleMixed,
+	}
+}
+
 // The types of limits on your service utilization. Limits include file system
 // count, total throughput capacity, total storage, and total user-initiated
-// backups. These limits apply for a specific account in a specific AWS Region.
-// You can increase some of them by contacting AWS Support.
+// backups. These limits apply for a specific account in a specific Amazon Web
+// Services Region. You can increase some of them by contacting Amazon Web Services
+// Support.
 const (
 	// ServiceLimitFileSystemCount is a ServiceLimit enum value
 	ServiceLimitFileSystemCount = "FILE_SYSTEM_COUNT"
@@ -9591,6 +25663,18 @@ const (
 
 	// ServiceLimitTotalInProgressCopyBackups is a ServiceLimit enum value
 	ServiceLimitTotalInProgressCopyBackups = "TOTAL_IN_PROGRESS_COPY_BACKUPS"
+
+	// ServiceLimitStorageVirtualMachinesPerFileSystem is a ServiceLimit enum value
+	ServiceLimitStorageVirtualMachinesPerFileSystem = "STORAGE_VIRTUAL_MACHINES_PER_FILE_SYSTEM"
+
+	// ServiceLimitVolumesPerFileSystem is a ServiceLimit enum value
+	ServiceLimitVolumesPerFileSystem = "VOLUMES_PER_FILE_SYSTEM"
+
+	// ServiceLimitTotalSsdIops is a ServiceLimit enum value
+	ServiceLimitTotalSsdIops = "TOTAL_SSD_IOPS"
+
+	// ServiceLimitFileCacheCount is a ServiceLimit enum value
+	ServiceLimitFileCacheCount = "FILE_CACHE_COUNT"
 )
 
 // ServiceLimit_Values returns all elements of the ServiceLimit enum
@@ -9602,6 +25686,66 @@ func ServiceLimit_Values() []string {
 		ServiceLimitTotalUserInitiatedBackups,
 		ServiceLimitTotalUserTags,
 		ServiceLimitTotalInProgressCopyBackups,
+		ServiceLimitStorageVirtualMachinesPerFileSystem,
+		ServiceLimitVolumesPerFileSystem,
+		ServiceLimitTotalSsdIops,
+		ServiceLimitFileCacheCount,
+	}
+}
+
+const (
+	// SnaplockTypeCompliance is a SnaplockType enum value
+	SnaplockTypeCompliance = "COMPLIANCE"
+
+	// SnaplockTypeEnterprise is a SnaplockType enum value
+	SnaplockTypeEnterprise = "ENTERPRISE"
+)
+
+// SnaplockType_Values returns all elements of the SnaplockType enum
+func SnaplockType_Values() []string {
+	return []string{
+		SnaplockTypeCompliance,
+		SnaplockTypeEnterprise,
+	}
+}
+
+const (
+	// SnapshotFilterNameFileSystemId is a SnapshotFilterName enum value
+	SnapshotFilterNameFileSystemId = "file-system-id"
+
+	// SnapshotFilterNameVolumeId is a SnapshotFilterName enum value
+	SnapshotFilterNameVolumeId = "volume-id"
+)
+
+// SnapshotFilterName_Values returns all elements of the SnapshotFilterName enum
+func SnapshotFilterName_Values() []string {
+	return []string{
+		SnapshotFilterNameFileSystemId,
+		SnapshotFilterNameVolumeId,
+	}
+}
+
+const (
+	// SnapshotLifecyclePending is a SnapshotLifecycle enum value
+	SnapshotLifecyclePending = "PENDING"
+
+	// SnapshotLifecycleCreating is a SnapshotLifecycle enum value
+	SnapshotLifecycleCreating = "CREATING"
+
+	// SnapshotLifecycleDeleting is a SnapshotLifecycle enum value
+	SnapshotLifecycleDeleting = "DELETING"
+
+	// SnapshotLifecycleAvailable is a SnapshotLifecycle enum value
+	SnapshotLifecycleAvailable = "AVAILABLE"
+)
+
+// SnapshotLifecycle_Values returns all elements of the SnapshotLifecycle enum
+func SnapshotLifecycle_Values() []string {
+	return []string{
+		SnapshotLifecyclePending,
+		SnapshotLifecycleCreating,
+		SnapshotLifecycleDeleting,
+		SnapshotLifecycleAvailable,
 	}
 }
 
@@ -9633,7 +25777,7 @@ func Status_Values() []string {
 	}
 }
 
-// The storage type for your Amazon FSx file system.
+// Specifies the file system's storage type.
 const (
 	// StorageTypeSsd is a StorageType enum value
 	StorageTypeSsd = "SSD"
@@ -9647,6 +25791,234 @@ func StorageType_Values() []string {
 	return []string{
 		StorageTypeSsd,
 		StorageTypeHdd,
+	}
+}
+
+const (
+	// StorageVirtualMachineFilterNameFileSystemId is a StorageVirtualMachineFilterName enum value
+	StorageVirtualMachineFilterNameFileSystemId = "file-system-id"
+)
+
+// StorageVirtualMachineFilterName_Values returns all elements of the StorageVirtualMachineFilterName enum
+func StorageVirtualMachineFilterName_Values() []string {
+	return []string{
+		StorageVirtualMachineFilterNameFileSystemId,
+	}
+}
+
+const (
+	// StorageVirtualMachineLifecycleCreated is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleCreated = "CREATED"
+
+	// StorageVirtualMachineLifecycleCreating is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleCreating = "CREATING"
+
+	// StorageVirtualMachineLifecycleDeleting is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleDeleting = "DELETING"
+
+	// StorageVirtualMachineLifecycleFailed is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleFailed = "FAILED"
+
+	// StorageVirtualMachineLifecycleMisconfigured is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleMisconfigured = "MISCONFIGURED"
+
+	// StorageVirtualMachineLifecyclePending is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecyclePending = "PENDING"
+)
+
+// StorageVirtualMachineLifecycle_Values returns all elements of the StorageVirtualMachineLifecycle enum
+func StorageVirtualMachineLifecycle_Values() []string {
+	return []string{
+		StorageVirtualMachineLifecycleCreated,
+		StorageVirtualMachineLifecycleCreating,
+		StorageVirtualMachineLifecycleDeleting,
+		StorageVirtualMachineLifecycleFailed,
+		StorageVirtualMachineLifecycleMisconfigured,
+		StorageVirtualMachineLifecyclePending,
+	}
+}
+
+const (
+	// StorageVirtualMachineRootVolumeSecurityStyleUnix is a StorageVirtualMachineRootVolumeSecurityStyle enum value
+	StorageVirtualMachineRootVolumeSecurityStyleUnix = "UNIX"
+
+	// StorageVirtualMachineRootVolumeSecurityStyleNtfs is a StorageVirtualMachineRootVolumeSecurityStyle enum value
+	StorageVirtualMachineRootVolumeSecurityStyleNtfs = "NTFS"
+
+	// StorageVirtualMachineRootVolumeSecurityStyleMixed is a StorageVirtualMachineRootVolumeSecurityStyle enum value
+	StorageVirtualMachineRootVolumeSecurityStyleMixed = "MIXED"
+)
+
+// StorageVirtualMachineRootVolumeSecurityStyle_Values returns all elements of the StorageVirtualMachineRootVolumeSecurityStyle enum
+func StorageVirtualMachineRootVolumeSecurityStyle_Values() []string {
+	return []string{
+		StorageVirtualMachineRootVolumeSecurityStyleUnix,
+		StorageVirtualMachineRootVolumeSecurityStyleNtfs,
+		StorageVirtualMachineRootVolumeSecurityStyleMixed,
+	}
+}
+
+const (
+	// StorageVirtualMachineSubtypeDefault is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeDefault = "DEFAULT"
+
+	// StorageVirtualMachineSubtypeDpDestination is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeDpDestination = "DP_DESTINATION"
+
+	// StorageVirtualMachineSubtypeSyncDestination is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeSyncDestination = "SYNC_DESTINATION"
+
+	// StorageVirtualMachineSubtypeSyncSource is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeSyncSource = "SYNC_SOURCE"
+)
+
+// StorageVirtualMachineSubtype_Values returns all elements of the StorageVirtualMachineSubtype enum
+func StorageVirtualMachineSubtype_Values() []string {
+	return []string{
+		StorageVirtualMachineSubtypeDefault,
+		StorageVirtualMachineSubtypeDpDestination,
+		StorageVirtualMachineSubtypeSyncDestination,
+		StorageVirtualMachineSubtypeSyncSource,
+	}
+}
+
+const (
+	// TieringPolicyNameSnapshotOnly is a TieringPolicyName enum value
+	TieringPolicyNameSnapshotOnly = "SNAPSHOT_ONLY"
+
+	// TieringPolicyNameAuto is a TieringPolicyName enum value
+	TieringPolicyNameAuto = "AUTO"
+
+	// TieringPolicyNameAll is a TieringPolicyName enum value
+	TieringPolicyNameAll = "ALL"
+
+	// TieringPolicyNameNone is a TieringPolicyName enum value
+	TieringPolicyNameNone = "NONE"
+)
+
+// TieringPolicyName_Values returns all elements of the TieringPolicyName enum
+func TieringPolicyName_Values() []string {
+	return []string{
+		TieringPolicyNameSnapshotOnly,
+		TieringPolicyNameAuto,
+		TieringPolicyNameAll,
+		TieringPolicyNameNone,
+	}
+}
+
+const (
+	// UnitDays is a Unit enum value
+	UnitDays = "DAYS"
+)
+
+// Unit_Values returns all elements of the Unit enum
+func Unit_Values() []string {
+	return []string{
+		UnitDays,
+	}
+}
+
+const (
+	// UpdateOpenZFSVolumeOptionDeleteIntermediateSnapshots is a UpdateOpenZFSVolumeOption enum value
+	UpdateOpenZFSVolumeOptionDeleteIntermediateSnapshots = "DELETE_INTERMEDIATE_SNAPSHOTS"
+
+	// UpdateOpenZFSVolumeOptionDeleteClonedVolumes is a UpdateOpenZFSVolumeOption enum value
+	UpdateOpenZFSVolumeOptionDeleteClonedVolumes = "DELETE_CLONED_VOLUMES"
+
+	// UpdateOpenZFSVolumeOptionDeleteIntermediateData is a UpdateOpenZFSVolumeOption enum value
+	UpdateOpenZFSVolumeOptionDeleteIntermediateData = "DELETE_INTERMEDIATE_DATA"
+)
+
+// UpdateOpenZFSVolumeOption_Values returns all elements of the UpdateOpenZFSVolumeOption enum
+func UpdateOpenZFSVolumeOption_Values() []string {
+	return []string{
+		UpdateOpenZFSVolumeOptionDeleteIntermediateSnapshots,
+		UpdateOpenZFSVolumeOptionDeleteClonedVolumes,
+		UpdateOpenZFSVolumeOptionDeleteIntermediateData,
+	}
+}
+
+const (
+	// VolumeFilterNameFileSystemId is a VolumeFilterName enum value
+	VolumeFilterNameFileSystemId = "file-system-id"
+
+	// VolumeFilterNameStorageVirtualMachineId is a VolumeFilterName enum value
+	VolumeFilterNameStorageVirtualMachineId = "storage-virtual-machine-id"
+)
+
+// VolumeFilterName_Values returns all elements of the VolumeFilterName enum
+func VolumeFilterName_Values() []string {
+	return []string{
+		VolumeFilterNameFileSystemId,
+		VolumeFilterNameStorageVirtualMachineId,
+	}
+}
+
+const (
+	// VolumeLifecycleCreating is a VolumeLifecycle enum value
+	VolumeLifecycleCreating = "CREATING"
+
+	// VolumeLifecycleCreated is a VolumeLifecycle enum value
+	VolumeLifecycleCreated = "CREATED"
+
+	// VolumeLifecycleDeleting is a VolumeLifecycle enum value
+	VolumeLifecycleDeleting = "DELETING"
+
+	// VolumeLifecycleFailed is a VolumeLifecycle enum value
+	VolumeLifecycleFailed = "FAILED"
+
+	// VolumeLifecycleMisconfigured is a VolumeLifecycle enum value
+	VolumeLifecycleMisconfigured = "MISCONFIGURED"
+
+	// VolumeLifecyclePending is a VolumeLifecycle enum value
+	VolumeLifecyclePending = "PENDING"
+
+	// VolumeLifecycleAvailable is a VolumeLifecycle enum value
+	VolumeLifecycleAvailable = "AVAILABLE"
+)
+
+// VolumeLifecycle_Values returns all elements of the VolumeLifecycle enum
+func VolumeLifecycle_Values() []string {
+	return []string{
+		VolumeLifecycleCreating,
+		VolumeLifecycleCreated,
+		VolumeLifecycleDeleting,
+		VolumeLifecycleFailed,
+		VolumeLifecycleMisconfigured,
+		VolumeLifecyclePending,
+		VolumeLifecycleAvailable,
+	}
+}
+
+const (
+	// VolumeStyleFlexvol is a VolumeStyle enum value
+	VolumeStyleFlexvol = "FLEXVOL"
+
+	// VolumeStyleFlexgroup is a VolumeStyle enum value
+	VolumeStyleFlexgroup = "FLEXGROUP"
+)
+
+// VolumeStyle_Values returns all elements of the VolumeStyle enum
+func VolumeStyle_Values() []string {
+	return []string{
+		VolumeStyleFlexvol,
+		VolumeStyleFlexgroup,
+	}
+}
+
+const (
+	// VolumeTypeOntap is a VolumeType enum value
+	VolumeTypeOntap = "ONTAP"
+
+	// VolumeTypeOpenzfs is a VolumeType enum value
+	VolumeTypeOpenzfs = "OPENZFS"
+)
+
+// VolumeType_Values returns all elements of the VolumeType enum
+func VolumeType_Values() []string {
+	return []string{
+		VolumeTypeOntap,
+		VolumeTypeOpenzfs,
 	}
 }
 

@@ -1,3 +1,4 @@
+//go:build integration
 // +build integration
 
 package transcribestreamingservice
@@ -36,8 +37,6 @@ func init() {
 }
 
 func TestInteg_StartStreamTranscription(t *testing.T) {
-	t.Skip("test failing with CANCEL response")
-
 	var audio io.Reader
 	if len(audioFilename) != 0 {
 		audioFile, err := os.Open(audioFilename)
@@ -99,8 +98,6 @@ func TestInteg_StartStreamTranscription(t *testing.T) {
 }
 
 func TestInteg_StartStreamTranscription_contextClose(t *testing.T) {
-	t.Skip("test failing with CANCEL response")
-
 	b, err := base64.StdEncoding.DecodeString(
 		`UklGRjzxPQBXQVZFZm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YVTwPQAAAAAAAAAAAAAAAAD//wIA/f8EAA==`,
 	)

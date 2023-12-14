@@ -39,6 +39,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetEndpoint":{
+      "name":"GetEndpoint",
+      "http":{
+        "method":"GET",
+        "requestUri":"/endpoint"
+      },
+      "input":{"shape":"GetEndpointRequest"},
+      "output":{"shape":"GetEndpointResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetSuiteDefinition":{
       "name":"GetSuiteDefinition",
       "http":{
@@ -197,6 +211,13 @@
       "max":2048,
       "min":20
     },
+    "AuthenticationMethod":{
+      "type":"string",
+      "enum":[
+        "X509ClientCertificate",
+        "SignatureVersion4"
+      ]
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -207,6 +228,7 @@
     },
     "CreateSuiteDefinitionRequest":{
       "type":"structure",
+      "required":["suiteDefinitionConfiguration"],
       "members":{
         "suiteDefinitionConfiguration":{"shape":"SuiteDefinitionConfiguration"},
         "tags":{"shape":"TagMap"}
@@ -241,7 +263,8 @@
       "type":"structure",
       "members":{
         "thingArn":{"shape":"AmazonResourceName"},
-        "certificateArn":{"shape":"AmazonResourceName"}
+        "certificateArn":{"shape":"AmazonResourceName"},
+        "deviceRoleArn":{"shape":"AmazonResourceName"}
       }
     },
     "DeviceUnderTestList":{
@@ -250,8 +273,44 @@
       "max":2,
       "min":0
     },
+    "Endpoint":{
+      "type":"string",
+      "max":75,
+      "min":45
+    },
     "ErrorReason":{"type":"string"},
     "Failure":{"type":"string"},
+    "GetEndpointRequest":{
+      "type":"structure",
+      "members":{
+        "thingArn":{
+          "shape":"AmazonResourceName",
+          "location":"querystring",
+          "locationName":"thingArn"
+        },
+        "certificateArn":{
+          "shape":"AmazonResourceName",
+          "location":"querystring",
+          "locationName":"certificateArn"
+        },
+        "deviceRoleArn":{
+          "shape":"AmazonResourceName",
+          "location":"querystring",
+          "locationName":"deviceRoleArn"
+        },
+        "authenticationMethod":{
+          "shape":"AuthenticationMethod",
+          "location":"querystring",
+          "locationName":"authenticationMethod"
+        }
+      }
+    },
+    "GetEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "endpoint":{"shape":"Endpoint"}
+      }
+    },
     "GetSuiteDefinitionRequest":{
       "type":"structure",
       "required":["suiteDefinitionId"],
@@ -364,6 +423,7 @@
       "exception":true,
       "fault":true
     },
+    "IsLongDurationTestBoolean":{"type":"boolean"},
     "ListSuiteDefinitionsRequest":{
       "type":"structure",
       "members":{
@@ -446,6 +506,16 @@
       "max":2048,
       "min":1
     },
+    "ParallelRun":{"type":"boolean"},
+    "Protocol":{
+      "type":"string",
+      "enum":[
+        "MqttV3_1_1",
+        "MqttV5",
+        "MqttV3_1_1_OverWebSocket",
+        "MqttV5_OverWebSocket"
+      ]
+    },
     "QualificationReportDownloadUrl":{"type":"string"},
     "ResourceNotFoundException":{
       "type":"structure",
@@ -458,7 +528,7 @@
     "RootGroup":{
       "type":"string",
       "max":2048,
-      "min":1
+      "min":0
     },
     "SelectedTestList":{
       "type":"list",
@@ -468,7 +538,10 @@
     },
     "StartSuiteRunRequest":{
       "type":"structure",
-      "required":["suiteDefinitionId"],
+      "required":[
+        "suiteDefinitionId",
+        "suiteRunConfiguration"
+      ],
       "members":{
         "suiteDefinitionId":{
           "shape":"UUID",
@@ -485,7 +558,8 @@
       "members":{
         "suiteRunId":{"shape":"UUID"},
         "suiteRunArn":{"shape":"AmazonResourceName"},
-        "createdAt":{"shape":"Timestamp"}
+        "createdAt":{"shape":"Timestamp"},
+        "endpoint":{"shape":"Endpoint"}
       }
     },
     "Status":{
@@ -538,12 +612,19 @@
     },
     "SuiteDefinitionConfiguration":{
       "type":"structure",
+      "required":[
+        "suiteDefinitionName",
+        "rootGroup",
+        "devicePermissionRoleArn"
+      ],
       "members":{
         "suiteDefinitionName":{"shape":"SuiteDefinitionName"},
         "devices":{"shape":"DeviceUnderTestList"},
         "intendedForQualification":{"shape":"IntendedForQualificationBoolean"},
+        "isLongDurationTest":{"shape":"IsLongDurationTestBoolean"},
         "rootGroup":{"shape":"RootGroup"},
-        "devicePermissionRoleArn":{"shape":"AmazonResourceName"}
+        "devicePermissionRoleArn":{"shape":"AmazonResourceName"},
+        "protocol":{"shape":"Protocol"}
       }
     },
     "SuiteDefinitionInformation":{
@@ -553,6 +634,8 @@
         "suiteDefinitionName":{"shape":"SuiteDefinitionName"},
         "defaultDevices":{"shape":"DeviceUnderTestList"},
         "intendedForQualification":{"shape":"IntendedForQualificationBoolean"},
+        "isLongDurationTest":{"shape":"IsLongDurationTestBoolean"},
+        "protocol":{"shape":"Protocol"},
         "createdAt":{"shape":"Timestamp"}
       }
     },
@@ -572,9 +655,11 @@
     },
     "SuiteRunConfiguration":{
       "type":"structure",
+      "required":["primaryDevice"],
       "members":{
         "primaryDevice":{"shape":"DeviceUnderTest"},
-        "selectedTestList":{"shape":"SelectedTestList"}
+        "selectedTestList":{"shape":"SelectedTestList"},
+        "parallelRun":{"shape":"ParallelRun"}
       }
     },
     "SuiteRunInformation":{
@@ -615,6 +700,7 @@
       "type":"list",
       "member":{"shape":"SuiteRunInformation"}
     },
+    "SystemMessage":{"type":"string"},
     "TagKeyList":{
       "type":"list",
       "member":{"shape":"String128"},
@@ -660,12 +746,49 @@
         "endTime":{"shape":"Timestamp"},
         "logUrl":{"shape":"LogUrl"},
         "warnings":{"shape":"Warnings"},
-        "failure":{"shape":"Failure"}
+        "failure":{"shape":"Failure"},
+        "testScenarios":{"shape":"TestCaseScenariosList"}
       }
     },
     "TestCaseRuns":{
       "type":"list",
       "member":{"shape":"TestCaseRun"}
+    },
+    "TestCaseScenario":{
+      "type":"structure",
+      "members":{
+        "testCaseScenarioId":{"shape":"TestCaseScenarioId"},
+        "testCaseScenarioType":{"shape":"TestCaseScenarioType"},
+        "status":{"shape":"TestCaseScenarioStatus"},
+        "failure":{"shape":"Failure"},
+        "systemMessage":{"shape":"SystemMessage"}
+      }
+    },
+    "TestCaseScenarioId":{"type":"string"},
+    "TestCaseScenarioStatus":{
+      "type":"string",
+      "enum":[
+        "PASS",
+        "FAIL",
+        "CANCELED",
+        "PENDING",
+        "RUNNING",
+        "STOPPING",
+        "STOPPED",
+        "PASS_WITH_WARNINGS",
+        "ERROR"
+      ]
+    },
+    "TestCaseScenarioType":{
+      "type":"string",
+      "enum":[
+        "Advanced",
+        "Basic"
+      ]
+    },
+    "TestCaseScenariosList":{
+      "type":"list",
+      "member":{"shape":"TestCaseScenario"}
     },
     "TestResult":{
       "type":"structure",
@@ -709,7 +832,10 @@
     },
     "UpdateSuiteDefinitionRequest":{
       "type":"structure",
-      "required":["suiteDefinitionId"],
+      "required":[
+        "suiteDefinitionId",
+        "suiteDefinitionConfiguration"
+      ],
       "members":{
         "suiteDefinitionId":{
           "shape":"UUID",

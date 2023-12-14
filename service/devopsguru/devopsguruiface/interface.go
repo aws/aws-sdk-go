@@ -23,37 +23,37 @@ import (
 // can be stubbed out for unit testing your code with the SDK without needing
 // to inject custom request handlers into the SDK's request pipeline.
 //
-//    // myFunc uses an SDK service client to make a request to
-//    // Amazon DevOps Guru.
-//    func myFunc(svc devopsguruiface.DevOpsGuruAPI) bool {
-//        // Make svc.AddNotificationChannel request
-//    }
+//	// myFunc uses an SDK service client to make a request to
+//	// Amazon DevOps Guru.
+//	func myFunc(svc devopsguruiface.DevOpsGuruAPI) bool {
+//	    // Make svc.AddNotificationChannel request
+//	}
 //
-//    func main() {
-//        sess := session.New()
-//        svc := devopsguru.New(sess)
+//	func main() {
+//	    sess := session.New()
+//	    svc := devopsguru.New(sess)
 //
-//        myFunc(svc)
-//    }
+//	    myFunc(svc)
+//	}
 //
 // In your _test.go file:
 //
-//    // Define a mock struct to be used in your unit tests of myFunc.
-//    type mockDevOpsGuruClient struct {
-//        devopsguruiface.DevOpsGuruAPI
-//    }
-//    func (m *mockDevOpsGuruClient) AddNotificationChannel(input *devopsguru.AddNotificationChannelInput) (*devopsguru.AddNotificationChannelOutput, error) {
-//        // mock response/functionality
-//    }
+//	// Define a mock struct to be used in your unit tests of myFunc.
+//	type mockDevOpsGuruClient struct {
+//	    devopsguruiface.DevOpsGuruAPI
+//	}
+//	func (m *mockDevOpsGuruClient) AddNotificationChannel(input *devopsguru.AddNotificationChannelInput) (*devopsguru.AddNotificationChannelOutput, error) {
+//	    // mock response/functionality
+//	}
 //
-//    func TestMyFunc(t *testing.T) {
-//        // Setup Test
-//        mockSvc := &mockDevOpsGuruClient{}
+//	func TestMyFunc(t *testing.T) {
+//	    // Setup Test
+//	    mockSvc := &mockDevOpsGuruClient{}
 //
-//        myfunc(mockSvc)
+//	    myfunc(mockSvc)
 //
-//        // Verify myFunc's functionality
-//    }
+//	    // Verify myFunc's functionality
+//	}
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
@@ -63,6 +63,10 @@ type DevOpsGuruAPI interface {
 	AddNotificationChannel(*devopsguru.AddNotificationChannelInput) (*devopsguru.AddNotificationChannelOutput, error)
 	AddNotificationChannelWithContext(aws.Context, *devopsguru.AddNotificationChannelInput, ...request.Option) (*devopsguru.AddNotificationChannelOutput, error)
 	AddNotificationChannelRequest(*devopsguru.AddNotificationChannelInput) (*request.Request, *devopsguru.AddNotificationChannelOutput)
+
+	DeleteInsight(*devopsguru.DeleteInsightInput) (*devopsguru.DeleteInsightOutput, error)
+	DeleteInsightWithContext(aws.Context, *devopsguru.DeleteInsightInput, ...request.Option) (*devopsguru.DeleteInsightOutput, error)
+	DeleteInsightRequest(*devopsguru.DeleteInsightInput) (*request.Request, *devopsguru.DeleteInsightOutput)
 
 	DescribeAccountHealth(*devopsguru.DescribeAccountHealthInput) (*devopsguru.DescribeAccountHealthOutput, error)
 	DescribeAccountHealthWithContext(aws.Context, *devopsguru.DescribeAccountHealthInput, ...request.Option) (*devopsguru.DescribeAccountHealthOutput, error)
@@ -76,6 +80,10 @@ type DevOpsGuruAPI interface {
 	DescribeAnomalyWithContext(aws.Context, *devopsguru.DescribeAnomalyInput, ...request.Option) (*devopsguru.DescribeAnomalyOutput, error)
 	DescribeAnomalyRequest(*devopsguru.DescribeAnomalyInput) (*request.Request, *devopsguru.DescribeAnomalyOutput)
 
+	DescribeEventSourcesConfig(*devopsguru.DescribeEventSourcesConfigInput) (*devopsguru.DescribeEventSourcesConfigOutput, error)
+	DescribeEventSourcesConfigWithContext(aws.Context, *devopsguru.DescribeEventSourcesConfigInput, ...request.Option) (*devopsguru.DescribeEventSourcesConfigOutput, error)
+	DescribeEventSourcesConfigRequest(*devopsguru.DescribeEventSourcesConfigInput) (*request.Request, *devopsguru.DescribeEventSourcesConfigOutput)
+
 	DescribeFeedback(*devopsguru.DescribeFeedbackInput) (*devopsguru.DescribeFeedbackOutput, error)
 	DescribeFeedbackWithContext(aws.Context, *devopsguru.DescribeFeedbackInput, ...request.Option) (*devopsguru.DescribeFeedbackOutput, error)
 	DescribeFeedbackRequest(*devopsguru.DescribeFeedbackInput) (*request.Request, *devopsguru.DescribeFeedbackOutput)
@@ -83,6 +91,21 @@ type DevOpsGuruAPI interface {
 	DescribeInsight(*devopsguru.DescribeInsightInput) (*devopsguru.DescribeInsightOutput, error)
 	DescribeInsightWithContext(aws.Context, *devopsguru.DescribeInsightInput, ...request.Option) (*devopsguru.DescribeInsightOutput, error)
 	DescribeInsightRequest(*devopsguru.DescribeInsightInput) (*request.Request, *devopsguru.DescribeInsightOutput)
+
+	DescribeOrganizationHealth(*devopsguru.DescribeOrganizationHealthInput) (*devopsguru.DescribeOrganizationHealthOutput, error)
+	DescribeOrganizationHealthWithContext(aws.Context, *devopsguru.DescribeOrganizationHealthInput, ...request.Option) (*devopsguru.DescribeOrganizationHealthOutput, error)
+	DescribeOrganizationHealthRequest(*devopsguru.DescribeOrganizationHealthInput) (*request.Request, *devopsguru.DescribeOrganizationHealthOutput)
+
+	DescribeOrganizationOverview(*devopsguru.DescribeOrganizationOverviewInput) (*devopsguru.DescribeOrganizationOverviewOutput, error)
+	DescribeOrganizationOverviewWithContext(aws.Context, *devopsguru.DescribeOrganizationOverviewInput, ...request.Option) (*devopsguru.DescribeOrganizationOverviewOutput, error)
+	DescribeOrganizationOverviewRequest(*devopsguru.DescribeOrganizationOverviewInput) (*request.Request, *devopsguru.DescribeOrganizationOverviewOutput)
+
+	DescribeOrganizationResourceCollectionHealth(*devopsguru.DescribeOrganizationResourceCollectionHealthInput) (*devopsguru.DescribeOrganizationResourceCollectionHealthOutput, error)
+	DescribeOrganizationResourceCollectionHealthWithContext(aws.Context, *devopsguru.DescribeOrganizationResourceCollectionHealthInput, ...request.Option) (*devopsguru.DescribeOrganizationResourceCollectionHealthOutput, error)
+	DescribeOrganizationResourceCollectionHealthRequest(*devopsguru.DescribeOrganizationResourceCollectionHealthInput) (*request.Request, *devopsguru.DescribeOrganizationResourceCollectionHealthOutput)
+
+	DescribeOrganizationResourceCollectionHealthPages(*devopsguru.DescribeOrganizationResourceCollectionHealthInput, func(*devopsguru.DescribeOrganizationResourceCollectionHealthOutput, bool) bool) error
+	DescribeOrganizationResourceCollectionHealthPagesWithContext(aws.Context, *devopsguru.DescribeOrganizationResourceCollectionHealthInput, func(*devopsguru.DescribeOrganizationResourceCollectionHealthOutput, bool) bool, ...request.Option) error
 
 	DescribeResourceCollectionHealth(*devopsguru.DescribeResourceCollectionHealthInput) (*devopsguru.DescribeResourceCollectionHealthOutput, error)
 	DescribeResourceCollectionHealthWithContext(aws.Context, *devopsguru.DescribeResourceCollectionHealthInput, ...request.Option) (*devopsguru.DescribeResourceCollectionHealthOutput, error)
@@ -116,6 +139,13 @@ type DevOpsGuruAPI interface {
 	ListAnomaliesForInsightPages(*devopsguru.ListAnomaliesForInsightInput, func(*devopsguru.ListAnomaliesForInsightOutput, bool) bool) error
 	ListAnomaliesForInsightPagesWithContext(aws.Context, *devopsguru.ListAnomaliesForInsightInput, func(*devopsguru.ListAnomaliesForInsightOutput, bool) bool, ...request.Option) error
 
+	ListAnomalousLogGroups(*devopsguru.ListAnomalousLogGroupsInput) (*devopsguru.ListAnomalousLogGroupsOutput, error)
+	ListAnomalousLogGroupsWithContext(aws.Context, *devopsguru.ListAnomalousLogGroupsInput, ...request.Option) (*devopsguru.ListAnomalousLogGroupsOutput, error)
+	ListAnomalousLogGroupsRequest(*devopsguru.ListAnomalousLogGroupsInput) (*request.Request, *devopsguru.ListAnomalousLogGroupsOutput)
+
+	ListAnomalousLogGroupsPages(*devopsguru.ListAnomalousLogGroupsInput, func(*devopsguru.ListAnomalousLogGroupsOutput, bool) bool) error
+	ListAnomalousLogGroupsPagesWithContext(aws.Context, *devopsguru.ListAnomalousLogGroupsInput, func(*devopsguru.ListAnomalousLogGroupsOutput, bool) bool, ...request.Option) error
+
 	ListEvents(*devopsguru.ListEventsInput) (*devopsguru.ListEventsOutput, error)
 	ListEventsWithContext(aws.Context, *devopsguru.ListEventsInput, ...request.Option) (*devopsguru.ListEventsOutput, error)
 	ListEventsRequest(*devopsguru.ListEventsInput) (*request.Request, *devopsguru.ListEventsOutput)
@@ -130,12 +160,26 @@ type DevOpsGuruAPI interface {
 	ListInsightsPages(*devopsguru.ListInsightsInput, func(*devopsguru.ListInsightsOutput, bool) bool) error
 	ListInsightsPagesWithContext(aws.Context, *devopsguru.ListInsightsInput, func(*devopsguru.ListInsightsOutput, bool) bool, ...request.Option) error
 
+	ListMonitoredResources(*devopsguru.ListMonitoredResourcesInput) (*devopsguru.ListMonitoredResourcesOutput, error)
+	ListMonitoredResourcesWithContext(aws.Context, *devopsguru.ListMonitoredResourcesInput, ...request.Option) (*devopsguru.ListMonitoredResourcesOutput, error)
+	ListMonitoredResourcesRequest(*devopsguru.ListMonitoredResourcesInput) (*request.Request, *devopsguru.ListMonitoredResourcesOutput)
+
+	ListMonitoredResourcesPages(*devopsguru.ListMonitoredResourcesInput, func(*devopsguru.ListMonitoredResourcesOutput, bool) bool) error
+	ListMonitoredResourcesPagesWithContext(aws.Context, *devopsguru.ListMonitoredResourcesInput, func(*devopsguru.ListMonitoredResourcesOutput, bool) bool, ...request.Option) error
+
 	ListNotificationChannels(*devopsguru.ListNotificationChannelsInput) (*devopsguru.ListNotificationChannelsOutput, error)
 	ListNotificationChannelsWithContext(aws.Context, *devopsguru.ListNotificationChannelsInput, ...request.Option) (*devopsguru.ListNotificationChannelsOutput, error)
 	ListNotificationChannelsRequest(*devopsguru.ListNotificationChannelsInput) (*request.Request, *devopsguru.ListNotificationChannelsOutput)
 
 	ListNotificationChannelsPages(*devopsguru.ListNotificationChannelsInput, func(*devopsguru.ListNotificationChannelsOutput, bool) bool) error
 	ListNotificationChannelsPagesWithContext(aws.Context, *devopsguru.ListNotificationChannelsInput, func(*devopsguru.ListNotificationChannelsOutput, bool) bool, ...request.Option) error
+
+	ListOrganizationInsights(*devopsguru.ListOrganizationInsightsInput) (*devopsguru.ListOrganizationInsightsOutput, error)
+	ListOrganizationInsightsWithContext(aws.Context, *devopsguru.ListOrganizationInsightsInput, ...request.Option) (*devopsguru.ListOrganizationInsightsOutput, error)
+	ListOrganizationInsightsRequest(*devopsguru.ListOrganizationInsightsInput) (*request.Request, *devopsguru.ListOrganizationInsightsOutput)
+
+	ListOrganizationInsightsPages(*devopsguru.ListOrganizationInsightsInput, func(*devopsguru.ListOrganizationInsightsOutput, bool) bool) error
+	ListOrganizationInsightsPagesWithContext(aws.Context, *devopsguru.ListOrganizationInsightsInput, func(*devopsguru.ListOrganizationInsightsOutput, bool) bool, ...request.Option) error
 
 	ListRecommendations(*devopsguru.ListRecommendationsInput) (*devopsguru.ListRecommendationsOutput, error)
 	ListRecommendationsWithContext(aws.Context, *devopsguru.ListRecommendationsInput, ...request.Option) (*devopsguru.ListRecommendationsOutput, error)
@@ -159,9 +203,20 @@ type DevOpsGuruAPI interface {
 	SearchInsightsPages(*devopsguru.SearchInsightsInput, func(*devopsguru.SearchInsightsOutput, bool) bool) error
 	SearchInsightsPagesWithContext(aws.Context, *devopsguru.SearchInsightsInput, func(*devopsguru.SearchInsightsOutput, bool) bool, ...request.Option) error
 
+	SearchOrganizationInsights(*devopsguru.SearchOrganizationInsightsInput) (*devopsguru.SearchOrganizationInsightsOutput, error)
+	SearchOrganizationInsightsWithContext(aws.Context, *devopsguru.SearchOrganizationInsightsInput, ...request.Option) (*devopsguru.SearchOrganizationInsightsOutput, error)
+	SearchOrganizationInsightsRequest(*devopsguru.SearchOrganizationInsightsInput) (*request.Request, *devopsguru.SearchOrganizationInsightsOutput)
+
+	SearchOrganizationInsightsPages(*devopsguru.SearchOrganizationInsightsInput, func(*devopsguru.SearchOrganizationInsightsOutput, bool) bool) error
+	SearchOrganizationInsightsPagesWithContext(aws.Context, *devopsguru.SearchOrganizationInsightsInput, func(*devopsguru.SearchOrganizationInsightsOutput, bool) bool, ...request.Option) error
+
 	StartCostEstimation(*devopsguru.StartCostEstimationInput) (*devopsguru.StartCostEstimationOutput, error)
 	StartCostEstimationWithContext(aws.Context, *devopsguru.StartCostEstimationInput, ...request.Option) (*devopsguru.StartCostEstimationOutput, error)
 	StartCostEstimationRequest(*devopsguru.StartCostEstimationInput) (*request.Request, *devopsguru.StartCostEstimationOutput)
+
+	UpdateEventSourcesConfig(*devopsguru.UpdateEventSourcesConfigInput) (*devopsguru.UpdateEventSourcesConfigOutput, error)
+	UpdateEventSourcesConfigWithContext(aws.Context, *devopsguru.UpdateEventSourcesConfigInput, ...request.Option) (*devopsguru.UpdateEventSourcesConfigOutput, error)
+	UpdateEventSourcesConfigRequest(*devopsguru.UpdateEventSourcesConfigInput) (*request.Request, *devopsguru.UpdateEventSourcesConfigOutput)
 
 	UpdateResourceCollection(*devopsguru.UpdateResourceCollectionInput) (*devopsguru.UpdateResourceCollectionOutput, error)
 	UpdateResourceCollectionWithContext(aws.Context, *devopsguru.UpdateResourceCollectionInput, ...request.Option) (*devopsguru.UpdateResourceCollectionOutput, error)

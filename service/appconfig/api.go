@@ -29,14 +29,13 @@ const opCreateApplication = "CreateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateApplicationRequest method.
+//	req, resp := client.CreateApplicationRequest(params)
 //
-//    // Example sending a request using the CreateApplicationRequest method.
-//    req, resp := client.CreateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateApplication
 func (c *AppConfig) CreateApplicationRequest(input *CreateApplicationInput) (req *request.Request, output *CreateApplicationOutput) {
@@ -57,11 +56,11 @@ func (c *AppConfig) CreateApplicationRequest(input *CreateApplicationInput) (req
 
 // CreateApplication API operation for Amazon AppConfig.
 //
-// An application in AppConfig is a logical unit of code that provides capabilities
-// for your customers. For example, an application can be a microservice that
-// runs on Amazon EC2 instances, a mobile application installed by your users,
-// a serverless application using Amazon API Gateway and AWS Lambda, or any
-// system you run on behalf of others.
+// Creates an application. In AppConfig, an application is simply an organizational
+// construct like a folder. This organizational construct has a relationship
+// with some unit of executable code. For example, you could create an application
+// called MyMobileApp to organize and manage configuration data for a mobile
+// application installed by your users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -71,11 +70,30 @@ func (c *AppConfig) CreateApplicationRequest(input *CreateApplicationInput) (req
 // API operation CreateApplication for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateApplication
 func (c *AppConfig) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
@@ -115,14 +133,13 @@ const opCreateConfigurationProfile = "CreateConfigurationProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConfigurationProfileRequest method.
+//	req, resp := client.CreateConfigurationProfileRequest(params)
 //
-//    // Example sending a request using the CreateConfigurationProfileRequest method.
-//    req, resp := client.CreateConfigurationProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateConfigurationProfile
 func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfigurationProfileInput) (req *request.Request, output *CreateConfigurationProfileOutput) {
@@ -143,22 +160,39 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 
 // CreateConfigurationProfile API operation for Amazon AppConfig.
 //
-// Information that enables AppConfig to access the configuration source. Valid
-// configuration sources include Systems Manager (SSM) documents, SSM Parameter
-// Store parameters, and Amazon S3 objects. A configuration profile includes
-// the following information.
+// Creates a configuration profile, which is information that enables AppConfig
+// to access the configuration source. Valid configuration sources include the
+// following:
 //
-//    * The Uri location of the configuration data.
+//   - Configuration data in YAML, JSON, and other formats stored in the AppConfig
+//     hosted configuration store
 //
-//    * The AWS Identity and Access Management (IAM) role that provides access
-//    to the configuration data.
+//   - Configuration data stored as objects in an Amazon Simple Storage Service
+//     (Amazon S3) bucket
 //
-//    * A validator for the configuration data. Available validators include
-//    either a JSON Schema or an AWS Lambda function.
+//   - Pipelines stored in CodePipeline
+//
+//   - Secrets stored in Secrets Manager
+//
+//   - Standard and secure string parameters stored in Amazon Web Services
+//     Systems Manager Parameter Store
+//
+//   - Configuration data in SSM documents stored in the Systems Manager document
+//     store
+//
+// A configuration profile includes the following information:
+//
+//   - The URI location of the configuration data.
+//
+//   - The Identity and Access Management (IAM) role that provides access to
+//     the configuration data.
+//
+//   - A validator for the configuration data. Available validators include
+//     either a JSON Schema or an Amazon Web Services Lambda function.
 //
 // For more information, see Create a Configuration and a Configuration Profile
-// (http://docs.aws.amazon.com/systems-manager/latest/userguide/appconfig-creating-configuration-and-profile.html)
-// in the AWS AppConfig User Guide.
+// (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-configuration-and-profile.html)
+// in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -168,14 +202,33 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 // API operation CreateConfigurationProfile for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateConfigurationProfile
 func (c *AppConfig) CreateConfigurationProfile(input *CreateConfigurationProfileInput) (*CreateConfigurationProfileOutput, error) {
@@ -215,14 +268,13 @@ const opCreateDeploymentStrategy = "CreateDeploymentStrategy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDeploymentStrategyRequest method.
+//	req, resp := client.CreateDeploymentStrategyRequest(params)
 //
-//    // Example sending a request using the CreateDeploymentStrategyRequest method.
-//    req, resp := client.CreateDeploymentStrategyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateDeploymentStrategy
 func (c *AppConfig) CreateDeploymentStrategyRequest(input *CreateDeploymentStrategyInput) (req *request.Request, output *CreateDeploymentStrategyOutput) {
@@ -243,10 +295,11 @@ func (c *AppConfig) CreateDeploymentStrategyRequest(input *CreateDeploymentStrat
 
 // CreateDeploymentStrategy API operation for Amazon AppConfig.
 //
-// A deployment strategy defines important criteria for rolling out your configuration
-// to the designated targets. A deployment strategy includes: the overall duration
-// required, a percentage of targets to receive the deployment during each interval,
-// an algorithm that defines how percentage grows, and bake time.
+// Creates a deployment strategy that defines important criteria for rolling
+// out your configuration to the designated targets. A deployment strategy includes
+// the overall duration required, a percentage of targets to receive the deployment
+// during each interval, an algorithm that defines how percentage grows, and
+// bake time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -256,11 +309,30 @@ func (c *AppConfig) CreateDeploymentStrategyRequest(input *CreateDeploymentStrat
 // API operation CreateDeploymentStrategy for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateDeploymentStrategy
 func (c *AppConfig) CreateDeploymentStrategy(input *CreateDeploymentStrategyInput) (*CreateDeploymentStrategyOutput, error) {
@@ -300,14 +372,13 @@ const opCreateEnvironment = "CreateEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEnvironmentRequest method.
+//	req, resp := client.CreateEnvironmentRequest(params)
 //
-//    // Example sending a request using the CreateEnvironmentRequest method.
-//    req, resp := client.CreateEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateEnvironment
 func (c *AppConfig) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *request.Request, output *CreateEnvironmentOutput) {
@@ -328,8 +399,8 @@ func (c *AppConfig) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req
 
 // CreateEnvironment API operation for Amazon AppConfig.
 //
-// For each application, you define one or more environments. An environment
-// is a logical deployment group of AppConfig targets, such as applications
+// Creates an environment. For each application, you define one or more environments.
+// An environment is a deployment group of AppConfig targets, such as applications
 // in a Beta or Production environment. You can also define environments for
 // application subcomponents such as the Web, Mobile and Back-end components
 // for your application. You can configure Amazon CloudWatch alarms for each
@@ -344,14 +415,33 @@ func (c *AppConfig) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req
 // API operation CreateEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateEnvironment
 func (c *AppConfig) CreateEnvironment(input *CreateEnvironmentInput) (*CreateEnvironmentOutput, error) {
@@ -375,6 +465,246 @@ func (c *AppConfig) CreateEnvironmentWithContext(ctx aws.Context, input *CreateE
 	return out, req.Send()
 }
 
+const opCreateExtension = "CreateExtension"
+
+// CreateExtensionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateExtension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateExtension for more information on using the CreateExtension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateExtensionRequest method.
+//	req, resp := client.CreateExtensionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateExtension
+func (c *AppConfig) CreateExtensionRequest(input *CreateExtensionInput) (req *request.Request, output *CreateExtensionOutput) {
+	op := &request.Operation{
+		Name:       opCreateExtension,
+		HTTPMethod: "POST",
+		HTTPPath:   "/extensions",
+	}
+
+	if input == nil {
+		input = &CreateExtensionInput{}
+	}
+
+	output = &CreateExtensionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateExtension API operation for Amazon AppConfig.
+//
+// Creates an AppConfig extension. An extension augments your ability to inject
+// logic or behavior at different points during the AppConfig workflow of creating
+// or deploying a configuration.
+//
+// You can create your own extensions or use the Amazon Web Services authored
+// extensions provided by AppConfig. For an AppConfig extension that uses Lambda,
+// you must create a Lambda function to perform any computation and processing
+// defined in the extension. If you plan to create custom versions of the Amazon
+// Web Services authored notification extensions, you only need to specify an
+// Amazon Resource Name (ARN) in the Uri field for the new extension version.
+//
+//   - For a custom EventBridge notification extension, enter the ARN of the
+//     EventBridge default events in the Uri field.
+//
+//   - For a custom Amazon SNS notification extension, enter the ARN of an
+//     Amazon SNS topic in the Uri field.
+//
+//   - For a custom Amazon SQS notification extension, enter the ARN of an
+//     Amazon SQS message queue in the Uri field.
+//
+// For more information about extensions, see Working with AppConfig extensions
+// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation CreateExtension for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateExtension
+func (c *AppConfig) CreateExtension(input *CreateExtensionInput) (*CreateExtensionOutput, error) {
+	req, out := c.CreateExtensionRequest(input)
+	return out, req.Send()
+}
+
+// CreateExtensionWithContext is the same as CreateExtension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateExtension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) CreateExtensionWithContext(ctx aws.Context, input *CreateExtensionInput, opts ...request.Option) (*CreateExtensionOutput, error) {
+	req, out := c.CreateExtensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateExtensionAssociation = "CreateExtensionAssociation"
+
+// CreateExtensionAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateExtensionAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateExtensionAssociation for more information on using the CreateExtensionAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateExtensionAssociationRequest method.
+//	req, resp := client.CreateExtensionAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateExtensionAssociation
+func (c *AppConfig) CreateExtensionAssociationRequest(input *CreateExtensionAssociationInput) (req *request.Request, output *CreateExtensionAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreateExtensionAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/extensionassociations",
+	}
+
+	if input == nil {
+		input = &CreateExtensionAssociationInput{}
+	}
+
+	output = &CreateExtensionAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateExtensionAssociation API operation for Amazon AppConfig.
+//
+// When you create an extension or configure an Amazon Web Services authored
+// extension, you associate the extension with an AppConfig application, environment,
+// or configuration profile. For example, you can choose to run the AppConfig
+// deployment events to Amazon SNS Amazon Web Services authored extension and
+// receive notifications on an Amazon SNS topic anytime a configuration deployment
+// is started for a specific application. Defining which extension to associate
+// with an AppConfig resource is called an extension association. An extension
+// association is a specified relationship between an extension and an AppConfig
+// resource, such as an application or a configuration profile. For more information
+// about extensions and associations, see Working with AppConfig extensions
+// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation CreateExtensionAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateExtensionAssociation
+func (c *AppConfig) CreateExtensionAssociation(input *CreateExtensionAssociationInput) (*CreateExtensionAssociationOutput, error) {
+	req, out := c.CreateExtensionAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreateExtensionAssociationWithContext is the same as CreateExtensionAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateExtensionAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) CreateExtensionAssociationWithContext(ctx aws.Context, input *CreateExtensionAssociationInput, opts ...request.Option) (*CreateExtensionAssociationOutput, error) {
+	req, out := c.CreateExtensionAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateHostedConfigurationVersion = "CreateHostedConfigurationVersion"
 
 // CreateHostedConfigurationVersionRequest generates a "aws/request.Request" representing the
@@ -391,14 +721,13 @@ const opCreateHostedConfigurationVersion = "CreateHostedConfigurationVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateHostedConfigurationVersionRequest method.
+//	req, resp := client.CreateHostedConfigurationVersionRequest(params)
 //
-//    // Example sending a request using the CreateHostedConfigurationVersionRequest method.
-//    req, resp := client.CreateHostedConfigurationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateHostedConfigurationVersion
 func (c *AppConfig) CreateHostedConfigurationVersionRequest(input *CreateHostedConfigurationVersionInput) (req *request.Request, output *CreateHostedConfigurationVersionOutput) {
@@ -419,7 +748,7 @@ func (c *AppConfig) CreateHostedConfigurationVersionRequest(input *CreateHostedC
 
 // CreateHostedConfigurationVersion API operation for Amazon AppConfig.
 //
-// Create a new configuration in the AppConfig configuration store.
+// Creates a new configuration in the AppConfig hosted configuration store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -429,25 +758,40 @@ func (c *AppConfig) CreateHostedConfigurationVersionRequest(input *CreateHostedC
 // API operation CreateHostedConfigurationVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ServiceQuotaExceededException
-//   The number of hosted configuration versions exceeds the limit for the AppConfig
-//   configuration store. Delete one or more versions and try again.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//     Applications: 100 max
 //
-//   * PayloadTooLargeException
-//   The configuration size is too large.
+//     Deployment strategies: 20 max
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - PayloadTooLargeException
+//     The configuration size is too large.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateHostedConfigurationVersion
 func (c *AppConfig) CreateHostedConfigurationVersion(input *CreateHostedConfigurationVersionInput) (*CreateHostedConfigurationVersionOutput, error) {
@@ -487,14 +831,13 @@ const opDeleteApplication = "DeleteApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteApplicationRequest method.
+//	req, resp := client.DeleteApplicationRequest(params)
 //
-//    // Example sending a request using the DeleteApplicationRequest method.
-//    req, resp := client.DeleteApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteApplication
 func (c *AppConfig) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
@@ -516,7 +859,7 @@ func (c *AppConfig) DeleteApplicationRequest(input *DeleteApplicationInput) (req
 
 // DeleteApplication API operation for Amazon AppConfig.
 //
-// Delete an application. Deleting an application does not delete a configuration
+// Deletes an application. Deleting an application does not delete a configuration
 // from a host.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -527,14 +870,16 @@ func (c *AppConfig) DeleteApplicationRequest(input *DeleteApplicationInput) (req
 // API operation DeleteApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteApplication
 func (c *AppConfig) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
@@ -574,14 +919,13 @@ const opDeleteConfigurationProfile = "DeleteConfigurationProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConfigurationProfileRequest method.
+//	req, resp := client.DeleteConfigurationProfileRequest(params)
 //
-//    // Example sending a request using the DeleteConfigurationProfileRequest method.
-//    req, resp := client.DeleteConfigurationProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteConfigurationProfile
 func (c *AppConfig) DeleteConfigurationProfileRequest(input *DeleteConfigurationProfileInput) (req *request.Request, output *DeleteConfigurationProfileOutput) {
@@ -603,7 +947,7 @@ func (c *AppConfig) DeleteConfigurationProfileRequest(input *DeleteConfiguration
 
 // DeleteConfigurationProfile API operation for Amazon AppConfig.
 //
-// Delete a configuration profile. Deleting a configuration profile does not
+// Deletes a configuration profile. Deleting a configuration profile does not
 // delete a configuration from a host.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -614,18 +958,20 @@ func (c *AppConfig) DeleteConfigurationProfileRequest(input *DeleteConfiguration
 // API operation DeleteConfigurationProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteConfigurationProfile
 func (c *AppConfig) DeleteConfigurationProfile(input *DeleteConfigurationProfileInput) (*DeleteConfigurationProfileOutput, error) {
@@ -665,14 +1011,13 @@ const opDeleteDeploymentStrategy = "DeleteDeploymentStrategy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDeploymentStrategyRequest method.
+//	req, resp := client.DeleteDeploymentStrategyRequest(params)
 //
-//    // Example sending a request using the DeleteDeploymentStrategyRequest method.
-//    req, resp := client.DeleteDeploymentStrategyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteDeploymentStrategy
 func (c *AppConfig) DeleteDeploymentStrategyRequest(input *DeleteDeploymentStrategyInput) (req *request.Request, output *DeleteDeploymentStrategyOutput) {
@@ -694,7 +1039,7 @@ func (c *AppConfig) DeleteDeploymentStrategyRequest(input *DeleteDeploymentStrat
 
 // DeleteDeploymentStrategy API operation for Amazon AppConfig.
 //
-// Delete a deployment strategy. Deleting a deployment strategy does not delete
+// Deletes a deployment strategy. Deleting a deployment strategy does not delete
 // a configuration from a host.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -705,14 +1050,16 @@ func (c *AppConfig) DeleteDeploymentStrategyRequest(input *DeleteDeploymentStrat
 // API operation DeleteDeploymentStrategy for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteDeploymentStrategy
 func (c *AppConfig) DeleteDeploymentStrategy(input *DeleteDeploymentStrategyInput) (*DeleteDeploymentStrategyOutput, error) {
@@ -752,14 +1099,13 @@ const opDeleteEnvironment = "DeleteEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEnvironmentRequest method.
+//	req, resp := client.DeleteEnvironmentRequest(params)
 //
-//    // Example sending a request using the DeleteEnvironmentRequest method.
-//    req, resp := client.DeleteEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteEnvironment
 func (c *AppConfig) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req *request.Request, output *DeleteEnvironmentOutput) {
@@ -781,7 +1127,7 @@ func (c *AppConfig) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req
 
 // DeleteEnvironment API operation for Amazon AppConfig.
 //
-// Delete an environment. Deleting an environment does not delete a configuration
+// Deletes an environment. Deleting an environment does not delete a configuration
 // from a host.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -792,18 +1138,20 @@ func (c *AppConfig) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req
 // API operation DeleteEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteEnvironment
 func (c *AppConfig) DeleteEnvironment(input *DeleteEnvironmentInput) (*DeleteEnvironmentOutput, error) {
@@ -827,6 +1175,182 @@ func (c *AppConfig) DeleteEnvironmentWithContext(ctx aws.Context, input *DeleteE
 	return out, req.Send()
 }
 
+const opDeleteExtension = "DeleteExtension"
+
+// DeleteExtensionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteExtension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteExtension for more information on using the DeleteExtension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteExtensionRequest method.
+//	req, resp := client.DeleteExtensionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteExtension
+func (c *AppConfig) DeleteExtensionRequest(input *DeleteExtensionInput) (req *request.Request, output *DeleteExtensionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteExtension,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/extensions/{ExtensionIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeleteExtensionInput{}
+	}
+
+	output = &DeleteExtensionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteExtension API operation for Amazon AppConfig.
+//
+// Deletes an AppConfig extension. You must delete all associations to an extension
+// before you delete the extension.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation DeleteExtension for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteExtension
+func (c *AppConfig) DeleteExtension(input *DeleteExtensionInput) (*DeleteExtensionOutput, error) {
+	req, out := c.DeleteExtensionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteExtensionWithContext is the same as DeleteExtension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteExtension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) DeleteExtensionWithContext(ctx aws.Context, input *DeleteExtensionInput, opts ...request.Option) (*DeleteExtensionOutput, error) {
+	req, out := c.DeleteExtensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteExtensionAssociation = "DeleteExtensionAssociation"
+
+// DeleteExtensionAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteExtensionAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteExtensionAssociation for more information on using the DeleteExtensionAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteExtensionAssociationRequest method.
+//	req, resp := client.DeleteExtensionAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteExtensionAssociation
+func (c *AppConfig) DeleteExtensionAssociationRequest(input *DeleteExtensionAssociationInput) (req *request.Request, output *DeleteExtensionAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteExtensionAssociation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/extensionassociations/{ExtensionAssociationId}",
+	}
+
+	if input == nil {
+		input = &DeleteExtensionAssociationInput{}
+	}
+
+	output = &DeleteExtensionAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteExtensionAssociation API operation for Amazon AppConfig.
+//
+// Deletes an extension association. This action doesn't delete extensions defined
+// in the association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation DeleteExtensionAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteExtensionAssociation
+func (c *AppConfig) DeleteExtensionAssociation(input *DeleteExtensionAssociationInput) (*DeleteExtensionAssociationOutput, error) {
+	req, out := c.DeleteExtensionAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteExtensionAssociationWithContext is the same as DeleteExtensionAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteExtensionAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) DeleteExtensionAssociationWithContext(ctx aws.Context, input *DeleteExtensionAssociationInput, opts ...request.Option) (*DeleteExtensionAssociationOutput, error) {
+	req, out := c.DeleteExtensionAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteHostedConfigurationVersion = "DeleteHostedConfigurationVersion"
 
 // DeleteHostedConfigurationVersionRequest generates a "aws/request.Request" representing the
@@ -843,14 +1367,13 @@ const opDeleteHostedConfigurationVersion = "DeleteHostedConfigurationVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteHostedConfigurationVersionRequest method.
+//	req, resp := client.DeleteHostedConfigurationVersionRequest(params)
 //
-//    // Example sending a request using the DeleteHostedConfigurationVersionRequest method.
-//    req, resp := client.DeleteHostedConfigurationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteHostedConfigurationVersion
 func (c *AppConfig) DeleteHostedConfigurationVersionRequest(input *DeleteHostedConfigurationVersionInput) (req *request.Request, output *DeleteHostedConfigurationVersionOutput) {
@@ -872,7 +1395,8 @@ func (c *AppConfig) DeleteHostedConfigurationVersionRequest(input *DeleteHostedC
 
 // DeleteHostedConfigurationVersion API operation for Amazon AppConfig.
 //
-// Delete a version of a configuration from the AppConfig configuration store.
+// Deletes a version of a configuration from the AppConfig hosted configuration
+// store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -882,14 +1406,16 @@ func (c *AppConfig) DeleteHostedConfigurationVersionRequest(input *DeleteHostedC
 // API operation DeleteHostedConfigurationVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteHostedConfigurationVersion
 func (c *AppConfig) DeleteHostedConfigurationVersion(input *DeleteHostedConfigurationVersionInput) (*DeleteHostedConfigurationVersionOutput, error) {
@@ -929,14 +1455,13 @@ const opGetApplication = "GetApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetApplicationRequest method.
+//	req, resp := client.GetApplicationRequest(params)
 //
-//    // Example sending a request using the GetApplicationRequest method.
-//    req, resp := client.GetApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetApplication
 func (c *AppConfig) GetApplicationRequest(input *GetApplicationInput) (req *request.Request, output *GetApplicationOutput) {
@@ -957,7 +1482,7 @@ func (c *AppConfig) GetApplicationRequest(input *GetApplicationInput) (req *requ
 
 // GetApplication API operation for Amazon AppConfig.
 //
-// Retrieve information about an application.
+// Retrieves information about an application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -967,14 +1492,16 @@ func (c *AppConfig) GetApplicationRequest(input *GetApplicationInput) (req *requ
 // API operation GetApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetApplication
 func (c *AppConfig) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
@@ -1014,17 +1541,21 @@ const opGetConfiguration = "GetConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConfigurationRequest method.
+//	req, resp := client.GetConfigurationRequest(params)
 //
-//    // Example sending a request using the GetConfigurationRequest method.
-//    req, resp := client.GetConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfiguration
+//
+// Deprecated: This API has been deprecated in favor of the GetLatestConfiguration API used in conjunction with StartConfigurationSession.
 func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *request.Request, output *GetConfigurationOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, GetConfiguration, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opGetConfiguration,
 		HTTPMethod: "GET",
@@ -1042,18 +1573,17 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 
 // GetConfiguration API operation for Amazon AppConfig.
 //
-// Receive information about a configuration.
+// (Deprecated) Retrieves the latest deployed configuration.
 //
-// AWS AppConfig uses the value of the ClientConfigurationVersion parameter
-// to identify the configuration version on your clients. If you don’t send
-// ClientConfigurationVersion with each call to GetConfiguration, your clients
-// receive the current configuration. You are charged each time your clients
-// receive a configuration.
+// Note the following important information.
 //
-// To avoid excess charges, we recommend that you include the ClientConfigurationVersion
-// value with every call to GetConfiguration. This value must be saved on your
-// client. Subsequent calls to GetConfiguration must pass this value by using
-// the ClientConfigurationVersion parameter.
+//   - This API action is deprecated. Calls to receive configuration data should
+//     use the StartConfigurationSession (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_StartConfigurationSession.html)
+//     and GetLatestConfiguration (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_GetLatestConfiguration.html)
+//     APIs instead.
+//
+//   - GetConfiguration is a priced call. For more information, see Pricing
+//     (https://aws.amazon.com/systems-manager/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1063,16 +1593,20 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 // API operation GetConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfiguration
+//
+// Deprecated: This API has been deprecated in favor of the GetLatestConfiguration API used in conjunction with StartConfigurationSession.
 func (c *AppConfig) GetConfiguration(input *GetConfigurationInput) (*GetConfigurationOutput, error) {
 	req, out := c.GetConfigurationRequest(input)
 	return out, req.Send()
@@ -1087,6 +1621,8 @@ func (c *AppConfig) GetConfiguration(input *GetConfigurationInput) (*GetConfigur
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This API has been deprecated in favor of the GetLatestConfiguration API used in conjunction with StartConfigurationSession.
 func (c *AppConfig) GetConfigurationWithContext(ctx aws.Context, input *GetConfigurationInput, opts ...request.Option) (*GetConfigurationOutput, error) {
 	req, out := c.GetConfigurationRequest(input)
 	req.SetContext(ctx)
@@ -1110,14 +1646,13 @@ const opGetConfigurationProfile = "GetConfigurationProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConfigurationProfileRequest method.
+//	req, resp := client.GetConfigurationProfileRequest(params)
 //
-//    // Example sending a request using the GetConfigurationProfileRequest method.
-//    req, resp := client.GetConfigurationProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfigurationProfile
 func (c *AppConfig) GetConfigurationProfileRequest(input *GetConfigurationProfileInput) (req *request.Request, output *GetConfigurationProfileOutput) {
@@ -1138,7 +1673,7 @@ func (c *AppConfig) GetConfigurationProfileRequest(input *GetConfigurationProfil
 
 // GetConfigurationProfile API operation for Amazon AppConfig.
 //
-// Retrieve information about a configuration profile.
+// Retrieves information about a configuration profile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1148,14 +1683,16 @@ func (c *AppConfig) GetConfigurationProfileRequest(input *GetConfigurationProfil
 // API operation GetConfigurationProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfigurationProfile
 func (c *AppConfig) GetConfigurationProfile(input *GetConfigurationProfileInput) (*GetConfigurationProfileOutput, error) {
@@ -1195,14 +1732,13 @@ const opGetDeployment = "GetDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeploymentRequest method.
+//	req, resp := client.GetDeploymentRequest(params)
 //
-//    // Example sending a request using the GetDeploymentRequest method.
-//    req, resp := client.GetDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetDeployment
 func (c *AppConfig) GetDeploymentRequest(input *GetDeploymentInput) (req *request.Request, output *GetDeploymentOutput) {
@@ -1223,7 +1759,7 @@ func (c *AppConfig) GetDeploymentRequest(input *GetDeploymentInput) (req *reques
 
 // GetDeployment API operation for Amazon AppConfig.
 //
-// Retrieve information about a configuration deployment.
+// Retrieves information about a configuration deployment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1233,14 +1769,16 @@ func (c *AppConfig) GetDeploymentRequest(input *GetDeploymentInput) (req *reques
 // API operation GetDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetDeployment
 func (c *AppConfig) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOutput, error) {
@@ -1280,14 +1818,13 @@ const opGetDeploymentStrategy = "GetDeploymentStrategy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeploymentStrategyRequest method.
+//	req, resp := client.GetDeploymentStrategyRequest(params)
 //
-//    // Example sending a request using the GetDeploymentStrategyRequest method.
-//    req, resp := client.GetDeploymentStrategyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetDeploymentStrategy
 func (c *AppConfig) GetDeploymentStrategyRequest(input *GetDeploymentStrategyInput) (req *request.Request, output *GetDeploymentStrategyOutput) {
@@ -1308,11 +1845,11 @@ func (c *AppConfig) GetDeploymentStrategyRequest(input *GetDeploymentStrategyInp
 
 // GetDeploymentStrategy API operation for Amazon AppConfig.
 //
-// Retrieve information about a deployment strategy. A deployment strategy defines
-// important criteria for rolling out your configuration to the designated targets.
-// A deployment strategy includes: the overall duration required, a percentage
-// of targets to receive the deployment during each interval, an algorithm that
-// defines how percentage grows, and bake time.
+// Retrieves information about a deployment strategy. A deployment strategy
+// defines important criteria for rolling out your configuration to the designated
+// targets. A deployment strategy includes the overall duration required, a
+// percentage of targets to receive the deployment during each interval, an
+// algorithm that defines how percentage grows, and bake time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1322,14 +1859,16 @@ func (c *AppConfig) GetDeploymentStrategyRequest(input *GetDeploymentStrategyInp
 // API operation GetDeploymentStrategy for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetDeploymentStrategy
 func (c *AppConfig) GetDeploymentStrategy(input *GetDeploymentStrategyInput) (*GetDeploymentStrategyOutput, error) {
@@ -1369,14 +1908,13 @@ const opGetEnvironment = "GetEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetEnvironmentRequest method.
+//	req, resp := client.GetEnvironmentRequest(params)
 //
-//    // Example sending a request using the GetEnvironmentRequest method.
-//    req, resp := client.GetEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetEnvironment
 func (c *AppConfig) GetEnvironmentRequest(input *GetEnvironmentInput) (req *request.Request, output *GetEnvironmentOutput) {
@@ -1397,7 +1935,7 @@ func (c *AppConfig) GetEnvironmentRequest(input *GetEnvironmentInput) (req *requ
 
 // GetEnvironment API operation for Amazon AppConfig.
 //
-// Retrieve information about an environment. An environment is a logical deployment
+// Retrieves information about an environment. An environment is a deployment
 // group of AppConfig applications, such as applications in a Production environment
 // or in an EU_Region environment. Each configuration deployment targets an
 // environment. You can enable one or more Amazon CloudWatch alarms for an environment.
@@ -1411,14 +1949,16 @@ func (c *AppConfig) GetEnvironmentRequest(input *GetEnvironmentInput) (req *requ
 // API operation GetEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetEnvironment
 func (c *AppConfig) GetEnvironment(input *GetEnvironmentInput) (*GetEnvironmentOutput, error) {
@@ -1442,6 +1982,181 @@ func (c *AppConfig) GetEnvironmentWithContext(ctx aws.Context, input *GetEnviron
 	return out, req.Send()
 }
 
+const opGetExtension = "GetExtension"
+
+// GetExtensionRequest generates a "aws/request.Request" representing the
+// client's request for the GetExtension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetExtension for more information on using the GetExtension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetExtensionRequest method.
+//	req, resp := client.GetExtensionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetExtension
+func (c *AppConfig) GetExtensionRequest(input *GetExtensionInput) (req *request.Request, output *GetExtensionOutput) {
+	op := &request.Operation{
+		Name:       opGetExtension,
+		HTTPMethod: "GET",
+		HTTPPath:   "/extensions/{ExtensionIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetExtensionInput{}
+	}
+
+	output = &GetExtensionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetExtension API operation for Amazon AppConfig.
+//
+// Returns information about an AppConfig extension.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation GetExtension for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetExtension
+func (c *AppConfig) GetExtension(input *GetExtensionInput) (*GetExtensionOutput, error) {
+	req, out := c.GetExtensionRequest(input)
+	return out, req.Send()
+}
+
+// GetExtensionWithContext is the same as GetExtension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetExtension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) GetExtensionWithContext(ctx aws.Context, input *GetExtensionInput, opts ...request.Option) (*GetExtensionOutput, error) {
+	req, out := c.GetExtensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetExtensionAssociation = "GetExtensionAssociation"
+
+// GetExtensionAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the GetExtensionAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetExtensionAssociation for more information on using the GetExtensionAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetExtensionAssociationRequest method.
+//	req, resp := client.GetExtensionAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetExtensionAssociation
+func (c *AppConfig) GetExtensionAssociationRequest(input *GetExtensionAssociationInput) (req *request.Request, output *GetExtensionAssociationOutput) {
+	op := &request.Operation{
+		Name:       opGetExtensionAssociation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/extensionassociations/{ExtensionAssociationId}",
+	}
+
+	if input == nil {
+		input = &GetExtensionAssociationInput{}
+	}
+
+	output = &GetExtensionAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetExtensionAssociation API operation for Amazon AppConfig.
+//
+// Returns information about an AppConfig extension association. For more information
+// about extensions and associations, see Working with AppConfig extensions
+// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation GetExtensionAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetExtensionAssociation
+func (c *AppConfig) GetExtensionAssociation(input *GetExtensionAssociationInput) (*GetExtensionAssociationOutput, error) {
+	req, out := c.GetExtensionAssociationRequest(input)
+	return out, req.Send()
+}
+
+// GetExtensionAssociationWithContext is the same as GetExtensionAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetExtensionAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) GetExtensionAssociationWithContext(ctx aws.Context, input *GetExtensionAssociationInput, opts ...request.Option) (*GetExtensionAssociationOutput, error) {
+	req, out := c.GetExtensionAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetHostedConfigurationVersion = "GetHostedConfigurationVersion"
 
 // GetHostedConfigurationVersionRequest generates a "aws/request.Request" representing the
@@ -1458,14 +2173,13 @@ const opGetHostedConfigurationVersion = "GetHostedConfigurationVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetHostedConfigurationVersionRequest method.
+//	req, resp := client.GetHostedConfigurationVersionRequest(params)
 //
-//    // Example sending a request using the GetHostedConfigurationVersionRequest method.
-//    req, resp := client.GetHostedConfigurationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetHostedConfigurationVersion
 func (c *AppConfig) GetHostedConfigurationVersionRequest(input *GetHostedConfigurationVersionInput) (req *request.Request, output *GetHostedConfigurationVersionOutput) {
@@ -1486,7 +2200,7 @@ func (c *AppConfig) GetHostedConfigurationVersionRequest(input *GetHostedConfigu
 
 // GetHostedConfigurationVersion API operation for Amazon AppConfig.
 //
-// Get information about a specific configuration version.
+// Retrieves information about a specific configuration version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1496,14 +2210,16 @@ func (c *AppConfig) GetHostedConfigurationVersionRequest(input *GetHostedConfigu
 // API operation GetHostedConfigurationVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetHostedConfigurationVersion
 func (c *AppConfig) GetHostedConfigurationVersion(input *GetHostedConfigurationVersionInput) (*GetHostedConfigurationVersionOutput, error) {
@@ -1543,14 +2259,13 @@ const opListApplications = "ListApplications"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListApplicationsRequest method.
+//	req, resp := client.ListApplicationsRequest(params)
 //
-//    // Example sending a request using the ListApplicationsRequest method.
-//    req, resp := client.ListApplicationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListApplications
 func (c *AppConfig) ListApplicationsRequest(input *ListApplicationsInput) (req *request.Request, output *ListApplicationsOutput) {
@@ -1577,7 +2292,7 @@ func (c *AppConfig) ListApplicationsRequest(input *ListApplicationsInput) (req *
 
 // ListApplications API operation for Amazon AppConfig.
 //
-// List all applications in your AWS account.
+// Lists all applications in your Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1587,11 +2302,13 @@ func (c *AppConfig) ListApplicationsRequest(input *ListApplicationsInput) (req *
 // API operation ListApplications for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListApplications
 func (c *AppConfig) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
@@ -1623,15 +2340,14 @@ func (c *AppConfig) ListApplicationsWithContext(ctx aws.Context, input *ListAppl
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApplications operation.
-//    pageNum := 0
-//    err := client.ListApplicationsPages(params,
-//        func(page *appconfig.ListApplicationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApplications operation.
+//	pageNum := 0
+//	err := client.ListApplicationsPages(params,
+//	    func(page *appconfig.ListApplicationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppConfig) ListApplicationsPages(input *ListApplicationsInput, fn func(*ListApplicationsOutput, bool) bool) error {
 	return c.ListApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1683,14 +2399,13 @@ const opListConfigurationProfiles = "ListConfigurationProfiles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListConfigurationProfilesRequest method.
+//	req, resp := client.ListConfigurationProfilesRequest(params)
 //
-//    // Example sending a request using the ListConfigurationProfilesRequest method.
-//    req, resp := client.ListConfigurationProfilesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListConfigurationProfiles
 func (c *AppConfig) ListConfigurationProfilesRequest(input *ListConfigurationProfilesInput) (req *request.Request, output *ListConfigurationProfilesOutput) {
@@ -1727,14 +2442,16 @@ func (c *AppConfig) ListConfigurationProfilesRequest(input *ListConfigurationPro
 // API operation ListConfigurationProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListConfigurationProfiles
 func (c *AppConfig) ListConfigurationProfiles(input *ListConfigurationProfilesInput) (*ListConfigurationProfilesOutput, error) {
@@ -1766,15 +2483,14 @@ func (c *AppConfig) ListConfigurationProfilesWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListConfigurationProfiles operation.
-//    pageNum := 0
-//    err := client.ListConfigurationProfilesPages(params,
-//        func(page *appconfig.ListConfigurationProfilesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListConfigurationProfiles operation.
+//	pageNum := 0
+//	err := client.ListConfigurationProfilesPages(params,
+//	    func(page *appconfig.ListConfigurationProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppConfig) ListConfigurationProfilesPages(input *ListConfigurationProfilesInput, fn func(*ListConfigurationProfilesOutput, bool) bool) error {
 	return c.ListConfigurationProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1826,14 +2542,13 @@ const opListDeploymentStrategies = "ListDeploymentStrategies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeploymentStrategiesRequest method.
+//	req, resp := client.ListDeploymentStrategiesRequest(params)
 //
-//    // Example sending a request using the ListDeploymentStrategiesRequest method.
-//    req, resp := client.ListDeploymentStrategiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListDeploymentStrategies
 func (c *AppConfig) ListDeploymentStrategiesRequest(input *ListDeploymentStrategiesInput) (req *request.Request, output *ListDeploymentStrategiesOutput) {
@@ -1860,7 +2575,7 @@ func (c *AppConfig) ListDeploymentStrategiesRequest(input *ListDeploymentStrateg
 
 // ListDeploymentStrategies API operation for Amazon AppConfig.
 //
-// List deployment strategies.
+// Lists deployment strategies.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1870,11 +2585,13 @@ func (c *AppConfig) ListDeploymentStrategiesRequest(input *ListDeploymentStrateg
 // API operation ListDeploymentStrategies for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListDeploymentStrategies
 func (c *AppConfig) ListDeploymentStrategies(input *ListDeploymentStrategiesInput) (*ListDeploymentStrategiesOutput, error) {
@@ -1906,15 +2623,14 @@ func (c *AppConfig) ListDeploymentStrategiesWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDeploymentStrategies operation.
-//    pageNum := 0
-//    err := client.ListDeploymentStrategiesPages(params,
-//        func(page *appconfig.ListDeploymentStrategiesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDeploymentStrategies operation.
+//	pageNum := 0
+//	err := client.ListDeploymentStrategiesPages(params,
+//	    func(page *appconfig.ListDeploymentStrategiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppConfig) ListDeploymentStrategiesPages(input *ListDeploymentStrategiesInput, fn func(*ListDeploymentStrategiesOutput, bool) bool) error {
 	return c.ListDeploymentStrategiesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1966,14 +2682,13 @@ const opListDeployments = "ListDeployments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeploymentsRequest method.
+//	req, resp := client.ListDeploymentsRequest(params)
 //
-//    // Example sending a request using the ListDeploymentsRequest method.
-//    req, resp := client.ListDeploymentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListDeployments
 func (c *AppConfig) ListDeploymentsRequest(input *ListDeploymentsInput) (req *request.Request, output *ListDeploymentsOutput) {
@@ -2000,7 +2715,8 @@ func (c *AppConfig) ListDeploymentsRequest(input *ListDeploymentsInput) (req *re
 
 // ListDeployments API operation for Amazon AppConfig.
 //
-// Lists the deployments for an environment.
+// Lists the deployments for an environment in descending deployment number
+// order.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2010,14 +2726,16 @@ func (c *AppConfig) ListDeploymentsRequest(input *ListDeploymentsInput) (req *re
 // API operation ListDeployments for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListDeployments
 func (c *AppConfig) ListDeployments(input *ListDeploymentsInput) (*ListDeploymentsOutput, error) {
@@ -2049,15 +2767,14 @@ func (c *AppConfig) ListDeploymentsWithContext(ctx aws.Context, input *ListDeplo
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDeployments operation.
-//    pageNum := 0
-//    err := client.ListDeploymentsPages(params,
-//        func(page *appconfig.ListDeploymentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDeployments operation.
+//	pageNum := 0
+//	err := client.ListDeploymentsPages(params,
+//	    func(page *appconfig.ListDeploymentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppConfig) ListDeploymentsPages(input *ListDeploymentsInput, fn func(*ListDeploymentsOutput, bool) bool) error {
 	return c.ListDeploymentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2109,14 +2826,13 @@ const opListEnvironments = "ListEnvironments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEnvironmentsRequest method.
+//	req, resp := client.ListEnvironmentsRequest(params)
 //
-//    // Example sending a request using the ListEnvironmentsRequest method.
-//    req, resp := client.ListEnvironmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListEnvironments
 func (c *AppConfig) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *request.Request, output *ListEnvironmentsOutput) {
@@ -2143,7 +2859,7 @@ func (c *AppConfig) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *
 
 // ListEnvironments API operation for Amazon AppConfig.
 //
-// List the environments for an application.
+// Lists the environments for an application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2153,14 +2869,16 @@ func (c *AppConfig) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *
 // API operation ListEnvironments for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListEnvironments
 func (c *AppConfig) ListEnvironments(input *ListEnvironmentsInput) (*ListEnvironmentsOutput, error) {
@@ -2192,15 +2910,14 @@ func (c *AppConfig) ListEnvironmentsWithContext(ctx aws.Context, input *ListEnvi
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEnvironments operation.
-//    pageNum := 0
-//    err := client.ListEnvironmentsPages(params,
-//        func(page *appconfig.ListEnvironmentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEnvironments operation.
+//	pageNum := 0
+//	err := client.ListEnvironmentsPages(params,
+//	    func(page *appconfig.ListEnvironmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppConfig) ListEnvironmentsPages(input *ListEnvironmentsInput, fn func(*ListEnvironmentsOutput, bool) bool) error {
 	return c.ListEnvironmentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2236,6 +2953,292 @@ func (c *AppConfig) ListEnvironmentsPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opListExtensionAssociations = "ListExtensionAssociations"
+
+// ListExtensionAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExtensionAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExtensionAssociations for more information on using the ListExtensionAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListExtensionAssociationsRequest method.
+//	req, resp := client.ListExtensionAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListExtensionAssociations
+func (c *AppConfig) ListExtensionAssociationsRequest(input *ListExtensionAssociationsInput) (req *request.Request, output *ListExtensionAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListExtensionAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/extensionassociations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExtensionAssociationsInput{}
+	}
+
+	output = &ListExtensionAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExtensionAssociations API operation for Amazon AppConfig.
+//
+// Lists all AppConfig extension associations in the account. For more information
+// about extensions and associations, see Working with AppConfig extensions
+// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation ListExtensionAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListExtensionAssociations
+func (c *AppConfig) ListExtensionAssociations(input *ListExtensionAssociationsInput) (*ListExtensionAssociationsOutput, error) {
+	req, out := c.ListExtensionAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListExtensionAssociationsWithContext is the same as ListExtensionAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExtensionAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListExtensionAssociationsWithContext(ctx aws.Context, input *ListExtensionAssociationsInput, opts ...request.Option) (*ListExtensionAssociationsOutput, error) {
+	req, out := c.ListExtensionAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExtensionAssociationsPages iterates over the pages of a ListExtensionAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExtensionAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListExtensionAssociations operation.
+//	pageNum := 0
+//	err := client.ListExtensionAssociationsPages(params,
+//	    func(page *appconfig.ListExtensionAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppConfig) ListExtensionAssociationsPages(input *ListExtensionAssociationsInput, fn func(*ListExtensionAssociationsOutput, bool) bool) error {
+	return c.ListExtensionAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExtensionAssociationsPagesWithContext same as ListExtensionAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListExtensionAssociationsPagesWithContext(ctx aws.Context, input *ListExtensionAssociationsInput, fn func(*ListExtensionAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExtensionAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExtensionAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExtensionAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListExtensions = "ListExtensions"
+
+// ListExtensionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExtensions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExtensions for more information on using the ListExtensions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListExtensionsRequest method.
+//	req, resp := client.ListExtensionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListExtensions
+func (c *AppConfig) ListExtensionsRequest(input *ListExtensionsInput) (req *request.Request, output *ListExtensionsOutput) {
+	op := &request.Operation{
+		Name:       opListExtensions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/extensions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExtensionsInput{}
+	}
+
+	output = &ListExtensionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExtensions API operation for Amazon AppConfig.
+//
+// Lists all custom and Amazon Web Services authored AppConfig extensions in
+// the account. For more information about extensions, see Working with AppConfig
+// extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation ListExtensions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListExtensions
+func (c *AppConfig) ListExtensions(input *ListExtensionsInput) (*ListExtensionsOutput, error) {
+	req, out := c.ListExtensionsRequest(input)
+	return out, req.Send()
+}
+
+// ListExtensionsWithContext is the same as ListExtensions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExtensions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListExtensionsWithContext(ctx aws.Context, input *ListExtensionsInput, opts ...request.Option) (*ListExtensionsOutput, error) {
+	req, out := c.ListExtensionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExtensionsPages iterates over the pages of a ListExtensions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExtensions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListExtensions operation.
+//	pageNum := 0
+//	err := client.ListExtensionsPages(params,
+//	    func(page *appconfig.ListExtensionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppConfig) ListExtensionsPages(input *ListExtensionsInput, fn func(*ListExtensionsOutput, bool) bool) error {
+	return c.ListExtensionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExtensionsPagesWithContext same as ListExtensionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListExtensionsPagesWithContext(ctx aws.Context, input *ListExtensionsInput, fn func(*ListExtensionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExtensionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExtensionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExtensionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListHostedConfigurationVersions = "ListHostedConfigurationVersions"
 
 // ListHostedConfigurationVersionsRequest generates a "aws/request.Request" representing the
@@ -2252,14 +3255,13 @@ const opListHostedConfigurationVersions = "ListHostedConfigurationVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListHostedConfigurationVersionsRequest method.
+//	req, resp := client.ListHostedConfigurationVersionsRequest(params)
 //
-//    // Example sending a request using the ListHostedConfigurationVersionsRequest method.
-//    req, resp := client.ListHostedConfigurationVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListHostedConfigurationVersions
 func (c *AppConfig) ListHostedConfigurationVersionsRequest(input *ListHostedConfigurationVersionsInput) (req *request.Request, output *ListHostedConfigurationVersionsOutput) {
@@ -2286,8 +3288,8 @@ func (c *AppConfig) ListHostedConfigurationVersionsRequest(input *ListHostedConf
 
 // ListHostedConfigurationVersions API operation for Amazon AppConfig.
 //
-// View a list of configurations stored in the AppConfig configuration store
-// by version.
+// Lists configurations stored in the AppConfig hosted configuration store by
+// version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2297,14 +3299,16 @@ func (c *AppConfig) ListHostedConfigurationVersionsRequest(input *ListHostedConf
 // API operation ListHostedConfigurationVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListHostedConfigurationVersions
 func (c *AppConfig) ListHostedConfigurationVersions(input *ListHostedConfigurationVersionsInput) (*ListHostedConfigurationVersionsOutput, error) {
@@ -2336,15 +3340,14 @@ func (c *AppConfig) ListHostedConfigurationVersionsWithContext(ctx aws.Context, 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListHostedConfigurationVersions operation.
-//    pageNum := 0
-//    err := client.ListHostedConfigurationVersionsPages(params,
-//        func(page *appconfig.ListHostedConfigurationVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListHostedConfigurationVersions operation.
+//	pageNum := 0
+//	err := client.ListHostedConfigurationVersionsPages(params,
+//	    func(page *appconfig.ListHostedConfigurationVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppConfig) ListHostedConfigurationVersionsPages(input *ListHostedConfigurationVersionsInput, fn func(*ListHostedConfigurationVersionsOutput, bool) bool) error {
 	return c.ListHostedConfigurationVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2396,14 +3399,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListTagsForResource
 func (c *AppConfig) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2434,14 +3436,16 @@ func (c *AppConfig) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListTagsForResource
 func (c *AppConfig) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2481,14 +3485,13 @@ const opStartDeployment = "StartDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartDeploymentRequest method.
+//	req, resp := client.StartDeploymentRequest(params)
 //
-//    // Example sending a request using the StartDeploymentRequest method.
-//    req, resp := client.StartDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/StartDeployment
 func (c *AppConfig) StartDeploymentRequest(input *StartDeploymentInput) (req *request.Request, output *StartDeploymentOutput) {
@@ -2519,18 +3522,20 @@ func (c *AppConfig) StartDeploymentRequest(input *StartDeploymentInput) (req *re
 // API operation StartDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/StartDeployment
 func (c *AppConfig) StartDeployment(input *StartDeploymentInput) (*StartDeploymentOutput, error) {
@@ -2570,14 +3575,13 @@ const opStopDeployment = "StopDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopDeploymentRequest method.
+//	req, resp := client.StopDeploymentRequest(params)
 //
-//    // Example sending a request using the StopDeploymentRequest method.
-//    req, resp := client.StopDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/StopDeployment
 func (c *AppConfig) StopDeploymentRequest(input *StopDeploymentInput) (req *request.Request, output *StopDeploymentOutput) {
@@ -2609,14 +3613,16 @@ func (c *AppConfig) StopDeploymentRequest(input *StopDeploymentInput) (req *requ
 // API operation StopDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/StopDeployment
 func (c *AppConfig) StopDeployment(input *StopDeploymentInput) (*StopDeploymentOutput, error) {
@@ -2656,14 +3662,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/TagResource
 func (c *AppConfig) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2685,7 +3690,7 @@ func (c *AppConfig) TagResourceRequest(input *TagResourceInput) (req *request.Re
 
 // TagResource API operation for Amazon AppConfig.
 //
-// Metadata to assign to an AppConfig resource. Tags help organize and categorize
+// Assigns metadata to an AppConfig resource. Tags help organize and categorize
 // your AppConfig resources. Each tag consists of a key and an optional value,
 // both of which you define. You can specify a maximum of 50 tags for a resource.
 //
@@ -2697,14 +3702,16 @@ func (c *AppConfig) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/TagResource
 func (c *AppConfig) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2744,14 +3751,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UntagResource
 func (c *AppConfig) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2783,14 +3789,16 @@ func (c *AppConfig) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UntagResource
 func (c *AppConfig) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2830,14 +3838,13 @@ const opUpdateApplication = "UpdateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApplicationRequest method.
+//	req, resp := client.UpdateApplicationRequest(params)
 //
-//    // Example sending a request using the UpdateApplicationRequest method.
-//    req, resp := client.UpdateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateApplication
 func (c *AppConfig) UpdateApplicationRequest(input *UpdateApplicationInput) (req *request.Request, output *UpdateApplicationOutput) {
@@ -2868,14 +3875,16 @@ func (c *AppConfig) UpdateApplicationRequest(input *UpdateApplicationInput) (req
 // API operation UpdateApplication for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateApplication
 func (c *AppConfig) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -2915,14 +3924,13 @@ const opUpdateConfigurationProfile = "UpdateConfigurationProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConfigurationProfileRequest method.
+//	req, resp := client.UpdateConfigurationProfileRequest(params)
 //
-//    // Example sending a request using the UpdateConfigurationProfileRequest method.
-//    req, resp := client.UpdateConfigurationProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateConfigurationProfile
 func (c *AppConfig) UpdateConfigurationProfileRequest(input *UpdateConfigurationProfileInput) (req *request.Request, output *UpdateConfigurationProfileOutput) {
@@ -2953,14 +3961,16 @@ func (c *AppConfig) UpdateConfigurationProfileRequest(input *UpdateConfiguration
 // API operation UpdateConfigurationProfile for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateConfigurationProfile
 func (c *AppConfig) UpdateConfigurationProfile(input *UpdateConfigurationProfileInput) (*UpdateConfigurationProfileOutput, error) {
@@ -3000,14 +4010,13 @@ const opUpdateDeploymentStrategy = "UpdateDeploymentStrategy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDeploymentStrategyRequest method.
+//	req, resp := client.UpdateDeploymentStrategyRequest(params)
 //
-//    // Example sending a request using the UpdateDeploymentStrategyRequest method.
-//    req, resp := client.UpdateDeploymentStrategyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateDeploymentStrategy
 func (c *AppConfig) UpdateDeploymentStrategyRequest(input *UpdateDeploymentStrategyInput) (req *request.Request, output *UpdateDeploymentStrategyOutput) {
@@ -3038,14 +4047,16 @@ func (c *AppConfig) UpdateDeploymentStrategyRequest(input *UpdateDeploymentStrat
 // API operation UpdateDeploymentStrategy for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateDeploymentStrategy
 func (c *AppConfig) UpdateDeploymentStrategy(input *UpdateDeploymentStrategyInput) (*UpdateDeploymentStrategyOutput, error) {
@@ -3085,14 +4096,13 @@ const opUpdateEnvironment = "UpdateEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEnvironmentRequest method.
+//	req, resp := client.UpdateEnvironmentRequest(params)
 //
-//    // Example sending a request using the UpdateEnvironmentRequest method.
-//    req, resp := client.UpdateEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateEnvironment
 func (c *AppConfig) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *request.Request, output *UpdateEnvironmentOutput) {
@@ -3123,14 +4133,16 @@ func (c *AppConfig) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req
 // API operation UpdateEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateEnvironment
 func (c *AppConfig) UpdateEnvironment(input *UpdateEnvironmentInput) (*UpdateEnvironmentOutput, error) {
@@ -3154,6 +4166,186 @@ func (c *AppConfig) UpdateEnvironmentWithContext(ctx aws.Context, input *UpdateE
 	return out, req.Send()
 }
 
+const opUpdateExtension = "UpdateExtension"
+
+// UpdateExtensionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateExtension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateExtension for more information on using the UpdateExtension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateExtensionRequest method.
+//	req, resp := client.UpdateExtensionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateExtension
+func (c *AppConfig) UpdateExtensionRequest(input *UpdateExtensionInput) (req *request.Request, output *UpdateExtensionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateExtension,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/extensions/{ExtensionIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdateExtensionInput{}
+	}
+
+	output = &UpdateExtensionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateExtension API operation for Amazon AppConfig.
+//
+// Updates an AppConfig extension. For more information about extensions, see
+// Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation UpdateExtension for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateExtension
+func (c *AppConfig) UpdateExtension(input *UpdateExtensionInput) (*UpdateExtensionOutput, error) {
+	req, out := c.UpdateExtensionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateExtensionWithContext is the same as UpdateExtension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateExtension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) UpdateExtensionWithContext(ctx aws.Context, input *UpdateExtensionInput, opts ...request.Option) (*UpdateExtensionOutput, error) {
+	req, out := c.UpdateExtensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateExtensionAssociation = "UpdateExtensionAssociation"
+
+// UpdateExtensionAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateExtensionAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateExtensionAssociation for more information on using the UpdateExtensionAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateExtensionAssociationRequest method.
+//	req, resp := client.UpdateExtensionAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateExtensionAssociation
+func (c *AppConfig) UpdateExtensionAssociationRequest(input *UpdateExtensionAssociationInput) (req *request.Request, output *UpdateExtensionAssociationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateExtensionAssociation,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/extensionassociations/{ExtensionAssociationId}",
+	}
+
+	if input == nil {
+		input = &UpdateExtensionAssociationInput{}
+	}
+
+	output = &UpdateExtensionAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateExtensionAssociation API operation for Amazon AppConfig.
+//
+// Updates an association. For more information about extensions and associations,
+// see Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation UpdateExtensionAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateExtensionAssociation
+func (c *AppConfig) UpdateExtensionAssociation(input *UpdateExtensionAssociationInput) (*UpdateExtensionAssociationOutput, error) {
+	req, out := c.UpdateExtensionAssociationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateExtensionAssociationWithContext is the same as UpdateExtensionAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateExtensionAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) UpdateExtensionAssociationWithContext(ctx aws.Context, input *UpdateExtensionAssociationInput, opts ...request.Option) (*UpdateExtensionAssociationOutput, error) {
+	req, out := c.UpdateExtensionAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opValidateConfiguration = "ValidateConfiguration"
 
 // ValidateConfigurationRequest generates a "aws/request.Request" representing the
@@ -3170,14 +4362,13 @@ const opValidateConfiguration = "ValidateConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ValidateConfigurationRequest method.
+//	req, resp := client.ValidateConfigurationRequest(params)
 //
-//    // Example sending a request using the ValidateConfigurationRequest method.
-//    req, resp := client.ValidateConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ValidateConfiguration
 func (c *AppConfig) ValidateConfigurationRequest(input *ValidateConfigurationInput) (req *request.Request, output *ValidateConfigurationOutput) {
@@ -3209,14 +4400,16 @@ func (c *AppConfig) ValidateConfigurationRequest(input *ValidateConfigurationInp
 // API operation ValidateConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
+//   - BadRequestException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
-//   * InternalServerException
-//   There was an internal failure in the AppConfig service.
+//   - ResourceNotFoundException
+//     The requested resource could not be found.
+//
+//   - InternalServerException
+//     There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ValidateConfiguration
 func (c *AppConfig) ValidateConfiguration(input *ValidateConfigurationInput) (*ValidateConfigurationOutput, error) {
@@ -3240,6 +4433,179 @@ func (c *AppConfig) ValidateConfigurationWithContext(ctx aws.Context, input *Val
 	return out, req.Send()
 }
 
+// An action defines the tasks that the extension performs during the AppConfig
+// workflow. Each action includes an action point such as ON_CREATE_HOSTED_CONFIGURATION,
+// PRE_DEPLOYMENT, or ON_DEPLOYMENT. Each action also includes a name, a URI
+// to an Lambda function, and an Amazon Resource Name (ARN) for an Identity
+// and Access Management assume role. You specify the name, URI, and ARN for
+// each action point defined in the extension. You can specify the following
+// actions for an extension:
+//
+//   - PRE_CREATE_HOSTED_CONFIGURATION_VERSION
+//
+//   - PRE_START_DEPLOYMENT
+//
+//   - ON_DEPLOYMENT_START
+//
+//   - ON_DEPLOYMENT_STEP
+//
+//   - ON_DEPLOYMENT_BAKING
+//
+//   - ON_DEPLOYMENT_COMPLETE
+//
+//   - ON_DEPLOYMENT_ROLLED_BACK
+type Action struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the action.
+	Description *string `type:"string"`
+
+	// The action name.
+	Name *string `min:"1" type:"string"`
+
+	// An Amazon Resource Name (ARN) for an Identity and Access Management assume
+	// role.
+	RoleArn *string `min:"20" type:"string"`
+
+	// The extension URI associated to the action point in the extension definition.
+	// The URI can be an Amazon Resource Name (ARN) for one of the following: an
+	// Lambda function, an Amazon Simple Queue Service queue, an Amazon Simple Notification
+	// Service topic, or the Amazon EventBridge default event bus.
+	Uri *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Action) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Action) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Action) SetDescription(v string) *Action {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Action) SetName(v string) *Action {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *Action) SetRoleArn(v string) *Action {
+	s.RoleArn = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *Action) SetUri(v string) *Action {
+	s.Uri = &v
+	return s
+}
+
+// An extension that was invoked as part of a deployment event.
+type ActionInvocation struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the action.
+	ActionName *string `min:"1" type:"string"`
+
+	// The error code when an extension invocation fails.
+	ErrorCode *string `type:"string"`
+
+	// The error message when an extension invocation fails.
+	ErrorMessage *string `type:"string"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	ExtensionIdentifier *string `min:"1" type:"string"`
+
+	// A system-generated ID for this invocation.
+	InvocationId *string `type:"string"`
+
+	// An Amazon Resource Name (ARN) for an Identity and Access Management assume
+	// role.
+	RoleArn *string `min:"20" type:"string"`
+
+	// The extension URI associated to the action point in the extension definition.
+	// The URI can be an Amazon Resource Name (ARN) for one of the following: an
+	// Lambda function, an Amazon Simple Queue Service queue, an Amazon Simple Notification
+	// Service topic, or the Amazon EventBridge default event bus.
+	Uri *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionInvocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionInvocation) GoString() string {
+	return s.String()
+}
+
+// SetActionName sets the ActionName field's value.
+func (s *ActionInvocation) SetActionName(v string) *ActionInvocation {
+	s.ActionName = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *ActionInvocation) SetErrorCode(v string) *ActionInvocation {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ActionInvocation) SetErrorMessage(v string) *ActionInvocation {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *ActionInvocation) SetExtensionIdentifier(v string) *ActionInvocation {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetInvocationId sets the InvocationId field's value.
+func (s *ActionInvocation) SetInvocationId(v string) *ActionInvocation {
+	s.InvocationId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ActionInvocation) SetRoleArn(v string) *ActionInvocation {
+	s.RoleArn = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *ActionInvocation) SetUri(v string) *ActionInvocation {
+	s.Uri = &v
+	return s
+}
+
 type Application struct {
 	_ struct{} `type:"structure"`
 
@@ -3253,12 +4619,20 @@ type Application struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Application) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Application) GoString() string {
 	return s.String()
 }
@@ -3281,20 +4655,128 @@ func (s *Application) SetName(v string) *Application {
 	return s
 }
 
-// The input fails to satisfy the constraints specified by an AWS service.
+// An extension that was invoked during a deployment.
+type AppliedExtension struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated ID for the association.
+	ExtensionAssociationId *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	ExtensionId *string `type:"string"`
+
+	// One or more parameters for the actions called by the extension.
+	Parameters map[string]*string `type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppliedExtension) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppliedExtension) GoString() string {
+	return s.String()
+}
+
+// SetExtensionAssociationId sets the ExtensionAssociationId field's value.
+func (s *AppliedExtension) SetExtensionAssociationId(v string) *AppliedExtension {
+	s.ExtensionAssociationId = &v
+	return s
+}
+
+// SetExtensionId sets the ExtensionId field's value.
+func (s *AppliedExtension) SetExtensionId(v string) *AppliedExtension {
+	s.ExtensionId = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *AppliedExtension) SetParameters(v map[string]*string) *AppliedExtension {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *AppliedExtension) SetVersionNumber(v int64) *AppliedExtension {
+	s.VersionNumber = &v
+	return s
+}
+
+// Detailed information about the input that failed to satisfy the constraints
+// specified by a call.
+type BadRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Detailed information about the bad request exception error when creating
+	// a hosted configuration version.
+	InvalidConfiguration []*InvalidConfigurationDetail `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BadRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BadRequestDetails) GoString() string {
+	return s.String()
+}
+
+// SetInvalidConfiguration sets the InvalidConfiguration field's value.
+func (s *BadRequestDetails) SetInvalidConfiguration(v []*InvalidConfigurationDetail) *BadRequestDetails {
+	s.InvalidConfiguration = v
+	return s
+}
+
+// The input fails to satisfy the constraints specified by an Amazon Web Services
+// service.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Detailed information about the input that failed to satisfy the constraints
+	// specified by a call.
+	Details *BadRequestDetails `type:"structure"`
+
 	Message_ *string `locationName:"Message" type:"string"`
+
+	Reason *string `type:"string" enum:"BadRequestReason"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -3324,7 +4806,7 @@ func (s *BadRequestException) OrigErr() error {
 }
 
 func (s *BadRequestException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -3353,16 +4835,35 @@ type ConfigurationProfileSummary struct {
 	// The name of the configuration profile.
 	Name *string `min:"1" type:"string"`
 
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
+	Type *string `type:"string"`
+
 	// The types of validators in the configuration profile.
-	ValidatorTypes []*string `type:"list"`
+	ValidatorTypes []*string `type:"list" enum:"ValidatorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationProfileSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationProfileSummary) GoString() string {
 	return s.String()
 }
@@ -3391,6 +4892,12 @@ func (s *ConfigurationProfileSummary) SetName(v string) *ConfigurationProfileSum
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *ConfigurationProfileSummary) SetType(v string) *ConfigurationProfileSummary {
+	s.Type = &v
+	return s
+}
+
 // SetValidatorTypes sets the ValidatorTypes field's value.
 func (s *ConfigurationProfileSummary) SetValidatorTypes(v []*string) *ConfigurationProfileSummary {
 	s.ValidatorTypes = v
@@ -3406,12 +4913,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -3471,12 +4986,20 @@ type CreateApplicationInput struct {
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationInput) GoString() string {
 	return s.String()
 }
@@ -3528,12 +5051,20 @@ type CreateApplicationOutput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -3567,13 +5098,34 @@ type CreateConfigurationProfileInput struct {
 	// A description of the configuration profile.
 	Description *string `type:"string"`
 
-	// A URI to locate the configuration. You can specify a Systems Manager (SSM)
-	// document, an SSM Parameter Store parameter, or an Amazon S3 object. For an
-	// SSM document, specify either the document name in the format ssm-document://<Document_name>
-	// or the Amazon Resource Name (ARN). For a parameter, specify either the parameter
-	// name in the format ssm-parameter://<Parameter_name> or the ARN. For an Amazon
-	// S3 object, specify the URI in the following format: s3://<bucket>/<objectKey>
-	// . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json
+	// The identifier for an Key Management Service key to encrypt new configuration
+	// data versions in the AppConfig hosted configuration store. This attribute
+	// is only used for hosted configuration types. The identifier can be an KMS
+	// key ID, alias, or the Amazon Resource Name (ARN) of the key ID or alias.
+	// To encrypt data managed in other configuration stores, see the documentation
+	// for how to specify an KMS key for that particular service.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
+	// A URI to locate the configuration. You can specify the following:
+	//
+	//    * For the AppConfig hosted configuration store and for feature flags,
+	//    specify hosted.
+	//
+	//    * For an Amazon Web Services Systems Manager Parameter Store parameter,
+	//    specify either the parameter name in the format ssm-parameter://<parameter
+	//    name> or the ARN.
+	//
+	//    * For an Amazon Web Services CodePipeline pipeline, specify the URI in
+	//    the following format: codepipeline://<pipeline name>.
+	//
+	//    * For an Secrets Manager secret, specify the URI in the following format:
+	//    secretsmanager://<secret name>.
+	//
+	//    * For an Amazon S3 object, specify the URI in the following format: s3://<bucket>/<objectKey>
+	//    . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json
+	//
+	//    * For an SSM document, specify either the document name in the format
+	//    ssm-document://<document name> or the Amazon Resource Name (ARN).
 	//
 	// LocationUri is a required field
 	LocationUri *string `min:"1" type:"string" required:"true"`
@@ -3585,6 +5137,10 @@ type CreateConfigurationProfileInput struct {
 
 	// The ARN of an IAM role with permission to access the configuration at the
 	// specified LocationUri.
+	//
+	// A retrieval role ARN is not required for configurations stored in the AppConfig
+	// hosted configuration store. It is required for all other sources that store
+	// your configuration.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
 	// Metadata to assign to the configuration profile. Tags help organize and categorize
@@ -3592,16 +5148,35 @@ type CreateConfigurationProfileInput struct {
 	// both of which you define.
 	Tags map[string]*string `type:"map"`
 
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
+	Type *string `type:"string"`
+
 	// A list of methods for validating the configuration.
 	Validators []*Validator `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationProfileInput) GoString() string {
 	return s.String()
 }
@@ -3614,6 +5189,9 @@ func (s *CreateConfigurationProfileInput) Validate() error {
 	}
 	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.KmsKeyIdentifier != nil && len(*s.KmsKeyIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyIdentifier", 1))
 	}
 	if s.LocationUri == nil {
 		invalidParams.Add(request.NewErrParamRequired("LocationUri"))
@@ -3659,6 +5237,12 @@ func (s *CreateConfigurationProfileInput) SetDescription(v string) *CreateConfig
 	return s
 }
 
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *CreateConfigurationProfileInput) SetKmsKeyIdentifier(v string) *CreateConfigurationProfileInput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetLocationUri sets the LocationUri field's value.
 func (s *CreateConfigurationProfileInput) SetLocationUri(v string) *CreateConfigurationProfileInput {
 	s.LocationUri = &v
@@ -3683,6 +5267,12 @@ func (s *CreateConfigurationProfileInput) SetTags(v map[string]*string) *CreateC
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *CreateConfigurationProfileInput) SetType(v string) *CreateConfigurationProfileInput {
+	s.Type = &v
+	return s
+}
+
 // SetValidators sets the Validators field's value.
 func (s *CreateConfigurationProfileInput) SetValidators(v []*Validator) *CreateConfigurationProfileInput {
 	s.Validators = v
@@ -3701,6 +5291,17 @@ type CreateConfigurationProfileOutput struct {
 	// The configuration profile ID.
 	Id *string `type:"string"`
 
+	// The Amazon Resource Name of the Key Management Service key to encrypt new
+	// configuration data versions in the AppConfig hosted configuration store.
+	// This attribute is only used for hosted configuration types. To encrypt data
+	// managed in other configuration stores, see the documentation for how to specify
+	// an KMS key for that particular service.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// The URI location of the configuration.
 	LocationUri *string `min:"1" type:"string"`
 
@@ -3711,16 +5312,35 @@ type CreateConfigurationProfileOutput struct {
 	// specified LocationUri.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
+	Type *string `type:"string"`
+
 	// A list of methods for validating the configuration.
 	Validators []*Validator `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationProfileOutput) GoString() string {
 	return s.String()
 }
@@ -3743,6 +5363,18 @@ func (s *CreateConfigurationProfileOutput) SetId(v string) *CreateConfigurationP
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *CreateConfigurationProfileOutput) SetKmsKeyArn(v string) *CreateConfigurationProfileOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *CreateConfigurationProfileOutput) SetKmsKeyIdentifier(v string) *CreateConfigurationProfileOutput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetLocationUri sets the LocationUri field's value.
 func (s *CreateConfigurationProfileOutput) SetLocationUri(v string) *CreateConfigurationProfileOutput {
 	s.LocationUri = &v
@@ -3758,6 +5390,12 @@ func (s *CreateConfigurationProfileOutput) SetName(v string) *CreateConfiguratio
 // SetRetrievalRoleArn sets the RetrievalRoleArn field's value.
 func (s *CreateConfigurationProfileOutput) SetRetrievalRoleArn(v string) *CreateConfigurationProfileOutput {
 	s.RetrievalRoleArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateConfigurationProfileOutput) SetType(v string) *CreateConfigurationProfileOutput {
+	s.Type = &v
 	return s
 }
 
@@ -3778,8 +5416,14 @@ type CreateDeploymentStrategyInput struct {
 	// A description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitors for alarms before considering the deployment
-	// to be complete and no longer eligible for automatic roll back.
+	// Specifies the amount of time AppConfig monitors for Amazon CloudWatch alarms
+	// after the configuration has been deployed to 100% of its targets, before
+	// considering the deployment to be complete. If an alarm is triggered during
+	// this time, AppConfig rolls back the deployment. You must configure permissions
+	// for AppConfig to roll back based on CloudWatch alarms. For more information,
+	// see Configuring permissions for rollback based on Amazon CloudWatch alarms
+	// (https://docs.aws.amazon.com/appconfig/latest/userguide/getting-started-with-appconfig-cloudwatch-alarms-permissions.html)
+	// in the AppConfig User Guide.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -3788,8 +5432,8 @@ type CreateDeploymentStrategyInput struct {
 	// GrowthFactor is a required field
 	GrowthFactor *float64 `min:"1" type:"float" required:"true"`
 
-	// The algorithm used to define how percentage grows over time. AWS AppConfig
-	// supports the following growth types:
+	// The algorithm used to define how percentage grows over time. AppConfig supports
+	// the following growth types:
 	//
 	// Linear: For this type, AppConfig processes the deployment by dividing the
 	// total number of targets by the value specified for Step percentage. For example,
@@ -3821,9 +5465,7 @@ type CreateDeploymentStrategyInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// Save the deployment strategy to a Systems Manager (SSM) document.
-	//
-	// ReplicateTo is a required field
-	ReplicateTo *string `type:"string" required:"true" enum:"ReplicateTo"`
+	ReplicateTo *string `type:"string" enum:"ReplicateTo"`
 
 	// Metadata to assign to the deployment strategy. Tags help organize and categorize
 	// your AppConfig resources. Each tag consists of a key and an optional value,
@@ -3831,12 +5473,20 @@ type CreateDeploymentStrategyInput struct {
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentStrategyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentStrategyInput) GoString() string {
 	return s.String()
 }
@@ -3858,9 +5508,6 @@ func (s *CreateDeploymentStrategyInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.ReplicateTo == nil {
-		invalidParams.Add(request.NewErrParamRequired("ReplicateTo"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3926,8 +5573,8 @@ type CreateDeploymentStrategyOutput struct {
 	// The description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets that received a deployed configuration during each
@@ -3947,12 +5594,20 @@ type CreateDeploymentStrategyOutput struct {
 	ReplicateTo *string `type:"string" enum:"ReplicateTo"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentStrategyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentStrategyOutput) GoString() string {
 	return s.String()
 }
@@ -4030,12 +5685,20 @@ type CreateEnvironmentInput struct {
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -4125,12 +5788,20 @@ type CreateEnvironmentOutput struct {
 	State *string `type:"string" enum:"EnvironmentState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentOutput) GoString() string {
 	return s.String()
 }
@@ -4171,6 +5842,380 @@ func (s *CreateEnvironmentOutput) SetState(v string) *CreateEnvironmentOutput {
 	return s
 }
 
+type CreateExtensionAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	//
+	// ExtensionIdentifier is a required field
+	ExtensionIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The version number of the extension. If not specified, AppConfig uses the
+	// maximum version of the extension.
+	ExtensionVersionNumber *int64 `type:"integer"`
+
+	// The parameter names and values defined in the extensions. Extension parameters
+	// marked Required must be entered for this field.
+	Parameters map[string]*string `type:"map"`
+
+	// The ARN of an application, configuration profile, or environment.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// Adds one or more tags for the specified extension association. Tags are metadata
+	// that help you categorize resources in different ways, for example, by purpose,
+	// owner, or environment. Each tag consists of a key and an optional value,
+	// both of which you define.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateExtensionAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateExtensionAssociationInput"}
+	if s.ExtensionIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionIdentifier"))
+	}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *CreateExtensionAssociationInput) SetExtensionIdentifier(v string) *CreateExtensionAssociationInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *CreateExtensionAssociationInput) SetExtensionVersionNumber(v int64) *CreateExtensionAssociationInput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateExtensionAssociationInput) SetParameters(v map[string]*string) *CreateExtensionAssociationInput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *CreateExtensionAssociationInput) SetResourceIdentifier(v string) *CreateExtensionAssociationInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateExtensionAssociationInput) SetTags(v map[string]*string) *CreateExtensionAssociationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateExtensionAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// The ARN of the extension defined in the association.
+	ExtensionArn *string `min:"20" type:"string"`
+
+	// The version number for the extension defined in the association.
+	ExtensionVersionNumber *int64 `type:"integer"`
+
+	// The system-generated ID for the association.
+	Id *string `min:"1" type:"string"`
+
+	// The parameter names and values defined in the association.
+	Parameters map[string]*string `type:"map"`
+
+	// The ARNs of applications, configuration profiles, or environments defined
+	// in the association.
+	ResourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateExtensionAssociationOutput) SetArn(v string) *CreateExtensionAssociationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetExtensionArn sets the ExtensionArn field's value.
+func (s *CreateExtensionAssociationOutput) SetExtensionArn(v string) *CreateExtensionAssociationOutput {
+	s.ExtensionArn = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *CreateExtensionAssociationOutput) SetExtensionVersionNumber(v int64) *CreateExtensionAssociationOutput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateExtensionAssociationOutput) SetId(v string) *CreateExtensionAssociationOutput {
+	s.Id = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateExtensionAssociationOutput) SetParameters(v map[string]*string) *CreateExtensionAssociationOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CreateExtensionAssociationOutput) SetResourceArn(v string) *CreateExtensionAssociationOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+type CreateExtensionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	//
+	// Actions is a required field
+	Actions map[string][]*Action `min:"1" type:"map" required:"true"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// You can omit this field when you create an extension. When you create a new
+	// version, specify the most recent current version number. For example, you
+	// create version 3, enter 2 for this field.
+	LatestVersionNumber *int64 `location:"header" locationName:"Latest-Version-Number" type:"integer"`
+
+	// A name for the extension. Each extension name in your account must be unique.
+	// Extension versions use the same name.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The parameters accepted by the extension. You specify parameter values when
+	// you associate the extension to an AppConfig resource by using the CreateExtensionAssociation
+	// API action. For Lambda extension actions, these parameters are included in
+	// the Lambda request object.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// Adds one or more tags for the specified extension. Tags are metadata that
+	// help you categorize resources in different ways, for example, by purpose,
+	// owner, or environment. Each tag consists of a key and an optional value,
+	// both of which you define.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateExtensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateExtensionInput"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.Actions != nil && len(s.Actions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Actions", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Parameters != nil && len(s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *CreateExtensionInput) SetActions(v map[string][]*Action) *CreateExtensionInput {
+	s.Actions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateExtensionInput) SetDescription(v string) *CreateExtensionInput {
+	s.Description = &v
+	return s
+}
+
+// SetLatestVersionNumber sets the LatestVersionNumber field's value.
+func (s *CreateExtensionInput) SetLatestVersionNumber(v int64) *CreateExtensionInput {
+	s.LatestVersionNumber = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateExtensionInput) SetName(v string) *CreateExtensionInput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateExtensionInput) SetParameters(v map[string]*Parameter) *CreateExtensionInput {
+	s.Parameters = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateExtensionInput) SetTags(v map[string]*string) *CreateExtensionInput {
+	s.Tags = v
+	return s
+}
+
+type CreateExtensionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	Actions map[string][]*Action `min:"1" type:"map"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	Id *string `type:"string"`
+
+	// The extension name.
+	Name *string `min:"1" type:"string"`
+
+	// The parameters accepted by the extension. You specify parameter values when
+	// you associate the extension to an AppConfig resource by using the CreateExtensionAssociation
+	// API action. For Lambda extension actions, these parameters are included in
+	// the Lambda request object.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionOutput) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *CreateExtensionOutput) SetActions(v map[string][]*Action) *CreateExtensionOutput {
+	s.Actions = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateExtensionOutput) SetArn(v string) *CreateExtensionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateExtensionOutput) SetDescription(v string) *CreateExtensionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateExtensionOutput) SetId(v string) *CreateExtensionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateExtensionOutput) SetName(v string) *CreateExtensionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateExtensionOutput) SetParameters(v map[string]*Parameter) *CreateExtensionOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *CreateExtensionOutput) SetVersionNumber(v int64) *CreateExtensionOutput {
+	s.VersionNumber = &v
+	return s
+}
+
 type CreateHostedConfigurationVersionInput struct {
 	_ struct{} `type:"structure" payload:"Content"`
 
@@ -4186,11 +6231,15 @@ type CreateHostedConfigurationVersionInput struct {
 
 	// The content of the configuration or the configuration data.
 	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateHostedConfigurationVersionInput's
+	// String and GoString methods.
+	//
 	// Content is a required field
 	Content []byte `type:"blob" required:"true" sensitive:"true"`
 
 	// A standard MIME type describing the format of the configuration content.
-	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	// For more information, see Content-Type (https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
 	//
 	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string" required:"true"`
@@ -4201,16 +6250,30 @@ type CreateHostedConfigurationVersionInput struct {
 	// An optional locking token used to prevent race conditions from overwriting
 	// configuration updates when creating a new version. To ensure your data is
 	// not overwritten when creating multiple hosted configuration versions in rapid
-	// succession, specify the version of the latest hosted configuration version.
+	// succession, specify the version number of the latest hosted configuration
+	// version.
 	LatestVersionNumber *int64 `location:"header" locationName:"Latest-Version-Number" type:"integer"`
+
+	// An optional, user-defined label for the AppConfig hosted configuration version.
+	// This value must contain at least one non-numeric character. For example,
+	// "v2.2.0".
+	VersionLabel *string `location:"header" locationName:"VersionLabel" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHostedConfigurationVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHostedConfigurationVersionInput) GoString() string {
 	return s.String()
 }
@@ -4238,6 +6301,9 @@ func (s *CreateHostedConfigurationVersionInput) Validate() error {
 	}
 	if s.ContentType != nil && len(*s.ContentType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ContentType", 1))
+	}
+	if s.VersionLabel != nil && len(*s.VersionLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionLabel", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4282,6 +6348,12 @@ func (s *CreateHostedConfigurationVersionInput) SetLatestVersionNumber(v int64) 
 	return s
 }
 
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *CreateHostedConfigurationVersionInput) SetVersionLabel(v string) *CreateHostedConfigurationVersionInput {
+	s.VersionLabel = &v
+	return s
+}
+
 type CreateHostedConfigurationVersionOutput struct {
 	_ struct{} `type:"structure" payload:"Content"`
 
@@ -4292,25 +6364,45 @@ type CreateHostedConfigurationVersionOutput struct {
 	ConfigurationProfileId *string `location:"header" locationName:"Configuration-Profile-Id" type:"string"`
 
 	// The content of the configuration or the configuration data.
+	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateHostedConfigurationVersionOutput's
+	// String and GoString methods.
 	Content []byte `type:"blob" sensitive:"true"`
 
 	// A standard MIME type describing the format of the configuration content.
-	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	// For more information, see Content-Type (https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
 	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string"`
 
 	// A description of the configuration.
 	Description *string `location:"header" locationName:"Description" type:"string"`
 
+	// The Amazon Resource Name of the Key Management Service key that was used
+	// to encrypt this specific version of the configuration data in the AppConfig
+	// hosted configuration store.
+	KmsKeyArn *string `location:"header" locationName:"KmsKeyArn" min:"20" type:"string"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `location:"header" locationName:"VersionLabel" min:"1" type:"string"`
+
 	// The configuration version.
 	VersionNumber *int64 `location:"header" locationName:"Version-Number" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHostedConfigurationVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHostedConfigurationVersionOutput) GoString() string {
 	return s.String()
 }
@@ -4345,6 +6437,18 @@ func (s *CreateHostedConfigurationVersionOutput) SetDescription(v string) *Creat
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetKmsKeyArn(v string) *CreateHostedConfigurationVersionOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetVersionLabel(v string) *CreateHostedConfigurationVersionOutput {
+	s.VersionLabel = &v
+	return s
+}
+
 // SetVersionNumber sets the VersionNumber field's value.
 func (s *CreateHostedConfigurationVersionOutput) SetVersionNumber(v int64) *CreateHostedConfigurationVersionOutput {
 	s.VersionNumber = &v
@@ -4352,7 +6456,7 @@ func (s *CreateHostedConfigurationVersionOutput) SetVersionNumber(v int64) *Crea
 }
 
 type DeleteApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application to delete.
 	//
@@ -4360,12 +6464,20 @@ type DeleteApplicationInput struct {
 	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationInput) GoString() string {
 	return s.String()
 }
@@ -4396,18 +6508,26 @@ type DeleteApplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteConfigurationProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID that includes the configuration profile you want to delete.
 	//
@@ -4420,12 +6540,20 @@ type DeleteConfigurationProfileInput struct {
 	ConfigurationProfileId *string `location:"uri" locationName:"ConfigurationProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationProfileInput) GoString() string {
 	return s.String()
 }
@@ -4468,18 +6596,26 @@ type DeleteConfigurationProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationProfileOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteDeploymentStrategyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the deployment strategy you want to delete.
 	//
@@ -4487,12 +6623,20 @@ type DeleteDeploymentStrategyInput struct {
 	DeploymentStrategyId *string `location:"uri" locationName:"DeploymentStrategyId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeploymentStrategyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeploymentStrategyInput) GoString() string {
 	return s.String()
 }
@@ -4523,36 +6667,52 @@ type DeleteDeploymentStrategyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeploymentStrategyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeploymentStrategyOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The application ID that includes the environment you want to delete.
+	// The application ID that includes the environment that you want to delete.
 	//
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
 
-	// The ID of the environment you want to delete.
+	// The ID of the environment that you want to delete.
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -4595,18 +6755,179 @@ type DeleteEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentOutput) GoString() string {
 	return s.String()
 }
 
-type DeleteHostedConfigurationVersionInput struct {
+type DeleteExtensionAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the extension association to delete.
+	//
+	// ExtensionAssociationId is a required field
+	ExtensionAssociationId *string `location:"uri" locationName:"ExtensionAssociationId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteExtensionAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteExtensionAssociationInput"}
+	if s.ExtensionAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionAssociationId"))
+	}
+	if s.ExtensionAssociationId != nil && len(*s.ExtensionAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionAssociationId sets the ExtensionAssociationId field's value.
+func (s *DeleteExtensionAssociationInput) SetExtensionAssociationId(v string) *DeleteExtensionAssociationInput {
+	s.ExtensionAssociationId = &v
+	return s
+}
+
+type DeleteExtensionAssociationOutput struct {
 	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionAssociationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteExtensionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name, ID, or Amazon Resource Name (ARN) of the extension you want to
+	// delete.
+	//
+	// ExtensionIdentifier is a required field
+	ExtensionIdentifier *string `location:"uri" locationName:"ExtensionIdentifier" min:"1" type:"string" required:"true"`
+
+	// A specific version of an extension to delete. If omitted, the highest version
+	// is deleted.
+	VersionNumber *int64 `location:"querystring" locationName:"version" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteExtensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteExtensionInput"}
+	if s.ExtensionIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionIdentifier"))
+	}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *DeleteExtensionInput) SetExtensionIdentifier(v string) *DeleteExtensionInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *DeleteExtensionInput) SetVersionNumber(v int64) *DeleteExtensionInput {
+	s.VersionNumber = &v
+	return s
+}
+
+type DeleteExtensionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteHostedConfigurationVersionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -4624,12 +6945,20 @@ type DeleteHostedConfigurationVersionInput struct {
 	VersionNumber *int64 `location:"uri" locationName:"VersionNumber" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHostedConfigurationVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHostedConfigurationVersionInput) GoString() string {
 	return s.String()
 }
@@ -4681,12 +7010,20 @@ type DeleteHostedConfigurationVersionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHostedConfigurationVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHostedConfigurationVersionOutput) GoString() string {
 	return s.String()
 }
@@ -4695,33 +7032,56 @@ func (s DeleteHostedConfigurationVersionOutput) GoString() string {
 type DeploymentEvent struct {
 	_ struct{} `type:"structure"`
 
+	// The list of extensions that were invoked as part of the deployment.
+	ActionInvocations []*ActionInvocation `type:"list"`
+
 	// A description of the deployment event. Descriptions include, but are not
-	// limited to, the user account or the CloudWatch alarm ARN that initiated a
-	// rollback, the percentage of hosts that received the deployment, or in the
-	// case of an internal error, a recommendation to attempt a new deployment.
+	// limited to, the following:
+	//
+	//    * The Amazon Web Services account or the Amazon CloudWatch alarm ARN that
+	//    initiated a rollback.
+	//
+	//    * The percentage of hosts that received the deployment.
+	//
+	//    * A recommendation to attempt a new deployment (in the case of an internal
+	//    error).
 	Description *string `type:"string"`
 
 	// The type of deployment event. Deployment event types include the start, stop,
 	// or completion of a deployment; a percentage update; the start or stop of
-	// a bake period; the start or completion of a rollback.
+	// a bake period; and the start or completion of a rollback.
 	EventType *string `type:"string" enum:"DeploymentEventType"`
 
 	// The date and time the event occurred.
 	OccurredAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The entity that triggered the deployment event. Events can be triggered by
-	// a user, AWS AppConfig, an Amazon CloudWatch alarm, or an internal error.
+	// a user, AppConfig, an Amazon CloudWatch alarm, or an internal error.
 	TriggeredBy *string `type:"string" enum:"TriggeredBy"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentEvent) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentEvent) GoString() string {
 	return s.String()
+}
+
+// SetActionInvocations sets the ActionInvocations field's value.
+func (s *DeploymentEvent) SetActionInvocations(v []*ActionInvocation) *DeploymentEvent {
+	s.ActionInvocations = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -4757,8 +7117,8 @@ type DeploymentStrategy struct {
 	// The description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets that received a deployed configuration during each
@@ -4778,12 +7138,20 @@ type DeploymentStrategy struct {
 	ReplicateTo *string `type:"string" enum:"ReplicateTo"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentStrategy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentStrategy) GoString() string {
 	return s.String()
 }
@@ -4855,8 +7223,8 @@ type DeploymentSummary struct {
 	// The sequence number of the deployment.
 	DeploymentNumber *int64 `type:"integer"`
 
-	// The amount of time AppConfig monitors for alarms before considering the deployment
-	// to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitors for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -4874,14 +7242,25 @@ type DeploymentSummary struct {
 
 	// The state of the deployment.
 	State *string `type:"string" enum:"DeploymentState"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeploymentSummary) GoString() string {
 	return s.String()
 }
@@ -4952,6 +7331,12 @@ func (s *DeploymentSummary) SetState(v string) *DeploymentSummary {
 	return s
 }
 
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *DeploymentSummary) SetVersionLabel(v string) *DeploymentSummary {
+	s.VersionLabel = &v
+	return s
+}
+
 type Environment struct {
 	_ struct{} `type:"structure"`
 
@@ -4975,12 +7360,20 @@ type Environment struct {
 	State *string `type:"string" enum:"EnvironmentState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Environment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Environment) GoString() string {
 	return s.String()
 }
@@ -5021,8 +7414,131 @@ func (s *Environment) SetState(v string) *Environment {
 	return s
 }
 
-type GetApplicationInput struct {
+// Information about an association between an extension and an AppConfig resource
+// such as an application, environment, or configuration profile. Call GetExtensionAssociation
+// to get more information about an association.
+type ExtensionAssociationSummary struct {
 	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	ExtensionArn *string `min:"20" type:"string"`
+
+	// The extension association ID. This ID is used to call other ExtensionAssociation
+	// API actions such as GetExtensionAssociation or DeleteExtensionAssociation.
+	Id *string `min:"1" type:"string"`
+
+	// The ARNs of applications, configuration profiles, or environments defined
+	// in the association.
+	ResourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtensionAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtensionAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetExtensionArn sets the ExtensionArn field's value.
+func (s *ExtensionAssociationSummary) SetExtensionArn(v string) *ExtensionAssociationSummary {
+	s.ExtensionArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ExtensionAssociationSummary) SetId(v string) *ExtensionAssociationSummary {
+	s.Id = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ExtensionAssociationSummary) SetResourceArn(v string) *ExtensionAssociationSummary {
+	s.ResourceArn = &v
+	return s
+}
+
+// Information about an extension. Call GetExtension to get more information
+// about an extension.
+type ExtensionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	Id *string `type:"string"`
+
+	// The extension name.
+	Name *string `min:"1" type:"string"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtensionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtensionSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ExtensionSummary) SetArn(v string) *ExtensionSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ExtensionSummary) SetDescription(v string) *ExtensionSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ExtensionSummary) SetId(v string) *ExtensionSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ExtensionSummary) SetName(v string) *ExtensionSummary {
+	s.Name = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *ExtensionSummary) SetVersionNumber(v int64) *ExtensionSummary {
+	s.VersionNumber = &v
+	return s
+}
+
+type GetApplicationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application you want to get.
 	//
@@ -5030,12 +7546,20 @@ type GetApplicationInput struct {
 	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationInput) GoString() string {
 	return s.String()
 }
@@ -5075,12 +7599,20 @@ type GetApplicationOutput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -5104,7 +7636,7 @@ func (s *GetApplicationOutput) SetName(v string) *GetApplicationOutput {
 }
 
 type GetConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application to get. Specify either the application name or the application
 	// ID.
@@ -5114,25 +7646,29 @@ type GetConfigurationInput struct {
 
 	// The configuration version returned in the most recent GetConfiguration response.
 	//
-	// AWS AppConfig uses the value of the ClientConfigurationVersion parameter
-	// to identify the configuration version on your clients. If you don’t send
-	// ClientConfigurationVersion with each call to GetConfiguration, your clients
-	// receive the current configuration. You are charged each time your clients
-	// receive a configuration.
+	// AppConfig uses the value of the ClientConfigurationVersion parameter to identify
+	// the configuration version on your clients. If you don’t send ClientConfigurationVersion
+	// with each call to GetConfiguration, your clients receive the current configuration.
+	// You are charged each time your clients receive a configuration.
 	//
-	// To avoid excess charges, we recommend that you include the ClientConfigurationVersion
-	// value with every call to GetConfiguration. This value must be saved on your
-	// client. Subsequent calls to GetConfiguration must pass this value by using
-	// the ClientConfigurationVersion parameter.
+	// To avoid excess charges, we recommend you use the StartConfigurationSession
+	// (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/StartConfigurationSession.html)
+	// and GetLatestConfiguration (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/GetLatestConfiguration.html)
+	// APIs, which track the client configuration version on your behalf. If you
+	// choose to continue using GetConfiguration, we recommend that you include
+	// the ClientConfigurationVersion value with every call to GetConfiguration.
+	// The value to use for ClientConfigurationVersion comes from the ConfigurationVersion
+	// attribute returned by GetConfiguration when there is new or updated data,
+	// and should be saved for subsequent calls to GetConfiguration.
 	//
 	// For more information about working with configurations, see Retrieving the
-	// Configuration (https://docs.aws.amazon.com/systems-manager/latest/userguide/appconfig-retrieving-the-configuration.html)
-	// in the AWS AppConfig User Guide.
+	// Configuration (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-retrieving-the-configuration.html)
+	// in the AppConfig User Guide.
 	ClientConfigurationVersion *string `location:"querystring" locationName:"client_configuration_version" min:"1" type:"string"`
 
-	// A unique ID to identify the client for the configuration. This ID enables
-	// AppConfig to deploy the configuration in intervals, as defined in the deployment
-	// strategy.
+	// The clientId parameter in the following command is a unique, user-specified
+	// ID to identify the client for the configuration. This ID enables AppConfig
+	// to deploy the configuration in intervals, as defined in the deployment strategy.
 	//
 	// ClientId is a required field
 	ClientId *string `location:"querystring" locationName:"client_id" min:"1" type:"string" required:"true"`
@@ -5150,12 +7686,20 @@ type GetConfigurationInput struct {
 	Environment *string `location:"uri" locationName:"Environment" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -5234,6 +7778,15 @@ type GetConfigurationOutput struct {
 	ConfigurationVersion *string `location:"header" locationName:"Configuration-Version" min:"1" type:"string"`
 
 	// The content of the configuration or the configuration data.
+	//
+	// The Content attribute only contains data if the system finds new or updated
+	// configuration data. If there is no new or updated data and ClientConfigurationVersion
+	// matches the version of the current configuration, AppConfig returns a 204
+	// No Content HTTP response code and the Content value will be empty.
+	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetConfigurationOutput's
+	// String and GoString methods.
 	Content []byte `type:"blob" sensitive:"true"`
 
 	// A standard MIME type describing the format of the configuration content.
@@ -5241,12 +7794,20 @@ type GetConfigurationOutput struct {
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -5270,7 +7831,7 @@ func (s *GetConfigurationOutput) SetContentType(v string) *GetConfigurationOutpu
 }
 
 type GetConfigurationProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application that includes the configuration profile you want
 	// to get.
@@ -5278,18 +7839,26 @@ type GetConfigurationProfileInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
 
-	// The ID of the configuration profile you want to get.
+	// The ID of the configuration profile that you want to get.
 	//
 	// ConfigurationProfileId is a required field
 	ConfigurationProfileId *string `location:"uri" locationName:"ConfigurationProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationProfileInput) GoString() string {
 	return s.String()
 }
@@ -5340,6 +7909,17 @@ type GetConfigurationProfileOutput struct {
 	// The configuration profile ID.
 	Id *string `type:"string"`
 
+	// The Amazon Resource Name of the Key Management Service key to encrypt new
+	// configuration data versions in the AppConfig hosted configuration store.
+	// This attribute is only used for hosted configuration types. To encrypt data
+	// managed in other configuration stores, see the documentation for how to specify
+	// an KMS key for that particular service.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// The URI location of the configuration.
 	LocationUri *string `min:"1" type:"string"`
 
@@ -5350,16 +7930,35 @@ type GetConfigurationProfileOutput struct {
 	// specified LocationUri.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
+	Type *string `type:"string"`
+
 	// A list of methods for validating the configuration.
 	Validators []*Validator `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConfigurationProfileOutput) GoString() string {
 	return s.String()
 }
@@ -5382,6 +7981,18 @@ func (s *GetConfigurationProfileOutput) SetId(v string) *GetConfigurationProfile
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *GetConfigurationProfileOutput) SetKmsKeyArn(v string) *GetConfigurationProfileOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *GetConfigurationProfileOutput) SetKmsKeyIdentifier(v string) *GetConfigurationProfileOutput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetLocationUri sets the LocationUri field's value.
 func (s *GetConfigurationProfileOutput) SetLocationUri(v string) *GetConfigurationProfileOutput {
 	s.LocationUri = &v
@@ -5400,6 +8011,12 @@ func (s *GetConfigurationProfileOutput) SetRetrievalRoleArn(v string) *GetConfig
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *GetConfigurationProfileOutput) SetType(v string) *GetConfigurationProfileOutput {
+	s.Type = &v
+	return s
+}
+
 // SetValidators sets the Validators field's value.
 func (s *GetConfigurationProfileOutput) SetValidators(v []*Validator) *GetConfigurationProfileOutput {
 	s.Validators = v
@@ -5407,7 +8024,7 @@ func (s *GetConfigurationProfileOutput) SetValidators(v []*Validator) *GetConfig
 }
 
 type GetDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application that includes the deployment you want to get.
 	//
@@ -5425,12 +8042,20 @@ type GetDeploymentInput struct {
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentInput) GoString() string {
 	return s.String()
 }
@@ -5484,6 +8109,11 @@ type GetDeploymentOutput struct {
 	// The ID of the application that was deployed.
 	ApplicationId *string `type:"string"`
 
+	// A list of extensions that were processed as part of the deployment. The extensions
+	// that were previously associated to the configuration profile, environment,
+	// or the application when StartDeployment was called.
+	AppliedExtensions []*AppliedExtension `type:"list"`
+
 	// The time the deployment completed.
 	CompletedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -5518,8 +8148,8 @@ type GetDeploymentOutput struct {
 	// are displayed first.
 	EventLog []*DeploymentEvent `type:"list"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -5529,6 +8159,17 @@ type GetDeploymentOutput struct {
 	// The algorithm used to define how percentage grew over time.
 	GrowthType *string `type:"string" enum:"GrowthType"`
 
+	// The Amazon Resource Name of the Key Management Service key used to encrypt
+	// configuration data. You can encrypt secrets stored in Secrets Manager, Amazon
+	// Simple Storage Service (Amazon S3) objects encrypted with SSE-KMS, or secure
+	// string parameters stored in Amazon Web Services Systems Manager Parameter
+	// Store.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
 
@@ -5537,14 +8178,25 @@ type GetDeploymentOutput struct {
 
 	// The state of the deployment.
 	State *string `type:"string" enum:"DeploymentState"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentOutput) GoString() string {
 	return s.String()
 }
@@ -5552,6 +8204,12 @@ func (s GetDeploymentOutput) GoString() string {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *GetDeploymentOutput) SetApplicationId(v string) *GetDeploymentOutput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetAppliedExtensions sets the AppliedExtensions field's value.
+func (s *GetDeploymentOutput) SetAppliedExtensions(v []*AppliedExtension) *GetDeploymentOutput {
+	s.AppliedExtensions = v
 	return s
 }
 
@@ -5639,6 +8297,18 @@ func (s *GetDeploymentOutput) SetGrowthType(v string) *GetDeploymentOutput {
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *GetDeploymentOutput) SetKmsKeyArn(v string) *GetDeploymentOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *GetDeploymentOutput) SetKmsKeyIdentifier(v string) *GetDeploymentOutput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetPercentageComplete sets the PercentageComplete field's value.
 func (s *GetDeploymentOutput) SetPercentageComplete(v float64) *GetDeploymentOutput {
 	s.PercentageComplete = &v
@@ -5657,8 +8327,14 @@ func (s *GetDeploymentOutput) SetState(v string) *GetDeploymentOutput {
 	return s
 }
 
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *GetDeploymentOutput) SetVersionLabel(v string) *GetDeploymentOutput {
+	s.VersionLabel = &v
+	return s
+}
+
 type GetDeploymentStrategyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the deployment strategy to get.
 	//
@@ -5666,12 +8342,20 @@ type GetDeploymentStrategyInput struct {
 	DeploymentStrategyId *string `location:"uri" locationName:"DeploymentStrategyId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentStrategyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentStrategyInput) GoString() string {
 	return s.String()
 }
@@ -5707,8 +8391,8 @@ type GetDeploymentStrategyOutput struct {
 	// The description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets that received a deployed configuration during each
@@ -5728,12 +8412,20 @@ type GetDeploymentStrategyOutput struct {
 	ReplicateTo *string `type:"string" enum:"ReplicateTo"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentStrategyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentStrategyOutput) GoString() string {
 	return s.String()
 }
@@ -5787,25 +8479,33 @@ func (s *GetDeploymentStrategyOutput) SetReplicateTo(v string) *GetDeploymentStr
 }
 
 type GetEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application that includes the environment you want to get.
 	//
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
 
-	// The ID of the environment you wnat to get.
+	// The ID of the environment that you want to get.
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -5867,12 +8567,20 @@ type GetEnvironmentOutput struct {
 	State *string `type:"string" enum:"EnvironmentState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetEnvironmentOutput) GoString() string {
 	return s.String()
 }
@@ -5913,8 +8621,281 @@ func (s *GetEnvironmentOutput) SetState(v string) *GetEnvironmentOutput {
 	return s
 }
 
-type GetHostedConfigurationVersionInput struct {
+type GetExtensionAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The extension association ID to get.
+	//
+	// ExtensionAssociationId is a required field
+	ExtensionAssociationId *string `location:"uri" locationName:"ExtensionAssociationId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetExtensionAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetExtensionAssociationInput"}
+	if s.ExtensionAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionAssociationId"))
+	}
+	if s.ExtensionAssociationId != nil && len(*s.ExtensionAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionAssociationId sets the ExtensionAssociationId field's value.
+func (s *GetExtensionAssociationInput) SetExtensionAssociationId(v string) *GetExtensionAssociationInput {
+	s.ExtensionAssociationId = &v
+	return s
+}
+
+type GetExtensionAssociationOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// The ARN of the extension defined in the association.
+	ExtensionArn *string `min:"20" type:"string"`
+
+	// The version number for the extension defined in the association.
+	ExtensionVersionNumber *int64 `type:"integer"`
+
+	// The system-generated ID for the association.
+	Id *string `min:"1" type:"string"`
+
+	// The parameter names and values defined in the association.
+	Parameters map[string]*string `type:"map"`
+
+	// The ARNs of applications, configuration profiles, or environments defined
+	// in the association.
+	ResourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetExtensionAssociationOutput) SetArn(v string) *GetExtensionAssociationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetExtensionArn sets the ExtensionArn field's value.
+func (s *GetExtensionAssociationOutput) SetExtensionArn(v string) *GetExtensionAssociationOutput {
+	s.ExtensionArn = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *GetExtensionAssociationOutput) SetExtensionVersionNumber(v int64) *GetExtensionAssociationOutput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetExtensionAssociationOutput) SetId(v string) *GetExtensionAssociationOutput {
+	s.Id = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *GetExtensionAssociationOutput) SetParameters(v map[string]*string) *GetExtensionAssociationOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetExtensionAssociationOutput) SetResourceArn(v string) *GetExtensionAssociationOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+type GetExtensionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	//
+	// ExtensionIdentifier is a required field
+	ExtensionIdentifier *string `location:"uri" locationName:"ExtensionIdentifier" min:"1" type:"string" required:"true"`
+
+	// The extension version number. If no version number was defined, AppConfig
+	// uses the highest version.
+	VersionNumber *int64 `location:"querystring" locationName:"version_number" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetExtensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetExtensionInput"}
+	if s.ExtensionIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionIdentifier"))
+	}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *GetExtensionInput) SetExtensionIdentifier(v string) *GetExtensionInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *GetExtensionInput) SetVersionNumber(v int64) *GetExtensionInput {
+	s.VersionNumber = &v
+	return s
+}
+
+type GetExtensionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	Actions map[string][]*Action `min:"1" type:"map"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	Id *string `type:"string"`
+
+	// The extension name.
+	Name *string `min:"1" type:"string"`
+
+	// The parameters accepted by the extension. You specify parameter values when
+	// you associate the extension to an AppConfig resource by using the CreateExtensionAssociation
+	// API action. For Lambda extension actions, these parameters are included in
+	// the Lambda request object.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionOutput) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *GetExtensionOutput) SetActions(v map[string][]*Action) *GetExtensionOutput {
+	s.Actions = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetExtensionOutput) SetArn(v string) *GetExtensionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetExtensionOutput) SetDescription(v string) *GetExtensionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetExtensionOutput) SetId(v string) *GetExtensionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetExtensionOutput) SetName(v string) *GetExtensionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *GetExtensionOutput) SetParameters(v map[string]*Parameter) *GetExtensionOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *GetExtensionOutput) SetVersionNumber(v int64) *GetExtensionOutput {
+	s.VersionNumber = &v
+	return s
+}
+
+type GetHostedConfigurationVersionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -5932,12 +8913,20 @@ type GetHostedConfigurationVersionInput struct {
 	VersionNumber *int64 `location:"uri" locationName:"VersionNumber" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetHostedConfigurationVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetHostedConfigurationVersionInput) GoString() string {
 	return s.String()
 }
@@ -5995,25 +8984,45 @@ type GetHostedConfigurationVersionOutput struct {
 	ConfigurationProfileId *string `location:"header" locationName:"Configuration-Profile-Id" type:"string"`
 
 	// The content of the configuration or the configuration data.
+	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetHostedConfigurationVersionOutput's
+	// String and GoString methods.
 	Content []byte `type:"blob" sensitive:"true"`
 
 	// A standard MIME type describing the format of the configuration content.
-	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	// For more information, see Content-Type (https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
 	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string"`
 
 	// A description of the configuration.
 	Description *string `location:"header" locationName:"Description" type:"string"`
 
+	// The Amazon Resource Name of the Key Management Service key that was used
+	// to encrypt this specific version of the configuration data in the AppConfig
+	// hosted configuration store.
+	KmsKeyArn *string `location:"header" locationName:"KmsKeyArn" min:"20" type:"string"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `location:"header" locationName:"VersionLabel" min:"1" type:"string"`
+
 	// The configuration version.
 	VersionNumber *int64 `location:"header" locationName:"Version-Number" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetHostedConfigurationVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetHostedConfigurationVersionOutput) GoString() string {
 	return s.String()
 }
@@ -6048,6 +9057,18 @@ func (s *GetHostedConfigurationVersionOutput) SetDescription(v string) *GetHoste
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *GetHostedConfigurationVersionOutput) SetKmsKeyArn(v string) *GetHostedConfigurationVersionOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *GetHostedConfigurationVersionOutput) SetVersionLabel(v string) *GetHostedConfigurationVersionOutput {
+	s.VersionLabel = &v
+	return s
+}
+
 // SetVersionNumber sets the VersionNumber field's value.
 func (s *GetHostedConfigurationVersionOutput) SetVersionNumber(v int64) *GetHostedConfigurationVersionOutput {
 	s.VersionNumber = &v
@@ -6065,22 +9086,38 @@ type HostedConfigurationVersionSummary struct {
 	ConfigurationProfileId *string `type:"string"`
 
 	// A standard MIME type describing the format of the configuration content.
-	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	// For more information, see Content-Type (https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
 	ContentType *string `min:"1" type:"string"`
 
 	// A description of the configuration.
 	Description *string `type:"string"`
 
+	// The Amazon Resource Name of the Key Management Service key that was used
+	// to encrypt this specific version of the configuration data in the AppConfig
+	// hosted configuration store.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
+
 	// The configuration version.
 	VersionNumber *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HostedConfigurationVersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HostedConfigurationVersionSummary) GoString() string {
 	return s.String()
 }
@@ -6109,6 +9146,18 @@ func (s *HostedConfigurationVersionSummary) SetDescription(v string) *HostedConf
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *HostedConfigurationVersionSummary) SetKmsKeyArn(v string) *HostedConfigurationVersionSummary {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *HostedConfigurationVersionSummary) SetVersionLabel(v string) *HostedConfigurationVersionSummary {
+	s.VersionLabel = &v
+	return s
+}
+
 // SetVersionNumber sets the VersionNumber field's value.
 func (s *HostedConfigurationVersionSummary) SetVersionNumber(v int64) *HostedConfigurationVersionSummary {
 	s.VersionNumber = &v
@@ -6123,12 +9172,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -6171,24 +9228,108 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-type ListApplicationsInput struct {
+// Detailed information about the bad request exception error when creating
+// a hosted configuration version.
+type InvalidConfigurationDetail struct {
 	_ struct{} `type:"structure"`
+
+	// The invalid or out-of-range validation constraint in your JSON schema that
+	// failed validation.
+	Constraint *string `type:"string"`
+
+	// Location of the validation constraint in the configuration JSON schema that
+	// failed validation.
+	Location *string `type:"string"`
+
+	// The reason for an invalid configuration error.
+	Reason *string `type:"string"`
+
+	// The type of error for an invalid configuration.
+	Type *string `type:"string"`
+
+	// Details about an error with Lambda when a synchronous extension experiences
+	// an error during an invocation.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetConstraint sets the Constraint field's value.
+func (s *InvalidConfigurationDetail) SetConstraint(v string) *InvalidConfigurationDetail {
+	s.Constraint = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *InvalidConfigurationDetail) SetLocation(v string) *InvalidConfigurationDetail {
+	s.Location = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *InvalidConfigurationDetail) SetReason(v string) *InvalidConfigurationDetail {
+	s.Reason = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *InvalidConfigurationDetail) SetType(v string) *InvalidConfigurationDetail {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *InvalidConfigurationDetail) SetValue(v string) *InvalidConfigurationDetail {
+	s.Value = &v
+	return s
+}
+
+type ListApplicationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to return for this call. The call also returns
 	// a token that you can specify in a subsequent call to get the next set of
 	// results.
 	MaxResults *int64 `location:"querystring" locationName:"max_results" min:"1" type:"integer"`
 
-	// A token to start the list. Use this token to get the next set of results.
+	// A token to start the list. Next token is a pagination token generated by
+	// AppConfig to describe what page the previous List call ended on. For the
+	// first List request, the nextToken should not be set. On subsequent calls,
+	// the nextToken parameter should be set to the previous responses nextToken
+	// value. Use this token to get the next set of results.
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsInput) GoString() string {
 	return s.String()
 }
@@ -6232,12 +9373,20 @@ type ListApplicationsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApplicationsOutput) GoString() string {
 	return s.String()
 }
@@ -6255,7 +9404,7 @@ func (s *ListApplicationsOutput) SetNextToken(v string) *ListApplicationsOutput 
 }
 
 type ListConfigurationProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -6269,14 +9418,26 @@ type ListConfigurationProfilesInput struct {
 
 	// A token to start the list. Use this token to get the next set of results.
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
+
+	// A filter based on the type of configurations that the configuration profile
+	// contains. A configuration can be a feature flag or a freeform configuration.
+	Type *string `location:"querystring" locationName:"type" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationProfilesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationProfilesInput) GoString() string {
 	return s.String()
 }
@@ -6321,6 +9482,12 @@ func (s *ListConfigurationProfilesInput) SetNextToken(v string) *ListConfigurati
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *ListConfigurationProfilesInput) SetType(v string) *ListConfigurationProfilesInput {
+	s.Type = &v
+	return s
+}
+
 type ListConfigurationProfilesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6332,12 +9499,20 @@ type ListConfigurationProfilesOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationProfilesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationProfilesOutput) GoString() string {
 	return s.String()
 }
@@ -6355,7 +9530,7 @@ func (s *ListConfigurationProfilesOutput) SetNextToken(v string) *ListConfigurat
 }
 
 type ListDeploymentStrategiesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to return for this call. The call also returns
 	// a token that you can specify in a subsequent call to get the next set of
@@ -6366,12 +9541,20 @@ type ListDeploymentStrategiesInput struct {
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentStrategiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentStrategiesInput) GoString() string {
 	return s.String()
 }
@@ -6415,12 +9598,20 @@ type ListDeploymentStrategiesOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentStrategiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentStrategiesOutput) GoString() string {
 	return s.String()
 }
@@ -6438,7 +9629,7 @@ func (s *ListDeploymentStrategiesOutput) SetNextToken(v string) *ListDeploymentS
 }
 
 type ListDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -6450,21 +9641,32 @@ type ListDeploymentsInput struct {
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
 
-	// The maximum number of items to return for this call. The call also returns
-	// a token that you can specify in a subsequent call to get the next set of
+	// The maximum number of items that may be returned for this call. If there
+	// are items that have not yet been returned, the response will include a non-null
+	// NextToken that you can provide in a subsequent call to get the next set of
 	// results.
 	MaxResults *int64 `location:"querystring" locationName:"max_results" min:"1" type:"integer"`
 
-	// A token to start the list. Use this token to get the next set of results.
+	// The token returned by a prior call to this operation indicating the next
+	// set of results to be returned. If not specified, the operation will return
+	// the first set of results.
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentsInput) GoString() string {
 	return s.String()
 }
@@ -6532,12 +9734,20 @@ type ListDeploymentsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentsOutput) GoString() string {
 	return s.String()
 }
@@ -6555,7 +9765,7 @@ func (s *ListDeploymentsOutput) SetNextToken(v string) *ListDeploymentsOutput {
 }
 
 type ListEnvironmentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -6571,12 +9781,20 @@ type ListEnvironmentsInput struct {
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEnvironmentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEnvironmentsInput) GoString() string {
 	return s.String()
 }
@@ -6632,12 +9850,20 @@ type ListEnvironmentsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEnvironmentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEnvironmentsOutput) GoString() string {
 	return s.String()
 }
@@ -6654,8 +9880,254 @@ func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput 
 	return s
 }
 
-type ListHostedConfigurationVersionsInput struct {
+type ListExtensionAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	ExtensionIdentifier *string `location:"querystring" locationName:"extension_identifier" min:"1" type:"string"`
+
+	// The version number for the extension defined in the association.
+	ExtensionVersionNumber *int64 `location:"querystring" locationName:"extension_version_number" type:"integer"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `location:"querystring" locationName:"max_results" min:"1" type:"integer"`
+
+	// A token to start the list. Use this token to get the next set of results
+	// or pass null to get the first set of results.
+	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
+
+	// The ARN of an application, configuration profile, or environment.
+	ResourceIdentifier *string `location:"querystring" locationName:"resource_identifier" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExtensionAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExtensionAssociationsInput"}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *ListExtensionAssociationsInput) SetExtensionIdentifier(v string) *ListExtensionAssociationsInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *ListExtensionAssociationsInput) SetExtensionVersionNumber(v int64) *ListExtensionAssociationsInput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExtensionAssociationsInput) SetMaxResults(v int64) *ListExtensionAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensionAssociationsInput) SetNextToken(v string) *ListExtensionAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ListExtensionAssociationsInput) SetResourceIdentifier(v string) *ListExtensionAssociationsInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+type ListExtensionAssociationsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The list of extension associations. Each item represents an extension association
+	// to an application, environment, or configuration profile.
+	Items []*ExtensionAssociationSummary `type:"list"`
+
+	// The token for the next set of items to return. Use this token to get the
+	// next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListExtensionAssociationsOutput) SetItems(v []*ExtensionAssociationSummary) *ListExtensionAssociationsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensionAssociationsOutput) SetNextToken(v string) *ListExtensionAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListExtensionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `location:"querystring" locationName:"max_results" min:"1" type:"integer"`
+
+	// The extension name.
+	Name *string `location:"querystring" locationName:"name" min:"1" type:"string"`
+
+	// A token to start the list. Use this token to get the next set of results.
+	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExtensionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExtensionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExtensionsInput) SetMaxResults(v int64) *ListExtensionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ListExtensionsInput) SetName(v string) *ListExtensionsInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensionsInput) SetNextToken(v string) *ListExtensionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListExtensionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of available extensions. The list includes Amazon Web Services authored
+	// and user-created extensions.
+	Items []*ExtensionSummary `type:"list"`
+
+	// The token for the next set of items to return. Use this token to get the
+	// next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListExtensionsOutput) SetItems(v []*ExtensionSummary) *ListExtensionsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensionsOutput) SetNextToken(v string) *ListExtensionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListHostedConfigurationVersionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -6674,14 +10146,28 @@ type ListHostedConfigurationVersionsInput struct {
 
 	// A token to start the list. Use this token to get the next set of results.
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
+
+	// An optional filter that can be used to specify the version label of an AppConfig
+	// hosted configuration version. This parameter supports filtering by prefix
+	// using a wildcard, for example "v2*". If you don't specify an asterisk at
+	// the end of the value, only an exact match is returned.
+	VersionLabel *string `location:"querystring" locationName:"version_label" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHostedConfigurationVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHostedConfigurationVersionsInput) GoString() string {
 	return s.String()
 }
@@ -6706,6 +10192,9 @@ func (s *ListHostedConfigurationVersionsInput) Validate() error {
 	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.VersionLabel != nil && len(*s.VersionLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionLabel", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6738,6 +10227,12 @@ func (s *ListHostedConfigurationVersionsInput) SetNextToken(v string) *ListHoste
 	return s
 }
 
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *ListHostedConfigurationVersionsInput) SetVersionLabel(v string) *ListHostedConfigurationVersionsInput {
+	s.VersionLabel = &v
+	return s
+}
+
 type ListHostedConfigurationVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6749,12 +10244,20 @@ type ListHostedConfigurationVersionsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHostedConfigurationVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHostedConfigurationVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -6772,7 +10275,7 @@ func (s *ListHostedConfigurationVersionsOutput) SetNextToken(v string) *ListHost
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The resource ARN.
 	//
@@ -6780,12 +10283,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -6821,12 +10332,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6841,19 +10360,30 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type Monitor struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of the Amazon CloudWatch alarm.
-	AlarmArn *string `min:"20" type:"string"`
+	// Amazon Resource Name (ARN) of the Amazon CloudWatch alarm.
+	//
+	// AlarmArn is a required field
+	AlarmArn *string `min:"1" type:"string" required:"true"`
 
-	// ARN of an IAM role for AppConfig to monitor AlarmArn.
+	// ARN of an Identity and Access Management (IAM) role for AppConfig to monitor
+	// AlarmArn.
 	AlarmRoleArn *string `min:"20" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Monitor) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Monitor) GoString() string {
 	return s.String()
 }
@@ -6861,8 +10391,11 @@ func (s Monitor) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Monitor) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Monitor"}
-	if s.AlarmArn != nil && len(*s.AlarmArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("AlarmArn", 20))
+	if s.AlarmArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AlarmArn"))
+	}
+	if s.AlarmArn != nil && len(*s.AlarmArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AlarmArn", 1))
 	}
 	if s.AlarmRoleArn != nil && len(*s.AlarmRoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("AlarmRoleArn", 20))
@@ -6886,6 +10419,51 @@ func (s *Monitor) SetAlarmRoleArn(v string) *Monitor {
 	return s
 }
 
+// A value such as an Amazon Resource Name (ARN) or an Amazon Simple Notification
+// Service topic entered in an extension when invoked. Parameter values are
+// specified in an extension association. For more information about extensions,
+// see Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+type Parameter struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the parameter.
+	Description *string `type:"string"`
+
+	// A parameter value must be specified in the extension association.
+	Required *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Parameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Parameter) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Parameter) SetDescription(v string) *Parameter {
+	s.Description = &v
+	return s
+}
+
+// SetRequired sets the Required field's value.
+func (s *Parameter) SetRequired(v bool) *Parameter {
+	s.Required = &v
+	return s
+}
+
 // The configuration size is too large.
 type PayloadTooLargeException struct {
 	_            struct{}                  `type:"structure"`
@@ -6900,12 +10478,20 @@ type PayloadTooLargeException struct {
 	Size *float64 `type:"float"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PayloadTooLargeException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PayloadTooLargeException) GoString() string {
 	return s.String()
 }
@@ -6958,12 +10544,20 @@ type ResourceNotFoundException struct {
 	ResourceName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -7006,8 +10600,21 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The number of hosted configuration versions exceeds the limit for the AppConfig
-// configuration store. Delete one or more versions and try again.
+// The number of one more AppConfig resources exceeds the maximum allowed. Verify
+// that your environment doesn't exceed the following service quotas:
+//
+// Applications: 100 max
+//
+// Deployment strategies: 20 max
+//
+// Configuration profiles: 100 max per application
+//
+// Environments: 20 max per application
+//
+// To resolve this issue, you can delete one or more resources and try again.
+// Or, you can request a quota increase. For more information about quotas and
+// to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+// in the Amazon Web Services General Reference.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7015,12 +10622,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -7076,7 +10691,9 @@ type StartDeploymentInput struct {
 	// ConfigurationProfileId is a required field
 	ConfigurationProfileId *string `type:"string" required:"true"`
 
-	// The configuration version to deploy.
+	// The configuration version to deploy. If deploying an AppConfig hosted configuration
+	// version, you can specify either the version number or version label. For
+	// all other configurations, you must specify the version number.
 	//
 	// ConfigurationVersion is a required field
 	ConfigurationVersion *string `min:"1" type:"string" required:"true"`
@@ -7094,18 +10711,30 @@ type StartDeploymentInput struct {
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
 
+	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
+	// ID to encrypt the configuration data using a customer managed key.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// Metadata to assign to the deployment. Tags help organize and categorize your
 	// AppConfig resources. Each tag consists of a key and an optional value, both
 	// of which you define.
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentInput) GoString() string {
 	return s.String()
 }
@@ -7136,6 +10765,9 @@ func (s *StartDeploymentInput) Validate() error {
 	}
 	if s.EnvironmentId != nil && len(*s.EnvironmentId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EnvironmentId", 1))
+	}
+	if s.KmsKeyIdentifier != nil && len(*s.KmsKeyIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyIdentifier", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7180,6 +10812,12 @@ func (s *StartDeploymentInput) SetEnvironmentId(v string) *StartDeploymentInput 
 	return s
 }
 
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *StartDeploymentInput) SetKmsKeyIdentifier(v string) *StartDeploymentInput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *StartDeploymentInput) SetTags(v map[string]*string) *StartDeploymentInput {
 	s.Tags = v
@@ -7191,6 +10829,11 @@ type StartDeploymentOutput struct {
 
 	// The ID of the application that was deployed.
 	ApplicationId *string `type:"string"`
+
+	// A list of extensions that were processed as part of the deployment. The extensions
+	// that were previously associated to the configuration profile, environment,
+	// or the application when StartDeployment was called.
+	AppliedExtensions []*AppliedExtension `type:"list"`
 
 	// The time the deployment completed.
 	CompletedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -7226,8 +10869,8 @@ type StartDeploymentOutput struct {
 	// are displayed first.
 	EventLog []*DeploymentEvent `type:"list"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -7237,6 +10880,17 @@ type StartDeploymentOutput struct {
 	// The algorithm used to define how percentage grew over time.
 	GrowthType *string `type:"string" enum:"GrowthType"`
 
+	// The Amazon Resource Name of the Key Management Service key used to encrypt
+	// configuration data. You can encrypt secrets stored in Secrets Manager, Amazon
+	// Simple Storage Service (Amazon S3) objects encrypted with SSE-KMS, or secure
+	// string parameters stored in Amazon Web Services Systems Manager Parameter
+	// Store.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
 
@@ -7245,14 +10899,25 @@ type StartDeploymentOutput struct {
 
 	// The state of the deployment.
 	State *string `type:"string" enum:"DeploymentState"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentOutput) GoString() string {
 	return s.String()
 }
@@ -7260,6 +10925,12 @@ func (s StartDeploymentOutput) GoString() string {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *StartDeploymentOutput) SetApplicationId(v string) *StartDeploymentOutput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetAppliedExtensions sets the AppliedExtensions field's value.
+func (s *StartDeploymentOutput) SetAppliedExtensions(v []*AppliedExtension) *StartDeploymentOutput {
+	s.AppliedExtensions = v
 	return s
 }
 
@@ -7347,6 +11018,18 @@ func (s *StartDeploymentOutput) SetGrowthType(v string) *StartDeploymentOutput {
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *StartDeploymentOutput) SetKmsKeyArn(v string) *StartDeploymentOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *StartDeploymentOutput) SetKmsKeyIdentifier(v string) *StartDeploymentOutput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetPercentageComplete sets the PercentageComplete field's value.
 func (s *StartDeploymentOutput) SetPercentageComplete(v float64) *StartDeploymentOutput {
 	s.PercentageComplete = &v
@@ -7365,8 +11048,14 @@ func (s *StartDeploymentOutput) SetState(v string) *StartDeploymentOutput {
 	return s
 }
 
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *StartDeploymentOutput) SetVersionLabel(v string) *StartDeploymentOutput {
+	s.VersionLabel = &v
+	return s
+}
+
 type StopDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -7384,12 +11073,20 @@ type StopDeploymentInput struct {
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopDeploymentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopDeploymentInput) GoString() string {
 	return s.String()
 }
@@ -7443,6 +11140,11 @@ type StopDeploymentOutput struct {
 	// The ID of the application that was deployed.
 	ApplicationId *string `type:"string"`
 
+	// A list of extensions that were processed as part of the deployment. The extensions
+	// that were previously associated to the configuration profile, environment,
+	// or the application when StartDeployment was called.
+	AppliedExtensions []*AppliedExtension `type:"list"`
+
 	// The time the deployment completed.
 	CompletedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -7477,8 +11179,8 @@ type StopDeploymentOutput struct {
 	// are displayed first.
 	EventLog []*DeploymentEvent `type:"list"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -7488,6 +11190,17 @@ type StopDeploymentOutput struct {
 	// The algorithm used to define how percentage grew over time.
 	GrowthType *string `type:"string" enum:"GrowthType"`
 
+	// The Amazon Resource Name of the Key Management Service key used to encrypt
+	// configuration data. You can encrypt secrets stored in Secrets Manager, Amazon
+	// Simple Storage Service (Amazon S3) objects encrypted with SSE-KMS, or secure
+	// string parameters stored in Amazon Web Services Systems Manager Parameter
+	// Store.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
 
@@ -7496,14 +11209,25 @@ type StopDeploymentOutput struct {
 
 	// The state of the deployment.
 	State *string `type:"string" enum:"DeploymentState"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopDeploymentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopDeploymentOutput) GoString() string {
 	return s.String()
 }
@@ -7511,6 +11235,12 @@ func (s StopDeploymentOutput) GoString() string {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *StopDeploymentOutput) SetApplicationId(v string) *StopDeploymentOutput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetAppliedExtensions sets the AppliedExtensions field's value.
+func (s *StopDeploymentOutput) SetAppliedExtensions(v []*AppliedExtension) *StopDeploymentOutput {
+	s.AppliedExtensions = v
 	return s
 }
 
@@ -7598,6 +11328,18 @@ func (s *StopDeploymentOutput) SetGrowthType(v string) *StopDeploymentOutput {
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *StopDeploymentOutput) SetKmsKeyArn(v string) *StopDeploymentOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *StopDeploymentOutput) SetKmsKeyIdentifier(v string) *StopDeploymentOutput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetPercentageComplete sets the PercentageComplete field's value.
 func (s *StopDeploymentOutput) SetPercentageComplete(v float64) *StopDeploymentOutput {
 	s.PercentageComplete = &v
@@ -7613,6 +11355,12 @@ func (s *StopDeploymentOutput) SetStartedAt(v time.Time) *StopDeploymentOutput {
 // SetState sets the State field's value.
 func (s *StopDeploymentOutput) SetState(v string) *StopDeploymentOutput {
 	s.State = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *StopDeploymentOutput) SetVersionLabel(v string) *StopDeploymentOutput {
+	s.VersionLabel = &v
 	return s
 }
 
@@ -7632,12 +11380,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -7677,18 +11433,26 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource for which to remove tags.
 	//
@@ -7701,12 +11465,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -7746,12 +11518,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -7771,12 +11551,20 @@ type UpdateApplicationInput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationInput) GoString() string {
 	return s.String()
 }
@@ -7831,12 +11619,20 @@ type UpdateApplicationOutput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -7875,6 +11671,14 @@ type UpdateConfigurationProfileInput struct {
 	// A description of the configuration profile.
 	Description *string `type:"string"`
 
+	// The identifier for a Key Management Service key to encrypt new configuration
+	// data versions in the AppConfig hosted configuration store. This attribute
+	// is only used for hosted configuration types. The identifier can be an KMS
+	// key ID, alias, or the Amazon Resource Name (ARN) of the key ID or alias.
+	// To encrypt data managed in other configuration stores, see the documentation
+	// for how to specify an KMS key for that particular service.
+	KmsKeyIdentifier *string `type:"string"`
+
 	// The name of the configuration profile.
 	Name *string `min:"1" type:"string"`
 
@@ -7886,12 +11690,20 @@ type UpdateConfigurationProfileInput struct {
 	Validators []*Validator `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationProfileInput) GoString() string {
 	return s.String()
 }
@@ -7952,6 +11764,12 @@ func (s *UpdateConfigurationProfileInput) SetDescription(v string) *UpdateConfig
 	return s
 }
 
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *UpdateConfigurationProfileInput) SetKmsKeyIdentifier(v string) *UpdateConfigurationProfileInput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateConfigurationProfileInput) SetName(v string) *UpdateConfigurationProfileInput {
 	s.Name = &v
@@ -7982,6 +11800,17 @@ type UpdateConfigurationProfileOutput struct {
 	// The configuration profile ID.
 	Id *string `type:"string"`
 
+	// The Amazon Resource Name of the Key Management Service key to encrypt new
+	// configuration data versions in the AppConfig hosted configuration store.
+	// This attribute is only used for hosted configuration types. To encrypt data
+	// managed in other configuration stores, see the documentation for how to specify
+	// an KMS key for that particular service.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// The URI location of the configuration.
 	LocationUri *string `min:"1" type:"string"`
 
@@ -7992,16 +11821,35 @@ type UpdateConfigurationProfileOutput struct {
 	// specified LocationUri.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
+	Type *string `type:"string"`
+
 	// A list of methods for validating the configuration.
 	Validators []*Validator `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationProfileOutput) GoString() string {
 	return s.String()
 }
@@ -8024,6 +11872,18 @@ func (s *UpdateConfigurationProfileOutput) SetId(v string) *UpdateConfigurationP
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *UpdateConfigurationProfileOutput) SetKmsKeyArn(v string) *UpdateConfigurationProfileOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *UpdateConfigurationProfileOutput) SetKmsKeyIdentifier(v string) *UpdateConfigurationProfileOutput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetLocationUri sets the LocationUri field's value.
 func (s *UpdateConfigurationProfileOutput) SetLocationUri(v string) *UpdateConfigurationProfileOutput {
 	s.LocationUri = &v
@@ -8039,6 +11899,12 @@ func (s *UpdateConfigurationProfileOutput) SetName(v string) *UpdateConfiguratio
 // SetRetrievalRoleArn sets the RetrievalRoleArn field's value.
 func (s *UpdateConfigurationProfileOutput) SetRetrievalRoleArn(v string) *UpdateConfigurationProfileOutput {
 	s.RetrievalRoleArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UpdateConfigurationProfileOutput) SetType(v string) *UpdateConfigurationProfileOutput {
+	s.Type = &v
 	return s
 }
 
@@ -8062,16 +11928,16 @@ type UpdateDeploymentStrategyInput struct {
 	// A description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitors for alarms before considering the deployment
-	// to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitors for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
 	// interval.
 	GrowthFactor *float64 `min:"1" type:"float"`
 
-	// The algorithm used to define how percentage grows over time. AWS AppConfig
-	// supports the following growth types:
+	// The algorithm used to define how percentage grows over time. AppConfig supports
+	// the following growth types:
 	//
 	// Linear: For this type, AppConfig processes the deployment by increments of
 	// the growth factor evenly distributed over the deployment time. For example,
@@ -8098,12 +11964,20 @@ type UpdateDeploymentStrategyInput struct {
 	GrowthType *string `type:"string" enum:"GrowthType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeploymentStrategyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeploymentStrategyInput) GoString() string {
 	return s.String()
 }
@@ -8172,8 +12046,8 @@ type UpdateDeploymentStrategyOutput struct {
 	// The description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets that received a deployed configuration during each
@@ -8193,12 +12067,20 @@ type UpdateDeploymentStrategyOutput struct {
 	ReplicateTo *string `type:"string" enum:"ReplicateTo"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeploymentStrategyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeploymentStrategyOutput) GoString() string {
 	return s.String()
 }
@@ -8274,12 +12156,20 @@ type UpdateEnvironmentInput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -8372,12 +12262,20 @@ type UpdateEnvironmentOutput struct {
 	State *string `type:"string" enum:"EnvironmentState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentOutput) GoString() string {
 	return s.String()
 }
@@ -8418,8 +12316,322 @@ func (s *UpdateEnvironmentOutput) SetState(v string) *UpdateEnvironmentOutput {
 	return s
 }
 
-type ValidateConfigurationInput struct {
+type UpdateExtensionAssociationInput struct {
 	_ struct{} `type:"structure"`
+
+	// The system-generated ID for the association.
+	//
+	// ExtensionAssociationId is a required field
+	ExtensionAssociationId *string `location:"uri" locationName:"ExtensionAssociationId" type:"string" required:"true"`
+
+	// The parameter names and values defined in the extension.
+	Parameters map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateExtensionAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateExtensionAssociationInput"}
+	if s.ExtensionAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionAssociationId"))
+	}
+	if s.ExtensionAssociationId != nil && len(*s.ExtensionAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionAssociationId sets the ExtensionAssociationId field's value.
+func (s *UpdateExtensionAssociationInput) SetExtensionAssociationId(v string) *UpdateExtensionAssociationInput {
+	s.ExtensionAssociationId = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExtensionAssociationInput) SetParameters(v map[string]*string) *UpdateExtensionAssociationInput {
+	s.Parameters = v
+	return s
+}
+
+type UpdateExtensionAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// The ARN of the extension defined in the association.
+	ExtensionArn *string `min:"20" type:"string"`
+
+	// The version number for the extension defined in the association.
+	ExtensionVersionNumber *int64 `type:"integer"`
+
+	// The system-generated ID for the association.
+	Id *string `min:"1" type:"string"`
+
+	// The parameter names and values defined in the association.
+	Parameters map[string]*string `type:"map"`
+
+	// The ARNs of applications, configuration profiles, or environments defined
+	// in the association.
+	ResourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateExtensionAssociationOutput) SetArn(v string) *UpdateExtensionAssociationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetExtensionArn sets the ExtensionArn field's value.
+func (s *UpdateExtensionAssociationOutput) SetExtensionArn(v string) *UpdateExtensionAssociationOutput {
+	s.ExtensionArn = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *UpdateExtensionAssociationOutput) SetExtensionVersionNumber(v int64) *UpdateExtensionAssociationOutput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateExtensionAssociationOutput) SetId(v string) *UpdateExtensionAssociationOutput {
+	s.Id = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExtensionAssociationOutput) SetParameters(v map[string]*string) *UpdateExtensionAssociationOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UpdateExtensionAssociationOutput) SetResourceArn(v string) *UpdateExtensionAssociationOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+type UpdateExtensionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	Actions map[string][]*Action `min:"1" type:"map"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	//
+	// ExtensionIdentifier is a required field
+	ExtensionIdentifier *string `location:"uri" locationName:"ExtensionIdentifier" min:"1" type:"string" required:"true"`
+
+	// One or more parameters for the actions called by the extension.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateExtensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateExtensionInput"}
+	if s.Actions != nil && len(s.Actions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Actions", 1))
+	}
+	if s.ExtensionIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionIdentifier"))
+	}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+	if s.Parameters != nil && len(s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *UpdateExtensionInput) SetActions(v map[string][]*Action) *UpdateExtensionInput {
+	s.Actions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateExtensionInput) SetDescription(v string) *UpdateExtensionInput {
+	s.Description = &v
+	return s
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *UpdateExtensionInput) SetExtensionIdentifier(v string) *UpdateExtensionInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExtensionInput) SetParameters(v map[string]*Parameter) *UpdateExtensionInput {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *UpdateExtensionInput) SetVersionNumber(v int64) *UpdateExtensionInput {
+	s.VersionNumber = &v
+	return s
+}
+
+type UpdateExtensionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	Actions map[string][]*Action `min:"1" type:"map"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	Id *string `type:"string"`
+
+	// The extension name.
+	Name *string `min:"1" type:"string"`
+
+	// The parameters accepted by the extension. You specify parameter values when
+	// you associate the extension to an AppConfig resource by using the CreateExtensionAssociation
+	// API action. For Lambda extension actions, these parameters are included in
+	// the Lambda request object.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionOutput) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *UpdateExtensionOutput) SetActions(v map[string][]*Action) *UpdateExtensionOutput {
+	s.Actions = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateExtensionOutput) SetArn(v string) *UpdateExtensionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateExtensionOutput) SetDescription(v string) *UpdateExtensionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateExtensionOutput) SetId(v string) *UpdateExtensionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateExtensionOutput) SetName(v string) *UpdateExtensionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExtensionOutput) SetParameters(v map[string]*Parameter) *UpdateExtensionOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *UpdateExtensionOutput) SetVersionNumber(v int64) *UpdateExtensionOutput {
+	s.VersionNumber = &v
+	return s
+}
+
+type ValidateConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -8437,12 +12649,20 @@ type ValidateConfigurationInput struct {
 	ConfigurationVersion *string `location:"querystring" locationName:"configuration_version" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidateConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidateConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -8497,26 +12717,38 @@ type ValidateConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidateConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidateConfigurationOutput) GoString() string {
 	return s.String()
 }
 
 // A validator provides a syntactic or semantic check to ensure the configuration
-// you want to deploy functions as intended. To validate your application configuration
-// data, you provide a schema or a Lambda function that runs against the configuration.
-// The configuration deployment or update can only proceed when the configuration
-// data is valid.
+// that you want to deploy functions as intended. To validate your application
+// configuration data, you provide a schema or an Amazon Web Services Lambda
+// function that runs against the configuration. The configuration deployment
+// or update can only proceed when the configuration data is valid.
 type Validator struct {
 	_ struct{} `type:"structure"`
 
-	// Either the JSON Schema content or the Amazon Resource Name (ARN) of an AWS
-	// Lambda function.
+	// Either the JSON Schema content or the Amazon Resource Name (ARN) of an Lambda
+	// function.
+	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Validator's
+	// String and GoString methods.
 	//
 	// Content is a required field
 	Content *string `type:"string" required:"true" sensitive:"true"`
@@ -8527,12 +12759,20 @@ type Validator struct {
 	Type *string `type:"string" required:"true" enum:"ValidatorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Validator) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Validator) GoString() string {
 	return s.String()
 }
@@ -8563,6 +12803,54 @@ func (s *Validator) SetContent(v string) *Validator {
 func (s *Validator) SetType(v string) *Validator {
 	s.Type = &v
 	return s
+}
+
+const (
+	// ActionPointPreCreateHostedConfigurationVersion is a ActionPoint enum value
+	ActionPointPreCreateHostedConfigurationVersion = "PRE_CREATE_HOSTED_CONFIGURATION_VERSION"
+
+	// ActionPointPreStartDeployment is a ActionPoint enum value
+	ActionPointPreStartDeployment = "PRE_START_DEPLOYMENT"
+
+	// ActionPointOnDeploymentStart is a ActionPoint enum value
+	ActionPointOnDeploymentStart = "ON_DEPLOYMENT_START"
+
+	// ActionPointOnDeploymentStep is a ActionPoint enum value
+	ActionPointOnDeploymentStep = "ON_DEPLOYMENT_STEP"
+
+	// ActionPointOnDeploymentBaking is a ActionPoint enum value
+	ActionPointOnDeploymentBaking = "ON_DEPLOYMENT_BAKING"
+
+	// ActionPointOnDeploymentComplete is a ActionPoint enum value
+	ActionPointOnDeploymentComplete = "ON_DEPLOYMENT_COMPLETE"
+
+	// ActionPointOnDeploymentRolledBack is a ActionPoint enum value
+	ActionPointOnDeploymentRolledBack = "ON_DEPLOYMENT_ROLLED_BACK"
+)
+
+// ActionPoint_Values returns all elements of the ActionPoint enum
+func ActionPoint_Values() []string {
+	return []string{
+		ActionPointPreCreateHostedConfigurationVersion,
+		ActionPointPreStartDeployment,
+		ActionPointOnDeploymentStart,
+		ActionPointOnDeploymentStep,
+		ActionPointOnDeploymentBaking,
+		ActionPointOnDeploymentComplete,
+		ActionPointOnDeploymentRolledBack,
+	}
+}
+
+const (
+	// BadRequestReasonInvalidConfiguration is a BadRequestReason enum value
+	BadRequestReasonInvalidConfiguration = "InvalidConfiguration"
+)
+
+// BadRequestReason_Values returns all elements of the BadRequestReason enum
+func BadRequestReason_Values() []string {
+	return []string{
+		BadRequestReasonInvalidConfiguration,
+	}
 }
 
 const (

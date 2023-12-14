@@ -1,5 +1,25 @@
 {
   "pagination": {
+    "BatchGetAssetPropertyAggregates": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "BatchGetAssetPropertyValue": {
+      "input_token": "nextToken",
+      "output_token": "nextToken"
+    },
+    "BatchGetAssetPropertyValueHistory": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ExecuteQuery": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "rows"
+    },
     "GetAssetPropertyAggregates": {
       "input_token": "nextToken",
       "output_token": "nextToken",
@@ -24,11 +44,35 @@
       "limit_key": "maxResults",
       "result_key": "accessPolicySummaries"
     },
+    "ListActions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "actionSummaries"
+    },
+    "ListAssetModelCompositeModels": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "assetModelCompositeModelSummaries"
+    },
+    "ListAssetModelProperties": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "assetModelPropertySummaries"
+    },
     "ListAssetModels": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "assetModelSummaries"
+    },
+    "ListAssetProperties": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "assetPropertySummaries"
     },
     "ListAssetRelationships": {
       "input_token": "nextToken",
@@ -47,6 +91,18 @@
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "assetSummaries"
+    },
+    "ListBulkImportJobs": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "jobSummaries"
+    },
+    "ListCompositionRelationships": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "compositionRelationshipSummaries"
     },
     "ListDashboards": {
       "input_token": "nextToken",
@@ -77,6 +133,12 @@
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "projectSummaries"
+    },
+    "ListTimeSeries": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "TimeSeriesSummaries"
     }
   }
 }

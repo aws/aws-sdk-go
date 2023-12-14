@@ -1,3 +1,4 @@
+//go:build !go1.8
 // +build !go1.8
 
 // Package plugincreds provides usage of Go plugins for providing credentials

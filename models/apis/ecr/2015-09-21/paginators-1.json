@@ -11,13 +11,22 @@
         "imageScanFindings"
       ],
       "output_token": "nextToken",
-      "result_key": "imageScanFindings.findings"
+      "result_key": [
+        "imageScanFindings.findings",
+        "imageScanFindings.enhancedFindings"
+      ]
     },
     "DescribeImages": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
       "output_token": "nextToken",
       "result_key": "imageDetails"
+    },
+    "DescribePullThroughCacheRules": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "pullThroughCacheRules"
     },
     "DescribeRepositories": {
       "input_token": "nextToken",

@@ -13,6 +13,57 @@
     "uid":"models.lex.v2-2020-08-07"
   },
   "operations":{
+    "BatchCreateCustomVocabularyItem":{
+      "name":"BatchCreateCustomVocabularyItem",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchcreate",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchCreateCustomVocabularyItemRequest"},
+      "output":{"shape":"BatchCreateCustomVocabularyItemResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "BatchDeleteCustomVocabularyItem":{
+      "name":"BatchDeleteCustomVocabularyItem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchdelete",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchDeleteCustomVocabularyItemRequest"},
+      "output":{"shape":"BatchDeleteCustomVocabularyItemResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "BatchUpdateCustomVocabularyItem":{
+      "name":"BatchUpdateCustomVocabularyItem",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchupdate",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchUpdateCustomVocabularyItemRequest"},
+      "output":{"shape":"BatchUpdateCustomVocabularyItemResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "BuildBotLocale":{
       "name":"BuildBotLocale",
       "http":{
@@ -212,6 +263,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateTestSetDiscrepancyReport":{
+      "name":"CreateTestSetDiscrepancyReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testsets/{testSetId}/testsetdiscrepancy",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateTestSetDiscrepancyReportRequest"},
+      "output":{"shape":"CreateTestSetDiscrepancyReportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "CreateUploadUrl":{
       "name":"CreateUploadUrl",
       "http":{
@@ -298,6 +367,24 @@
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
         {"shape":"PreconditionFailedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteCustomVocabulary":{
+      "name":"DeleteCustomVocabulary",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteCustomVocabularyRequest"},
+      "output":{"shape":"DeleteCustomVocabularyResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -418,6 +505,39 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteTestSet":{
+      "name":"DeleteTestSet",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/testsets/{testSetId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteTestSetRequest"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteUtterances":{
+      "name":"DeleteUtterances",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/bots/{botId}/utterances/",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteUtterancesRequest"},
+      "output":{"shape":"DeleteUtterancesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeBot":{
       "name":"DescribeBot",
       "http":{
@@ -469,6 +589,38 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeBotRecommendation":{
+      "name":"DescribeBotRecommendation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeBotRecommendationRequest"},
+      "output":{"shape":"DescribeBotRecommendationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeBotResourceGeneration":{
+      "name":"DescribeBotResourceGeneration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/generations/{generationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeBotResourceGenerationRequest"},
+      "output":{"shape":"DescribeBotResourceGenerationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeBotVersion":{
       "name":"DescribeBotVersion",
       "http":{
@@ -478,6 +630,23 @@
       },
       "input":{"shape":"DescribeBotVersionRequest"},
       "output":{"shape":"DescribeBotVersionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeCustomVocabularyMetadata":{
+      "name":"DescribeCustomVocabularyMetadata",
+      "http":{
+        "method":"GET",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/metadata",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeCustomVocabularyMetadataRequest"},
+      "output":{"shape":"DescribeCustomVocabularyMetadataResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
@@ -584,6 +753,127 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeTestExecution":{
+      "name":"DescribeTestExecution",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testexecutions/{testExecutionId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeTestExecutionRequest"},
+      "output":{"shape":"DescribeTestExecutionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeTestSet":{
+      "name":"DescribeTestSet",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testsets/{testSetId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeTestSetRequest"},
+      "output":{"shape":"DescribeTestSetResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeTestSetDiscrepancyReport":{
+      "name":"DescribeTestSetDiscrepancyReport",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testsetdiscrepancy/{testSetDiscrepancyReportId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeTestSetDiscrepancyReportRequest"},
+      "output":{"shape":"DescribeTestSetDiscrepancyReportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeTestSetGeneration":{
+      "name":"DescribeTestSetGeneration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testsetgenerations/{testSetGenerationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeTestSetGenerationRequest"},
+      "output":{"shape":"DescribeTestSetGenerationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GenerateBotElement":{
+      "name":"GenerateBotElement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/generate",
+        "responseCode":202
+      },
+      "input":{"shape":"GenerateBotElementRequest"},
+      "output":{"shape":"GenerateBotElementResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetTestExecutionArtifactsUrl":{
+      "name":"GetTestExecutionArtifactsUrl",
+      "http":{
+        "method":"GET",
+        "requestUri":"/testexecutions/{testExecutionId}/artifacturl",
+        "responseCode":200
+      },
+      "input":{"shape":"GetTestExecutionArtifactsUrlRequest"},
+      "output":{"shape":"GetTestExecutionArtifactsUrlResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListAggregatedUtterances":{
+      "name":"ListAggregatedUtterances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/aggregatedutterances/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAggregatedUtterancesRequest"},
+      "output":{"shape":"ListAggregatedUtterancesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListBotAliases":{
       "name":"ListBotAliases",
       "http":{
@@ -614,6 +904,38 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "ListBotRecommendations":{
+      "name":"ListBotRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListBotRecommendationsRequest"},
+      "output":{"shape":"ListBotRecommendationsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListBotResourceGenerations":{
+      "name":"ListBotResourceGenerations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/generations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListBotResourceGenerationsRequest"},
+      "output":{"shape":"ListBotResourceGenerationsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListBotVersions":{
@@ -680,6 +1002,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListCustomVocabularyItems":{
+      "name":"ListCustomVocabularyItems",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/list",
+        "responseCode":200
+      },
+      "input":{"shape":"ListCustomVocabularyItemsRequest"},
+      "output":{"shape":"ListCustomVocabularyItemsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListExports":{
       "name":"ListExports",
       "http":{
@@ -710,6 +1049,57 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListIntentMetrics":{
+      "name":"ListIntentMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/analytics/intentmetrics",
+        "responseCode":200
+      },
+      "input":{"shape":"ListIntentMetricsRequest"},
+      "output":{"shape":"ListIntentMetricsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListIntentPaths":{
+      "name":"ListIntentPaths",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/analytics/intentpaths",
+        "responseCode":200
+      },
+      "input":{"shape":"ListIntentPathsRequest"},
+      "output":{"shape":"ListIntentPathsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListIntentStageMetrics":{
+      "name":"ListIntentStageMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/analytics/intentstagemetrics",
+        "responseCode":200
+      },
+      "input":{"shape":"ListIntentStageMetricsRequest"},
+      "output":{"shape":"ListIntentStageMetricsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListIntents":{
       "name":"ListIntents",
       "http":{
@@ -723,6 +1113,57 @@
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListRecommendedIntents":{
+      "name":"ListRecommendedIntents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/intents",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRecommendedIntentsRequest"},
+      "output":{"shape":"ListRecommendedIntentsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListSessionAnalyticsData":{
+      "name":"ListSessionAnalyticsData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/analytics/sessions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListSessionAnalyticsDataRequest"},
+      "output":{"shape":"ListSessionAnalyticsDataResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListSessionMetrics":{
+      "name":"ListSessionMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/analytics/sessionmetrics",
+        "responseCode":200
+      },
+      "input":{"shape":"ListSessionMetricsRequest"},
+      "output":{"shape":"ListSessionMetricsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -774,6 +1215,162 @@
         {"shape":"ValidationException"}
       ]
     },
+    "ListTestExecutionResultItems":{
+      "name":"ListTestExecutionResultItems",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testexecutions/{testExecutionId}/results",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTestExecutionResultItemsRequest"},
+      "output":{"shape":"ListTestExecutionResultItemsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListTestExecutions":{
+      "name":"ListTestExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testexecutions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTestExecutionsRequest"},
+      "output":{"shape":"ListTestExecutionsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListTestSetRecords":{
+      "name":"ListTestSetRecords",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testsets/{testSetId}/records",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTestSetRecordsRequest"},
+      "output":{"shape":"ListTestSetRecordsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListTestSets":{
+      "name":"ListTestSets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testsets",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTestSetsRequest"},
+      "output":{"shape":"ListTestSetsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListUtteranceAnalyticsData":{
+      "name":"ListUtteranceAnalyticsData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/analytics/utterances",
+        "responseCode":200
+      },
+      "input":{"shape":"ListUtteranceAnalyticsDataRequest"},
+      "output":{"shape":"ListUtteranceAnalyticsDataResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListUtteranceMetrics":{
+      "name":"ListUtteranceMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/analytics/utterancemetrics",
+        "responseCode":200
+      },
+      "input":{"shape":"ListUtteranceMetricsRequest"},
+      "output":{"shape":"ListUtteranceMetricsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "SearchAssociatedTranscripts":{
+      "name":"SearchAssociatedTranscripts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/associatedtranscripts",
+        "responseCode":200
+      },
+      "input":{"shape":"SearchAssociatedTranscriptsRequest"},
+      "output":{"shape":"SearchAssociatedTranscriptsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "StartBotRecommendation":{
+      "name":"StartBotRecommendation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/",
+        "responseCode":202
+      },
+      "input":{"shape":"StartBotRecommendationRequest"},
+      "output":{"shape":"StartBotRecommendationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartBotResourceGeneration":{
+      "name":"StartBotResourceGeneration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/startgeneration",
+        "responseCode":202
+      },
+      "input":{"shape":"StartBotResourceGenerationRequest"},
+      "output":{"shape":"StartBotResourceGenerationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "StartImport":{
       "name":"StartImport",
       "http":{
@@ -788,6 +1385,63 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartTestExecution":{
+      "name":"StartTestExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/testsets/{testSetId}/testexecutions",
+        "responseCode":202
+      },
+      "input":{"shape":"StartTestExecutionRequest"},
+      "output":{"shape":"StartTestExecutionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartTestSetGeneration":{
+      "name":"StartTestSetGeneration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/testsetgenerations",
+        "responseCode":202
+      },
+      "input":{"shape":"StartTestSetGenerationRequest"},
+      "output":{"shape":"StartTestSetGenerationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "StopBotRecommendation":{
+      "name":"StopBotRecommendation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/stopbotrecommendation",
+        "responseCode":202
+      },
+      "input":{"shape":"StopBotRecommendationRequest"},
+      "output":{"shape":"StopBotRecommendationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"PreconditionFailedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
@@ -873,6 +1527,26 @@
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateBotRecommendation":{
+      "name":"UpdateBotRecommendation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateBotRecommendationRequest"},
+      "output":{"shape":"UpdateBotRecommendationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"PreconditionFailedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
@@ -967,13 +1641,851 @@
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "UpdateTestSet":{
+      "name":"UpdateTestSet",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/testsets/{testSetId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateTestSetRequest"},
+      "output":{"shape":"UpdateTestSetResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
+    "ActiveContext":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"ActiveContextName"}
+      }
+    },
+    "ActiveContextList":{
+      "type":"list",
+      "member":{"shape":"ActiveContext"},
+      "max":20,
+      "min":0
+    },
+    "ActiveContextName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([A-Za-z]_?)+$"
+    },
+    "AdvancedRecognitionSetting":{
+      "type":"structure",
+      "members":{
+        "audioRecognitionStrategy":{"shape":"AudioRecognitionStrategy"}
+      }
+    },
+    "AgentTurnResult":{
+      "type":"structure",
+      "required":["expectedAgentPrompt"],
+      "members":{
+        "expectedAgentPrompt":{"shape":"TestSetAgentPrompt"},
+        "actualAgentPrompt":{"shape":"TestSetAgentPrompt"},
+        "errorDetails":{"shape":"ExecutionErrorDetails"},
+        "actualElicitedSlot":{"shape":"TestResultSlotName"},
+        "actualIntent":{"shape":"Name"}
+      }
+    },
+    "AgentTurnSpecification":{
+      "type":"structure",
+      "required":["agentPrompt"],
+      "members":{
+        "agentPrompt":{"shape":"TestSetAgentPrompt"}
+      }
+    },
+    "AggregatedUtterancesFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "values",
+        "operator"
+      ],
+      "members":{
+        "name":{"shape":"AggregatedUtterancesFilterName"},
+        "values":{"shape":"FilterValues"},
+        "operator":{"shape":"AggregatedUtterancesFilterOperator"}
+      }
+    },
+    "AggregatedUtterancesFilterName":{
+      "type":"string",
+      "enum":["Utterance"]
+    },
+    "AggregatedUtterancesFilterOperator":{
+      "type":"string",
+      "enum":[
+        "CO",
+        "EQ"
+      ]
+    },
+    "AggregatedUtterancesFilters":{
+      "type":"list",
+      "member":{"shape":"AggregatedUtterancesFilter"},
+      "max":1,
+      "min":1
+    },
+    "AggregatedUtterancesSortAttribute":{
+      "type":"string",
+      "enum":[
+        "HitCount",
+        "MissedCount"
+      ]
+    },
+    "AggregatedUtterancesSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{"shape":"AggregatedUtterancesSortAttribute"},
+        "order":{"shape":"SortOrder"}
+      }
+    },
+    "AggregatedUtterancesSummary":{
+      "type":"structure",
+      "members":{
+        "utterance":{"shape":"Utterance"},
+        "hitCount":{"shape":"HitCount"},
+        "missedCount":{"shape":"MissedCount"},
+        "utteranceFirstRecordedInAggregationDuration":{"shape":"Timestamp"},
+        "utteranceLastRecordedInAggregationDuration":{"shape":"Timestamp"},
+        "containsDataFromDeletedResources":{"shape":"BoxedBoolean"}
+      }
+    },
+    "AggregatedUtterancesSummaryList":{
+      "type":"list",
+      "member":{"shape":"AggregatedUtterancesSummary"}
+    },
+    "AllowedInputTypes":{
+      "type":"structure",
+      "required":[
+        "allowAudioInput",
+        "allowDTMFInput"
+      ],
+      "members":{
+        "allowAudioInput":{"shape":"BoxedBoolean"},
+        "allowDTMFInput":{"shape":"BoxedBoolean"}
+      }
+    },
     "AmazonResourceName":{
       "type":"string",
       "max":1011,
       "min":1
+    },
+    "AnalyticsBinByList":{
+      "type":"list",
+      "member":{"shape":"AnalyticsBinBySpecification"},
+      "max":1,
+      "min":1
+    },
+    "AnalyticsBinByName":{
+      "type":"string",
+      "enum":[
+        "ConversationStartTime",
+        "UtteranceTimestamp"
+      ]
+    },
+    "AnalyticsBinBySpecification":{
+      "type":"structure",
+      "required":[
+        "name",
+        "interval"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsBinByName"},
+        "interval":{"shape":"AnalyticsInterval"},
+        "order":{"shape":"AnalyticsSortOrder"}
+      }
+    },
+    "AnalyticsBinKey":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"AnalyticsBinByName"},
+        "value":{"shape":"AnalyticsBinValue"}
+      }
+    },
+    "AnalyticsBinKeys":{
+      "type":"list",
+      "member":{"shape":"AnalyticsBinKey"},
+      "max":1,
+      "min":1
+    },
+    "AnalyticsBinValue":{"type":"long"},
+    "AnalyticsChannel":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
+    "AnalyticsCommonFilterName":{
+      "type":"string",
+      "enum":[
+        "BotAliasId",
+        "BotVersion",
+        "LocaleId",
+        "Modality",
+        "Channel"
+      ]
+    },
+    "AnalyticsFilterOperator":{
+      "type":"string",
+      "enum":[
+        "EQ",
+        "GT",
+        "LT"
+      ]
+    },
+    "AnalyticsFilterValue":{"type":"string"},
+    "AnalyticsFilterValues":{
+      "type":"list",
+      "member":{"shape":"AnalyticsFilterValue"},
+      "max":5,
+      "min":1
+    },
+    "AnalyticsGroupByValue":{"type":"string"},
+    "AnalyticsIntentField":{
+      "type":"string",
+      "enum":[
+        "IntentName",
+        "IntentEndState",
+        "IntentLevel"
+      ]
+    },
+    "AnalyticsIntentFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "operator",
+        "values"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsIntentFilterName"},
+        "operator":{"shape":"AnalyticsFilterOperator"},
+        "values":{"shape":"AnalyticsFilterValues"}
+      }
+    },
+    "AnalyticsIntentFilterName":{
+      "type":"string",
+      "enum":[
+        "BotAliasId",
+        "BotVersion",
+        "LocaleId",
+        "Modality",
+        "Channel",
+        "SessionId",
+        "OriginatingRequestId",
+        "IntentName",
+        "IntentEndState"
+      ]
+    },
+    "AnalyticsIntentFilters":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentFilter"},
+      "max":9,
+      "min":1
+    },
+    "AnalyticsIntentGroupByKey":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"AnalyticsIntentField"},
+        "value":{"shape":"AnalyticsGroupByValue"}
+      }
+    },
+    "AnalyticsIntentGroupByKeys":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentGroupByKey"}
+    },
+    "AnalyticsIntentGroupByList":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentGroupBySpecification"},
+      "max":3,
+      "min":1
+    },
+    "AnalyticsIntentGroupBySpecification":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"AnalyticsIntentField"}
+      }
+    },
+    "AnalyticsIntentMetric":{
+      "type":"structure",
+      "required":[
+        "name",
+        "statistic"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsIntentMetricName"},
+        "statistic":{"shape":"AnalyticsMetricStatistic"},
+        "order":{"shape":"AnalyticsSortOrder"}
+      }
+    },
+    "AnalyticsIntentMetricName":{
+      "type":"string",
+      "enum":[
+        "Count",
+        "Success",
+        "Failure",
+        "Switched",
+        "Dropped"
+      ]
+    },
+    "AnalyticsIntentMetricResult":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"AnalyticsIntentMetricName"},
+        "statistic":{"shape":"AnalyticsMetricStatistic"},
+        "value":{"shape":"AnalyticsMetricValue"}
+      }
+    },
+    "AnalyticsIntentMetricResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentMetricResult"}
+    },
+    "AnalyticsIntentMetrics":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentMetric"},
+      "max":5,
+      "min":1
+    },
+    "AnalyticsIntentNodeSummaries":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentNodeSummary"},
+      "max":100,
+      "min":1
+    },
+    "AnalyticsIntentNodeSummary":{
+      "type":"structure",
+      "members":{
+        "intentName":{"shape":"Name"},
+        "intentPath":{"shape":"AnalyticsPath"},
+        "intentCount":{"shape":"AnalyticsNodeCount"},
+        "intentLevel":{"shape":"AnalyticsNodeLevel"},
+        "nodeType":{"shape":"AnalyticsNodeType"}
+      }
+    },
+    "AnalyticsIntentResult":{
+      "type":"structure",
+      "members":{
+        "binKeys":{"shape":"AnalyticsBinKeys"},
+        "groupByKeys":{"shape":"AnalyticsIntentGroupByKeys"},
+        "metricsResults":{"shape":"AnalyticsIntentMetricResults"}
+      }
+    },
+    "AnalyticsIntentResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentResult"}
+    },
+    "AnalyticsIntentStageField":{
+      "type":"string",
+      "enum":[
+        "IntentStageName",
+        "SwitchedToIntent"
+      ]
+    },
+    "AnalyticsIntentStageFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "operator",
+        "values"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsIntentStageFilterName"},
+        "operator":{"shape":"AnalyticsFilterOperator"},
+        "values":{"shape":"AnalyticsFilterValues"}
+      }
+    },
+    "AnalyticsIntentStageFilterName":{
+      "type":"string",
+      "enum":[
+        "BotAliasId",
+        "BotVersion",
+        "LocaleId",
+        "Modality",
+        "Channel",
+        "SessionId",
+        "OriginatingRequestId",
+        "IntentName",
+        "IntentStageName"
+      ]
+    },
+    "AnalyticsIntentStageFilters":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentStageFilter"},
+      "max":9,
+      "min":1
+    },
+    "AnalyticsIntentStageGroupByKey":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"AnalyticsIntentStageField"},
+        "value":{"shape":"AnalyticsGroupByValue"}
+      }
+    },
+    "AnalyticsIntentStageGroupByKeys":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentStageGroupByKey"}
+    },
+    "AnalyticsIntentStageGroupByList":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentStageGroupBySpecification"},
+      "max":2,
+      "min":1
+    },
+    "AnalyticsIntentStageGroupBySpecification":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"AnalyticsIntentStageField"}
+      }
+    },
+    "AnalyticsIntentStageMetric":{
+      "type":"structure",
+      "required":[
+        "name",
+        "statistic"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsIntentStageMetricName"},
+        "statistic":{"shape":"AnalyticsMetricStatistic"},
+        "order":{"shape":"AnalyticsSortOrder"}
+      }
+    },
+    "AnalyticsIntentStageMetricName":{
+      "type":"string",
+      "enum":[
+        "Count",
+        "Success",
+        "Failed",
+        "Dropped",
+        "Retry"
+      ]
+    },
+    "AnalyticsIntentStageMetricResult":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"AnalyticsIntentStageMetricName"},
+        "statistic":{"shape":"AnalyticsMetricStatistic"},
+        "value":{"shape":"AnalyticsMetricValue"}
+      }
+    },
+    "AnalyticsIntentStageMetricResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentStageMetricResult"}
+    },
+    "AnalyticsIntentStageMetrics":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentStageMetric"},
+      "max":5,
+      "min":1
+    },
+    "AnalyticsIntentStageResult":{
+      "type":"structure",
+      "members":{
+        "binKeys":{"shape":"AnalyticsBinKeys"},
+        "groupByKeys":{"shape":"AnalyticsIntentStageGroupByKeys"},
+        "metricsResults":{"shape":"AnalyticsIntentStageMetricResults"}
+      }
+    },
+    "AnalyticsIntentStageResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsIntentStageResult"}
+    },
+    "AnalyticsInterval":{
+      "type":"string",
+      "enum":[
+        "OneHour",
+        "OneDay"
+      ]
+    },
+    "AnalyticsLongValue":{"type":"long"},
+    "AnalyticsMetricStatistic":{
+      "type":"string",
+      "enum":[
+        "Sum",
+        "Avg",
+        "Max"
+      ]
+    },
+    "AnalyticsMetricValue":{"type":"double"},
+    "AnalyticsModality":{
+      "type":"string",
+      "enum":[
+        "Speech",
+        "Text",
+        "DTMF",
+        "MultiMode"
+      ]
+    },
+    "AnalyticsNodeCount":{"type":"integer"},
+    "AnalyticsNodeLevel":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
+    "AnalyticsNodeType":{
+      "type":"string",
+      "enum":[
+        "Inner",
+        "Exit"
+      ]
+    },
+    "AnalyticsOriginatingRequestId":{"type":"string"},
+    "AnalyticsPath":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "AnalyticsPathFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "operator",
+        "values"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsCommonFilterName"},
+        "operator":{"shape":"AnalyticsFilterOperator"},
+        "values":{"shape":"AnalyticsFilterValues"}
+      }
+    },
+    "AnalyticsPathFilters":{
+      "type":"list",
+      "member":{"shape":"AnalyticsPathFilter"},
+      "max":5,
+      "min":1
+    },
+    "AnalyticsSessionField":{
+      "type":"string",
+      "enum":[
+        "ConversationEndState",
+        "LocaleId"
+      ]
+    },
+    "AnalyticsSessionFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "operator",
+        "values"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsSessionFilterName"},
+        "operator":{"shape":"AnalyticsFilterOperator"},
+        "values":{"shape":"AnalyticsFilterValues"}
+      }
+    },
+    "AnalyticsSessionFilterName":{
+      "type":"string",
+      "enum":[
+        "BotAliasId",
+        "BotVersion",
+        "LocaleId",
+        "Modality",
+        "Channel",
+        "Duration",
+        "ConversationEndState",
+        "SessionId",
+        "OriginatingRequestId",
+        "IntentPath"
+      ]
+    },
+    "AnalyticsSessionFilters":{
+      "type":"list",
+      "member":{"shape":"AnalyticsSessionFilter"},
+      "max":10,
+      "min":1
+    },
+    "AnalyticsSessionGroupByKey":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"AnalyticsSessionField"},
+        "value":{"shape":"AnalyticsGroupByValue"}
+      }
+    },
+    "AnalyticsSessionGroupByKeys":{
+      "type":"list",
+      "member":{"shape":"AnalyticsSessionGroupByKey"}
+    },
+    "AnalyticsSessionGroupByList":{
+      "type":"list",
+      "member":{"shape":"AnalyticsSessionGroupBySpecification"},
+      "max":2,
+      "min":1
+    },
+    "AnalyticsSessionGroupBySpecification":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"AnalyticsSessionField"}
+      }
+    },
+    "AnalyticsSessionId":{
+      "type":"string",
+      "pattern":"[0-9a-zA-Z._:-]"
+    },
+    "AnalyticsSessionMetric":{
+      "type":"structure",
+      "required":[
+        "name",
+        "statistic"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsSessionMetricName"},
+        "statistic":{"shape":"AnalyticsMetricStatistic"},
+        "order":{"shape":"AnalyticsSortOrder"}
+      }
+    },
+    "AnalyticsSessionMetricName":{
+      "type":"string",
+      "enum":[
+        "Count",
+        "Success",
+        "Failure",
+        "Dropped",
+        "Duration",
+        "TurnsPerConversation",
+        "Concurrency"
+      ]
+    },
+    "AnalyticsSessionMetricResult":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"AnalyticsSessionMetricName"},
+        "statistic":{"shape":"AnalyticsMetricStatistic"},
+        "value":{"shape":"AnalyticsMetricValue"}
+      }
+    },
+    "AnalyticsSessionMetricResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsSessionMetricResult"}
+    },
+    "AnalyticsSessionMetrics":{
+      "type":"list",
+      "member":{"shape":"AnalyticsSessionMetric"},
+      "max":7,
+      "min":1
+    },
+    "AnalyticsSessionResult":{
+      "type":"structure",
+      "members":{
+        "binKeys":{"shape":"AnalyticsBinKeys"},
+        "groupByKeys":{"shape":"AnalyticsSessionGroupByKeys"},
+        "metricsResults":{"shape":"AnalyticsSessionMetricResults"}
+      }
+    },
+    "AnalyticsSessionResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsSessionResult"}
+    },
+    "AnalyticsSessionSortByName":{
+      "type":"string",
+      "enum":[
+        "ConversationStartTime",
+        "NumberOfTurns",
+        "Duration"
+      ]
+    },
+    "AnalyticsSortOrder":{
+      "type":"string",
+      "enum":[
+        "Ascending",
+        "Descending"
+      ]
+    },
+    "AnalyticsUtteranceAttribute":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"AnalyticsUtteranceAttributeName"}
+      }
+    },
+    "AnalyticsUtteranceAttributeName":{
+      "type":"string",
+      "enum":["LastUsedIntent"]
+    },
+    "AnalyticsUtteranceAttributeResult":{
+      "type":"structure",
+      "members":{
+        "lastUsedIntent":{"shape":"Name"}
+      }
+    },
+    "AnalyticsUtteranceAttributeResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsUtteranceAttributeResult"}
+    },
+    "AnalyticsUtteranceAttributes":{
+      "type":"list",
+      "member":{"shape":"AnalyticsUtteranceAttribute"},
+      "max":1,
+      "min":1
+    },
+    "AnalyticsUtteranceField":{
+      "type":"string",
+      "enum":[
+        "UtteranceText",
+        "UtteranceState"
+      ]
+    },
+    "AnalyticsUtteranceFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "operator",
+        "values"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsUtteranceFilterName"},
+        "operator":{"shape":"AnalyticsFilterOperator"},
+        "values":{"shape":"AnalyticsFilterValues"}
+      }
+    },
+    "AnalyticsUtteranceFilterName":{
+      "type":"string",
+      "enum":[
+        "BotAliasId",
+        "BotVersion",
+        "LocaleId",
+        "Modality",
+        "Channel",
+        "SessionId",
+        "OriginatingRequestId",
+        "UtteranceState",
+        "UtteranceText"
+      ]
+    },
+    "AnalyticsUtteranceFilters":{
+      "type":"list",
+      "member":{"shape":"AnalyticsUtteranceFilter"},
+      "max":9,
+      "min":1
+    },
+    "AnalyticsUtteranceGroupByKey":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"AnalyticsUtteranceField"},
+        "value":{"shape":"AnalyticsGroupByValue"}
+      }
+    },
+    "AnalyticsUtteranceGroupByKeys":{
+      "type":"list",
+      "member":{"shape":"AnalyticsUtteranceGroupByKey"}
+    },
+    "AnalyticsUtteranceGroupByList":{
+      "type":"list",
+      "member":{"shape":"AnalyticsUtteranceGroupBySpecification"},
+      "max":2,
+      "min":1
+    },
+    "AnalyticsUtteranceGroupBySpecification":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"AnalyticsUtteranceField"}
+      }
+    },
+    "AnalyticsUtteranceMetric":{
+      "type":"structure",
+      "required":[
+        "name",
+        "statistic"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsUtteranceMetricName"},
+        "statistic":{"shape":"AnalyticsMetricStatistic"},
+        "order":{"shape":"AnalyticsSortOrder"}
+      }
+    },
+    "AnalyticsUtteranceMetricName":{
+      "type":"string",
+      "enum":[
+        "Count",
+        "Missed",
+        "Detected",
+        "UtteranceTimestamp"
+      ]
+    },
+    "AnalyticsUtteranceMetricResult":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"AnalyticsUtteranceMetricName"},
+        "statistic":{"shape":"AnalyticsMetricStatistic"},
+        "value":{"shape":"AnalyticsMetricValue"}
+      }
+    },
+    "AnalyticsUtteranceMetricResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsUtteranceMetricResult"}
+    },
+    "AnalyticsUtteranceMetrics":{
+      "type":"list",
+      "member":{"shape":"AnalyticsUtteranceMetric"},
+      "max":4,
+      "min":1
+    },
+    "AnalyticsUtteranceResult":{
+      "type":"structure",
+      "members":{
+        "binKeys":{"shape":"AnalyticsBinKeys"},
+        "groupByKeys":{"shape":"AnalyticsUtteranceGroupByKeys"},
+        "metricsResults":{"shape":"AnalyticsUtteranceMetricResults"},
+        "attributeResults":{"shape":"AnalyticsUtteranceAttributeResults"}
+      }
+    },
+    "AnalyticsUtteranceResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsUtteranceResult"}
+    },
+    "AnalyticsUtteranceSortByName":{
+      "type":"string",
+      "enum":["UtteranceTimestamp"]
+    },
+    "AssociatedTranscript":{
+      "type":"structure",
+      "members":{
+        "transcript":{"shape":"Transcript"}
+      }
+    },
+    "AssociatedTranscriptFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "values"
+      ],
+      "members":{
+        "name":{"shape":"AssociatedTranscriptFilterName"},
+        "values":{"shape":"FilterValues"}
+      }
+    },
+    "AssociatedTranscriptFilterName":{
+      "type":"string",
+      "enum":[
+        "IntentId",
+        "SlotTypeId"
+      ]
+    },
+    "AssociatedTranscriptFilters":{
+      "type":"list",
+      "member":{"shape":"AssociatedTranscriptFilter"},
+      "max":1,
+      "min":1
+    },
+    "AssociatedTranscriptList":{
+      "type":"list",
+      "member":{"shape":"AssociatedTranscript"}
     },
     "AttachmentTitle":{
       "type":"string",
@@ -984,6 +2496,21 @@
       "type":"string",
       "max":250,
       "min":1
+    },
+    "AudioAndDTMFInputSpecification":{
+      "type":"structure",
+      "required":["startTimeoutMs"],
+      "members":{
+        "startTimeoutMs":{"shape":"TimeInMilliSeconds"},
+        "audioSpecification":{"shape":"AudioSpecification"},
+        "dtmfSpecification":{"shape":"DTMFSpecification"}
+      }
+    },
+    "AudioFileS3Location":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^s3://([a-z0-9\\\\.-]+)/(.+)$"
     },
     "AudioLogDestination":{
       "type":"structure",
@@ -1000,7 +2527,8 @@
       ],
       "members":{
         "enabled":{"shape":"Boolean"},
-        "destination":{"shape":"AudioLogDestination"}
+        "destination":{"shape":"AudioLogDestination"},
+        "selectiveLoggingEnabled":{"shape":"BoxedBoolean"}
       }
     },
     "AudioLogSettingsList":{
@@ -1008,6 +2536,143 @@
       "member":{"shape":"AudioLogSetting"},
       "max":1,
       "min":1
+    },
+    "AudioRecognitionStrategy":{
+      "type":"string",
+      "enum":["UseSlotValuesAsCustomVocabulary"]
+    },
+    "AudioSpecification":{
+      "type":"structure",
+      "required":[
+        "maxLengthMs",
+        "endTimeoutMs"
+      ],
+      "members":{
+        "maxLengthMs":{"shape":"TimeInMilliSeconds"},
+        "endTimeoutMs":{"shape":"TimeInMilliSeconds"}
+      }
+    },
+    "BatchCreateCustomVocabularyItemRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "customVocabularyItemList"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "customVocabularyItemList":{"shape":"CreateCustomVocabularyItemsList"}
+      }
+    },
+    "BatchCreateCustomVocabularyItemResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "errors":{"shape":"FailedCustomVocabularyItems"},
+        "resources":{"shape":"CustomVocabularyItems"}
+      }
+    },
+    "BatchDeleteCustomVocabularyItemRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "customVocabularyItemList"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "customVocabularyItemList":{"shape":"DeleteCustomVocabularyItemsList"}
+      }
+    },
+    "BatchDeleteCustomVocabularyItemResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "errors":{"shape":"FailedCustomVocabularyItems"},
+        "resources":{"shape":"CustomVocabularyItems"}
+      }
+    },
+    "BatchUpdateCustomVocabularyItemRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "customVocabularyItemList"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "customVocabularyItemList":{"shape":"UpdateCustomVocabularyItemsList"}
+      }
+    },
+    "BatchUpdateCustomVocabularyItemResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "errors":{"shape":"FailedCustomVocabularyItems"},
+        "resources":{"shape":"CustomVocabularyItems"}
+      }
+    },
+    "BedrockModelArn":{
+      "type":"string",
+      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}::foundation-model\\/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}$"
+    },
+    "BedrockModelSpecification":{
+      "type":"structure",
+      "required":["modelArn"],
+      "members":{
+        "modelArn":{"shape":"BedrockModelArn"}
+      }
     },
     "Boolean":{"type":"boolean"},
     "BotAliasHistoryEvent":{
@@ -1042,6 +2707,12 @@
       "value":{"shape":"BotAliasLocaleSettings"},
       "min":1
     },
+    "BotAliasName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^(\\bAmazonLexTestAlias\\b|[0-9a-zA-Z][_-]?)+$"
+    },
     "BotAliasStatus":{
       "type":"string",
       "enum":[
@@ -1066,6 +2737,19 @@
     "BotAliasSummaryList":{
       "type":"list",
       "member":{"shape":"BotAliasSummary"}
+    },
+    "BotAliasTestExecutionTarget":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botAliasId",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botAliasId":{"shape":"BotAliasId"},
+        "localeId":{"shape":"LocaleId"}
+      }
     },
     "BotExportSpecification":{
       "type":"structure",
@@ -1093,19 +2777,23 @@
     },
     "BotFilterName":{
       "type":"string",
-      "enum":["BotName"]
+      "enum":[
+        "BotName",
+        "BotType"
+      ]
     },
     "BotFilterOperator":{
       "type":"string",
       "enum":[
         "CO",
-        "EQ"
+        "EQ",
+        "NE"
       ]
     },
     "BotFilters":{
       "type":"list",
       "member":{"shape":"BotFilter"},
-      "max":1,
+      "max":2,
       "min":1
     },
     "BotImportSpecification":{
@@ -1223,7 +2911,8 @@
         "Failed",
         "Deleting",
         "NotBuilt",
-        "Importing"
+        "Importing",
+        "Processing"
       ]
     },
     "BotLocaleSummary":{
@@ -1240,6 +2929,75 @@
     "BotLocaleSummaryList":{
       "type":"list",
       "member":{"shape":"BotLocaleSummary"}
+    },
+    "BotMember":{
+      "type":"structure",
+      "required":[
+        "botMemberId",
+        "botMemberName",
+        "botMemberAliasId",
+        "botMemberAliasName",
+        "botMemberVersion"
+      ],
+      "members":{
+        "botMemberId":{"shape":"Id"},
+        "botMemberName":{"shape":"Name"},
+        "botMemberAliasId":{"shape":"BotAliasId"},
+        "botMemberAliasName":{"shape":"BotAliasName"},
+        "botMemberVersion":{"shape":"BotVersion"}
+      }
+    },
+    "BotMembers":{
+      "type":"list",
+      "member":{"shape":"BotMember"},
+      "max":10,
+      "min":0
+    },
+    "BotRecommendationResultStatistics":{
+      "type":"structure",
+      "members":{
+        "intents":{"shape":"IntentStatistics"},
+        "slotTypes":{"shape":"SlotTypeStatistics"}
+      }
+    },
+    "BotRecommendationResults":{
+      "type":"structure",
+      "members":{
+        "botLocaleExportUrl":{"shape":"PresignedS3Url"},
+        "associatedTranscriptsUrl":{"shape":"PresignedS3Url"},
+        "statistics":{"shape":"BotRecommendationResultStatistics"}
+      }
+    },
+    "BotRecommendationStatus":{
+      "type":"string",
+      "enum":[
+        "Processing",
+        "Deleting",
+        "Deleted",
+        "Downloading",
+        "Updating",
+        "Available",
+        "Failed",
+        "Stopping",
+        "Stopped"
+      ]
+    },
+    "BotRecommendationSummary":{
+      "type":"structure",
+      "required":[
+        "botRecommendationStatus",
+        "botRecommendationId"
+      ],
+      "members":{
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "BotRecommendationSummaryList":{
+      "type":"list",
+      "member":{"shape":"BotRecommendationSummary"}
     },
     "BotSortAttribute":{
       "type":"string",
@@ -1265,7 +3023,8 @@
         "Deleting",
         "Failed",
         "Versioning",
-        "Importing"
+        "Importing",
+        "Updating"
       ]
     },
     "BotSummary":{
@@ -1276,12 +3035,20 @@
         "description":{"shape":"Description"},
         "botStatus":{"shape":"BotStatus"},
         "latestBotVersion":{"shape":"NumericalBotVersion"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "botType":{"shape":"BotType"}
       }
     },
     "BotSummaryList":{
       "type":"list",
       "member":{"shape":"BotSummary"}
+    },
+    "BotType":{
+      "type":"string",
+      "enum":[
+        "Bot",
+        "BotNetwork"
+      ]
     },
     "BotVersion":{
       "type":"string",
@@ -1368,6 +3135,13 @@
         "localeId":{"shape":"LocaleId"},
         "botLocaleStatus":{"shape":"BotLocaleStatus"},
         "lastBuildSubmittedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "BuildtimeSettings":{
+      "type":"structure",
+      "members":{
+        "descriptiveBotBuilder":{"shape":"DescriptiveBotBuilderSpecification"},
+        "sampleUtteranceGeneration":{"shape":"SampleUtteranceGenerationSpecification"}
       }
     },
     "BuiltInIntentSortAttribute":{
@@ -1491,6 +3265,24 @@
         "lambdaCodeHook":{"shape":"LambdaCodeHook"}
       }
     },
+    "CompositeSlotTypeSetting":{
+      "type":"structure",
+      "members":{
+        "subSlots":{"shape":"SubSlotTypeList"}
+      }
+    },
+    "Condition":{
+      "type":"structure",
+      "required":["expressionString"],
+      "members":{
+        "expressionString":{"shape":"ConditionExpression"}
+      }
+    },
+    "ConditionExpression":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ConditionKey":{
       "type":"string",
       "max":1024,
@@ -1519,6 +3311,39 @@
       "max":1024,
       "min":1
     },
+    "ConditionalBranch":{
+      "type":"structure",
+      "required":[
+        "name",
+        "condition",
+        "nextStep"
+      ],
+      "members":{
+        "name":{"shape":"Name"},
+        "condition":{"shape":"Condition"},
+        "nextStep":{"shape":"DialogState"},
+        "response":{"shape":"ResponseSpecification"}
+      }
+    },
+    "ConditionalBranches":{
+      "type":"list",
+      "member":{"shape":"ConditionalBranch"},
+      "max":4,
+      "min":1
+    },
+    "ConditionalSpecification":{
+      "type":"structure",
+      "required":[
+        "active",
+        "conditionalBranches",
+        "defaultBranch"
+      ],
+      "members":{
+        "active":{"shape":"BoxedBoolean"},
+        "conditionalBranches":{"shape":"ConditionalBranches"},
+        "defaultBranch":{"shape":"DefaultConditionalBranch"}
+      }
+    },
     "ConfidenceThreshold":{
       "type":"double",
       "max":1,
@@ -1542,6 +3367,87 @@
       "max":20,
       "min":1
     },
+    "ConversationEndState":{
+      "type":"string",
+      "enum":[
+        "Success",
+        "Failure",
+        "Dropped"
+      ]
+    },
+    "ConversationLevelIntentClassificationResultItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "matchResult"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "matchResult":{"shape":"TestResultMatchStatus"}
+      }
+    },
+    "ConversationLevelIntentClassificationResults":{
+      "type":"list",
+      "member":{"shape":"ConversationLevelIntentClassificationResultItem"}
+    },
+    "ConversationLevelResultDetail":{
+      "type":"structure",
+      "required":["endToEndResult"],
+      "members":{
+        "endToEndResult":{"shape":"TestResultMatchStatus"},
+        "speechTranscriptionResult":{"shape":"TestResultMatchStatus"}
+      }
+    },
+    "ConversationLevelSlotResolutionResultItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "slotName",
+        "matchResult"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "slotName":{"shape":"TestResultSlotName"},
+        "matchResult":{"shape":"TestResultMatchStatus"}
+      }
+    },
+    "ConversationLevelSlotResolutionResults":{
+      "type":"list",
+      "member":{"shape":"ConversationLevelSlotResolutionResultItem"}
+    },
+    "ConversationLevelTestResultItem":{
+      "type":"structure",
+      "required":[
+        "conversationId",
+        "endToEndResult",
+        "intentClassificationResults",
+        "slotResolutionResults"
+      ],
+      "members":{
+        "conversationId":{"shape":"TestSetConversationId"},
+        "endToEndResult":{"shape":"TestResultMatchStatus"},
+        "speechTranscriptionResult":{"shape":"TestResultMatchStatus"},
+        "intentClassificationResults":{"shape":"ConversationLevelIntentClassificationResults"},
+        "slotResolutionResults":{"shape":"ConversationLevelSlotResolutionResults"}
+      }
+    },
+    "ConversationLevelTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"ConversationLevelTestResultItem"}
+    },
+    "ConversationLevelTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"ConversationLevelTestResultItemList"}
+      }
+    },
+    "ConversationLevelTestResultsFilterBy":{
+      "type":"structure",
+      "members":{
+        "endToEndResult":{"shape":"TestResultMatchStatus"}
+      }
+    },
     "ConversationLogSettings":{
       "type":"structure",
       "members":{
@@ -1549,6 +3455,42 @@
         "audioLogSettings":{"shape":"AudioLogSettingsList"}
       }
     },
+    "ConversationLogsDataSource":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botAliasId",
+        "localeId",
+        "filter"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botAliasId":{"shape":"BotAliasId"},
+        "localeId":{"shape":"LocaleId"},
+        "filter":{"shape":"ConversationLogsDataSourceFilterBy"}
+      }
+    },
+    "ConversationLogsDataSourceFilterBy":{
+      "type":"structure",
+      "required":[
+        "startTime",
+        "endTime",
+        "inputMode"
+      ],
+      "members":{
+        "startTime":{"shape":"Timestamp"},
+        "endTime":{"shape":"Timestamp"},
+        "inputMode":{"shape":"ConversationLogsInputModeFilter"}
+      }
+    },
+    "ConversationLogsInputModeFilter":{
+      "type":"string",
+      "enum":[
+        "Speech",
+        "Text"
+      ]
+    },
+    "Count":{"type":"integer"},
     "CreateBotAliasRequest":{
       "type":"structure",
       "required":[
@@ -1608,7 +3550,8 @@
         "localeId":{"shape":"LocaleId"},
         "description":{"shape":"Description"},
         "nluIntentConfidenceThreshold":{"shape":"ConfidenceThreshold"},
-        "voiceSettings":{"shape":"VoiceSettings"}
+        "voiceSettings":{"shape":"VoiceSettings"},
+        "generativeAISettings":{"shape":"GenerativeAISettings"}
       }
     },
     "CreateBotLocaleResponse":{
@@ -1622,7 +3565,8 @@
         "nluIntentConfidenceThreshold":{"shape":"ConfidenceThreshold"},
         "voiceSettings":{"shape":"VoiceSettings"},
         "botLocaleStatus":{"shape":"BotLocaleStatus"},
-        "creationDateTime":{"shape":"Timestamp"}
+        "creationDateTime":{"shape":"Timestamp"},
+        "generativeAISettings":{"shape":"GenerativeAISettings"}
       }
     },
     "CreateBotRequest":{
@@ -1640,7 +3584,9 @@
         "dataPrivacy":{"shape":"DataPrivacy"},
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "botTags":{"shape":"TagMap"},
-        "testBotAliasTags":{"shape":"TagMap"}
+        "testBotAliasTags":{"shape":"TagMap"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
       }
     },
     "CreateBotResponse":{
@@ -1655,7 +3601,9 @@
         "botStatus":{"shape":"BotStatus"},
         "creationDateTime":{"shape":"Timestamp"},
         "botTags":{"shape":"TagMap"},
-        "testBotAliasTags":{"shape":"TagMap"}
+        "testBotAliasTags":{"shape":"TagMap"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
       }
     },
     "CreateBotVersionRequest":{
@@ -1684,6 +3632,12 @@
         "botStatus":{"shape":"BotStatus"},
         "creationDateTime":{"shape":"Timestamp"}
       }
+    },
+    "CreateCustomVocabularyItemsList":{
+      "type":"list",
+      "member":{"shape":"NewCustomVocabularyItem"},
+      "max":10,
+      "min":1
     },
     "CreateExportRequest":{
       "type":"structure",
@@ -1741,7 +3695,8 @@
           "shape":"LocaleId",
           "location":"uri",
           "locationName":"localeId"
-        }
+        },
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "CreateIntentResponse":{
@@ -1762,7 +3717,8 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
-        "creationDateTime":{"shape":"Timestamp"}
+        "creationDateTime":{"shape":"Timestamp"},
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "CreateResourcePolicyRequest":{
@@ -1825,7 +3781,6 @@
       "type":"structure",
       "required":[
         "slotName",
-        "slotTypeId",
         "valueElicitationSetting",
         "botId",
         "botVersion",
@@ -1858,7 +3813,8 @@
           "location":"uri",
           "locationName":"intentId"
         },
-        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"},
+        "subSlotSetting":{"shape":"SubSlotSetting"}
       }
     },
     "CreateSlotResponse":{
@@ -1875,14 +3831,14 @@
         "localeId":{"shape":"LocaleId"},
         "intentId":{"shape":"Id"},
         "creationDateTime":{"shape":"Timestamp"},
-        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"},
+        "subSlotSetting":{"shape":"SubSlotSetting"}
       }
     },
     "CreateSlotTypeRequest":{
       "type":"structure",
       "required":[
         "slotTypeName",
-        "valueSelectionSetting",
         "botId",
         "botVersion",
         "localeId"
@@ -1907,7 +3863,9 @@
           "shape":"LocaleId",
           "location":"uri",
           "locationName":"localeId"
-        }
+        },
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"},
+        "compositeSlotTypeSetting":{"shape":"CompositeSlotTypeSetting"}
       }
     },
     "CreateSlotTypeResponse":{
@@ -1922,7 +3880,33 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
-        "creationDateTime":{"shape":"Timestamp"}
+        "creationDateTime":{"shape":"Timestamp"},
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"},
+        "compositeSlotTypeSetting":{"shape":"CompositeSlotTypeSetting"}
+      }
+    },
+    "CreateTestSetDiscrepancyReportRequest":{
+      "type":"structure",
+      "required":[
+        "testSetId",
+        "target"
+      ],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        },
+        "target":{"shape":"TestSetDiscrepancyReportResourceTarget"}
+      }
+    },
+    "CreateTestSetDiscrepancyReportResponse":{
+      "type":"structure",
+      "members":{
+        "testSetDiscrepancyReportId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "testSetId":{"shape":"Id"},
+        "target":{"shape":"TestSetDiscrepancyReportResourceTarget"}
       }
     },
     "CreateUploadUrlRequest":{
@@ -1949,11 +3933,108 @@
       "max":1000,
       "min":1
     },
+    "CustomVocabularyEntryId":{
+      "type":"structure",
+      "required":["itemId"],
+      "members":{
+        "itemId":{"shape":"ItemId"}
+      }
+    },
+    "CustomVocabularyExportSpecification":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"}
+      }
+    },
+    "CustomVocabularyImportSpecification":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"}
+      }
+    },
+    "CustomVocabularyItem":{
+      "type":"structure",
+      "required":[
+        "itemId",
+        "phrase"
+      ],
+      "members":{
+        "itemId":{"shape":"ItemId"},
+        "phrase":{"shape":"Phrase"},
+        "weight":{"shape":"Weight"},
+        "displayAs":{"shape":"Phrase"}
+      }
+    },
+    "CustomVocabularyItems":{
+      "type":"list",
+      "member":{"shape":"CustomVocabularyItem"}
+    },
+    "CustomVocabularyStatus":{
+      "type":"string",
+      "enum":[
+        "Ready",
+        "Deleting",
+        "Exporting",
+        "Importing",
+        "Creating"
+      ]
+    },
+    "DTMFCharacter":{
+      "type":"string",
+      "pattern":"^[A-D0-9#*]{1}$"
+    },
+    "DTMFSpecification":{
+      "type":"structure",
+      "required":[
+        "maxLength",
+        "endTimeoutMs",
+        "deletionCharacter",
+        "endCharacter"
+      ],
+      "members":{
+        "maxLength":{"shape":"MaxUtteranceDigits"},
+        "endTimeoutMs":{"shape":"TimeInMilliSeconds"},
+        "deletionCharacter":{"shape":"DTMFCharacter"},
+        "endCharacter":{"shape":"DTMFCharacter"}
+      }
+    },
     "DataPrivacy":{
       "type":"structure",
       "required":["childDirected"],
       "members":{
         "childDirected":{"shape":"ChildDirected"}
+      }
+    },
+    "DateRangeFilter":{
+      "type":"structure",
+      "required":[
+        "startDateTime",
+        "endDateTime"
+      ],
+      "members":{
+        "startDateTime":{"shape":"Timestamp"},
+        "endDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "DefaultConditionalBranch":{
+      "type":"structure",
+      "members":{
+        "nextStep":{"shape":"DialogState"},
+        "response":{"shape":"ResponseSpecification"}
       }
     },
     "DeleteBotAliasRequest":{
@@ -2075,6 +4156,46 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"NumericalBotVersion"},
         "botStatus":{"shape":"BotStatus"}
+      }
+    },
+    "DeleteCustomVocabularyItemsList":{
+      "type":"list",
+      "member":{"shape":"CustomVocabularyEntryId"},
+      "max":10,
+      "min":1
+    },
+    "DeleteCustomVocabularyRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        }
+      }
+    },
+    "DeleteCustomVocabularyResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "customVocabularyStatus":{"shape":"CustomVocabularyStatus"}
       }
     },
     "DeleteExportRequest":{
@@ -2271,6 +4392,43 @@
         }
       }
     },
+    "DeleteTestSetRequest":{
+      "type":"structure",
+      "required":["testSetId"],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        }
+      }
+    },
+    "DeleteUtterancesRequest":{
+      "type":"structure",
+      "required":["botId"],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"querystring",
+          "locationName":"localeId"
+        },
+        "sessionId":{
+          "shape":"SessionId",
+          "location":"querystring",
+          "locationName":"sessionId"
+        }
+      }
+    },
+    "DeleteUtterancesResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DescribeBotAliasRequest":{
       "type":"structure",
       "required":[
@@ -2304,7 +4462,8 @@
         "botAliasStatus":{"shape":"BotAliasStatus"},
         "botId":{"shape":"Id"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "parentBotNetworks":{"shape":"ParentBotNetworks"}
       }
     },
     "DescribeBotLocaleRequest":{
@@ -2349,7 +4508,56 @@
         "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"},
         "lastBuildSubmittedDateTime":{"shape":"Timestamp"},
-        "botLocaleHistoryEvents":{"shape":"BotLocaleHistoryEventsList"}
+        "botLocaleHistoryEvents":{"shape":"BotLocaleHistoryEventsList"},
+        "recommendedActions":{"shape":"RecommendedActions"},
+        "generativeAISettings":{"shape":"GenerativeAISettings"}
+      }
+    },
+    "DescribeBotRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        }
+      }
+    },
+    "DescribeBotRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"},
+        "failureReasons":{"shape":"FailureReasons"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "transcriptSourceSetting":{"shape":"TranscriptSourceSetting"},
+        "encryptionSetting":{"shape":"EncryptionSetting"},
+        "botRecommendationResults":{"shape":"BotRecommendationResults"}
       }
     },
     "DescribeBotRequest":{
@@ -2363,6 +4571,53 @@
         }
       }
     },
+    "DescribeBotResourceGenerationRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "generationId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "generationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"generationId"
+        }
+      }
+    },
+    "DescribeBotResourceGenerationResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "generationId":{"shape":"Id"},
+        "failureReasons":{"shape":"FailureReasons"},
+        "generationStatus":{"shape":"GenerationStatus"},
+        "generationInputPrompt":{"shape":"GenerationInput"},
+        "generatedBotLocaleUrl":{"shape":"PresignedS3Url"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "modelArn":{"shape":"BedrockModelArn"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
     "DescribeBotResponse":{
       "type":"structure",
       "members":{
@@ -2374,7 +4629,10 @@
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "botStatus":{"shape":"BotStatus"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"},
+        "failureReasons":{"shape":"FailureReasons"}
       }
     },
     "DescribeBotVersionRequest":{
@@ -2408,7 +4666,46 @@
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "botStatus":{"shape":"BotStatus"},
         "failureReasons":{"shape":"FailureReasons"},
-        "creationDateTime":{"shape":"Timestamp"}
+        "creationDateTime":{"shape":"Timestamp"},
+        "parentBotNetworks":{"shape":"ParentBotNetworks"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
+      }
+    },
+    "DescribeCustomVocabularyMetadataRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        }
+      }
+    },
+    "DescribeCustomVocabularyMetadataResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "customVocabularyStatus":{"shape":"CustomVocabularyStatus"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
       }
     },
     "DescribeExportRequest":{
@@ -2511,7 +4808,8 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "DescribeResourcePolicyRequest":{
@@ -2585,7 +4883,8 @@
         "intentId":{"shape":"Id"},
         "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"},
-        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"},
+        "subSlotSetting":{"shape":"SubSlotSetting"}
       }
     },
     "DescribeSlotTypeRequest":{
@@ -2632,6 +4931,112 @@
         "botVersion":{"shape":"BotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"},
+        "compositeSlotTypeSetting":{"shape":"CompositeSlotTypeSetting"}
+      }
+    },
+    "DescribeTestExecutionRequest":{
+      "type":"structure",
+      "required":["testExecutionId"],
+      "members":{
+        "testExecutionId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testExecutionId"
+        }
+      }
+    },
+    "DescribeTestExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutionId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "testExecutionStatus":{"shape":"TestExecutionStatus"},
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "target":{"shape":"TestExecutionTarget"},
+        "apiMode":{"shape":"TestExecutionApiMode"},
+        "testExecutionModality":{"shape":"TestExecutionModality"},
+        "failureReasons":{"shape":"FailureReasons"}
+      }
+    },
+    "DescribeTestSetDiscrepancyReportRequest":{
+      "type":"structure",
+      "required":["testSetDiscrepancyReportId"],
+      "members":{
+        "testSetDiscrepancyReportId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetDiscrepancyReportId"
+        }
+      }
+    },
+    "DescribeTestSetDiscrepancyReportResponse":{
+      "type":"structure",
+      "members":{
+        "testSetDiscrepancyReportId":{"shape":"Id"},
+        "testSetId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "target":{"shape":"TestSetDiscrepancyReportResourceTarget"},
+        "testSetDiscrepancyReportStatus":{"shape":"TestSetDiscrepancyReportStatus"},
+        "lastUpdatedDataTime":{"shape":"Timestamp"},
+        "testSetDiscrepancyTopErrors":{"shape":"TestSetDiscrepancyErrors"},
+        "testSetDiscrepancyRawOutputUrl":{"shape":"PresignedS3Url"},
+        "failureReasons":{"shape":"FailureReasons"}
+      }
+    },
+    "DescribeTestSetGenerationRequest":{
+      "type":"structure",
+      "required":["testSetGenerationId"],
+      "members":{
+        "testSetGenerationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetGenerationId"
+        }
+      }
+    },
+    "DescribeTestSetGenerationResponse":{
+      "type":"structure",
+      "members":{
+        "testSetGenerationId":{"shape":"Id"},
+        "testSetGenerationStatus":{"shape":"TestSetGenerationStatus"},
+        "failureReasons":{"shape":"FailureReasons"},
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "generationDataSource":{"shape":"TestSetGenerationDataSource"},
+        "roleArn":{"shape":"RoleArn"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeTestSetRequest":{
+      "type":"structure",
+      "required":["testSetId"],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        }
+      }
+    },
+    "DescribeTestSetResponse":{
+      "type":"structure",
+      "members":{
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "modality":{"shape":"TestSetModality"},
+        "status":{"shape":"TestSetStatus"},
+        "roleArn":{"shape":"RoleArn"},
+        "numTurns":{"shape":"Count"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"}
       }
     },
@@ -2640,11 +5045,64 @@
       "max":200,
       "min":0
     },
+    "DescriptiveBotBuilderSpecification":{
+      "type":"structure",
+      "required":["enabled"],
+      "members":{
+        "enabled":{"shape":"Boolean"},
+        "bedrockModelSpecification":{"shape":"BedrockModelSpecification"}
+      }
+    },
+    "DialogAction":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"DialogActionType"},
+        "slotToElicit":{"shape":"Name"},
+        "suppressNextMessage":{"shape":"BoxedBoolean"}
+      }
+    },
+    "DialogActionType":{
+      "type":"string",
+      "enum":[
+        "ElicitIntent",
+        "StartIntent",
+        "ElicitSlot",
+        "EvaluateConditional",
+        "InvokeDialogCodeHook",
+        "ConfirmIntent",
+        "FulfillIntent",
+        "CloseIntent",
+        "EndConversation"
+      ]
+    },
+    "DialogCodeHookInvocationSetting":{
+      "type":"structure",
+      "required":[
+        "enableCodeHookInvocation",
+        "active",
+        "postCodeHookSpecification"
+      ],
+      "members":{
+        "enableCodeHookInvocation":{"shape":"BoxedBoolean"},
+        "active":{"shape":"BoxedBoolean"},
+        "invocationLabel":{"shape":"Name"},
+        "postCodeHookSpecification":{"shape":"PostDialogCodeHookInvocationSpecification"}
+      }
+    },
     "DialogCodeHookSettings":{
       "type":"structure",
       "required":["enabled"],
       "members":{
         "enabled":{"shape":"Boolean"}
+      }
+    },
+    "DialogState":{
+      "type":"structure",
+      "members":{
+        "dialogAction":{"shape":"DialogAction"},
+        "intent":{"shape":"IntentOverride"},
+        "sessionAttributes":{"shape":"StringMap"}
       }
     },
     "DraftBotVersion":{
@@ -2660,7 +5118,45 @@
         "Deny"
       ]
     },
+    "ElicitationCodeHookInvocationSetting":{
+      "type":"structure",
+      "required":["enableCodeHookInvocation"],
+      "members":{
+        "enableCodeHookInvocation":{"shape":"BoxedBoolean"},
+        "invocationLabel":{"shape":"Name"}
+      }
+    },
+    "Enabled":{"type":"boolean"},
+    "EncryptionSetting":{
+      "type":"structure",
+      "members":{
+        "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "botLocaleExportPassword":{"shape":"FilePassword"},
+        "associatedTranscriptsPassword":{"shape":"FilePassword"}
+      }
+    },
+    "ErrorCode":{
+      "type":"string",
+      "enum":[
+        "DUPLICATE_INPUT",
+        "RESOURCE_DOES_NOT_EXIST",
+        "RESOURCE_ALREADY_EXISTS",
+        "INTERNAL_SERVER_FAILURE"
+      ]
+    },
+    "ErrorMessage":{"type":"string"},
     "ExceptionMessage":{"type":"string"},
+    "ExecutionErrorDetails":{
+      "type":"structure",
+      "required":[
+        "errorCode",
+        "errorMessage"
+      ],
+      "members":{
+        "errorCode":{"shape":"NonEmptyString"},
+        "errorMessage":{"shape":"NonEmptyString"}
+      }
+    },
     "ExportFilter":{
       "type":"structure",
       "required":[
@@ -2695,7 +5191,9 @@
       "type":"structure",
       "members":{
         "botExportSpecification":{"shape":"BotExportSpecification"},
-        "botLocaleExportSpecification":{"shape":"BotLocaleExportSpecification"}
+        "botLocaleExportSpecification":{"shape":"BotLocaleExportSpecification"},
+        "customVocabularyExportSpecification":{"shape":"CustomVocabularyExportSpecification"},
+        "testSetExportSpecification":{"shape":"TestSetExportSpecification"}
       }
     },
     "ExportSortAttribute":{
@@ -2737,10 +5235,34 @@
       "type":"list",
       "member":{"shape":"ExportSummary"}
     },
+    "ExternalSourceSetting":{
+      "type":"structure",
+      "members":{
+        "grammarSlotTypeSetting":{"shape":"GrammarSlotTypeSetting"}
+      }
+    },
+    "FailedCustomVocabularyItem":{
+      "type":"structure",
+      "members":{
+        "itemId":{"shape":"ItemId"},
+        "errorMessage":{"shape":"ErrorMessage"},
+        "errorCode":{"shape":"ErrorCode"}
+      }
+    },
+    "FailedCustomVocabularyItems":{
+      "type":"list",
+      "member":{"shape":"FailedCustomVocabularyItem"}
+    },
     "FailureReason":{"type":"string"},
     "FailureReasons":{
       "type":"list",
       "member":{"shape":"FailureReason"}
+    },
+    "FilePassword":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "sensitive":true
     },
     "FilterValue":{
       "type":"string",
@@ -2758,9 +5280,186 @@
       "type":"structure",
       "required":["enabled"],
       "members":{
-        "enabled":{"shape":"Boolean"}
+        "enabled":{"shape":"Boolean"},
+        "postFulfillmentStatusSpecification":{"shape":"PostFulfillmentStatusSpecification"},
+        "fulfillmentUpdatesSpecification":{"shape":"FulfillmentUpdatesSpecification"},
+        "active":{"shape":"BoxedBoolean"}
       }
     },
+    "FulfillmentStartResponseDelay":{
+      "type":"integer",
+      "max":900,
+      "min":1
+    },
+    "FulfillmentStartResponseSpecification":{
+      "type":"structure",
+      "required":[
+        "delayInSeconds",
+        "messageGroups"
+      ],
+      "members":{
+        "delayInSeconds":{"shape":"FulfillmentStartResponseDelay"},
+        "messageGroups":{"shape":"MessageGroupsList"},
+        "allowInterrupt":{"shape":"BoxedBoolean"}
+      }
+    },
+    "FulfillmentTimeout":{
+      "type":"integer",
+      "max":900,
+      "min":1
+    },
+    "FulfillmentUpdateResponseFrequency":{
+      "type":"integer",
+      "max":900,
+      "min":1
+    },
+    "FulfillmentUpdateResponseSpecification":{
+      "type":"structure",
+      "required":[
+        "frequencyInSeconds",
+        "messageGroups"
+      ],
+      "members":{
+        "frequencyInSeconds":{"shape":"FulfillmentUpdateResponseFrequency"},
+        "messageGroups":{"shape":"MessageGroupsList"},
+        "allowInterrupt":{"shape":"BoxedBoolean"}
+      }
+    },
+    "FulfillmentUpdatesSpecification":{
+      "type":"structure",
+      "required":["active"],
+      "members":{
+        "active":{"shape":"BoxedBoolean"},
+        "startResponse":{"shape":"FulfillmentStartResponseSpecification"},
+        "updateResponse":{"shape":"FulfillmentUpdateResponseSpecification"},
+        "timeoutInSeconds":{"shape":"FulfillmentTimeout"}
+      }
+    },
+    "GenerateBotElementRequest":{
+      "type":"structure",
+      "required":[
+        "intentId",
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "intentId":{"shape":"Id"},
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        }
+      }
+    },
+    "GenerateBotElementResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "intentId":{"shape":"Id"},
+        "sampleUtterances":{"shape":"SampleUtterancesList"}
+      }
+    },
+    "GenerationInput":{
+      "type":"string",
+      "max":2000,
+      "min":100
+    },
+    "GenerationSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{"shape":"GenerationSortByAttribute"},
+        "order":{"shape":"SortOrder"}
+      }
+    },
+    "GenerationSortByAttribute":{
+      "type":"string",
+      "enum":[
+        "creationStartTime",
+        "lastUpdatedTime"
+      ]
+    },
+    "GenerationStatus":{
+      "type":"string",
+      "enum":[
+        "Failed",
+        "Complete",
+        "InProgress"
+      ]
+    },
+    "GenerationSummary":{
+      "type":"structure",
+      "members":{
+        "generationId":{"shape":"Id"},
+        "generationStatus":{"shape":"GenerationStatus"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "GenerationSummaryList":{
+      "type":"list",
+      "member":{"shape":"GenerationSummary"}
+    },
+    "GenerativeAISettings":{
+      "type":"structure",
+      "members":{
+        "runtimeSettings":{"shape":"RuntimeSettings"},
+        "buildtimeSettings":{"shape":"BuildtimeSettings"}
+      }
+    },
+    "GetTestExecutionArtifactsUrlRequest":{
+      "type":"structure",
+      "required":["testExecutionId"],
+      "members":{
+        "testExecutionId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testExecutionId"
+        }
+      }
+    },
+    "GetTestExecutionArtifactsUrlResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutionId":{"shape":"Id"},
+        "downloadArtifactsUrl":{"shape":"PresignedS3Url"}
+      }
+    },
+    "GrammarSlotTypeSetting":{
+      "type":"structure",
+      "members":{
+        "source":{"shape":"GrammarSlotTypeSource"}
+      }
+    },
+    "GrammarSlotTypeSource":{
+      "type":"structure",
+      "required":[
+        "s3BucketName",
+        "s3ObjectKey"
+      ],
+      "members":{
+        "s3BucketName":{"shape":"S3BucketName"},
+        "s3ObjectKey":{"shape":"S3ObjectPath"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "HitCount":{"type":"integer"},
     "Id":{
       "type":"string",
       "max":10,
@@ -2779,7 +5478,11 @@
     },
     "ImportExportFileFormat":{
       "type":"string",
-      "enum":["LexJson"]
+      "enum":[
+        "LexJson",
+        "TSV",
+        "CSV"
+      ]
     },
     "ImportExportFilePassword":{
       "type":"string",
@@ -2821,8 +5524,19 @@
       "type":"structure",
       "members":{
         "botImportSpecification":{"shape":"BotImportSpecification"},
-        "botLocaleImportSpecification":{"shape":"BotLocaleImportSpecification"}
+        "botLocaleImportSpecification":{"shape":"BotLocaleImportSpecification"},
+        "customVocabularyImportSpecification":{"shape":"CustomVocabularyImportSpecification"},
+        "testSetImportResourceSpecification":{"shape":"TestSetImportResourceSpecification"}
       }
+    },
+    "ImportResourceType":{
+      "type":"string",
+      "enum":[
+        "Bot",
+        "BotLocale",
+        "CustomVocabulary",
+        "TestSet"
+      ]
     },
     "ImportSortAttribute":{
       "type":"string",
@@ -2857,7 +5571,8 @@
         "importStatus":{"shape":"ImportStatus"},
         "mergeStrategy":{"shape":"MergeStrategy"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "importedResourceType":{"shape":"ImportResourceType"}
       }
     },
     "ImportSummaryList":{
@@ -2869,6 +5584,15 @@
       "max":10,
       "min":5,
       "pattern":"^([0-9a-zA-Z_])+$"
+    },
+    "InitialResponseSetting":{
+      "type":"structure",
+      "members":{
+        "initialResponse":{"shape":"ResponseSpecification"},
+        "nextStep":{"shape":"DialogState"},
+        "conditional":{"shape":"ConditionalSpecification"},
+        "codeHook":{"shape":"DialogCodeHookInvocationSetting"}
+      }
     },
     "InputContext":{
       "type":"structure",
@@ -2883,22 +5607,76 @@
       "max":5,
       "min":0
     },
+    "InputSessionStateSpecification":{
+      "type":"structure",
+      "members":{
+        "sessionAttributes":{"shape":"StringMap"},
+        "activeContexts":{"shape":"ActiveContextList"},
+        "runtimeHints":{"shape":"RuntimeHints"}
+      }
+    },
+    "IntentClassificationTestResultItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "multiTurnConversation",
+        "resultCounts"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "multiTurnConversation":{"shape":"Boolean"},
+        "resultCounts":{"shape":"IntentClassificationTestResultItemCounts"}
+      }
+    },
+    "IntentClassificationTestResultItemCounts":{
+      "type":"structure",
+      "required":[
+        "totalResultCount",
+        "intentMatchResultCounts"
+      ],
+      "members":{
+        "totalResultCount":{"shape":"Count"},
+        "speechTranscriptionResultCounts":{"shape":"TestResultMatchStatusCountMap"},
+        "intentMatchResultCounts":{"shape":"TestResultMatchStatusCountMap"}
+      }
+    },
+    "IntentClassificationTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"IntentClassificationTestResultItem"}
+    },
+    "IntentClassificationTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"IntentClassificationTestResultItemList"}
+      }
+    },
     "IntentClosingSetting":{
       "type":"structure",
-      "required":["closingResponse"],
       "members":{
-        "closingResponse":{"shape":"ResponseSpecification"}
+        "closingResponse":{"shape":"ResponseSpecification"},
+        "active":{"shape":"BoxedBoolean"},
+        "nextStep":{"shape":"DialogState"},
+        "conditional":{"shape":"ConditionalSpecification"}
       }
     },
     "IntentConfirmationSetting":{
       "type":"structure",
-      "required":[
-        "promptSpecification",
-        "declinationResponse"
-      ],
+      "required":["promptSpecification"],
       "members":{
         "promptSpecification":{"shape":"PromptSpecification"},
-        "declinationResponse":{"shape":"ResponseSpecification"}
+        "declinationResponse":{"shape":"ResponseSpecification"},
+        "active":{"shape":"BoxedBoolean"},
+        "confirmationResponse":{"shape":"ResponseSpecification"},
+        "confirmationNextStep":{"shape":"DialogState"},
+        "confirmationConditional":{"shape":"ConditionalSpecification"},
+        "declinationNextStep":{"shape":"DialogState"},
+        "declinationConditional":{"shape":"ConditionalSpecification"},
+        "failureResponse":{"shape":"ResponseSpecification"},
+        "failureNextStep":{"shape":"DialogState"},
+        "failureConditional":{"shape":"ConditionalSpecification"},
+        "codeHook":{"shape":"DialogCodeHookInvocationSetting"},
+        "elicitationCodeHook":{"shape":"ElicitationCodeHookInvocationSetting"}
       }
     },
     "IntentFilter":{
@@ -2931,6 +5709,37 @@
       "max":1,
       "min":1
     },
+    "IntentLevelSlotResolutionTestResultItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "multiTurnConversation",
+        "slotResolutionResults"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "multiTurnConversation":{"shape":"Boolean"},
+        "slotResolutionResults":{"shape":"SlotResolutionTestResultItems"}
+      }
+    },
+    "IntentLevelSlotResolutionTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"IntentLevelSlotResolutionTestResultItem"}
+    },
+    "IntentLevelSlotResolutionTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"IntentLevelSlotResolutionTestResultItemList"}
+      }
+    },
+    "IntentOverride":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"Name"},
+        "slots":{"shape":"SlotValueOverrideMap"}
+      }
+    },
     "IntentSignature":{"type":"string"},
     "IntentSortAttribute":{
       "type":"string",
@@ -2948,6 +5757,23 @@
       "members":{
         "attribute":{"shape":"IntentSortAttribute"},
         "order":{"shape":"SortOrder"}
+      }
+    },
+    "IntentState":{
+      "type":"string",
+      "enum":[
+        "Failed",
+        "Fulfilled",
+        "InProgress",
+        "ReadyForFulfillment",
+        "Waiting",
+        "FulfillmentInProgress"
+      ]
+    },
+    "IntentStatistics":{
+      "type":"structure",
+      "members":{
+        "discoveredIntentCount":{"shape":"Count"}
       }
     },
     "IntentSummary":{
@@ -2974,6 +5800,21 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "InvokedIntentSample":{
+      "type":"structure",
+      "members":{
+        "intentName":{"shape":"Name"}
+      }
+    },
+    "InvokedIntentSamples":{
+      "type":"list",
+      "member":{"shape":"InvokedIntentSample"}
+    },
+    "ItemId":{
+      "type":"string",
+      "max":32,
+      "min":1
     },
     "KendraConfiguration":{
       "type":"structure",
@@ -3011,6 +5852,50 @@
       "members":{
         "lambdaARN":{"shape":"LambdaARN"},
         "codeHookInterfaceVersion":{"shape":"CodeHookInterfaceVersion"}
+      }
+    },
+    "LexTranscriptFilter":{
+      "type":"structure",
+      "members":{
+        "dateRangeFilter":{"shape":"DateRangeFilter"}
+      }
+    },
+    "ListAggregatedUtterancesRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "localeId",
+        "aggregationDuration"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botAliasId":{"shape":"BotAliasId"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "aggregationDuration":{"shape":"UtteranceAggregationDuration"},
+        "sortBy":{"shape":"AggregatedUtterancesSortBy"},
+        "filters":{"shape":"AggregatedUtterancesFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAggregatedUtterancesResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botAliasId":{"shape":"BotAliasId"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "aggregationDuration":{"shape":"UtteranceAggregationDuration"},
+        "aggregationWindowStartTime":{"shape":"Timestamp"},
+        "aggregationWindowEndTime":{"shape":"Timestamp"},
+        "aggregationLastRefreshedDateTime":{"shape":"Timestamp"},
+        "aggregatedUtterancesSummaries":{"shape":"AggregatedUtterancesSummaryList"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListBotAliasesRequest":{
@@ -3064,6 +5949,81 @@
         "botVersion":{"shape":"BotVersion"},
         "nextToken":{"shape":"NextToken"},
         "botLocaleSummaries":{"shape":"BotLocaleSummaryList"}
+      }
+    },
+    "ListBotRecommendationsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListBotRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationSummaries":{"shape":"BotRecommendationSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListBotResourceGenerationsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "sortBy":{"shape":"GenerationSortBy"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListBotResourceGenerationsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "generationSummaries":{"shape":"GenerationSummaryList"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListBotVersionsRequest":{
@@ -3148,6 +6108,43 @@
         "localeId":{"shape":"LocaleId"}
       }
     },
+    "ListCustomVocabularyItemsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListCustomVocabularyItemsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "customVocabularyItems":{"shape":"CustomVocabularyItems"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListExportsRequest":{
       "type":"structure",
       "members":{
@@ -3156,7 +6153,8 @@
         "sortBy":{"shape":"ExportSortBy"},
         "filters":{"shape":"ExportFilters"},
         "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "localeId":{"shape":"LocaleId"}
       }
     },
     "ListExportsResponse":{
@@ -3165,7 +6163,8 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"BotVersion"},
         "exportSummaries":{"shape":"ExportSummaryList"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "localeId":{"shape":"LocaleId"}
       }
     },
     "ListImportsRequest":{
@@ -3176,7 +6175,8 @@
         "sortBy":{"shape":"ImportSortBy"},
         "filters":{"shape":"ImportFilters"},
         "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "localeId":{"shape":"LocaleId"}
       }
     },
     "ListImportsResponse":{
@@ -3185,6 +6185,97 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"DraftBotVersion"},
         "importSummaries":{"shape":"ImportSummaryList"},
+        "nextToken":{"shape":"NextToken"},
+        "localeId":{"shape":"LocaleId"}
+      }
+    },
+    "ListIntentMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "startDateTime",
+        "endDateTime",
+        "metrics"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "startDateTime":{"shape":"Timestamp"},
+        "endDateTime":{"shape":"Timestamp"},
+        "metrics":{"shape":"AnalyticsIntentMetrics"},
+        "binBy":{"shape":"AnalyticsBinByList"},
+        "groupBy":{"shape":"AnalyticsIntentGroupByList"},
+        "filters":{"shape":"AnalyticsIntentFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListIntentMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "results":{"shape":"AnalyticsIntentResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListIntentPathsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "startDateTime",
+        "endDateTime",
+        "intentPath"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "startDateTime":{"shape":"Timestamp"},
+        "endDateTime":{"shape":"Timestamp"},
+        "intentPath":{"shape":"AnalyticsPath"},
+        "filters":{"shape":"AnalyticsPathFilters"}
+      }
+    },
+    "ListIntentPathsResponse":{
+      "type":"structure",
+      "members":{
+        "nodeSummaries":{"shape":"AnalyticsIntentNodeSummaries"}
+      }
+    },
+    "ListIntentStageMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "startDateTime",
+        "endDateTime",
+        "metrics"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "startDateTime":{"shape":"Timestamp"},
+        "endDateTime":{"shape":"Timestamp"},
+        "metrics":{"shape":"AnalyticsIntentStageMetrics"},
+        "binBy":{"shape":"AnalyticsBinByList"},
+        "groupBy":{"shape":"AnalyticsIntentStageGroupByList"},
+        "filters":{"shape":"AnalyticsIntentStageFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListIntentStageMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "results":{"shape":"AnalyticsIntentStageResults"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -3224,6 +6315,111 @@
         "botVersion":{"shape":"BotVersion"},
         "localeId":{"shape":"LocaleId"},
         "intentSummaries":{"shape":"IntentSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListRecommendedIntentsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        },
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListRecommendedIntentsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationId":{"shape":"Id"},
+        "summaryList":{"shape":"RecommendedIntentSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListSessionAnalyticsDataRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "startDateTime",
+        "endDateTime"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "startDateTime":{"shape":"Timestamp"},
+        "endDateTime":{"shape":"Timestamp"},
+        "sortBy":{"shape":"SessionDataSortBy"},
+        "filters":{"shape":"AnalyticsSessionFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListSessionAnalyticsDataResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "nextToken":{"shape":"NextToken"},
+        "sessions":{"shape":"SessionSpecifications"}
+      }
+    },
+    "ListSessionMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "startDateTime",
+        "endDateTime",
+        "metrics"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "startDateTime":{"shape":"Timestamp"},
+        "endDateTime":{"shape":"Timestamp"},
+        "metrics":{"shape":"AnalyticsSessionMetrics"},
+        "binBy":{"shape":"AnalyticsBinByList"},
+        "groupBy":{"shape":"AnalyticsSessionGroupByList"},
+        "filters":{"shape":"AnalyticsSessionFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListSessionMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "results":{"shape":"AnalyticsSessionResults"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -3329,6 +6525,142 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "ListTestExecutionResultItemsRequest":{
+      "type":"structure",
+      "required":[
+        "testExecutionId",
+        "resultFilterBy"
+      ],
+      "members":{
+        "testExecutionId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testExecutionId"
+        },
+        "resultFilterBy":{"shape":"TestExecutionResultFilterBy"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestExecutionResultItemsResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutionResults":{"shape":"TestExecutionResultItems"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestExecutionsRequest":{
+      "type":"structure",
+      "members":{
+        "sortBy":{"shape":"TestExecutionSortBy"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestExecutionsResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutions":{"shape":"TestExecutionSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestSetRecordsRequest":{
+      "type":"structure",
+      "required":["testSetId"],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        },
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestSetRecordsResponse":{
+      "type":"structure",
+      "members":{
+        "testSetRecords":{"shape":"TestSetTurnRecordList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestSetsRequest":{
+      "type":"structure",
+      "members":{
+        "sortBy":{"shape":"TestSetSortBy"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTestSetsResponse":{
+      "type":"structure",
+      "members":{
+        "testSets":{"shape":"TestSetSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListUtteranceAnalyticsDataRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "startDateTime",
+        "endDateTime"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "startDateTime":{"shape":"Timestamp"},
+        "endDateTime":{"shape":"Timestamp"},
+        "sortBy":{"shape":"UtteranceDataSortBy"},
+        "filters":{"shape":"AnalyticsUtteranceFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListUtteranceAnalyticsDataResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "nextToken":{"shape":"NextToken"},
+        "utterances":{"shape":"UtteranceSpecifications"}
+      }
+    },
+    "ListUtteranceMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "startDateTime",
+        "endDateTime",
+        "metrics"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "startDateTime":{"shape":"Timestamp"},
+        "endDateTime":{"shape":"Timestamp"},
+        "metrics":{"shape":"AnalyticsUtteranceMetrics"},
+        "binBy":{"shape":"AnalyticsBinByList"},
+        "groupBy":{"shape":"AnalyticsUtteranceGroupByList"},
+        "attributes":{"shape":"AnalyticsUtteranceAttributes"},
+        "filters":{"shape":"AnalyticsUtteranceFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListUtteranceMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "results":{"shape":"AnalyticsUtteranceResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "LocaleId":{"type":"string"},
     "LocaleName":{"type":"string"},
     "LogPrefix":{
@@ -3341,11 +6673,17 @@
       "max":1000,
       "min":1
     },
+    "MaxUtteranceDigits":{
+      "type":"integer",
+      "max":1024,
+      "min":1
+    },
     "MergeStrategy":{
       "type":"string",
       "enum":[
         "Overwrite",
-        "FailOnConflict"
+        "FailOnConflict",
+        "Append"
       ]
     },
     "Message":{
@@ -3371,12 +6709,20 @@
       "max":5,
       "min":1
     },
+    "MessageSelectionStrategy":{
+      "type":"string",
+      "enum":[
+        "Random",
+        "Ordered"
+      ]
+    },
     "MessageVariationsList":{
       "type":"list",
       "member":{"shape":"Message"},
       "max":2,
       "min":0
     },
+    "MissedCount":{"type":"integer"},
     "MultipleValuesSetting":{
       "type":"structure",
       "members":{
@@ -3387,9 +6733,28 @@
       "type":"string",
       "max":100,
       "min":1,
-      "pattern":"^([0-9a-zA-Z][_-]?)+$"
+      "pattern":"^([0-9a-zA-Z][_-]?){1,100}$"
+    },
+    "NewCustomVocabularyItem":{
+      "type":"structure",
+      "required":["phrase"],
+      "members":{
+        "phrase":{"shape":"Phrase"},
+        "weight":{"shape":"Weight"},
+        "displayAs":{"shape":"Phrase"}
+      }
+    },
+    "NextIndex":{
+      "type":"integer",
+      "box":true,
+      "max":10000000,
+      "min":0
     },
     "NextToken":{"type":"string"},
+    "NonEmptyString":{
+      "type":"string",
+      "min":1
+    },
     "NumericalBotVersion":{
       "type":"string",
       "max":5,
@@ -3409,6 +6774,17 @@
         "None",
         "DefaultObfuscation"
       ]
+    },
+    "ObjectPrefix":{
+      "type":"string",
+      "min":1,
+      "pattern":"^[\\/]?+[a-zA-Z0-9!_.*'()-]+(\\/[a-zA-Z0-9!_.*'()-]+)*$"
+    },
+    "ObjectPrefixes":{
+      "type":"list",
+      "member":{"shape":"ObjectPrefix"},
+      "max":2,
+      "min":1
     },
     "Operation":{
       "type":"string",
@@ -3439,6 +6815,59 @@
       "max":10,
       "min":0
     },
+    "OverallTestResultItem":{
+      "type":"structure",
+      "required":[
+        "multiTurnConversation",
+        "totalResultCount",
+        "endToEndResultCounts"
+      ],
+      "members":{
+        "multiTurnConversation":{"shape":"Boolean"},
+        "totalResultCount":{"shape":"Count"},
+        "speechTranscriptionResultCounts":{"shape":"TestResultMatchStatusCountMap"},
+        "endToEndResultCounts":{"shape":"TestResultMatchStatusCountMap"}
+      }
+    },
+    "OverallTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"OverallTestResultItem"}
+    },
+    "OverallTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"OverallTestResultItemList"}
+      }
+    },
+    "ParentBotNetwork":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"}
+      }
+    },
+    "ParentBotNetworks":{
+      "type":"list",
+      "member":{"shape":"ParentBotNetwork"},
+      "max":30,
+      "min":0
+    },
+    "PathFormat":{
+      "type":"structure",
+      "members":{
+        "objectPrefixes":{"shape":"ObjectPrefixes"}
+      }
+    },
+    "Phrase":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
     "PlainTextMessage":{
       "type":"structure",
       "required":["value"],
@@ -3454,6 +6883,34 @@
     "Policy":{
       "type":"string",
       "min":2
+    },
+    "PostDialogCodeHookInvocationSpecification":{
+      "type":"structure",
+      "members":{
+        "successResponse":{"shape":"ResponseSpecification"},
+        "successNextStep":{"shape":"DialogState"},
+        "successConditional":{"shape":"ConditionalSpecification"},
+        "failureResponse":{"shape":"ResponseSpecification"},
+        "failureNextStep":{"shape":"DialogState"},
+        "failureConditional":{"shape":"ConditionalSpecification"},
+        "timeoutResponse":{"shape":"ResponseSpecification"},
+        "timeoutNextStep":{"shape":"DialogState"},
+        "timeoutConditional":{"shape":"ConditionalSpecification"}
+      }
+    },
+    "PostFulfillmentStatusSpecification":{
+      "type":"structure",
+      "members":{
+        "successResponse":{"shape":"ResponseSpecification"},
+        "failureResponse":{"shape":"ResponseSpecification"},
+        "timeoutResponse":{"shape":"ResponseSpecification"},
+        "successNextStep":{"shape":"DialogState"},
+        "successConditional":{"shape":"ConditionalSpecification"},
+        "failureNextStep":{"shape":"DialogState"},
+        "failureConditional":{"shape":"ConditionalSpecification"},
+        "timeoutNextStep":{"shape":"DialogState"},
+        "timeoutConditional":{"shape":"ConditionalSpecification"}
+      }
     },
     "PreconditionFailedException":{
       "type":"structure",
@@ -3487,8 +6944,34 @@
     },
     "PriorityValue":{
       "type":"integer",
-      "max":25,
+      "max":100,
       "min":0
+    },
+    "PromptAttempt":{
+      "type":"string",
+      "enum":[
+        "Initial",
+        "Retry1",
+        "Retry2",
+        "Retry3",
+        "Retry4",
+        "Retry5"
+      ]
+    },
+    "PromptAttemptSpecification":{
+      "type":"structure",
+      "required":["allowedInputTypes"],
+      "members":{
+        "allowInterrupt":{"shape":"BoxedBoolean"},
+        "allowedInputTypes":{"shape":"AllowedInputTypes"},
+        "audioAndDTMFInputSpecification":{"shape":"AudioAndDTMFInputSpecification"},
+        "textInputSpecification":{"shape":"TextInputSpecification"}
+      }
+    },
+    "PromptAttemptsSpecificationMap":{
+      "type":"map",
+      "key":{"shape":"PromptAttempt"},
+      "value":{"shape":"PromptAttemptSpecification"}
     },
     "PromptMaxRetries":{
       "type":"integer",
@@ -3504,7 +6987,9 @@
       "members":{
         "messageGroups":{"shape":"MessageGroupsList"},
         "maxRetries":{"shape":"PromptMaxRetries"},
-        "allowInterrupt":{"shape":"BoxedBoolean"}
+        "allowInterrupt":{"shape":"BoxedBoolean"},
+        "messageSelectionStrategy":{"shape":"MessageSelectionStrategy"},
+        "promptAttemptsSpecification":{"shape":"PromptAttemptsSpecificationMap"}
       }
     },
     "QueryFilterString":{
@@ -3512,10 +6997,43 @@
       "max":5000,
       "min":1
     },
+    "RecommendedAction":{"type":"string"},
+    "RecommendedActions":{
+      "type":"list",
+      "member":{"shape":"RecommendedAction"}
+    },
+    "RecommendedIntentSummary":{
+      "type":"structure",
+      "members":{
+        "intentId":{"shape":"Id"},
+        "intentName":{"shape":"Name"},
+        "sampleUtterancesCount":{"shape":"SampleUtterancesCount"}
+      }
+    },
+    "RecommendedIntentSummaryList":{
+      "type":"list",
+      "member":{"shape":"RecommendedIntentSummary"}
+    },
+    "RecordNumber":{
+      "type":"long",
+      "max":200000,
+      "min":1
+    },
     "RegexPattern":{
       "type":"string",
-      "max":100,
+      "max":300,
       "min":1
+    },
+    "RelativeAggregationDuration":{
+      "type":"structure",
+      "required":[
+        "timeDimension",
+        "timeValue"
+      ],
+      "members":{
+        "timeDimension":{"shape":"TimeDimension"},
+        "timeValue":{"shape":"TimeValue"}
+      }
     },
     "ResourceCount":{"type":"integer"},
     "ResourceNotFoundException":{
@@ -3547,6 +7065,43 @@
       "min":32,
       "pattern":"^arn:aws:iam::[0-9]{12}:role/.*$"
     },
+    "RuntimeHintDetails":{
+      "type":"structure",
+      "members":{
+        "runtimeHintValues":{"shape":"RuntimeHintValuesList"},
+        "subSlotHints":{"shape":"SlotHintsSlotMap"}
+      }
+    },
+    "RuntimeHintPhrase":{
+      "type":"string",
+      "max":140,
+      "min":1
+    },
+    "RuntimeHintValue":{
+      "type":"structure",
+      "required":["phrase"],
+      "members":{
+        "phrase":{"shape":"RuntimeHintPhrase"}
+      }
+    },
+    "RuntimeHintValuesList":{
+      "type":"list",
+      "member":{"shape":"RuntimeHintValue"},
+      "max":100,
+      "min":1
+    },
+    "RuntimeHints":{
+      "type":"structure",
+      "members":{
+        "slotHints":{"shape":"SlotHintsIntentMap"}
+      }
+    },
+    "RuntimeSettings":{
+      "type":"structure",
+      "members":{
+        "slotResolutionImprovement":{"shape":"SlotResolutionImprovementSpecification"}
+      }
+    },
     "S3BucketArn":{
       "type":"string",
       "max":2048,
@@ -3564,6 +7119,32 @@
         "s3BucketArn":{"shape":"S3BucketArn"},
         "logPrefix":{"shape":"LogPrefix"}
       }
+    },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$"
+    },
+    "S3BucketTranscriptSource":{
+      "type":"structure",
+      "required":[
+        "s3BucketName",
+        "transcriptFormat"
+      ],
+      "members":{
+        "s3BucketName":{"shape":"S3BucketName"},
+        "pathFormat":{"shape":"PathFormat"},
+        "transcriptFormat":{"shape":"TranscriptFormat"},
+        "transcriptFilter":{"shape":"TranscriptFilter"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "S3ObjectPath":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\.\\-\\!\\*\\_\\'\\(\\)a-zA-Z0-9][\\.\\-\\!\\*\\_\\'\\(\\)\\/a-zA-Z0-9]*$"
     },
     "SSMLMessage":{
       "type":"structure",
@@ -3584,6 +7165,15 @@
         "utterance":{"shape":"Utterance"}
       }
     },
+    "SampleUtteranceGenerationSpecification":{
+      "type":"structure",
+      "required":["enabled"],
+      "members":{
+        "enabled":{"shape":"Boolean"},
+        "bedrockModelSpecification":{"shape":"BedrockModelSpecification"}
+      }
+    },
+    "SampleUtterancesCount":{"type":"integer"},
     "SampleUtterancesList":{
       "type":"list",
       "member":{"shape":"SampleUtterance"}
@@ -3594,6 +7184,61 @@
       "members":{
         "value":{"shape":"Value"}
       }
+    },
+    "SearchAssociatedTranscriptsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId",
+        "filters"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        },
+        "searchOrder":{"shape":"SearchOrder"},
+        "filters":{"shape":"AssociatedTranscriptFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextIndex":{"shape":"NextIndex"}
+      }
+    },
+    "SearchAssociatedTranscriptsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationId":{"shape":"Id"},
+        "nextIndex":{"shape":"NextIndex"},
+        "associatedTranscripts":{"shape":"AssociatedTranscriptList"},
+        "totalResults":{"shape":"MaxResults"}
+      }
+    },
+    "SearchOrder":{
+      "type":"string",
+      "enum":[
+        "Ascending",
+        "Descending"
+      ]
     },
     "SentimentAnalysisSettings":{
       "type":"structure",
@@ -3616,12 +7261,64 @@
       "error":{"httpStatusCode":402},
       "exception":true
     },
+    "SessionDataSortBy":{
+      "type":"structure",
+      "required":[
+        "name",
+        "order"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsSessionSortByName"},
+        "order":{"shape":"AnalyticsSortOrder"}
+      }
+    },
+    "SessionId":{
+      "type":"string",
+      "max":100,
+      "min":2,
+      "pattern":"[0-9a-zA-Z._:-]+"
+    },
+    "SessionSpecification":{
+      "type":"structure",
+      "members":{
+        "botAliasId":{"shape":"BotAliasId"},
+        "botVersion":{"shape":"NumericalBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "channel":{"shape":"AnalyticsChannel"},
+        "sessionId":{"shape":"AnalyticsSessionId"},
+        "conversationStartTime":{"shape":"Timestamp"},
+        "conversationEndTime":{"shape":"Timestamp"},
+        "conversationDurationSeconds":{"shape":"AnalyticsLongValue"},
+        "conversationEndState":{"shape":"ConversationEndState"},
+        "mode":{"shape":"AnalyticsModality"},
+        "numberOfTurns":{"shape":"AnalyticsLongValue"},
+        "invokedIntentSamples":{"shape":"InvokedIntentSamples"},
+        "originatingRequestId":{"shape":"AnalyticsOriginatingRequestId"}
+      }
+    },
+    "SessionSpecifications":{
+      "type":"list",
+      "member":{"shape":"SessionSpecification"}
+    },
     "SessionTTL":{
       "type":"integer",
       "max":86400,
       "min":60
     },
     "SkipResourceInUseCheck":{"type":"boolean"},
+    "SlotCaptureSetting":{
+      "type":"structure",
+      "members":{
+        "captureResponse":{"shape":"ResponseSpecification"},
+        "captureNextStep":{"shape":"DialogState"},
+        "captureConditional":{"shape":"ConditionalSpecification"},
+        "failureResponse":{"shape":"ResponseSpecification"},
+        "failureNextStep":{"shape":"DialogState"},
+        "failureConditional":{"shape":"ConditionalSpecification"},
+        "codeHook":{"shape":"DialogCodeHookInvocationSetting"},
+        "elicitationCodeHook":{"shape":"ElicitationCodeHookInvocationSetting"}
+      }
+    },
     "SlotConstraint":{
       "type":"string",
       "enum":[
@@ -3684,6 +7381,16 @@
       "max":1,
       "min":1
     },
+    "SlotHintsIntentMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"SlotHintsSlotMap"}
+    },
+    "SlotHintsSlotMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"RuntimeHintDetails"}
+    },
     "SlotPrioritiesList":{
       "type":"list",
       "member":{"shape":"SlotPriority"}
@@ -3698,6 +7405,62 @@
         "priority":{"shape":"PriorityValue"},
         "slotId":{"shape":"Id"}
       }
+    },
+    "SlotResolutionImprovementSpecification":{
+      "type":"structure",
+      "required":["enabled"],
+      "members":{
+        "enabled":{"shape":"Enabled"},
+        "bedrockModelSpecification":{"shape":"BedrockModelSpecification"}
+      }
+    },
+    "SlotResolutionSetting":{
+      "type":"structure",
+      "required":["slotResolutionStrategy"],
+      "members":{
+        "slotResolutionStrategy":{"shape":"SlotResolutionStrategy"}
+      }
+    },
+    "SlotResolutionStrategy":{
+      "type":"string",
+      "enum":[
+        "EnhancedFallback",
+        "Default"
+      ]
+    },
+    "SlotResolutionTestResultItem":{
+      "type":"structure",
+      "required":[
+        "slotName",
+        "resultCounts"
+      ],
+      "members":{
+        "slotName":{"shape":"TestResultSlotName"},
+        "resultCounts":{"shape":"SlotResolutionTestResultItemCounts"}
+      }
+    },
+    "SlotResolutionTestResultItemCounts":{
+      "type":"structure",
+      "required":[
+        "totalResultCount",
+        "slotMatchResultCounts"
+      ],
+      "members":{
+        "totalResultCount":{"shape":"Count"},
+        "speechTranscriptionResultCounts":{"shape":"TestResultMatchStatusCountMap"},
+        "slotMatchResultCounts":{"shape":"TestResultMatchStatusCountMap"}
+      }
+    },
+    "SlotResolutionTestResultItems":{
+      "type":"list",
+      "member":{"shape":"SlotResolutionTestResultItem"}
+    },
+    "SlotShape":{
+      "type":"string",
+      "enum":[
+        "Scalar",
+        "List"
+      ]
     },
     "SlotSortAttribute":{
       "type":"string",
@@ -3733,6 +7496,15 @@
       "type":"list",
       "member":{"shape":"SlotSummary"}
     },
+    "SlotTypeCategory":{
+      "type":"string",
+      "enum":[
+        "Custom",
+        "Extended",
+        "ExternalGrammar",
+        "Composite"
+      ]
+    },
     "SlotTypeFilter":{
       "type":"structure",
       "required":[
@@ -3748,7 +7520,10 @@
     },
     "SlotTypeFilterName":{
       "type":"string",
-      "enum":["SlotTypeName"]
+      "enum":[
+        "SlotTypeName",
+        "ExternalSourceType"
+      ]
     },
     "SlotTypeFilterOperator":{
       "type":"string",
@@ -3782,6 +7557,12 @@
         "order":{"shape":"SortOrder"}
       }
     },
+    "SlotTypeStatistics":{
+      "type":"structure",
+      "members":{
+        "discoveredSlotTypeCount":{"shape":"Count"}
+      }
+    },
     "SlotTypeSummary":{
       "type":"structure",
       "members":{
@@ -3789,7 +7570,8 @@
         "slotTypeName":{"shape":"Name"},
         "description":{"shape":"Description"},
         "parentSlotTypeSignature":{"shape":"SlotTypeSignature"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "slotTypeCategory":{"shape":"SlotTypeCategory"}
       }
     },
     "SlotTypeSummaryList":{
@@ -3809,6 +7591,12 @@
       "max":10000,
       "min":1
     },
+    "SlotValue":{
+      "type":"structure",
+      "members":{
+        "interpretedValue":{"shape":"NonEmptyString"}
+      }
+    },
     "SlotValueElicitationSetting":{
       "type":"structure",
       "required":["slotConstraint"],
@@ -3817,8 +7605,23 @@
         "slotConstraint":{"shape":"SlotConstraint"},
         "promptSpecification":{"shape":"PromptSpecification"},
         "sampleUtterances":{"shape":"SampleUtterancesList"},
-        "waitAndContinueSpecification":{"shape":"WaitAndContinueSpecification"}
+        "waitAndContinueSpecification":{"shape":"WaitAndContinueSpecification"},
+        "slotCaptureSetting":{"shape":"SlotCaptureSetting"},
+        "slotResolutionSetting":{"shape":"SlotResolutionSetting"}
       }
+    },
+    "SlotValueOverride":{
+      "type":"structure",
+      "members":{
+        "shape":{"shape":"SlotShape"},
+        "value":{"shape":"SlotValue"},
+        "values":{"shape":"SlotValues"}
+      }
+    },
+    "SlotValueOverrideMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"SlotValueOverride"}
     },
     "SlotValueRegexFilter":{
       "type":"structure",
@@ -3831,7 +7634,8 @@
       "type":"string",
       "enum":[
         "OriginalValue",
-        "TopResolution"
+        "TopResolution",
+        "Concatenation"
       ]
     },
     "SlotValueSelectionSetting":{
@@ -3839,8 +7643,13 @@
       "required":["resolutionStrategy"],
       "members":{
         "resolutionStrategy":{"shape":"SlotValueResolutionStrategy"},
-        "regexFilter":{"shape":"SlotValueRegexFilter"}
+        "regexFilter":{"shape":"SlotValueRegexFilter"},
+        "advancedRecognitionSetting":{"shape":"AdvancedRecognitionSetting"}
       }
+    },
+    "SlotValues":{
+      "type":"list",
+      "member":{"shape":"SlotValueOverride"}
     },
     "SortOrder":{
       "type":"string",
@@ -3848,6 +7657,97 @@
         "Ascending",
         "Descending"
       ]
+    },
+    "Specifications":{
+      "type":"structure",
+      "required":[
+        "slotTypeId",
+        "valueElicitationSetting"
+      ],
+      "members":{
+        "slotTypeId":{"shape":"BuiltInOrCustomSlotTypeId"},
+        "valueElicitationSetting":{"shape":"SubSlotValueElicitationSetting"}
+      }
+    },
+    "StartBotRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "transcriptSourceSetting"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "transcriptSourceSetting":{"shape":"TranscriptSourceSetting"},
+        "encryptionSetting":{"shape":"EncryptionSetting"}
+      }
+    },
+    "StartBotRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "transcriptSourceSetting":{"shape":"TranscriptSourceSetting"},
+        "encryptionSetting":{"shape":"EncryptionSetting"}
+      }
+    },
+    "StartBotResourceGenerationRequest":{
+      "type":"structure",
+      "required":[
+        "generationInputPrompt",
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "generationInputPrompt":{"shape":"GenerationInput"},
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        }
+      }
+    },
+    "StartBotResourceGenerationResponse":{
+      "type":"structure",
+      "members":{
+        "generationInputPrompt":{"shape":"GenerationInput"},
+        "generationId":{"shape":"Id"},
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "generationStatus":{"shape":"GenerationStatus"},
+        "creationDateTime":{"shape":"Timestamp"}
+      }
     },
     "StartImportRequest":{
       "type":"structure",
@@ -3873,6 +7773,66 @@
         "creationDateTime":{"shape":"Timestamp"}
       }
     },
+    "StartTestExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "testSetId",
+        "target",
+        "apiMode"
+      ],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        },
+        "target":{"shape":"TestExecutionTarget"},
+        "apiMode":{"shape":"TestExecutionApiMode"},
+        "testExecutionModality":{"shape":"TestExecutionModality"}
+      }
+    },
+    "StartTestExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "testExecutionId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "testSetId":{"shape":"Id"},
+        "target":{"shape":"TestExecutionTarget"},
+        "apiMode":{"shape":"TestExecutionApiMode"},
+        "testExecutionModality":{"shape":"TestExecutionModality"}
+      }
+    },
+    "StartTestSetGenerationRequest":{
+      "type":"structure",
+      "required":[
+        "testSetName",
+        "storageLocation",
+        "generationDataSource",
+        "roleArn"
+      ],
+      "members":{
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "generationDataSource":{"shape":"TestSetGenerationDataSource"},
+        "roleArn":{"shape":"RoleArn"},
+        "testSetTags":{"shape":"TagMap"}
+      }
+    },
+    "StartTestSetGenerationResponse":{
+      "type":"structure",
+      "members":{
+        "testSetGenerationId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "testSetGenerationStatus":{"shape":"TestSetGenerationStatus"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "generationDataSource":{"shape":"TestSetGenerationDataSource"},
+        "roleArn":{"shape":"RoleArn"},
+        "testSetTags":{"shape":"TagMap"}
+      }
+    },
     "StillWaitingResponseFrequency":{
       "type":"integer",
       "max":300,
@@ -3896,6 +7856,100 @@
       "type":"integer",
       "max":900,
       "min":1
+    },
+    "StopBotRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        }
+      }
+    },
+    "StopBotRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"}
+      }
+    },
+    "String":{"type":"string"},
+    "StringMap":{
+      "type":"map",
+      "key":{"shape":"NonEmptyString"},
+      "value":{"shape":"String"}
+    },
+    "SubSlotExpression":{
+      "type":"string",
+      "max":640,
+      "min":0,
+      "pattern":"[0-9A-Za-z_\\-\\s\\(\\)]+"
+    },
+    "SubSlotSetting":{
+      "type":"structure",
+      "members":{
+        "expression":{"shape":"SubSlotExpression"},
+        "slotSpecifications":{"shape":"SubSlotSpecificationMap"}
+      }
+    },
+    "SubSlotSpecificationMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"Specifications"},
+      "max":6,
+      "min":0
+    },
+    "SubSlotTypeComposition":{
+      "type":"structure",
+      "required":[
+        "name",
+        "slotTypeId"
+      ],
+      "members":{
+        "name":{"shape":"Name"},
+        "slotTypeId":{"shape":"BuiltInOrCustomSlotTypeId"}
+      }
+    },
+    "SubSlotTypeList":{
+      "type":"list",
+      "member":{"shape":"SubSlotTypeComposition"},
+      "max":6,
+      "min":0
+    },
+    "SubSlotValueElicitationSetting":{
+      "type":"structure",
+      "required":["promptSpecification"],
+      "members":{
+        "defaultValueSpecification":{"shape":"SlotDefaultValueSpecification"},
+        "promptSpecification":{"shape":"PromptSpecification"},
+        "sampleUtterances":{"shape":"SampleUtterancesList"},
+        "waitAndContinueSpecification":{"shape":"WaitAndContinueSpecification"}
+      }
     },
     "SynonymList":{
       "type":"list",
@@ -3946,6 +8000,356 @@
       "max":256,
       "min":0
     },
+    "TestExecutionApiMode":{
+      "type":"string",
+      "enum":[
+        "Streaming",
+        "NonStreaming"
+      ]
+    },
+    "TestExecutionModality":{
+      "type":"string",
+      "enum":[
+        "Text",
+        "Audio"
+      ]
+    },
+    "TestExecutionResultFilterBy":{
+      "type":"structure",
+      "required":["resultTypeFilter"],
+      "members":{
+        "resultTypeFilter":{"shape":"TestResultTypeFilter"},
+        "conversationLevelTestResultsFilterBy":{"shape":"ConversationLevelTestResultsFilterBy"}
+      }
+    },
+    "TestExecutionResultItems":{
+      "type":"structure",
+      "members":{
+        "overallTestResults":{"shape":"OverallTestResults"},
+        "conversationLevelTestResults":{"shape":"ConversationLevelTestResults"},
+        "intentClassificationTestResults":{"shape":"IntentClassificationTestResults"},
+        "intentLevelSlotResolutionTestResults":{"shape":"IntentLevelSlotResolutionTestResults"},
+        "utteranceLevelTestResults":{"shape":"UtteranceLevelTestResults"}
+      }
+    },
+    "TestExecutionSortAttribute":{
+      "type":"string",
+      "enum":[
+        "TestSetName",
+        "CreationDateTime"
+      ]
+    },
+    "TestExecutionSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{"shape":"TestExecutionSortAttribute"},
+        "order":{"shape":"SortOrder"}
+      }
+    },
+    "TestExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "Waiting",
+        "InProgress",
+        "Completed",
+        "Failed",
+        "Stopping",
+        "Stopped"
+      ]
+    },
+    "TestExecutionSummary":{
+      "type":"structure",
+      "members":{
+        "testExecutionId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "testExecutionStatus":{"shape":"TestExecutionStatus"},
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "target":{"shape":"TestExecutionTarget"},
+        "apiMode":{"shape":"TestExecutionApiMode"},
+        "testExecutionModality":{"shape":"TestExecutionModality"}
+      }
+    },
+    "TestExecutionSummaryList":{
+      "type":"list",
+      "member":{"shape":"TestExecutionSummary"}
+    },
+    "TestExecutionTarget":{
+      "type":"structure",
+      "members":{
+        "botAliasTarget":{"shape":"BotAliasTestExecutionTarget"}
+      }
+    },
+    "TestResultMatchStatus":{
+      "type":"string",
+      "enum":[
+        "Matched",
+        "Mismatched",
+        "ExecutionError"
+      ]
+    },
+    "TestResultMatchStatusCountMap":{
+      "type":"map",
+      "key":{"shape":"TestResultMatchStatus"},
+      "value":{"shape":"Count"}
+    },
+    "TestResultSlotName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([0-9a-zA-Z][_.-]?)+$"
+    },
+    "TestResultTypeFilter":{
+      "type":"string",
+      "enum":[
+        "OverallTestResults",
+        "ConversationLevelTestResults",
+        "IntentClassificationTestResults",
+        "SlotResolutionTestResults",
+        "UtteranceLevelResults"
+      ]
+    },
+    "TestSetAgentPrompt":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "TestSetConversationId":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"^([0-9a-zA-Z][_-]?)+$"
+    },
+    "TestSetDiscrepancyErrors":{
+      "type":"structure",
+      "required":[
+        "intentDiscrepancies",
+        "slotDiscrepancies"
+      ],
+      "members":{
+        "intentDiscrepancies":{"shape":"TestSetIntentDiscrepancyList"},
+        "slotDiscrepancies":{"shape":"TestSetSlotDiscrepancyList"}
+      }
+    },
+    "TestSetDiscrepancyReportBotAliasTarget":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botAliasId",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botAliasId":{"shape":"BotAliasId"},
+        "localeId":{"shape":"LocaleId"}
+      }
+    },
+    "TestSetDiscrepancyReportResourceTarget":{
+      "type":"structure",
+      "members":{
+        "botAliasTarget":{"shape":"TestSetDiscrepancyReportBotAliasTarget"}
+      }
+    },
+    "TestSetDiscrepancyReportStatus":{
+      "type":"string",
+      "enum":[
+        "InProgress",
+        "Completed",
+        "Failed"
+      ]
+    },
+    "TestSetExportSpecification":{
+      "type":"structure",
+      "required":["testSetId"],
+      "members":{
+        "testSetId":{"shape":"Id"}
+      }
+    },
+    "TestSetGenerationDataSource":{
+      "type":"structure",
+      "members":{
+        "conversationLogsDataSource":{"shape":"ConversationLogsDataSource"}
+      }
+    },
+    "TestSetGenerationStatus":{
+      "type":"string",
+      "enum":[
+        "Generating",
+        "Ready",
+        "Failed",
+        "Pending"
+      ]
+    },
+    "TestSetImportInputLocation":{
+      "type":"structure",
+      "required":[
+        "s3BucketName",
+        "s3Path"
+      ],
+      "members":{
+        "s3BucketName":{"shape":"S3BucketName"},
+        "s3Path":{"shape":"S3ObjectPath"}
+      }
+    },
+    "TestSetImportResourceSpecification":{
+      "type":"structure",
+      "required":[
+        "testSetName",
+        "roleArn",
+        "storageLocation",
+        "importInputLocation",
+        "modality"
+      ],
+      "members":{
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "roleArn":{"shape":"RoleArn"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "importInputLocation":{"shape":"TestSetImportInputLocation"},
+        "modality":{"shape":"TestSetModality"},
+        "testSetTags":{"shape":"TagMap"}
+      }
+    },
+    "TestSetIntentDiscrepancyItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "errorMessage"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "errorMessage":{"shape":"String"}
+      }
+    },
+    "TestSetIntentDiscrepancyList":{
+      "type":"list",
+      "member":{"shape":"TestSetIntentDiscrepancyItem"}
+    },
+    "TestSetModality":{
+      "type":"string",
+      "enum":[
+        "Text",
+        "Audio"
+      ]
+    },
+    "TestSetSlotDiscrepancyItem":{
+      "type":"structure",
+      "required":[
+        "intentName",
+        "slotName",
+        "errorMessage"
+      ],
+      "members":{
+        "intentName":{"shape":"Name"},
+        "slotName":{"shape":"Name"},
+        "errorMessage":{"shape":"String"}
+      }
+    },
+    "TestSetSlotDiscrepancyList":{
+      "type":"list",
+      "member":{"shape":"TestSetSlotDiscrepancyItem"}
+    },
+    "TestSetSortAttribute":{
+      "type":"string",
+      "enum":[
+        "TestSetName",
+        "LastUpdatedDateTime"
+      ]
+    },
+    "TestSetSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{"shape":"TestSetSortAttribute"},
+        "order":{"shape":"SortOrder"}
+      }
+    },
+    "TestSetStatus":{
+      "type":"string",
+      "enum":[
+        "Importing",
+        "PendingAnnotation",
+        "Deleting",
+        "ValidationError",
+        "Ready"
+      ]
+    },
+    "TestSetStorageLocation":{
+      "type":"structure",
+      "required":[
+        "s3BucketName",
+        "s3Path"
+      ],
+      "members":{
+        "s3BucketName":{"shape":"S3BucketName"},
+        "s3Path":{"shape":"S3ObjectPath"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "TestSetSummary":{
+      "type":"structure",
+      "members":{
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "modality":{"shape":"TestSetModality"},
+        "status":{"shape":"TestSetStatus"},
+        "roleArn":{"shape":"RoleArn"},
+        "numTurns":{"shape":"Count"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "TestSetSummaryList":{
+      "type":"list",
+      "member":{"shape":"TestSetSummary"}
+    },
+    "TestSetTurnRecord":{
+      "type":"structure",
+      "required":[
+        "recordNumber",
+        "turnSpecification"
+      ],
+      "members":{
+        "recordNumber":{"shape":"RecordNumber"},
+        "conversationId":{"shape":"TestSetConversationId"},
+        "turnNumber":{"shape":"TurnNumber"},
+        "turnSpecification":{"shape":"TurnSpecification"}
+      }
+    },
+    "TestSetTurnRecordList":{
+      "type":"list",
+      "member":{"shape":"TestSetTurnRecord"}
+    },
+    "TestSetTurnResult":{
+      "type":"structure",
+      "members":{
+        "agent":{"shape":"AgentTurnResult"},
+        "user":{"shape":"UserTurnResult"}
+      }
+    },
+    "TestSetUtteranceText":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "TextInputSpecification":{
+      "type":"structure",
+      "required":["startTimeoutMs"],
+      "members":{
+        "startTimeoutMs":{"shape":"TimeInMilliSeconds"}
+      }
+    },
     "TextLogDestination":{
       "type":"structure",
       "required":["cloudWatch"],
@@ -3961,7 +8365,8 @@
       ],
       "members":{
         "enabled":{"shape":"Boolean"},
-        "destination":{"shape":"TextLogDestination"}
+        "destination":{"shape":"TextLogDestination"},
+        "selectiveLoggingEnabled":{"shape":"BoxedBoolean"}
       }
     },
     "TextLogSettingsList":{
@@ -3983,7 +8388,58 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "TimeDimension":{
+      "type":"string",
+      "enum":[
+        "Hours",
+        "Days",
+        "Weeks"
+      ]
+    },
+    "TimeInMilliSeconds":{
+      "type":"integer",
+      "min":1
+    },
+    "TimeValue":{
+      "type":"integer",
+      "max":24,
+      "min":1
+    },
     "Timestamp":{"type":"timestamp"},
+    "Transcript":{
+      "type":"string",
+      "max":6000000,
+      "min":1,
+      "pattern":".*"
+    },
+    "TranscriptFilter":{
+      "type":"structure",
+      "members":{
+        "lexTranscriptFilter":{"shape":"LexTranscriptFilter"}
+      }
+    },
+    "TranscriptFormat":{
+      "type":"string",
+      "enum":["Lex"]
+    },
+    "TranscriptSourceSetting":{
+      "type":"structure",
+      "members":{
+        "s3BucketTranscriptSource":{"shape":"S3BucketTranscriptSource"}
+      }
+    },
+    "TurnNumber":{
+      "type":"integer",
+      "max":30,
+      "min":0
+    },
+    "TurnSpecification":{
+      "type":"structure",
+      "members":{
+        "agentTurn":{"shape":"AgentTurnSpecification"},
+        "userTurn":{"shape":"UserTurnSpecification"}
+      }
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -4076,7 +8532,8 @@
         },
         "description":{"shape":"Description"},
         "nluIntentConfidenceThreshold":{"shape":"ConfidenceThreshold"},
-        "voiceSettings":{"shape":"VoiceSettings"}
+        "voiceSettings":{"shape":"VoiceSettings"},
+        "generativeAISettings":{"shape":"GenerativeAISettings"}
       }
     },
     "UpdateBotLocaleResponse":{
@@ -4092,7 +8549,56 @@
         "botLocaleStatus":{"shape":"BotLocaleStatus"},
         "failureReasons":{"shape":"FailureReasons"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "recommendedActions":{"shape":"RecommendedActions"},
+        "generativeAISettings":{"shape":"GenerativeAISettings"}
+      }
+    },
+    "UpdateBotRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId",
+        "encryptionSetting"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        },
+        "encryptionSetting":{"shape":"EncryptionSetting"}
+      }
+    },
+    "UpdateBotRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "transcriptSourceSetting":{"shape":"TranscriptSourceSetting"},
+        "encryptionSetting":{"shape":"EncryptionSetting"}
       }
     },
     "UpdateBotRequest":{
@@ -4114,7 +8620,9 @@
         "description":{"shape":"Description"},
         "roleArn":{"shape":"RoleArn"},
         "dataPrivacy":{"shape":"DataPrivacy"},
-        "idleSessionTTLInSeconds":{"shape":"SessionTTL"}
+        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
       }
     },
     "UpdateBotResponse":{
@@ -4128,8 +8636,16 @@
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "botStatus":{"shape":"BotStatus"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
       }
+    },
+    "UpdateCustomVocabularyItemsList":{
+      "type":"list",
+      "member":{"shape":"CustomVocabularyItem"},
+      "max":10,
+      "min":1
     },
     "UpdateExportRequest":{
       "type":"structure",
@@ -4195,7 +8711,8 @@
           "shape":"LocaleId",
           "location":"uri",
           "locationName":"localeId"
-        }
+        },
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "UpdateIntentResponse":{
@@ -4218,7 +8735,8 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "UpdateResourcePolicyRequest":{
@@ -4253,7 +8771,6 @@
       "required":[
         "slotId",
         "slotName",
-        "slotTypeId",
         "valueElicitationSetting",
         "botId",
         "botVersion",
@@ -4291,7 +8808,8 @@
           "location":"uri",
           "locationName":"intentId"
         },
-        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"},
+        "subSlotSetting":{"shape":"SubSlotSetting"}
       }
     },
     "UpdateSlotResponse":{
@@ -4309,7 +8827,8 @@
         "intentId":{"shape":"Id"},
         "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"},
-        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"},
+        "subSlotSetting":{"shape":"SubSlotSetting"}
       }
     },
     "UpdateSlotTypeRequest":{
@@ -4317,7 +8836,6 @@
       "required":[
         "slotTypeId",
         "slotTypeName",
-        "valueSelectionSetting",
         "botId",
         "botVersion",
         "localeId"
@@ -4347,7 +8865,9 @@
           "shape":"LocaleId",
           "location":"uri",
           "locationName":"localeId"
-        }
+        },
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"},
+        "compositeSlotTypeSetting":{"shape":"CompositeSlotTypeSetting"}
       }
     },
     "UpdateSlotTypeResponse":{
@@ -4363,10 +8883,223 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"},
+        "compositeSlotTypeSetting":{"shape":"CompositeSlotTypeSetting"}
+      }
+    },
+    "UpdateTestSetRequest":{
+      "type":"structure",
+      "required":[
+        "testSetId",
+        "testSetName"
+      ],
+      "members":{
+        "testSetId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"testSetId"
+        },
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"}
+      }
+    },
+    "UpdateTestSetResponse":{
+      "type":"structure",
+      "members":{
+        "testSetId":{"shape":"Id"},
+        "testSetName":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "modality":{"shape":"TestSetModality"},
+        "status":{"shape":"TestSetStatus"},
+        "roleArn":{"shape":"RoleArn"},
+        "numTurns":{"shape":"Count"},
+        "storageLocation":{"shape":"TestSetStorageLocation"},
+        "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"}
       }
     },
+    "UserTurnInputSpecification":{
+      "type":"structure",
+      "required":["utteranceInput"],
+      "members":{
+        "utteranceInput":{"shape":"UtteranceInputSpecification"},
+        "requestAttributes":{"shape":"StringMap"},
+        "sessionState":{"shape":"InputSessionStateSpecification"}
+      }
+    },
+    "UserTurnIntentOutput":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"Name"},
+        "slots":{"shape":"UserTurnSlotOutputMap"}
+      }
+    },
+    "UserTurnOutputSpecification":{
+      "type":"structure",
+      "required":["intent"],
+      "members":{
+        "intent":{"shape":"UserTurnIntentOutput"},
+        "activeContexts":{"shape":"ActiveContextList"},
+        "transcript":{"shape":"TestSetUtteranceText"}
+      }
+    },
+    "UserTurnResult":{
+      "type":"structure",
+      "required":[
+        "input",
+        "expectedOutput"
+      ],
+      "members":{
+        "input":{"shape":"UserTurnInputSpecification"},
+        "expectedOutput":{"shape":"UserTurnOutputSpecification"},
+        "actualOutput":{"shape":"UserTurnOutputSpecification"},
+        "errorDetails":{"shape":"ExecutionErrorDetails"},
+        "endToEndResult":{"shape":"TestResultMatchStatus"},
+        "intentMatchResult":{"shape":"TestResultMatchStatus"},
+        "slotMatchResult":{"shape":"TestResultMatchStatus"},
+        "speechTranscriptionResult":{"shape":"TestResultMatchStatus"},
+        "conversationLevelResult":{"shape":"ConversationLevelResultDetail"}
+      }
+    },
+    "UserTurnSlotOutput":{
+      "type":"structure",
+      "members":{
+        "value":{"shape":"NonEmptyString"},
+        "values":{"shape":"UserTurnSlotOutputList"},
+        "subSlots":{"shape":"UserTurnSlotOutputMap"}
+      }
+    },
+    "UserTurnSlotOutputList":{
+      "type":"list",
+      "member":{"shape":"UserTurnSlotOutput"}
+    },
+    "UserTurnSlotOutputMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"UserTurnSlotOutput"}
+    },
+    "UserTurnSpecification":{
+      "type":"structure",
+      "required":[
+        "input",
+        "expected"
+      ],
+      "members":{
+        "input":{"shape":"UserTurnInputSpecification"},
+        "expected":{"shape":"UserTurnOutputSpecification"}
+      }
+    },
     "Utterance":{"type":"string"},
+    "UtteranceAggregationDuration":{
+      "type":"structure",
+      "required":["relativeAggregationDuration"],
+      "members":{
+        "relativeAggregationDuration":{"shape":"RelativeAggregationDuration"}
+      }
+    },
+    "UtteranceAudioInputSpecification":{
+      "type":"structure",
+      "required":["audioFileS3Location"],
+      "members":{
+        "audioFileS3Location":{"shape":"AudioFileS3Location"}
+      }
+    },
+    "UtteranceBotResponse":{
+      "type":"structure",
+      "members":{
+        "content":{"shape":"String"},
+        "contentType":{"shape":"UtteranceContentType"},
+        "imageResponseCard":{"shape":"ImageResponseCard"}
+      }
+    },
+    "UtteranceBotResponses":{
+      "type":"list",
+      "member":{"shape":"UtteranceBotResponse"}
+    },
+    "UtteranceContentType":{
+      "type":"string",
+      "enum":[
+        "PlainText",
+        "CustomPayload",
+        "SSML",
+        "ImageResponseCard"
+      ]
+    },
+    "UtteranceDataSortBy":{
+      "type":"structure",
+      "required":[
+        "name",
+        "order"
+      ],
+      "members":{
+        "name":{"shape":"AnalyticsUtteranceSortByName"},
+        "order":{"shape":"AnalyticsSortOrder"}
+      }
+    },
+    "UtteranceInputSpecification":{
+      "type":"structure",
+      "members":{
+        "textInput":{"shape":"TestSetUtteranceText"},
+        "audioInput":{"shape":"UtteranceAudioInputSpecification"}
+      }
+    },
+    "UtteranceLevelTestResultItem":{
+      "type":"structure",
+      "required":[
+        "recordNumber",
+        "turnResult"
+      ],
+      "members":{
+        "recordNumber":{"shape":"RecordNumber"},
+        "conversationId":{"shape":"TestSetConversationId"},
+        "turnResult":{"shape":"TestSetTurnResult"}
+      }
+    },
+    "UtteranceLevelTestResultItemList":{
+      "type":"list",
+      "member":{"shape":"UtteranceLevelTestResultItem"}
+    },
+    "UtteranceLevelTestResults":{
+      "type":"structure",
+      "required":["items"],
+      "members":{
+        "items":{"shape":"UtteranceLevelTestResultItemList"}
+      }
+    },
+    "UtteranceSpecification":{
+      "type":"structure",
+      "members":{
+        "botAliasId":{"shape":"BotAliasId"},
+        "botVersion":{"shape":"NumericalBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "sessionId":{"shape":"AnalyticsSessionId"},
+        "channel":{"shape":"AnalyticsChannel"},
+        "mode":{"shape":"AnalyticsModality"},
+        "conversationStartTime":{"shape":"Timestamp"},
+        "conversationEndTime":{"shape":"Timestamp"},
+        "utterance":{"shape":"String"},
+        "utteranceTimestamp":{"shape":"Timestamp"},
+        "audioVoiceDurationMillis":{"shape":"AnalyticsLongValue"},
+        "utteranceUnderstood":{"shape":"UtteranceUnderstood"},
+        "inputType":{"shape":"String"},
+        "outputType":{"shape":"String"},
+        "associatedIntentName":{"shape":"Name"},
+        "associatedSlotName":{"shape":"Name"},
+        "intentState":{"shape":"IntentState"},
+        "dialogActionType":{"shape":"String"},
+        "botResponseAudioVoiceId":{"shape":"String"},
+        "slotsFilledInSession":{"shape":"String"},
+        "utteranceRequestId":{"shape":"Id"},
+        "botResponses":{"shape":"UtteranceBotResponses"}
+      }
+    },
+    "UtteranceSpecifications":{
+      "type":"list",
+      "member":{"shape":"UtteranceSpecification"}
+    },
+    "UtteranceUnderstood":{"type":"boolean"},
     "ValidationException":{
       "type":"structure",
       "members":{
@@ -4380,12 +9113,20 @@
       "max":140,
       "min":1
     },
+    "VoiceEngine":{
+      "type":"string",
+      "enum":[
+        "standard",
+        "neural"
+      ]
+    },
     "VoiceId":{"type":"string"},
     "VoiceSettings":{
       "type":"structure",
       "required":["voiceId"],
       "members":{
-        "voiceId":{"shape":"VoiceId"}
+        "voiceId":{"shape":"VoiceId"},
+        "engine":{"shape":"VoiceEngine"}
       }
     },
     "WaitAndContinueSpecification":{
@@ -4397,8 +9138,15 @@
       "members":{
         "waitingResponse":{"shape":"ResponseSpecification"},
         "continueResponse":{"shape":"ResponseSpecification"},
-        "stillWaitingResponse":{"shape":"StillWaitingResponseSpecification"}
+        "stillWaitingResponse":{"shape":"StillWaitingResponseSpecification"},
+        "active":{"shape":"BoxedBoolean"}
       }
+    },
+    "Weight":{
+      "type":"integer",
+      "box":true,
+      "max":3,
+      "min":0
     }
   }
 }
